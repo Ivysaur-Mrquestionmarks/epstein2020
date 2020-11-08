@@ -10,6 +10,7 @@ replace_path="common/bookmarks"
 #replace_path="common/scripted_effects"
 #replace_path="map/strategicregions"
 #replace_path="map/supplyareas"
+replace_path="gfx/loadingscreens"
 tags={
 	"Fixes"
 	"Events"
