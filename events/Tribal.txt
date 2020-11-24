@@ -45,6 +45,17 @@ country_event = {
 			planning_skill = 1
 			logistics_skill = 1
 		}
+		create_corps_commander = {
+			name = "Augustus Sol Invictus"
+			portrait = "gfx/leaders/HOP/Invictus.dds"
+			id = 1489
+			traits = { politically_connected media_personality }
+			skill = 1
+			attack_skill = 1
+			defense_skill = 1
+			planning_skill = 1
+			logistics_skill = 1
+		}
 		create_country_leader = {
 			name = "James Mason"
 			picture = "gfx/leaders/CAS/siege.dds"
@@ -101,5 +112,43 @@ country_event = {
 			target = TOH
 			type = annex_everything
 		}
+	}
+}
+#James Mason fucking dies
+country_event = {
+	id = tribal.3
+	title = tribal.3.t
+	desc = tribal.3.d
+	#picture = 
+	trigger = {
+		has_country_leader = { name = "James Mason" ruling_only = yes }
+		date > 2023.5.10
+	}
+	mean_time_to_happen = { days = 365 modifier = { factor = 0.2 has_war = yes } }
+	immediate = {
+		hidden_effect = {
+			remove_unit_leader = 1488
+			every_unit_leader = {
+        			limit = {
+    					has_id = 1489
+        		    }
+        		    promote_leader = yes
+        		}
+			kill_country_leader = yes
+			create_country_leader = {
+				name = "Augustus Sol Invictus"
+				picture = "gfx/leaders/HOP/InvictusEmperor.dds"
+				expire = "2060.1.1"
+				desc = "DESC_AUGUSTUS_SOL_INVICTUS_LEADER"
+				ideology = neonazism
+				traits = {
+					neo_nazi_caesar
+				}
+			}
+		}
+	} 
+	option = {
+		name = tribal.3.a
+		set_cosmetic_tag = HOP_sol_invictus
 	}
 }
