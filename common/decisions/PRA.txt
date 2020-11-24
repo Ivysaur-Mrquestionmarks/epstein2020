@@ -1,0 +1,54 @@
+PRA_cascadia_war = {
+
+	PRA_defeat_cascadia = {
+
+		icon = generic_civil_support
+
+		allowed = {
+			OR = {
+				original_tag = PRA
+			}
+		}
+		available = {
+			OR = {
+				NOT = { country_exists = CAS }
+				CAS = { is_subject = yes }
+				CAS = {
+					is_in_faction = yes
+					has_capitulated = yes
+				}
+			}
+		}
+		visible = {
+			NOT = { has_country_flag = cascadian_peace }
+			has_war_with = CAS
+		}
+
+		activation = {
+			has_war_with = CAS
+		}
+
+		is_good = no
+
+		days_mission_timeout = 200
+
+		timeout_effect = {
+			white_peace = CAS
+			add_war_support = -0.03
+			add_stability = -0.03
+			add_political_power = -50
+			hidden_effect = {
+				set_country_flag = cascadian_peace
+				CAS = { country_event = { id = cascadia.1 days = 25 } }
+			}
+		}
+
+		complete_effect = {
+			add_war_support = 0.01
+			add_political_power = 10
+		}
+
+
+	}
+
+}
