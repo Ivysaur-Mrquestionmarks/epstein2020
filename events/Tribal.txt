@@ -1,0 +1,154 @@
+add_namespace = tribal
+
+#James Mason invades Hopi- Trump is informed
+country_event = {
+	id = tribal.1
+	title = tribal.1.t
+	desc = tribal.1.d
+	#picture = 
+	trigger = {
+		tag = USA
+	}
+	fire_only_once = yes
+	mean_time_to_happen = { days = 25 }
+	#there isn't really much we can do
+	option = {
+		name = tribal.1.a
+		add_manpower = -2000
+		HOP = { 
+			add_manpower = 2000 
+			hidden_effect = {
+				country_event = { id = tribal.2 hours = 8 }
+			}
+		}
+	}
+}
+#James Mason invades Hopi- ofuc.jpg
+country_event = {
+	id = tribal.2
+	title = tribal.2.t
+	desc = tribal.2.d
+	#picture = 
+	is_triggered_only = yes
+	fire_only_once = yes
+	#fug
+	option = {
+		name = tribal.2.a
+		create_field_marshal = {
+			name = "James Mason"
+			portrait_path="gfx/leaders/CAS/siege.dds" 
+			id = 1488
+			traits={ politically_connected trait_reckless harsh_leader guerilla_fighter } 
+			skill = 1
+			attack_skill = 1
+			defense_skill = 1
+			planning_skill = 1
+			logistics_skill = 1
+		}
+		create_corps_commander = {
+			name = "Augustus Sol Invictus"
+			portrait = "gfx/leaders/HOP/Invictus.dds"
+			id = 1489
+			traits = { politically_connected media_personality }
+			skill = 1
+			attack_skill = 1
+			defense_skill = 1
+			planning_skill = 1
+			logistics_skill = 1
+		}
+		create_country_leader = {
+			name = "James Mason"
+			picture = "gfx/leaders/CAS/siege.dds"
+			expire = "2060.1.1"
+			ideology = neonazism
+			traits = {
+				read_siege
+			}
+		}
+		set_politics = {
+			ruling_party = autocratic
+		}
+		hidden_effect = {
+			add_popularity = { ideology = autocratic popularity = 0.56}
+			division_template = {
+				name = "SS Division"
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+					infantry = { x = 1 y = 2 }
+					infantry = { x = 2 y = 0 }
+				}
+				support = {
+					military_police = { x = 0 y = 0 }
+				}
+			}
+			45 = {
+				create_unit = {
+					division = "name = \"SS Division 'Geronimo'\" division_template = \"SS Division\" start_experience_factor = 0.4" 
+					owner = HOP
+				}
+				create_unit = {
+					division = "name = \"SS Division 'Rockwell'\" division_template = \"SS Division\" start_experience_factor = 0.4" 
+					owner = HOP
+				}
+			}
+			add_state_core = 40
+			add_state_core = 61
+			add_state_core = 352
+			add_state_core = 365
+			NAV = {
+				create_faction = TRIBAL_ALLIANCE
+				add_to_faction = TOH
+			}
+		}
+		declare_war_on = {
+    		target = NAV
+    		type = annex_everything
+		}
+		declare_war_on = {
+			target = TOH
+			type = annex_everything
+		}
+	}
+}
+#James Mason fucking dies
+country_event = {
+	id = tribal.3
+	title = tribal.3.t
+	desc = tribal.3.d
+	#picture = 
+	trigger = {
+		has_country_leader = { name = "James Mason" ruling_only = yes }
+		date > 2023.5.10
+	}
+	mean_time_to_happen = { days = 365 modifier = { factor = 0.2 has_war = yes } }
+	immediate = {
+		hidden_effect = {
+			remove_unit_leader = 1488
+			every_unit_leader = {
+        			limit = {
+    					has_id = 1489
+        		    }
+        		    promote_leader = yes
+        		}
+			kill_country_leader = yes
+			create_country_leader = {
+				name = "Augustus Sol Invictus"
+				picture = "gfx/leaders/HOP/InvictusEmperor.dds"
+				expire = "2060.1.1"
+				desc = "DESC_AUGUSTUS_SOL_INVICTUS_LEADER"
+				ideology = neonazism
+				traits = {
+					neo_nazi_caesar
+				}
+			}
+		}
+	} 
+	option = {
+		name = tribal.3.a
+		set_cosmetic_tag = HOP_sol_invictus
+	}
+}
