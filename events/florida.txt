@@ -204,3 +204,115 @@ country_event = {
 		add_war_support = 0.4
 	}
 }
+#Fuentes reports Jeb is revolting
+country_event = {
+	id = florida.12
+	title = florida.12.t
+	desc = florida.12.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = florida.12.a
+		hidden_effect = { retire_ideology_leader = republican country_event = { id = florida.13 hours = 6 } }
+		set_party_name = { 
+		    ideology = autocratic
+		    long_name = FLO_america_first_party_long 
+		    name = FLO_america_first_party
+		}
+		every_unit_leader = {
+        		limit = {
+            			has_id = 25061
+            		}
+            		set_nationality = JEB
+        	}
+		every_unit_leader = {
+        		limit = {
+            			has_id = 25064
+            		}
+            		set_nationality = JEB
+        	}
+		if = {
+			limit = {
+				has_country_flag = sided_with_ribas
+			}
+			every_unit_leader = {
+        			limit = {
+            				has_id = 25066
+            			}
+            			set_nationality = JEB
+        		}
+		}
+		if = {
+			limit = {
+				has_country_flag = sided_with_acosta
+			}
+			every_unit_leader = {
+        			limit = {
+            				has_id = 25065
+            			}
+            			set_nationality = JEB
+        		}
+		}
+		if = {
+			limit = {
+				NOT = { OR = { has_country_flag = sided_with_acosta has_country_flag = sided_with_ribas } }
+			}
+			every_unit_leader = {
+        			limit = {
+            				has_id = 25065
+            			}
+            			set_nationality = JEB
+        		}
+			every_unit_leader = {
+        			limit = {
+            				has_id = 25066
+            			}
+            			set_nationality = JEB
+        		}
+		}
+		every_unit_leader = {
+        		limit = {
+            			has_id = 25062
+            		}
+            		promote_leader = yes
+        	}
+        hidden_effect = {
+        	every_unit_leader = {
+        		set_unit_leader_flag = barron_loyalist
+        	}
+        }
+	}
+}
+#Jeb revolt begins
+country_event = {
+	id = florida.13
+	title = florida.13.t
+	desc = florida.13.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			JEB = {
+				add_state_core = 339
+				transfer_state = 339
+			}
+			transfer_units_fraction= {
+			    target = JEB
+			    size = 0.3
+			    stockpile_ratio = 0.2
+			    army_ratio = 0.3
+			    navy_ratio = 0.5
+			    air_ratio = 0.7
+			    keep_unit_leaders_trigger = {
+			      has_unit_leader_flag = barron_loyalist
+				}
+			}
+			declare_war_on = {
+			    target = JEB
+			    type = annex_everything
+			}
+		}
+	}
+}
