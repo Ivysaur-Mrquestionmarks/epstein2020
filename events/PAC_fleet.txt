@@ -2,7 +2,7 @@ add_namespace = fleet_P
 
 country_event = {
 	id = fleet_P.1 #introduction event
-	name = fleet_P.1.t
+	title = fleet_P.1.t
 	desc = fleet_P.1.d
 	#picture = 
 	is_triggered_only = yes
@@ -17,13 +17,154 @@ country_event = {
 
 country_event = {
 	id = fleet_P.2 #War report
-	name = fleet_P.2.t
+	title = fleet_P.2.t
 	desc = fleet_P.2.d
 	#picture = 
 	is_triggered_only = yes
 	fire_only_once = yes
 	option = {
 		name = fleet_P.2.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	id = fleet_P.3 #Uses veterans in cali to infiltrate Bernie
+	title = fleet_P.3.t
+	desc = fleet_P.3.d
+	#picture = 
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = fleet_P.3.a
+		ai_chance = {
+			factor = 100
+		}
+		PRA = {
+			add_stability = -0.1
+			add_war_support = -0.1
+		}
+	}
+}
+
+country_event = {
+	id = fleet_P.4 #Our allies in bernie's land rise up
+	title = fleet_P.4.t
+	desc = fleet_P.4.d
+	#picture = 
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = fleet_P.4.a
+		ai_chance = {
+			factor = 100
+		}
+		
+	}
+}
+
+country_event = {
+	id = fleet_P.5 #factories bommed
+	title = fleet_P.5.t
+	desc = fleet_P.5.d
+	#picture = 
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = fleet_P.5.a
+		ai_chance = {
+			factor = 100
+		}
+		effect_tooltip = {
+			PRA = {
+				random_owned_controlled_state = {
+					limit = {arms_factory > 1}
+					damage_building = {
+    						type = arms_factory
+    						damage = 10
+					}
+				}
+				random_owned_controlled_state = {
+					limit = {arms_factory > 1}
+					damage_building = {
+    						type = arms_factory
+    						damage = 10
+					}
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = fleet_P.6 #Operation guam.
+	title = fleet_P.6.t
+	desc = fleet_P.6.d
+	#picture = 
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = fleet_P.6.a
+		ai_chance = {
+			factor = 100
+		}
+		custom_effect_tooltip = Operation_Guam
+		hidden_effect = {
+			load_oob = "PAC_operation_guam"
+		}
+	}
+}
+
+
+country_event = {
+	id = fleet_P.7 #loses against mr Bernie
+	title = fleet_P.7.t
+	desc = fleet_P.7.d
+	#picture = 
+	trigger = {
+		tag = PAC
+		has_war_with = PRA
+		NOT = {
+			controls_state = 107
+			controls_state = 138
+			controls_state = 123
+			controls_state = 241
+			PRA = {
+				any_owned_state = {
+					is_controlled_by = PAC
+				}
+			}
+		}
+	}
+	fire_only_once = yes
+	option = {
+		name = fleet_P.7.a
+		ai_chance = {
+			factor = 100
+		}
+		white_peace = PRA
+		set_country_flag = temp_loss
+		mark_focus_tree_layout_dirty = yes
+		PRA = {
+			transfer_state = 107
+			transfer_state = 138
+			transfer_state = 123
+			transfer_state = 241
+		}
+	}
+}
+
+country_event = {
+	id = fleet_P.8 #A minor set back
+	title = fleet_P.8.t
+	desc = fleet_P.8.d
+	#picture = 
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = fleet_P.8.a
 		ai_chance = {
 			factor = 100
 		}

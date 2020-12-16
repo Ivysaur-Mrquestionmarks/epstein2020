@@ -1,0 +1,546 @@
+focus_tree = {
+	id = fleet1
+	country = {
+		factor = 0
+		modifier = {
+			add = 13
+			tag = PAC
+		}
+	}
+	default = no
+        continuous_focus_position = { x = 1000 y = 1000}
+	initial_show_position = {
+		focus = CW_Independence_struggle
+	}
+	focus = {
+		id = PAC_continue
+		icon = GFX_focus_research
+		text = "mobilise extra troops for the west coast war"
+		#allow_branch = {
+
+		#}
+		#prerequisite = { focus = ITA_industrial_effort_2 }
+		available = {
+			has_war_with = PRA
+		}
+		x = 5
+		y = 1
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+		select_effect = {
+			country_event = {
+  				id = fleet_P.2
+    				days = 15
+			}
+		}
+		completion_reward = {
+			add_manpower = 45000
+			add_war_support = 0.1
+		}
+	}
+	focus = {
+		id = PAC_join_training
+		icon = GFX_focus_research
+		text = "join unit training"
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = PAC_continue }
+		available = {
+			has_war_with = PRA
+		}
+		x = 4
+		y = 2
+		cost = 5
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		available_if_capitulated = no
+		completion_reward = {
+			every_country = {
+				limit = {OR = {tag = CAS tag = PAC}}
+				division_template = {
+   					name = "American infantry"
+					regiments = {
+						infantry = { x = 0 y = 0 }
+						infantry = { x = 0 y = 1 }
+						infantry = { x = 0 y = 2 }
+						infantry = { x = 0 y = 3 }
+						infantry = { x = 0 y = 4 }
+						infantry = { x = 1 y = 0 }
+						infantry = { x = 1 y = 1 }
+						infantry = { x = 1 y = 2 }
+						infantry = { x = 1 y = 3 }
+						infantry = { x = 1 y = 4 }
+					} 
+				}
+				random_owned_controlled_state = {
+					create_unit = {
+						division = "division_template = \"American infantry\"	start_experience_factor = 0.25	start_equipment_factor = 1"
+						owner = PREV
+						allow_spawning_on_enemy_provs = yes
+						count = 2
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = PAC_canada_diplomacy
+		icon = GFX_focus_research
+		text = "Improve relations with the canadians"
+		#allow_branch = {
+
+		#}
+		prerequisite = {focus = PAC_join_training }
+		available = {
+			has_war_with = PRA
+		}
+		x = 2
+		y = 3
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_opinion_modifier = {
+    				target = CAN
+    				modifier = diplomatic_exchange
+			}
+			add_opinion_modifier = {
+    				target = CAN
+    				modifier = diplomatic_exchange_trade
+			}
+			reverse_add_opinion_modifier = {
+    				target = CAN
+    				modifier = diplomatic_exchange
+			}
+			reverse_add_opinion_modifier = {
+    				target = CAN
+    				modifier = diplomatic_exchange_trade
+			}
+		}
+	}
+	focus = {
+		id = PAC_buy_rifles_CAN
+		icon = GFX_focus_research
+		text = "Buy Canadian guns"
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = PAC_canada_diplomacy }
+		available = {
+			has_war_with = PRA
+		}
+		x = 2
+		y = 5
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_equipment_to_stockpile = {
+    				type = infantry_equipment
+    				amount = 4500
+    				producer = CAN
+			}
+		}
+	}
+
+	focus = {
+		id = PAC_infiltrate_the_sandarist
+		icon = GFX_focus_research
+		text = "Infiltrate the sandarist"
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = PAC_join_training }
+		available = {
+			has_war_with = PRA
+		}
+		x = 4
+		y = 3
+		cost = 6
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			country_event = {
+  				id = fleet_P.3
+    				days = 2
+			}			
+		}
+	}
+
+	focus = {
+		id = PAC_sabotage_the_sandarist
+		icon = GFX_focus_research
+		text = "Sabatage the sandarist"
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = PAC_infiltrate_the_sandarist}
+		available = {
+			has_war_with = PRA
+		}
+		x = 4
+		y = 5
+		cost = 8
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			PRA = {
+				add_timed_idea = {
+    					idea = PAC_sabotage
+    					days = 120
+				}
+			}			
+		}
+	}
+
+	focus = {
+		id = PAC_5th_columb
+		icon = GFX_focus_research
+		text = "Activate our fifth column"
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = PAC_sabotage_the_sandarist}
+		prerequisite = { focus = PAC_buy_rifles_CAN }
+		available = {
+			has_war_with = PRA
+		}
+		x = 4
+		y = 6
+		cost = 15
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			country_event = {
+  				id = fleet_P.4
+    				days = 0
+			}
+			PRA = {
+				random_owned_controlled_state = {
+					create_unit = {
+						division = "division_template = \"Militias\"	start_experience_factor = 0.25	start_equipment_factor = 1"
+						owner = PAC
+						allow_spawning_on_enemy_provs = yes
+						count = 2
+					}
+				}
+				random_owned_controlled_state = {
+					create_unit = {
+						division = "division_template = \"Militias\"	start_experience_factor = 0.25	start_equipment_factor = 1"
+						owner = PAC
+						allow_spawning_on_enemy_provs = yes
+						count = 2
+					}
+				}
+				random_owned_controlled_state = {
+					create_unit = {
+						division = "division_template = \"Militias\"	start_experience_factor = 0.25	start_equipment_factor = 1"
+						owner = PAC
+						allow_spawning_on_enemy_provs = yes
+						count = 2
+					}
+				}
+				random_owned_controlled_state = {
+					create_unit = {
+						division = "division_template = \"Militias\"	start_experience_factor = 0.25	start_equipment_factor = 1"
+						owner = PAC
+						allow_spawning_on_enemy_provs = yes
+						count = 2
+					}
+				}
+				random_owned_controlled_state = {
+					create_unit = {
+						division = "division_template = \"Militias\"	start_experience_factor = 0.25	start_equipment_factor = 1"
+						owner = PAC
+						allow_spawning_on_enemy_provs = yes
+						count = 2
+					}
+				}
+			}						
+		}
+	}
+
+	focus = {
+		id = PAC_fuel_1
+		icon = GFX_focus_research
+		text = "Open the stockpile"
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = PAC_continue}
+		available = {
+			has_war_with = PRA
+		}
+		x = 6
+		y = 2
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			set_fuel_ratio = 1				
+		}
+	}
+	focus = {
+		id = PAC_call_marines
+		icon = GFX_focus_research
+		text = "Call for the marines abroad"
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = PAC_fuel_1}
+		available = {
+			has_war_with = PRA
+		}
+		x = 6
+		y = 3
+		cost = 7
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_manpower = 30000	
+			random_owned_controlled_state = {
+				create_unit = {
+					division = "division_template = \"U.S. Marine Battalion\"	start_experience_factor = 0.25	start_equipment_factor = 1"
+					owner = PAC
+					allow_spawning_on_enemy_provs = yes
+					count = 2
+				}
+			}			
+		}
+	}
+
+	focus = {
+		id = PAC_old_ships
+		icon = GFX_focus_research
+		text = "Restore old ships"
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = PAC_call_marines}
+		available = {
+			has_war_with = PRA
+		}
+		x = 6
+		y = 5
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			custom_effect_tooltip = gain_ships_destroyers
+			hidden_effect = {
+				load_oob = "PAC_navy_utilise_the_old_ships"
+			}
+			add_equipment_to_stockpile = {
+    				type = convoy
+    				amount = 100
+				
+			}				
+		}
+	}
+	focus = {
+		id = PAC_shore_boming
+		icon = GFX_focus_research
+		text = "bomb the shores"
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = PAC_fuel_1}
+		available = {
+			has_war_with = PRA
+		}
+		x = 8
+		y = 3
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			PRA = {
+				random_owned_controlled_state = {
+					limit = {arms_factory > 1}
+					damage_building = {
+    						type = arms_factory
+    						damage = 10
+					}
+				}
+				random_owned_controlled_state = {
+					limit = {arms_factory > 1}
+					damage_building = {
+    						type = arms_factory
+    						damage = 10
+					}
+				}
+				country_event = {
+  					id = fleet_P.5
+    					days = 2
+				}
+			}				
+		}
+	}
+
+	focus = {
+		id = PAC_supply_sky
+		icon = GFX_focus_research
+		text = "Supply from the heavens"
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = PAC_shore_boming }
+		available = {
+			has_war_with = PRA
+		}
+		x = 8
+		y = 5
+		cost = 6
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = PAC_sky_supplies				
+		}
+	}
+	focus = {
+		id = PAC_operation_guam
+		icon = GFX_focus_research
+		text = "Operation Guam"
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = PAC_supply_sky }
+		prerequisite = { focus = PAC_old_ships }
+		available = {
+			has_war_with = PRA
+		}
+		x = 6
+		y = 6
+		cost = 15
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			country_event = {
+  				id = fleet_P.6
+    				days = 0
+			}						
+		}
+	}
+
+	focus = {
+		id = PAC_CRUSH_BERNIE
+		icon = GFX_focus_research
+		text = "Crush the chinese puppet"
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = PAC_operation_guam }
+		prerequisite = { focus = PAC_5th_columb }
+		available = {
+			has_war_with = PRA
+		}
+		x = 5
+		y = 7
+		cost = 10
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_timed_idea = {
+    				idea = PAC_crush_em_reds
+    				days = 180
+			}					
+		}
+	}
+
+	focus = {
+		id = PAC_failed
+		icon = GFX_focus_research
+		text = "Just a minor set back"
+		allow_branch = {
+			has_country_flag = temp_loss 
+		}
+		#prerequisite = { focus = PAC_operation_guam }
+		x = 13
+		y = 1
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = -0.1	
+			country_event = {
+  				id = fleet_P.8
+    				days = 0
+			}	
+		}
+	}
+}
