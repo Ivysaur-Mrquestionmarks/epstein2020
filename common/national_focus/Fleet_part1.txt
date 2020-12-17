@@ -543,4 +543,117 @@ focus_tree = {
 			}	
 		}
 	}
+
+	focus = {
+		id = PAC_fuel_2
+		icon = GFX_focus_research
+		text = "Open the emergency reserves"
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = PAC_failed }
+
+		x = 14
+		y = 3
+		cost = 15
+
+		ai_will_do = {
+			factor = 15
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			set_fuel_ratio = 1								
+		}
+	}
+
+
+	focus = {
+		id = PAC_fail_men
+		icon = GFX_focus_research
+		text = "We need more men"
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = PAC_failed }
+
+		x = 12
+		y = 2
+		cost = 12
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_manpower = 70000								
+		}
+	}
+	focus = {
+		id = PAC_fail_marines
+		icon = GFX_focus_research
+		text = "We need more marines"
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = PAC_fail_men }
+
+		x = 12
+		y = 3
+		cost = 15
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				create_unit = {
+					division = "division_template = \"U.S. Marine Battalion\"	start_experience_factor = 0.25	start_equipment_factor = 1"
+					owner = PAC
+					allow_spawning_on_enemy_provs = yes
+					count = 4
+				}
+			}											
+		}
+	}
+	focus = {
+		id = PAC_another_one
+		icon = GFX_focus_research
+		text = "Time for our revenge"
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = PAC_fail_marines }
+		prerequisite = { focus = PAC_fuel_2 }
+
+		x = 13
+		y = 4
+		cost = 10
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+		select_effect = {
+			country_event = {
+  				id = fleet_P.9
+    				days = 5
+			}
+		}
+		completion_reward = {
+			declare_war_on = {
+    				target = PRA
+    				type = annex_everything
+			}
+			clr_country_flag = temp_loss
+			mark_focus_tree_layout_dirty = yes				
+		}
+	}
 }
