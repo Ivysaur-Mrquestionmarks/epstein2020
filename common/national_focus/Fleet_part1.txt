@@ -681,4 +681,165 @@ focus_tree = {
 			add_ideas = PAC_to_defend_america	
 		}
 	}
+	focus = {
+		id = PAC_ships_china
+		icon = GFX_focus_research
+		text = "Our allies beyond the seas"
+		available = {
+			has_war_with = PRA
+		}
+		prerequisite = { focus = PAC_China }
+		x = 18
+		y = 2
+		cost = 8
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			custom_effect_tooltip = gain_ships_crusiers
+			hidden_effect = {
+				load_oob = "PAC_navy_a_call_for_help"	
+			}
+		}
+	}
+
+	focus = {
+		id = PAC_china_dockyards
+		icon = GFX_focus_research
+		text = "Confiscate civilian dockyards"
+		available = {
+			has_war_with = PRA
+		}
+		prerequisite = { focus = PAC_ships_china }
+		x = 18
+		y = 4
+		cost = 10
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_offsite_building = { type = dockyard level = 3 }		
+		}
+	}
+
+	focus = {
+		id = PAC_staff
+		icon = GFX_focus_research
+		text = "Call the american atlantic admirals"
+		available = {
+			has_war_with = PRA
+		}
+		prerequisite = { focus = PAC_China }
+		x = 20
+		y = 3
+		cost = 7
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = PAC_american_naval_staff
+		}
+	}
+
+
+	focus = {
+		id = PAC_militia_china
+		icon = GFX_focus_research
+		text = "mobilise militias in hawaii"
+		available = {
+			has_war_with = PRA
+		}
+		prerequisite = { focus = PAC_China }
+		x = 22
+		y = 2
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			432 = {
+				create_unit = {
+					division = "division_template = \"Militias\"	start_experience_factor = 0.25	start_equipment_factor = 1"
+					owner = PAC
+					allow_spawning_on_enemy_provs = yes
+					count = 3
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = PAC_militia_china_2
+		icon = GFX_focus_research
+		text = "mobilise militias in Alaska"
+		available = {
+			has_war_with = PRA
+		}
+		prerequisite = { focus = PAC_militia_china }
+		x = 22
+		y = 4
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			19 = {
+				create_unit = {
+					division = "division_template = \"Militias\"	start_experience_factor = 0.25	start_equipment_factor = 1"
+					owner = PAC
+					allow_spawning_on_enemy_provs = yes
+					count = 3
+				}
+			}
+		}
+	}
+
+
+	focus = {
+		id = PAC_call_for_help
+		icon = GFX_focus_research
+		text = "A call for help"
+		available = {
+			has_war_with = PRA
+		}
+		prerequisite = { focus = PAC_militia_china_2 }
+		prerequisite = { focus = PAC_china_dockyards }
+		prerequisite = { focus = PAC_staff }
+		x = 20
+		y = 5
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			country_event = {
+  				id = fleet_P.12
+    				days = 3
+			}		
+		}
+	}
 }

@@ -222,3 +222,124 @@ country_event = {
 		}
 	}
 }
+
+
+country_event = {
+	id = fleet_P.12 #ask for support
+	title = fleet_P.12.t
+	desc = fleet_P.12.d
+	#picture = 
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #ask Biden boy
+		name = fleet_P.12.a
+		ai_chance = {
+			factor = 6
+		}
+		FRA = {
+			country_event = {
+  				id = fleet_P.13
+    				days = 5
+			}
+		}
+	}
+	option = { #ask trump
+		name = fleet_P.12.b
+		ai_chance = {
+			factor = 5
+		}
+		USA = {
+			country_event = {
+  				id = fleet_P.13
+    				days = 5
+			}
+		}
+	}
+}
+
+country_event = {
+	id = fleet_P.13#support asked for
+	title = fleet_P.13.t
+	desc = fleet_P.13.d
+	#picture = 
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #yes uwu we love the fleet
+		name = fleet_P.13.a
+		ai_chance = {
+			factor = 10
+		}
+		add_war_support = 0.05
+		PAC = {
+			country_event = {
+  				id = fleet_P.14
+    				days = 5
+			}
+		}
+	}
+	option = { #no fuck you peace of trash that can't swimn, your mother hates you
+		name = fleet_P.13.b
+		ai_chance = {
+			factor = 1
+		}
+
+	}
+}
+
+country_event = {
+	id = fleet_P.14 #They accepted
+	title = fleet_P.14.t
+	desc = fleet_P.14.d
+	#picture = 
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = fleet_P.14.a
+		ai_chance = {
+			factor = 100
+		}
+		custom_effect_tooltip = gain_ships_crusiers
+		hidden_effect = { 
+			load_oob = "PAC_navy_a_call_for_help_2"	
+		}
+		set_fuel_ratio = 1
+		add_manpower = 50000	
+		add_equipment_to_stockpile = {
+			amount = 5000
+    			type = infantry_equipment
+   			producer = FROM
+		}
+	}
+}
+
+country_event = {
+	id = fleet_P.15 #victory :D
+	title = fleet_P.15.t
+	desc = fleet_P.15.d
+	#picture = 
+	trigger = {
+		tag = PAC
+		NOT = {
+			has_war = yes
+			has_country_flag = temp_loss
+		}
+		PRA = {
+			OR = {
+				is_puppet = yes
+				NOT = {exists = yes}
+			}
+		}
+	}
+	fire_only_once = yes
+	option = {
+		name = fleet_P.15.a
+		ai_chance = {
+			factor = 100
+		}
+		load_focus_tree = fleet2
+		every_state = {
+			limit = {is_core_of = PRA}
+			add_core_of = PAC
+		}
+	}
+}
