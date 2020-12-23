@@ -1,0 +1,153 @@
+add_namespace = mormon
+
+#Kazcynski Takes over
+country_event = {
+	id = mormon.1
+	title = mormon.1.t
+	desc = mormon.1.d
+	#picture =
+	fire_only_once = yes
+	trigger = {
+		tag = SIN
+		date > 2021.5.14
+	}
+	mean_time_to_happen = { days = 14 }
+	option = {
+		name = mormon.1.a
+		set_politics = {
+			ruling_party = libertarian_right
+		}
+		add_popularity = {
+		    ideology = libertarian_right
+		    popularity = 0.20
+		}
+		348 = {
+			set_demilitarized_zone = no
+			create_unit = {
+				division = "name = \"National Guard Remnants\" division_template = \"Escaped Prisoners\" start_experience_factor = 0.7" 
+				owner = SIN
+			}
+			create_unit = {
+				division = "name = \"West Colorado Rangers\" division_template = \"Escaped Prisoners\" start_experience_factor = 0.4" 
+				owner = SIN
+			}
+			create_unit = {
+				division = "name = \"Anarcho-Primitivist Legion\" division_template = \"Escaped Prisoners\" start_experience_factor = 0.1" 
+				owner = SIN
+			}
+		}
+		hidden_effect = { UTA = { country_event = { id = mormon.3 days = 14 } } news_event = { id = mormon.2 } }
+	}
+}
+#AnPrim news event
+news_event = {
+	id = mormon.2
+	title = mormon.2.t
+	desc = mormon.2.d
+	#picture =
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = mormon.2.a
+	}
+}
+#Mormon Coup
+country_event = {
+	id = mormon.3
+	title = mormon.3.t
+	desc = mormon.3.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = mormon.3.a
+		add_stability = -0.25
+		add_political_power = -300
+		set_politics = {
+			ruling_party = autocratic
+		}
+		add_popularity = {
+		    ideology = republican
+		    popularity = -0.4
+		}
+		hidden_effect = {
+			add_popularity = {
+				ideology = autocratic
+				popularity = 0.25
+			}
+			news_event = { id = mormon.4 }
+			SIN = { country_event = { id = mormon.5 days = 5 } }
+		}
+		if = {
+			limit = {
+				is_subject_of = USA
+			}
+			USA = {
+				set_autonomy = {
+				    target = UTA
+				    autonomy_state = autonomy_free
+				}
+			}
+		}
+		leave_faction = yes
+	}
+}
+#Mormon Coup news event
+news_event = {
+	id = mormon.4
+	title = mormon.4.t
+	desc = mormon.4.d
+	#picture =
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = mormon.4.a
+	}
+}
+#Exiled Republicans ask Kazcynski for help
+country_event = {
+	id = mormon.5
+	title = mormon.5.t
+	desc = mormon.5.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = mormon.5.a
+		add_popularity = {
+		    ideology = republican
+		    popularity = 0.15
+		}
+		add_popularity = {
+			ideology = libertarian_right
+			popularity = 0.05
+		}
+		348 = {
+			create_unit = {
+				division = "name = \"Utah Volunteer Brigade\" division_template = \"Escaped Prisoners\" start_experience_factor = 0.8" 
+				owner = SIN
+			}
+			create_unit = {
+				division = "name = \"Republican Guard\" division_template = \"Escaped Prisoners\" start_experience_factor = 0.2" 
+				owner = SIN
+			}
+		}
+		declare_war_on = {
+		    target = UTA
+		    type = annex_everything
+		}
+		hidden_effect = { news_event = { id = mormon.6 days = 1 } }
+	}
+}
+#news event for Mormon War
+news_event = {
+	id = mormon.6
+	title = mormon.6.t
+	desc = mormon.6.d
+	#picture =
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = mormon.6.a
+	}
+}
