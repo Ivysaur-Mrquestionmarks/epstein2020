@@ -1,0 +1,310 @@
+add_namespace = mormon
+
+#Kazcynski Takes over
+country_event = {
+	id = mormon.1
+	title = mormon.1.t
+	desc = mormon.1.d
+	picture = event_el_chapo_01
+	fire_only_once = yes
+	trigger = {
+		tag = SIN
+		date > 2021.5.14
+	}
+	mean_time_to_happen = { days = 14 }
+	option = {
+		name = mormon.1.a
+		set_politics = {
+			ruling_party = libertarian_right
+		}
+		add_popularity = {
+		    ideology = libertarian_right
+		    popularity = 0.20
+		}
+		348 = {
+			set_demilitarized_zone = no
+			create_unit = {
+				division = "name = \"National Guard Remnants\" division_template = \"Escaped Prisoners\" start_experience_factor = 0.7" 
+				owner = SIN
+			}
+			create_unit = {
+				division = "name = \"West Colorado Rangers\" division_template = \"Escaped Prisoners\" start_experience_factor = 0.4" 
+				owner = SIN
+			}
+			create_unit = {
+				division = "name = \"Anarcho-Primitivist Legion\" division_template = \"Escaped Prisoners\" start_experience_factor = 0.1" 
+				owner = SIN
+			}
+		}
+		hidden_effect = { UTA = { country_event = { id = mormon.3 days = 14 } } news_event = { id = mormon.2 } }
+	}
+}
+#AnPrim news event
+news_event = {
+	id = mormon.2
+	title = mormon.2.t
+	desc = mormon.2.d
+	#picture =
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = mormon.2.a
+	}
+}
+#Mormon Coup
+country_event = {
+	id = mormon.3
+	title = mormon.3.t
+	desc = mormon.3.d
+	picture = event_mormon_01
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = mormon.3.a
+		add_stability = -0.25
+		add_political_power = -300
+		set_politics = {
+			ruling_party = autocratic
+		}
+		add_popularity = {
+		    ideology = republican
+		    popularity = -0.4
+		}
+		hidden_effect = {
+			add_popularity = {
+				ideology = autocratic
+				popularity = 0.25
+			}
+			news_event = { id = mormon.4 }
+			SIN = { country_event = { id = mormon.5 days = 5 } }
+		}
+		if = {
+			limit = {
+				is_subject_of = USA
+			}
+			USA = {
+				set_autonomy = {
+				    target = UTA
+				    autonomy_state = autonomy_free
+				}
+			}
+		}
+		leave_faction = yes
+	}
+}
+#Mormon Coup news event
+news_event = {
+	id = mormon.4
+	title = mormon.4.t
+	desc = mormon.4.d
+	#picture =
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = mormon.4.a
+	}
+}
+#Exiled Republicans ask Kazcynski for help
+country_event = {
+	id = mormon.5
+	title = mormon.5.t
+	desc = mormon.5.d
+	picture = event_revolt_put_down_01
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = mormon.5.a
+		add_popularity = {
+		    ideology = republican
+		    popularity = 0.15
+		}
+		add_popularity = {
+			ideology = libertarian_right
+			popularity = 0.05
+		}
+		348 = {
+			create_unit = {
+				division = "name = \"Utah Volunteer Brigade\" division_template = \"Escaped Prisoners\" start_experience_factor = 0.8" 
+				owner = SIN
+			}
+			create_unit = {
+				division = "name = \"Republican Guard\" division_template = \"Escaped Prisoners\" start_experience_factor = 0.2" 
+				owner = SIN
+			}
+		}
+		declare_war_on = {
+		    target = UTA
+		    type = annex_everything
+		}
+		create_faction = MORMON_WAR_ANPRIM_ALLIANCE
+		hidden_effect = { set_global_flag = mormon_war_begun add_state_core = 348 add_state_claim = 411 news_event = { id = mormon.6 days = 1 } UTA = { create_faction = MORMON_WAR_MORMON_ALLIANCE } MOL = { country_event = { id = mormon.8 days = 6 } } }
+	}
+}
+#news event for Mormon War
+news_event = {
+	id = mormon.6
+	title = mormon.6.t
+	desc = mormon.6.d
+	#picture =
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = mormon.6.a
+	}
+}
+#Kazcynski escapes El Chapo's Shadow
+country_event = {
+	id = mormon.7
+	title = mormon.7.t
+	desc = mormon.7.d
+	picture = event_unabomber_01
+	trigger = {
+		tag = SIN
+		owns_state = 411
+	}
+	mean_time_to_happen = {
+		days = 35
+	}
+	fire_only_once = yes
+	option = {
+		name = mormon.7.a
+		add_popularity = {
+			ideology = libertarian_right
+			popularity = 0.35
+		}
+		add_popularity = {
+			ideology = autocratic
+			popularity = -0.15
+		}
+		swap_ruler_traits = { remove = anarcho_primitivist_trait add = anarcho_primitivist_trait_2 }
+		remove_country_leader_trait = shadow_of_chapo
+		add_state_core = 411
+		add_state_core = 414
+		add_state_core = 410
+		add_state_core = 419
+		add_state_core = 117
+		add_state_core = 393
+		add_state_core = 488
+		add_state_core = 487
+		add_state_core = 45
+		add_state_core = 40
+		add_state_core = 61
+		set_cosmetic_tag = SIN_anprim_republic
+		if = {
+			limit = {
+				has_idea = SIN_war_escalation
+			}
+			remove_ideas = SIN_war_escalation
+		}
+		hidden_effect = { set_capital = 411 }
+	}
+}
+#Molossia joins the Mormon War
+country_event = {
+	id = mormon.8
+	title = mormon.8.t
+	desc = mormon.8.d
+	picture = event_revolt_put_down_01
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = mormon.8.a
+		declare_war_on = {
+		    target = UTA
+		    type = annex_everything
+		}
+		SIN = {
+			add_to_faction = MOL
+		}
+	}
+}
+#Las Vegas declares independence
+country_event = {
+	id = mormon.9
+	title = mormon.9.t
+	desc = mormom.9.d
+	picture = event_las_vegas_01
+	trigger = {
+		tag = PRA
+		owns_state = 46
+		owns_state = 33
+		has_global_flag = mormon_war_begun
+	}
+	fire_only_once = yes
+	option = {
+		name = mormon.9.a
+		release = LAS
+		LAS = {
+			transfer_state = 33
+		}
+		hidden_effect = {
+			LAS = {
+				country_event = {
+					id = mormon.10
+					days = 2
+				}
+			}
+		}
+	}
+}
+#Las Vegas declares WAR on the Mormons!!
+country_event = {
+	id = mormon.10
+	title = mormon.10
+	desc = mormon.10.d
+	picture = event_las_vegas_01
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = mormon.10.a
+		declare_war_on = {
+		    target = UTA
+		    type = annex_everything
+		}
+		SIN = {
+			add_to_faction = LAS
+		}
+		division_template = {
+		    name = "Las Vegas Guard"
+		#    division_names_group =
+			regiments = {
+				infantry = { x = 0 y = 0 }
+				infantry = { x = 0 y = 1 }
+				infantry = { x = 0 y = 2 }
+				infantry = { x = 0 y = 3 }
+				infantry = { x = 0 y = 4 }
+			}
+		}
+		46 = {
+			create_unit = {
+				division = "name = \"Las Vegas Metropolitan Police\" division_template = \"Las Vegas Guard\" start_experience_factor = 0.1" 
+				owner = LAS
+			}
+			create_unit = {
+				division = "name = \"LVMPD SWAT\" division_template = \"Las Vegas Guard\" start_experience_factor = 0.0" 
+				owner = LAS
+			}
+			create_unit = {
+				division = "name = \"Casino Militia\" division_template = \"Las Vegas Guard\" start_experience_factor = 0.2" 
+				owner = LAS
+			}
+		}
+	}
+}
+#Mormon War esclated
+country_event = {
+	id = mormon.10
+	title = mormon.10.t
+	desc = mormon.10.d
+	picture = event_unabomber_02
+	trigger = {
+		tag = SIN
+		LAS = { has_capitulated = yes }
+		MOL = { has_capitulated = yes }
+	}
+	fire_only_once = yes
+	option = {
+		name = mormon.10.a
+		add_ideas = SIN_war_escalation
+	}
+}
