@@ -1,0 +1,104 @@
+add_namespace = texas
+
+#George asks Ted to help Jeb
+country_event = {
+	id = texas.1
+	title = texas.1.t
+	desc = texas.1.d
+	picture = event_jeb_01
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = texas.1.a
+		hidden_effect = { country_event = { id = texas.2 days = 15 } }
+	}
+}
+#George announces a new party
+country_event = {
+	id = texas.2
+	title = texas.2.t
+	desc = texas.2.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = texas.2.a
+		add_popularity = { ideology = republican popularity = 0.02 }
+	}
+}
+#Ban the Free Texan Army??
+country_event = {
+	id = texas.3
+	title = texas.3.t
+	desc = texas.3.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	#ban them
+	option = {
+		name = texas.3.a
+		add_popularity = { ideology = authoritarian_left popularity = -0.05 }
+		hidden_effect = {
+			country_event = { id = texas.4 days = 23 }
+		}
+	}
+	#let them run
+	option = {
+		name = texas.3.b
+		add_popularity = { ideology = authoritarian_left popularity = 0.01 }
+	}
+}
+#Texan Army coup
+country_event = {
+	id = texas.4
+	title = texas.4.t
+	desc = texas.4.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = texas.4.a
+		add_popularity = { ideology = authoritarian_left popularity = 0.15 }
+		set_politics = {
+			ruling_party = authoritarian_left
+		}
+		unlock_national_focus = TEX_elections
+		unlock_national_focus = TEX_results
+		hidden_effect = {
+			set_country_flag = miller_coup
+		}
+	}
+}
+#Texan elections
+country_event = {
+	id = texas.5
+	title = texas.5.t
+	desc = texas.5.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	#Ted Cruz
+	option = {
+		name = texas.5.a
+		set_country_flag = cruz_wins_election
+		unlock_national_focus = TEX_results
+	}
+	#Beto Orourke
+	option = {
+		name = texas.5.b
+		set_country_flag = beto_elected_president
+		unlock_national_focus = TEX_results
+	}
+	#Dan Patrick
+	option = {
+		name = texas.5.c
+		set_country_flag = patrick_is_president
+		unlock_national_focus = TEX_results
+	}
+	#George Bush
+	option = {
+		name = texas.5.e
+		set_country_flag = back_in_black
+		unlock_national_focus = TEX_results
+	}
+}
