@@ -136,6 +136,7 @@ country_event = {
 		    target = UTA
 		    type = annex_everything
 		}
+		add_ideas = SIN_war_escalation
 		create_faction = MORMON_WAR_ANPRIM_ALLIANCE
 		hidden_effect = { 
 			set_global_flag = mormon_war_begun 
@@ -173,6 +174,7 @@ country_event = {
 	trigger = {
 		tag = SIN
 		owns_state = 411
+		has_war = no
 	}
 	mean_time_to_happen = {
 		days = 35
@@ -304,22 +306,22 @@ country_event = {
 	}
 }
 #Mormon War esclated
-country_event = {
-	id = mormon.10
-	title = mormon.10.t
-	desc = mormon.10.d
-	picture = event_unabomber_02
-	trigger = {
-		tag = SIN
-		LAS = { has_capitulated = yes }
-		MOL = { has_capitulated = yes }
-	}
-	fire_only_once = yes
-	option = {
-		name = mormon.10.a
-		add_ideas = SIN_war_escalation
-	}
-}
+#country_event = {
+#	id = mormon.10
+#	title = mormon.10.t
+#	desc = mormon.10.d
+#	picture = event_unabomber_02
+#	trigger = {
+#		tag = SIN
+#		LAS = { has_capitulated = yes }
+#		MOL = { has_capitulated = yes }
+#	}
+#	fire_only_once = yes
+#	option = {
+#		name = mormon.10.a
+#		add_ideas = SIN_war_escalation
+#	}
+#}
 #Nazis join the Mormon War
 country_event = {
 	id = mormon.11
@@ -334,12 +336,65 @@ country_event = {
 		}
 	}
 	fire_only_once = yes
-	is_triggered_only = yes
 	option = {
 		name = mormon.11.a
 		declare_war_on = {
 		    target = UTA
 		    type = annex_everything
+		}
+	}
+}
+#mfw Second Mormon War
+country_event = {
+	id = mormon.12
+	title = mormon.12.t
+	desc = mormon.12.d
+	picture = event_fascists_01
+	trigger = {
+		tag = SIN
+		HOP = {
+			owns_state = 411
+		}
+	}
+	option = {
+		name = mormon.12.a
+		transfer_state = 414
+		transfer_state = 411
+		declare_war_on = {
+		    target = HOP
+		    type = annex_everything
+		}
+		348 = {
+			create_unit = {
+				division = "name = \"Mormon Defectors\" division_template = \"Escaped Prisoners\" start_experience_factor = 0.7" 
+				owner = SIN
+			}
+			create_unit = {
+				division = "name = \"Organised Refugee Brigade\" division_template = \"Escaped Prisoners\" start_experience_factor = 0.2" 
+				owner = SIN
+			}
+			create_unit = {
+				division = "name = \"1st Anti-Nazi Volunteer Guard\" division_template = \"Escaped Prisoners\" start_experience_factor = 0.1" 
+				owner = SIN
+			}
+			create_unit = {
+				division = "name = \"2nd Anti-Nazi Volunteer Guard\" division_template = \"Escaped Prisoners\" start_experience_factor = 0.2" 
+				owner = SIN
+			}
+		}
+		hidden_effect = {
+		40 = {
+			create_unit = {
+				division = "name = \"Navajo SS\" division_template = \"SS Division\" start_experience_factor = 0.3" 
+				owner = HOP
+			}
+		}
+		352 = {
+			create_unit = {
+				division = "name = \"Tohono SS\" division_template = \"SS Division\" start_experience_factor = 0.3" 
+				owner = HOP
+			}
+		}
 		}
 	}
 }
