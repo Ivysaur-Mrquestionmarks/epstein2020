@@ -22,4 +22,99 @@ PAC_balance_army_militias = {
 			}
 		}
 	}
+	PAC_limit_our_military_expending = {
+		cost = 100
+		days_remove = 45
+		ai_will_do = {
+			base = 0
+		}
+		visible = {
+			has_idea = PAC_heavy_army_expending
+		}
+          	remove_effect = {
+			swap_ideas = {
+    				remove_idea = PAC_heavy_army_expending
+    				add_idea = PAC_heavy_civilian_expending
+			}
+			PAC_militia_influence_10 = yes
+		}
+	}
+
+	PAC_increase_our_military_expending = {
+		cost = 100
+		days_remove = 45
+		ai_will_do = {
+			base = 0
+		}
+		visible = {
+			has_idea = PAC_heavy_civilian_expending
+		}
+          	remove_effect = {
+			swap_ideas = {
+    				remove_idea = PAC_heavy_civilian_expending
+    				add_idea = PAC_heavy_army_expending 
+			}
+			PAC_army_influence_10 = yes
+		}
+	}
+
+	PAC_boder_conflict = { #operation java
+		state_target = yes
+		target_trigger = {
+		 	FROM = {
+				OR = {
+					is_claimed_by = PAC	
+					is_core_of = PAC
+				}
+			}
+		}
+		visible = {
+			has_completed_focus = PAC_java
+			NOT = { 
+				has_country_flag = planing_border_conflict
+				FROM = {
+					is_owned_by = ROOT
+				}
+			}
+			FROM = {
+				any_neighbor_state = {
+					is_controlled_by = PAC
+				}
+			}
+		}
+		cost = 35
+		days_remove = 45
+		days_re_enable = 120
+		on_map_mode = map_only
+		ai_will_do = {
+			base = 25
+		}
+		complete_effect = {
+			set_country_flag = planing_border_conflict
+			PAC_army_influence_5 = yes
+		}
+		remove_effect = {
+			
+			FROM = { random_neighbor_state = { limit = {is_owned_by = PAC} ROOT = {
+				start_border_war = {
+					change_state_after_war =  yes
+    					attacker = {
+        					state = PREV
+        					num_provinces = 5
+        					on_win = conflict_results.1
+        					on_lose = conflict_results.1
+       						on_cancel = conflict_results.1
+    					}
+				
+    					defender = {
+        					state = FROM
+        					num_provinces = 5
+        					on_win = conflict_results.2
+        					on_lose = conflict_results.2
+        					on_cancel = conflict_results.2
+    					}
+				}
+			}}}
+		}
+	}
 }
