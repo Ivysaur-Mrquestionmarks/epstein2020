@@ -1,0 +1,206 @@
+add_namespace = alamo
+
+#Anti-Monarchist revolt
+country_event = {
+	id = alamo.1
+	title = alamo.1.t
+	desc = alamo.1.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			set_global_flag = anti_monarchist_texan_revolt
+			release = OKL
+			release = LOU
+			transfer_units_fraction= {
+			    target = OKL
+			    size = 0.1
+ 			    stockpile_ratio = 0.1
+			    army_ratio = 0.2
+			    navy_ratio = 0.0
+			    air_ratio = 0.3
+			    keep_unit_leaders_trigger = {
+			    	OR = {
+ 			    		has_trait = war_hero
+ 			    		has_trait = armor_officer
+ 			    	}
+			   }
+			}
+			transfer_units_fraction= {
+			    target = LOU
+			    size = 0.2
+ 			    stockpile_ratio = 0.4
+			    army_ratio = 0.2
+			    navy_ratio = 0.5
+			    air_ratio = 0.0
+			    keep_unit_leaders_trigger = {
+			    	OR = {
+ 			    		has_trait = war_hero
+ 			    		has_trait = armor_officer
+ 			    	}
+			   }
+			}
+			LOU = {
+				transfer_state = 301
+				transfer_state = 28
+			}
+			OKL = {
+				transfer_state = 80
+				transfer_state = 270
+				transfer_state = 274
+				transfer_state = 249
+			}
+
+		}
+	}
+	option = {
+		name = alamo.1.a
+		declare_war_on = {
+		    target = OKL
+		    type = annex_everything
+		}
+		declare_war_on = {
+		    target = LOU
+		    type = annex_everything
+		}
+	}
+}
+#Louisiana reunites Texas
+country_event = {
+	id = alamo.2
+	title = alamo.2.t
+	desc = alamo.2.d
+	#picture =
+	fire_only_once = yes
+	trigger = {
+		tag = LOU
+		has_global_flag = anti_monarchist_texan_revolt
+		OR = {
+			owns_state = 34
+			OKL = {
+				owns_state = 34
+			}
+		}
+	}
+	option = {
+		annex_country = {
+		    target = OKL
+		    transfer_troops = yes
+		}
+		set_cosmetic_tag = LOU_texan_federation
+		every_state = {
+			limit = {
+				is_core_of = TEX
+			}
+			add_core_of = LOU
+		}
+	}
+}
+
+#Anti-Trump revolt
+country_event = {
+	id = alamo.3
+	title = alamo.3.t
+	desc = alamo.3.d
+	#picture = 
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			release = LOU
+			transfer_units_fraction= {
+			    target = LOU
+			    size = 0.2
+ 			    stockpile_ratio = 0.2
+			    army_ratio = 0.4
+			    navy_ratio = 0.1
+			    air_ratio = 0.3
+			    keep_unit_leaders_trigger = {
+			    	OR = {
+ 			    		has_trait = war_hero
+ 			    		has_trait = armor_officer
+ 			    	}
+			   }
+			}
+			start_civil_war = {
+			    ruling_party = republican
+			    ideology = democrat
+			    size = 0.1
+			    states = { 
+			        34 55 274 314 310 335 249 50
+			    }
+			}
+			CSA = {
+				declare_war_on = {
+		    		target = LOU
+		    		type = annex_everything
+				}
+			}
+		}
+	}
+	option = {
+		name = alamo.3.a
+		add_popularity = {
+		    ideology = democrat
+		    popularity = -1.0
+		}
+	}
+}
+#Anti-Democrat revolt
+country_event = {
+	id = alamo.4
+	title = alamo.4.t
+	desc = alamo.4.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			release = OKL
+			transfer_units_fraction= {
+			    target = OKL
+			    size = 0.3
+ 			    stockpile_ratio = 0.2
+			    army_ratio = 0.4
+			    navy_ratio = 0.1
+			    air_ratio = 0.3
+			    keep_unit_leaders_trigger = {
+			    	OR = {
+ 			    		has_trait = war_hero
+ 			    		has_trait = armor_officer
+ 			    	}
+			   }
+			}
+			USA = {
+				declare_war_on = {
+		    		target = OKL
+		    		type = annex_everything
+				}
+			}
+			release = LOU
+			transfer_units_fraction= {
+			    target = LOU
+			    size = 0.4
+ 			    stockpile_ratio = 0.1
+			    army_ratio = 0.4
+			    navy_ratio = 0.7
+			    air_ratio = 0.9
+			    keep_unit_leaders_trigger = {
+			    	OR = {
+ 			    		has_trait = war_hero
+ 			    		has_trait = armor_officer
+ 			    	}
+			   }
+			}
+			declare_war_on = {
+				target = LOU
+				type = annex_everything
+			}
+		}
+	}
+	option = {
+		name = alamo.4.a
+		add_ideas = TEX_war_on_racism
+	}
+}
