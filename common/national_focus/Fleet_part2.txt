@@ -3,12 +3,12 @@ focus_tree = {
 	country = {
 		factor = 0
 		modifier = {
-			add = 12#is 12, will change it for debugging
+			add = 15#is 12, will change it for debugging
 			tag = PAC
 		}
 	}
 	default = no
-        continuous_focus_position = { x = 1000 y = 1000}
+        continuous_focus_position = { x = 1200 y = 100}
 	initial_show_position = {
 		focus = PAC_WIP
 	}
@@ -61,11 +61,11 @@ focus_tree = {
 		select_effect = {
 			country_event = {
   				id = fleet_P.20
-    				days = 30
+    				days = 15
 			}
 		}
 		completion_reward = {
-			
+			add_manpower = 10000
 			PAC_army_influence_10 = yes
 		}
 	}
@@ -91,6 +91,207 @@ focus_tree = {
 		completion_reward = {
 			unlock_decision_tooltip = PAC_units
 			PAC_militia_influence_10 = yes
+		}
+	}
+
+	focus = {
+		id = PAC_militia_formalisation
+		icon = GFX_focus_research
+		text = "Reorganise the militias"
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = PAC_militia_creation}
+		x = 9
+		y = 3
+		cost = 8
+
+		ai_will_do = {
+			factor = 7
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = PAC_organised_militia
+			PAC_militia_influence_10 = yes
+		}
+	}
+
+	focus = {
+		id = PAC_civilian_equipment
+		icon = GFX_focus_research
+		text = "Let them use their own guns"
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = PAC_militia_formalisation}
+		x = 9
+		y = 5
+		cost = 5
+
+		ai_will_do = {
+			factor = 7
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_equipment_to_stockpile = {
+    				type = infantry_equipment
+    				amount = 5000
+			}
+		}
+	}
+
+	focus = {
+		id = PAC_support
+		icon = GFX_focus_research
+		text = "Guarante medical asistance"
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = PAC_civilian_equipment}
+		x = 9
+		y = 7
+		cost = 8
+
+		ai_will_do = {
+			factor = 7
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			country_event = {
+  				id = fleet_P.23
+    				days = 3
+			}			
+		}
+	}
+
+	focus = {
+		id = PAC_public_debate
+		icon = GFX_focus_research
+		text = "open up public debate"
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = PAC_militia_creation}
+		x = 7
+		y = 4
+		cost = 5
+
+		ai_will_do = {
+			factor = 7
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_popularity = {
+    				ideology = democrat
+    				popularity = 0.1
+			}
+			add_popularity = {
+    				ideology = libertarian_right
+    				popularity = 0.1
+			}
+		}
+	}
+
+	focus = {
+		id = PAC_local_police
+		icon = GFX_focus_research
+		text = "Comunity policing"
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = PAC_public_debate}
+		x = 7
+		y = 6
+		cost = 7
+
+		ai_will_do = {
+			factor = 7
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = PAC_comunity_policing
+			PAC_militia_influence_10 = yes
+		}
+	}
+
+	focus = {
+		id = PAC_expand_militia
+		icon = GFX_focus_research
+		text = "Expand the militia"
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = PAC_local_police}
+		x = 7
+		y = 7
+		cost = 5
+
+		ai_will_do = {
+			factor = 7
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = PAC_expand_the_militia
+			PAC_militia_influence_10 = yes
+		}
+	}
+
+	focus = {
+		id = PAC_middle_wins
+		icon = GFX_focus_research
+		text = "The militant republic"
+		#allow_branch = {
+
+		#}
+		mutually_exclusive = { focus = PAC_army_wins}
+		mutually_exclusive = {focus = PAC_militia_wins }
+		prerequisite = { focus = PAC_military_ind}
+		prerequisite = { focus = PAC_expand_militia focus =  PAC_tanks_go_brr}
+		available = {
+			custom_trigger_tooltip = {
+    				tooltip = PAC_balanced		
+				check_variable = { army_strength < 0.25 }
+				check_variable = { militia_strength < 0.25 }
+			}
+		}
+		x = 5
+		y = 8
+		cost = 2
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			country_event = {
+  				id = fleet_P.22
+    				days = 3
+			}
+			set_country_flag = democracy_state
+			hidden_effect = {
+				load_focus_tree = fleet3
+			}
+			add_popularity = {
+    				ideology = democrat
+    				popularity = 0.25
+			}
+			set_politics = {
+				ruling_party = democrat
+			}	
 		}
 	}
 
@@ -361,6 +562,8 @@ focus_tree = {
 		#}
 		prerequisite = { focus = PAC_java}
 		prerequisite = { focus = PAC_tanks_go_brr}
+		mutually_exclusive = { focus = PAC_middle_wins }
+		mutually_exclusive = {focus = PAC_militia_wins }
 		available = {
 			custom_trigger_tooltip = {
     				tooltip = PAC_army_majority		
@@ -386,6 +589,52 @@ focus_tree = {
 			hidden_effect = {
 				load_focus_tree = fleet3
 			}
+		}
+	}
+
+	focus = {
+		id = PAC_militia_wins
+		icon = GFX_focus_research
+		text = "The army of the people"
+		#allow_branch = {
+
+		#}
+		mutually_exclusive = { focus = PAC_army_wins }
+		mutually_exclusive = {focus = PAC_middle_wins }
+		prerequisite = { focus = PAC_expand_militia}
+		prerequisite = { focus = PAC_support}
+		available = {
+			custom_trigger_tooltip = {
+    				tooltip = PAC_militia	
+				check_variable = { militia_strength > 0.24 }
+			}
+		}
+		x = 8
+		y = 8
+		cost = 2
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			country_event = {
+  				id = fleet_P.24
+    				days = 3
+			}
+			set_country_flag = militia_state
+			hidden_effect = {
+				load_focus_tree = fleet3
+			}
+			add_popularity = {
+    				ideology = libertarian_right
+    				popularity = 0.35
+			}
+			set_politics = {
+				ruling_party = libertarian_right
+			}	
 		}
 	}
 }
