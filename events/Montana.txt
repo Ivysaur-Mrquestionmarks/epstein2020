@@ -27,6 +27,9 @@ country_event = {
 		}
 		hidden_effect = {
 		news_event = { id = montana.2 days = 1 } 
+		MON = {
+			country_event = { id = montana.6 days = 9 }
+		}
 		}
 	}
 }
@@ -51,5 +54,193 @@ news_event = {
 	option = {
 		name = montana.2.b
 		trigger = { TAG = MON }
+	}
+}
+
+#The beggining of army troubles - National Guard focus completed
+country_event = {
+	id = montana.3
+	title = montana.3.t
+	desc = montana.3.d
+	picture = event_MON_Army_Matters
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = montana.3.a
+		add_timed_idea = { idea = MON_Army_Funding  days = 160 }
+		hidden_effect = {
+		MON = {
+			country_event = { id = montana.4 days = 9 }
+		}
+		}
+	}
+	option = {
+		name = montana.3.b
+		hidden_effect = {
+		add_political_power = 75
+		hidden_effect = {
+		MON = {
+			country_event = { id = montana.5 days = 9 }
+		}
+		}
+		}
+	}
+}
+
+# Army is satisfied
+country_event = {
+	id = montana.4
+	title = montana.4.t
+	desc = montana.4.d
+	picture = event_MON_Big_Sky_Country
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+	name = montana.4.a
+	add_political_power = 25
+	add_popularity = {
+		ideology = autocratic
+		popularity = 0.3
+	}
+	add_popularity = {
+		ideology = republican
+		popularity = -0.3
+	}
+	}
+}
+
+# Army is defecting
+country_event = {
+	id = montana.5
+	title = montana.5.t
+	desc = montana.5.d
+	picture = event_MON_Army_Matters
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+	name = montana.5.a
+	add_political_power = -25
+	add_timed_idea = { idea = MON_Army_Defecting  days = 160 }
+	}
+}
+
+#The beggining of liberal troubles - Independence choice picked
+country_event = {
+	id = montana.6
+	title = montana.6.t
+	desc = montana.6.d
+	picture = event_MON_Protests
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = montana.6.a
+		add_war_support = 0.1
+		hidden_effect = {
+		MON = {
+			country_event = { id = montana.8 days = 9 }
+		}
+		}
+	}
+	option = {
+		name = montana.6.b
+		add_stability = 0.1
+		add_timed_idea = { idea = MON_Transparent_And_Just_Law  days = 160 }
+		hidden_effect = {
+		MON = {
+			country_event = { id = montana.7 days = 9 }
+		}
+		}
+	}
+}
+
+# We are good with liberals
+country_event = {
+	id = montana.7
+	title = montana.7.t
+	desc = montana.7.d
+	picture = event_MON_Big_Sky_Country
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+	name = montana.7.a
+	add_stability = 0.1
+	add_popularity = {
+		ideology = autocratic
+		popularity = 0.3
+	}
+	add_popularity = {
+		ideology = democratic
+		popularity = -0.3
+	}
+	}
+}
+
+# Liberals go straight to hell
+country_event = {
+	id = montana.8
+	title = montana.8.t
+	desc = montana.8.d
+	picture = event_MON_Great_Migration
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+	name = montana.8.a
+	add_stability = -0.25
+	declare_war_on = {
+		target = CAN
+		type = puppet_wargoal_focus
+		}
+		hidden_effect = {
+		news_event = { id = montana.9 days = 1 } 
+		}
+	}
+	
+	option = {
+	name = montana.8.b
+	add_timed_idea = { idea = MON_Great_Migration  days = 160 }
+	}
+}
+
+# Alright, now this is what I'd call total bollocks
+news_event = {
+	id = montana.9
+	title = montana.9.t
+	desc = montana.9.d
+	picture = event_news_war_with_canada
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = montana.9.a
+		trigger = {
+		TAG = MON
+		}
+	}
+	option = {
+		name = montana.9.b
+		trigger = {
+		TAG = CAN
+		}
+	}
+	option = {
+		name = montana.9.c
+		trigger = {
+			NOT = {
+				TAG = MON
+				TAG = CAN
+			}
+		}
 	}
 }
