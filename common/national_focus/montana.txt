@@ -36,6 +36,37 @@ focus_tree = {
 		continue_if_invalid = no
 		available_if_capitulated = yes
 		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 1
+						include_locked = yes
+					}
+					is_core_of = ROOT
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 1
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
 		}
 	}
 	focus = {
@@ -89,7 +120,6 @@ focus_tree = {
 			factor = 1
 		}
 		available = {
-			
 		}
 		
 		bypass = {
@@ -100,6 +130,9 @@ focus_tree = {
 		available_if_capitulated = yes
 		search_filters = { FOCUS_FILTER_ANNEXATION }
 		completion_reward = {
+			add_political_power = 25
+			add_ideas = closed_economy
+			set_country_flag = MON_Export_Closed
 		}
 	}
 	focus = {
@@ -132,6 +165,7 @@ focus_tree = {
 		available_if_capitulated = yes
 		search_filters = { FOCUS_FILTER_ANNEXATION }
 		completion_reward = {
+			add_ideas = MON_Agricultural_Focus
 		}
 	}
 	focus = {
@@ -153,6 +187,8 @@ focus_tree = {
 			factor = 1
 		}
 		available = {
+			has_idea = closed_economy
+			has_country_flag = MON_Export_Closed
 		}
 		
 		bypass = {
@@ -163,6 +199,32 @@ focus_tree = {
 		available_if_capitulated = yes
 		search_filters = { FOCUS_FILTER_ANNEXATION }
 		completion_reward = {
+			66 = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 1
+						include_locked = yes
+					}
+					is_core_of = ROOT
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		add_resource = {
+			type = steel
+			amount = 8
+			state = 66
+			}	
+		add_resource = {
+			type = tungsten
+			amount = 5
+			state = 86
+			}	
 		}
 	}
 	focus = {
@@ -184,6 +246,8 @@ focus_tree = {
 			factor = 1
 		}
 		available = {
+			has_idea = closed_economy
+			has_country_flag = MON_Export_Closed
 		}
 		
 		bypass = {
@@ -194,6 +258,7 @@ focus_tree = {
 		available_if_capitulated = yes
 		search_filters = { FOCUS_FILTER_ANNEXATION }
 		completion_reward = {
+			add_ideas = MON_Improved_Gold_Mining
 		}
 	}
 	focus = {
@@ -287,6 +352,10 @@ focus_tree = {
 		available_if_capitulated = yes
 		search_filters = { FOCUS_FILTER_ANNEXATION }
 		completion_reward = {
+			swap_ideas = { 
+				remove_idea = MON_Agricultural_Focus
+				add_idea = MON_MCK
+			}
 		}
 	}
 	focus = {
@@ -681,7 +750,7 @@ focus_tree = {
 	}
 	focus = {
 		id = MON_Meeting_With_The_Trump
-		icon = SFX_focus_focus_MON_maquis
+		icon = GFX_focus_MON_Meeting_With_The_Trump
 		x = -2
 		y = 1
 		offset = {
