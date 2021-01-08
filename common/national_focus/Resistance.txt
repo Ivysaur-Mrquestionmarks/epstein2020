@@ -180,11 +180,6 @@ focus_tree = {
 			focus = Who_said_radio_was_dead
 		}
 		completion_reward = {
-
-			add_party_popularity = {
-				ideology = republican
-				popularity = 0.15
-			}
 			add_party_popularity = {
 				ideology = autocratic
 				popularity = 0.05
@@ -193,6 +188,7 @@ focus_tree = {
 				ideology = libertarian_right
 				popularity = 0.05
 			}
+			add_stability = 0.05
 		}
 	}
 	focus = {
@@ -311,27 +307,11 @@ focus_tree = {
 		}
 		completion_reward = {
 			CAN = {
-				add_stability = -0.1
-				add_war_support = -0.1
+				add_stability = -0.15
+				add_war_support = -0.15
 				add_party_popularity = {
 					ideology = autocratic
 					popularity = 0.1
-				}
-				add_party_popularity = {
-					ideology = authoritarian_left
-					popularity = 0.1
-				}
-				add_party_popularity = {
-					ideology = republican
-					popularity = 0.05
-				}
-				add_party_popularity = {
-					ideology = libertarian_right
-					popularity = 0.05
-				}
-				add_party_popularity = {
-					ideology = libertarian_left
-					popularity = 0.05
 				}
 			}
 		}
@@ -369,7 +349,10 @@ focus_tree = {
 			focus = Rally_the_Warhawks
 		}
 		completion_reward = {
-			132 = set_demilitarized_zone = no
+			132 = { set_demilitarized_zone = no }
+			CAN = {
+				country_event = { id = Allagash.1 hours = 12 }
+			}
 		}
 	}
 
@@ -454,6 +437,7 @@ focus_tree = {
 			CAN ={
 				give_guarantee = NEW
 			}
+			132 = { set_demilitarized_zone = no }
 		}
 	}
 	focus = {
@@ -919,6 +903,11 @@ focus_tree = {
 			FRA = {
 				country_event = { id = Resistance.9 hours = 12 }
 			}
+			NEW = {
+				add_state_core = 168
+				add_state_core = 178
+				add_state_core = 171
+			}
 		}
 	}
 	focus = {
@@ -936,6 +925,7 @@ focus_tree = {
 		completion_reward = {
 			NEW = {
 				country_event = { id = Invasion.2 hours = 12 }
+				add_state_core = 180
 			}
 		}
 	}
@@ -955,7 +945,7 @@ focus_tree = {
 			focus = Into_The_Sister_States
 		}
 		completion_reward = {
-			IF = {
+			if = {
 				limit = {
 					NEW = {
 						owns_state = 180
@@ -1437,7 +1427,7 @@ shared_focus = {
 	}
 	mutually_exclusive = { focus = Any_and_all }
 	completion_reward = {
-			
+		every_unit_leader = { add_planning = 1 }
 	}
 }
 shared_focus = {
@@ -1453,7 +1443,9 @@ shared_focus = {
 		focus = Divisions_of_Hunters
 	}
 	completion_reward = {
-			
+		add_idea = draft_dodging
+		add_manpower = 2500
+		every_unit_leader = { add_logistics = 1 }
 	}
 }
 shared_focus = {
@@ -1479,6 +1471,8 @@ shared_focus = {
 			planning_skill = 5
 			logistics_skill = 2
 		}
+		add_ideas = mutiny_1
+		every_unit_leader = { add_skill_level = 1 }
 	}
 }
 shared_focus = {
@@ -1578,7 +1572,7 @@ shared_focus = {
 		focus = A_Proper_Army
 	}
 	completion_reward = {
-			
+		remove_idea = mutiny_1
 	}
 }
 shared_focus = {
@@ -1594,7 +1588,7 @@ shared_focus = {
 		focus = Maine_Republican_Army
 	}
 	completion_reward = {
-			
+		add_ideas = Republican_Officers1
 	}
 }
 shared_focus = {
@@ -1610,7 +1604,10 @@ shared_focus = {
 		focus = Republican_Officers
 	}
 	completion_reward = {
-			
+		swap_ideas = { 
+			remove_idea = Republican_Officers1
+			add_idea = Republican_Officers2
+		}
 	}
 }
 shared_focus = {
@@ -1628,7 +1625,7 @@ shared_focus = {
 	mutually_exclusive = { focus = Maine_Republican_Army }
 	mutually_exclusive = { focus = Aristocratic_Officers }
 	completion_reward = {
-			
+		add_ideas = Boogaloo_Bois
 	}
 }
 shared_focus = {
@@ -1643,7 +1640,11 @@ shared_focus = {
 	prerequisite = {
 		focus = Invite_Boogaloo_Boys
 	}
-	completion_reward = {		
+	completion_reward = {	
+		swap_ideas = { 
+			remove_idea = Boogaloo_Bois
+			add_idea = Boogaloo_Bois2
+		}
 	}
 }
 shared_focus = {
@@ -1677,8 +1678,7 @@ shared_focus = {
 		factor = 300
 	}
 	available = {
-		has_country_leader = { ruling_only = yes name = "Kaitlin Bennet" }
-		has_country_leader = { ruling_only = yes name = "Marie I" }
+		has_completed_focus = new_Aristocracy
 	}
 	prerequisite = {
 		focus = A_Proper_Army
@@ -1686,7 +1686,7 @@ shared_focus = {
 	mutually_exclusive = { focus = Maine_Republican_Army }
 	mutually_exclusive = { focus = Invite_Boogaloo_Boys }
 	completion_reward = {
-			
+		add_ideas = Aristocratic_Officers1
 	}
 }
 shared_focus = {
@@ -1701,7 +1701,11 @@ shared_focus = {
 	prerequisite = {
 		focus = Aristocratic_Officers
 	}
-	completion_reward = {		
+	completion_reward = {
+		swap_ideas = { 
+			remove_idea = Aristocratic_Officers1
+			add_idea = Aristocratic_Officers2
+		}		
 	}
 }
 shared_focus = {
@@ -1717,5 +1721,8 @@ shared_focus = {
 		focus = Tie_politics_to_Military
 	}
 	completion_reward = {
+		add_stability = 0.1
+		add_war_support = 0.1
+		add_political_power = 100
 	}
 }
