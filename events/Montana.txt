@@ -221,6 +221,7 @@ news_event = {
 	picture = event_news_war_with_canada
 	is_triggered_only = yes
 	major = yes
+	fire_only_once = yes
 
 	option = {
 		name = montana.9.a
@@ -242,5 +243,286 @@ news_event = {
 				TAG = CAN
 			}
 		}
+	}
+}
+	
+# CAN is asked to join CANMON
+country_event = {
+	id = montana.10
+	title = montana.10.t
+	desc = montana.10.d
+	picture = event_MON_CANMON_Trade
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { 
+		name = montana.10.a
+		ai_chance = {
+			base = 2
+		}
+		ROOT = {
+			add_ideas = MON_CANMON_Trade
+		}
+		hidden_effect = {
+		MON = { country_event = { id = montana.11 days = 3 } }
+		}
+	}
+	option = { 
+		name = montana.10.b
+		ai_chance = {
+			base = 1
+		}
+		hidden_effect = {
+		MON = { country_event = { id = montana.12 days = 3 } }
+		}
+	}
+}
+# CAN joins CANMON
+country_event = {
+	id = montana.11
+	title = montana.11.t
+	desc = montana.11.d
+	picture = event_MON_CANMON_Trade
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { 
+		name = montana.11.a
+		ROOT = {
+			add_ideas = MON_CANMON_Trade
+		}
+	}
+}
+# CAN rejects CANMON
+country_event = {
+	id = montana.12
+	title = montana.12.t
+	desc = montana.12.d
+	picture = event_MON_CANMON_Trade
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { 
+		name = montana.12.a
+	}
+}
+# Intervention in Cascadia - Main
+country_event = {
+	id = montana.13
+	title = montana.13.t
+	desc = montana.13.d
+	picture = event_MON_West_Support
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = montana.13.a
+		PRA = { country_event = { id = montana.14 days = 1 } }
+	}
+	option = { 
+		name = montana.13.b
+		CAS = { country_event = { id = montana.15 days = 1 } }
+	}
+	option = { 
+		name = montana.13.c
+		CAS = { country_event = { id = montana.16 days = 1 } }
+	}
+}
+# A - Sanderists are pleased with pact and option to honour it later
+country_event = {
+	id = montana.14
+	title = montana.14.t
+	desc = montana.14.d
+	picture = event_MON_West_Support
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { 
+		name = montana.14.a
+		MON = { country_event = { id = montana.21 days = 1 } }
+	}
+}
+# B - Cascadia is happy with our honest and humble help
+country_event = {
+	id = montana.15
+	title = montana.15.t
+	desc = montana.15.d
+	picture = event_MON_West_Support
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { 
+		name = montana.15.a
+		MON = { country_event = { id = montana.22 days = 1 } }
+	}
+}
+# C - A sinister offer Cascadia needs to think about
+country_event = {
+	id = montana.16
+	title = montana.16.t
+	desc = montana.16.d
+	picture = event_MON_West_Support
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { 
+		name = montana.16.a
+		MON = { country_event = { id = montana.17 days = 1 } }
+	}
+	option = { 
+		name = montana.16.b
+		MON = { country_event = { id = montana.18 days = 1 } }
+	}
+}
+# Cascadia accepts suicidal thoughts
+country_event = {
+	id = montana.17
+	title = montana.17.t
+	desc = montana.17.d
+	picture = event_MON_West_Support
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { 
+		name = montana.17.a
+		annex_country = {
+		target = CAS
+		transfer_troops = yes
+		}
+		declare_war_on = {
+			target = PRA
+			type = annex_everything
+		}
+	}
+}
+# Cascadia resists and bites
+country_event = {
+	id = montana.18
+	title = montana.18.t
+	desc = montana.18.d
+	picture = event_MON_West_Support
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { 
+		name = montana.18.a
+		create_wargoal = { type = annex_everything target = CAS }
+	}
+}
+
+# MON is at war so deal with CAN is broken
+country_event = {
+	id = montana.19
+	title = montana.19.t
+	desc = montana.19.d
+	picture = event_MON_CANMON_Trade
+
+	hidden = yes
+
+	trigger = {
+		original_tag = MON
+		MON = {
+			NOT = { has_country_flag = MON_CANMON_RIP }
+		has_country_flag = MON_CANMON_Signed
+		}
+		any_other_country = {
+			has_war_with = MON
+			NOT = { original_tag = MON }
+		}
+	}
+
+	mean_time_to_happen = { days = 2 }
+
+	option = { 
+		name = montana.19.a
+		ai_chance = {
+			base = 100
+		}
+		MON = {
+			remove_ideas = MON_CANMON_Trade
+			set_country_flag = MON_CANMON_RIP
+		}
+		CAN = {
+			remove_ideas = MON_CANMON_Trade
+		}
+	}
+}
+# CAN is at war so deal with MON is broken
+country_event = {
+	id = montana.20
+	title = montana.20.t
+	desc = montana.20.d
+	picture = event_MON_CANMON_Trade
+
+	hidden = yes
+
+	trigger = {
+		MON = {
+			NOT = { has_country_flag = MON_CANMON_RIP }
+		has_country_flag = MON_CANMON_Signed
+		}
+		original_tag = CAN
+		any_other_country = {
+			has_war_with = CAN
+			NOT = { original_tag = CAN }
+		}
+	}
+
+	mean_time_to_happen = { days = 2 }
+
+	option = { 
+		name = montana.20.a
+		ai_chance = {
+			base = 100
+		}
+		MON = {
+			remove_ideas = MON_CANMON_Trade
+			set_country_flag = MON_CANMON_RIP
+		}
+		CAN = {
+			remove_ideas = MON_CANMON_Trade
+		}
+	}
+}
+# Sanderists reply
+country_event = {
+	id = montana.21
+	title = montana.21.t
+	desc = montana.21.d
+	picture = event_MON_West_Support
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { 
+		name = montana.21.a
+		declare_war_on = {
+			target = CAS
+			type = annex_everything
+		}
+	}
+}
+# Cascadia reply
+country_event = {
+	id = montana.22
+	title = montana.22.t
+	desc = montana.22.d
+	picture = event_MON_West_Support
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { 
+		name = montana.22.a
+		FROM = { give_guarantee = MON }
 	}
 }
