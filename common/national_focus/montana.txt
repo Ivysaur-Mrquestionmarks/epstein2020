@@ -423,6 +423,7 @@ focus_tree = {
 		available_if_capitulated = yes
 		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_WAR_SUPPORT }
 		completion_reward = {
+			add_research_slot = 1
 		}
 	}
 	focus = {
@@ -459,7 +460,7 @@ focus_tree = {
 	}
 	focus = {
 		id = MON_Side_With_Trump
-		icon = GFX_focus_MON_Sell_Forests_To_Farmers
+		icon = GFX_focus_MON_Meeting_With_The_Trump
 		mutually_exclusive = { focus = MON_Stick_To_Biden }
 		x = -2
 		y = 2
@@ -492,7 +493,7 @@ focus_tree = {
 	}
 	focus = {
 		id = MON_Stick_To_Biden
-		icon = GFX_focus_MON_Sell_Forests_To_Farmers
+		icon = GFX_focus_MON_Meeting_With_The_Trump
 		mutually_exclusive = { focus = MON_Side_With_Trump }
 		x = 2
 		y = 2
@@ -536,7 +537,7 @@ focus_tree = {
 	}
 	focus = {
 		id = MON_Absaroka_High_Ground_Defense_Line
-		icon = GFX_focus_MON_Sell_Forests_To_Farmers
+		icon = GFX_goal_generic_construct_military
 		x = 2
 		y = 1
 		offset = {
@@ -563,11 +564,36 @@ focus_tree = {
 		available_if_capitulated = yes
 		search_filters = { FOCUS_FILTER_ANNEXATION }
 		completion_reward = {
+			army_experience = 5
+			custom_effect_tooltip = MON_Bunkers_tooltip
+			hidden_effect = {
+			425 = {
+				add_building_construction = { type = bunker province = 5598 level = 5 instant_build = yes }
+				add_building_construction = { type = bunker province = 8311 level = 5 instant_build = yes }
+				add_building_construction = { type = bunker province = 8214 level = 5 instant_build = yes }
+				add_building_construction = { type = bunker province = 670 level = 5 instant_build = yes }
+				add_building_construction = { type = bunker province = 7942 level = 5 instant_build = yes }
+				add_building_construction = { type = bunker province = 7809 level = 5 instant_build = yes }
+				add_building_construction = { type = bunker province = 647 level = 5 instant_build = yes }
+				add_building_construction = { type = bunker province = 7618 level = 5 instant_build = yes }
+				add_building_construction = { type = bunker province = 80 level = 5 instant_build = yes }
+				add_building_construction = { type = bunker province = 7386 level = 5 instant_build = yes }
+			}
+			67 = {
+				add_building_construction = { type = bunker province = 3210 level = 3 instant_build = yes }
+				add_building_construction = { type = bunker province = 167 level = 3 instant_build = yes }
+				add_building_construction = { type = bunker province = 1352 level = 3 instant_build = yes }
+			}
+			35 = {
+				add_building_construction = { type = bunker province = 3743 level = 3 instant_build = yes }
+				add_building_construction = { type = bunker province = 1379 level = 3 instant_build = yes }
+			}
+			}
 		}
 	}
 	focus = {
 		id = MON_Big_Sky_Industrial_Haven
-		icon = GFX_focus_MON_Sell_Forests_To_Farmers
+		icon = GFX_goal_generic_construct_civ_factory
 		x = -2
 		y = 1
 		offset = {
@@ -595,11 +621,13 @@ focus_tree = {
 		available_if_capitulated = yes
 		search_filters = { FOCUS_FILTER_ANNEXATION }
 		completion_reward = {
+			add_offsite_building = { type = industrial_complex level = 4 }
+			add_offsite_building = { type = arms_factory level = 2 }
 		}
 	}
 	focus = {
 		id = MON_Montana_In_The_Spotlight
-		icon = GFX_focus_MON_Sell_Forests_To_Farmers
+		icon = GFX_focus_research
 		x = 0
 		y = 1
 		offset = {
@@ -626,11 +654,12 @@ focus_tree = {
 		available_if_capitulated = yes
 		search_filters = { FOCUS_FILTER_ANNEXATION }
 		completion_reward = {
+			add_research_slot = 1
 		}
 	}
 	focus = {
 		id = MON_Operation_Mountain_Meadows
-		icon = GFX_focus_MON_Sell_Forests_To_Farmers
+		icon = GFX_goal_generic_more_territorial_claims
 		x = -2
 		y = 1
 		offset = {
@@ -661,7 +690,7 @@ focus_tree = {
 	}
 	focus = {
 		id = MON_Suggest_Preemptive_Strike
-		icon = GFX_focus_MON_Sell_Forests_To_Farmers
+		icon = GFX_goal_generic_occupy_states_ongoing_war
 		x = 2
 		y = 1
 		offset = {
@@ -688,11 +717,15 @@ focus_tree = {
 		available_if_capitulated = yes
 		search_filters = { FOCUS_FILTER_ANNEXATION }
 		completion_reward = {
+			declare_war_on = {
+			target = USA
+			type = annex_everything
+			}
 		}
 	}
 	focus = {
 		id = MON_Earn_The_Independence
-		icon = GFX_focus_MON_Sell_Forests_To_Farmers
+		icon = GFX_goal_generic_major_alliance
 		mutually_exclusive = { focus = MON_Finish_The_Mission_Of_Montana }
 		x = -1
 		y = 2
@@ -721,11 +754,14 @@ focus_tree = {
 		available_if_capitulated = yes
 		search_filters = { FOCUS_FILTER_ANNEXATION }
 		completion_reward = {
+		OVERLORD = {
+		end_puppet = MON
+		}
 		}
 	}
 	focus = {
 		id = MON_Finish_The_Mission_Of_Montana
-		icon = GFX_focus_MON_Sell_Forests_To_Farmers
+		icon = GFX_goal_generic_CAS
 		mutually_exclusive = { focus = MON_Earn_The_Independence }
 		x = 1
 		y = 2
@@ -754,6 +790,12 @@ focus_tree = {
 		available_if_capitulated = yes
 		search_filters = { FOCUS_FILTER_ANNEXATION }
 		completion_reward = {
+		OVERLORD = {
+		annex_country = {
+			target = MON
+			transfer_troops = no
+			}
+		}
 		}
 	}
 
@@ -1170,11 +1212,12 @@ focus_tree = {
 		available_if_capitulated = yes
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
+			add_research_slot = 1
 		}
 	}
 	focus = {
 		id = MON_Shield_and_Sword_Policy
-		icon = GFX_focus_MON_The_Shield_And_Sword_Policy
+		icon = GFX_goal_generic_defence
 		x = 0
 		y = 2
 		offset = {
