@@ -476,7 +476,7 @@ focus_tree = {
 			focus = CEO_of_Resistance_Radio
 		}
 		completion_reward = {
-			
+			load_focus_tree = Susan_Collins
 		}
 	}
 	focus = {
@@ -591,7 +591,44 @@ focus_tree = {
 			focus = Money_Money_Money
 		}
 		completion_reward = {
-			
+			division_template = {
+				name = "Mercenary Company"
+				is_locked = yes
+				priority = 1
+				regiments = {
+					mechanized = { x = 0 y = 0 }
+					mechanized = { x = 0 y = 1 }
+					mechanized = { x = 0 y = 2 }
+					medium_armor = { x = 1 y = 0 }
+					medium_armor = { x = 1 y = 1 }
+					medium_armor = { x = 1 y = 2 }
+				}
+				support = {
+					artillery = { x = 0 y = 0 }
+					engineer = { x = 0 y = 1 }
+					armored_car_recon = { x = 0 y = 2 }
+					military_police = { x = 0 y = 3 }
+				}
+			}
+			random_owned_controlled_state = {
+				limit = { ROOT = { has_full_control_of_state = PREV } }
+				create_unit = {
+					division = "name = \"Triple Canopy Company\" division_template = \"Mercenary Company\" start_experience_factor = 1.0" 
+					owner = NEW
+				}
+				create_unit = {
+					division = "name = \"Blackwater Company\" division_template = \"Mercenary Company\" start_experience_factor = 1.0" 
+					owner = NEW
+				}
+				create_unit = {
+					division = "name = \"Aegis Defense Services Company\" division_template = \"Mercenary Company\" start_experience_factor = 1.0" 
+					owner = NEW
+				}
+				create_unit = {
+					division = "name = \"G4S Secure Solutions Company\" division_template = \"Mercenary Company\" start_experience_factor = 1.0" 
+					owner = NEW
+				}
+			}
 		}
 	}
 	focus = {
@@ -607,7 +644,42 @@ focus_tree = {
 			focus = Purchase_Mercs
 		}
 		completion_reward = {
-			
+			division_template = {
+				name = "Heavenly Brigade"
+				is_locked = yes
+				priority = 1
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					cavalry = { x = 0 y = 1 }
+					cavalry = { x = 0 y = 2 }
+					infantry = { x = 1 y = 0 }
+					cavalry = { x = 1 y = 1 }
+					cavalry = { x = 1 y = 2 }
+				}
+				support = {
+					military_police = { x = 0 y = 1 }
+				}
+			}
+			create_unit = {
+				division = "name = \"4th "Ephesians" Brigade\" division_template = \"Heavenly Brigade\" start_experience_factor = 0.1" 
+				owner = NEW
+			}
+			create_unit = {
+				division = "name = \"5th "Revelations" Brigade\" division_template = \"Heavenly Brigade\" start_experience_factor = 0.1" 
+				owner = NEW
+			}
+			create_unit = {
+				division = "name = \"1st "Genesis" Brigade\" division_template = \"Heavenly Brigade\" start_experience_factor = 0.1" 
+				owner = NEW
+			}
+			create_unit = {
+				division = "name = \"3rd "Joshua" Brigade\" division_template = \"Heavenly Brigade\" start_experience_factor = 0.1" 
+				owner = NEW
+			}
+			create_unit = {
+				division = "name = \"2nd "Exodus" Brigade\" division_template = \"Heavenly Brigade\" start_experience_factor = 0.1" 
+				owner = NEW
+			}
 		}
 	}
 	focus = {
@@ -674,7 +746,11 @@ focus_tree = {
 			focus = Whats_Best
 		}
 		completion_reward = {
-			
+			add_stability = -0.05
+			swap_ideas = {
+				remove_idea = TheonlyCompetition
+				add_idea = NoMoreCompettion
+			}
 		}
 	}
 	focus = {
@@ -690,7 +766,10 @@ focus_tree = {
 			focus = Ban_Competition
 		}
 		completion_reward = {
-			
+			swap_ideas = {
+				remove_idea = NoMoreCompettion
+				add_idea = FakeCompetition
+			}
 		}
 	}
 	focus = {
@@ -2762,6 +2841,9 @@ shared_focus = {
 				division = "name = \"1st Maine Coast Guard\" division_template = \"Coast Guard\" start_experience_factor = 0.7" 
 				owner = NEW
 			}
+		}
+		random_owned_controlled_state = {
+			limit = { ROOT = { has_full_control_of_state = PREV } }
 			create_unit = {
 				division = "name = \"2nd Maine Coast Guard\" division_template = \"Coast Guard\" start_experience_factor = 0.7" 
 				owner = NEW
