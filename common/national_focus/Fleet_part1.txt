@@ -251,6 +251,7 @@ focus_tree = {
 			}
 			PRA = {
 				random_owned_controlled_state = {
+					limit = {NOT = {state = 364 state = 394}} #this prevents them from spawing in lakes
 					create_unit = {
 						division = "division_template = \"Militias\"	start_experience_factor = 0.25	start_equipment_factor = 1"
 						owner = PAC
@@ -258,38 +259,62 @@ focus_tree = {
 						count = 2
 					}
 				}
-				random_owned_controlled_state = {
-					create_unit = {
-						division = "division_template = \"Militias\"	start_experience_factor = 0.25	start_equipment_factor = 1"
-						owner = PAC
-						allow_spawning_on_enemy_provs = yes
-						count = 2
+				if = {limit = {PRA = {has_stability < 0.80}}
+					random_owned_controlled_state = {
+						limit = {NOT = {state = 364 state = 394}} #this prevents them from spawing in lakes
+						create_unit = {
+							division = "division_template = \"Militias\"	start_experience_factor = 0.25	start_equipment_factor = 1"
+							owner = PAC
+							allow_spawning_on_enemy_provs = yes
+							count = 2
+						}
 					}
 				}
-				random_owned_controlled_state = {
-					create_unit = {
-						division = "division_template = \"Militias\"	start_experience_factor = 0.25	start_equipment_factor = 1"
-						owner = PAC
-						allow_spawning_on_enemy_provs = yes
-						count = 2
+				if = {limit = {PRA = {has_stability < 0.60}}
+					random_owned_controlled_state = {
+						limit = {NOT = {state = 364 state = 394}} #this prevents them from spawing in lakes
+						create_unit = {
+							division = "division_template = \"Militias\"	start_experience_factor = 0.25	start_equipment_factor = 1"
+							owner = PAC
+							allow_spawning_on_enemy_provs = yes
+							count = 2
+						}
 					}
 				}
-				random_owned_controlled_state = {
-					create_unit = {
-						division = "division_template = \"Militias\"	start_experience_factor = 0.25	start_equipment_factor = 1"
-						owner = PAC
-						allow_spawning_on_enemy_provs = yes
-						count = 2
+				if = {limit = {PRA = {has_stability < 0.40}}
+					random_owned_controlled_state = {
+						limit = {NOT = {state = 364 state = 394}} #this prevents them from spawing in lakes
+						create_unit = {
+							division = "division_template = \"Militias\"	start_experience_factor = 0.25	start_equipment_factor = 1"
+							owner = PAC
+							allow_spawning_on_enemy_provs = yes
+							count = 2
+						}
 					}
 				}
-				random_owned_controlled_state = {
-					create_unit = {
-						division = "division_template = \"Militias\"	start_experience_factor = 0.25	start_equipment_factor = 1"
-						owner = PAC
-						allow_spawning_on_enemy_provs = yes
-						count = 2
+				if = {limit = {PRA = {has_stability < 0.20}}
+					random_owned_controlled_state = {
+						limit = {NOT = {state = 364 state = 394}} #this prevents them from spawing in lakes
+						create_unit = {
+							division = "division_template = \"Militias\"	start_experience_factor = 0.25	start_equipment_factor = 1"
+							owner = PAC
+							allow_spawning_on_enemy_provs = yes
+							count = 2
+						}
 					}
 				}
+				if = {limit = {PRA = {has_stability < 0.01}}
+					random_owned_controlled_state = {
+						limit = {NOT = {state = 364 state = 394}} #this prevents them from spawing in lakes
+						create_unit = {
+							division = "division_template = \"Militias\"	start_experience_factor = 0.25	start_equipment_factor = 1"
+							owner = PAC
+							allow_spawning_on_enemy_provs = yes
+							count = 2
+						}
+					}
+				}
+				
 			}						
 		}
 	}
@@ -466,7 +491,12 @@ focus_tree = {
 		prerequisite = { focus = PAC_supply_sky }
 		prerequisite = { focus = PAC_old_ships }
 		available = {
-			has_war_with = PRA
+				has_war_with = PRA
+				NOT = {controls_state = 304}
+		}
+		bypass = {
+			controls_state = 304
+			has_completed_focus = PAC_5th_columb
 		}
 		x = 6
 		y = 6
