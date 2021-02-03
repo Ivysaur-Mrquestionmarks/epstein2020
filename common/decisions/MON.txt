@@ -270,5 +270,82 @@ MON_Unifying_The_Federation = {
 		}
 	}
 }
+
+MON_Forest_Privatization_Program = {
+
+	MON_Sell_State_Forest = {
+
+		icon = generic_civil_support
+
+		allowed = {
+			original_tag = MON
+		}
+
+		available = {
+			FROM = {
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 2
+					include_locked = yes
+				}
+			}
+		}
+
+		state_target = yes
+
+		targets = { 86 118 99 66 65 63 430 425 67 70 35 }
+
+		target_trigger = {
+			has_completed_focus = MON_Sell_Forests_To_Farmers
+			FROM = {
+				is_owned_by = ROOT
+				is_core_of = ROOT
+			}
+		}
+
+		cost = 50
+
+		fire_only_once = yes
+
+		days_remove = 70
+
+		ai_will_do = {
+			base = 200
+		}
+
+		modifier = {
+			stability_weekly = -0.001
+		}
+
+		visible = {
+			has_completed_focus = MON_Sell_Forests_To_Farmers
+		}
+
+		complete_effect = {
+
+		}
+
+		remove_effect = {
+			FROM = {
+				add_extra_state_shared_building_slots = -2
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 1
+						include_locked = yes
+					}
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+}
 	
 }
