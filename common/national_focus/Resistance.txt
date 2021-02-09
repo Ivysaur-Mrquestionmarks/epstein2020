@@ -578,7 +578,7 @@ focus_tree = {
 			focus = Resistance_Radio_Supreme
 		}
 		completion_reward = {
-			
+			add_ideas = Budgeting1
 		}
 	}
 	focus = {
@@ -663,25 +663,28 @@ focus_tree = {
 					military_police = { x = 0 y = 1 }
 				}
 			}
-			create_unit = {
-				division = "name = \"4th "Ephesians" Brigade\" division_template = \"Heavenly Brigade\" start_experience_factor = 0.1" 
-				owner = NEW
-			}
-			create_unit = {
-				division = "name = \"5th "Revelations" Brigade\" division_template = \"Heavenly Brigade\" start_experience_factor = 0.1" 
-				owner = NEW
-			}
-			create_unit = {
-				division = "name = \"1st "Genesis" Brigade\" division_template = \"Heavenly Brigade\" start_experience_factor = 0.1" 
-				owner = NEW
-			}
-			create_unit = {
-				division = "name = \"3rd "Joshua" Brigade\" division_template = \"Heavenly Brigade\" start_experience_factor = 0.1" 
-				owner = NEW
-			}
-			create_unit = {
-				division = "name = \"2nd "Exodus" Brigade\" division_template = \"Heavenly Brigade\" start_experience_factor = 0.1" 
-				owner = NEW
+			random_owned_controlled_state = {
+				limit = { ROOT = { has_full_control_of_state = PREV } }
+				create_unit = {
+					division = "name = \"4th "Ephesians" Brigade\" division_template = \"Heavenly Brigade\" start_experience_factor = 0.1" 
+					owner = NEW
+				}
+				create_unit = {
+					division = "name = \"5th "Revelations" Brigade\" division_template = \"Heavenly Brigade\" start_experience_factor = 0.1" 
+					owner = NEW
+				}
+				create_unit = {
+					division = "name = \"1st "Genesis" Brigade\" division_template = \"Heavenly Brigade\" start_experience_factor = 0.1" 
+					owner = NEW
+				}
+				create_unit = {
+					division = "name = \"3rd "Joshua" Brigade\" division_template = \"Heavenly Brigade\" start_experience_factor = 0.1" 
+					owner = NEW
+				}
+				create_unit = {
+					division = "name = \"2nd "Exodus" Brigade\" division_template = \"Heavenly Brigade\" start_experience_factor = 0.1" 
+					owner = NEW
+				}
 			}
 		}
 	}
@@ -701,7 +704,10 @@ focus_tree = {
 			focus = Whats_Best
 		}
 		completion_reward = {
-			
+			swap_ideas = {
+				remove_idea = Budgeting1
+				add_idea = Budgeting2
+			}
 		}
 	}
 	focus = {
@@ -717,7 +723,8 @@ focus_tree = {
 			focus = Balance_the_Budget
 		}
 		completion_reward = {
-			
+			add_stability = -0.10
+			add_political_power = 150
 		}
 	}
 	focus = {
@@ -733,7 +740,8 @@ focus_tree = {
 			focus = Resistance_Radio_Supreme
 		}
 		completion_reward = {
-			
+			add_war_support = 0.05
+			army_experience = 25
 		}
 	}
 	focus = {
@@ -1162,7 +1170,7 @@ focus_tree = {
 			focus = Claim_Halifax
 		}
 		completion_reward = {
-			
+			country_event = { id = Resistance.21 hours = 12 }
 		}
 	}
 	focus = {
@@ -1174,8 +1182,79 @@ focus_tree = {
 		ai_will_do = { 
 			factor = 300
 		}
+		mutually_exclusive = { focus = Kick_the_door_down }
 		prerequisite = {
 			focus = Everything_East_of_the_Lawrence
+		}
+		available = {
+			NEW = {
+				has_country_flag = Found_Jesus
+			}
+		}
+		completion_reward = {
+			add_stability = -0.25
+			add_political_power = -100
+		}
+	}
+	focus = {
+		id = Prop_up_a_President
+		icon = GFX_focus_generic_strike_at_democracy2
+		cost = 5.00
+		x = 8
+		y = 12
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			NEW = {
+				has_country_flag = Sided_With_Business
+			}
+		}
+		mutually_exclusive = { focus = Our_Own_Destiny }
+		prerequisite = {
+			focus = Everything_East_of_the_Lawrence
+		}
+		completion_reward = {
+			retire_country_leader = yes
+			create_country_leader = {
+				name = "Dale Crafts"
+				picture = "gfx/leaders/NEW/Crafts.dds"
+				expire = "2060.1.1"
+				ideology = despotism
+				traits = {
+					
+				}
+			}
+			add_stability = -0.25
+		}
+	}
+	focus = {
+		id = Legalize_Canadian_Fracking
+		icon = GFX_goal_generic_oil_refinery
+		cost = 5.00
+		x = 8
+		y = 13
+		ai_will_do = { 
+			factor = 300
+		}
+		prerequisite = {
+			focus = Prop_up_a_President
+		}
+		completion_reward = {
+			add_political_power = -100
+		}
+	}
+	focus = {
+		id = Claim_the_American_Mantle
+		icon = GFX_goal_American_Flag
+		cost = 5.00
+		x = 8
+		y = 14
+		ai_will_do = { 
+			factor = 300
+		}
+		prerequisite = {
+			focus = Legalize_Canadian_Fracking
 		}
 		completion_reward = {
 			
@@ -1194,7 +1273,7 @@ focus_tree = {
 			focus = Our_Own_Destiny
 		}
 		completion_reward = {
-			
+			add_ideas = Christianity_Reinvigorated
 		}
 	}
 	focus = {
@@ -1210,7 +1289,8 @@ focus_tree = {
 			focus = True_Gospel
 		}
 		completion_reward = {
-			
+			load_focus_tree = Civic_League
+			country_event = { id = Resistance.20 hours = 12 }
 		}
 	}
 }
