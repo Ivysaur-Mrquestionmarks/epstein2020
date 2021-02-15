@@ -46,33 +46,6 @@ default_peace = {
 	# ROOT = Taker, FROM = Giver
 	annex = {
 		factor = 500
-
-		modifier = {
-			factor = 0
-			NOT = {
-				has_annex_war_goal = FROM
-			}
-			FROM = {
-				any_owned_state = { 
-					NOT = {
-						OR = { 
-							is_claimed_by = ROOT
-							is_core_of = ROOT
-							has_claimed_state_in_peace_conference = ROOT
-						}
-					}
-				}
-			}
-			OR = {
-				NOT = {
-					has_annex_war_goal = FROM
-				}
-				NOT = {
-					is_owner_neighbor_of = FROM
-				}
-			}
-		}
-
 		#modifier = {
 		#	factor = 0
 		#	is_puppet = yes
@@ -147,7 +120,7 @@ default_peace = {
 			FROM = { has_civil_war = yes }
 		}
 		modifier = {
-			factor = 0.2 #Strip colonies/liberate first - important vs GER and JAP
+			factor = 0.0 #Strip colonies/liberate first - important vs GER and JAP
 			FROM = {
 				any_owned_state = { NOT = { is_core_of = FROM } }
 			}
@@ -192,24 +165,6 @@ default_peace = {
 				OR = {
 					is_claimed_by = ROOT
 					is_core_of = ROOT
-				}
-			}
-		}
-		modifier = { #Do not take human held lands...
-			factor = 0
-			NOT = { 
-				FROM = { 
-					OR = {
-						is_claimed_by = ROOT
-						is_core_of = ROOT
-					}
-				} 
-			}
-			FROM = {
-				controller = { 
-					is_ai = no 
-					has_capitulated = no 
-					is_puppet = no 
 				}
 			}
 		}
@@ -337,62 +292,7 @@ default_peace = {
 			}
 		}
 
-		modifier = {
-			factor = 0		
-			NOT = { FROM = { is_claimed_by = ROOT } }
-			NOT = {
-				FROM = {
-					any_neighbor_state = {
-						OR = {
-							owner = { tag = ROOT }
-							has_claimed_state_in_peace_conference = ROOT
-						}
-					}
-				}
-			}
-			OR = {
-				NOT = {
-					FROM = { 
-						OR = {
-							is_island_state = yes
-							is_coastal = yes
-						}
-					}
-				}
-				NOT = { any_owned_state = { is_coastal = yes } }
-			}
 
-		}
-
-		modifier = { #Only take claims - may also take African colonies if already a colonial power or major European country.
-			factor = 0
-			NOT = { 
-				FROM = { 
-					OR = {
-						is_claimed_by = ROOT
-						is_core_of = ROOT
-					}
-				} 
-			}
-			OR = {
-				NOT = { FROM = { is_on_continent = africa } }
-				NOT = { capital_scope = { is_on_continent = europe } }
-				AND = {
-					#Is NOT a major
-					NOT = { num_of_factories > 100 }
-					NOT = { tag = GER }
-					NOT = { tag = ENG }
-					NOT = { tag = ITA }
-					NOT = { tag = FRA }
-					NOT = { tag = USA }
-					NOT = { tag = JAP }
-					NOT = { tag = SOV }
-					NOT = {
-						any_owned_state = { is_on_continent = africa }
-					}
-				}
-			}
-		}
 		modifier = { #Only take claimed/core land if a puppet.
 			factor = 0
 			is_puppet = yes
