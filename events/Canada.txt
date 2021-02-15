@@ -444,3 +444,88 @@ news_event = {
 		name = Canada.3.a
 	}
 }
+#Trudeau suppresses anti-war protests
+country_event = {
+	id = Canada.4
+	title = Canada.4.t
+	desc = Canada.4.d
+	#picture =
+	fire_only_once = yes
+	trigger = {
+		tag = CAN
+		date > 2022.06.06
+	}
+	option = {
+		name = Canada.4.a
+		add_stability = -0.05
+		add_war_support = 0.05
+		ENG = {
+			country_event = { id = Canada.5 days = 3 }
+		}
+	}
+}
+#England hears of the Canadian problem
+country_event = {
+	id = Canada.5
+	title = Canada.5.t
+	desc = Canada.5.d
+	#picture =
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		CAN = {
+			country_event = { id = Canada.6 days = 2 }
+		}
+	}
+}
+#Trudeau abolishes the monarchy
+country_event = {
+	id = Canada.6
+	title = Canada.6.t
+	desc = Canada.6.d
+	#picture =
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		add_stability = -0.05
+		create_country_leader = {
+			name = "Justin Trudeau"
+			picture = "Trudeau.dds"
+			expire = "2060.1.1"
+			ideology = maoism
+			traits = {
+				###		
+			}
+		}
+		set_party_name = { 
+		    ideology = authoritarian_left
+		    long_name = CAN_new_liberals_party
+		    name = CAN_new_liberals_party_long
+		}
+		set_politics = {
+			ruling_party = authoritarian_left
+		}
+		add_popularity = {
+		    ideology = authoritarian_left
+		    popularity = 0.10
+		}
+		country_event = {
+			id = Canada.1
+			days = 14
+		}
+		hidden_effect = {
+			news_event = { id = Canada.7 }
+		}
+	}
+}
+news_event = {
+	id = Canada.7
+	title = Canada.7.t
+	desc = Canada.7.d
+	#picture =
+	major = yes
+	is_triggered_only = yes
+	option = {
+		name = Canada.7.a
+	}
+}
