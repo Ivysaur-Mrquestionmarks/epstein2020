@@ -13,16 +13,19 @@ focus_tree = {
 	#	focus = PAC_WIP
 	#}
 	focus = {
-		id = PAC_military_state
+		id = PAC_operation_midway
 		icon = GFX_focus_research
-		text = "More focuses coming soon uwu"
 		#allow_branch = {
 
 		#}
 		#prerequisite = { focus = ITA_industrial_effort_2 }
-		x = 3
+
+		available = {
+			has_manpower = 250000
+		}
+		x = 17
 		y = 1
-		cost = 5
+		cost = 10
 
 		ai_will_do = {
 			factor = 5
@@ -31,8 +34,526 @@ focus_tree = {
 		available_if_capitulated = no
 
 		completion_reward = {
-
+			unlock_decision_category_tooltip = American_reunification
+			unlock_decision_tooltip = integrate_state
+			set_country_flag = {
+    				flag = reunification_start
+				value = 2
+			}
 		}
 	}
 
+	focus = {
+		id = PAC_south_mid
+		icon = GFX_focus_research
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = PAC_operation_midway }
+		
+		x = 21
+		y = 2
+		cost = 4
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = PAC_mid_south_plan 
+		}
+	}
+
+	focus = {
+		id = PAC_sabotage_HOP
+		icon = GFX_focus_research
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = PAC_south_mid }
+		bypass = {
+			HOP = { NOT = {exists = yes}}
+		}
+
+		
+		x = 20
+		y = 4
+		cost = 7
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			HOP = {
+				country_event = {
+    					id = fleet_P.31
+    					days = 10
+				}	
+			}
+		}
+	}
+
+	focus = {
+		id = PAC_operation_alcatraz
+		icon = GFX_focus_research
+		#allow_branch = {
+
+		#}
+		will_lead_to_war_with = HOP
+		prerequisite = { focus = PAC_sabotage_HOP }
+		available = {
+			NOT = {has_war = yes}
+		}
+		bypass = {
+			HOP = { NOT = {exists = yes}}
+		}
+		
+		x = 20
+		y = 6
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		select_effect = {
+			country_event = {
+    				id = fleet_P.32
+    				days = 15
+			}
+		}
+		completion_reward = {
+			declare_war_on = {
+    				target = HOP
+    				type = annex_everything
+			}
+		}
+	}
+
+	focus = {
+		id = PAC_sabotage_tribes
+		icon = GFX_focus_research
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = PAC_south_mid }
+		bypass = { NOT = {
+			NAV = {exists = yes}
+			TOH = {exists = yes}
+		}}
+
+		
+		x = 22
+		y = 4
+		cost = 7
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			every_country = {
+				Limit = {OR = {tag = NAV tag = TOH}}
+			
+				country_event = {
+    					id = fleet_P.33
+    					days = 0
+				}	
+			}
+		}
+	}
+
+
+	focus = {
+		id = PAC_operation_cyprus
+		icon = GFX_focus_research
+		#allow_branch = {
+
+		#}
+		will_lead_to_war_with = TEX
+		prerequisite = { focus = PAC_operation_aland }
+		prerequisite = { focus = PAC_operation_alcatraz}
+		prerequisite = { focus = PAC_operation_britain}
+		available = {
+			NOT = {has_war = yes}
+		}
+		
+		x = 18
+		y = 7
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		select_effect = {
+			country_event = {
+    				id = fleet_P.35
+    				days = 15
+			}
+		}
+		completion_reward = {
+			declare_war_on = {
+    				target = TEX
+    				type = annex_everything
+			}
+			unlock_decision_tooltip = reunification_wars
+			set_country_flag = reunification_wars
+		}
+	}
+
+	focus = {
+		id = PAC_operation_aland
+		icon = GFX_focus_research
+		#allow_branch = {
+
+		#}
+		will_lead_to_war_with = NAV
+		will_lead_to_war_with = TOH
+		prerequisite = { focus = PAC_sabotage_tribes }
+		available = {
+			NOT = {has_war = yes}
+		}
+		bypass = { NOT = {
+			NAV = {exists = yes}
+			TOH = {exists = yes}
+		}}
+		
+		x = 22
+		y = 6
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		select_effect = {
+			country_event = {
+    				id = fleet_P.34
+    				days = 15
+			}
+		}
+		completion_reward = {
+			declare_war_on = {
+    				target = NAV
+    				type = annex_everything
+			}
+			declare_war_on = {
+    				target = TOH
+    				type = annex_everything
+			}
+		}
+	}
+
+	focus = {
+		id = PAC_operation_bermuda
+		icon = GFX_focus_research
+		#allow_branch = {
+
+		#}
+		will_lead_to_war_with = MOL
+		will_lead_to_war_with = LAS
+		prerequisite = { focus = PAC_operation_midway }
+		available = {
+			NOT = {has_war = yes}
+		}
+		bypass = { NOT = {
+			MOL = { exists = yes}
+			LAS = { exists = yes}
+		}}
+		
+		x = 16
+		y = 2
+		cost = 3
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		select_effect = {
+			country_event = {
+    				id = fleet_P.27
+    				days = 10
+			}
+		}
+		completion_reward = {
+			declare_war_on = {
+    				target = MOL
+    				type = annex_everything
+			}
+			declare_war_on = {
+    				target = LAS
+    				type = annex_everything
+			}
+		}
+	}
+
+	focus = {
+		id = PAC_operation_crete
+		icon = GFX_focus_research
+		#allow_branch = {
+
+		#}
+		will_lead_to_war_with = UTA
+		prerequisite = { focus = PAC_operation_midway }
+		available = {
+			NOT = {has_war = yes}
+		}
+		bypass = {
+			UTA = { NOT = {exists = yes}}
+		}
+		
+		x = 18
+		y = 2
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		select_effect = {
+			country_event = {
+    				id = fleet_P.28
+    				days = 15
+			}
+		}
+		completion_reward = {
+			declare_war_on = {
+    				target = UTA
+    				type = annex_everything
+			}
+		}
+	}
+
+
+	focus = {
+		id = PAC_prepare_for_the_desert
+		icon = GFX_focus_research
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = PAC_operation_crete }
+		prerequisite = {focus = PAC_operation_bermuda }
+
+		
+		x = 17
+		y = 3
+		cost = 8
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = PAC_desert_warfare
+		}
+	}
+
+	focus = {
+		id = PAC_operation_agnes
+		icon = GFX_focus_research
+		#allow_branch = {
+
+		#}
+		will_lead_to_war_with = SIN
+		prerequisite = { focus = PAC_prepare_for_the_desert }
+		available = {
+			NOT = {has_war = yes}
+		}
+		bypass = {
+			SIN = { NOT = {exists = yes}}
+		}
+		
+		x = 17
+		y = 5
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		select_effect = {
+			country_event = {
+    				id = fleet_P.29
+    				days = 15
+			}
+		}
+		completion_reward = {
+			declare_war_on = {
+    				target = SIN
+    				type = annex_everything
+			}
+		}
+	}
+
+	focus = {
+		id = PAC_operation_falkans
+		icon = GFX_focus_research
+		#allow_branch = {
+
+		#}
+		will_lead_to_war_with = CAS
+		prerequisite = { focus = PAC_operation_midway }
+		available = {
+			NOT = {has_war = yes}
+		}
+		bypass = {
+			CAS = { NOT = {exists = yes}}
+		}
+		
+		x = 13
+		y = 2
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		select_effect = {
+			country_event = {
+    				id = fleet_P.25
+    				days = 15
+			}
+		}
+		completion_reward = {
+			declare_war_on = {
+    				target = CAS
+    				type = annex_everything
+			}
+		}
+	}
+
+	focus = {
+		id = PAC_operation_bahamas
+		icon = GFX_focus_research
+		#allow_branch = {
+
+		#}
+		will_lead_to_war_with = MON
+		prerequisite = { focus = PAC_operation_falkans }
+		available = {
+			NOT = {has_war = yes}
+		}
+		bypass = {
+			MON = { NOT = {exists = yes}}
+		}
+		
+		x = 13
+		y = 4
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+
+		completion_reward = {
+			declare_war_on = {
+    				target = MON
+    				type = annex_everything
+			}
+		}
+	}
+
+
+	focus = {
+		id = PAC_faith_of_the_hunters
+		icon = GFX_focus_research
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = PAC_operation_bahamas }
+		available = {
+			owns_state = 86
+		}
+		bypass = {
+			NOT = {
+				MON = {exists = yes}
+				owns_state = 86
+			}
+		}
+		
+		x = 13
+		y = 5
+		cost = 4
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+
+		completion_reward = {
+			country_event = {
+    				id = fleet_P.26
+    				days = 0
+			}			
+		}
+	}
+
+	focus = {
+		id = PAC_operation_britain
+		icon = GFX_focus_research
+		#allow_branch = {
+
+		#}
+		will_lead_to_war_with = USA
+		prerequisite = { focus = PAC_faith_of_the_hunters }
+		prerequisite = { focus = PAC_operation_agnes}
+		available = {
+			NOT = {has_war = yes}
+		}
+		bypass = {
+			USA = { NOT = {exists = yes}}
+		}
+		
+		x = 15.5
+		y = 6
+		cost = 7
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		select_effect = {
+			country_event = {
+    				id = fleet_P.30
+    				days = 30
+			}
+		}
+		completion_reward = {
+			declare_war_on = {
+    				target = USA
+    				type = annex_everything
+			}
+		}
+	}
 }
