@@ -30,3 +30,86 @@ country_event = {
 		}
 	}
 }
+country_event = {
+	id = cascadia.2
+	title = cascadia.2.t
+	desc = cascadia.2.d
+	picture = event_communists_01 
+	is_triggered_only = yes
+	fire_only_once = yes
+	#Push into Seattle
+	option = {
+		name = cascadia.2.a
+		ai_chance = {
+			factor = 75
+		}
+		CAS = {
+			transfer_state = 125
+			add_stability = -0.05
+		}
+		125 = {
+			set_demilitarized_zone = no
+		}
+	}
+	#Keep that hellhole of a city
+	option = {
+		name = cascadia.2.b
+		ai_chance = {
+			factor = 25
+		}
+		PRA = {
+			add_stability = 0.05
+			country_event = { id = cascadia.3 days = 30 }
+			SAZ = {
+				add_state_core = 125
+			}
+		}
+	}
+}
+country_event = {
+	id = cascadia.3
+	title = cascadia.3.t
+	desc = cascadia.3.d
+	picture = event_communists_01 
+	is_triggered_only = yes
+	fire_only_once = yes
+	#Send some Chinese troops to "fix" the situation
+	option = {
+		name = cascadia.3.a
+		ai_chance = {
+			factor = 75
+		}
+		add_stability = 0.05
+		add_manpower = -2500
+		add_popularity = {
+			ideology = authoritarian_left
+			popularity = 0.1
+		}
+
+	}
+	#Oh yeah, Chaz time
+	option = {
+		name = cascadia.3.b
+		ai_chance = {
+			factor = 25
+		}
+		release_autonomy = {
+   			target = SAZ
+   			autonomy_state = autonomy_integrated_puppet
+    		freedom_level = 0.8
+		}
+	}
+	#Play as Chaz
+	option = {
+		name = cascadia.3.c
+		ai_chance = {
+			factor = 0
+		}
+		release_autonomy = {
+   			target = SAZ
+   			autonomy_state = autonomy_integrated_puppet
+    		freedom_level = 0.8
+		}
+		SAZ = { change_tag_from = PRA }
+		
+}

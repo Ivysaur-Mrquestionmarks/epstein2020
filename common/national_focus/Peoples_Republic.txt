@@ -18,14 +18,14 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_stability = 0.05
 		}
 
 	}
 	focus = {
 		id = The_Cascadian_Question
 		icon = GFX_focus_MON_Intervene_In_Cascadia
-		cost = 2.00
+		cost = 5.00
 		x = 5
 		y = 1
 		ai_will_do = { 
@@ -42,7 +42,7 @@ focus_tree = {
 	focus = {
 		id = recognize_the_stalemate
 		icon = GFX_focus_generic_provoke_border_clashes
-		cost = 2.00
+		cost = 5.00
 		x = 5
 		y = 2
 		ai_will_do = { 
@@ -52,7 +52,7 @@ focus_tree = {
 			focus = The_Cascadian_Question
 		}
 		completion_reward = {
-			
+			add_political_power = 25
 		}
 
 	}
@@ -69,54 +69,66 @@ focus_tree = {
 			focus = recognize_the_stalemate
 		}
 		completion_reward = {
-			
+			add_war_support = -0.15
+			CAS = {
+				add_war_support = 0.15
+			}
+			add_days_remove = {
+				decision = PRA_defeat_cascadia
+				days = -200
+			}
 		}
 
 	}
 	focus = {
 		id = Seattle_for_Concessions
 		icon = GFX_goal_generic_forceful_treaty
-		cost = 2.00
+		cost = 5.00
 		x = 4
 		y = 4
 		ai_will_do = { 
 			factor = 300
 		}
 		prerequisite = {
-			focus = recognize_the_stalemate
+			focus = The_Seattle_Peace_Accord
 		}
 		mutually_exclusive = {
 			focus = Recognize_Cascadian_Claim
 		}
 		completion_reward = {
-			
+			CAS = {
+				country_event = { id = cascadia.2 days = 5 }
+			}
 		}
 
 	}
 	focus = {
 		id = Recognize_Cascadian_Claim
 		icon = GFX_goal_generic_intelligence_exchange
-		cost = 2.00
+		cost = 5.00
 		x = 6
 		y = 4
 		ai_will_do = { 
 			factor = 300
 		}
 		prerequisite = {
-			focus = recognize_the_stalemate
+			focus = The_Seattle_Peace_Accord
 		}
 		mutually_exclusive = {
 			focus = Seattle_for_Concessions
 		}
 		completion_reward = {
-			
+			add_stability = 0.1
+			CAS = {
+				add_stability = 0.1
+			}
 		}
 
 	}
 	focus = {
 		id = Form_an_iron_curtain
 		icon = GFX_goal_generic_war_with_comintern
-		cost = 2.00
+		cost = 10.00
 		x = 5
 		y = 5
 		ai_will_do = { 
@@ -140,6 +152,9 @@ focus_tree = {
 		y = 1
 		ai_will_do = { 
 			factor = 300
+		}
+		available = {
+			has_completed_focus = Form_an_iron_curtain
 		}
 		prerequisite = {
 			focus = Workers_Congress
@@ -408,7 +423,9 @@ focus_tree = {
 			focus = Form_an_iron_curtain
 		}
 		completion_reward = {
-			
+			set_technology = {
+			    suicide_craft = 1
+			}
 		}
 
 	}
