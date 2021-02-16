@@ -1,0 +1,206 @@
+focus_tree = {
+	id = molossia_baugh
+	continuous_focus_position = { x = 0 y = 1000 }
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = MOL
+		}
+	}
+
+	#Birth of a Nation
+	focus = {
+		id = MOL_birth_of_a_nation
+		icon = GFX_goal_generic_national_unity
+		x = 6
+		y = 0
+		cost = 1
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		completion_reward = {
+			country_event = {
+			id = molossia.21
+			}
+
+		}
+	}
+
+	#No Time to Waste
+	focus = {
+		id = MOL_no_time_to_waste
+		icon = GFX_goal_generic_national_unity
+		x = 4
+		y = 1
+		cost = 1
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = MOL_birth_of_a_nation  }
+		mutually_exclusive = { focus = MOL_this_takes_time  }
+		completion_reward = {
+			country_event = {
+			id = molossia.22
+			}
+
+		}
+	}
+
+	#Work With Hawthorne
+	focus = {
+		id = MOL_work_with_hawthorne
+		icon = GFX_goal_tripartite_pact
+		x = 2
+		y = 2
+		cost = 1
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = MOL_no_time_to_waste  }
+		mutually_exclusive = { focus = MOL_slam_the_door  }
+		available = {
+			check_variable = {
+				var = hawthorne_agree
+				value = 1
+				compare = equals
+			}
+		}
+		completion_reward = {
+			country_event = {
+			id = molossia.23
+			}
+		}
+	}
+
+	#Home Depot
+	focus = {
+		id = MOL_home_depot
+		icon = GFX_goal_tripartite_pact
+		x = 2
+		y = 3
+		cost = 1
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = MOL_work_with_hawthorne  }
+		completion_reward = {
+			country_event = {
+			id = molossia.24
+			}
+		}
+	}
+
+	#Slam the Door
+	focus = {
+		id = MOL_slam_the_door
+		icon = GFX_goal_tripartite_pact
+		x = 4
+		y = 2
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = MOL_no_time_to_waste  }
+		mutually_exclusive = { focus = MOL_work_with_hawthorne  }
+		available = {
+			check_variable = {
+				var = hawthorne_agree
+				value = 2
+				compare = equals
+			}
+		}
+		completion_reward = {
+			country_event = {
+				id = molossia.x
+			}
+		}
+	}
+
+
+	#What Now?
+	focus = {
+		id = MOL_what_now
+		icon = GFX_goal_tripartite_pact
+		x = 4
+		y = 3
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = MOL_slam_the_door  }
+	}
+
+	#This Takes Time
+	focus = {
+		id = MOL_this_takes_time
+		icon = GFX_goal_generic_national_unity
+		x = 6
+		y = 1
+		cost = 1
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = MOL_birth_of_a_nation  }
+		mutually_exclusive = { focus = MOL_no_time_to_waste  }
+		completion_reward = {
+			country_event = {
+			id = molossia.23
+			}
+
+		}
+	}
+
+	#On the Issue Of...
+	focus = {
+		id = MOL_on_the_issue_of
+		icon = GFX_goal_tripartite_pact
+		x = 7
+		y = 2
+		cost = 1
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = MOL_this_takes_time  }
+	}
+
+
+	#Currency
+	focus = {
+		id = MOL_currency
+		icon = GFX_goal_tripartite_pact
+		x = 7
+		y = 3
+		cost = 1
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = MOL_on_the_issue_of  }
+	}
+
+	#Silver
+	focus = {
+		id = MOL_silver
+		icon = GFX_goal_tripartite_pact
+		x = 6
+		y = 4
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = MOL_currency  }
+		mutually_exclusive = { focus = MOL_gold  }
+	}
+
+	#Gold
+	focus = {
+		id = MOL_gold
+		icon = GFX_goal_tripartite_pact
+		x = 8
+		y = 4
+		cost = 1
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = MOL_currency  }
+		mutually_exclusive = { focus = MOL_silver  }
+	}
+
+}

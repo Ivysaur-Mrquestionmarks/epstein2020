@@ -484,3 +484,227 @@ country_event = {
     name = molossia.20.a
   }
 }
+
+###################################################
+
+country_event = { #birth of a nation
+  id = molossia.21
+  title = molossia.21.t
+  desc = molossia.21.d
+  fire_only_once = yes
+  is_triggered_only = yes
+  option = {
+    name = molossia.21.a
+    add_political_power = 5
+  }
+}
+
+country_event = { #no time to waste
+  id = molossia.22
+  title = molossia.22.t
+  desc = molossia.22.d
+  fire_only_once = yes
+  is_triggered_only = yes
+  option = { #yes
+    name = molossia.22.a
+    add_political_power = -25
+    set_variable = {
+      var = hawthorne_agree
+      value = 1
+    }
+  }
+  option = { #no
+    name = molossia.22.b
+    set_variable = {
+      var = hawthorne_agree
+      value = 2
+    }
+  }
+}
+
+country_event = { #work with hawthorne
+  id = molossia.23
+  title = molossia.23.t
+  desc = molossia.23.d
+  fire_only_once = yes
+  is_triggered_only = yes
+  option = {
+    name = molossia.23.a
+    add_political_power = -50
+  }
+}
+
+country_event = { #negotiations with hawthorne
+  id = molossia.24
+  title = molossia.24.t
+  desc = molossia.24.d
+  fire_only_once = yes
+  is_triggered_only = yes
+  option = { #go quick, country gets eaten
+    name = molossia.24.a
+    ai_chance = {
+      base = 30
+    }
+    country_event = {
+      id = molossia.25
+      days = 1
+    }
+  }
+  option = { #go slow, hold onto power, but at a delay
+    name = molossia.24.b
+    ai_chance = {
+      base = 69 #nice
+    }
+    country_event = {
+      id = molossia.26
+      days = 1
+    }
+  }
+  option = { #play poker ig. this is a bad idea
+    name = molossia.24.c
+    ai_chance = {
+      base = 1
+    }
+    custom_effect_tooltip = MOL_bad_idea
+    country_event = {
+      id = molossia.27
+      days = 1
+    }
+  }
+}
+
+country_event = { #depot coup
+  id = molossia.25
+  title = molossia.25.t
+  desc = molossia.25.d
+  fire_only_once = yes
+  is_triggered_only = yes
+  option = {
+    name = molossia.25.a
+    add_political_power = -100
+    create_country_leader = {
+      name = "Karl Pierson"
+      picture = "gfx/leaders/MOL/MOL_karl_pierson.dds"
+      expire = "2060.12.12"
+      ideology = military_dictatorship
+    }
+    set_party_name = {
+      ideology = autocratic
+      long_name = MOL_hawthorne_long
+      name = MOL_hawthorne
+    }
+    set_politics = {
+      ruling_party = autocratic
+      elections_allowed = no
+    }
+    set_variable = {
+      var = mol_ready
+      value = 1
+    }
+  }
+}
+
+country_event = { #supported by depot
+  id = molossia.26
+  title = molossia.26.t
+  desc = molossia.26.d
+  fire_only_once = yes
+  is_triggered_only = yes
+  option = {
+    name = molossia.26.a
+    add_popularity = {
+      ideology = autocratic
+      popularity = 0.05
+    }
+    add_political_power = 25
+    add_stability = 0.02
+    set_variable = {
+      var = mol_ready
+      value = 1
+    }
+  }
+}
+
+country_event = { #poker game
+  id = molossia.27
+  title = molossia.27.t
+  desc = molossia.27.d
+  fire_only_once = yes
+  is_triggered_only = yes
+  option = { #dont do that why would you even consider that an option
+    name = molossia.27.a
+    country_event = {
+      id = molossia.28
+      days = 1
+    }
+  }
+  option = { #sure. whatever i guess
+    name = molossia.27.b
+    country_event = { #yes i know this is stupid
+      id = molossia.29
+      days = 1
+    }
+  }
+}
+
+country_event = { #dont let doug in
+  id = molossia.28
+  title = molossia.28.t
+  desc = molossia.28.d
+  fire_only_once = yes
+  is_triggered_only = yes
+  option = { #you lose, bucko!
+    name = molossia.28.a
+    add_political_power = -100
+    create_country_leader = {
+      name = "Karl Pierson"
+      picture = "gfx/leaders/MOL/MOL_karl_pierson.dds"
+      expire = "2060.12.12"
+      ideology = military_dictatorship
+    }
+    set_party_name = {
+      ideology = autocratic
+      long_name = MOL_hawthorne_long
+      name = MOL_hawthorne
+    }
+    set_politics = {
+      ruling_party = autocratic
+      elections_allowed = no
+    }
+    set_variable = {
+      var = mol_ready
+      value = 1
+      }
+    }
+}
+
+country_event = { #nostalgia critic coup fuck you doug walker who cares
+  id = molossia.29
+  title = molossia.29.t
+  desc = molossia.29.d
+  fire_only_once = yes
+  is_triggered_only = yes
+  option = {
+    name = molossia.29.a
+    add_political_power = -100
+    create_country_leader = {
+      name = "Doug Walker"
+      picture = "gfx/leaders/MOL/walker.dds"
+      expire = "2060.12.12"
+      ideology = libertarian_ideology
+    }
+    set_party_name = {
+      ideology = libertarian_right
+      long_name = MOL_gamer_long
+      name = MOL_gamer
+    }
+    set_politics = {
+      ruling_party = libertarian_right
+      elections_allowed = no
+    }
+    set_variable = {
+      var = mol_ready
+      value = 1
+    }
+  }
+}
