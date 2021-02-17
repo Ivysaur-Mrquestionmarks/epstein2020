@@ -97,6 +97,7 @@ focus_tree = {
 		icon = GFX_goal_tripartite_pact
 		x = 4
 		y = 2
+		cost = 1
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
@@ -111,7 +112,7 @@ focus_tree = {
 		}
 		completion_reward = {
 			country_event = {
-				id = molossia.x
+				id = molossia.30
 			}
 		}
 	}
@@ -123,10 +124,16 @@ focus_tree = {
 		icon = GFX_goal_tripartite_pact
 		x = 4
 		y = 3
+		cost = 2
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
 		prerequisite = { focus = MOL_slam_the_door  }
+		completion_reward = {
+			country_event = {
+				id = molossia.31
+			}
+		}
 	}
 
 	#This Takes Time
@@ -143,7 +150,7 @@ focus_tree = {
 		mutually_exclusive = { focus = MOL_no_time_to_waste  }
 		completion_reward = {
 			country_event = {
-			id = molossia.23
+				id = molossia.33
 			}
 
 		}
@@ -160,6 +167,12 @@ focus_tree = {
 			FOCUS_FILTER_POLITICAL
 		}
 		prerequisite = { focus = MOL_this_takes_time  }
+		completion_reward = {
+			country_event = {
+				id = molossia.34
+			}
+
+		}
 	}
 
 
@@ -174,6 +187,12 @@ focus_tree = {
 			FOCUS_FILTER_POLITICAL
 		}
 		prerequisite = { focus = MOL_on_the_issue_of  }
+		completion_reward = {
+			country_event = {
+				id = molossia.35
+			}
+
+		}
 	}
 
 	#Silver
@@ -182,11 +201,31 @@ focus_tree = {
 		icon = GFX_goal_tripartite_pact
 		x = 6
 		y = 4
+		cost = 4
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
 		prerequisite = { focus = MOL_currency  }
 		mutually_exclusive = { focus = MOL_gold  }
+		available = {
+			check_variable = {
+				var = mol_currency
+				value = 1
+				compare = equals
+			}
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MOL_birth_of_a_nation_0
+				add_idea = MOL_birth_of_a_nation_silver
+			}
+			hidden_effect = {
+				set_variable = {
+					var = mol_ready
+					value = 1
+				}
+			}
+		}
 	}
 
 	#Gold
@@ -195,12 +234,31 @@ focus_tree = {
 		icon = GFX_goal_tripartite_pact
 		x = 8
 		y = 4
-		cost = 1
+		cost = 4
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
 		prerequisite = { focus = MOL_currency  }
 		mutually_exclusive = { focus = MOL_silver  }
+		available = {
+			check_variable = {
+				var = mol_currency
+				value = 2
+				compare = equals
+			}
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MOL_birth_of_a_nation_0
+				add_idea = MOL_birth_of_a_nation_gold
+			}
+			hidden_effect = {
+				set_variable = {
+					var = mol_ready
+					value = 1
+				}
+			}
+		}
 	}
 
 }
