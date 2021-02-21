@@ -484,3 +484,411 @@ country_event = {
     name = molossia.20.a
   }
 }
+
+###################################################
+
+country_event = { #birth of a nation
+  id = molossia.21
+  title = molossia.21.t
+  desc = molossia.21.d
+  fire_only_once = yes
+  is_triggered_only = yes
+  option = {
+    name = molossia.21.a
+    add_political_power = 5
+  }
+}
+
+country_event = { #no time to waste
+  id = molossia.22
+  title = molossia.22.t
+  desc = molossia.22.d
+  fire_only_once = yes
+  is_triggered_only = yes
+  option = { #yes
+    name = molossia.22.a
+    add_political_power = -25
+    set_variable = {
+      var = hawthorne_agree
+      value = 1
+    }
+  }
+  option = { #no
+    name = molossia.22.b
+    set_variable = {
+      var = hawthorne_agree
+      value = 2
+    }
+  }
+}
+
+country_event = { #work with hawthorne
+  id = molossia.23
+  title = molossia.23.t
+  desc = molossia.23.d
+  fire_only_once = yes
+  is_triggered_only = yes
+  option = {
+    name = molossia.23.a
+    add_political_power = -50
+  }
+}
+
+country_event = { #negotiations with hawthorne
+  id = molossia.24
+  title = molossia.24.t
+  desc = molossia.24.d
+  fire_only_once = yes
+  is_triggered_only = yes
+  option = { #go quick, country gets eaten
+    name = molossia.24.a
+    ai_chance = {
+      base = 30
+    }
+    country_event = {
+      id = molossia.25
+      days = 1
+    }
+  }
+  option = { #go slow, hold onto power, but at a delay
+    name = molossia.24.b
+    ai_chance = {
+      base = 69 #nice
+    }
+    country_event = {
+      id = molossia.26
+      days = 1
+    }
+  }
+  option = { #play poker ig. this is a bad idea
+    name = molossia.24.c
+    ai_chance = {
+      base = 1
+    }
+    custom_effect_tooltip = MOL_bad_idea
+    country_event = {
+      id = molossia.27
+      days = 1
+    }
+  }
+}
+
+country_event = { #depot coup
+  id = molossia.25
+  title = molossia.25.t
+  desc = molossia.25.d
+  fire_only_once = yes
+  is_triggered_only = yes
+  option = {
+    name = molossia.25.a
+    add_political_power = -100
+    create_country_leader = {
+      name = "Karl Pierson"
+      picture = "gfx/leaders/MOL/MOL_karl_pierson.dds"
+      expire = "2060.12.12"
+      ideology = military_dictatorship
+    }
+    set_party_name = {
+      ideology = autocratic
+      long_name = MOL_hawthorne_long
+      name = MOL_hawthorne
+    }
+    set_politics = {
+      ruling_party = autocratic
+      elections_allowed = no
+    }
+    set_variable = {
+      var = mol_ready
+      value = 1
+    }
+    remove_ideas = {
+      MOL_birth_of_a_nation_0
+    }
+    add_offsite_building = {
+      type = arms_factory
+      level = 2
+    }
+    country_event = {
+      id = molossia.49
+      days = 3
+    }
+  }
+}
+
+country_event = { #supported by depot
+  id = molossia.26
+  title = molossia.26.t
+  desc = molossia.26.d
+  fire_only_once = yes
+  is_triggered_only = yes
+  option = {
+    name = molossia.26.a
+    add_popularity = {
+      ideology = autocratic
+      popularity = 0.05
+    }
+    add_political_power = 25
+    add_stability = 0.02
+    swap_ideas = {
+      remove_idea = MOL_birth_of_a_nation_0
+      add_idea = MOL_birth_of_a_nation_depot_help
+    }
+    set_variable = {
+      var = mol_ready
+      value = 1
+    }
+    add_offsite_building = {
+      type = arms_factory
+      level = 1
+    }
+  }
+}
+
+country_event = { #poker game
+  id = molossia.27
+  title = molossia.27.t
+  desc = molossia.27.d
+  fire_only_once = yes
+  is_triggered_only = yes
+  option = { #dont do that why would you even consider that an option
+    name = molossia.27.a
+    country_event = {
+      id = molossia.28
+      days = 1
+    }
+  }
+  option = { #sure. whatever i guess
+    name = molossia.27.b
+    country_event = { #yes i know this is stupid
+      id = molossia.29
+      days = 1
+    }
+  }
+}
+
+country_event = { #dont let doug in
+  id = molossia.28
+  title = molossia.28.t
+  desc = molossia.28.d
+  fire_only_once = yes
+  is_triggered_only = yes
+  option = { #you lose, bucko!
+    name = molossia.28.a
+    add_political_power = -100
+    create_country_leader = {
+      name = "Karl Pierson"
+      picture = "gfx/leaders/MOL/MOL_karl_pierson.dds"
+      expire = "2060.12.12"
+      ideology = military_dictatorship
+    }
+    set_party_name = {
+      ideology = autocratic
+      long_name = MOL_hawthorne_long
+      name = MOL_hawthorne
+    }
+    set_politics = {
+      ruling_party = autocratic
+      elections_allowed = no
+    }
+    set_variable = {
+      var = mol_ready
+      value = 1
+      }
+    remove_ideas = {
+      MOL_birth_of_a_nation_0
+    }
+    add_offsite_building = {
+      type = arms_factory
+      level = 2
+    }
+    country_event = {
+      id = molossia.49
+      days = 3
+    }
+  }
+}
+
+country_event = { #nostalgia critic coup fuck you doug walker who cares
+  id = molossia.29
+  title = molossia.29.t
+  desc = molossia.29.d
+  fire_only_once = yes
+  is_triggered_only = yes
+  option = {
+    name = molossia.29.a
+    add_political_power = -100
+    create_country_leader = {
+      name = "Doug Walker"
+      picture = "gfx/leaders/MOL/walker.dds"
+      expire = "2060.12.12"
+      ideology = libertarian_ideology
+    }
+    set_party_name = {
+      ideology = libertarian_right
+      long_name = MOL_gamer_long
+      name = MOL_gamer
+    }
+    if = { #no reason to have ideology and elections change if that's already how they are, just causes lag
+	limit = {
+		NOT = {
+			has_government = libertarian_right
+			has_elections = no
+		}
+	}
+    	set_politics = {
+      		ruling_party = libertarian_right
+      		elections_allowed = no
+    	}
+    }
+    set_cosmetic_tag = MOL_kickassia
+    set_variable = {
+      var = mol_ready
+      value = 1
+    }
+  }
+}
+
+country_event = { #slam the door
+  id = molossia.30
+  title = molossia.30.t
+  desc = molossia.30.d
+  fire_only_once = yes
+  is_triggered_only = yes
+  option = {
+    name = molossia.30.a
+  }
+}
+
+country_event = { #what now?
+  id = molossia.31
+  title = molossia.31.t
+  desc = molossia.31.d
+  fire_only_once = yes
+  is_triggered_only = yes
+  option = {
+    name = molossia.31.a
+    country_event = {
+    id = molossia.32
+    days = 30
+    }
+  }
+}
+
+country_event = { #unlock rest of tree what now
+  id = molossia.32
+  title = molossia.32.t
+  desc = molossia.32.d
+  fire_only_once = yes
+  is_triggered_only = yes
+  option = {
+    name = molossia.32.a
+    swap_ideas = {
+      remove_idea = MOL_birth_of_a_nation_0
+      add_idea = MOL_birth_of_a_nation_no_depot
+    }
+    set_variable = {
+      var = mol_ready
+      value = 1
+    }
+  }
+}
+
+country_event = { #this takes time
+  id = molossia.33
+  title = molossia.33.t
+  desc = molossia.33.d
+  fire_only_once = yes
+  is_triggered_only = yes
+  option = {
+    name = molossia.33.a
+  }
+}
+
+country_event = { #on the issue of currency
+  id = molossia.34
+  title = molossia.34.t
+  desc = molossia.34.d
+  fire_only_once = yes
+  is_triggered_only = yes
+  option = {
+    name = molossia.34.a
+    set_country_flag = refugee_help_1
+  }
+}
+
+country_event = { #choose gold or silver
+  id = molossia.35
+  title = molossia.35.t
+  desc = molossia.35.d
+  fire_only_once = yes
+  is_triggered_only = yes
+  option = {
+    name = molossia.35.a
+    set_variable = {
+      var = mol_currency
+      value = 1
+    }
+  }
+  option = {
+    name = molossia.35.b
+    set_variable = {
+      var = mol_currency
+      value = 2
+    }
+  }
+}
+country_event = { #give depot effect
+  id = molossia.49
+  title = molossia.49.t
+  desc = molossia.49.d
+  fire_only_once = yes
+  is_triggered_only = yes
+  option = {
+    name = molossia.49.a
+    swap_ideas = {
+      remove_idea = MOL_birth_of_a_nation_0
+      add_idea = MOL_depot_control_0
+    }
+  }
+}
+
+country_event = { #rename mojave
+  id = molossia.50
+  title = molossia.50.t
+  desc = molossia.50.d
+  fire_only_once = yes
+  is_triggered_only = yes
+  option = {
+    name = molossia.50.a
+    state = {
+      id = 459
+      set_state_name = "Vuldstein"
+    }
+  }
+  option = {
+    name = molossia.50.b
+  }
+}
+##########################HAWTHORNE#EVENTS##########################
+
+country_event = { #introduction to hawthorne
+  id = molossia.51
+  title = molossia.51.t
+  desc = molossia.51.d
+  fire_only_once = yes
+  is_triggered_only = yes
+  option = {
+    name = molossia.51.a
+    set_variable = { iron curtain
+      var = hawthorne_walls
+      value = 1
+    }
+  }
+  option = {
+    name = molossia.51.b
+    set_variable = { chain fence
+      var = hawthorne_walls
+      value = 2
+    }
+  }
+}
