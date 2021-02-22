@@ -44,6 +44,7 @@ focus_tree = {
     				flag = reunification_start
 				value = 2
 			}
+			set_cosmetic_tag = PAC_final
 		}
 	}
 
@@ -1252,4 +1253,433 @@ focus_tree = {
 		}	
 	}
 
+	#army_state
+	focus = {
+		id = PAC_our_kolchak
+		icon = GFX_focus_research
+		allow_branch = {
+			has_country_flag = army_state
+		}
+		#prerequisite = { focus = ITA_industrial_effort_2 }
+		x = 5
+		y = 1
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+
+		completion_reward = {
+			country_event = {
+  				id = fleet_P.49
+    				days = 0
+			}
+		}
+	}
+
+	focus = {
+		id = PAC_ready_the_mil
+		icon = GFX_focus_research
+
+		prerequisite = { focus = PAC_our_kolchak }
+		x = 4
+		y = 2
+		cost = 6
+
+		ai_will_do = {
+			factor = 5
+		}
+
+
+		completion_reward = {
+			add_timed_idea = {
+    				idea = PAC_ready_the_army
+    				days = 300
+			}
+		}
+	}
+
+	focus = {
+		id = PAC_elite_army
+		icon = GFX_focus_research
+
+		prerequisite = { focus = PAC_ready_the_mil }
+		x = 2
+		y = 3
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+
+		completion_reward = {
+			add_ideas = PAC_profesional_army 
+		}
+	}
+
+
+	focus = {
+		id = PAC_fight_anywhere
+		icon = GFX_focus_research
+
+		prerequisite = { focus = PAC_elite_army }
+		x = 2
+		y = 4
+		cost = 7
+
+		ai_will_do = {
+			factor = 5
+		}
+
+
+		completion_reward = {
+			add_ideas =  PAC_fight_anywhere_1
+		}
+	}
+
+	focus = {
+		id = PAC_fight_with_anything
+		icon = GFX_focus_research
+
+		prerequisite = { focus = PAC_fight_anywhere }
+		x = 2
+		y = 6
+		cost = 8
+
+		ai_will_do = {
+			factor = 5
+		}
+
+
+		completion_reward = {
+			swap_ideas = {
+    				remove_idea = PAC_fight_anywhere_1
+    				add_idea = PAC_fight_anywhere_2
+			}
+		}
+	}
+
+	focus = {
+		id = PAC_cease_civilian_trucks
+		icon = GFX_focus_research
+
+		prerequisite = { focus = PAC_ready_the_mil }
+		x = 4
+		y = 3
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+
+		completion_reward = {
+			add_equipment_to_stockpile = {
+    				type = motorized_equipment
+    				amount = 500
+			}
+		}
+	}
+
+	focus = {
+		id = PAC_buy_tanks
+		icon = GFX_focus_research
+
+		prerequisite = { focus = PAC_cease_civilian_trucks }
+		x = 4
+		y = 4
+		cost = 10
+
+		ai_will_do = {
+			factor = 5
+		}
+
+
+		completion_reward = {
+			add_equipment_to_stockpile = {
+    				type = light_tank_equipment
+    				amount = 300
+			}
+		}
+	}
+
+	focus = {
+		id = PAC_new_tank_units
+		icon = GFX_focus_research
+
+		prerequisite = { focus = PAC_buy_tanks }
+		x = 4
+		y = 5
+		cost = 11
+
+		ai_will_do = {
+			factor = 5
+		}
+
+
+		completion_reward = {
+			hidden_effect = {
+				division_template = {
+    					name = "tank columb"
+    					regiments = {
+       						light_armor = { x = 0 y = 0 }
+       						light_armor = { x = 0 y = 1 }
+       						light_armor = { x = 0 y = 2 }
+       						light_armor = { x = 0 y = 3 }
+       						light_armor = { x = 0 y = 4 }
+       						light_armor = { x = 2 y = 0 }
+						motorized = { x = 1 y = 0 }
+						motorized = { x = 1 y = 1 }
+						motorized = { x = 1 y = 2 }
+						motorized = { x = 1 y = 3 }
+    					}
+				}
+			}
+			capital_scope = {
+				create_unit = {
+					division = "division_template = \"tank columb\"	start_experience_factor = 0	start_equipment_factor = 0.5"
+					owner = ROOT
+					count = 2
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = PAC_military_strategy_center #remember this people don't get an extra research slot
+		icon = GFX_focus_research
+
+		prerequisite = { focus = PAC_new_tank_units }
+		prerequisite = { focus = PAC_fight_with_anything }
+		x = 4
+		y = 7
+		cost = 12
+
+		ai_will_do = {
+			factor = 5
+		}
+
+
+		completion_reward = {
+			add_tech_bonus = {
+    				bonus = 1.2
+    				uses = 3
+    				category = land_doctrine
+			}
+			add_tech_bonus = {
+    				bonus = 1.2
+    				uses = 3
+    				category = naval_doctrine
+			}
+			add_tech_bonus = {
+    				bonus = 1.2
+    				uses = 3
+    				category = air_doctrine
+			}
+		}
+	}
+
+
+	focus = {
+		id = PAC_militarise_the_interior
+		icon = GFX_focus_research
+
+		prerequisite = { focus = PAC_our_kolchak }
+		x = 6
+		y = 2
+		cost = 6
+
+		ai_will_do = {
+			factor = 5
+		}
+
+
+		completion_reward = {
+			country_event = {
+  				id = fleet_P.50
+    				days = 0
+			}
+		}
+	}
+
+
+	focus = {
+		id = PAC_martial_law
+		icon = GFX_focus_research
+
+		prerequisite = { focus = PAC_militarise_the_interior}
+		x = 8
+		y = 3
+		cost = 7
+
+		ai_will_do = {
+			factor = 5
+		}
+
+
+		completion_reward = {
+			country_event = {
+  				id = fleet_P.52
+    				days = 0
+			}			
+		}
+	}
+
+	focus = {
+		id = PAC_keep_america_safe
+		icon = GFX_focus_research
+
+		prerequisite = { focus = PAC_martial_law }
+		x = 8
+		y = 4
+		cost = 6
+
+		ai_will_do = {
+			factor = 5
+		}
+
+
+		completion_reward = {
+			add_ideas = PAC_keep_america_safe 			
+		}
+	}
+
+	focus = {
+		id = PAC_keep_the_air_safe
+		icon = GFX_focus_research
+
+		prerequisite = { focus = PAC_keep_america_safe }
+		x = 8
+		y = 6
+		cost = 8
+
+		ai_will_do = {
+			factor = 5
+		}
+
+
+		completion_reward = {
+			swap_ideas = {
+    				remove_idea = PAC_keep_america_safe
+    				add_idea = PAC_keep_america_safe_2
+			}			
+		}
+	}
+
+	focus = {
+		id = PAC_recluit_what_is_left
+		icon = GFX_focus_research
+
+		prerequisite = { focus = PAC_keep_the_air_safe }
+		prerequisite = { focus = PAC_total_mobilisation }
+		x = 6
+		y = 7
+		cost = 8
+
+		ai_will_do = {
+			factor = 5
+		}
+
+
+		completion_reward = {
+			add_ideas = PAC_recluit_what_is_left		
+		}
+	}
+
+	focus = {
+		id = PAC_expand_the_military_complex
+		icon = GFX_focus_research
+
+		prerequisite = { focus = PAC_militarise_the_interior }
+		x = 6
+		y = 3
+		cost = 6
+
+		ai_will_do = {
+			factor = 5
+		}
+
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+    					type = arms_factory
+    					level = 2
+    					instant_build = yes
+				}
+			}
+		}
+	}
+
+
+	focus = {
+		id = PAC_military_industrial_supremecy
+		icon = GFX_focus_research
+
+		prerequisite = { focus = PAC_expand_the_military_complex}
+		x = 6
+		y = 4
+		cost = 8
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		select_effect = {
+			country_event = {
+  				id = fleet_P.51
+    				days = 30
+			}
+		}
+
+		completion_reward = {
+			add_ideas = PAC_army_above_all
+		}
+	}
+
+	focus = {
+		id = PAC_total_mobilisation
+		icon = GFX_focus_research
+
+		prerequisite = { focus = PAC_military_industrial_supremecy}
+		x = 6
+		y = 5
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+
+		completion_reward = {
+			add_ideas = tot_economic_mobilisation
+		}
+	}
+
+	focus = {
+		id = PAC_the_super_power_rewakens
+		icon = GFX_focus_research
+
+		prerequisite = { focus = PAC_military_strategy_center }
+		prerequisite = { focus =  PAC_recluit_what_is_left}
+
+		x = 5
+		y = 8
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+
+		completion_reward = {
+			country_event = {
+  				id = fleet_P.53
+    				days = 30
+			}			
+		}
+	}
 }
