@@ -538,3 +538,47 @@ news_event = {
 		name = Canada.7.a
 	}
 }
+#Ottowa vs Nazis
+country_event = {
+	id = Canada.8
+	title = Canada.8.t
+	desc = Canada.8.d
+	#picture =
+	fire_only_once = yes
+	trigger = {
+		OR = {
+			tag = CAN
+			tag = MLC
+		}
+		has_global_flag = canadian_civil_war
+		NOT = {
+			OR = {
+				country_exists = CAN
+				country_exists = MLC
+			}
+		}
+		country_exists = ARY
+	}
+	mean_time_to_happen = { days = 10 }
+	option = {
+		declare_war_on = {
+			target = ARY
+ 	    		type = annex_everything
+		}
+		if = {
+			limit = {
+				is_in_faction_with = OOR
+			}
+			annex_country = {
+			    target = OOR
+			    transfer_troops = yes
+			}
+			every_state = {
+				limit = {
+					is_core_of = OOR
+				}
+				add_core_of = ROOT
+			}
+		}
+	}
+}
