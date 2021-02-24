@@ -131,62 +131,7 @@ fascist_peace = {
 	# ROOT = Taker, FROM = Liberated
 	liberate = {
 		factor = 0 #200 - disable for now
-		
-		modifier = {
-			factor = 0
 
-			NOT = {
-				ai_liberate_desire = {
-					target = FROM
-					value > 0
-				}
-			}
-		}
-		modifier = {
-			factor = 0
-			OR = {
-				AND = {
-					#Is NOT a major
-					NOT = { num_of_factories > 100 }
-					NOT = { tag = GER }
-					NOT = { tag = ENG }
-					NOT = { tag = ITA }
-					NOT = { tag = FRA }
-					NOT = { tag = USA }
-					NOT = { tag = JAP }
-					NOT = { tag = SOV }
-				}
-				is_puppet = yes
-			}
-		}
-		modifier = {
-			factor = 0 #0.5 - only liberate fascists!
-			NOT = {
-				FROM = {
-					has_government = fascism
-				}
-			}
-		}
-		modifier = { #Don't release these nations
-			factor = 0
-			FROM = {
-				OR = { 
-					tag = SIK
-					tag = PRC
-					tag = GXC
-					tag = YUN
-					tag = SHX
-					tag = XSM
-					AND = { #Only Japan can release Meng.
-						OR = {
-							tag = MEN
-							#tag = MAN #Manchukuo
-						}
-						ROOT = { NOT = { tag = JAP } }
-					}
-				}
-			}
-		}
 	}
 
 	# ROOT = Taker, FROM = Giver
