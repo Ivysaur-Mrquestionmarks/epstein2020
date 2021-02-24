@@ -182,6 +182,59 @@ focus_tree = {
 			    producer = PRA
 			}
 			add_offsite_building = { type = arms_factory level = 3 }
+			division_template = {
+				name = "Chinese Volunteers"
+				is_locked = yes
+				priority = 1
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+					infantry = { x = 1 y = 2 }
+				}
+				support = {
+					artillery = { x = 0 y = 0 }
+					engineer = { x = 0 y = 1 }
+					military_police = { x = 0 y = 3 }
+				}
+			}
+			random_owned_controlled_state = {
+				limit = { ROOT = { has_full_control_of_state = PREV } }
+				create_unit = {
+					division = "name = \"4th ''Hong Kong'' Division\" division_template = \"Chinese Volunteers\" start_experience_factor = 1.0" 
+					owner = PRA
+				}
+				create_unit = {
+					division = "name = \"3rd ''Shanghai'' Division\" division_template = \"Chinese Volunteers\" start_experience_factor = 1.0" 
+					owner = PRA
+				}
+				create_unit = {
+					division = "name = \"2nd ''Wuhan'' Division\" division_template = \"Chinese Volunteers\" start_experience_factor = 1.0" 
+					owner = PRA
+				}
+				create_unit = {
+					division = "name = \"1st ''Beijing'' Division\" division_template = \"Chinese Volunteers\" start_experience_factor = 1.0" 
+					owner = PRA
+				}
+				create_unit = {
+					division = "name = \"5th ''Guangzhou'' Division\" division_template = \"Chinese Volunteers\" start_experience_factor = 1.0" 
+					owner = PRA
+				}
+				create_unit = {
+					division = "name = \"6th ''Tianjin'' Division\" division_template = \"Chinese Volunteers\" start_experience_factor = 1.0" 
+					owner = PRA
+				}
+				create_unit = {
+					division = "name = \"1st Local Chinese Division\" division_template = \"Chinese Volunteers\" start_experience_factor = 0.5" 
+					owner = PRA
+				}
+				create_unit = {
+					division = "name = \"7th ''Chengdu'' Division\" division_template = \"Chinese Volunteers\" start_experience_factor = 1.0" 
+					owner = PRA
+				}
+			}
 		}
 
 	}
@@ -201,7 +254,7 @@ focus_tree = {
 			add_equipment_to_stockpile = {
 			    type = artillery_equipment_2
 			    amount = 500
-			    producer = PRA
+			    producer = USA
 			}
 		}
 
@@ -222,7 +275,7 @@ focus_tree = {
 			add_equipment_to_stockpile = {
 			    type = medium_tank_equipment_3
 			    amount = 500
-			    producer = PRA
+			    producer = USA
 			}
 		}
 
@@ -243,7 +296,7 @@ focus_tree = {
 			add_equipment_to_stockpile = {
 			    type = fighter
 			    amount = 1000
-			    producer = PRA
+			    producer = USA
 			}
 		}
 
@@ -310,6 +363,7 @@ focus_tree = {
 		}
 		completion_reward = {
 			create_intelligence_agency = yes
+			add_ideas = PRA_left_wing_secret_police
 		}
 
 	}
@@ -484,6 +538,13 @@ focus_tree = {
 		ai_will_do = { 
 			factor = 300
 		}
+		available = {
+			NOT = {
+				has_completed_focus = ANTIFA_concessions
+				has_war_with = PAC
+			}
+			country_exists = SAZ
+		}
 		prerequisite = {
 			focus = American_Great_Patriotic_War
 		}
@@ -565,6 +626,13 @@ focus_tree = {
 		prerequisite = {
 			focus = American_Great_Patriotic_War
 		}
+		available = {
+			NOT = {
+				has_completed_focus = The_Chinese_help
+				has_war_with = PAC
+			}
+			country_exists = SAZ
+		}
 		mutually_exclusive = {
 			focus = Crush_Seattle_Soveriegnty
 		}
@@ -606,8 +674,8 @@ focus_tree = {
 		}
 		completion_reward = {
 			create_wargoal = {
-				type = all
 				target = CAS
+				type = annex_everything
 			}
 		}
 	}
@@ -620,6 +688,11 @@ focus_tree = {
 		ai_will_do = { 
 			factor = 300
 		}
+		available = {
+			NOT = {
+				has_war_with = PAC
+			}
+		}
 		prerequisite = {
 			focus = American_Great_Patriotic_War
 		}
@@ -631,6 +704,7 @@ focus_tree = {
 		}
 		completion_reward = {
 			add_stability = -0.25
+			remove_ideas = HappyChinese
 		}
 	}
 	focus = {
@@ -641,6 +715,11 @@ focus_tree = {
 		y = 7
 		ai_will_do = { 
 			factor = 300
+		}
+		available = {
+			NOT = {
+				has_war_with = PAC
+			}
 		}
 		mutually_exclusive = {
 			focus = ANTIFA_concessions
@@ -653,6 +732,8 @@ focus_tree = {
 		}
 		completion_reward = {
 			add_stability = -0.05
+			remove_ideas = HappyAnarchists
+			remove_ideas = HappyChinese
 		}
 	}
 	focus = {
@@ -732,6 +813,7 @@ focus_tree = {
 				ideology = democrat
 				popularity = 0.05
 			}
+			add_ideas = Sizzle_out_Radicalism
 		}
 	}
 	focus = {
@@ -763,6 +845,8 @@ focus_tree = {
 				ideology = democrat
 				popularity = 0.30
 			}
+			add_ideas = AngeredAnarchists
+			add_ideas = AngeredChinese
 			hidden_effect = {
 				country_event = { id = California.2 days = 180 }
 			}
@@ -807,6 +891,11 @@ focus_tree = {
 		ai_will_do = { 
 			factor = 300
 		}
+		available = {
+			NOT = {
+				has_war_with = PAC
+			}
+		}
 		mutually_exclusive = {
 			focus = ANTIFA_concessions
 		}
@@ -818,6 +907,7 @@ focus_tree = {
 		}
 		completion_reward = {
 			add_stability = 0.05
+			remove_ideas = HappyAnarchists
 		}
 	}
 }
