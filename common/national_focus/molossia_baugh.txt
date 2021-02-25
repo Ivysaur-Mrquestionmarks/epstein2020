@@ -15,7 +15,7 @@ focus_tree = {
 		icon = GFX_goal_MOL_Birth_of_a_Nation
 		x = 6
 		y = 0
-		cost = 1
+		cost = 2
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
@@ -33,7 +33,7 @@ focus_tree = {
 		icon = GFX_goal_MOL_No_time
 		x = 4
 		y = 1
-		cost = 1
+		cost = 2
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
@@ -50,10 +50,10 @@ focus_tree = {
 	#Work With Hawthorne
 	focus = {
 		id = MOL_work_with_hawthorne
-		icon = GFX_goal_tripartite_pact
+		icon = GFX_goal_MOL_Work_With
 		x = 2
 		y = 2
-		cost = 1
+		cost = 2
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
@@ -76,10 +76,10 @@ focus_tree = {
 	#Home Depot
 	focus = {
 		id = MOL_home_depot
-		icon = GFX_goal_tripartite_pact
+		icon = GFX_goal_MOL_home_depot
 		x = 2
 		y = 3
-		cost = 1
+		cost = 2
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
@@ -97,7 +97,7 @@ focus_tree = {
 		icon = GFX_goal_MOL_Slam_the_door
 		x = 4
 		y = 2
-		cost = 1
+		cost = 2
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
@@ -162,7 +162,7 @@ focus_tree = {
 		icon = GFX_goal_MOL_On_The_Issue_Of
 		x = 7
 		y = 2
-		cost = 1
+		cost = 2
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
@@ -266,7 +266,7 @@ focus_tree = {
 	#One Big Depot
 	focus = {
 		id = MOL_one_big_depot
-		icon = GFX_MOL_one_big_depot-445
+		icon = GFX_goal_MOL_big_depot
 		x = 15
 		y = 9
 		cost = 1
@@ -282,7 +282,7 @@ focus_tree = {
 	#Consolidation is the Name of the Game
 	focus = {
 		id = MOL_consolidation_is_the_name_of_the_game
-		icon = GFX_MOL_consolidation_is_the_name_of_the_game-445
+		icon = GFX_goal_MOL_consolodation
 		x = 15
 		y = 0
 		cost = 4
@@ -302,7 +302,7 @@ focus_tree = {
 	#On All Sides
 	focus = {
 		id = MOL_on_all_sides
-		icon = GFX_MOL_on_all_sides-445
+		icon = GFX_goal_MOL_all_sides
 		x = 13
 		y = 1
 		cost = 2
@@ -322,13 +322,20 @@ focus_tree = {
 			remove_idea = MOL_refugees
 			add_idea = MOL_iron_curtain
 			}
+			487 = {
+				add_building_construction = {
+					type = bunker
+        	province = 440
+					level = 2
+				}
+			}
 		}
 	}
 
 	#Controlling Intake
 	focus = {
 		id = MOL_controlling_intake
-		icon = GFX_MOL_controlling_intake-445
+		icon = GFX_goal_MOL_fence
 		x = 17
 		y = 1
 		cost = 2
@@ -340,7 +347,7 @@ focus_tree = {
 		available = {
 			check_variable = {
 				var = hawthorne_walls
-				value = 1
+				value = 2
 			}
 		}
 		completion_reward = {
@@ -354,7 +361,7 @@ focus_tree = {
 	#Find More Bodies
 	focus = {
 		id = MOL_find_more_bodies
-		icon = GFX_MOL_find_more_bodies-445
+		icon = GFX_goal_MOL_find_bodies
 		x = 11
 		y = 2
 		cost = 2
@@ -362,12 +369,17 @@ focus_tree = {
 			FOCUS_FILTER_POLITICAL
 		}
 		prerequisite = { focus = MOL_on_all_sides  }
+		completion_reward = {
+			add_ideas = {
+				MOL_hawthorne_military_policy_0
+			}
+		}
 	}
 
 	#Bring the cities into the system
 	focus = {
 		id = MOL_bring_the_cities_into_the_system
-		icon = GFX_MOL_bring_the_cities_into_the_system-445
+		icon = GFX_goal_MOL_bring_in_cities
 		x = 12
 		y = 3
 		cost = 4
@@ -376,12 +388,20 @@ focus_tree = {
 		}
 		prerequisite = { focus = MOL_on_all_sides }
 		prerequisite = {  focus = MOL_an_image_of_stability  }
+		completion_reward = {
+			add_offsite_building = { type = arms_factory
+				level = 1 }
+			swap_ideas = {
+				remove_idea = MOL_hawthorne_army_depot
+				add_idea = MOL_hawthorne_army_depot_1
+			}
+		}
 	}
 
 	#An Image of Stability
 	focus = {
 		id = MOL_an_image_of_stability
-		icon = GFX_MOL_an_image_of_stability-445
+		icon = GFX_goal_MOL_image_stability
 		x = 13
 		y = 2
 		cost = 4
@@ -389,12 +409,17 @@ focus_tree = {
 			FOCUS_FILTER_POLITICAL
 		}
 		prerequisite = { focus = MOL_on_all_sides  }
+		completion_reward = {
+			country_event = {
+				id = molossia.52
+			}
+		}
 	}
 
 	#Give them Better Arms
 	focus = {
 		id = MOL_give_them_better_arms
-		icon = GFX_MOL_give_them_better_arms-445
+		icon = GFX_goal_MOL_give_guns
 		x = 11
 		y = 4
 		cost = 2
@@ -402,12 +427,18 @@ focus_tree = {
 			FOCUS_FILTER_POLITICAL
 		}
 		prerequisite = { focus = MOL_find_more_bodies  }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MOL_hawthorne_army_depot_1
+				add_idea = MOL_hawthorne_army_depot_2
+			}
+		}
 	}
 
 	#Strange Apparitions
 	focus = {
 		id = MOL_strange_apparitions
-		icon = GFX_MOL_strange_apparitions-445
+		icon = GFX_goal_MOL_strange_app
 		x = 12
 		y = 5
 		cost = 2
@@ -416,12 +447,17 @@ focus_tree = {
 		}
 		prerequisite = { focus = MOL_bring_the_cities_into_the_system	}
 		prerequisite = { focus = MOL_give_them_better_arms  }
+		completion_reward = {
+			country_event = {
+				id = molossia.53
+			}
+		}
 	}
 
 	#An Opportunity
 	focus = {
 		id = MOL_an_opportunity
-		icon = GFX_MOL_an_opportunity-445
+		icon = GFX_goal_MOL_an_oppurtunity
 		x = 12
 		y = 6
 		cost = 4
@@ -429,12 +465,17 @@ focus_tree = {
 			FOCUS_FILTER_POLITICAL
 		}
 		prerequisite = { focus = MOL_strange_apparitions  }
+		completion_reward = {
+			country_event = {
+				id = molossia.54
+			}
+		}
 	}
 
 	#Variations on an Assembly Line
 	focus = {
 		id = MOL_variations_on_an_assembly_line
-		icon = GFX_MOL_variations_on_an_assembly_line-445
+		icon = GFX_goal_MOL_variations
 		x = 13
 		y = 4
 		cost = 3
@@ -442,12 +483,22 @@ focus_tree = {
 			FOCUS_FILTER_POLITICAL
 		}
 		prerequisite = { focus = MOL_bring_the_cities_into_the_system  }
+		completion_reward = {
+			add_offsite_building = {
+				type = arms_factory
+				level = 1
+			}
+			add_offsite_building = {
+				type = industrial_complex
+				level = 2
+			}
+		}
 	}
 
 	#Waiting out the Storm
 	focus = {
 		id = MOL_waiting_out_the_storm
-		icon = GFX_MOL_waiting_out_the_storm-445
+		icon = GFX_goal_MOL_waiting_storm
 		x = 13
 		y = 7
 		cost = 10
@@ -455,12 +506,17 @@ focus_tree = {
 			FOCUS_FILTER_POLITICAL
 		}
 		prerequisite = { focus = MOL_an_opportunity  }
+		completion_reward = {
+			country_event = {
+				id = molossia.55
+			}
+		}
 	}
 
 	#The Bastard State
 	focus = {
 		id = MOL_the_bastard_state
-		icon = GFX_MOL_the_bastard_state-445
+		icon = GFX_goal_MOL_bastard
 		x = 18
 		y = 2
 		cost = 2
@@ -473,7 +529,7 @@ focus_tree = {
 	#Creating Legitimacy
 	focus = {
 		id = MOL_creating_legitimacy
-		icon = GFX_MOL_creating_legitimacy-445
+		icon = GFX_goal_MOL_create_legitimacy
 		x = 17
 		y = 3
 		cost = 2
@@ -486,7 +542,7 @@ focus_tree = {
 	#Taking Census
 	focus = {
 		id = MOL_taking_census
-		icon = GFX_MOL_taking_census-445
+		icon = GFX_goal_MOL_census
 		x = 19
 		y = 3
 		cost = 2
@@ -499,7 +555,7 @@ focus_tree = {
 	#A Man
 	focus = {
 		id = MOL_a_man
-		icon = GFX_MOL_a_man-445
+		icon = GFX_goal_MOL_a_man
 		x = 16
 		y = 4
 		cost = 3
@@ -512,7 +568,7 @@ focus_tree = {
 	#A Plan
 	focus = {
 		id = MOL_a_plan
-		icon = GFX_MOL_a_plan-445
+		icon = GFX_goal_MOL_plan
 		x = 18
 		y = 4
 		cost = 3
@@ -526,7 +582,7 @@ focus_tree = {
 	#Doing What we Can
 	focus = {
 		id = MOL_doing_what_we_can
-		icon = GFX_MOL_doing_what_we_can-445
+		icon = GFX_goal_MOL_doing_what_we_can
 		x = 20
 		y = 4
 		cost = 3
@@ -539,7 +595,7 @@ focus_tree = {
 	#Do You Know...
 	focus = {
 		id = MOL_do_you_know
-		icon = GFX_MOL_do_you_know-445
+		icon = GFX_goal_MOL_do_you_know
 		x = 18
 		y = 5
 		cost = 2
@@ -554,7 +610,7 @@ focus_tree = {
 	#What You Fight For?
 	focus = {
 		id = MOL_what_you_fight_for
-		icon = GFX_MOL_what_you_fight_for-445
+		icon = GFX_goal_MOL_fight_for
 		x = 17
 		y = 6
 		cost = 3
@@ -568,7 +624,7 @@ focus_tree = {
 	#What You Work For?
 	focus = {
 		id = MOL_what_you_work_for
-		icon = GFX_MOL_what_you_work_for-445
+		icon = GFX_goal_MOL_work_for
 		x = 19
 		y = 6
 		cost = 3
