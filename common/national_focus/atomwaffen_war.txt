@@ -27,6 +27,7 @@ focus_tree = {
 			factor = 1
 		}
 		completion_reward = {
+			add_political_power = 7
 		hidden_effect = {	
 		}
 		}
@@ -46,6 +47,8 @@ focus_tree = {
 			factor = 1
 		}
 		completion_reward = {
+			add_manpower -1000
+			add_offsite_building = { type = arms_factory level = 1 }
 		hidden_effect = {	
 		}
 		}
@@ -65,6 +68,8 @@ focus_tree = {
 			factor = 1
 		}
 		completion_reward = {
+			add_manpower = 500
+			add_political_power = 80
 		hidden_effect = {	
 		}
 		}
@@ -90,6 +95,11 @@ focus_tree = {
 			factor = 1
 		}
 		completion_reward = {
+			add_equipment_to_stockpile = {
+			    type = infantry_equipment
+			    amount = 750
+			    producer = HOP
+			}
 		hidden_effect = {	
 		}
 		}
@@ -108,8 +118,27 @@ focus_tree = {
 		ai_will_do = {
 			factor = 1
 		}
+		available = {
+			controls_state = 40
+		}
 		completion_reward = {
+			40 = {
+				add_manpower = -10000
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+				    type = industrial_complex
+				    level = 1
+				    instant_build = yes
+				}
+				damage_building = {
+				    type = infrastructure
+				    damage = 1
+				}
+			}
 		hidden_effect = {	
+			40 = {
+				set_state_name = "Hitlerstadt"
+			}
 		}
 		}
 	}
@@ -128,6 +157,7 @@ focus_tree = {
 			factor = 1
 		}
 		completion_reward = {
+			add_stability = 0.15
 		hidden_effect = {	
 		}
 		}
@@ -149,7 +179,31 @@ focus_tree = {
 		ai_will_do = {
 			factor = 1
 		}
+		available = {
+			OR = {
+				has_war_with = UTA
+				has_war_with = SIN
+			}
+		}
 		completion_reward = {
+			add_stability = -0.05
+			add_war_support = 0.25
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = arms_factory
+				    level = 1
+				    instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = arms_factory
+				    level = 1
+				    instant_build = yes
+				}
+			}
 		hidden_effect = {	
 		}
 		}
