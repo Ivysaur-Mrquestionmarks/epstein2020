@@ -1,0 +1,233 @@
+VIR_Civil_War = {
+
+	Civil_war_Countdown_Hunter = {
+
+		priority = 10
+
+		icon = generic_ignite_civil_war
+
+		available = {
+			hidden_trigger = { always = no }
+		}
+
+		fire_only_once = yes
+
+		activation = {
+			has_completed_focus = All_hail_the_Crack_king
+			NOT = { has_country_flag = Virginian_Civil_War }
+		}
+
+		visible = {
+			tag = VIR
+			has_completed_focus = All_hail_the_Crack_king
+			NOT = { has_country_flag = Virginian_Civil_War }
+		}
+
+		cancel_if_not_visible = yes
+
+		is_good = yes
+
+		days_mission_timeout = 400
+
+		timeout_effect = {
+			country_event = { id = Virginia.3 hours = 36 }
+		}
+
+		complete_effect = {
+			####
+		}
+		Civil_war_Countdown_Republican = {
+
+		priority = 10
+
+		icon = generic_ignite_civil_war
+
+		available = {
+			hidden_trigger = { always = no }
+		}
+
+		fire_only_once = yes
+
+		activation = {
+			has_completed_focus = Take_down_the_King
+			NOT = { has_country_flag = Virginian_Civil_War }
+		}
+
+		visible = {
+			tag = VIR
+			has_completed_focus = Take_down_the_King
+			NOT = { has_country_flag = Virginian_Civil_War }
+		}
+
+		cancel_if_not_visible = yes
+
+		is_good = yes
+
+		days_mission_timeout = 400
+
+		timeout_effect = {
+			country_event = { id = Virginia.3 hours = 36 }
+		}
+
+		complete_effect = {
+			####
+		}
+
+
+	}
+	Anti_Drug_Speeches = {
+
+		icon = eng_propaganda_campaigns
+
+		allowed = {
+			tag = SPR
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = Drugs_Legalized
+				has_country_flag = Virginian_Civil_War
+			}
+		}
+
+		cost = 30
+
+		fire_only_once = no
+
+		ai_will_do = {
+			base = 200
+		}
+
+		days_remove = 50
+
+		modifier = {
+			
+		}
+
+		visible = {
+			tag = VIR
+			has_completed_focus = Take_down_the_King
+			NOT = { has_country_flag = Virginian_Civil_War }
+		}
+
+		complete_effect = {
+			set_country_flag = VIR_Civil_war_Progressions
+		}
+
+		remove_effect = {
+			add_popularity = {
+			    ideology = fascism
+			    popularity = 0.05
+			}
+			add_days_mission_timeout = {
+				mission = Civil_war_Countdown_Republican
+				days = -50
+			}
+			clr_country_flag = VIR_Civil_war_Progressions
+		}
+
+	}
+
+	VIR_political_assassination = {
+
+		icon = spr_political_assassination
+
+		allowed = {
+			tag = VIR
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = VIR_Civil_war_Progressions
+			}
+		}
+
+		cost = 30
+
+		fire_only_once = no
+
+		ai_will_do = {
+			base = 200
+		}
+
+		days_remove = 35
+
+		modifier = {
+			
+		}
+
+		visible = {
+			tag = VIR
+			has_completed_focus = Take_down_the_King
+			NOT = { has_country_flag = Virginian_Civil_War }
+		}
+
+		complete_effect = {
+			set_country_flag = VIR_Civil_war_Progressions
+		}
+
+		remove_effect = {
+			add_stability = -0.05
+			add_war_support = 0.1
+			add_days_mission_timeout = {
+				mission = Civil_war_Countdown_Republican
+				days = -50
+			}
+			clr_country_flag = VIR_Civil_war_Progressions
+			set_country_flag = VIR_Political_Assassination_flag
+		}
+
+	}
+
+	VIR_political_arrest = {
+
+		icon = generic_independence
+
+		allowed = {
+			tag = VIR
+		}
+
+		available = {
+			has_country_flag = VIR_Political_Assassination_flag
+			NOT = {
+				has_country_flag = VIR_Civil_war_Progressions
+			}
+		}
+
+		cost = 10
+
+		fire_only_once = no
+
+		ai_will_do = {
+			base = 800
+		}
+
+		days_remove = 35
+
+		modifier = {
+			
+		}
+
+		visible = {
+			tag = VIR
+			has_completed_focus = All_hail_the_Crack_king
+			NOT = { has_country_flag = Virginian_Civil_War }
+		}
+
+		complete_effect = {
+			set_country_flag = VIR_Civil_war_Progressions
+		}
+
+		remove_effect = {
+			add_political_power = 25
+			add_stability = 0.05
+			add_days_mission_timeout = {
+				mission = Civil_war_Countdown_Hunter
+				days = 50
+			}
+			clr_country_flag = VIR_Civil_war_Progressions
+			clr_country_flag = VIR_Political_Assassination_flag
+		}
+
+	}
+}
