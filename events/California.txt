@@ -391,5 +391,117 @@ country_event = {
 		}
 		add_country_leader_trait = Grandpa_Bernie
 		remove_country_leader_trait = american_socialist
+		country_event = { id = California.22 days = 10 }
+	}
+}
+country_event = {
+	id = California.21
+	title = California.21.t
+	desc = California.21.d
+	picture = event_Nevadan_Kennedy 
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #Yes
+		name = California.21.a
+		ai_chance = {
+			factor = 75
+		}
+		PRA = {
+			add_to_faction = ROOT
+		}
+	}
+	option = { #No
+		name = California.21.b
+		ai_chance = {
+			factor = 25
+		}
+	}
+}
+country_event = { #Use Executive Powers to make VP
+	id = California.22
+	title = California.22.t
+	desc = California.22.d
+	picture = event_Nevadan_Kennedy 
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #Democrat: YANG
+		name = California.22.a
+		ai_chance = {
+			factor = 50
+		}
+		add_popularity = {
+			ideology = democrat
+			popularity = 0.1
+		}
+		country_event = { id = California.23 days = 10 }
+		hidden_effect = {
+			set_country_flag = DemocratVP
+		}
+	}
+	option = { #Commie: Joe Sims
+		name = California.22.b
+		ai_chance = {
+			factor = 25
+		}
+		add_popularity = {
+			ideology = authoritarian_left
+			popularity = 0.1
+		}
+		country_event = { id = California.23 days = 10 }
+		hidden_effect = {
+			set_country_flag = CommieVP
+		}
+	}
+	option = { #Anarchist: Peter Lamborn Wilson
+		name = California.22.c
+		ai_chance = {
+			factor = 25
+		}
+		country_event = { id = California.23 days = 10 }
+		hidden_effect = {
+			set_country_flag = AnarchistVP
+		}
+	}
+}
+country_event = { #
+	id = California.23
+	title = California.23.t
+	desc = California.23.d
+	picture = event_Nevadan_Kennedy 
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = California.23.a
+		ai_chance = {
+			factor = 100
+		}
+
+	}
+}
+country_event = { #Fucked up
+	id = California.29
+	title = California.29.t
+	desc = California.29.d
+	picture = event_Nevadan_Kennedy 
+	trigger = {
+		count_triggers = {
+			amount = 6
+			OR = {
+				has_country_flag = CommieVP
+				has_country_flag = AnarchistVP
+			}
+			has_country_flag = Seattle_Tyrant
+			
+		}
+	}
+	fire_only_once = yes
+	option = { #You fucked up
+		name = California.29.a
+		ai_chance = {
+			factor = 100
+		}
+		hidden_effect = {
+			set_country_flag = Fuckedup
+		}
 	}
 }
