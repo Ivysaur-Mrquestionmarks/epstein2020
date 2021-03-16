@@ -9,9 +9,11 @@ country_event = {
 	fire_only_once = yes
 	option = { #TRAIT CHOICE BETWEEN ATTACK AND DEFENCE
 		name = idaho.1.a
+		add_country_leader_trait = IDA_attack_bonus
 	}
 	option = {
 		name = idaho.1.b
+		add_country_leader_trait = IDA_defence_bonus
 	}
 }
 #second focus
@@ -24,9 +26,11 @@ country_event = {
 	fire_only_once = yes
 	option = { #OFFMAP CIV OR OFFMAP MIL
 		name = idaho.2.a
+		add_offsite_building = { type = arms_factory level = 1 }
 	}
 	option = {
 		name = idaho.2.b
+		add_offsite_building = { type = industrial_complex level = 1 }
 	}
 }
 #third focus
@@ -39,9 +43,11 @@ country_event = {
 	fire_only_once = yes
 	option = { #WILD WEST OR MINUTEMEN
 		name = idaho.3.a
+		add_ideas = IDA_minutemen
 	}
 	option = {
 		name = idaho.3.b
+		add_ideas = IDA_wild_west
 	}
 }
 #Militia vs Governor
@@ -54,10 +60,262 @@ country_event = {
 	fire_only_once = yes
 	option = {
 		name = idaho.4.a
+		ai_chance = { factor = 75 } 
 		set_country_flag = light_foot_militia_in_charge
 	}
 	option = {
 		name = idaho.4.b
+		ai_chance = { factor = 25 }
 		set_country_flag = governors_in_charge
+	}
+}
+#askiing Trump for rights
+country_event = {
+	id = idaho.5
+	title = idaho.5.t
+	desc = idaho.5.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = idaho.5.a
+		ai_chance = { factor = 100 }
+		set_autonomy = {
+		    target = IDA
+		    autonomy_state = autonomy_dominion
+		}
+	}
+	option = {
+		name = idaho.5.b
+		ai_chance = { factor = 0 }
+		set_autonomy = {
+		    target = IDA
+		    autonomy_state = autonomy_puppet
+		}
+	}
+}
+#invading the Salt Lake
+country_event = {
+	id = idaho.6
+	title = idaho.6.t
+	desc = idaho.6.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = idaho.6.a
+		ai_chance = { factor = 100 }
+		every_country = {
+			limit = {
+				owns_state = 411
+			}
+			USA = {
+				declare_war_on = {
+					target = PREV
+					type = annex_everything
+				}
+			}
+		}
+	}
+	option = {
+		name = idaho.6.b
+		ai_chance = { factor = 0 }
+		add_war_support = 0.01
+	}
+}
+
+#Debates Announced
+country_event = {
+	id = idaho.7
+	title = idaho.7.t
+	desc = idaho.7.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = idaho.7.a
+	}
+}
+#Gordon trumps debate
+country_event = {
+	id = idaho.8
+	title = idaho.8.t
+	desc = idaho.8.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = idaho.8.a
+	}
+}
+#Little trumps debate
+country_event = {
+	id = idaho.9
+	title = idaho.9.t
+	desc = idaho.9.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = idaho.9.a
+	}
+}
+#election
+country_event = {
+	id = idaho.10
+	title = idaho.10.t
+	desc = idaho.10.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = idaho.10.a
+		ai_chance = { factor = 45 }
+		create_country_leader = {
+			name = "Mark Gordon"
+			picture = "gfx/leaders/IDA/Mark_Gordon.tga"
+			expire = "2060.1.1"
+			ideology = trumpist
+			traits = {
+				#ADD TRAIT HERE
+			}
+		}
+	}
+	option = {
+		name = idaho.10.b
+		ai_chance = { factor = 55 }
+		create_country_leader = {
+			name = "Brad Little"
+			picture = "gfx/leaders/IDA/Brad_Little.tga"
+			expire = "2060.1.1"
+			ideology = trumpist
+			traits = {
+				#ADD TRAIT HERE
+			}
+		}
+	}
+}
+#Lincoln wants to invade Montana
+country_event = {
+	id = idaho.11
+	title = idaho.11.t
+	desc = idaho.11.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = idaho.11.a
+		ai_chance = { factor = 100 }
+		if = {
+			limit = {
+				NOT = {
+					is_in_faction_with = MON
+				}
+			}
+			declare_war_on = {
+			    target = MON
+			    type = annex_everything
+			}
+			else = {
+				IDA = {
+					country_event = { id = idaho.12 hours = 1 }
+				}
+			}
+		}
+	}
+	option = {
+		ai_chance = { factor = 0 }
+		IDA = {
+			country_event = { id = idaho.12 hours = 1 }
+		}
+	}
+}
+#montana war is a no go
+country_event = {
+	id = idaho.12
+	title = idaho.12.t
+	desc = idaho.12.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = idaho.12.a
+		add_political_power = -50
+		add_war_support = -0.02
+	}
+}
+#Lincoln wants land
+country_event = {
+	id = idaho.13
+	title = idaho.13.t
+	desc = idaho.13.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = idaho.13.a
+		ai_chance = { factor = 20 }
+	}
+	option = {
+		name = idaho.13.b
+		ai_chance = { factor = 80 }
+		if = {
+			limit = {
+				owns_state = 65
+			}
+			IDA = { transfer_state = 65 }
+		}
+		if = {
+			limit = {
+				owns_state = 430
+			}
+			IDA = { transfer_state = 430 }
+		}
+		if = {
+			limit = {
+				owns_state = 425
+			}
+			IDA = { transfer_state = 425 }
+		}
+
+
+	}
+}
+#Idaho demands land
+country_event = {
+	id = idaho.14
+	title = idaho.14.t
+	desc = idaho.14.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = idaho.14.a
+		ai_chance = { factor = 85 }
+		IDA = {
+			country_event = { id = idaho.15 }
+		}
+	}
+	option = {
+		name = idaho.14.b
+		ai_chance = { factor = 15 }
+		if = {
+			limit = {
+				owns_state = 65
+			}
+			IDA = { transfer_state = 65 }
+		}
+	}
+}
+#sadface :(
+country_event = {
+	id = idaho.15
+	title = idaho.15.t
+	desc = idaho.15.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = idaho.15.a
 	}
 }
