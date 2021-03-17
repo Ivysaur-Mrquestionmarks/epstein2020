@@ -378,7 +378,12 @@ country_event = {
 	title = California.20.t
 	desc = California.20.d
 	picture = event_shablon_2 
-	is_triggered_only = yes
+	trigger = {
+		focus_progress = {
+		    focus = Push_out_the_Radicals
+		    progress > 0.25
+		}
+	}
 	fire_only_once = yes
 	option = {
 		name = California.20.a
@@ -391,5 +396,343 @@ country_event = {
 		}
 		add_country_leader_trait = Grandpa_Bernie
 		remove_country_leader_trait = american_socialist
+		country_event = { id = California.22 days = 10 }
+	}
+}
+country_event = {
+	id = California.21
+	title = California.21.t
+	desc = California.21.d
+	picture = event_Nevadan_Kennedy 
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #Yes
+		name = California.21.a
+		ai_chance = {
+			factor = 99
+		}
+		PRA = {
+			add_to_faction = ROOT
+		}
+	}
+	option = { #No
+		name = California.21.b
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+country_event = { #Use Executive Powers to make VP
+	id = California.22
+	title = California.22.t
+	desc = California.22.d
+	picture = event_Nevadan_Kennedy 
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #Democrat: YANG
+		name = California.22.a
+		ai_chance = {
+			factor = 50
+		}
+		add_popularity = {
+			ideology = democrat
+			popularity = 0.1
+		}
+		country_event = { id = California.23 days = 10 }
+		add_ideas = Andrew_Yang
+		hidden_effect = {
+			set_country_flag = DemocratVP
+		}
+		add_stability = 0.05
+	}
+	option = { #Commie: Joe Sims
+		name = California.22.b
+		ai_chance = {
+			factor = 25
+		}
+		add_popularity = {
+			ideology = authoritarian_left
+			popularity = 0.1
+		}
+		country_event = { id = California.23 days = 10 }
+		add_ideas = Joe_Sims
+		hidden_effect = {
+			set_country_flag = CommieVP
+		}
+		add_stability = 0.05
+	}
+	option = { #Anarchist: Peter Lamborn Wilson
+		name = California.22.c
+		ai_chance = {
+			factor = 25
+		}
+		country_event = { id = California.23 days = 10 }
+		add_ideas = Peter_Lamborn_Wilson
+		hidden_effect = {
+			set_country_flag = AnarchistVP
+		}
+		add_stability = 0.05
+	}
+}
+country_event = { #
+	id = California.23
+	title = California.23.t
+	desc = California.23.d
+	picture = event_Nevadan_Kennedy 
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #Encourage Media Deradicalization
+		name = California.23.a
+		ai_chance = {
+			factor = 70
+		}
+		country_event = { id = California.24 days = 10 } 
+		add_timed_idea = {
+    		idea = Media_Deradicalization
+    		days = 730
+		}
+	}
+	option = { #Don't Encourage Media Deradicalization
+		name = California.23.b
+		ai_chance = {
+			factor = 30
+		}
+		country_event = { id = California.24 days = 10 } 
+		set_country_flag = MediaRadicalization
+		add_stability = 0.05
+		add_political_power = 25
+
+	}
+}
+country_event = { #
+	id = California.24
+	title = California.24.t
+	desc = California.24.d
+	picture = event_Nevadan_Kennedy 
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #Focus on National Security
+		name = California.24.a
+		ai_chance = {
+			factor = 50
+		}
+		country_event = { id = California.25 days = 10 } 
+		set_country_flag = Keep_Ideology_Police
+		add_war_support = 0.15
+	}
+	option = { #Focus on Peoples rights
+		name = California.24.b
+		ai_chance = {
+			factor = 50
+		}
+		country_event = { id = California.25 days = 10 } 
+		remove_ideas = PRA_left_wing_secret_police
+		add_war_support = -0.1
+		add_stability = -0.05
+
+	}
+}
+country_event = { #The Fate of the Workers Congress
+	id = California.25
+	title = California.25.t
+	desc = California.25.d
+	picture = event_Nevadan_Kennedy 
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #Disband the Workers Congress
+		name = California.25.a
+		ai_chance = {
+			factor = 70
+		}
+		country_event = { id = California.26 days = 10 } 
+		set_country_flag = Disband_Workers_Congress
+		remove_ideas = Workers_Congress
+		add_stability = -0.25
+	}
+	option = { #Weaken Workers Congress
+		name = California.25.b
+		ai_chance = {
+			factor = 30
+		}
+		country_event = { id = California.26 days = 10 } 
+		set_country_flag = Weak_Workers_Congress
+		add_stability = -0.15
+		swap_ideas = {
+    		remove_idea = Workers_Congress
+    		add_idea = Weak_Workers_Congress
+		}
+
+	}
+}
+country_event = { #The Fate of the Chinese support
+	id = California.26
+	title = California.26.t
+	desc = California.26.d
+	picture = event_Nevadan_Kennedy 
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #Offer loan payments to the Chinese
+		name = California.26.a
+		ai_chance = {
+			factor = 70
+		}
+		country_event = { id = California.27 days = 10 } 
+		add_timed_idea = {
+    		idea = Loan_payments
+    		days = 180
+		}
+	}
+	option = { #Cut Chinese Communication
+		name = California.26.b
+		ai_chance = {
+			factor = 30
+		}
+		country_event = { id = California.27 days = 10 } 
+		set_country_flag = Angry_Chinese
+		add_timed_idea = {
+    		idea = Chinese_Sabotage
+    		days = 65
+		}
+	}
+}
+country_event = { #Return Amazon Headquarters to Bezos?
+	id = California.27
+	title = California.27.t
+	desc = California.27.d
+	picture = event_Nevadan_Kennedy 
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #Give back headquarters
+		name = California.27.a
+		ai_chance = {
+			factor = 70
+		}
+		country_event = { id = California.28 days = 10 } 
+		add_timed_idea = {
+    		idea = ReconnectWithMillionaires
+    		days = 225
+		}
+	}
+	option = { #Break the trusts!
+		name = California.27.b
+		ai_chance = {
+			factor = 30
+		}
+		country_event = { id = California.28 days = 10 } 
+		set_country_flag = Angry_Monopolies
+		add_ideas = NoPlaceForMillionaires
+
+	}
+}
+country_event = { #Repatriation?
+	id = California.28
+	title = California.28.t
+	desc = California.28.d
+	picture = event_Nevadan_Kennedy 
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #Offer to Repatriate all former citizens of USA
+		name = California.28.a
+		ai_chance = {
+			factor = 70
+		}
+		add_ideas = Full_Repatriation
+		set_country_flag = Full_Repatriation
+		set_country_flag = TheGreatDecider
+	}
+	option = { #Repatriate no armed forces
+		name = California.28.b
+		ai_chance = {
+			factor = 30
+		}
+		add_ideas = No_Repatriation
+		set_country_flag = No_Repatriation
+		set_country_flag = TheGreatDecider
+
+	}
+	option = { #Repatriate Everyone under O-4
+		name = California.28.c
+		ai_chance = {
+			factor = 30
+		}
+		add_ideas = Partial_Repatriation
+		set_country_flag = TheGreatDecider
+	}
+}
+
+
+country_event = { #Fucked up
+	id = California.29
+	title = California.29.t
+	desc = California.29.d
+	picture = event_Nevadan_Kennedy 
+	trigger = {
+		count_triggers = {
+			amount > 3
+			OR = {
+				has_country_flag = CommieVP
+				has_country_flag = AnarchistVP
+			}
+			has_country_flag = Seattle_Tyrant
+			has_country_flag = MediaRadicalization
+			has_country_flag = Keep_Ideology_Police
+			has_country_flag = Disband_Workers_Congress
+			has_country_flag = Angry_Chinese
+			has_country_flag = Angry_Monopolies
+			OR = {
+				has_country_flag = No_Repatriation
+				has_country_flag = Full_Repatriation
+			}
+			
+		}
+		has_country_flag = TheGreatDecider
+	}
+	fire_only_once = yes
+	option = { #You fucked up
+		name = California.29.a
+		ai_chance = {
+			factor = 100
+		}
+		complete_national_focus = Push_out_the_Radicals
+		hidden_effect = {
+			set_country_flag = Fuckedup
+		}
+	}
+}
+country_event = { #Didn't Fuck up
+	id = California.30
+	title = California.30.t
+	desc = California.30.d
+	picture = event_Nevadan_Kennedy 
+	trigger = {
+		count_triggers = {
+			amount < 3
+			OR = {
+				has_country_flag = CommieVP
+				has_country_flag = AnarchistVP
+			}
+			has_country_flag = Seattle_Tyrant
+			has_country_flag = MediaRadicalization
+			has_country_flag = Keep_Ideology_Police
+			has_country_flag = Disband_Workers_Congress
+			has_country_flag = Angry_Chinese
+			has_country_flag = Angry_Monopolies
+			OR = {
+				has_country_flag = No_Repatriation
+				has_country_flag = Full_Repatriation
+			}
+		}
+		has_country_flag = TheGreatDecider
+	}
+	fire_only_once = yes
+	option = { #You didn't fuck it up, congrats
+		name = California.30.a
+		ai_chance = {
+			factor = 100
+		}
+		complete_national_focus = Push_out_the_Radicals
+		hidden_effect = {
+			set_country_flag = Successfully_Deradicalized
+		}
 	}
 }
