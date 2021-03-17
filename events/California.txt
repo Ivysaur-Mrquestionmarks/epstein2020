@@ -381,7 +381,7 @@ country_event = {
 	trigger = {
 		focus_progress = {
 		    focus = Push_out_the_Radicals
-		    progress > 0.25
+		    progress > 0.10
 		}
 	}
 	fire_only_once = yes
@@ -409,7 +409,7 @@ country_event = {
 	option = { #Yes
 		name = California.21.a
 		ai_chance = {
-			factor = 99
+			factor = 100
 		}
 		PRA = {
 			add_to_faction = ROOT
@@ -418,7 +418,7 @@ country_event = {
 	option = { #No
 		name = California.21.b
 		ai_chance = {
-			factor = 1
+			factor = 0
 		}
 	}
 }
@@ -668,7 +668,7 @@ country_event = { #Fucked up
 	picture = event_Nevadan_Kennedy 
 	trigger = {
 		count_triggers = {
-			amount > 3
+			amount = 3
 			OR = {
 				has_country_flag = CommieVP
 				has_country_flag = AnarchistVP
@@ -683,9 +683,11 @@ country_event = { #Fucked up
 				has_country_flag = No_Repatriation
 				has_country_flag = Full_Repatriation
 			}
-			
 		}
-		has_country_flag = TheGreatDecider
+		count_triggers = {
+			amount = 1
+			has_country_flag = TheGreatDecider
+		}
 	}
 	fire_only_once = yes
 	option = { #You fucked up
@@ -706,23 +708,28 @@ country_event = { #Didn't Fuck up
 	picture = event_Nevadan_Kennedy 
 	trigger = {
 		count_triggers = {
-			amount < 3
-			OR = {
-				has_country_flag = CommieVP
-				has_country_flag = AnarchistVP
-			}
-			has_country_flag = Seattle_Tyrant
-			has_country_flag = MediaRadicalization
-			has_country_flag = Keep_Ideology_Police
-			has_country_flag = Disband_Workers_Congress
-			has_country_flag = Angry_Chinese
-			has_country_flag = Angry_Monopolies
-			OR = {
-				has_country_flag = No_Repatriation
-				has_country_flag = Full_Repatriation
+			NOT = {
+				amount = 3
+				OR = {
+					has_country_flag = CommieVP
+					has_country_flag = AnarchistVP
+				}
+				has_country_flag = Seattle_Tyrant
+				has_country_flag = MediaRadicalization
+				has_country_flag = Keep_Ideology_Police
+				has_country_flag = Disband_Workers_Congress
+				has_country_flag = Angry_Chinese
+				has_country_flag = Angry_Monopolies
+				OR = {
+					has_country_flag = No_Repatriation
+					has_country_flag = Full_Repatriation
+				}
 			}
 		}
-		has_country_flag = TheGreatDecider
+		count_triggers = {
+			amount = 1
+			has_country_flag = TheGreatDecider
+		}
 	}
 	fire_only_once = yes
 	option = { #You didn't fuck it up, congrats
