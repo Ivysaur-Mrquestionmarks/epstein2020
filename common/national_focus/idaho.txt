@@ -242,6 +242,7 @@ focus_tree = {
 		y = 4
 		available = {
 			has_country_flag = light_foot_militia_in_charge
+			has_completed_focus = IDA_caesar_looks_west
 		}
 		completion_reward = {
 			add_stability = 0.10
@@ -298,6 +299,7 @@ focus_tree = {
 		y = 4
 		available = {
 			has_country_flag = governors_in_charge
+			has_completed_focus = IDA_caesar_looks_west
 		}
 		completion_reward = {
 			set_cosmetic_tag = IDA_state_of_lincoln
@@ -874,6 +876,124 @@ focus_tree = {
 		}
 		completion_reward = {
 			add_research_slot = 1
+		}
+
+	}
+	focus = {
+		id = IDA_raise_the_logan_brigade
+		icon = GFX_goal_unknown
+		cost = 4.00
+		prerequisite = {
+			focus = IDA_governor_commander
+		}
+		x = 17
+		y = 4
+		available = {
+		}
+		completion_reward = {
+			417 = {
+				create_unit = {
+					division = "name = \"Logan Brigade\" division_template = \"Infantry\" start_experience_factor = 0.2" 
+					owner = IDA
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = IDA_secure_the_border
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = IDA_governor_commander
+		}
+		x = 19
+		y = 4
+		available = {
+		}
+		completion_reward = {
+			swap_ideas = {
+			    remove_idea = IDA_lawlessness_1
+			    add_idea = IDA_lawlessness_2
+			}
+		}
+
+	}
+	focus = {
+		id = IDA_secure_the_interior
+		icon = GFX_goal_unknown
+		cost = 11.00
+		prerequisite = {
+			focus = IDA_secure_the_border
+		}
+		x = 19
+		y = 5
+		available = {
+		}
+		completion_reward = {
+			remove_ideas = IDA_lawlessness_2
+		}
+
+	}
+	focus = {
+		id = IDA_maintain_ilfm_monopoly
+		icon = GFX_goal_unknown
+		cost = 12.00
+		prerequisite = {
+			focus = IDA_secure_the_interior
+		}
+		x = 18
+		y = 5
+		available = {
+		}
+		mutually_exclusive = {
+			focus = IDA_let_proud_boys_in
+		}
+		completion_reward = {
+			add_stability = 0.16
+			add_war_support = 0.15
+		}
+
+	}
+	focus = {
+		id = IDA_let_proud_boys_in
+		icon = GFX_goal_unknown
+		cost = 12.00
+		prerequisite = {
+			focus = IDA_secure_the_interior
+		}
+		x = 20
+		y = 5
+		available = {
+		}
+		mutually_exclusive = {
+			focus = IDA_maintain_ilfm_monopoly
+		}
+		completion_reward = {
+			add_stability = -0.05
+			add_war_support = -0.01
+			create_corps_commander = {
+				name = "Ethan Nordean"
+				portrait_path="gfx/leaders/IDA/nordean.dds" 
+				traits={ harsh_leader guerilla_fighter } 
+				skill = 2
+				attack_skill = 3
+				defense_skill = 1
+				planning_skill = 2
+				logistics_skill = 1
+			}
+			412 = {
+				create_unit = {
+					division = "name = \"Wyoming Proud Boys\" division_template = \"Irregulars\" start_experience_factor = 0.0" 
+					owner = IDA
+				}
+			}
+			415 = {
+				create_unit = {
+					division = "name = \"Idaho Proud Boys\" division_template = \"Irregulars\" start_experience_factor = 0.0" 
+					owner = IDA
+				}
+			}
 		}
 
 	}
