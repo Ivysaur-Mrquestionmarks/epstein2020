@@ -617,18 +617,20 @@ focus_tree = {
 		}
 		completion_reward = {
 			IF = {
-				NOT = {
-					is_ai = yes
-				}
-				add_popularity = {
-					ideology = authoritarian_left
-					popularity = 0.02
-				}
-				else = {
-					annex_country = {
-   						target = SAZ
-    					transfer_troops = yes
+				LIMIT = {
+					NOT = {
+						is_ai = yes
 					}
+					add_popularity = {
+						ideology = authoritarian_left
+						popularity = 0.02
+					}
+				}
+			}
+			else = {
+				annex_country = {
+   					target = SAZ
+   					transfer_troops = yes
 				}
 			}
 		}
@@ -1445,6 +1447,7 @@ focus_tree = {
     country = {
 	factor = 0
     }
+    continuous_focus_position = { x = 38 y = 14 }
     default = no
     focus = {
 		id = The_Republic_Stands_Triumphant
@@ -1757,7 +1760,9 @@ focus_tree = {
 			country_exists = FRA
 		}
 		completion_reward = {
-			
+			army_experience = 25
+			add_command_power = 25
+
 		}
 	}
 	focus = {
@@ -1775,7 +1780,7 @@ focus_tree = {
 			}
 		}
 		completion_reward = {
-			
+			add_war_support = 0.15
 		}
 	}
 	focus = {
@@ -1791,7 +1796,7 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_ideas = Legitimist_Fervor
 		}
 	}
 	focus = {
@@ -1807,7 +1812,7 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_ideas = The_Remnants_of_Old_America
 		}
 	}
 	focus = {
@@ -1824,7 +1829,7 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_stability = 0.05
 		}
 	}
 	focus = {
@@ -1840,7 +1845,7 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_political_power = 25
 		}
 	}
 	focus = {
@@ -1856,7 +1861,10 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			create_wargoal = {
+				type = annex_everything
+				target = HOP
+			}
 		}
 	}
 	focus = {
@@ -1872,7 +1880,10 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			create_wargoal = {
+				type = annex_everything
+				target = CAS
+			}
 		}
 	}
 	focus = {
@@ -1891,7 +1902,10 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_timed_idea = {
+				idea = Fascists_in_the_Military
+				days = 360
+			}
 		}
 	}
 	focus = {
@@ -1910,7 +1924,10 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_timed_idea = {
+				idea = Stamp_out_American_Fascism
+				days = 180
+			}
 		}
 	}
 	focus = {
@@ -1929,7 +1946,16 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			diplomatic_relation = {
+    			country = MOL
+   				relation = non_aggression_pact
+    			active = yes
+			}
+			diplomatic_relation = {
+    			country = LAS
+   				relation = non_aggression_pact
+    			active = yes
+			}
 		}
 	}
 	focus = {
@@ -1945,7 +1971,12 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			MOL = {
+				country_event = { id = California.60 days = 5 }
+			}
+			LAS = {
+				country_event = { id = California.60 days = 5 }
+			}
 		}
 	}
 	focus = {
@@ -1961,7 +1992,16 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_stability = 0.05
+			Every_state = {
+    			Limit = { is_core_of = LAS}
+				Add_core_of = PRA
+			}
+			Every_state = {
+    			Limit = { is_core_of = MOL}
+				Add_core_of = PRA
+			}
+
 		}
 	}
 	focus = {
@@ -1980,7 +2020,7 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_war_support = 0.07
 		}
 	}
 	focus = {
@@ -1996,7 +2036,16 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			MOL = {
+				add_stability = -0.15
+				add_war_support = -0.15
+				add_political_power = -50
+			}
+			LAS = {
+				add_stability = -0.15
+				add_war_support = -0.15
+				add_political_power = -50
+			}
 		}
 	}
 	focus = {
@@ -2012,7 +2061,14 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			create_wargoal = {
+				target = MOL
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = LAS
+				type = annex_everything
+			}
 		}
 	}
 	focus = {
@@ -2029,7 +2085,14 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			create_wargoal = {
+				target = SIN
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = UTA
+				type = annex_everything
+			}
 		}
 	}
 	focus = {
@@ -2045,7 +2108,9 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			ALA = {
+				country_event = { id = California.40 days = 5 }
+			}
 		}
 	}
 	focus = {
@@ -2061,7 +2126,32 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			ALA = {
+				give_resource_rights = {
+					receiver = PRA
+					state = 2
+				}
+				give_resource_rights = {
+					receiver = PRA
+					state = 11
+				}
+				give_resource_rights = {
+					receiver = PRA
+					state = 14
+				}
+				give_resource_rights = {
+					receiver = PRA
+					state = 16
+				}
+				give_resource_rights = {
+					receiver = PRA
+					state = 96
+				}
+				give_resource_rights = {
+					receiver = PRA
+					state = 404
+				}
+			}
 		}
 	}
 	focus = {
@@ -2077,7 +2167,9 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			PAC = {
+				country_event = { id = California.41 days = 5 }
+			}
 		}
 	}
 	focus = {
@@ -2093,7 +2185,9 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			PAC = {
+				add_stability = 0.05
+			}
 		}
 	}
 	focus = {
@@ -2110,7 +2204,7 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_manpower = 100000
 		}
 	}
 	focus = {
@@ -2126,7 +2220,7 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			#Add a navy
 		}
 	}
 	focus = {
@@ -2142,7 +2236,10 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_ideas = PAC_home_of_the_marines
+			PAC = {
+				remove_ideas = PAC_home_of_the_marines
+			}
 		}
 	}
 	focus = {
@@ -2158,7 +2255,14 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			Every_state = {
+    			Limit = { is_core_of = ALA}
+				Add_core_of = PRA
+			}
+			Every_state = {
+    			Limit = { is_core_of = PAC}
+				Add_core_of = PRA
+			}
 		}
 	}
 	focus = {
@@ -2190,7 +2294,10 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			create_wargoal = {
+				target = IDA
+				type = annex_everything
+			}
 		}
 	}
 	focus = {
@@ -2206,7 +2313,22 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			IF ={
+				limit = {
+					MON = {
+						has_government = democrat
+					}
+				}
+				MON = {
+					country_event = { id = California.42 days = 5 }
+				}
+			}
+			else = {
+				create_wargoal = {
+					target = MON
+					type = annex_everything
+				}
+			}
 		}
 	}
 	focus = {
@@ -2222,8 +2344,14 @@ focus_tree = {
 		ai_will_do = { 
 			factor = 300
 		}
+		available = {
+			NOT = {
+				country_exists = MON
+				country_exists = IDA
+			}
+		}
 		completion_reward = {
-			
+			add_stability = 0.05
 		}
 	}
 	focus = {
@@ -2235,11 +2363,22 @@ focus_tree = {
 		prerequisite = {
 			focus = The_Montana_Question
 		}
+		available = {
+			OR = {
+				ANT = {
+					has_government = democrat
+				}
+				ANT = {
+					is_puppet_of = MON
+				}
+			}
+		}
 		ai_will_do = { 
 			factor = 300
 		}
 		completion_reward = {
-			
+			white_peace = ANT
+			add_to_faction = ANT
 		}
 	}
 	focus = {
@@ -2255,7 +2394,17 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			IF = {
+				LIMIT = {
+					ANT = {
+						is_in_faction_with = PRA
+					}
+				}
+			}
+			puppet = ANT
+			ANT = {
+				set_cosmetic_tag = American_Canada
+			}
 		}
 	}
 	focus = {
@@ -2287,7 +2436,12 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_political_power = 75
+			add_stability = 0.15
+			Every_state = {
+    			Limit = { is_controlled_by = PRA }
+				Add_core_of = PRA
+			}
 		}
 	}
 	focus = {
@@ -2306,7 +2460,7 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			army_experience = 25
 		}
 	}
 	focus = {
@@ -2322,7 +2476,7 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_ideas = Texan_Invasion_prep
 		}
 	}
 	focus = {
@@ -2338,7 +2492,10 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			TEX = {
+				add_ideas = Feds_hate_us
+				add_stability = -0.05
+			}
 		}
 	}
 	focus = {
@@ -2354,7 +2511,7 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			country_event = { id = California.43 days = 5 } #When War Starts with Texas Oklahoma and Lousiana can break free under Democrats
 		}
 	}
 	focus = {
@@ -2370,7 +2527,11 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_resource = {
+			    type = oil
+			    amount = 24
+			    state = 3
+			}
 		}
 	}
 	focus = {
@@ -2408,7 +2569,15 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_stability = 0.05
+			TEX = {
+				add_stability = 0.05
+				add_political_power = 25
+				add_popularity = {
+					ideology = democrat
+					popularity = 0.1
+				}
+			}
 		}
 	}
 	focus = {
