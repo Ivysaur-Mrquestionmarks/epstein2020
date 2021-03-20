@@ -1496,6 +1496,41 @@ focus_tree = {
 
 	}
 	focus = {
+		id = TEX_the_showdown
+		icon = GFX_focus_BushVsTrump
+		cost = 7.00
+		prerequisite = {
+			focus = TEX_revenge_at_last
+		}
+		x = 8
+		y = 13
+		available = {
+			has_government = autocratic
+			has_country_leader = { name = "George Bush" ruling_only = yes }
+			OR = {
+				has_war = no
+				has_war_with = USA
+			}
+		}
+		will_lead_to_war_with = USA
+		completion_reward = {
+			if = {
+				limit = {
+					NOT = {
+						has_war_with = USA
+					}
+				}
+				declare_war_on = {
+					    target = USA
+					    type = annex_everything
+				}
+			}
+			add_ideas = TEX_grand_crusade
+			news_event = { id = texas.10 }
+		}
+
+	}
+	focus = {
 		id = TEX_I_said_stay_calm
 		icon = GFX_goal_angry_beto
 		cost = 10.00
