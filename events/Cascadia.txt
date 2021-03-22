@@ -8,6 +8,11 @@ country_event = {
 	picture = event_fascists_01 
 	is_triggered_only = yes
 	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			set_global_flag = war_independence_over
+		}
+	}
 	#coup succeeds
 	option = {
 		name = cascadia.1.a
@@ -19,14 +24,20 @@ country_event = {
 			ruling_party = autocratic
 		}
 		ai_chance = {
-			factor = 100
+			factor = 55
 		}
+		hidden_effect = { country_event = { id = cascadia.4 days = 7 } }
 	}
 	#nope!
 	option = {
 		name = cascadia.1.b
+		add_popularity = {
+		    ideology = autocratic
+		    popularity = -0.07
+		}
+		hidden_effect = { country_event = { id = cascadia.7 days = 8 } } 
 		ai_chance = {
-			factor = 0
+			factor = 45
 		}
 	}
 }
@@ -112,4 +123,78 @@ country_event = {
 		}
 		SAZ = { change_tag_from = PRA }
 	}	
+}
+#what to do with the army? Neo-Nazi Coup
+country_event = {
+	id = cascadia.4
+	title = cascadia.4.t
+	desc = cascadia.4.d
+	#picture =
+	fire_only_once = yes
+	is_triggered_only = yes
+	#let rees do what he wants
+	option = {
+		name = cascadia.4.a
+		hidden_effect = { id = cascadia.6 days = 1 }
+		ai_chance = {
+			factor = 15
+		}
+	}
+	#force rees into an entirely ceremonial role
+	option = {
+		name = cascadia.4.a
+		hidden_effect = { country_event = { id = cascadia.5 days = 1 } }
+		ai_chance = {
+			factor = 85
+		}
+	}
+}
+#Rees' coup
+country_event = {
+	id = cascadia.5
+	title = cascadia.5.t
+	desc = cascadia.5.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = cascadia.5.a
+		set_country_flag = rees_coup
+		set_cosmetic_tag = CAS_army
+		create_country_leader = {
+			name = "Raymond Rees"
+			picture = "gfx/leaders/CAS/CAS/rees.dds"
+			expire = "2060.1.1"
+			ideology = military_dictatorship
+			traits = {
+				
+			}
+		}
+	}
+}
+#Neo-Nazis secure the country
+country_event = {
+	id = cascadia.6
+	title = cascadia.6.t
+	desc = cascadia.6.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = cascadia.6.a
+		set_country_flag = nazi_coup
+	}
+}
+#democracy stands
+country_event = {
+	id = cascadia.7
+	title = cascadia.7.t
+	desc = cascadia.7.d
+	#picture = 
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = cascadia.7.a
+		set_country_flag = democracy_stands
+	}
 }

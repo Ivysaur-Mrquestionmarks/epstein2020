@@ -617,18 +617,20 @@ focus_tree = {
 		}
 		completion_reward = {
 			IF = {
-				NOT = {
-					is_ai = yes
-				}
-				add_popularity = {
-					ideology = authoritarian_left
-					popularity = 0.02
-				}
-				else = {
-					annex_country = {
-   						target = SAZ
-    					transfer_troops = yes
+				LIMIT = {
+					NOT = {
+						is_ai = yes
 					}
+					add_popularity = {
+						ideology = authoritarian_left
+						popularity = 0.02
+					}
+				}
+			}
+			else = {
+				annex_country = {
+   					target = SAZ
+   					transfer_troops = yes
 				}
 			}
 		}
@@ -1225,7 +1227,8 @@ focus_tree = {
 			add_ideas = AngeredAnarchists
 			add_ideas = AngeredChinese
 			hidden_effect = {
-				country_event = { id = California.2 days = 180 }
+				country_event = { id = California.2 days = 20 }
+				set_global_flag = PRA_Bidenist_Collapse
 			}
 		}
 	}
@@ -1430,6 +1433,2265 @@ focus_tree = {
 			set_politics = {
 				ruling_party = authoritarian_left
 			}
+		}
+	}
+}
+
+
+#Fallen California tree
+
+
+
+focus_tree = {
+    id = Fallen_California
+    country = {
+	factor = 0
+    }
+    default = no
+    focus = {
+		id = Secure_our_territory
+		icon = GFX_goal_Republic_Triumphant
+		cost = 2.00
+		x = 5
+		y = 0
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			set_cosmetic_tag = PRA_Fallen
+
+		}
+
+	}
+	focus = {
+		id = East_Coast_support
+		icon = GFX_goal_Republic_Triumphant
+		cost = 2.00
+		x = 3
+		y = 1
+		prerequisite = {
+			focus = Secure_our_territory
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+
+	}
+	focus = {
+		id = Bidenist_Troops
+		icon = GFX_goal_Republic_Triumphant
+		cost = 2.00
+		x = 5
+		y = 2
+		prerequisite = {
+			focus = East_Coast_support
+		}
+		prerequisite = {
+			focus = Promise_Latino_Representation
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+
+	}
+	focus = {
+		id = Promise_Latino_Representation
+		icon = GFX_goal_Republic_Triumphant
+		cost = 2.00
+		x = 7
+		y = 1
+		prerequisite = {
+			focus = Secure_our_territory
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			ACF = {
+				country_event = { id = California.31 days = 5 }
+			}
+		}
+
+	}
+	focus = {
+		id = Meet_With_the_Terminator
+		icon = GFX_goal_Republic_Triumphant
+		cost = 2.00
+		x = 7
+		y = 2
+		prerequisite = {
+			focus = Promise_Latino_Representation
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			JFR = {
+				country_event = { id = California.31 days = 5 }
+			}
+		}
+
+	}
+	focus = {
+		id = Fight_on_America
+		icon = GFX_goal_Republic_Triumphant
+		cost = 2.00
+		x = 5
+		y = 3
+		prerequisite = {
+			focus = Meet_With_the_Terminator
+		}
+		prerequisite = {
+			focus = Bidenist_Troops
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+
+	}
+	focus = {
+		id = The_Four_Allies
+		icon = GFX_goal_Republic_Triumphant
+		cost = 2.00
+		x = 5
+		y = 4
+		prerequisite = {
+			focus = Fight_on_America
+		}
+		mutually_exclusive = {
+			focus = California_Reunited
+		}
+		available = {
+			has_war = no
+			ABG = {
+				OR = {
+					exists = no
+					is_in_faction_with = PRA
+				}
+			}
+			ACF = {
+				is_in_faction_with = PRA
+			}
+			JFR = {
+				is_in_faction_with = PRA
+			}
+			SAC = {
+				exists = no
+			}
+			PRC = {
+				exists = no
+			}
+			HLY = {
+				exists = no
+			}
+			CST = {
+				exists = no
+			}
+
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			load_focus_tree = The_New_Confederation
+			custom_effect_tooltip = Unfinished_California_Content
+		}
+	}
+	focus = {
+		id = California_Reunited
+		icon = GFX_goal_Republic_Triumphant
+		cost = 2.00
+		x = 7
+		y = 4
+		prerequisite = {
+			focus = Fight_on_America
+		}
+		mutually_exclusive = {
+			focus = The_Four_Allies
+		}
+		available = {
+			has_war = no
+			ABG = {
+				exists = no
+			}
+			ACF = {
+				exists = no
+			}
+			JFR = {
+				exists = no
+			}
+			SAC = {
+				exists = no
+			}
+			PRC = {
+				exists = no
+			}
+			HLY = {
+				exists = no
+			}
+			CST = {
+				exists = no
+			}
+
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			load_focus_tree = Democratic_California
+		}
+	}
+}
+
+
+
+#Confederation of States
+
+focus_tree = {
+    id = The_New_Confederation
+    country = {
+	factor = 0
+    }
+    default = no
+    focus = {
+		id = Reunite_Southern_California
+		icon = GFX_goal_Republic_Triumphant
+		cost = 2.00
+		x = 10
+		y = 0
+		prerequisite = {
+
+		}
+		completion_reward = {
+			ACF = { #California offers annexation
+				country_event = { id = California.33 days = 5 }
+			}
+		}
+	}
+	focus = {
+		id = The_Interior
+		icon = GFX_goal_Republic_Triumphant
+		cost = 2.00
+		x = 5
+		y = 1
+		prerequisite = {
+			focus = Reunite_Southern_California
+		}
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = Stepping_down
+		icon = GFX_goal_Republic_Triumphant
+		cost = 2.00
+		x = 5
+		y = 2
+		prerequisite = {
+			focus = The_Interior
+		}
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = Yang_Gang
+		icon = GFX_goal_Republic_Triumphant
+		cost = 2.00
+		x = 0
+		y = 3
+		prerequisite = {
+			focus = Stepping_down
+		}
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = Send_out_stimmies
+		icon = GFX_goal_Republic_Triumphant
+		cost = 10.00
+		x = 0
+		y = 4
+		prerequisite = {
+			focus = Yang_Gang
+		}
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = Support_Alternative_Power
+		icon = GFX_goal_Republic_Triumphant
+		cost = 210.00
+		x = 0
+		y = 5
+		prerequisite = {
+			focus = Send_out_stimmies
+		}
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = Finish_His_Reforms
+		icon = GFX_goal_Republic_Triumphant
+		cost = 2.00
+		x = 2
+		y = 4
+		prerequisite = {
+			focus = Yang_Gang
+		}
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = Defy_Biden
+		icon = GFX_goal_Republic_Triumphant
+		cost = 10.00
+		x = 2
+		y = 5
+		prerequisite = {
+			focus = Expand_Healthcare_Coverage
+		}
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = Keep_Cali_Democratic
+		icon = GFX_goal_Republic_Triumphant
+		cost = 10.00
+		x = 1
+		y = 6
+		prerequisite = {
+			focus = Support_Alternative_Power
+		}
+		prerequisite = {
+			focus = Defy_Biden
+		}
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = Schmidt_Libertarian
+		icon = GFX_goal_Republic_Triumphant
+		cost = 5.00
+		x = 5
+		y = 3
+		prerequisite = {
+			focus = Stepping_down
+		}
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = Cut_Taxes
+		icon = GFX_goal_Republic_Triumphant
+		cost = 10.00
+		x = 6
+		y = 4
+		prerequisite = {
+			focus = Schmidt_Libertarian
+		}
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = Reppeal_Gun_Laws
+		icon = GFX_goal_Republic_Triumphant
+		cost = 210.00
+		x = 6
+		y = 5
+		prerequisite = {
+			focus = Cut_Taxes
+		}
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = Work_With_Elon
+		icon = GFX_goal_Republic_Triumphant
+		cost = 2.00
+		x = 4
+		y = 4
+		prerequisite = {
+			focus = Schmidt_Libertarian
+		}
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = To_the_moon
+		icon = GFX_goal_Republic_Triumphant
+		cost = 10.00
+		x = 4
+		y = 5
+		prerequisite = {
+			focus = Work_With_Elon
+		}
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = Instill_Libertarian_Ideals
+		icon = GFX_goal_Republic_Triumphant
+		cost = 10.00
+		x = 5
+		y = 6
+		prerequisite = {
+			focus = To_the_moon
+		}
+		prerequisite = {
+			focus = Reppeal_Gun_Laws
+		}
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = Duf_Sundheim_Presidency
+		icon = GFX_goal_Republic_Triumphant
+		cost = 2.00
+		x = 10
+		y = 3
+		prerequisite = {
+			focus = Stepping_down
+		}
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = Legacy_Of_Republican_California
+		icon = GFX_goal_Republic_Triumphant
+		cost = 10.00
+		x = 9
+		y = 4
+		prerequisite = {
+			focus = Duf_Sundheim_Presidency
+		}
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = Reaganomics_Works
+		icon = GFX_goal_Republic_Triumphant
+		cost = 210.00
+		x = 9
+		y = 5
+		prerequisite = {
+			focus = Legacy_Of_Republican_California
+		}
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = Repeal_Bernie_Reforms
+		icon = GFX_goal_Republic_Triumphant
+		cost = 2.00
+		x = 11
+		y = 4
+		prerequisite = {
+			focus = Duf_Sundheim_Presidency
+		}
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = Defy_Trump
+		icon = GFX_goal_Republic_Triumphant
+		cost = 10.00
+		x = 11
+		y = 5
+		prerequisite = {
+			focus = Repeal_Bernie_Reforms
+		}
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = Republicanism_Makes_Sense
+		icon = GFX_goal_Republic_Triumphant
+		cost = 10.00
+		x = 10
+		y = 6
+		prerequisite = {
+			focus = Reaganomics_Works
+		}
+		prerequisite = {
+			focus = Defy_Trump
+		}
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = The_Exterior
+		icon = GFX_goal_Republic_Triumphant
+		cost = 2.00
+		x = 20
+		y = 1
+		prerequisite = {
+			focus = Reunite_Southern_California
+		}
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = Work_with_Jefferson
+		icon = GFX_goal_Republic_Triumphant
+		cost = 2.00
+		x = 15
+		y = 2
+		prerequisite = {
+			focus = The_Exterior
+		}
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = Yreka_Investments
+		icon = GFX_goal_Republic_Triumphant
+		cost = 2.00
+		x = 20
+		y = 3
+		prerequisite = {
+			focus = Work_with_Jefferson
+		}
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = Reunite_the_Roads
+		icon = GFX_goal_Republic_Triumphant
+		cost = 2.00
+		x = 20
+		y = 4
+		prerequisite = {
+			focus = Work_with_Nevada
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = Work_with_Nevada
+		icon = GFX_goal_Republic_Triumphant
+		cost = 2.00
+		x = 20
+		y = 2
+		prerequisite = {
+			focus = The_Exterior
+		}
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = Reno_Investments
+		icon = GFX_goal_Republic_Triumphant
+		cost = 2.00
+		x = 20
+		y = 3
+		prerequisite = {
+			focus = Work_with_Nevada
+		}
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = Relieve_Nevada_Militias
+		icon = GFX_goal_Republic_Triumphant
+		cost = 2.00
+		x = 20
+		y = 4
+		prerequisite = {
+			focus = Reno_Investments
+		}
+		completion_reward = {
+			NVD = {
+				add_manpower = 100000
+			}
+			add_manpower = -100000
+		}
+	}
+	focus = {
+		id = Restore_Cascadian_Democracy
+		icon = GFX_goal_Republic_Triumphant
+		cost = 2.00
+		x = 16
+		y = 5
+		prerequisite = {
+			focus = Relieve_Nevada_Militias
+		}
+		prerequisite = {
+			focus = Reunite_the_Roads
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = Montana_Sovereignty
+		icon = GFX_goal_Republic_Triumphant
+		cost = 2.00
+		x = 18
+		y = 5
+		prerequisite = {
+			focus = Relieve_Nevada_Militias
+		}
+		prerequisite = {
+			focus = Reunite_the_Roads
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = Subjugate_Nevada
+		icon = GFX_goal_Republic_Triumphant
+		cost = 2.00
+		x = 22
+		y = 5
+		prerequisite = {
+			focus = Relieve_Nevada_Militias
+		}
+		prerequisite = {
+			focus = Move_on_Texan_New_Mexico
+			focus = New_Mexico_for_Alliance
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = Grant_Utah_lands
+		icon = GFX_goal_Republic_Triumphant
+		cost = 2.00
+		x = 24
+		y = 5
+		prerequisite = {
+			focus = Relieve_Nevada_Militias
+		}
+		prerequisite = {
+			focus = Move_on_Texan_New_Mexico
+			focus = New_Mexico_for_Alliance
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = Work_with_Arizona_New_Mexico
+		icon = GFX_goal_Republic_Triumphant
+		cost = 2.00
+		x = 25
+		y = 2
+		prerequisite = {
+			focus = The_Exterior
+		}
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = Move_on_Amerika_reich
+		icon = GFX_goal_Republic_Triumphant
+		cost = 2.00
+		x = 25
+		y = 3
+		prerequisite = {
+			focus = Work_with_Arizona_New_Mexico
+		}
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = New_Mexico_for_Alliance
+		icon = GFX_goal_Republic_Triumphant
+		cost = 2.00
+		x = 24
+		y = 4
+		prerequisite = {
+			focus = Move_on_Amerika_reich
+		}
+		mutually_exclusive = {
+			focus = Move_on_Texan_New_Mexico
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = Move_on_Texan_New_Mexico
+		icon = GFX_goal_Republic_Triumphant
+		cost = 2.00
+		x = 26
+		y = 4
+		prerequisite = {
+			focus = Move_on_Amerika_reich
+		}
+		mutually_exclusive = {
+			focus = New_Mexico_for_Alliance
+		}
+		completion_reward = {
+			
+		}
+	}
+}
+
+
+
+#Democratic Tree starts here
+
+
+
+focus_tree = {
+    id = Democratic_California
+    country = {
+	factor = 0
+    }
+    continuous_focus_position = { x = 38 y = 14 }
+    default = no
+    focus = {
+		id = The_Republic_Stands_Triumphant
+		icon = GFX_goal_Republic_Triumphant
+		cost = 2.00
+		x = 15
+		y = 0
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+
+	}
+	focus = {
+		id = Election_of_2025
+		icon = GFX_goal_Californian_Election
+		cost = 2.00
+		x = 15
+		y = 1
+		prerequisite = {
+			focus = The_Republic_Stands_Triumphant
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = The_Democratic_Ticket
+		icon = GFX_goal_Democrat_Ticket
+		cost = 2.00
+		x = 15
+		y = 2
+		available = {
+			always = no
+		}
+		prerequisite = {
+			focus = Election_of_2025
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = The_Lieutenant
+		icon = GFX_goal_Republican_Ticket
+		cost = 2.00
+		x = 3
+		y = 2
+		prerequisite = {
+			focus = The_Democratic_Ticket
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = The_Governor
+		icon = GFX_goal_Republican_Ticket
+		cost = 2.00
+		x = 7
+		y = 2
+		prerequisite = {
+			focus = The_Democratic_Ticket
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = The_Philanthropist
+		icon = GFX_goal_Republican_Ticket
+		cost = 2.00
+		x = 5
+		y = 2
+		prerequisite = {
+			focus = The_Democratic_Ticket
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = The_Republican_Ticket
+		icon = GFX_goal_Republican_Ticket
+		cost = 2.00
+		x = 5
+		y = 2
+		available = {
+			always = no
+		}
+		prerequisite = {
+			focus = Election_of_2025
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = The_Libertarian
+		icon = GFX_goal_Republican_Ticket
+		cost = 2.00
+		x = 3
+		y = 2
+		prerequisite = {
+			focus = The_Republican_Ticket
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = The_Nevadan
+		icon = GFX_goal_Republican_Ticket
+		cost = 2.00
+		x = 7
+		y = 2
+		prerequisite = {
+			focus = The_Republican_Ticket
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = The_Terminator
+		icon = GFX_goal_Republican_Ticket
+		cost = 2.00
+		x = 5
+		y = 2
+		prerequisite = {
+			focus = The_Republican_Ticket
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = The_Savior_of_California
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 25
+		y = 2
+		available = {
+			always = no
+		}
+		prerequisite = {
+			focus = Election_of_2025
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = I_know_who_is_Corrupt
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 22
+		y = 3
+		prerequisite = {
+			focus = The_Savior_of_California
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = And_May_God_Have_Mercy_on_your_soul
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 22
+		y = 4
+		prerequisite = {
+			focus = I_know_who_is_Corrupt
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = Crack_down_on_the_old_Government
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 22
+		y = 5
+		prerequisite = {
+			focus = And_May_God_Have_Mercy_on_your_soul
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = A_Progressive_America
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 28
+		y = 3
+		prerequisite = {
+			focus = The_Savior_of_California
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = Medicare_for_all
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 27
+		y = 4
+		prerequisite = {
+			focus = A_Progressive_America
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = Free_College
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 27
+		y = 5
+		prerequisite = {
+			focus = Medicare_for_all
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = Cut_down_on_surveillance
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 29
+		y = 4
+		prerequisite = {
+			focus = A_Progressive_America
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = A_New_Civil_Rights_Bill
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 29
+		y = 5
+		prerequisite = {
+			focus = Cut_down_on_surveillance
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = Put_down_the_Axe
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 25
+		y = 6
+		prerequisite = {
+			focus = A_New_Civil_Rights_Bill
+		}
+		prerequisite = {
+			focus = Free_College
+		}
+		prerequisite = {
+			focus = Crack_down_on_the_old_Government
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = Address_claims_of_Illegitimacy
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 25
+		y = 7
+		prerequisite = {
+			focus = Put_down_the_Axe
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_stability = -0.2
+		}
+	}
+	focus = {
+		id = Cede_Power_to_the_Official_Vice_President
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 25
+		y = 8
+		prerequisite = {
+			focus = Address_claims_of_Illegitimacy
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_stability = 0.25
+			retire_country_leader = yes
+			IF = {
+				limit = {
+					FRA = {
+						has_country_leader = {
+							name = "Joe Biden"
+						}
+					}
+				}
+				create_country_leader = {
+					name = "Kamala Harris"
+					picture = "gfx/leaders/FRA/kamala.dds"
+					expire = "2060.1.1"
+					ideology = establishment
+					traits = {
+						
+					}
+				}
+				else = {
+					create_country_leader = {
+						name = "Nancy Pelosi"
+						picture = "gfx/leaders/FRA/Pelosi.tga"
+						expire = "2060.1.1"
+						ideology = establishment
+						traits = {
+						
+						}
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = Work_with_Washington
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 40
+		y = 0
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			country_exists = FRA
+		}
+		completion_reward = {
+			army_experience = 25
+			add_command_power = 25
+
+		}
+	}
+	focus = {
+		id = The_last_Bastion_of_Hope
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 42
+		y = 0
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			NOT = {
+				country_exists = FRA
+			}
+		}
+		completion_reward = {
+			add_war_support = 0.15
+		}
+	}
+	focus = {
+		id = Meet_in_the_Middle
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 40
+		y = 1
+		prerequisite = {
+			focus = Work_with_Washington
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_ideas = Legitimist_Fervor
+		}
+	}
+	focus = {
+		id = From_Sea_to_shining_Sea
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 42
+		y = 1
+		prerequisite = {
+			focus = The_last_Bastion_of_Hope
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_ideas = The_Remnants_of_Old_America
+		}
+	}
+	focus = {
+		id = Deal_With_The_Neighbors
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 41
+		y = 2
+		prerequisite = {
+			focus = From_Sea_to_shining_Sea
+			focus = Meet_in_the_Middle
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = The_Fascist_Menace
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 37
+		y = 3
+		prerequisite = {
+			focus = Deal_With_The_Neighbors
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_political_power = 25
+		}
+	}
+	focus = {
+		id = Free_The_Tribes
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 37
+		y = 4
+		prerequisite = {
+			focus = The_Fascist_Menace
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = HOP
+			}
+		}
+	}
+	focus = {
+		id = Reunite_The_Pacific_Costline
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 37
+		y = 5
+		prerequisite = {
+			focus = Free_The_Tribes
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = CAS
+			}
+		}
+	}
+	focus = {
+		id = We_Are_All_Americans
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 36
+		y = 6
+		prerequisite = {
+			focus = Reunite_The_Pacific_Costline
+		}
+		mutually_exclusive = {
+			focus = No_Sympathy_For_The_Devil
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_timed_idea = {
+				idea = Fascists_in_the_Military
+				days = 360
+			}
+		}
+	}
+	focus = {
+		id = No_Sympathy_For_The_Devil
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 38
+		y = 6
+		prerequisite = {
+			focus = Reunite_The_Pacific_Costline
+		}
+		mutually_exclusive = {
+			focus = We_Are_All_Americans
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_timed_idea = {
+				idea = Stamp_out_American_Fascism
+				days = 180
+			}
+		}
+	}
+	focus = {
+		id = Recognize_Molossian_Claims
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 35
+		y = 3
+		prerequisite = {
+			focus = Deal_With_The_Neighbors
+		}
+		mutually_exclusive = {
+			focus = No_More_Microstates
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			diplomatic_relation = {
+    			country = MOL
+   				relation = non_aggression_pact
+    			active = yes
+			}
+			diplomatic_relation = {
+    			country = LAS
+   				relation = non_aggression_pact
+    			active = yes
+			}
+		}
+	}
+	focus = {
+		id = Offer_Autonomy_For_Subjugation
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 35
+		y = 4
+		prerequisite = {
+			focus = Recognize_Molossian_Claims
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			MOL = {
+				country_event = { id = California.60 days = 5 }
+			}
+			LAS = {
+				country_event = { id = California.60 days = 5 }
+			}
+		}
+	}
+	focus = {
+		id = Calling_Fellow_Lovers_Of_Liberty
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 35
+		y = 5
+		prerequisite = {
+			focus = Offer_Autonomy_For_Subjugation
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_stability = 0.05
+			Every_state = {
+    			Limit = { is_core_of = LAS}
+				Add_core_of = PRA
+			}
+			Every_state = {
+    			Limit = { is_core_of = MOL}
+				Add_core_of = PRA
+			}
+
+		}
+	}
+	focus = {
+		id = No_More_Microstates
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 33
+		y = 3
+		prerequisite = {
+			focus = Deal_With_The_Neighbors
+		}
+		mutually_exclusive = {
+			focus = Recognize_Molossian_Claims
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_war_support = 0.07
+		}
+	}
+	focus = {
+		id = Infiltrate_The_Cities
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 33
+		y = 4
+		prerequisite = {
+			focus = No_More_Microstates
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			MOL = {
+				add_stability = -0.15
+				add_war_support = -0.15
+				add_political_power = -50
+			}
+			LAS = {
+				add_stability = -0.15
+				add_war_support = -0.15
+				add_political_power = -50
+			}
+		}
+	}
+	focus = {
+		id = Move_in_on_City_States
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 33
+		y = 5
+		prerequisite = {
+			focus = Infiltrate_The_Cities
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			create_wargoal = {
+				target = MOL
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = LAS
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = End_The_Unabomber_Once_And_For_All
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 34
+		y = 6
+		prerequisite = {
+			focus = Move_in_on_City_States
+			focus = Calling_Fellow_Lovers_Of_Liberty
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			create_wargoal = {
+				target = SIN
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = UTA
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = Offer_Reunification_To_Alaska
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 41
+		y = 3
+		prerequisite = {
+			focus = Deal_With_The_Neighbors
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			ALA = {
+				country_event = { id = California.40 days = 5 }
+			}
+		}
+	}
+	focus = {
+		id = Alaskan_Oil
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 41
+		y = 4
+		prerequisite = {
+			focus = Offer_Reunification_To_Alaska
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			ALA = {
+				give_resource_rights = {
+					receiver = PRA
+					state = 2
+				}
+				give_resource_rights = {
+					receiver = PRA
+					state = 11
+				}
+				give_resource_rights = {
+					receiver = PRA
+					state = 14
+				}
+				give_resource_rights = {
+					receiver = PRA
+					state = 16
+				}
+				give_resource_rights = {
+					receiver = PRA
+					state = 96
+				}
+				give_resource_rights = {
+					receiver = PRA
+					state = 404
+				}
+			}
+		}
+	}
+	focus = {
+		id = Offer_Reunification_To_Hawaii
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 43
+		y = 3
+		prerequisite = {
+			focus = Deal_With_The_Neighbors
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			PAC = {
+				country_event = { id = California.41 days = 5 }
+			}
+		}
+	}
+	focus = {
+		id = The_Legacy_of_Kalākaua
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 43
+		y = 4
+		prerequisite = {
+			focus = Offer_Reunification_To_Hawaii
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			PAC = {
+				add_stability = 0.05
+			}
+		}
+	}
+	focus = {
+		id = Recall_the_Pacific_Remnants
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 42
+		y = 5
+		prerequisite = {
+			focus = The_Legacy_of_Kalākaua
+			focus = Alaskan_Oil
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_manpower = 100000
+		}
+	}
+	focus = {
+		id = Recommission_Surrendered_Ships
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 40
+		y = 6
+		prerequisite = {
+			focus = Recall_the_Pacific_Remnants
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			#Add a navy
+		}
+	}
+	focus = {
+		id = Welcome_back_Marines
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 42
+		y = 6
+		prerequisite = {
+			focus = Recall_the_Pacific_Remnants
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_ideas = PAC_home_of_the_marines
+			PAC = {
+				remove_ideas = PAC_home_of_the_marines
+			}
+		}
+	}
+	focus = {
+		id = Work_With_Locals
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 44
+		y = 6
+		prerequisite = {
+			focus = Recall_the_Pacific_Remnants
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			Every_state = {
+    			Limit = { is_core_of = ALA}
+				Add_core_of = PRA
+			}
+			Every_state = {
+    			Limit = { is_core_of = PAC}
+				Add_core_of = PRA
+			}
+		}
+	}
+	focus = {
+		id = Skirmishes_in_the_Rockes
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 46
+		y = 3
+		prerequisite = {
+			focus = Deal_With_The_Neighbors
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = Put_Down_The_ILFM
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 45
+		y = 4
+		prerequisite = {
+			focus = Skirmishes_in_the_Rockes
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			create_wargoal = {
+				target = IDA
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = The_Montana_Question
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 47
+		y = 4
+		prerequisite = {
+			focus = Skirmishes_in_the_Rockes
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			IF ={
+				limit = {
+					MON = {
+						has_government = democrat
+					}
+				}
+				MON = {
+					country_event = { id = California.42 days = 5 }
+				}
+			}
+			else = {
+				create_wargoal = {
+					target = MON
+					type = annex_everything
+				}
+			}
+		}
+	}
+	focus = {
+		id = Imprison_Bullock_and_Stankiewicz
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 46
+		y = 5
+		prerequisite = {
+			focus = The_Montana_Question
+			focus = Put_Down_The_ILFM
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			NOT = {
+				country_exists = MON
+				country_exists = IDA
+			}
+		}
+		completion_reward = {
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = Bring_the_Albertans_to_the_table
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 49
+		y = 5
+		prerequisite = {
+			focus = The_Montana_Question
+		}
+		available = {
+			OR = {
+				ANT = {
+					has_government = democrat
+				}
+				ANT = {
+					is_puppet_of = MON
+				}
+			}
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			white_peace = ANT
+			add_to_faction = ANT
+		}
+	}
+	focus = {
+		id = A_Loyal_Canada
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 49
+		y = 6
+		prerequisite = {
+			focus = The_Montana_Question
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			IF = {
+				LIMIT = {
+					ANT = {
+						is_in_faction_with = PRA
+					}
+				}
+			}
+			puppet = ANT
+			ANT = {
+				set_cosmetic_tag = American_Canada
+			}
+		}
+	}
+	focus = {
+		id = A_Reunited_Pacific
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 42
+		y = 7
+		prerequisite = {
+			focus = Work_With_Locals
+		}
+		prerequisite = {
+			focus = Welcome_back_Marines
+		}
+		prerequisite = {
+			focus = Recommission_Surrendered_Ships
+		}
+		prerequisite = {
+			focus = Imprison_Bullock_and_Stankiewicz
+		}
+		prerequisite = {
+			focus = End_The_Unabomber_Once_And_For_All
+		}
+		prerequisite = {
+			focus = No_Sympathy_For_The_Devil
+			focus = We_Are_All_Americans
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_political_power = 75
+			add_stability = 0.15
+			Every_state = {
+    			Limit = { is_controlled_by = PRA }
+				Add_core_of = PRA
+			}
+		}
+	}
+	focus = {
+		id = Position_troops_in_New_Mexico
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 39
+		y = 8
+		prerequisite = {
+			focus = A_Reunited_Pacific
+		}
+		mutually_exclusive = {
+			focus = Send_Diplomats_to_Texas
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			army_experience = 25
+		}
+	}
+	focus = {
+		id = Prepare_For_Invasion
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 37
+		y = 9
+		prerequisite = {
+			focus = Position_troops_in_New_Mexico
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_ideas = Texan_Invasion_prep
+		}
+	}
+	focus = {
+		id = Disregard_Texan_Sovereignty
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 38
+		y = 10
+		prerequisite = {
+			focus = Prepare_For_Invasion
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			TEX = {
+				add_ideas = Feds_hate_us
+				add_stability = -0.05
+			}
+		}
+	}
+	focus = {
+		id = Meet_with_Oklahoma_and_Lousiana_Seperatists
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 41
+		y = 9
+		prerequisite = {
+			focus = Position_troops_in_New_Mexico
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			country_event = { id = California.43 days = 5 } #When War Starts with Texas Oklahoma and Lousiana can break free under Democrats
+		}
+	}
+	focus = {
+		id = Secure_Loyal_Oil
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 40
+		y = 10
+		prerequisite = {
+			focus = Meet_with_Oklahoma_and_Lousiana_Seperatists
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_resource = {
+			    type = oil
+			    amount = 24
+			    state = 3
+			}
+		}
+	}
+	focus = {
+		id = Launch_The_Coup
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 39
+		y = 11
+		prerequisite = {
+			focus = Secure_Loyal_Oil
+		}
+		prerequisite = {
+			focus = Disregard_Texan_Sovereignty
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = Send_Diplomats_to_Texas
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 45
+		y = 8
+		prerequisite = {
+			focus = A_Reunited_Pacific
+		}
+		mutually_exclusive = {
+			focus = Position_troops_in_New_Mexico
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_stability = 0.05
+			TEX = {
+				add_stability = 0.05
+				add_political_power = 25
+				add_popularity = {
+					ideology = democrat
+					popularity = 0.1
+				}
+			}
+		}
+	}
+	focus = {
+		id = Work_With_Texans
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 43
+		y = 9
+		prerequisite = {
+			focus = Send_Diplomats_to_Texas
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = Offer_Unprecedented_Autonomy
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 44
+		y = 10
+		prerequisite = {
+			focus = Work_With_Texans
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = Joint_Military_Excersizes
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 47
+		y = 9
+		prerequisite = {
+			focus = Send_Diplomats_to_Texas
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = Texan_Traditions
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 46
+		y = 10
+		prerequisite = {
+			focus = Joint_Military_Excersizes
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = Texan_American_Friendship_Treaty
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 45
+		y = 11
+		prerequisite = {
+			focus = Texan_Traditions
+		}
+		prerequisite = {
+			focus = Offer_Unprecedented_Autonomy
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = Rejoin_Legitimists
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 40
+		y = 12
+		prerequisite = {
+			focus = Texan_American_Friendship_Treaty
+			focus = Launch_The_Coup
+		}
+		available = {
+			country_exists = FRA
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = Raise_Atlantic_Regiments
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 42
+		y = 12
+		prerequisite = {
+			focus = Texan_American_Friendship_Treaty
+			focus = Launch_The_Coup
+		}
+		available = {
+			NOT = {
+				country_exists = FRA
+			}
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = Help_Reunite_The_East_Coast
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 39
+		y = 13
+		prerequisite = {
+			focus = Raise_Atlantic_Regiments
+			focus = Rejoin_Legitimists
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = Clean_The_Great_Lakes
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 37
+		y = 13
+		prerequisite = {
+			focus = Raise_Atlantic_Regiments
+			focus = Rejoin_Legitimists
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = March_to_Georgia
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 41
+		y = 13
+		prerequisite = {
+			focus = Raise_Atlantic_Regiments
+			focus = Rejoin_Legitimists
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = Finish_Trump
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 43
+		y = 13
+		prerequisite = {
+			focus = Raise_Atlantic_Regiments
+			focus = Rejoin_Legitimists
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = Reunite_America
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 42
+		y = 14
+		prerequisite = {
+			focus = Finish_Trump
+		}
+		prerequisite = {
+			focus = March_to_Georgia
+		}
+		prerequisite = {
+			focus = Clean_The_Great_Lakes
+		}
+		prerequisite = {
+			focus = Help_Reunite_The_East_Coast
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = Two_Americas
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 41
+		y = 15
+		prerequisite = {
+			focus = Reunite_America
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = Bend_the_Knee
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 43
+		y = 15
+		prerequisite = {
+			focus = Reunite_America
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			FRA = {
+				annex_country = {
+					target = PRA
+					transfer_troops = yes
+				}
+			}
+			IF = {
+				limit = {
+					ANT = {
+						is_puppet_of = PRA
+					}
+				}
+				FRA = {
+					puppet = ANT
+				}
+			}
+		}
+	}
+	focus = {
+		id = Reunite_Canada
+		icon = GFX_goal_Happy_Bernie
+		cost = 2.00
+		x = 49
+		y = 13
+		prerequisite = {
+			focus = Raise_Atlantic_Regiments
+			focus = Rejoin_Legitimists
+		}
+		prerequisite = {
+			focus = A_Loyal_Canada
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
 		}
 	}
 }

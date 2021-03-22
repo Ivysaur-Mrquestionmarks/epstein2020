@@ -25,7 +25,7 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_lone_star
-		icon = GFX_goal_lone_star
+		icon = GFX_focus_lone_star
 		cost = 10.00
 		x = 14
 		y = 0
@@ -72,7 +72,7 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_haliburton
-		icon = GFX_goal_halliburton
+		icon = GFX_focus_halliburton
 		cost = 10.00
 		prerequisite = {
 			focus = TEX_synthetic
@@ -101,7 +101,7 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_arming_a_state
-		icon = GFX_goal_tex_gun
+		icon = GFX_focus_tex_gun
 		cost = 10.00
 		prerequisite = {
 			focus = TEX_economy
@@ -163,6 +163,34 @@ focus_tree = {
 
 	}
 	focus = {
+		id = TEX_research_slot_one
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_mechanised_ranches
+		}
+		x = 6
+		y = 2
+		completion_reward = {
+			add_research_slot = 1
+		}
+
+	}
+	focus = {
+		id = TEX_research_slot_two
+		icon = GFX_goal_unknown
+		cost = 13.00
+		prerequisite = {
+			focus = TEX_research_slot_one
+		}
+		x = 6
+		y = 3
+		completion_reward = {
+			add_research_slot = 1
+		}
+
+	}
+	focus = {
 		id = TEX_uncle_sam_industry
 		icon = GFX_TEX_uncle_sam
 		cost = 14.00
@@ -205,7 +233,7 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_constitution
-		icon = GFX_goal_texan_constitution
+		icon = GFX_focus_texan_constitution
 		cost = 10.00
 		prerequisite = {
 			focus = TEX_question_of_government
@@ -319,7 +347,7 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_kill_atomwaffen
-		icon = GFX_goal_tex_deal_nazi
+		icon = GFX_focus_tex_deal_nazi
 		cost = 10.00
 		prerequisite = {
 			focus = TEX_in_bed_with_ted
@@ -415,7 +443,7 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_join_legitimist_coalition
-		icon = GFX_goal_unknown
+		icon = GFX_CAN_Help_Biden
 		cost = 10.00
 		prerequisite = {
 			focus = TEX_underdog_no_more
@@ -432,7 +460,7 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_stay_calm
-		icon = GFX_goal_unknown
+		icon = GFX_goal_calm_down
 		cost = 10.00
 		prerequisite = {
 			focus = TEX_join_legitimist_coalition
@@ -581,7 +609,7 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_monarchist_party_usa
-		icon = GFX_goal_tex_monarch
+		icon = GFX_focus_tex_monarch
 		cost = 10.00
 		prerequisite = {
 			focus = TEX_different_direction
@@ -970,7 +998,7 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_finish_the_wall
-		icon = GFX_goal_biilingual
+		icon = GFX_goal_generic_construct_military
 		cost = 10.00
 		prerequisite = {
 			focus = TEX_neuter_democrats
@@ -1258,7 +1286,7 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_george_republican
-		icon = GFX_goal_unknown
+		icon = GFX_goal_TEX_angel_bush
 		cost = 10.00
 		prerequisite = {
 			focus = TEX_george_not_forgive
@@ -1282,7 +1310,7 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_george_not_care
-		icon = GFX_goal_unknown
+		icon = GFX_goal_TEX_devil_bush
 		cost = 10.00
 		prerequisite = {
 			focus = TEX_george_not_forgive
@@ -1320,7 +1348,7 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_drums_of_war
-		icon = GFX_goal_unknown
+		icon = GFX_goal_war_drums
 		cost = 10.00
 		prerequisite = {
 			focus = TEX_george_not_care
@@ -1335,7 +1363,7 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_squash_insurgency
-		icon = GFX_goal_tex_deal_nazi
+		icon = GFX_goal_kill_james_mason
 		cost = 10.00
 		prerequisite = {
 			focus = TEX_drums_of_war
@@ -1468,8 +1496,43 @@ focus_tree = {
 
 	}
 	focus = {
+		id = TEX_the_showdown
+		icon = GFX_focus_BushVsTrump
+		cost = 7.00
+		prerequisite = {
+			focus = TEX_revenge_at_last
+		}
+		x = 8
+		y = 13
+		available = {
+			has_government = autocratic
+			has_country_leader = { name = "George W. Bush" ruling_only = yes }
+			OR = {
+				has_war = no
+				has_war_with = USA
+			}
+		}
+		will_lead_to_war_with = USA
+		completion_reward = {
+			if = {
+				limit = {
+					NOT = {
+						has_war_with = USA
+					}
+				}
+				declare_war_on = {
+					    target = USA
+					    type = annex_everything
+				}
+			}
+			add_ideas = TEX_grand_crusade
+			news_event = { id = texas.10 }
+		}
+
+	}
+	focus = {
 		id = TEX_I_said_stay_calm
-		icon = GFX_goal_unknown
+		icon = GFX_goal_angry_beto
 		cost = 10.00
 		prerequisite = {
 			focus = TEX_stay_calm
@@ -1493,7 +1556,7 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_right_now_thats_over
-		icon = GFX_goal_unknown
+		icon = GFX_goal_Drain_the_Swamp
 		cost = 10.00
 		prerequisite = {
 			focus = TEX_I_said_stay_calm
@@ -1514,7 +1577,7 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_vanquish_bigotry
-		icon = GFX_goal_tex_bigot
+		icon = GFX_focus_tex_bigot
 		cost = 10.00
 		prerequisite = {
 			focus = TEX_right_now_thats_over
@@ -1912,7 +1975,7 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_official_bilingualism
-		icon = GFX_goal_tex_bilingual
+		icon = GFX_goal_biilingual
 		cost = 10.00
 		x = 27
 		y = 1
