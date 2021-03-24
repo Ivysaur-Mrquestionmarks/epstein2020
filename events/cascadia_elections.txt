@@ -1,0 +1,225 @@
+add_namespace = CasElection
+
+#####################
+# MONARCHISM EVENTS #
+#####################
+
+#Search for a Monarch: Lord Protector or King?
+country_event = {
+	id = CasElection.1
+	title = CasElection.1.t
+	desc = CasElection.1.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	#this is ridiculous
+	option = {
+		name = CasElection.1.a
+		ai_chance = {
+			factor = 55
+		}
+		complete_national_focus = CAS_an_empty_throne
+	}
+	#Very well...
+	option = {
+		name = CasElection.1.b
+		ai_chance = {
+			factor = 45
+		}
+	}
+}
+#Rees goes to NIPPON
+country_event = {
+	id = CasElection.2
+	title = CasElection.2.t
+	desc = CasElection.2.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = CasElection.2.a
+		set_party_name = { 
+		    ideology = autocratic
+		    long_name = CAS_house_of_koshitsu
+		    name = CAS_house_of_koshitsu
+		}
+		create_country_leader = {
+			name = "Kako I"
+			picture = "gfx/leaders/CAS/CAS/kako.dds"
+			expire = "2060.1.1"
+			ideology = despotism
+			female = yes
+			traits = {
+				CAS_japanese_empress
+			}
+		}
+	}
+}
+#Rees is crowned King
+country_event = {
+	id = CasElection.3
+	title = CasElection.3.t
+	desc = CasElection.3.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = CasElection.3.a
+		set_party_name = { 
+		    ideology = autocratic
+		    long_name = CAS_house_of_portland
+		    name = CAS_house_of_portland
+		}
+		create_country_leader = {
+			name = "Raymond I"
+			picture = "gfx/leaders/CAS/CAS/king_rees.dds"
+			expire = "2060.1.1"
+			ideology = military_dictatorship
+			traits = {
+				CAS_king_rees
+			}
+		}
+	}
+}
+#Lord-Protector moment
+country_event = {
+	id = CasElection.4
+	title = CasElection.4.t
+	desc = CasElection.4.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = CasElection.4.a
+		add_country_leader_trait = CAS_lord_protector
+	}
+}
+
+#####################
+# DEMOCRACY EVENTS ##
+#####################
+
+#Liberal Party formation
+country_event = {
+	id = CasElection.5
+	title = CasElection.5.t
+	desc = CasElection.5.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = CasElection.5.a
+		set_party_name = { 
+		    ideology = democrat
+		    long_name = CAS_liberal_party
+		    name = CAS_liberal_party
+		}
+		create_country_leader = {
+			name = "Jay Inslee"
+			picture = "gfx/leaders/CAS/CAS/inslee.dds"
+			expire = "2060.1.1"
+			ideology = neoliberal
+			traits = {
+				
+			}
+		}
+	}
+}
+#Tory Party formation
+country_event = {
+	id = CasElection.6
+	title = CasElection.6.t
+	desc = CasElection.6.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = CasElection.6.a
+		set_party_name = { 
+		    ideology = republican
+		    long_name = CAS_tory_party
+		    name = CAS_tory_party
+		}
+		add_popularity = {
+		    ideology = republican
+		    popularity = 0.10
+		}
+	}
+}
+#MacArthur's Return
+country_event = {
+	id = CasElection.7
+	title = CasElection.7.t
+	desc = CasElection.7.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = CasElection.7.a
+		set_party_name = { 
+		    ideology = libertarian_right
+		    long_name = CAS_whig_party
+		    name = CAS_whig_party
+		}
+		create_country_leader = {
+			name = "Arthur MacArthur"
+			picture = "gfx/leaders/CAS/CAS/macarthur.dds"
+			expire = "2060.1.1"
+			ideology = libertarian_ideology
+			traits = {
+				sins_of_the_father
+			}
+		}
+	}
+}
+#the election
+country_event = {
+	id = CasElection.8
+	title = CasElection.8.t
+	desc = CasElection.8.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	#Liberals
+	option = {
+		name = CasElection.8.a
+		hidden_effect = {
+			set_popularities = {
+				democrat = 41
+				republican = 33
+				libertarian_right = 24
+				authoritarian_left = 2
+			}
+		}
+	}
+	#Tories
+	option = {
+		name = CasElection.8.b
+		hidden_effect = {
+			set_politics = {
+				ruling_party = republican
+			}
+			set_popularities = {
+				democrat = 25
+				republican = 45
+				libertarian_right = 20
+				authoritarian_left = 10
+			}
+		}
+	}
+	#Whigs
+	option = {
+		name = CasElection.8.c
+		hidden_effect = {
+			set_politics = {
+				ruling_party = libertarian_right
+			}
+			set_popularities = {
+				democrat = 25
+				republican = 18
+				libertarian_right = 55
+				authoritarian_left = 2
+			}
+		}
+	}
+}

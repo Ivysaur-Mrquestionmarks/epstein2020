@@ -6,7 +6,10 @@ country_event = {
 	title = cascadia.1.t
 	desc = cascadia.1.d
 	picture = event_fascists_01 
-	is_triggered_only = yes
+	trigger = {
+		has_war = no
+	}
+	mean_time_to_happen = { days = 25 }
 	fire_only_once = yes
 	immediate = {
 		hidden_effect = {
@@ -136,7 +139,7 @@ country_event = {
 	#let rees do what he wants
 	option = {
 		name = cascadia.4.a
-		hidden_effect = { id = cascadia.6 days = 1 }
+		hidden_effect = { country_event = { id = cascadia.6 days = 1 } }
 		ai_chance = {
 			factor = 15
 		}
@@ -163,6 +166,11 @@ country_event = {
 		remove_unit_leader = 1105
 		set_country_flag = rees_coup
 		set_cosmetic_tag = CAS_army
+		set_party_name = { 
+		    ideology = autocratic
+		    long_name = CAS_military_party_long
+		    name = CAS_military_party
+		}
 		create_country_leader = {
 			name = "Raymond Rees"
 			picture = "gfx/leaders/CAS/CAS/rees.dds"
@@ -170,6 +178,19 @@ country_event = {
 			ideology = military_dictatorship
 			traits = {
 				
+			}
+		}
+		delete_unit_template_and_units = {
+		    division_template = "SS Battalion"
+		    disband = no #will refund equipment and manpower if set to yes
+		}
+		hidden_effect = {
+			every_controlled_state = {
+				limit = {
+					is_fully_controlled_by = CAS
+					NOT = { state = 94 }
+				}
+				set_demilitarized_zone = yes
 			}
 		}
 	}
