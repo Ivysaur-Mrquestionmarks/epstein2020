@@ -13,3 +13,236 @@ country_event = {
 		}
 	}
 }
+
+country_event = {
+	id = south.2 #assesination attemp against west (don't mention the race of the assasin)
+	title = south.2.t
+	desc = south.2.d
+	#picture = 
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = south.2.a
+		ai_chance = {
+			factor = 100
+		}
+			if = {
+				limit = {is_ai = yes}
+				#80 % csa collapse 10% for other paths
+			}
+			else_if = {
+				limit = { check_variable = { var = sexy_x value = 50 compare = greater_than}
+				#theocratic path
+			}
+			else_if = {
+				limit = {
+					or = {
+						has_country_flag = { flag = black_strike value > 3}
+						has_country_flag = { flag = kkk_strike value > 3}
+					}
+				}
+				#collapse path
+				country_event = {
+    					id = south.3
+    					days = 7
+				}
+			}
+			Else = {
+				#kanye west's confederacy path
+			}
+		}
+	}
+}
+
+country_event = {
+	id = south.3 #The death of west is anounced plus protest start
+	title = south.3.t
+	desc = south.3.d
+	#picture = 
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = south.3.a
+		ai_chance = {
+			factor = 100
+		}
+		add_stability = -0.1
+		add_political_power = -50
+		kill_country_leader = yes
+		country_lock_all_division_template = yes
+		hidden_effect = {
+			every_country = {
+				limit = {has_war_with = CSA}
+				white_peace = CSA 
+			}
+		}
+		country_event = {
+    			id = south.4
+    			days = 14
+		}		
+	}
+}
+
+country_event = {
+	id = south.4 #Libertarians protest
+	title = south.4.t
+	desc = south.4.d
+	#picture = 
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = south.4.a
+		ai_chance = {
+			factor = 100
+		}
+		add_stability = -0.15
+		every_owned_state = {
+			limit = { OR = {state = 323 state = 420 state = 322 state = 320}}
+			set_demilitarized_zone = yes
+			add_core_of = CSB
+		}
+
+		country_event = {
+    			id = south.5
+    			days = 8
+		}		
+	}
+}
+
+country_event = {
+	id = south.5 #kkk and black protest
+	title = south.5.t
+	desc = south.5.d
+	#picture = 
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = south.5.a
+		ai_chance = {
+			factor = 100
+		}
+		add_stability = -1
+		add_political_power = -150		
+		every_owned_state = {
+			limit = { OR = {state = 386 state = 381 state = 303 state = 294 state = 291 state = 289 state = 260 state = 333 state =262}}
+			set_demilitarized_zone = yes
+			add_core_of = AFR
+		}
+		every_owned_state = {
+			limit = { OR = {state = 317 state = 407 state = 388 state = 307 state = 287 state = 279 state = 269 state = 267}}
+			set_demilitarized_zone = yes
+			add_core_of = KKK
+		}
+		country_event = {
+    			id = south.6
+    			days = 5
+		}		
+	}
+}
+
+country_event = {
+	id = south.6 #jewish and gay protest
+	title = south.6.t
+	desc = south.6.d
+	#picture = 
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = south.6.a
+		ai_chance = {
+			factor = 100
+		}		
+		every_owned_state = {
+			limit = { OR = {state = 316 state = 315}}
+			set_demilitarized_zone = yes
+			add_core_of = LGB
+		}
+		every_owned_state = {
+			limit = { OR = {state = 271}}
+			set_demilitarized_zone = yes
+			add_core_of = ZIO
+		}
+		country_event = {
+    			id = south.7
+    			days = 14
+		}		
+	}
+}
+
+country_event = {
+	id = south.7 #Let the bloodbath begin
+	title = south.7.t
+	desc = south.7.d
+	#picture = 
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = { hidden_effect = {
+		every_owned_state = {
+			set_demilitarized_zone = no
+			add_dynamic_modifier = { modifier = CSA_southern_bloodshet}
+		}
+		country_lock_all_division_template = no
+		transfer_units_fraction= {
+			target = KFC
+			size = 1
+			stockpile_ratio = 1
+			army_ratio = 1
+		}
+		release = CSB
+		release = ZIO
+		release = KKK
+		release = lgb
+		release = AFR
+		every_country = {
+			limit = {has_war_with = CSA}
+			white_peace = CSA 
+		}
+	}}
+	option = {
+		name = south.7.a #stay as csa
+		ai_chance = {
+			factor = 100
+		}		
+		CSA_war = yes		
+	}
+	option = {
+		name = south.7.b #play as kkk
+		ai_chance = {
+			factor = 100
+		}
+		KKK = { change_tag_from = ROOT }		
+		CSA_war = yes		
+	}
+	option = {
+		name = south.7.c #play as AFR
+		ai_chance = {
+			factor = 100
+		}
+		AFR = { change_tag_from = ROOT }		
+		CSA_war = yes		
+	}
+	option = {
+		name = south.7.d #play as CSB
+		ai_chance = {
+			factor = 100
+		}
+		CSB = { change_tag_from = ROOT }		
+		CSA_war = yes		
+	}
+	option = {
+		name = south.7.e #play as LGB
+		ai_chance = {
+			factor = 100
+		}
+		LGB = { change_tag_from = ROOT }		
+		CSA_war = yes		
+	}
+	option = {
+		name = south.7.f #play as zio
+		ai_chance = {
+			factor = 100
+		}
+		ZIO = { change_tag_from = ROOT }		
+		CSA_war = yes		
+	}
+}
