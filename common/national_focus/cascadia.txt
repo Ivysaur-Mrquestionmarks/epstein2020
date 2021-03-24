@@ -1039,6 +1039,86 @@ focus_tree = {
 
 	}
 	focus = {
+		id = CAS_memories_of_murphy_ranch
+		icon = GFX_goal_unknown
+		cost = 20.00
+		prerequisite = {
+			focus = CAS_military_industrial_complex
+		}
+		x = 32
+		y = 6
+		will_lead_to_war_with = PRA
+		bypass = {
+			has_global_flag = PRA_Bidenist_Collapse
+		}
+		completion_reward = {
+			SIL = {
+				transfer_state = 342
+				add_state_core = 342
+			}
+			hidden_effect = {
+				every_state = {
+					limit = { is_core_of = PRA }
+					add_claim_by = SIL
+				}
+			}
+			if = {
+				limit = {
+					OR = {
+						has_dlc = "Together for Victory"
+						has_dlc = "Man the Guns"
+					}
+				}
+				set_autonomy = {
+					target = SIL
+					autonomous_state = autonomy_colony
+					freedom_level = 0.1
+				}
+			}
+			hidden_effect = {
+				SIL = {
+					set_popularities = {
+						autocratic = 90
+						republican = 0
+						democrat = 10
+						authoritarian_left = 0
+						libertarian_right = 0
+						libertarian_left = 0
+					}
+					declare_war_on = {
+					    target = PRA
+					    type = annex_everything
+					}
+					division_template = {
+						name = "Silver Shirts"
+						regiments = {
+							infantry = { x = 0 y = 0 }
+							infantry = { x = 0 y = 1 }
+							infantry = { x = 0 y = 2 }
+							cavalry = { x = 1 y = 0 }
+							cavalry = { x = 1 y = 1 }
+						}
+					}
+					342 = {
+						create_unit = {
+							division = "name = \"Mahon's Guard\" division_template = \"Silver Shirts\" start_experience_factor = 0.7" 
+							owner = SIL
+						}
+					}
+				}
+			}
+			declare_war_on = {
+			    target = PRA
+			    type = annex_everything
+			}
+			add_state_core = 199
+			add_state_core = 295
+			add_state_core = 366
+			add_state_core = 298
+		}
+
+	}
+	focus = {
 		id = CAS_contact_albertans
 		icon = GFX_goal_unknown
 		cost = 10.00
