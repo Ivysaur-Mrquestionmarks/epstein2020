@@ -90,7 +90,7 @@ country_event = {
 				}
 				add_core_of = NFL
 			}
-			FFS = {
+			FFS = { #there is no FFS tag??? what was this meant to be???
 				transfer_state = 144
 			}
 			every_state = {
@@ -563,7 +563,7 @@ news_event = {
 		name = Canada.7.a
 	}
 }
-#Ottowa vs Nazis
+#Ottowa attacks the rest of Canada -formerly just Aryan Guard but I have now changed it to all of Alberta.
 country_event = {
 	id = Canada.8
 	title = Canada.8.t
@@ -576,13 +576,14 @@ country_event = {
 			tag = MLC
 		}
 		has_global_flag = canadian_civil_war
-		NOT = {
-			OR = {
+		OR = {
+			NOT = {
 				country_exists = CAN
+			}
+			NOT = {
 				country_exists = MLC
 			}
 		}
-		country_exists = ARY
 	}
 	mean_time_to_happen = { days = 10 }
 	option = {
@@ -590,6 +591,22 @@ country_event = {
 			target = ARY
  	    		type = annex_everything
 		}
+		declare_war_on = {
+			target = ANT
+ 	    		type = annex_everything
+		}
+		declare_war_on = {
+			target = ALT
+ 	    		type = annex_everything
+		}
+		#declare_war_on = { #this could end up messing with Cascadian content
+		#	target = BRC
+ 	    #		type = annex_everything
+		#}
+		#declare_war_on = {
+		#	target = VAN
+ 	    #		type = annex_everything
+		#}
 		if = {
 			limit = {
 				is_in_faction_with = OOR
@@ -604,6 +621,12 @@ country_event = {
 				}
 				add_core_of = ROOT
 			}
+		}
+		if = {
+			limit = {
+				tag = MLC
+			}
+			set_cosmetic_tag = CAN_british
 		}
 	}
 }
