@@ -1,6 +1,6 @@
 add_namespace = mexico
 
-#Patriot Party
+#what is this?
 country_event = {
 	id = mexico.1
 	title = mexico.1.t
@@ -10,36 +10,631 @@ country_event = {
 	fire_only_once = yes
 	option = {
 		name = mexico.1.a
-		set_party_name = { 
+		#set_party_name = { 
+		#    ideology = autocratic
+		#    long_name = MEX_business_long
+		#    name = MEX_business_party
+		#}
+		#create_country_leader = {
+		#	name = "Jeffrey Bezos"
+		#	desc = "POLITICS_BEZOS_DESC"
+		#	picture = "Jeff_Bozos.tga"
+		#	expire = "1965.1.1"
+		#	ideology = corporatocracy
+		#	traits = {
+		#
+		#	}
+		#}
+		#random_owned_controlled_state = {
+		#	add_extra_state_shared_building_slots = 2
+		#	add_building_construction = {
+   		#		type = industrial_complex
+    		#	level = 2
+    		#	instant_build = yes
+		#	}
+		#}
+		#random_owned_controlled_state = {
+		#	add_extra_state_shared_building_slots = 2
+		#	add_building_construction = {
+    		#	type = industrial_complex
+    		#	level = 2
+   		#		instant_build = yes
+		#	}
+		#}
+	}
+}
+
+#Famines get worse
+country_event = {
+	id = mexico.2
+	title = mexico.2.t
+	desc = mexico.2.d
+	#picture =
+	trigger = {
+		tag = MEX
+		date > 2021.08.02
+	}
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			country_event = { id = mexico.5 days = 14 }
+			ZAP = { 
+				transfer_state = 321
+				add_state_core = 321
+				transfer_state = 351
+				add_state_core = 351
+				division_template = {
+				    name = "Revolutionary Guard"
+				#    division_names_group =
+					regiments = {
+						infantry = { x = 0 y = 0 }
+						infantry = { x = 0 y = 1 }
+						infantry = { x = 0 y = 2 }
+						infantry = { x = 0 y = 3 }
+						infantry = { x = 0 y = 4 }
+						infantry = { x = 1 y = 0 }
+						infantry = { x = 1 y = 1 }
+						infantry = { x = 1 y = 2 }
+						infantry = { x = 1 y = 3 }
+					}
+				}
+				321 = {
+					create_unit = {
+						division = "name = \"1st Peten Revolutionary Infantry\" division_template = \"Revolutionary Guard\" start_experience_factor = 0.3" 
+						owner = ZAP
+					}
+					create_unit = {
+						division = "name = \"2nd Peten Revolutionary Infantry\" division_template = \"Revolutionary Guard\" start_experience_factor = 0.3" 
+						owner = ZAP
+					}
+					create_unit = {
+						division = "name = \"Guerreos\" division_template = \"Revolutionary Guard\" start_experience_factor = 0.1" 
+						owner = ZAP
+					}
+				}
+				351 = {
+					create_unit = {
+						division = "name = \"1st Chiapas Revolutionary Infantry\" division_template = \"Revolutionary Guard\" start_experience_factor = 0.2" 
+						owner = ZAP
+					}
+					create_unit = {
+						division = "name = \"2nd Chiapas Revolutionary Infantry\" division_template = \"Revolutionary Guard\" start_experience_factor = 0.3" 
+						owner = ZAP
+					}
+					create_unit = {
+						division = "name = \"Maximistas\" division_template = \"Revolutionary Guard\" start_experience_factor = 0.1" 
+						owner = ZAP
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = mexico.2.a
+		start_border_war = {
+    		change_state_after_war = yes
+    		attacker = {
+    		    state = 326
+    		    num_provinces = 4
+    		    on_win = mexico.3
+		        on_lose = mexico.4
+		        on_cancel = mexico.4
+		    }
+				
+		    defender = {
+		        state = 351
+		        num_provinces = 4
+		        on_win = mexico.3
+		        on_lose = mexico.4
+		        on_cancel = mexico.3
+		    }
+		}
+	}
+}
+#winning Zapatista border war
+country_event = {
+	id = mexico.3
+	title = mexico.3.t
+	desc = mexico.3.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = mexico.3.a
+		army_experience = 25
+	}
+}
+#losing Zapatista border war
+country_event = {
+	id = mexico.4
+	title = mexico.4.t
+	desc = mexico.4.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = mexico.4.a
+		army_experience = 5
+		add_manpower = -150
+	}
+}
+#MORENA declares state of emergency
+country_event = {
+	id = mexico.5
+	title = mexico.5.t
+	desc = mexico.5.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			country_event = { id = mexico.6 days = 3 }
+			ZAP = { create_faction = Zapatistas }
+			ADF = { 
+				transfer_state = 395
+				add_state_core = 395
+				division_template = {
+				    name = "Grupos de Autodefensa Comunitaria"
+				#    division_names_group =
+					regiments = {
+						infantry = { x = 0 y = 0 }
+						infantry = { x = 0 y = 1 }
+						infantry = { x = 0 y = 2 }
+						infantry = { x = 0 y = 3 }
+						infantry = { x = 0 y = 4 }
+						infantry = { x = 1 y = 0 }
+					}
+				}
+				321 = {
+					create_unit = {
+						division = "name = \"1e Grupos de Autodefensa Comunitaria\" division_template = \"Grupos de Autodefensa Comunitaria\" start_experience_factor = 0.3" 
+						owner = ADF
+					}
+					create_unit = {
+						division = "name = \"2e Grupos de Autodefensa Comunitaria\" division_template = \"Grupos de Autodefensa Comunitaria\" start_experience_factor = 0.3" 
+						owner = ADF
+					}
+					create_unit = {
+						division = "name = \"3e Grupos de Autodefensa Comunitaria\" division_template = \"Grupos de Autodefensa Comunitaria\" start_experience_factor = 0.2" 
+						owner = ADF
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = mexico.5.a
+		create_faction = Federales
+		add_popularity = {
 		    ideology = autocratic
-		    long_name = MEX_business_long
-		    name = MEX_business_party
+		    popularity = 0.35
+		}
+		set_politics = {
+			ruling_party = autocratic
+    		elections_allowed = no
+		}
+	}
+}
+#meeting with the Cartels
+country_event = {
+	id = mexico.6
+	title = mexico.6.t
+	desc = mexico.6.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			country_event = { id = mexico.7 days = 2 }
+		}
+	}
+	option = {
+		name = mexico.6.a
+		CAR = {
+			transfer_state = 139
+			add_state_core = 139
+			transfer_state = 90
+			add_state_core = 90
+			transfer_state = 387
+			hidden_effect = {
+				division_template = {
+				    name = "Cartel Infantry"
+				#    division_names_group =
+					regiments = {
+						infantry = { x = 0 y = 0 }
+						infantry = { x = 0 y = 1 }
+						infantry = { x = 0 y = 2 }
+						infantry = { x = 0 y = 3 }
+						infantry = { x = 0 y = 4 }
+						infantry = { x = 1 y = 0 }
+					}
+				}
+				139 = {
+					create_unit = {
+						division = "name = \"Cartel Infantry\" division_template = \"Cartel Infantry\" start_experience_factor = 0.3" 
+						owner = CAR
+					}
+					create_unit = {
+						division = "name = \"Cartel Infantry\" division_template = \"Cartel Infantry\" start_experience_factor = 0.3" 
+						owner = CAR
+					}
+					create_unit = {
+						division = "name = \"Cartel Infantry\" division_template = \"Cartel Infantry\" start_experience_factor = 0.3" 
+						owner = CAR
+					}
+				}
+				90 = {
+					create_unit = {
+						division = "name = \"Cartel Infantry\" division_template = \"Cartel Infantry\" start_experience_factor = 0.3" 
+						owner = CAR
+					}
+					create_unit = {
+						division = "name = \"Cartel Infantry\" division_template = \"Cartel Infantry\" start_experience_factor = 0.3" 
+						owner = CAR
+					}
+				}
+				387 = {
+					create_unit = {
+						division = "name = \"Cartel Infantry\" division_template = \"Cartel Infantry\" start_experience_factor = 0.3" 
+						owner = CAR
+					}
+					create_unit = {
+						division = "name = \"Cartel Infantry\" division_template = \"Cartel Infantry\" start_experience_factor = 0.3" 
+						owner = CAR
+					}
+					create_unit = {
+						division = "name = \"Cartel Infantry\" division_template = \"Cartel Infantry\" start_experience_factor = 0.3" 
+						owner = CAR
+					}
+				}
+			}
+		}
+		WMX = {
+			transfer_state = 92
+			add_state_core = 92
+			transfer_state = 334
+			add_state_core = 334
+			transfer_state = 93
+			add_state_core = 93
+			transfer_state = 341
+			add_state_core = 341
+			transfer_state = 338
+			add_state_core = 338
+			transfer_state = 148
+			add_state_core = 148
+			transfer_state = 337
+			add_state_core = 337
+			transfer_state = 137
+			add_state_core = 137
+			transfer_state = 38
+			add_state_core = 38
+			transfer_state = 22
+			transfer_state = 15
+			transfer_state = 311
+			hidden_effect = {
+				country_event = { id = mexico.9 days = 3 }
+				division_template = {
+				    name = "Cristero Infantry"
+				#    division_names_group =
+					regiments = {
+						infantry = { x = 0 y = 0 }
+						infantry = { x = 0 y = 1 }
+						infantry = { x = 0 y = 2 }
+						infantry = { x = 0 y = 3 }
+						infantry = { x = 0 y = 4 }
+						infantry = { x = 1 y = 0 }
+					}
+				}
+				92 = {
+					create_unit = {
+						division = "name = \"1st Cristero Infantry\" division_template = \"Cristero Infantry\" start_experience_factor = 0.3" 
+						owner = WMX
+					}
+					create_unit = {
+						division = "name = \"2nd Cristero Infantry\" division_template = \"Cristero Infantry\" start_experience_factor = 0.3" 
+						owner = WMX
+					}
+					create_unit = {
+						division = "name = \"3rd Cristero Infantry\" division_template = \"Cristero Infantry\" start_experience_factor = 0.3" 
+						owner = WMX
+					}
+				}
+				93 = {
+					create_unit = {
+						division = "name = \"4th Cristero Infantry\" division_template = \"Cristero Infantry\" start_experience_factor = 0.3" 
+						owner = WMX
+					}
+					create_unit = {
+						division = "name = \"5th Cristero Infantry\" division_template = \"Cristero Infantry\" start_experience_factor = 0.3" 
+						owner = WMX
+					}
+				}
+				334 = {
+					create_unit = {
+						division = "name = \"6th Cristero Infantry\" division_template = \"Cristero Infantry\" start_experience_factor = 0.3" 
+						owner = WMX
+					}
+				}
+			}
+		}
+		BJC = {
+			add_state_core = 22
+			add_state_core = 15
+			add_state_core = 311
+		}
+	}
+}
+#mexican civil war begins
+country_event = {
+	id = mexico.7
+	title = mexico.7.t
+	desc = mexico.7.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			YUC = {
+				add_state_core = 318
+				transfer_state = 318
+				add_state_core = 355
+				transfer_state = 355
+				division_template = {
+				    name = "Yucatan Infantry"
+				#    division_names_group =
+					regiments = {
+						infantry = { x = 0 y = 0 }
+						infantry = { x = 0 y = 1 }
+						infantry = { x = 0 y = 2 }
+						infantry = { x = 0 y = 3 }
+						infantry = { x = 0 y = 4 }
+						infantry = { x = 1 y = 0 }
+					}
+				}
+				318 = {
+					create_unit = {
+						division = "name = \"1st Yucatan Infantry\" division_template = \"Yucatan Infantry\" start_experience_factor = 0.1" 
+						owner = YUC
+					}
+					create_unit = {
+						division = "name = \"2nd Yucatan Infantry\" division_template = \"Yucatan Infantry\" start_experience_factor = 0.1" 
+						owner = YUC
+					}
+				}
+				355 = {
+					create_unit = {
+						division = "name = \"3rd Yucatan Infantry\" division_template = \"Yucatan Infantry\" start_experience_factor = 0.0" 
+						owner = YUC
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = mexico.7.a
+		news_event = { id = mexico.8 hours = 1 }
+		add_to_faction = CAR
+		RMX = {
+			transfer_state = 151
+			add_state_core = 151
+			transfer_state = 382
+			add_state_core = 382
+			transfer_state = 392
+			add_state_core = 392
+			transfer_state = 389
+			add_state_core = 389
+			transfer_state = 385
+			add_state_core = 385
+			transfer_state = 79
+			add_state_core = 79
+			transfer_state = 384
+			add_state_core = 384
+			transfer_state = 147
+			add_state_core = 147
+			create_faction = Revolucionarios
+			add_to_faction = WMX
+			add_to_faction = ADF
+		}
+		declare_war_on = {
+		    target = RMX
+		    type = annex_everything
+		}
+		declare_war_on = {
+		    target = YUC
+		    type = annex_everything
+		}
+		ZAP = {
+			add_to_faction = YUC
+			declare_war_on = {
+				target = MEX
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = RMX
+				type = annex_everything
+			}
+		}
+		transfer_units_fraction= {
+			target = RMX
+			size = 0.5
+			stockpile_ratio = 0.6
+			army_ratio = 0.5
+			navy_ratio = 0.5
+			air_ratio = 0.5
+		}
+	}
+}
+#mex civil war news event
+news_event = {
+	id = mexico.8
+	title = mexico.8.t
+	desc = mexico.8.d
+	picture = event_news_mexico
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = mexico.8.a
+		if = {
+			limit = {NOT = {is_ai = yes}}
+			set_country_flag = {
+    				flag = super_event
+    				value = 5
+			}
+			sound_effect = "mexico_cw"
+		}
+	}
+}
+#Blackwater Invasion
+country_event = {
+	id = mexico.9
+	title = mexico.9.t
+	desc = mexico.9.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = mexico.9.a
+		BJC = {
+			transfer_state = 22
+			transfer_state = 15
+			transfer_state = 311
+			hidden_effect = {
+				country_event = { id = mexico.10 days = 35 }
+				division_template = {
+				    name = "Blackwater"
+				#    division_names_group =
+					regiments = {
+						infantry = { x = 0 y = 0 }
+						infantry = { x = 0 y = 1 }
+						infantry = { x = 0 y = 2 }
+						infantry = { x = 0 y = 3 }
+						infantry = { x = 0 y = 4 }
+						infantry = { x = 1 y = 0 }
+						infantry = { x = 1 y = 1 }
+						infantry = { x = 1 y = 2 }
+						infantry = { x = 1 y = 3 }
+						infantry = { x = 1 y = 4 }
+					}
+				}
+				22 = {
+					create_unit = {
+						division = "name = \"1st Blackwater Infantry\" division_template = \"Blackwater\" start_experience_factor = 0.4" 
+						owner = BJC
+					}
+					create_unit = {
+						division = "name = \"2nd Blackwater Infantry\" division_template = \"Blackwater\" start_experience_factor = 0.4" 
+						owner = BJC
+					}
+					create_unit = {
+						division = "name = \"3rd Blackwater Infantry\" division_template = \"Blackwater\" start_experience_factor = 0.5" 
+						owner = BJC
+					}
+				}
+			}
+		}
+	}
+}
+#the future of the Silicon Republic?
+country_event = {
+	id = mexico.10
+	title = mexico.10.t
+	desc = mexico.10.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	#Bezos
+	option = {
+		name = mexico.10.a
+		ai_chance = {
+			factor = 20
 		}
 		create_country_leader = {
-			name = "Jeffrey Bezos"
-			desc = "POLITICS_BEZOS_DESC"
-			picture = "Jeff_Bozos.tga"
-			expire = "1965.1.1"
+			name = "Jeff Bezos"
+			picture = "gfx/leaders/BJC/Jeff_Bozos.tga"
+			expire = "2060.1.1"
 			ideology = corporatocracy
 			traits = {
-		
+				greed_is_good
 			}
 		}
-		random_owned_controlled_state = {
-			add_extra_state_shared_building_slots = 2
-			add_building_construction = {
-   				type = industrial_complex
-    			level = 2
-    			instant_build = yes
+	}
+	#Gates
+	option = {
+		name = mexico.10.b
+		ai_chance = {
+			factor = 10
+		}
+		create_country_leader = {
+			name = "Bill Gates"
+			picture = "gfx/leaders/BJC/Bill_Gates.tga"
+			expire = "2060.1.1"
+			ideology = fascism
+			traits = {
+				the_vaccinator
 			}
 		}
-		random_owned_controlled_state = {
-			add_extra_state_shared_building_slots = 2
-			add_building_construction = {
-    			type = industrial_complex
-    			level = 2
-   				instant_build = yes
+	}
+	#Zuck
+	option = {
+		name = mexico.10.c
+		ai_chance = {
+			factor = 10
+		}
+		create_country_leader = {
+			name = "Mark Zuckerberg"
+			picture = "gfx/leaders/BJC/Mark_Zuckerberg.tga"
+			expire = "2060.1.1"
+			ideology = despotism
+			traits = {
+				facebook_is_watching
 			}
+		}
+	}
+	#Musk
+	option = {
+		name = mexico.10.e
+		ai_chance = {
+			factor = 60
+		}
+		add_popularity = {
+		    ideology = libertarian_right
+		    popularity = 0.15
+		}
+		set_politics = {
+			ruling_party = libertarian_right
+    			elections_allowed = yes
+		}
+		country_event = { id = mexico.11 days = 365 }
+	}
+}
+#MARS AWAITS
+country_event = {
+	id = mexico.11
+	title = mexico.11.t
+	desc = mexico.11.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	#NazBloom    R I S E
+	option = {
+		name = mexico.11.a
+		ai_chance = {
+			factor = 75
+		}
+		add_popularity = {
+		    ideology = democrat
+		    popularity = 0.55
+		}
+		set_politics = {
+			ruling_party = democrat
+    			elections_allowed = no
+		}
+	}
+	#Wholesome Apartheid 100
+	option = {
+		name = mexico.11.b
+		ai_chance = {
+			factor = 25
 		}
 	}
 }

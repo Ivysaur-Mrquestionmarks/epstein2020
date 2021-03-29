@@ -897,6 +897,8 @@ focus_tree = {
 			add_stability = -0.05
 			remove_ideas = HappyAnarchists
 			remove_ideas = HappyChinese
+			add_ideas = AngeredAnarchists
+			add_ideas = AngeredChinese
 		}
 	}
 	focus = {
@@ -1248,8 +1250,6 @@ focus_tree = {
 				planning_skill = 2
 				logistics_skill = 1
 			}
-			add_ideas = AngeredAnarchists
-			add_ideas = AngeredChinese
 			hidden_effect = {
 				country_event = { id = California.2 days = 20 }
 				set_global_flag = PRA_Bidenist_Collapse
@@ -1482,7 +1482,7 @@ focus_tree = {
     default = no
     focus = {
 		id = Secure_our_territory
-		icon = GFX_goal_Republic_Triumphant
+		icon = GFX_goal_Kick_the_House_down
 		cost = 2.00
 		x = 5
 		y = 0
@@ -1497,7 +1497,7 @@ focus_tree = {
 	}
 	focus = {
 		id = East_Coast_support
-		icon = GFX_goal_Republic_Triumphant
+		icon = GFX_goal_Biden_Handshake
 		cost = 2.00
 		x = 3
 		y = 1
@@ -1529,7 +1529,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Bidenist_Troops
-		icon = GFX_goal_Republic_Triumphant
+		icon = GFX_goal_Biden_and_cop_saluting
 		cost = 2.00
 		x = 3
 		y = 2
@@ -1572,12 +1572,15 @@ focus_tree = {
 	}
 	focus = {
 		id = Promise_Latino_Representation
-		icon = GFX_goal_Republic_Triumphant
+		icon = GFX_focus_tex_bilingual
 		cost = 2.00
 		x = 7
 		y = 1
 		prerequisite = {
 			focus = Secure_our_territory
+		}
+		mutually_exclusive = {
+			focus = Crush_the_Rebellions
 		}
 		ai_will_do = { 
 			factor = 300
@@ -1591,7 +1594,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Meet_With_the_Terminator
-		icon = GFX_goal_Republic_Triumphant
+		icon = GFX_goal_Jefferson_Meeting
 		cost = 2.00
 		x = 7
 		y = 2
@@ -1609,13 +1612,51 @@ focus_tree = {
 
 	}
 	focus = {
+		id = Crush_the_Rebellions
+		icon = GFX_goal_Crush_Rebels
+		cost = 2.00
+		x = 9
+		y = 1
+		prerequisite = {
+			focus = Secure_our_territory
+		}
+		mutually_exclusive = {
+			focus = Promise_Latino_Representation
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+
+	}
+	focus = {
+		id = California_Shall_Be_United
+		icon = GFX_goal_Guy_with_Sword_flag
+		cost = 2.00
+		x = 9
+		y = 2
+		prerequisite = {
+			focus = Crush_the_Rebellions
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+
+	}
+	focus = {
 		id = Fight_on_America
-		icon = GFX_goal_Republic_Triumphant
+		icon = GFX_goal_Excited_Bernie
 		cost = 2.00
 		x = 5
 		y = 3
 		prerequisite = {
 			focus = Meet_With_the_Terminator
+			focus = California_Shall_Be_United
 		}
 		prerequisite = {
 			focus = Bidenist_Troops
@@ -1631,9 +1672,9 @@ focus_tree = {
 	}
 	focus = {
 		id = The_Four_Allies
-		icon = GFX_goal_Republic_Triumphant
+		icon = GFX_goal_A_New_America
 		cost = 2.00
-		x = 6
+		x = 7
 		y = 4
 		prerequisite = {
 			focus = Fight_on_America
@@ -1643,6 +1684,9 @@ focus_tree = {
 		}
 		available = {
 			has_war = no
+			NOT = {
+				has_completed_focus = California_Shall_Be_United
+			}
 			ABG = {
 				OR = {
 					exists = no
@@ -1675,13 +1719,14 @@ focus_tree = {
 		completion_reward = {
 			load_focus_tree = The_New_Confederation
 			custom_effect_tooltip = Unfinished_California_Content
+			set_global_flag = Article_of_Confederation_Bernie
 		}
 	}
 	focus = {
 		id = California_Reunited
 		icon = GFX_goal_Republic_Triumphant
 		cost = 2.00
-		x = 4
+		x = 3
 		y = 4
 		prerequisite = {
 			focus = Fight_on_America
@@ -1735,7 +1780,7 @@ focus_tree = {
     default = no
     focus = {
 		id = Reunite_Southern_California
-		icon = GFX_goal_Republic_Triumphant
+		icon = GFX_focus_generic_treaty
 		cost = 2.00
 		x = 10
 		y = 0
@@ -1750,7 +1795,7 @@ focus_tree = {
 	}
 	focus = {
 		id = The_Interior
-		icon = GFX_goal_Republic_Triumphant
+		icon = GFX_goal_generic_national_unity
 		cost = 2.00
 		x = 5
 		y = 1
@@ -1763,7 +1808,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Stepping_down
-		icon = GFX_goal_Republic_Triumphant
+		icon = GFX_goal_Bernie_sad_moment
 		cost = 2.00
 		x = 5
 		y = 2
@@ -1848,7 +1893,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Finish_His_Reforms
-		icon = GFX_goal_Republic_Triumphant
+		icon = GFX_goal_Sanders_Legacy
 		cost = 2.00
 		x = 2
 		y = 4
@@ -1866,7 +1911,7 @@ focus_tree = {
 		x = 2
 		y = 5
 		prerequisite = {
-			focus = Expand_Healthcare_Coverage
+			focus = Finish_His_Reforms
 		}
 		completion_reward = {
 			add_timed_idea = {
@@ -2130,7 +2175,7 @@ focus_tree = {
 
 	focus = {
 		id = The_Exterior
-		icon = GFX_goal_Republic_Triumphant
+		icon = GFX_goal_generic_defence
 		cost = 2.00
 		x = 20
 		y = 1
@@ -2169,11 +2214,12 @@ focus_tree = {
 		completion_reward = {
 			JFR = {
 				random_owned_controlled_state = {
-				add_extra_state_shared_building_slots = 2
-				add_building_construction = {
+					add_extra_state_shared_building_slots = 2
+					add_building_construction = {
     					type = arms_factory
     					level = 1
     					instant_build = yes
+    				}
 				}
 				random_owned_controlled_state = {
 					add_extra_state_shared_building_slots = 2
@@ -2181,6 +2227,7 @@ focus_tree = {
     					type = industrial_complex
     					level = 1
     					instant_build = yes
+    				}
 				}
 				random_owned_controlled_state = {
 					add_extra_state_shared_building_slots = 2
@@ -2741,7 +2788,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Address_claims_of_Illegitimacy
-		icon = GFX_goal_Happy_Bernie
+		icon = GFX_goal_Bernie_sad_moment
 		cost = 2.00
 		x = 25
 		y = 7
@@ -2757,7 +2804,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Cede_Power_to_the_Official_Vice_President
-		icon = GFX_goal_Happy_Bernie
+		icon = GFX_goal_Biden_Handshake
 		cost = 2.00
 		x = 25
 		y = 8
@@ -2803,7 +2850,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Work_with_Washington
-		icon = GFX_goal_Happy_Bernie
+		icon = GFX_CAN_Help_Biden
 		cost = 2.00
 		x = 40
 		y = 0
@@ -2821,7 +2868,7 @@ focus_tree = {
 	}
 	focus = {
 		id = The_last_Bastion_of_Hope
-		icon = GFX_goal_Happy_Bernie
+		icon = GFX_goal_generic_fortify_city
 		cost = 2.00
 		x = 42
 		y = 0
@@ -2839,7 +2886,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Meet_in_the_Middle
-		icon = GFX_goal_Happy_Bernie
+		icon = GFX_goal_generic_military_deal
 		cost = 2.00
 		x = 40
 		y = 1
@@ -2855,7 +2902,7 @@ focus_tree = {
 	}
 	focus = {
 		id = From_Sea_to_shining_Sea
-		icon = GFX_goal_Happy_Bernie
+		icon = GFX_focus_MON_America_Needed_No_More
 		cost = 2.00
 		x = 42
 		y = 1
@@ -2871,7 +2918,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Deal_With_The_Neighbors
-		icon = GFX_goal_Happy_Bernie
+		icon = GFX_goal_generic_occupy_states_ongoing_war
 		cost = 2.00
 		x = 41
 		y = 2
@@ -2888,7 +2935,7 @@ focus_tree = {
 	}
 	focus = {
 		id = The_Fascist_Menace
-		icon = GFX_goal_Happy_Bernie
+		icon = GFX_focus_For_Aryans
 		cost = 2.00
 		x = 37
 		y = 3
@@ -2904,7 +2951,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Free_The_Tribes
-		icon = GFX_goal_Happy_Bernie
+		icon = GFX_goal_kill_james_mason
 		cost = 2.00
 		x = 37
 		y = 4
@@ -2923,7 +2970,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Reunite_The_Pacific_Costline
-		icon = GFX_goal_Happy_Bernie
+		icon = GFX_focus_MON_Intervene_In_Cascadia
 		cost = 2.00
 		x = 37
 		y = 5
@@ -2942,7 +2989,7 @@ focus_tree = {
 	}
 	focus = {
 		id = We_Are_All_Americans
-		icon = GFX_goal_Happy_Bernie
+		icon = GFX_goal_Fight_for_Freedom
 		cost = 2.00
 		x = 36
 		y = 6
@@ -2964,7 +3011,7 @@ focus_tree = {
 	}
 	focus = {
 		id = No_Sympathy_For_The_Devil
-		icon = GFX_goal_Happy_Bernie
+		icon = GFX_focus_spr_the_anti_fascist_workers_revolution
 		cost = 2.00
 		x = 38
 		y = 6
@@ -2986,7 +3033,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Recognize_Molossian_Claims
-		icon = GFX_goal_Happy_Bernie
+		icon = GFX_goal_MOL_Birth_of_a_Nation
 		cost = 2.00
 		x = 35
 		y = 3
@@ -3014,7 +3061,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Offer_Autonomy_For_Subjugation
-		icon = GFX_goal_Happy_Bernie
+		icon = GFX_goal_generic_intelligence_exchange
 		cost = 2.00
 		x = 35
 		y = 4
@@ -3035,7 +3082,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Calling_Fellow_Lovers_Of_Liberty
-		icon = GFX_goal_Happy_Bernie
+		icon = GFX_goal_support_democracy
 		cost = 2.00
 		x = 35
 		y = 5
@@ -3060,7 +3107,7 @@ focus_tree = {
 	}
 	focus = {
 		id = No_More_Microstates
-		icon = GFX_goal_Happy_Bernie
+		icon = GFX_goal_MOL_What_Now
 		cost = 2.00
 		x = 33
 		y = 3
@@ -3079,7 +3126,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Infiltrate_The_Cities
-		icon = GFX_goal_Happy_Bernie
+		icon = GFX_focus_prc_infiltration
 		cost = 2.00
 		x = 33
 		y = 4
@@ -3104,7 +3151,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Move_in_on_City_States
-		icon = GFX_goal_Happy_Bernie
+		icon = GFX_goal_MOL_Work_With
 		cost = 2.00
 		x = 33
 		y = 5
@@ -3151,7 +3198,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Offer_Reunification_To_Alaska
-		icon = GFX_goal_Happy_Bernie
+		icon = GFX_goal_generic_improve_relations
 		cost = 2.00
 		x = 41
 		y = 3
@@ -3169,7 +3216,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Alaskan_Oil
-		icon = GFX_goal_Happy_Bernie
+		icon = GFX_goal_generic_oil_refinery
 		cost = 2.00
 		x = 41
 		y = 4
@@ -3210,7 +3257,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Offer_Reunification_To_Hawaii
-		icon = GFX_goal_Happy_Bernie
+		icon = GFX_goal_generic_improve_relations
 		cost = 2.00
 		x = 43
 		y = 3
@@ -3228,7 +3275,7 @@ focus_tree = {
 	}
 	focus = {
 		id = The_Legacy_of_Kalākaua
-		icon = GFX_goal_Happy_Bernie
+		icon = GFX_focus_generic_home_defense
 		cost = 2.00
 		x = 43
 		y = 4
@@ -3246,7 +3293,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Recall_the_Pacific_Remnants
-		icon = GFX_goal_Happy_Bernie
+		icon = GFX_goal_pc_pearl
 		cost = 2.00
 		x = 42
 		y = 5
@@ -3263,7 +3310,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Recommission_Surrendered_Ships
-		icon = GFX_goal_Happy_Bernie
+		icon = GFX_goal_pc_shipping
 		cost = 2.00
 		x = 40
 		y = 6
@@ -3279,7 +3326,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Welcome_back_Marines
-		icon = GFX_goal_Happy_Bernie
+		icon = GFX_goal_pc_marine
 		cost = 2.00
 		x = 42
 		y = 6
@@ -3298,7 +3345,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Work_With_Locals
-		icon = GFX_goal_Happy_Bernie
+		icon = GFX_goal_MOL_variations
 		cost = 2.00
 		x = 44
 		y = 6
@@ -3321,7 +3368,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Skirmishes_in_the_Rockes
-		icon = GFX_goal_Happy_Bernie
+		icon = GFX_goal_Hunters
 		cost = 2.00
 		x = 46
 		y = 3
@@ -3337,7 +3384,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Put_Down_The_ILFM
-		icon = GFX_goal_Happy_Bernie
+		icon = GFX_goal_ILFM_Support
 		cost = 2.00
 		x = 45
 		y = 4
@@ -3356,7 +3403,7 @@ focus_tree = {
 	}
 	focus = {
 		id = The_Montana_Question
-		icon = GFX_goal_Happy_Bernie
+		icon = GFX_focus_MON_Take_Over_The_National_Guard
 		cost = 2.00
 		x = 47
 		y = 4
@@ -3387,7 +3434,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Imprison_Bullock_and_Stankiewicz
-		icon = GFX_goal_Happy_Bernie
+		icon = GFX_focus_MON_Father_Of_The_State
 		cost = 2.00
 		x = 46
 		y = 5
