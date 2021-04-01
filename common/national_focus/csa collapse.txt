@@ -36,6 +36,7 @@ focus_tree = {
 				var = csa_exhaustion
 				value = 5
 			}
+			unlock_decision_category_tooltip = CSA_CW
 		}
 	}
 	focus = {
@@ -43,7 +44,7 @@ focus_tree = {
 		icon = GFX_focus_secret_rearmament
 
 		prerequisite = { focus = CSA_so_it_begins }
-		x = 7
+		x = 6
 		y = 2
 		cost = 5
 
@@ -58,6 +59,7 @@ focus_tree = {
     				type = infantry_equipment
     				amount = 2500
 			}
+			unlock_decision_tooltip = CSA_escavange
 		}
 	}
 
@@ -154,6 +156,42 @@ focus_tree = {
 				var = csa_exhaustion
 				value = -10
 			}
+		}
+	}
+
+	focus = {
+		id = CSA_victory
+		icon = GFX_focus_secret_rearmament
+
+		available = {
+			all_country = { OR = { NOT = {
+				is_in_array = {
+					array = global.south_collapse
+					value = THIS.id
+				}}
+					tag = ROOT
+				}		
+			}
+		}
+
+		x = 15
+		y = 1
+		cost = 10
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_political_power = 200
+			set_country_flag = {
+   				flag = reunification_start
+    				value = 2
+			}
+			unlock_decision_category_tooltip = American_reunification
+			unlock_decision_tooltip = integrate_state
 		}
 	}
 }
