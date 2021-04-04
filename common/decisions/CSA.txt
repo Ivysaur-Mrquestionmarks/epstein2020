@@ -1,0 +1,181 @@
+CSA_CW = {
+	CSA_desesperate_defence = {
+		cost = var:csa_exhaustion
+		days_remove = 20
+		days_re_enable = 35
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 10
+				surrender_progress > 0.1
+			}
+		}
+          	modifier = {
+			army_core_defence_factor = 0.2
+			army_core_attack_factor = 0.2
+          	}
+		complete_effect = {
+			add_to_variable = {
+				var = csa_exhaustion
+				value = 5
+			}	
+		}
+	}
+
+	CSA_escavange = {
+		cost = var:csa_exhaustion
+		days_remove = 15
+		days_re_enable = 40
+		ai_will_do = {
+			base = 5
+		}
+		available = {
+			has_completed_focus = CSA_seize_equipment
+		}
+		remove_effect = {
+			add_to_variable = {
+				var = csa_exhaustion
+				value = 5
+			}	
+			add_equipment_to_stockpile = {
+    				type = infantry_equipment
+    				amount = 500
+			}	
+			random_list = {
+				1 = {
+					add_equipment_to_stockpile = {
+    						type = infantry_equipment
+    						amount = 500
+					}
+				}
+				1 = {
+					add_equipment_to_stockpile = {
+    						type = motorized_equipment
+    						amount = 250
+					}
+				}
+				1 = {
+					add_equipment_to_stockpile = {
+    						type = support_equipment 
+    						amount = 500
+					}
+				}
+			}		
+		}
+	}
+
+	CSA_units = { 
+		state_target = yes
+		target_trigger = {
+		 	FROM = {
+				is_owned_and_controlled_by = ROOT
+			}
+		}
+		visible = {
+			has_country_flag = CSA_unit
+		}
+		cost = var:csa_exhaustion
+		days_remove = 35
+		fire_only_once = yes
+		on_map_mode = map_only
+		ai_will_do = {
+			base = 1
+		}
+		complete_effect = {
+			add_to_variable = {
+				var = csa_exhaustion
+				value = 5
+			}			
+		}
+		remove_effect = {
+			FROM = {
+				create_unit = {
+					division = "division_template = \"militias\"	start_experience_factor = 0	start_equipment_factor = 0.8"
+					owner = ROOT
+					count = 3
+				}
+			}			
+		}
+	}
+
+	CSA_KKK_desesperate_attack = {
+		cost = var:csa_exhaustion
+		days_remove = 25
+		days_re_enable = 30
+		ai_will_do = {
+			base = 0
+		}
+		visible = {
+			always =  no
+			#i will chage it once I do the kkk tree
+		}
+          	modifier = {
+			offence = 0.3
+			army_org_factor = -0.05
+			breakthrough_factor = 0.1
+			dig_in_speed_factor = -1
+			pocket_penalty = 0.35
+          	}
+		complete_effect = {
+			add_to_variable = {
+				var = csa_exhaustion
+				value = 5
+			}	
+		}
+	}
+
+	CSA_bomb_bridges = { 
+		state_target = yes
+		target_trigger = {
+		 	FROM = {
+				is_controlled_by = ROOT
+			}
+		}
+		visible = {
+			has_country_flag = CSA_boom
+		 	FROM = {
+				is_controlled_by = ROOT
+				any_neighbor_state = {
+					controller = {
+						has_war_with = ROOT
+					}
+				}
+			}
+		}
+		cost = var:csa_exhaustion
+		days_remove = 30
+		days_re_enable = 60
+		on_map_mode = map_only
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 5
+				surrender_progress > 0.1
+			}
+		}
+		complete_effect = {
+			add_to_variable = {
+				var = csa_exhaustion
+				value = 5
+			}
+			FROM = {
+				damage_building = {
+    					type = infrastructure
+    					damage = 4
+				}
+				add_dynamic_modifier = { modifier = CSA_ruined_infra } 
+			}			
+		}
+		remove_effect = {
+			FROM = {
+				 remove_dynamic_modifier = { modifier = CSA_ruined_infra } 
+			}			
+		}
+	}
+
+
+	#bomb bridges, for every major
+	#militia creation, for lgb, kkk and afr
+	#restless assult, for kkk only
+
+}

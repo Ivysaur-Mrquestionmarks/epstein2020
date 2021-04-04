@@ -1,0 +1,197 @@
+focus_tree = {
+	id = csa_collapse
+	country = {
+		factor = 0
+		modifier = {
+			add = 9
+			is_in_array = {
+				array = global.south_collapse
+				value = THIS.id
+			}			
+		}
+	}
+	default = no
+        continuous_focus_position = { x = 1000 y = 1000}
+	focus = {
+		id = CSA_so_it_begins
+		icon = GFX_focus_secret_rearmament
+		#allow_branch = {
+
+		#}
+		#prerequisite = { focus = ITA_industrial_effort_2 }
+		x = 5
+		y = 1
+		cost = 4
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_political_power = 50
+			add_war_support = 0.1
+			set_variable = {
+				var = csa_exhaustion
+				value = 5
+			}
+			unlock_decision_category_tooltip = CSA_CW
+		}
+	}
+	focus = {
+		id = CSA_seize_equipment
+		icon = GFX_focus_secret_rearmament
+
+		prerequisite = { focus = CSA_so_it_begins }
+		x = 6
+		y = 2
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_equipment_to_stockpile = {
+    				type = infantry_equipment
+    				amount = 2500
+			}
+			unlock_decision_tooltip = CSA_escavange
+		}
+	}
+
+	focus = {
+		id = CSA_units
+		icon = GFX_focus_secret_rearmament
+
+		prerequisite = { focus = CSA_seize_equipment }
+		x = 9
+		y = 3
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+    			random_owned_controlled_state = {
+				create_unit = {
+					division = "division_template = \"militias\"	start_experience_factor = 0.25	start_equipment_factor = 1"
+					owner = ROOT
+					count = 3
+					
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = CSA_trucks
+		icon = GFX_focus_secret_rearmament
+
+		prerequisite = { focus = CSA_units}
+		x = 9
+		y = 5
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_equipment_to_stockpile = {
+    				type = motorized_equipment
+    				amount = 750
+			}
+		}
+	}
+
+	focus = {
+		id = CSA_stabilize_the_goverment
+		icon = GFX_focus_secret_rearmament
+
+		prerequisite = { focus = CSA_seize_equipment }
+		x = 7
+		y = 4
+		cost = 5
+
+		ai_will_do = {
+			factor = 3
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_political_power = 35
+			add_war_support = 0.15			
+			add_stability = 0.15
+		}
+	}
+
+	focus = {
+		id = CSA_spread_propaganda
+		icon = GFX_focus_secret_rearmament
+
+		prerequisite = { focus = CSA_stabilize_the_goverment }
+		x = 7
+		y = 5
+		cost = 5
+
+		ai_will_do = {
+			factor = 3
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_political_power = 75
+			add_to_variable = {
+				var = csa_exhaustion
+				value = -10
+			}
+		}
+	}
+
+	focus = {
+		id = CSA_victory
+		icon = GFX_focus_secret_rearmament
+
+		available = {
+			all_country = { OR = { NOT = {
+				is_in_array = {
+					array = global.south_collapse
+					value = THIS.id
+				}}
+					tag = ROOT
+				}		
+			}
+		}
+
+		x = 15
+		y = 1
+		cost = 10
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_political_power = 200
+			set_country_flag = {
+   				flag = reunification_start
+    				value = 2
+			}
+			unlock_decision_category_tooltip = American_reunification
+			unlock_decision_tooltip = integrate_state
+		}
+	}
+}
