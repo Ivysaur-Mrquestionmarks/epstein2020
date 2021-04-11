@@ -23,6 +23,7 @@ focus_tree = {
 		}
 		completion_reward = {
 			add_ideas = UniqueSituation
+			country_event = { id = California.9 days = 5 }
 		}
 	}
 	focus = {
@@ -39,6 +40,268 @@ focus_tree = {
 		}
 		completion_reward = {
 			country_event = { id = Jefferson.1 days = 5 }
+		}
+	}
+	focus = {
+		id = The_Jefferson_Economy
+		icon = GFX_goal_ReopenMills
+		cost = 9.00
+		x = 20
+		y = 3
+		ai_will_do = { 
+			factor = 300
+		}
+		prerequisite = {
+			focus = Legacy_of_Republicanism
+		}
+		completion_reward = {
+			add_political_power = 25
+			add_ideas = free_trade
+		}
+	}
+	focus = {
+		id = Scourge_for_Resources
+		icon = GFX_goal_generic_construction2
+		cost = 9.00
+		x = 20
+		y = 4
+		ai_will_do = { 
+			factor = 300
+		}
+		prerequisite = {
+			focus = The_Jefferson_Economy
+		}
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1.0
+				uses = 2
+				technology = excavation1
+				technology = excavation2
+				technology = excavation3
+				technology = excavation4
+				technology = excavation5
+			}
+		}
+	}
+	focus = {
+		id = Outside_Funding
+		icon = GFX_goal_generic_intelligence_exchange
+		cost = 9.00
+		x = 18
+		y = 4
+		ai_will_do = { 
+			factor = 300
+		}
+		prerequisite = {
+			focus = The_Jefferson_Economy
+		}
+		completion_reward = {
+			custom_effect_tooltip = INS_NegotiateRUM_effect_tooltip
+			hidden_effect = {
+			country_event = { id = ins.1  }
+			}
+		}
+	}
+	focus = {
+		id = Lower_unemployment
+		icon = GFX_goal_generic_national_unity
+		cost = 9.00
+		x = 17
+		y = 5
+		ai_will_do = { 
+			factor = 300
+		}
+		prerequisite = {
+			focus = Outside_Funding
+		}
+		completion_reward = {
+			add_stability = 0.05
+			swap_ideas = {
+			    remove_idea = High_unemployment
+			    add_idea = Medium_unemployment
+			}
+		}
+	}
+	focus = {
+		id = Job_Fairs
+		icon = GFX_goal_generic_production
+		cost = 9.00
+		x = 17
+		y = 6
+		ai_will_do = { 
+			factor = 300
+		}
+		prerequisite = {
+			focus = Lower_unemployment
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+					is_controlled_by = ROOT
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			swap_ideas = {
+			    remove_idea = Medium_unemployment
+			    add_idea = Low_unemployment
+			}
+		}
+	}
+	focus = {
+		id = Balance_Inflation
+		icon = GFX_goal_generic_consumer_goods
+		cost = 9.00
+		x = 19
+		y = 5
+		ai_will_do = { 
+			factor = 300
+		}
+		prerequisite = {
+			focus = Outside_Funding
+		}
+		completion_reward = {
+			swap_ideas = {
+			    remove_idea = High_Inflation
+			    add_idea = Medium_Inflation
+			}
+		}
+	}
+	focus = {
+		id = A_New_Currency
+		icon = GFX_goal_Foundations_of_Economy
+		cost = 9.00
+		x = 20
+		y = 6
+		ai_will_do = { 
+			factor = 300
+		}
+		prerequisite = {
+			focus = Balance_Inflation
+		}
+		prerequisite = {
+			focus = Scourge_for_Resources
+		}
+		bypass = {
+			has_completed_focus = The_Imperial_Currency
+		}
+		available = {
+			NOT = {
+				has_completed_focus = Republicanism_has_failed
+			}
+		}
+		completion_reward = {
+			swap_ideas = {
+			    remove_idea = Medium_Inflation
+			    add_idea = stable_currency
+			}
+		}
+	}
+	focus = {
+		id = Seize_Milsurp
+		icon = GFX_focus_generic_combined_arms
+		cost = 9.00
+		x = 22
+		y = 4
+		ai_will_do = { 
+			factor = 300
+		}
+		prerequisite = {
+			focus = The_Jefferson_Economy
+		}
+		completion_reward = {
+			add_equipment_to_stockpile = {
+			    type = infantry_equipment
+			    amount = 5000
+			    producer = JFR
+			}
+		}
+	}
+	focus = {
+		id = Eisenhower_Doctrine
+		icon = GFX_goal_Eisenhower
+		cost = 9.00
+		x = 23
+		y = 5
+		ai_will_do = { 
+			factor = 300
+		}
+		prerequisite = {
+			focus = Seize_Milsurp
+		}
+		completion_reward = {
+			add_stability = 0.05
+			add_war_support = 0.05
+		}
+	}
+	focus = {
+		id = Improve_Highways
+		icon = GFX_goal_generic_construct_infrastructure
+		cost = 9.00
+		x = 22
+		y = 6
+		ai_will_do = { 
+			factor = 300
+		}
+		prerequisite = {
+			focus = Eisenhower_Doctrine
+		}
+		completion_reward = {
+			add_ideas = Infrastructure_Projects
+		}
+	}
+	focus = {
+		id = A_New_New_Deal
+		icon = GFX_goal_Social_Security
+		cost = 9.00
+		x = 22
+		y = 6
+		ai_will_do = { 
+			factor = 300
+		}
+		prerequisite = {
+			focus = Eisenhower_Doctrine
+		}
+		completion_reward = {
+			add_ideas = new_deal
+		}
+	}
+	focus = {
+		id = American_Economics
+		icon = GFX_goal_American_Economy
+		cost = 9.00
+		x = 20
+		y = 7
+		ai_will_do = { 
+			factor = 300
+		}
+		prerequisite = {
+			focus = Job_Fairs
+		}
+		prerequisite = {
+			focus = A_New_Currency
+		}
+		prerequisite = {
+			focus = Improve_Highways
+		}
+		prerequisite = {
+			focus = A_New_New_Deal
+		}
+		completion_reward = {
+			add_ideas = free_trade
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 2
+    					instant_build = yes
+				}
+			}
 		}
 	}
 	focus = {
@@ -376,6 +639,156 @@ focus_tree = {
 		completion_reward = {
 			add_stability = -0.25
 			add_ideas = Republicanism_Fell
+			set_autonomy = {
+    			target = NVD
+    			autonomy_state = autonomy_free
+			}
+			Every_state = {
+    			Limit = { 
+    				is_owned_by = NVD
+    			}
+				set_demilitarized_zone = yes
+			}
+		}
+	}
+	focus = {
+		id = Crush_Sacramento
+		icon = GFX_goal_ANTIFA_burn
+		cost = 9.00
+		x = 36
+		y = 3
+		ai_will_do = { 
+			factor = 300
+		}
+		prerequisite = {
+			focus = Republicanism_has_failed
+		}
+		
+		completion_reward = {
+			add_ideas = Anarchist_Push
+		}
+	}
+	focus = {
+		id = Crush_the_Democracies
+		icon = GFX_goal_Anti_Biden
+		cost = 9.00
+		x = 35
+		y = 4
+		ai_will_do = { 
+			factor = 300
+		}
+		prerequisite = {
+			focus = Crush_Sacramento
+		}
+		
+		completion_reward = {
+			swap_ideas = {
+			    remove_idea = Anarchist_Push
+			    add_idea = Full_Push
+			}
+			NVD = {
+				country_event = { id = Jefferson.8 days = 5 }
+			}
+		}
+	}
+	focus = {
+		id = Work_with_Dictatorships
+		icon = GFX_goal_support_fascism
+		cost = 9.00
+		x = 37
+		y = 4
+		ai_will_do = { 
+			factor = 300
+		}
+		prerequisite = {
+			focus = Crush_Sacramento
+		}
+		available = {
+			has_government = Autocratic
+		}
+		completion_reward = {
+			IF = {
+				LIMIT = {
+					ABG = {
+						has_government = Autocratic
+					}
+				}
+				ABG = {
+					country_event = { id = Jefferson.9 days = 5 }
+				}
+			}
+			IF = {
+				LIMIT = {
+					HOP = {
+						has_government = Autocratic
+					}
+				}
+				HOP = {
+					country_event = { id = Jefferson.9 days = 5 }
+				}
+			}
+			IF = {
+				LIMIT = {
+					CAS = {
+						has_government = Autocratic
+					}
+				}
+				CAS = {
+					country_event = { id = Jefferson.9 days = 5 }
+				}
+			}
+			IF = {
+				LIMIT = {
+					HLY = {
+						has_government = Autocratic
+					}
+				}
+				HLY = {
+					country_event = { id = Jefferson.9 days = 5 }
+				}
+				Else = {
+					IF = {
+						LIMIT = {
+							CST = {
+								has_government = Autocratic
+							}
+						}
+						CST = {
+							country_event = { id = Jefferson.9 days = 5 }
+						}
+					}
+				}
+			}
+			IF = {
+				LIMIT = {
+					ACF = {
+						has_government = Autocratic
+					}
+				}
+				ACF = {
+					country_event = { id = Jefferson.9 days = 5 }
+				}
+			}
+		}
+	}
+	focus = {
+		id = Divide_California
+		icon = GFX_goal_generic_forceful_treaty
+		cost = 9.00
+		x = 36
+		y = 5
+		ai_will_do = { 
+			factor = 300
+		}
+		prerequisite = {
+			focus = Work_with_Dictatorships
+		}
+		prerequisite = {
+			focus = Crush_the_Democracies
+		}
+		
+		completion_reward = {
+			
 		}
 	}
 	focus = {
@@ -577,6 +990,32 @@ focus_tree = {
 					add_country_leader_trait = Californian_Council
 				}
 			}
+			hidden_effect = {
+				create_wargoal = {
+					type = annex_everything
+					target = ABG
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = ACF
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = HLY
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = CST
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = PRC
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = PRA
+				}
+			}
 		}
 	}
 	focus = {
@@ -594,6 +1033,37 @@ focus_tree = {
 		completion_reward = {
 			remove_country_leader_trait = inexperienced_imperialist
 			add_country_leader_trait = Protector_of_Mexico
+			hidden_effect = {
+				create_wargoal = {
+					type = annex_everything
+					target = MEX
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = BJC
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = ZAP
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = RMX
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = CAR
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = YUC
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = ADF
+				}
+			}
+
 		}
 	}
 	focus = {
@@ -609,8 +1079,14 @@ focus_tree = {
 			focus = The_True_Heir
 			focus = The_Regency_Council
 		}
+		available = {
+			has_completed_focus = Balance_Inflation
+		}
 		completion_reward = {
-			add_ideas = stable_currency
+			swap_ideas = {
+			    remove_idea = Medium_Inflation
+			    add_idea = stable_currency
+			}
 		}
 	}
 	focus = {
