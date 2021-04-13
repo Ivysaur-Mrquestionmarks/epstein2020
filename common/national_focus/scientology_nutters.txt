@@ -1,0 +1,743 @@
+focus_tree = {
+	id = scientology_nutters
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = CST
+		}
+	}
+	default = no
+	focus = {
+		id = CST_state_beneath_their_feet
+		icon = GFX_goal_Anarchy
+		cost = 5.00
+		mutually_exclusive = {
+			focus = CST_in_the_name_of_hubbard
+		}
+		x = 6
+		y = 0
+		completion_reward = {
+			country_event = { id = nutcases.1 }
+		}
+
+	}
+	focus = {
+		id = CST_in_the_name_of_hubbard
+		icon = GFX_focus_MON_Permanent_Curfew
+		cost = 5.00
+		mutually_exclusive = {
+			focus = CST_state_beneath_their_feet
+		}
+		x = 8
+		y = 0
+		completion_reward = {
+			country_event = { id = nutcases.2 }
+		}
+
+	}
+	focus = {
+		id = CST_deal_with_devil
+		icon = GFX_goal_Revelation
+		cost = 5.00
+		prerequisite = {
+			focus = CST_state_beneath_their_feet
+		}
+		x = 6
+		y = 1
+		completion_reward = {
+			add_popularity = {
+    			ideology = libertarian_left
+    			popularity = 0.15
+			}
+		}
+
+	}
+	focus = {
+		id = CST_witches_covenant
+		icon = GFX_goal_put_down_insurgency
+		cost = 5.00
+		prerequisite = {
+			focus = CST_deal_with_devil
+		}
+		x = 6
+		y = 2
+		completion_reward = {
+			add_popularity = {
+    			ideology = libertarian_left
+    			popularity = 0.10
+			}
+		}
+
+	}
+	focus = {
+		id = CST_black_flame
+		icon = GFX_goal_No_Immigrants
+		cost = 5.00
+		prerequisite = {
+			focus = CST_witches_covenant
+		}
+		x = 6
+		y = 3
+		select_effect = {
+			country_event = { id = nutcases.3 days = 15 }
+		}
+		completion_reward = {
+			country_event = { id = nutcases.4 }
+		}
+
+	}
+	focus = {
+		id = CST_president_miscavige
+		icon = GFX_goal_Messiah
+		cost = 10.00
+		prerequisite = {
+			focus = CST_in_the_name_of_hubbard
+		}
+		x = 8
+		y = 1
+		completion_reward = {
+			add_war_support = 0.15
+		}
+
+	}
+	focus = {
+		id = CST_prime_minister_tom_cruise
+		icon = GFX_goal_Generalship_to_Celebs
+		cost = 10.00
+		prerequisite = {
+			focus = CST_president_miscavige
+		}
+		x = 8
+		y = 2
+		completion_reward = {
+			add_stability = 0.15
+		}
+
+	}
+	focus = {
+		id = CST_mobilise_squirrel_busters
+		icon = GFX_goal_ANTIFA_burn
+		cost = 10.00
+		prerequisite = {
+			focus = CST_prime_minister_tom_cruise
+		}
+		x = 8
+		y = 3
+		completion_reward = {
+			country_event = { id = nutcases.5 }
+			division_template = {
+				name = "Squirrel Busters"
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 0 y = 3 }
+					infantry = { x = 0 y = 4 }
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+					infantry = { x = 1 y = 2 }
+				}
+			}
+			297 = {
+				create_unit = {
+					division = "name = \"1st Anti-Communist Guard\" division_template = \"Squirrel Busters\" start_experience_factor = 0.3" 
+					owner = CST
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = CST_raid_the_den_of_hedonism
+		icon = GFX_goal_Guy_with_Sword_flag
+		cost = 10.00
+		prerequisite = {
+			focus = CST_mobilise_squirrel_busters
+			focus = CST_black_flame
+		}
+		x = 7
+		y = 4
+		will_lead_to_war_with = HLY
+		completion_reward = {
+			start_border_war = {
+				change_state_after_war =  no
+    			attacker = {
+        			state = 297
+        			num_provinces = 5
+        			on_win = nutcases.6
+        			on_lose = nutcases.7
+       				on_cancel = nutcases.7
+    			}
+				
+    			defender = {
+        			state = 302
+        			num_provinces = 5
+        			on_win = nutcases.6
+        			on_lose = nutcases.7
+        			on_cancel = nutcases.6
+    			}
+			}
+		}
+
+	}
+	focus = {
+		id = CST_preparing_culture
+		icon = GFX_goal_Generic_Execute_Dissidents02
+		cost = 10.00
+		prerequisite = {
+			focus = CST_raid_the_den_of_hedonism
+		}
+		x = 4
+		y = 5
+		available = {
+			has_government = libertarian_left
+		}
+		completion_reward = {
+			add_stability = 0.20
+		}
+
+	}
+	focus = {
+		id = CST_woo_army
+		icon = GFX_goal_jingoism
+		cost = 10.00
+		prerequisite = {
+			focus = CST_preparing_culture
+		}
+		x = 2
+		y = 6
+		completion_reward = {
+			add_war_support = 0.05
+			army_experience = 50
+		}
+
+	}
+	focus = {
+		id = CST_defeat_in_battle_hollywood
+		icon = GFX_goal_Shame_Denial
+		cost = 10.00
+		prerequisite = {
+			focus = CST_raid_the_den_of_hedonism
+		}
+		mutually_exclusive = {
+			focus = CST_victory_in_hollywood
+		}
+		x = 6
+		y = 5
+		available = {
+			has_country_flag = HollywoodDefeat
+		}
+		completion_reward = {
+			add_stability = 0.02
+		}
+
+	}
+	focus = {
+		id = CST_victory_in_hollywood
+		icon = GFX_goal_Swear_off_Alc
+		cost = 10.00
+		prerequisite = {
+			focus = CST_raid_the_den_of_hedonism
+		}
+		mutually_exclusive = {
+			focus = CST_defeat_in_battle_hollywood
+		}
+		x = 8
+		y = 5
+		available = { 
+			has_country_flag = HollywoodVictory
+		}
+		completion_reward = {
+			add_stability = 0.10
+		}
+
+	}
+	focus = {
+		id = CST_spoils
+		icon = GFX_goal_Foundations_of_Economy
+		cost = 10.00
+		prerequisite = {
+			focus = CST_victory_in_hollywood
+		}
+		x = 8
+		y = 6
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = arms_factory
+				    level = 1
+				    instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = CST_freedom_for_service
+		icon = GFX_focus_MON_Mobilize_Militia
+		cost = 10.00
+		prerequisite = {
+			focus = CST_spoils
+		}
+		mutually_exclusive = {
+			focus = CST_militarise_slaves
+		}
+		x = 8
+		y = 7
+		completion_reward = {
+			add_manpower = 7500
+		}
+
+	}
+	focus = {
+		id = CST_humiliate_unworthy
+		icon = GFX_goal_Execute_the_Traitor
+		cost = 10.00
+		prerequisite = {
+			focus = CST_raid_the_den_of_hedonism
+		}
+		x = 10
+		y = 5
+		available = {
+			has_government = autocratic
+		}
+		completion_reward = {
+			add_war_support = 0.10
+		}
+
+	}
+	focus = {
+		id = CST_militarise_slaves
+		icon = GFX_goal_mr_peanut
+		cost = 10.00
+		prerequisite = {
+			focus = CST_humiliate_unworthy
+		}
+		mutually_exclusive = {
+			focus = CST_freedom_for_service
+		}
+		x = 10
+		y = 7
+		completion_reward = {
+			add_ideas = CST_battle_slaves
+		}
+
+	}
+	focus = {
+		id = CST_thetan_man
+		icon = GFX_goal_Earth
+		cost = 10.00
+		prerequisite = {
+			focus = CST_raid_the_den_of_hedonism
+		}
+		x = 12
+		y = 5
+		available = {
+			has_government = autocratic
+		}
+		completion_reward = {
+			add_stability = 0.10
+			add_war_support = 0.10
+		}
+
+	}
+	focus = {
+		id = CST_the_largest_church
+		icon = GFX_goal_Generic_Cult_of_Washington
+		cost = 10.00
+		prerequisite = {
+			focus = CST_thetan_man
+		}
+		prerequisite = {
+			focus = CST_humiliate_unworthy
+		}
+		x = 12
+		y = 6
+		completion_reward = {
+			add_victory_points = {
+				province = 3249
+				value = 3
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+				    type = industrial_complex
+				    level = 2
+				    instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = CST_mil_ind_complex
+		icon = GFX_goal_Allagash_or_War
+		cost = 10.00
+		prerequisite = {
+			focus = CST_the_largest_church
+		}
+		x = 12
+		y = 7
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+				    type = arms_factory
+				    level = 2
+				    instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = CST_cult_of_personality
+		icon = GFX_focus_MON_State_Approved_Education
+		cost = 10.00
+		prerequisite = {
+			focus = CST_raid_the_den_of_hedonism
+		}
+		x = 14
+		y = 5
+		available = {
+			has_government = autocratic
+		}
+		completion_reward = {
+			add_stability = 0.15
+		}
+
+	}
+	focus = {
+		id = CST_mandatory_membership
+		icon = GFX_goal_MOL_fight_for
+		cost = 10.00
+		prerequisite = {
+			focus = CST_cult_of_personality
+		}
+		prerequisite = {
+			focus = CST_mil_ind_complex
+		}
+		x = 13
+		y = 8
+		completion_reward = {
+			add_stability = 0.05
+			add_war_support = 0.05
+			add_manpower = 2500
+		}
+
+	}
+	focus = {
+		id = CST_hail_xenu
+		icon = GFX_goal_CEO_Gang
+		cost = 10.00
+		prerequisite = {
+			focus = CST_mandatory_membership
+		}
+		x = 13
+		y = 9
+		completion_reward = {
+			set_stability = 1.0
+		}
+
+	}
+	focus = {
+		id = CST_tails_between_legs
+		icon = GFX_focus_Navajo_Raid
+		cost = 10.00
+		prerequisite = {
+			focus = CST_defeat_in_battle_hollywood
+		}
+		x = 6
+		y = 6
+		completion_reward = {
+			add_war_support = 0.05
+			#ADD LAND FORTS TO HOLLYWOOD BORDER! I AM UNABLE TO CHECK WHAT PROVINCES ARE ON THE BORDER AS OF RIGHT NOW!
+		}
+
+	}
+	focus = {
+		id = CST_the_fortress
+		icon = GFX_goal_Secure_the_border
+		cost = 10.00
+		prerequisite = {
+			focus = CST_tails_between_legs
+		}
+		x = 6
+		y = 7
+		completion_reward = {
+			every_owned_state = {
+			  add_building_construction = {
+			    type = bunker
+			    level = 1
+			    instant_build = yes
+			    province = {
+    			  all_provinces = yes
+   			 }
+  			}
+			}
+		}
+
+	}
+	focus = {
+		id = CST_round_two
+		icon = GFX_goal_Knock_Knock
+		cost = 10.00
+		prerequisite = {
+			focus = CST_human_wave
+			focus = CST_defeat_in_detail
+		}
+		prerequisite = {
+			focus = CST_pharoah_michael_i
+			focus = CST_hail_xenu
+		}
+		x = 8
+		y = 10
+		will_lead_to_war_with = HLY
+		completion_reward = {
+			add_country_leader_trait = warmonger
+			add_ideas = CST_merciless_cult
+			declare_war_on = {
+			    target = HLY
+			    type = annex_everything
+			}
+		}
+
+	}
+	focus = {
+		id = CST_appeal_antifa_remnant
+		icon = GFX_goal_antifa_Concessions
+		cost = 10.00
+		prerequisite = {
+			focus = CST_preparing_culture
+		}
+		x = 4
+		y = 6
+		completion_reward = {
+			add_stability = 0.10
+		}
+
+	}
+	focus = {
+		id = CST_wealth_appropriation
+		icon = GFX_goal_Sell_Pardons
+		cost = 10.00
+		prerequisite = {
+			focus = CST_appeal_antifa_remnant
+		}
+		x = 4
+		y = 7
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+				    type = industrial_complex
+				    level = 2
+				    instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = CST_increase_funding
+		icon = GFX_goal_More_Weapons
+		cost = 10.00
+		prerequisite = {
+			focus = CST_woo_army
+		}
+		x = 2
+		y = 7
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+				    type = arms_factory
+				    level = 2
+				    instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = CST_anarcho_monarchism
+		icon = GFX_goal_Hoppean
+		cost = 10.00
+		prerequisite = {
+			focus = CST_wealth_appropriation
+		}
+		prerequisite = {
+			focus = CST_increase_funding
+		}
+		x = 3
+		y = 8
+		completion_reward = {
+			set_stability = 1.0
+		}
+
+	}
+	focus = {
+		id = CST_pharoah_michael_i
+		icon = GFX_goal_Generic_Shintoism
+		cost = 10.00
+		prerequisite = {
+			focus = CST_anarcho_monarchism
+		}
+		x = 3
+		y = 9
+		completion_reward = {
+			add_country_leader_trait = CST_pharoah
+			hidden_effect = {
+				create_country_leader = {
+					name = "Ramesses XII"
+					picture = "gfx/leaders/PRA/aquino_pharoah.dds"
+					expire = "2060.1.1"
+					ideology = anarchism
+					traits = {
+						CST_pharoah
+					}
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = CST_pharoah_triumphant
+		icon = GFX_goal_Fronteir
+		cost = 2.00
+		prerequisite = {
+			focus = CST_round_two
+		}
+		prerequisite = {
+			focus = CST_pharoah_michael_i
+		}
+		mutually_exclusive = {
+			focus = CST_in_xenus_footsteps
+		}
+		x = 7
+		y = 11
+		completion_reward = {
+			set_cosmetic_tag = CST_egypt
+			add_political_power = 200
+		}
+
+	}
+	focus = {
+		id = CST_in_xenus_footsteps
+		icon = GFX_goal_Horizons
+		cost = 10.00
+		prerequisite = {
+			focus = CST_round_two
+		}
+		prerequisite = {
+			focus = CST_hail_xenu
+		}
+		mutually_exclusive = {
+			focus = CST_pharoah_triumphant
+		}
+		x = 9
+		y = 11
+		completion_reward = {
+			set_cosmetic_tag = CST_xenu
+			add_political_power = 200
+		}
+
+	}
+	focus = {
+		id = CST_beating_war_drums
+		icon = GFX_goal_war_drums
+		cost = 10.00
+		prerequisite = {
+			focus = CST_militarise_slaves
+			focus = CST_freedom_for_service
+			focus = CST_the_fortress
+		}
+		x = 9
+		y = 8
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = arms_factory
+				    level = 1
+				    instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = CST_train_the_men
+		icon = GFX_goal_Hunters
+		cost = 10.00
+		prerequisite = {
+			focus = CST_the_fortress
+			focus = CST_freedom_for_service
+			focus = CST_militarise_slaves
+		}
+		x = 7
+		y = 8
+		completion_reward = {
+			add_ideas = CST_initiation_rites
+		}
+
+	}
+	focus = {
+		id = CST_defeat_in_detail
+		icon = GFX_focus_MON_Small_Arms_Deliveries
+		cost = 10.00
+		prerequisite = {
+			focus = CST_train_the_men
+		}
+		prerequisite = {
+			focus = CST_beating_war_drums
+		}
+		mutually_exclusive = {
+			focus = CST_human_wave
+		}
+		x = 7
+		y = 9
+		completion_reward = {
+			add_ideas = CST_defeat_in_detail
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = arms_factory
+				    level = 1
+				    instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = CST_human_wave
+		icon = GFX_goal_MOL_all_sides
+		cost = 10.00
+		prerequisite = {
+			focus = CST_beating_war_drums
+		}
+		prerequisite = {
+			focus = CST_train_the_men
+		}
+		mutually_exclusive = {
+			focus = CST_defeat_in_detail
+		}
+		x = 9
+		y = 9
+		completion_reward = {
+			add_ideas = CST_human_wave
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = arms_factory
+				    level = 1
+				    instant_build = yes
+				}
+			}
+		}
+
+	}
+}
