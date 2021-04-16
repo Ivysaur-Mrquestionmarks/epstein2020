@@ -1,0 +1,292 @@
+focus_tree = {
+	id = texas_hornberger
+	country = {
+		factor = 0
+	}
+	default = no
+	focus = {
+		id = TEX_2_bright_future
+		icon = GFX_goal_unknown
+		cost = 1.00
+		x = 6
+		y = 0
+		completion_reward = {
+			add_stability = 0.10
+			if = {
+				limit = {
+					has_idea = TEX_true_neutrality
+				}
+				remove_ideas = TEX_true_neutrality
+			}
+			if = {
+				limit = {
+					has_idea = TEX_great_frost_1
+				}
+				remove_ideas = TEX_great_frost_1
+			}
+			if = {
+				limit = {
+					has_idea = TEX_great_frost_2
+				}
+				remove_ideas = TEX_great_frost_2
+			}
+			if = {
+				limit = {
+					has_idea = TEX_great_frost_3
+				}
+				remove_ideas = TEX_great_frost_3
+			}
+			if = {
+				limit = {
+					has_idea = TEX_great_frost_4
+				}
+				remove_ideas = TEX_great_frost_4
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_2_shit
+		icon = GFX_goal_unknown
+		cost = 1.00
+		prerequisite = {
+			focus = TEX_2_bright_future
+		}
+		x = 6
+		y = 1
+		completion_reward = {
+			add_political_power = 1
+		}
+
+	}
+	focus = {
+		id = TEX_2_fuck_fuck_fuck
+		icon = GFX_goal_unknown
+		cost = 1.00
+		prerequisite = {
+			focus = TEX_2_shit
+		}
+		x = 6
+		y = 2
+		completion_reward = {
+			add_political_power = 1
+		}
+
+	}
+	focus = {
+		id = TEX_stop_it
+		icon = GFX_goal_unknown
+		cost = 1.00
+		prerequisite = {
+			focus = TEX_2_fuck_fuck_fuck
+		}
+		x = 6
+		y = 3
+		completion_reward = {
+			add_political_power = 1
+		}
+
+	}
+	focus = {
+		id = TEX_god_fucking_dammit
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = TEX_stop_it
+		}
+		x = 6
+		y = 4
+		completion_reward = {
+			add_war_support = 0.10
+		}
+
+	}
+	focus = {
+		id = TEX_2_reclaim_south
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = TEX_god_fucking_dammit
+		}
+		x = 5
+		y = 5
+		will_lead_to_war_with = RED
+		completion_reward = {
+			declare_war_on = {
+			    target = RED
+			    type = annex_everything
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_picking_up_pieces
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = TEX_god_fucking_dammit
+		}
+		x = 7
+		y = 5
+		completion_reward = {
+			create_faction = texan_remnant_alliance
+			SAN = {
+				country_event = { id = alamo.13 hours = 1}
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_2_cruz_missiles
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_picking_up_pieces
+		}
+		mutually_exclusive = {
+			focus = TEX_2_bushs_boys
+		}
+		x = 6
+		y = 6
+		available = {
+			country_exists = CRU
+			CRU = {
+				has_war = no
+			}
+		}
+		will_lead_to_war_with = BSH
+		completion_reward = {
+			CRU = {
+				country_event = { id = alamo.13 hours = 1 }
+			}
+			declare_war_on = {
+			    target = BSH
+			    type = annex_everything
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_2_bushs_boys
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_picking_up_pieces
+		}
+		mutually_exclusive = {
+			focus = TEX_2_cruz_missiles
+		}
+		x = 8
+		y = 6
+		available = {
+			country_exists = BSH
+			BSH = {
+				has_war = no
+			}
+		}
+		will_lead_to_war_with = CRU
+		completion_reward = {
+			BSH = {
+				country_event = { id = alamo.13 hours = 1 }
+			}
+			declare_war_on = {
+			    target = CRU
+			    type = annex_everything
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_2_crenshaw
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_2_cruz_missiles
+			focus = TEX_2_bushs_boys
+		}
+		mutually_exclusive = {
+			focus = TEX_2_wrong_kind_of_anarchy
+		}
+		x = 7
+		y = 7
+		available = {
+			country_exists = CRN
+		}
+		completion_reward = {
+			CRN = {
+				country_event = { id = alamo.13 hours = 1 }
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_2_finish_fta
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_2_cruz_missiles
+			focus = TEX_2_bushs_boys
+		}
+		prerequisite = {
+			focus = TEX_2_reclaim_south
+		}
+		x = 5
+		y = 7
+		will_lead_to_war_with = FTA
+		completion_reward = {
+			declare_war_on = {
+			    target = FTA
+			    type = annex_everything
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_2_wrong_kind_of_anarchy
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_2_bushs_boys
+			focus = TEX_2_cruz_missiles
+		}
+		mutually_exclusive = {
+			focus = TEX_2_crenshaw
+		}
+		x = 9
+		y = 7
+		available = {
+			country_exists = BLA
+			NOT = {
+				country_exists = CRN
+			}
+		}
+		will_lead_to_war_with = BLA
+		completion_reward = {
+			declare_war_on = {
+			    target = BLA
+			    type = annex_everything
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_2_the_way_of_primo_de_rivera
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = TEX_2_finish_fta
+		}
+		x = 5
+		y = 8
+		available = {
+			country_exists = FAL
+		}
+		completion_reward = {
+			declare_war_on = {
+			    target = FAL
+			    type = annex_everything
+			}
+		}
+
+	}
+}
