@@ -179,3 +179,68 @@ CSA_CW = {
 	#restless assult, for kkk only
 
 }
+CSA_strikes = {
+	CSA_anti_terrorism_act = {
+		cost = 100
+
+		ai_will_do = {
+			base = 0
+		}
+		visible = {
+			has_country_flag = condemed_white_terrorism
+		}
+		complete_effect = {
+			add_to_variable = {
+				var = sexy_x
+				value = 25
+			}
+			clamp_variable = {
+				var = sexy_x
+				min = -200
+				max = 50
+			}
+			clr_country_flag = condemed_white_terrorism
+			custom_effect_tooltip = CSA_west_power_growth
+		}
+	}
+
+	CSA_crack_down_on_white_supremecist = {
+		cost = 130
+
+		ai_will_do = {
+			base = 0
+		}
+		visible = {
+			has_country_flag = army_crack_down
+		}
+		complete_effect = {
+			add_to_variable = {
+				var = sexy_x
+				value = 25
+			}
+			clamp_variable = {
+				var = sexy_x
+				min = -200
+				max = 50
+			}
+			modify_country_flag = {
+    				flag = army_crack_down
+    				value = 1
+			}
+			modify_country_flag = {
+    				flag = kkk_strike
+    				value = 1
+			}
+			if = { limit = {
+					has_country_flag = {
+    						flag = army_crack_down
+    						value = 3
+					}
+				}
+				clr_country_flag = army_crack_down
+			}
+			custom_effect_tooltip = CSA_west_power_growth
+			custom_effect_tooltip = CSA_angy_kkk
+		}
+	}
+}
