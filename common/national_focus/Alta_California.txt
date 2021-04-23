@@ -46,7 +46,7 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_war_support = 0.05
 		}
 	}
 	focus = {
@@ -61,13 +61,13 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_stability = 0.05
 		}
 	}
 	focus = {
 		id = Masses_of_Cavalry
 		icon = GFX_goal_Visigothic_Revival
-		x = 52
+		x = 58
 		y = 3
 		cost = 10
 		prerequisite = {
@@ -76,7 +76,80 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			division_template = {
+				name = "Gothic Horse-Riders"
+				is_locked = no
+				priority = 1
+				regiments = {
+					cavalry = { x = 0 y = 0 }
+					cavalry = { x = 0 y = 1 }
+					cavalry = { x = 0 y = 2 }
+					cavalry = { x = 1 y = 0 }
+					cavalry = { x = 1 y = 1 }
+					cavalry = { x = 1 y = 2 }
+				}
+				support = {
+					engineer = { x = 0 y = 0 }
+					military_police = { x = 0 y = 1 }
+					recon = { x = 0 y = 2 }
+				}
+			}
+			random_owned_controlled_state = {
+				limit = { ROOT = { has_full_control_of_state = PREV } }
+				create_unit = {
+					division = "name = \"Horde of Theodoric\" division_template = \"Gothic Horse-Riders\" start_experience_factor = 0.3" 
+					owner = ACF
+				}
+			}
+			random_owned_controlled_state = {
+				limit = { ROOT = { has_full_control_of_state = PREV } }
+				create_unit = {
+					division = "name = \"Horde of Alaric II\" division_template = \"Gothic Horse-Riders\" start_experience_factor = 0.6" 
+					owner = ACF
+				}
+			}
+			random_owned_controlled_state = {
+				limit = { ROOT = { has_full_control_of_state = PREV } }
+				create_unit = {
+					division = "name = \"Horde of Alaric I\" division_template = \"Gothic Horse-Riders\" start_experience_factor = 0.2" 
+					owner = ACF
+				}
+			}
+			random_owned_controlled_state = {
+				limit = { ROOT = { has_full_control_of_state = PREV } }
+				create_unit = {
+					division = "name = \"Destroyers of Rome\" division_template = \"Gothic Horse-Riders\" start_experience_factor = 0.7" 
+					owner = ACF
+				}
+			}
+			random_owned_controlled_state = {
+				limit = { ROOT = { has_full_control_of_state = PREV } }
+				create_unit = {
+					division = "name = \"Children of Teiws\" division_template = \"Gothic Horse-Riders\" start_experience_factor = 0.5" 
+					owner = ACF
+				}
+			}
+			random_owned_controlled_state = {
+				limit = { ROOT = { has_full_control_of_state = PREV } }
+				create_unit = {
+					division = "name = \"Horde of Vitiges\" division_template = \"Gothic Horse-Riders\" start_experience_factor = 0.6" 
+					owner = ACF
+				}
+			}
+			random_owned_controlled_state = {
+				limit = { ROOT = { has_full_control_of_state = PREV } }
+				create_unit = {
+					division = "name = \"Horde of Roderic\" division_template = \"Gothic Horse-Riders\" start_experience_factor = 0.5" 
+					owner = ACF
+				}
+			}
+			random_owned_controlled_state = {
+				limit = { ROOT = { has_full_control_of_state = PREV } }
+				create_unit = {
+					division = "name = \"Horde of Wamba\" division_template = \"Gothic Horse-Riders\" start_experience_factor = 0.4" 
+					owner = ACF
+				}
+			}
 		}
 	}
 	focus = {
@@ -91,7 +164,11 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_tech_bonus = {
+			    bonus = 0.5
+			    uses = 1
+			    category = infantry_weapons
+			}
 		}
 	}
 	focus = {
@@ -127,7 +204,8 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_ideas = Raiding_the_Neighbors
+			add_manpower = 16058
 		}
 	}
 	focus = {
@@ -142,7 +220,11 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_manpower = -842
+			add_popularity = {
+				ideology = libertarian_left
+				popularity = -0.5
+			}
 		}
 	}
 	focus = {
@@ -157,7 +239,7 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_manpower = -982
 		}
 	}
 	focus = {
@@ -172,7 +254,32 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_ideas = Destroyers_of_Rome
+		}
+	}
+	focus = {
+		id = Gothic_Fury
+		icon = GFX_goal_Visigothic_Revival
+		x = 50
+		y = 5
+		cost = 10
+		prerequisite = {
+			focus = Topple_the_Republics
+		}
+		prerequisite = {
+			focus = Reiks_Alaric_III
+		}
+		prerequisite = {
+			focus = Burn_and_Pillage_and_Murder
+		}
+		available_if_capitulated = yes
+
+		completion_reward = {
+			swap_ideas = { 
+				remove_idea = Destroyers_of_Rome
+				add_idea = The_Gothic_Fury
+			}
+			add_stability = 0.05
 		}
 	}
 	focus = {
@@ -187,7 +294,22 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			IF = {
+				Limit = {
+					CAS = {
+						has_completed_focus = CAS_odinist_moment
+					}
+				}
+				CAS = {
+					give_guarantee = ACF
+				}
+				give_guarantee = CAS
+				else = {
+					add_political_power = -25
+					add_stability = 0.05
+					add_manpower = 8689
+				}
+			}
 		}
 	}
 	focus = {
@@ -202,7 +324,7 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_ideas = Paganism_Enforced
 		}
 	}
 	focus = {
@@ -217,7 +339,8 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_manpower = -1450
+			add_stability = -0.10
 		}
 	}
 	focus = {
@@ -261,7 +384,7 @@ focus_tree = {
 	focus = {
 		id = Ode_to_Teiws
 		icon = GFX_goal_Visigothic_Revival
-		x = 44
+		x = 46
 		y = 2
 		cost = 10
 		prerequisite = {
@@ -270,13 +393,14 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_war_support = 0.15
+			add_ideas = Sacrifice_to_Teiws
 		}
 	}
 	focus = {
 		id = Destroy_Modernity
 		icon = GFX_goal_Visigothic_Revival
-		x = 44
+		x = 46
 		y = 3
 		cost = 10
 		prerequisite = {
@@ -285,7 +409,15 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_popularity = {
+				ideology = democrat
+				popularity = -0.5
+			}
+			add_popularity = {
+				ideology = republican
+				popularity = -0.5
+			}
+			add_manpower = -3890
 		}
 	}
 	focus = {
@@ -300,7 +432,7 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_stability = 0.10
 		}
 	}
 	focus = {
@@ -318,7 +450,8 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_stability = 0.05
+			add_ideas = NeoGothic
 		}
 	}
 	focus = {
@@ -336,7 +469,8 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_ideas = Patchwork_Language
+			add_stability = 0.07
 		}
 	}
 	focus = {
@@ -352,7 +486,8 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_political_power = 50
+			add_stability = 0.05
 		}
 	}
 	focus = {
