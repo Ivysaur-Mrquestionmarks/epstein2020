@@ -24,7 +24,7 @@ GEN_Political_Allignment = {
 		days_remove = 120
 
 		modifier = {
-			republican_drift = 0.02
+			republican_drift = 0.05
  			political_power_gain = -0.2
 		}
 		
@@ -62,7 +62,7 @@ GEN_Political_Allignment = {
 		days_remove = 120
 
 		modifier = {
-			democrat_drift = 0.02
+			democrat_drift = 0.05
  			political_power_gain = -0.2
 		}
 		
@@ -100,7 +100,7 @@ GEN_Political_Allignment = {
 		days_remove = 120
 
 		modifier = {
-			libertarian_right_drift = 0.02
+			libertarian_right_drift = 0.05
  			political_power_gain = -0.2
 		}
 		
@@ -137,7 +137,7 @@ GEN_Political_Allignment = {
 		days_remove = 120
 
 		modifier = {
-			libertarian_left_drift = 0.02
+			libertarian_left_drift = 0.05
  			political_power_gain = -0.2
 		}
 		
@@ -173,7 +173,7 @@ GEN_Political_Allignment = {
 		days_remove = 120
 
 		modifier = {
-			autocratic_drift = 0.02
+			autocratic_drift = 0.05
  			political_power_gain = -0.2
 		}
 		
@@ -212,7 +212,7 @@ GEN_Political_Allignment = {
 		days_remove = 120
 
 		modifier = {
-			authoritarian_left_drift = 0.02
+			authoritarian_left_drift = 0.05
  			political_power_gain = -0.2
 		}
 		
@@ -236,12 +236,258 @@ GEN_Political_Allignment = {
 		
 		fire_only_once = no
 		
-		cost = 25
+		cost = 75
 
 		days_remove = 50
 
 		complete_effect = {
 			add_stability = 0.05
+			hidden_effect = {
+			
+			}
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	Operation_Paperclip_2 = {
+
+    	icon = generic_research
+
+        allowed = {
+            OR = {
+                original_tag = FRA
+                original_tag = USA
+                original_tag = ENG
+                original_tag = FFR
+                original_tag = TEX
+            }
+		}
+
+		visible = {
+            NOT = { has_government = authoritarian_left }
+            NOT = { has_government = autocratic }
+        }
+        cost = 100
+        fire_only_once = yes
+        days_remove = -1
+
+        available = {
+            CSA = { has_government = autocratic } 
+        }
+
+        modifier = {
+            research_speed_factor = 0.05
+            stability_factor = -0.05
+        }
+        ai_will_do = {
+			factor = 1
+		}
+    }
+}
+GEN_Militaristic_Experience = {
+	GEN_Create_A_Naval_Branch = {
+
+		icon = generic_naval
+
+		visible = {
+			is_major = no
+		}
+		
+		fire_only_once = yes
+		
+		cost = 75
+
+		days_remove = 35
+
+		complete_effect = {
+			navy_experience = 50
+			hidden_effect = {
+			
+			}
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	GEN_Centralize_our_Army = {
+
+		icon = military_operation
+
+		visible = {
+			NOT = {
+				OR = {
+					has_government = libertarian_right
+					has_government = libertarian_left
+				}
+			}
+			is_major = no
+		}
+		
+		fire_only_once = yes
+		
+		cost = 75
+
+		days_remove = 35
+
+		complete_effect = {
+			army_experience = 50
+			hidden_effect = {
+			
+			}
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	GEN_Decentralize_our_Army = {
+
+		icon = military_operation
+
+		visible = {
+			OR = {
+				has_government = libertarian_right
+				has_government = libertarian_left
+			}
+			is_major = no
+		}
+		
+		fire_only_once = yes
+		
+		cost = 120
+
+		days_remove = 60
+
+		complete_effect = {
+			army_experience = 15
+			hidden_effect = {
+			
+			}
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	GEN_Create_A_Air_Force_Branch = {
+
+		icon = generic_air
+
+		visible = {
+			is_major = no
+		}
+		
+		fire_only_once = yes
+		
+		cost = 75
+
+		days_remove = 35
+
+		complete_effect = {
+			air_experience = 50
+			hidden_effect = {
+			
+			}
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}
+GEN_Find_Weapons = {
+	GEN_Host_Gun_Buyback_Programs = {
+		icon = generic_decision
+
+		visible = {
+			OR = {
+				has_government = libertarian_left
+				has_government = democrat
+			}
+		}
+		
+		fire_only_once = no
+		
+		cost = 50
+
+		days_remove = 100
+
+		complete_effect = {
+			add_stability = -0.05
+			add_equipment_to_stockpile = {
+    			type = infantry_equipment
+    			amount = 500
+   				producer = ROOT
+			}
+			hidden_effect = {
+			
+			}
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	GEN_Encourage_Gun_Ownership = {
+		icon = generic_assassination
+
+		visible = {
+			OR = {
+				has_government = libertarian_right
+				has_government = republican
+			}
+		}
+		
+		fire_only_once = no
+		
+		cost = 35
+
+		days_remove = 75
+
+		complete_effect = {
+			add_war_support = 0.05
+			add_equipment_to_stockpile = {
+    			type = infantry_equipment
+    			amount = 200
+   				producer = ROOT
+			}
+			add_manpower = 200
+			hidden_effect = {
+			
+			}
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	GEN_Seize_Civilian_Guns = {
+		icon = generic_civil_support
+
+		visible = {
+			OR = {
+				has_government = autocratic
+				has_government = authoritarian_left
+			}
+		}
+		
+		fire_only_once = no
+		
+		cost = 75
+
+		days_remove = 35
+
+		complete_effect = {
+			add_stability = -0.1
+			add_equipment_to_stockpile = {
+    			type = infantry_equipment
+    			amount = 1000
+   				producer = ROOT
+			}
+			add_manpower = -350
 			hidden_effect = {
 			
 			}
