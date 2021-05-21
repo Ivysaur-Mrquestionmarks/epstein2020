@@ -131,6 +131,7 @@ focus_tree = {
 		completion_reward = {
 		add_offsite_building = { type = arms_factory level = 6 }
 		add_offsite_building = { type = industrial_complex level = 4 }
+		add_ideas = UTA_Seize_Factories
 		}
 	}
 	focus = {
@@ -690,7 +691,7 @@ focus_tree = {
 			focus = UTA_National_Guard_Coup
 		}
 		relative_position_id = UTA_National_Guard_Coup
-		cost = 10
+		cost = 7
 		ai_will_do = {
 			factor = 1
 		}
@@ -704,7 +705,10 @@ focus_tree = {
 		continue_if_invalid = no
 		available_if_capitulated = yes
 		completion_reward = {
-		add_political_power = 250
+		add_popularity = {
+		    ideology = autocratic
+		    popularity = 1.00
+		}
 		}
 	}
 	focus = {
@@ -720,7 +724,7 @@ focus_tree = {
 			focus = UTA_Preserve_Autocracy
 		}
 		relative_position_id = UTA_Preserve_Autocracy
-		cost = 10
+		cost = 7
 		ai_will_do = {
 			factor = 1
 		}
@@ -741,7 +745,7 @@ focus_tree = {
 		id = UTA_The_Butcher
 		icon = GFX_goal_generic_propaganda
 		mutually_exclusive = { focus = UTA_The_General }
-		x = 1
+		x = 3
 		y = 1
 		offset = {
 			x = 0
@@ -751,6 +755,47 @@ focus_tree = {
 			focus = UTA_A_Dictorial_Regime
 		}
 		relative_position_id = UTA_A_Dictorial_Regime
+		cost = 7
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+		}
+		
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		completion_reward = {
+		add_ideas = UTA_the_Butcher
+		UTA = {	country_event = { id = utah.11 hours = 2 } }
+		create_field_marshal = {
+	    name = "Jefferson S. Burton"
+	    portrait_path="gfx/leaders/UTA/burton.dds" 
+	    traits={ old_guard career_officer infantry_officer infantry_expert infantry_leader trickster desert_fox trait_mountaineer} 
+	    skill = 4
+	    attack_skill = 4
+	    defense_skill = 3
+	    planning_skill = 5
+	    logistics_skill = 4
+       }
+		}
+	}
+	focus = {
+		id = UTA_four_month_plan
+		icon = GFX_goal_generic_propaganda
+		x = 0
+		y = 1
+		offset = {
+			x = 0
+			y = 0
+		}
+		prerequisite = { 
+			focus = UTA_The_Butcher
+		}
+		relative_position_id = UTA_The_Butcher
 		cost = 10
 		ai_will_do = {
 			factor = 1
@@ -765,13 +810,650 @@ focus_tree = {
 		continue_if_invalid = no
 		available_if_capitulated = yes
 		completion_reward = {
+		    random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 3
+						include_locked = yes
+					}
+					is_core_of = ROOT
+				}
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = industrial_complex
+					level = 3
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = infrastructure
+						size > 5
+						include_locked = yes
+					}
+					is_core_of = ROOT
+				}
+				add_extra_state_shared_building_slots = 5
+				add_building_construction = {
+					type = industrial_complex
+					level = 5
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = infrastructure
+						size > 7
+						include_locked = yes
+					}
+					is_core_of = ROOT
+				}
+				add_extra_state_shared_building_slots = 7
+				add_building_construction = {
+					type = industrial_complex
+					level = 7
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = UTA_rejuvinate_the_economy
+		icon = GFX_goal_generic_propaganda
+		x = 0
+		y = 1
+		offset = {
+			x = 0
+			y = 0
+		}
+		prerequisite = { 
+			focus = UTA_four_month_plan
+		}
+		relative_position_id = UTA_four_month_plan
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+		}
+		
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		completion_reward = {
+		add_ideas = UTA_economic_rejuvination
+		}
+	}
+	focus = {
+		id = UTA_Ramp_up_Civilian_Economy
+		icon = GFX_goal_generic_propaganda
+		x = 0
+		y = 1
+		offset = {
+			x = 0
+			y = 0
+		}
+		prerequisite = { 
+			focus = UTA_rejuvinate_the_economy
+		}
+		relative_position_id = UTA_rejuvinate_the_economy
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+		}
+		
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		completion_reward = {
+		add_ideas = UTA_Civ_Economy
+		 random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 5
+						include_locked = yes
+					}
+					is_core_of = ROOT
+				}
+				add_extra_state_shared_building_slots = 5
+				add_building_construction = {
+					type = industrial_complex
+					level = 5
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = UTA_Return_Company_Factories
+		icon = GFX_goal_generic_propaganda
+		x = 0
+		y = 1
+		offset = {
+			x = 0
+			y = 0
+		}
+		prerequisite = { 
+			focus = UTA_Ramp_up_Civilian_Economy
+		}
+		relative_position_id = UTA_Ramp_up_Civilian_Economy
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+		}
+		
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		completion_reward = {
+		add_political_power = -67
+		add_ideas = UTA_Return_Factories
+		}
+	}
+	focus = {
+		id = UTA_Attract_Foreign_Investors
+		icon = GFX_goal_generic_propaganda
+		x = 0
+		y = 1
+		offset = {
+			x = 0
+			y = 0
+		}
+		prerequisite = { 
+			focus = UTA_Return_Company_Factories
+		}
+		relative_position_id = UTA_Return_Company_Factories
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+		}
+		
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		completion_reward = {
+		add_offsite_building = { type = industrial_complex level = 3 }
+		}
+	}
+	focus = {
+		id = UTA_American_Mussolini
+		icon = GFX_goal_generic_propaganda
+		x = 2
+		y = 1
+		offset = {
+			x = 0
+			y = 0
+		}
+		prerequisite = { 
+			focus = UTA_The_Butcher
+		}
+		relative_position_id = UTA_The_Butcher
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+		}
+		
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		completion_reward = {
+		add_political_power = 325
+		add_command_power = 55
+		}
+	}	
+	focus = {
+		id = UTA_Propaganda_Efforts
+		icon = GFX_goal_generic_propaganda
+		x = 0
+		y = 1
+		offset = {
+			x = 0
+			y = 0
+		}
+		prerequisite = { 
+			focus = UTA_American_Mussolini
+		}
+		relative_position_id = UTA_American_Mussolini
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+		}
+		
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		completion_reward = {
+		add_war_support = 0.15
+		}
+	}
+	focus = {
+		id = UTA_indoctrinate_the_youth
+		icon = GFX_goal_generic_propaganda
+		x = 0
+		y = 1
+		offset = {
+			x = 0
+			y = 0
+		}
+		prerequisite = { 
+			focus = UTA_Propaganda_Efforts
+		}
+		relative_position_id = UTA_Propaganda_Efforts
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+		}
+		
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		completion_reward = {
+		add_ideas = UTA_youth
+		}
+	}
+    focus = {
+		id = UTA_Rally_the_people
+		icon = GFX_goal_generic_propaganda
+		x = 0
+		y = 1
+		offset = {
+			x = 0
+			y = 0
+		}
+		prerequisite = { 
+			focus = UTA_indoctrinate_the_youth
+		}
+		relative_position_id = UTA_indoctrinate_the_youth
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+		}
+		
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		completion_reward = {
+		add_ideas = UTA_rally_people
+		add_manpower = 100000
+		}
+	}	
+	focus = {
+		id = UTA_Cult_of_Personality
+		icon = GFX_goal_generic_propaganda
+		x = 0
+		y = 1
+		offset = {
+			x = 0
+			y = 0
+		}
+		prerequisite = { 
+			focus = UTA_Rally_the_people
+		}
+		relative_position_id = UTA_Rally_the_people
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+		}
+		
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		completion_reward = {
+		add_ideas = UTA_Cult_of_Personality
+		}
+	}	
+	focus = {
+		id = UTA_Persecute_the_Mormons
+		icon = GFX_goal_generic_propaganda
+		x = -2
+		y = 1
+		offset = {
+			x = 0
+			y = 0
+		}
+		prerequisite = { 
+			focus = UTA_The_Butcher
+		}
+		relative_position_id = UTA_The_Butcher
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+		}
+		
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		completion_reward = {
+		add_stability = -0.25
+		add_political_power = -55
+		}
+	}
+	focus = {
+		id = UTA_Put_down_Resistance
+		icon = GFX_goal_generic_propaganda
+		x = 0
+		y = 1
+		offset = {
+			x = 0
+			y = 0
+		}
+		prerequisite = { 
+			focus = UTA_Persecute_the_Mormons
+		}
+		relative_position_id = UTA_Persecute_the_Mormons
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+		}
+		
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		completion_reward = {
+		add_ideas = UTA_Put_down_Resistance
+		add_political_power = -55
+		}
+	}
+	focus = {
+		id = UTA_Organize_anti_mormon_militias
+		icon = GFX_goal_generic_propaganda
+		x = 0
+		y = 1
+		offset = {
+			x = 0
+			y = 0
+		}
+		prerequisite = { 
+			focus = UTA_Put_down_Resistance
+		}
+		relative_position_id = UTA_Put_down_Resistance
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+		}
+		
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		completion_reward = {
+		division_template = {
+		    name = "Anti Mormon Militia"
+		#    division_names_group =
+			regiments = {
+				infantry = { x = 0 y = 0 }
+				infantry = { x = 0 y = 1 }
+				infantry = { x = 0 y = 2 }
+				infantry = { x = 0 y = 3 }
+				infantry = { x = 0 y = 4 }
+				infantry = { x = 0 y = 5 }
+				infantry = { x = 1 y = 1 }
+				infantry = { x = 2 y = 1 }
+				infantry = { x = 2 y = 2 }
+			}
+			support = { 
+		    engineer = { x = 0 y = 0 } 
+			recon = { x = 0 y = 1 }
+	        } 
+		}
+		419 = {
+			create_unit = {
+				division = "name = \"Cedar Militia\" division_template = \"Anti Mormon Militia\" start_experience_factor = 0.2 start_equipment_factor = 0.3" 
+				owner = UTA
+			}
+			create_unit = {
+				division = "name = \"Williston Militia\" division_template = \"Anti Mormon Militia\" start_experience_factor = 0.2 start_equipment_factor = 0.3" 
+				owner = UTA
+			}
+			create_unit = {
+				division = "name = \"Clearfield Militia\" division_template = \"Anti Mormon Militia\" start_experience_factor = 0.2 start_equipment_factor = 0.3" 
+				owner = UTA
+			}
+			create_unit = {
+				division = "name = \"Alphin Militia\" division_template = \"Anti Mormon Militia\" start_experience_factor = 0.2 start_equipment_factor = 0.3" 
+				owner = UTA
+			}
+			create_unit = {
+				division = "name = \"Alta Militia\" division_template = \"Anti Mormon Militia\" start_experience_factor = 0.2 start_equipment_factor = 0.3" 
+				owner = UTA
+			}
+		}
+		}
+	}
+	focus = {
+		id = UTA_forced_labor
+		icon = GFX_goal_generic_propaganda
+		x = 0
+		y = 1
+		offset = {
+			x = 0
+			y = 0
+		}
+		prerequisite = { 
+			focus = UTA_Organize_anti_mormon_militias
+		}
+		relative_position_id = UTA_Organize_anti_mormon_militias
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+		}
+		
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		completion_reward = {
+		add_ideas = UTA_forced_labor
+		}
+	}
+	focus = {
+		id = UTA_deport_mormon_nationalists
+		icon = GFX_goal_generic_propaganda
+		x = 0
+		y = 1
+		offset = {
+			x = 0
+			y = 0
+		}
+		prerequisite = { 
+			focus = UTA_forced_labor
+		}
+		relative_position_id = UTA_forced_labor
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+		}
+		
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		completion_reward = {
+		add_ideas = UTA_deport_mormons
+		add_stability = 0.12
+		}
+	}
+	focus = {
+		id = UTA_Our_Own_identity
+		icon = GFX_goal_generic_propaganda
+		x = -2
+		y = 1
+		offset = {
+			x = 0
+			y = 0
+		}
+		prerequisite = { 
+			focus = UTA_Cult_of_Personality
+		}
+		prerequisite = { 
+			focus = UTA_deport_mormon_nationalists
+		}
+		prerequisite = { 
+			focus = UTA_Attract_Foreign_Investors
+		}
+		relative_position_id = UTA_Cult_of_Personality
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+		}
+		
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		completion_reward = {
+		hidden_effect = {
+		remove_ideas = UTA_deport_mormons
+		}
+		add_political_power = 500
+		}
+	}
+	focus = {
+		id = UTA_Attack_WCMZ
+		icon = GFX_goal_generic_propaganda
+		x = -1
+		y = 1
+		offset = {
+			x = 0
+			y = 0
+		}
+		prerequisite = { 
+			focus = UTA_Our_Own_identity
+		}
+		relative_position_id = UTA_Our_Own_identity
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+		}
+		
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		completion_reward = {
+		create_wargoal = {
+        type = annex_everything
+        target = IDA
+		expire = 0
+        }
+		}
+	}
+	focus = {
+		id = UTA_Crush_the_Communists
+		icon = GFX_goal_generic_propaganda
+		x = 1
+		y = 1
+		offset = {
+			x = 0
+			y = 0
+		}
+		prerequisite = { 
+			focus = UTA_Our_Own_identity
+		}
+		relative_position_id = UTA_Our_Own_identity
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+		}
+		
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		completion_reward = {
+		create_wargoal = {
+		target = PRA
+		type = annex_everything
+		expire = 0
+		}
 		}
 	}
 	focus = {
 		id = UTA_The_General
 		icon = GFX_goal_generic_propaganda
 		mutually_exclusive = { focus = UTA_The_Butcher }
-		x = -1
+		x = -3
 		y = 1
 		offset = {
 			x = 0
@@ -781,7 +1463,7 @@ focus_tree = {
 			focus = UTA_A_Dictorial_Regime
 		}
 		relative_position_id = UTA_A_Dictorial_Regime
-		cost = 10
+		cost = 7
 		ai_will_do = {
 			factor = 1
 		}
@@ -796,6 +1478,7 @@ focus_tree = {
 		available_if_capitulated = yes
 		completion_reward = {
 		add_ideas = UTA_General
+		UTA = {	country_event = { id = utah.10 hours = 2 } }
 		}
 	}
 }
