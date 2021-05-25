@@ -1,0 +1,50 @@
+add_namespace = biden
+
+#Biden retires/dies
+country_event = {
+	id = biden.1
+	title = biden.1.t
+	desc = biden.1.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			clr_country_flag = FRA_biden_getting_sickly
+			clear_variable = FRA_biden_sickness_factor_var
+			clear_variable = FRA_biden_health_bar
+		}
+	}
+	option = {
+		name = biden.1.a
+		create_country_leader = {
+			name = "Kamala Harris"
+			picture = "gfx/leaders/FRA/kamala.dds"
+			expire = "2060.1.1"
+			ideology = neoliberal
+			female = yes
+			traits = {
+				###
+			}
+		}
+	}
+}
+#biden's sickness begins
+country_event = {
+	id = biden.2
+	title = biden.2.t
+	desc = biden.2.d
+	#picture =
+	trigger = {
+		tag = FRA
+		has_country_leader = { name = "Joe Biden" ruling_only = yes }
+		date > 2022.02.01
+	}
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = { set_country_flag = FRA_biden_getting_sickly }
+	}
+	option = {
+		name = biden.2.a
+	}
+}
