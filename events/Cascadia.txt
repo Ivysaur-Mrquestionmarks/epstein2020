@@ -251,3 +251,43 @@ country_event = {
 		}
 	}
 }
+#the Cascadian Integration Authority
+country_event = {
+	id = cascadia.9
+	title = cascadia.9.t
+	desc = cascadia.9.d
+	picture = event_cascadia_01
+	is_triggered_only = yes
+	fire_only_once = yes
+	#accept
+	option = {
+		name = cascadia.9.a
+		ai_chance = {
+			factor = 100
+		}
+		CAS = { set_cosmetic_tag = CAS_integration_authority }
+		if = {
+			limit = {
+				OR = {
+					has_dlc = "Together for Victory"
+					has_dlc = "Man the Guns"
+				}
+				set_autonomy = {
+					target = CAS
+					autonomous_state = autonomy_colony
+					freedom_level = 0.6
+				}
+			else = {
+				puppet = CAS
+			}
+		}
+	}
+	#reject
+	option = {
+		name = cascadia.9.b
+		ai_chance = {
+			factor = 0
+		}
+		add_political_power = -100
+	}
+}
