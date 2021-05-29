@@ -498,6 +498,143 @@ GEN_Find_Weapons = {
 		}
 	}
 }
+GEN_Hire_Mercs = {
+#	GEN_Hire_Academi = {
+#		icon =
+#	}
+#	GEN_Hire_Defion = {
+#		icon =
+#	}
+#	GEN_Hire_Aegis = {
+#		icon =
+#	}
+#	GEN_Hire_Canopy = {
+#		icon =
+#	}
+#	GEN_Hire_G4S = {
+#		icon =
+#	}
+	GEN_Hire_Wagner = {
+		icon = generic_assassination
+		cost = 125
+		is_good = yes
+		fire_only_once = no
+		days_remove = 45
+		available = { 
+			num_of_civilian_factories > 3
+			NOT = {
+				OR = {
+					has_idea = G4S
+					has_idea = Canopy
+					has_idea = Aegis
+					has_idea = Defion
+					has_idea = Academi
+					has_idea = Wagner
+				}
+			}
+		}
+		visible = {
+			is_major = no
+		}
+		modifier = {
+			civilian_factory_use = 2
+		}
+		complete_effect = {
+			division_template = {
+				name = "Wagner Group"
+				is_locked = yes
+				priority = 1
+				regiments = {
+					motorized = { x = 0 y = 0 }
+					motorized = { x = 0 y = 1 }
+					motorized = { x = 0 y = 2 }
+					motorized = { x = 0 y = 3 }
+					motorized = { x = 0 y = 4 }
+
+					light_armor = { x = 0 y = 0 }
+					light_armor = { x = 0 y = 1 }
+					light_armor = { x = 0 y = 2 }
+					light_armor = { x = 0 y = 3 }
+					light_armor = { x = 0 y = 4 }
+			
+				}
+				support = {
+					artillery = { x = 0 y = 0 }
+					engineer = { x = 0 y = 1 }
+					mot_recon = { x = 0 y = 2 }
+				}
+			}
+			random_owned_controlled_state = {
+				limit = { 
+					ROOT = { has_full_control_of_state = PREV }  
+					is_capital = yes
+				}
+				else = {
+					ROOT = { has_full_control_of_state = PREV }
+				}
+				create_unit = {
+					division = "name = \"1st Wagner Group\" division_template = \"Wagner Group\" start_experience_factor = 0.8 start_equipment_factor = 1.0" 
+					owner = ROOT
+				}
+				create_unit = {
+					division = "name = \"2nd Wagner Group\" division_template = \"Wagner Group\" start_experience_factor = 0.8 start_equipment_factor = 1.0" 
+					owner = ROOT
+				}
+				create_unit = {
+					division = "name = \"3rd Wagner Group\" division_template = \"Wagner Group\" start_experience_factor = 0.8 start_equipment_factor = 1.0" 
+					owner = ROOT
+				}
+				create_unit = {
+					division = "name = \"4th Wagner Group\" division_template = \"Wagner Group\" start_experience_factor = 0.8 start_equipment_factor = 1.0" 
+					owner = ROOT
+				}
+				create_unit = {
+					division = "name = \"5th Wagner Group\" division_template = \"Wagner Group\" start_experience_factor = 0.8 start_equipment_factor = 1.0" 
+					owner = ROOT
+				}
+				create_unit = {
+					division = "name = \"6th Wagner Group\" division_template = \"Wagner Group\" start_experience_factor = 0.8 start_equipment_factor = 1.0" 
+					owner = ROOT
+				}
+			}
+			WAG = {
+				random_unit_leader = {
+					limit = {
+						has_trait = wagner_group_trait
+					}
+					set_nationality = ROOT
+				}
+			}
+			add_ideas = Wagner
+			add_equipment_to_stockpile = {
+    			type = mechanized_equipment_1
+    			amount = 2500
+    			producer = ROOT
+			}
+			add_equipment_to_stockpile = {
+    			type = light_tank_equipment_2
+    			amount = 2500
+    			producer = ROOT
+			}
+			add_equipment_to_stockpile = {
+    			type = infantry_equipment
+    			amount = 500
+    			producer = ROOT
+			}
+			add_equipment_to_stockpile = {
+    			type = support_equipment
+    			amount = 500
+    			producer = ROOT
+			}
+			add_equipment_to_stockpile = {
+    			type = artillery_equipment_2
+    			amount = 500
+    			producer = ROOT
+			}
+			country_event = { id = Mercs.1 days = 365 } 
+		}
+	}
+}
 Northern_Expansion = {
 
 	Take_Oklahoma = {

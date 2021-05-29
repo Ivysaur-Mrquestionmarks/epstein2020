@@ -15,7 +15,10 @@ focus_tree = {
 		x = 50
 		y = 0
 		cost = 10
-
+		mutually_exclusive = {
+			focus = Reconciliation
+			focus = Sons_of_Guadaloupe 
+		}
 		available_if_capitulated = yes
 
 		completion_reward = {
@@ -438,10 +441,6 @@ focus_tree = {
 			    id = 5588
 			    name = "Niujis Theodoro"
 			}
-			add_victory_points = {
-				province = 5588
-				value = 10
-			}
 			set_province_name = {
 			    id = 5749
 			    name = "Alaricia"
@@ -452,6 +451,10 @@ focus_tree = {
 			}
 			459 = {
 				set_state_name = "Gothia"
+			}
+			add_victory_points = {
+				province = 5588
+				value = 10
 			}
 		}
 	}
@@ -570,10 +573,21 @@ focus_tree = {
 		x = 30
 		y = 0
 		cost = 10
+		mutually_exclusive = {
+			focus = Visigothic_Kingdom
+			focus = Reconciliation
+		}
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			set_politics = {
+				ruling_party = autocratic
+			}
+			add_popularity = {
+				ideology = autocratic
+				popularity = 0.12
+			}
+			add_stability = -0.1
 		}
 	}
 	focus = {
@@ -588,7 +602,51 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			division_template = {
+				name = "Mexican Volunteers"
+				is_locked = yes
+				priority = 1
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+					infantry = { x = 1 y = 2 }
+				}
+				support = {
+					engineer = { x = 0 y = 0 }
+					military_police = { x = 0 y = 1 }
+					recon = { x = 0 y = 2 }
+				}
+			}
+			random_owned_controlled_state = {
+				limit = { ROOT = { has_full_control_of_state = PREV } }
+				create_unit = {
+					division = "name = \"Abascal Division\" division_template = \"Mexican Volunteers\" start_experience_factor = 0.3" 
+					owner = ACF
+				}
+				create_unit = {
+					division = "name = \"Calles Division\" division_template = \"Mexican Volunteers\" start_experience_factor = 0.5" 
+					owner = ACF
+				}
+				create_unit = {
+					division = "name = \"Cedillo Division\" division_template = \"Mexican Volunteers\" start_experience_factor = 0.4" 
+					owner = ACF
+				}
+				create_unit = {
+					division = "name = \"Guízar Division\" division_template = \"Mexican Volunteers\" start_experience_factor = 0.4" 
+					owner = ACF
+				}
+				create_unit = {
+					division = "name = \"Sons of Guadaloupe Division\" division_template = \"Mexican Volunteers\" start_experience_factor = 0.6" 
+					owner = ACF
+				}
+				create_unit = {
+					division = "name = \"Daughters of Guadaloupe Division\" division_template = \"Mexican Volunteers\" start_experience_factor = 0.5" 
+					owner = ACF
+				}
+			}
 		}
 	}
 	focus = {
@@ -603,7 +661,7 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_manpower = 12672
 		}
 	}
 	focus = {
@@ -618,7 +676,7 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_war_support = 0.07
 		}
 	}
 	focus = {
@@ -642,7 +700,18 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			retire_country_leader = yes
+			create_country_leader = {
+				name = "Saul Luna Jaimes"
+				picture = "gfx/leaders/PRA/Saúl_Luna_Jaimes.tga"
+				expire = "2060.1.1"
+				ideology = despotism
+				traits = {
+					trait_terrifying_presence
+
+				}
+			}
+			set_cosmetic_tag = Greater_Mexican_Republic
 		}
 	}
 	focus = {
@@ -666,7 +735,8 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			set_cosmetic_tag = The_First_American_Mexican_Empire
+			add_country_leader_trait = A_New_Mexican_Emperor
 		}
 	}
 	focus = {
@@ -681,7 +751,7 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			
+			add_country_leader_trait = American_Cedillo
 		}
 	}
 	focus = {
@@ -721,7 +791,82 @@ focus_tree = {
 		x = 10
 		y = 0
 		cost = 10
+		mutually_exclusive = {
+			focus = Visigothic_Kingdom
+			focus = Sons_of_Guadaloupe 
+		}
+		available_if_capitulated = yes
 
+		completion_reward = {
+			add_stability = 0.15
+		}
+	}
+	focus = {
+		id = Remove_the_Fire_starters
+		icon = GFX_focus_generic_diplomatic_treaty
+		x = 10
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Reconciliation
+		}
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = Peace_with_Sanders
+		icon = GFX_focus_generic_diplomatic_treaty
+		x = 9
+		y = 2
+		cost = 10
+		prerequisite = {
+			focus = Remove_the_Fire_starters
+		}
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = Replace_the_Defeatists
+		icon = GFX_focus_generic_diplomatic_treaty
+		x = 11
+		y = 2
+		cost = 10
+		prerequisite = {
+			focus = Remove_the_Fire_starters
+		}
+		available_if_capitulated = yes
+
+		completion_reward = {
+			retire_country_leader = yes
+			create_country_leader = {
+				name = "George Zamka"
+				picture = "gfx/leaders/PRA/George_Zamka.tga"
+				expire = "2060.1.1"
+				ideology = liberal
+				traits = {
+					Astronaut
+				}
+			}
+		}
+	}
+	focus = {
+		id = Peaceful_Reintegration
+		icon = GFX_focus_generic_diplomatic_treaty
+		x = 10
+		y = 3
+		cost = 10
+		prerequisite = {
+			focus = Replace_the_Defeatists
+		}
+		prerequisite = {
+			focus = Peace_with_Sanders
+		}
 		available_if_capitulated = yes
 
 		completion_reward = {
