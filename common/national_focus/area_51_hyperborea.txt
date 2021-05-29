@@ -42,6 +42,7 @@ focus_tree = {
 			491 = {
 				add_extra_state_shared_building_slots = 5
 			}
+			add_research_slot = 1
 		}
 
 	}
@@ -92,6 +93,56 @@ focus_tree = {
 		}
 		x = 2
 		y = 3
+		completion_reward = {
+			division_template = {
+				name = "Clone Army"
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+					infantry = { x = 1 y = 2 }
+					infantry = { x = 1 y = 3 }
+					infantry = { x = 1 y = 4 }
+					infantry = { x = 2 y = 0 }
+					infantry = { x = 2 y = 1 }
+				}
+				support = {
+					military_police = { x = 0 y = 0 }
+				}
+			}
+			491 = {
+				create_unit = {
+					division = "name = \"1ya Warband\" division_template = \"Clone Army\" start_experience_factor = 0.0" 
+					owner = AFO
+				}
+				create_unit = {
+					division = "name = \"2ya Warband\" division_template = \"Clone Army\" start_experience_factor = 0.0" 
+					owner = AFO
+				}
+				create_unit = {
+					division = "name = \"3ya Warband\" division_template = \"Clone Army\" start_experience_factor = 0.0" 
+					owner = AFO
+				}
+				create_unit = {
+					division = "name = \"4ya Warband\" division_template = \"Clone Army\" start_experience_factor = 0.0" 
+					owner = AFO
+				}
+				create_unit = {
+					division = "name = \"5ya Warband\" division_template = \"Clone Army\" start_experience_factor = 0.0" 
+					owner = AFO
+				}
+				create_unit = {
+					division = "name = \"6ya Warband\" division_template = \"Clone Army\" start_experience_factor = 0.0" 
+					owner = AFO
+				}
+				create_unit = {
+					division = "name = \"7ya Warband\" division_template = \"Clone Army\" start_experience_factor = 0.0" 
+					owner = AFO
+				}
+			}
+		}
 
 	}
 	focus = {
@@ -106,6 +157,9 @@ focus_tree = {
 		}
 		x = 3
 		y = 2
+		completion_reward = {
+			add_ideas = AFO_3_encampment_system
+		}
 
 	}
 	focus = {
@@ -117,6 +171,12 @@ focus_tree = {
 		}
 		x = 4
 		y = 3
+		completion_reward = {
+			swap_ideas = {
+			    remove_idea = AFO_experimental_cloning 
+			    add_idea = AFO_improved_cloning
+			}
+		}
 
 	}
 	focus = {
@@ -134,6 +194,30 @@ focus_tree = {
 		}
 		x = 1
 		y = 4
+		bypass = {
+			NOT = { 46 = { is_owned_by = LAS } }
+		}
+		will_lead_to_war_with = LAS
+		completion_reward = {
+			start_border_war = {
+			    change_state_after_war = yes
+			    attacker = {
+			        state = 491
+			        num_provinces = 3
+			        on_win = alien.9
+			        on_lose = alien.10
+    			    on_cancel = alien.9
+   			    }
+				
+    			defender = {
+        			state = 46
+        			num_provinces = 2
+        			on_win = alien.9
+        			on_lose = alien.10
+        			on_cancel = alien.9
+    			}
+			}
+		}
 
 	}
 	focus = {
@@ -145,6 +229,21 @@ focus_tree = {
 		}
 		x = 1
 		y = 5
+		completion_reward = {
+			every_state = {
+				limit = {
+					OR = {
+						is_core_of = UTA
+						is_core_of = SIN
+						is_core_of = HOP
+						is_core_of = MOL
+						is_core_of = LAS
+						is_core_of = IDA
+					}
+				}
+				add_core_of = AFO
+			}
+		}
 
 	}
 	focus = {
@@ -156,6 +255,18 @@ focus_tree = {
 		}
 		x = 5
 		y = 6
+		available = {
+			any_neighbor_country = { original_tag = SIN }
+		}
+		bypass = {
+			NOT = { country_exists = SIN }
+		}
+		completion_reward = {
+			create_wargoal = {
+			    type = annex_everything
+			    target = SIN
+			}
+		}
 
 	}
 	focus = {
@@ -167,6 +278,18 @@ focus_tree = {
 		}
 		x = 3
 		y = 6
+		available = {
+			any_neighbor_country = { original_tag = UTA }
+		}
+		bypass = {
+			NOT = { country_exists = UTA }
+		}
+		completion_reward = {
+			create_wargoal = {
+			    type = annex_everything
+			    target = UTA
+			}
+		}
 
 	}
 	focus = {
@@ -178,6 +301,26 @@ focus_tree = {
 		}
 		x = 8
 		y = 1
+		completion_reward = {
+			491 = {
+				set_building_level = {
+				    type = infrastructure
+				    level = 10
+				    instant_build = yes
+				}
+				set_state_name = "Hyperborea"
+			}
+			hidden_effect = {
+				set_victory_points = {
+					province = 1556
+					value = 0
+				}
+				set_victory_points = {
+					province = 741
+					value = 10
+				}
+			}
+		}
 
 	}
 	focus = {
