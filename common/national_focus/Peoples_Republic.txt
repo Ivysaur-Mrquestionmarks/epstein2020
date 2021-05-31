@@ -426,7 +426,7 @@ focus_tree = {
 		}
 		completion_reward = {
 			PAC = {
-				country_event = { id = fleet_P.48 days = 35 } 
+				country_event = { id = fleet_P.48 days = 10 } 
 			}
 		}
 
@@ -453,7 +453,7 @@ focus_tree = {
 		}
 		completion_reward = {
 			PAC = {
-				country_event = { id = fleet_P.47 days = 35 } 
+				country_event = { id = fleet_P.47 days = 10 } 
 			}
 		}
 
@@ -590,10 +590,10 @@ focus_tree = {
 		}
 		available = {
 			NOT = {
-				has_completed_focus = ANTIFA_concessions
 				has_war_with = PAC
 			}
 			country_exists = SAZ
+			has_completed_focus = The_Chinese_help
 		}
 		prerequisite = {
 			focus = American_Great_Patriotic_War
@@ -684,8 +684,11 @@ focus_tree = {
 		}
 		available = {
 			NOT = {
-				has_completed_focus = The_Chinese_help
 				has_war_with = PAC
+			}
+			has_completed_focus = {
+				ANTIFA_concessions
+				Tow_the_line
 			}
 			country_exists = SAZ
 		}
@@ -696,6 +699,12 @@ focus_tree = {
 		completion_reward = {
 			add_political_power = 50
 			add_stability = -0.01
+			IF = {
+				Limit = {
+					has_completed_focus = Tow_the_line
+				}
+				end_puppet = SAZ
+			}
 		}
 	}
 	focus = {
@@ -709,6 +718,9 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = Grant_Seattle_autonomy
+		}
+		bypass = {
+			has_completed_focus = Tow_the_line
 		}
 		completion_reward = {
 			add_popularity = {
@@ -728,6 +740,9 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = Make_Raz_Minister
+		}
+		bypass = {
+			has_completed_focus = Tow_the_line
 		}
 		completion_reward = {
 			create_wargoal = {
@@ -751,8 +766,6 @@ focus_tree = {
 		available = {
 			NOT = {
 				country_exists = SAZ
-				has_completed_focus = Crush_Seattle_Soveriegnty
-				has_completed_focus = Grant_Seattle_autonomy
 			}
 		}
 		completion_reward = {
@@ -1343,6 +1356,16 @@ focus_tree = {
 			}
 			remove_ideas = AngeredAnarchists
 			remove_ideas = AngeredChinese
+			custom_effect_tooltip = Vice_President_abandons_us
+			remove_ideas = Peter_Lamborn_Wilson
+			remove_ideas = Joe_Sims
+			If = {
+				LIMIT = {
+					has_idea = Peter_Lamborn_Wilson
+				}
+				remove_ideas = Peter_Lamborn_Wilson
+				add_ideas = Generic_Vacant_Vice_President
+			}
 			hidden_effect = {
 				country_event = { id = California.2 days = 40 }
 				set_global_flag = PRA_Bidenist_Collapse
@@ -1813,6 +1836,7 @@ focus_tree = {
 				remove_ideas = Workers_Congress
 				remove_ideas = Weak_Workers_Congress
 			}
+			remove_idea = Californian_Collapse_Idea
 		}
 	}
 	focus = {
@@ -1865,6 +1889,7 @@ focus_tree = {
 				remove_ideas = Weak_Workers_Congress
 
 			}
+			remove_idea = Californian_Collapse_Idea
 		}
 	}
 }
@@ -1941,6 +1966,9 @@ focus_tree = {
 		prerequisite = {
 			focus = Stepping_down
 		}
+		available = {
+			has_idea = Andrew_Yang
+		}
 		mutually_exclusive = {
 			focus = Schmidt_Libertarian
 		}
@@ -1949,6 +1977,8 @@ focus_tree = {
 		}
 		completion_reward = {
 			retire_country_leader = yes
+			remove_ideas = Andrew_Yang
+			add_ideas = Generic_Vacant_Vice_President
 			add_popularity = {
 				ideology = democrat
 				popularity = 0.1
@@ -2006,6 +2036,8 @@ focus_tree = {
 		}
 		completion_reward = {
 			add_ideas = The_Embers_of_his_Flame
+			add_ideas = Fatima_Iqbal_Zubair
+			remove_ideas = Generic_Vacant_Vice_President
 		}
 	}
 	focus = {
@@ -2061,6 +2093,11 @@ focus_tree = {
 			focus = Duf_Sundheim_Presidency
 		}
 		completion_reward = {
+			add_ideas = PRA_StarChild
+			hidden_effect = {
+				remove_ideas = Generic_Vacant_Vice_President
+				remove_ideas = Andrew_Yang
+			}
 			add_popularity = {
 				ideology = libertarian_right
 				popularity = 0.1
@@ -2187,6 +2224,11 @@ focus_tree = {
 			focus = Yang_Gang
 		}
 		completion_reward = {
+			hidden_effect = {
+				remove_ideas = Generic_Vacant_Vice_President
+				remove_ideas = Andrew_Yang
+			}
+			add_ideas = Shawn_Steel
 			add_popularity = {
 				ideology = republican
 				popularity = 0.1
@@ -2625,6 +2667,12 @@ focus_tree = {
 		prerequisite = {
 			focus = Move_on_Amerika_reich
 		}
+		available = {
+			NOT = {
+			has_government = autocratic
+			has_government = authoritarian_left
+			}
+		}
 		mutually_exclusive = {
 			focus = Move_on_Texan_New_Mexico
 		}
@@ -2642,6 +2690,12 @@ focus_tree = {
 		y = 4
 		prerequisite = {
 			focus = Move_on_Amerika_reich
+		}
+		available = {
+			OR = {
+				has_government = autocratic
+				has_government = authoritarian_left
+			}
 		}
 		mutually_exclusive = {
 			focus = New_Mexico_for_Alliance
@@ -3885,6 +3939,10 @@ focus_tree = {
 				type = annex_everything
 				target = CAS
 			}
+			create_wargoal = {
+				type = annex_everything
+				target = LIB
+			}
 		}
 	}
 	focus = {
@@ -4355,6 +4413,14 @@ focus_tree = {
 					target = MON
 					type = annex_everything
 				}
+				create_wargoal = {
+					target = LYM
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = BKF
+					type = annex_everything
+				}
 			}
 		}
 	}
@@ -4633,6 +4699,74 @@ focus_tree = {
 		}
 	}
 	focus = {
+		id = Exploit_their_Disadvantages
+		icon = GFX_goal_Free_Texan_Army_Coup
+		cost = 2.00
+		x = 39
+		y = 11
+		prerequisite = {
+			focus = Secure_Loyal_Oil
+		}
+		prerequisite = {
+			focus = Disregard_Texan_Sovereignty
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			puppet = BET
+			puppet = OKL
+			puppet = LOU
+			hidden_effect = {
+				LOU = {
+					set_politics = {
+					ruling_party = democrat
+					}
+					set_cosmetic_tag = Louisiana_Feds
+
+				}
+				OKL = {
+					set_politics = {
+					ruling_party = democrat
+					}
+					set_cosmetic_tag = Oklahoma_Feds
+				}
+				BET = {
+					set_cosmetic_tag = Texan_Feds
+				}
+				declare_war_on = {
+    				target = CRN
+				    type = annex_everything
+				}
+				declare_war_on = {
+    				target = CRU
+				    type = annex_everything
+				}
+				declare_war_on = {
+    				target = FTA
+				    type = annex_everything
+				}
+				declare_war_on = {
+    				target = FAL
+				    type = annex_everything
+				}
+				declare_war_on = {
+    				target = BSH
+				    type = annex_everything
+				}
+				declare_war_on = {
+    				target = TEX
+				    type = annex_everything
+				}
+				declare_war_on = {
+    				target = TEX
+				    type = annex_everything
+				}
+			}
+		}
+	}
+
+	focus = {
 		id = Send_Diplomats_to_Texas
 		icon = GFX_goal_generic_intelligence_exchange
 		cost = 2.00
@@ -4772,6 +4906,7 @@ focus_tree = {
 		prerequisite = {
 			focus = Texan_American_Friendship_Treaty
 			focus = Launch_The_Coup
+			focus = Exploit_their_Disadvantages
 		}
 		available = {
 			country_exists = FRA
@@ -4796,6 +4931,7 @@ focus_tree = {
 		prerequisite = {
 			focus = Texan_American_Friendship_Treaty
 			focus = Launch_The_Coup
+			focus = Exploit_their_Disadvantages
 		}
 		available = {
 			NOT = {
@@ -4806,7 +4942,54 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			division_template = {
+				name = "Bidenist Remnants"
+				is_locked = yes
+				priority = 1
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+					infantry = { x = 1 y = 2 }
+				}
+			}
+			random_owned_controlled_state = {
+				limit = { ROOT = { has_full_control_of_state = PREV } }
+				create_unit = {
+					division = "name = \"1st ''Kamala'' Division\" division_template = \"Bidenist Remnants\" start_experience_factor = 0.6" 
+					owner = PRA
+				}
+				create_unit = {
+					division = "name = \"3rd ''Biden'' Division\" division_template = \"Bidenist Remnants\" start_experience_factor = 0.7" 
+					owner = PRA
+				}
+				create_unit = {
+					division = "name = \"2nd ''Clinton'' Division\" division_template = \"Bidenist Remnants\" start_experience_factor = 0.4" 
+					owner = PRA
+				}
+				create_unit = {
+					division = "name = \"1st ''Obama'' Division\" division_template = \"Bidenist Remnants\" start_experience_factor = 0.6" 
+					owner = PRA
+				}
+				create_unit = {
+					division = "name = \"5th ''McConnell'' Division\" division_template = \"Bidenist Remnants\" start_experience_factor = 0.9" 
+					owner = PRA
+				}
+				create_unit = {
+					division = "name = \"6th ''Roosevelt'' Division\" division_template = \"Bidenist Remnants\" start_experience_factor = 0.5" 
+					owner = PRA
+				}
+				create_unit = {
+					division = "name = \"1st American Restorationist Front\" division_template = \"Bidenist Remnants\" start_experience_factor = 0.3" 
+					owner = PRA
+				}
+				create_unit = {
+					division = "name = \"7th ''Shermanite'' Division\" division_template = \"Bidenist Remnants\" start_experience_factor = 0.1" 
+					owner = PRA
+				}
+			}
 		}
 	}
 	focus = {
@@ -4828,6 +5011,14 @@ focus_tree = {
 				type = annex_everything
 			}
 			create_wargoal = {
+				target = RVR
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = MGV
+				type = annex_everything
+			}
+			create_wargoal = {
 				target = NRA
 				type = annex_everything
 			}
@@ -4845,10 +5036,6 @@ focus_tree = {
 			}
 			create_wargoal = {
 				target = ARC
-				type = annex_everything
-			}
-			create_wargoal = {
-				target = CAS
 				type = annex_everything
 			}
 		}
@@ -4907,17 +5094,43 @@ focus_tree = {
 				target = CSA
 				type = annex_everything
 			}
-			create_wargoal = {
-				target = FLO
-				type = annex_everything
-			}
-			create_wargoal = {
-				target = RMV
-				type = annex_everything
-			}
-			create_wargoal = {
-				target = JEB
-				type = annex_everything
+			hidden_EFFECT = {
+				create_wargoal = {
+					target = FLO
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = LGB
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = KKK
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = APA
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = AFR
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = CSB
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = ZIO
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = RMV
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = JEB
+					type = annex_everything
+				}
 			}
 		}
 	}
@@ -4939,9 +5152,31 @@ focus_tree = {
 				target = USA
 				type = annex_everything
 			}
-			create_wargoal = {
-				target = NPA
-				type = annex_everything
+			hidden_effect = {
+				create_wargoal = {
+					target = NPA
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = KAN
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = NBR
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = DAK
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = MNS
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = IOW
+					type = annex_everything
+				}
 			}
 		}
 	}
@@ -4986,6 +5221,7 @@ focus_tree = {
 		}
 		mutually_exclusive = {
 			focus = Bend_the_Knee
+			focus = Restore_the_Mantle
 		}
 		ai_will_do = { 
 			factor = 300
@@ -4993,6 +5229,96 @@ focus_tree = {
 		completion_reward = {
 			FRA = {
 				country_event = { id = California.44 days = 5 }
+			}
+		}
+	}
+	focus = {
+		id = Restore_the_Mantle
+		icon = GFX_goal_Republic_Triumphant
+		cost = 2.00
+		x = 45
+		y = 15
+		prerequisite = {
+			focus = Reunite_America
+		}
+		mutually_exclusive = {
+			focus = Bend_the_Knee
+			focus = Two_Americas
+		}
+		available = {
+			NOT = {
+				country_exists = FRA
+			}
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			set_cosmetic_tag = PRA_United_States_of_America
+			IF = {
+				limit = {
+					TEX = {
+						is_puppet_of = PRA
+					}
+				}
+				PRA = {
+					annex_country = {
+						target = TEX
+						transfer_troops = yes
+					}
+				}
+			}
+			IF = {
+				limit = {
+					OKL = {
+						is_puppet_of = PRA
+					}
+				}
+				PRA = {
+					annex_country = {
+						target = OKL
+						transfer_troops = yes
+					}
+				}
+			}
+			IF = {
+				limit = {
+					LOU = {
+						is_puppet_of = PRA
+					}
+				}
+				PRA = {
+					annex_country = {
+						target = LOU
+						transfer_troops = yes
+					}
+				}
+			}
+			IF = {
+				limit = {
+					PAC = {
+						is_puppet_of = PRA
+					}
+				}
+				PRA = {
+					annex_country = {
+						target = PAC
+						transfer_troops = yes
+					}
+				}
+			}
+			IF = {
+				limit = {
+					ALA = {
+						is_puppet_of = PRA
+					}
+				}
+				PRA = {
+					annex_country = {
+						target = ALA
+						transfer_troops = yes
+					}
+				}
 			}
 		}
 	}
@@ -5007,6 +5333,7 @@ focus_tree = {
 		}
 		mutually_exclusive = {
 			focus = Two_Americas
+			focus = Restore_the_Mantle
 		}
 		ai_will_do = { 
 			factor = 300
@@ -5112,7 +5439,36 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			create_wargoal = {
+				target = CAN
+				type = annex_everything
+			}
+			hidden_effect = {
+				create_wargoal = {
+					target = BRC
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = VAN
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = ARY
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = ALT
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = OOR
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = QUE
+					type = annex_everything
+				}
+			}
 		}
 	}
 }
