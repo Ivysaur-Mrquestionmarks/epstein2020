@@ -1,0 +1,92 @@
+scripted_gui = {
+
+	fuel_mang_button = {
+		context_type = player_context
+		window_name = "fuel_mang_button"
+		parent_window_name = "countryconstructionsview"
+		visible = {
+			always = yes
+		}
+		effects = {
+			open_click = {
+				set_country_flag = fuel_view
+			}
+		}
+	}
+
+	fuel_managament = {
+		context_type = player_context
+		window_name = "fuel_management"	
+		visible = {	
+			has_country_flag = fuel_view
+		}
+		effects = {
+			closed_click = {
+				clr_country_flag = fuel_view
+			}
+			decrese_civ_click = {
+				add_to_variable = {
+					var = expense_civs
+					value = -0.05
+				}
+				add_to_variable = {
+					var = fuel_lost_1
+					value = 3
+				}
+				add_to_variable = {
+					var = fuel_rationing_1
+					value = 0.05
+				}				
+				fuel_clamp = yes
+			}
+			increase_civ_click = {
+				add_to_variable = {
+					var = expense_civs
+					value = 0.05
+				}
+				add_to_variable = {
+					var = fuel_lost_1
+					value = -3
+				}
+				add_to_variable = {
+					var = fuel_rationing_1
+					value = -0.05
+				}				
+				fuel_clamp = yes
+			}
+
+			decrese_mil_click = {
+				add_to_variable = {
+					var = expense_mil
+					value = -0.05
+				}
+				add_to_variable = {
+					var = fuel_lost_2
+					value = 3
+				}
+				add_to_variable = {
+					var = fuel_rationing_2
+					value = 0.05
+				}				
+				fuel_clamp = yes
+			}
+			increase_mil_click = {
+				add_to_variable = {
+					var = expense_mil
+					value = 0.05
+				}
+				add_to_variable = {
+					var = fuel_lost_2
+					value = -3
+				}
+				add_to_variable = {
+					var = fuel_rationing_2
+					value = -0.05
+				}				
+				fuel_clamp = yes
+			}
+		}
+
+	}
+
+}
