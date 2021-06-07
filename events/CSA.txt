@@ -503,3 +503,185 @@ country_event = {
 		}
 	}
 }
+
+country_event = {
+	id = south.14 #the panthers demand reparations
+	title = south.14.t
+	desc = south.14.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #support them
+		name = south.14.a
+		ai_chance = {
+			factor = 1
+		}
+		add_timed_idea = {
+    			idea = CSA_reparations
+    			days = 180
+		}
+		country_event = {
+    			id = south.15
+    			days = 4
+		}
+	}
+	option = { #Nah
+		name = south.14.b
+		country_event = {
+    			id = south.17
+    			days = 4
+		}
+	}
+}
+country_event = {
+	id = south.15 #Gains panther support
+	title = south.15.t
+	desc = south.15.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #support tem
+		name = south.15.a
+		ai_chance = {
+			factor = 1
+		}
+		modify_country_flag = {
+    			flag = black_strike
+    			value = -1
+		}
+		custom_effect_tooltip = CSA_happy_bkl 
+		add_political_power = 25
+		country_event = {
+    			id = south.16
+    			days = 10
+		}
+	}
+}
+
+country_event = {
+	id = south.16 #The kkk commits tax evasion
+	title = south.16.t
+	desc = south.16.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #support tem
+		name = south.16.a
+		ai_chance = {
+			factor = 1
+		}
+		modify_country_flag = {
+    			flag = kkk_strike
+    			value = 1
+		}
+		custom_effect_tooltip = CSA_angy_kkk
+		add_timed_idea = {
+    			idea = CSA_tax_protest
+    			days = 90
+		}
+	}
+}
+
+
+country_event = {
+	id = south.17 #The Phanters blockade rodes in protest
+	title = south.17.t
+	desc = south.17.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #support tem
+		name = south.17.a
+		ai_chance = {
+			factor = 1
+		}
+		modify_country_flag = {
+    			flag = black_strike
+    			value = 1
+		}
+		custom_effect_tooltip = CSA_angy_bkl
+		add_timed_idea = {
+    			idea = CSA_blockades
+    			days = 90
+		}
+		country_event = {
+    			id = south.18
+    			days = 5
+		}
+	}
+}
+
+country_event = {
+	id = south.18 #What should we do?
+	title = south.18.t
+	desc = south.18.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #Call the kkk
+		name = south.18.a
+		country_event = {
+    			id = south.19
+    			days = 14
+		}
+	}
+	option = { #Remove the blockeades ourselfs
+		name = south.18.b
+		country_event = {
+    			id = south.20
+    			days = 7
+		}
+	}
+}
+
+country_event = {
+	id = south.19 #WHite supremecist militias take down the blockeade
+	title = south.19.t
+	desc = south.19.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = south.19.a
+		remove_ideas = CSA_blockades
+		modify_country_flag = {
+    			flag = black_strike
+    			value = 1
+		}
+		modify_country_flag = {
+    			flag = kkk_strike
+    			value = -1
+		}
+		custom_effect_tooltip = CSA_happy_kkk 
+		custom_effect_tooltip = CSA_angy_bkl
+		add_stability = -0.1
+	}
+}
+
+country_event = {
+	id = south.20 #The army takes down the blockeade
+	title = south.20.t
+	desc = south.20.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = south.20.a
+		add_stability = -0.05
+		add_manpower = -50
+		modify_timed_idea = {
+    			idea = CSA_blockades
+    			days = -40
+		}	
+		add_to_variable = {
+			var = sexy_x
+			value = 25
+		}
+		clamp_variable = {
+			var = sexy_x
+			min = -200
+			max = 50
+		}
+		custom_effect_tooltip = CSA_west_power_growth	
+	}
+}
