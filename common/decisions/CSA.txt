@@ -277,3 +277,69 @@ CSA_strikes = {
 		}
 	}
 }
+
+CSA_recovery = {
+	CSA_extend_loan_time = {
+		cost = 50
+		days_re_enable = 5
+		days_remove = 40
+
+		ai_will_do = {
+			base = 0
+		}
+		visible = {
+			has_idea = CSA_loans
+		}
+		modifier = {
+			civilian_factory_use = 5
+		}
+		remove_effect = {
+			modify_timed_idea = {
+   				idea = CSA_loans
+    				days = 62
+			}
+		}
+	}
+
+
+	CSA_advance_phase = {
+		ai_will_do = {
+			base = 100
+		}
+		available = {
+			custom_trigger_tooltip = {
+    				tooltip = CSA_progres
+				has_country_flag = {
+    					flag = rebuild_progres
+    					value > 9
+				}
+			}			
+		}
+		complete_effect = {
+			set_country_flag = {
+    				flag = rebuild_progres
+    				value = 0
+			}
+			custom_effect_tooltip = CSA_rebuild
+			hidden_effect = {
+				if = { limit = {has_idea = CSA_ruined_economy_3}
+				remove_ideas = CSA_ruined_economy_3}
+				else_if = {limit = {has_idea = CSA_ruined_economy_2}
+				swap_ideas = {
+    					remove_idea = CSA_ruined_economy_2
+    					add_idea = CSA_ruined_economy_3
+				}}
+				else_if = {limit = {has_idea = CSA_ruined_economy_1}
+				swap_ideas = {
+    					remove_idea = CSA_ruined_economy_1
+    					add_idea = CSA_ruined_economy_2
+				}}
+				else = {
+				swap_ideas = {
+    					remove_idea = CSA_ruined_economy_0
+    					add_idea = CSA_ruined_economy_1
+				}}
+			}
+		}			
+	}
+}
