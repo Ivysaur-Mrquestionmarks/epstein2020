@@ -1,0 +1,70 @@
+#Increase / Decrease Stability
+MOL_increase_stability = {
+    add_to_variable = { mol_stability = 1 }
+    MOL_check_stability = yes
+}
+
+MOL_increase_stability_big = {
+    add_to_variable = { mol_stability = 2 }
+    MOL_check_stability = yes
+}
+
+MOL_decrease_stability = {
+    subtract_from_variable = { mol_stability = 1 }
+    MOL_check_stability = yes
+}
+
+MOL_decrease_stability_big = {
+    subtract_from_variable = { mol_stability = 2 }
+    MOL_check_stability = yes
+}
+
+#Increase / Decrease Legitimacy
+MOL_increase_legitimacy = {
+    add_to_variable = { mol_legitimacy = 1 }
+    MOL_check_legitimacy = yes
+}
+
+MOL_increase_legitimacy_big = {
+    add_to_variable = { mol_legitimacy = 2 }
+    MOL_check_legitimacy = yes
+}
+
+MOL_decrease_legitimacy = {
+    subtract_from_variable = { mol_legitimacy = 1 }
+    MOL_check_legitimacy = yes
+}
+
+MOL_decrease_legitimacy_big = {
+    subtract_from_variable = { mol_legitimacy = 2 }
+    MOL_check_legitimacy = yes
+}
+
+#Make sure stability is in bounds
+MOL_check_stability = {
+    if = {
+        limit = { check_variable = { mol_stability > 10 } }
+        set_variable = { mol_stability = 10 }
+        log = "[GetDateText]: [Root.GetName]: MOL stability rounded down to 10"
+    }
+    if = {
+        limit = { check_variable = { mol_stability < 0 } }
+        set_variable = { mol_stability = 0 }
+        log = "[GetDateText]: [Root.GetName]: MOL stability rounded up to 0"
+    }
+}
+
+#Make sure legitimacy is in bounds
+
+MOL_check_legitimacy = {
+    if = {
+        limit = { check_variable = { mol_legitimacy > 10 } }
+        set_variable = { mol_legitimacy = 10 }
+        log = "[GetDateText]: [Root.GetName]: MOL legitimacy rounded down to 10"
+    }
+    if = {
+        limit = { check_variable = { mol_legitimacy < 0 } }
+        set_variable = { mol_legitimacy = 0 }
+        log = "[GetDateText]: [Root.GetName]: MOL legitimacy rounded up to 0"
+    }
+}
