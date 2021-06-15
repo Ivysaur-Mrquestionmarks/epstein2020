@@ -83,9 +83,37 @@ country_event = {
 	}
 	option = {
 		name = reunification.4.a
-		declare_war_on = {
-		    target = KFC
-		    type = annex_everything
+		if = {
+			limit = {
+				NOT = {
+					KFC = { has_country_leader = { name = "Matt Bevin" ruling_only = yes } }
+				}
+			}
+			declare_war_on = {
+		   	 	target = KFC
+		    		type = annex_everything
+			}
+		}
+		if = {
+			limit = {
+				KFC = { has_country_leader = { name = "Matt Bevin" ruling_only = yes } }
+			}
+			if = {
+				limit = {
+					OR = {
+						has_dlc = "Together for Victory"
+						has_dlc = "Man the Guns"
+					}
+				}
+				set_autonomy = {
+					target = KFC
+					autonomous_state = autonomy_colony
+					freedom_level = 0.1
+				}
+				else = {
+					puppet = KFC
+				}
+			}
 		}
 	}
 }
