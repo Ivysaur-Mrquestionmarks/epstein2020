@@ -1,70 +1,119 @@
 #Increase / Decrease Stability
-MOL_increase_stability = {
+
+MOL_increase_stability_tiny = {
     add_to_variable = { mol_stability = 1 }
     MOL_check_stability = yes
 }
 
+MOL_increase_stability_small = {
+    add_to_variable = { mol_stability = 5 }
+    MOL_check_stability = yes
+}
+
+MOL_increase_stability = {
+    add_to_variable = { mol_stability = 10 }
+    MOL_check_stability = yes
+}
+
 MOL_increase_stability_big = {
-    add_to_variable = { mol_stability = 2 }
+    add_to_variable = { mol_stability = 20 }
+    MOL_check_stability = yes
+}
+
+MOL_decrease_stability_tiny = {
+    add_to_variable = { mol_stability = 1 }
+    MOL_check_stability = yes
+}
+
+MOL_decrease_stability_small = {
+    add_to_variable = { mol_stability = 5 }
     MOL_check_stability = yes
 }
 
 MOL_decrease_stability = {
-    subtract_from_variable = { mol_stability = 1 }
+    subtract_from_variable = { mol_stability = 10 }
     MOL_check_stability = yes
 }
 
 MOL_decrease_stability_big = {
-    subtract_from_variable = { mol_stability = 2 }
+    subtract_from_variable = { mol_stability = 20 }
     MOL_check_stability = yes
 }
 
 #Increase / Decrease Legitimacy
 MOL_increase_legitimacy = {
-    add_to_variable = { mol_legitimacy = 1 }
-    MOL_check_legitimacy = yes
-}
-
-MOL_increase_legitimacy_big = {
-    add_to_variable = { mol_legitimacy = 2 }
-    MOL_check_legitimacy = yes
+    add_to_variable = { mol_legitimacy = 10 }
 }
 
 MOL_decrease_legitimacy = {
     subtract_from_variable = { mol_legitimacy = 1 }
-    MOL_check_legitimacy = yes
 }
 
-MOL_decrease_legitimacy_big = {
-    subtract_from_variable = { mol_legitimacy = 2 }
-    MOL_check_legitimacy = yes
-}
-
-#Make sure stability is in bounds
-MOL_check_stability = {
+MOL_update_stability = {
+    #Initial Chaos 0/4: -5% Internal Stability 
     if = {
-        limit = { check_variable = { mol_stability > 10 } }
-        set_variable = { mol_stability = 10 }
-        log = "[GetDateText]: [Root.GetName]: MOL stability rounded down to 10"
+        limit = { has_idea = MOL_initial_chaos }
+        subtract_from_variable = { var = mol_stability value = 5 }
+    }
+    #Initial Chaos 1/4: -4% Internal Stability
+    if = {
+        limit = { has_idea = MOL_initial_chaos_1 }
+        subtract_from_variable = { var = mol_stability value = 4 }
+    }
+    #Initial Chaos 2/4: -3% Internal Stability
+    if = {
+        limit = { has_idea = MOL_initial_chaos_2 }
+        subtract_from_variable = { var = mol_stability value = 3 }
+    }
+    #Initial Chaos 3/4: -2% Internal Stability
+    if = {
+        limit = { has_idea = MOL_initial_chaos_3 }
+        subtract_from_variable = { var = mol_stability value = 2 }
+    }
+    #Initial Chaos 4/4: -1% Internal Stability
+    if = {
+        limit = { has_idea = MOL_initial_chaos_4 }
+        subtract_from_variable = { var = mol_stability value = 1 }
+    }
+    #MOL_update_stability_refugees = yes
+}
+
+MOL_update_stability_refugees = {
+    #Add stuff here
+}
+
+MOL_update_refugees = {
+    #Check refugee gain variable and add that amount of refugees
+    #If there is overflow, trigger an event w/ the potential to 
+    add_to_variable = {
+		var = current_refugees
+		value = biweekly_refugee_increase
+	}
+    #You can't have half a refugee you silly goose
+    round_variable = current_refugees
+}
+
+MOL_refugee_overflow = {
+    #Handle Refugee overflow
+    #If it is by a trivial amount (< 100), be merciful and don't trigger any events
+    #Otherwise, trigger a "refugee overflow" event asking if the player wants to:
+        #a. seize houses (stab loss + capacity increase)
+        #b. get supplies from depot (rise in depot influence + capacity increase)
+        #c. Let the situation be (gives nasty "refugee camps packed" idea but no other penalties)
+    #All events trigger a "follow up" event in 2 weeks
+}
+
+#Make sure stability is in bounds and round it to an integer
+MOL_check_stability = {
+    round_variable = mol_stability
+    if = {
+        limit = { check_variable = { mol_stability > 100 } }
+        set_variable = { mol_stability = 100 }
+        log = "[GetDateText]: [Root.GetName]: MOL stability rounded down to 100"
     }
     if = {
         limit = { check_variable = { mol_stability < 0 } }
         set_variable = { mol_stability = 0 }
         log = "[GetDateText]: [Root.GetName]: MOL stability rounded up to 0"
-    }
-}
-
-#Make sure legitimacy is in bounds
-
-MOL_check_legitimacy = {
-    if = {
-        limit = { check_variable = { mol_legitimacy > 10 } }
-        set_variable = { mol_legitimacy = 10 }
-        log = "[GetDateText]: [Root.GetName]: MOL legitimacy rounded down to 10"
-    }
-    if = {
-        limit = { check_variable = { mol_legitimacy < 0 } }
-        set_variable = { mol_legitimacy = 0 }
-        log = "[GetDateText]: [Root.GetName]: MOL legitimacy rounded up to 0"
     }
 }
