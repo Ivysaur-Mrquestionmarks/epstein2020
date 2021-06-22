@@ -499,21 +499,424 @@ GEN_Find_Weapons = {
 	}
 }
 GEN_Hire_Mercs = {
-#	GEN_Hire_Academi = {
-#		icon =
-#	}
-#	GEN_Hire_Defion = {
-#		icon =
-#	}
-#	GEN_Hire_Aegis = {
-#		icon =
-#	}
-#	GEN_Hire_Canopy = {
-#		icon =
-#	}
-#	GEN_Hire_G4S = {
-#		icon =
-#	}
+	GEN_Hire_Academi = {
+		icon = generic_assassination
+		cost = 250
+		is_good = yes
+		fire_only_once = no
+		days_remove = 45
+		available = { 
+			num_of_civilian_factories > 6
+			NOT = {
+				OR = {
+					has_idea = G4S
+					has_idea = Canopy
+					has_idea = Aegis
+					has_idea = Defion
+					has_idea = Academi
+					has_idea = Wagner
+				}
+			}
+		}
+		visible = {
+			is_major = no
+		}
+		modifier = {
+			civilian_factory_use = 5
+		}
+		complete_effect = {
+			division_template = {
+				name = "Academi Forces"
+				is_locked = yes
+				priority = 1
+				regiments = {
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+					infantry = { x = 1 y = 2 }
+					infantry = { x = 1 y = 3 }
+					infantry = { x = 1 y = 4 }
+
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+					infantry = { x = 1 y = 2 }
+					infantry = { x = 1 y = 3 }
+					infantry = { x = 1 y = 4 }
+
+					infantry = { x = 2 y = 0 }
+					infantry = { x = 2 y = 1 }
+					infantry = { x = 2 y = 2 }
+					infantry = { x = 2 y = 3 }
+
+					artillery = { x = 3 y = 0 }
+					artillery = { x = 3 y = 1 }
+					artillery = { x = 3 y = 2 }
+					artillery = { x = 3 y = 3 }
+			
+				}
+				support = {
+					artillery = { x = 0 y = 0 }
+					engineer = { x = 0 y = 1 }
+				}
+			}
+			random_owned_controlled_state = {
+				limit = { 
+					ROOT = { has_full_control_of_state = PREV }  
+					is_capital = yes
+				}
+				else = {
+					ROOT = { has_full_control_of_state = PREV }
+				}
+				create_unit = {
+					division = "name = \"1st ''Iraqi Freedom'' Academi Forces\" division_template = \"Academi Forces\" start_experience_factor = 0.8 start_equipment_factor = 1.0" 
+					owner = ROOT
+				}
+				create_unit = {
+					division = "name = \"2nd ''Ol' Blackwater'' Academi Forces\" division_template = \"Academi Forces\" start_experience_factor = 0.7 start_equipment_factor = 1.0" 
+					owner = ROOT
+				}
+				create_unit = {
+					division = "name = \"3rd ''Fuck the Middle East'' Academi Forces\" division_template = \"Academi Forces\" start_experience_factor = 0.6 start_equipment_factor = 1.0" 
+					owner = ROOT
+				}
+				create_unit = {
+					division = "name = \"4th Academi Forces\" division_template = \"Academi Forces\" start_experience_factor = 0.8 start_equipment_factor = 1.0" 
+					owner = ROOT
+				}
+				create_unit = {
+					division = "name = \"5th Academi Forces\" division_template = \"Academi Forces\" start_experience_factor = 0.9 start_equipment_factor = 1.0" 
+					owner = ROOT
+				}
+				create_unit = {
+					division = "name = \"6th Academi Forces\" division_template = \"Academi Forces\" start_experience_factor = 0.7 start_equipment_factor = 1.0" 
+					owner = ROOT
+				}
+			}
+			ACD = {
+				random_unit_leader = {
+					limit = {
+						has_trait = Academi_group_trait
+					}
+					set_nationality = ROOT
+				}
+			}
+			add_ideas = Academi
+			add_equipment_to_stockpile = {
+    			type = infantry_equipment
+    			amount = 2500
+    			producer = ROOT
+			}
+			add_equipment_to_stockpile = {
+    			type = support_equipment
+    			amount = 1500
+    			producer = ROOT
+			}
+			add_equipment_to_stockpile = {
+    			type = artillery_equipment_2
+    			amount = 1500
+    			producer = ROOT
+			}
+			country_event = { id = Mercs.5 days = 365 } 
+	}
+	GEN_Hire_Aegis = {
+		icon = generic_assassination
+		cost = 125
+		is_good = yes
+		fire_only_once = no
+		days_remove = 45
+		available = { 
+			num_of_civilian_factories > 4
+			NOT = {
+				OR = {
+					has_idea = G4S
+					has_idea = Canopy
+					has_idea = Aegis
+					has_idea = Defion
+					has_idea = Academi
+					has_idea = Wagner
+				}
+			}
+		}
+		visible = {
+			is_major = no
+		}
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			division_template = {
+				name = "Aegis Security Division"
+				is_locked = yes
+				priority = 1
+				regiments = {
+					motorized = { x = 0 y = 0 }
+					motorized = { x = 0 y = 1 }
+					motorized = { x = 0 y = 2 }
+					motorized = { x = 0 y = 3 }
+					motorized = { x = 0 y = 4 }
+
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+					infantry = { x = 1 y = 2 }
+					infantry = { x = 1 y = 3 }
+					infantry = { x = 1 y = 4 }
+			
+				}
+				support = {
+					artillery = { x = 0 y = 0 }
+					engineer = { x = 0 y = 1 }
+				}
+			}
+			random_owned_controlled_state = {
+				limit = { 
+					ROOT = { has_full_control_of_state = PREV }  
+					is_capital = yes
+				}
+				else = {
+					ROOT = { has_full_control_of_state = PREV }
+				}
+				create_unit = {
+					division = "name = \"1st Aegis Security Division\" division_template = \"Aegis Security Division\" start_experience_factor = 0.5 start_equipment_factor = 1.0" 
+					owner = ROOT
+				}
+				create_unit = {
+					division = "name = \"2nd Aegis Security Division\" division_template = \"Aegis Security Division\" start_experience_factor = 0.6 start_equipment_factor = 1.0" 
+					owner = ROOT
+				}
+				create_unit = {
+					division = "name = \"3rd Aegis Security Division\" division_template = \"Aegis Security Division\" start_experience_factor = 0.4 start_equipment_factor = 1.0" 
+					owner = ROOT
+				}
+				create_unit = {
+					division = "name = \"4th Aegis Security Division\" division_template = \"Aegis Security Division\" start_experience_factor = 0.2 start_equipment_factor = 1.0" 
+					owner = ROOT
+				}
+				create_unit = {
+					division = "name = \"5th Aegis Security Division\" division_template = \"Aegis Security Division\" start_experience_factor = 0.3 start_equipment_factor = 1.0" 
+					owner = ROOT
+				}
+				create_unit = {
+					division = "name = \"6th Aegis Security Division\" division_template = \"Aegis Security Division\" start_experience_factor = 0.4 start_equipment_factor = 1.0" 
+					owner = ROOT
+				}
+			}
+			AEG = {
+				random_unit_leader = {
+					limit = {
+						has_trait = Aegis_group_trait
+					}
+					set_nationality = ROOT
+				}
+			}
+			add_ideas = Aegis
+			add_equipment_to_stockpile = {
+    			type = infantry_equipment
+    			amount = 2500
+    			producer = ROOT
+			}
+			add_equipment_to_stockpile = {
+    			type = support_equipment
+    			amount = 1500
+    			producer = ROOT
+			}
+			add_equipment_to_stockpile = {
+    			type = artillery_equipment_2
+    			amount = 1500
+    			producer = ROOT
+			}
+			country_event = { id = Mercs.4 days = 365 } 
+	}
+	GEN_Hire_Canopy = {
+		icon = generic_assassination
+		cost = 50
+		is_good = yes
+		fire_only_once = no
+		days_remove = 45
+		available = { 
+			num_of_civilian_factories > 2
+			NOT = {
+				OR = {
+					has_idea = G4S
+					has_idea = Canopy
+					has_idea = Aegis
+					has_idea = Defion
+					has_idea = Academi
+					has_idea = Wagner
+				}
+			}
+		}
+		visible = {
+			is_major = no
+		}
+		modifier = {
+			civilian_factory_use = 1
+		}
+		complete_effect = {
+			division_template = {
+				name = "Triple Canopy Militia"
+				is_locked = yes
+				priority = 3
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 0 y = 3 }
+					infantry = { x = 0 y = 4 }
+			
+				}
+				support = {
+				}
+			}
+			random_owned_controlled_state = {
+				limit = { 
+					ROOT = { has_full_control_of_state = PREV }  
+					is_capital = yes
+				}
+				else = {
+					ROOT = { has_full_control_of_state = PREV }
+				}
+				create_unit = {
+					division = "name = \"1st Triple Canopy Militia\" division_template = \"Triple Canopy Militia\" start_experience_factor = 0.5 start_equipment_factor = 1.0" 
+					owner = ROOT
+				}
+				create_unit = {
+					division = "name = \"2nd Triple Canopy Militia\" division_template = \"Triple Canopy Militia\" start_experience_factor = 0.6 start_equipment_factor = 1.0" 
+					owner = ROOT
+				}
+				create_unit = {
+					division = "name = \"3rd Triple Canopy Militia\" division_template = \"Triple Canopy Militia\" start_experience_factor = 0.4 start_equipment_factor = 1.0" 
+					owner = ROOT
+				}
+				create_unit = {
+					division = "name = \"4th Triple Canopy Militia\" division_template = \"Triple Canopy Militia\" start_experience_factor = 0.2 start_equipment_factor = 1.0" 
+					owner = ROOT
+				}
+				create_unit = {
+					division = "name = \"5th Triple Canopy Militia\" division_template = \"Triple Canopy Militia\" start_experience_factor = 0.3 start_equipment_factor = 1.0" 
+					owner = ROOT
+				}
+				create_unit = {
+					division = "name = \"6th Triple Canopy Militia\" division_template = \"Triple Canopy Militia\" start_experience_factor = 0.4 start_equipment_factor = 1.0" 
+					owner = ROOT
+				}
+			}
+			TCY = {
+				random_unit_leader = {
+					limit = {
+						has_trait = Triple_Canopy_group_trait
+					}
+					set_nationality = ROOT
+				}
+			}
+			add_ideas = Canopy
+			add_equipment_to_stockpile = {
+    			type = infantry_equipment
+    			amount = 1000
+    			producer = ROOT
+			}
+			add_equipment_to_stockpile = {
+    			type = support_equipment
+    			amount = 1000
+    			producer = ROOT
+			}
+			country_event = { id = Mercs.3 days = 365 } 
+	}
+	GEN_Hire_G4S = {
+		icon = generic_assassination
+		cost = 75
+		is_good = yes
+		fire_only_once = no
+		days_remove = 45
+		available = { 
+			num_of_civilian_factories > 3
+			NOT = {
+				OR = {
+					has_idea = G4S
+					has_idea = Canopy
+					has_idea = Aegis
+					has_idea = Defion
+					has_idea = Academi
+					has_idea = Wagner
+				}
+			}
+		}
+		visible = {
+			is_major = no
+		}
+		modifier = {
+			civilian_factory_use = 2
+		}
+		complete_effect = {
+			division_template = {
+				name = "G4S Security Forces"
+				is_locked = yes
+				priority = 1
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 0 y = 3 }
+					infantry = { x = 0 y = 4 }
+			
+				}
+				support = {
+					engineer = { x = 0 y = 0 }
+					military_police = { x = 0 y = 1 }
+				}
+			}
+			random_owned_controlled_state = {
+				limit = { 
+					ROOT = { has_full_control_of_state = PREV }  
+					is_capital = yes
+				}
+				else = {
+					ROOT = { has_full_control_of_state = PREV }
+				}
+				create_unit = {
+					division = "name = \"1st G4S Security Force\" division_template = \"G4S Security Forces\" start_experience_factor = 0.8 start_equipment_factor = 1.0" 
+					owner = ROOT
+				}
+				create_unit = {
+					division = "name = \"2nd G4S Security Force\" division_template = \"G4S Security Forces\" start_experience_factor = 0.8 start_equipment_factor = 1.0" 
+					owner = ROOT
+				}
+				create_unit = {
+					division = "name = \"3rd G4S Security Force\" division_template = \"G4S Security Forces\" start_experience_factor = 0.8 start_equipment_factor = 1.0" 
+					owner = ROOT
+				}
+				create_unit = {
+					division = "name = \"4th G4S Security Force\" division_template = \"G4S Security Forces\" start_experience_factor = 0.8 start_equipment_factor = 1.0" 
+					owner = ROOT
+				}
+				create_unit = {
+					division = "name = \"5th G4S Security Force\" division_template = \"G4S Security Forces\" start_experience_factor = 0.8 start_equipment_factor = 1.0" 
+					owner = ROOT
+				}
+				create_unit = {
+					division = "name = \"6th G4S Security Force\" division_template = \"G4S Security Forces\" start_experience_factor = 0.8 start_equipment_factor = 1.0" 
+					owner = ROOT
+				}
+			}
+			GFS = {
+				random_unit_leader = {
+					limit = {
+						has_trait = G4S_group_trait
+					}
+					set_nationality = ROOT
+				}
+			}
+			add_ideas = G4S
+			add_equipment_to_stockpile = {
+    			type = infantry_equipment
+    			amount = 2500
+    			producer = ROOT
+			}
+			add_equipment_to_stockpile = {
+    			type = support_equipment
+    			amount = 1000
+    			producer = ROOT
+			}
+			country_event = { id = Mercs.2 days = 365 } 
+	}
 	GEN_Hire_Wagner = {
 		icon = generic_assassination
 		cost = 125
@@ -551,11 +954,11 @@ GEN_Hire_Mercs = {
 					motorized = { x = 0 y = 3 }
 					motorized = { x = 0 y = 4 }
 
-					light_armor = { x = 0 y = 0 }
-					light_armor = { x = 0 y = 1 }
-					light_armor = { x = 0 y = 2 }
-					light_armor = { x = 0 y = 3 }
-					light_armor = { x = 0 y = 4 }
+					light_armor = { x = 1 y = 0 }
+					light_armor = { x = 1 y = 1 }
+					light_armor = { x = 1 y = 2 }
+					light_armor = { x = 1 y = 3 }
+					light_armor = { x = 1 y = 4 }
 			
 				}
 				support = {
