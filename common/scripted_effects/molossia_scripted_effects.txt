@@ -1,41 +1,61 @@
 #Increase / Decrease Stability
 
-MOL_increase_stability_tiny = {
+MOL_increase_stability_one = {
+    custom_effect_tooltip = MOL_stab_increase_one_tt
     add_to_variable = { mol_stability = 1 }
     MOL_check_stability = yes
 }
 
+MOL_increase_stability_two = {
+    custom_effect_tooltip = MOL_stab_increase_tiny_tt
+    add_to_variable = { mol_stability = 2 }
+    MOL_check_stability = yes
+}
+
 MOL_increase_stability_small = {
+    custom_effect_tooltip = MOL_stab_increase_small_tt
     add_to_variable = { mol_stability = 5 }
     MOL_check_stability = yes
 }
 
 MOL_increase_stability = {
+    custom_effect_tooltip = MOL_stab_increase_tt
     add_to_variable = { mol_stability = 10 }
     MOL_check_stability = yes
 }
 
 MOL_increase_stability_big = {
+    custom_effect_tooltip = MOL_stab_increase_big_tt
     add_to_variable = { mol_stability = 20 }
     MOL_check_stability = yes
 }
 
+MOL_decrease_stability_one = {
+    custom_effect_tooltip = MOL_stab_decrease_one_tt
+    subtract_from_variable = { mol_stability = 1 }
+    MOL_check_stability = yes
+}
+
 MOL_decrease_stability_tiny = {
-    add_to_variable = { mol_stability = 1 }
+    custom_effect_tooltip = MOL_stab_decrease_tiny_tt
+    subtract_from_variable = { mol_stability = 2 }
     MOL_check_stability = yes
 }
 
 MOL_decrease_stability_small = {
-    add_to_variable = { mol_stability = 5 }
+    custom_effect_tooltip = MOL_stab_decrease_small_tt
+    subtract_from_variable = { mol_stability = 5 }
     MOL_check_stability = yes
 }
 
 MOL_decrease_stability = {
+    custom_effect_tooltip = MOL_stab_decrease_tt
     subtract_from_variable = { mol_stability = 10 }
     MOL_check_stability = yes
 }
 
 MOL_decrease_stability_big = {
+    custom_effect_tooltip = MOL_stab_decrease_big_tt
     subtract_from_variable = { mol_stability = 20 }
     MOL_check_stability = yes
 }
@@ -56,22 +76,22 @@ MOL_update_stability = {
         subtract_from_variable = { var = mol_stability value = 5 }
     }
     #Initial Chaos 1/4: -4% Internal Stability
-    if = {
+    else_if = {
         limit = { has_idea = MOL_initial_chaos_1 }
         subtract_from_variable = { var = mol_stability value = 4 }
     }
     #Initial Chaos 2/4: -3% Internal Stability
-    if = {
+    else_if = {
         limit = { has_idea = MOL_initial_chaos_2 }
         subtract_from_variable = { var = mol_stability value = 3 }
     }
     #Initial Chaos 3/4: -2% Internal Stability
-    if = {
+    else_if = {
         limit = { has_idea = MOL_initial_chaos_3 }
         subtract_from_variable = { var = mol_stability value = 2 }
     }
     #Initial Chaos 4/4: -1% Internal Stability
-    if = {
+    else_if = {
         limit = { has_idea = MOL_initial_chaos_4 }
         subtract_from_variable = { var = mol_stability value = 1 }
     }
@@ -116,4 +136,47 @@ MOL_check_stability = {
         set_variable = { mol_stability = 0 }
         log = "[GetDateText]: [Root.GetName]: MOL stability rounded up to 0"
     }
+}
+
+MOL_decrease_starting_chaos = {
+	if = {
+		limit = { has_idea = MOL_initial_chaos }
+		swap_ideas = {
+			remove_idea = MOL_initial_chaos
+			add_idea = MOL_initial_chaos_1
+		}
+	}
+	else_if = {
+		limit = { has_idea = MOL_initial_chaos_1 }
+		swap_ideas = {
+			remove_idea = MOL_initial_chaos_1
+			add_idea = MOL_initial_chaos_2
+		}
+	}
+    else_if = {
+		limit = { has_idea = MOL_initial_chaos_2 }
+		swap_ideas = {
+			remove_idea = MOL_initial_chaos_2
+			add_idea = MOL_initial_chaos_3
+		}
+	}
+    else_if = {
+		limit = { has_idea = MOL_initial_chaos_3 }
+		swap_ideas = {
+			remove_idea = MOL_initial_chaos_3
+			add_idea = MOL_initial_chaos_4
+		}
+	}
+    else_if = {
+		limit = { has_idea = MOL_initial_chaos_4 }
+		swap_ideas = {
+			remove_idea = MOL_initial_chaos_4
+			add_idea = MOL_chaos_under_control
+		}
+	}
+	else_if = {
+		limit = { has_idea = MOL_chaos_under_control }
+        add_stability = 0.08
+        add_political_power = 25
+	}
 }
