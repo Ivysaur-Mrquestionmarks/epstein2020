@@ -125,7 +125,6 @@ PAC_militia_influence_5 = {
 CSA_war = { #using global.south_collapse
 	for_each_scope_loop = {
     		array = global.south_collapse
-    		load_focus_tree = csa_collapse
 		for_each_scope_loop = {
 				array = global.south_collapse
 			if = { limit = {Not = { OR = {has_war_with = PREV tag = PREV}}}
@@ -135,6 +134,13 @@ CSA_war = { #using global.south_collapse
 				}
 			}
 		}
+	}
+	every_country = {
+		limit = {is_in_array = {
+			array = global.south_collapse
+			value = THIS.id
+		}}
+		load_focus_tree = csa_collapse
 	}
 	LGB = {load_oob = "LGB_DCW"}
 	ZIO = {load_oob = "ZIO_DCW"}
