@@ -10,6 +10,8 @@ country_event = {
 	fire_only_once = yes
 	option = {
 		name = Primitivists.1.a
+		add_stability = -0.1
+		add_manpower = -100
 		
 	}
 }
@@ -23,6 +25,8 @@ country_event = {
 	fire_only_once = yes
 	option = {
 		name = Primitivists.2.a
+		add_stability = -0.02
+		add_manpower = -73
 		
 	}
 }
@@ -36,6 +40,8 @@ country_event = {
 	fire_only_once = yes
 	option = {
 		name = Primitivists.3.a
+		add_stability = -0.01
+		add_manpower = -10
 		
 	}
 }
@@ -49,6 +55,8 @@ country_event = {
 	fire_only_once = yes
 	option = {
 		name = Primitivists.4.a
+		add_stability = -0.02
+		add_manpower = -50
 		
 	}
 }
@@ -62,6 +70,8 @@ country_event = {
 	fire_only_once = yes
 	option = {
 		name = Primitivists.5.a
+		add_stability = -0.1
+		add_manpower = -100
 		
 	}
 }
@@ -75,6 +85,8 @@ country_event = {
 	fire_only_once = yes
 	option = {
 		name = Primitivists.6.a
+		add_stability = -0.05
+
 		
 	}
 }
@@ -88,6 +100,7 @@ country_event = {
 	fire_only_once = yes
 	option = {
 		name = Primitivists.5.a
+		add_war_support = -0.05
 		
 	}
 }
@@ -133,6 +146,30 @@ country_event = {
 	fire_only_once = yes
 	option = {
 		name = Primitivists.9.a
+		MOL = {
+			transfer_state = 280
+			add_state_core = 280
+		}
+		LAS = {
+			transfer_state = 393
+			transfer_state = 419
+			add_state_core = 419
+			add_state_core = 393
+		}
+		SIN = {
+			transfer_state = 414
+			transfer_state = 411
+			transfer_state = 117
+			add_state_core = 414
+			add_state_core = 411
+			add_state_core = 117
+		}
+		HOP = {
+			transfer_state = 410
+			transfer_state = 406
+			add_state_core = 410
+			add_state_core = 406
+		}
 		
 	}
 }
@@ -147,6 +184,69 @@ country_event = {
 	option = {
 		name = Primitivists.10.a
 		complete_national_focus = Winner_Takes_All
+		
+	}
+}
+country_event = {
+	id = Primitivists.11
+	title = Primitivists.11.t
+	desc = Primitivists.11.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = Primitivists.11.a #No Injuries
+		add_stability = 0.05
+		set_country_flag = Primitivist_Idealism
+		
+	}
+	option = {
+		name = Primitivists.11.b #Injuries
+		add_stability = -0.05
+		hidden_effect = {
+			country_event = { id = Primitivists.12 days = 30 }
+			add_country_leader_trait = Debilitated
+		}
+		
+	}
+	option = {
+		name = Primitivists.11.c
+		kill_country_leader = yes
+		create_country_leader = {
+			name = "John Zerzan"
+			picture = "gfx/leaders/SIN/John_Zerzan.tga"
+			expire = "2060.1.1"
+			ideology = anarcho_primitivism
+			traits = {
+				Primitivist_Strongman
+			}
+		}
+		
+	}
+}
+country_event = {
+	id = Primitivists.12
+	title = Primitivists.12.t
+	desc = Primitivists.12.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = Primitivists.12.a #Ted is Cured
+		remove_country_leader_trait = Debilitated
+		hidden_effect = {
+			retire_country_leader = yes
+			create_country_leader = {
+				name = "Ted Kaczynski"
+				picture = "gfx/leaders/SIN/Ted_Kaczynski_Sane.tga"
+				expire = "2060.1.1"
+				ideology = Jeffersonianism
+				traits = {
+					Anti_Primitivist
+					Apologetic
+				}
+			}
+		}
 		
 	}
 }
