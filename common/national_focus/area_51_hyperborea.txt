@@ -1,0 +1,530 @@
+focus_tree = {
+	id = area_51_hyperborea
+	country = {
+		factor = 0
+	}
+	default = no
+	focus = {
+		id = AFO_3_temper_madness
+		icon = GFX_goal_unknown
+		cost = 7.00
+		x = 2
+		y = 0
+		completion_reward = {
+			remove_ideas = AFO_paranoid_insanity_5
+		}
+
+	}
+	focus = {
+		id = AFO_3_vibrating_blood
+		icon = GFX_goal_unknown
+		cost = 6.00
+		prerequisite = {
+			focus = AFO_3_temper_madness
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			add_ideas = AFO_vibrations_in_the_blood
+		}
+
+	}
+	focus = {
+		id = AFO_3_great_restructuring
+		icon = GFX_goal_unknown
+		cost = 7.00
+		prerequisite = {
+			focus = AFO_3_temper_madness
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+			491 = {
+				add_extra_state_shared_building_slots = 5
+			}
+			add_research_slot = 1
+		}
+
+	}
+	focus = {
+		id = AFO_3_delatinisation
+		icon = GFX_goal_unknown
+		cost = 7.00
+		prerequisite = {
+			focus = AFO_3_temper_madness
+		}
+		x = 4
+		y = 1
+		completion_reward = {
+			add_stability = 0.30
+		}
+
+	}
+	focus = {
+		id = AFO_3_declare_hyperborea
+		icon = GFX_goal_unknown
+		cost = 7.00
+		prerequisite = {
+			focus = AFO_3_vibrating_blood
+		}
+		prerequisite = {
+			focus = AFO_3_great_restructuring
+		}
+		prerequisite = {
+			focus = AFO_3_delatinisation
+		}
+		x = 1
+		y = 2
+		completion_reward = {
+			set_cosmetic_tag = AFO_hyperborea_cosmetic
+			every_state = {
+				add_claim_by = AFO
+			}
+			news_event = { id = alien.8 hours = 1 }
+		}
+
+	}
+	focus = {
+		id = AFO_3_raise_militia
+		icon = GFX_goal_unknown
+		cost = 7.00
+		prerequisite = {
+			focus = AFO_3_great_restructuring
+		}
+		x = 2
+		y = 3
+		completion_reward = {
+			division_template = {
+				name = "Clone Army"
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+					infantry = { x = 1 y = 2 }
+					infantry = { x = 1 y = 3 }
+					infantry = { x = 1 y = 4 }
+					infantry = { x = 2 y = 0 }
+					infantry = { x = 2 y = 1 }
+				}
+				support = {
+					military_police = { x = 0 y = 0 }
+				}
+			}
+			491 = {
+				create_unit = {
+					division = "name = \"1ya Warband\" division_template = \"Clone Army\" start_experience_factor = 0.0" 
+					owner = AFO
+				}
+				create_unit = {
+					division = "name = \"2ya Warband\" division_template = \"Clone Army\" start_experience_factor = 0.0" 
+					owner = AFO
+				}
+				create_unit = {
+					division = "name = \"3ya Warband\" division_template = \"Clone Army\" start_experience_factor = 0.0" 
+					owner = AFO
+				}
+				create_unit = {
+					division = "name = \"4ya Warband\" division_template = \"Clone Army\" start_experience_factor = 0.0" 
+					owner = AFO
+				}
+				create_unit = {
+					division = "name = \"5ya Warband\" division_template = \"Clone Army\" start_experience_factor = 0.0" 
+					owner = AFO
+				}
+				create_unit = {
+					division = "name = \"6ya Warband\" division_template = \"Clone Army\" start_experience_factor = 0.0" 
+					owner = AFO
+				}
+				create_unit = {
+					division = "name = \"7ya Warband\" division_template = \"Clone Army\" start_experience_factor = 0.0" 
+					owner = AFO
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = AFO_3_encampment_system
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = AFO_3_delatinisation
+		}
+		prerequisite = {
+			focus = AFO_3_great_restructuring
+		}
+		x = 3
+		y = 2
+		completion_reward = {
+			add_ideas = AFO_3_encampment_system
+		}
+
+	}
+	focus = {
+		id = AFO_3_expand_cloning
+		icon = GFX_goal_unknown
+		cost = 7.00
+		prerequisite = {
+			focus = AFO_3_encampment_system
+		}
+		x = 4
+		y = 3
+		completion_reward = {
+			swap_ideas = {
+			    remove_idea = AFO_experimental_cloning 
+			    add_idea = AFO_improved_cloning
+			}
+		}
+
+	}
+	focus = {
+		id = AFO_3_raid_non_believers
+		icon = GFX_goal_Anschluss
+		cost = 4.40
+		prerequisite = {
+			focus = AFO_3_raise_militia
+		}
+		prerequisite = {
+			focus = AFO_3_expand_cloning
+		}
+		prerequisite = {
+			focus = AFO_3_declare_hyperborea
+		}
+		x = 1
+		y = 4
+		bypass = {
+			NOT = { 46 = { is_owned_by = LAS } }
+		}
+		will_lead_to_war_with = LAS
+		completion_reward = {
+			start_border_war = {
+			    change_state_after_war = yes
+			    attacker = {
+			        state = 491
+			        num_provinces = 3
+			        on_win = alien.9
+			        on_lose = alien.10
+    			    on_cancel = alien.9
+   			    }
+				
+    			defender = {
+        			state = 46
+        			num_provinces = 2
+        			on_win = alien.9
+        			on_lose = alien.10
+        			on_cancel = alien.9
+    			}
+			}
+		}
+
+	}
+	focus = {
+		id = AFO_3_deploy_agents
+		icon = GFX_goal_Repeal_Gun_Laws
+		cost = 7.00
+		prerequisite = {
+			focus = AFO_3_raid_non_believers
+		}
+		x = 1
+		y = 5
+		completion_reward = {
+			every_state = {
+				limit = {
+					OR = {
+						is_core_of = UTA
+						is_core_of = SIN
+						is_core_of = HOP
+						is_core_of = MOL
+						is_core_of = LAS
+						is_core_of = IDA
+					}
+				}
+				add_core_of = AFO
+			}
+		}
+
+	}
+	focus = {
+		id = AFO_3_criminal_grifters
+		icon = GFX_goal_Meeting_ADMAX
+		cost = 8.00
+		prerequisite = {
+			focus = AFO_3_deploy_agents
+		}
+		x = 5
+		y = 6
+		will_lead_to_war_with = SIN
+		available = {
+			any_neighbor_country = { original_tag = SIN }
+		}
+		bypass = {
+			NOT = { country_exists = SIN }
+		}
+		completion_reward = {
+			create_wargoal = {
+			    type = annex_everything
+			    target = SIN
+			}
+		}
+
+	}
+	focus = {
+		id = AFO_3_christian_dogs
+		icon = GFX_goal_UTA_Guard_Coup
+		cost = 8.00
+		prerequisite = {
+			focus = AFO_3_deploy_agents
+		}
+		x = 3
+		y = 6
+		will_lead_to_war_with = UTA
+		available = {
+			any_neighbor_country = { original_tag = UTA }
+		}
+		bypass = {
+			NOT = { country_exists = UTA }
+		}
+		completion_reward = {
+			create_wargoal = {
+			    type = annex_everything
+			    target = UTA
+			}
+		}
+
+	}
+	focus = {
+		id = AFO_3_capital_of_a_new_empire
+		icon = GFX_goal_unknown
+		cost = 7.00
+		prerequisite = {
+			focus = AFO_3_temper_madness
+		}
+		x = 8
+		y = 1
+		completion_reward = {
+			491 = {
+				set_building_level = {
+				    type = infrastructure
+				    level = 10
+				    instant_build = yes
+				}
+				set_state_name = "Hyperborea"
+			}
+			hidden_effect = {
+				set_victory_points = {
+					province = 1556
+					value = 0
+				}
+				set_victory_points = {
+					province = 741
+					value = 10
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = AFO_3_workshop_effort_one
+		icon = GFX_goal_unknown
+		cost = 7.00
+		prerequisite = {
+			focus = AFO_3_capital_of_a_new_empire
+		}
+		prerequisite = {
+			focus = AFO_3_great_restructuring
+		}
+		x = 6
+		y = 2
+		completion_reward = {
+			add_offsite_building = { type = industrial_complex level = 2 }
+		}
+
+	}
+	focus = {
+		id = AFO_3_workshop_effort_two
+		icon = GFX_goal_unknown
+		cost = 7.00
+		prerequisite = {
+			focus = AFO_3_workshop_effort_one
+		}
+		x = 6
+		y = 3
+		completion_reward = {
+			add_offsite_building = { type = industrial_complex level = 2 }
+		}
+
+	}
+	focus = {
+		id = AFO_3_hopeless_micronation
+		icon = GFX_goal_MOL_Birth_of_a_Nation
+		cost = 8.00
+		prerequisite = {
+			focus = AFO_3_deploy_agents
+		}
+		x = 7
+		y = 6
+		will_lead_to_war_with = MOL
+		available = {
+			any_neighbor_country = { original_tag = MOL }
+		}
+		bypass = {
+			NOT = { country_exists = MOL }
+		}
+		completion_reward = {
+			create_wargoal = {
+			    type = annex_everything
+			    target = MOL
+			}
+		}
+
+	}
+	focus = {
+		id = AFO_3_integrate_towns
+		icon = GFX_goal_unknown
+		cost = 7.00
+		prerequisite = {
+			focus = AFO_3_capital_of_a_new_empire
+		}
+		x = 8
+		y = 2
+		completion_reward = {
+			add_offsite_building = { type = arms_factory level = 1 }
+			add_manpower = 10000
+		}
+
+	}
+	focus = {
+		id = AFO_3_we_still_need_guns
+		icon = GFX_goal_unknown
+		cost = 7.00
+		prerequisite = {
+			focus = AFO_3_capital_of_a_new_empire
+		}
+		x = 10
+		y = 2
+		completion_reward = {
+			add_offsite_building = { type = arms_factory level = 1 }
+			army_experience = 50
+		}
+
+	}
+	focus = {
+		id = AFO_3_an_endless_horde
+		icon = GFX_goal_unknown
+		cost = 7.00
+		prerequisite = {
+			focus = AFO_3_expand_cloning
+		}
+		prerequisite = {
+			focus = AFO_3_integrate_towns
+		}
+		prerequisite = {
+			focus = AFO_3_we_still_need_guns
+		}
+		x = 9
+		y = 4
+		completion_reward = {
+			army_experience = 100
+			add_ideas = AFO_3_an_endless_horde
+			add_tech_bonus = {
+			    bonus = 2.0
+			    uses = 2
+			    category = land_doctrine
+			}
+		}
+
+	}
+	focus = {
+		id = AFO_3_conscript_scientists
+		icon = GFX_goal_unknown
+		cost = 7.00
+		prerequisite = {
+			focus = AFO_3_an_endless_horde
+		}
+		x = 9
+		y = 5
+		completion_reward = {
+			swap_ideas = {
+			    remove_idea = AFO_research_buff
+			    add_idea = AFO_conscripted_scientists
+			}
+		}
+
+	}
+	focus = {
+		id = AFO_3_revolting_nazis
+		icon = GFX_focus_For_Aryans
+		cost = 8.00
+		prerequisite = {
+			focus = AFO_3_deploy_agents
+		}
+		x = 9
+		y = 6
+		will_lead_to_war_with = HOP
+		available = {
+			any_neighbor_country = { original_tag = HOP }
+		}
+		bypass = {
+			NOT = { country_exists = HOP }
+		}
+		completion_reward = {
+			create_wargoal = {
+			    type = annex_everything
+			    target = HOP
+			}
+		}
+
+	}
+	focus = {
+		id = AFO_3_boring_gamblers
+		icon = GFX_goal_I_knew_who_is_corrupt
+		cost = 8.00
+		prerequisite = {
+			focus = AFO_3_deploy_agents
+		}
+		x = 1
+		y = 6
+		will_lead_to_war_with = LAS
+		available = {
+			any_neighbor_country = { original_tag = LAS }
+		}
+		bypass = {
+			NOT = { country_exists = LAS }
+		}
+		completion_reward = {
+			create_wargoal = {
+			    type = annex_everything
+			    target = LAS
+			}
+		}
+
+	}
+	focus = {
+		id = AFO_3_america_no_more
+		icon = GFX_goal_Celebrate_the_Establishment
+		cost = 7.00
+		prerequisite = {
+			focus = AFO_3_boring_gamblers
+		}
+		prerequisite = {
+			focus = AFO_3_christian_dogs
+		}
+		prerequisite = {
+			focus = AFO_3_criminal_grifters
+		}
+		prerequisite = {
+			focus = AFO_3_hopeless_micronation
+		}
+		prerequisite = {
+			focus = AFO_3_revolting_nazis
+		}
+		x = 5
+		y = 8
+		completion_reward = {
+			add_country_leader_trait = AFO_grand_priest_hyperborea
+		}
+
+	}
+}

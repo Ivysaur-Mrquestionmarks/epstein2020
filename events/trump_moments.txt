@@ -50,6 +50,7 @@ country_event = {
 			popularity = 0.2
 		}
 		hidden_effect = {
+			country_event = { id = maga.8 days = 14 }
 			400 = {
 				set_demilitarized_zone = no
 			}
@@ -237,5 +238,131 @@ country_event = {
 		add_stability = -0.05
 		add_political_power = 100
 		set_country_flag = pardoned_npa
+	}
+}
+#Pence resigns after winning National Protection War
+country_event = {
+	id = maga.8
+	title = maga.8.t
+	desc = maga.8.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			USA = {
+				every_unit_leader = {
+            				set_nationality = NPA
+        			}
+			}	
+			remove_unit_leader = 21	
+			remove_unit_leader = 22
+			remove_unit_leader = 24
+			remove_unit_leader = 25
+			remove_unit_leader = 26
+			remove_unit_leader = 27
+			remove_unit_leader = 28
+		}
+	}
+	#John Bolton
+	option = {
+		name = maga.8.a
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "John Bolton"
+			picture = "gfx/leaders/NPA/bolton.dds"
+			expire = "2060.1.1"
+			ideology = neocon
+			traits = {
+				hawk
+			}
+		}
+	}
+	#Liz Cheney
+	option = {
+		name = maga.8.b
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Liz Cheney"
+			picture = "gfx/leaders/NPA/liz_cheney.dds"
+			expire = "2060.1.1"
+			ideology = neocon
+			female = yes
+			traits = {
+				hawk
+			}
+		}
+	}
+	#Ben Shapiro
+	option = {
+		name = maga.8.c
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Ben Shapiro"
+			picture = "gfx/leaders/NPA/shapiro.dds"
+			expire = "2060.1.1"
+			ideology = rino
+			traits = {
+				political_dancer
+			}
+		}
+	}
+}
+#Trump chooses a VP (provisional event until focus tree)
+country_event = {
+	id = maga.9
+	title = maga.9.t
+	desc = maga.9.d
+	#picture =
+	trigger = {
+		original_tag = USA
+		NOT = { country_exists = NPA }
+	}
+	fire_only_once = yes
+	#Based DeSantis
+	option = {
+		name = maga.9.a
+		ai_chance = {
+			factor = 40
+		}
+		set_country_flag = vice_president_desantis
+		remove_ideas = Generic_Vacant_Vice_President
+		add_ideas = USA_ron_desantis_advisor
+		FLO = { country_event = { id = maga.10 } }
+	}
+	#Nepotism moment
+	option = {
+		name = maga.9.b
+		ai_chance = {
+			factor = 30
+		}
+		set_country_flag = vice_president_trump
+		remove_ideas = Generic_Vacant_Vice_President
+		add_ideas = USA_don_jr_advisor
+	}
+	#Fascist Trump?!
+	option = {
+		name = maga.9.c
+		ai_chance = {
+			factor = 30
+		}
+		set_country_flag = vice_president_mcinnes
+		remove_ideas = Generic_Vacant_Vice_President
+		add_ideas = USA_gavin_mcinnes_advisor
+		add_popularity = { ideology = autocratic popularity = 0.10 }
+	}
+}
+#DeSantis leaves for Denver
+country_event = {
+	id = maga.10
+	title = maga.10.t
+	desc = maga.10.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = maga.10.a
+		add_political_power = 10
+		add_stability = 0.01
 	}
 }

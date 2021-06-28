@@ -191,7 +191,7 @@ country_event = {
 			every_controlled_state = {
 				limit = {
 					is_fully_controlled_by = CAS
-					NOT = { state = 94 }
+					NOT = { state = 496 }
 				}
 				set_demilitarized_zone = yes
 			}
@@ -249,5 +249,55 @@ country_event = {
 		ai_chance = {
 			factor = 0
 		}
+	}
+}
+#the Cascadian Integration Authority
+country_event = {
+	id = cascadia.9
+	title = cascadia.9.t
+	desc = cascadia.9.d
+	picture = event_cascadia_01
+	is_triggered_only = yes
+	fire_only_once = yes
+	#accept
+	option = {
+		name = cascadia.9.a
+		ai_chance = {
+			factor = 100
+		}
+		CAS = { set_cosmetic_tag = CAS_integration_authority }
+		if = {
+			limit = {
+				OR = {
+					has_dlc = "Together for Victory"
+					has_dlc = "Man the Guns"
+				}
+				set_autonomy = {
+					target = CAS
+					autonomous_state = autonomy_colony
+					freedom_level = 0.6
+				}
+			else = {
+				puppet = CAS
+			}
+		}
+		CAS = {
+			add_popularity = {
+			    ideology = libertarian_left
+			    popularity = 0.5
+			}	
+			set_politics = {
+				ruling_party = libertarian_left
+			        elections_allowed = no
+			}
+		}
+	}
+	#reject
+	option = {
+		name = cascadia.9.b
+		ai_chance = {
+			factor = 0
+		}
+		add_political_power = -100
 	}
 }

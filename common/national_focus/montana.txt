@@ -386,7 +386,7 @@ focus_tree = {
 	}
 	focus = {
 		id = MON_Improved_Resource_Extraction_Tools
-		icon = GFX_goal_generic_construction2
+		icon = GFX_goal_Build_Bridges
 		x = -1
 		y = 1
 		offset = {
@@ -395,6 +395,8 @@ focus_tree = {
 		}
 		prerequisite = { 
 			focus = MON_Expand_Petroleum_Refineries
+		}
+		prerequisite = { 
 			focus = MON_Increase_Talc_Production
 		}
 		relative_position_id = MON_Expand_Petroleum_Refineries
@@ -595,7 +597,7 @@ focus_tree = {
 		}
 		relative_position_id = MON_Study_the_Chinese_Doctrine
 		
-		cost = 1
+		cost = 10
 		ai_will_do = {
 			factor = 1
 		}
@@ -682,10 +684,6 @@ focus_tree = {
 		cost = 10
 		ai_will_do = {
 			factor = 1
-		}
-		available = {
-			has_idea = closed_economy
-			has_country_flag = MON_Export_Closed
 		}
 		
 		bypass = {
@@ -774,6 +772,8 @@ focus_tree = {
 		}
 		prerequisite = { 
 			focus = MON_Improved_Farming_Equipment
+		}
+		prerequisite = { 
 			focus = MON_Increase_Fertilizer_Production
 		}
 		relative_position_id = MON_Improved_Farming_Equipment
@@ -807,6 +807,8 @@ focus_tree = {
 		}
 		prerequisite = { 
 			focus = MON_Idahoan_Potato_Farms
+		}
+		prerequisite = { 
 			focus = MON_Improved_Resource_Extraction_Tools
 		}
 		relative_position_id = MON_Idahoan_Potato_Farms
@@ -833,7 +835,7 @@ focus_tree = {
 		id = MON_Revision_Of_The_Import_Plans
 		icon = GFX_focus_MON_Revision_Of_The_Import_Plans
 		mutually_exclusive = { focus = MON_Self-Sufficiency_Plan }
-		x = 9
+		x = 13
 		y = 0
 		offset = {
 			x = 0
@@ -893,6 +895,158 @@ focus_tree = {
 		completion_reward = {
 		USA = { puppet = MON }
 		}
+	}
+	focus = {
+		id = MON_Military_Industry
+		icon = GFX_goal_generic_construct_mil_factory
+		x = -2
+		y = 1
+		offset = {
+			x = 0
+			y = 0
+		}
+		prerequisite = { 
+			focus = MON_Side_With_Trump
+		}
+		relative_position_id = MON_Side_With_Trump
+		
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+		}
+		
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			add_offsite_building = { type = arms_factory level = 6 }
+		}
+		
+	}
+	focus = {
+		id = MON_Weapons_Development
+		icon = GFX_goal_generic_army_artillery2
+		x = 0
+		y = 1
+		offset = {
+			x = 0
+			y = 0
+		}
+		prerequisite = { 
+			focus = MON_Military_Industry
+		}
+		relative_position_id = MON_Military_Industry
+		
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+		}
+		
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+		add_tech_bonus = {
+				name = MON_Weapons_Development
+				bonus = 0.25
+				uses = 5
+				category = infantry_weapons
+			}
+			add_tech_bonus = {
+				name = artillery_bonus
+				bonus = 0.25
+				uses = 5
+				category = artillery
+	        }
+			add_tech_bonus = {
+				name = support_tech_bonus
+				bonus = 0.25
+				uses = 5
+				category = support_tech
+	        }
+		}
+	}
+	focus = {
+		id = MON_Socialist_Menaces
+		icon = GFX_goal_MON_Fight_Bernie
+		x = 0
+		y = 1
+		offset = {
+			x = 0
+			y = 0
+		}
+		prerequisite = { 
+			focus = MON_Weapons_Development
+		}
+		relative_position_id = MON_Weapons_Development
+		
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+		}
+		
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+		army_experience = 20
+		add_ideas = MON_Operation_Shining_Eagle
+		create_wargoal = {
+        type = all
+        target = PRA
+        }
+		}
+			
+	}
+	focus = {
+		id = MON_USA_Arms_Deal
+		icon = GFX_goal_MON_USA_Arms_deal
+		x = 0
+		y = 1
+		offset = {
+			x = 0
+			y = 0
+		}
+		prerequisite = { 
+			focus = MON_Side_With_Trump
+		}
+		relative_position_id = MON_Side_With_Trump
+		
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+		}
+		
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+		MON = {	country_event = { id = montana.55 hours = 2 } }
+	    }
 	}
 	focus = {
 		id = MON_Stick_To_Biden
@@ -1126,6 +1280,38 @@ focus_tree = {
 		}
 	}
 	focus = {
+		id = MON_Biden_Aid
+		icon = GFX_focus_generic_concessions
+		x = 0
+		y = 1
+		offset = {
+			x = 0
+			y = 0
+		}
+		prerequisite = { 
+			focus = MON_Stick_To_Biden
+		}
+		relative_position_id = MON_Stick_To_Biden
+		
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+		}
+		
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			add_ideas = MON_Biden_Care
+	    }
+	}
+	focus = {
 		id = MON_Big_Sky_Industrial_Haven
 		icon = GFX_goal_generic_construct_civ_factory
 		x = -2
@@ -1204,7 +1390,7 @@ focus_tree = {
 			focus = MON_Big_Sky_Industrial_Haven
 		}
 		prerequisite = {
-			focus = MON_Side_With_Trump
+			focus = MON_USA_Arms_Deal
 		}
 		relative_position_id = MON_Big_Sky_Industrial_Haven
 		
@@ -1217,10 +1403,6 @@ focus_tree = {
 			}
 		}
 		available = {
-			OR = {
-				has_completed_focus = MON_America_Needed_No_More
-				has_completed_focus = MON_Question_Western_Command_Zone
-			}
 		}
 		
 		bypass = {
@@ -1231,6 +1413,8 @@ focus_tree = {
 		available_if_capitulated = yes
 		search_filters = { FOCUS_FILTER_ANNEXATION }
 		completion_reward = {
+		army_experience = 20
+		add_ideas = MON_Operation_Mountain_Meadows
 		}
 	}
 	focus = {
@@ -1244,6 +1428,9 @@ focus_tree = {
 		}
 		prerequisite = { 
 			focus = MON_Big_Sky_Industrial_Haven
+		}
+		prerequisite = { 
+			focus = MON_Biden_Aid
 		}
 		prerequisite = {
 			focus = MON_Stick_To_Biden
@@ -1259,10 +1446,6 @@ focus_tree = {
 			}
 		}
 		available = {
-			OR = {
-				has_completed_focus = MON_America_Needed_No_More
-				has_completed_focus = MON_Question_Western_Command_Zone
-			}
 		}
 		
 		bypass = {
@@ -1274,6 +1457,8 @@ focus_tree = {
 		will_lead_to_war_with = USA
 		search_filters = { FOCUS_FILTER_ANNEXATION }
 		completion_reward = {
+		army_experience = 20
+		add_ideas = MON_Pre-Emptive_Strike
 			declare_war_on = {
 			target = USA
 			type = annex_everything
@@ -2218,6 +2403,38 @@ focus_tree = {
 		}
 	}
 	focus = {
+		id = MON_the_wiccans
+		icon = GFX_focus_MON_Question_Western_Command_Zone
+		x = 0
+		y = 1
+		offset = {
+			x = 0
+			y = 0
+		}
+		prerequisite = { 
+			focus = MON_The_Northern_Federation_Concept
+		}
+		relative_position_id = MON_The_Northern_Federation_Concept
+		
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+			
+		}
+		
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+		}
+	}
+	focus = {
 		id = MON_Northwest_Front_Initiative
 		icon = GFX_focus_MON_Northwest_Front_Initiative
 		x = 0
@@ -2323,6 +2540,38 @@ focus_tree = {
 		add_state_core = 348
 		add_named_threat = { threat = 25 name = monthreat.1.t }
 		}
+		}
+	}
+	focus = {
+		id = MON_lymans_fate
+		icon = GFX_focus_MON_Question_Western_Command_Zone
+		x = 0
+		y = 1
+		offset = {
+			x = 0
+			y = 0
+		}
+		prerequisite = { 
+			focus = MON_Northwest_Front_Initiative
+		}
+		relative_position_id = MON_Northwest_Front_Initiative
+		
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+			
+		}
+		
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
 		}
 	}
 }

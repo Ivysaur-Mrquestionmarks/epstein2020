@@ -860,8 +860,7 @@ country_event = { #rename mojave
   is_triggered_only = yes
   option = {
     name = molossia.50.a
-    state = {
-      id = 459
+    459 = {
       set_state_name = "Vuldstein"
     }
   }
@@ -950,6 +949,90 @@ country_event = { #waiting out the storm
     name = molossia.55.a
     remove_ideas = {
       MOL_depot_control_2
+    }
+  }
+}
+
+########################## DESERET ##########################
+
+country_event = { #Tax collectors / army "recruiters" arrive in Molossia
+  id = molossia.100
+  title = molossia.100.t
+  desc = molossia.100.d
+  fire_only_once = yes
+  is_triggered_only = yes
+  option = {
+    name = molossia.100.a
+    add_stability = -0.05
+    country_event = { id = molossia.101 hours = 24 random_hours = 12 }
+  }
+}
+
+country_event = { #Molossia kicks out Deseret forces
+  id = molossia.101
+  title = molossia.101.t
+  desc = molossia.101.d
+  fire_only_once = yes
+  is_triggered_only = yes
+  option = {
+    name = molossia.101.a
+    add_stability = 0.08
+    add_war_support = 0.10
+    hidden_effect = {
+      country_event = { id = molossia.102 hours = 120 }
+    }
+  }
+}
+
+country_event = { #Deseret declares war
+  id = molossia.102
+  title = molossia.102.t
+  desc = molossia.102.d
+  fire_only_once = yes
+  is_triggered_only = yes
+  option = {
+    name = molossia.102.a
+    UTA = { 
+      declare_war_on = {
+          target = MOL
+          type = annex_everything
+      }
+    }
+    country_event = { id = molossia.103 hours = 120 random_hours = 24}
+  }
+}
+
+country_event = { #Deseret declares war
+  id = molossia.103
+  title = molossia.103.t
+  desc = molossia.103.d
+  fire_only_once = yes
+  is_triggered_only = yes
+  option = {
+    name = molossia.103.a
+    SIN = {
+			add_to_faction = MOL
+		}
+  }
+}
+
+
+country_event = { #Choice of whether to be Republic of Monarchy
+  id = molossia.200
+  title = molossia.200.t
+  desc = molossia.200.d
+  fire_only_once = yes
+  is_triggered_only = yes
+  option = { #Choose to be a Republic
+    name = molossia.200.a
+    hidden_effect = {
+      set_country_flag = choose_republic
+    }
+  }
+  option = { #Choose to be a Monarchy
+    name = molossia.200.b
+    hidden_effect = {
+      set_country_flag = choose_monarchy
     }
   }
 }

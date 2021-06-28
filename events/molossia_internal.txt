@@ -1,0 +1,132 @@
+add_namespace = MOL_internal
+
+country_event = { #Increase stability
+  id = MOL_internal.1
+  title = MOL_internal.1.t
+  desc = MOL_internal.1.d
+  fire_only_once = yes
+  is_triggered_only = yes
+  option = {
+    name = MOL_internal.1.a
+    MOL_increase_stability = yes
+    custom_effect_tooltip = MOL_stab_increase_tt
+  }
+}
+
+country_event = { #Big increase stability
+  id = MOL_internal.2
+  title = MOL_internal.2.t
+  desc = MOL_internal.2.d
+  fire_only_once = yes
+  is_triggered_only = yes
+  option = {
+    name = MOL_internal.2.a
+    MOL_increase_stability_big = yes
+    custom_effect_tooltip = MOL_stab_increase_big_tt
+  }
+}
+
+country_event = { #Decrease stability
+  id = MOL_internal.3
+  title = MOL_internal.3.t
+  desc = MOL_internal.3.d
+  fire_only_once = yes
+  is_triggered_only = yes
+  option = {
+    name = MOL_internal.3.a
+    MOL_decrease_stability = yes
+    custom_effect_tooltip = MOL_stab_decrease_tt
+  }
+}
+
+country_event = { #Big decrease stability
+  id = MOL_internal.4
+  title = MOL_internal.4.t
+  desc = MOL_internal.4.d
+  fire_only_once = yes
+  is_triggered_only = yes
+  option = {
+    name = MOL_internal.4.a
+    MOL_decrease_stability_big = yes
+    custom_effect_tooltip = MOL_stab_decrease_big_tt
+  }
+}
+
+
+country_event = { #The Issue of Crime
+  id = MOL_internal.20
+  title = MOL_internal.4.t
+  desc = MOL_internal.4.d
+  fire_only_once = yes
+  is_triggered_only = yes
+  option = {
+    name = MOL_internal.20.a
+    MOL_decrease_stability_big = yes
+    custom_effect_tooltip = MOL_stab_decrease_big_tt
+  }
+}
+
+country_event = { #Molossia government collapses
+  id = MOL_internal.666
+  title = MOL_internal.666.t
+  desc = MOL_internal.666.d
+  fire_only_once = yes
+  is_triggered_only = yes
+  option = {
+    name = MOL_internal.666.a
+    retire_country_leader = yes
+	add_political_power = -500
+	add_stability = -0.5
+	add_war_support = -0.5
+    create_country_leader = {
+        name = "Power Vacuum"
+        picture = "gfx/leaders/MOL/Anarchy.tga"
+        expire = "2060.1.1"
+        ideology = anarchism
+        traits = {
+            total_government_collapse
+        }
+    }
+    hidden_effect = {
+        load_focus_tree = dead_country
+        set_politics = {
+            ruling_party = libertarian_left
+            last_election = "2020.11.3"
+            election_frequency = 48
+            elections_allowed = no
+        }
+        set_country_flag = MOL_total_collapse
+    }
+    custom_effect_tooltip = MOL_total_collapse_tt
+  }
+}
+
+country_event = { #Bi-weekly (every 2 weeks) Pulse for Refugees / Stability. Should be hidden to player
+	id = MOL_internal.1000
+  immediate = {
+    if = {
+    limit = {
+      NOT = {has_country_flag = MOL_total_collapse}
+      #NOT = {has_country_flag = depot_coup}
+      NOT = {has_country_flag = kickassia_coup}
+    }
+    MOL_update_stability = yes
+    MOL_update_refugees = yes
+  }
+  country_event = {
+    id = MOL_internal.1000
+    days = 14
+  }
+  }
+	title = MOL_internal.1000.t
+	desc = MOL_internal.1000.d
+
+	is_triggered_only = yes
+
+  hidden = yes
+
+	option = {
+		name = MOL_internal.1000.a
+	}
+	
+}

@@ -1327,6 +1327,7 @@ focus_tree = {
 			country_event =  { id = CasElection.5 days = 5 }
 			country_event = { id = CasElection.6 days = 7 }
 			country_event = { id = CasElection.7 days = 33 }
+			country_event = { id = CasElection.9 days = 40 }
 		}
 		completion_reward = {
 			country_event = { id = CasElection.8 }
@@ -1346,6 +1347,24 @@ focus_tree = {
 		completion_reward = {
 			add_popularity = {
 			    ideology = democrat
+			    popularity = 0.05
+			}
+		}
+
+	}
+	focus = {
+		id = CAS_green_victory
+		icon = GFX_goal_Liberal_Party
+		cost = 10.00
+		prerequisite = {
+			focus = CAS_the_presidential_election
+		}
+		x = 5
+		y = 7
+		available = { has_government = libertarian_left }
+		completion_reward = {
+			add_popularity = {
+			    ideology = libertarian_left
 			    popularity = 0.05
 			}
 		}
@@ -2307,6 +2326,9 @@ focus_tree = {
 		}
 		x = 30
 		y = 5
+		available = {
+			has_idea = CAS_unpopular_government_war
+		}
 		completion_reward = {
 			remove_ideas = CAS_unpopular_government_war
 		}
@@ -2352,6 +2374,7 @@ focus_tree = {
 		prerequisite = {
 			focus = CAS_cascadian_tory_victory
 			focus = CAS_liberal_victory
+			focus = CAS_green_victory
 		}
 		mutually_exclusive = {
 			focus = CAS_thank_god_for_army
@@ -2374,6 +2397,152 @@ focus_tree = {
 				    level = 2
 				    instant_build = yes
 				}
+			}
+		}
+
+	}
+	focus = {
+		id = CAS_end_theocracy
+		icon = GFX_goal_sad_shea
+		cost = 4.4
+		prerequisite = {
+			focus = CAS_end_the_complex
+			focus = CAS_thank_god_for_army
+		}
+		x = 11
+		y = 9
+		will_lead_to_war_with = LIB
+		completion_reward = {
+			create_wargoal = {
+			    type = annex_everything
+			    target = LIB
+			}
+		}
+
+	}
+	focus = {
+		id = CAS_purify_east
+		icon = GFX_goal_sad_shea
+		cost = 4.4
+		prerequisite = {
+			focus = CAS_embrace_larp
+		}
+		x = 25
+		y = 2
+		will_lead_to_war_with = LIB
+		available = {
+			has_completed_focus = CAS_crush_the_holdouts
+		}
+		completion_reward = {
+			create_wargoal = {
+			    type = annex_everything
+			    target = LIB
+			}
+		}
+
+	}
+	focus = {
+		id = CAS_can_only_be_one
+		icon = GFX_goal_sad_shea
+		cost = 4.4
+		prerequisite = {
+			focus = CAS_night_long_knives
+		}
+		x = 40
+		y = 4
+		mutually_exclusive = {
+			focus = CAS_work_with_shea
+		}
+		will_lead_to_war_with = LIB
+		available = {
+			has_war = no
+		}
+		completion_reward = {
+			create_wargoal = {
+			    type = annex_everything
+			    target = LIB
+			}
+		}
+
+	}
+	focus = {
+		id = CAS_work_with_shea
+		icon = GFX_goal_happy_shea
+		cost = 4.4
+		prerequisite = {
+			focus = CAS_night_long_knives
+		}
+		x = 42
+		y = 4
+		mutually_exclusive = {
+			focus = CAS_can_only_be_one
+		}
+		available = {
+			has_war = no
+		}
+		completion_reward = {
+			if = {
+				limit = {
+					OR = {
+						has_dlc = "Together for Victory"
+						has_dlc = "Man the Guns"
+					}
+				}
+				set_autonomy = {
+					target = LIB
+					autonomous_state = autonomy_colony
+					freedom_level = 0.3
+				}
+				else = {
+					puppet = LIB
+				}
+			}
+			hidden_effect = {
+				LIB = {
+					set_country_leader_ideology = neonazism
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = CAS_integration_authority
+		icon = GFX_goal_Happy_Bernie
+		cost = 10.00
+		prerequisite = {
+			focus = CAS_green_victory
+		}
+		x = 5
+		y = 8
+		available = { 
+			PRA = { has_country_flag = pra_did_amazing_grace }
+			has_government = libertarian_left 
+			NOT = { country_exists = LIB }
+		}
+		completion_reward = {
+			effect_tooltip = {
+				set_cosmetic_tag = CAS_integration_authority
+				if = {
+					limit = {
+						OR = {
+							has_dlc = "Together for Victory"
+							has_dlc = "Man the Guns"
+						}
+					}
+					PRA = {
+						set_autonomy = {
+							target = CAS
+							autonomous_state = autonomy_colony
+							freedom_level = 0.6
+						}
+					}
+					else = {
+						PRA = { puppet = CAS }
+					}
+				}
+			}
+			PRA = {
+				country_event = { id = cascadia.9 }
 			}
 		}
 

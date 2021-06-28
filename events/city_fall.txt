@@ -1,0 +1,42 @@
+####EVENTS FOR CITIES FALLING. SOME SHOULD ONLY TRIGGER ONCE, SOME SHOULD BE ABLE TO TRIGGER MULTIPLE TIMES. UP TO YOU IG
+add_namespace = city_conquest
+
+#Indianapolis
+news_event = {
+	id = city_conquest.1
+	title = city_conquest.1.t
+	desc = city_conquest.1.d
+	picture = event_news_indianapolis
+	major = yes
+	trigger = {
+		207 = { is_controlled_by = USA }
+		NOT = { has_global_flag = indianapolis_has_fallen }
+	}
+	immediate = {
+		hidden_effect = { set_global_flag = indianapolis_has_fallen }
+	}
+	option = {
+		trigger = { NOT = { tag = NPA } }
+		name = city_conquest.1.a
+	}
+	option = {
+		trigger = { tag = NPA }
+		name = city_conquest.1.b
+		add_war_support = -0.10
+		add_stability = -0.50
+		add_political_power = -700
+		kill_country_leader = yes
+		hidden_effect = {
+			remove_unit_leader = 21
+			create_country_leader = {
+				name = "John Bolton"
+				picture = "gfx/leaders/NPA/bolton.dds"
+				expire = "2060.1.1"
+				ideology = neocon
+				traits = {
+					
+				}
+			}
+		}
+	}
+}

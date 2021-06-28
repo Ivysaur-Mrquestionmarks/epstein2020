@@ -426,7 +426,7 @@ focus_tree = {
 		}
 		completion_reward = {
 			PAC = {
-				country_event = { id = fleet_P.48 days = 35 } 
+				country_event = { id = fleet_P.48 days = 10 } 
 			}
 		}
 
@@ -453,7 +453,7 @@ focus_tree = {
 		}
 		completion_reward = {
 			PAC = {
-				country_event = { id = fleet_P.47 days = 35 } 
+				country_event = { id = fleet_P.47 days = 10 } 
 			}
 		}
 
@@ -549,6 +549,9 @@ focus_tree = {
 		completion_reward = {
 			add_stability = 0.05
 			add_war_support = 0.05
+			WMX = {
+				country_event = { id = mexico.9 days = 10 }
+			}
 		}
 
 	}
@@ -587,10 +590,10 @@ focus_tree = {
 		}
 		available = {
 			NOT = {
-				has_completed_focus = ANTIFA_concessions
 				has_war_with = PAC
 			}
 			country_exists = SAZ
+			has_completed_focus = The_Chinese_help
 		}
 		prerequisite = {
 			focus = American_Great_Patriotic_War
@@ -681,8 +684,11 @@ focus_tree = {
 		}
 		available = {
 			NOT = {
-				has_completed_focus = The_Chinese_help
 				has_war_with = PAC
+			}
+			OR = {
+				has_completed_focus = ANTIFA_concessions 
+				has_completed_focus = Tow_the_line 
 			}
 			country_exists = SAZ
 		}
@@ -693,6 +699,12 @@ focus_tree = {
 		completion_reward = {
 			add_political_power = 50
 			add_stability = -0.01
+			IF = {
+				Limit = {
+					has_completed_focus = Tow_the_line
+				}
+				end_puppet = SAZ
+			}
 		}
 	}
 	focus = {
@@ -706,6 +718,9 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = Grant_Seattle_autonomy
+		}
+		bypass = {
+			has_completed_focus = Tow_the_line
 		}
 		completion_reward = {
 			add_popularity = {
@@ -725,6 +740,9 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = Make_Raz_Minister
+		}
+		bypass = {
+			has_completed_focus = Tow_the_line
 		}
 		completion_reward = {
 			create_wargoal = {
@@ -748,14 +766,16 @@ focus_tree = {
 		available = {
 			NOT = {
 				country_exists = SAZ
-				has_completed_focus = Crush_Seattle_Soveriegnty
-				has_completed_focus = Grant_Seattle_autonomy
 			}
 		}
+		mutually_exclusive = {
+			focus = Crush_Seattle_Soveriegnty
+			focus = Grant_Seattle_autonomy
+			}
 		completion_reward = {
 			add_manpower = 257432
 			CAS = {
-				add_manpower = 257432
+				add_manpower = -257432
 			}
 		}
 	}
@@ -935,7 +955,7 @@ focus_tree = {
 			focus = Propose_Dual_Citizenship
 		}
 		completion_reward = {
-			load_focus_tree = Anarchist_California
+			load_focus_tree = Tree_Anarchist_California
 			kill_country_leader = yes
 			create_country_leader = {
 				name = "Peter Lamborn Wilson"
@@ -1340,9 +1360,20 @@ focus_tree = {
 			}
 			remove_ideas = AngeredAnarchists
 			remove_ideas = AngeredChinese
+			custom_effect_tooltip = Vice_President_abandons_us
+			remove_ideas = Peter_Lamborn_Wilson
+			remove_ideas = Joe_Sims
+			If = {
+				LIMIT = {
+					has_idea = Peter_Lamborn_Wilson
+				}
+				remove_ideas = Peter_Lamborn_Wilson
+				add_ideas = Andrew_Yang
+			}
 			hidden_effect = {
 				country_event = { id = California.2 days = 40 }
 				set_global_flag = PRA_Bidenist_Collapse
+				set_country_flag = VP_Abandonment
 				Every_state = {
     				Limit = { 
     					is_owned_by = PRA
@@ -1383,6 +1414,8 @@ focus_tree = {
 			hidden_effect = {
 				load_focus_tree = Democratic_California
 				set_cosmetic_tag = Western_Bidenists
+				remove_ideas = Class_Conflict_Cali
+				set_country_flag = pra_did_amazing_grace
 			}
 		}
 	}
@@ -1564,6 +1597,36 @@ focus_tree = {
 		completion_reward = {
 			load_focus_tree = Chinese_California
 			set_cosmetic_tag = Peoples_Republic
+			create_corps_commander = {
+				name = "Jarvis Tyner"
+				portrait_path = "gfx/leaders/PRA/Jarvis_Tyner.tga"
+			 	traits = { infantry_officer politically_connected }
+				skill = 2
+				attack_skill = 2
+				defense_skill = 2
+				planning_skill = 3
+				logistics_skill = 2
+			}
+			create_corps_commander = {
+				name = "Angela Davis"
+				portrait_path = "gfx/leaders/PRA/Angela_Davis.tga"
+			 	traits = { harsh_leader politically_connected }
+				skill = 2
+				attack_skill = 4
+				defense_skill = 2
+				planning_skill = 2
+				logistics_skill = 2
+			}
+			create_corps_commander = {
+				name = "Jonah Deocampo"
+				portrait_path = "gfx/leaders/PRA/Jonah_Deocampo.tga"
+			 	traits = { trait_reckless politically_connected }
+				skill = 1
+				attack_skill = 1
+				defense_skill = 1
+				planning_skill = 1
+				logistics_skill = 1
+			}
 			set_politics = {
 				ruling_party = authoritarian_left
 			}
@@ -1682,6 +1745,17 @@ focus_tree = {
 		cost = 7.00
 		x = 7
 		y = 1
+		available = {
+			ABG = {
+				has_completed_focus = Arizona_Independence
+			}
+			JFR = {
+				has_completed_focus = The_2nd_Reagan
+			}
+			ACF = {
+				has_completed_focus = Reconciliation
+			}
+		}
 		prerequisite = {
 			focus = Secure_our_territory
 		}
@@ -1726,6 +1800,9 @@ focus_tree = {
 		prerequisite = {
 			focus = Secure_our_territory
 		}
+		available = {
+			NOT = { has_country_flag = Accepted_Peace }
+		}
 		mutually_exclusive = {
 			focus = Promise_Latino_Representation
 		}
@@ -1733,7 +1810,7 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_war_support = 0.12
 		}
 
 	}
@@ -1750,7 +1827,7 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_ideas = PRA_No_Quarter
 		}
 
 	}
@@ -1799,9 +1876,25 @@ focus_tree = {
 		}
 		completion_reward = {
 			load_focus_tree = The_New_Confederation
-			custom_effect_tooltip = Unfinished_California_Content
 			set_global_flag = Article_of_Confederation_Bernie
 			set_faction_name = Californian_Confederation
+			set_cosmetic_tag = South_Californian_Republic
+			hidden_effect = {
+				remove_ideas = Class_Conflict_Cali
+				remove_ideas = Workers_Congress
+				remove_ideas = Weak_Workers_Congress
+				remove_ideas = Californian_Collapse_Idea
+				JFR = {
+					remove_ideas = Californian_Collapse_Idea
+				}
+				ABG = {
+					remove_ideas = Californian_Collapse_Idea
+				}
+				NVD = {
+					remove_ideas = Californian_Collapse_Idea
+				}
+			}
+			remove_idea = Californian_Collapse_Idea
 		}
 	}
 	focus = {
@@ -1847,6 +1940,13 @@ focus_tree = {
 		completion_reward = {
 			load_focus_tree = Democratic_California
 			set_faction_name = Western_Legitimists
+			set_cosmetic_tag = Western_Bidenists
+			hidden_effect = {
+				remove_ideas = Class_Conflict_Cali
+				remove_ideas = Workers_Congress
+				remove_ideas = Weak_Workers_Congress
+				remove_ideas = Californian_Collapse_Idea
+			}
 		}
 	}
 }
@@ -1901,24 +2001,30 @@ focus_tree = {
 		completion_reward = {
 			retire_country_leader = yes
 			create_country_leader = {
-				name = "Gavin Newsom"
-				picture = "gfx/leaders/PRA/Newsom.tga"
+				name = "Californian Congress"
+				picture = "gfx/leaders/PRA/Califonia_Congress.tga"
 				expire = "2060.1.1"
 				ideology = establishment
 				traits = {
 						
 				}
 			}
+			hidden_effect = {
+				news_event = { id = News_Events.6 days = 82 }
+			}
 		}
 	}
 	focus = {
 		id = Yang_Gang
-		icon = GFX_goal_Republic_Triumphant
+		icon = GFX_goal_Andrew_Yang
 		cost = 2.00
 		x = 0
 		y = 3
 		prerequisite = {
 			focus = Stepping_down
+		}
+		available = {
+			has_idea = Andrew_Yang
 		}
 		mutually_exclusive = {
 			focus = Schmidt_Libertarian
@@ -1928,24 +2034,26 @@ focus_tree = {
 		}
 		completion_reward = {
 			retire_country_leader = yes
+			remove_ideas = Andrew_Yang
+			add_ideas = Generic_Vacant_Vice_President
 			add_popularity = {
 				ideology = democrat
 				popularity = 0.1
 			}
 			create_country_leader = {
 				name = "Andrew Yang"
-				picture = "gfx/leaders/PRA/Newsom.tga"
+				picture = "gfx/leaders/PRA/yang.tga"
 				expire = "2060.1.1"
 				ideology = progressive
 				traits = {
-						
+					Yang_Gang_Trait
 				}
 			}
 		}
 	}
 	focus = {
 		id = Send_out_stimmies
-		icon = GFX_goal_Republic_Triumphant
+		icon = GFX_goal_Stimulus_Checks
 		cost = 10.00
 		x = 0
 		y = 4
@@ -1960,8 +2068,8 @@ focus_tree = {
 	}
 	focus = {
 		id = Support_Alternative_Power
-		icon = GFX_goal_Republic_Triumphant
-		cost = 210.00
+		icon = GFX_goal_Alt_Energy
+		cost = 10.00
 		x = 0
 		y = 5
 		prerequisite = {
@@ -1985,11 +2093,13 @@ focus_tree = {
 		}
 		completion_reward = {
 			add_ideas = The_Embers_of_his_Flame
+			add_ideas = Fatima_Iqbal_Zubair
+			remove_ideas = Generic_Vacant_Vice_President
 		}
 	}
 	focus = {
 		id = Defy_Biden
-		icon = GFX_goal_Republic_Triumphant
+		icon = GFX_goal_Anti_Biden_Flag
 		cost = 10.00
 		x = 2
 		y = 5
@@ -2005,7 +2115,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Keep_Cali_Democratic
-		icon = GFX_goal_Republic_Triumphant
+		icon = GFX_goal_Work_with_Democrats
 		cost = 10.00
 		x = 1
 		y = 6
@@ -2026,7 +2136,7 @@ focus_tree = {
 
 	focus = {
 		id = Schmidt_Libertarian
-		icon = GFX_goal_Republic_Triumphant
+		icon = GFX_goal_Scott_Schmidt
 		cost = 5.00
 		x = 5
 		y = 3
@@ -2040,6 +2150,11 @@ focus_tree = {
 			focus = Duf_Sundheim_Presidency
 		}
 		completion_reward = {
+			add_ideas = PRA_StarChild
+			hidden_effect = {
+				remove_ideas = Generic_Vacant_Vice_President
+				remove_ideas = Andrew_Yang
+			}
 			add_popularity = {
 				ideology = libertarian_right
 				popularity = 0.1
@@ -2050,7 +2165,8 @@ focus_tree = {
 				expire = "2060.1.1"
 				ideology = libertarian_ideology
 				traits = {
-						
+					Young_Liberatarian
+					NEW_Libertarian
 				}
 			}
 			set_politics = {
@@ -2060,7 +2176,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Cut_Taxes
-		icon = GFX_goal_Republic_Triumphant
+		icon = GFX_goal_Denounce_Big_Money
 		cost = 10.00
 		x = 6
 		y = 4
@@ -2073,8 +2189,8 @@ focus_tree = {
 	}
 	focus = {
 		id = Reppeal_Gun_Laws
-		icon = GFX_goal_Republic_Triumphant
-		cost = 210.00
+		icon = GFX_goal_Repeal_Gun_Laws
+		cost = 10.00
 		x = 6
 		y = 5
 		prerequisite = {
@@ -2086,7 +2202,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Work_With_Elon
-		icon = GFX_goal_Republic_Triumphant
+		icon = GFX_goal_Free_Market_Solutions
 		cost = 2.00
 		x = 4
 		y = 4
@@ -2122,7 +2238,7 @@ focus_tree = {
 	}
 	focus = {
 		id = To_the_moon
-		icon = GFX_goal_Republic_Triumphant
+		icon = GFX_goal_To_The_Moon
 		cost = 10.00
 		x = 4
 		y = 5
@@ -2135,7 +2251,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Instill_Libertarian_Ideals
-		icon = GFX_goal_Republic_Triumphant
+		icon = GFX_goal_Work_with_Libertarians
 		cost = 10.00
 		x = 5
 		y = 6
@@ -2151,7 +2267,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Duf_Sundheim_Presidency
-		icon = GFX_goal_Republic_Triumphant
+		icon = GFX_goal_Duf_Sundheim
 		cost = 2.00
 		x = 10
 		y = 3
@@ -2165,6 +2281,11 @@ focus_tree = {
 			focus = Yang_Gang
 		}
 		completion_reward = {
+			hidden_effect = {
+				remove_ideas = Generic_Vacant_Vice_President
+				remove_ideas = Andrew_Yang
+			}
+			add_ideas = Shawn_Steel
 			add_popularity = {
 				ideology = republican
 				popularity = 0.1
@@ -2175,7 +2296,7 @@ focus_tree = {
 				expire = "2060.1.1"
 				ideology = conservative
 				traits = {
-						
+					Anti_Trump_Republican
 				}
 			}
 			set_politics = {
@@ -2185,7 +2306,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Legacy_Of_Republican_California
-		icon = GFX_goal_Republic_Triumphant
+		icon = GFX_goal_Ronnie
 		cost = 10.00
 		x = 9
 		y = 4
@@ -2201,8 +2322,8 @@ focus_tree = {
 	}
 	focus = {
 		id = Reaganomics_Works
-		icon = GFX_goal_Republic_Triumphant
-		cost = 210.00
+		icon = GFX_goal_Divert_California_Funds
+		cost = 10.00
 		x = 9
 		y = 5
 		prerequisite = {
@@ -2214,7 +2335,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Repeal_Bernie_Reforms
-		icon = GFX_goal_Republic_Triumphant
+		icon = GFX_goal_Socialist_Books
 		cost = 2.00
 		x = 11
 		y = 4
@@ -2228,7 +2349,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Defy_Trump
-		icon = GFX_goal_Republic_Triumphant
+		icon = GFX_goal_Anti_Trump_Flag
 		cost = 10.00
 		x = 11
 		y = 5
@@ -2244,7 +2365,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Republicanism_Makes_Sense
-		icon = GFX_goal_Republic_Triumphant
+		icon = GFX_goal_Work_with_Republicans
 		cost = 10.00
 		x = 10
 		y = 6
@@ -2277,7 +2398,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Work_with_Jefferson
-		icon = GFX_goal_Republic_Triumphant
+		icon = GFX_goal_Jefferson_Meeting
 		cost = 2.00
 		x = 15
 		y = 2
@@ -2293,7 +2414,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Yreka_Investments
-		icon = GFX_goal_Republic_Triumphant
+		icon = GFX_focus_mex_privatisation
 		cost = 2.00
 		x = 15
 		y = 3
@@ -2331,7 +2452,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Reunite_the_Roads
-		icon = GFX_goal_Republic_Triumphant
+		icon = GFX_goal_Try_A_Different_Route
 		cost = 2.00
 		x = 15
 		y = 4
@@ -2339,12 +2460,61 @@ focus_tree = {
 			focus = Yreka_Investments
 		}
 		completion_reward = {
-			
+			JFR = {
+				random_owned_controlled_state = {
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+    					type = infrastructure
+    					level = 2
+    					instant_build = yes
+    				}
+				}
+				random_owned_controlled_state = {
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+    					type = infrastructure
+    					level = 2
+    					instant_build = yes
+    				}
+				}
+				random_owned_controlled_state = {
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+    					type = infrastructure
+    					level = 2
+    					instant_build = yes
+    				}
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = infrastructure
+    				level = 2
+    				instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+   					type = infrastructure
+   					level = 2
+    				instant_build = yes
+    			}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = infrastructure
+   					level = 2
+    				instant_build = yes
+    			}
+			}
 		}
 	}
 	focus = {
 		id = Work_with_Nevada
-		icon = GFX_goal_Republic_Triumphant
+		icon = GFX_goal_Adam_Laxalt
 		cost = 2.00
 		x = 20
 		y = 2
@@ -2360,7 +2530,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Reno_Investments
-		icon = GFX_goal_Republic_Triumphant
+		icon = GFX_goal_Promote_Nevada_Industry
 		cost = 2.00
 		x = 20
 		y = 3
@@ -2368,12 +2538,14 @@ focus_tree = {
 			focus = Work_with_Nevada
 		}
 		completion_reward = {
-
+			NVD = {
+				add_ideas = PRA_Reno_Casinos
+			}
 		}
 	}
 	focus = {
 		id = Relieve_Nevada_Militias
-		icon = GFX_goal_Republic_Triumphant
+		icon = GFX_goal_National_Guard_Smaller
 		cost = 2.00
 		x = 20
 		y = 4
@@ -2389,7 +2561,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Restore_Cascadian_Democracy
-		icon = GFX_goal_Republic_Triumphant
+		icon = GFX_goal_Cascadian_War_Cry
 		cost = 2.00
 		x = 16
 		y = 5
@@ -2412,7 +2584,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Montana_Sovereignty
-		icon = GFX_goal_Republic_Triumphant
+		icon = GFX_focus_MON_Father_Of_The_State
 		cost = 2.00
 		x = 18
 		y = 5
@@ -2423,12 +2595,25 @@ focus_tree = {
 			focus = Reunite_the_Roads
 		}
 		completion_reward = {
-			
+			create_wargoal = {
+    			type = puppet_wargoal_focus
+    			target = MON
+			}
+			hidden_effect = {
+				create_wargoal = {
+    				type = puppet_wargoal_focus
+    				target = LYM
+				}
+				create_wargoal = {
+	    			type = puppet_wargoal_focus
+    				target = MKF
+				}
+			}
 		}
 	}
 	focus = {
 		id = Subjugate_Nevada
-		icon = GFX_goal_Republic_Triumphant
+		icon = GFX_goal_Make_Nevada_Greater
 		cost = 2.00
 		x = 22
 		y = 5
@@ -2440,12 +2625,45 @@ focus_tree = {
 			focus = New_Mexico_for_Alliance
 		}
 		completion_reward = {
-			
+			NVD = {
+				add_state_core = 419
+				add_state_core = 393
+				add_state_core = 487
+				add_state_core = 46
+				add_state_core = 491
+				add_state_core = 488
+				add_state_core = 117
+				add_state_core = 354
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = LAS
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = UTA
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = AFO
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = MOL
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = SIN
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = HOP
+			}
 		}
 	}
 	focus = {
 		id = Grant_Utah_lands
-		icon = GFX_goal_Republic_Triumphant
+		icon = GFX_goal_UTA_Mormon_Fire
 		cost = 2.00
 		x = 24
 		y = 5
@@ -2457,15 +2675,17 @@ focus_tree = {
 			focus = New_Mexico_for_Alliance
 		}
 		completion_reward = {
+			ABG = {
 			create_wargoal = {
 				type = annex_everything
 				target = UTA
+			}
 			}
 		}
 	}
 	focus = {
 		id = Work_with_Arizona_New_Mexico
-		icon = GFX_goal_Republic_Triumphant
+		icon = GFX_goal_Arizona_New_Mexico
 		cost = 2.00
 		x = 25
 		y = 2
@@ -2481,7 +2701,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Move_on_Amerika_reich
-		icon = GFX_goal_Republic_Triumphant
+		icon = GFX_goal_kill_james_mason
 		cost = 2.00
 		x = 25
 		y = 3
@@ -2497,34 +2717,60 @@ focus_tree = {
 	}
 	focus = {
 		id = New_Mexico_for_Alliance
-		icon = GFX_goal_Republic_Triumphant
+		icon = GFX_goal_New_Mexico_Freedom
 		cost = 2.00
 		x = 24
 		y = 4
 		prerequisite = {
 			focus = Move_on_Amerika_reich
 		}
+		available = {
+			TEX = {
+			NOT = {
+			has_government = autocratic
+			has_government = authoritarian_left
+			}
+			}
+		}
 		mutually_exclusive = {
 			focus = Move_on_Texan_New_Mexico
 		}
 		completion_reward = {
-			
+			TEX = {
+				country_event = { id = border_patrol.9 days = 10 }
+			}
 		}
 	}
 	focus = {
 		id = Move_on_Texan_New_Mexico
-		icon = GFX_goal_Republic_Triumphant
+		icon = GFX_goal_Texan_Coup
 		cost = 2.00
 		x = 26
 		y = 4
 		prerequisite = {
 			focus = Move_on_Amerika_reich
 		}
+		available = {
+			TEX = {
+				OR = {
+				has_government = autocratic
+				has_government = authoritarian_left
+			}
+			}
+		}
 		mutually_exclusive = {
 			focus = New_Mexico_for_Alliance
 		}
 		completion_reward = {
-			
+			ABG = {
+				add_state_core = 335
+				add_state_core = 310
+				add_state_core = 249
+				create_wargoal = {
+					type = annex_everything
+					target = TEX
+				}
+			}
 		}
 	}
 }
@@ -2540,7 +2786,7 @@ focus_tree = {
     country = {
 	factor = 0
     }
-    continuous_focus_position = { x = 0 y = 15000 }
+    continuous_focus_position = { x = 5000 y = 15000 }
     default = no
     focus = {
 		id = The_Republic_Stands_Triumphant
@@ -2593,7 +2839,7 @@ focus_tree = {
 	}
 	focus = {
 		id = The_Lieutenant
-		icon = GFX_goal_Republican_Ticket
+		icon = GFX_goal_Eleni_Koukalanis
 		cost = 5.00
 		x = 13
 		y = 3
@@ -2615,7 +2861,7 @@ focus_tree = {
 	}
 	focus = {
 		id = A_Woman_in_Power
-		icon = GFX_goal_Republican_Ticket
+		icon = GFX_goal_A_Woman_in_Power
 		cost = 5.00
 		x = 13
 		y = 4
@@ -2626,12 +2872,12 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_staability = 0.01
 		}
 	}
 	focus = {
 		id = Blind_eye_to_Corruption
-		icon = GFX_goal_Republican_Ticket
+		icon = GFX_goal_Blind_Eye_to_Corruption
 		cost = 5.00
 		x = 13
 		y = 5
@@ -2642,12 +2888,12 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_ideas = Corruption_Rampant
 		}
 	}
 	focus = {
 		id = Consolidate_the_Establishment
-		icon = GFX_goal_Republican_Ticket
+		icon = GFX_goal_Consolidate_the_Establishment
 		cost = 5.00
 		x = 13
 		y = 6
@@ -2658,12 +2904,21 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_stability = -0.05
+			add_war_support = -0.05
+			add_popularity = {
+				ideology = democrat
+				popularity = 0.65
+			}
+			add_popularity = {
+				ideology = republican
+				popularity = 0.35
+			}
 		}
 	}
 	focus = {
 		id = Things_as_they_were
-		icon = GFX_goal_Republican_Ticket
+		icon = GFX_goal_The_Return_of_America
 		cost = 5.00
 		x = 13
 		y = 7
@@ -2674,12 +2929,15 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			swap_ideas = {
+			    remove_idea = Corruption_Rampant
+			    add_idea = PRA_Corruption_is_as_American_as_Apple_Pie
+			}
 		}
 	}
 	focus = {
 		id = Celebrate_the_Establishment
-		icon = GFX_goal_Republican_Ticket
+		icon = GFX_goal_Celebrate_the_Establishment
 		cost = 5.00
 		x = 15
 		y = 8
@@ -2692,12 +2950,14 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_stability = 0.15
+			add_war_support = 0.15
+			add_ideas = PRA_Establishment_Entrenched
 		}
 	}
 	focus = {
 		id = The_Governor
-		icon = GFX_goal_Republican_Ticket
+		icon = GFX_goal_Gavin_Newsom
 		cost = 5.00
 		x = 17
 		y = 3
@@ -2719,7 +2979,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Shake_Hands_with_big_Tech
-		icon = GFX_goal_Republican_Ticket
+		icon = GFX_goal_Shake_Hands_with_Big_Tech
 		cost = 5.00
 		x = 17
 		y = 4
@@ -2730,12 +2990,12 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_ideas = PRA_Big_Tech
 		}
 	}
 	focus = {
 		id = Encourage_LGBTQ_Enlistment
-		icon = GFX_goal_Republican_Ticket
+		icon = GFX_goal_Encourage_LGBTQ_Enlistment
 		cost = 5.00
 		x = 17
 		y = 5
@@ -2746,12 +3006,13 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_ideas = PRA_Gay_Regiments
+			add_war_support = 0.05
 		}
 	}
 	focus = {
 		id = Raise_Taxes
-		icon = GFX_goal_Republican_Ticket
+		icon = GFX_goal_Raise_Taxes
 		cost = 5.00
 		x = 17
 		y = 6
@@ -2762,12 +3023,12 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_ideas = PRA_Californian_Taxes
 		}
 	}
 	focus = {
 		id = Lower_Homelessness
-		icon = GFX_goal_Republican_Ticket
+		icon = GFX_goal_Lower_Homelessness
 		cost = 5.00
 		x = 17
 		y = 7
@@ -2778,12 +3039,12 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_manpower = 165248
 		}
 	}
 	focus = {
 		id = The_Philanthropist
-		icon = GFX_goal_Republican_Ticket
+		icon = GFX_goal_Andrew_Yang
 		cost = 5.00
 		x = 15
 		y = 3
@@ -2805,7 +3066,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Alt_Power
-		icon = GFX_goal_Republican_Ticket
+		icon = GFX_goal_Alt_Energy
 		cost = 5.00
 		x = 15
 		y = 4
@@ -2824,7 +3085,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Stimulus_Checks
-		icon = GFX_goal_Republican_Ticket
+		icon = GFX_goal_Stimulus_Checks
 		cost = 5.00
 		x = 15
 		y = 5
@@ -2842,7 +3103,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Expand_the_Yang_Gang
-		icon = GFX_goal_Republican_Ticket
+		icon = GFX_goal_Expand_the_Yang_Gang
 		cost = 5.00
 		x = 15
 		y = 6
@@ -2853,12 +3114,12 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_ideas = PRA_Yang_Gang_Idealism
 		}
 	}
 	focus = {
 		id = Not_left_not_Right_But_Forward
-		icon = GFX_goal_Republican_Ticket
+		icon = GFX_goal_Not_Left_Not_Right_but_Forward
 		cost = 5.00
 		x = 15
 		y = 7
@@ -2869,7 +3130,10 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			swap_ideas = {
+			    remove_idea = PRA_Yang_Gang_Idealism
+			    add_idea = PRA_Yang_Gang_Forwardism
+			}
 		}
 	}
 	focus = {
@@ -2893,7 +3157,7 @@ focus_tree = {
 	}
 	focus = {
 		id = The_Libertarian
-		icon = GFX_goal_Republican_Ticket
+		icon = GFX_goal_Scott_Schmidt
 		cost = 5.00
 		x = 3
 		y = 3
@@ -2909,13 +3173,13 @@ focus_tree = {
 		completion_reward = {
 			add_popularity = {
 				ideology = libertarian_right
-				popularity = 0.30
+				popularity = 0.20
 			}
 		}
 	}
 	focus = {
 		id = Repeal_Gun_Laws
-		icon = GFX_goal_Republican_Ticket
+		icon = GFX_goal_Repeal_Gun_Laws
 		cost = 5.00
 		x = 3
 		y = 4
@@ -2926,12 +3190,12 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			country_event = { id = California.70 days = 10 } #Repeal Fails
 		}
 	}
 	focus = {
 		id = Try_Harder
-		icon = GFX_goal_Republican_Ticket
+		icon = GFX_goal_Try_Harder
 		cost = 5.00
 		x = 3
 		y = 5
@@ -2942,12 +3206,12 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			country_event = { id = California.71 days = 10 } #Repeal Fails Again
 		}
 	}
 	focus = {
 		id = Try_A_Different_Route
-		icon = GFX_goal_Republican_Ticket
+		icon = GFX_goal_Try_A_Different_Route
 		cost = 5.00
 		x = 3
 		y = 6
@@ -2958,12 +3222,12 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			country_event = { id = California.72 days = 25 } #Repeal Works
 		}
 	}
 	focus = {
 		id = Promote_the_Free_Market
-		icon = GFX_goal_Republican_Ticket
+		icon = GFX_goal_Free_Market_Solutions
 		cost = 5.00
 		x = 3
 		y = 7
@@ -2974,12 +3238,40 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_ideas = Encouraged_Market_Freedom
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 2
+    					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 2
+    					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 2
+    					instant_build = yes
+				}
+			}
+			add_popularity = {
+				ideology = libertarian_right
+				popularity = 0.05
+			}
 		}
 	}
 	focus = {
 		id = The_Nevadan #Hidden Caitlyn Jenner path
-		icon = GFX_goal_Republican_Ticket
+		icon = GFX_goal_Adam_Laxalt
 		cost = 5.00
 		x = 7
 		y = 3
@@ -3001,71 +3293,214 @@ focus_tree = {
 	}
 	focus = {
 		id = Promote_Nevada_Industry
-		icon = GFX_goal_Republican_Ticket
+		icon = GFX_goal_Promote_Nevada_Industry
 		cost = 5.00
 		x = 7
 		y = 4
 		prerequisite = {
 			focus = The_Nevadan
 		}
+		available = {
+			has_country_leader = {
+				name = "Adam Laxalt"
+			}
+		}
 		ai_will_do = { 
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_stability = -0.15
+			452 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 2
+    					instant_build = yes
+				}
+			}
+			394 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 2
+    					instant_build = yes
+				}
+			}
+
 		}
 	}
 	focus = {
 		id = Ignore_California
-		icon = GFX_goal_Republican_Ticket
+		icon = GFX_goal_Ignore_California
 		cost = 5.00
 		x = 7
 		y = 5
 		prerequisite = {
 			focus = Promote_Nevada_Industry
 		}
+		available = {
+			has_country_leader = {
+				name = "Adam Laxalt"
+			}
+		}
 		ai_will_do = { 
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_stability = -0.05
+			add_political_power = -25
 		}
 	}
 	focus = {
 		id = Divert_Californian_Funds
-		icon = GFX_goal_Republican_Ticket
+		icon = GFX_goal_Divert_California_Funds
 		cost = 5.00
 		x = 7
 		y = 6
 		prerequisite = {
 			focus = Ignore_California
 		}
+		available = {
+			has_country_leader = {
+				name = "Adam Laxalt"
+			}
+		}
 		ai_will_do = { 
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_ideas = PRA_Funds_Diverted
 		}
 	}
 	focus = {
 		id = Make_Nevada_Greater
-		icon = GFX_goal_Republican_Ticket
+		icon = GFX_goal_Make_Nevada_Greater
 		cost = 5.00
 		x = 7
 		y = 7
 		prerequisite = {
 			focus = Divert_Californian_Funds
 		}
+		available = {
+			has_country_leader = {
+				name = "Adam Laxalt"
+			}
+		}
 		ai_will_do = { 
 			factor = 300
 		}
 		completion_reward = {
-			
+			NVD = {
+				add_state_core = 452
+				add_state_core = 394
+				add_state_core = 419
+				add_state_core = 393
+				add_state_core = 487
+				add_state_core = 46
+				add_state_core = 488
+				add_state_core = 117
+				add_state_core = 354
+				add_ideas = PRA_Funds_Diverted_Nevada
+				puppet = PRA
+				set_cosmetic_TAG = Nevada_Western_Bidenists
+				If = {
+					Limit = {
+						452 = {
+							is_controlled_by = PRA
+						}
+						
+					}
+					transfer_state = 452
+				}
+				If = {
+					Limit = {
+						394 = {
+							is_controlled_by = PRA
+						}
+						
+					}
+					transfer_state = 394
+				}
+				If = {
+					Limit = {
+						419 = {
+							is_controlled_by = PRA
+						}
+						
+					}
+					transfer_state = 419
+				}
+				If = {
+					Limit = {
+						393 = {
+							is_controlled_by = PRA
+						}
+						
+					}
+					transfer_state = 393
+				}
+				If = {
+					Limit = {
+						487 = {
+							is_controlled_by = PRA
+						}
+						
+					}
+					transfer_state = 487
+				}
+				If = {
+					Limit = {
+						46 = {
+							is_controlled_by = PRA
+						}
+						
+					}
+					transfer_state = 46
+				}
+				If = {
+					Limit = {
+						491 = {
+							is_controlled_by = PRA
+						}
+						
+					}
+					transfer_state = 491
+				}
+				If = {
+					Limit = {
+						488 = {
+							is_controlled_by = PRA
+						}
+						
+					}
+					transfer_state = 488
+				}
+				If = {
+					Limit = {
+						117 = {
+							is_controlled_by = PRA
+						}
+						
+					}
+					transfer_state = 117
+				}
+				If = {
+					Limit = {
+						354 = {
+							is_controlled_by = PRA
+						}
+						
+					}
+					transfer_state = 354
+				}
+			}
+			set_cosmetic_TAG = Bidenist_Californian_Puppet
+			NVD = { change_tag_from = PRA }
 		}
 	}
 	focus = {
 		id = The_Terminator
-		icon = GFX_goal_Republican_Ticket
+		icon = GFX_goal_Arnold_Schwarzenegger
 		cost = 5.00
 		x = 5
 		y = 3
@@ -3087,7 +3522,7 @@ focus_tree = {
 	}
 	focus = {
 		id = A_Strongman
-		icon = GFX_goal_Republican_Ticket
+		icon = GFX_goal_A_Strongman
 		cost = 5.00
 		x = 5
 		y = 4
@@ -3098,12 +3533,12 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_war_support = 0.15
 		}
 	}
 	focus = {
 		id = For_A_Strong_California
-		icon = GFX_goal_Republican_Ticket
+		icon = GFX_goal_For_a_strong_California
 		cost = 5.00
 		x = 5
 		y = 5
@@ -3114,12 +3549,12 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_ideas = PRA_Strongman_Idealism
 		}
 	}
 	focus = {
 		id = Naturalize_Current_Immigrants
-		icon = GFX_goal_Republican_Ticket
+		icon = GFX_goal_Neutralise_Current_Immigrants
 		cost = 5.00
 		x = 5
 		y = 6
@@ -3130,12 +3565,15 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_timed_idea = {
+				idea = PRA_Naturalization
+				days = 360
+			}
 		}
 	}
 	focus = {
 		id = Work_with_Democrats
-		icon = GFX_goal_Republican_Ticket
+		icon = GFX_goal_Work_with_Democrats_Grey
 		cost = 5.00
 		x = 5
 		y = 7
@@ -3146,12 +3584,16 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_popularity = {
+				ideology = democrat
+				popularity = 0.05
+			}
+			add_stability = 0.15
 		}
 	}
 	focus = {
 		id = Speak_out_Against_Trump
-		icon = GFX_goal_Republican_Ticket
+		icon = GFX_goal_Anti_Trump_Flag
 		cost = 5.00
 		x = 5
 		y = 8
@@ -3164,12 +3606,12 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_ideas = Fuck_Donnie
 		}
 	}
 	focus = {
 		id = The_Savior_of_California
-		icon = GFX_goal_Happy_Bernie
+		icon = GFX_goal_Reelection_of_Bernie
 		cost = 2.00
 		x = 25
 		y = 2
@@ -3188,7 +3630,7 @@ focus_tree = {
 	}
 	focus = {
 		id = I_know_who_is_Corrupt
-		icon = GFX_goal_Happy_Bernie
+		icon = GFX_goal_I_knew_who_is_corrupt
 		cost = 2.00
 		x = 22
 		y = 3
@@ -3208,7 +3650,7 @@ focus_tree = {
 	}
 	focus = {
 		id = And_May_God_Have_Mercy_on_your_soul
-		icon = GFX_goal_Happy_Bernie
+		icon = GFX_goal_and_may_god_have_mercy
 		cost = 2.00
 		x = 22
 		y = 4
@@ -3228,7 +3670,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Crack_down_on_the_old_Government
-		icon = GFX_goal_Happy_Bernie
+		icon = GFX_goal_crack_down_on_the_old_government
 		cost = 2.00
 		x = 22
 		y = 5
@@ -3244,7 +3686,7 @@ focus_tree = {
 	}
 	focus = {
 		id = A_Progressive_America
-		icon = GFX_goal_Happy_Bernie
+		icon = GFX_goal_A_Progressive_America
 		cost = 2.00
 		x = 28
 		y = 3
@@ -3256,12 +3698,12 @@ focus_tree = {
 		}
 		completion_reward = {
 			add_ideas = Progressive_America
-			add_ideas = Increased_Taxes
+			add_ideas = PRA_Californian_Taxes
 		}
 	}
 	focus = {
 		id = Medicare_for_all
-		icon = GFX_goal_Happy_Bernie
+		icon = GFX_goal_Medicare_for_All
 		cost = 2.00
 		x = 27
 		y = 4
@@ -3277,7 +3719,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Free_College
-		icon = GFX_goal_Happy_Bernie
+		icon = GFX_goal_Pay_Student_Tuitions
 		cost = 2.00
 		x = 27
 		y = 5
@@ -3293,7 +3735,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Cut_down_on_surveillance
-		icon = GFX_goal_Happy_Bernie
+		icon = GFX_goal_Cut_Down_on_Surveillance
 		cost = 2.00
 		x = 29
 		y = 4
@@ -3310,7 +3752,7 @@ focus_tree = {
 	}
 	focus = {
 		id = A_New_Civil_Rights_Bill
-		icon = GFX_goal_Happy_Bernie
+		icon = GFX_goal_A_New_Civil_Right_Bill
 		cost = 2.00
 		x = 29
 		y = 5
@@ -3328,7 +3770,7 @@ focus_tree = {
 	}
 	focus = {
 		id = Put_down_the_Axe
-		icon = GFX_goal_Happy_Bernie
+		icon = GFX_goal_put_down_the_axe
 		cost = 2.00
 		x = 25
 		y = 6
@@ -3484,6 +3926,17 @@ focus_tree = {
 		cost = 2.00
 		x = 41
 		y = 2
+		available = {
+			OR = {
+				has_completed_focus = The_Savior_of_California 
+				has_completed_focus = The_Lieutenant 
+				has_completed_focus = The_Governor 
+				has_completed_focus = The_Philanthropist 
+				has_completed_focus = The_Nevadan 
+				has_completed_focus = The_Terminator 
+				has_completed_focus = The_Libertarian 
+			}
+		}		
 		prerequisite = {
 			focus = From_Sea_to_shining_Sea
 			focus = Meet_in_the_Middle
@@ -3546,6 +3999,10 @@ focus_tree = {
 			create_wargoal = {
 				type = annex_everything
 				target = CAS
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = LIB
 			}
 		}
 	}
@@ -3905,6 +4362,11 @@ focus_tree = {
 		}
 		completion_reward = {
 			#Add a navy
+			PAC = {
+				transfer_navy = {
+					target = PRA
+				}
+			}
 		}
 	}
 	focus = {
@@ -4010,6 +4472,14 @@ focus_tree = {
 			else = {
 				create_wargoal = {
 					target = MON
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = LYM
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = BKF
 					type = annex_everything
 				}
 			}
@@ -4290,6 +4760,74 @@ focus_tree = {
 		}
 	}
 	focus = {
+		id = Exploit_their_Disadvantages
+		icon = GFX_goal_Free_Texan_Army_Coup
+		cost = 2.00
+		x = 37
+		y = 11
+		prerequisite = {
+			focus = Secure_Loyal_Oil
+		}
+		prerequisite = {
+			focus = Disregard_Texan_Sovereignty
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			puppet = BET
+			puppet = OKL
+			puppet = LOU
+			hidden_effect = {
+				LOU = {
+					set_politics = {
+					ruling_party = democrat
+					}
+					set_cosmetic_tag = Louisiana_Feds
+
+				}
+				OKL = {
+					set_politics = {
+					ruling_party = democrat
+					}
+					set_cosmetic_tag = Oklahoma_Feds
+				}
+				BET = {
+					set_cosmetic_tag = Texan_Feds
+				}
+				declare_war_on = {
+    				target = CRN
+				    type = annex_everything
+				}
+				declare_war_on = {
+    				target = CRU
+				    type = annex_everything
+				}
+				declare_war_on = {
+    				target = FTA
+				    type = annex_everything
+				}
+				declare_war_on = {
+    				target = FAL
+				    type = annex_everything
+				}
+				declare_war_on = {
+    				target = BSH
+				    type = annex_everything
+				}
+				declare_war_on = {
+    				target = TEX
+				    type = annex_everything
+				}
+				declare_war_on = {
+    				target = TEX
+				    type = annex_everything
+				}
+			}
+		}
+	}
+
+	focus = {
 		id = Send_Diplomats_to_Texas
 		icon = GFX_goal_generic_intelligence_exchange
 		cost = 2.00
@@ -4417,7 +4955,7 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			country_event = { id = California.53 days = 10 }
 		}
 	}
 	focus = {
@@ -4429,6 +4967,7 @@ focus_tree = {
 		prerequisite = {
 			focus = Texan_American_Friendship_Treaty
 			focus = Launch_The_Coup
+			focus = Exploit_their_Disadvantages
 		}
 		available = {
 			country_exists = FRA
@@ -4453,6 +4992,7 @@ focus_tree = {
 		prerequisite = {
 			focus = Texan_American_Friendship_Treaty
 			focus = Launch_The_Coup
+			focus = Exploit_their_Disadvantages
 		}
 		available = {
 			NOT = {
@@ -4463,7 +5003,54 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			division_template = {
+				name = "Bidenist Remnants"
+				is_locked = yes
+				priority = 1
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+					infantry = { x = 1 y = 2 }
+				}
+			}
+			random_owned_controlled_state = {
+				limit = { ROOT = { has_full_control_of_state = PREV } }
+				create_unit = {
+					division = "name = \"1st ''Kamala'' Division\" division_template = \"Bidenist Remnants\" start_experience_factor = 0.6" 
+					owner = PRA
+				}
+				create_unit = {
+					division = "name = \"3rd ''Biden'' Division\" division_template = \"Bidenist Remnants\" start_experience_factor = 0.7" 
+					owner = PRA
+				}
+				create_unit = {
+					division = "name = \"2nd ''Clinton'' Division\" division_template = \"Bidenist Remnants\" start_experience_factor = 0.4" 
+					owner = PRA
+				}
+				create_unit = {
+					division = "name = \"1st ''Obama'' Division\" division_template = \"Bidenist Remnants\" start_experience_factor = 0.6" 
+					owner = PRA
+				}
+				create_unit = {
+					division = "name = \"5th ''McConnell'' Division\" division_template = \"Bidenist Remnants\" start_experience_factor = 0.9" 
+					owner = PRA
+				}
+				create_unit = {
+					division = "name = \"6th ''Roosevelt'' Division\" division_template = \"Bidenist Remnants\" start_experience_factor = 0.5" 
+					owner = PRA
+				}
+				create_unit = {
+					division = "name = \"1st American Restorationist Front\" division_template = \"Bidenist Remnants\" start_experience_factor = 0.3" 
+					owner = PRA
+				}
+				create_unit = {
+					division = "name = \"7th ''Shermanite'' Division\" division_template = \"Bidenist Remnants\" start_experience_factor = 0.1" 
+					owner = PRA
+				}
+			}
 		}
 	}
 	focus = {
@@ -4485,6 +5072,14 @@ focus_tree = {
 				type = annex_everything
 			}
 			create_wargoal = {
+				target = RVR
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = MGV
+				type = annex_everything
+			}
+			create_wargoal = {
 				target = NRA
 				type = annex_everything
 			}
@@ -4502,10 +5097,6 @@ focus_tree = {
 			}
 			create_wargoal = {
 				target = ARC
-				type = annex_everything
-			}
-			create_wargoal = {
-				target = CAS
 				type = annex_everything
 			}
 		}
@@ -4564,17 +5155,43 @@ focus_tree = {
 				target = CSA
 				type = annex_everything
 			}
-			create_wargoal = {
-				target = FLO
-				type = annex_everything
-			}
-			create_wargoal = {
-				target = RMV
-				type = annex_everything
-			}
-			create_wargoal = {
-				target = JEB
-				type = annex_everything
+			hidden_EFFECT = {
+				create_wargoal = {
+					target = FLO
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = LGB
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = KKK
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = APA
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = AFR
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = CSB
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = ZIO
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = RMV
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = JEB
+					type = annex_everything
+				}
 			}
 		}
 	}
@@ -4596,9 +5213,31 @@ focus_tree = {
 				target = USA
 				type = annex_everything
 			}
-			create_wargoal = {
-				target = NPA
-				type = annex_everything
+			hidden_effect = {
+				create_wargoal = {
+					target = NPA
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = KAN
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = NBR
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = DAK
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = MNS
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = IOW
+					type = annex_everything
+				}
 			}
 		}
 	}
@@ -4624,7 +5263,14 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			unlock_decision_category_tooltip = American_reunification
+			unlock_decision_tooltip = reunification_ultimatum
+			unlock_decision_tooltip = reunification_wars
+			unlock_decision_tooltip = integrate_state
+			set_country_flag = {
+    				flag = reunification_start
+				value = 2
+			}
 		}
 	}
 	focus = {
@@ -4636,12 +5282,106 @@ focus_tree = {
 		prerequisite = {
 			focus = Reunite_America
 		}
+		mutually_exclusive = {
+			focus = Bend_the_Knee
+			focus = Restore_the_Mantle
+		}
 		ai_will_do = { 
 			factor = 300
 		}
 		completion_reward = {
 			FRA = {
 				country_event = { id = California.44 days = 5 }
+			}
+		}
+	}
+	focus = {
+		id = Restore_the_Mantle
+		icon = GFX_goal_Republic_Triumphant
+		cost = 2.00
+		x = 45
+		y = 15
+		prerequisite = {
+			focus = Reunite_America
+		}
+		mutually_exclusive = {
+			focus = Bend_the_Knee
+			focus = Two_Americas
+		}
+		available = {
+			NOT = {
+				country_exists = FRA
+			}
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			set_cosmetic_tag = PRA_United_States_of_America
+			IF = {
+				limit = {
+					TEX = {
+						is_puppet_of = PRA
+					}
+				}
+				PRA = {
+					annex_country = {
+						target = TEX
+						transfer_troops = yes
+					}
+				}
+			}
+			IF = {
+				limit = {
+					OKL = {
+						is_puppet_of = PRA
+					}
+				}
+				PRA = {
+					annex_country = {
+						target = OKL
+						transfer_troops = yes
+					}
+				}
+			}
+			IF = {
+				limit = {
+					LOU = {
+						is_puppet_of = PRA
+					}
+				}
+				PRA = {
+					annex_country = {
+						target = LOU
+						transfer_troops = yes
+					}
+				}
+			}
+			IF = {
+				limit = {
+					PAC = {
+						is_puppet_of = PRA
+					}
+				}
+				PRA = {
+					annex_country = {
+						target = PAC
+						transfer_troops = yes
+					}
+				}
+			}
+			IF = {
+				limit = {
+					ALA = {
+						is_puppet_of = PRA
+					}
+				}
+				PRA = {
+					annex_country = {
+						target = ALA
+						transfer_troops = yes
+					}
+				}
 			}
 		}
 	}
@@ -4653,6 +5393,10 @@ focus_tree = {
 		y = 15
 		prerequisite = {
 			focus = Reunite_America
+		}
+		mutually_exclusive = {
+			focus = Two_Americas
+			focus = Restore_the_Mantle
 		}
 		ai_will_do = { 
 			factor = 300
@@ -4674,6 +5418,71 @@ focus_tree = {
 					puppet = ANT
 				}
 			}
+			IF = {
+				limit = {
+					TEX = {
+						is_puppet_of = PRA
+					}
+				}
+				FRA = {
+					annex_country = {
+						target = TEX
+						transfer_troops = yes
+					}
+				}
+			}
+			IF = {
+				limit = {
+					OKL = {
+						is_puppet_of = PRA
+					}
+				}
+				FRA = {
+					annex_country = {
+						target = OKL
+						transfer_troops = yes
+					}
+				}
+			}
+			IF = {
+				limit = {
+					LOU = {
+						is_puppet_of = PRA
+					}
+				}
+				FRA = {
+					annex_country = {
+						target = LOU
+						transfer_troops = yes
+					}
+				}
+			}
+			IF = {
+				limit = {
+					PAC = {
+						is_puppet_of = PRA
+					}
+				}
+				FRA = {
+					annex_country = {
+						target = PAC
+						transfer_troops = yes
+					}
+				}
+			}
+			IF = {
+				limit = {
+					ALA = {
+						is_puppet_of = PRA
+					}
+				}
+				FRA = {
+					annex_country = {
+						target = ALA
+						transfer_troops = yes
+					}
+				}
+			}
 		}
 	}
 	focus = {
@@ -4693,7 +5502,36 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			create_wargoal = {
+				target = CAN
+				type = annex_everything
+			}
+			hidden_effect = {
+				create_wargoal = {
+					target = BRC
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = VAN
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = ARY
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = ALT
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = OOR
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = QUE
+					type = annex_everything
+				}
+			}
 		}
 	}
 }

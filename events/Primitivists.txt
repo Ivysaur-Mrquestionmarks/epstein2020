@@ -1,0 +1,252 @@
+add_namespace = Primitivists
+
+#Bombing Campaigns 1
+country_event = {
+	id = Primitivists.1
+	title = Primitivists.1.t
+	desc = Primitivists.1.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = Primitivists.1.a
+		add_stability = -0.1
+		add_manpower = -100
+		
+	}
+}
+#Bombing Campaigns 2
+country_event = {
+	id = Primitivists.2
+	title = Primitivists.2.t
+	desc = Primitivists.2.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = Primitivists.2.a
+		add_stability = -0.02
+		add_manpower = -73
+		
+	}
+}
+#Bombing Campaigns 3
+country_event = {
+	id = Primitivists.3
+	title = Primitivists.3.t
+	desc = Primitivists.3.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = Primitivists.3.a
+		add_stability = -0.01
+		add_manpower = -10
+		
+	}
+}
+#Bombing Campaigns 4
+country_event = {
+	id = Primitivists.4
+	title = Primitivists.4.t
+	desc = Primitivists.4.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = Primitivists.4.a
+		add_stability = -0.02
+		add_manpower = -50
+		
+	}
+}
+#Bombing Campaigns 5
+country_event = {
+	id = Primitivists.5
+	title = Primitivists.5.t
+	desc = Primitivists.5.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = Primitivists.5.a
+		add_stability = -0.1
+		add_manpower = -100
+		
+	}
+}
+#Coordinate with Bombers
+country_event = {
+	id = Primitivists.6
+	title = Primitivists.6.t
+	desc = Primitivists.6.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = Primitivists.6.a
+		add_stability = -0.05
+
+		
+	}
+}
+#SALT LAKE REVOLT
+country_event = {
+	id = Primitivists.7
+	title = Primitivists.7.t
+	desc = Primitivists.7.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = Primitivists.5.a
+		add_war_support = -0.05
+		
+	}
+}
+#Reach out to the Fascists
+country_event = {
+	id = Primitivists.8
+	title = Primitivists.8.t
+	desc = Primitivists.8.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = Primitivists.8.a
+		set_country_flag = HOP_Treaty_of_SL
+		SIN = {
+			set_country_flag = SIN_Treaty_of_SL
+		}
+	}
+	option = {
+		name = Primitivists.8.b
+		SIN = {
+			country_event = { id = Primitivists.10 days = 5 }
+		}
+	}
+}
+#Treaty of SL
+country_event = {
+	id = Primitivists.9
+	title = Primitivists.9.t
+	desc = Primitivists.9.d
+	trigger = {
+		count_triggers = {
+			amount = 3
+			HOP = {
+				has_country_flag = HOP_Treaty_of_SL
+			}
+			has_country_flag = SIN_Treaty_of_SL
+			NOT = {
+				has_war_with = UTA
+			}
+		}
+	}
+	fire_only_once = yes
+	option = {
+		name = Primitivists.9.a
+		MOL = {
+			transfer_state = 280
+			add_state_core = 280
+		}
+		LAS = {
+			transfer_state = 393
+			transfer_state = 419
+			add_state_core = 419
+			add_state_core = 393
+		}
+		SIN = {
+			transfer_state = 414
+			transfer_state = 411
+			transfer_state = 117
+			add_state_core = 414
+			add_state_core = 411
+			add_state_core = 117
+		}
+		HOP = {
+			transfer_state = 410
+			transfer_state = 406
+			add_state_core = 410
+			add_state_core = 406
+		}
+		
+	}
+}
+#Hitlerites Denied SL Treaty
+country_event = {
+	id = Primitivists.10
+	title = Primitivists.10.t
+	desc = Primitivists.10.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = Primitivists.10.a
+		complete_national_focus = Winner_Takes_All
+		
+	}
+}
+country_event = {
+	id = Primitivists.11
+	title = Primitivists.11.t
+	desc = Primitivists.11.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = Primitivists.11.a #No Injuries
+		add_stability = 0.05
+		set_country_flag = Primitivist_Idealism
+		
+	}
+	option = {
+		name = Primitivists.11.b #Injuries
+		add_stability = -0.05
+		hidden_effect = {
+			country_event = { id = Primitivists.12 days = 30 }
+			add_country_leader_trait = Debilitated
+		}
+		
+	}
+	option = {
+		name = Primitivists.11.c
+		kill_country_leader = yes
+		create_country_leader = {
+			name = "John Zerzan"
+			picture = "gfx/leaders/SIN/John_Zerzan.tga"
+			expire = "2060.1.1"
+			ideology = anarcho_primitivism
+			traits = {
+				Primitivist_Strongman
+			}
+		}
+		
+	}
+}
+country_event = {
+	id = Primitivists.12
+	title = Primitivists.12.t
+	desc = Primitivists.12.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = Primitivists.12.a #Ted is Cured
+		remove_country_leader_trait = Debilitated
+		hidden_effect = {
+			retire_country_leader = yes
+			create_country_leader = {
+				name = "Theodore Kaczynski"
+				picture = "gfx/leaders/SIN/Ted_Kaczynski_Sane.tga"
+				expire = "2060.1.1"
+				ideology = Jeffersonianism
+				traits = {
+					Anti_Primitivist
+					Apologetic
+				}
+			}
+		}
+		
+	}
+}
