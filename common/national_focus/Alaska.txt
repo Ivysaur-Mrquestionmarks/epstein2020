@@ -696,7 +696,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ALA_Use_the_bots
-		icon = GFX_goal_MOL_image_stability
+		icon = GFX_goal_Ally_Big_Tech
 		cost = 5.00
 		x = 16
 		y = 10
@@ -1359,7 +1359,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ALA_Palins_Pardons
-		icon = GFX_goal_MOL_image_stability
+		icon = GFX_Goal_generic_jury
 		cost = 5.00
 		x = 36
 		y = 2
@@ -1381,7 +1381,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ALA_Speak_out_against_the_Commies
-		icon = GFX_goal_MOL_image_stability
+		icon = GFX_goal_Palin_owns_Commies
 		cost = 5.00
 		x = 38
 		y = 3
@@ -1415,7 +1415,7 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_stability = 0.05
 		}
 	}
 	focus = {
@@ -1528,7 +1528,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ALA_President_Vo
-		icon = GFX_goal_MOL_image_stability
+		icon = GFX_goal_Joshua_Vo
 		cost = 5.00
 		x = 32
 		y = 9
@@ -1707,7 +1707,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ALA_President_Begich
-		icon = GFX_goal_MOL_image_stability
+		icon = GFX_goal_Tom_Begich
 		cost = 5.00
 		x = 40
 		y = 9
@@ -1916,7 +1916,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ALA_President_Palin
-		icon = GFX_goal_MOL_image_stability
+		icon = GFX_goal_Sarah_Palin
 		cost = 5.00
 		x = 46
 		y = 9
@@ -2084,7 +2084,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ALA_President_Watts
-		icon = GFX_goal_MOL_image_stability
+		icon = GFX_goal_Jon_Briggs_Watts
 		cost = 5.00
 		x = 52
 		y = 9
@@ -2296,7 +2296,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ALA_President_Krumm
-		icon = GFX_goal_MOL_image_stability
+		icon = GFX_goal_David_Krumm
 		cost = 5.00
 		x = 58
 		y = 9
@@ -2499,9 +2499,9 @@ focus_tree = {
 	}
 	focus = {
 		id = ALA_Alaskan_Expansion
-		icon = GFX_Focus_Volunteer_Army
+		icon = GFX_goal_Generic_Bad_Expansionism
 		cost = 5.00
-		x = 80
+		x = 100
 		y = 7
 		prerequisite = {
 			focus = ALA_Always_on_top
@@ -2510,13 +2510,354 @@ focus_tree = {
 			OR = {
 				has_completed_focus = ALA_The_Second_Pacific_Fleet
 				has_completed_focus = ALA_Pink_Alaska
+				has_completed_focus = ALA_Truly_Independent_Alaska
 			}
 		}
 		ai_will_do = { 
 			factor = 300
 		}
 		completion_reward = {
+			add_war_support = 0.05
+			add_political_power = 25
+		}
+	}
+	focus = {
+		id = ALA_Peaceful_Reintegration
+		icon = GFX_goal_Make_Peace
+		cost = 5.00
+		x = 95
+		y = 8
+		prerequisite = {
+			focus = ALA_Alaskan_Expansion
+		}
+		mutually_exclusive = {
+			focus = ALA_True_Alaskan_Borders
+		}
+		mutually_exclusive = {
+			focus = ALA_Reach_out_to_Vancouver_Socialists
+		}
+		available = {
+			OR = {
+				has_completed_focus = ALA_Pink_Alaska
+				has_completed_focus = ALA_Truly_Independent_Alaska	
+			}
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_stability = 0.15
+			add_war_support = -0.1
+		}
+	}
+	focus = {
+		id = ALA_Reach_out_to_Vancouver_Socialists
+		icon = GFX_goal_Generic_Socialism
+		cost = 5.00
+		x = 94
+		y = 9
+		prerequisite = {
+			focus = ALA_Peaceful_Reintegration
+		}
+		mutually_exclusive = {
+			focus = ALA_Reach_out_to_BRC_Conservatives
+		}
+		available = {
+			has_government = libertarian_left
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			VAN = {
+				country_event = { id = Alaska.54 days = 1 } #Alaskan ANnexation
+			}
+		}
+	}
+	focus = {
+		id = ALA_Reach_out_to_BRC_Conservatives
+		icon = GFX_goal_AME_Hail_Columbia
+		cost = 5.00
+		x = 96
+		y = 9
+		prerequisite = {
+			focus = ALA_Peaceful_Reintegration
+		}
+		mutually_exclusive = {
+			focus = ALA_Reach_out_to_Vancouver_Socialists
+		}
+		available = {
+			has_government = republican
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			BRC = {
+				country_event = { id = Alaska.54 days = 1 } #Alaskan ANnexation
+			}
+		}
+	}
+	focus = {
+		id = ALA_Land_for_Subjugation
+		icon = GFX_goal_Conservative_Party
+		cost = 5.00
+		x = 95
+		y = 10
+		prerequisite = {
+			focus = ALA_Reach_out_to_Vancouver_Socialists
+			focus = ALA_Reach_out_to_BRC_Conservatives
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			CAS = {
+				country_event = { id = Alaska.55 days = 1 } #
+			}
+		}
+	}
+	focus = {
+		id = ALA_Integrate_Cascadia
+		icon = GFX_Focus_Sign_Constitution
+		cost = 5.00
+		x = 95
+		y = 11
+		prerequisite = {
+			focus = ALA_Land_for_Subjugation
+		}
+		available = {
+			CAS = {
+				OR = {
+					is_puppet_of = ALA
+					exists = no
+				}
+			}
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			IF = {
+				LIMIT = {
+					CAS = {
+						is_ai = yes
+					}
+				}
+				annex_country = {
+    				target = CAS
+    				transfer_troops = yes
+				}
+				else = {
+					country_event = { id = Alaska.56 days = 1 } #
+				}
+			}
+		}
+	}
+	focus = {
+		id = ALA_Remove_American_Identity
+		icon = GFX_goal_USA_Flag_down
+		cost = 5.00
+		x = 95
+		y = 12
+		prerequisite = {
+			focus = ALA_Integrate_Cascadia
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			Every_owned_state = {
+				Clr_state_flag = part_of_america
+			}
+			set_cosmetic_tag = ALA_Greater_Alaska
+		}
+	}
+	focus = {
+		id = ALA_True_Alaskan_Borders
+		icon = GFX_goal_Generic_Redraw_Borders
+		cost = 5.00
+		x = 105
+		y = 8
+		prerequisite = {
+			focus = ALA_Alaskan_Expansion
+		}
+		mutually_exclusive = {
+			focus = ALA_Peaceful_Reintegration
+		}
+		available = {
+			OR = {
+				has_completed_focus = ALA_The_Second_Pacific_Fleet
+				has_completed_focus = ALA_Truly_Independent_Alaska	
+			}
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			Every_state = {
+    			Limit = { 
+    				is_owned_by = VAN
+    			}
+    			add_core_of = ALA
+    		}
+    		Every_state = {
+    			Limit = { 
+    				is_owned_by = BRC
+    			}
+    			add_core_of = ALA
+    		}
+    		Every_state = {
+    			Limit = { 
+    				is_owned_by = LIB
+    			}
+    			add_core_of = ALA
+    		}
+    		Every_state = {
+    			Limit = { 
+    				is_owned_by = CAS
+    			}
+    			add_core_of = ALA
+    		}
+    		Every_state = {
+    			Limit = { 
+    				is_owned_by = MON
+    			}
+    			add_core_of = ALA
+    		}
+    		IF = {
+    			LIMIT = {
+    				has_cosmetic_tag = ALA_Pacific_Fleet
+    			}
+    			add_war_support = 0.05
+    			else = {
+    				set_cosmetic_tag = ALA_Greater_Alaska
+    			}
+    		}
+		}
+	}
+	focus = {
+		id = ALA_March_to_the_Mountains
+		icon = GFX_goal_Generic_Mountain_Warfare
+		cost = 5.00
+		x = 105
+		y = 9
+		prerequisite = {
+			focus = ALA_True_Alaskan_Borders
+		}
+		available = {
 			
+		}
+		bypass = {
+			has_completed_focus = ALA_Launchpoint_into_America
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			create_wargoal = {
+				target = VAN
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = BRC
+				type = annex_everything
+			}
+		}
+		will_lead_to_war_with = BRC
+		will_lead_to_war_with = VAN
+	}
+	focus = {
+		id = ALA_Cascadia_IS_Alaska
+		icon = GFX_goal_Cascadian_War_Cry
+		cost = 5.00
+		x = 105
+		y = 10
+		prerequisite = {
+			focus = ALA_March_to_the_Mountains
+		}
+		available = {
+			
+		}
+		bypass = {
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			create_wargoal = {
+				target = CAS
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = LIB
+				type = annex_everything
+			}
+		}
+		will_lead_to_war_with = LIB
+		will_lead_to_war_with = CAS
+	}
+	focus = {
+		id = ALA_End_Montana
+		icon = GFX_goal_Hunters
+		cost = 5.00
+		x = 105
+		y = 11
+		prerequisite = {
+			focus = ALA_Cascadia_IS_Alaska
+		}
+		available = {
+			
+		}
+		bypass = {
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			create_wargoal = {
+				target = MON
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = LYM
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = BKF
+				type = annex_everything
+			}
+		}
+		will_lead_to_war_with = MON
+		will_lead_to_war_with = LYM
+		will_lead_to_war_with = BKF
+	}
+	focus = {
+		id = ALA_Reunite_America
+		icon = GFX_goal_Generic_Americanism
+		cost = 5.00
+		x = 105
+		y = 12
+		prerequisite = {
+			focus = ALA_End_Montana
+		}
+		available = {
+			has_completed_focus = ALA_The_Second_Pacific_Fleet
+		}
+		bypass = {
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			unlock_decision_category_tooltip = American_reunification
+			unlock_decision_tooltip = reunification_ultimatum
+			unlock_decision_tooltip = reunification_wars
+			unlock_decision_tooltip = integrate_state
+			set_country_flag = {
+    				flag = reunification_start
+				value = 2
+			}
 		}
 	}
 	focus = {
@@ -2532,7 +2873,8 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			army_experience = 50
+			add_command_power = 25
 		}
 	}
 	focus = {
