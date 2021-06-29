@@ -1,9 +1,24 @@
 MOL_refugee_situation = {
-    MOL_placeholder = {
-        visible = {
-            always = yes
+    
+    MOL_you_will_be_assimilated = {
+        available = {
+		}
+        cost = 40
+        days_remove = 15
+        remove_effect = {
+            custom_effect_tooltip = MOL_assimilate_assimilate_tt
+            subtract = {
+                refugees_nonworking = 200
+            }
+            if = {
+                limit = {
+                    check_variable = { refugees_nonworking < 0 }
+                }
+                set_variable = { refugees_nonworking = 0 }
+            }
         }
     }
+
     MOL_refugee_labor_housing = {
         available = {
 			custom_trigger_tooltip = {
@@ -18,8 +33,17 @@ MOL_refugee_situation = {
         }
         remove_effect = {
             clr_country_flag = MOL_refugees_working
+            custom_effect_tooltip = MOL_refugee_increase_250_tt
+            custom_effect_tooltip = MOL_refugees_tired
             add_to_variable = {
                 refugee_capacity = 250
+            }
+            subtract_from_variable = { refugees_working = 100 }
+            add_to_variable = { refugees_nonworking = 100 }
+            if = {
+                limit = { check_variable = { refugees_working < 0 } }
+                add_to_variable = { refugees_nonworking = refugees_working }
+                set_variable = { refugees_working = 0 }
             }
         }
     }   

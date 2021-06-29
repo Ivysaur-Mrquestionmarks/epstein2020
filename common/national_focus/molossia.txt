@@ -78,6 +78,7 @@ focus_tree = {
         prerequisite = { focus = MOL_the_issues_at_hand  }
 		completion_reward = {
             #Create a police force, or just use the army
+			country_event = { MOL_internal.20 hours = 72 }
 		}
     }
 
@@ -90,7 +91,10 @@ focus_tree = {
 		cost = 2
         prerequisite = { focus = MOL_the_issues_at_hand  }
 		completion_reward = {
-            #Add some event asking the player how they want to house refugees
+           custom_effect_tooltip = MOL_refugee_increase_400_tt
+            add_to_variable = {
+                refugee_capacity = 400
+            }
 		}
     }
 
@@ -120,6 +124,7 @@ focus_tree = {
         prerequisite = { focus = MOL_deciding_our_future }
 		bypass = { has_country_flag = choose_republic }
 		completion_reward = {
+			add_political_power = 50
             custom_effect_tooltip = MOL_republic_path
 		}
     }
@@ -187,7 +192,7 @@ focus_tree = {
         mutually_exclusive = { focus = MOL_molossian_republic }
         prerequisite = { focus = MOL_deciding_our_future }
 		completion_reward = {
-            #Add some event asking the player how they want to house refugees
+			add_political_power = -25
 			custom_effect_tooltip = MOL_monarchy_path
 		}
     }
@@ -219,8 +224,8 @@ focus_tree = {
     }
 
     focus = {
-        id = MOL_protector_of_molossia
-		icon = GFX_goal_MOL_Slam_the_door
+        id = MOL_lesson_in_history
+		icon = GFX_goal_MOL_Lesson_in_History
 		x = 2
 		y = 1
         relative_position_id = MOL_dreams_of_monarchy
@@ -239,7 +244,23 @@ focus_tree = {
 		cost = 2
         prerequisite = { focus = MOL_a_central_position  }
         prerequisite = { focus = MOL_listen_to_people  }
-        prerequisite = { focus = MOL_protector_of_molossia  }
+        prerequisite = { focus = MOL_lesson_in_history  }
+		completion_reward = {
+		}
+    }
+
+	focus = {
+        id = MOL_a_new_day
+		icon = GFX_goal_MOL_a_new_day
+		x = 0
+		y = 2
+        relative_position_id = MOL_foundations_of_government
+		cost = 2
+        prerequisite = { focus = MOL_foundations_of_government  }
+        prerequisite = { 
+			focus = MOL_time_for_a_constitution  
+			focus = MOL_final_preparations
+		}
 		completion_reward = {
 		}
     }
