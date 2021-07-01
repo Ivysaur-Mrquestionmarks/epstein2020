@@ -34,17 +34,10 @@ MOL_refugee_situation = {
         remove_effect = {
             clr_country_flag = MOL_refugees_working
             custom_effect_tooltip = MOL_refugee_increase_250_tt
-            custom_effect_tooltip = MOL_refugees_tired
             add_to_variable = {
                 refugee_capacity = 250
             }
-            subtract_from_variable = { refugees_working = 100 }
-            add_to_variable = { refugees_nonworking = 100 }
-            if = {
-                limit = { check_variable = { refugees_working < 0 } }
-                add_to_variable = { refugees_nonworking = refugees_working }
-                set_variable = { refugees_working = 0 }
-            }
+            MOL_convert_100_refugees_nonworking = yes
         }
     }   
 
@@ -70,6 +63,7 @@ MOL_refugee_situation = {
 					province = 9286
 				}
 			}
+            MOL_convert_100_refugees_nonworking = yes
         }
     }
 
@@ -107,10 +101,31 @@ MOL_refugee_situation = {
 					province = 9406
 				}
 			}
+            MOL_convert_100_refugees_nonworking = yes
         }
     }
 
     MOL_refugee_labor_recruit = {
+        available = {
+            custom_trigger_tooltip = {
+                tooltip = MOL_refugees_not_working_tt
+                NOT = { has_country_flag = MOL_refugees_working }
+            }
+		}
+        cost = 30
+        days_remove = 60
+        complete_effect = {
+            set_country_flag = MOL_refugees_working
+        }
+        remove_effect = {
+            clr_country_flag = MOL_refugees_working
+            add_manpower = 200
+            MOL_remove_200_working_refugees = yes
+            MOL_convert_200_refugees_nonworking = yes
+        }
+    }
+
+    MOL_refugee_labor_farm = {
         available = {
             custom_trigger_tooltip = {
                 tooltip = MOL_refugees_not_working_tt
@@ -124,7 +139,8 @@ MOL_refugee_situation = {
         }
         remove_effect = {
             clr_country_flag = MOL_refugees_working
-            add_manpower = 500
+            MOL_remove_100_working_refugees = yes
+            custom_effect_tooltip = MOL_farming_benefits_tt
         }
     }
 }
