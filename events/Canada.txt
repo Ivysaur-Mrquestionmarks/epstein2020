@@ -123,11 +123,16 @@ country_event = {
 			ARY = {
 				transfer_state = 9
 				transfer_state = 8
-				transfer_state = 1
 				transfer_state = 149
-				transfer_state = 5
-				transfer_state = 6
-				transfer_state = 32
+				transfer_state = 120
+				transfer_state = 36
+				transfer_state = 1
+				transfer_state = 56
+
+			}
+			TEM = {
+				transfer_state = 71
+				add_state_core = 71
 			}
 			every_state = {
 				limit = {
@@ -135,6 +140,7 @@ country_event = {
 						is_owned_by = ALT
 						is_owned_by = ANT
 						is_owned_by = ARY
+						is_owned_by = TEM
 					}
 				}
 				add_core_of = ARY
@@ -145,11 +151,9 @@ country_event = {
 				transfer_state = 166
 			}
 			ANT = {
-				transfer_state = 30
-				transfer_state = 69
-				transfer_state = 39
-				transfer_state = 76
-				transfer_state = 31
+				transfer_state = 32
+				transfer_state = 6
+				transfer_state = 5
 			}
 			every_state = {
 				limit = {
@@ -157,15 +161,17 @@ country_event = {
 						is_owned_by = ANT
 						is_owned_by = ALT
 						is_owned_by = ARY
+						is_owned_by = TEM
 					}
 				}
 				add_core_of = ANT
 			}
 			ALT = {
-				transfer_state = 36
-				transfer_state = 120
-				transfer_state = 71
-				transfer_state = 56
+				transfer_state = 30
+				transfer_state = 69
+				transfer_state = 76
+				transfer_state = 39
+				transfer_state = 31
 			}
 			every_state = {
 				limit = {
@@ -173,9 +179,11 @@ country_event = {
 						is_owned_by = ALT
 						is_owned_by = ANT
 						is_owned_by = ARY
+						is_owned_by = TEM
 					}
 				}
 				add_core_of = ALT
+				add_core_of = TEM
 			}
 			BRC = {
 				transfer_state = 75
@@ -257,6 +265,14 @@ country_event = {
 				navy_ratio = 0.0
 				air_ratio = 0.0
 			}
+			transfer_units_fraction= {
+				target = TEM
+				size = 0.1
+				stockpile_ratio = 0.1
+				army_ratio = 0.1
+				navy_ratio = 0.0
+				air_ratio = 0.0
+			}
 			country_event = { id = Canada.2 days = 35 }
 		}
 	}
@@ -321,8 +337,22 @@ country_event = {
 			  		target = ALT
  			    	type = annex_everything
 				}
+				declare_war_on = {
+			  		target = TEM
+ 			    	type = annex_everything
+				}
 			}
 			ALT = {
+				declare_war_on = {
+			  		target = ANT
+ 			    	type = annex_everything
+				}
+			}
+			TEM = {
+				declare_war_on = {
+			  		target = ALT
+ 			    	type = annex_everything
+				}
 				declare_war_on = {
 			  		target = ANT
  			    	type = annex_everything
@@ -340,7 +370,7 @@ country_event = {
 						has_war = no 
 						OR = {
 							has_country_leader = {
- 							   name = "Reverend Butler"
+ 							   name = "Vince Bert"
  							   ruling_only = yes
 							}
 							has_country_leader = {
@@ -598,6 +628,10 @@ country_event = {
 		}
 		declare_war_on = {
 			target = ALT
+ 	    		type = annex_everything
+		}
+		declare_war_on = {
+			target = TEM
  	    		type = annex_everything
 		}
 		#declare_war_on = { #this could end up messing with Cascadian content

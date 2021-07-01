@@ -44,8 +44,8 @@ country_event = {
 	option = {
 		name = english_colonies.1.c
 		create_country_leader = {
-			name = "David Davies"
-			picture = "davies.tga"
+			name = "David Davis"
+			picture = "davis.dds"
 			expire = "2060.1.1"
 			ideology = establishment
 			traits = {
@@ -59,7 +59,7 @@ news_event = {
 	id = english_colonies.2
 	title = english_colonies.2.t
 	desc = english_colonies.2.d
-	#picture =
+	picture = event_news_ministry_for_colonies
 	major = yes
 	is_triggered_only = yes
 	option = {
@@ -105,5 +105,210 @@ country_event = {
 		
 			}
 		}
+	}
+}
+#outstanding G7 summit in Cornwall
+country_event = {
+	id = english_colonies.5
+	title = english_colonies.5.t
+	desc = english_colonies.5.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = english_colonies.5.a
+		FRA = {
+			country_event = { id = english_colonies.6 }
+		}
+		FFR = {
+			country_event = { id = english_colonies.7 }
+		}
+		CAN = {
+			country_event = { id = english_colonies.8 }
+		}
+	}
+}
+#Biden invited to G7
+country_event = {
+	id = english_colonies.6
+	title = english_colonies.6.t
+	desc = english_colonies.6.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	#obviously
+	option = {
+		name = english_colonies.6.a
+		ai_chance = {
+			factor = 100
+		}
+		news_event = { id = english_colonies.9 }
+		ENG = { country_event = { id = english_colonies.10 days = 2 } } }
+	}
+	#tell the Brits we can't make it, we're uh...
+	option = {
+		name = english_colonies.6.b
+		ai_chance = {
+			factor = 0
+		}
+		add_political_power = -200
+		add_stability = -0.15
+		add_war_support = -0.20
+		ENG = {
+			add_opinion_modifier = {
+			    target = FRA
+			    modifier = HUN_renegade
+			}
+		}
+		FFR = {
+			add_opinion_modifier = {
+			    target = FRA
+			    modifier = HUN_renegade
+			}
+		}
+	}
+}
+#Macron invited to G7
+country_event = {
+	id = english_colonies.7
+	title = english_colonies.7.t
+	desc = english_colonies.7.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = english_colonies.7.a
+		add_stability = 0.05
+		add_war_support = 0.10
+		ENG = { country_event = { id = english_colonies.14 days = 1 } }
+	}
+}
+#Trudeau invited to G7
+country_event = {
+	id = english_colonies.8
+	title = english_colonies.8.t
+	desc = english_colonies.8.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = english_colonies.8.a
+		add_war_support = 0.20
+		add_stability = -0.20
+		ENG = { country_event = { id = english_colonies.13 hours = 12 } }
+	}
+}
+#Biden in G7 news event
+news_event = {
+	id = english_colonies.9
+	title = english_colonies.9.t
+	desc = english_colonies.9.d
+	picture = event_news_g7_01
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = english_colonies.9.a
+		trigger = { NOT = { OR = { has_government = republican has_government = autocratic has_government = libertarian_right } } }
+	}
+	option =  {
+		name = english_colonies.9.b
+		trigger = { OR = { has_government = republican has_government = autocratic has_government = libertarian_right } }
+		add_political_power = -10
+	}
+}
+#Biden asks us to support him
+country_event = {
+	id = english_colonies.10
+	title = english_colonies.10.t
+	desc = english_colonies.10.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	#we simply can't...
+	option = {
+		name = english_colonies.10.b
+		add_war_support = -0.05
+		FRA = { country_event = { id = english_colonies.11 } }
+	}
+}
+#Brits refuse to support us!
+country_event = {
+	id = english_colonies.11
+	title = english_colonies.11.t
+	desc = english_colonies.11.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	#fine, we don't need you!
+	option = {
+		name = english_colonies.11.a
+		add_political_power = -70
+		add_war_support = 0.25
+		add_opinion_modifier = {
+		    target = ENG
+		    modifier = HUN_refused_alliance
+		}
+		add_opinion_modifier = {
+		    target = FFR
+		    modifier = HUN_refused_alliance
+		}
+		CAN = {
+			add_opinion_modifier = {
+			    target = ENG
+			    modifier = HUN_refused_alliance
+			}
+			add_opinion_modifier = {
+			    target = FFR
+			    modifier = HUN_refused_alliance
+			}
+		}
+		news_event = { id = english_colonies.12 days = 1 }
+	}
+}
+#news event for above
+news_event = {
+	id = english_colonies.12
+	title = english_colonies.12.t
+	desc = english_colonies.12.d
+	picture = event_news_g7_02
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = english_colonies.12.a
+		trigger = { NOT = { OR = { has_government = republican has_government = autocratic has_government = libertarian_right } } }
+	}
+	option =  {
+		name = english_colonies.12.b
+		trigger = { OR = { has_government = republican has_government = autocratic has_government = libertarian_right } }
+		add_political_power = 10
+	}
+}
+#trudeau asks brits to back biden
+country_event = {
+	id = english_colonies.13
+	title = english_colonies.13.t
+	desc = english_colonies.13.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = english_colonies.13.a
+		add_political_power = 5
+		CAN = { add_political_power = 5 }
+	}
+}
+#Macron pleads not to break the neutrality, at risk of Global War
+country_event = {
+	id = english_colonies.14
+	title = english_colonies.14.t
+	desc = english_colonies.14.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = english_colonies.14.a
+		add_political_power = 5
+		FFR = { add_political_power = 5 }
+		CAN = { add_political_power = -5 }
 	}
 }

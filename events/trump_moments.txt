@@ -58,8 +58,8 @@ country_event = {
 				unlock_national_focus = IDA_caesar_looks_west
 				create_faction = Remnants
 				create_country_leader = {
-					name = "Mark Milley"
-					picture = "gfx/leaders/USA/milley.dds"
+					name = "Gavin McInnes"
+					picture = "gfx/leaders/USA/mcinnes.dds"
 					expire = "2060.1.1"
 					ideology = trumpist
 					traits = {
@@ -306,5 +306,63 @@ country_event = {
 				political_dancer
 			}
 		}
+	}
+}
+#Trump chooses a VP (provisional event until focus tree)
+country_event = {
+	id = maga.9
+	title = maga.9.t
+	desc = maga.9.d
+	#picture =
+	trigger = {
+		original_tag = USA
+		NOT = { country_exists = NPA }
+	}
+	fire_only_once = yes
+	#Based DeSantis
+	option = {
+		name = maga.9.a
+		ai_chance = {
+			factor = 40
+		}
+		set_country_flag = vice_president_desantis
+		remove_ideas = Generic_Vacant_Vice_President
+		add_ideas = USA_ron_desantis_advisor
+		FLO = { country_event = { id = maga.10 } }
+	}
+	#Nepotism moment
+	option = {
+		name = maga.9.b
+		ai_chance = {
+			factor = 30
+		}
+		set_country_flag = vice_president_trump
+		remove_ideas = Generic_Vacant_Vice_President
+		add_ideas = USA_don_jr_advisor
+	}
+	#Fascist Trump?!
+	option = {
+		name = maga.9.c
+		ai_chance = {
+			factor = 30
+		}
+		set_country_flag = vice_president_mcinnes
+		remove_ideas = Generic_Vacant_Vice_President
+		add_ideas = USA_gavin_mcinnes_advisor
+		add_popularity = { ideology = autocratic popularity = 0.10 }
+	}
+}
+#DeSantis leaves for Denver
+country_event = {
+	id = maga.10
+	title = maga.10.t
+	desc = maga.10.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = maga.10.a
+		add_political_power = 10
+		add_stability = 0.01
 	}
 }

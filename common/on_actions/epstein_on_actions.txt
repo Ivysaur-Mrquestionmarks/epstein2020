@@ -9,37 +9,70 @@ on_actions = {
 					play_song = "reagan_speech"
 				}
 			}
+
+			MOL = {
+				set_variable = {mol_stability = 50}
+				set_variable = {mol_legitimacy = 5}
+				set_variable = {refugees_working = 500}
+				set_variable = {refugees_nonworking = 300}
+				set_variable = {total_refugees = 800}
+				set_variable = {refugee_capacity = 1250}
+				set_variable = {biweekly_refugee_increase = 125}
+				set_variable = {hawthorne_influence = 4}
+				country_event = { id = MOL_internal.1000 days = 14 }
+			}
+
 			every_country = {
-				limit = {
-					NOT = {
-						tag = CAN
-						tag = MEX
-						tag = BAH
-						tag = CUB
-						tag = BER
-						tag = GUA
-						tag = BLZ
-						tag = ELS
-						tag = HON
-						tag = JAM
-						tag = HAI
-						tag = DOM
-						tag = PUE
-						tag = ENG
-						tag = FFR
-						tag = TAT
-						tag = VEN
-						tag = HOL
-						tag = COL
-						tag = PAN
-						tag = COS
-						tag = NIC
-						tag = BEF
-						tag = PAC
-					}
+				add_dynamic_modifier = { modifier = fuel_mechanic}
+				set_variable = {
+					var = expense_mil
+					value = 0
+				} 
+				set_variable = {
+					var = expense_civs
+					value = 0
+				} 
+				set_variable = {
+					var = fuel_rationing
+					value = 0
+				} 
+				set_variable = {
+					var = fuel_lost
+					value = 0
 				}
-				every_owned_state = {
-					set_state_flag = part_of_america
+				if = {
+					limit = {
+						NOT = {
+							tag = CAN
+							tag = MEX
+							tag = BAH
+							tag = CUB
+							tag = BER
+							tag = GUA
+							tag = BLZ
+							tag = ELS
+							tag = HON
+							tag = JAM
+							tag = HAI
+							tag = DOM
+							tag = PUE
+							tag = ENG
+							tag = FFR
+							tag = TAT
+							tag = VEN
+							tag = HOL
+							tag = COL
+							tag = PAN
+							tag = COS
+							tag = NIC
+							tag = BEF
+							tag = PAC
+							tag = GTB
+						}
+					}
+					every_owned_state = {
+						set_state_flag = part_of_america
+					}
 				}			
 			}
 		}
@@ -59,7 +92,7 @@ on_actions = {
 				}
 				GTB = { country_event = { id = cub.1 days = 1 } }
 			}
-			if = {
+			else_if = {
 				limit = {
 					original_tag = USA #победитель
 					FROM = { original_tag = NPA } #проигравший
@@ -69,6 +102,24 @@ on_actions = {
 				}
 				USA = {
 					country_event = { id = maga.7 days = 6 }
+				}
+			}
+		}
+	}
+	on_civil_war_end = { 
+		effect = {
+			if = {
+				limit = {
+					original_tag = KFC
+					has_government = autocratic
+				}
+				CSA = {
+					puppet = ROOT
+					country_event = {
+    						id = kentucky.14
+    						days = 0
+					}
+					transfer_state = 261
 				}
 			}
 		}

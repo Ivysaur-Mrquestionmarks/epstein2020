@@ -1,0 +1,161 @@
+###########################
+# Vancouver Events
+###########################
+
+add_namespace = vancouver
+
+# Loading in army
+country_event = {
+	id = vancouver.0
+	title = vancouver.0.t
+	desc = vancouver.0.d
+	#picture = 
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	trigger = { 
+		is_triggered_only = VAN_a_canadian_contender
+	}		
+	
+	option = { #
+		name = vancouver.0.a
+		ai_chance = { factor = 100 }
+		load_oob = "VAN_2021"
+	}
+}
+
+# Western Canadian Convention
+country_event = {
+	id = vancouver.1
+	title = vancouver.1.t
+	desc = vancouver.1.d
+	picture = GFX_event_last_election
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	trigger = { 
+		is_triggered_only = VAN_western_canadian_convention
+	}		
+	
+	option = { # Stand united with western canada
+		name = vancouver.1.a
+		ai_chance = { factor = 75 }
+		add_political_power = -25
+		reverse_add_opinion_modifier = { target = BRC modifier = medium_increase }
+		reverse_add_opinion_modifier = { target = ANT modifier = medium_increase }
+		reverse_add_opinion_modifier = { target = ALT modifier = medium_increase }
+		set_country_flag = vancouver_1_a
+	}
+	option = { # No concessions communist path
+		name = vancouver.1.b
+		ai_chance = { factor = 25 }
+		reverse_add_opinion_modifier = { target = BRC modifier = medium_decrease }
+		reverse_add_opinion_modifier = { target = ANT modifier = medium_decrease }
+		reverse_add_opinion_modifier = { target = ALT modifier = medium_decrease }
+		set_country_flag = vancouver_1_b
+		
+	}
+}
+
+# The split
+country_event = {
+	id = vancouver.2
+	title = vancouver.2.t
+	desc = vancouver.2.d
+	picture = GFX_event_last_election
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	trigger = { 
+		is_triggered_only = VAN_the_vancouver_PRA_split
+	}		
+	
+	option = { # Stand united with western canada
+		name = vancouver.2.a
+		ai_chance = { factor = 100 }
+		reverse_add_opinion_modifier = { target = PRA modifier = huge_decrease }
+		add_opinion_modifier = { target = PRA modifier = huge_decrease }
+	}
+}
+
+# The Vancouver Terror
+country_event = {
+	id = vancouver.3
+	title = vancouver.3.t
+	desc = vancouver.3.d
+	picture = GFX_event_last_election
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	trigger = { 
+		is_triggered_only = VAN_the_vancouver_terror
+	}		
+	
+	option = { 
+		name = vancouver.3.a
+		ai_chance = { factor = 100 }
+		add_ideas = vancouver_terror
+	}
+}
+
+# Wexit
+country_event = {
+	id = vancouver.4
+	title = vancouver.4.t
+	desc = vancouver.4.d
+	picture = GFX_event_last_election
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	trigger = { 
+		is_triggered_only = VAN_wexit
+	}		
+	
+	option = { 
+		name = vancouver.4.a
+		ai_chance = { factor = 100 }
+		annex_country = {
+			target = BRC
+			transfer_troops = yes
+		}
+		annex_country = {
+			target = ANT
+			transfer_troops = yes
+		}
+		annex_country = {
+			target = ALT
+			transfer_troops = yes
+		}
+		set_capital = 6852
+	}
+}
+
+# New name
+country_event = {
+	id = vancouver.5
+	title = vancouver.5.t
+	desc = vancouver.5.d
+	picture = GFX_event_last_election
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	trigger = { 
+		is_triggered_only = country_event = { id = vancouver.4 days = 0 }
+	}		
+	
+	option = { 
+		name = vancouver.5.a
+		ai_chance = { factor = 100 }
+		set_cosmetic_tag = VAN_Western_Canada
+	}
+	option = { 
+		name = vancouver.5.b
+		ai_chance = { factor = 100 }
+		set_cosmetic_tag = VAN_Victoria
+	}
+	option = { 
+		name = vancouver.5.c
+		ai_chance = { factor = 100 }
+		set_cosmetic_tag = VAN_Ursalia
+	}
+}

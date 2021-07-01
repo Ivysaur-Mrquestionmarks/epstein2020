@@ -214,7 +214,7 @@ country_event = {
 	fire_only_once = yes
 	option = {
 		name = florida.12.a
-		hidden_effect = { retire_ideology_leader = republican country_event = { id = florida.13 hours = 6 } set_country_flag = please_clap_revolution set_capital = 353 }
+		hidden_effect = { set_country_leader_ideology = fascism retire_ideology_leader = republican country_event = { id = florida.13 hours = 6 } set_country_flag = please_clap_revolution set_capital = 353 }
 		set_party_name = { 
 		    ideology = autocratic
 		    long_name = FLO_america_first_party_long 
@@ -325,6 +325,7 @@ country_event = {
 		name = florida.13.a
 		hidden_effect = {
 			news_event = { id = florida.28 }
+			country_event = { id = florida.29 days = 2 }
 		}
 	}
 }
@@ -484,50 +485,50 @@ country_event = {
 		name = florida.26.a
 	}
 }
-country_event = {
-	id = florida.27
-	title = florida.27.t
-	desc = florida.27.d
-	picture = event_Romanov
-	trigger = {
-		has_country_flag = please_clap_revolution
-		NOT = {
-			country_exists = JEB
-		}
-	}
-	fire_only_once = yes
-	option = { #Sure?
-		name = florida.27.a
-		RMV = {
-			add_state_core = 345
-			transfer_state = 345
-		}
-		345 = {
-			set_state_name = "New Saint Petersburg"
-			clr_state_flag =  part_of_america
-		}
-		ai_chance = { factor = 60 }
-		add_timed_idea = { idea = Romanov_Purchase days = 120 }
-	}
-	option = { #Sure? Play as Romanovs
-		name = florida.27.b
-		RMV = {
-			add_state_core = 345
-			transfer_state = 345
-		}
-		345 = {
-			set_state_name = "New Saint Petersburg"
-			clr_state_flag =  part_of_america
-		}
-		RMV = { change_tag_from = FLO }
-		add_timed_idea = { idea = Romanov_Purchase days = 120 }
-	}
-	option = { #No wtf
-		name = florida.27.c
-		
-		ai_chance = { factor = 40 }
-	}
-}
+#country_event = {
+#	id = florida.27
+#	title = florida.27.t
+#	desc = florida.27.d
+#	picture = event_Romanov
+#	trigger = {
+#		has_country_flag = please_clap_revolution
+#		NOT = {
+#			country_exists = JEB
+#		}
+#	}
+#	fire_only_once = yes
+#	option = { #Sure?
+#		name = florida.27.a
+#		RMV = {
+#			add_state_core = 345
+#			transfer_state = 345
+#		}
+#		345 = {
+#			set_state_name = "New Saint Petersburg"
+#			clr_state_flag =  part_of_america
+#		}
+#		ai_chance = { factor = 60 }
+#		add_timed_idea = { idea = Romanov_Purchase days = 120 }
+#	}
+#	option = { #Sure? Play as Romanovs
+#		name = florida.27.b
+#		RMV = {
+#			add_state_core = 345
+#			transfer_state = 345
+#		}
+#		345 = {
+#			set_state_name = "New Saint Petersburg"
+#			clr_state_flag =  part_of_america
+#		}
+#		RMV = { change_tag_from = FLO }
+#		add_timed_idea = { idea = Romanov_Purchase days = 120 }
+#	}
+#	option = { #No wtf
+#		name = florida.27.c
+#		
+#		ai_chance = { factor = 40 }
+#	}
+#}
 #Jebicide News Event
 news_event = {
 	id = florida.28
@@ -546,5 +547,125 @@ news_event = {
 			}
 			sound_effect = "jeb_revolt"
 		}
+	}
+}
+#Conch Republic becomes free
+country_event = {
+	id = florida.29
+	title = florida.29.t
+	desc = florida.29.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			RMV = {
+				add_state_core = 345
+				transfer_state = 345
+				country_event = { id = florida.30 days = 3 }
+				inherit_technology = FLO
+			}
+		}
+	}
+	option = {
+		name = florida.29.a
+		add_political_power = -50
+	}
+	#play as
+	option = {
+		name = florida.29.b
+		add_political_power = -50
+		RMV = { change_tag_from = FLO }
+	}
+}
+#Romanov Buyout
+country_event = {
+	id = florida.30
+	title = florida.30.t
+	desc = florida.30.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	#not like we have a choice...
+	option = {
+		name = florida.30.a
+		ai_chance = { factor = 10 }
+		hidden_effect = { set_cosmetic_tag = RMV_empire_cosmetic }
+		add_timed_idea = { idea = Romanov_Purchase days = 120 }
+		add_ideas = {
+			RMV_offshore_tax_haven
+			RMV_Anton_Bakov
+			RMV_mercenary_base
+			RMV_conch_republic
+			RMV_conch_empire
+			RMV_nicholas_iii
+		}
+		add_stability = -0.10
+		news_event = { id = florida.31 }
+		add_manpower = 13000
+		division_template = {
+			name = "Russian Division"
+			regiments = {
+				infantry = { x = 0 y = 0 }
+				infantry = { x = 0 y = 1 }
+				infantry = { x = 0 y = 2 }
+				infantry = { x = 1 y = 0 }
+				infantry = { x = 1 y = 1 }
+				infantry = { x = 1 y = 2 }
+				infantry = { x = 2 y = 0 }
+			}
+			support = {
+				military_police = { x = 0 y = 0 }
+			}
+		}
+		345 = {
+			create_unit = {
+				division = "name = \"Russian Mercenaries\" division_template = \"Russian Division\" start_experience_factor = 0.4" 
+				owner = RMV
+			}
+			create_unit = {
+				division = "name = \"Novorossiyan Mercenaries\" division_template = \"Russian Division\" start_experience_factor = 0.5" 
+				owner = RMV
+			}
+			create_unit = {
+				division = "name = \"Byelarussian Mercenaries\" division_template = \"Russian Division\" start_experience_factor = 0.3" 
+				owner = RMV
+			}
+		}
+	}
+	#obviously not
+	option = {
+		name = florida.30.b
+		ai_chance = { factor = 90 }
+		add_stability = 0.10
+		add_country_flag = conch_has_no_protection
+	}
+}
+#news event for Romanov Purchase
+news_event = {
+	id = florida.31
+	title = florida.31.t
+	desc = florida.31.d
+	picture = GFX_news_event_064
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = florida.31.a
+	}
+}
+#Florida reintegrates the Conch Republic
+country_event = {
+	id = florida.32
+	title = florida.32.t
+	desc = florida.32.d
+	#picture =
+	trigger = {
+		tag = FLO
+		NOT = { country_exists = JEB }
+		RMV = { has_country_flag = conch_has_no_protection }
+	}
+	option = {
+		name = florida.32.a
+		annex = RMV
 	}
 }

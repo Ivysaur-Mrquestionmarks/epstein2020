@@ -10,6 +10,8 @@ country_event = {
 	fire_only_once = yes
 	option = {
 		name = Primitivists.1.a
+		add_stability = -0.1
+		add_manpower = -100
 		
 	}
 }
@@ -23,6 +25,8 @@ country_event = {
 	fire_only_once = yes
 	option = {
 		name = Primitivists.2.a
+		add_stability = -0.02
+		add_manpower = -73
 		
 	}
 }
@@ -36,6 +40,8 @@ country_event = {
 	fire_only_once = yes
 	option = {
 		name = Primitivists.3.a
+		add_stability = -0.01
+		add_manpower = -10
 		
 	}
 }
@@ -49,6 +55,8 @@ country_event = {
 	fire_only_once = yes
 	option = {
 		name = Primitivists.4.a
+		add_stability = -0.02
+		add_manpower = -50
 		
 	}
 }
@@ -62,6 +70,8 @@ country_event = {
 	fire_only_once = yes
 	option = {
 		name = Primitivists.5.a
+		add_stability = -0.1
+		add_manpower = -100
 		
 	}
 }
@@ -75,6 +85,8 @@ country_event = {
 	fire_only_once = yes
 	option = {
 		name = Primitivists.6.a
+		add_stability = -0.05
+
 		
 	}
 }
@@ -88,6 +100,7 @@ country_event = {
 	fire_only_once = yes
 	option = {
 		name = Primitivists.5.a
+		add_war_support = -0.05
 		
 	}
 }
@@ -133,6 +146,30 @@ country_event = {
 	fire_only_once = yes
 	option = {
 		name = Primitivists.9.a
+		MOL = {
+			transfer_state = 488
+			add_state_core = 488
+		}
+		LAS = {
+			transfer_state = 393
+			transfer_state = 419
+			add_state_core = 419
+			add_state_core = 393
+		}
+		SIN = {
+			transfer_state = 414
+			transfer_state = 411
+			transfer_state = 117
+			add_state_core = 414
+			add_state_core = 411
+			add_state_core = 117
+		}
+		HOP = {
+			transfer_state = 410
+			transfer_state = 406
+			add_state_core = 410
+			add_state_core = 406
+		}
 		
 	}
 }
@@ -147,6 +184,171 @@ country_event = {
 	option = {
 		name = Primitivists.10.a
 		complete_national_focus = Winner_Takes_All
+		
+	}
+}
+country_event = {
+	id = Primitivists.11
+	title = Primitivists.11.t
+	desc = Primitivists.11.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = Primitivists.11.a #No Injuries
+		add_stability = 0.05
+		set_country_flag = Primitivist_Idealism
+		
+	}
+	option = {
+		name = Primitivists.11.b #Injuries
+		add_stability = -0.05
+		hidden_effect = {
+			country_event = { id = Primitivists.12 days = 30 }
+			add_country_leader_trait = Debilitated
+		}
+		
+	}
+	option = {
+		name = Primitivists.11.c
+		kill_country_leader = yes
+		create_country_leader = {
+			name = "John Zerzan"
+			picture = "gfx/leaders/SIN/John_Zerzan.tga"
+			expire = "2060.1.1"
+			ideology = anarcho_primitivism
+			traits = {
+				anarcho_primitivist_trait
+			}
+		}
+		
+	}
+}
+country_event = {
+	id = Primitivists.12
+	title = Primitivists.12.t
+	desc = Primitivists.12.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = Primitivists.12.a #Ted is Cured
+		remove_country_leader_trait = Debilitated
+		hidden_effect = {
+			retire_country_leader = yes
+			create_country_leader = {
+				name = "Theodore Kaczynski"
+				picture = "gfx/leaders/SIN/Ted_Kaczynski_Sane.tga"
+				expire = "2060.1.1"
+				ideology = Jeffersonianism
+				traits = {
+					Anti_Primitivist
+					Apologetic
+				}
+			}
+			set_cosmetic_tag = Republic_of_Rockies
+			load_focus_tree = Republic_of_Rockies_Tree
+		}
+		
+	}
+}
+country_event = { #Republicans Coup Kaczynski
+	id = Primitivists.13
+	title = Primitivists.13.t
+	desc = Primitivists.13.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = Primitivists.13.a #Kill them all
+		add_stability = 0.05
+		add_popularity = {
+			ideology = libertarian_right
+			popularity = 0.10
+		}
+		add_manpower = -2500
+	}
+	option = {
+		name = Primitivists.13.b #Romney Takes It!
+		set_politics = {
+			ruling_party = republican
+		}
+		add_stability = 0.05
+		add_popularity = {
+			ideology = republican
+			popularity = 0.10
+		}
+		create_country_leader = {
+			name = "Mitt Romney"
+			picture = "gfx/leaders/SIN/romney.dds"
+			expire = "2060.1.1"
+			ideology = rino
+			traits = {
+				
+			}
+		}
+		set_cosmetic_tag = Colorado_NPA
+		
+	}
+}
+country_event = { #Sinaloa Coup Kaczynski
+	id = Primitivists.14
+	title = Primitivists.14.t
+	desc = Primitivists.14.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = Primitivists.14.a #Kill them all
+		add_stability = 0.05
+		add_popularity = {
+			ideology = libertarian_right
+			popularity = 0.10
+		}
+		add_manpower = -4000
+	}
+	option = {
+		name = Primitivists.14.b #El Chapo takes control
+		set_politics = {
+			ruling_party = autocratic
+		}
+		add_stability = 0.05
+		add_popularity = {
+			ideology = autocratic
+			popularity = 0.10
+		}
+		create_country_leader = {
+			name = "Joaquín Guzmán"
+			picture = "gfx/leaders/SIN/chapo.dds"
+			expire = "2060.1.1"
+			ideology = corporatocracy
+			traits = {
+				el_chapo_trait
+			}
+		}
+		set_cosmetic_tag = Sinaloa_Cartel
+		
+	}
+	option = {
+		name = Primitivists.14.c #Marcello takes control
+		set_politics = {
+			ruling_party = autocratic
+		}
+		add_stability = 0.05
+		add_popularity = {
+			ideology = autocratic
+			popularity = 0.10
+		}
+		create_country_leader = {
+			name = "James Marcello"
+			picture = "gfx/leaders/SIN/marcello.dds"
+			expire = "2060.1.1"
+			ideology = despotism
+			traits = {
+				New_Capone
+			}
+		}
+		set_cosmetic_tag = Colorado_Outfit
 		
 	}
 }

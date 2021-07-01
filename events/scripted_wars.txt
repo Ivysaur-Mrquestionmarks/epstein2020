@@ -10,8 +10,8 @@ country_event = {
 	trigger = {
 		tag = USA
 		has_war = no
-		date > 2023.6.6
 		country_exists = AFS
+		date > 2023.6.6
 		AFS = { has_war = no }
 	}
 	option = {
@@ -79,12 +79,41 @@ country_event = {
 		date > 2024.1.1
 		country_exists = KFC
 		KFC = { has_war = no }
+		NOT = { is_in_faction_with = KFC }
 	}
 	option = {
 		name = reunification.4.a
-		declare_war_on = {
-		    target = KFC
-		    type = annex_everything
+		if = {
+			limit = {
+				NOT = {
+					KFC = { has_country_leader = { name = "Matt Bevin" ruling_only = yes } }
+				}
+			}
+			declare_war_on = {
+		   	 	target = KFC
+		    		type = annex_everything
+			}
+		}
+		if = {
+			limit = {
+				KFC = { has_country_leader = { name = "Matt Bevin" ruling_only = yes } }
+			}
+			if = {
+				limit = {
+					OR = {
+						has_dlc = "Together for Victory"
+						has_dlc = "Man the Guns"
+					}
+				}
+				set_autonomy = {
+					target = KFC
+					autonomous_state = autonomy_colony
+					freedom_level = 0.1
+				}
+				else = {
+					puppet = KFC
+				}
+			}
 		}
 	}
 }

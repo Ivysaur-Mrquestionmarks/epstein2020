@@ -1,0 +1,421 @@
+add_namespace = kentucky
+
+#the rebellion
+country_event = {
+	id = kentucky.1
+	name = kentucky.1.t
+	desc = kentucky.1.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			set_party_name = { 
+			    ideology = libertarian_right 
+			    long_name = KFC_resistance_party
+			    name = KFC_resistance_party
+			}
+			create_country_leader = {
+				name = "Bryan Howay"
+				picture = "gfx/leaders/KFC/howay.dds"
+				expire = "2060.1.1"
+				ideology = libertarian_ideology
+				traits = {
+					#
+				}
+			}
+			CSA = {
+				country_event = {
+    					id = kentucky.12
+    					days = 0
+				}
+			}
+			every_country = { limit = {OR = {tag = AFS tag = USA tag = FRA}}
+				country_event = {
+    					id = kentucky.13
+    					days = 0
+				}
+			}
+			set_capital = 288
+			remove_ideas = KFC_colonels_rule
+			remove_ideas = KFC_united_resistance
+			start_civil_war = {
+			    ruling_party = libertarian_right
+			    ideology = autocratic
+    			size = 0.5
+		    	states = { 
+		    	    330 375 261
+		    	}
+			}
+			create_field_marshal = {
+				name = "Bryan Howay"
+				portrait_path="gfx/leaders/KFC/howay.dds" 
+				traits={ brilliant_strategist old_guard guerilla_fighter } 
+				skill = 3
+				attack_skill = 2
+				defense_skill = 2
+				planning_skill = 5
+				logistics_skill = 3
+			}
+			if = {
+				limit = {
+					has_country_flag = KFC_tea_party_allies
+				}
+				add_offsite_building = { type = arms_factory level = 2 }
+			}
+			if = {
+				limit = {
+					has_country_flag = KFC_uscm_connections
+				}
+				add_offsite_building = { type = industrial_complex level = 2 }
+			}
+			if = {
+				limit = {
+					has_country_flag = KFC_1776_division
+				}
+				division_template = {
+					name = "Freedom Guard"
+					regiments = {
+						infantry = { x = 0 y = 0 }
+						infantry = { x = 0 y = 1 }
+						infantry = { x = 0 y = 2 }
+						infantry = { x = 0 y = 3 }
+						infantry = { x = 0 y = 4 }
+						infantry = { x = 1 y = 0 }
+						infantry = { x = 1 y = 1 }
+						infantry = { x = 1 y = 2 }
+						artillery = { x = 1 y = 3 }
+						infantry = { x = 2 y = 0 }
+						infantry = { x = 2 y = 1 }
+						artillery = { x = 2 y = 2 }
+						artillery = { x = 2 y = 3 }
+						infantry = { x = 3 y = 0 }
+						infantry = { x = 3 y = 1 }
+						infantry = { x = 3 y = 2 }
+						infantry = { x = 3 y = 3 }
+						artillery = { x = 4 y = 0 }
+					}
+				}
+				250 = {
+					create_unit = {
+						division = "name = \"The 1776 Division\" division_template = \"Freedom Guard\" start_experience_factor = 0.7" 
+						owner = KFC
+					}
+				}
+			}
+			if = {
+				limit = {
+					has_country_flag = KFC_louisville_police_flag
+				}
+				division_template = {
+					name = "Police Division"
+					regiments = {
+						infantry = { x = 0 y = 0 }
+						infantry = { x = 0 y = 1 }
+						infantry = { x = 0 y = 2 }
+						infantry = { x = 0 y = 3 }
+						infantry = { x = 0 y = 4 }
+						infantry = { x = 1 y = 0 }
+						infantry = { x = 1 y = 1 }
+						infantry = { x = 1 y = 2 }
+					}
+				}
+				288 = {
+					create_unit = {
+						division = "name = \"1st Louisville Division\" division_template = \"Police Division\" start_experience_factor = 0.0" 
+						owner = KFC
+					}
+					create_unit = {
+						division = "name = \"2nd Louisville Division\" division_template = \"Police Division\" start_experience_factor = 0.0" 
+						owner = KFC
+					}
+				}
+			}
+			random_other_country = {
+				limit = {
+					original_tag = KFC
+					has_government = autocratic
+				}
+				division_template = {
+					name = "Slave Army"
+					regiments = {
+						infantry = { x = 0 y = 0 }
+						infantry = { x = 0 y = 1 }
+						infantry = { x = 0 y = 2 }
+						infantry = { x = 0 y = 3 }
+						infantry = { x = 0 y = 4 }
+						infantry = { x = 1 y = 0 }
+						infantry = { x = 1 y = 1 }
+						infantry = { x = 1 y = 2 }
+					}
+				}
+			}
+			every_unit_leader = {
+				limit = {
+					has_id = 131
+				}
+				set_nationality = PREV
+			}
+			every_unit_leader = {
+				limit = {
+					has_id = 132
+				}
+				set_nationality = PREV
+			}
+			every_unit_leader = {
+				limit = {
+					has_id = 133
+				}
+				set_nationality = PREV
+			}
+			330 = {
+				create_unit = {
+					division = "name = \"Sellswords\" division_template = \"Slave Army\" start_experience_factor = 0.0" 
+					owner = PREV
+				}
+			}
+			261 = {
+				create_unit = {
+					division = "name = \"Slave Conscripts\" division_template = \"Slave Army\" start_experience_factor = 0.0" 
+					owner = PREV
+				}
+			}	
+		}
+	}
+	option = {
+		name = kentucky.1.a
+		add_war_support = 0.10
+	}
+}
+#continental congress begins
+country_event = {
+	id = kentucky.2
+	title = kentucky.2.t
+	desc = kentucky.2.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = kentucky.2.a
+		add_stability = 0.05
+		add_political_power = 50
+	}
+}
+#Tea Party celebrations
+country_event = {
+	id = kentucky.3
+	title = kentucky.3.t
+	desc = kentucky.3.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = kentucky.3.a
+		add_popularity = { ideology = libertarian_right popularity = 0.10 }
+	}
+}
+#Liberals demand TWP exclusion
+country_event = {
+	id = kentucky.4
+	title = kentucky.4.t
+	desc = kentucky.4.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = kentucky.4.a
+		add_popularity = { ideology = authoritarian_left popularity = 0.10 }
+		add_popularity = { ideology = democrat popularity = 0.10 }
+	}
+}
+#Tea Party defends TWP freedom of speech
+country_event = {
+	id = kentucky.5
+	title = kentucky.5.t
+	desc = kentucky.5.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = kentucky.5.a
+		add_popularity = { ideology = libertarian_right popularity = 0.10 }
+		add_popularity = { ideology = republican popularity = 0.10 }
+		add_popularity = { ideology = authoritarian_left popularity = 0.10 }
+	}
+}
+#TWP rallies against Democrats
+country_event = {
+	id = kentucky.6
+	title = kentucky.6.t
+	desc = kentucky.6.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = kentucky.6.a
+		add_stability = -0.05
+		add_popularity = { ideology = authoritarian_left popularity = 0.10 }
+		add_popularity = { ideology = democrat popularity = 0.10 }
+	}
+}
+#TWP rallies turn violent
+country_event = {
+	id = kentucky.7
+	title = kentucky.7.t
+	desc = kentucky.7.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = kentucky.7.a
+		add_stability = -0.15
+		add_political_power = -100
+		add_popularity = { ideology = authoritarian_left popularity = 0.10 }
+		add_popularity = { ideology = republican popularity = -0.02 }
+		add_popularity = { ideology = libertarian_right popularity = -0.03 }
+	}
+}
+#Congress bans TWP
+country_event = {
+	id = kentucky.8
+	title = kentucky.8.t
+	desc = kentucky.8.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = kentucky.8.a
+		add_stability = 0.05
+		add_war_support = -0.05
+		add_popularity = { ideology = authoritarian_left popularity = -0.20 }
+		add_popularity = { ideology = republican popularity = 0.08 }
+		add_popularity = { ideology = libertarian_right popularity = -0.02 }
+	}
+}
+#Heimbach protests the ban
+country_event = {
+	id = kentucky.9
+	title = kentucky.9.t
+	desc = kentucky.9.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = kentucky.9.a
+		add_popularity = { ideology = democrat popularity = 0.05 }
+		add_popularity = { ideology = republican popularity = 0.05 }
+	}
+}
+#TWP storms congress
+country_event = {
+	id = kentucky.10
+	title = kentucky.10.t
+	desc = kentucky.10.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	#lock them out!
+	option = {
+		name = kentucky.10.a
+		add_popularity = { ideology = authoritarian_left popularity = -1.00 }
+	}
+	#Heimbach lets them in
+	option = {
+		name = kentucky.10.b
+		add_popularity = { ideology = authoritarian_left popularity = 0.15 }
+		set_politics = {
+			ruling_party = authoritarian_left
+		        elections_allowed = no
+		}
+	}
+}
+#election
+country_event = {
+	id = kentucky.11
+	title = kentucky.11.t
+	desc = kentucky.11.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			set_party_name = { 
+			    ideology = democrat
+			    long_name = KFC_fischer_party
+			    name = KFC_fischer_party
+			}
+		}
+	}
+	#Tea Party
+	option = {
+		name = kentucky.11.a
+		add_popularity = { ideology = republican popularity = 0.15 }
+		set_politics = {
+			ruling_party = republican
+		        elections_allowed = yes
+		}
+		hold_election = KFC
+	}
+	#Democrat Party
+	option = {
+		name = kentucky.11.b
+		add_popularity = { ideology = democrat popularity = 0.15 }
+		set_politics = {
+			ruling_party = democrat
+		        elections_allowed = yes
+		}
+		hold_election = KFC
+	}
+}
+
+#KFC ask CSA for support
+country_event = {
+	id = kentucky.12
+	title = kentucky.12.t
+	desc = kentucky.12.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = kentucky.12.a
+		add_ideas = KFC_CSA_volunteers 
+	}
+
+}
+
+#KFC rebels ask for support
+country_event = {
+	id = kentucky.13
+	title = kentucky.13.t
+	desc = kentucky.13.d
+	#picture =
+	is_triggered_only = yes
+
+	option = {
+		name = kentucky.13.a
+		add_ideas = KFC_volunteers 
+	}
+
+}
+
+#The cornel wins, CSA puppets hims
+country_event = {
+	id = kentucky.14
+	title = kentucky.14.t
+	desc = kentucky.14.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = kentucky.14.a
+		
+		set_autonomy = {
+   			target = FROM
+    			autonomy_state = autonomy_dominion
+		} 
+		
+	}
+
+}

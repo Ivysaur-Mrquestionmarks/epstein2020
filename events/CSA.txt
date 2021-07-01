@@ -110,6 +110,7 @@ country_event = {
 				
 				}
 			}
+			set_country_flag = Confederate_Collapse
 		}
 		country_event = {
     			id = south.4
@@ -272,6 +273,16 @@ country_event = {
 	is_triggered_only = yes
 	fire_only_once = yes
 	immediate = { hidden_effect = {
+		every_country = {
+			limit = {
+				is_puppet_of = CSA
+			}
+		}
+		set_autonomy = {
+    			target = PREV
+    			autonomy_state = autonomy_free
+		}
+
 		create_country_leader = {
 			name = "Brian Kemp"
 			picture = "gfx/leaders/CSA/kemp.dds"
@@ -369,6 +380,14 @@ country_event = {
 			factor = 100
 		}
 		ZIO = { change_tag_from = ROOT }		
+		CSA_war = yes		
+	}
+	option = {
+		name = south.8.e #play as Tennessee
+		ai_chance = {
+			factor = 100
+		}
+		APA = { change_tag_from = ROOT }		
 		CSA_war = yes		
 	}
 }
@@ -501,5 +520,477 @@ country_event = {
     				damage = 3
 			}
 		}
+	}
+}
+
+country_event = {
+	id = south.14 #the panthers demand reparations
+	title = south.14.t
+	desc = south.14.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #support them
+		name = south.14.a
+		ai_chance = {
+			factor = 1
+		}
+		add_timed_idea = {
+    			idea = CSA_reparations
+    			days = 180
+		}
+		country_event = {
+    			id = south.15
+    			days = 4
+		}
+	}
+	option = { #Nah
+		name = south.14.b
+		country_event = {
+    			id = south.17
+    			days = 4
+		}
+	}
+}
+country_event = {
+	id = south.15 #Gains panther support
+	title = south.15.t
+	desc = south.15.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #support tem
+		name = south.15.a
+		ai_chance = {
+			factor = 1
+		}
+		modify_country_flag = {
+    			flag = black_strike
+    			value = -1
+		}
+		custom_effect_tooltip = CSA_happy_bkl 
+		add_political_power = 25
+		country_event = {
+    			id = south.16
+    			days = 10
+		}
+	}
+}
+
+country_event = {
+	id = south.16 #The kkk commits tax evasion
+	title = south.16.t
+	desc = south.16.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #support tem
+		name = south.16.a
+		ai_chance = {
+			factor = 1
+		}
+		modify_country_flag = {
+    			flag = kkk_strike
+    			value = 1
+		}
+		custom_effect_tooltip = CSA_angy_kkk
+		add_timed_idea = {
+    			idea = CSA_tax_protest
+    			days = 90
+		}
+	}
+}
+
+
+country_event = {
+	id = south.17 #The Phanters blockade rodes in protest
+	title = south.17.t
+	desc = south.17.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #support tem
+		name = south.17.a
+		ai_chance = {
+			factor = 1
+		}
+		modify_country_flag = {
+    			flag = black_strike
+    			value = 1
+		}
+		custom_effect_tooltip = CSA_angy_bkl
+		add_timed_idea = {
+    			idea = CSA_blockades
+    			days = 90
+		}
+		country_event = {
+    			id = south.18
+    			days = 5
+		}
+	}
+}
+
+country_event = {
+	id = south.18 #What should we do?
+	title = south.18.t
+	desc = south.18.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #Call the kkk
+		name = south.18.a
+		country_event = {
+    			id = south.19
+    			days = 14
+		}
+	}
+	option = { #Remove the blockeades ourselfs
+		name = south.18.b
+		country_event = {
+    			id = south.20
+    			days = 7
+		}
+	}
+}
+
+country_event = {
+	id = south.19 #WHite supremecist militias take down the blockeade
+	title = south.19.t
+	desc = south.19.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = south.19.a
+		remove_ideas = CSA_blockades
+		modify_country_flag = {
+    			flag = black_strike
+    			value = 1
+		}
+		modify_country_flag = {
+    			flag = kkk_strike
+    			value = -1
+		}
+		custom_effect_tooltip = CSA_happy_kkk 
+		custom_effect_tooltip = CSA_angy_bkl
+		add_stability = -0.1
+	}
+}
+
+country_event = {
+	id = south.20 #The army takes down the blockeade
+	title = south.20.t
+	desc = south.20.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = south.20.a
+		add_stability = -0.05
+		add_manpower = -50
+		modify_timed_idea = {
+    			idea = CSA_blockades
+    			days = -40
+		}	
+		add_to_variable = {
+			var = sexy_x
+			value = 25
+		}
+		clamp_variable = {
+			var = sexy_x
+			min = -200
+			max = 50
+		}
+		custom_effect_tooltip = CSA_west_power_growth	
+	}
+}
+
+country_event = {
+	id = south.21 #White youth group member bombs a black church
+	title = south.21.t
+	desc = south.21.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #Just another monday
+		name = south.21.a
+		country_event = {
+    			id = south.22
+    			days = 14
+		}
+	}
+	option = { #We should prevent this from happening again
+		name = south.21.b
+		country_event = {
+    			id = south.23
+    			days = 5
+		}
+		modify_country_flag = {
+    			flag = kkk_strike
+    			value = 1
+		}
+		custom_effect_tooltip = CSA_angy_kkk
+		add_political_power = -30
+	}
+}
+
+country_event = {
+	id = south.22 #Ignore the boming path, black panthers denaunce the goverment.
+	title = south.22.t
+	desc = south.22.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = { #We should prevent this from happening again
+		name = south.22.a
+		modify_country_flag = {
+    			flag = black_strike
+    			value = 1
+		}
+		custom_effect_tooltip = CSA_angy_bkl
+		add_political_power = -30
+	}
+}
+
+country_event = {
+	id = south.23 #Denaunce the boming path, white soldiers desert in protest.
+	title = south.23.t
+	desc = south.23.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = { #We should prevent this from happening again
+		name = south.23.a #crack down on white supremecist in the army
+		set_country_flag = army_crack_down
+		add_manpower = -36000
+		unlock_decision_tooltip = CSA_crack_down_on_white_supremecist
+	}
+
+	option = { #We should prevent this from happening again
+		name = south.23.b #try to apease them
+
+		add_manpower = -17000
+		
+	}
+}
+
+country_event = {
+	id = south.24 #Black militias start forming
+	title = south.24.t
+	desc = south.24.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = { #We should prevent this from happening again
+		name = south.24.a #We have paramilitaries already, let them be.
+		country_event = {
+    			id = south.25
+    			days = 10
+		}
+	}
+
+	option = { #Crack down on them now.
+		name = south.24.b #crack down
+
+		country_event = {
+    			id = south.28
+    			days = 9
+		}
+	}
+}
+
+country_event = {
+	id = south.25 #White people protest against the goverment's inaction towards the militias
+	title = south.25.t
+	desc = south.25.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = { 
+		name = south.25.a 
+		modify_country_flag = {
+    			flag = kkk_strike
+    			value = 1
+		}
+		custom_effect_tooltip = CSA_angy_kkk
+		country_event = {
+    			id = south.26
+    			days = 21
+		}
+	}
+}
+country_event = {
+	id = south.26 #White and black militias start figthing across the confederacy
+	title = south.26.t
+	desc = south.26.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = { 
+		name = south.26.a 
+		add_timed_idea = {
+    			idea = CSA_militias_figthings
+    			days = 300
+		}		
+		country_event = {
+    			id = south.27
+    			days = 8
+		}
+	}
+}
+
+country_event = {
+	id = south.27 #How should we solve the problem?
+	title = south.27.t
+	desc = south.27.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = { 
+		name = south.27.a #target all non goverment militias
+		modify_timed_idea = {
+    			idea = CSA_militias_figthings
+    			days = -100
+		}
+		add_to_variable = {
+			var = sexy_x
+			value = 25
+		}
+		clamp_variable = {
+			var = sexy_x
+			min = -200
+			max = 50
+		}
+		custom_effect_tooltip = CSA_west_power_growth	
+		modify_country_flag = {
+    			flag = kkk_strike
+    			value = 1
+		}
+		custom_effect_tooltip = CSA_angy_kkk
+		modify_country_flag = {
+    			flag = black_strike
+    			value = 1
+		}
+		custom_effect_tooltip = CSA_angy_bkl
+	}
+	option = { 
+		name = south.27.b #target black militias only
+		modify_country_flag = {
+    			flag = black_strike
+    			value = 1
+		}
+		custom_effect_tooltip = CSA_angy_bkl
+		modify_timed_idea = {
+    			idea = CSA_militias_figthings
+    			days = -50
+		}
+	}
+	option = { 
+		name = south.27.c  #target white militias only
+		modify_country_flag = {
+    			flag = kkk_strike
+    			value = 1
+		}
+		custom_effect_tooltip = CSA_angy_kkk
+		modify_timed_idea = {
+    			idea = CSA_militias_figthings
+    			days = -50
+		}
+	}
+}
+
+country_event = {
+	id = south.28 #he black militias anounce they won't follow the goverment's order of disbanding
+	title = south.28.t
+	desc = south.28.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = { 
+		name = south.28.a 
+		modify_country_flag = {
+    			flag = black_strike
+    			value = 1
+		}
+		custom_effect_tooltip = CSA_angy_bkl	
+		country_event = {
+    			id = south.29
+    			days = 4
+		}
+	}
+}
+
+country_event = {
+	id = south.29 #The black militias and goverment troops start figthing
+	title = south.29.t
+	desc = south.29.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = { 
+		unlock_decision_tooltip = CSA_crack_down_on_black_militias
+		name = south.29.a 
+		add_timed_idea = {
+    			idea = CSA_goverment_v_militia_figthing
+    			days = 300
+		}		
+	}
+}
+
+country_event = {
+	id = south.30 #How should poverty relief be distributed?
+	title = south.30.t
+	desc = south.30.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = { 
+		name = south.30.a #The goverment should take care of it
+		add_to_variable = {
+			var = sexy_x
+			value = 25
+		}
+		clamp_variable = {
+			var = sexy_x
+			min = -200
+			max = 50
+		}
+		custom_effect_tooltip = CSA_west_power_growth					
+	}
+
+	option = { 
+		name = south.30.b #Christian (and white) charities should take care of it.
+		modify_country_flag = {
+    			flag = kkk_strike
+    			value = -1
+		}
+		custom_effect_tooltip = CSA_happy_kkk 							
+	}
+
+	option = { 
+		name = south.30.c #Black organisations should take care of it.
+		modify_country_flag = {
+    			flag = black_strike
+    			value = -1
+		}
+		custom_effect_tooltip = CSA_happy_bkl 							
 	}
 }

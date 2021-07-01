@@ -178,7 +178,7 @@ ideas = {
 			picture = ENG_the_war_to_end_all_wars
 			modifier = {
 				stability_factor = -0.1
-				conscription = 0.08
+				conscription = 0.01
 				war_support_factor = -0.1
 				max_command_power = 20
 				training_time_factor = -0.10
@@ -199,7 +199,7 @@ ideas = {
 		Partial_Repatriation = {
 			picture = ENG_the_war_to_end_all_wars
 			modifier = {
-				conscription = 0.04
+				conscription = 0.01
 				max_command_power = 10
 				training_time_factor = -0.05
 				compliance_gain = 0.05
@@ -232,6 +232,7 @@ ideas = {
 				industrial_capacity_dockyard = 0.1
 				consumer_goods_factor = -0.1
 				authoritarian_left_drift = 0.05
+				industrial_factory_donations = 5
 			}
 		}
 		Civil_war_Imminent = {
@@ -250,7 +251,7 @@ ideas = {
 			modifier = {
 				army_speed_factor = -0.25
 				army_defence_factor = 0.60
-				dig_in_speed = 0.25
+				dig_in_speed = 5
 				army_attack_factor = -0.40
 				pocket_penalty = -0.15
 			}
@@ -598,6 +599,7 @@ ideas = {
 			picture = jap_supremacy_of_technology
 			modifier = {
 				research_speed_factor = 0.25
+				autocratic_drift = 0.05
 			}
 		}
 		Enhanced_Humanoids = {
@@ -607,6 +609,7 @@ ideas = {
 				land_reinforce_rate = 0.10
 				army_morale_factor = 0.10
 				army_org_factor = 0.15
+				autocratic_drift = 0.05
 			}
 		}
 		Keeping_an_Eye_on_them = {
@@ -771,7 +774,10 @@ ideas = {
 		Andrew_Yang = {
 			allowed = { tag = PRA }
 			available = {
-				has_country_flag = DemocratVP
+				OR = {
+					has_country_flag = DemocratVP
+					has_country_flag = VP_Abandonment
+				}
 			}
 			visible = { has_completed_focus = Tow_the_line }
 			picture = PRA_Yang_advisor
@@ -779,12 +785,20 @@ ideas = {
 			ai_will_do = { factor = 5 }
 			removal_cost = 0
 		}
-		Andrew_Yang = {
-			allowed = { tag = PRA }
-			picture = PRA_Yang_advisor
-			traits = {  }
-			ai_will_do = { factor = 5 }
-			removal_cost = 0
+		Generic_Vacant_Vice_President = {
+			allowed = {
+				OR = {
+					original_tag = PRA
+					original_tag = USA
+					original_tag = AFS
+					original_tag = CSA
+					original_tag = FRA
+				}
+			}
+			picture = Vacant_VP
+			traits = { Vacant_Vice_President }
+			ai_will_do = { factor = 0 }
+			removal_cost = -1
 		}
 		Joe_Sims = {
 			allowed = { tag = PRA }
@@ -808,9 +822,122 @@ ideas = {
 			ai_will_do = { factor = 5 }
 			removal_cost = 0
 		}
-		PRA_vaush_adviser = {
+		Fatima_Iqbal_Zubair = {
 			allowed = { tag = PRA }
+			available = {
+				has_completed_focus = Finish_His_Reforms
+			}
+			visible = { has_completed_focus = Finish_His_Reforms }
+			picture = Zubair
+			traits = { social_reformer }
+			ai_will_do = { factor = 5 }
+			removal_cost = 0
+		}
+		PRA_StarChild = {
+			allowed = { tag = PRA }
+			available = {
+				has_completed_focus = Schmidt_Libertarian
+			}
+			visible = { has_completed_focus = Schmidt_Libertarian }
+			picture = Starchild
+			traits = { staunch_constitutionalist }
+			ai_will_do = { factor = 5 }
+			removal_cost = 0
+		}
+		Shawn_Steel = {
+			allowed = { tag = PRA }
+			available = {
+				has_completed_focus = Duf_Sundheim_Presidency
+			}
+			visible = { has_completed_focus = Duf_Sundheim_Presidency }
+			picture = Shawn_Steel
+			traits = { conservative_grandee }
+			ai_will_do = { factor = 5 }
+			removal_cost = 0
+		}
+		PRA_vaush_adviser = {
+			allowed = { 
+				tag = PRA 
+			}
+			available = {
+				OR = {
+					has_government = libertarian_left
+					has_government = authoritarian_left
+				}
+			}
 			traits = { propaganda_expert }
+			ai_will_do = { factor = 3 }
+		}
+		PRA_Rossana_Cambron_adviser = {
+			allowed = { 
+				tag = PRA 
+			}
+			available = {
+				has_government = authoritarian_left
+			}
+			traits = { communist_revolutionary }
+			picture = 
+			ai_will_do = { factor = 3 }
+		}
+		PRA_John_Becker_adviser = {
+			allowed = { 
+				tag = PRA 
+			}
+			traits = { education_reformer }
+			picture = 
+			ai_will_do = { factor = 3 }
+		}
+		PRA_Jane_Sanders_adviser = {
+			allowed = { 
+				tag = PRA 
+			}
+			available = {
+				has_country_leader = "Bernie Sanders"
+			}
+			traits = { first_lady }
+			picture = 
+			ai_will_do = { factor = 3 }
+		}
+		PRA_Richard_Pan_adviser = {
+			allowed = { 
+				tag = PRA 
+			}
+			traits = { silent_workhorse }
+			picture = 
+			ai_will_do = { factor = 3 }
+		}
+		PRA_Bob_Wieckowski_adviser = {
+			allowed = { 
+				tag = PRA 
+			}
+			traits = { financial_expert }
+			picture = 
+			ai_will_do = { factor = 3 }
+		}
+		PRA_Dwayne_Johnson_adviser = {
+			allowed = { 
+				tag = PRA 
+
+			}
+			available = {
+				NOT = {
+					country_exists = HLY
+				}
+			}
+			traits = { adventurous_daredevil }
+			picture = 
+			ai_will_do = { factor = 3 }
+		}
+		PRA_Kristi_Johnson_adviser = {
+			allowed = { 
+				tag = PRA 
+				has_dlc = "La Resistance" 
+			}
+			available = {
+				has_intelligence_agency = yes
+			}
+			traits = { head_of_intelligence }
+			picture = 
 			ai_will_do = { factor = 3 }
 		}
 	}
