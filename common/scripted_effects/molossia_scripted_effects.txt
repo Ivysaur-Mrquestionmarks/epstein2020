@@ -160,6 +160,15 @@ MOL_update_refugees = {
     }
 }
 
+MOL_remove_200_working_refugees = {
+    custom_effect_tooltip = MOL_200_working_refugees_removed_tt
+    subtract_from_variable = { refugees_working = 200 }
+    if = {
+        limit = { check_variable = { refugees_working < 0 } }
+        set_variable = { refugees_working = 0 }
+    }
+}
+
 MOL_calculate_total_refugees = {
     #Total Refugees = Working Refugees + Nonworking Refugees
     set_temp_variable = { temp2 = refugees_working }
@@ -179,6 +188,28 @@ MOL_refugee_overflow = {
         #b. get supplies from depot (rise in depot influence + capacity increase)
         #c. Let the situation be (gives nasty "refugee camps packed" idea but no other penalties)
     #All events trigger a "follow up" event in 2 weeks
+}
+
+MOL_convert_100_refugees_nonworking = {
+    custom_effect_tooltip = MOL_100_refugees_nonworking_tt
+    subtract_from_variable = { refugees_working = 100 }
+    add_to_variable = { refugees_nonworking = 100 }
+    if = {
+        limit = { check_variable = { refugees_working < 0 } }
+        add_to_variable = { refugees_nonworking = refugees_working }
+        set_variable = { refugees_working = 0 }
+    }
+}
+
+MOL_convert_200_refugees_nonworking = {
+    custom_effect_tooltip = MOL_200_refugees_nonworking_tt
+    subtract_from_variable = { refugees_working = 200 }
+    add_to_variable = { refugees_nonworking = 200 }
+    if = {
+        limit = { check_variable = { refugees_working < 200 } }
+        add_to_variable = { refugees_nonworking = refugees_working }
+        set_variable = { refugees_working = 200 }
+    }
 }
 
 #Make sure stability is in bounds and round it to an integer
