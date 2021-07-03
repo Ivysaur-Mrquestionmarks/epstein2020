@@ -6,6 +6,8 @@ MOL_internal_situation = {
         activation = {
             NOT = { check_variable = { mol_stability > 0 } }
             date > 2021.4.10
+            #AI is magically immune to collapse, since it would probably do so instantly! How cool is that?
+            is_ai = no
         }
 
         available = {
@@ -36,23 +38,37 @@ MOL_internal_situation = {
 			factor = 200
 		}
 	}
-    MOL_placeholder = {
-        visible = {
-            always = yes
+
+    MOL_increase_our_stability = {
+        cost = 60
+        days_remove = 15
+        remove_effect = {
+            MOL_increase_stability = yes
         }
     }
 
+    MOL_sacrifice_stability = {
+        cost = 5
+        days_remove = 15
+        complete_effect = {
+            MOL_decrease_stability = yes
+        }
+        remove_effect = {
+            add_political_power = 50
+        }
+    }
+    
     #Missions 
-    MOL_food_crisis_mission = {
-
-        activation = {
-            has_country_flag = impending_food_crisis
-        }
-
-        available = {
-            custom_trigger_tooltip = {
-				has_country_flag = MOL_get_this_bread
-			}
-        }
-    }
+    #MOL_food_crisis_mission = {
+    #
+    #    activation = {
+    #        has_country_flag = impending_food_crisis
+    #    }
+    #
+    #    available = {
+    #        custom_trigger_tooltip = {
+	#			has_country_flag = MOL_get_this_bread
+	#		}
+    #    }
+    #}
 }

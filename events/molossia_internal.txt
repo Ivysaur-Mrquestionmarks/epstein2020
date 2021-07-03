@@ -1,10 +1,19 @@
 add_namespace = MOL_internal
 
+#1-9 - Debug Events to increase / decrease stability and other variables
+#10-19 - Unused
+#20-29 - Depot Coup Events (unimplemented)
+#30-39 - Crime / Instability Events
+#40-49 - Refugee Arriving Events
+#50-59 - Refugee Camp Overcrowding Events
+#60-69 - Farming Events
+#70-79 - Available
+#1000-1009 - Pulse events (hidden to player)
+
 country_event = { #Increase stability
   id = MOL_internal.1
   title = MOL_internal.1.t
   desc = MOL_internal.1.d
-  fire_only_once = yes
   is_triggered_only = yes
   option = {
     name = MOL_internal.1.a
@@ -17,7 +26,6 @@ country_event = { #Big increase stability
   id = MOL_internal.2
   title = MOL_internal.2.t
   desc = MOL_internal.2.d
-  fire_only_once = yes
   is_triggered_only = yes
   option = {
     name = MOL_internal.2.a
@@ -30,7 +38,6 @@ country_event = { #Decrease stability
   id = MOL_internal.3
   title = MOL_internal.3.t
   desc = MOL_internal.3.d
-  fire_only_once = yes
   is_triggered_only = yes
   option = {
     name = MOL_internal.3.a
@@ -43,7 +50,6 @@ country_event = { #Big decrease stability
   id = MOL_internal.4
   title = MOL_internal.4.t
   desc = MOL_internal.4.d
-  fire_only_once = yes
   is_triggered_only = yes
   option = {
     name = MOL_internal.4.a
@@ -52,21 +58,115 @@ country_event = { #Big decrease stability
   }
 }
 
-
-country_event = { #The Issue of Crime
+country_event = { #Impending Depot Coup
   id = MOL_internal.20
   title = MOL_internal.20.t
   desc = MOL_internal.20.d
-  fire_only_once = yes
   is_triggered_only = yes
   option = {
     name = MOL_internal.20.a
+    custom_effect_tooltip = MOL_depot_coup_impending
+  }
+}
+
+country_event = { #Hawthorne Army Depot Coup
+  id = MOL_internal.21
+  title = MOL_internal.21.t
+  desc = MOL_internal.21.d
+  is_triggered_only = yes
+  option = {
+    name = MOL_internal.21.a
+    custom_effect_tooltip = MOL_depot_coup
+    set_country_flag = depot_coup
+    add_political_power = -100
+    create_country_leader = {
+      name = "Karl Pierson"
+      picture = "gfx/leaders/MOL/MOL_karl_pierson.dds"
+      expire = "2060.12.12"
+      ideology = military_dictatorship
+    }
+    set_party_name = {
+      ideology = autocratic
+      long_name = MOL_hawthorne_long
+      name = MOL_hawthorne
+    }
+    set_politics = {
+      ruling_party = autocratic
+      elections_allowed = no
+    }
+    set_variable = {
+      var = mol_ready
+      value = 1
+    }
+    remove_ideas = {
+      
+    }
+    add_offsite_building = {
+      type = arms_factory
+      level = 2
+    }
+  }
+}
+
+country_event = { #The Issue of Crime
+  id = MOL_internal.30
+  title = MOL_internal.30.t
+  desc = MOL_internal.30.d
+  is_triggered_only = yes
+  option = {
+    name = MOL_internal.30.a
     MOL_increase_stability = yes
     MOL_increase_depot_influence = yes
   }
   option = {
-    name = MOL_internal.20.b
+    name = MOL_internal.30.b
     MOL_increase_stability_small = yes
+  }
+}
+
+country_event = { #Refugees Arrive (small, mix of working and nonworking)
+  id = MOL_internal.40
+  title = MOL_internal.40.t
+  desc = MOL_internal.40.d
+  is_triggered_only = yes
+  option = { #Let them in
+    name = MOL_internal.40.a
+    add_political_power = 15
+  }
+  option = { #Turn them away
+    name = MOL_internal.40.b
+    MOL_decrease_stability_tiny = yes
+  }
+
+}
+
+country_event = { #Refugees Arrive (small, mostly working)
+  id = MOL_internal.41
+  title = MOL_internal.41.t
+  desc = MOL_internal.41.d
+  is_triggered_only = yes
+  option = { #Let them in
+    name = MOL_internal.41.a
+    add_political_power = 10
+  }
+  option = { #Turn them away
+    name = MOL_internal.41.b
+    MOL_decrease_stability_tiny = yes
+  }
+}
+
+country_event = { #Refugees Arrive (medium, mix of working and nonworking)
+  id = MOL_internal.42
+  title = MOL_internal.42.t
+  desc = MOL_internal.42.d
+  is_triggered_only = yes
+  option = { #Let them in
+    name = MOL_internal.42.a
+    add_political_power = 25
+  }
+  option = { #Turn them away
+    name = MOL_internal.42.b
+    MOL_decrease_stability_small = yes
   }
 }
 
@@ -97,35 +197,6 @@ country_event = { #Oh god oh fuck
   is_triggered_only = yes
   option = {
     name = MOL_internal.52.a
-  }
-}
-
-country_event = { #Food Pulse to determine success of harvest
-  id = MOL_internal.60
-  title = MOL_internal.60.t
-  desc = MOL_internal.60.d
-  is_triggered_only = yes
-  hidden = yes
-  option = {
-    name = MOL_internal.60.a
-    #TODO: Add ways to improve harvest (i.e. national focus)
-    random_list =  {
-      10 = { #Failed Harvest
-        country_event = { id = MOL_internal.61 hours = 6}
-      }
-      25 = { #Disappointing Harvest
-        country_event = { id = MOL_internal.62 hours = 6}
-      }
-      45 = { #Modest Harvest
-        country_event = { id = MOL_internal.63 hours = 6}
-      }
-      15 = { #Respectable Harvest
-        country_event = { id = MOL_internal.64 hours = 6}
-      }
-      5 = { #Exceptional Harvest
-        country_event = { id = MOL_internal.65 hours = 6}
-      }
-    }
   }
 }
 
@@ -252,4 +323,33 @@ country_event = { #Bi-weekly (every 2 weeks) Pulse for Refugees / Stability. Sho
 		name = MOL_internal.1000.a
 	}
 	
+}
+
+country_event = { #Food Pulse to determine success of harvest
+  id = MOL_internal.1001
+  title = MOL_internal.1001.t
+  desc = MOL_internal.1001.d
+  is_triggered_only = yes
+  hidden = yes
+  option = {
+    name = MOL_internal.1001.a
+    #TODO: Add ways to improve harvest (i.e. national focus)
+    random_list =  {
+      10 = { #Failed Harvest
+        country_event = { id = MOL_internal.61 hours = 6}
+      }
+      25 = { #Disappointing Harvest
+        country_event = { id = MOL_internal.62 hours = 6}
+      }
+      45 = { #Modest Harvest
+        country_event = { id = MOL_internal.63 hours = 6}
+      }
+      15 = { #Respectable Harvest
+        country_event = { id = MOL_internal.64 hours = 6}
+      }
+      5 = { #Exceptional Harvest
+        country_event = { id = MOL_internal.65 hours = 6}
+      }
+    }
+  }
 }
