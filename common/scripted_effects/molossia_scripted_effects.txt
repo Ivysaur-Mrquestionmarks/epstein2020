@@ -130,15 +130,10 @@ MOL_update_refugees = {
 			check_variable = { refugees_working_influx < 2 }
         }
         set_temp_variable = { temp = biweekly_refugee_increase }
-        multiply_temp_variable = {
-            var = temp
-            value = 0.5
-        }
+        multiply_temp_variable = { temp = 0.5 }
         add_to_variable = { refugees_working = temp }
         set_temp_variable = { temp2 = biweekly_refugee_increase }
-        multiply_temp_variable = {
-            var = temp2
-            value = 0.5
+        multiply_temp_variable = { temp2 = 0.5
         }
         add_to_variable = { refugees_nonworking = temp }
         MOL_calculate_total_refugees = yes
@@ -155,7 +150,7 @@ MOL_update_refugees = {
             var = temp2
             value = 0.4
         }
-        add_to_temp_variable = { refugees_nonworking = temp }
+        add_to_temp_variable = { refugees_nonworking = temp2 }
         MOL_calculate_total_refugees = yes
     }
 }
@@ -179,14 +174,13 @@ MOL_remove_200_working_refugees = {
 }
 
 MOL_calculate_total_refugees = {
-    #Total Refugees = Working Refugees + Nonworking Refugees
-    set_temp_variable = { temp2 = refugees_working }
-    add_to_temp_variable = { temp2 = refugees_nonworking }
-    set_variable = { total_refugees = temp2 }
     #You can't have half a refugee you silly goose
-    round_variable = total_refugees
     round_variable = refugees_working
     round_variable = refugees_nonworking
+    #Total Refugees = Working Refugees + Nonworking Refugees
+    set_temp_variable = { temp3 = refugees_working }
+    add_to_temp_variable = { temp3 = refugees_nonworking }
+    set_variable = { total_refugees = temp3 }
 }
 
 MOL_refugee_overflow = {
