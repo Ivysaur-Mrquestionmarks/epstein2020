@@ -1072,10 +1072,8 @@ country_event = {
 	desc = fleet_P.55.d
 	picture = event_Enclave_Event
 	trigger = {
-		FRA = {
-			exists = no
-		}
 		NOT = {
+			country_exists = FRA
 			PRA = {
 				has_completed_focus = The_last_Bastion_of_Hope
 			}
@@ -1101,65 +1099,26 @@ country_event = {
 					anti_communist
 			}
 		}
-		create_field_marshal = {
-			name = "Tod Wolters"
-			portrait_path="gfx/leaders/FRA/wolters.dds" 
-			traits={ career_officer } 
-			skill = 3
-			attack_skill = 4
-			defense_skill = 2
-			planning_skill = 2
-			logistics_skill = 3
-		}
-		create_corps_commander = {
-			name = "Stephen Lyons"
-			portrait_path="gfx/leaders/FRA/lyons.dds" 
-			traits={ politically_connected combined_arms_expert } 
-			skill = 2
-			attack_skill = 1
-			defense_skill = 2
-			planning_skill = 2
-			logistics_skill = 4
-		}
-		create_corps_commander = {
-			name = "Austin Miller"
-			portrait_path="gfx/leaders/FRA/miller.dds" 
-			traits={ infantry_officer adaptable } 
-			skill = 2
-			attack_skill = 3
-			defense_skill = 2
-			planning_skill = 2
-			logistics_skill = 1
-		}
-		create_corps_commander = {
-			name = "Robert Abrams"
-			portrait_path="gfx/leaders/FRA/abrams.dds" 
-			traits={ cavalry_officer panzer_leader desert_fox } 
-			skill = 3
-			attack_skill = 2
-			defense_skill = 3
-			planning_skill = 2
-			logistics_skill = 2
-		}
-		create_corps_commander = {
-			name = "Joseph Martin"
-			portrait_path="gfx/leaders/FRA/martin.dds" 
-			traits={ armor_officer } 
-			skill = 2
-			attack_skill = 2
-			defense_skill = 2
-			planning_skill = 1
-			logistics_skill = 1
-		}
-		create_corps_commander = {
-			name = "Christopher Cavoli"
-			portrait_path="gfx/leaders/FRA/cavoli.dds" 
-			traits={ career_officer } 
-			skill = 1
-			attack_skill = 2
-			defense_skill = 2
-			planning_skill = 1
-			logistics_skill = 1
+		FRA = {
+			every_unit_leader = {
+        			limit = {
+					OR = {
+            					has_id = 50301
+						has_id = 50302
+						has_id = 50303
+						has_id = 50305
+						has_id = 50306
+					}
+            			}
+            			set_nationality = ROOT
+        		}
+			every_unit_leader = {
+				limit = {
+					has_id = 50304
+				}
+				promote_leader = yes
+				set_nationality = ROOT
+			}
 		}
 		add_research_slot = 2
 	}
