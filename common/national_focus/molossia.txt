@@ -22,15 +22,99 @@ focus_tree = {
 			}
 		}
 	}
+
+	focus = {
+		id = MOL_immediate_choices
+		icon = GFX_goal_MOL_No_time
+		x = 0
+		y = 1
+        relative_position_id = MOL_birth_of_a_micronation
+        prerequisite = { focus = MOL_birth_of_a_micronation  }
+		cost = 2
+		completion_reward = {
+			#TODO: Add an event about the issues facing Molossia
+			#country_event = { }
+		}
+	}
+
+	focus = {
+		id = MOL_the_depot_question
+		icon = GFX_goal_MOL_generic_hawthorne
+		x = 0
+		y = 1
+        relative_position_id = MOL_immediate_choices
+        prerequisite = { focus = MOL_immediate_choices  }
+		cost = 2
+		completion_reward = {
+			#TODO: Add an event where player chooses whether to cooperate with depot or coexist with them
+			#country_event = { }
+		}
+	}
+
+	focus = {
+		id = MOL_work_with_hawthorne
+		icon = GFX_goal_MOL_work_with_depot
+		x = -1
+		y = 1
+        relative_position_id = MOL_the_depot_question
+        prerequisite = { focus = MOL_the_depot_question  }
+		mutually_exclusive = { focus = MOL_coexist_with_hawthorne }
+		cost = 2
+		completion_reward = {
+			custom_effect_tooltip = MOL_cooperation_with_depot_tt
+		}
+	}
+
+	focus = {
+		id = MOL_depot_supplies
+		icon = GFX_goal_MOL_big_depot_no_eagle
+		x = -1
+		y = 2
+        relative_position_id = MOL_the_depot_question
+        prerequisite = { focus = MOL_work_with_hawthorne  }
+		cost = 2
+		completion_reward = {
+			#Todo: Give some boost
+		}
+	}
+
+	focus = {
+		id = MOL_coexist_with_hawthorne
+		icon = GFX_goal_MOL_Hoist_The_Flag
+		x = 1
+		y = 1
+        relative_position_id = MOL_the_depot_question
+        prerequisite = { focus = MOL_the_depot_question  }
+		mutually_exclusive = { focus = MOL_work_with_hawthorne }
+		cost = 2
+		completion_reward = {
+			custom_effect_tooltip = MOL_coexist_with_depot_tt
+		}
+	}
+
+	focus = {
+		id = MOL_peaceful_trade
+		icon = GFX_goal_MOL_depot_handshake
+		x = 1
+		y = 2
+        relative_position_id = MOL_the_depot_question
+        prerequisite = { focus = MOL_coexist_with_hawthorne  }
+		cost = 2
+		completion_reward = {
+			#Todo: Give some boost (less than depot supplies) and open opportunity for trade
+		}
+	}
     
     #Deciding Our Future
 	focus = {
 		id = MOL_deciding_our_future
 		icon = GFX_goal_MOL_waiting_storm
 		x = 0
-		y = 1
-        relative_position_id = MOL_birth_of_a_micronation
-        prerequisite = { focus = MOL_birth_of_a_micronation  }
+		y = 3
+        relative_position_id = MOL_the_depot_question
+        prerequisite = { 
+			focus = MOL_depot_supplies  
+			focus = MOL_peaceful_trade }
 		cost = 2
 		completion_reward = {
 			#country_event = { id = molossia.200 days = 3 random_hours = 12 }
@@ -38,13 +122,14 @@ focus_tree = {
 		}
 	}
 
+
     #The Immediate Issues
     focus = {
         id = MOL_the_issues_at_hand
 		icon = GFX_goal_MOL_No_time
 		x = 0
-		y = 3
-        relative_position_id = MOL_birth_of_a_micronation
+		y = 2
+        relative_position_id = MOL_deciding_our_future
 		cost = 2
         prerequisite = { 
             focus = MOL_deciding_our_future
