@@ -297,3 +297,68 @@ country_event = {
 		}
 	}
 }
+#Sol Invictus' collapse. - I WILL REWORK THIS TO BE MORE IN DEPTH AND MORE DEPENDANT ON SPECIFIC CONDITIONS FOR SPECIFIC TAGS LATER, FOR NOW THIS WILL DO
+country_event = {
+	id = tribal.5
+	title = tribal.5.t
+	desc = tribal.5.d
+	#picture =
+	is_triggered_only = yes
+	#fire only once is not active on purpose!
+	option = {
+		name = tribal.5.a
+		OVERLORD = {
+			set_autonomy = {
+			    target = ROOT
+			    autonomy_state = autonomy_free
+			}
+		}
+		start_civil_war = {
+		    ruling_party = authoritarian_left
+		    size = 0.5
+		}
+	}
+}
+#Sol Invictus nukes Yellowstone
+news_event = {
+	id = tribal.6
+	title = tribal.6.t
+	desc = tribal.6.d
+	#picture =
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = tribal.6.a
+		add_stability = -1.0
+		add_war_support = -1.0
+		add_political_power = -1000
+		add_manpower = -6000000000
+		if = {
+			limit = {NOT = {is_ai = yes}}
+			set_country_flag = {
+    				flag = super_event
+    				value = 7
+			}
+			if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
+				sound_effect = 	"super_7"
+			}
+		}
+	}
+}
+#Victory, through indomitable conquest
+country_event = {
+	id = tribal.7
+	title = tribal.7.t
+	desc = tribal.7.d
+	#picture =
+	trigger = {
+		original_tag = HOP
+		has_country_flag = winner_of_the_2ACW
+		has_country_leader = { name = "Augustus Sol Invictus" ruling_only = yes }
+	}
+	fire_only_once = yes
+	option = {
+		name = tribal.7.a
+		load_focus_tree = atomwaffen_legion
+	}
+}
