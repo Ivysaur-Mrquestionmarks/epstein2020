@@ -15,7 +15,7 @@ focus_tree = {
 		x = 4
 		y = 1
 		available = {
-			always = no
+			NOT = { country_exists = NPA }
 		}
 		completion_reward = {
 			400 = {
@@ -214,7 +214,7 @@ focus_tree = {
 	}
 	focus = {
 		id = IDA_governor_commander
-		icon = GFX_goal_unknown
+		icon = GFX_goal_Military_Government
 		cost = 4.00
 		prerequisite = {
 			focus = IDA_question_of_policing
@@ -514,7 +514,23 @@ focus_tree = {
 		will_lead_to_war_with = UTA
 		will_lead_to_war_with = HOP
 		will_lead_to_war_with = SIN
+		bypass = {
+			NOT = {
+				OR = {
+					411 = {
+						is_owned_by = SIN
+					}
+					411 = {
+						is_owned_by = HOP
+					}
+				}
+			}
+			UTA = {
+				has_government = republican
+			}
+		}
 		available = { 
+			NOT = { country_exists = FRA }
 			has_completed_focus = IDA_caesar_looks_west
 			if = {
 				limit = {
@@ -639,7 +655,7 @@ focus_tree = {
 	}
 	focus = {
 		id = IDA_wyoming_supremacy
-		icon = GFX_goal_unknown
+		icon = GFX_goal_Wyoming_Supremacy
 		cost = 10.00
 		prerequisite = {
 			focus = IDA_elections_in_lincoln
@@ -676,7 +692,7 @@ focus_tree = {
 	}
 	focus = {
 		id = IDA_Idaho_supremacy
-		icon = GFX_goal_unknown
+		icon = GFX_goal_Idaho_Supremacy
 		cost = 10.00
 		prerequisite = {
 			focus = IDA_elections_in_lincoln
@@ -751,6 +767,7 @@ focus_tree = {
 		y = 9
 		available = {
 			is_in_faction_with = USA
+			NOT = { country_exists = FRA }
 		}
 		bypass = {
 			has_war_with = MON

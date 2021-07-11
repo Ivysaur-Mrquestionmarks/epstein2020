@@ -10,7 +10,7 @@ country_event = {
 	fire_only_once = yes
 	immediate = {
 		hidden_effect = {
-			DET = { country_event = { id = Canada.8 hours = 5 } }
+			DET = { country_event = { id = Canada.9 hours = 5 } }
 			set_global_flag = canadian_civil_war
 			if = {
 				limit = {
@@ -130,6 +130,9 @@ country_event = {
 				transfer_state = 56
 
 			}
+			NEW = {
+				transfer_state = 132
+			}
 			TEM = {
 				transfer_state = 71
 				add_state_core = 71
@@ -145,11 +148,11 @@ country_event = {
 				}
 				add_core_of = ARY
 			}
-			PUE = {
-				transfer_state = 189
-				transfer_state = 163
-				transfer_state = 166
-			}
+			#PUE = { #no more Puerto Rican Canada!!!!
+			#	transfer_state = 189
+			#	transfer_state = 163
+			#	transfer_state = 166
+			#}
 			ANT = {
 				transfer_state = 32
 				transfer_state = 6
@@ -497,7 +500,9 @@ news_event = {
     				flag = super_event
     				value = 4
 			}
-			sound_effect = "canada_cw"
+			if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
+				sound_effect = "canada_cw"
+			}
 		}
 	}
 }
@@ -666,15 +671,18 @@ country_event = {
 	}
 }
 country_event = {
-	id = Canada.8
-	title = Canada.8.t
-	desc = Canada.8.d
+	id = Canada.9
+	title = Canada.9.t
+	desc = Canada.9.d
 	#picture =
 	is_triggered_only = yes
 	fire_only_once = yes
 	option = {
-		name = Canada.8.a
+		name = Canada.9.a
 		remove_ideas = DET_support_from_canada
+		GLA = {
+			set_coutry_flag = No_Protection_for_DET
+		}
 		CAN = {
 			diplomatic_relation = {
 			    country = DET

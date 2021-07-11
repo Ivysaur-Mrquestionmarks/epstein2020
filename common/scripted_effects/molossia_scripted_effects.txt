@@ -60,15 +60,6 @@ MOL_decrease_stability_big = {
     MOL_check_stability = yes
 }
 
-#Increase / Decrease Legitimacy
-MOL_increase_legitimacy = {
-    add_to_variable = { mol_legitimacy = 10 }
-}
-
-MOL_decrease_legitimacy = {
-    subtract_from_variable = { mol_legitimacy = 1 }
-}
-
 MOL_update_stability = {
     #Initial Chaos 0/4: -5% Internal Stability 
     if = {
@@ -104,13 +95,89 @@ MOL_update_stability_refugees = {
 
 MOL_update_refugees = {
     #Check refugee gain variable and add that amount of refugees
-    #If there is overflow, trigger an event w/ the potential to 
-    add_to_variable = {
-		var = current_refugees
-		value = biweekly_refugee_increase
-	}
+    #If there is overflow, trigger an event informing player and giving bad spirit
+    #Randomly Choose One of the Three Following Scenarios for Refugee increase:
+    # 1) 40% working, 60% nonworking
+    # 2) 50% working, 50% nonworking
+    # 3) 60% working, 40% nonworking
+    randomize_temp_variable = {
+        var = refugees_working_influx
+        distribution = uniform
+        min = 0
+        max = 3
+    }
+    log = "[GetDateText]: [?refugees_working_influx]"
+    if = {
+        limit = {
+			check_variable = { refugees_working_influx < 1 }
+        }
+        set_temp_variable = { temp = biweekly_refugee_increase }
+        multiply_temp_variable = {
+            var = temp
+            value = 0.4
+        }
+        add_to_variable = { refugees_working = temp }
+        set_temp_variable = { temp2 = biweekly_refugee_increase }
+        multiply_temp_variable = {
+            var = temp2
+            value = 0.6
+        }
+        add_to_variable = { refugees_nonworking = temp2 }
+        MOL_calculate_total_refugees = yes
+    }
+    else_if = {
+        limit = {
+			check_variable = { refugees_working_influx < 2 }
+        }
+        set_temp_variable = { temp = biweekly_refugee_increase }
+        multiply_temp_variable = { temp = 0.5 }
+        add_to_variable = { refugees_working = temp }
+        add_to_variable = { refugees_nonworking = temp }
+        MOL_calculate_total_refugees = yes
+    }
+    else = {
+        set_temp_variable = { temp = biweekly_refugee_increase }
+        multiply_temp_variable = {
+            var = temp
+            value = 0.6
+        }
+        add_to_variable = { refugees_working = temp }
+        set_temp_variable = { temp2 = biweekly_refugee_increase }
+        multiply_temp_variable = {
+            var = temp2
+            value = 0.4
+        }
+        add_to_temp_variable = { refugees_nonworking = temp2 }
+        MOL_calculate_total_refugees = yes
+    }
+}
+
+MOL_remove_100_working_refugees = {
+    custom_effect_tooltip = MOL_200_working_refugees_removed_tt
+    subtract_from_variable = { refugees_working = 100 }
+    if = {
+        limit = { check_variable = { refugees_working < 0 } }
+        set_variable = { refugees_working = 0 }
+    }
+}
+
+MOL_remove_200_working_refugees = {
+    custom_effect_tooltip = MOL_200_working_refugees_removed_tt
+    subtract_from_variable = { refugees_working = 200 }
+    if = {
+        limit = { check_variable = { refugees_working < 0 } }
+        set_variable = { refugees_working = 0 }
+    }
+}
+
+MOL_calculate_total_refugees = {
     #You can't have half a refugee you silly goose
-    round_variable = current_refugees
+    round_variable = refugees_working
+    round_variable = refugees_nonworking
+    #Total Refugees = Working Refugees + Nonworking Refugees
+    set_temp_variable = { temp3 = refugees_working }
+    add_to_temp_variable = { temp3 = refugees_nonworking }
+    set_variable = { total_refugees = temp3 }
 }
 
 MOL_refugee_overflow = {
@@ -121,6 +188,28 @@ MOL_refugee_overflow = {
         #b. get supplies from depot (rise in depot influence + capacity increase)
         #c. Let the situation be (gives nasty "refugee camps packed" idea but no other penalties)
     #All events trigger a "follow up" event in 2 weeks
+}
+
+MOL_convert_100_refugees_nonworking = {
+    custom_effect_tooltip = MOL_100_refugees_nonworking_tt
+    subtract_from_variable = { refugees_working = 100 }
+    add_to_variable = { refugees_nonworking = 100 }
+    if = {
+        limit = { check_variable = { refugees_working < 0 } }
+        add_to_variable = { refugees_nonworking = refugees_working }
+        set_variable = { refugees_working = 0 }
+    }
+}
+
+MOL_convert_200_refugees_nonworking = {
+    custom_effect_tooltip = MOL_200_refugees_nonworking_tt
+    subtract_from_variable = { refugees_working = 200 }
+    add_to_variable = { refugees_nonworking = 200 }
+    if = {
+        limit = { check_variable = { refugees_working < 200 } }
+        add_to_variable = { refugees_nonworking = refugees_working }
+        set_variable = { refugees_working = 200 }
+    }
 }
 
 #Make sure stability is in bounds and round it to an integer
@@ -179,4 +268,24 @@ MOL_decrease_starting_chaos = {
         add_stability = 0.08
         add_political_power = 25
 	}
+}
+
+MOL_increase_depot_influence = {
+    custom_effect_tooltip = MOL_depot_influence_increase_tt
+    add_to_variable = { hawthorne_influence = 1 }
+}
+
+MOL_increase_depot_influence_big = {
+    custom_effect_tooltip = MOL_depot_influence_increase_big_tt
+    add_to_variable = { hawthorne_influence = 2 }
+}
+
+MOL_decrease_depot_influence = {
+    custom_effect_tooltip = MOL_depot_influence_decrease_tt
+    subtract_from_variable = { hawthorne_influence = 1 }
+}
+
+MOL_decrease_depot_influence_big = {
+    custom_effect_tooltip = MOL_depot_influence_decrease_big_tt
+    subtract_from_variable = { hawthorne_influence = 2 }
 }

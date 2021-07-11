@@ -1039,3 +1039,102 @@ country_event = {
 		war_support_factor = 0.2
 	}
 }
+
+country_event = {
+	id = fleet_P.54 #Alaska event
+	title = fleet_P.54.t
+	desc = fleet_P.54.d
+	#picture = 
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = fleet_P.54.a #play as them
+		ai_chance = {
+			factor = 1
+		}
+		ALA = { change_tag_from = ROOT }
+		PAC = {
+			set_country_flag = HAW_Pacific_Collapse
+		}
+	}
+
+	option = { 
+		name = fleet_P.54.b #Stay in hawaii
+		ai_chance = {
+			factor = 1
+		}
+ 		set_country_flag = HAW_Pacific_Collapse
+	}
+}
+country_event = {
+	id = fleet_P.55 #The Enclave
+	title = fleet_P.55.t
+	desc = fleet_P.55.d
+	picture = event_Enclave_Event
+	trigger = {
+		NOT = {
+			country_exists = FRA
+			PRA = {
+				has_completed_focus = The_last_Bastion_of_Hope
+			}
+		}
+		has_government = Democrat
+		has_country_flag = HAW_Pacific_Collapse
+	}
+	fire_only_once = yes
+	option = { 
+		name = fleet_P.55.a #become the Enclave
+		ai_chance = {
+			factor = 99
+		}
+		set_cosmetic_tag = Federalist_Enclave
+		create_country_leader = {
+			name = "Robert B. Abrams"
+			picture = "gfx/leaders/FRA/abrams.dds"
+			expire = "2060.1.1"
+			ideology = establishment
+			traits = {
+					emergency_powers
+					Exiled_Establishment
+					anti_communist
+			}
+		}
+		FRA = {
+			every_unit_leader = {
+        			limit = {
+					OR = {
+            					has_id = 50301
+						has_id = 50302
+						has_id = 50303
+						has_id = 50305
+						has_id = 50306
+					}
+            			}
+            			set_nationality = ROOT
+        		}
+			every_unit_leader = {
+				limit = {
+					has_id = 50304
+				}
+				promote_leader = yes
+				set_nationality = ROOT
+			}
+		}
+		add_research_slot = 2
+		add_manpower = 100000
+		add_equipment_to_stockpile = {
+		    type = infantry_equipment
+		    amount = 30500
+		    producer = FRA
+		}
+	}
+
+	option = { 
+		name = fleet_P.55.b #Refuse their offer
+		ai_chance = {
+			factor = 1
+		}
+		add_stability = 0.03
+ 	
+	}
+}

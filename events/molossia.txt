@@ -495,7 +495,7 @@ country_event = { #birth of a nation
   is_triggered_only = yes
   option = {
     name = molossia.21.a
-    add_political_power = 5
+    add_political_power = 50
   }
 }
 
@@ -999,10 +999,12 @@ country_event = { #Deseret declares war
       }
     }
     country_event = { id = molossia.103 hours = 120 random_hours = 24}
+    #You can get a ceasefire if you last 100 days (AI will refuse though)
+    country_event = { id = molossia.104 days = 100}
   }
 }
 
-country_event = { #Deseret declares war
+country_event = { #This Ted fellow seems kinda based
   id = molossia.103
   title = molossia.103.t
   desc = molossia.103.d
@@ -1016,8 +1018,32 @@ country_event = { #Deseret declares war
   }
 }
 
+country_event = { #Ah shit, fighting Molossia is kind of a waste of time
+  id = molossia.104
+  title = molossia.104.t
+  desc = molossia.104.d
+  fire_only_once = yes
+  is_triggered_only = yes
+  option = {
+    name = molossia.104.a
+    ai_chance = { 
+			base = 0
+		}
+    white_peace = UTA
+    #Friendship ended with Ted Kaczynski
+    leave_faction = yes
+  }
+  option = {
+    ai_chance = { 
+			base = 10
+		}
+    name = molossia.104.b
+    add_political_power = -5
+  }
+}
 
-country_event = { #Choice of whether to be Republic of Monarchy
+
+country_event = { #Choice of whether to be Republic or Imperial Presidency
   id = molossia.200
   title = molossia.200.t
   desc = molossia.200.d
@@ -1025,12 +1051,18 @@ country_event = { #Choice of whether to be Republic of Monarchy
   is_triggered_only = yes
   option = { #Choose to be a Republic
     name = molossia.200.a
+    ai_chance = { 
+			base = 8
+		}
     hidden_effect = {
       set_country_flag = choose_republic
     }
   }
-  option = { #Choose to be a Monarchy
+  option = { #Choose to give more power to Kevin Baugh
     name = molossia.200.b
+    ai_chance = { 
+			base = 2
+		}
     hidden_effect = {
       set_country_flag = choose_monarchy
     }

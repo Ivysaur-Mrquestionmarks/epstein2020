@@ -1,9 +1,24 @@
 MOL_refugee_situation = {
-    MOL_placeholder = {
-        visible = {
-            always = yes
+    
+    MOL_you_will_be_assimilated = {
+        available = {
+		}
+        cost = 40
+        days_remove = 15
+        remove_effect = {
+            custom_effect_tooltip = MOL_assimilate_assimilate_tt
+            subtract_from_variable = {
+                refugees_nonworking = 200
+            }
+            if = {
+                limit = {
+                    check_variable = { refugees_nonworking < 0 }
+                }
+                set_variable = { refugees_nonworking = 0 }
+            }
         }
     }
+
     MOL_refugee_labor_housing = {
         available = {
 			custom_trigger_tooltip = {
@@ -18,9 +33,11 @@ MOL_refugee_situation = {
         }
         remove_effect = {
             clr_country_flag = MOL_refugees_working
+            custom_effect_tooltip = MOL_refugee_increase_250_tt
             add_to_variable = {
                 refugee_capacity = 250
             }
+            MOL_convert_100_refugees_nonworking = yes
         }
     }   
 
@@ -46,6 +63,7 @@ MOL_refugee_situation = {
 					province = 9286
 				}
 			}
+            MOL_convert_100_refugees_nonworking = yes
         }
     }
 
@@ -83,10 +101,31 @@ MOL_refugee_situation = {
 					province = 9406
 				}
 			}
+            MOL_convert_100_refugees_nonworking = yes
         }
     }
 
     MOL_refugee_labor_recruit = {
+        available = {
+            custom_trigger_tooltip = {
+                tooltip = MOL_refugees_not_working_tt
+                NOT = { has_country_flag = MOL_refugees_working }
+            }
+		}
+        cost = 30
+        days_remove = 60
+        complete_effect = {
+            set_country_flag = MOL_refugees_working
+        }
+        remove_effect = {
+            clr_country_flag = MOL_refugees_working
+            add_manpower = 200
+            MOL_remove_200_working_refugees = yes
+            MOL_convert_200_refugees_nonworking = yes
+        }
+    }
+
+    MOL_refugee_labor_farm = {
         available = {
             custom_trigger_tooltip = {
                 tooltip = MOL_refugees_not_working_tt
@@ -100,7 +139,12 @@ MOL_refugee_situation = {
         }
         remove_effect = {
             clr_country_flag = MOL_refugees_working
-            add_manpower = 500
+            MOL_remove_100_working_refugees = yes
+            custom_effect_tooltip = MOL_farming_time_tt
+            custom_effect_tooltip = MOL_farming_benefits_tt
+            hidden_effect = {
+                country_event = { id = MOL_internal.1001 days = 58 random_days = 4 }
+            }
         }
     }
 }

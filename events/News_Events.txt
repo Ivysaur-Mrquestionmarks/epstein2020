@@ -91,3 +91,72 @@ news_event = {
 		name = News_events.6.a
 	}
 }
+news_event = {
+	id = News_events.7
+	title = News_events.7.t
+	desc = News_events.7.d
+	picture = event_news_Alaskan_Independence
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = News_events.7.a
+	}
+}
+news_event = {
+	id = News_events.81
+	title = News_events.81.t
+	desc = News_events.81.d
+	picture = event_news_Pacific_Fleet
+	trigger = {
+		PAC = {
+			has_country_flag = winner_of_the_2ACW
+			has_country_flag = army_state
+		}
+		NOT = { has_global_flag = news_event_81 }
+	}
+	major = yes
+	option = {
+		name = News_events.81.a
+		set_global_flag = news_event_81
+		if = {
+			limit = {NOT = {is_ai = yes}}
+			set_country_flag = {
+    				flag = super_event
+    				value = 8_1
+			}
+			if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
+				sound_effect = 	"Pacific_Fleet_RU_cw"
+			}
+		}
+	}
+}
+news_event = {
+	id = News_events.82
+	title = News_events.82.t
+	desc = News_events.82.d
+	picture = event_news_American_Reich
+	trigger = {
+		HOP = {
+			has_country_flag = winner_of_the_2ACW
+			has_country_leader = {
+				name = "Paul Miller"
+			}
+		}
+		NOT = { has_global_flag = news_event_82 }
+	}
+	major = yes
+	option = {
+		name = News_events.82.a
+		set_global_flag = news_event_82
+		if = {
+			limit = {NOT = {is_ai = yes}}
+			set_country_flag = {
+    				flag = super_event
+    				value = 8_2
+			}
+			if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
+				sound_effect = 	"American_Reich_cw"
+			}
+		}
+	}
+}

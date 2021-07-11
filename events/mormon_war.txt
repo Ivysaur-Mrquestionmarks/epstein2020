@@ -172,8 +172,7 @@ country_event = {
 			add_state_core = 348 
 			news_event = { id = mormon.6 days = 1 } 
 			UTA = { create_faction = MORMON_WAR_MORMON_ALLIANCE } 
-			#MOL = { country_event = { id = mormon.8 days = 6 } } 
-			MOL = { country_event = { id = molossia.100 days = 3 } } 
+			MOL = { country_event = { id = mormon.8 days = 6 } } 
 			every_state = {
                 		limit = {
                 		    is_core_of = UTA
@@ -199,7 +198,9 @@ news_event = {
     				flag = super_event
     				value = 1
 			}
-			sound_effect = 	"mormon_war"
+			if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
+				sound_effect = 	"mormon_war"
+			}
 		}
 	}
 }
@@ -378,9 +379,19 @@ country_event = {
 	trigger = {
 		tag = HOP
 		has_war = no
-		SIN = {
-			has_war_with = UTA
-		}
+		has_country_leader = {
+        name = "James Mason"
+        ruling_only = yes
+		    SIN = {
+				exists = no
+			}
+			MOL = {
+				exists = no
+			}
+			LAS = {
+				exists = no
+			}
+        }
 	}
 	fire_only_once = yes
 	option = {

@@ -20,21 +20,21 @@ focus_tree = {
 			country_event = {
 			id = molossia.21
 			}
-
 		}
 	}
     
     #Deciding Our Future
 	focus = {
 		id = MOL_deciding_our_future
-		icon = GFX_goal_MOL_Birth_of_a_Nation
+		icon = GFX_goal_MOL_waiting_storm
 		x = 0
 		y = 1
         relative_position_id = MOL_birth_of_a_micronation
         prerequisite = { focus = MOL_birth_of_a_micronation  }
 		cost = 2
 		completion_reward = {
-
+			#country_event = { id = molossia.200 days = 3 random_hours = 12 }
+			MOL_increase_stability_small = yes
 		}
 	}
 
@@ -65,6 +65,7 @@ focus_tree = {
         prerequisite = { focus = MOL_the_issues_at_hand  }
 		completion_reward = {
             #Where do we get food lmao
+			MOL_increase_stability_small = yes
 		}
     }
 
@@ -78,6 +79,7 @@ focus_tree = {
         prerequisite = { focus = MOL_the_issues_at_hand  }
 		completion_reward = {
             #Create a police force, or just use the army
+			country_event = { id = MOL_internal.30 hours = 72 }
 		}
     }
 
@@ -90,13 +92,16 @@ focus_tree = {
 		cost = 2
         prerequisite = { focus = MOL_the_issues_at_hand  }
 		completion_reward = {
-            #Add some event asking the player how they want to house refugees
+           custom_effect_tooltip = MOL_refugee_increase_400_tt
+            add_to_variable = {
+                refugee_capacity = 400
+            }
 		}
     }
 
     focus = {
         id = MOL_foundations_of_government
-        icon = GFX_goal_MOL_What_Now
+        icon = GFX_goal_MOL_Lesson_in_History
 		x = 0
 		y = 2
         relative_position_id = MOL_the_issues_at_hand
@@ -111,15 +116,16 @@ focus_tree = {
 
     focus = {
         id = MOL_molossian_republic
-        icon = GFX_goal_Consolidate_the_Establishment
+        icon = GFX_goal_MOL_census
 		x = -5
 		y = 1
         relative_position_id = MOL_deciding_our_future
 		cost = 2
-        mutually_exclusive = { focus = MOL_dreams_of_monarchy }
+        mutually_exclusive = { focus = MOL_imperial_presidency }
         prerequisite = { focus = MOL_deciding_our_future }
 		bypass = { has_country_flag = choose_republic }
 		completion_reward = {
+			add_political_power = 50
             custom_effect_tooltip = MOL_republic_path
 		}
     }
@@ -133,7 +139,9 @@ focus_tree = {
 		cost = 2
         prerequisite = { focus = MOL_molossian_republic  }
 		completion_reward = {
-            #Where do we get food lmao
+            add_political_power = 50
+			MOL_increase_stability = yes
+			#Todo: add a flavor event or some shit
 		}
     }
 
@@ -146,19 +154,20 @@ focus_tree = {
 		cost = 2
         prerequisite = { focus = MOL_molossian_republic  }
 		completion_reward = {
-            add_stability = 0.07
+            MOL_decrease_starting_chaos = yes
 		}
     }
 
     focus = {
         id = MOL_molossian_democracy
-		icon = GFX_goal_MOL_census
+		icon = GFX_goal_Generic_Elections
 		x = 2
 		y = 1
         relative_position_id = MOL_molossian_republic
 		cost = 2
         prerequisite = { focus = MOL_molossian_republic  }
 		completion_reward = {
+			add_ideas = MOL_accountable_government
 		}
     }
 
@@ -166,19 +175,20 @@ focus_tree = {
         id = MOL_time_for_a_constitution
 		icon = GFX_goal_MOL_On_The_Issue_Of
 		x = 0
-		y = 2
+		y = 3
         relative_position_id = MOL_molossian_republic
 		cost = 2
         prerequisite = { focus = MOL_create_assembly  }
         prerequisite = { focus = MOL_hoist_the_flag  }
         prerequisite = { focus = MOL_molossian_democracy  }
 		completion_reward = {
+			add_political_power = 150
 		}
     }
 
     focus = {
-        id = MOL_dreams_of_monarchy
-        icon = GFX_goal_MOL_What_Now
+        id = MOL_imperial_presidency
+        icon = GFX_goal_Generic_Caesar
 		x = 5
 		y = 1
         relative_position_id = MOL_deciding_our_future
@@ -187,46 +197,48 @@ focus_tree = {
         mutually_exclusive = { focus = MOL_molossian_republic }
         prerequisite = { focus = MOL_deciding_our_future }
 		completion_reward = {
-            #Add some event asking the player how they want to house refugees
-			custom_effect_tooltip = MOL_monarchy_path
+			add_political_power = -25
+			custom_effect_tooltip = MOL_dictatorship_path
 		}
     }
 
     focus = {
         id = MOL_a_central_position
-		icon = GFX_goal_MOL_Birth_of_a_Nation
+		icon = GFX_goal_MOL_Slam_the_door
 		x = -2
 		y = 1
-        relative_position_id = MOL_dreams_of_monarchy
+        relative_position_id = MOL_imperial_presidency
 		cost = 2
-        prerequisite = { focus = MOL_dreams_of_monarchy  }
+        prerequisite = { focus = MOL_imperial_presidency  }
 		completion_reward = {
             MOL_decrease_starting_chaos = yes
+			
 		}
     }
 
     focus = {
         id = MOL_listen_to_people
-		icon = GFX_goal_MOL_Birth_of_a_Nation
+		icon = GFX_goal_Dominate_the_Radio_Waves
 		x = 0
 		y = 1
-        relative_position_id = MOL_dreams_of_monarchy
+        relative_position_id = MOL_imperial_presidency
 		cost = 2
-        prerequisite = { focus = MOL_dreams_of_monarchy  }
+        prerequisite = { focus = MOL_imperial_presidency  }
 		completion_reward = {
-            add_stability = 0.07
+            add_ideas = MOL_baugh_doing_more
 		}
     }
 
     focus = {
-        id = MOL_protector_of_molossia
-		icon = GFX_goal_MOL_Slam_the_door
+        id = MOL_lesson_in_history
+		icon = GFX_goal_Interior
 		x = 2
 		y = 1
-        relative_position_id = MOL_dreams_of_monarchy
+        relative_position_id = MOL_imperial_presidency
 		cost = 2
-        prerequisite = { focus = MOL_dreams_of_monarchy  }
+        prerequisite = { focus = MOL_imperial_presidency  }
 		completion_reward = {
+			MOL_decrease_depot_influence = yes
 		}
     }
 
@@ -234,13 +246,33 @@ focus_tree = {
         id = MOL_final_preparations
 		icon = GFX_goal_Knock_Knock
 		x = 0
-		y = 2
-        relative_position_id = MOL_dreams_of_monarchy
+		y = 3
+        relative_position_id = MOL_imperial_presidency
 		cost = 2
         prerequisite = { focus = MOL_a_central_position  }
         prerequisite = { focus = MOL_listen_to_people  }
-        prerequisite = { focus = MOL_protector_of_molossia  }
+        prerequisite = { focus = MOL_lesson_in_history  }
 		completion_reward = {
+			add_political_power = 50
+		}
+    }
+
+	focus = {
+        id = MOL_a_new_day
+		icon = GFX_goal_MOL_a_new_day
+		x = 0
+		y = 1
+        relative_position_id = MOL_foundations_of_government
+		cost = 2
+        prerequisite = { focus = MOL_foundations_of_government  }
+        prerequisite = { 
+			focus = MOL_time_for_a_constitution  
+			focus = MOL_final_preparations
+		}
+		completion_reward = {
+			#Rename Dayton to Baughston (TODO: Move this to event with multiple choices)
+			MOL_increase_stability_big = yes
+			set_province_name = { id = 9286 name = "Baughston"}
 		}
     }
 

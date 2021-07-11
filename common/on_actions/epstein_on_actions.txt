@@ -13,7 +13,9 @@ on_actions = {
 			MOL = {
 				set_variable = {mol_stability = 50}
 				set_variable = {mol_legitimacy = 5}
-				set_variable = {current_refugees = 800}
+				set_variable = {refugees_working = 500}
+				set_variable = {refugees_nonworking = 300}
+				set_variable = {total_refugees = 800}
 				set_variable = {refugee_capacity = 1250}
 				set_variable = {biweekly_refugee_increase = 125}
 				set_variable = {hawthorne_influence = 4}
@@ -65,6 +67,7 @@ on_actions = {
 							tag = NIC
 							tag = BEF
 							tag = PAC
+							tag = GTB
 						}
 					}
 					every_owned_state = {
@@ -89,7 +92,7 @@ on_actions = {
 				}
 				GTB = { country_event = { id = cub.1 days = 1 } }
 			}
-			if = {
+			else_if = {
 				limit = {
 					original_tag = USA #победитель
 					FROM = { original_tag = NPA } #проигравший
@@ -99,6 +102,24 @@ on_actions = {
 				}
 				USA = {
 					country_event = { id = maga.7 days = 6 }
+				}
+			}
+		}
+	}
+	on_civil_war_end = { 
+		effect = {
+			if = {
+				limit = {
+					original_tag = KFC
+					has_government = autocratic
+				}
+				CSA = {
+					puppet = ROOT
+					country_event = {
+    						id = kentucky.14
+    						days = 0
+					}
+					transfer_state = 261
 				}
 			}
 		}
