@@ -204,12 +204,28 @@ country_event = {
 		hidden_effect = {
 			drop_cosmetic_tag = yes
 			remove_unit_leader = 1488
-			every_unit_leader = {
-        			limit = {
-    					has_id = 1489
-        		    }
-        		    promote_leader = yes
-        		}
+			if = {
+				limit = {
+					has_completed_focus = HOP_The_Loyalist
+				}
+				every_unit_leader = {
+        				limit = {
+    						has_id = 1489
+        			    }
+        			    promote_leader = yes
+        			}
+			}
+			if = {
+				limit = {
+					has_completed_focus = HOP_The_Jester
+				}
+				every_unit_leader = {
+        				limit = {
+    						has_id = 1491
+        			    }
+        			    promote_leader = yes
+        			}
+			}
 		}
 	} 
 	option = {
@@ -314,7 +330,7 @@ country_event = {
 			}
 		}
 		start_civil_war = {
-		    ruling_party = authoritarian_left
+		    ideology = authoritarian_left
 		    size = 0.5
 		}
 	}
@@ -324,7 +340,7 @@ news_event = {
 	id = tribal.6
 	title = tribal.6.t
 	desc = tribal.6.d
-	#picture =
+	picture = event_news_sol_invictus_end
 	is_triggered_only = yes
 	major = yes
 	option = {
@@ -340,7 +356,7 @@ news_event = {
     				value = 7
 			}
 			if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
-				sound_effect = 	"super_7"
+				sound_effect = 	"Yellowstone_cw"
 			}
 		}
 	}
@@ -360,5 +376,18 @@ country_event = {
 	option = {
 		name = tribal.7.a
 		load_focus_tree = atomwaffen_legion
+	}
+}
+#flavour event for finding the nuke
+country_event = {
+	id = tribal.8
+	title = tribal.8.t
+	desc = tribal.8.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = tribal.8.a
+		custom_effect_tooltip = invictus_now_has_a_nuke
 	}
 }
