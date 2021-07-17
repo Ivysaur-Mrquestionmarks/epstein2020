@@ -391,3 +391,166 @@ country_event = {
 		custom_effect_tooltip = invictus_now_has_a_nuke
 	}
 }
+#Crusade Complete
+country_event = {
+	id = tribal.9
+	title = tribal.9.t
+	desc = tribal.9.d
+	#picture =
+	trigger = {
+		original_tag = HOP
+		has_country_flag = winner_of_the_2ACW
+		has_country_leader = { name = "Paul Miller" ruling_only = yes }
+	}
+	fire_only_once = yes
+	option = {
+		name = tribal.9.a
+		load_focus_tree = atomwaffen_miller
+		add_ideas = {
+			HOP_low_legitimacy
+			HOP_inept_political_system
+			HOP_aryanisation_program
+			HOP_mexican_war
+			HOP_stagnant_economy
+		}
+	}
+}
+#Good Morning, President Miller
+country_event = {
+	id = tribal.10
+	title = tribal.10.t
+	desc = tribal.10.d
+	picture = event_fascists_01
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = tribal.10.a
+	}
+}
+#Good Afternoon, President Miller
+country_event = {
+	id = tribal.11
+	title = tribal.11.t
+	desc = tribal.11.d
+	picture = event_fascists_01
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = tribal.11.a
+	}
+}
+#The Janquees are pulling out!
+country_event = {
+	id = tribal.12
+	title = tribal.12.t
+	desc = tribal.12.d
+	picture = event_fascists_01
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = tribal.12.a
+		OVERLORD = {
+			set_autonomy = {
+			    target = ROOT
+			    autonomy_state = autonomy_free
+			}
+		}
+		start_civil_war = {
+		    ideology = authoritarian_left
+		    size = 0.4
+		}
+		start_civil_war = {
+		    ideology = democrat
+		    size = 0.2
+		}
+		start_civil_war = {
+		    ideology = republican
+		    size = 0.1
+		}
+		hidden_effect = { #civil war factions declare war on each other. Mexican Battle Royale!
+			random_other_country = {
+				limit = {
+					original_tag = RKM
+					has_government = democrat
+				}		
+			}
+			random_other_country = {
+				limit = {
+					original_tag = RKM
+					has_government = authoritarian_left
+				}	
+				declare_war_on = { target = PREV type = annex_everything }	
+			}
+			random_other_country = {
+				limit = {
+					original_tag = RKM
+					has_government = republican
+				}	
+				declare_war_on = { target = PREV type = annex_everything }	
+				declare_war_on = { target = PREV.PREV type = annex_everything }	
+			}
+		}
+	}
+}
+#investigation into a missing nuke
+country_event = {
+	id = tribal.13
+	title = tribal.13.t
+	desc = tribal.13.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = tribal.13.a
+	}
+}
+#we foudn the nuke
+country_event = {
+	id = tribal.14
+	title = tribal.14.t
+	desc = tribal.14.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = tribal.14.a
+	}
+}
+#"The Big Red Button"
+country_event = {
+	id = tribal.15
+	title = tribal.15.t
+	desc = tribal.15.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = tribal.15.a
+	}
+}
+#He Did It...
+news_event = {
+	id = tribal.16
+	title = tribal.16.t
+	desc = tribal.16.d
+	#picture =
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = tribal.6.a
+		add_stability = -1.0
+		add_war_support = -1.0
+		add_political_power = -1000
+		add_manpower = -600000000
+		if = {
+			limit = {NOT = {is_ai = yes}}
+			set_country_flag = {
+    				flag = super_event
+    				value = 7
+			}
+			if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
+				sound_effect = 	"Yellowstone_cw"
+			}
+		}
+	}
+}
