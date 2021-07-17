@@ -610,6 +610,7 @@ focus_tree = {
 		}
 		completion_reward = {
 			add_ideas = tot_economic_mobilisation
+			add_war_support = 0.1
 
 		}
 	}
@@ -623,7 +624,7 @@ focus_tree = {
 			focus = HOP_The_War_Economy
 		}
 		completion_reward = {
-			
+			add_stability = 0.05
 
 		}
 	}
@@ -637,7 +638,13 @@ focus_tree = {
 			focus = HOP_American_Autobahn
 		}
 		completion_reward = {
-			
+			every_state = {
+				add_building_construction = {
+				    type = infrastructure
+				    level = 1
+				    instant_build = yes
+				}
+			}
 
 		}
 	}
@@ -654,7 +661,7 @@ focus_tree = {
 			focus = HOP_Blitzing_America
 		}
 		completion_reward = {
-			
+			add_ideas = Trains_On_Time
 
 		}
 	}
@@ -668,7 +675,9 @@ focus_tree = {
 			focus = HOP_The_War_Economy
 		}
 		completion_reward = {
-			
+			add_war_support = 0.1
+			add_stability = 0.1
+			add_ideas = Totalen_Kreig
 
 		}
 	}
@@ -682,7 +691,8 @@ focus_tree = {
 			focus = HOP_Totallen_Kreig
 		}
 		completion_reward = {
-			
+			add_ideas = HOP_Labour_Camps
+			add_stability = -0.03
 
 		}
 	}
@@ -696,8 +706,8 @@ focus_tree = {
 			focus = HOP_Totallen_Kreig
 		}
 		completion_reward = {
-			
-
+			add_ideas = HOP_Women_in_Factories
+			add_stability = -0.07
 		}
 	}
 	focus = {
@@ -713,8 +723,12 @@ focus_tree = {
 			focus = HOP_Let_Women_Work
 		}
 		completion_reward = {
-			
-
+			swap_ideas = {
+				remove_idea = HOP_Women_in_Factories
+				add_idea = HOP_Women_in_Factories_2
+			}
+			add_manpower = -250
+			add_war_support = 0.03
 		}
 	}
 	focus = {
@@ -727,8 +741,7 @@ focus_tree = {
 			focus = HOP_The_War_Economy
 		}
 		completion_reward = {
-			
-
+			add_stability = 0.05
 		}
 	}
 	focus = {
@@ -741,7 +754,7 @@ focus_tree = {
 			focus = HOP_Legacy_of_Volks_wagen
 		}
 		completion_reward = {
-			
+			add_ideas = HOP_Volkswagen
 
 		}
 	}
@@ -758,7 +771,10 @@ focus_tree = {
 			focus = HOP_Contract_Ford
 		}
 		completion_reward = {
-			
+			swap_ideas = {
+				remove_idea = HOP_Volkswagen
+				add_idea = Chevywagen
+			}
 
 		}
 	}
@@ -775,7 +791,10 @@ focus_tree = {
 			focus = HOP_Contract_Chevy
 		}
 		completion_reward = {
-			
+			swap_ideas = {
+				remove_idea = HOP_Volkswagen
+				add_idea = Fordwagen
+			}
 
 		}
 	}
@@ -790,7 +809,7 @@ focus_tree = {
 			focus = HOP_Contract_Ford
 		}
 		completion_reward = {
-			
+			add_ideas = Neue_Blitzkreig
 
 		}
 	}
@@ -828,7 +847,23 @@ focus_tree = {
 			focus = HOP_Stab_them_in_the_Back
 		}
 		completion_reward = {
-			
+			every_state = {
+				LIMIT = {
+					IF = {
+						is_owned_by = HOP
+						OR = {
+							is_core_of = UTA
+							is_core_of = SIN
+							is_core_of = LAS
+							is_core_of = MOL
+							is_core_of = AFO
+							is_core_of = NAV
+							is_core_of = TOH
+						}
+					}
+				}
+				add_core_of = HOP
+			}
 		}
 	}
 	focus = {
@@ -874,10 +909,21 @@ focus_tree = {
 		x = 9
 		y = 15
 		prerequisite = {
-			focus = HOP_March_South
+			focus = HOP_Reichskolonie_Mexiko
+		}
+		prerequisite = {
+			focus = HOP_Native_Reservation_of_Baja
 		}
 		completion_reward = {
-			
+			add_war_support = 0.05
+			every_state = {
+				LIMIT = {
+					IF = {
+						is_owned_by = TEX
+					}
+				}
+				add_core_of = HOP
+			}
 		}
 	}
 	focus = {
@@ -890,13 +936,16 @@ focus_tree = {
 			focus = HOP_Turn_our_Attention_West
 		}
 		completion_reward = {
-			
+			create_wargoal = {
+				target = TEX
+				type = annex_everything
+			}
 		}
 	}
 	focus = {
 		id = HOP_Reichskolonie_Mexiko
 		icon = GFX_goal_ENG_Mexico_Policy
-		cost = 10.00
+		cost = 5.00
 		x = 10
 		y = 14
 		prerequisite = {
@@ -934,7 +983,10 @@ focus_tree = {
 			focus = HOP_The_Fruits_of_Nazism
 		}
 		completion_reward = {
-			
+			RKM = {
+				add_ideas = HOP_Nazi_Exploitation
+			}
+			add_offsite_building = { type = industrial_complex level = 2 }
 		}
 	}
 	focus = {
@@ -942,18 +994,25 @@ focus_tree = {
 		icon = GFX_goal_Generic_Slavery
 		cost = 10.00
 		x = 11
-		y = 15
+		y = 16
 		prerequisite = {
 			focus = HOP_Exploit_Mexiko
 		}
 		completion_reward = {
-			
+			RKM = {
+				swap_ideas = {
+    				remove_idea = HOP_Nazi_Exploitation
+    				add_idea = HOP_Nazi_Exploitation_2
+				}
+				add_manpower = -10000
+			}
+			add_offsite_building = { type = arms_factory level = 2 }
 		}
 	}
 	focus = {
 		id = HOP_The_Fruits_of_Nazism
 		icon = GFX_goal_Up_The_White_Swastika
-		cost = 10.00
+		cost = 5.00
 		x = 13
 		y = 15
 		prerequisite = {
@@ -963,20 +1022,28 @@ focus_tree = {
 			focus = HOP_Exploit_Mexiko
 		}
 		completion_reward = {
-			
+			RKM = {
+				add_stability = 0.03
+				add_popularity = {
+					ideology = autocratic
+					popularity = 0.01
+				}
+			}
 		}
 	}
 	focus = {
 		id = HOP_Legacy_of_the_Mexican_Empire
-		icon = GFX_goal_focus_MEX_Brink_Empire
-		cost = 10.00
+		icon = GFX_goal_MEX_Brink_Empire
+		cost = 3.00
 		x = 13
 		y = 16
 		prerequisite = {
 			focus = HOP_The_Fruits_of_Nazism
 		}
 		completion_reward = {
-			
+			RKM = {
+				add_ideas = HOP_Mexican_Revanchism
+			}
 		}
 	}
 	focus = {
@@ -989,13 +1056,19 @@ focus_tree = {
 			focus = HOP_Legacy_of_the_Mexican_Empire
 		}
 		completion_reward = {
-			
+			set_autonomy = {
+    			target = RKM
+    			autonomy_state = autonomy_puppet
+			}
+			RKM = {
+				set_cosmetic_tag = RKM_Mexikanisches_Reich
+			}
 		}
 	}
 	focus = {
 		id = HOP_Native_Reservation_of_Baja
 		icon = GFX_goal_Generic_Prison_Camps
-		cost = 10.00
+		cost = 5.00
 		x = 6
 		y = 14
 		prerequisite = {
@@ -1021,14 +1094,16 @@ focus_tree = {
 	focus = {
 		id = HOP_Execute_Bad_Workers
 		icon = GFX_goal_Generic_Execution
-		cost = 10.00
+		cost = 3.50
 		x = 5
 		y = 15
 		prerequisite = {
 			focus = HOP_Native_Reservation_of_Baja
 		}
 		completion_reward = {
-			
+			NRB = {
+				aadd_manpower = -3000
+			}
 		}
 	}
 }
