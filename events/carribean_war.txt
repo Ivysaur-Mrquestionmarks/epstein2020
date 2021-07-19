@@ -1,0 +1,295 @@
+add_namespace = carribean
+
+#protests in Cuba
+country_event = {
+	id = carribean.1
+	title = carribean.1.t
+	desc = carribean.1.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = carribean.1.a
+		every_state = {
+			limit = {
+				is_core_of = CUB
+			}
+			add_core_of = CUC
+			hidden_effect = {
+				add_claim_by = GTB
+			}
+		}
+	}
+}
+#Haitian president Assassinated
+country_event = {
+	id = carribean.2
+	title = carribean.2.t
+	desc = carribean.2.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = carribean.2.a
+		kill_country_leader = yes
+		create_country_leader = {
+			name = "Claude Joseph"
+			picture = "gfx/leaders/HAI/joseph.dds"
+			expire = "2060.1.1"
+			ideology = neocon
+			traits = {
+				HAI_interim_president
+			}
+		}
+		news_event = { id = carribean.3 }
+		hidden_effect = {
+			country_event = { id = carribean.4 days = 4 }
+		}
+	}
+}
+#above but as news event
+news_event = {
+	id = carribean.3
+	title = carribean.3.t
+	desc = carribean.3.d
+	picture = event_haiti_01
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = carribean.3.a
+	}
+}
+#Haitian Civil War begins
+country_event = {
+	id = carribean.4
+	title = carribean.4.t
+	desc = carribean.4.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			HBI = {
+				transfer_state = 499
+				add_state_core = 499
+				add_state_core = 498
+				add_state_core = 405
+			}
+			transfer_units_fraction= {
+				target = HBI
+				size = 0.5
+				stockpile_ratio = 0.4
+				army_ratio = 0.5
+				navy_ratio = 0.1
+				air_ratio = 0.2
+			}
+			CUB = { country_event = { id = carribean.5 days = 2 } }
+			DOM = { country_event = { id = carribean.9 days = 1 } }
+		}
+	}
+	option = {
+		name = carribean.4.a
+		declare_war_on = {
+		    target = HBI
+		    type = annex_everything
+		}
+		remove_country_leader_trait = HAI_interim_president
+	}
+}
+#Cuban Civil War begins
+country_event = {
+	id = carribean.5
+	title = carribean.5.t
+	desc = carribean.5.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			create_faction = carribean_communist_alliance
+			add_to_faction = HAI
+			CUC = {
+				transfer_state = 349
+				create_faction = carribean_liberal_alliance
+				add_to_faction = HBI
+			}
+			transfer_units_fraction= {
+				target = CUC
+				size = 0.5
+				stockpile_ratio = 0.5
+				army_ratio = 0.4
+				navy_ratio = 0.0
+				air_ratio = 0.7
+			}
+			FLO = {
+				country_event = {
+					id = carribean.6
+				}
+			}
+		}
+	}
+	option = {
+		name = carribean.5.a
+		declare_war_on = {
+		    target = CUC
+		    type = annex_everything
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					GTB = {
+						has_country_leader = { name = "Osama Bin Laden" ruling_only = yes }
+					}
+				}
+				GTB = { country_event = { id = carribean.7 hours = 5 } }
+				else = {
+					news_event = { id = carribean.8 days = 1 }
+				}
+			}
+		}
+	}
+}
+#Seize Juventud?
+country_event = {
+	id = carribean.6
+	title = carribean.6.t
+	desc = carribean.6.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	#of course!
+	option = {
+		name = carribean.6.a
+		ai_chance = {
+			factor = 100
+		}
+		FLC = {
+			transfer_state = 391
+			add_state_core = 391
+			add_state_core = 362
+			add_state_core = 378
+			add_state_core = 349
+			add_state_core = 490
+		}
+		if = {
+			limit = {
+				OR = {
+					has_dlc = "Together for Victory"
+					has_dlc = "Man the Guns"
+				}
+			}
+			set_autonomy = {
+				target = FLC
+				autonomous_state = autonomy_colony
+				freedom_level = 0.1
+			}
+			else = {
+				puppet = FLC
+			}
+		}
+	}
+	#Nah!
+	option = {
+		name = carribean.6.b
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+#Jihad Time
+country_event = {
+	id = carribean.7
+	title = carribean.7.t
+	desc = carribean.7.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = carribean.7.a
+		news_event = {
+			id = carribean.8
+			days = 1
+		}
+		create_faction = caribbean_jihadi_alliance
+		ROOT = {
+			division_template = {
+				name = "Jihadi Infantry"
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 0 y = 3 }
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 0 y = 1 }
+				}
+			}
+			490 = {
+				create_unit = {
+					division = "name = \"1st Jihadi Division\" division_template = \"Jihadi Infantry\" start_experience_factor = 0.4" 
+					owner = GTB
+				}
+				create_unit = {
+					division = "name = \"2nd Jihadi Division\" division_template = \"Jihadi Infantry\" start_experience_factor = 0.4" 
+					owner = GTB
+				}
+				create_unit = {
+					division = "name = \"3rd Jihadi Division\" division_template = \"Jihadi Infantry\" start_experience_factor = 0.4" 
+					owner = GTB
+				}
+			}
+		}
+		declare_war_on = {
+		    target = CUC
+		    type = annex_everything
+		}
+		declare_war_on = {
+		    target = CUB
+		    type = annex_everything
+		}
+		declare_war_on = {
+		    target = HAI
+		    type = annex_everything
+		}
+		declare_war_on = {
+		    target = HBI
+		    type = annex_everything
+		}
+		declare_war_on = {
+		    target = DOM
+		    type = annex_everything
+		}
+	}
+}
+#news event for Caribbean War
+news_event = {
+	id = carribean.8
+	title = carribean.8.t
+	desc = carribean.8.d
+	picture = event_news_cuba_02
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = carribean.8.a
+	}
+}
+#Dominican Republic intervenes in Haitian  Civil War
+country_event = {
+	id = carribean.9
+	title = carribean.9.t
+	desc = carribean.9.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = carribean.9.a
+		declare_war_on = {
+		    target = HAI
+		    type = annex_everything
+		}
+		declare_war_on = {
+		    target = HBI
+		    type = annex_everything
+		}
+		create_faction = dominican_sphere_faction
+	}
+}
