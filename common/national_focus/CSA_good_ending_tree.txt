@@ -3,21 +3,44 @@ focus_tree = {
 	country = {
 		factor = 0
 		modifier = {
-			add = 13
+			add = 13 #should be 13, will change it for testing
 			tag = CSA			
 		}
 	}
 	default = no
-        continuous_focus_position = { x = 500 y = 1000}
+        continuous_focus_position = { x = 300 y = 100}
 	focus = {
-		id = CSA_2_start_investigation
+		id = CSA_2_state_of_emergency
 		icon = GFX_focus_secret_rearmament
 		#allow_branch = {
 
 		#}
 		#prerequisite = { focus = ITA_industrial_effort_2 }
-		x = 5
+		x = 13
 		y = 1
+		cost = 3
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_political_power = 75
+			add_stability = -0.15
+		}
+	}
+
+	focus = {
+		id = CSA_2_start_an_investigation
+		icon = GFX_focus_secret_rearmament
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = CSA_2_state_of_emergency }
+		x = 13
+		y = 2
 		cost = 5
 
 		ai_will_do = {
@@ -27,9 +50,389 @@ focus_tree = {
 		available_if_capitulated = no
 
 		completion_reward = {
+			add_political_power = -40
+			country_event = {
+    				id = south.43
+    				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = CSA_2_investigate_the_phanters
+		icon = GFX_focus_secret_rearmament
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = CSA_2_start_an_investigation }
+		x = 12
+		y = 3
+		cost = 3
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
 			
+			country_event = {
+    				id = south.44
+    				days = 1
+			}
 		}
 	}
 
 
+	focus = {
+		id = CSA_2_investigate_the_klan
+		icon = GFX_focus_secret_rearmament
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = CSA_2_start_an_investigation }
+		x = 14
+		y = 3
+		cost = 3
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			
+			country_event = {
+    				id = south.45
+    				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = CSA_2_use_the_oportunity
+		icon = GFX_focus_secret_rearmament
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = CSA_2_investigate_the_klan }
+		prerequisite = { focus = CSA_2_investigate_the_phanters }
+		x = 13
+		y = 4
+		cost = 3
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			
+			country_event = {
+    				id = south.46
+    				days = 3
+			}
+		}
+	}
+
+	focus = {
+		id = CSA_2_restructure
+		icon = GFX_focus_secret_rearmament
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = CSA_2_use_the_oportunity }
+		x = 10
+		y = 5
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_stability = 0.15
+		}
+	}
+
+
+	focus = {
+		id = CSA_2_eliminate_rival_factions
+		icon = GFX_focus_secret_rearmament
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = CSA_2_restructure }
+		x = 10
+		y = 6
+		cost = 4
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_political_power = 200
+			remove_ideas = {CSA_the_comittie}
+		}
+	}
+
+	focus = {
+		id = CSA_2_eliminate_the_klan
+		icon = GFX_focus_secret_rearmament
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = CSA_2_eliminate_rival_factions }
+		available = {not = { has_idea = CSA_fighing_paramilitaries}} 
+		x = 10
+		y = 7
+		cost = 4
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_timed_idea = {
+    				idea = CSA_fighing_paramilitaries
+    				days = 180
+			}
+			remove_ideas = {CSA_the_klan CSA_the_klan_weakend}
+		}
+	}
+
+	focus = {
+		id = CSA_2_eliminate_the_phanters
+		icon = GFX_focus_secret_rearmament
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = CSA_2_eliminate_rival_factions }
+		available = {not = { has_idea = CSA_fighing_paramilitaries}} 
+		x = 8
+		y = 7
+		cost = 4
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_timed_idea = {
+    				idea = CSA_fighing_paramilitaries
+    				days = 180
+			}
+			remove_ideas = {CSA_black_panthers CSA_black_panthers_weakend}
+		}
+	}
+
+	focus = {
+		id = CSA_2_a_new_branch
+		icon = GFX_focus_secret_rearmament
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus =  CSA_2_restructure }
+		x = 6
+		y = 6
+		cost = 6
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			navy_experience = 20
+		}
+	}
+
+	focus = {
+		id = CSA_2_trade_interception
+		icon = GFX_focus_secret_rearmament
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = CSA_2_a_new_branch }
+		mutually_exclusive = { focus = CSA_2_base_strike}
+		x = 6
+		y = 7
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_tech_bonus = {
+			    bonus = 1
+			    uses = 2
+			    category = cat_trade_interdiction
+			}
+		}
+	}
+
+	focus = {
+		id = CSA_2_honor_hunley
+		icon = GFX_focus_secret_rearmament
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = CSA_2_trade_interception }
+		x = 6
+		y = 8
+		cost = 4
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_tech_bonus = {
+			    bonus = 1
+			    uses = 1
+			    category = ss_tech
+			}
+				random_owned_state = { limit = {is_coastal = yes}
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+    					type = dockyard
+    					level = 1
+    					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = CSA_2_confederate_torpedo_boats
+		icon = GFX_focus_secret_rearmament
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = CSA_2_trade_interception }
+		x = 8
+		y = 8
+		cost = 4
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_tech_bonus = {
+			    bonus = 1
+			    uses = 1
+			    category = dd_tech
+			}
+				random_owned_state = { limit = {is_coastal = yes}
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+    					type = dockyard
+    					level = 1
+    					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = CSA_2_base_strike
+		icon = GFX_focus_secret_rearmament
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = CSA_2_a_new_branch }
+		mutually_exclusive = { focus = CSA_2_trade_interception}
+		x = 4
+		y = 7
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_tech_bonus = {
+			    bonus = 1
+			    uses = 2
+			    category = cat_base_strike
+			}
+		}
+	}
+
+
+	focus = {
+		id = CSA_2_caribean_carriers
+		icon = GFX_focus_secret_rearmament
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = CSA_2_base_strike }
+		x = 4
+		y = 8
+		cost = 4
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_tech_bonus = {
+			    bonus = 1
+			    uses = 1
+			    category = cv_tech
+			}
+		}
+	}
+	focus = {
+		id = CSA_2_caribean_carriers
+		icon = GFX_focus_secret_rearmament
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = CSA_2_base_strike }
+		x = 2
+		y = 8
+		cost = 4
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			random_owned_state = { limit = {is_coastal = yes}
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+    				type = dockyard
+   				level = 3
+   				instant_build = yes
+			}		
+		}
+	}
 }
