@@ -276,6 +276,40 @@ CSA_strikes = {
 			custom_effect_tooltip = CSA_angy_bkl
 		}
 	}
+
+	CSA_reunite_the_south = {
+		target_trigger = {
+		 	FROM = {
+				any_owned_state = {
+					is_core_of = CSA
+				}
+			}
+		}
+		visible = {
+			has_completed_focus = CSA_2_reunite_the_south
+			FROM = {
+				is_neighbor_of = ROOT
+			}
+		}
+		days_remove = 15
+		ai_will_do = {
+			base = 100
+		}
+		remove_effect = {
+			create_wargoal = {
+    				type = annex_everything
+    				target = FROM
+			}	
+			if = { limit = {FROM = {is_subject_of = CSA}}
+				annex_country = {
+    					target = FROM
+    					transfer_troops = yes
+				}
+			}
+				
+		}
+		
+	}
 }
 
 CSA_recovery = {

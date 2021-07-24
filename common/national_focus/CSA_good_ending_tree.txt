@@ -429,10 +429,220 @@ focus_tree = {
 			random_owned_state = { limit = {is_coastal = yes}
 				add_extra_state_shared_building_slots = 3
 				add_building_construction = {
-    				type = dockyard
-   				level = 3
-   				instant_build = yes
+    					type = dockyard
+   					level = 3
+   					instant_build = yes
+				}
 			}		
+		}
+	}
+
+
+	focus = {
+		id = CSA_2_reunite_the_south
+		icon = GFX_focus_secret_rearmament
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = CSA_2_use_the_oportunity }
+
+		x = 16
+		y = 5
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			unlock_decision_tooltip = CSA_reunite_the_south
+			add_war_support = 0.1
+		}
+	}
+
+	focus = {
+		id = CSA_2_reclaim_the_border_state
+		icon = GFX_focus_secret_rearmament
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = CSA_2_reunite_the_south }
+
+		x = 15
+		y = 6
+		cost = 4
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			every_state = { limit = {is_core_of = KFC}
+				add_core_of = CSA
+			}
+		}
+	}
+
+
+	focus = {
+		id = CSA_2_reclaim_the_single_star_state
+		icon = GFX_focus_secret_rearmament
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = CSA_2_reclaim_the_border_state }
+
+		x = 15
+		y = 7
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			every_state = { limit = {is_core_of = TEX}
+				add_core_of = CSA
+			}
+		}
+	}
+
+	focus = {
+		id = CSA_2_reclaim_the_peninsula
+		icon = GFX_focus_secret_rearmament
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = CSA_2_reunite_the_south }
+
+		x = 17
+		y = 6
+		cost = 4
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			every_state = { limit = {is_core_of = FLO}
+				add_core_of = CSA
+			}
+		}
+	}
+
+
+	focus = {
+		id = CSA_2_reclaim_the_state_of_lee
+		icon = GFX_focus_secret_rearmament
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = CSA_2_reclaim_the_peninsula }
+
+		x = 17
+		y = 7
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			every_state = { limit = {is_core_of = VIR}
+				add_core_of = CSA
+			}
+		}
+	}
+
+	focus = {
+		id = CSA_2_peace_out_with_the_yankees
+		icon = GFX_focus_secret_rearmament
+		#allow_branch = {
+
+		#}
+
+		available = {
+			has_war_with = FRA			
+			NOT = {any_state = {
+				is_core_of = CSA
+				controller = {
+					OR = {
+						tag = FRA
+						is_subject_of = FRA
+					}
+				}
+			}}
+			
+		}
+
+		prerequisite = { focus = CSA_2_reclaim_the_state_of_lee }
+
+		x = 19
+		y = 8
+		cost = 11
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			every_country = { limit = {OR = {tag = FRA is_in_faction_with = FRA}}
+				white_peace = CSA
+				release = CSA
+			}
+		}
+	}
+
+	focus = {
+		id = CSA_2_peace_out_with_the_trumpist
+		icon = GFX_focus_secret_rearmament
+		#allow_branch = {
+
+		#}
+
+		available = {
+			has_war_with = USA			
+			NOT = {any_state = {
+				is_core_of = CSA
+				controller = {
+					OR = {
+						tag = USA
+						is_subject_of = USA
+					}
+				}
+			}}
+			
+		}
+
+		prerequisite = { focus = CSA_2_reclaim_the_single_star_state }
+
+		x = 13
+		y = 8
+		cost = 11
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			every_country = { limit = {OR = {tag = USA is_in_faction_with = USA}}
+				white_peace = CSA
+				release = CSA
+			}
 		}
 	}
 }
