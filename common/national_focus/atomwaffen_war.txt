@@ -970,6 +970,10 @@ focus_tree = {
 					target = PAC
 					type = annex_everything
 				}
+				create_wargoal = {
+					target = ALA
+					type = annex_everything
+				}
 			}
 		}
 	}
@@ -982,6 +986,12 @@ focus_tree = {
 		prerequisite = {
 			focus = HOP_Retake_the_Western_Lands
 		}
+		available = {
+			NOT = {
+				country_exists = PRA
+				country_exists = PAC
+			}
+		}
 		completion_reward = {
 			add_war_support = 0.05
 			add_state_core = 416
@@ -993,11 +1003,199 @@ focus_tree = {
 				target = IDA
 				type = annex_everything
 			}
+			LIMIT = {
+				IF = {
+					is_owned_by = HOP
+					OR = {
+						is_core_of = PRA
+						is_core_of = PAC
+						is_core_of = CAS
+						is_core_of = MON
+					}
+				}
+				
+				add_core_of = HOP
+			}
 			hidden_effect = {
 				create_wargoal = {
 					target = NPA
 					type = annex_everything
 				}
+			}
+		}
+	}
+	focus = {
+		id = HOP_Seize_the_Great_Lakes
+		icon = GFX_goal_focus_battlefleet
+		cost = 10.00
+		x = 9
+		y = 20
+		prerequisite = {
+			focus = HOP_Memories_of_The_Denver_Rally
+		}
+		available = {
+			NOT = {
+				country_exists = USA
+				country_exists = IDA
+				country_exists = NPA
+			}
+		}
+		completion_reward = {
+			create_wargoal = {
+				target = GLA
+				type = annex_everything
+			}
+			hidden_effect = {
+				create_wargoal = {
+					target = MIL
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = MNS
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = MIN
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = DET
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = ISA
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = KMT
+					type = annex_everything
+				}
+			}
+		}
+	}
+	focus = {
+		id = HOP_Make_our_way_to_Biden
+		icon = GFX_goal_Generic_German_Specialist
+		cost = 10.00
+		x = 7
+		y = 20
+		prerequisite = {
+			focus = HOP_Memories_of_The_Denver_Rally
+		}
+		available = {
+			NOT = {
+				country_exists = IDA
+				country_exists = USA
+				country_exists = NPA
+			}
+		}
+		completion_reward = {
+			create_wargoal = {
+				target = AFS
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = NRA
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = KFC
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = HOP_No_More_Biden
+		icon = GFX_goal_Demon_Biden
+		cost = 10.00
+		x = 8
+		y = 21
+		prerequisite = {
+			focus = HOP_Make_our_way_to_Biden
+		}
+		prerequisite = {
+			focus = HOP_Seize_the_Great_Lakes
+		}
+		available = {
+			NOT = {
+				country_exists = AFS
+				country_exists = NRA
+				country_exists = KFC
+				country_exists = KMT
+				country_exists = ISA
+				country_exists = GLA
+				country_exists = DET
+				country_exists = MIL
+				country_exists = MNS
+				country_exists = MIN
+			}
+		}
+		completion_reward = {
+			create_wargoal = {
+				target = FRA
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = VIR
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = NEW
+				type = annex_everything
+			}
+			every_state = {
+				LIMIT = {
+					IF = {
+						is_owned_by = HOP
+						OR = {
+							is_core_of = USA
+							is_core_of = GLA
+							is_core_of = DET
+							is_core_of = KMT
+							is_core_of = AFS
+							is_core_of = MIL
+							is_core_of = MIN
+							is_core_of = MNS
+						}
+					}
+				}
+				add_core_of = HOP
+			}
+		}
+	}
+	focus = {
+		id = HOP_Reunite_Amerika
+		icon = GFX_goal_Anti_Trump_Flag
+		cost = 10.00
+		x = 9
+		y = 22
+		available = {
+			NOT = {
+				country_exists = FRA
+			}
+		}
+		prerequisite = {
+			focus = HOP_No_More_Biden
+		}
+		prerequisite = {
+			focus = HOP_A_Solid_South
+		}
+		completion_reward = {
+			add_stability = 0.15
+			add_war_support = 0.15
+			add_manpower = -1030000
+			AFR = {
+				add_manpower = 25000
+				hidden_effect = {
+					add_ideas = HOP_Long_African_March
+				}
+			}
+			set_province_name = {
+			   	id = 3690
+				name = "Neue Berlin"
+			}
+			242 = {
+				set_state_name = "Reichstag District"
 			}
 		}
 	}
@@ -1070,6 +1268,140 @@ focus_tree = {
 				    type = infantry_equipment
 				    amount = 10569
 				    producer = KKK
+				}
+			}
+		}
+	}
+	focus = {
+		id = HOP_Establish_a_Black_Reservation
+		icon = GFX_goal_Florida_interracial_friendship_treaty
+		cost = 10.00
+		x = 12
+		y = 20
+		prerequisite = {
+			focus = HOP_Ally_the_Klan
+		}
+		available = {
+			NOT = {
+				AFR = {
+					exists = no
+				}
+				CSA = {
+					exists = no
+				}
+				LGB = {
+					exists = no
+				}
+				CSB = {
+					exists = no
+				}
+				APA = {
+					exists = no
+				}
+				ZIO = {
+					exists = no
+				}
+			}
+			KKK = {
+				exists = yes
+			}
+			OR = {
+				KKK = {
+					owns_state = 316
+					owns_state = 315
+				}
+				HOP = {
+					owns_state = 316
+					owns_state = 315
+				}
+			}
+		}
+		completion_reward = {
+			AFR = {
+				transfer_state = 316
+				transfer_state = 315
+				set_cosmetic_tag = KKK_HOP_African_Reservation
+				set_politics = {
+					ruling_party = autocratic
+				}
+				create_country_leader = {
+					name = "Daryl Davis"
+					picture = "gfx/leaders/KKK/Daryl_Davis.tga"
+					expire = "2060.1.1"
+					ideology = military_dictatorship
+					traits = {
+						Blackkklansman
+					}
+				}
+			}
+			KKK = {
+				set_autonomy = {
+   					target = AFR
+    				autonomy_state = autonomy_reservation
+				}
+			}
+			set_province_name = {
+			   	id = 10878
+				name = "Rockwell"
+			}
+			316 = {
+				set_state_name = "Rockwell"
+			}
+			315 = {
+				set_state_name = "Mason"
+			}
+		}
+	}
+	focus = {
+		id = HOP_Push_through_Florida
+		icon = GFX_goal_barron_overview
+		cost = 10.00
+		x = 10
+		y = 20
+		prerequisite = {
+			focus = HOP_Ally_the_Klan
+		}
+		completion_reward = {
+			create_wargoal = {
+				target = FLO
+				type = annex_everything
+			}
+			hidden_effect = {
+				create_wargoal = {
+					target = JEB
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = RMV
+					type = annex_everything
+				}
+			}
+		}
+	}
+	focus = {
+		id = HOP_A_Solid_South
+		icon = GFX_goal_florida_men
+		cost = 10.00
+		x = 10
+		y = 21
+		prerequisite = {
+			focus = HOP_Push_through_Florida
+		}
+		prerequisite = {
+			focus = HOP_Establish_a_Black_Reservation
+		}
+		completion_reward = {
+			KKK = {
+				add_stability = 0.08
+				add_war_support = 0.08
+				add_politicaal_power 75
+				every_state = {
+					LIMIT = {
+						IF = {
+							is_owned_by = KKK
+						}
+					}
+					add_core_of = KKK
 				}
 			}
 		}
@@ -1268,7 +1600,7 @@ focus_tree = {
 		}
 		completion_reward = {
 			NRB = {
-				aadd_manpower = -3000
+				add_manpower = -3000
 			}
 		}
 	}

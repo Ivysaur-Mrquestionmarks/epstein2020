@@ -371,6 +371,7 @@ country_event = {
 		original_tag = HOP
 		has_country_flag = winner_of_the_2ACW
 		has_country_leader = { name = "Augustus Sol Invictus" ruling_only = yes }
+		has_completed_focus = HOP_Reunite_Amerika
 	}
 	fire_only_once = yes
 	option = {
@@ -401,6 +402,7 @@ country_event = {
 		original_tag = HOP
 		has_country_flag = winner_of_the_2ACW
 		has_country_leader = { name = "Paul Miller" ruling_only = yes }
+		has_completed_focus = HOP_Reunite_Amerika
 	}
 	fire_only_once = yes
 	option = {
@@ -563,6 +565,9 @@ country_event = {
 	fire_only_once = yes
 	option = {
 		name = tribal.17.a
+		ai_chance = {
+			factor = 95
+		}
 		HOP = {
 			set_autonomy = {
    				target = KKK
@@ -612,6 +617,9 @@ country_event = {
 	}
 	option = {
 		name = tribal.17.b
+		ai_chance = {
+			factor = 5
+		}
 		HOP = {
 			create_wargoal = {
 				target = KKK
@@ -645,5 +653,85 @@ country_event = {
 			}
 		}
 		
+	}
+}
+country_event = {
+	id = tribal.18
+	title = tribal.18.t
+	desc = tribal.18.d
+	#picture = event_news_joker_end
+	fire_only_once = yes
+	trigger = {
+		NOT = {
+			country_exists = KKK
+			country_exists = AFR
+			country_exists = ZIO
+			country_exists = APA
+			country_exists = CSA
+			country_exists = LGB
+			country_exists = CSB
+		}
+		HOP = {
+			owns_state = 317
+			owns_state = 407
+			owns_state = 388
+			owns_state = 307
+			owns_state = 287
+			owns_state = 279
+			owns_state = 269
+			owns_state = 267
+		}
+	}
+	option = {
+		name = tribal.18.a
+		every_state = {
+			LIMIT = {
+				IF = {
+					is_owned_by = HOP
+					OR = {
+						is_core_of = KKK
+						is_core_of = CSB
+						is_core_of = CSA
+						is_core_of = LGB
+						is_core_of = ZIO
+						is_core_of = APA
+					}
+				}
+			}
+			add_core_of = KKK
+		}
+		release = KKK
+		remove_ideas = HOP_Klan_Support
+		every_unit_leader = {
+	       	limit = {
+				OR = {
+       	    			has_id = 18651224
+						has_id = 18651225
+						has_id = 18651226
+						has_id = 18651227
+						has_id = 18651228
+						has_id = 18651229
+						has_id = 18651231
+						has_id = 18651232
+						has_id = 18651233
+						has_id = 18651234
+				}
+    	   	}
+            set_nationality = KKK
+       	}
+       	KKK = {
+       		load_focus_tree = Atomwaffen_KKK_Klientstate
+			set_cosmetic_tag = KKK_Atomwaffen_Puppet
+			retire_country_leader = yes
+			create_country_leader = {
+				name = "Ray Larsen"
+				picture = "gfx/leaders/KKK/Ray_Larsen.tga"
+				expire = "2060.1.1"
+				ideology = theocracy
+				traits = {
+					Puppet_Emperor_of_the_Klan
+				}
+			}
+       	}
 	}
 }
