@@ -96,12 +96,29 @@ focus_tree = {
 					Gypsy_Crusader HOP_gypsycrusader_joker
 				}
 			}
-			country_event = { id = tribal.19 days = 30 }
-			end_puppet = KKK
-			KKK = {
-				annex_country = {
-    				target = AFR
-    				transfer_troops = yes
+			hidden_effect = {
+				country_event = { id = tribal.19 days = 30 }
+				country_event = { id = tribal.20 days = 2
+				if = {
+					limit = {
+						OR = {
+							has_dlc = "Together for Victory"
+							has_dlc = "Man the Guns"
+							}
+					}
+					set_autonomy = {
+						target = KKK
+						autonomous_state = autonomy_free
+					}
+					else = {
+						end_puppet = KKK
+					}
+				}
+				KKK = {
+					annex_country = {
+    						target = AFR
+    						transfer_troops = yes
+					}
 				}
 			}
 		}
