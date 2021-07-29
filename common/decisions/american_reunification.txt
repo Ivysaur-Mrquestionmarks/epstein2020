@@ -140,14 +140,10 @@ American_reunification = {
 		available = {
 			all_state = {
 				OR = {
+					NOT = {has_state_flag = part_of_america}
 					is_owned_by = ROOT
-					NOT = {has_state_flag = part_of_america}	
-					AND = {
-						ROOT = {tag = HOP}
-						is_owned_by = KKK
-						is_owned_by = AFR
-					}
-				}	
+					owner = { is_subject_of = ROOT }
+				}		
 			}
 		}
 		fire_only_once = yes 
@@ -157,7 +153,12 @@ American_reunification = {
 		complete_effect = {
 			set_country_flag = winner_of_the_2ACW
 			add_stability = 0.10
-			add_state_core = 242
+			Every_state = {
+   				Limit = { 
+    				is_owned_by = ROOT
+    			}
+    			add_core_of = ROOT
+    		}
 			custom_effect_tooltip = generic_unification_tt
 		}
 		
