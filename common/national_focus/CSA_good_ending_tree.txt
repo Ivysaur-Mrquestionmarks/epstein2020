@@ -578,7 +578,7 @@ focus_tree = {
 				controller = {
 					OR = {
 						tag = FRA
-						is_subject_of = FRA
+						is_in_faction_with  = FRA
 					}
 				}
 			}}
@@ -619,7 +619,7 @@ focus_tree = {
 				controller = {
 					OR = {
 						tag = USA
-						is_subject_of = USA
+						is_in_faction_with =  USA
 					}
 				}
 			}}
@@ -909,6 +909,511 @@ focus_tree = {
     				id = south.50
     				days = 1
 			}
+			set_cosmetic_tag = CSA_true
+		}
+	}
+
+	focus = {
+		id = CSA_2_Kemp_prepare_for_defense
+		icon = GFX_focus_secret_rearmament
+
+		prerequisite = { focus =  CSA_2_Kemp_defend_the_dixie_dream }
+		mutually_exclusive = { focus = CSA_2_Kemp_golden_circle }
+
+		x = 15
+		y = 10
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = {CSA_wait_for_the_attack}
+		}
+	}
+
+	focus = {
+		id = CSA_2_Kemp_bunkers
+		icon = GFX_focus_secret_rearmament
+
+		prerequisite = { focus =  CSA_2_Kemp_prepare_for_defense }
+
+		x = 13
+		y = 11
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = {CSA_bunkers}
+		}
+	}
+
+	focus = {
+		id = CSA_2_Kemp_civs
+		icon = GFX_focus_secret_rearmament
+
+		prerequisite = { focus =  CSA_2_Kemp_prepare_for_defense }
+
+		x = 15
+		y = 11
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+    				type = industrial_complex
+   				level = 2
+   				instant_build = yes
+			}
+		}
+	}
+
+	focus = {
+		id = CSA_2_Kemp_mils
+		icon = GFX_focus_secret_rearmament
+
+		prerequisite = { focus =  CSA_2_Kemp_civs }
+
+		x = 15
+		y = 12
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+    				type = arms_factory
+   				level = 2
+   				instant_build = yes
+			}
+		}
+	}
+
+	focus = {
+		id = CSA_2_Kemp_defensive_stance
+		icon = GFX_focus_secret_rearmament
+
+		prerequisite = { focus =  CSA_2_Kemp_bunkers }
+
+		x = 13
+		y = 12
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = {CSA_defencive_stance}
+		}
+	}
+
+	focus = {
+		id = CSA_2_our_land
+		icon = GFX_focus_secret_rearmament
+
+		prerequisite = { focus =  CSA_2_Kemp_mils }
+		prerequisite = { focus = CSA_2_Kemp_defensive_stance }
+
+		x = 15
+		y = 13
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = {CSA_our_land}
+		}
+	}
+
+	focus = {
+		id = CSA_2_Kemp_golden_circle
+		icon = GFX_focus_secret_rearmament
+
+		prerequisite = { focus =  CSA_2_Kemp_defend_the_dixie_dream }
+		mutually_exclusive = { focus = CSA_2_Kemp_prepare_for_defense }
+
+		x = 17
+		y = 10
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			unlock_decision_category_tooltip = CSA_golde_circle_unification 
+		}
+	}
+
+	focus = {
+		id = CSA_2_kemp_MEX
+		icon = GFX_focus_secret_rearmament
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = CSA_2_Kemp_golden_circle }
+
+		x = 17
+		y = 11
+		cost = 4
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			every_state = { limit = {is_core_of = MEX}
+				add_claim_by = CSA
+			}
+		}
+	}
+
+	focus = {
+		id = CSA_2_kemp_CUB
+		icon = GFX_focus_secret_rearmament
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = CSA_2_Kemp_golden_circle }
+
+		x = 19
+		y = 11
+		cost = 6
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			every_state = { limit = { OR = {is_core_of = CUB is_core_of = GTB is_core_of = BAH is_core_of = HAI is_core_of = DOM is_core_of = JAM}}
+				add_claim_by = CSA
+			}
+		}
+	}
+
+	focus = {
+		id = CSA_2_kemp_HON
+		icon = GFX_focus_secret_rearmament
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = CSA_2_kemp_CUB }
+		prerequisite = { focus = CSA_2_kemp_MEX }
+
+		x = 17
+		y = 12
+		cost = 6
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			every_state = { limit = { OR = {is_core_of = BLZ is_core_of = GUA is_core_of = ELS is_core_of = NIC is_core_of = COS is_core_of = HON}}
+				add_claim_by = CSA
+			}
+		}
+	}
+
+	focus = {
+		id = CSA_2_kemp_COL
+		icon = GFX_focus_secret_rearmament
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = CSA_2_kemp_HON }
+
+
+		x = 17
+		y = 13
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			every_state = { limit = { OR = {is_core_of = PAN is_core_of = COL is_core_of = VEN is_core_of = TAT}}
+				add_claim_by = CSA
+			}
+		}
+	}
+
+	focus = {
+		id = CSA_2_rep_restore_ties_USA
+		icon = GFX_focus_secret_rearmament
+		allow_branch = {
+			has_government = republican
+		}
+		prerequisite = { focus =  CSA_2_discuss_the_future }
+
+
+		x = 16
+		y = 9
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			remove_opinion_modifier = {
+    				target = USA
+    				modifier = illegitimate_successor_opinion
+			}
+			USA = {
+				remove_opinion_modifier = {
+    					target = CSA
+    					modifier = illegitimate_successor_opinion
+				}
+			}
+			country_event = {
+    				id = south.51
+    				days = 1
+			}
+		}
+	}
+
+	focus = {
+		id = CSA_2_rep_restore_the_rep_party
+		icon = GFX_focus_secret_rearmament
+
+		prerequisite = { focus =  CSA_2_rep_restore_ties_USA }
+
+
+		x = 15
+		y = 10
+		cost = 3
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_popularity = {
+    				ideology = republican
+    				popularity = 0.3
+			}
+		}
+	}
+
+	focus = {
+		id = CSA_2_rep_non_agrresion_pact
+		icon = GFX_focus_secret_rearmament
+
+		prerequisite = { focus =  CSA_2_rep_restore_ties_USA }
+
+
+		x = 17
+		y = 10
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			diplomatic_relation = {
+    				country = USA
+    				relation = non_aggression_pact
+   				active = yes
+			}
+		}
+	}
+
+	focus = {
+		id = CSA_2_rep_corporations
+		icon = GFX_focus_secret_rearmament
+
+		prerequisite = { focus = CSA_2_rep_non_agrresion_pact }
+
+
+		x = 19
+		y = 11
+		cost = 6
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = {CSA_northen_corporations}
+			country_event = {
+    				id = south.53
+    				days = 5
+			}
+		}
+	}
+
+	focus = {
+		id = CSA_2_rep_acces
+		icon = GFX_focus_secret_rearmament
+
+		prerequisite = { focus = CSA_2_rep_non_agrresion_pact }
+
+
+		x = 17
+		y = 11
+		cost = 4
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			diplomatic_relation = {
+    				country = USA
+    				relation = military_access
+    				active = yes
+			}
+			USA = {
+				diplomatic_relation = {
+    					country = CSA
+    					relation = military_access
+    					active = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = CSA_2_rep_alliance
+		icon = GFX_focus_secret_rearmament
+
+		prerequisite = { focus = CSA_2_rep_acces }
+
+
+		x = 17
+		y = 12
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			USA = {add_to_faction = CSA}
+		}
+	}
+
+	focus = {
+		id = CSA_2_rep_proud_boys
+		icon = GFX_focus_secret_rearmament
+		allow_branch = {
+			has_government = republican
+		}
+		prerequisite = { focus =  CSA_2_rep_restore_the_rep_party }
+
+
+		x = 13
+		y = 11
+		cost = 10
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_popularity = {
+    				ideology = republican
+    				popularity = 0.15
+			}
+			division_template = {
+    				name = "Proud boys"
+    				regiments = {
+					motorized = { x = 0 y = 0 }
+					motorized = { x = 0 y = 1 }
+					motorized = { x = 0 y = 2 }
+					motorized = { x = 0 y = 3 }
+					motorized = { x = 0 y = 4 }
+					motorized = { x = 1 y = 0 }
+					motorized = { x = 1 y = 1 }
+					motorized = { x = 1 y = 2 }
+					motorized = { x = 1 y = 3 }
+					motorized = { x = 1 y = 4 }
+    				}
+			}
+			random_owned_controlled_state = {
+				create_unit = {
+					division = "division_template = \"Proud boys\"	start_experience_factor = 0.25	start_equipment_factor = 1"
+					owner = CSA
+					count = 3
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = CSA_2_rep_support
+		icon = GFX_focus_secret_rearmament
+		allow_branch = {
+			has_government = republican
+		}
+		prerequisite = { focus =  CSA_2_rep_restore_the_rep_party }
+
+
+		x = 15
+		y = 11
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = { CSA_republican_support }
 		}
 	}
 }
