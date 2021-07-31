@@ -281,15 +281,15 @@ CSA_strikes = {
 		target_trigger = {
 		 	FROM = {
 				any_owned_state = {
-					is_core_of = CSA
+					OR = {
+						is_core_of = CSA
+						is_claimed_by = CSA
+					}
 				}
 			}
 		}
 		visible = {
 			has_completed_focus = CSA_2_reunite_the_south
-			FROM = {
-				is_neighbor_of = ROOT
-			}
 		}
 		days_remove = 15
 		ai_will_do = {
@@ -985,5 +985,46 @@ CSA_recovery = {
 			}
 			add_manpower = 35000
 		}			
+	}
+}
+
+CSA_golde_circle_unification = {
+	CSA_declare_the_golden_circle = {
+		ai_will_do = {
+			base = 100
+		}
+		available = {
+			all_state = {
+				OR = {
+					NOT = {
+						is_core_of = COL
+						is_core_of = VEN
+						is_core_of = TAT
+						is_core_of = PAN
+						is_core_of = COS
+						is_core_of = NIC
+						is_core_of = HON
+						is_core_of = ELS
+						is_core_of = GUA
+						is_core_of = BLZ
+						is_core_of = MEX
+						is_core_of = GTB
+						is_core_of = CUB
+						is_core_of = JAM
+						is_core_of = BAH
+						is_core_of = HAI
+						is_core_of = DOM
+					}
+					is_controlled_by = CSA
+				}
+			}
+		}
+		complete_effect = {
+			add_stability = 0.2
+			every_controlled_state = {
+				add_compliance = 25
+			}
+			set_cosmetic_tag = CSA_gold_circle
+		}
 	}
 }
