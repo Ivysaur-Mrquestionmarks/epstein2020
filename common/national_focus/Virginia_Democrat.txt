@@ -1,0 +1,164 @@
+focus_tree = {
+	id = Virginia_Democrats
+	
+	country = {
+		factor = 0
+	}
+	
+	default = no
+	focus = {
+		id = VIR_Restore_ties_with_Biden
+		icon = GFX_goal_Biden_Handshake
+		cost = 3.00
+		x = 2
+		y = 0
+		mutually_exclusive = {
+			focus = VIR_All_on_our_Own
+		}
+		available = {
+			NOT = {
+				RVR = {
+					has_country_flag = VIR_Republicans_Successful
+				}
+			}
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_stability = 0.15
+			add_war_support = 0.15
+			add_popularity = {
+				ideology = Democratic
+				popularity = 0.05
+			}
+		}
+	}
+	focus = {
+		id = VIR_All_on_our_Own
+		icon = GFX_goal_We_Need_Guns
+		cost = 3.00
+		x = 4
+		y = 0
+		mutually_exclusive = {
+			focus = VIR_Restore_ties_with_Biden
+		}
+		available = {
+			RVR = {
+				has_country_flag = VIR_Republicans_Successful
+			}
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_stability = -0.1
+			add_popularity = {
+				ideology = Democratic
+				popularity = 0.05
+			}
+		}
+	}
+	focus = {
+		id = VIR_Assess_the_Situation
+		icon = GFX_goal_Generic_Army_Confusion
+		cost = 2.00
+		x = 3
+		y = 1
+		prerequisite = {
+			focus = VIR_Restore_ties_with_Biden
+			focus = VIR_All_on_our_Own
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			army_experience = 25
+			add_manpower = 2500
+		}
+
+	}
+	focus = {
+		id = VIR_Desperate_Defensive_Manuevers
+		icon = GFX_Focus_Static_Defense
+		cost = 5.00
+		x = 4
+		y = 2
+		prerequisite = {
+			focus = VIR_Assess_the_Situation
+		}
+		prerequisite = {
+			focus = VIR_All_on_our_Own
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_ideas = VIR_Desperate_Defense
+		}
+	}
+	focus = {
+		id = VIR_Request_Bidenist_Generals
+		icon = GFX_goal_Biden_and_cop_saluting
+		cost = 5.00
+		x = 2
+		y = 2
+		prerequisite = {
+			focus = VIR_Assess_the_Situation
+		}
+		prerequisite = {
+			focus = VIR_Restore_ties_with_Biden
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			create_corps_commander = {
+				name = "Kenneth F. McKenzie Jr."
+				id= 14051607
+				portrait_path="gfx/leaders/VIR/Kenneth_F_McKenzie_jr.tga" 
+				traits={ logistics_wizard infantry_officer career_officer } 
+				skill = 4
+				attack_skill = 5
+				defense_skill = 3
+				planning_skill = 4
+				logistics_skill = 4
+			}
+			create_corps_commander = {
+				name = "Daniel Allyn"
+				id= 14051608
+				portrait_path="gfx/leaders/VIR/daniel_allyn.tga" 
+				traits={ paratrooper infantry_officer career_officer } 
+				skill = 3
+				attack_skill = 3
+				defense_skill = 2
+				planning_skill = 3
+				logistics_skill = 4
+			}
+		}
+	}
+	focus = {
+		id = VIR_the_End_of_the_Revolt
+		icon = GFX_Focus_Static_Defense
+		cost = 5.00
+		x = 3
+		y = 3
+		prerequisite = {
+			focus = VIR_Desperate_Defensive_Manuevers
+			focus = VIR_Request_Bidenist_Generals
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			RVR = {
+				exists = no
+			}
+		}
+		completion_reward = {
+			add_stability = 0.05
+			add_war_support = 0.05
+			set_country_flag = VIR_Virginia_Civil_war_Ended
+		}
+	}
+}

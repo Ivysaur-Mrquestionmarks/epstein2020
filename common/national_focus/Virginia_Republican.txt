@@ -1,0 +1,341 @@
+focus_tree = {
+	id = Virginia_Republicans
+	
+	country = {
+		factor = 0
+	}
+	
+	default = no
+	focus = {
+		id = RVR_Fight_from_the_Mountains
+		icon = GFX_goal_Send_the_Radicals_to_the_Mountains
+		cost = 9.00
+		x = 2
+		y = 0
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			NOT = {
+				RVR = {
+					has_country_flag = VIR_Republicans_Successful
+				}
+			}
+		}
+		completion_reward = {
+			add_ideas = RVR_Mountain_Defense
+		}
+	}
+	focus = {
+		id = RVR_Defend_our_Land
+		icon = GFX_goal_Generic_Jungle_Ghost
+		cost = 9.00
+		x = 2
+		y = 1
+		ai_will_do = { 
+			factor = 300
+		}
+		prerequisite = {
+			focus = RVR_Fight_from_the_Mountains
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = RVR_Mountain_Defense
+				add_idea = RVR_Mountain_Defense_2
+			}
+		}
+	}
+	focus = {
+		id = RVR_A_United_Front
+		icon = GFX_goal_Generic_Military_Constitution
+		cost = 9.00
+		x = 4
+		y = 0
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			RVR = {
+				has_country_flag = VIR_Republicans_Successful
+			}
+		}
+		completion_reward = {
+			add_ideas = RVR_United_Front
+		}
+	}
+	focus = {
+		id = RVR_Use_Boogaloo_Boys
+		icon = GFX_goal_Boog_Tank
+		cost = 9.00
+		x = 4
+		y = 1
+		ai_will_do = { 
+			factor = 300
+		}
+		prerequisite = {
+			focus = RVR_A_United_Front
+		}
+		completion_reward = {
+			create_corps_commander = {
+				name = "Mike Dunn"
+				portrait_path="gfx/leaders/VIR/Mike_Dunn.tga" 
+				traits={  } 
+				skill = 3
+				id = 14051608
+				attack_skill = 3
+				defense_skill = 2
+				planning_skill = 3
+				logistics_skill = 2
+			}
+			division_template = {
+				name = "Boogaloo Boys"
+				is_locked = no
+				priority = 2
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+				}
+				support = {
+					military_police = { x = 0 y = 0 }
+				}
+			}
+			random_owned_controlled_state = {
+				limit = { ROOT = { has_full_control_of_state = PREV } }
+				create_unit = {
+					division = "name = \"1st Boogaloo Boys\" division_template = \"Boogaloo Boys\" start_experience_factor = 0.6" 
+					owner = RVR
+				}
+				create_unit = {
+					division = "name = \"2nd Boogaloo Boys\" division_template = \"Boogaloo Boys\" start_experience_factor = 0.6" 
+					owner = RVR
+				}
+				create_unit = {
+					division = "name = \"3rd Boogaloo Boys\" division_template = \"Boogaloo Boys\" start_experience_factor = 0.6" 
+					owner = RVR
+				}
+				create_unit = {
+					division = "name = \"4th Boogaloo Boys\" division_template = \"Boogaloo Boys\" start_experience_factor = 0.6" 
+					owner = RVR
+				}
+				create_unit = {
+					division = "name = \"5th Boogaloo Boys\" division_template = \"Boogaloo Boys\" start_experience_factor = 0.6" 
+					owner = RVR
+				}
+				create_unit = {
+					division = "name = \"6th Boogaloo Boys\" division_template = \"Boogaloo Boys\" start_experience_factor = 0.6" 
+					owner = RVR
+				}
+			}
+		}
+	}
+	focus = {
+		id = RVR_Fighting_Against_Liberalism
+		icon = GFX_goal_Generic_Conservative
+		cost = 9.00
+		x = 3
+		y = 2
+		ai_will_do = { 
+			factor = 300
+		}
+		prerequisite = {
+			focus = RVR_Defend_our_Land
+			focus = RVR_Use_Boogaloo_Boys
+		}
+		completion_reward = {
+			add_ideas = RVR_Fight_Against_Liberalism
+		}
+	}
+	focus = {
+		id = RVR_the_End_of_the_War
+		icon = GFX_goal_Generic_Conservative
+		cost = 9.00
+		x = 3
+		y = 3
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			VIR = {
+				exists = no
+			}
+		}
+		prerequisite = {
+			focus = RVR_Fighting_Against_Liberalism
+		}
+		completion_reward = {
+			add_stability = 0.05
+			add_war_support = 0.05
+			set_country_flag = RVR_Virginia_Civil_war_Ended
+		}
+	}
+	focus = {
+		id = RVR_What_Now
+		icon = GFX_goal_Generic_Paper_Question
+		cost = 9.00
+		x = 15
+		y = 0
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			has_country_flag = RVR_Virginia_Civil_war_Ended
+		}
+		prerequisite = {
+			
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = RVR_Sic_Semper_Tyrannis
+		icon = GFX_focus_focus_fra_fascist_threat
+		cost = 9.00
+		x = 10
+		y = 1
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		mutually_exclusive = {
+			focus = RVR_Nos_Sunt_Tyrannis
+		}
+		prerequisite = {
+			focus = RVR_What_Now
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = RVR_Nos_Sunt_Tyrannis
+		icon = GFX_goal_generic_crush_resistance
+		cost = 9.00
+		x = 25
+		y = 1
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		mutually_exclusive = {
+			focus = RVR_Sic_Semper_Tyranus
+		}
+		prerequisite = {
+			focus = RVR_What_Now
+		}
+		completion_reward = {
+			add_popularity = {
+				ideology = autocratic
+				popularity = 0.1
+			}
+		}
+	}
+	focus = {
+		id = RVR_The_Bloody_Crown_of_Virginia
+		icon = GFX_goal_Generic_Bloody_Crown
+		cost = 9.00
+		x = 18
+		y = 2
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Nos_Sunt_Tyrannis
+		}
+		completion_reward = {
+			country_event = { id = Virginia.5 days = 1 }
+			add_popularity = {
+				ideology = republican
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = libertarian_right
+				popularity = -0.05
+			}
+			add_manpower = -500
+		}
+	}
+	focus = {
+		id = RVR_Shaffner_Takes_Control
+		icon = GFX_goal_Washington_Monarch
+		cost = 9.00
+		x = 16
+		y = 3
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			has_country_leader = {
+				name = "Washington I"
+    			ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = RVR_The_Bloody_Crown_of_Virginia
+		}
+		completion_reward = {
+			add_popularity = {
+				ideology = autocratic
+				popularity = 0.1
+			}
+		}
+	}
+	focus = {
+		id = RVR_Lee_Monarchy
+		icon = GFX_goal_Lee_Monarch
+		cost = 9.00
+		x = 18
+		y = 3
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			has_country_leader = {
+				name = "Lee I"
+    			ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = RVR_The_Bloody_Crown_of_Virginia
+		}
+		completion_reward = {
+			add_popularity = {
+				ideology = autocratic
+				popularity = 0.1
+			}
+		}
+	}
+	focus = {
+		id = RVR_Restore_the_Earl_of_Dunmore
+		icon = GFX_goal_Earl_of_Dunmore
+		cost = 9.00
+		x = 20
+		y = 3
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			has_country_leader = {
+				name = "Malcolm Murray"
+    			ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = RVR_The_Bloody_Crown_of_Virginia
+		}
+		completion_reward = {
+			add_popularity = {
+				ideology = autocratic
+				popularity = 0.1
+			}
+		}
+	}
+}
