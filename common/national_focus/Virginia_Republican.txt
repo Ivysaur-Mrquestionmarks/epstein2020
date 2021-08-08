@@ -403,7 +403,7 @@ focus_tree = {
 	}
 	focus = {
 		id = RVR_Prepare_for_the_American_Crusade
-		icon = GFX_goal_americancrusade
+		icon = GFX_goal_americancrusade2
 		cost = 9.00
 		x = 27
 		y = 6
@@ -448,7 +448,7 @@ focus_tree = {
 	}
 	focus = {
 		id = RVR_Veneration_of_Mary
-		icon = GFX_goal_holyorder_of_Virginia
+		icon = GFX_goal_Veneration_of_Mary
 		cost = 9.00
 		x = 30
 		y = 5
@@ -467,7 +467,7 @@ focus_tree = {
 	}
 	focus = {
 		id = RVR_Christ_the_Savior
-		icon = GFX_goal_holyorder_of_Virginia
+		icon = GFX_goal_Christthesavior
 		cost = 9.00
 		x = 29
 		y = 6
@@ -647,7 +647,8 @@ focus_tree = {
 			focus = RVR_Pastor_President_Prevo
 		}
 		completion_reward = {
-			
+			add_stability = 0.1
+			add_war_support = 0.1
 		}
 	}
 	focus = {
@@ -722,6 +723,9 @@ focus_tree = {
 		}
 		completion_reward = {
 			add_ideas = Virginian_Theocracy
+			add_offsite_building = { type = arms_factory level = 3 }
+			add_offsite_building = { type = industrial_complex level = 3 }
+			add_research_slot = 1
 		}
 	}
 	focus = {
@@ -799,6 +803,193 @@ focus_tree = {
 				ideology = autocratic
 				popularity = 0.1
 			}
+		}
+	}
+	focus = {
+		id = RVR_Redistribute_Land
+		icon = GFX_goal_Generic_Land_Reform
+		cost = 9.00
+		x = 21
+		y = 4
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			has_country_leader = {
+				name = "Malcolm Murray"
+    			ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = RVR_Restore_the_Earl_of_Dunmore
+		}
+		completion_reward = {
+			add_timed_idea = {
+				idea = Land_Redistribution
+				days = 280
+			}
+		}
+	}
+	focus = {
+		id = RVR_Reach_out_to_our_Great_Monarch
+		icon = GFX_goal_Generic_British_Diplomacy
+		cost = 9.00
+		x = 22
+		y = 5
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			has_country_leader = {
+				name = "Malcolm Murray"
+    			ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = RVR_Redistribute_Land
+		}
+		completion_reward = {
+			ENG = {
+				country_event = { id = Virginia.9 days = 1 }
+			}
+		}
+	}
+	focus = {
+		id = RVR_The_Last_Bastion_of_the_Empire
+		icon = GFX_Focus_ENG_Imperial_Federalism_Retained
+		cost = 9.00
+		x = 20
+		y = 6
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			has_country_leader = {
+				name = "Malcolm Murray"
+    			ruling_only = yes
+			}
+			has_country_flag = Britain_Denied_Help
+		}
+		prerequisite = {
+			focus = RVR_Reach_out_to_our_Great_Monarch
+		}
+		completion_reward = {
+			add_ideas = RVR_British_Imperialism
+		}
+	}
+	focus = {
+		id = RVR_Feign_the_British_support
+		icon = GFX_goal_generic_control_money
+		cost = 9.00
+		x = 20
+		y = 7
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			has_country_leader = {
+				name = "Malcolm Murray"
+    			ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = RVR_The_Last_Bastion_of_the_Empire
+		}
+		completion_reward = {
+			add_stability = 0.03
+			add_political_power = 25
+		}
+	}
+	focus = {
+		id = RVR_Go_Against_the_Windsors
+		icon = GFX_goal_Generic_Attack_Britain
+		cost = 9.00
+		x = 20
+		y = 8
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			has_country_leader = {
+				name = "Malcolm Murray"
+    			ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = RVR_Feign_the_British_support
+		}
+		completion_reward = {
+			country_event = { id = Virginia.8 days = 1 }
+		}
+	}
+	focus = {
+		id = RVR_the_British_dominion
+		icon = GFX_goal_Generic_Rule_Britannia
+		cost = 9.00
+		x = 22
+		y = 6
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			has_country_leader = {
+				name = "Malcolm Murray"
+    			ruling_only = yes
+			}
+			has_country_flag = Britain_Helps_Us
+		}
+		prerequisite = {
+			focus = RVR_Reach_out_to_our_Great_Monarch
+		}
+		completion_reward = {
+			add_offsite_building = { type = arms_factory level = 3 }
+			add_offsite_building = { type = industrial_complex level = 3 }
+		}
+	}
+	focus = {
+		id = RVR_British_Virginian_Ties
+		icon = GFX_goal_Focus_ENG_Imperial_Investment
+		cost = 9.00
+		x = 22
+		y = 7
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			has_country_leader = {
+				name = "Malcolm Murray"
+    			ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = RVR_the_British_dominion
+		}
+		completion_reward = {
+			ENG = {
+				add_to_faction = VIR
+			}
+		}
+	}
+	focus = {
+		id = RVR_The_Virginian_Commonwealth
+		icon = GFX_goal_ENG_Empire_Equals
+		cost = 9.00
+		x = 22
+		y = 8
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			has_country_leader = {
+				name = "Malcolm Murray"
+    			ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = RVR_British_Virginian_Ties
+		}
+		completion_reward = {
+			add_ideas = RVR_Commonwealth_Nation
 		}
 	}
 }
