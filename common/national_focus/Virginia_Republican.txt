@@ -452,7 +452,8 @@ focus_tree = {
 			focus = RVR_Christ_the_Savior
 		}
 		completion_reward = {
-			add_manpower = -1500
+			add_manpower = -25000
+			add_ideas = RVR_Christian_Supremacy
 		}
 	}
 	focus = {
@@ -739,7 +740,7 @@ focus_tree = {
 	}
 	focus = {
 		id = RVR_A_Rose_in_the_Mountains
-		icon = GFX_goal_Spread_the_True_Gospel
+		icon = GFX_goal_Generic_Social_Democracy
 		cost = 9.00
 		x = 33
 		y = 8
@@ -761,7 +762,7 @@ focus_tree = {
 	}
 	focus = {
 		id = RVR_Supreme_Commander_of_Virginia
-		icon = GFX_goal_Spread_the_True_Gospel
+		icon = GFX_goal_Generic_Command_Power
 		cost = 9.00
 		x = 32
 		y = 9
@@ -785,7 +786,7 @@ focus_tree = {
 	}
 	focus = {
 		id = RVR_Secure_International_Support
-		icon = GFX_goal_Spread_the_True_Gospel
+		icon = GFX_goal_Generic_Global_Fascism
 		cost = 9.00
 		x = 31
 		y = 10
@@ -877,7 +878,7 @@ focus_tree = {
 	}
 	focus = {
 		id = RVR_Good_Christian_Scholarships
-		icon = GFX_goal_Spread_the_True_Gospel
+		icon = GFX_goal_Pay_Student_Tuitions
 		cost = 9.00
 		x = 36
 		y = 10
@@ -922,7 +923,7 @@ focus_tree = {
 	}
 	focus = {
 		id = RVR_Follow_the_Holy_Word
-		icon = GFX_goal_Spread_the_True_Gospel
+		icon = GFX_goal_Holy_word
 		cost = 9.00
 		x = 39
 		y = 8
@@ -944,7 +945,7 @@ focus_tree = {
 	}
 	focus = {
 		id = RVR_Cast_the_First_Stone
-		icon = GFX_goal_Spread_the_True_Gospel
+		icon = GFX_goal_castthefirststone
 		cost = 9.00
 		x = 40
 		y = 9
@@ -969,7 +970,7 @@ focus_tree = {
 	}
 	focus = {
 		id = RVR_The_New_Social_Class
-		icon = GFX_goal_Spread_the_True_Gospel
+		icon = GFX_goal_Create_the_Handmaids
 		cost = 9.00
 		x = 41
 		y = 10
@@ -991,7 +992,7 @@ focus_tree = {
 	}
 	focus = {
 		id = RVR_Proclaim_the_Divine_Republic
-		icon = GFX_goal_Spread_the_True_Gospel
+		icon = GFX_goal_proclaimgilead
 		cost = 9.00
 		x = 41
 		y = 11
@@ -1039,7 +1040,7 @@ focus_tree = {
 	}
 	focus = {
 		id = RVR_Restore_the_Manor_of_Mount_Vernon
-		icon = GFX_goal_Lee_Monarch
+		icon = GFX_goal_Generic_Extravagence
 		cost = 9.00
 		x = 15
 		y = 4
@@ -1078,7 +1079,7 @@ focus_tree = {
 	}
 	focus = {
 		id = RVR_Gonna_Need_A_Right_hand_Man
-		icon = GFX_goal_Lee_Monarch
+		icon = GFX_goal_Generic_Maintain_Cabinet_Loyalty
 		cost = 9.00
 		x = 16
 		y = 6
@@ -1095,12 +1096,12 @@ focus_tree = {
 			focus = RVR_Restore_the_Continental_Army
 		}
 		completion_reward = {
-			
+			add_ideas = Douglas_Hamilton
 		}
 	}
 	focus = {
 		id = RVR_A_Founder_Aristocracy
-		icon = GFX_goal_Lee_Monarch
+		icon = GFX_Goal_generic_aristocracy
 		cost = 9.00
 		x = 16
 		y = 7
@@ -1114,12 +1115,12 @@ focus_tree = {
 			focus = RVR_Gonna_Need_A_Right_hand_Man
 		}
 		completion_reward = {
-			
+			set_country_flag = Founder_Aristocracy
 		}
 	}
 	focus = {
 		id = RVR_Reclaim_Greater_Virginia
-		icon = GFX_goal_Lee_Monarch
+		icon = GFX_goal_Send_the_Radicals_to_the_Mountains
 		cost = 9.00
 		x = 17
 		y = 9
@@ -1136,12 +1137,25 @@ focus_tree = {
 			focus = RVR_Go_Against_the_Windsors
 		}
 		completion_reward = {
-			
+			every_state = {
+				LIMIT = {
+					is_core_of = NRA
+				}
+				add_core_of = RVR
+			}
+			create_wargoal = {
+				target = NRA
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = KFC
+				type = annex_everything
+			}
 		}
 	}
 	focus = {
 		id = RVR_Topple_the_Triumverate
-		icon = GFX_goal_Lee_Monarch
+		icon = GFX_goal_dismantlestate
 		cost = 9.00
 		x = 16
 		y = 10
@@ -1149,18 +1163,30 @@ focus_tree = {
 			factor = 300
 		}
 		available = {
-			
+			or = {
+			is_neighbor_of = AFS
+			NOT = {
+				country_exists = AFS
+			}
+			}
+			NOT = {
+				country_exists = NRA
+			}
+
 		}
 		prerequisite = {
 			focus = RVR_Reclaim_Greater_Virginia
 		}
 		completion_reward = {
-			
+			create_wargoal = {
+				target = AFS
+				type = annex_everything
+			}
 		}
 	}
 	focus = {
 		id = RVR_Take_the_Lakes
-		icon = GFX_goal_Lee_Monarch
+		icon = GFX_goal_Generic_Naval_Industry
 		cost = 9.00
 		x = 15
 		y = 11
@@ -1168,13 +1194,47 @@ focus_tree = {
 			factor = 300
 		}
 		available = {
-			
+			or = {
+			is_neighbor_of = GLA
+			NOT = {
+				country_exists = GLA
+			}
+			}
 		}
 		prerequisite = {
 			focus = RVR_Topple_the_Triumverate
 		}
 		completion_reward = {
-			
+			create_wargoal = {
+				target = GLA
+				type = annex_everything
+			}
+			hidden_effect = {
+				create_wargoal = {
+					target = MIL
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = MNS
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = MIN
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = DET
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = ISA
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = KMT
+					type = annex_everything
+				}
+			}
 		}
 	}
 	focus = {
@@ -1193,12 +1253,84 @@ focus_tree = {
 			focus = RVR_Reclaim_Greater_Virginia
 		}
 		completion_reward = {
-			
+			custom_effect_tooltip = Wargoal_on_All_Confederates
+			every_state = {
+				LIMIT = {
+					is_core_of = CSA
+				}
+				add_core_of = RVR
+			}
+			hidden_effect = {
+				every_state = {
+					LIMIT = {
+						is_core_of = CSB
+					}
+					add_core_of = RVR
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = AFR
+					}
+					add_core_of = RVR
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = ZIO
+					}
+					add_core_of = RVR
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = APA
+					}
+					add_core_of = RVR
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = LGB
+					}
+					add_core_of = RVR
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = KKK
+					}
+					add_core_of = RVR
+				}
+				create_wargoal = {
+					target = AFR
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = ZIO
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = APA
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = CSA
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = LGB
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = CSB
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = KKK
+					type = annex_everything
+				}
+			}
 		}
 	}
 	focus = {
 		id = RVR_Take_on_Texas
-		icon = GFX_goal_Lee_Monarch
+		icon = GFX_goal_Texas
 		cost = 9.00
 		x = 17
 		y = 11
@@ -1206,14 +1338,136 @@ focus_tree = {
 			factor = 300
 		}
 		available = {
-			
+			is_neighbor_of = TEX
 		}
 		prerequisite = {
 			focus = RVR_Our_Home_in_Dixie
 			focus = RVR_Topple_the_Triumverate
 		}
 		completion_reward = {
-			
+			custom_effect_tooltip = Wargoal_on_All_Texans
+			hidden_effect = {
+				every_state = {
+					LIMIT = {
+						is_core_of = TEX
+					}
+					add_core_of = RVR
+				}
+				create_wargoal = {
+					target = TEX
+					type = annex_everything
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = BET
+					}
+					add_core_of = RVR
+				}
+				create_wargoal = {
+					target = BET
+					type = annex_everything
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = BLA
+					}
+					add_core_of = RVR
+				}
+				create_wargoal = {
+					target = BLA
+					type = annex_everything
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = BSH
+					}
+					add_core_of = RVR
+				}
+				create_wargoal = {
+					target = BSH
+					type = annex_everything
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = CRN
+					}
+					add_core_of = RVR
+				}
+				create_wargoal = {
+					target = CRN
+					type = annex_everything
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = CRU
+					}
+					add_core_of = RVR
+				}
+				create_wargoal = {
+					target = CRU
+					type = annex_everything
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = FAL
+					}
+					add_core_of = RVR
+				}
+				create_wargoal = {
+					target = FAL
+					type = annex_everything
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = FTA
+					}
+					add_core_of = RVR
+				}
+				create_wargoal = {
+					target = FTA
+					type = annex_everything
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = LOU
+					}
+					add_core_of = RVR
+				}
+				create_wargoal = {
+					target = LOU
+					type = annex_everything
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = OKL
+					}
+					add_claim_by = RVR
+				}
+				create_wargoal = {
+					target = OKL
+					type = annex_everything
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = NMX
+					}
+					add_claim_by = RVR
+				}
+				create_wargoal = {
+					target = NMX
+					type = annex_everything
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = SAN
+					}
+					add_core_of = RVR
+				}
+				create_wargoal = {
+					target = SAN
+					type = annex_everything
+				}
+			}
 		}
 	}
 	focus = {
@@ -1226,18 +1480,28 @@ focus_tree = {
 			factor = 300
 		}
 		available = {
-			
+			is_neighbor_of = USA
 		}
 		prerequisite = {
 			focus = RVR_Take_on_Texas
 		}
 		completion_reward = {
-			
+			create_wargoal = {
+				target = USA
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = IDA
+				type = annex_everything
+			}
+#			MON = {
+#
+#			}
 		}
 	}
 	focus = {
 		id = RVR_The_Ideological_Enemy
-		icon = GFX_goal_Republic_Triumphant
+		icon = GFX_goal_Drain_the_Swamp
 		cost = 9.00
 		x = 16
 		y = 12
@@ -1251,12 +1515,21 @@ focus_tree = {
 			focus = RVR_Take_on_Texas
 		}
 		completion_reward = {
-			
+			every_state = {
+					LIMIT = {
+						is_core_of = FRA
+					}
+					add_claim_by = RVR
+				}
+			create_wargoal = {
+				target = FRA
+				type = annex_everything
+			}
 		}
 	}
 	focus = {
 		id = RVR_The_Floridian_Gambit
-		icon = GFX_goal_Lee_Monarch
+		icon = GFX_goal_Florida
 		cost = 9.00
 		x = 19
 		y = 11
@@ -1270,7 +1543,47 @@ focus_tree = {
 			focus = RVR_Our_Home_in_Dixie
 		}
 		completion_reward = {
-			
+			every_state = {
+				LIMIT = {
+					is_core_of = FLO
+				}
+				add_core_of = RVR
+			}
+
+			random_country = {
+				limit = {
+					owns_state = 397
+				}
+				RVR = {
+					create_wargoal = {
+		    			type = take_state_focus
+		    			target = PREV
+	            		generator = { 397 353 346 345 339 }
+	     			}
+				}
+			}
+			hidden_effect = {
+				every_state = {
+					LIMIT = {
+						is_core_of = RMV
+					}
+					add_core_of = RVR
+				}
+				create_wargoal = {
+					target = RMV
+					type = annex_everything
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = JEB
+					}
+					add_core_of = RVR
+				}
+				create_wargoal = {
+					target = JEB
+					type = annex_everything
+				}
+			}
 		}
 	}
 	focus = {
@@ -1301,7 +1614,7 @@ focus_tree = {
 	}
 	focus = {
 		id = RVR_Spirit_of_Lee
-		icon = GFX_goal_Lee_Monarch
+		icon = GFX_goal_Gods_and_Generals
 		cost = 9.00
 		x = 19
 		y = 4
@@ -1318,7 +1631,8 @@ focus_tree = {
 			focus = RVR_Lee_Monarchy
 		}
 		completion_reward = {
-			
+			add_ideas = RVR_Lost_cause_Myth
+			add_ideas = RVR_Lee_Cavalry
 		}
 	}
 	focus = {
@@ -1337,7 +1651,50 @@ focus_tree = {
 			focus = RVR_Spirit_of_Lee
 		}
 		completion_reward = {
+			division_template = {
+				name = "Army of Northern Virginia"
+				is_locked = yes
+				priority = 1
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 0 y = 3 }
+					infantry = { x = 0 y = 4 }
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+
+					artillery_brigade = { x = 2 y = 0 }
+					artillery_brigade = { x = 2 y = 1 }
 			
+				}
+				support = {
+					engineer = { x = 0 y = 0 }
+				}
+			}
+			random_owned_controlled_state = {
+				limit = { ROOT = { has_full_control_of_state = PREV } }
+				create_unit = {
+					division = "name = \"1st ''Lee'' Division\" division_template = \"Army of Northern Virginia\" start_experience_factor = 0.6" 
+					owner = RVR
+				}
+				create_unit = {
+					division = "name = \"2nd ''Johnston'' Division\" division_template = \"Army of Northern Virginia\" start_experience_factor = 0.6" 
+					owner = RVR
+				}
+				create_unit = {
+					division = "name = \"3rd ''J.E.B. Stuart'' Division\" division_template = \"Army of Northern Virginia\" start_experience_factor = 0.6" 
+					owner = RVR
+				}
+				create_unit = {
+					division = "name = \"4th ''Lee'' Division\" division_template = \"Army of Northern Virginia\" start_experience_factor = 0.6" 
+					owner = RVR
+				}
+				create_unit = {
+					division = "name = \"5th ''Beauregard'' Division\" division_template = \"Army of Northern Virginia\" start_experience_factor = 0.6" 
+					owner = RVR
+				}
+			}
 		}
 	}
 	focus = {
@@ -1360,12 +1717,12 @@ focus_tree = {
 			focus = RVR_Restore_the_Continental_Army
 		}
 		completion_reward = {
-			
+			add_ideas = RVR_Virginian_Aristocracy
 		}
 	}
 	focus = {
 		id = RVR_Proclaim_the_Confederate_Kingdoms
-		icon = GFX_goal_Lee_Monarch
+		icon = GFX_goal_Confederate_Kingdom
 		cost = 9.00
 		x = 18
 		y = 7
@@ -1384,7 +1741,7 @@ focus_tree = {
 	}
 	focus = {
 		id = RVR_Legacy_of_Washington
-		icon = GFX_goal_Lee_Monarch
+		icon = GFX_goal_Generic_George_Washington
 		cost = 9.00
 		x = 17
 		y = 4
@@ -1399,7 +1756,7 @@ focus_tree = {
 			focus = RVR_Shaffner_Takes_Control
 		}
 		completion_reward = {
-			
+			add_ideas = RVR_Washingtonianism
 		}
 	}
 	focus = {
@@ -1418,7 +1775,71 @@ focus_tree = {
 			focus = RVR_Legacy_of_Washington
 		}
 		completion_reward = {
+			add_command_power = 75
+			add_war_support = 0.15
+			army_experience = 25
+			division_template = {
+				name = "Continental Army"
+				is_locked = yes
+				priority = 1
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 0 y = 3 }
+					infantry = { x = 0 y = 4 }
+
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+					infantry = { x = 1 y = 2 }
+					infantry = { x = 1 y = 3 }
+					infantry = { x = 1 y = 4 }
+
+					infantry = { x = 2 y = 0 }
+					infantry = { x = 2 y = 1 }
+					infantry = { x = 2 y = 2 }
+					infantry = { x = 2 y = 3 }
+
+					artillery_brigade = { x = 3 y = 0 }
+					artillery_brigade = { x = 3 y = 1 }
+					artillery_brigade = { x = 3 y = 2 }
+					artillery_brigade = { x = 3 y = 3 }
 			
+				}
+				support = {
+					artillery = { x = 0 y = 0 }
+					engineer = { x = 0 y = 1 }
+					military_police = { x = 0 y = 2 }
+				}
+			}
+			random_owned_controlled_state = {
+				limit = { ROOT = { has_full_control_of_state = PREV } }
+				create_unit = {
+					division = "name = \"1st ''Washington'' Continental Division\" division_template = \"Continental Army\" start_experience_factor = 0.9" 
+					owner = RVR
+				}
+			}
+			random_owned_controlled_state = {
+				limit = { ROOT = { has_full_control_of_state = PREV } }
+				create_unit = {
+					division = "name = \"2nd ''Franklin'' Continental Division\" division_template = \"Continental Army\" start_experience_factor = 0.9" 
+					owner = RVR
+				}
+			}
+			random_owned_controlled_state = {
+				limit = { ROOT = { has_full_control_of_state = PREV } }
+				create_unit = {
+					division = "name = \"3rd ''Jefferson'' Continental Division\" division_template = \"Continental Army\" start_experience_factor = 0.9" 
+					owner = RVR
+				}
+			}
+			random_owned_controlled_state = {
+				limit = { ROOT = { has_full_control_of_state = PREV } }
+				create_unit = {
+					division = "name = \"4th ''Knox'' Continental Division\" division_template = \"Continental Army\" start_experience_factor = 0.9" 
+					owner = RVR
+				}
+			}
 		}
 	}
 	focus = {
