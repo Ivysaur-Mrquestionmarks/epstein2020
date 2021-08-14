@@ -1611,15 +1611,60 @@ country_event = {
 }
 
 country_event = {
-	id = south.58 #Military revolt (currently unimplemented)
+	id = south.58 #Military revolt (currently beta)
 	title = south.58.t
 	desc = south.58.d
 
 	is_triggered_only = yes
-	fire_only_once = yes
 
+	immediate = { 
+		set_variable = {mil_loyal = 0.25}
+		hidden_effect = {
+			random_owned_controlled_state = {
+				limit = {NOT = {is_core_of = CSB}}
+				add_core_of = CSB
+			}
+			release = CSB
+			transfer_units_fraction= {
+				target = CSB
+				size = 0.4
+				stockpile_ratio = 0.3
+				army_ratio = 0.3
+				navy_ratio = 0
+				air_ratio = 0
+				#keep_unit_leaders_trigger = {
+				#	has_trait = trait_SPA_nationalist_sympathies
+				#}
+			}
+			every_state = {
+				limit = {owner = CSB}
+				teleport_armies = {
+    					limit = {
+        					always = yes
+    					}
+				}
+				add_core_of = CSA
+			}
+			CSB = {
+				set_politics = {
+					ruling_party = autocratic
+				}
+			}
+		}
+	}
 
 	option = { 
 		name = south.58.a
+		declare_war_on = {
+			target = CSB
+	 		type = civil_war
+		}
+		add_civil_war_target = CSB
 	}
 }
+
+#declare_war_on = {
+	#target = SPD
+	# type = civil_war
+#}
+#add_civil_war_target = SPD
