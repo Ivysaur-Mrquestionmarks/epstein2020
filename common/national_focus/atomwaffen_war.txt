@@ -922,7 +922,7 @@ focus_tree = {
 			every_state = {
 				LIMIT = {
 					IF = {
-						is_owned_by = TEX
+						is_core_of = TEX
 					}
 				}
 				add_core_of = HOP
@@ -1214,6 +1214,67 @@ focus_tree = {
 		}
 	}
 	focus = {
+		id = HOP_Use_the_Klan
+		icon = GFX_goal_Generic_Klansman
+		cost = 10.00
+		x = 13
+		y = 19
+		available = {
+			has_global_flag = no_crisis
+		}
+		prerequisite = {
+			focus = HOP_Retake_the_Western_Lands
+		}
+		mutually_exclusive = {
+			focus = HOP_Ally_the_Klan
+		}
+		completion_reward = {
+			create_wargoal = {
+				target = CSA
+				type = annex_everything
+			}
+			KKK = {
+				every_state = {
+					LIMIT = {
+						IF = {
+							is_owned_by = CSA
+						}
+					}
+					add_core_of = KKK
+				}
+				every_state = {
+					LIMIT = {
+						IF = {
+							is_core_of = LOU
+						}
+					}
+					add_core_of = KKK
+				}
+				add_manpower = 8000
+				add_equipment_to_stockpile = {
+			    	type = infantry_equipment
+				    amount = 10569
+				    producer = KKK
+				}
+				load_focus_tree = Atomwaffen_KKK_Klientstate
+				set_cosmetic_tag = KKK_Atomwaffen_Puppet
+				retire_country_leader = yes
+				create_country_leader = {
+					name = "Ray Larsen"
+					picture = "gfx/leaders/KKK/Ray_Larsen.tga"
+					expire = "2060.1.1"
+					ideology = theocracy
+					traits = {
+						Puppet_Emperor_of_the_Klan
+					}
+				}
+
+			}
+			release_puppet = KKK
+		}
+	}
+
+	focus = {
 		id = HOP_Ally_the_Klan
 		icon = GFX_goal_Klan_and_Atomwaffen
 		cost = 10.00
@@ -1221,6 +1282,9 @@ focus_tree = {
 		y = 19
 		prerequisite = {
 			focus = HOP_Retake_the_Western_Lands
+		}
+		mutually_exclusive = {
+			focus = HOP_Use_the_Klan
 		}
 		available = {
 			has_global_flag = Dixie_Collapse_Global
@@ -1235,24 +1299,43 @@ focus_tree = {
 				}
 			}
 			else = {
-				add_ideas = HOP_Klan_Support
-				every_unit_leader = {
-	        		limit = {
-						OR = {
-        	    			has_id = 651224
-							has_id = 651225
-							has_id = 651226
-							has_id = 651227
-							has_id = 651228
-							has_id = 651229
-							has_id = 651231
-							has_id = 651232
-							has_id = 651233
-							has_id = 651234
+				KKK = {
+					every_state = {
+						LIMIT = {
+							IF = {
+								is_owned_by = CSA
+							}
 						}
-    	       		}
-            		set_nationality = HOP
-            	}
+						add_core_of = KKK
+					}
+					every_state = {
+						LIMIT = {
+							IF = {
+								is_core_of = LOU
+							}
+						}
+						add_core_of = KKK
+					}
+					add_manpower = 8000
+					add_equipment_to_stockpile = {
+			    		type = infantry_equipment
+				    	amount = 10569
+					    producer = KKK
+					}
+					load_focus_tree = Atomwaffen_KKK_Klientstate
+					set_cosmetic_tag = KKK_Atomwaffen_Puppet
+					retire_country_leader = yes
+					create_country_leader = {
+						name = "Ray Larsen"
+						picture = "gfx/leaders/KKK/Ray_Larsen.tga"
+						expire = "2060.1.1"
+						ideology = theocracy
+						traits = {
+							Puppet_Emperor_of_the_Klan
+						}
+					}
+				}
+				release_puppet = KKK
             	create_wargoal = {
 					target = AFR
 					type = annex_everything
@@ -1294,6 +1377,7 @@ focus_tree = {
 		y = 20
 		prerequisite = {
 			focus = HOP_Ally_the_Klan
+			focus = HOP_Use_the_Klan
 		}
 		available = {
 			
@@ -1347,7 +1431,20 @@ focus_tree = {
 					}
 				}
 			}
-			KKK = {
+			if = {
+				limit = {
+					KKK = {
+						is_puppet_of = HOP
+					}
+				}
+				KKK = {
+					set_autonomy = {
+   						target = AFR
+    					autonomy_state = autonomy_reservation
+					}
+				}
+			}
+			else = {
 				set_autonomy = {
    					target = AFR
     				autonomy_state = autonomy_reservation
@@ -1374,6 +1471,7 @@ focus_tree = {
 		y = 20
 		prerequisite = {
 			focus = HOP_Ally_the_Klan
+			focus = HOP_Use_the_Klan
 		}
 		completion_reward = {
 			create_wargoal = {
@@ -1483,6 +1581,14 @@ focus_tree = {
 				transfer_state = 337
 				add_state_core = 148
 				add_state_core = 337
+				every_state = {
+					LIMIT = {
+						IF = {
+							is_core_of = MEX
+						}
+					}
+					add_core_of = RKM
+				}
 			}
 			set_autonomy = {
    				target = RKM
