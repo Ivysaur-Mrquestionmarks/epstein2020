@@ -73,6 +73,9 @@ American_reunification = {
 					is_in_faction_with = ROOT
 					is_puppet_of = ROOT
 				}
+				NOT = {
+					tag = RKM
+				}
 			}
 		}
 		visible = {
@@ -106,14 +109,45 @@ American_reunification = {
 		
 	}
 
+	reintegrate_conch_republic_decision = {
+		available = {
+			has_war = no
+			OR = {
+				NOT = {
+					country_exists = FLO
+				}
+				AND = {
+					original_tag = FLO
+					NOT = { RMV = { has_country_flag = conch_has_no_protection } }
+				}
+			}
+			NOT = {
+				owns_state = 345
+			}
+		}
+		visible = {
+			controls_state = 339
+		}
+		cost = 100
+		ai_will_do = {
+			base = 100
+		}
+		complete_effect = {
+			annex_country = { target = RMV }			
+		}
+		
+	}
+
 	American_reunification = {
 
 		available = {
 			all_state = {
 				OR = {
+					NOT = {has_state_flag = part_of_america}
 					is_owned_by = ROOT
-					NOT = {has_state_flag = part_of_america}	
-				}	
+					owner = { is_subject_of = ROOT }
+					owner = { tag = AFR }
+				}		
 			}
 		}
 		fire_only_once = yes 
@@ -122,7 +156,14 @@ American_reunification = {
 		}
 		complete_effect = {
 			set_country_flag = winner_of_the_2ACW
-			
+			add_stability = 0.10
+			Every_state = {
+   				Limit = { 
+    				is_owned_by = ROOT
+    			}
+    			add_core_of = ROOT
+    		}
+			custom_effect_tooltip = generic_unification_tt
 		}
 		
 	}

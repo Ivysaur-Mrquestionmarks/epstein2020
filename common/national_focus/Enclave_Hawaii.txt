@@ -1,0 +1,888 @@
+focus_tree = {
+	id = Enclave
+	
+	country = {
+		factor = 0
+		
+	}
+	
+	default = no
+	focus = {
+		id = ENC_Swear_in_President_Abrams
+		icon = GFX_goal_Hand_on_Bible
+		cost = 9.00
+		x = 20
+		y = 0
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_stability = 0.05
+			remove_country_leader_trait = Not_sworn_in
+			add_country_leader_trait = Exiled_Establishment
+		}
+
+	}
+	focus = {
+		id = ENC_Status_of_Congress
+		icon = GFX_goal_Controlling_the_congress
+		cost = 9.00
+		x = 15
+		y = 1
+		prerequisite = {
+			focus = ENC_Swear_in_President_Abrams
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			country_event = { id = Enclave.1 days = 1 }
+		}
+
+	}
+	focus = {
+		id = ENC_Replace_Congress_people
+		icon = GFX_goal_Generic_Arrests
+		cost = 9.00
+		x = 16
+		y = 2
+		prerequisite = {
+			focus = ENC_Status_of_Congress
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_stability = 0.05
+		}
+
+	}
+	focus = {
+		id = ENC_Sap_their_Power
+		icon = GFX_AME_loosen_regulation
+		cost = 9.00
+		x = 14
+		y = 2
+		prerequisite = {
+			focus = ENC_Status_of_Congress
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_timed_idea = {
+				idea = ENC_Sapping_Congress_Power
+				days = 55
+			}
+		}
+
+	}
+	focus = {
+		id = ENC_Force_a_United_Congress
+		icon = GFX_goal_Old_party_politics
+		cost = 9.00
+		x = 15
+		y = 3
+		prerequisite = {
+			focus = ENC_Replace_Congress_people
+		}
+		prerequisite = {
+			focus = ENC_Sap_their_Power
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_ideas = ENC_United_Congress
+		}
+
+	}
+	focus = {
+		id = ENC_The_Establishment_in_Exile
+		icon = GFX_goal_The_Federal_Republic
+		cost = 9.00
+		x = 20
+		y = 1
+		prerequisite = {
+			focus = ENC_Swear_in_President_Abrams
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			country_event = { id = Enclave.2 days = 1 }
+		}
+
+	}
+	focus = {
+		id = ENC_Abolish_the_3rd
+		icon = GFX_goal_Abolish_the_3rd
+		cost = 9.00
+		x = 18
+		y = 3
+		prerequisite = {
+			focus = ENC_Abolish_the_4th
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = Lack_of_Military_Housing
+				add_idea = Military_Housing_Fixed
+			}
+		}
+
+	}
+	focus = {
+		id = ENC_Abolish_the_22nd
+		icon = GFX_goal_22nd_Amendment_Revoked
+		cost = 9.00
+		x = 22
+		y = 3
+		prerequisite = {
+			focus = ENC_Abolish_the_4th
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			country_event = { id = Enclave.3 days = 1 }
+		}
+
+	}
+	focus = {
+		id = ENC_Abolish_the_4th
+		icon = GFX_goal_We_Need_Guns
+		cost = 9.00
+		x = 20
+		y = 2
+		prerequisite = {
+			focus = ENC_The_Establishment_in_Exile
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_ideas = ENC_Stop_and_Frisk
+			add_equipment_to_stockpile = {
+			    type = infantry_equipment
+			    amount = 5732
+			    producer = PAC
+			}
+		}
+	}
+	focus = {
+		id = ENC_Status_of_Senate
+		icon = GFX_goal_Controlling_the_Senate
+		cost = 9.00
+		x = 25
+		y = 1
+		prerequisite = {
+			focus = ENC_Swear_in_President_Abrams
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			country_event = { id = Enclave.4 days = 1 }
+		}
+
+	}
+	focus = {
+		id = ENC_Remove_Senators_From_Traitor_States
+		icon = GFX_goal_Senatorial_Traitors
+		cost = 9.00
+		x = 26
+		y = 2
+		prerequisite = {
+			focus = ENC_Status_of_Senate
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_stability = 0.05
+			country_event = { id = Enclave.5 days = 1 }
+		}
+
+	}
+	focus = {
+		id = ENC_10_Year_Terms
+		icon = GFX_goal_10_Year_Term
+		cost = 9.00
+		x = 24
+		y = 2
+		prerequisite = {
+			focus = ENC_Status_of_Senate
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			country_event = { id = Enclave.6 days = 1 }
+		}
+
+	}
+	focus = {
+		id = ENC_Solidify_Senate
+		icon = GFX_goal_A_solid_Senate
+		cost = 9.00
+		x = 25
+		y = 3
+		prerequisite = {
+			focus = ENC_Remove_Senators_From_Traitor_States
+		}
+		prerequisite = {
+			focus = ENC_10_Year_Terms
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_ideas = ENC_A_Loyal_Senate
+		}
+
+	}
+	focus = {
+		id = ENC_The_American_Government_in_Exile
+		icon = GFX_goal_USA_Monument
+		cost = 9.00
+		x = 20
+		y = 4
+		prerequisite = {
+			focus = ENC_Solidify_Senate
+		}
+		prerequisite = {
+			focus = ENC_Abolish_the_22nd
+		}
+		prerequisite = {
+			focus = ENC_Abolish_the_3rd
+		}
+		prerequisite = {
+			focus = ENC_Force_a_United_Congress
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_ideas = ENC_Establishmentarianism_Entrenched
+			hidden_effect = {
+				country_event = { id = Enclave.10 days = 80 }
+			}
+		}
+
+	}
+	focus = {
+		id = ENC_President_Abrams
+		icon = GFX_goal_President_Abrams
+		cost = 9.00
+		x = 20
+		y = 6
+		available = {
+			has_country_leader = {
+				name = "Robert B. Abrams"
+			}
+			has_country_flag = FirstEnclaveElection
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+
+	}
+	focus = {
+		id = ENC_President_Wolter
+		icon = GFX_goal_President_Wolters
+		cost = 9.00
+		x = 30
+		y = 6
+		available = {
+			has_country_leader = {
+				name = "Tod D. Wolters"
+			}
+			has_country_flag = FirstEnclaveElection
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+
+	}
+	focus = {
+		id = ENC_President_Obama
+		icon = GFX_goal_President_Obama
+		cost = 9.00
+		x = 40
+		y = 6
+		available = {
+			has_country_leader = {
+				name = "Barack H. Obama"
+			}
+			has_country_flag = FirstEnclaveElection
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+
+	}
+	focus = {
+		id = ENC_Legacy_of_America
+		icon = GFX_goal_The_Return_of_America
+		cost = 9.00
+		x = 5
+		y = 0
+		available = {
+			has_country_flag = FirstEnclaveElection
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = 120
+		}
+
+	}
+	focus = {
+		id = ENC_Begin_the_Reclaimation
+		icon = GFX_goal_FRA_Rearmament_Campaigns
+		cost = 9.00
+		x = 5
+		y = 1
+		prerequisite = {
+			focus = ENC_Legacy_of_America
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_war_support = 0.05
+			hidden_effect = {
+				unlock_decision_category_tooltip = American_reunification
+				unlock_decision_tooltip = integrate_state
+				set_country_flag = {
+    				flag = reunification_start
+					value = 2
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = ENC_Retake_Alaska
+		icon = GFX_goal_Alaskan_Independence
+		cost = 9.00
+		x = 5
+		y = 2
+		prerequisite = {
+			focus = ENC_Begin_the_Reclaimation
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			random_country = {
+				limit = {
+					owns_state = 2
+				}
+				PAC = {
+					create_wargoal = {
+		    			type = take_state_focus
+		    			target = PREV
+	            		generator = { 2 }
+	     			}
+				}
+			}
+			hidden_effect = {
+				random_country = {
+					limit = {
+						owns_state = 19
+					}
+					PAC = {
+						create_wargoal = {
+		    				type = take_state_focus
+		    				target = PREV
+		            		generator = { 19 }
+		     			}
+					}
+				}
+				random_country = {
+					limit = {
+						owns_state = 11
+					}
+					PAC = {
+						create_wargoal = {
+		    				type = take_state_focus
+		    				target = PREV
+		            		generator = { 11 }
+		     			}
+					}
+				}
+				random_country = {
+					limit = {
+						owns_state = 14
+					}
+					PAC = {
+						create_wargoal = {
+		    				type = take_state_focus
+		    				target = PREV
+		            		generator = { 14 }
+		     			}
+					}
+				}
+				random_country = {
+					limit = {
+						owns_state = 16
+					}
+					PAC = {
+						create_wargoal = {
+		    				type = take_state_focus
+		    				target = PREV
+		            		generator = { 16 }
+		     			}
+					}
+				}
+				random_country = {
+					limit = {
+						owns_state = 404
+					}
+					PAC = {
+						create_wargoal = {
+		    				type = take_state_focus
+		    				target = PREV
+		            		generator = { 404 }
+		     			}
+					}
+				}
+				random_country = {
+					limit = {
+						owns_state = 96
+					}
+					PAC = {
+						create_wargoal = {
+		    				type = take_state_focus
+		    				target = PREV
+		            		generator = { 96 }
+		     			}
+					}
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = ENC_Kill_California
+		icon = GFX_goal_End_California
+		cost = 9.00
+		x = 5
+		y = 3
+		prerequisite = {
+			focus = ENC_Retake_Alaska
+		}
+		available = {
+			owns_state = 2
+			owns_state = 19
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			random_country = {
+				limit = {
+					owns_state = 302
+				}
+				PAC = {
+					create_wargoal = {
+		    			type = take_state_focus
+		    			target = PREV
+	            		generator = { 302 }
+	     			}
+				}
+			}
+			hidden_effect = {
+				random_country = {
+					limit = {
+						owns_state = 366
+					}
+					PAC = {
+						create_wargoal = {
+		    				type = take_state_focus
+		    				target = PREV
+		            		generator = { 366 }
+		     			}
+					}
+				}
+				random_country = {
+					limit = {
+						owns_state = 427
+					}
+					PAC = {
+						create_wargoal = {
+		    				type = take_state_focus
+		    				target = PREV
+		            		generator = { 427 }
+		     			}
+					}
+				}
+				random_country = {
+					limit = {
+						owns_state = 304
+					}
+					PAC = {
+						create_wargoal = {
+		    				type = take_state_focus
+		    				target = PREV
+		            		generator = { 304 }
+		     			}
+					}
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = ENC_Bring_Home_the_West
+		icon = GFX_goal_Arizona_New_Mexico
+		cost = 9.00
+		x = 5
+		y = 4
+		prerequisite = {
+			focus = ENC_Kill_California
+		}
+		available = {
+			owns_state = 302
+			owns_state = 427
+			owns_state = 366
+			owns_state = 304
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			random_country = {
+				limit = {
+					owns_state = 45
+				}
+				PAC = {
+					create_wargoal = {
+		    			type = take_state_focus
+		    			target = PREV
+	            		generator = { 45 }
+	     			}
+				}
+			}
+			hidden_effect = {
+				random_country = {
+					limit = {
+						owns_state = 352
+					}
+					PAC = {
+						create_wargoal = {
+		    				type = take_state_focus
+		    				target = PREV
+		            		generator = { 352 }
+		     			}
+					}
+				}
+				random_country = {
+					limit = {
+						owns_state = 365
+					}
+					PAC = {
+						create_wargoal = {
+		    				type = take_state_focus
+		    				target = PREV
+		            		generator = { 365 }
+		     			}
+					}
+				}
+				random_country = {
+					limit = {
+						owns_state = 489
+					}
+					PAC = {
+						create_wargoal = {
+		    				type = take_state_focus
+		    				target = PREV
+		            		generator = { 489 }
+		     			}
+					}
+				}
+				random_country = {
+					limit = {
+						owns_state = 40
+					}
+					PAC = {
+						create_wargoal = {
+		    				type = take_state_focus
+		    				target = PREV
+		            		generator = { 40 }
+		     			}
+					}
+				}
+				random_country = {
+					limit = {
+						owns_state = 3
+					}
+					PAC = {
+						create_wargoal = {
+		    				type = take_state_focus
+		    				target = PREV
+		            		generator = { 3 }
+		     			}
+					}
+				}
+				random_country = {
+					limit = {
+						owns_state = 495
+					}
+					PAC = {
+						create_wargoal = {
+		    				type = take_state_focus
+		    				target = PREV
+		            		generator = { 495 }
+		     			}
+					}
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = ENC_Reclaim_the_Sky
+		icon = GFX_goal_Generic_Jet_Fighters
+		cost = 9.00
+		x = 8
+		y = 2
+		prerequisite = {
+			focus = ENC_Begin_the_Reclaimation
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			air_experience = 50
+		}
+
+	}
+	focus = {
+		id = ENC_Reclaim_the_Sea
+		icon = GFX_goal_Focus_Generic_Maritime_Trade
+		cost = 9.00
+		x = 8
+		y = 3
+		prerequisite = {
+			focus = ENC_Reclaim_the_Sky
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			navy_experience = 50
+		}
+
+	}
+	focus = {
+		id = ENC_Reach_out_to_Stranded_Loyalists
+		icon = GFX_goal_Enclave_Flag
+		cost = 9.00
+		x = 2
+		y = 2
+		prerequisite = {
+			focus = ENC_Begin_the_Reclaimation
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			every_country = {
+				LIMIT = {
+					has_government = Democrat
+					NOT = {
+						has_war = yes
+						tag = CAS
+						tag = ADF
+						tag = ALT
+						tag = BAH
+						tag = ANT
+						tag = BEF
+						tag = BER
+						tag = BJC
+						tag = BLZ
+						tag = BRC
+						tag = CAN
+						tag = CAR
+						tag = COL
+						tag = COS
+						tag = CUB
+						tag = DOM
+						tag = ELS
+						tag = ENG
+						tag = FFR
+						tag = GUA
+						tag = HAI
+						tag = HOL
+						tag = HON
+						tag = JAM
+						tag = MEX
+						tag = NFL
+						tag = NIC
+						tag = NUN
+						tag = OOR
+						tag = PAN
+						tag = QUE
+						tag = RMV
+						tag = RMX
+						tag = TAT
+						tag = TEM
+						tag = VEN
+						tag = VAN
+						tag = WMX
+						tag = YUC
+						tag = ZAP
+						tag = RKM
+						tag = NRB
+						tag = CUC
+						tag = FLC
+						tag = HBI
+						tag = PUE
+						tag = PAC
+					}
+				}
+				country_event = { id = Enclave.11 days = 1 }
+			}
+
+		}
+
+	}
+	focus = {
+		id = ENC_Absorb_Pro_Fed_Militias
+		icon = GFX_goal_Enclave_Militia
+		cost = 9.00
+		x = 2
+		y = 3
+		prerequisite = {
+			focus = ENC_Reach_out_to_Stranded_Loyalists
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			division_template = {
+				name = "Displaced Federalists"
+				is_locked = no
+				priority = 1
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+					infantry = { x = 1 y = 2 }
+				}
+				support = {
+					artillery = { x = 0 y = 0 }
+					engineer = { x = 0 y = 1 }
+					military_police = { x = 0 y = 2 }
+				}
+			}
+			random_owned_controlled_state = {
+				limit = { ROOT = { has_full_control_of_state = PREV } }
+				create_unit = {
+					division = "name = \"Boston Federalists\" division_template = \"Displaced Federalists\" start_experience_factor = 0.8" 
+					owner = PAC
+				}
+				create_unit = {
+					division = "name = \"D.C. Federalists\" division_template = \"Displaced Federalists\" start_experience_factor = 0.8" 
+					owner = PAC
+				}
+				create_unit = {
+					division = "name = \"Brooklyn Federalists\" division_template = \"Displaced Federalists\" start_experience_factor = 0.8" 
+					owner = PAC
+				}
+				create_unit = {
+					division = "name = \"Long Island Federalists\" division_template = \"Displaced Federalists\" start_experience_factor = 0.8" 
+					owner = PAC
+				}
+				create_unit = {
+					division = "name = \"Virginian Federalists\" division_template = \"Displaced Federalists\" start_experience_factor = 0.8" 
+					owner = PAC
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = ENC_Liberty_Calls
+		icon = GFX_goal_Generic_Liberty_Calling
+		cost = 9.00
+		x = 1
+		y = 4
+		prerequisite = {
+			focus = ENC_Absorb_Pro_Fed_Militias
+		}
+		prerequisite = {
+			focus = ENC_Enclave_Radio
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			every_country = {
+				LIMIT = {
+					is_puppet_of = PAC
+				}
+				PAC = {
+					annex_country = {
+    					target = PREV
+    					transfer_troops = yes
+					}
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = ENC_Propaganda_Efforts
+		icon = GFX_goal_Who_Said_Radio_was_Dead
+		cost = 9.00
+		x = 0
+		y = 2
+		prerequisite = {
+			focus = ENC_Begin_the_Reclaimation
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_stability = 0.05
+			add_war_support = 0.05
+		}
+
+	}
+	focus = {
+		id = ENC_Enclave_Radio
+		icon = GFX_goal_Purchase_Patriotic_Music
+		cost = 9.00
+		x = 0
+		y = 3
+		prerequisite = {
+			focus = ENC_Propaganda_Efforts
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_ideas = ENC_Enclave_Radio_idea
+		}
+
+	}
+}

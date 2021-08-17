@@ -117,7 +117,7 @@ country_event = {
 	
 				}
 			}
-			transfer_units_fraction= {
+				transfer_units_fraction= {
     				target = ABG
     				size = 0.1
     				stockpile_ratio = 0.1
@@ -171,6 +171,12 @@ country_event = {
 			factor = 100
 		}
 		hidden_effect = {
+			if = {
+				limit = {
+					NOT = { country_exists = CAS }
+				}
+				release = CAS
+			}
 			country_event = { id = California.5 days = 15 }
 			JFR = {
 				If = {
@@ -305,9 +311,9 @@ country_event = {
 						429 = {
 							is_controlled_by = PRA
 						}
-						transfer_state = 429
 
 					}
+					transfer_state = 429
 				}
 				If = {
 					Limit = {
@@ -336,11 +342,12 @@ country_event = {
 						296 = {
 							is_controlled_by = PRA
 						}
-						transfer_state = 296
-						296 = {
-							set_demilitarized_zone = no
-						}
 					}
+					transfer_state = 296
+					296 = {
+						set_demilitarized_zone = no
+					}
+					
 				}
 				If = {
 					Limit = {
@@ -1525,7 +1532,11 @@ country_event = {
 			factor = 100
 		}
 		hidden_effect = {
-			release_puppet = NVD	
+			release = NVD
+			set_autonomy = {
+    			target = NVD
+    			autonomy_state = autonomy_satellite
+			}	
 		}
 	}
 	option = {
@@ -1535,7 +1546,11 @@ country_event = {
 		}
 		NVD = { change_tag_from = JFR }
 		hidden_effect = {
-			release_puppet = NVD	
+			release = NVD
+			set_autonomy = {
+    			target = NVD
+    			autonomy_state = autonomy_satellite
+			}
 		}
 	}
 }
@@ -1924,8 +1939,8 @@ country_event = { #Didn't Fuck up
 	#picture =  event_Nevadan_Kennedy 
 	trigger = {
 		count_triggers = {
+			amount > 2
 			NOT = {
-				amount > 3
 				OR = {
 					has_country_flag = CommieVP
 					has_country_flag = AnarchistVP

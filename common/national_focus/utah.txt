@@ -493,7 +493,9 @@ focus_tree = {
 		continue_if_invalid = no
 		available_if_capitulated = yes
 		completion_reward = {
-		supply_units = 500
+		every_unit_leader = {
+			supply_units = 500
+		}
 		add_ideas = UTA_Improved_Logistics
 		}
 	}
@@ -1135,6 +1137,9 @@ focus_tree = {
 		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = yes
+		will_lead_to_war_with = UNV
+		will_lead_to_war_with = UAA
+		will_lead_to_war_with = UCL
 		completion_reward = {
 	create_wargoal = {
     type = annex_everything
@@ -1709,8 +1714,13 @@ focus_tree = {
 		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = yes
+		 will_lead_to_war_with =  PRA
 		completion_reward = {
 		add_ideas = UTA_Operation_Burning_Torchs
+		create_wargoal = {
+          type = annex_everything
+          target = PRA
+          }
 		}
 	}
 	focus = {
@@ -1749,7 +1759,6 @@ focus_tree = {
 	focus = {
 		id = UTA_Bolster_Steel_Production
 		icon = GFX_focus_generic_steel
-		mutually_exclusive = { focus = UTA_Empower_The_War_Hawks }
 		x = 2
 		y = 1
 		offset = {
@@ -1784,7 +1793,6 @@ focus_tree = {
 	focus = {
 		id = UTA_Expand_Utahan_Factories
 		icon = GFX_goal_Generic_Factory_Complex
-		mutually_exclusive = { focus = UTA_Empower_The_War_Hawks }
 		x = 0
 		y = 1
 		offset = {
@@ -1835,7 +1843,6 @@ focus_tree = {
 	focus = {
 		id = UTA_Political_Readiness
 		icon = GFX_goal_Generic_Political_Power_Gain
-		mutually_exclusive = { focus = UTA_Empower_The_War_Hawks }
 		x = -2
 		y = 1
 		offset = {
@@ -1866,7 +1873,6 @@ focus_tree = {
 	focus = {
 		id = UTA_Appeal_To_The_Working_Class_Utahans
 		icon = GFX_goal_MOL_work_for
-		mutually_exclusive = { focus = UTA_Empower_The_War_Hawks }
 		x = 0
 		y = 1
 		offset = {
@@ -1897,7 +1903,6 @@ focus_tree = {
 	focus = {
 		id = UTA_Peaceful_Nation
 		icon = GFX_goal_Make_Peace
-		mutually_exclusive = { focus = UTA_Empower_The_War_Hawks }
 		x = 2
 		y = 1
 		offset = {
@@ -5934,6 +5939,34 @@ create_country_leader = {
 		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = yes
+		will_lead_to_war_with = UCL
+		will_lead_to_war_with = UNV
+		will_lead_to_war_with = UAA
+		will_lead_to_war_with = FRA
+		will_lead_to_war_with = USA
+		will_lead_to_war_with = VIR
+		will_lead_to_war_with = TEX
+		will_lead_to_war_with = GLA
+		will_lead_to_war_with = CSA
+		will_lead_to_war_with = FLO
+		will_lead_to_war_with = PRA
+		will_lead_to_war_with = SIN
+		will_lead_to_war_with = MOL
+		will_lead_to_war_with = LAS
+		will_lead_to_war_with = IDA
+		will_lead_to_war_with = MON
+		will_lead_to_war_with = CAS
+		will_lead_to_war_with = LIB
+		will_lead_to_war_with = AFO
+		will_lead_to_war_with = MIL
+		will_lead_to_war_with = MIN
+		will_lead_to_war_with = KMT
+		will_lead_to_war_with = NEW
+		will_lead_to_war_with = KFC
+		will_lead_to_war_with = NRA
+		will_lead_to_war_with = TIM
+		will_lead_to_war_with = AFS
+		will_lead_to_war_with = DET
 		completion_reward = {
 		add_ideas = UTA_Mormon_Crusade
 		add_stability = -0.55
@@ -6254,7 +6287,7 @@ create_country_leader = {
 		set_politics = {
 			ruling_party = democrat
 		}
-		drop_cosmetic_tag = UTA_PGT
+		drop_cosmetic_tag = yes
 		add_popularity = {
 		    ideology = democrat
 		    popularity = 1.00
@@ -7350,7 +7383,7 @@ create_country_leader = {
 		set_politics = {
 			ruling_party = republican
 		}
-		drop_cosmetic_tag = UTA_PGT
+		drop_cosmetic_tag = yes
 		add_popularity = {
 		    ideology = republican
 		    popularity = 1.00
@@ -7604,14 +7637,7 @@ create_country_leader = {
 		available_if_capitulated = yes
 		completion_reward = {
 		    random_owned_controlled_state = {
-				limit = {
-					free_building_slots = {
-						building = industrial_complex
-						size > 1
-						include_locked = yes
-					}
-					is_core_of = ROOT
-				}
+				limit = { ROOT = { has_full_control_of_state = PREV } }
 				add_extra_state_shared_building_slots = 4
 				add_building_construction = {
 					type = industrial_complex
@@ -9292,12 +9318,12 @@ create_country_leader = {
 		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = yes
+		will_lead_to_war_with = AFO
 		completion_reward = {
 		create_wargoal = {
-		target = AFO
-		type = annex_everything
-		expire = 0
-		}
+        type = annex_everything
+        target = AFO
+        }
 		}
 	}
 	focus = {
@@ -10640,6 +10666,7 @@ create_country_leader = {
 		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = yes
+		will_lead_to_war_with = IDA
 		completion_reward = {
 		create_wargoal = {
         type = annex_everything
@@ -10677,6 +10704,7 @@ create_country_leader = {
 		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = yes
+		will_lead_to_war_with = MON
 		completion_reward = {
 		create_wargoal = {
         type = annex_everything
@@ -10711,6 +10739,7 @@ create_country_leader = {
 		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = yes
+		will_lead_to_war_with = PRA
 		completion_reward = {
 		create_wargoal = {
 		target = PRA
@@ -11735,7 +11764,9 @@ create_corps_commander = {
 		available_if_capitulated = yes
 		completion_reward = {
 		add_ideas = UTA_Agricultural_Economy2
-		supply_units = 168
+		every_unit_leader = {
+			supply_units = 168
+		}
 		}
 	}
 	focus = {
@@ -12925,7 +12956,7 @@ create_corps_commander = {
 		available_if_capitulated = yes
 		completion_reward = {
 		    army_experience = 50
-			UTA = {	country_event = { id = utah.52 hours = 24 } }
+			UTA = {	country_event = { id = utah.49 hours = 24 } }
 		}
 	}
 	focus = {
@@ -13473,7 +13504,7 @@ create_corps_commander = {
 	focus = {
 		id = UTA_Send_Farmers_To_The_Factories
 		icon = GFX_goal_MOL_work_for
-		mutually_exclusive = { focus = }
+		mutually_exclusive = { focus = UTA_Turn_Farmers_Into_Construction_Workers }
 		x = 2
 		y = 1
 		offset = {

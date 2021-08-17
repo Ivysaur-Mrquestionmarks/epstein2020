@@ -1,7 +1,7 @@
 add_namespace = south
 
 country_event = {
-	id = south.1 #strike explanation
+	id = south.1 #strike explanation, already done
 	title = south.1.t
 	desc = south.1.d
 	#picture = 
@@ -26,47 +26,62 @@ country_event = {
 		ai_chance = {
 			factor = 100
 		}
-			if = {
-				limit = {is_ai = yes}
-				#80 % csa collapse 10% for other paths
-				random_list = {
-					8 = {
-						country_event = {
-    							id = south.3
-    							days = 7
-						}
-					}
-					1 = {
-
-					}
-					1 = {
-
+		if = {
+			limit = {is_ai = yes}
+			#80 % csa collapse 10% for other paths
+			random_list = {
+				8 = {
+					country_event = {
+    						id = south.3
+    						days = 7
 					}
 				}
-			}
-			else_if = {
-				limit = { check_variable = { var = sexy_x value = 50 compare = greater_than}
-				#theocratic path
-			}
-			else_if = {
-				limit = {
-					or = {
-						has_country_flag = { flag = black_strike value > 3}
-						has_country_flag = { flag = kkk_strike value > 3}
-					}
-				}
-				#collapse path
+				1 = {
 				country_event = {
-    					id = south.3
-    					days = 7
+   						id = south.42
+   						days = 7
+					}
+
+				}
+				1 = {
+					country_event = {
+    						id = south.55
+    						days = 12
+					}
 				}
 			}
-			Else = {
-				#kanye west's confederacy path
+		}
+		else_if = {
+			limit = { check_variable = { var = sexy_x value = 49 compare = greater_than}}
+			#theocratic path
+			country_event = {
+    				id = south.55
+    				days = 12
+			}
+		}
+		else_if = {
+			limit = {
+				or = {
+					has_country_flag = { flag = black_strike value > 3}
+					has_country_flag = { flag = kkk_strike value > 3}
+				}
+			}
+			#collapse path
+			country_event = {
+    				id = south.3
+    				days = 7
+			}
+		}
+		Else = {
+			#kanye west's confederacy path
+			country_event = {
+ 				id = south.42
+    				days = 7
 			}
 		}
 	}
 }
+
 
 country_event = {
 	id = south.3 #The death of west is anounced plus protest start
@@ -254,7 +269,7 @@ country_event = {
 			add_core_of = LGB
 		}
 		every_owned_state = {
-			limit = { OR = {state = 271}}
+			limit = { OR = {state = 271 state = 505}}
 			set_demilitarized_zone = yes
 			add_core_of = ZIO
 		}
@@ -273,15 +288,7 @@ country_event = {
 	is_triggered_only = yes
 	fire_only_once = yes
 	immediate = { hidden_effect = {
-		every_country = {
-			limit = {
-				is_puppet_of = CSA
-			}
-		}
-		set_autonomy = {
-    			target = PREV
-    			autonomy_state = autonomy_free
-		}
+
 
 		create_country_leader = {
 			name = "Brian Kemp"
@@ -411,6 +418,7 @@ news_event = {
 				sound_effect = 	"dixie_cw"
 			}
 		}
+		set_global_flag = Dixie_Collapse_Global
 	}
 }
 
@@ -1011,3 +1019,646 @@ country_event = {
 		remove_ideas = CSA_loans_payment	
 	}
 }
+
+##############################
+#Base tree events
+##############################
+
+country_event = {
+	id = south.32 #Describes the mess the confederacy is in
+	title = south.32.t
+	desc = south.32.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = { 
+		name = south.32.a 	
+	}
+}
+
+
+country_event = {
+	id = south.33 #Describes how enrique is kanye's right hand man and how Enrique wants to increase relations with the trumpist
+	title = south.33.t
+	desc = south.33.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = { 
+		name = south.33.a 	
+	}
+}
+
+country_event = {
+	id = south.34 #After segregating the army, the goverment now has to decide on which part of it gets a bigger budget.
+	title = south.34.t
+	desc = south.34.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = { #Black units should get the extra budget
+		name = south.34.a 
+		add_ideas = CSA_black_elite_units
+		modify_country_flag = {
+    			flag = kkk_strike
+    			value = 1
+		}
+		custom_effect_tooltip = CSA_angy_kkk	
+	}
+
+	option = { #White units should get the extra budget
+		name = south.34.b
+		add_ideas = CSA_white_focus_army
+		modify_country_flag = {
+    			flag = black_strike
+    			value = 1
+		}
+		custom_effect_tooltip = CSA_angy_bkl	
+	}
+}
+
+country_event = {
+	id = south.35 #The confederacy is trying to integrate parts of paramilitaries into the proper army, which ones should we integrate?
+	title = south.35.t
+	desc = south.35.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = { #Black paramilitaries
+		name = south.35.a 
+		swap_ideas = {
+    			remove_idea = CSA_black_panthers
+    			add_idea = CSA_black_panthers_weakend
+		}
+		modify_country_flag = {
+    			flag = kkk_strike
+    			value = 1
+		}
+		custom_effect_tooltip = CSA_angy_kkk	
+	}
+
+	option = { #White paramilitaries
+		name = south.35.b
+		swap_ideas = {
+		    remove_idea = CSA_the_klan
+		    add_idea = CSA_the_klan_weakend
+		}	
+		modify_country_flag = {
+    			flag = black_strike
+    			value = 1
+		}
+		custom_effect_tooltip = CSA_angy_bkl	
+	}
+}
+
+country_event = {
+	id = south.36 #Describes how both the white supremecist and black nationalist in goverment both agree on a few things like segregation.
+	title = south.36.t
+	desc = south.36.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = { 
+		name = south.36.a 	
+	}
+}
+
+country_event = {
+	id = south.37 #The confederacy is trying to integrate parts of paramilitaries into the proper army, which ones should we integrate?
+	title = south.37.t
+	desc = south.37.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = { #Black paramilitaries
+		name = south.37.a 
+		modify_country_flag = {
+    			flag = kkk_strike
+    			value = 1
+		}
+		custom_effect_tooltip = CSA_angy_kkk	
+	}
+
+	option = { #White paramilitaries
+		name = south.37.b	
+		modify_country_flag = {
+    			flag = black_strike
+    			value = 1
+		}
+		custom_effect_tooltip = CSA_angy_bkl	
+	}
+}
+
+country_event = {
+	id = south.38 #Kanye forms a commities between goverment personal and leaders of groups such as the klan and the phanters, to cordinate decision making.
+	title = south.38.t
+	desc = south.38.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = { 
+		name = south.38.a 	
+	}
+}
+
+country_event = {
+	id = south.39 #describes how the goverment starts suporting a cult of personality around general Lee of the first american civil war.
+	title = south.39.t
+	desc = south.39.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = { 
+		name = south.39.a 
+		country_event = {
+    			id = south.40
+    			days = 1
+		}	
+	}
+}
+
+country_event = {
+	id = south.40 #After stablishing the cult of personality around lee, the goverment now tries to implement modernise versions of his tactics into the army, even if they come to a detriment to the confederacy.
+	title = south.40.t
+	desc = south.40.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = { 
+		name = south.40.a 	
+	}
+}
+
+
+country_event = {
+	id = south.41 #While restablishing segregation, the state has to sedide weather to just restore 60's segregation, or if the state should modify it to favour black people
+	title = south.41.t
+	desc = south.41.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = { #Favour black people
+		name = south.41.a 
+		modify_country_flag = {
+    			flag = kkk_strike
+    			value = 1
+		}
+		custom_effect_tooltip = CSA_angy_kkk	
+	}
+
+	option = { #60s segregation
+		name = south.41.b	
+		modify_country_flag = {
+    			flag = black_strike
+    			value = 1
+		}
+		custom_effect_tooltip = CSA_angy_bkl	
+	}
+}
+
+############
+#Second tree
+###########
+country_event = {
+	id = south.42 #Kanye west survives the assesination without taking major damage
+	title = south.42.t
+	desc = south.42.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = { 
+		name = south.42.a 
+		load_focus_tree = csa_good
+		set_global_flag = no_crisis	
+	}
+}
+
+country_event = {
+	id = south.43 #An investigation over the assesination attemp starts
+	title = south.43.t
+	desc = south.43.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = { 
+		name = south.43.a 	
+	}
+}
+
+country_event = {
+	id = south.44 #The investigation starts to look over the phanters but at the moment they haven't found anything that proves they were behing the assesination attemp
+	title = south.44.t
+	desc = south.44.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = { 
+		name = south.44.a 	
+	}
+}
+
+country_event = {
+	id = south.45 #The investigation starts to look over the Klan but at the moment they haven't found anything that proves they were behing the assesination attemp
+	title = south.45.t
+	desc = south.45.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = { 
+		name = south.45.a 	
+	}
+}
+
+country_event = {
+	id = south.46 #Despite not finding teh culpret, the state recognises that this asesination attemp is their perfect oportunity to get rid of problematic figures. Many phanter and klan figure heads are sent to prision while others escape the csa, weakening masively both of the groups
+	title = south.46.t
+	desc = south.46.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = { 
+		name = south.46.a 
+		add_stability = 0.1
+		add_to_variable = {
+			var = sexy_x
+			value = 25
+		}
+		clamp_variable = {
+			var = sexy_x
+			min = -200
+			max = 50
+		}
+		custom_effect_tooltip = CSA_west_power_growth		
+	}
+}
+
+country_event = {
+	id = south.47 #The remaining goverment factions are discussing in what should be the future of the csa, west's faction want to reunite the rest of america, the kemp faction want to preserve an independent CSA, and Enrique's (proud boys) want to join forces with Trump
+	title = south.47.t
+	desc = south.47.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = { 
+		name = south.47.a #west path
+		mark_focus_tree_layout_dirty = yes	
+		custom_effect_tooltip =  new_tree
+	}
+	option = { 
+		name = south.47.b #kemp path
+		create_country_leader = {
+			name = "Brian Kemp"
+			picture = "gfx/leaders/CSA/kemp.dds"
+			expire = "2060.1.1"
+			ideology = military_dictatorship
+			traits = {
+				kemp_trait
+			}
+		}
+		mark_focus_tree_layout_dirty = yes
+		custom_effect_tooltip =  new_tree
+	}
+	option = { 
+		name = south.47.c #Enrique path
+		set_politics = {
+			ruling_party = republican
+        		elections_allowed = no
+		}
+		mark_focus_tree_layout_dirty = yes
+		custom_effect_tooltip =  new_tree
+	}
+}
+
+country_event = {
+	id = south.48 #Kanye gives an speech about how he wants to make a fairer america, where black and white people can work together
+	title = south.48.t
+	desc = south.48.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = { 
+		name = south.48.a 	
+	}
+}
+
+country_event = {
+	id = south.49 #Kanye describes how his cause is a deeply religius ones and that he "wants to save god and america"
+	title = south.49.t
+	desc = south.49.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = { 
+		name = south.49.a 	
+	}
+}
+
+country_event = {
+	id = south.50 #Kemp gives a speech about how southerners should "keep the southern dream" alive at any cost
+	title = south.50.t
+	desc = south.50.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = { 
+		name = south.50.a 	
+	}
+}
+
+country_event = {
+	id = south.51 #Enrique talks to his ministers about how important it is for the survival of the confederacy, to ally themselfs to Trump
+	title = south.51.t
+	desc = south.51.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = { 
+		name = south.51.a 
+		country_event = {
+    			id = south.52
+    			days = 3
+		}	
+	}
+}
+
+news_event = { #New event about trump and the csa ending hostilities
+	id = south.52
+	title = south.52.t
+	desc = south.52.d
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = south.52.a
+		
+	}
+}
+
+country_event = {
+	id = south.53 #Describes a deal that will let corporations in trumpist america work on the csa
+	title = south.53.t
+	desc = south.53.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = { 
+		name = south.53.a 
+	
+	}
+}
+
+country_event = {
+	id = south.54 #Do you want to stablish (puppet) states to administer the golden circle?
+	title = south.54.t
+	desc = south.54.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = { #no
+		name = south.54.a 
+		ai_chance = {
+			factor = 1
+		}
+	}
+
+	option = { #yes
+		name = south.54.b
+		ai_chance = {
+			factor = 0
+		}
+		WMX = {
+			transfer_state = 311
+			transfer_state = 15
+			transfer_state = 22
+			transfer_state = 38
+			transfer_state = 137
+			transfer_state = 338
+			transfer_state = 334
+			transfer_state = 341
+			transfer_state = 93
+			transfer_state = 92
+			transfer_state = 481
+			set_cosmetic_tag = BAH_golden_puppet
+		}
+		set_autonomy = {
+			target = WMX
+    			autonomy_state = autonomy_integrated_puppet
+		}
+		355 = {remove_core_of = MEX}
+		318 = {remove_core_of = MEX}
+		release = MEX
+		set_autonomy = {
+			target = MEX
+    			autonomy_state = autonomy_integrated_puppet
+		}
+		MEX = { set_cosmetic_tag = MEX_golden_puppet}
+		HON = {
+			add_state_core = 367
+			add_state_core = 373
+			add_state_core = 464
+			add_state_core = 462
+			add_state_core = 457
+		}
+		release = HON
+		set_autonomy = {
+			target = HON
+    			autonomy_state = autonomy_integrated_puppet
+		}
+		HON = { set_cosmetic_tag = HON_golden_puppet}
+		VEN = {
+			add_state_core = 336
+			add_state_core = 463
+			add_state_core = 445
+			add_state_core = 458
+		}
+		release = VEN
+		set_autonomy = {
+			target = VEN
+    			autonomy_state = autonomy_integrated_puppet
+		}
+		VEN = { set_cosmetic_tag = COL_golden_puppet}
+		BAH = {
+			add_state_core = 498
+			add_state_core = 499
+			add_state_core = 405
+			add_state_core = 401
+			add_state_core = 408
+		}
+		release = BAH
+		set_autonomy = {
+			target = BAH
+    			autonomy_state = autonomy_integrated_puppet
+		}
+		BAH = { set_cosmetic_tag = WMX_golden}
+	}
+}
+
+############
+#Third tree#
+############
+
+country_event = {
+	id = south.55 #West gets badly injure after the assesination attemp, and is currently in the hospital
+	title = south.55.t
+	desc = south.55.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = { 
+		set_global_flag = no_crisis
+		name = south.55.a 
+		add_political_power = -50
+		add_stability = -0.1
+		country_event = {
+    			id = south.56
+    			days = 7
+		}
+	}
+}
+country_event = {
+	id = south.56 #West has a vision were Jesus calls his name and tells him, that he will survive if he becomes a servant of god
+	title = south.56.t
+	desc = south.56.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = { 
+		name = south.56.a 
+		country_event = {
+    			id = south.57
+    			days = 7
+		}
+		create_country_leader = {
+			name = "The Mysterious Mr. West"
+			picture = "gfx/leaders/CSA/west.dds"
+			expire = "2060.1.1"
+			ideology = fundamentalism
+			traits = {
+				#
+			}
+		}
+	}
+}
+
+country_event = {
+	id = south.57 #West recovers, but will new more radical ideas
+	title = south.57.t
+	desc = south.57.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = { 
+		name = south.57.a 
+		set_cosmetic_tag = CSA_christian
+		load_focus_tree = csa_jesus
+	}
+}
+
+country_event = {
+	id = south.58 #Military revolt (currently beta)
+	title = south.58.t
+	desc = south.58.d
+
+	is_triggered_only = yes
+
+	immediate = { 
+		set_variable = {mil_loyal = 0.25}
+		hidden_effect = {
+			random_owned_controlled_state = {
+				limit = {NOT = {is_core_of = CSB}}
+				add_core_of = CSB
+			}
+			release = CSB
+			transfer_units_fraction= {
+				target = CSB
+				size = 0.4
+				stockpile_ratio = 0.3
+				army_ratio = 0.3
+				navy_ratio = 0
+				air_ratio = 0
+				#keep_unit_leaders_trigger = {
+				#	has_trait = trait_SPA_nationalist_sympathies
+				#}
+			}
+			every_state = {
+				limit = {owner = CSB}
+				teleport_armies = {
+    					limit = {
+        					always = yes
+    					}
+				}
+				add_core_of = CSA
+			}
+			CSB = {
+				set_politics = {
+					ruling_party = autocratic
+				}
+			}
+		}
+	}
+
+	option = { 
+		name = south.58.a
+		declare_war_on = {
+			target = CSB
+	 		type = civil_war
+		}
+		add_civil_war_target = CSB
+	}
+}
+
+#declare_war_on = {
+	#target = SPD
+	# type = civil_war
+#}
+#add_civil_war_target = SPD

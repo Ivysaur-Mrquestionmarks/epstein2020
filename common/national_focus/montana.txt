@@ -203,14 +203,6 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_ANNEXATION }
 		completion_reward = {
 			66 = {
-				limit = {
-					free_building_slots = {
-						building = industrial_complex
-						size > 1
-						include_locked = yes
-					}
-					is_core_of = ROOT
-				}
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
 					type = industrial_complex
@@ -260,14 +252,6 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_ANNEXATION }
 		completion_reward = {
 			67 = {
-				limit = {
-					free_building_slots = {
-						building = industrial_complex
-						size > 1
-						include_locked = yes
-					}
-					is_core_of = ROOT
-				}
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
 					type = industrial_complex
@@ -346,14 +330,6 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_ANNEXATION }
 		completion_reward = {
 			86 = {
-				limit = {
-					free_building_slots = {
-						building = synthetic_refinery
-						size > 3
-						include_locked = yes
-					}
-					is_core_of = ROOT
-				}
 				add_extra_state_shared_building_slots = 3
 				add_building_construction = {
 					type = synthetic_refinery
@@ -362,14 +338,6 @@ focus_tree = {
 				}
 			}
             99 = {
-				limit = {
-					free_building_slots = {
-						building = fuel_silo
-						size > 2
-						include_locked = yes
-					}
-					is_core_of = ROOT
-				}
 				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 					type = fuel_silo
@@ -893,7 +861,24 @@ focus_tree = {
 		available_if_capitulated = yes
 		search_filters = { FOCUS_FILTER_ANNEXATION }
 		completion_reward = {
-		USA = { puppet = MON }
+			USA = {
+				if = {
+					limit = {
+						OR = {
+							has_dlc = "Together for Victory"
+							has_dlc = "Man the Guns"
+						}
+					}
+					set_autonomy = {
+						target = MON
+						autonomous_state = autonomy_colony
+						freedom_level = 0.1
+					}
+					else = {
+						puppet = MON
+					}
+				}
+			}
 		}
 	}
 	focus = {
@@ -1010,8 +995,8 @@ focus_tree = {
 		army_experience = 20
 		add_ideas = MON_Operation_Shining_Eagle
 		create_wargoal = {
-        type = all
-        target = PRA
+        	type = annex_everything
+        	target = PRA
         }
 		}
 			
@@ -1089,12 +1074,45 @@ focus_tree = {
 				PRA = {
 					has_completed_focus = Amazing_Grace
 				}
-				PRA = { puppet = MON }
-
+			}
+			PRA = {
+				if = {
+					limit = {
+						OR = {
+							has_dlc = "Together for Victory"
+							has_dlc = "Man the Guns"
+						}
+					}
+					set_autonomy = {
+						target = PRA
+						autonomous_state = autonomy_colony
+						freedom_level = 0.1
+					}
+					else = {
+						puppet = PRA
+					}
+				}
 			}
 		}
 		else = {
-			FRA = { puppet = MON }
+			FRA = {
+				if = {
+					limit = {
+						OR = {
+							has_dlc = "Together for Victory"
+							has_dlc = "Man the Guns"
+						}
+					}
+					set_autonomy = {
+						target = MON
+						autonomous_state = autonomy_colony
+						freedom_level = 0.1
+					}
+					else = {
+						puppet = MON
+					}
+				}
+			}
 		}
 		hidden_effect = {
 		set_cosmetic_tag = MON_democrat_puppet

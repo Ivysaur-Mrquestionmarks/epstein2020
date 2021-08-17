@@ -35,6 +35,7 @@ country_event = {
 	option = {
 		name = tribal.2.a
 		add_ideas = HOP_ss_divisions
+		hidden_effect = { create_faction = faction_black_swastika }
 		create_field_marshal = {
 			name = "James Mason"
 			portrait_path="gfx/leaders/CAS/siege.dds" 
@@ -204,12 +205,28 @@ country_event = {
 		hidden_effect = {
 			drop_cosmetic_tag = yes
 			remove_unit_leader = 1488
-			every_unit_leader = {
-        			limit = {
-    					has_id = 1489
-        		    }
-        		    promote_leader = yes
-        		}
+			if = {
+				limit = {
+					has_completed_focus = HOP_The_Loyalist
+				}
+				every_unit_leader = {
+        				limit = {
+    						has_id = 1489
+        			    }
+        			    promote_leader = yes
+        			}
+			}
+			if = {
+				limit = {
+					has_completed_focus = HOP_The_Jester
+				}
+				every_unit_leader = {
+        				limit = {
+    						has_id = 1491
+        			    }
+        			    promote_leader = yes
+        			}
+			}
 		}
 	} 
 	option = {
@@ -295,5 +312,487 @@ country_event = {
 				}
 			}
 		}
+	}
+}
+#Sol Invictus' collapse. - I WILL REWORK THIS TO BE MORE IN DEPTH AND MORE DEPENDANT ON SPECIFIC CONDITIONS FOR SPECIFIC TAGS LATER, FOR NOW THIS WILL DO
+country_event = {
+	id = tribal.5
+	title = tribal.5.t
+	desc = tribal.5.d
+	#picture =
+	is_triggered_only = yes
+	#fire only once is not active on purpose!
+	option = {
+		name = tribal.5.a
+		OVERLORD = {
+			set_autonomy = {
+			    target = ROOT
+			    autonomy_state = autonomy_free
+			}
+		}
+		start_civil_war = {
+		    ideology = authoritarian_left
+		    size = 0.5
+		}
+		HOP = {
+			set_country_flag = Roman_Collapse
+		}
+	}
+}
+#Sol Invictus nukes Yellowstone
+news_event = {
+	id = tribal.6
+	title = tribal.6.t
+	desc = tribal.6.d
+	picture = event_news_sol_invictus_end
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = tribal.6.a
+		add_stability = -1.0
+		add_war_support = -1.0
+		add_political_power = -1000
+		add_manpower = -600000000
+		if = {
+			limit = {NOT = {is_ai = yes}}
+			set_country_flag = {
+    				flag = super_event
+    				value = 7
+			}
+			if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
+				sound_effect = 	"Yellowstone_cw"
+			}
+		}
+	}
+}
+#Victory, through indomitable conquest
+country_event = {
+	id = tribal.7
+	title = tribal.7.t
+	desc = tribal.7.d
+	#picture =
+	trigger = {
+		original_tag = HOP
+		has_country_flag = winner_of_the_2ACW
+		has_country_leader = { name = "Augustus Sol Invictus" ruling_only = yes }
+		has_completed_focus = HOP_Reunite_Amerika
+	}
+	fire_only_once = yes
+	option = {
+		name = tribal.7.a
+		load_focus_tree = atomwaffen_legion
+	}
+}
+#flavour event for finding the nuke
+country_event = {
+	id = tribal.8
+	title = tribal.8.t
+	desc = tribal.8.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = tribal.8.a
+		custom_effect_tooltip = invictus_now_has_a_nuke
+	}
+}
+#Crusade Complete
+country_event = {
+	id = tribal.9
+	title = tribal.9.t
+	desc = tribal.9.d
+	#picture =
+	trigger = {
+		original_tag = HOP
+		has_country_flag = winner_of_the_2ACW
+		has_country_leader = { name = "Paul Miller" ruling_only = yes }
+		has_completed_focus = HOP_Reunite_Amerika
+	}
+	fire_only_once = yes
+	option = {
+		name = tribal.9.a
+		load_focus_tree = atomwaffen_miller
+		add_ideas = {
+			HOP_low_legitimacy
+			HOP_inept_political_system
+			HOP_aryanisation_program
+			HOP_mexican_war
+			HOP_stagnant_economy
+		}
+	}
+}
+#Good Morning, President Miller
+country_event = {
+	id = tribal.10
+	title = tribal.10.t
+	desc = tribal.10.d
+	picture = event_fascists_01
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = tribal.10.a
+	}
+}
+#Good Afternoon, President Miller
+country_event = {
+	id = tribal.11
+	title = tribal.11.t
+	desc = tribal.11.d
+	picture = event_fascists_01
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = tribal.11.a
+		annex_country = {
+   			target = KKK
+    		transfer_troops = yes
+		}
+	}
+}
+#The Janquees are pulling out!
+country_event = {
+	id = tribal.12
+	title = tribal.12.t
+	desc = tribal.12.d
+	picture = event_fascists_01
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = tribal.12.a
+		OVERLORD = {
+			set_autonomy = {
+			    target = ROOT
+			    autonomy_state = autonomy_free
+			}
+		}
+		start_civil_war = {
+		    ideology = authoritarian_left
+		    size = 0.4
+		}
+		start_civil_war = {
+		    ideology = democrat
+		    size = 0.2
+		}
+		start_civil_war = {
+		    ideology = republican
+		    size = 0.1
+		}
+		hidden_effect = { #civil war factions declare war on each other. Mexican Battle Royale!
+			random_other_country = {
+				limit = {
+					original_tag = RKM
+					has_government = democrat
+				}		
+			}
+			random_other_country = {
+				limit = {
+					original_tag = RKM
+					has_government = authoritarian_left
+				}	
+				declare_war_on = { target = PREV type = annex_everything }	
+			}
+			random_other_country = {
+				limit = {
+					original_tag = RKM
+					has_government = republican
+				}	
+				declare_war_on = { target = PREV type = annex_everything }	
+				declare_war_on = { target = PREV.PREV type = annex_everything }	
+			}
+		}
+	}
+}
+#investigation into a missing nuke
+country_event = {
+	id = tribal.13
+	title = tribal.13.t
+	desc = tribal.13.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = tribal.13.a
+	}
+}
+#we foudn the nuke
+country_event = {
+	id = tribal.14
+	title = tribal.14.t
+	desc = tribal.14.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = tribal.14.a
+	}
+}
+#"The Big Red Button"
+country_event = {
+	id = tribal.15
+	title = tribal.15.t
+	desc = tribal.15.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = tribal.15.a
+	}
+}
+#He Did It...
+news_event = {
+	id = tribal.16
+	title = tribal.16.t
+	desc = tribal.16.d
+	picture = event_news_joker_end
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = tribal.16.a
+		add_stability = -1.0
+		add_war_support = -1.0
+		add_political_power = -1000
+		add_manpower = -600000000
+		if = {
+			limit = {NOT = {is_ai = yes}}
+			set_country_flag = {
+    				flag = super_event
+    				value = 7
+			}
+			if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
+				sound_effect = 	"Yellowstone_cw"
+			}
+		}
+	}
+}
+country_event = {
+	id = tribal.17
+	title = tribal.17.t
+	desc = tribal.17.d
+	#picture = event_news_joker_end
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = tribal.17.a
+		ai_chance = {
+			factor = 99
+		}
+		HOP = {
+			set_autonomy = {
+   				target = KKK
+    			autonomy_state = autonomy_satellite
+			}
+			hidden_effect = {
+				create_wargoal = {
+					target = AFR
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = ZIO
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = APA
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = CSA
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = LGB
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = CSB
+					type = annex_everything
+				}
+			}
+		}
+		KKK = {
+			load_focus_tree = Atomwaffen_KKK_Klientstate
+			set_cosmetic_tag = KKK_Atomwaffen_Puppet
+			retire_country_leader = yes
+			create_country_leader = {
+				name = "Ray Larsen"
+				picture = "gfx/leaders/KKK/Ray_Larsen.tga"
+				expire = "2060.1.1"
+				ideology = theocracy
+				traits = {
+					Puppet_Emperor_of_the_Klan
+				}
+			}
+		}
+	}
+	option = {
+		name = tribal.17.b
+		ai_chance = {
+			factor = 1
+		}
+		HOP = {
+			create_wargoal = {
+				target = KKK
+				type = annex_everything
+			}
+			hidden_effect = {
+				create_wargoal = {
+					target = AFR
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = ZIO
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = APA
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = CSA
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = LGB
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = CSB
+					type = annex_everything
+				}
+			}
+		}
+		
+	}
+}
+country_event = {
+	id = tribal.18
+	title = tribal.18.t
+	desc = tribal.18.d
+	#picture = event_news_joker_end
+	fire_only_once = yes
+	trigger = {
+		NOT = {
+			country_exists = KKK
+			country_exists = AFR
+			country_exists = ZIO
+			country_exists = APA
+			country_exists = CSA
+			country_exists = LGB
+			country_exists = CSB
+		}
+		HOP = {
+			owns_state = 317
+			owns_state = 407
+			owns_state = 388
+			owns_state = 307
+			owns_state = 287
+			owns_state = 279
+			owns_state = 269
+			owns_state = 267
+		}
+	}
+	option = {
+		name = tribal.18.a
+		every_state = {
+			LIMIT = {
+				IF = {
+					is_owned_by = HOP
+					OR = {
+						is_core_of = KKK
+						is_core_of = CSB
+						is_core_of = CSA
+						is_core_of = LGB
+						is_core_of = ZIO
+						is_core_of = APA
+					}
+				}
+			}
+			add_core_of = KKK
+		}
+		release = KKK
+		remove_ideas = HOP_Klan_Support
+		every_unit_leader = {
+	        limit = {
+				OR = {
+        			has_id = 651224
+					has_id = 651225
+					has_id = 651226
+					has_id = 651227
+					has_id = 651228
+					has_id = 651229
+					has_id = 651231
+					has_id = 651232
+					has_id = 651233
+					has_id = 651234
+				}
+         	}
+        	set_nationality = KKK
+        }
+       	KKK = {
+       		load_focus_tree = Atomwaffen_KKK_Klientstate
+			set_cosmetic_tag = KKK_Atomwaffen_Puppet
+			retire_country_leader = yes
+			create_country_leader = {
+				name = "Ray Larsen"
+				picture = "gfx/leaders/KKK/Ray_Larsen.tga"
+				expire = "2060.1.1"
+				ideology = theocracy
+				traits = {
+					Puppet_Emperor_of_the_Klan
+				}
+			}
+       	}
+	}
+}
+country_event = {
+	id = tribal.19
+	title = tribal.19.t
+	desc = tribal.19.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = tribal.19.a
+		KKK = {
+			declare_war_on = {
+    			target = HOP
+    			type = annex_everything
+			}
+		}
+	}
+}
+#Radio Silence in the South!
+country_event = {
+	id = tribal.20
+	title = tribal.20.t
+	desc = tribal.20.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = tribal.20.a
+	}
+}
+news_event = {
+	id = tribal.21
+	title = tribal.21.t
+	desc = tribal.21.d
+	picture = event_news_sol_invictus_end
+	trigger = {
+		HOP = {
+			has_country_flag = Roman_Collapse
+		}
+		NOT = {
+			has_global_flag = tribal_21_flag
+		}
+	}
+	immediate = {
+		hidden_effect = {
+			set_global_flag = tribal_21_flag
+		}
+	}
+	major = yes
+	option = {
+		name = tribal.21.a
+
 	}
 }

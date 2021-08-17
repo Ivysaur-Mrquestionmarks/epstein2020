@@ -9,7 +9,7 @@ country_event = {
 	id = vancouver.0
 	title = vancouver.0.t
 	desc = vancouver.0.d
-	#picture = 
+	picture = event_Canadian_Army
 	is_triggered_only = yes
 	fire_only_once = yes
 	
@@ -29,7 +29,7 @@ country_event = {
 	id = vancouver.1
 	title = vancouver.1.t
 	desc = vancouver.1.d
-	picture = GFX_event_last_election
+	picture = event_singh
 	is_triggered_only = yes
 	fire_only_once = yes
 	
@@ -40,41 +40,58 @@ country_event = {
 	option = { # Stand united with western canada
 		name = vancouver.1.a
 		ai_chance = { factor = 75 }
-		add_political_power = -25
-		reverse_add_opinion_modifier = { target = BRC modifier = medium_increase }
-		reverse_add_opinion_modifier = { target = ANT modifier = medium_increase }
-		reverse_add_opinion_modifier = { target = ALT modifier = medium_increase }
+		VAN = {
+			white_peace = {
+				tag = BRC
+				message = vancouver.1.t
+			}
+		}
+		ALT = {
+			white_peace = {
+				tag = ANT
+				message = vancouver.1.t
+			}
+		}
 		set_country_flag = vancouver_1_a
 	}
 	option = { # No concessions communist path
 		name = vancouver.1.b
 		ai_chance = { factor = 25 }
-		reverse_add_opinion_modifier = { target = BRC modifier = medium_decrease }
-		reverse_add_opinion_modifier = { target = ANT modifier = medium_decrease }
-		reverse_add_opinion_modifier = { target = ALT modifier = medium_decrease }
 		set_country_flag = vancouver_1_b
-		
+		VAN = {
+				declare_war_on = {
+			  		target = BRC
+ 			    	type = annex_everything
+				}
+				declare_war_on = {
+			  		target = ANT
+ 			    	type = annex_everything
+				}
+				declare_war_on = {
+			  		target = ALT
+ 			    	type = annex_everything
+				}
+			}
+		set_country_flag = vancouver_1_b
 	}
 }
 
-# The split
+# Command the MARPAC
 country_event = {
 	id = vancouver.2
 	title = vancouver.2.t
 	desc = vancouver.2.d
-	picture = GFX_event_last_election
+	picture = event_MARPAC_ship
 	is_triggered_only = yes
 	fire_only_once = yes
 	
 	trigger = { 
-		is_triggered_only = VAN_the_vancouver_PRA_split
+		is_triggered_only = VAN_command_the_MARPAC
 	}		
 	
-	option = { # Stand united with western canada
+	option = { 
 		name = vancouver.2.a
-		ai_chance = { factor = 100 }
-		reverse_add_opinion_modifier = { target = PRA modifier = huge_decrease }
-		add_opinion_modifier = { target = PRA modifier = huge_decrease }
+		load_oob = "VAN_navy"
 	}
 }
 
@@ -83,18 +100,46 @@ country_event = {
 	id = vancouver.3
 	title = vancouver.3.t
 	desc = vancouver.3.d
-	picture = GFX_event_last_election
+	picture = event_canadian_police
 	is_triggered_only = yes
 	fire_only_once = yes
 	
-	trigger = { 
-		is_triggered_only = VAN_the_vancouver_terror
-	}		
+	#trigger = { #this trigger makes literally no sense
+	#	is_triggered_only = VAN_the_vancouver_terror
+	#}		
 	
 	option = { 
 		name = vancouver.3.a
 		ai_chance = { factor = 100 }
+        add_manpower = -10000
 		add_ideas = vancouver_terror
+		set_politics = {
+			ruling_party = authoritarian_left
+			elections_allowed = no
+		}
+		set_cosmetic_tag = VAN_stalinism
+		set_global_flag = VAN_terror
+		news_event = { id = vancouver.10 days = 1 }
+	}
+}
+
+#vancouver terror news event
+country_event = {
+	id = vancouver.10
+    title = vancouver.10.t # The localisable text that appears as a header
+    desc = vancouver.10.d # The localisable main text body that appears
+	picture = event_canadian_police # Image displayed alongside the text.
+	is_triggered_only = yes # Optional : if set to "yes" the event will only occur by command
+	hidden = if = { 
+	limit = has_global_flag = VAN_terror
+	}
+	hidden = yes 
+	else = { hidden = no }
+	}
+	fire_only_once = yes # Optional : if set to "yes" the event will never occur more than once
+	
+	option = { 
+		name = vancouver.10.a 
 	}
 }
 
@@ -157,5 +202,107 @@ country_event = {
 		name = vancouver.5.c
 		ai_chance = { factor = 100 }
 		set_cosmetic_tag = VAN_Ursalia
+	}
+}
+#Vancouver Ultimatum
+country_event = {
+	id = vancouver.6
+	title = vancouver.6.t
+	desc = vancouver.6.d
+	picture = event_artillery
+	is_triggered_only = yes
+	fire_only_once = no
+	
+	trigger = { 
+		is_triggered_only = VAN_vancouver_ultimatum
+	}		
+	
+	option = { 
+		name = vancouver.6.a
+		ai_chance = {
+		if = { limit = { ROOT = { libertarian_left > 0.50 } { factor = 100 } }
+		else = { factor = 30 }
+		}
+		VAN = { country_event = vancouver.7 }
+	}
+	option = { 
+		name = vancouver.6.b
+		ai_chance = {
+		if = { limit = { ROOT = { libertarian_left > 0.21 } { factor = 100 } }
+		else = { factor = 30 }
+		}
+		VAN = { country_event = vancouver.8 }
+	}
+	option = { 
+		name = vancouver.6.c
+		ai_chance = {
+		if = { limit = { ROOT = { libertarian_left < 0.21 } { factor = 100 } }
+		else = { factor = 30 }
+		}
+		VAN = { country_event = vancouver.9 }
+	}
+}
+
+country_event = {
+	id = vancouver.7
+	title = vancouver.7.t
+	desc = vancouver.7.d
+	picture = GFX_event_last_election
+	is_triggered_only = yes
+	fire_only_once = no
+	mean_time_to_happen = 3
+	
+	trigger = { 
+		is_triggered_only = country_event = { id = vancouver.4 days = 0 }
+	}		
+	
+	option = { 
+		name = vancouver.7.a
+		ai_chance = { factor = 100 }
+		annex_country = {
+			target = FROM
+			transfer_troops = yes
+		}
+	}
+}
+
+country_event = {
+	id = vancouver.8
+	title = vancouver.8.t
+	desc = vancouver.8.d
+	picture = GFX_event_last_election
+	is_triggered_only = yes
+	fire_only_once = no
+	mean_time_to_happen = 3
+	trigger = { 
+		is_triggered_only = country_event = { id = vancouver.4 days = 0 }
+	}		
+	
+	option = { 
+		name = vancouver.8.a
+		ai_chance = { factor = 100 }
+		puppet = FROM
+	}
+}
+
+country_event = {
+	id = vancouver.9
+	title = vancouver.9.t
+	desc = vancouver.9.d
+	picture = GFX_event_last_election
+	is_triggered_only = yes
+	fire_only_once = no
+	mean_time_to_happen = 3
+	trigger = { 
+		is_triggered_only = country_event = { id = vancouver.4 days = 0 }
+	}		
+	
+	option = { 
+		name = vancouver.9.a
+		ai_chance = { factor = 100 }
+		declare_war_on = {
+			target = FROM
+			type = annex_everything
+		}
 	}
 }

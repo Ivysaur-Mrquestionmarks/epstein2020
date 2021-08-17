@@ -1053,6 +1053,9 @@ country_event = {
 			factor = 1
 		}
 		ALA = { change_tag_from = ROOT }
+		PAC = {
+			set_country_flag = HAW_Pacific_Collapse
+		}
 	}
 
 	option = { 
@@ -1060,6 +1063,92 @@ country_event = {
 		ai_chance = {
 			factor = 1
 		}
- 
+ 		set_country_flag = HAW_Pacific_Collapse
+	}
+}
+country_event = {
+	id = fleet_P.55 #The Enclave
+	title = fleet_P.55.t
+	desc = fleet_P.55.d
+	picture = event_Enclave_Event
+	trigger = {
+		NOT = {
+			country_exists = FRA
+			PRA = {
+				has_completed_focus = Tow_the_line
+			}
+		}
+		has_government = Democrat
+		has_country_flag = HAW_Pacific_Collapse
+	}
+	fire_only_once = yes
+	option = { 
+		name = fleet_P.55.a #become the Enclave
+		ai_chance = {
+			factor = 99
+		}
+		set_cosmetic_tag = Federalist_Enclave
+		create_country_leader = {
+			name = "Robert B. Abrams"
+			picture = "gfx/leaders/FRA/abrams.dds"
+			expire = "2060.1.1"
+			ideology = establishment
+			traits = {
+					emergency_powers
+					Not_sworn_in
+					anti_communist
+			}
+		}
+		remove_ideas = {
+			PAC_heavy_army_expending
+			PAC_sabotage
+			PAC_crush_em_reds
+			PAC_sky_supplies
+			PAC_to_defend_america
+			PAC_american_naval_staff
+		}
+		FRA = {
+			every_unit_leader = {
+        		limit = {
+					OR = {
+            			has_id = 50301
+						has_id = 50302
+						has_id = 50303
+						has_id = 50305
+						has_id = 50306
+					}
+           		}
+            	set_nationality = ROOT
+        	}
+			every_unit_leader = {
+				limit = {
+					has_id = 50304
+				}
+				promote_leader = yes
+				set_nationality = ROOT
+			}
+			transfer_navy = {
+    			target = PAC
+			}
+		}
+		add_research_slot = 2
+		add_manpower = 100000
+		add_equipment_to_stockpile = {
+		    type = infantry_equipment
+		    amount = 30500
+		    producer = FRA
+		}
+		inherit_technology = FRA
+		add_ideas = Lack_of_Military_Housing
+		load_focus_tree = Enclave
+	}
+
+	option = { 
+		name = fleet_P.55.b #Refuse their offer
+		ai_chance = {
+			factor = 1
+		}
+		add_stability = 0.03
+ 	
 	}
 }

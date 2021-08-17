@@ -8,7 +8,7 @@ country_event = {
 	trigger = {
 		tag = FRA
 		VIR = {
-			has_completed_focus = Replace_Northam
+			has_completed_focus = VIR_Replace_Northam
 		}
 	}
 	mean_time_to_happen = { days = 7 }
@@ -51,5 +51,424 @@ country_event = {
 	fire_only_once = yes
 	option = {
 		name = virginia.1.a
+		add_ideas = VIR_Crackfederacy_hidden
+	}
+}
+country_event = {
+	id = virginia.3
+	title = virginia.3.t 
+	desc = virginia.3.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = virginia.3.a
+		remove_ideas = VIR_Virginias_Bloody_Soil
+		add_ideas = VIR_Rebellion
+		load_focus_tree = Virginia_Democrats
+		RVR = {
+			load_focus_tree = Virginia_Republicans
+			transfer_state = 380
+			transfer_state = 477
+			transfer_state = 169
+			add_country_leader_trait = cornered_fox
+			every_state = {
+				LIMIT = {
+					IF = {
+						is_core_of = VIR
+					}
+				}
+				add_core_of = RVR
+			}
+			add_ideas = RVR_Rebellion
+			declare_war_on = {
+			    target = VIR
+			    type = annex_everything
+			}
+		}
+		hidden_effect = {
+			transfer_units_fraction= {
+    			target = RVR
+    			size = 0.3
+    			stockpile_ratio = 0.4
+    			army_ratio = 0.4
+    			navy_ratio = 0.0
+		 	    air_ratio = 0.3
+			}
+			FRA = {
+				set_autonomy = {
+				    target = VIR
+				    autonomy_state = autonomy_free
+				}
+				set_autonomy = {
+				    target = RVR
+				    autonomy_state = autonomy_free
+				}
+				set_autonomy = {
+				    target = MGV
+				    autonomy_state = autonomy_free
+				}
+				remove_from_faction = VIR
+				remove_from_faction = RVR
+				remove_from_faction = MGV
+				white_peace = RVR
+			}
+		}
+		MGV = {
+			transfer_state = 265
+		}
+	}
+}
+country_event = {
+	id = virginia.4
+	title = virginia.4.t 
+	desc = virginia.4.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = virginia.4.a
+		remove_ideas = VIR_Virginias_Bloody_Soil
+		add_ideas = VIR_Rebellion_bad
+		RVR = { change_tag_from = VIR }
+		RVR = {
+			load_focus_tree = Virginia_Republicans
+			add_country_leader_trait = RVR_Great_Uniter
+			set_stability = 0.75
+			set_war_support = 0.75
+			transfer_state = 380
+			transfer_state = 477
+			transfer_state = 332
+			transfer_state = 265
+			transfer_state = 371
+			every_state = {
+				LIMIT = {
+					IF = {
+						is_core_of = VIR
+					}
+				}
+				add_core_of = RVR
+			}
+			declare_war_on = {
+			    target = VIR
+			    type = annex_everything
+			}
+			set_country_flag = VIR_Republicans_Successful
+			add_ideas = RVR_Rebellion_Perfect
+			add_equipment_to_stockpile = {
+			    type = infantry_equipment
+			    amount = 5000
+			    producer = VIR
+			}
+			division_template = {
+				name = "True Virginian National Guard"
+				is_locked = no
+				priority = 1
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+					infantry = { x = 1 y = 2 }
+				}
+				support = {
+					artillery = { x = 0 y = 0 }
+					engineer = { x = 0 y = 1 }
+					military_police = { x = 0 y = 2 }
+				}
+			}
+			random_owned_controlled_state = {
+				limit = { ROOT = { has_full_control_of_state = PREV } }
+				create_unit = {
+					division = "name = \"1st True Virginian National Guard\" division_template = \"True Virginian National Guard\" start_experience_factor = 0.6" 
+					owner = RVR
+				}
+				create_unit = {
+					division = "name = \"2nd True Virginian National Guard\" division_template = \"True Virginian National Guard\" start_experience_factor = 0.6" 
+					owner = RVR
+				}
+				create_unit = {
+					division = "name = \"3rd True Virginian National Guard\" division_template = \"True Virginian National Guard\" start_experience_factor = 0.6" 
+					owner = RVR
+				}
+				create_unit = {
+					division = "name = \"4th True Virginian National Guard\" division_template = \"True Virginian National Guard\" start_experience_factor = 0.6" 
+					owner = RVR
+				}
+			}
+		}
+		VIR = {
+			load_focus_tree = Virginia_Democrats
+		}
+		hidden_effect = {
+			transfer_units_fraction= {
+    			target = RVR
+    			size = 0.6
+    			stockpile_ratio = 0.9
+    			army_ratio = 0.6
+    			navy_ratio = 1.0
+		 	    air_ratio = 0.6
+			}
+			FRA = {
+				set_autonomy = {
+				    target = VIR
+				    autonomy_state = autonomy_free
+				}
+				set_autonomy = {
+				    target = RVR
+				    autonomy_state = autonomy_free
+				}
+				remove_from_faction = VIR
+				remove_from_faction = RVR
+				white_peace = RVR
+			}
+		}
+	}
+}
+country_event = {
+	id = virginia.5
+	title = virginia.5.t
+	desc = virginia.5.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = virginia.5.a
+		set_cosmetic_tag = RVR_Washington_Monarchy
+		set_party_name = { ideology = autocratic long_name = RVR_Washington_Long name = RVR_Washington }
+		set_politics = {
+			ruling_party = autocratic
+		}
+		create_country_leader = {
+			name = "Lawrence W. Shaffner"
+			picture = "gfx/leaders/VIR/Lawrence_Washington_Shaffner.tga"
+			expire = "2060.1.1"
+			ideology = despotism
+			traits = {
+				Washington_Line
+			}
+		}
+		set_province_name = {
+		    id = 9291
+		    name = "Mount Vernon"
+		}
+		add_victory_points = {
+			province = 9291
+			value = 20
+		}
+		set_capital = 188
+	}
+	option = {
+		name = virginia.5.b
+		set_cosmetic_tag = RVR_Lee_Monarchy_COS
+		set_party_name = { ideology = autocratic long_name = RVR_Washington_Lee_Party_Long name = RVR_Washington_Lee_Party }
+		set_politics = {
+			ruling_party = autocratic
+		}
+		create_country_leader = {
+			name = "Robert E. Lee V"
+			picture = "gfx/leaders/VIR/Robert_E_Lee_V.tga"
+			expire = "2060.1.1"
+			ideology = despotism
+			traits = {
+				Washington_Lee_Line
+			}
+		}
+		set_province_name = {
+		    id = 9404
+		    name = "Stratford"
+		}
+		add_victory_points = {
+			province = 9404
+			value = 30
+		}
+		set_capital = 188
+	}
+	option = {
+		name = virginia.5.c
+		set_cosmetic_tag = RVR_Dominion_of_Virginia
+		set_party_name = { ideology = autocratic long_name = RVR_Dunmore_long name = RVR_Dunmore }
+		set_politics = {
+			ruling_party = autocratic
+		}
+		create_country_leader = {
+			name = "Malcolm Murray"
+			picture = "gfx/leaders/VIR/Malcolm_Murray.tga"
+			expire = "2060.1.1"
+			ideology = despotism
+			traits = {
+				Twelfth_Earl_of_Dunmore
+			}
+		}
+		set_province_name = {
+		    id = 4600
+		    name = "Williamsburg"
+		}
+		add_victory_points = {
+			province = 4600
+			value = 30
+		}
+		set_capital = 188
+	}
+}
+country_event = {
+	id = virginia.6
+	title = virginia.6.t #THIS IS INTENTIONAL
+	desc = virginia.6.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = virginia.6.a
+		hidden_effect = {
+			retire_country_leader = yes
+		create_country_leader = {
+			name = "Lee V"
+			picture = "gfx/leaders/VIR/Robert_E_Lee_V.tga"
+			expire = "2060.1.1"
+			ideology = despotism
+			traits = {
+				Washington_Lee_Line
+				King_of_Virginia
+			}
+		}
+		}
+	}
+	option = {
+		name = virginia.6.b
+		hidden_effect = {
+			retire_country_leader = yes
+		create_country_leader = {
+			name = "Robert III"
+			picture = "gfx/leaders/VIR/Robert_E_Lee_V.tga"
+			expire = "2060.1.1"
+			ideology = despotism
+			traits = {
+				Washington_Lee_Line
+				King_of_Virginia
+			}
+		}
+		}
+		
+	}
+}
+country_event = {
+	id = virginia.7
+	title = virginia.7.t #THIS IS INTENTIONAL
+	desc = virginia.7.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = virginia.7.a
+		hidden_effect = {
+			retire_country_leader = yes
+			create_country_leader = {
+				name = "Washington II"
+				picture = "gfx/leaders/VIR/Lawrence_Washington_Shaffner.tga"
+				expire = "2060.1.1"
+				ideology = despotism
+				traits = {
+					Washington_Line
+					King_of_Virginia
+				}
+			}
+		}
+	}
+	option = {
+		name = virginia.7.b
+		hidden_effect = {
+			retire_country_leader = yes
+			create_country_leader = {
+				name = "Larry II"
+				picture = "gfx/leaders/VIR/Lawrence_Washington_Shaffner.tga"
+				expire = "2060.1.1"
+				ideology = despotism
+				traits = {
+					Washington_Line
+					King_of_Virginia
+				}
+			}
+		}
+		
+	}
+}
+country_event = {
+	id = virginia.8
+	title = virginia.8.t
+	desc = virginia.8.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = virginia.8.a
+		set_cosmetic_tag = RVR_Kingdom_of_England_in_Exile
+		set_party_name = { ideology = autocratic long_name = RVR_Plantagenet_Long name = RVR_Plantagenet }
+		set_politics = {
+			ruling_party = autocratic
+		}
+		create_country_leader = {
+			name = "George I"
+			picture = "gfx/leaders/VIR/Simon_Abney_Hastings.tga"
+			expire = "2060.1.1"
+			ideology = despotism
+			traits = {
+				Plantagenet_Line
+			}
+		}
+
+	}
+}
+country_event = {
+	id = virginia.9
+	title = virginia.9.t
+	desc = virginia.9.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = virginia.9.a
+		add_stability = 0.05
+		VIR = {
+			add_stability = 0.2
+			set_country_flag = Britain_Helps_Us
+		}
+	}
+	option = {
+		name = virginia.9.b
+		add_stability = -0.05
+		VIR = {
+			add_stability = -0.1
+			set_country_flag = Britain_Denied_Help
+		}
+	}
+}
+country_event = {
+	id = virginia.11
+	title = virginia.11.t
+	desc = virginia.11.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = virginia.11.a
+		VIR = {
+			set_autonomy = {
+   				target = NEW
+    			autonomy_state = autonomy_colony
+			}
+		}
+		NEW = {
+			set_cosmetic_tag = RVR_NEW_Society
+		}
+
+	}
+	option = {
+		name = virginia.11.b
+		create_wargoal = {
+			target = NEW
+			type = annex_everything
+		}
 	}
 }

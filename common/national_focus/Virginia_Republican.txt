@@ -1,0 +1,2998 @@
+focus_tree = {
+	id = Virginia_Republicans
+	
+	country = {
+		factor = 0
+	}
+	
+	default = no
+	continuous_focus_position = { x = 4000 y = 4000 }
+	focus = {
+		id = RVR_Fight_from_the_Mountains
+		icon = GFX_goal_Send_the_Radicals_to_the_Mountains
+		cost = 9.00
+		x = 2
+		y = 0
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			NOT = {
+				RVR = {
+					has_country_flag = VIR_Republicans_Successful
+				}
+			}
+		}
+		completion_reward = {
+			add_ideas = RVR_Mountain_Defense
+		}
+	}
+	focus = {
+		id = RVR_Defend_our_Land
+		icon = GFX_goal_Generic_Jungle_Ghost
+		cost = 9.00
+		x = 2
+		y = 1
+		ai_will_do = { 
+			factor = 300
+		}
+		prerequisite = {
+			focus = RVR_Fight_from_the_Mountains
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = RVR_Mountain_Defense
+				add_idea = RVR_Mountain_Defense_2
+			}
+		}
+	}
+	focus = {
+		id = RVR_A_United_Front
+		icon = GFX_goal_Generic_Military_Constitution
+		cost = 9.00
+		x = 4
+		y = 0
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			RVR = {
+				has_country_flag = VIR_Republicans_Successful
+			}
+		}
+		completion_reward = {
+			add_ideas = RVR_United_Front
+		}
+	}
+	focus = {
+		id = RVR_Use_Boogaloo_Boys
+		icon = GFX_goal_Boog_Tank
+		cost = 9.00
+		x = 4
+		y = 1
+		ai_will_do = { 
+			factor = 300
+		}
+		prerequisite = {
+			focus = RVR_A_United_Front
+		}
+		completion_reward = {
+			create_corps_commander = {
+				name = "Mike Dunn"
+				portrait_path="gfx/leaders/VIR/Mike_Dunn.tga" 
+				traits={  } 
+				skill = 3
+				id = 14051608
+				attack_skill = 3
+				defense_skill = 2
+				planning_skill = 3
+				logistics_skill = 2
+			}
+			division_template = {
+				name = "Boogaloo Boys"
+				is_locked = no
+				priority = 2
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+				}
+				support = {
+					military_police = { x = 0 y = 0 }
+				}
+			}
+			random_owned_controlled_state = {
+				limit = { ROOT = { has_full_control_of_state = PREV } }
+				create_unit = {
+					division = "name = \"1st Boogaloo Boys\" division_template = \"Boogaloo Boys\" start_experience_factor = 0.6" 
+					owner = RVR
+				}
+				create_unit = {
+					division = "name = \"2nd Boogaloo Boys\" division_template = \"Boogaloo Boys\" start_experience_factor = 0.6" 
+					owner = RVR
+				}
+				create_unit = {
+					division = "name = \"3rd Boogaloo Boys\" division_template = \"Boogaloo Boys\" start_experience_factor = 0.6" 
+					owner = RVR
+				}
+				create_unit = {
+					division = "name = \"4th Boogaloo Boys\" division_template = \"Boogaloo Boys\" start_experience_factor = 0.6" 
+					owner = RVR
+				}
+				create_unit = {
+					division = "name = \"5th Boogaloo Boys\" division_template = \"Boogaloo Boys\" start_experience_factor = 0.6" 
+					owner = RVR
+				}
+				create_unit = {
+					division = "name = \"6th Boogaloo Boys\" division_template = \"Boogaloo Boys\" start_experience_factor = 0.6" 
+					owner = RVR
+				}
+			}
+		}
+	}
+	focus = {
+		id = RVR_Fighting_Against_Liberalism
+		icon = GFX_goal_Generic_Conservative
+		cost = 9.00
+		x = 3
+		y = 2
+		ai_will_do = { 
+			factor = 300
+		}
+		prerequisite = {
+			focus = RVR_Defend_our_Land
+			focus = RVR_Use_Boogaloo_Boys
+		}
+		completion_reward = {
+			add_ideas = RVR_Fight_Against_Liberalism
+		}
+	}
+	focus = {
+		id = RVR_the_End_of_the_War
+		icon = GFX_goal_Repeal_Gun_Laws
+		cost = 9.00
+		x = 3
+		y = 3
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			VIR = {
+				exists = no
+			}
+		}
+		prerequisite = {
+			focus = RVR_Fighting_Against_Liberalism
+		}
+		completion_reward = {
+			add_stability = 0.05
+			add_war_support = 0.05
+			set_country_flag = RVR_Virginia_Civil_war_Ended
+		}
+	}
+	focus = {
+		id = RVR_What_Now
+		icon = GFX_goal_Generic_Paper_Question
+		cost = 9.00
+		x = 15
+		y = 0
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			has_country_flag = RVR_Virginia_Civil_war_Ended
+		}
+		prerequisite = {
+			
+		}
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = 75
+		}
+	}
+	focus = {
+		id = RVR_Sic_Semper_Tyrannis
+		icon = GFX_goal_Sic_Semper_Tyrannus_no_Text
+		cost = 9.00
+		x = 10
+		y = 1
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		mutually_exclusive = {
+			focus = RVR_Nos_Sunt_Tyrannis
+		}
+		prerequisite = {
+			focus = RVR_What_Now
+		}
+		completion_reward = {
+			add_popularity = {
+				ideology = libertarian_right
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = republican
+				popularity = 0.05
+			}
+		}
+	}
+	focus = {
+		id = RVR_Nos_Sunt_Tyrannis
+		icon = GFX_goal_Nos_Sunt_Tyrannus
+		cost = 9.00
+		x = 25
+		y = 1
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		mutually_exclusive = {
+			focus = RVR_Sic_Semper_Tyranus
+		}
+		prerequisite = {
+			focus = RVR_What_Now
+		}
+		completion_reward = {
+			add_popularity = {
+				ideology = autocratic
+				popularity = 0.1
+			}
+		}
+	}
+	focus = {
+		id = RVR_The_Bloody_Crown_of_Virginia
+		icon = GFX_goal_Generic_Bloody_Crown
+		cost = 9.00
+		x = 18
+		y = 2
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Nos_Sunt_Tyrannis
+		}
+		completion_reward = {
+			country_event = { id = Virginia.5 days = 1 }
+			add_popularity = {
+				ideology = republican
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = libertarian_right
+				popularity = -0.05
+			}
+			add_manpower = -500
+		}
+	}
+	focus = {
+		id = RVR_Patria_Dei
+		icon = GFX_goal_Gods_Virginia
+		cost = 9.00
+		x = 30
+		y = 2
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Nos_Sunt_Tyrannis
+		}
+		completion_reward = {
+			add_popularity = {
+				ideology = autocratic
+				popularity = 0.1
+			}
+		}
+	}
+	focus = {
+		id = RVR_Uphold_Purity
+		icon = GFX_goal_Gods_Virginia
+		cost = 9.00
+		x = 50
+		y = 2
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Nos_Sunt_Tyrannis
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = RVR_The_First_Men_of_Virginia
+		icon = GFX_goal_Gods_Virginia
+		cost = 9.00
+		x = 57
+		y = 3
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Uphold_Purity
+		}
+		completion_reward = {
+			add_political_power = -25
+		}
+	}
+	focus = {
+		id = RVR_The_Night_of_the_Red_Banner
+		icon = GFX_goal_Gods_Virginia
+		cost = 9.00
+		x = 57
+		y = 4
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_The_First_Men_of_Virginia
+		}
+		completion_reward = {
+			set_cosmetic_tag = RVR_Jamestown_Society
+			set_politics = {
+				ruling_party = autocratic
+			}
+			create_country_leader = {
+				name = "Jamestowne Society"
+				picture = "gfx/leaders/VIR/Jamestowne_society.tga"
+				expire = "2060.1.1"
+				ideology = theocracy
+				traits = {
+					RVR_Jamestowne_Society
+				}
+			}
+		}
+	}
+	focus = {
+		id = RVR_The_Purpose_of_Our_Nation
+		icon = GFX_goal_Gods_Virginia
+		cost = 9.00
+		x = 57
+		y = 5
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_The_Night_of_the_Red_Banner
+		}
+		completion_reward = {
+			add_stability = 0.05
+			add_war_support = 0.05
+		}
+	}
+	focus = {
+		id = RVR_The_Second_Starving_time
+		icon = GFX_goal_Gods_Virginia
+		cost = 9.00
+		x = 55
+		y = 6
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_The_Purpose_of_Our_Nation
+		}
+		completion_reward = {
+			add_ideas = RVR_Second_Starving_time
+		}
+	}
+	focus = {
+		id = RVR_1_Meal_A_Day
+		icon = GFX_goal_Gods_Virginia
+		cost = 9.00
+		x = 51
+		y = 7
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_The_Second_Starving_time
+		}
+		mutually_exclusive = {
+			focus = RVR_2_Meals_A_Day
+			focus = RVR_Seize_KFC_Stockpiles
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = RVR_Second_Starving_time
+				add_idea = RVR_1_Meal_Rations
+			}
+		}
+	}
+	focus = {
+		id = RVR_2_Meals_A_Day
+		icon = GFX_goal_Gods_Virginia
+		cost = 9.00
+		x = 53
+		y = 7
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		mutually_exclusive = {
+			focus = RVR_1_Meal_A_Day
+			focus = RVR_Seize_KFC_Stockpiles
+		}
+		prerequisite = {
+			focus = RVR_The_Second_Starving_time
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = RVR_Second_Starving_time
+				add_idea = RVR_2_Meal_Rations
+			}
+		}
+	}
+	focus = {
+		id = RVR_Seize_KFC_Stockpiles
+		icon = GFX_goal_Gods_Virginia
+		cost = 9.00
+		x = 55
+		y = 7
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		mutually_exclusive = {
+			focus = RVR_1_Meal_A_Day
+			focus = RVR_2_Meals_A_Day
+		}
+		prerequisite = {
+			focus = RVR_The_Second_Starving_time
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = RVR_Second_Starving_time
+				add_idea = RVR_Seizing_Stockpiles_of_Food
+			}
+		}
+	}
+	focus = {
+		id = RVR_Starve_Dissedents
+		icon = GFX_goal_Gods_Virginia
+		cost = 9.00
+		x = 55
+		y = 8
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_1_Meal_A_Day
+			focus = RVR_2_Meals_A_Day
+			focus = RVR_Seize_KFC_Stockpiles
+		}
+		completion_reward = {
+			add_ideas = RVR_Starving_Dissendents
+			add_stability = 0.03
+		}
+	}
+	focus = {
+		id = RVR_2_Percent_Purity_Act
+		icon = GFX_goal_Gods_Virginia
+		cost = 9.00
+		x = 61
+		y = 6
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_The_Purpose_of_Our_Nation
+		}
+		mutually_exclusive = {
+			focus = RVR_5_Percent_Purity_Act
+			focus = RVR_10_Percent_Purity_Act
+			focus = RVR_20_Percent_Purity_Act
+			focus = RVR_50_Percent_Purity_Act
+		}
+		completion_reward = {
+			add_ideas = RVR_Two_Percent_Purity
+		}
+	}
+	focus = {
+		id = RVR_5_Percent_Purity_Act
+		icon = GFX_goal_Gods_Virginia
+		cost = 9.00
+		x = 63
+		y = 6
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_The_Purpose_of_Our_Nation
+		}
+		mutually_exclusive = {
+			focus = RVR_2_Percent_Purity_Act
+			focus = RVR_10_Percent_Purity_Act
+			focus = RVR_20_Percent_Purity_Act
+			focus = RVR_50_Percent_Purity_Act
+		}
+		completion_reward = {
+			add_ideas = RVR_Five_Percent_Purity
+		}
+	}
+	focus = {
+		id = RVR_10_Percent_Purity_Act
+		icon = GFX_goal_Gods_Virginia
+		cost = 9.00
+		x = 65
+		y = 6
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_The_Purpose_of_Our_Nation
+		}
+		mutually_exclusive = {
+			focus = RVR_2_Percent_Purity_Act
+			focus = RVR_5_Percent_Purity_Act
+			focus = RVR_20_Percent_Purity_Act
+			focus = RVR_50_Percent_Purity_Act
+		}
+		completion_reward = {
+			add_ideas = RVR_Ten_Percent_Purity
+		}
+	}
+	focus = {
+		id = RVR_20_Percent_Purity_Act
+		icon = GFX_goal_Gods_Virginia
+		cost = 9.00
+		x = 67
+		y = 6
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_The_Purpose_of_Our_Nation
+		}
+		mutually_exclusive = {
+			focus = RVR_2_Percent_Purity_Act
+			focus = RVR_5_Percent_Purity_Act
+			focus = RVR_10_Percent_Purity_Act
+			focus = RVR_50_Percent_Purity_Act
+		}
+		completion_reward = {
+			add_ideas = RVR_Twenty_Percent_Purity
+		}
+	}
+	focus = {
+		id = RVR_50_Percent_Purity_Act
+		icon = GFX_goal_Gods_Virginia
+		cost = 9.00
+		x = 69
+		y = 6
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_The_Purpose_of_Our_Nation
+		}
+		mutually_exclusive = {
+			focus = RVR_2_Percent_Purity_Act
+			focus = RVR_5_Percent_Purity_Act
+			focus = RVR_10_Percent_Purity_Act
+			focus = RVR_20_Percent_Purity_Act
+		}
+		completion_reward = {
+			add_ideas = RVR_Fifty_Percent_Purity
+		}
+	}
+	focus = {
+		id = RVR_The_Conditional_Citizens
+		icon = GFX_goal_Gods_Virginia
+		cost = 9.00
+		x = 65
+		y = 7
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_2_Percent_Purity_Act
+			focus = RVR_5_Percent_Purity_Act
+			focus = RVR_10_Percent_Purity_Act
+			focus = RVR_20_Percent_Purity_Act
+			focus = RVR_50_Percent_Purity_Act
+		}
+		completion_reward = {
+			country_event = { id = Virginia.14 days = 5 }
+		}
+	}
+	focus = {
+		id = RVR_The_Descendents_of_the_20_and_Odd
+		icon = GFX_goal_Gods_Virginia
+		cost = 9.00
+		x = 64
+		y = 8
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_The_Conditional_Citizens
+		}
+		completion_reward = {
+			country_event = { id = Virginia.15 days = 5 }
+		}
+	}
+	focus = {
+		id = RVR_Debate_Expansion_of_Dates
+		icon = GFX_goal_Gods_Virginia
+		cost = 9.00
+		x = 66
+		y = 8
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_The_Conditional_Citizens
+		}
+		completion_reward = {
+			country_event = { id = Virginia.16 days = 5 }
+		}
+	}
+	focus = {
+		id = RVR_Legacy_of_John_Smith
+		icon = GFX_goal_Gods_Virginia
+		cost = 9.00
+		x = 57
+		y = 6
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_The_Purpose_of_Our_Nation
+		}
+		completion_reward = {
+			country_event = { id = Virginia.17 days = 5 }
+		}
+	}
+	focus = {
+		id = RVR_Enlist_Founding_Families
+		icon = GFX_goal_Gods_Virginia
+		cost = 9.00
+		x = 57
+		y = 7
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Legacy_of_John_Smith
+		}
+		completion_reward = {
+			create_corps_commander = {
+				name = "Robert E. Lee V"
+				portrait_path="gfx/leaders/VIR/Robert_E_Lee_V.tga" 
+				traits={  } 
+				skill = 1
+				attack_skill = 1
+				defense_skill = 1
+				planning_skill = 1
+				logistics_skill = 1
+			}
+			create_corps_commander = {
+				name = "Lucian K. Truscott IV"
+				portrait_path="gfx/leaders/VIR/Truscott.tga" 
+				traits={  } 
+				skill = 1
+				attack_skill = 1
+				defense_skill = 1
+				planning_skill = 1
+				logistics_skill = 1
+			}
+			create_corps_commander = {
+				name = "Lawrence W. Shaffner"
+				portrait_path="gfx/leaders/VIR/Lawrence_Washington_Shaffner.tga" 
+				traits={  } 
+				skill = 1
+				attack_skill = 1
+				defense_skill = 1
+				planning_skill = 1
+				logistics_skill = 1
+			}
+		}
+	}
+	focus = {
+		id = RVR_Revenge_against_Opechancanough
+		icon = GFX_goal_Gods_Virginia
+		cost = 9.00
+		x = 57
+		y = 8
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Enlist_Founding_Families
+		}
+		completion_reward = {
+			country_event = { id = Virginia.18 days = 5 }
+		}
+	}
+	focus = {
+		id = RVR_Expand_our_Grip
+		icon = GFX_goal_Gods_Virginia
+		cost = 9.00
+		x = 57
+		y = 9
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Revenge_against_Opechancanough
+		}
+		prerequisite = {
+			focus = RVR_Starve_Dissedents
+		}
+		prerequisite = {
+			focus = RVR_The_Descendents_of_the_20_and_Odd
+		}
+		prerequisite = {
+			focus = RVR_Debate_Expansion_of_Dates
+		}
+		completion_reward = {
+			add_war_support = 0.15
+		}
+	}
+	focus = {
+		id = RVR_the_New_England_Colonies
+		icon = GFX_goal_Gods_Virginia
+		cost = 9.00
+		x = 55
+		y = 10
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Expand_our_Grip
+		}
+		completion_reward = {
+			NEW = {
+				country_event = { id = Virginia.11 days = 5 }
+			}
+		}
+	}
+	focus = {
+		id = RVR_Our_Plymouth_Brethren
+		icon = GFX_goal_Gods_Virginia
+		cost = 9.00
+		x = 55
+		y = 11
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_the_New_England_Colonies
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = RVR_Complete_Control_over_the_NE_Colonies
+		icon = GFX_goal_Gods_Virginia
+		cost = 9.00
+		x = 55
+		y = 12
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Our_Plymouth_Brethren
+		}
+		completion_reward = {
+			add_timed_idea = {
+				idea = NE_Colony_Aid
+				days = 550
+			}
+		}
+	}
+	focus = {
+		id = RVR_the_Southern_Colonies
+		icon = GFX_goal_Gods_Virginia
+		cost = 9.00
+		x = 57
+		y = 10
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Expand_our_Grip
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = RVR_Klan_Sympathies
+		icon = GFX_goal_Gods_Virginia
+		cost = 9.00
+		x = 57
+		y = 11
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_the_Southern_Colonies
+		}
+		completion_reward = {
+			add_ideas = RVR_Jamestowne_Klan_Alliance
+		}
+	}
+	focus = {
+		id = RVR_Complete_Control_of_the_South
+		icon = GFX_goal_Gods_Virginia
+		cost = 9.00
+		x = 57
+		y = 12
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Klan_Sympathies
+		}
+		completion_reward = {
+			add_stability = 0.15
+			every_state = {
+				LIMIT = {
+					IF = {
+						is_fully_controlled_by = RVR
+					}
+				}
+				add_core_of = RVR
+			}
+		}
+	}
+	focus = {
+		id = RVR_the_Middle_Colonies
+		icon = GFX_goal_Gods_Virginia
+		cost = 9.00
+		x = 59
+		y = 10
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Expand_our_Grip
+		}
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = RVR_Allow_Amish_Control
+		icon = GFX_goal_Gods_Virginia
+		cost = 9.00
+		x = 59
+		y = 11
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			owns_state = 292
+		}
+		prerequisite = {
+			focus = RVR_the_Middle_Colonies
+		}
+		completion_reward = {
+			AMS = {
+				set_cosmetic_tag = RVR_AMS_Society
+				transfer_state = 292
+			}
+			set_autonomy = {
+   				target = AMS
+    			autonomy_state = autonomy_colony
+			}
+		}
+	}
+	focus = {
+		id = RVR_Purge_the_Den_of_Capitalism
+		icon = GFX_goal_Gods_Virginia
+		cost = 9.00
+		x = 59
+		y = 12
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Allow_Amish_Control
+		}
+		completion_reward = {
+			add_timed_idea = {
+				idea = Middle_Colony_Aid
+				days = 550
+			}
+		}
+	}
+	focus = {
+		id = RVR_Proclaim_Pure_America
+		icon = GFX_goal_Gods_Virginia
+		cost = 9.00
+		x = 57
+		y = 13
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			NOT = {
+				has_idea = Middle_Colony_Aid
+				has_idea = NE_Colony_Aid
+			}
+		}
+		prerequisite = {
+			focus = RVR_Purge_the_Den_of_Capitalism
+		}
+		prerequisite = {
+			focus = RVR_Complete_Control_of_the_South
+		}
+		prerequisite = {
+			focus = RVR_Complete_Control_over_the_NE_Colonies
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = RVR_True_Purpose_of_Charlottesville
+		icon = GFX_goal_Gods_Virginia
+		cost = 9.00
+		x = 47 
+		y = 3
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Uphold_Purity
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = RVR_The_Meeting_of_the_Minds
+		icon = GFX_goal_Gods_Virginia
+		cost = 9.00
+		x = 47
+		y = 4
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_True_Purpose_of_Charlottesville
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = RVR_The_Base
+		icon = GFX_goal_Gods_Virginia
+		cost = 9.00
+		x = 45
+		y = 5
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_The_Meeting_of_the_Minds
+		}
+		mutually_exclusive = {
+			focus = RVR_The_Torch
+			focus = RVR_The_Vanguard
+		}
+		completion_reward = {
+			set_cosmetic_tag = RVR_HH_Base
+			set_politics = {
+				ruling_party = autocratic
+			}
+			create_country_leader = {
+				name = "Lake Austin Lane"
+				picture = "gfx/leaders/VIR/William_Bilbrough.tga"
+				expire = "2060.1.1"
+				ideology = neonazism
+				traits = {
+					RVR_Savior_of_the_Pure
+				}
+			}
+		}
+	}
+	focus = {
+		id = RVR_The_Vanguard
+		icon = GFX_goal_Gods_Virginia
+		cost = 9.00
+		x = 47
+		y = 5
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_The_Meeting_of_the_Minds
+		}
+		mutually_exclusive = {
+			focus = RVR_The_Torch
+			focus = RVR_The_Base
+		}
+		completion_reward = {
+			set_cosmetic_tag = RVR_HH_PF
+			set_politics = {
+				ruling_party = autocratic
+			}
+			create_country_leader = {
+				name = "Council of American Patriots"
+				picture = "gfx/leaders/VIR/Patriot_Front.tga"
+				expire = "2060.1.1"
+				ideology = fascism
+				traits = {
+					RVR_Patriotic_Council
+				}
+			}
+		}
+	}
+	focus = {
+		id = RVR_The_Motorist
+		icon = GFX_goal_Gods_Virginia
+		cost = 9.00
+		x = 46
+		y = 6
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_The_Vanguard
+		}
+		mutually_exclusive = {
+			focus = RVR_The_True_Patriot
+		}
+		completion_reward = {
+			set_cosmetic_tag = RVR_HH_NAZI
+			set_politics = {
+				ruling_party = autocratic
+			}
+			create_country_leader = {
+				name = "James Fields Jr."
+				picture = "gfx/leaders/VIR/James_Alex_Fields_Jr_Himmler.tga"
+				expire = "2060.1.1"
+				ideology = neonazism
+				traits = {
+					RVR_Devout_Anti_Liberal
+					RVR_Murderer
+				}
+			}
+		}
+	}
+	focus = {
+		id = RVR_The_True_Patriot
+		icon = GFX_goal_Gods_Virginia
+		cost = 9.00
+		x = 48
+		y = 6
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_The_Vanguard
+		}
+		mutually_exclusive = {
+			focus = RVR_The_Motorist
+		}
+		completion_reward = {
+			set_politics = {
+				ruling_party = autocratic
+			}
+			create_country_leader = {
+				name = "Thomas Rousseau"
+				picture = "gfx/leaders/VIR/Thomas_Rousseau.tga"
+				expire = "2060.1.1"
+				ideology = fascism
+				traits = {
+					RVR_Patriot_F
+				}
+			}
+		}
+	}
+	focus = {
+		id = RVR_The_Torch
+		icon = GFX_goal_Gods_Virginia
+		cost = 9.00
+		x = 49
+		y = 5
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_The_Meeting_of_the_Minds
+		}
+		mutually_exclusive = {
+			focus = RVR_The_Vanguard
+			focus = RVR_The_Base
+		}
+		completion_reward = {
+			set_cosmetic_tag = RVR_HH_NSM
+			set_politics = {
+				ruling_party = autocratic
+			}
+			create_country_leader = {
+				name = "Peter Cvjetanovic"
+				picture = "gfx/leaders/VIR/Peter_Cvjetanovic.tga"
+				expire = "2060.1.1"
+				ideology = fascism
+				traits = {
+					RVR_Torchbearer_of_Fascism
+				}
+			}
+		}
+	}
+	focus = {
+		id = RVR_The_Diocese_of_Richmond
+		icon = GFX_goal_Diocese_of_Virginia
+		cost = 9.00
+		x = 27
+		y = 3
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Patria_Dei
+		}
+		completion_reward = {
+			set_party_name = { ideology = autocratic long_name = RVR_Richmond_Diocese_Long name = RVR_Richmond_Diocese }
+			set_politics = {
+				ruling_party = autocratic
+			}
+			create_country_leader = {
+				name = "Sergio de la Peña"
+				picture = "gfx/leaders/VIR/Sergio_de_la_Pena.tga"
+				expire = "2060.1.1"
+				ideology = theocracy
+				traits = {
+					generallissimo
+					hawk
+				}
+			}
+		}
+	}
+	focus = {
+		id = RVR_Holy_Order_of_Virginia
+		icon = GFX_goal_holyorder_of_Virginia
+		cost = 9.00
+		x = 27
+		y = 4
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_The_Diocese_of_Richmond
+		}
+		completion_reward = {
+			set_cosmetic_tag = RVR_Crusader_Virginia
+		}
+	}
+	focus = {
+		id = RVR_The_Crusaders_of_Richmond
+		icon = GFX_goal_richmondcrusaders
+		cost = 9.00
+		x = 27
+		y = 5
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Holy_Order_of_Virginia
+		}
+		completion_reward = {
+			add_ideas = RVR_Crusaders
+		}
+	}
+	focus = {
+		id = RVR_Copy_the_Hospitallers
+		icon = GFX_goal_Copy_the_Knights
+		cost = 9.00
+		x = 24
+		y = 5
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Holy_Order_of_Virginia
+		}
+		completion_reward = {
+			add_tech_bonus = {
+    			bonus = 0.35
+    			uses = 3
+    			category = hospital_tech
+			}
+		}
+	}
+	focus = {
+		id = RVR_Copy_the_Tuetons
+		icon = GFX_goal_copytheteutons
+		cost = 9.00
+		x = 25
+		y = 6
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Copy_the_Hospitallers
+		}
+		completion_reward = {
+			add_tech_bonus = {
+    			bonus = 0.5
+    			uses = 1
+    			category = support_tech
+			}
+		}
+	}
+	focus = {
+		id = RVR_Prepare_for_the_American_Crusade
+		icon = GFX_goal_americancrusade2
+		cost = 9.00
+		x = 27
+		y = 6
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_The_Crusaders_of_Richmond
+		}
+		completion_reward = {
+			add_war_support = 0.15
+			add_stability = 0.15
+		}
+	}
+	focus = {
+		id = RVR_Condemn_the_Sinners
+		icon = GFX_goal_Condemn_the_sinners_to_hellfire
+		cost = 9.00
+		x = 27
+		y = 7
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Prepare_for_the_American_Crusade
+		}
+		prerequisite = {
+			focus = RVR_Copy_the_Tuetons
+		}
+		prerequisite = {
+			focus = RVR_Christ_the_Savior
+		}
+		completion_reward = {
+			add_manpower = -25000
+			add_ideas = RVR_Christian_Supremacy
+		}
+	}
+	focus = {
+		id = RVR_Veneration_of_Mary
+		icon = GFX_goal_Veneration_of_Mary
+		cost = 9.00
+		x = 30
+		y = 5
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Holy_Order_of_Virginia
+		}
+		completion_reward = {
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = RVR_Christ_the_Savior
+		icon = GFX_goal_Christthesavior
+		cost = 9.00
+		x = 29
+		y = 6
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Veneration_of_Mary
+		}
+		completion_reward = {
+			add_named_threat = { 
+			    threat = 5 
+			    name = RVR_Christ_and_Crusaders
+			}
+			add_stability = 0.05
+			add_research_slot = 1
+			add_offsite_building = { type = industrial_complex level = 3 }
+		}
+	}
+	focus = {
+		id = RVR_Elevate_Saint_Virginia
+		icon = GFX_goal_holyorder_of_Virginia
+		cost = 9.00
+		x = 31
+		y = 6
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Veneration_of_Mary
+		}
+		completion_reward = {
+			add_ideas = RVR_Patron_Saint_of_Virginia
+		}
+	}
+	focus = {
+		id = RVR_Spirit_of_Martin_Luther
+		icon = GFX_goal_Spirit_of_Martin_Luther
+		cost = 9.00
+		x = 36
+		y = 3
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Patria_Dei
+		}
+		completion_reward = {
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = RVR_Sola_Fide
+		icon = GFX_goal_throughfaith
+		cost = 9.00
+		x = 36
+		y = 4
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Spirit_of_Martin_Luther
+		}
+		completion_reward = {
+			add_ideas = RVR_Faith_Alone
+		}
+	}
+	focus = {
+		id = RVR_McDonnell_Takes_Full_Control
+		icon = GFX_goal_McDonnells_Regency
+		cost = 9.00
+		x = 34
+		y = 5
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Sola_Fide
+		}
+		completion_reward = {
+			set_cosmetic_tag = RVR_Virginian_Chrisitan_Republic
+			set_party_name = { ideology = autocratic long_name = RVR_McDonnell_Assad_Long name = RVR_McDonnell_Assad }
+			set_politics = {
+				ruling_party = autocratic
+			}
+			create_country_leader = {
+				name = "Robert McDonnell"
+				picture = "gfx/leaders/VIR/Rob_Mcdonnel.tga"
+				expire = "2060.1.1"
+				ideology = theocracy
+				traits = {
+					RVR_Great_Christian_Uniter
+				}
+			}
+		}
+	}
+	focus = {
+		id = RVR_God_Virginia_McDonnell
+		icon = GFX_goal_God_Virginia_and_McDonnell
+		cost = 9.00
+		x = 34
+		y = 6
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_McDonnell_Takes_Full_Control
+		}
+		completion_reward = {
+			add_country_leader_trait = Virginian_Assad
+		}
+	}
+	focus = {
+		id = RVR_Pastor_President_Prevo
+		icon = GFX_goal_pastorpresident
+		cost = 9.00
+		x = 36
+		y = 5
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Sola_Fide
+		}
+		completion_reward = {
+			set_cosmetic_tag = RVR_Protestant_Republic_Virginia
+			set_party_name = { ideology = autocratic long_name = RVR_Libery_Uni_Long name = RVR_Libery_Uni }
+			set_politics = {
+				ruling_party = autocratic
+			}
+			create_country_leader = {
+				name = "Jerry Prevo"
+				picture = "gfx/leaders/VIR/Jerry_Prevo.tga"
+				expire = "2060.1.1"
+				ideology = theocracy
+				traits = {
+					Pastor_President
+					Liberty_University
+				}
+			}
+		}
+	}
+	focus = {
+		id = RVR_God_Loves_Virginia
+		icon = GFX_goal_God_LOVES_Virginia
+		cost = 9.00
+		x = 36
+		y = 6
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Pastor_President_Prevo
+		}
+		completion_reward = {
+			add_stability = 0.1
+			add_war_support = 0.1
+		}
+	}
+	focus = {
+		id = RVR_Pat_Robertson
+		icon = GFX_goal_Spread_the_True_Gospel
+		cost = 9.00
+		x = 38
+		y = 5
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Sola_Fide
+		}
+		completion_reward = {
+			set_cosmetic_tag = RVR_Evangelicalist_Virginia
+			set_party_name = { ideology = autocratic long_name = RVR_Televangelist_Community_Long name = RVR_Televangelist_Community }
+			set_politics = {
+				ruling_party = autocratic
+			}
+			create_country_leader = {
+				name = "Pat Robertson"
+				picture = "gfx/leaders/VIR/Pat_Robertson.tga"
+				expire = "2060.1.1"
+				ideology = theocracy
+				traits = {
+					Televangelist
+					smooth_talking_charmer
+					old
+				}
+			}
+		}
+	}
+	focus = {
+		id = RVR_Staunch_Televangelism
+		icon = GFX_goal_televangelism
+		cost = 9.00
+		x = 38
+		y = 6
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Pat_Robertson
+		}
+		completion_reward = {
+			add_political_power = 150
+		}
+	}
+	focus = {
+		id = RVR_The_Virginian_Theocrat
+		icon = GFX_goal_The_Virginian_Theocrat
+		cost = 9.00
+		x = 36
+		y = 7
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_God_Virginia_McDonnell
+			focus = RVR_God_Loves_Virginia
+			focus = RVR_Staunch_Televangelism
+		}
+		completion_reward = {
+			add_ideas = Virginian_Theocracy
+			add_offsite_building = { type = arms_factory level = 3 }
+			add_offsite_building = { type = industrial_complex level = 3 }
+			add_research_slot = 1
+		}
+	}
+	focus = {
+		id = RVR_A_Rose_in_the_Mountains
+		icon = GFX_goal_Generic_Social_Democracy
+		cost = 9.00
+		x = 33
+		y = 8
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			has_country_leader = {
+				name = "Robert McDonnell"
+    			ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = RVR_The_Virginian_Theocrat
+		}
+		completion_reward = {
+			add_ideas = Maureen_McDonnell
+		}
+	}
+	focus = {
+		id = RVR_Supreme_Commander_of_Virginia
+		icon = GFX_goal_Generic_Command_Power
+		cost = 9.00
+		x = 32
+		y = 9
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			has_country_leader = {
+				name = "Robert McDonnell"
+    			ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = RVR_A_Rose_in_the_Mountains
+		}
+		completion_reward = {
+			add_ideas = RVR_Supreme_Commander
+			add_command_power = 25
+			army_experience = 50
+		}
+	}
+	focus = {
+		id = RVR_Secure_International_Support
+		icon = GFX_goal_Generic_Global_Fascism
+		cost = 9.00
+		x = 31
+		y = 10
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			has_country_leader = {
+				name = "Robert McDonnell"
+    			ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = RVR_Supreme_Commander_of_Virginia
+		}
+		completion_reward = {
+			add_ideas = International_Support
+			country_event = { id = Virginia.10 days = 5 }
+		}
+	}
+	focus = {
+		id = RVR_McDonnell_Is_Virginia
+		icon = GFX_goal_Spread_the_True_Gospel
+		cost = 9.00
+		x = 31
+		y = 11
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			has_country_leader = {
+				name = "Robert McDonnell"
+    			ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = RVR_Secure_International_Support
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = RVR_Supreme_Commander
+				add_idea = RVR_McDonnell_is_Virginia
+			}
+		}
+	}
+	focus = {
+		id = RVR_Farewell_Falwell
+		icon = GFX_goal_Spread_the_True_Gospel
+		cost = 9.00
+		x = 36
+		y = 8
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			has_country_leader = {
+				name = "Jerry Prevo"
+    			ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = RVR_The_Virginian_Theocrat
+		}
+		completion_reward = {
+			country_event = { id = Virginia.13 days = 1 }
+		}
+	}
+	focus = {
+		id = RVR_Shut_down_Opposing_Universities
+		icon = GFX_goal_Spread_the_True_Gospel
+		cost = 9.00
+		x = 36
+		y = 9
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			has_country_leader = {
+				name = "Jerry Prevo"
+    			ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = RVR_Farewell_Falwell
+		}
+		completion_reward = {
+			country_event = { id = Virginia.12 days = 1 }
+		}
+	}
+	focus = {
+		id = RVR_Good_Christian_Scholarships
+		icon = GFX_goal_Pay_Student_Tuitions
+		cost = 9.00
+		x = 36
+		y = 10
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			has_country_leader = {
+				name = "Jerry Prevo"
+    			ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = RVR_Shut_down_Opposing_Universities
+		}
+		completion_reward = {
+			add_ideas = RVR_Christian_Scholarships
+			add_stability = 0.10
+		}
+	}
+	focus = {
+		id = RVR_Knowledge_Aflame
+		icon = GFX_goal_Spread_the_True_Gospel
+		cost = 9.00
+		x = 36
+		y = 11
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			has_country_leader = {
+				name = "Jerry Prevo"
+    			ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = RVR_Good_Christian_Scholarships
+		}
+		completion_reward = {
+			add_ideas = RVR_Knowledge_Aflame
+		}
+	}
+	focus = {
+		id = RVR_Follow_the_Holy_Word
+		icon = GFX_goal_Holy_word
+		cost = 9.00
+		x = 39
+		y = 8
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			has_country_leader = {
+				name = "Pat Robertson"
+    			ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = RVR_The_Virginian_Theocrat
+		}
+		completion_reward = {
+			add_country_leader_trait = RVR_Gods_Microphone
+		}
+	}
+	focus = {
+		id = RVR_Cast_the_First_Stone
+		icon = GFX_goal_castthefirststone
+		cost = 9.00
+		x = 40
+		y = 9
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			has_country_leader = {
+				name = "Pat Robertson"
+    			ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = RVR_Follow_the_Holy_Word
+		}
+		completion_reward = {
+			add_ideas = all_adults_serve
+			add_ideas = tot_economic_mobilisation
+			add_ideas = closed_economy
+			add_manpower = 5000
+		}
+	}
+	focus = {
+		id = RVR_The_New_Social_Class
+		icon = GFX_goal_Create_the_Handmaids
+		cost = 9.00
+		x = 41
+		y = 10
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			has_country_leader = {
+				name = "Pat Robertson"
+    			ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = RVR_Cast_the_First_Stone
+		}
+		completion_reward = {
+			add_ideas = RVR_Hand_Maidens
+		}
+	}
+	focus = {
+		id = RVR_Proclaim_the_Divine_Republic
+		icon = GFX_goal_proclaimgilead
+		cost = 9.00
+		x = 41
+		y = 11
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			has_country_leader = {
+				name = "Pat Robertson"
+    			ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = RVR_Cast_the_First_Stone
+		}
+		completion_reward = {
+			set_cosmetic_tag = RVR_Gilead
+		}
+	}
+	focus = {
+		id = RVR_Shaffner_Takes_Control
+		icon = GFX_goal_Washington_Monarch
+		cost = 9.00
+		x = 16
+		y = 3
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			has_country_leader = {
+				name = "Lawrence W. Shaffner"
+    			ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = RVR_The_Bloody_Crown_of_Virginia
+		}
+		completion_reward = {
+			add_popularity = {
+				ideology = autocratic
+				popularity = 0.1
+			}
+			country_event = { id = Virginia.7 days = 1 }
+		}
+	}
+	focus = {
+		id = RVR_Restore_the_Manor_of_Mount_Vernon
+		icon = GFX_goal_Generic_Extravagence
+		cost = 9.00
+		x = 15
+		y = 4
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			
+		}
+		prerequisite = {
+			focus = RVR_Shaffner_Takes_Control
+		}
+		completion_reward = {
+			country_event = { id = Virginia.13 days = 1 }
+		}
+	}
+	focus = {
+		id = RVR_Prove_the_Divinity_of_the_Washingtons
+		icon = GFX_goal_Generic_Cult_of_Washington
+		cost = 9.00
+		x = 15
+		y = 5
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			
+		}
+		prerequisite = {
+			focus = RVR_Restore_the_Manor_of_Mount_Vernon
+		}
+		completion_reward = {
+			add_stability = 0.15
+			add_war_support = 0.15
+		}
+	}
+	focus = {
+		id = RVR_Gonna_Need_A_Right_hand_Man
+		icon = GFX_goal_Generic_Maintain_Cabinet_Loyalty
+		cost = 9.00
+		x = 16
+		y = 6
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			
+		}
+		prerequisite = {
+			focus = RVR_Prove_the_Divinity_of_the_Washingtons
+		}
+		prerequisite = {
+			focus = RVR_Restore_the_Continental_Army
+		}
+		completion_reward = {
+			add_ideas = Douglas_Hamilton
+		}
+	}
+	focus = {
+		id = RVR_A_Founder_Aristocracy
+		icon = GFX_Goal_generic_aristocracy
+		cost = 9.00
+		x = 16
+		y = 7
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			
+		}
+		prerequisite = {
+			focus = RVR_Gonna_Need_A_Right_hand_Man
+		}
+		completion_reward = {
+			set_country_flag = Founder_Aristocracy
+		}
+	}
+	focus = {
+		id = RVR_Reclaim_Greater_Virginia
+		icon = GFX_goal_Send_the_Radicals_to_the_Mountains
+		cost = 9.00
+		x = 17
+		y = 9
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			
+		}
+		prerequisite = {
+			focus = RVR_A_Founder_Aristocracy
+			focus = RVR_Proclaim_the_Confederate_Kingdoms
+			focus = RVR_The_Virginian_Commonwealth
+			focus = RVR_Go_Against_the_Windsors
+		}
+		completion_reward = {
+			every_state = {
+				LIMIT = {
+					is_core_of = NRA
+				}
+				add_core_of = RVR
+			}
+			create_wargoal = {
+				target = NRA
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = KFC
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = RVR_Topple_the_Triumverate
+		icon = GFX_goal_dismantlestate
+		cost = 9.00
+		x = 16
+		y = 10
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			or = {
+			is_neighbor_of = AFS
+			NOT = {
+				country_exists = AFS
+			}
+			}
+			NOT = {
+				country_exists = NRA
+			}
+
+		}
+		prerequisite = {
+			focus = RVR_Reclaim_Greater_Virginia
+		}
+		completion_reward = {
+			create_wargoal = {
+				target = AFS
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = RVR_Take_the_Lakes
+		icon = GFX_goal_Generic_Naval_Industry
+		cost = 9.00
+		x = 15
+		y = 11
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			or = {
+			is_neighbor_of = GLA
+			NOT = {
+				country_exists = GLA
+			}
+			}
+		}
+		prerequisite = {
+			focus = RVR_Topple_the_Triumverate
+		}
+		completion_reward = {
+			create_wargoal = {
+				target = GLA
+				type = annex_everything
+			}
+			hidden_effect = {
+				create_wargoal = {
+					target = MIL
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = MNS
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = MIN
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = DET
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = ISA
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = KMT
+					type = annex_everything
+				}
+			}
+		}
+	}
+	focus = {
+		id = RVR_Our_Home_in_Dixie
+		icon = GFX_goal_Confederate_Army
+		cost = 9.00
+		x = 18
+		y = 10
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			
+		}
+		prerequisite = {
+			focus = RVR_Reclaim_Greater_Virginia
+		}
+		completion_reward = {
+			custom_effect_tooltip = Wargoal_on_All_Confederates
+			every_state = {
+				LIMIT = {
+					is_core_of = CSA
+				}
+				add_core_of = RVR
+			}
+			hidden_effect = {
+				every_state = {
+					LIMIT = {
+						is_core_of = CSB
+					}
+					add_core_of = RVR
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = AFR
+					}
+					add_core_of = RVR
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = ZIO
+					}
+					add_core_of = RVR
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = APA
+					}
+					add_core_of = RVR
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = LGB
+					}
+					add_core_of = RVR
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = KKK
+					}
+					add_core_of = RVR
+				}
+				create_wargoal = {
+					target = AFR
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = ZIO
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = APA
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = CSA
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = LGB
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = CSB
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = KKK
+					type = annex_everything
+				}
+			}
+		}
+	}
+	focus = {
+		id = RVR_Take_on_Texas
+		icon = GFX_goal_Texas
+		cost = 9.00
+		x = 17
+		y = 11
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			is_neighbor_of = TEX
+		}
+		prerequisite = {
+			focus = RVR_Our_Home_in_Dixie
+			focus = RVR_Topple_the_Triumverate
+		}
+		completion_reward = {
+			custom_effect_tooltip = Wargoal_on_All_Texans
+			hidden_effect = {
+				every_state = {
+					LIMIT = {
+						is_core_of = TEX
+					}
+					add_core_of = RVR
+				}
+				create_wargoal = {
+					target = TEX
+					type = annex_everything
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = BET
+					}
+					add_core_of = RVR
+				}
+				create_wargoal = {
+					target = BET
+					type = annex_everything
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = BLA
+					}
+					add_core_of = RVR
+				}
+				create_wargoal = {
+					target = BLA
+					type = annex_everything
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = BSH
+					}
+					add_core_of = RVR
+				}
+				create_wargoal = {
+					target = BSH
+					type = annex_everything
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = CRN
+					}
+					add_core_of = RVR
+				}
+				create_wargoal = {
+					target = CRN
+					type = annex_everything
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = CRU
+					}
+					add_core_of = RVR
+				}
+				create_wargoal = {
+					target = CRU
+					type = annex_everything
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = FAL
+					}
+					add_core_of = RVR
+				}
+				create_wargoal = {
+					target = FAL
+					type = annex_everything
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = FTA
+					}
+					add_core_of = RVR
+				}
+				create_wargoal = {
+					target = FTA
+					type = annex_everything
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = LOU
+					}
+					add_core_of = RVR
+				}
+				create_wargoal = {
+					target = LOU
+					type = annex_everything
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = OKL
+					}
+					add_claim_by = RVR
+				}
+				create_wargoal = {
+					target = OKL
+					type = annex_everything
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = NMX
+					}
+					add_claim_by = RVR
+				}
+				create_wargoal = {
+					target = NMX
+					type = annex_everything
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = SAN
+					}
+					add_core_of = RVR
+				}
+				create_wargoal = {
+					target = SAN
+					type = annex_everything
+				}
+			}
+		}
+	}
+	focus = {
+		id = RVR_The_Midwest_Gambit
+		icon = GFX_goal_Trump_Statue
+		cost = 9.00
+		x = 18
+		y = 12
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			is_neighbor_of = USA
+		}
+		prerequisite = {
+			focus = RVR_Take_on_Texas
+		}
+		completion_reward = {
+			create_wargoal = {
+				target = USA
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = IDA
+				type = annex_everything
+			}
+#			MON = {
+#
+#			}
+		}
+	}
+	focus = {
+		id = RVR_The_Ideological_Enemy
+		icon = GFX_goal_Drain_the_Swamp
+		cost = 9.00
+		x = 16
+		y = 12
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			
+		}
+		prerequisite = {
+			focus = RVR_Take_on_Texas
+		}
+		completion_reward = {
+			every_state = {
+					LIMIT = {
+						is_core_of = FRA
+					}
+					add_claim_by = RVR
+				}
+			create_wargoal = {
+				target = FRA
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = RVR_The_Floridian_Gambit
+		icon = GFX_goal_Florida
+		cost = 9.00
+		x = 19
+		y = 11
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			
+		}
+		prerequisite = {
+			focus = RVR_Our_Home_in_Dixie
+		}
+		completion_reward = {
+			every_state = {
+				LIMIT = {
+					is_core_of = FLO
+				}
+				add_core_of = RVR
+			}
+
+			random_country = {
+				limit = {
+					owns_state = 397
+				}
+				RVR = {
+					create_wargoal = {
+		    			type = take_state_focus
+		    			target = PREV
+	            		generator = { 397 353 346 345 339 }
+	     			}
+				}
+			}
+			hidden_effect = {
+				every_state = {
+					LIMIT = {
+						is_core_of = RMV
+					}
+					add_core_of = RVR
+				}
+				create_wargoal = {
+					target = RMV
+					type = annex_everything
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = JEB
+					}
+					add_core_of = RVR
+				}
+				create_wargoal = {
+					target = JEB
+					type = annex_everything
+				}
+			}
+		}
+	}
+	focus = {
+		id = RVR_Lee_Monarchy
+		icon = GFX_goal_Lee_Monarch
+		cost = 9.00
+		x = 18
+		y = 3
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			has_country_leader = {
+				name = "Robert E. Lee V"
+    			ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = RVR_The_Bloody_Crown_of_Virginia
+		}
+		completion_reward = {
+			add_popularity = {
+				ideology = autocratic
+				popularity = 0.1
+			}
+			country_event = { id = Virginia.6 days = 1 }
+		}
+	}
+	focus = {
+		id = RVR_Spirit_of_Lee
+		icon = GFX_goal_Gods_and_Generals
+		cost = 9.00
+		x = 19
+		y = 4
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			has_country_leader = {
+				name = "Robert E. Lee V"
+    			ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = RVR_Lee_Monarchy
+		}
+		completion_reward = {
+			add_ideas = RVR_Lost_cause_Myth
+			add_ideas = RVR_Lee_Cavalry
+		}
+	}
+	focus = {
+		id = RVR_Sons_of_the_Army_of_Northern_Virginia 
+		icon = GFX_goal_Glorify_the_Confederacy
+		cost = 9.00
+		x = 19
+		y = 5
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			
+		}
+		prerequisite = {
+			focus = RVR_Spirit_of_Lee
+		}
+		completion_reward = {
+			division_template = {
+				name = "Army of Northern Virginia"
+				is_locked = yes
+				priority = 1
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 0 y = 3 }
+					infantry = { x = 0 y = 4 }
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+
+					artillery_brigade = { x = 2 y = 0 }
+					artillery_brigade = { x = 2 y = 1 }
+			
+				}
+				support = {
+					engineer = { x = 0 y = 0 }
+				}
+			}
+			random_owned_controlled_state = {
+				limit = { ROOT = { has_full_control_of_state = PREV } }
+				create_unit = {
+					division = "name = \"1st ''Lee'' Division\" division_template = \"Army of Northern Virginia\" start_experience_factor = 0.6" 
+					owner = RVR
+				}
+				create_unit = {
+					division = "name = \"2nd ''Johnston'' Division\" division_template = \"Army of Northern Virginia\" start_experience_factor = 0.6" 
+					owner = RVR
+				}
+				create_unit = {
+					division = "name = \"3rd ''J.E.B. Stuart'' Division\" division_template = \"Army of Northern Virginia\" start_experience_factor = 0.6" 
+					owner = RVR
+				}
+				create_unit = {
+					division = "name = \"4th ''Lee'' Division\" division_template = \"Army of Northern Virginia\" start_experience_factor = 0.6" 
+					owner = RVR
+				}
+				create_unit = {
+					division = "name = \"5th ''Beauregard'' Division\" division_template = \"Army of Northern Virginia\" start_experience_factor = 0.6" 
+					owner = RVR
+				}
+			}
+		}
+	}
+	focus = {
+		id = RVR_Restore_the_Virginian_Planters
+		icon = GFX_goal_Generic_Cotton_Farming
+		cost = 9.00
+		x = 18
+		y = 6
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			
+		}
+		prerequisite = {
+			focus = RVR_Sons_of_the_Army_of_Northern_Virginia
+		}
+
+		prerequisite = {
+			focus = RVR_Restore_the_Continental_Army
+		}
+		completion_reward = {
+			add_ideas = RVR_Virginian_Aristocracy
+		}
+	}
+	focus = {
+		id = RVR_Proclaim_the_Confederate_Kingdoms
+		icon = GFX_goal_Confederate_Kingdom
+		cost = 9.00
+		x = 18
+		y = 7
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			
+		}
+		prerequisite = {
+			focus = RVR_Restore_the_Virginian_Planters
+		}
+		completion_reward = {
+			set_cosmetic_tag = RVR_Confederate_Kingdom_of_America
+		}
+	}
+	focus = {
+		id = RVR_Legacy_of_Washington
+		icon = GFX_goal_Generic_George_Washington
+		cost = 9.00
+		x = 17
+		y = 4
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			
+		}
+		prerequisite = {
+			focus = RVR_Lee_Monarchy
+			focus = RVR_Shaffner_Takes_Control
+		}
+		completion_reward = {
+			add_ideas = RVR_Washingtonianism
+		}
+	}
+	focus = {
+		id = RVR_Restore_the_Continental_Army
+		icon = GFX_goal_AME_Hail_Columbia
+		cost = 9.00
+		x = 17
+		y = 5
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			
+		}
+		prerequisite = {
+			focus = RVR_Legacy_of_Washington
+		}
+		completion_reward = {
+			add_command_power = 75
+			add_war_support = 0.15
+			army_experience = 25
+			division_template = {
+				name = "Continental Army"
+				is_locked = yes
+				priority = 1
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 0 y = 3 }
+					infantry = { x = 0 y = 4 }
+
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+					infantry = { x = 1 y = 2 }
+					infantry = { x = 1 y = 3 }
+					infantry = { x = 1 y = 4 }
+
+					infantry = { x = 2 y = 0 }
+					infantry = { x = 2 y = 1 }
+					infantry = { x = 2 y = 2 }
+					infantry = { x = 2 y = 3 }
+
+					artillery_brigade = { x = 3 y = 0 }
+					artillery_brigade = { x = 3 y = 1 }
+					artillery_brigade = { x = 3 y = 2 }
+					artillery_brigade = { x = 3 y = 3 }
+			
+				}
+				support = {
+					artillery = { x = 0 y = 0 }
+					engineer = { x = 0 y = 1 }
+					military_police = { x = 0 y = 2 }
+				}
+			}
+			random_owned_controlled_state = {
+				limit = { ROOT = { has_full_control_of_state = PREV } }
+				create_unit = {
+					division = "name = \"1st ''Washington'' Continental Division\" division_template = \"Continental Army\" start_experience_factor = 0.9" 
+					owner = RVR
+				}
+			}
+			random_owned_controlled_state = {
+				limit = { ROOT = { has_full_control_of_state = PREV } }
+				create_unit = {
+					division = "name = \"2nd ''Franklin'' Continental Division\" division_template = \"Continental Army\" start_experience_factor = 0.9" 
+					owner = RVR
+				}
+			}
+			random_owned_controlled_state = {
+				limit = { ROOT = { has_full_control_of_state = PREV } }
+				create_unit = {
+					division = "name = \"3rd ''Jefferson'' Continental Division\" division_template = \"Continental Army\" start_experience_factor = 0.9" 
+					owner = RVR
+				}
+			}
+			random_owned_controlled_state = {
+				limit = { ROOT = { has_full_control_of_state = PREV } }
+				create_unit = {
+					division = "name = \"4th ''Knox'' Continental Division\" division_template = \"Continental Army\" start_experience_factor = 0.9" 
+					owner = RVR
+				}
+			}
+		}
+	}
+	focus = {
+		id = RVR_Restore_the_Earl_of_Dunmore
+		icon = GFX_goal_Earl_of_Dunmore
+		cost = 9.00
+		x = 20
+		y = 3
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			has_country_leader = {
+				name = "Malcolm Murray"
+    			ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = RVR_The_Bloody_Crown_of_Virginia
+		}
+		completion_reward = {
+			add_popularity = {
+				ideology = autocratic
+				popularity = 0.1
+			}
+		}
+	}
+	focus = {
+		id = RVR_Redistribute_Land
+		icon = GFX_goal_Generic_Land_Reform
+		cost = 9.00
+		x = 21
+		y = 4
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			has_country_leader = {
+				name = "Malcolm Murray"
+    			ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = RVR_Restore_the_Earl_of_Dunmore
+		}
+		completion_reward = {
+			add_timed_idea = {
+				idea = Land_Redistribution
+				days = 280
+			}
+		}
+	}
+	focus = {
+		id = RVR_Reach_out_to_our_Great_Monarch
+		icon = GFX_goal_Generic_British_Diplomacy
+		cost = 9.00
+		x = 22
+		y = 5
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			has_country_leader = {
+				name = "Malcolm Murray"
+    			ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = RVR_Redistribute_Land
+		}
+		completion_reward = {
+			ENG = {
+				country_event = { id = Virginia.9 days = 1 }
+			}
+		}
+	}
+	focus = {
+		id = RVR_The_Last_Bastion_of_the_Empire
+		icon = GFX_Focus_ENG_Imperial_Federalism_Retained
+		cost = 9.00
+		x = 20
+		y = 6
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			has_country_leader = {
+				name = "Malcolm Murray"
+    			ruling_only = yes
+			}
+			has_country_flag = Britain_Denied_Help
+		}
+		prerequisite = {
+			focus = RVR_Reach_out_to_our_Great_Monarch
+		}
+		completion_reward = {
+			add_ideas = RVR_British_Imperialism
+		}
+	}
+	focus = {
+		id = RVR_Feign_the_British_support
+		icon = GFX_goal_generic_control_money
+		cost = 9.00
+		x = 20
+		y = 7
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			has_country_leader = {
+				name = "Malcolm Murray"
+    			ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = RVR_The_Last_Bastion_of_the_Empire
+		}
+		completion_reward = {
+			add_stability = 0.03
+			add_political_power = 25
+		}
+	}
+	focus = {
+		id = RVR_Go_Against_the_Windsors
+		icon = GFX_goal_Generic_Attack_Britain
+		cost = 9.00
+		x = 20
+		y = 8
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			has_country_leader = {
+				name = "Malcolm Murray"
+    			ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = RVR_Feign_the_British_support
+		}
+		completion_reward = {
+			country_event = { id = Virginia.8 days = 1 }
+		}
+	}
+	focus = {
+		id = RVR_the_British_dominion
+		icon = GFX_goal_Generic_Rule_Britannia
+		cost = 9.00
+		x = 22
+		y = 6
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			has_country_leader = {
+				name = "Malcolm Murray"
+    			ruling_only = yes
+			}
+			has_country_flag = Britain_Helps_Us
+		}
+		prerequisite = {
+			focus = RVR_Reach_out_to_our_Great_Monarch
+		}
+		completion_reward = {
+			add_offsite_building = { type = arms_factory level = 3 }
+			add_offsite_building = { type = industrial_complex level = 3 }
+		}
+	}
+	focus = {
+		id = RVR_British_Virginian_Ties
+		icon = GFX_goal_Focus_ENG_Imperial_Investment
+		cost = 9.00
+		x = 22
+		y = 7
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			has_country_leader = {
+				name = "Malcolm Murray"
+    			ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = RVR_the_British_dominion
+		}
+		completion_reward = {
+			ENG = {
+				add_to_faction = VIR
+			}
+		}
+	}
+	focus = {
+		id = RVR_The_Virginian_Commonwealth
+		icon = GFX_goal_Commonwealth_of_Nations
+		cost = 9.00
+		x = 22
+		y = 8
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			has_country_leader = {
+				name = "Malcolm Murray"
+    			ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = RVR_British_Virginian_Ties
+		}
+		completion_reward = {
+			add_ideas = RVR_Commonwealth_Nation
+		}
+	}
+}

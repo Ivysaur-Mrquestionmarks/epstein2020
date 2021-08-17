@@ -42,25 +42,7 @@ FRA_biden_sickness_category = {
 		}
 
 		timeout_effect = {
-			if = {
-				limit = {
-					check_variable = { var = FRA_biden_health_bar value = 2 }
-				}
-				add_stability = -0.1
-				custom_effect_tooltip = FRA_biden_health_terminal_tt
-				subtract_from_variable = { var = FRA_biden_health_bar value = 1 }
-			}
-			else_if = {
-				limit = {
-					check_variable = { var = FRA_biden_health_bar value = 3 }
-				}
-				add_stability = -0.05
-				custom_effect_tooltip = FRA_biden_health_poor_tt
-				subtract_from_variable = { var = FRA_biden_health_bar value = 1 }
-			}
-			else = {
 				country_event = { id = biden.1 hours = 6 }
-			}
 		}
 
 		cancel_effect = {
@@ -119,27 +101,6 @@ FRA_biden_sickness_category = {
 			}
 			else = {
 				add_to_variable = { var = FRA_biden_treatment_cost_var value = 75 }
-			}
-			if = {
-				limit = {
-					NOT = { has_variable = FRA_biden_treatment_effectiveness_var }
-				}
-				set_variable = { var = FRA_biden_treatment_effectiveness_var value = 100 }
-			}
-			else_if = {
-				limit = {
-					check_variable = { var = FRA_biden_treatment_effectiveness_var value = 30 compare = less_than_or_equals } 
-				}
-				set_variable = { var = FRA_biden_treatment_effectiveness_var value = 30 }
-			}
-			else = {
-				subtract_from_variable = { var = FRA_biden_treatment_effectiveness_var value = 25 }
-			}
-			if = {
-				limit = {
-					NOT = { has_country_leader_with_trait = infirm }
-				}
-				FRA_worsen_bidens_health_effect = yes
 			}
 		}
 	}
