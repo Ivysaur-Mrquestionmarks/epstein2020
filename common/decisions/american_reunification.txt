@@ -74,7 +74,10 @@ American_reunification = {
 					is_puppet_of = ROOT
 				}
 				NOT = {
-					tag = RKM
+					OR = {
+						tag = RKM
+						tag = KKK
+					}
 				}
 			}
 		}
@@ -127,6 +130,9 @@ American_reunification = {
 		}
 		visible = {
 			controls_state = 339
+			NOT = {
+				owns_state = 345
+			}
 		}
 		cost = 100
 		ai_will_do = {
@@ -141,12 +147,16 @@ American_reunification = {
 	American_reunification = {
 
 		available = {
-			all_state = {
+			all_state = {	
 				OR = {
 					NOT = {has_state_flag = part_of_america}
 					is_owned_by = ROOT
 					owner = { is_subject_of = ROOT }
 					owner = { tag = AFR }
+					AND = {
+						ROOT = {original_tag = HOP}
+						owner = { tag = KKK }
+					}
 				}		
 			}
 		}
@@ -160,6 +170,7 @@ American_reunification = {
 			Every_state = {
    				Limit = { 
     				is_owned_by = ROOT
+				has_state_flag = part_of_america
     			}
     			add_core_of = ROOT
     		}

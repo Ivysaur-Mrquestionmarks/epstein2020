@@ -3,7 +3,7 @@ focus_tree = {
 	country = {
 		factor = 0
 		modifier = {
-			add = 10 #should be 10, will change it for testing
+			add = 10#should be 10, will change it for testing
 			tag = CSA			
 		}
 	}
@@ -41,6 +41,144 @@ focus_tree = {
 			}
 			add_dynamic_modifier = { modifier = CSA_faith}
 			add_political_power =50
+			CSA_dynamic_faith = yes
+		}
+	}
+
+	focus = {
+		id = CSA_ch_form_jesus_eyes
+		icon = GFX_focus_secret_rearmament
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = CSA_ch_return_god_his_favour }
+		x = 13
+		y = 2
+		cost = 4
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			unlock_decision_tooltip = CSA_force_conversions	
+			unlock_decision_tooltip = CSA_purge_non_believers
+			country_event = {
+    				id = south.59
+			}
+		}
+	}
+
+	focus = {
+		id = CSA_ch_purge_the_klan
+		icon = GFX_focus_secret_rearmament
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = CSA_ch_form_jesus_eyes }
+		x = 12
+		y = 3
+		cost = 6
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+		completion_reward = {
+			add_to_variable = {
+				var = pop_faith
+				value = 0.05
+			}		
+			add_stability = -0.1
+			custom_effect_tooltip = csa_f_5_plus	
+			remove_ideas = {CSA_the_klan CSA_the_klan_weakend}
+			CSA_dynamic_faith = yes
+		}
+	}
+
+	focus = {
+		id = CSA_ch_purge_the_phanters
+		icon = GFX_focus_secret_rearmament
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = CSA_ch_form_jesus_eyes }
+		x = 14
+		y = 3
+		cost = 6
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+		completion_reward = {
+			add_to_variable = {
+				var = pop_faith
+				value = 0.05
+			}		
+			add_stability = -0.1
+			custom_effect_tooltip = csa_f_5_plus	
+			remove_ideas = {CSA_black_panthers CSA_black_panthers_weakend}
+			CSA_dynamic_faith = yes
+		}
+	}
+
+	focus = {
+		id = CSA_ch_Absorb_loyal_remains
+		icon = GFX_focus_secret_rearmament
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = CSA_ch_purge_the_phanters }
+		prerequisite = { focus = CSA_ch_purge_the_klan}
+		x = 13
+		y = 4
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+		completion_reward = {
+			add_to_variable = {
+				var = pop_faith
+				value = 0.1
+			}		
+			add_manpower = 25000
+			custom_effect_tooltip = csa_f_10_plus
+			CSA_dynamic_faith = yes	
+		}
+	}
+
+	focus = {
+		id = CSA_ch_faith_full_people
+		icon = GFX_focus_secret_rearmament
+		#allow_branch = {
+
+		#}
+		prerequisite = { focus = CSA_ch_Absorb_loyal_remains}
+
+		x = 12
+		y = 5
+		cost = 2
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+		completion_reward = {
+			add_to_variable = {
+				var = pop_faith
+				value = 0.05
+			}		
+			custom_effect_tooltip = csa_f_5_plus
+			CSA_dynamic_faith = yes	
 		}
 	}
 }
