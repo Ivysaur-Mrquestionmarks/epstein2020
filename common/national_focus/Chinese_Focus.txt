@@ -309,11 +309,13 @@ focus_tree = {
 			focus = The_Submissive_Chairman
 		}
 		completion_reward = {
+			add_stability = 0.10
+			add_ideas = PRA_new_officers
 			add_manpower = -150000
 		}
 	}
 	focus = {
-		id = Sell_Trade_Ports
+		id = Sell_Trade_Ports #has been changed to "Form the C.O.Z." (Chinese Occupation Zone)
 		icon = GFX_goal_pc_ports
 		cost = 5.00
 		x = 5
@@ -325,13 +327,21 @@ focus_tree = {
 			focus = Give_in_to_Chinese_Interests
 		}
 		completion_reward = {
-			PRC = {
-				transfer_state = 297
-				transfer_state = 302
-				transfer_state = 449
-				transfer_state = 304
-				transfer_state = 241
-				transfer_state = 199
+			add_stability = 0.05
+			add_war_support = 0.25
+			swap_ruler_traits = { remove = Submissive_Chairman add = PRA_reluctant_collaborator }
+			add_country_leader_trait = PRA_quisling
+			set_cosmetic_tag = PRA_formalised_peoples_republic_cosmetic
+			random_state = {
+				limit = {
+					is_owned_by = ROOT
+				}
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+				    type = arms_factory
+				    level = 2
+				    instant_build = yes
+				}
 			}
 		}
 	}
@@ -367,12 +377,10 @@ focus_tree = {
 			focus = Sell_Trade_Ports
 		}
 		completion_reward = {
-			PRC = {
-				puppet = PRA
-			}
+			swap_ruler_traits = { remove = PRA_quisling add = PRA_quisling_1 }
 			hidden_effect = {
-				news_event = { id = News_Events.4 days = 25 }
-				country_event = { id = California.50 days = 23 }
+				news_event = { id = News_Events.4 days = 132 }
+				country_event = { id = California.73 days = 130 }
 			}
 		}
 	}
@@ -394,6 +402,13 @@ focus_tree = {
 		}
 		completion_reward = {
 			add_stability = -0.5
+			set_cosmetic_tag = PRA_formalised_peoples_republic_cosmetic
+			if = {
+				limit = {
+					has_country_flag = bernie_is_unit_leader
+				}
+				remove_unit_leader = 1999
+			}
 			create_country_leader = {
 				name = "American Politburo"
 				picture = "gfx/leaders/PRA/Politburo.tga"
