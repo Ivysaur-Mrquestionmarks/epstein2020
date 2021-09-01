@@ -994,6 +994,7 @@ focus_tree = {
 		}
 		completion_reward = {
 			set_party_name = { ideology = libertarian_right long_name = RVR_IND_PARTY_Long name = RVR_IND_PARTY }
+			set_party_name = { ideology = republican long_name = RVR_IND_PARTY_Long name = RVR_IND_PARTY }
 			swap_ideas = {
 				remove_idea = RVR_Unstable_Party
 				add_idea = RVR_Independence_Party
@@ -1274,7 +1275,16 @@ focus_tree = {
 			focus = RVR_A_Jeffersonian_State
 		}
 		completion_reward = {
-			
+			every_state = {
+				LIMIT = {
+					is_core_of = KFC
+				}
+				add_core_of = RVR
+			}
+			create_wargoal = {
+				target = KFC
+				type = annex_everything
+			}
 		}
 	}
 	focus = {
@@ -1293,7 +1303,26 @@ focus_tree = {
 			focus = RVR_Fry_their_Asses
 		}
 		completion_reward = {
-			
+			every_state = {
+				LIMIT = {
+					is_core_of = APA
+				}
+				add_core_of = RVR
+			}
+			create_wargoal = {
+				target = APA
+				type = annex_everything
+			}
+			every_state = {
+				LIMIT = {
+					is_core_of = NRA
+				}
+				add_core_of = RVR
+			}
+			create_wargoal = {
+				target = NRA
+				type = annex_everything
+			}
 		}
 	}
 	focus = {
@@ -1325,13 +1354,139 @@ focus_tree = {
 			factor = 300
 		}
 		available = {
-
+			OR = {
+				is_neighbor_of = TEX
+				is_neighbor_of = BSH
+			}
+			CSA = {
+				exists = no
+			}
 		}
 		prerequisite = {
 			focus = RVR_Operation_Sherman
 		}
 		completion_reward = {
-			
+			IF = {
+				Limit = {
+					TEX = {
+						has_government = republican
+						has_country_leader = {
+							name = "George W. Bush"
+						}
+						is_faction_leader = yes
+					}
+				}
+				TEX = {
+					add_to_faction = RVR
+				}
+			}
+			IF = {
+				LIMIT = {
+					TEX = {
+						has_government = republican
+						has_country_leader = {
+							name = "George W. Bush"
+						}
+						is_in_faction = no
+					}
+				}
+				VIR = {
+					create_faction = RVR_Republican_Front
+				}
+			}
+			IF = {
+				LIMIT = {
+					BSH = {
+						has_government = autocratic
+						has_country_leader = {
+							name = "George W. Bush"
+						}
+						is_in_faction = no
+					}
+				}
+				BSH = {
+					country_event = { id = Virginia.21 days = 1 }
+				}
+			}
+			else = {
+				country_event = { id = Virginia.20 days = 1 }
+			}
+		}
+	}
+	focus = {
+		id = RVR_The_Rightful_Claim
+		icon = GFX_goal_USA_Monument
+		cost = 9.00
+		x = 8
+		y = 13
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			is_faction_leader = yes
+		}
+		mutually_exclusive = {
+			focus = RVR_America_is_No_More
+		}
+		prerequisite = {
+			focus = RVR_Operation_El_Paso
+		}
+		prerequisite = {
+			focus = RVR_Reunite_Appalachia
+		}
+		completion_reward = {
+			set_cosmetic_tag = RVR_Republic_of_America
+			every_state = {
+				LIMIT = {
+					has_state_flag = part_of_america
+				}
+				add_claim_by = RVR
+			}
+		}
+	}
+	focus = {
+		id = RVR_America_is_No_More
+		icon = GFX_goal_USA_Flag_down
+		cost = 9.00
+		x = 10
+		y = 13
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			is_faction_leader = yes
+		}
+		mutually_exclusive = {
+			focus = RVR_The_Rightful_Claim
+		}
+		prerequisite = {
+			focus = RVR_Operation_El_Paso
+		}
+		prerequisite = {
+			focus = RVR_Reunite_Appalachia
+		}
+		completion_reward = {
+			add_stability  = -0.05
+			add_waar_support = -0.05
+		}
+	}
+	focus = {
+		id = RVR_Reclaim_the_1611_Charter
+		icon = GFX_goal_1611_Charter
+		cost = 9.00
+		x = 10
+		y = 14
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_America_is_No_More
+		}
+		completion_reward = {
+			set_cosmetic_tag = RVR_Greater_Virginia
 		}
 	}
 	focus = {
@@ -1350,7 +1505,7 @@ focus_tree = {
 			focus = RVR_The_Birthplace_of_America
 		}
 		completion_reward = {
-			
+			add_ideas = RVR_Espionage_Capital
 		}
 	}
 	focus = {
@@ -1369,7 +1524,7 @@ focus_tree = {
 			focus = RVR_Exploit_Langley
 		}
 		completion_reward = {
-			
+			create_intelligence_agency = yes
 		}
 	}
 	focus = {
@@ -1659,6 +1814,82 @@ focus_tree = {
 		}
 		completion_reward = {
 			add_ideas = RVR_Independent_Virginia_Plans
+		}
+	}
+	focus = {
+		id = RVR_Claim_1784_Charter
+		icon = GFX_Focus_Generic_Accept_Treaty
+		cost = 9.00
+		x = 1
+		y = 8
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Secure_a_Permanent_Independent_Virginia
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = RVR_Test_our_Skills
+		icon = GFX_Generic_War_Skeleton
+		cost = 9.00
+		x = 1
+		y = 9
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Claim_1784_Charter
+		}
+		prerequisite = {
+			focus = RVR_Disassociate_from_Americanism
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = RVR_Proclaim_Greater_Virginia_McDonnell
+		icon = GFX_goal_McDonnell_is_Virginia
+		cost = 9.00
+		x = 1
+		y = 10
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Test_our_Skills
+		}
+		completion_reward = {
+			set_cosmetic_tag = RVR_Greater_Virginia
+		}
+	}
+	focus = {
+		id = RVR_Disassociate_from_Americanism
+		icon = GFX_goal_Generic_Ripping_Papers
+		cost = 9.00
+		x = 3
+		y = 8
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Secure_a_Permanent_Independent_Virginia
+		}
+		completion_reward = {
 		}
 	}
 	focus = {
