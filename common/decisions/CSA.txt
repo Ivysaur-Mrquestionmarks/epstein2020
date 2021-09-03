@@ -1216,4 +1216,118 @@ CSA_religion = {
 			custom_effect_tooltip = csa_p_5_plus
 		}			
 	}
+
+	CSA_purge_generals= {
+		cost = 180
+		visible = {
+			has_completed_focus = CSA_ch_purge_the_military
+		}
+		available = {
+			any_unit_leader = { 
+				NOT = {	 has_trait = Loyal_to_west}
+			}
+		}
+		days_remove = 30
+		days_re_enable = 25
+
+		ai_will_do = {
+			base = 100
+		}
+
+		remove_effect = {
+			random_unit_leader = {
+				limit= {NOT = {	 has_trait = Loyal_to_west}}
+				retire = yes
+			}
+			add_to_variable = {
+				var = mil_loyal
+				value = 0.07
+			}		
+			custom_effect_tooltip = csa_m_7_plus
+		}			
+	}
+
+
+	CSA_purge_the_troops= {
+		cost = 230
+		visible = {
+			has_completed_focus = CSA_ch_purge_the_soldiers
+		}
+
+		days_remove = 28
+		days_re_enable = 45
+
+		ai_will_do = {
+			base = 100
+		}
+
+		modifier = {
+			weekly_manpower = -5000
+		}
+
+		remove_effect = {
+			
+			add_to_variable = {
+				var = mil_loyal
+				value = 0.05
+			}		
+			custom_effect_tooltip = csa_m_5_plus
+		}			
+	}
+
+	CSA_inoctrinate_troops= {
+		cost = 300
+		visible = {
+			has_completed_focus = CSA_ch_indoctronate_troops
+		}
+
+		days_remove = 45
+		days_re_enable = 60
+
+		ai_will_do = {
+			base = 100
+		}
+
+		modifier = {
+			political_power_cost = 0.75
+		}
+
+		remove_effect = {			
+			add_to_variable = {
+				var = mil_loyal
+				value = 0.07
+			}		
+			custom_effect_tooltip = csa_m_7_plus
+		}			
+	}
+
+	CSA_reeducate_generals= {
+		cost = 350
+		visible = {
+			has_completed_focus = CSA_ch_indoctronate_generals
+		}
+
+		days_remove = 45
+		days_re_enable = 75
+
+		ai_will_do = {
+			base = 100
+		}
+
+		modifier = {
+			political_power_cost = 0.75
+		}
+
+		remove_effect = {			
+			add_to_variable = {
+				var = mil_loyal
+				value = 0.05
+			}		
+			custom_effect_tooltip = csa_m_5_plus
+			random_unit_leader = {
+				limit = {NOT = {has_trait = loyal_to_west}}
+				add_unit_leader_trait =loyal_to_west
+			}
+		}			
+	}
 }
