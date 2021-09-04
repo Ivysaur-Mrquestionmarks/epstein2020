@@ -1175,3 +1175,69 @@ country_event = {
  	
 	}
 }
+#Fire Legion is annexed by PAC
+country_event = {
+	id = fleet_P.56
+	title = fleet_P.56.t
+	desc = fleet_P.56.d
+	#picture =
+	trigger = {
+		original_tag = FIR
+		has_war = no
+		country_exists = PAC
+		PAC = {
+			has_war = no
+			NOT = {
+				has_country_flag = temp_loss
+			}
+		}
+		NOT = {
+			country_exists = PRA
+		}
+	}
+	fire_only_once = yes
+	#annexed into Fleet
+	option = {
+		name = fleet_P.56.a
+		ai_chance = {
+			factor = 100
+		}
+		PAC = {
+			annex_country = {
+			    target = ROOT
+			    transfer_troops = yes
+			}
+			country_event = { id = fleet_P.57 }
+		}
+		if = {
+			limit = {
+				is_ai = no
+				PAC = {
+					is_ai = yes
+				}
+			}
+			PAC = { change_tag_from = ROOT }
+		}
+	}
+	#the Legion lives
+	option = {
+		name = fleet_P.56.b
+		ai_chance = {
+			factor = 0
+		}
+		add_political_power = 50
+	}
+}
+#fleet is notified that the Fire Legion has joined
+country_event = {
+	id = fleet_P.57
+	title = fleet_P.57.t
+	desc = fleet_P.57.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = fleet_P.57.a
+		add_political_power = 5
+	}
+}
