@@ -2,16 +2,56 @@ add_namespace = cayman
 
 country_event = {
 	id = cayman.1
-	title = ""
-	desc = cayman.1.1.d
-	#picture =
-	is_triggered_only = yes
+	title = "Virgin Group Wants to Purchase Our Island"
+	desc = cayman.1.d
+	picture = richard_branson_deal
 	fire_only_once = yes
+	trigger = {
+		tag = CAY
+		date > 2021.12.15
+		date < 2022
+	}
 	option = {
+		name = "We can't compete, sell our assets!"
+		set_country_flag = virgin_deal_yes
 		ai_chance = {
-			factor = 100
+			factor = 1
 		}
-
+	}
+	option = {
+		name = "Kenneth Dart has a vision for these islands!"
+		set_country_flag = virgin_deal_no
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+country_event = {
+	id = cayman.2
+	title = "§RBackdoor in the §PVirgin Islands§!"
+	desc = cayman.2.d
+	picture = richard_branson_deal
+	fire_only_once = yes
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			BEF = {
+				release = VII
+			}
+			transfer_state = 475
+			add_core = 475
+			set_capital = 475
+			set_province_name = {
+				id = 12204
+				name = "Virgin City"
+			}
+			475 = {
+				set_state_name = "Virgin Islands"
+			}
+		}
+	}
+	option = {
+		name = "The heartland of our new nation!"
 	}
 }
 
