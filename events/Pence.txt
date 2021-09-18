@@ -1,0 +1,146 @@
+add_namespace = npa
+
+country_event = {
+	id = npa.1
+	title = npa.1.t
+	desc = npa.1.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = npa.1.a
+		FRA = { add_to_faction = NPA }
+		hidden_effect = {
+		NPA = { country_event = { id = npa.2 } }
+		}
+	}
+	option = {
+		name = npa.1.b
+		hidden_effect = {
+		NPA = { country_event = { id = npa.3 } }
+		}
+	}
+}
+country_event = {
+	id = npa.2
+	title = npa.2.t
+	desc = npa.2.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = npa.2.a
+	}
+}
+country_event = {
+	id = npa.3
+	title = npa.3.t
+	desc = npa.3.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = npa.3.a
+	}
+}
+country_event = {
+	id = npa.4
+	title = npa.4.t
+	desc = npa.4.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = npa.4.a
+		add_ideas = NPA_wave_1
+	}
+	option = {
+		name = npa.4.b
+		add_ideas = NPA_wave_2
+	}
+	option = {
+		name = npa.4.c
+		add_ideas = NPA_wave_3
+	}
+	option = {
+		name = npa.4.e
+		add_ideas = NPA_wave_4
+	}
+}
+country_event = {
+	id = npa.5
+	title = npa.5.t
+	desc = npa.5.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = npa.5.a
+		trigger = {
+			OR = {
+				has_idea = NPA_Motivation_High
+				has_idea = NPA_Motivation_Medium
+				has_idea = NPA_Motivation_Low
+			}
+		}
+		NPA = { add_ideas = NPA_Motivation_Soldified }
+		hidden_effect = {
+		if = {
+			limit = { has_idea = NPA_Motivation_High }
+				remove_ideas = NPA_Motivation_High
+			}
+		if = {
+			limit = { has_idea = NPA_Motivation_Medium }
+				remove_ideas = NPA_Motivation_Medium
+			}
+		if = {
+			limit = { has_idea = NPA_Motivation_Low }
+			remove_ideas = NPA_Motivation_Low
+			}
+		set_country_flag = NPA_Motivation_Propaganda
+		}
+	}
+	option = {
+		name = npa.5.b
+		trigger = {
+			NOT = {
+				has_idea = NPA_Motivation_High
+				has_idea = NPA_Motivation_Medium
+				has_idea = NPA_Motivation_Low
+			}
+		}
+		add_war_support = -0.1
+	}
+}
+country_event = {
+	id = npa.6
+	title = npa.6.t
+	desc = npa.6.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = npa.6.a
+		if = {
+			limit = { country_exists = MIN }
+				declare_war_on = {
+				target = MIN
+				type = annex_everything
+				}
+			}
+		if = {
+			limit = { country_exists = MIN }
+				declare_war_on = {
+				target = MNS
+				type = annex_everything
+				}
+			}
+		if = {
+			limit = { country_exists = MIN }
+				declare_war_on = {
+				target = MIL
+				type = annex_everything
+				}
+			}
+		}
+}
