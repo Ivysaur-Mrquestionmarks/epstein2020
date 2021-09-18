@@ -64,3 +64,66 @@ CSA_religion = {
 	}
 	visible_when_empty = yes
 }
+
+CSA_supress = {
+	#icon = hol_war_on_pacifism
+	
+	allowed = {
+		is_in_array = {
+			array = global.south_collapse
+			value = THIS.id
+		}				
+		NOT = {tag = ARK}
+		NOT = {tag = SCA}		
+	}
+
+	visible = {
+		NOT = { has_completed_focus = CSA_victory}
+		any_controlled_state = {
+			OR = {
+				is_core_of = ARK
+				is_core_of = SCA
+			}
+		}
+	}
+}
+
+CSA_ARK = {
+	#icon = hol_war_on_pacifism
+	
+	allowed = {
+		tag = USA				
+				
+	}
+
+	visible = {
+		NOt = {
+			any_country = {
+				has_completed_focus = CSA_victory
+			}
+		}
+		any_state = {
+			is_core_of = ARK
+		}
+	}
+}
+
+CSA_SCA = {
+	#icon = hol_war_on_pacifism
+	
+	allowed = {
+		tag = FRA				
+				
+	}
+
+	visible = {
+		NOT = {
+			any_country = {
+				has_completed_focus = CSA_victory
+			}
+		}
+		any_state = {
+			is_core_of = SCA
+		}
+	}
+}

@@ -1331,3 +1331,253 @@ CSA_religion = {
 		}			
 	}
 }
+
+CSA_ARK = {
+	ARK_influence = {
+		state_target = yes
+
+		cost = 35
+
+		visible = {
+			FROM = {NOT = {has_state_flag = influence}}
+		}
+		ai_will_do = {
+			base = 5
+		}
+		on_map_mode = map_and_decisions_view 
+		days_remove = 30
+		days_re_enable = 30
+		target_trigger = {
+		 	FROM = {
+				is_core_of = ARK
+			}
+		}
+		complete_effect = {
+			add_equipment_to_stockpile = {
+    				type = infantry_equipment
+    				amount = -500
+			}
+		}
+		remove_effect = {
+			modify_country_flag = {
+    				flag = ARK_rebelion
+    				value = 1
+			}
+			FROM = {set_state_flag = influence}
+		}
+
+	}
+
+	ARK_rebelion = {
+		cost = 100
+
+		available = {
+			has_country_flag = {
+    				flag = ARK_rebelion
+    				value > 1
+			}
+		}
+	
+		days_remove = 50
+		fire_only_once = yes
+		ai_will_do = {
+			base = 5
+		}
+
+		complete_effect = {
+			add_equipment_to_stockpile = {
+    				type = infantry_equipment
+    				amount = -2000
+			}
+		}
+		remove_effect = {
+			every_state = {
+				limit = {
+					is_core_of = ARK 
+					owner = {
+						is_in_array = {
+							array = global.south_collapse
+							value = THIS.id
+						}
+					}
+				}
+				owner = {
+					teleport_armies = {
+    						limit = {
+        						is_core_of = ARK
+    						}
+					}
+				}
+				
+			
+				ARK = {
+					transfer_state = PREV
+					add_to_array = {
+    						array = global.south_collapse
+    						value = ARK.id
+					}
+					load_focus_tree = csa_collapse
+					for_each_scope_loop = {
+						array = global.south_collapse
+						if = { limit = {Not = {tag = ARK}}
+							ARK = {declare_war_on = {
+    								target = PREV
+    								type = annex_everything
+							}}
+						}
+					}
+				}
+			}
+		}
+
+	}
+}
+
+CSA_SCA = {
+	SCA_influence = {
+		state_target = yes
+
+		cost = 35
+
+		visible = {
+			FROM = {NOT = {has_state_flag = influence}}
+		}
+		ai_will_do = {
+			base = 5
+		}
+		on_map_mode = map_and_decisions_view 
+		days_remove = 30
+		days_re_enable = 30
+		target_trigger = {
+		 	FROM = {
+				is_core_of = SCA
+			}
+		}
+		complete_effect = {
+			add_equipment_to_stockpile = {
+    				type = infantry_equipment
+    				amount = -500
+			}
+		}
+		remove_effect = {
+			modify_country_flag = {
+    				flag = SCA_rebelion
+    				value = 1
+			}
+			FROM = {set_state_flag = influence}
+		}
+
+	}
+
+	SCA_rebelion = {
+		cost = 100
+
+		available = {
+			has_country_flag = {
+    				flag = SCA_rebelion
+    				value > 1
+			}
+		}
+	
+		days_remove = 50
+		fire_only_once = yes
+		ai_will_do = {
+			base = 5
+		}
+		complete_effect = {
+			add_equipment_to_stockpile = {
+    				type = infantry_equipment
+    				amount = -2000
+			}
+		}
+		remove_effect = {
+			every_state = {
+				limit = {
+					is_core_of = SCA
+					owner = {
+						is_in_array = {
+							array = global.south_collapse
+							value = THIS.id
+						}
+					}
+				}
+					owner = {
+						teleport_armies = {
+    							limit = {
+        							is_core_of = SCA
+    							}
+						}
+					}
+				
+			
+				SCA = {
+					transfer_state = PREV
+					add_to_array = {
+    						array = global.south_collapse
+    						value = SCA.id
+					}
+					load_focus_tree = csa_collapse
+					for_each_scope_loop = {
+						array = global.south_collapse
+						if = { limit = {Not = {tag = SCA}}
+							SCA = {declare_war_on = {
+    								target = PREV
+    								type = annex_everything
+							}}
+						}
+					}
+				}
+			}
+		}
+
+	}
+}
+
+CSA_supress = {
+	CSA_supresion = {
+		state_target = yes
+
+		cost = 50
+
+		visible = {
+			FROM = {
+				has_state_flag = influence
+				is_owned_by = ROOT
+			}
+		}
+		ai_will_do = {
+			base = 15
+		}
+		on_map_mode = map_and_decisions_view 
+		days_remove = 35
+
+		target_trigger = {
+		 	FROM = {
+				OR = {is_core_of = SCA is_core_of = ARK}
+			}
+		}
+		complete_effect = {
+			add_equipment_to_stockpile = {
+    				type = infantry_equipment
+    				amount = -500
+			}
+		}
+		 modifier = { weekly_manpower = -750 } 
+		remove_effect = {
+			FROM = {clr_state_flag = influence}
+			if = {limit = {FROM = is_core_of = SCA}}
+				FRA = {modify_country_flag = {
+    					flag = SCA_rebelion
+    					value = -1
+				}}
+			}
+			else_if = {limit = {FROM = is_core_of = ARK}}
+				USA = {modify_country_flag = {
+    					flag = ARK_rebelion
+    					value = -1
+				}}
+			}
+		}
+
+	}
+}
