@@ -22,6 +22,9 @@ focus_tree = {
 		}
 		prerequisite = { focus = NPA_forge_new_alliances  }
 		mutually_exclusive = { focus = NPA_a_good_cause  focus = NPA_concessions_to_libertarians  }
+		completion_reward = {
+		add_ideas = NPA_siding_with_anarchists
+		}
 	}
 
 
@@ -36,6 +39,9 @@ focus_tree = {
 		}
 		prerequisite = { focus = NPA_forge_new_alliances  }
 		mutually_exclusive = { focus = NPA_rebel_brothers  focus = NPA_concessions_to_libertarians  }
+		completion_reward = {
+		add_ideas = NPA_siding_with_democrats
+		}
 	}
 
 
@@ -53,7 +59,7 @@ focus_tree = {
 			NOT = { is_puppet_of = USA }
 		}
 		completion_reward = {
-			add_political_power = 120
+			add_political_power = 200
 		}
 		mutually_exclusive = { focus = NPA_forge_new_alliances  }
 	}
@@ -69,6 +75,9 @@ focus_tree = {
 			FOCUS_FILTER_POLITICAL
 		}
 		mutually_exclusive = { focus = NPA_path_of_the_lone_wolf  }
+		completion_reward = {
+		add_stability = 0.15
+		}
 	}
 
 
@@ -82,6 +91,9 @@ focus_tree = {
 		}
 		prerequisite = { focus = NPA_forge_new_alliances  }
 		mutually_exclusive = { focus = NPA_a_good_cause  focus = NPA_rebel_brothers  }
+		completion_reward = {
+		add_ideas = NPA_siding_with_libertarians
+		}
 	}
 
 	focus = {
@@ -90,6 +102,9 @@ focus_tree = {
 		icon = GFX_focus_NPA_Inside_Job
 		x = 6
 		y = 5
+		available = {
+		has_war_with = USA
+		}
 		search_filters = {
 			FOCUS_FILTER_STABILITY
 		}
@@ -109,6 +124,9 @@ focus_tree = {
 		search_filters = {
 			FOCUS_FILTER_MANPOWER
 		}
+		completion_reward = {
+		country_event = { id = npa.4 }
+		}
 	}
 
 
@@ -118,10 +136,26 @@ focus_tree = {
 		icon = GFX_focus_NPA_The_First_Wave
 		x = 2
 		y = 1
+		bypass = {
+			has_war = no
+		}
+		available = {
+		USA = { surrender_progress > 0.05 }
+		}
 		search_filters = {
 			FOCUS_FILTER_MANPOWER
 		}
 		prerequisite = { focus = NPA_great_return_programs  }
+		completion_reward = {
+		add_manpower = 6000
+			random_state = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
 	}
 
 
@@ -131,10 +165,19 @@ focus_tree = {
 		icon = GFX_focus_NPA_The_Second_Wave
 		x = 2
 		y = 2
+		bypass = {
+			has_war = no
+		}
+		available = {
+		USA = { surrender_progress > 0.1 }
+		}
 		search_filters = {
 			FOCUS_FILTER_MANPOWER
 		}
 		prerequisite = { focus = NPA_the_first_wave  }
+		completion_reward = {
+		add_manpower = 10000
+		}
 	}
 
 
@@ -144,10 +187,20 @@ focus_tree = {
 		icon = GFX_focus_NPA_The_Final_Wave
 		x = 2
 		y = 3
+		bypass = {
+			has_war = no
+		}
+		available = {
+		USA = { surrender_progress > 0.25 }
+		}
+		
 		search_filters = {
 			FOCUS_FILTER_MANPOWER
 		}
 		prerequisite = { focus = NPA_the_second_wave  }
+		completion_reward = {
+		add_manpower = 14000
+		}
 	}
 
 
@@ -157,10 +210,16 @@ focus_tree = {
 		icon = GFX_focus_NPA_Patriotic_Propaganda
 		x = 4
 		y = 3
+		bypass = {
+			has_war = no
+		}
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
 		prerequisite = { focus = NPA_the_second_wave  focus = NPA_medial_counterrevolution  }
+		completion_reward = {
+		country_event = { id = npa.5 }
+		}
 	}
 #################################
 ### NECESSARY MEASURES BRANCH ###
@@ -171,6 +230,17 @@ focus_tree = {
 		icon = GFX_focus_generic_strike_at_democracy1
 		x = 2
 		y = 6
+		available = {
+		NOT = { has_war_with = USA }
+		NOT = { 
+			has_country_leader = {
+			name = "Ben Shapiro"
+			ruling_only = yes
+			}
+		is_puppet = no
+		 }
+		 
+		}
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
@@ -178,6 +248,89 @@ focus_tree = {
 		mutually_exclusive = { focus = NPA_old_republican_party_reshuffle  }
 		completion_reward = {
 		custom_effect_tooltip = NPA_NM_tt
+		
+		hidden_effect = {
+		if = {
+			limit = { has_country_leader = { name = "Mike Pence" ruling_only = yes } }
+			set_politics = {
+				ruling_party = autocratic
+				elections_allowed = no
+				last_election = "1935.12.17"
+				election_frequency = 48
+			}
+			set_popularities = {
+				democrat = 0
+				republican = 5
+				libertarian_left = 0
+				libertarian_right  = 5
+				authoritarian_left = 0
+				autocratic = 90
+			}
+			}
+		if = {
+			limit = { has_country_leader = { name = "Liz Cheney" ruling_only = yes } }
+			set_party_name = { 
+				ideology = autocratic
+				long_name = NPA_Cheney_Party_Long 
+				name = NPA_Cheney_Party 
+			}
+			set_politics = {
+				ruling_party = autocratic
+				elections_allowed = no
+				last_election = "1935.12.17"
+				election_frequency = 48
+			}
+			set_popularities = {
+				democrat = 0
+				republican = 5
+				libertarian_left = 0
+				libertarian_right  = 5
+				authoritarian_left = 0
+				autocratic = 90
+			}
+			create_country_leader = {
+			name = "Liz Cheney"
+			picture = "gfx/leaders/NPA/liz_cheney.dds"
+			expire = "2060.1.1"
+			ideology = fascism
+			female = yes
+			traits = {
+				hawk
+				}
+			}
+			}
+		if = {
+			limit = { has_country_leader = { name = "John Bolton" ruling_only = yes } }
+			set_politics = {
+				ruling_party = autocratic
+				elections_allowed = no
+				last_election = "1935.12.17"
+				election_frequency = 48
+			}
+			set_party_name = { 
+				ideology = autocratic
+				long_name = NPA_Bolton_Party_Long 
+				name = NPA_Bolton_Party 
+			}
+			set_popularities = {
+				democrat = 0
+				republican = 5
+				libertarian_left = 0
+				libertarian_right  = 5
+				authoritarian_left = 0
+				autocratic = 90
+			}
+			create_country_leader = {
+			name = "John Bolton"
+			picture = "gfx/leaders/NPA/bolton.dds"
+			expire = "2060.1.1"
+			ideology = fascism
+			traits = {
+				hawk
+				}
+			}
+			}
+		}
 		}
 	}
 	
@@ -205,6 +358,9 @@ focus_tree = {
 			FOCUS_FILTER_POLITICAL
 		}
 		prerequisite = { focus = NPA_in_god_we_trust  }
+		completion_reward = {
+		add_ideas = NPA_Bad_Maga
+		}
 	}
 	focus = {
 		id = NPA_retire_in_glory
@@ -212,6 +368,13 @@ focus_tree = {
 		icon = GFX_focus_generic_strike_at_democracy1
 		x = 0
 		y = 10
+		available = {
+		 NOT = { has_country_leader = {
+			name = "Mike Pence"
+			ruling_only = yes
+			}
+		 }
+		}
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
@@ -242,6 +405,12 @@ focus_tree = {
 			FOCUS_FILTER_POLITICAL
 		}
 		prerequisite = { focus = NPA_revive_pnac  }
+		completion_reward = {
+		swap_ideas = {
+			remove_idea = NPA_Bad_Maga
+			add_idea = NPA_Cursed_Maga
+			}
+		}
 	}
 	focus = {
 		id = NPA_alliance_with_the_devil
@@ -634,9 +803,53 @@ focus_tree = {
 			FOCUS_FILTER_INDUSTRY
 		}
 		prerequisite = { focus = NPA_inside_job  }
-		completion_reward = {
+	completion_reward = {
 		custom_effect_tooltip = NPA_war_patronage_tt
+		hidden_effect = {
+		if = {
+			limit = {
+				has_idea = Wagner
+			}
+			remove_ideas = Wagner
 		}
+		if = {
+			limit = {
+				has_idea = Defion
+			}
+			remove_ideas = Defion
+		}
+		if = {
+			limit = {
+				has_idea = Academi
+			}
+			remove_ideas = Academi
+		}
+		if = {
+			limit = {
+				has_idea = Aegis
+			}
+			remove_ideas = Aegis
+		}
+		if = {
+			limit = {
+				has_idea = Canopy
+			}
+			remove_ideas = Canopy
+		}
+		if = {
+			limit = {
+				has_idea = G4S
+			}
+			remove_ideas = G4S
+		}
+		if = {
+			limit = {
+				has_idea = mercenary_contract_extension
+			}
+			remove_ideas = mercenary_contract_extension
+		}
+	}
+	}
 	}
 
 
@@ -725,6 +938,9 @@ focus_tree = {
 			FOCUS_FILTER_POLITICAL
 		}
 		prerequisite = { focus = NPA_rebel_brothers  }
+		completion_reward = {
+		country_event = { id = npa.13 }
+		}
 	}
 
 	focus = {
@@ -737,6 +953,9 @@ focus_tree = {
 			FOCUS_FILTER_POLITICAL
 		}
 		prerequisite = { focus = NPA_concessions_to_libertarians  }
+		completion_reward = {
+		country_event = { id = npa.14 }
+		}
 	}
 
 
@@ -748,6 +967,9 @@ focus_tree = {
 		y = 0
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
+		}
+		completion_reward = {
+		add_political_power = 80
 		}
 	}
 	
@@ -1008,6 +1230,9 @@ focus_tree = {
 			FOCUS_FILTER_INDUSTRY
 		}
 		prerequisite = { focus = NPA_focus_on_kansas focus = NPA_focus_on_missouri  }
+		completion_reward = {
+		add_research_slot = 1
+		}
 	}
 
 
@@ -1060,6 +1285,9 @@ focus_tree = {
 			FOCUS_FILTER_RESEARCH
 		}
 		prerequisite = { focus = NPA_on_the_crossroad_of_america  }
+		completion_reward = {
+		add_research_slot = 1
+		}
 	}
 
 }
