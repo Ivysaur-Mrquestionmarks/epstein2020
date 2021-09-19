@@ -1402,32 +1402,38 @@ CSA_ARK = {
 					}
 				}
 				owner = {
+					country_event = {
+    						id = south.79
+					}	
 					teleport_armies = {
     						limit = {
         						is_core_of = ARK
     						}
 					}
 				}
-				
-			
 				ARK = {
 					transfer_state = PREV
 					add_to_array = {
     						array = global.south_collapse
-    						value = ARK.id
+    						value = SCA.id
 					}
-					load_focus_tree = csa_collapse
-					for_each_scope_loop = {
-						array = global.south_collapse
-						if = { limit = {Not = {tag = ARK}}
-							ARK = {declare_war_on = {
-    								target = PREV
-    								type = annex_everything
-							}}
-						}
+				}
+				
+			}
+			ARK = {
+				load_oob = "ARK_DCW"
+				load_focus_tree = csa_collapse
+				for_each_scope_loop = {
+					array = global.south_collapse
+					if = { limit = {Not = {tag = ARK}}
+						ARK = {declare_war_on = {
+    							target = PREV
+    							type = annex_everything
+						}}
 					}
 				}
 			}
+			
 		}
 
 	}
@@ -1501,33 +1507,41 @@ CSA_SCA = {
 						}
 					}
 				}
-					owner = {
-						teleport_armies = {
-    							limit = {
-        							is_core_of = SCA
-    							}
-						}
+				owner = {
+					country_event = {
+    						id = south.80
 					}
-				
-			
+					teleport_armies = {
+    						limit = {
+        						is_core_of = SCA
+    						}
+					}
+				}
 				SCA = {
 					transfer_state = PREV
 					add_to_array = {
     						array = global.south_collapse
     						value = SCA.id
 					}
-					load_focus_tree = csa_collapse
-					for_each_scope_loop = {
-						array = global.south_collapse
-						if = { limit = {Not = {tag = SCA}}
-							SCA = {declare_war_on = {
-    								target = PREV
-    								type = annex_everything
-							}}
-						}
+				}
+				
+			}
+			SCA = {
+				transfer_state = PREV
+				load_oob = "SCA_DCW"
+
+				load_focus_tree = csa_collapse
+				for_each_scope_loop = {
+					array = global.south_collapse
+					if = { limit = {Not = {tag = SCA}}
+						SCA = {declare_war_on = {
+    							target = PREV
+    							type = annex_everything
+						}}
 					}
 				}
 			}
+			
 		}
 
 	}
