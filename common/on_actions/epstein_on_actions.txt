@@ -165,12 +165,33 @@ on_actions = {
 			}
 		}
 	}
+	#Drumpf vs the Feds super event
 	on_declare_war = { 
 		effect = {
 			if = {
 				limit = {
 					FROM = {OR = {tag =USA tag  = FRA}}
 					ROOT = {OR = {tag =USA tag  = FRA}}
+				}
+				news_event = {
+    					id = News_events.83
+    					days = 1
+				}
+			}
+		}
+	}
+	#fired when two countries end up at war with each other (on_war is fired when a country goes to war against anyone and is not fired again when it enters war against another country unless it went to peace first)
+	on_war_relation_added = {
+		effect = {
+			if = {
+				limit = {
+					OR = { tag = USA tag = FRA }
+					FROM = { 
+						OR = {
+							tag = FRA
+							tag = USA
+						}
+					}
 				}
 				news_event = {
     					id = News_events.83
