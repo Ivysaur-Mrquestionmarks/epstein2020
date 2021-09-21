@@ -89,11 +89,33 @@ country_event = {
 			has_country_flag = kamala_is_nominated_for_twenty_twenty_four
 		}
 		set_country_flag = president_kamala
-		hidden_effect = {
-			remove_ideas = FRA_kamala_harris_vp
-			clr_country_flag = vice_president_kamala
-			add_ideas = FRA_nancy_pelosi_vp
-			set_country_flag = vice_president_nancy
+		if = {
+			limit = {
+				NOT = {
+					has_country_leader = { name = "Kamala Harris" ruling_only = yes }
+				}
+			}
+			create_country_leader = {
+				name = "Kamala Harris"
+				picture = "gfx/leaders/FRA/kamala.dds"
+				expire = "2060.1.1"
+				ideology = neoliberal
+				female = yes
+				traits = {
+					###
+				}
+			}
+		}
+		if = {
+			limit = {
+				has_country_flag = vice_president_kamala
+			}
+			hidden_effect = {
+				remove_ideas = FRA_kamala_harris_vp
+				clr_country_flag = vice_president_kamala
+				add_ideas = FRA_nancy_pelosi_vp
+				set_country_flag = vice_president_nancy
+			}
 		}
 	}
 	#McConnell is elected
@@ -217,6 +239,15 @@ country_event = {
 				add_state_claim = 220
 				add_state_claim = 227
 			}
+			every_state = {
+				limit = {
+					is_owned_by = NYC
+					NOT = {
+						is_core_of = FRA
+					}
+				}
+				add_core_of = FRA
+			}
 		}
 	}
 }
@@ -235,5 +266,116 @@ news_event = {
 	option = {
 		name = federal_republic.10.b
 		trigger = { NOT  = { tag = FRA } }
+	}
+}
+#The Green Mountain Boys
+country_event = {
+	id = federal_republic.11
+	title = federal_republic.11.t
+	desc = federal_republic.11.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = federal_republic.11.a
+		add_stability = -0.05
+		add_political_power = -15
+		VER = {
+			add_state_core = 168
+			add_state_core = 178
+			add_state_core = 180
+		}
+		release = VER
+		unlock_decision_category_tooltip = FRA_green_mountain_boys_decision
+		hidden_effect = {
+			news_event = {
+				id = federal_republic.12
+				hours = 7
+			}
+			#add_ideas = FRA_new_england_war
+			set_country_flag = FRA_gmb_vermont
+			VER = {
+				load_oob = "VER_REBEL"
+				add_state_claim = 170
+				add_state_claim = 172
+				add_state_claim = 174
+			}
+			every_state = {
+				limit = {
+					is_owned_by = NEW
+				}
+				add_claim_by = VER
+			}
+			every_state = {
+				limit = {
+					is_owned_by = VER
+					NOT = {
+						is_core_of = FRA
+					}
+				}
+				add_core_of = FRA
+			}
+		}
+	}
+}
+#news event for above
+news_event = {
+	id = federal_republic.12
+	title = federal_republic.12.t
+	desc = federal_republic.12.d
+	#picture =
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = federal_republic.12.a
+		trigger = { tag = FRA }
+	}
+	option = {
+		name = federal_republic.12.b
+		trigger = { NOT  = { tag = FRA } }
+	}
+}
+#GMB receives the Pelosi Plan
+country_event = {
+	id = federal_republic.13
+	title = federal_republic.13.t
+	desc = federal_republic.13.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = federal_republic.13.a
+		ai_chance = {
+			factor = 33
+		}
+		FRA = {
+			annex_country = { target = ROOT transfer_troops = no }
+		}
+	}
+	option = {
+		name = federal_republic.13.b
+		ai_chance = {
+			factor = 67
+		}
+		FRA = {
+			country_event = {
+				id = federal_republic.14
+				hours = 3
+			}
+			set_country_flag = FRA_pelosi_snubbed_by_greens
+		}
+	}
+}
+#Pelosi  Plan refused!
+country_event = {
+	id = federal_republic.14
+	title = federal_republic.14.t
+	desc = federal_republic.14.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = federal_republic.14.a
+		add_war_support = 0.025
 	}
 }
