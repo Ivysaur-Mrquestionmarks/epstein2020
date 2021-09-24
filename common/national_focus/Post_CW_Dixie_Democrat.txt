@@ -25,6 +25,7 @@ focus_tree = {
 			set_politics = {
 				ruling_party = republican
 			}
+			add_ideas = DIX_Fresh_Nation
 			create_country_leader = {
 				name = "Brian Kemp"
 				picture = "gfx/leaders/CSA/Republican_Kemp.tga"
@@ -43,11 +44,11 @@ focus_tree = {
 			set_party_name = { ideology = authoritarian_left long_name = DIX_AL_L name = DIX_AL }
 			set_popularities = {
 				libertarian_right = 13
-				libertarian_left = 6
-				republican = 30
+				libertarian_left = 9
+				republican = 25
 				democrat = 17
-				authoritarian_left = 8
-				autocratic = 27
+				authoritarian_left = 10
+				autocratic = 26
 			}
 			hidden_effect = {
 				create_country_leader = {
@@ -64,7 +65,7 @@ focus_tree = {
 				}
 				create_country_leader = {
 					name = "Gene Taylor"
-					picture = "gfx/leaders/CSA/Taylor.tga"
+					picture = "gfx/leaders/CSA/Gene_Taylor.png"
 					expire = "2060.1.1"
 					ideology = Bourbon_Democrat
 					traits = {
@@ -73,7 +74,7 @@ focus_tree = {
 				}
 				create_country_leader = {
 					name = "Ricky Harrington Jr."
-					picture = "gfx/leaders/CSA/Harrington.tga"
+					picture = "gfx/leaders/CSA/Ricky_Harrington_Jr.png"
 					expire = "2060.1.1"
 					ideology = libertarian_ideology
 					traits = {
@@ -83,7 +84,7 @@ focus_tree = {
 				}
 				create_country_leader = {
 					name = "Darryl Richardson"
-					picture = "gfx/leaders/CSA/Pecinovsky.tga"
+					picture = "gfx/leaders/CSA/Darryl_Richardson.png"
 					expire = "2060.1.1"
 					ideology = democratic_socialism
 					traits = {
@@ -92,7 +93,7 @@ focus_tree = {
 				}
 				create_country_leader = {
 					name = "Tony Pecinovsky"
-					picture = "gfx/leaders/CSA/Pecinovsky.tga"
+					picture = "gfx/leaders/CSA/Pecinovsky.png"
 					expire = "2060.1.1"
 					ideology = communism
 					traits = {
@@ -162,7 +163,16 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_stability = 0.03
+			add_war_support = -0.04
+			add_popularity = {
+   				ideology = republican
+    			popularity = 0.03
+			}
+			add_popularity = {
+    			ideology = democrat
+    			popularity = 0.02
+			}
 		}
 	}
 	focus = {
@@ -225,7 +235,14 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_popularity = {
+   				ideology = autocratic
+    			popularity = 0.04
+			}
+			add_popularity = {
+    			ideology = republican
+    			popularity = 0.01
+			}
 		}
 	}
 	focus = {
@@ -245,7 +262,7 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_ideas = DIX_Kanyeism
 		}
 	}
 	focus = {
@@ -264,7 +281,13 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_equipment_to_stockpile = {
+    			type = convoy
+    			amount = 38
+    			producer = CSA
+			}
+			navy_experience = -10
+			add_ideas = export_focus
 		}
 	}
 	focus = {
@@ -283,7 +306,12 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_stability = 0.05
+			add_popularity = {
+   				ideology = autocratic
+    			popularity = -0.02
+			}
+			add_ideas = DIX_Free_Press
 		}
 	}
 	focus = {
@@ -302,7 +330,7 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_ideas = DIX_Recovery_From_Civil_War
 		}
 	}
 	focus = {
@@ -321,7 +349,11 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_popularity = {
+   				ideology = autocratic
+    			popularity = -0.04
+			}
+			army_experience = -25
 		}
 	}
 	focus = {
@@ -340,7 +372,7 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_manpower = 2500
 		}
 	}
 	focus = {
@@ -371,20 +403,331 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			country_event = { id = Dixie.2 days = 1 }
 		}
 	}
 	focus = {
-		id = DIX_Cotton_Wins
-		icon = GFX_Focus_Generic_Democratic_Election
+		id = DIX_Rally_the_Youth_Voters
+		icon = GFX_goal_Young_Confederate_Voters
 		cost = 3.00
-		x = 5
+		x = 25
 		y = 6
 		available = {
 
 		}
 		prerequisite = {
 			focus = DIX_Open_the_Ballot_Boxes
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_political_power = 25
+		}
+	}
+	focus = {
+		id = DIX_Rally_the_Older_Generations
+		icon = GFX_goal_Old_Confederate_Voters
+		cost = 3.00
+		x = 24
+		y = 7
+		available = {
+
+		}
+		prerequisite = {
+			focus = DIX_Rally_the_Youth_Voters
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_political_power = 10
+			add_stability = 0.01
+		}
+	}
+	focus = {
+		id = DIX_Legalize_Early_Voting
+		icon = GFX_goal_Allow_Mail_in_Votes
+		cost = 3.00
+		x = 26
+		y = 7
+		available = {
+
+		}
+		prerequisite = {
+			focus = DIX_Rally_the_Youth_Voters
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			country_event = { id = Dixie.3 days = 1 }
+		}
+	}
+	focus = {
+		id = DIX_Campaign_in_Alabama
+		icon = GFX_goal_Alabama_Election
+		cost = 3.00
+		x = 25
+		y = 8
+		available = {
+
+		}
+		bypass = {
+			OR = {
+				autocratic > 0.49
+				democrat > 0.49
+				republican > 0.49
+			}
+		}
+		prerequisite = {
+			focus = DIX_Legalize_Early_Voting
+		}
+		prerequisite = {
+			focus = DIX_Rally_the_Older_Generations
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			country_event = { id = Dixie.4 days = 1 }
+			add_political_power = -50
+		}
+	}
+	focus = {
+		id = DIX_Campaign_in_Arkansas
+		icon = GFX_goal_Arkansas_Election
+		cost = 3.00
+		x = 23
+		y = 8
+		available = {
+
+		}
+		bypass = {
+			OR = {
+				autocratic > 0.49
+				democrat > 0.49
+				republican > 0.49
+			}
+		}
+		prerequisite = {
+			focus = DIX_Legalize_Early_Voting
+		}
+		prerequisite = {
+			focus = DIX_Rally_the_Older_Generations
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			country_event = { id = Dixie.5 days = 1 }
+			add_political_power = -10
+		}
+	}
+	focus = {
+		id = DIX_Campaign_in_Louisiana
+		icon = GFX_goal_Louisiana_Election
+		cost = 3.00
+		x = 27
+		y = 8
+		available = {
+
+		}
+		bypass = {
+			OR = {
+				autocratic > 0.49
+				democrat > 0.49
+				republican > 0.49
+			}
+		}
+		prerequisite = {
+			focus = DIX_Legalize_Early_Voting
+		}
+		prerequisite = {
+			focus = DIX_Rally_the_Older_Generations
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			country_event = { id = Dixie.6 days = 1 }
+			add_political_power = -10
+		}
+	}
+	focus = {
+		id = DIX_Campaign_in_Tennessee
+		icon = GFX_goal_Tennesse_Election
+		cost = 3.00
+		x = 29
+		y = 8
+		available = {
+
+		}
+		bypass = {
+			OR = {
+				autocratic > 0.49
+				democrat > 0.49
+				republican > 0.49
+			}
+		}
+		prerequisite = {
+			focus = DIX_Legalize_Early_Voting
+		}
+		prerequisite = {
+			focus = DIX_Rally_the_Older_Generations
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			country_event = { id = Dixie.7 days = 1 }
+			add_political_power = -10
+		}
+	}
+	focus = {
+		id = DIX_Campaign_in_Mississippi
+		icon = GFX_goal_Mississippi_Election
+		cost = 3.00
+		x = 21
+		y = 8
+		available = {
+
+		}
+		bypass = {
+			OR = {
+				autocratic > 0.49
+				democrat > 0.49
+				republican > 0.49
+			}
+		}
+		prerequisite = {
+			focus = DIX_Legalize_Early_Voting
+		}
+		prerequisite = {
+			focus = DIX_Rally_the_Older_Generations
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			country_event = { id = Dixie.8 days = 1 }
+			add_political_power = -10
+		}
+	}
+	focus = {
+		id = DIX_Campaign_in_Georgia
+		icon = GFX_goal_Georgia_Election
+		cost = 3.00
+		x = 19
+		y = 8
+		available = {
+
+		}
+		bypass = {
+			OR = {
+				autocratic > 0.49
+				democrat > 0.49
+				republican > 0.49
+			}
+		}
+		prerequisite = {
+			focus = DIX_Legalize_Early_Voting
+		}
+		prerequisite = {
+			focus = DIX_Rally_the_Older_Generations
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			country_event = { id = Dixie.9 days = 1 }
+			add_political_power = -10
+		}
+	}
+	focus = {
+		id = DIX_Campaign_in_Carolina
+		icon = GFX_goal_Carolina_Election
+		cost = 3.00
+		x = 31
+		y = 8
+		available = {
+
+		}
+		bypass = {
+			OR = {
+				autocratic > 0.49
+				democrat > 0.49
+				republican > 0.49
+			}
+		}
+		prerequisite = {
+			focus = DIX_Legalize_Early_Voting
+		}
+		prerequisite = {
+			focus = DIX_Rally_the_Older_Generations
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			country_event = { id = Dixie.10 days = 1 }
+			add_political_power = -10
+		}
+	}
+	focus = {
+		id = DIX_The_Results_are_in
+		icon = GFX_goal_generic_elections
+		cost = 3.00
+		x = 25
+		y = 9
+		available = {
+
+		}
+		prerequisite = {
+			focus = DIX_Campaign_in_Carolina
+		}
+		prerequisite = {
+			focus = DIX_Campaign_in_Georgia
+		}
+		prerequisite = {
+			focus = DIX_Campaign_in_Mississippi
+		}
+		prerequisite = {
+			focus = DIX_Campaign_in_Tennessee
+		}
+		prerequisite = {
+			focus = DIX_Campaign_in_Louisiana
+		}
+		prerequisite = {
+			focus = DIX_Campaign_in_Alabama
+		}
+		prerequisite = {
+			focus = DIX_Campaign_in_Arkansas
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			country_event = { id = Dixie.11 days = 1 }
+			add_stability = 0.15
+		}
+	}
+	focus = {
+		id = DIX_Cotton_Wins
+		icon = GFX_goal_Cotton
+		cost = 3.00
+		x = 5
+		y = 10
+		available = {
+			has_country_flag = DIX_Republican_Victory
+			republican > 0.49
+		}
+		prerequisite = {
+			focus = DIX_The_Results_are_in
+		}
+		mutually_exclusive = {
+			focus = DIX_Carpenter_Wins
+			focus = DIX_Williams_Wins
 		}
 		ai_will_do = { 
 			factor = 300
@@ -408,15 +751,20 @@ focus_tree = {
 	}
 	focus = {
 		id = DIX_Carpenter_Wins
-		icon = GFX_Focus_Generic_Democratic_Election
+		icon = GFX_goal_Carpenter
 		cost = 3.00
 		x = 15
-		y = 6
+		y = 10
 		available = {
-
+			has_country_flag = DIX_Republican_Victory
+			republican > 0.49
 		}
 		prerequisite = {
-			focus = DIX_Open_the_Ballot_Boxes
+			focus = DIX_The_Results_are_in
+		}
+		mutually_exclusive = {
+			focus = DIX_Cotton_Wins
+			focus = DIX_Williams_Wins
 		}
 		ai_will_do = { 
 			factor = 300
@@ -441,15 +789,20 @@ focus_tree = {
 	}
 	focus = {
 		id = DIX_Williams_Wins
-		icon = GFX_Focus_Generic_Democratic_Election
+		icon = GFX_goal_Hank_Williams
 		cost = 3.00
 		x = 25
-		y = 6
+		y = 10
 		available = {
-
+			has_country_flag = DIX_Republican_Victory
+			republican > 0.49
 		}
 		prerequisite = {
-			focus = DIX_Open_the_Ballot_Boxes
+			focus = DIX_The_Results_are_in
+		}
+		mutually_exclusive = {
+			focus = DIX_Cotton_Wins
+			focus = DIX_Carpenter_Wins
 		}
 		ai_will_do = { 
 			factor = 300
@@ -474,34 +827,40 @@ focus_tree = {
 	}
 	focus = {
 		id = DIX_Kemp_Wins
-		icon = GFX_Focus_Generic_Democratic_Election
+		icon = GFX_goal_Brian_Kemp
 		cost = 3.00
 		x = 35
-		y = 6
+		y = 10
 		available = {
-
+			has_country_flag = DIX_Kemp_Victory
+			republican > 0.49
 		}
 		prerequisite = {
-			focus = DIX_Open_the_Ballot_Boxes
+			focus = DIX_The_Results_are_in
 		}
 		ai_will_do = { 
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_war_support = 0.05
 		}
 	}
 	focus = {
 		id = DIX_Wallace_Wins
-		icon = GFX_Focus_Generic_Democratic_Election
+		icon = GFX_goal_Wallace_Jr
 		cost = 3.00
 		x = 45
-		y = 6
+		y = 10
 		available = {
-
+			has_country_flag = DIX_Dixiecrat_Victory
+			autocratic > 0.49
+		}
+		mutually_exclusive = {
+			focus = DIX_Thurmond_Wins
+			focus = DIX_Davis_Wins
 		}
 		prerequisite = {
-			focus = DIX_Open_the_Ballot_Boxes
+			focus = DIX_The_Results_are_in
 		}
 		ai_will_do = { 
 			factor = 300
@@ -516,15 +875,20 @@ focus_tree = {
 	}
 	focus = {
 		id = DIX_Thurmond_Wins
-		icon = GFX_Focus_Generic_Democratic_Election
+		icon = GFX_goal_Paul_Thurmond
 		cost = 3.00
 		x = 55
-		y = 6
+		y = 10
 		available = {
-
+			has_country_flag = DIX_Dixiecrat_Victory
+			autocratic > 0.49
+		}
+		mutually_exclusive = {
+			focus = DIX_Wallace_Wins
+			focus = DIX_Davis_Wins
 		}
 		prerequisite = {
-			focus = DIX_Open_the_Ballot_Boxes
+			focus = DIX_The_Results_are_in
 		}
 		ai_will_do = { 
 			factor = 300
@@ -548,16 +912,58 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = DIX_Webb_Wins
-		icon = GFX_Focus_Generic_Democratic_Election
+		id = DIX_Davis_Wins
+		icon = GFX_goal_Davis
 		cost = 3.00
 		x = 65
-		y = 6
+		y = 10
 		available = {
-
+			has_country_flag = DIX_Dixiecrat_Victory
+			autocratic > 0.49
+		}
+		mutually_exclusive = {
+			focus = DIX_Wallace_Wins
+			focus = DIX_Thurmond_Wins
 		}
 		prerequisite = {
-			focus = DIX_Open_the_Ballot_Boxes
+			focus = DIX_The_Results_are_in
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			hidden_effect = {
+				set_politics = {
+					ruling_party = autocratic
+				}
+				create_country_leader = {
+					name = "Bertram Hayes-Davis"
+					picture = "gfx/leaders/CSA/Davis.tga"
+					expire = "2060.1.1"
+					ideology = fundamentalism
+					traits = {
+						DIX_Dixiecrat
+						DIX_Footsteps_of_Davis
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = DIX_Webb_Wins
+		icon = GFX_goal_Webb
+		cost = 3.00
+		x = 75
+		y = 10
+		available = {
+			has_country_flag = DIX_Democrat_Victory
+			democrat > 0.49
+		}
+		mutually_exclusive = {
+			focus = DIX_Taylor_Wins
+		}
+		prerequisite = {
+			focus = DIX_The_Results_are_in
 		}
 		ai_will_do = { 
 			factor = 300
@@ -582,15 +988,19 @@ focus_tree = {
 	}
 	focus = {
 		id = DIX_Taylor_Wins
-		icon = GFX_Focus_Generic_Democratic_Election
+		icon = GFX_goal_Taylor
 		cost = 3.00
-		x = 75
-		y = 6
+		x = 85
+		y = 10
 		available = {
-
+			has_country_flag = DIX_Democrat_Victory
+			democrat > 0.49
+		}
+		mutually_exclusive = {
+			focus = DIX_Webb_Wins
 		}
 		prerequisite = {
-			focus = DIX_Open_the_Ballot_Boxes
+			focus = DIX_The_Results_are_in
 		}
 		ai_will_do = { 
 			factor = 300
