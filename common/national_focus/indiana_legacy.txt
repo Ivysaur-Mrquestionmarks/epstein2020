@@ -13,7 +13,7 @@ focus_tree = {
 
 	focus = {
 		id = NPA_rebel_brothers
-		cost = 10
+		cost = 5
 		icon = GFX_focus_NPA_Rebel_Brothers
 		x = 12
 		y = 4
@@ -23,14 +23,17 @@ focus_tree = {
 		prerequisite = { focus = NPA_forge_new_alliances  }
 		mutually_exclusive = { focus = NPA_a_good_cause  focus = NPA_concessions_to_libertarians  }
 		completion_reward = {
-		add_ideas = NPA_siding_with_anarchists
+			add_timed_idea = {
+			idea = NPA_siding_with_anarchists
+			days = 100
+		}
 		}
 	}
 
 
 	focus = {
 		id = NPA_a_good_cause
-		cost = 10
+		cost = 5
 		icon = GFX_focus_NPA_A_Good_Cause
 		x = 8
 		y = 4
@@ -40,14 +43,17 @@ focus_tree = {
 		prerequisite = { focus = NPA_forge_new_alliances  }
 		mutually_exclusive = { focus = NPA_rebel_brothers  focus = NPA_concessions_to_libertarians  }
 		completion_reward = {
-		add_ideas = NPA_siding_with_democrats
+			add_timed_idea = {
+			idea = NPA_siding_with_democrats
+			days = 100
+		}
 		}
 	}
 
 
 	focus = {
 		id = NPA_path_of_the_lone_wolf
-		cost = 10
+		cost = 5
 		icon = GFX_focus_NPA_Path_Of_The_Lone_Wolf
 		x = 6
 		y = 3
@@ -67,7 +73,7 @@ focus_tree = {
 
 	focus = {
 		id = NPA_forge_new_alliances
-		cost = 10
+		cost = 5
 		icon = GFX_focus_NPA_Forge_New_Alliances
 		x = 12
 		y = 3
@@ -85,20 +91,23 @@ focus_tree = {
 		id = NPA_concessions_to_libertarians
 		icon = GFX_focus_NPA_Agree_To_Disagree
 		x = 15
-		y = 4
+		y = 5
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
 		prerequisite = { focus = NPA_forge_new_alliances  }
 		mutually_exclusive = { focus = NPA_a_good_cause  focus = NPA_rebel_brothers  }
 		completion_reward = {
-		add_ideas = NPA_siding_with_libertarians
+			add_timed_idea = {
+			idea = NPA_siding_with_libertarians
+			days = 100
+		}
 		}
 	}
 
 	focus = {
 		id = NPA_inside_job
-		cost = 10
+		cost = 2
 		icon = GFX_focus_NPA_Inside_Job
 		x = 6
 		y = 5
@@ -117,7 +126,7 @@ focus_tree = {
 
 	focus = {
 		id = NPA_great_return_programs
-		cost = 10
+		cost = 2
 		icon = GFX_focus_NPA_Great_Return_Programs
 		x = 2
 		y = 0
@@ -132,7 +141,7 @@ focus_tree = {
 
 	focus = {
 		id = NPA_the_first_wave
-		cost = 10
+		cost = 2
 		icon = GFX_focus_NPA_The_First_Wave
 		x = 2
 		y = 1
@@ -161,7 +170,7 @@ focus_tree = {
 
 	focus = {
 		id = NPA_the_second_wave
-		cost = 10
+		cost = 4
 		icon = GFX_focus_NPA_The_Second_Wave
 		x = 2
 		y = 2
@@ -183,7 +192,7 @@ focus_tree = {
 
 	focus = {
 		id = NPA_the_final_wave
-		cost = 10
+		cost = 6
 		icon = GFX_focus_NPA_The_Final_Wave
 		x = 2
 		y = 3
@@ -206,7 +215,7 @@ focus_tree = {
 
 	focus = {
 		id = NPA_patriotic_propaganda
-		cost = 10
+		cost = 4
 		icon = GFX_focus_NPA_Patriotic_Propaganda
 		x = 4
 		y = 3
@@ -496,6 +505,12 @@ focus_tree = {
 			FOCUS_FILTER_POLITICAL
 		}
 		prerequisite = { focus = NPA_necessary_measures focus = NPA_old_republican_party_reshuffle  }
+		completion_reward = {
+			add_timed_idea = {
+			idea = NPA_turning_point
+			days = 160
+		}
+		}
 	}
 	
 #############################################################
@@ -524,6 +539,10 @@ focus_tree = {
 			FOCUS_FILTER_POLITICAL
 		}
 		prerequisite = { focus = NPA_old_republican_party_reshuffle focus = NPA_gop_debate_in_washington_dc  }
+		completion_reward = {
+		add_political_power = 150
+		custom_effect_tooltip = NPA_Gain_Respect_Of_Democrats_tt
+		}
 	}
 
 	focus = {
@@ -545,6 +564,9 @@ focus_tree = {
 		icon = GFX_focus_NPA_Dissolve_GOP
 		x = 14
 		y = 9
+		available = {
+		republican < 0.5
+		}
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
@@ -795,7 +817,7 @@ focus_tree = {
 
 	focus = {
 		id = NPA_war_patronage
-		cost = 10
+		cost = 5
 		icon = GFX_focus_NPA_War_Patronage
 		x = 6
 		y = 6
@@ -855,7 +877,7 @@ focus_tree = {
 
 	focus = {
 		id = NPA_politically_questionable_volunteers
-		cost = 10
+		cost = 4
 		icon = GFX_focus_NPA_Politically_Questionable_Volunteers
 		x = 10
 		y = 6
@@ -876,6 +898,18 @@ focus_tree = {
 			FOCUS_FILTER_POLITICAL
 		}
 		prerequisite = { focus = NPA_join_legalists  }
+		completion_reward = {
+		country_event = { id = npa.15 }
+		hidden_effect = {
+		FRA = {
+		add_opinion_modifier = {
+			target = NPA
+			modifier = fra_gop_debate
+		}
+		}
+		}
+		}
+
 	}
 	focus = {
 		id = NPA_get_rid_of_malcontents
@@ -887,6 +921,9 @@ focus_tree = {
 			FOCUS_FILTER_POLITICAL
 		}
 		prerequisite = { focus = NPA_join_legalists focus = NPA_the_republican_thaw focus = NPA_corporationist_paradise }
+		completion_reward = {
+		remove_ideas = NPA_hardliners_disapproval
+		}
 	}
 	
 	focus = {
@@ -899,12 +936,22 @@ focus_tree = {
 			FOCUS_FILTER_POLITICAL
 		}
 		prerequisite = { focus = NPA_gop_debate_in_washington_dc focus = NPA_get_rid_of_malcontents }
+		completion_reward = {
+		add_popularity = {
+			ideology = democrat
+			popularity = 0.1
+		}
+		add_opinion_modifier = {
+			target = FRA
+			modifier = npa_democratizing
+		}
+		}
 	}
 
 
 	focus = {
 		id = NPA_join_legalists
-		cost = 10
+		cost = 2
 		icon = GFX_focus_NPA_Join_The_Legitimists
 		x = 8
 		y = 5
@@ -912,12 +959,15 @@ focus_tree = {
 			FOCUS_FILTER_POLITICAL
 		}
 		prerequisite = { focus = NPA_a_good_cause  }
+		completion_reward = {
+		FRA = { country_event = { id = npa.1 } }
+		}
 	}
 
 
 	focus = {
 		id = NPA_unity_in_freedom
-		cost = 10
+		cost = 4
 		icon = GFX_focus_NPA_Freedom_Bird
 		x = 14
 		y = 6
@@ -925,12 +975,16 @@ focus_tree = {
 			FOCUS_FILTER_POLITICAL
 		}
 		prerequisite = { focus = NPA_the_republican_thaw  focus = NPA_corporationist_paradise  }
+		completion_reward = {
+		AFS = { country_event = { id = npa.7 } }
+		GLA = { country_event = { id = npa.8 } }
+		}
 	}
 
 
 	focus = {
 		id = NPA_the_republican_thaw
-		cost = 10
+		cost = 5
 		icon = GFX_focus_NPA_The_Republican_Thaw
 		x = 12
 		y = 5
@@ -945,7 +999,7 @@ focus_tree = {
 
 	focus = {
 		id = NPA_corporationist_paradise
-		cost = 10
+		cost = 5
 		icon = GFX_focus_NPA_Corporatist_Paradise
 		x = 16
 		y = 5
@@ -961,7 +1015,7 @@ focus_tree = {
 
 	focus = {
 		id = NPA_on_the_crossroad_of_america
-		cost = 10
+		cost = 3
 		icon = GFX_focus_NPA_On_The_Crossroad_Of_America
 		x = 6
 		y = 0
@@ -986,10 +1040,13 @@ focus_tree = {
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
 		}
+		completion_reward = {
+		add_political_power = 80
+		}
 	}
 	focus = {
 		id = NPA_focus_on_illinois
-		cost = 10
+		cost = 4
 		icon = GFX_focus_NPA_Focus_On_Illinois
 		x = 17
 		y = 1
@@ -1023,7 +1080,7 @@ focus_tree = {
 	}
 	focus = {
 		id = NPA_focus_on_kansas
-		cost = 10
+		cost = 4
 		icon = GFX_focus_NPA_Focus_On_Kansas
 		x = 20
 		y = 1
@@ -1068,6 +1125,10 @@ focus_tree = {
 		}
 		prerequisite = { focus = NPA_focus_on_illinois  }
 		prerequisite = { focus = NPA_focus_on_kansas  }
+		completion_reward = {
+		add_ideas = NPA_agricultural_machinery_monopoly
+		}
+		
 	}
 	focus = {
 		id = NPA_steel_and_wheels
@@ -1080,6 +1141,32 @@ focus_tree = {
 		}
 		prerequisite = { focus = NPA_focus_on_kansas  }
 		prerequisite = { focus = NPA_focus_on_missouri  }
+		completion_reward = {
+			add_tech_bonus = {
+				name = NPA_tech_SaW_1
+				bonus = 3.0
+				uses = 1
+				category = motorized_equipment
+			}
+			add_tech_bonus = {
+				name = NPA_tech_SaW_2
+				bonus = 1.0
+				uses = 2
+				category = armor
+			}
+			add_tech_bonus = {
+				name = NPA_tech_SaW_3
+				bonus = 1.0
+				uses = 2
+				category = artillery
+			}
+			add_tech_bonus = {
+				name = NPA_tech_SaW_4
+				bonus = 1.0
+				uses = 2
+				category = light_fighter
+			}
+		}
 	}
 	focus = {
 		id = NPA_turn_extremists_into_mules
@@ -1136,6 +1223,7 @@ focus_tree = {
 		}
 		prerequisite = { focus = NPA_corporationist_paradise }
 		prerequisite = { focus = NPA_war_spoils_for_enlisting }
+		
 	}
 	focus = {
 		id = NPA_strike_the_right_balance
@@ -1153,6 +1241,9 @@ focus_tree = {
 		prerequisite = { focus = NPA_back_to_paper_books }
 		mutually_exclusive = { focus = NPA_dollar_above_all }
 		completion_reward = {
+		
+			custom_effect_tooltip = NPA_Strike_The_Right_Balance_tt
+			hidden_effect = {
 		    268 = {
 		        add_extra_state_shared_building_slots = 1
 				add_building_construction = {
@@ -1522,6 +1613,7 @@ focus_tree = {
 				}
 			}
 		}
+		}
 	}
 	focus = {
 		id = NPA_seize_civil_reserves_of_guns
@@ -1533,6 +1625,9 @@ focus_tree = {
 			FOCUS_FILTER_INDUSTRY
 		}
 		prerequisite = { focus = NPA_strike_the_right_balance }
+		completion_reward = {
+		add_ideas = NPA_public_arsenal
+		}
 	}
 	focus = {
 		id = NPA_gain_the_polices_trust
@@ -1668,7 +1763,7 @@ focus_tree = {
 
 	focus = {
 		id = NPA_focus_on_missouri
-		cost = 10
+		cost = 4
 		icon = GFX_focus_NPA_Focus_On_Missouri
 		x = 23
 		y = 1
@@ -1728,6 +1823,14 @@ focus_tree = {
 			FOCUS_FILTER_INDUSTRY
 		}
 		prerequisite = { focus = NPA_on_the_crossroad_of_america  }
+		completion_reward = {
+			add_tech_bonus = {
+				name = NPA_tech_industry
+				bonus = 1.0
+				uses = 2
+				category = industry
+			}
+		}
 	}
 
 
