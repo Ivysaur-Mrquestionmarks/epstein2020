@@ -107,7 +107,7 @@ focus_tree = {
 		x = 46
 		y = 0
 		completion_reward = {
-			random_state = {
+			random_owned_state = {
 				limit = {
 					is_controlled_by = ROOT
 				}
@@ -129,7 +129,7 @@ focus_tree = {
 		x = 48
 		y = 0
 		completion_reward = {
-			random_state = {
+			random_owned_state = {
 				limit = {
 					is_coastal = yes
 				}
@@ -1453,7 +1453,7 @@ focus_tree = {
 		x = 41
 		y = 2
 		completion_reward = {
-			random_state = {
+			random_owned_state = {
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
 				    type = arms_factory
@@ -1461,7 +1461,7 @@ focus_tree = {
 				    instant_build = yes
 				}
 			}
-			random_state = {
+			random_owned_state = {
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
 				    type = industrial_complex
@@ -1497,7 +1497,7 @@ focus_tree = {
 		x = 43
 		y = 1
 		completion_reward = {
-			random_state = {
+			random_owned_state = {
 				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 				    type = arms_factory
@@ -1518,7 +1518,7 @@ focus_tree = {
 		x = 43
 		y = 2
 		completion_reward = {
-			random_state = {
+			random_owned_state = {
 				add_extra_state_shared_building_slots = 3
 				add_building_construction = {
 				    type = arms_factory
@@ -1607,7 +1607,7 @@ focus_tree = {
 		x = 45
 		y = 1
 		completion_reward = {
-			random_state = {
+			random_owned_state = {
 				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 				    type = industrial_complex
@@ -1628,7 +1628,7 @@ focus_tree = {
 		x = 45
 		y = 2
 		completion_reward = {
-			random_state = {
+			random_owned_state = {
 				add_extra_state_shared_building_slots = 3
 				add_building_construction = {
 				    type = industrial_complex
@@ -2094,6 +2094,217 @@ focus_tree = {
 			    type = annex_everything
 			    target = NRA
 			}
+		}
+
+	}
+	#secret Hilldog tree
+	focus = {
+		id = FRA_2_clinton_admin
+		icon = GFX_goal_unknown
+		cost = 10.00
+		x = 6
+		y = 4
+		allow_branch = {
+			has_country_leader = { name = "Hillary Rodham Clinton" ruling_only = yes }
+		}
+		available = {
+			has_country_leader = { name = "Hillary Rodham Clinton" ruling_only = yes }
+		}
+		completion_reward = {
+			add_popularity = {
+		    	ideology = authoritarian_left
+		    	popularity = 0.10
+			}
+			unlock_national_focus = FRA_choosing_a_vp
+		}
+
+	}
+	focus = {
+		id = FRA_choosing_a_vp
+		icon = GFX_goal_unknown
+		cost = 1.00
+		prerequisite = {
+			focus = FRA_2_clinton_admin
+		}
+		x = 6
+		y = 5
+		available = {
+			always = no
+		}
+
+	}
+	focus = {
+		id = FRA_progressive_bitch
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = FRA_choosing_a_vp
+		}
+		mutually_exclusive = {
+			focus = FRA_turtle_head_freak
+			focus = FRA_fucking_nobody
+		}
+		x = 4
+		y = 6
+		available = {
+			has_country_leader = { name = "Hillary Rodham Clinton" ruling_only = yes }
+		}
+		completion_reward = {
+			set_country_flag = vice_president_nancy
+			swap_ideas = {
+				add_idea = FRA_nancy_pelosi_vp
+				remove_idea = Generic_Vacant_Vice_President
+			}
+			add_popularity = {
+		    	ideology = authoritarian_left
+		    	popularity = 0.05
+			}
+		}
+
+	}
+	focus = {
+		id = FRA_turtle_head_freak
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = FRA_choosing_a_vp
+		}
+		mutually_exclusive = {
+			focus = FRA_progressive_bitch
+			focus = FRA_fucking_nobody
+		}
+		x = 6
+		y = 6
+		available = {
+			has_country_leader = { name = "Hillary Rodham Clinton" ruling_only = yes }
+		}
+		completion_reward = {
+			set_country_flag = vice_president_mitch
+			swap_ideas = {
+				add_idea = FRA_mitch_mcconnell_vp
+				remove_idea = Generic_Vacant_Vice_President
+			}
+			add_popularity = {
+		    	ideology = authoritarian_left
+		    	popularity = 0.05
+			}
+		}
+
+	}
+	focus = {
+		id = FRA_fucking_nobody
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = FRA_choosing_a_vp
+		}
+		mutually_exclusive = {
+			focus = FRA_turtle_head_freak
+			focus = FRA_progressive_bitch
+		}
+		x = 8
+		y = 6
+		available = {
+			has_country_leader = { name = "Hillary Rodham Clinton" ruling_only = yes }
+		}
+		completion_reward = {
+			set_country_flag = vice_president_daniel
+			swap_ideas = {
+				add_idea = FRA_daniel_mckee_vp
+				remove_idea = Generic_Vacant_Vice_President
+			}
+			add_popularity = {
+		    	ideology = authoritarian_left
+		    	popularity = 0.05
+			}
+		}
+
+	}
+	focus = {
+		id = FRA_2_economies_of_scale
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = FRA_progressive_bitch
+			focus = FRA_turtle_head_freak
+			focus = FRA_fucking_nobody
+		}
+		x = 5
+		y = 7
+		available = {
+			has_country_leader = { name = "Hillary Rodham Clinton" ruling_only = yes }
+		}
+		completion_reward = {
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+				    type = industrial_complex
+				    level = 3
+				    instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+				    type = industrial_complex
+				    level = 3
+				    instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = FRA_2_foundation_of_blue_army
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = FRA_fucking_nobody
+			focus = FRA_turtle_head_freak
+			focus = FRA_progressive_bitch
+		}
+		x = 7
+		y = 7
+		available = {
+			has_country_leader = { name = "Hillary Rodham Clinton" ruling_only = yes }
+		}
+		completion_reward = {
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+				    type = industrial_complex
+				    level = 3
+				    instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+				    type = industrial_complex
+				    level = 3
+				    instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = FRA_rise_of_meme_queen
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = FRA_2_foundation_of_blue_army
+		}
+		prerequisite = {
+			focus = FRA_2_economies_of_scale
+		}
+		x = 6
+		y = 8
+		available = {
+			has_country_leader = { name = "Hillary Rodham Clinton" ruling_only = yes }
+		}
+		completion_reward = {
+			add_country_leader_trait = FRA_hillary_clinton_trait
 		}
 
 	}
