@@ -246,10 +246,15 @@ ideas = {
 		NPA_public_arsenal = {
 			picture = HUN_secret_rearmament
 			allowed = { original_tag = NPA }
-			modifier = {
-				equipment_capture_factor = 0.6
-				equipment_conversion_speed = 0.8
+			equipment_bonus = {
+				infantry_equipment = {
+					build_cost_ic = -0.1 instant = yes
+				}
 			}
+			modifier = {
+			training_time_factor = -0.2
+			}
+			
 		}
 		NPA_turning_point = {
 			picture = HUN_secret_rearmament
@@ -257,6 +262,23 @@ ideas = {
 			modifier = {
 				conscription_factor = 0.3
 				political_power_gain = 0.1
+			}
+		}
+		NPA_war_spoils_economy = {
+			picture = HUN_secret_rearmament
+			allowed = { original_tag = NPA }
+			modifier = {
+				equipment_capture_factor = 0.6
+				equipment_conversion_speed = 0.8
+				max_dig_in = 10
+			}
+		}
+
+		NPA_rogue_police = {
+			picture = HUN_secret_rearmament
+			allowed = { original_tag = NPA }
+			modifier = {
+				stability_factor = -0.05
 			}
 		}
 }
@@ -348,6 +370,20 @@ political_advisor = {
 			traits = { NPA_Mike_Schmuhl_trait }
 			ai_will_do = { factor = 1 }
 		}
+		NPA_Robert_Kagan_advisor = {
+			allowed = { tag = NPA }
+			available = { has_completed_focus = NPA_new_ranks_and_hierarchy }
+			visible = { has_completed_focus = NPA_new_ranks_and_hierarchy }
+			traits = { NPA_Robert_Kagan_trait }
+			ai_will_do = { factor = 1 }
+		}
+		NPA_Bill_Kristol_advisor = {
+			allowed = { tag = NPA }
+			available = { has_completed_focus = NPA_new_ranks_and_hierarchy }
+			visible = { has_completed_focus = NPA_new_ranks_and_hierarchy }
+			traits = { NPA_Bill_Kristol_trait }
+			ai_will_do = { factor = 1 }
+		}
 		NPA_IAF_Militia_advisor = {
 			allowed = { tag = NPA }
 			available = {
@@ -361,4 +397,11 @@ political_advisor = {
 			ai_will_do = { factor = 1 }
 		}
 	}
+hidden_ideas = {
+      NPA_NRAH = {
+           modifier = {
+                political_advisor_cost_factor = -1
+           }
+      }
+ }
 }
