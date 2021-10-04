@@ -24,28 +24,66 @@ country_event = {
 					#
 				}
 			}
+			KFC = {
+			set_politics = { ruling_party = libertarian_right }  
+			}
 			CSA = {
 				country_event = {
-    					id = kentucky.12
+    				    id = kentucky.12
     					days = 0
 				}
 			}
-			every_country = { limit = {OR = {tag = AFS tag = USA tag = FRA}}
+			KFC = {
+				country_event = {
+    				    id = kentucky.17
+    					days = 35
+				}
+			}
+			every_country = { limit = {OR = {tag = AFS tag = USA tag = FRA tag = PRA}}
 				country_event = {
     					id = kentucky.13
     					days = 0
 				}
 			}
 			set_capital = 288
+			KFC = {
 			remove_ideas = KFC_colonels_rule
 			remove_ideas = KFC_united_resistance
-			start_civil_war = {
-			    ruling_party = libertarian_right
-			    ideology = autocratic
-    			size = 0.5
-		    	states = { 
-		    	    330 375 261
-		    	}
+			}
+			CRK = {
+			transfer_state = 330
+            transfer_state = 261
+			transfer_state = 375
+			}
+			330 = {
+			add_core_of = CRK
+			}
+			375 = {
+			add_core_of = CRK
+			}
+			571 = {
+			add_core_of = CRK
+			}
+			576 = {
+			add_core_of = CRK
+			}
+			575 = {
+			add_core_of = CRK
+			}
+			574 = {
+			add_core_of = CRK
+			}
+			573 = {
+			add_core_of = CRK
+			}
+			572 = {
+			add_core_of = CRK
+			}
+			288 = {
+			add_core_of = CRK
+			}
+			261 = {
+			add_core_of = CRK
 			}
 			create_field_marshal = {
 				name = "Bryan Howay"
@@ -57,16 +95,11 @@ country_event = {
 				planning_skill = 5
 				logistics_skill = 3
 			}
-			create_corps_commander = {
-				name = "Norman Arflack"
-				portrait_path="gfx/leaders/KFC/Norman_Arflack.png" 
-				traits={ guerilla_fighter } 
-				skill = 3
-				id = 134
-				attack_skill = 3
-				defense_skill = 3
-				planning_skill = 2
-				logistics_skill = 2
+			KFC = {
+			declare_war_on = {
+                target = CRK
+                type = annex_everything
+            }
 			}
 			if = {
 				limit = {
@@ -142,11 +175,7 @@ country_event = {
 					}
 				}
 			}
-			random_other_country = {
-				limit = {
-					original_tag = KFC
-					has_government = autocratic
-				}
+			CRK = {
 				division_template = {
 					name = "Slave Army"
 					regiments = {
@@ -165,30 +194,30 @@ country_event = {
 				limit = {
 					has_id = 131
 				}
-				set_nationality = PREV
+				set_nationality = CRK
 			}
 			every_unit_leader = {
 				limit = {
 					has_id = 132
 				}
-				set_nationality = PREV
+				set_nationality = CRK
 			}
 			every_unit_leader = {
 				limit = {
 					has_id = 133
 				}
-				set_nationality = PREV
+				set_nationality = CRK
 			}
 			330 = {
 				create_unit = {
 					division = "name = \"Sellswords\" division_template = \"Slave Army\" start_experience_factor = 0.0" 
-					owner = PREV
+					owner = CRK
 				}
 			}
 			261 = {
 				create_unit = {
 					division = "name = \"Slave Conscripts\" division_template = \"Slave Army\" start_experience_factor = 0.0" 
-					owner = PREV
+					owner = CRK
 				}
 			}	
 		}
@@ -196,6 +225,10 @@ country_event = {
 	option = {
 		name = kentucky.1.a
 		add_war_support = 0.10
+	}
+	option = {
+		name = kentucky.1.b
+		CRK = { change_tag_from = KFC }
 	}
 }
 #continental congress begins
@@ -423,13 +456,12 @@ country_event = {
 		name = kentucky.14.a
 		
 		set_autonomy = {
-   			target = FROM
+   			target = CRK
     			autonomy_state = autonomy_dominion
-		} 
-		
+		}
 	}
-
 }
+
 #Heimbach Kentucky asks Tucker for alliance
 country_event = {
 	id = kentucky.15
@@ -476,7 +508,7 @@ country_event = {
 		}
 	}
 }
-#Kentucky wants to join the Loyalists
+#Kentucky is rejected
 country_event = {
 	id = kentucky.17
 	title = kentucky.17.t
@@ -486,19 +518,125 @@ country_event = {
 	fire_only_once = yes
 	option = {
 		name = kentucky.17.a
-		add_to_faction = FROM
-		ai_chance = {
-			factor = 100
+		SKY = { change_tag_from = KFC }
+		SKY = {
+			transfer_state = 573
+			transfer_state = 575
+			transfer_state = 330
+			330 = {
+			add_core_of = SKY
+			}
+			375 = {
+			add_core_of = SKY
+			}
+			571 = {
+			add_core_of = SKY
+			}
+			576 = {
+			add_core_of = SKY
+			}
+			575 = {
+			add_core_of = SKY
+			}
+			574 = {
+			add_core_of = SKY
+			}
+			573 = {
+			add_core_of = SKY
+			}
+			572 = {
+			add_core_of = SKY
+			}
+			288 = {
+			add_core_of = SKY
+			}
+			261 = {
+			add_core_of = SKY
+			}
+			declare_war_on = {
+				target = KFC
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = CRK
+				type = annex_everything
+			}
+		}
+		transfer_units_fraction= {
+    		target = SKY
+    		size = 0.3
+    		stockpile_ratio = 0.4
+    		army_ratio = 0.3
+   			navy_ratio = 0.0
+			air_ratio = 0.05
 		}
 	}
 	option = {
 		name = kentucky.17.b
-		ai_chance = {
-			factor = 0
+		SKY = {
+			transfer_state = 573
+			transfer_state = 575
+			transfer_state = 330
+			330 = {
+			add_core_of = SKY
+			}
+			375 = {
+			add_core_of = SKY
+			}
+			571 = {
+			add_core_of = SKY
+			}
+			576 = {
+			add_core_of = SKY
+			}
+			575 = {
+			add_core_of = SKY
+			}
+			574 = {
+			add_core_of = SKY
+			}
+			573 = {
+			add_core_of = SKY
+			}
+			572 = {
+			add_core_of = SKY
+			}
+			288 = {
+			add_core_of = SKY
+			}
+			261 = {
+			add_core_of = SKY
+			}
+			declare_war_on = {
+				target = KFC
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = CRK
+				type = annex_everything
+			}
 		}
-		KFC = {
-			set_country_leader_ideology = conservative
-			drop_cosmetic_tag = yes
+		transfer_units_fraction= {
+    		target = SKY
+    		size = 0.3
+    		stockpile_ratio = 0.4
+    		army_ratio = 0.3
+   			navy_ratio = 0.0
+			air_ratio = 0.05
 		}
+    }
+}
+country_event = {
+	id = kentucky.18
+	title = kentucky.18.t
+	desc = kentucky.18.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = kentucky.18.a
+		D02 = {
+	        load_focus_tree = kentucky_2
+        }
 	}
 }
