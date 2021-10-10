@@ -123,7 +123,7 @@ PAC_militia_influence_5 = {
 }
 
 CSA_war = { #using global.south_collapse
-	for_each_scope_loop = {
+	for_each_scope_loop = { #This loops declare the wars
     		array = global.south_collapse
 		for_each_scope_loop = {
 				array = global.south_collapse
@@ -135,20 +135,23 @@ CSA_war = { #using global.south_collapse
 			}
 		}
 	}
-	every_country = {
+	every_country = { #loads the basic focus tree
 		limit = {is_in_array = {
 			array = global.south_collapse
 			value = THIS.id
 		}}
 		load_focus_tree = csa_collapse
-	}
+	} 
+
+	#Loads the oob and idea for each tag
 	LGB = {load_oob = "LGB_DCW"}
 	ZIO = {load_oob = "ZIO_DCW"}
 	CSB = {load_oob = "CSB_DCW"}
-	KKK = {load_oob = "KKK_DCW"}
+	KKK = {load_oob = "KKK_DCW" add_ideas = KKK_our_time_to_act}
 	CSA = {load_oob = "CSA_DCW"}
 	AFR = {load_oob = "AFR_DCW"}
 	
+	#Events
 	country_event = {
     		id = south.9
     		days = 1		
