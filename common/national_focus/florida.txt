@@ -12,8 +12,8 @@ focus_tree = {
 		id = FLO_funeral_for_eric
 		icon = GFX_goal_generic_funeral_icon
 		cost = 2.00
-		x = 4
-		y = 0
+		x = 30
+		y = -5
 		ai_will_do = { 
 			factor = 300
 		}
@@ -25,6 +25,62 @@ focus_tree = {
 			hidden_effect = {
 				set_country_flag = eric_trump_funeral_held
 			}
+		}
+
+	}
+	focus = {
+		id = FLO_solidify_control
+		icon = GFX_goal_FLO_StabilizeOurRegieme
+		cost = 10.00
+		x = 30
+		y = -4
+		prerequisite = {
+			focus = FLO_funeral_for_eric
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = 100
+		}
+
+	}
+	focus = {
+		id = FLO_meeting
+		icon = GFX_goal_FLO_AMeeting
+		cost = 3.00
+		x = 30
+		y = -3
+		prerequisite = {
+			focus = FLO_solidify_control
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			country_event = { id = florida.33 }
+		}
+
+	}
+	focus = {
+		id = FLO_barron
+		icon = GFX_goal_FLO_Barron
+		cost = 10.00
+		x = 10
+		y = -2
+		mutually_exclusive = {
+		 focus = FLO_desantis
+		 focus = FLO_fuentes
+		}
+		prerequisite = {
+			focus = FLO_meeting
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			#event to chose baron#
 		}
 
 	}
@@ -48,13 +104,14 @@ focus_tree = {
 		icon = GFX_goal_florida_research
 		cost = 10
 		x = 2
-		y = 7
+		y = 4
+		available = {
+			num_of_factories > 30
+		}
 		prerequisite = {
 			focus = FLO_research_slot
 		}
-		prerequisite = {
-			focus = FLO_Saiyan
-		}
+		
 		completion_reward = {
 			add_research_slot = 1
 		}
@@ -67,6 +124,9 @@ focus_tree = {
 		y = 0
 		available = {
 			has_country_flag = eric_trump_funeral_held
+		}
+		prerequisite = {
+			focus = FLO_barron
 		}
 		completion_reward = {
 			346 = {
@@ -141,6 +201,9 @@ focus_tree = {
 		cost = 10.00
 		x = 17
 		y = 0
+		prerequisite = {
+			focus = FLO_barron
+		}
 		available = {
 			has_country_flag = eric_trump_funeral_held
 		}
@@ -159,20 +222,18 @@ focus_tree = {
 		icon = GFX_goal_trump_blue_lives_matter
 		cost = 10.00
 		prerequisite = {
-			focus = FLO_funeral_for_eric
+			focus = FLO_barron
 		}
 		ai_will_do = { 
 			factor = 300
 		}
 		x = 4
-		y = 1
+		y = 0
 		completion_reward = {
 			add_ideas = {
 				FLO_trumpism
 			}
 		}
-		############################################ #if i forget to delete this random string of hashtags sorry about that don't worry about it it's just for me
-
 	}
 	focus = {
 		id = FLO_Barron_System
@@ -310,7 +371,10 @@ focus_tree = {
 		prerequisite = {
 			focus = FLO_Doctrinal_Review
 		}
-		x = 6
+		prerequisite = {
+			focus = FLO_modern_slavery
+		}
+		x = 5
 		y = 5
 		completion_reward = {
 			add_ideas = FLO_spartanism_idea
@@ -321,9 +385,6 @@ focus_tree = {
 		id = FLO_Saiyan
 		icon = GFX_goal_florida_men
 		cost = 10.00
-		prerequisite = {
-			focus = FLO_modern_slavery
-		}
 		prerequisite = {
 			focus = FLO_spartanism
 		}
@@ -486,9 +547,6 @@ focus_tree = {
 		prerequisite = {
 			focus = FLO_Fuentes_Line
 		}
-		prerequisite = {
-			focus = FLO_modern_slavery
-		}
 		x = 8
 		y = 5
 		will_lead_to_war_with = CSA
@@ -571,9 +629,6 @@ focus_tree = {
 		cost = 10.00
 		prerequisite = {
 			focus = FLO_kanye_industrial_treaty
-		}
-		prerequisite = {
-			focus = FLO_deracialise_history_of_slavery
 		}
 		x = 12
 		y = 4
@@ -765,16 +820,13 @@ focus_tree = {
 	}
 	focus = {
 		id = FLO_invade_csa
-		icon = GFX_goal_unknown
+		icon = GFX_goal_Based_Sherman
 		cost = 12.00
 		prerequisite = {
 			focus = FLO_raid_for_the_panhandle
 		}
 		prerequisite = {
 			focus = FLO_spartanism
-		}
-		prerequisite = {
-			focus = FLO_America_First_Supreme
 		}
 		available = {
 			has_border_war = no
@@ -843,7 +895,7 @@ focus_tree = {
 		prerequisite = {
 			focus = FLO_treaty_of_racial_friendship
 		}
-		x = 12
+		x = 13
 		y = 6
 		completion_reward = {
 			CSA = {
@@ -862,7 +914,7 @@ focus_tree = {
 		prerequisite = {
 			focus = FLO_America_First_Supreme
 		}
-		x = 17
+		x = 20
 		y = 6
 		completion_reward = {
 			add_stability = 0.05
@@ -878,7 +930,7 @@ focus_tree = {
 		prerequisite = {
 			focus = FLO_Little_Detour
 		}
-		x = 17
+		x = 20
 		y = 7
 		completion_reward = {
 			add_manpower = 5000
@@ -896,8 +948,9 @@ focus_tree = {
 		prerequisite = {
 			focus = FLO_dirty_dirty_patrick
 		}
-		prerequisite = {
-			focus = FLO_Saiyan
+		mutually_exclusive = {
+			focus = FLO_sorry_father
+			focus = FLO_stagnation
 		}
 		x = 16
 		y = 8
@@ -971,9 +1024,6 @@ focus_tree = {
 		icon = GFX_goal_drumpf
 		cost = 10.00
 		prerequisite = {
-			focus = FLO_dirty_dirty_patrick
-		}
-		prerequisite = {
 			focus = FLO_concessions_for_black_separatists
 		}
 		prerequisite = {
@@ -981,6 +1031,10 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = FLO_absorb_spencer
+		}
+		mutually_exclusive = {
+			focus = FLO_join_loyalist_coalition
+			focus = FLO_stagnation
 		}
 		x = 8
 		y = 8
@@ -1053,7 +1107,7 @@ focus_tree = {
 	}
 	focus = {
 		id = FLO_war_plan_blue
-		icon = GFX_goal_unknown
+		icon = GFX_goal_Anti_Biden
 		cost = 10.00
 		prerequisite = {
 			focus = FLO_sorry_father
@@ -1406,4 +1460,1736 @@ focus_tree = {
 		}
 
 	}
+	#FUENTES#
+	focus = {
+		id = FLO_fuentes
+		icon = GFX_goal_FLO_Fuentes
+		cost = 10.00
+		x = 45
+		y = -2
+		prerequisite = {
+			focus = FLO_meeting
+		}
+		mutually_exclusive = {
+			focus = FLO_barron
+			focus = FLO_desantis
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			set_cosmetic_tag = FLO_Fuentes_Flag
+			modify_country_flag = {
+				flag = 
+				value = 1
+			}
+			create_country_leader = {
+				name = "Nick Fuentes"
+				picture = "gfx/leaders/FLO/Fuentes2.dds"
+				expire = "2060.1.1"
+				ideology = fascism
+				traits = {
+					FLO_america_first
+				}
+			}	
+		}
+
+	}
+	focus = {
+		id = FLO_a_throne_for_barron
+		icon = GFX_goal_FLO_AThroneForBarron
+		cost = 5.00
+		x = 0
+		y = 2
+		relative_position_id = FLO_fuentes
+		prerequisite = {
+			focus = FLO_fuentes
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_ideas = {
+				FLO_Barron_the_baron
+			}
+		}
+
+	}
+	focus = {
+		id = FLO_malkin_money_moves
+		icon = GFX_goal_FLO_Malkin_Money_Moves
+		cost = 3.00
+		x = 0
+		y = 1
+		relative_position_id = FLO_a_throne_for_barron
+		prerequisite = {
+			focus = FLO_a_throne_for_barron
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_popularity = {
+			    ideology = autocratic
+			    popularity = 0.05
+			}
+		}
+
+	}
+	focus = {
+		id = FLO_solidify_our_regieme
+		icon = GFX_goal_FLO_Solidify_Our_Regime
+		cost = 10.00
+		x = -2
+		y = 1
+		relative_position_id = FLO_a_throne_for_barron
+		prerequisite = {
+			focus = FLO_a_throne_for_barron
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_manpower = -57
+			add_popularity = {
+			    ideology = autocratic
+			    popularity = 0.10
+			}
+		}
+
+	}
+	focus = {
+		id = FLO_the_master_orator
+		icon = GFX_goal_FLO_Master_Orator
+		cost = 2.00
+		x = 2
+		y = 1
+		relative_position_id = FLO_a_throne_for_barron
+		prerequisite = {
+			focus = FLO_a_throne_for_barron
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_country_leader_trait = master_orator
+		}
+
+	}
+	focus = {
+		id = FLO_expand_groypers
+		icon = GFX_goal_FLO_Expand_Groypers
+		cost = 8.00
+		x = 0
+		y = 1
+		relative_position_id = FLO_solidify_our_regieme
+		prerequisite = {
+			focus = FLO_solidify_our_regieme
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_ideas = {
+				FLO_groypers
+			}
+		}
+
+	}
+	focus = {
+		id = FLO_invite_other_radicals
+		icon = GFX_goal_FLO_Invite_Radicals
+		cost = 5.00
+		x = 0
+		y = 1
+		relative_position_id = FLO_malkin_money_moves
+		prerequisite = {
+			focus = FLO_malkin_money_moves
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_stability = -0.10
+			add_political_power = 150
+		}
+
+	}
+	focus = {
+		id = FLO_dismantle_opposition
+		icon = GFX_goal_FLO_Dismantle_Opposition
+		cost = 2.00
+		x = 0
+		y = 1
+		relative_position_id = FLO_the_master_orator
+		prerequisite = {
+			focus = FLO_the_master_orator
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_stability = -0.25
+			add_popularity = {
+				ideology = autocratic
+				popularity = 1.00
+			}
+		}
+
+	}
+	focus = {
+		id = FLO_the_juedo_globalist_threat
+		icon = GFX_goal_FLO_JuedoGlobalistThreat
+		cost = 4.40
+		x = 0
+		y = 1
+		relative_position_id = FLO_invite_other_radicals
+		prerequisite = { 
+			focus = FLO_invite_other_radicals
+		}
+		prerequisite = { 
+			focus = FLO_expand_groypers
+		}
+		prerequisite = {
+			focus = FLO_dismantle_opposition
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_ideas = {
+				FLO_anti_zionism
+			}
+		}
+
+	}
+	focus = {
+		id = FLO_america_first
+		icon = GFX_goal_FLO_America_First
+		cost = 4.40
+		x = 0
+		y = 1
+		relative_position_id = FLO_the_juedo_globalist_threat
+		prerequisite = { 
+			focus = FLO_the_juedo_globalist_threat
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_political_power = 200
+			add_stability = 0.10
+			add_war_support = 0.05
+		}
+
+	}
+	focus = {
+		id = FLO_my_america
+		icon = GFX_goal_FLO_My_America
+		cost = 5.00
+		x = 1
+		y = 1
+		relative_position_id = FLO_america_first
+		mutually_exclusive = {
+			focus = FLO_trumps_america
+		}
+		prerequisite = { 
+			focus = FLO_america_first
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_stability = -0.05
+		}
+
+	}
+	focus = {
+		id = FLO_trumps_america
+		icon = GFX_goal_Donald_Trump_hugging_flag
+		cost = 5.00
+		x = -1
+		y = 1
+		relative_position_id = FLO_america_first
+		mutually_exclusive = {
+			focus = FLO_my_america
+		}
+		prerequisite = { 
+			focus = FLO_america_first
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_stability = 0.05
+		}
+
+	}
+	focus = {
+		id = FLO_a_meeting_in_denver
+		icon = GFX_focus_MON_Meeting_With_The_Trump
+		cost = 3.00
+		x = 0
+		y = 1
+		relative_position_id = FLO_trumps_america
+		prerequisite = { 
+			focus = FLO_trumps_america
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			country_event = { id = florida.34 }
+		}
+
+	}
+	focus = {
+		id = FLO_trump_dynasty
+		icon = GFX_goal_flo_two_trumps
+		cost = 5.00
+		x = 0
+		y = 1
+		relative_position_id = FLO_a_meeting_in_denver
+		prerequisite = { 
+			focus = FLO_a_meeting_in_denver
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			remove_ideas = {
+				FLO_Barron_the_baron
+			}
+			add_ideas = {
+				FLO_trump_dynasty_idea
+			}
+		}
+
+	}
+	focus = {
+		id = FLO_a_floridan_fiefdom
+		icon = GFX_goal_FLO_Fiefdom
+		cost = 10.00
+		x = 0
+		y = 1
+		relative_position_id = FLO_trump_dynasty
+		prerequisite = { 
+			focus = FLO_trump_dynasty
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+				USA = {
+				if = {
+					limit = {
+						OR = {
+							has_dlc = "Together for Victory"
+							has_dlc = "Man the Guns"
+						}
+					}
+					set_autonomy = {
+						target = FLO
+						autonomous_state = autonomy_dominion
+						freedom_level = 0.2
+					}
+					else = {
+						puppet = FLO
+					}
+				}
+			}
+			hidden_effect = {
+				add_popularity = {
+				    ideology = autocratic
+				    popularity = 1.00
+				}
+				set_politics = { ruling_party = autocratic }
+			}
+		}
+
+	}
+	focus = {
+		id = FLO_american_first_political_action_conference
+		icon = GFX_goal_FLO_AFPAC
+		cost = 5.00
+		x = 0
+		y = 1
+		relative_position_id = FLO_my_america
+		prerequisite = { 
+			focus = FLO_my_america
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			create_faction = "AFPAC"
+		}
+
+	}
+	focus = {
+		id = FLO_a_call_to_arms
+		icon = GFX_goal_FLO_Call_To_Arms
+		cost = 3.00
+		x = 0
+		y = 1
+		relative_position_id = FLO_american_first_political_action_conference
+		prerequisite = { 
+			focus = FLO_american_first_political_action_conference
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_war_support = 0.20
+		}
+
+	}
+	focus = {
+		id = FLO_strike_into_the_north
+		icon = GFX_goal_FLO_Strike_North
+		cost = 5 .00
+		x = 1
+		y = 1
+		relative_position_id = FLO_a_call_to_arms
+		mutually_exclusive = {
+			focus = FLO_the_time_is_now
+		}
+		prerequisite = { 
+			focus = FLO_a_call_to_arms
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		will_lead_to_war_with = CSA
+		completion_reward = {
+			declare_war_on = {
+			    target = CSA
+			    type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = FLO_the_time_is_now
+		icon = GFX_goal_FLO_The_Time_Is_Now
+		cost = 5.00
+		x = 2
+		y = 1
+		relative_position_id = FLO_a_call_to_arms
+		mutually_exclusive = {
+			focus = FLO_strike_into_the_north
+		}
+		prerequisite = { 
+			focus = FLO_a_call_to_arms
+		}
+		available = { 
+			country_exists = CSB 
+			country_exists = LGB 
+			country_exists = KKK 
+			country_exists = ZIO 
+			country_exists = AFR 
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		will_lead_to_war_with = CSA
+		will_lead_to_war_with = CSB
+		completion_reward = { 
+			declare_war_on = {
+			    target = CSA
+			    type = annex_everything
+			}
+			declare_war_on = {
+			    target = CSB
+			    type = annex_everything
+			}
+		}
+
+	}
+	focus = {
+		id = FLO_march_up_the_coast
+		icon = GFX_goal_FLO_March_Up_The_Coast
+		cost = 5.00
+		x = -1
+		y = 1
+		relative_position_id = FLO_the_time_is_now
+		prerequisite = { focus = FLO_the_time_is_now focus = FLO_strike_into_the_north }
+		ai_will_do = { 
+			factor = 300
+		}
+		will_lead_to_war_with = VIR
+		completion_reward = {
+			declare_war_on = {
+			    target = VIR
+			    type = annex_everything
+			}
+		}
+
+	}
+	focus = {
+		id = FLO_the_idiot_nazbol
+		icon = GFX_goal_FLO_Idiot_Nazbol
+		cost = 5.00
+		x = 0
+		y = 1
+		relative_position_id = FLO_march_up_the_coast
+		prerequisite = {
+			focus = FLO_march_up_the_coast
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		will_lead_to_war_with = D01
+		completion_reward = {
+			declare_war_on = {
+			    target = D01
+			    type = annex_everything
+			}
+		}
+
+	}
+	focus = {
+		id = FLO_fuck_joe_biden
+		icon = GFX_goal_Anti_Biden_Flag
+		cost = 5.00
+		x = 0
+		y = 1
+		relative_position_id = FLO_the_idiot_nazbol
+		prerequisite = {
+			focus = FLO_the_idiot_nazbol
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		bypass = { 
+			has_war_with = FRA 
+		}
+		will_lead_to_war_with = FRA
+		completion_reward = {
+			declare_war_on = {
+			    target = FRA
+			    type = annex_everything
+			}
+		}
+
+	}
+	focus = {
+		id = FLO_paranoid_conspiracy_theorists
+		icon = GFX_goal_FLO_Maine
+		cost = 5.00
+		x = 0
+		y = 1
+		relative_position_id = FLO_fuck_joe_biden
+		prerequisite = {
+			focus = FLO_fuck_joe_biden
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			country_event = { id = florida.35 }
+		}
+
+	}
+	focus = {
+		id = FLO_restart_a_better_america
+		icon = GFX_goal_FLO_Restart_America
+		cost = 5.00
+		x = 0
+		y = 1
+		relative_position_id = FLO_paranoid_conspiracy_theorists
+		available = {
+			owns_state = 324
+			owns_state = 327
+			owns_state = 323
+			owns_state = 329
+			owns_state = 309
+			owns_state = 509
+			owns_state = 322
+			owns_state = 328
+			owns_state = 309
+			owns_state = 290
+			owns_state = 532
+			owns_state = 284
+			owns_state = 282
+			owns_state = 325
+			owns_state = 283
+			owns_state = 331
+			owns_state = 534
+			owns_state = 263
+			owns_state = 308
+			owns_state = 264
+			owns_state = 275
+			owns_state = 265
+			owns_state = 380
+			owns_state = 477
+			owns_state = 332
+			owns_state = 371
+			owns_state = 188
+			owns_state = 169
+			owns_state = 500
+			owns_state = 347
+			owns_state = 503
+			owns_state = 500
+			owns_state = 244
+			owns_state = 242
+			owns_state = 502
+			owns_state = 248
+			owns_state = 277
+			owns_state = 360
+			owns_state = 292
+			owns_state = 285
+			owns_state = 247
+			owns_state = 245
+			owns_state = 361
+			owns_state = 281
+			owns_state = 227
+			owns_state = 228
+			owns_state = 223
+			owns_state = 225
+			owns_state = 219
+			owns_state = 220
+			owns_state = 200
+			owns_state = 191
+			owns_state = 216
+			owns_state = 214
+			owns_state = 210
+			owns_state = 211
+			owns_state = 203
+			owns_state = 202
+			owns_state = 201
+			owns_state = 193
+			owns_state = 192
+			owns_state = 221
+			owns_state = 181
+			owns_state = 212
+			owns_state = 170
+			owns_state = 171
+			owns_state = 168
+			owns_state = 180
+			owns_state = 178
+			owns_state = 172
+			owns_state = 174
+			owns_state = 179
+			owns_state = 142
+			owns_state = 402
+			owns_state = 504
+			owns_state = 213
+			owns_state = 222
+			owns_state = 217
+			owns_state = 516
+			owns_state = 293
+			owns_state = 533
+			owns_state = 501
+		}
+		prerequisite = {
+			focus = FLO_paranoid_conspiracy_theorists
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			set_cosmetic_tag = FLO_Fuentes_Flag_2
+			add_state_core = 324
+			add_state_core = 327
+			add_state_core = 323
+			add_state_core = 329
+			add_state_core = 309
+			add_state_core = 509
+			add_state_core = 322
+			add_state_core = 328
+			add_state_core = 309
+			add_state_core = 290
+			add_state_core = 532
+			add_state_core = 284
+			add_state_core = 282
+			add_state_core = 325
+			add_state_core = 283
+			add_state_core = 331
+			add_state_core = 534
+			add_state_core = 263
+			add_state_core = 308
+			add_state_core = 264
+			add_state_core = 275
+			add_state_core = 265
+			add_state_core = 380
+			add_state_core = 477
+			add_state_core = 332
+			add_state_core = 371
+			add_state_core = 188
+			add_state_core = 169
+			add_state_core = 500
+			add_state_core = 347
+			add_state_core = 503
+			add_state_core = 500
+			add_state_core = 244
+			add_state_core = 242
+			add_state_core = 502
+			add_state_core = 248
+			add_state_core = 277
+			add_state_core = 360
+			add_state_core = 292
+			add_state_core = 285
+			add_state_core = 247
+			add_state_core = 245
+			add_state_core = 361
+			add_state_core = 281
+			add_state_core = 227
+			add_state_core = 228
+			add_state_core = 223
+			add_state_core = 225
+			add_state_core = 219
+			add_state_core = 220
+			add_state_core = 200
+			add_state_core = 191
+			add_state_core = 216
+			add_state_core = 214
+			add_state_core = 210
+			add_state_core = 211
+			add_state_core = 203
+			add_state_core = 202
+			add_state_core = 201
+			add_state_core = 193
+			add_state_core = 192
+			add_state_core = 221
+			add_state_core = 181
+			add_state_core = 212
+			add_state_core = 170
+			add_state_core = 171
+			add_state_core = 168
+			add_state_core = 180
+			add_state_core = 178
+			add_state_core = 172
+			add_state_core = 174
+			add_state_core = 179
+			add_state_core = 142
+			add_state_core = 402
+			add_state_core = 504
+			add_state_core = 213
+			add_state_core = 222
+			add_state_core = 217
+			add_state_core = 516
+			add_state_core = 293
+			add_state_core = 533
+			add_state_core = 501
+		}
+
+	}
+	focus = {
+		id = FLO_repeal_lgbtq_rights
+		icon = GFX_goal_FLO_Repeal_LGBTQ_Rights
+		cost = 3.00
+		x = 5
+		y = 1
+		relative_position_id = FLO_the_juedo_globalist_threat
+		prerequisite = {
+			focus = FLO_the_juedo_globalist_threat
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_country_leader_trait = homophobic
+		}
+
+	}
+	focus = {
+		id = FLO_put_women_back_in_their_place
+		icon = GFX_goal_FLO_Put_Women_Back_In_Their_Place
+		cost = 4.00
+		x = -1
+		y = 1
+		relative_position_id = FLO_repeal_lgbtq_rights
+		prerequisite = {
+			focus = FLO_repeal_lgbtq_rights
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_ideas = FLO_traditonal_roles
+		}
+
+	}
+	focus = {
+		id = FLO_dominate_the_internet
+		icon = GFX_goal_FLO_Online_Propaganda_Programs
+		cost = 4.40
+		x = 1
+		y = 1
+		relative_position_id = FLO_repeal_lgbtq_rights
+		prerequisite = {
+			focus = FLO_repeal_lgbtq_rights
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_ideas = FLO_internet
+		}
+
+	}
+	focus = {
+		id = FLO_end_white_replacement
+		icon = GFX_goal_FLO_End_White_Replacement
+		cost = 4.40
+		x = -1
+		y = 1
+		relative_position_id = FLO_dominate_the_internet
+		prerequisite = {
+			focus = FLO_dominate_the_internet
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_stability = 0.05
+			add_manpower = 2000
+		}
+
+	}
+	focus = {
+		id = FLO_online_propaganda_programs
+		icon = GFX_goal_FLO_Dominate_The_Internet_icon
+		cost = 4.40
+		x = 1
+		y = 1
+		relative_position_id = FLO_dominate_the_internet
+		prerequisite = {
+			focus = FLO_dominate_the_internet
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_research_slot = 1
+		}
+
+	}
+	focus = {
+		id = FLO_promote_the_nuclear_family
+		icon = GFX_goal_FLO_Nuclear_Family
+		cost = 4.40
+		x = 1
+		y = 1
+		relative_position_id = FLO_end_white_replacement
+		prerequisite = {
+			focus = FLO_online_propaganda_programs
+		}
+		prerequisite = {
+			focus = FLO_end_white_replacement
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_ideas = FLO_nuclear_family
+		}
+
+	}
+	focus = {
+		id = FLO_promote_western_culture
+		icon = GFX_goal_FLO_Promote_Western_Culture
+		cost = 4.40
+		x = -5
+		y = 1
+		relative_position_id = FLO_the_juedo_globalist_threat
+		prerequisite = {
+			focus = FLO_the_juedo_globalist_threat
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_ideas = FLO_pro_western_culture
+		}
+
+	}
+	focus = {
+		id = FLO_european_work_ehtic
+		icon = GFX_goal_FLO_European_Work_Ethic
+		cost = 5.00
+		x = 1
+		y = 1
+		relative_position_id = FLO_promote_western_culture
+		prerequisite = {
+			focus = FLO_promote_western_culture
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = FLO_pro_western_culture
+				add_idea = FLO_pro_western_culture2
+			}
+		}
+
+	}
+	focus = {
+		id = FLO_fuentes_autarky
+		icon = GFX_goal_FLO_Fuentes_Autarky
+		cost = 5.00
+		x = -1
+		y = 1
+		relative_position_id = FLO_promote_western_culture
+		prerequisite = {
+			focus = FLO_promote_western_culture
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_ideas = FLO_fuentes_autarky_idea
+		}
+
+	}
+	focus = {
+		id = FLO_expand_our_research_base
+		icon = GFX_goal_FLO_Expand_Our_Research_Base
+		cost = 7.25
+		x = 0
+		y = 1
+		relative_position_id = FLO_fuentes_autarky
+		prerequisite = {
+			focus = FLO_fuentes_autarky
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_research_slot = 1
+		}
+
+	}
+	focus = {
+		id = FLO_expand_equipment_production
+		icon = GFX_goal_FLO_Expand_Equipemnt_Production
+		cost = 5.00
+		x = 0
+		y = 1
+		relative_position_id = FLO_expand_our_research_base
+		prerequisite = {
+			focus = FLO_expand_our_research_base
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_tech_bonus = {
+				name = infantry_bonus
+				bonus = 1.0
+				uses = 2
+				category = infantry_weapons
+			}
+		}
+
+	}
+	focus = {
+		id = FLO_tampa_foundries
+		icon = GFX_goal_FLO_Tampa_Factories
+		cost = 5.00
+		x = 1
+		y = 1
+		relative_position_id = FLO_expand_equipment_production
+		prerequisite = {
+			focus = FLO_expand_equipment_production
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			353 = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 1
+						include_locked = yes
+					}
+					is_core_of = ROOT
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 5
+				add_building_construction = {
+					type = industrial_complex
+					level = 5
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = FLO_miami_factories
+		icon = GFX_goal_FLO_Miami_Factories
+		cost = 5.00
+		x = -1
+		y = 1
+		relative_position_id = FLO_expand_equipment_production
+		prerequisite = {
+			focus = FLO_expand_equipment_production
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			339 = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 1
+						include_locked = yes
+					}
+					is_core_of = ROOT
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 5
+				add_building_construction = {
+					type = industrial_complex
+					level = 5
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = FLO_industrialize_jacksonville
+		icon = GFX_goal_FLO_Jacksonville_Factories
+		cost = 10.00
+		x = 1
+		y = 1
+		relative_position_id = FLO_miami_factories
+		available = {
+			owns_state = 324
+		}
+		prerequisite = {
+			focus = FLO_miami_factories
+		}
+		prerequisite = {
+			focus = FLO_tampa_foundries
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			339 = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 1
+						include_locked = yes
+					}
+					is_core_of = ROOT
+				}
+				add_extra_state_shared_building_slots = 5
+				add_building_construction = {
+					type = industrial_complex
+					level = 5
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 4
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = FLO_fuentes_inf_plan
+		icon = GFX_goal_FLO_Fuentes_INF
+		cost = 5.00
+		x = 0
+		y = 1
+		relative_position_id = FLO_industrialize_jacksonville
+		prerequisite = {
+			focus = FLO_industrialize_jacksonville
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_ideas = FLO_infra_plan
+		}
+
+	}
+	focus = {
+		id = FLO_a_military_of_patriots
+		icon = GFX_goal_FLO_Patriot_Army
+		cost = 7.25
+		x = -8
+		y = 1
+		relative_position_id = FLO_promote_western_culture
+		prerequisite = {
+			focus = FLO_promote_western_culture
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+		army_experience = 30
+			remove_ideas = FLO_army_nationalguard_split
+		}
+
+	}
+	focus = {
+		id = FLO_defense_of_our_shores
+		icon = GFX_goal_FLO_Defend_Our_Shores
+		cost = 5.00
+		x = 4
+		y = 1
+		relative_position_id = FLO_a_military_of_patriots
+		prerequisite = {
+			focus = FLO_a_military_of_patriots
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			339 = {
+				limit = {
+					free_building_slots = {
+						building = dockyard
+						size > 1
+						include_locked = yes
+					}
+					is_core_of = ROOT
+				}
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+					type = dockyard
+					level = 4
+					instant_build = yes
+				}
+			}
+			345 = {
+				limit = {
+					free_building_slots = {
+						building = dockyard
+						size > 1
+						include_locked = yes
+					}
+					is_core_of = ROOT
+				}
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+					type = dockyard
+					level = 4
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = FLO_improve_our_destroyers
+		icon = GFX_goal_FLO_Destroyers
+		cost = 5.00
+		x = 1
+		y = 1
+		relative_position_id = FLO_defense_of_our_shores
+		prerequisite = {
+			focus = FLO_defense_of_our_shores
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			navy_experience = 50
+			add_tech_bonus = {
+				name = dd_bonus
+				bonus = 1.0
+				ahead_reduction = 2
+				uses = 1
+				category = dd_tech
+			}
+			
+		}
+
+	}
+	focus = {
+		id = FLO_littoral_ship_designs
+		icon = GFX_goal_FLO_Cruisers
+		cost = 5.00
+		x = -1
+		y = 1
+		relative_position_id = FLO_defense_of_our_shores
+		prerequisite = {
+			focus = FLO_defense_of_our_shores
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			navy_experience = 50
+			add_tech_bonus = {
+				name = cr_bonus_2
+				bonus = 1.0
+				ahead_reduction = 2
+				uses = 1
+				category = cl_tech
+				category = ca_tech
+			}
+		}
+
+	}
+	focus = {
+		id = FLO_green_water_navy
+		icon = GFX_goal_FLO_Green_Water_Navy
+		cost = 10.00
+		x = -1
+		y = 1
+		relative_position_id = FLO_improve_our_destroyers
+		prerequisite = {
+			focus = FLO_improve_our_destroyers
+		}
+		prerequisite = {
+			focus = FLO_littoral_ship_designs
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_tech_bonus = {
+				name = navy_doc_bonus
+				bonus = 1.0
+				uses = 2
+				category = naval_doctrine
+			}
+		}
+
+	}
+	focus = {
+		id = FLO_encourage_groyper_enlistment
+		icon = GFX_goal_FLO_Encourace_Groyper_Enlistment
+		cost = 5.00
+		x = 0
+		y = 1
+		relative_position_id = FLO_a_military_of_patriots
+		prerequisite = {
+			focus = FLO_a_military_of_patriots
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_ideas = extensive_conscription
+		}
+
+	}
+	focus = {
+		id = FLO_create_a_trump_tank_model
+		icon = GFX_goal_FLO_Trump_Tank
+		cost = 5.00
+		x = -1
+		y = 1
+		relative_position_id = FLO_encourage_groyper_enlistment
+		prerequisite = {
+			focus = FLO_encourage_groyper_enlistment
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_tech_bonus = {
+				name = armor_bonus
+				bonus = 1.0
+				uses = 2
+				category = armor
+			}
+		}
+
+	}
+	focus = {
+		id = FLO_modern_weapon_design
+		icon = GFX_goal_FLO_arty
+		cost = 5.00
+		x = 1
+		y = 1
+		relative_position_id = FLO_encourage_groyper_enlistment
+		prerequisite = {
+			focus = FLO_encourage_groyper_enlistment
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_tech_bonus = {
+				name = infantry_bonus
+				bonus = 1.0
+				uses = 2
+				category = artillery
+			}
+		}
+
+	}
+	focus = {
+		id = FLO_speed_and_strength
+		icon = GFX_goal_FLO_Speed_And_Strength
+		cost = 5.00
+		x = 0
+		y = 1
+		relative_position_id = FLO_create_a_trump_tank_model
+		prerequisite = {
+			focus = FLO_create_a_trump_tank_model
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_ideas = FLO_speed_and_strength_idea
+		}
+
+	}
+	focus = {
+		id = FLO_doctrine_advances
+		icon = GFX_goal_FLO_Doctrine_Advances
+		cost = 5.00
+		x = 0
+		y = 1
+		relative_position_id = FLO_modern_weapon_design
+		prerequisite = {
+			focus = FLO_modern_weapon_design
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			army_experience = 15
+			add_tech_bonus = {
+				name = land_doc_bonus
+				bonus = 1.0
+				uses = 3
+				category = land_doctrine
+			}
+		}
+
+	}
+	focus = {
+		id = FLO_the_america_first_army
+		icon = GFX_goal_FLO_America_First_Army
+		cost = 10.00
+		x = 1
+		y = 1
+		relative_position_id = FLO_speed_and_strength
+		prerequisite = {
+			focus = FLO_speed_and_strength
+		}
+		prerequisite = {
+			focus = FLO_doctrine_advances
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = FLO_speed_and_strength_idea
+				add_idea = FLO_army
+			}
+		}
+
+	}
+	focus = {
+		id = FLO_protecting_our_skies
+		icon = GFX_goal_FLO_Dominate_Our_Skies
+		cost = 5.00
+		x = -4
+		y = 1
+		relative_position_id = FLO_a_military_of_patriots
+		prerequisite = {
+			focus = FLO_a_military_of_patriots
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			397 = {
+				limit = {
+					free_building_slots = {
+						building = air_base 
+						size > 1
+						include_locked = yes
+					}
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = air_base 
+					level = 4
+					instant_build = yes
+				}
+			}
+			346 = {
+				limit = {
+					free_building_slots = {
+						building = air_base 
+						size > 1
+						include_locked = yes
+					}
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = air_base 
+					level = 4
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = FLO_orlando_air_force_command
+		icon = GFX_goal_FLO_Orlando_Air
+		cost = 5.00
+		x = 1
+		y = 1
+		relative_position_id = FLO_protecting_our_skies
+		prerequisite = {
+			focus = FLO_protecting_our_skies
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			air_experience = 50
+			add_tech_bonus = {
+				name = CAS_bonus
+				bonus = 1.0
+				ahead_reduction = 2
+				uses = 1
+				category = cas_bomber
+			}
+		}
+
+	}
+	focus = {
+		id = FLO_new_fighter_models
+		icon = GFX_goal_FLO_New_Fighters
+		cost = 5.00
+		x = -1
+		y = 1
+		relative_position_id = FLO_protecting_our_skies
+		prerequisite = {
+			focus = FLO_protecting_our_skies
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_tech_bonus = {
+				name = fighter_bonus_2
+				bonus = 1.0
+				uses = 1
+				technology = early_fighter
+				technology = fighter1
+				technology = fighter2
+				technology = fighter3
+				technology = heavy_fighter1
+				technology = heavy_fighter2
+				technology = heavy_fighter3
+			}	
+		}
+
+	}
+	focus = {
+		id = FLO_dominate_the_skies
+		icon = GFX_goal_FLO_Air_Final
+		cost = 10.00
+		x = 1
+		y = 1
+		relative_position_id = FLO_new_fighter_models
+		prerequisite = {
+			focus = FLO_new_fighter_models
+		}
+		prerequisite = {
+			focus = FLO_orlando_air_force_command
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			add_tech_bonus = {
+				name = air_doc_bonus_3
+				bonus = 1.0
+				uses = 2
+				category = air_doctrine
+			}	
+		}
+
+	}
+	focus = {
+		id = FLO_not_him_again
+		icon = GFX_goal_FLO_Not_Him_Again
+		cost = 10.00
+		x = 9
+		y = 1
+		relative_position_id = FLO_a_throne_for_barron
+		prerequisite = {
+			focus = FLO_a_throne_for_barron
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			country_event = { id = florida.37 }
+		}
+
+	}
+	focus = {
+		id = FLO_lure_jeb_out
+		icon = GFX_goal_FLO_Lure_Jeb_Out
+		cost = 10.00
+		x = -1
+		y = 1
+		relative_position_id = FLO_not_him_again
+		mutually_exclusive = {
+			focus = FLO_lay_in_wait
+		}
+		prerequisite = {
+			focus = FLO_not_him_again
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			country_event = { id = florida.12 }
+		}
+
+	}
+	focus = {
+		id = FLO_lay_in_wait
+		icon = GFX_goal_FLO_Jeb_Later
+		cost = 10.00
+		x = 1
+		y = 1
+		relative_position_id = FLO_not_him_again
+		mutually_exclusive = {
+			focus = FLO_lure_jeb_out
+		}
+		prerequisite = {
+			focus = FLO_not_him_again
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+
+	}
+	focus = {
+		id = FLO_jeb_is_done
+		icon = GFX_goal_FLO_Jeb_Is_Dead
+		cost = 10.00
+		x = 1
+		y = 1
+		relative_position_id = FLO_lure_jeb_out
+		prerequisite = {
+			focus = FLO_lure_jeb_out
+			focus = FLO_lay_in_wait
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+
+	}
+	#desantis#
+	focus = {
+		id = FLO_desantis
+		icon = GFX_goal_FLO_Desantis
+		cost = 10.00
+		x = 65
+		y = -2
+		prerequisite = {
+			focus = FLO_meeting
+		}
+		mutually_exclusive = {
+			focus = FLO_barron
+			focus = FLO_fuentes
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			#event to chose desantis#
+		}
+
+	}
+	#JEB#
+	focus = {
+		id = FLO_stagnation
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = FLO_dirty_dirty_patrick
+		}
+		mutually_exclusive = {
+			focus = FLO_sorry_father
+			focus = FLO_join_loyalist_coalition
+		}
+		x = 24
+		y = 8
+		completion_reward = {
+			
+		}
+
+	}
+	focus = {
+		id = FLO_we_need_more_time
+		icon = GFX_goal_unknown
+		cost = 3.00
+		relative_position_id = FLO_stagnation
+		prerequisite = {
+			focus = FLO_stagnation
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			
+		}
+
+	}
+	focus = {
+		id = FLO_enemies_all_around
+		icon = GFX_goal_unknown
+		cost = 3.00
+		relative_position_id = FLO_we_need_more_time
+		prerequisite = {
+			focus = FLO_we_need_more_time
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			
+		}
+
+	}
+	
+	focus = {
+		id = FLO_internal_dissidence
+		icon = GFX_goal_unknown
+		cost = 4.40
+		relative_position_id = FLO_enemies_all_around
+		prerequisite = {
+			focus = FLO_enemies_all_around
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			
+		}
+
+	}
+	focus = {
+		id = FLO_jail_trump_supporters
+		icon = GFX_goal_unknown
+		cost = 4.40
+		relative_position_id = FLO_enemies_all_around
+		prerequisite = {
+			focus = FLO_enemies_all_around
+		}
+		x = -2
+		y = 1
+		completion_reward = {
+			
+		}
+
+	}
+	focus = {
+		id = FLO_punish_the_military
+		icon = GFX_goal_unknown
+		cost = 4.40
+		relative_position_id = FLO_jail_trump_supporters
+		prerequisite = {
+			focus = FLO_jail_trump_supporters
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			
+		}
+
+	}
+	focus = {
+		id = FLO_the_brutus_to_my_caesar
+		icon = GFX_goal_unknown
+		cost = 4.40
+		relative_position_id = FLO_internal_dissidence
+		prerequisite = {
+			focus = FLO_internal_dissidence
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			
+		}
+
+	}
+	focus = {
+		id = FLO_personality_cult
+		icon = GFX_goal_unknown
+		cost = 4.40
+		relative_position_id = FLO_enemies_all_around
+		prerequisite = {
+			focus = FLO_enemies_all_around
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+			
+		}
+
+	}
+	focus = {
+		id = FLO_government_surveillance
+		icon = GFX_goal_unknown
+		cost = 4.40
+		relative_position_id = FLO_personality_cult
+		prerequisite = {
+			focus = FLO_personality_cult
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			
+		}
+
+	}
+	focus = {
+		id = FLO_the_prison_riot
+		icon = GFX_goal_unknown
+		cost = 2.00
+		relative_position_id = FLO_the_brutus_to_my_caesar
+		prerequisite = {
+			focus = FLO_the_brutus_to_my_caesar
+		}
+		prerequisite = {
+			focus = FLO_punish_the_military
+		}
+		prerequisite = {
+			focus = FLO_government_surveillance
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			load_focus_tree = FLO_2
+		}
+
+	}
+	
+	continuous_focus_position = { x = 500 y = 3000 }
+
 }
