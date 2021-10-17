@@ -1,11 +1,12 @@
 #volunteers abd support.
-Confederate_support = {
+Confederate_support_D02 = {
 	allowed = {
 		original_tag = CSA
 	}
 	enable = {
 		D02 = {
 			original_tag = KFC
+			has_government = autocratic
 		}
 	}
 	abort = {
@@ -24,7 +25,9 @@ Confederate_support = {
 	}
 }
 
-Northen_support = {
+
+
+Northen_support_KFC = {
 	allowed = {
 		OR = {
 			original_tag = AFS
@@ -33,7 +36,10 @@ Northen_support = {
 		}
 	}
 	enable = {
-		KFC = { has_civil_war = yes }
+		KFC = {
+			has_civil_war = yes 
+			NOT = {has_government = autocratic}
+		}
 	}
 	abort = {
 		KFC = { has_civil_war = no }
@@ -47,6 +53,64 @@ Northen_support = {
 	ai_strategy = {
 		type = support
 		id = "KFC"
+		value = 200
+	}
+}
+
+Confederate_support_KFC = {
+	allowed = {
+		original_tag = CSA
+	}
+	enable = {
+		KFC = {
+			has_civil_war = yes 
+			has_government = autocratic
+		}
+	}
+	abort = {
+		KFC = { has_civil_war = no }
+	}
+	
+	ai_strategy = {
+		type = send_volunteers_desire
+		id = "KFC"
+		value = 500
+	}
+	ai_strategy = {
+		type = support
+		id = "KFC"
+		value = 200
+	}
+}
+
+
+
+Northen_support_D02 = {
+	allowed = {
+		OR = {
+			original_tag = AFS
+			original_tag = USA
+			original_tag = FRA
+		}
+	}
+	enable = {
+		KFC = {
+			has_civil_war = yes 
+			has_government = autocratic
+		}
+	}
+	abort = {
+		KFC = { has_civil_war = no }
+	}
+	
+	ai_strategy = {
+		type = send_volunteers_desire
+		id = "D02"
+		value = 500
+	}
+	ai_strategy = {
+		type = support
+		id = "D02"
 		value = 200
 	}
 }
