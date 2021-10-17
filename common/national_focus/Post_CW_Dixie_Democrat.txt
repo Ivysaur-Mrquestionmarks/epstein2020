@@ -21,10 +21,17 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			add_stability = 0.2
-			add_war_support = 0.2
 			set_politics = {
 				ruling_party = republican
+			}
+			set_stability = 0.05
+			set_war_support = 0.05
+			set_political_power = -10
+			every_state = {
+				LIMIT = {
+					is_owned_by = CSA
+				}
+				add_core_of = CSA
 			}
 			add_ideas = DIX_Fresh_Nation
 			create_country_leader = {
@@ -52,6 +59,42 @@ focus_tree = {
 				autocratic = 26
 			}
 			hidden_effect = {
+				set_popularities = {
+					libertarian_right = 13
+					libertarian_left = 9
+					republican = 25
+					democrat = 17
+					authoritarian_left = 10
+					autocratic = 26
+				}
+				every_state = {
+					LIMIT = {
+						OR = {
+							is_owned_by = VIR
+							is_owned_by = RVR
+							is_owned_by = MGV
+						}
+					}
+					add_claim_by = CSA
+				}
+				every_state = {
+					LIMIT = {
+						is_owned_by = TEX
+					}
+					add_claim_by = CSA
+				}
+				every_state = {
+					LIMIT = {
+						is_owned_by = FLO
+					}
+					add_claim_by = CSA
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = OKL
+					}
+					remove_claim_by = CSA
+				}
 				create_country_leader = {
 					name = "George Wallace Jr."
 					picture = "gfx/leaders/CSA/George_Wallace_Jr.tga"
@@ -2127,7 +2170,7 @@ focus_tree = {
 	}
 	focus = {
 		id = DIX_One_Nation_Indivisible
-		icon = GFX_goal_Proclaim_confederate_independence
+		icon = GFX_goal_One_Nation_Indivisible
 		cost = 3.00
 		x = 35
 		y = 12
@@ -2358,7 +2401,7 @@ focus_tree = {
 	}
 	focus = {
 		id = DIX_Groom_My_Successor
-		icon = GFX_goal_Brian_Kemp
+		icon = GFX_goal_KEMP_successor
 		cost = 3.00
 		x = 35
 		y = 17
@@ -2390,7 +2433,7 @@ focus_tree = {
 	}
 	focus = {
 		id = DIX_Nominate_Reeves
-		icon = GFX_goal_Brian_Kemp
+		icon = GFX_goal_tate
 		cost = 3.00
 		x = 37
 		y = 18
@@ -2423,7 +2466,7 @@ focus_tree = {
 	}
 	focus = {
 		id = DIX_Nominate_Parton
-		icon = GFX_goal_Brian_Kemp
+		icon = GFX_goal_parton
 		cost = 3.00
 		x = 35
 		y = 18
@@ -2455,7 +2498,7 @@ focus_tree = {
 	}
 	focus = {
 		id = DIX_Nominate_Riley
-		icon = GFX_goal_Brian_Kemp
+		icon = GFX_goal_riley
 		cost = 3.00
 		x = 33
 		y = 18
@@ -2583,7 +2626,7 @@ focus_tree = {
 	}
 	focus = {
 		id = DIX_Legacy_of_the_Senior
-		icon = GFX_goal_Wallace_Jr
+		icon = GFX_goal_good_ol
 		cost = 3.00
 		x = 42
 		y = 11
@@ -2621,7 +2664,7 @@ focus_tree = {
 	}
 	focus = {
 		id = DIX_Christian_Irredentism
-		icon = GFX_goal_Christthesavior
+		icon = GFX_goal_confgoddd
 		cost = 3.00
 		x = 41
 		y = 12
@@ -2641,7 +2684,7 @@ focus_tree = {
 	}
 	focus = {
 		id = DIX_Jim_Pheonix
-		icon = GFX_goal_Burn_Atlanta
+		icon = GFX_goal_Jim_Pheonix
 		cost = 3.00
 		x = 42
 		y = 13
@@ -2744,7 +2787,7 @@ focus_tree = {
 	}
 	focus = {
 		id = DIX_Segregation_Now_Segregation_Tomorrow_Segregation_Forever
-		icon = GFX_goal_Wallace_Jr
+		icon = GFX_goal_Segregation_Now
 		cost = 3.00
 		x = 45
 		y = 14
@@ -3085,7 +3128,10 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_popularity = {
+    			ideology = republican
+    			popularity = 0.05
+			}
 		}
 	}
 	focus = {
@@ -3104,7 +3150,10 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_popularity = {
+    			ideology = republican
+    			popularity = 0.25
+			}
 		}
 	}
 	focus = {
@@ -3123,7 +3172,10 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_popularity = {
+    			ideology = autocratic
+    			popularity = -0.12
+			}
 		}
 	}
 	focus = {
@@ -3142,7 +3194,14 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_popularity = {
+    			ideology = libertarian_right
+    			popularity = -0.05
+			}
+			add_popularity = {
+    			ideology = democrat
+    			popularity = -0.05
+			}
 		}
 	}
 	focus = {
@@ -3167,7 +3226,33 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_popularity = {
+    			ideology = republican
+    			popularity = 0.15
+			}
+			set_politics = {
+				ruling_party = republican
+			}
+			add_ideas = DIX_Sovereignty_Society
+			swap_ideas = {
+				remove_idea = DIX_VP_Dondi_Costin
+				add_idea = DIX_VP_Dondi_Costin_Repub
+			}
+			set_party_name = { ideology = libertarian_right long_name = DIX_S_LR_L name = DIX_S_LR }
+			set_party_name = { ideology = libertarian_left long_name = DIX_S_LL_L name = DIX_S_LL }
+			set_party_name = { ideology = republican long_name = DIX_S_R_L name = DIX_S_R }
+			set_party_name = { ideology = democrat long_name = DIX_S_D_L name = DIX_S_D }
+			set_party_name = { ideology = autocratic long_name = DIX_S_A_L name = DIX_S_A }
+			create_country_leader = {
+				name = "Paul Thurmond"
+				picture = "gfx/leaders/CSA/Paul_R_Thurmond.tga"
+				expire = "2060.1.1"
+				ideology = conservative
+				traits = {
+					DIX_SP_Leader_Conservative
+					dealbroker
+				}
+			}
 		}
 	}
 	focus = {
@@ -4299,7 +4384,7 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = DIX_Isolate_Republicans
+		id = DIX_Isolate_Republicans_FED
 		icon = GFX_goal_Webb
 		cost = 3.00
 		x = 84
@@ -4327,7 +4412,7 @@ focus_tree = {
 			
 		}
 		prerequisite = {
-			focus = DIX_Isolate_Republicans
+			focus = DIX_Isolate_Republicans_FED
 		}
 		ai_will_do = { 
 			factor = 300
@@ -4384,7 +4469,7 @@ focus_tree = {
 			
 		}
 		prerequisite = {
-			focus = DIX_Isolate_Republicans
+			focus = DIX_Isolate_Republicans_FED
 		}
 		ai_will_do = { 
 			factor = 300
@@ -4403,7 +4488,7 @@ focus_tree = {
 			
 		}
 		prerequisite = {
-			focus = DIX_Isolate_Republicans
+			focus = DIX_Isolate_Republicans_FED
 		}
 		ai_will_do = { 
 			factor = 300
