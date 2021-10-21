@@ -211,147 +211,489 @@ focus_tree = {
 		available_if_capitulated = no
 
 		completion_reward = {
-			custom_effect_tooltip =  new_tree
 			every_state = {
-				limit = {
-					has_dynamic_modifier = {
-    						modifier = CSA_southern_bloodshet
-					}
-				}
 			 	remove_dynamic_modifier = { modifier = CSA_southern_bloodshet}
 			}
 			hidden_effect = {
 				APA = {country_event = {
     					id = south.78
 				}}
-				if = { limit = {tag = CSA}
-					load_focus_tree = Dixie_Elections
-				}
 			}
 		}
 	}
-
-
-
 	focus = {
-		id = CSA_KKK_our_chance
+		id = ZIO_Hebrew_Militant_Groups
 		icon = GFX_focus_secret_rearmament
-
-		prerequisite = { focus = CSA_so_it_begins }
 		allow_branch = {
-			tag = KKK
+        tag = ZIO
 		}
-		x = 4
+		prerequisite = { focus = CSA_so_it_begins }
+		x = -2
 		y = 2
-		cost = 5
+		relative_position_id = CSA_so_it_begins
+		cost = 4
 
 		ai_will_do = {
-			factor = 3
+			factor = 5
 		}
 
 		available_if_capitulated = no
 
 		completion_reward = {
-			add_war_support = 0.15
-			add_manpower = 25000
-		}
-	}
-
-	focus = {
-		id = CSA_KKK_offensive_focus
-		icon = GFX_focus_secret_rearmament
-
-		prerequisite = { focus = CSA_KKK_our_chance}
-
-		x = 3
-		y = 4
-		cost = 5
-
-		ai_will_do = {
-			factor = 3
-		}
-
-		available_if_capitulated = no
-
-		completion_reward = {
-			add_ideas = KKK_DC_offensive_focus
-			unlock_decision_tooltip = CSA_KKK_desesperate_attack 
-		}
-	}
-	focus = {
-		id = CSA_KKK_raise_units
-		icon = GFX_focus_secret_rearmament
-
-		prerequisite = { focus = CSA_KKK_offensive_focus}
-
-		x = 3
-		y = 5
-		cost = 5
-
-		ai_will_do = {
-			factor = 3
-		}
-
-		available_if_capitulated = no
-
-		completion_reward = {
-			create_unit = {
-				division = "division_template = \"militias\"	start_experience_factor = 0.25	start_equipment_factor = 1"
-				owner = ROOT
-				count = 1
-					
-			}			
-			unlock_decision_tooltip = CSA_units
-			set_country_flag = CSA_unit
-		}
-	}
-
-	focus = {
-		id = CSA_KKK_defend_the_klan_state
-		icon = GFX_focus_secret_rearmament
-
-		prerequisite = { focus = CSA_KKK_our_chance}
-
-		x = 1
-		y = 3
-		cost = 5
-
-		ai_will_do = {
-			factor = 3
-		}
-
-		available_if_capitulated = no
-
-		completion_reward = {
-			add_ideas = KKK_defend_the_new_state
-			unlock_decision_tooltip = CSA_bomb_bridges
-			set_country_flag = CSA_boom  
-		}
-	}
-
-	focus = {
-		id = CSA_KKK_mantain_uncontrol
-		icon = GFX_focus_secret_rearmament
-
-		prerequisite = { focus = CSA_KKK_defend_the_klan_state}
-
-		x = 1
-		y = 5
-		cost = 5
-
-		ai_will_do = {
-			factor = 3
-		}
-
-		available_if_capitulated = no
-
-		completion_reward = {
-			add_stability = 0.15
-			add_popularity = {
-    				ideology = autocratic
-    				popularity = 0.3
+		add_ideas = ZIO_Hewbrew_Militant_Groups
+		division_template = {
+		    name = "Militant Groups"
+		#    division_names_group =
+			regiments = {
+				infantry = { x = 0 y = 0 }
+				infantry = { x = 0 y = 1 }
+				infantry = { x = 1 y = 0 }
+				infantry = { x = 1 y = 1 }
+				infantry = { x = 2 y = 0 }
+				infantry = { x = 2 y = 1 }
 			}
-			add_political_power = 20
+			support = { 
+			recon = { x = 0 y = 0 }
+	        } 
+		}
+		271 = {
+			create_unit = {
+				division = "name = \"Sons of David\" division_template = \"Militant Groups\" start_experience_factor = 0.25 start_equipment_factor = 0.35" 
+				owner = ZIO
+			}
+			create_unit = {
+				division = "name = \"Children of Israel\" division_template = \"Militant Groups\" start_experience_factor = 0.25 start_equipment_factor = 0.35" 
+				owner = ZIO
+			}
+			create_unit = {
+				division = "name = \"''Pigeon'' Recon Division\" division_template = \"Militant Groups\" start_experience_factor = 0.25 start_equipment_factor = 0.35" 
+				owner = ZIO
+			}
+			create_unit = {
+				division = "name = \"TNT Black Brigade\" division_template = \"Militant Groups\" start_experience_factor = 0.25 start_equipment_factor = 0.35" 
+				owner = ZIO
+			}
+			create_unit = {
+				division = "name = \"Not Fucking Around Jewish Coalition\" division_template = \"Militant Groups\" start_experience_factor = 0.25 start_equipment_factor = 0.35" 
+				owner = ZIO
+			}
+			create_unit = {
+				division = "name = \"Mamba Brigade\" division_template = \"Militant Groups\" start_experience_factor = 0.4 start_equipment_factor = 0.5" 
+				owner = ZIO
+			}
+		}
+		}
+	}
+	focus = {
+		id = ZIO_Intelligence_Gathering
+		icon = GFX_focus_secret_rearmament
+		allow_branch = {
+        tag = ZIO
+		}
+		prerequisite = { focus = ZIO_Hebrew_Militant_Groups }
+		x = 0
+		y = 1
+		relative_position_id = ZIO_Hebrew_Militant_Groups
+		cost = 4
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = ZIO_Zionist_Guerrilla_Warfare
+		icon = GFX_focus_secret_rearmament
+		allow_branch = {
+        tag = ZIO
+		}
+		prerequisite = { focus = ZIO_Intelligence_Gathering }
+		x = 1
+		y = 1
+		relative_position_id = ZIO_Intelligence_Gathering
+		cost = 4
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+		 add_ideas = ZIO_Guerrilla_War2
+		}
+	}
+	focus = {
+		id = ZIO_Activating_A_Draft
+		icon = GFX_focus_secret_rearmament
+		allow_branch = {
+        tag = ZIO
+		}
+		prerequisite = { focus = ZIO_Zionist_Guerrilla_Warfare }
+		x = -1
+		y = 1
+		relative_position_id = ZIO_Zionist_Guerrilla_Warfare
+		cost = 4
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = ZIO_Israeli_Draft
+		}
+	}
+	focus = {
+		id = ZIO_Zionist_Blitzkrieg
+		icon = GFX_focus_secret_rearmament
+		allow_branch = {
+        tag = ZIO
+		}
+		prerequisite = { focus = ZIO_Zionist_Guerrilla_Warfare }
+		x = 1
+		y = 1
+		relative_position_id = ZIO_Zionist_Guerrilla_Warfare
+		cost = 4
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = ZIO_the_israeli_blitzkrieg
+		}
+	}
+	focus = {
+		id = AFR_Operations_In_Enemy_Territory
+		icon = GFX_focus_secret_rearmament
+		allow_branch = {
+        tag = AFR
+		}
+		prerequisite = { focus = CSA_so_it_begins }
+		x = -1
+		y = 1
+		relative_position_id = CSA_so_it_begins
+		cost = 4
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_political_power = 50
+		}
+	}
+	focus = {
+		id = AFR_Foreign_African_Volunteers
+		icon = GFX_focus_secret_rearmament
+		allow_branch = {
+        tag = AFR
+		}
+		prerequisite = { focus = AFR_Operations_In_Enemy_Territory }
+		x = 0
+		y = 1
+		relative_position_id = AFR_Operations_In_Enemy_Territory
+		cost = 4
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_manpower = 100000
+		}
+	}
+	focus = {
+		id = AFR_Raising_Black_Militias
+		icon = GFX_focus_secret_rearmament
+		allow_branch = {
+        tag = AFR
+		}
+		prerequisite = { focus = AFR_Foreign_African_Volunteers }
+		x = 0
+		y = 1
+		relative_position_id = AFR_Foreign_African_Volunteers
+		cost = 4
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			division_template = {
+		    name = "Militant Groups"
+		#    division_names_group =
+			regiments = {
+				infantry = { x = 0 y = 0 }
+				infantry = { x = 0 y = 1 }
+				infantry = { x = 1 y = 0 }
+				infantry = { x = 1 y = 1 }
+				infantry = { x = 2 y = 0 }
+				infantry = { x = 2 y = 1 }
+				infantry = { x = 3 y = 0 }
+				infantry = { x = 3 y = 1 }
+				infantry = { x = 4 y = 0 }
+				infantry = { x = 4 y = 1 }
+			}
+			support = { 
+			recon = { x = 0 y = 0 }
+	        } 
+		}
+		551 = {
+			create_unit = {
+				division = "name = \"Buffalo Soldiers\" division_template = \"Militant Groups\" start_experience_factor = 0.75 start_equipment_factor = 0.75" 
+				owner = AFR
+			}
+			create_unit = {
+				division = "name = \"Not Fucking Around Coalition\" division_template = \"Militant Groups\" start_experience_factor = 0.25 start_equipment_factor = 0.35" 
+				owner = AFR
+			}
+			create_unit = {
+				division = "name = \"New Black Panther Division\" division_template = \"Militant Groups\" start_experience_factor = 0.25 start_equipment_factor = 0.35" 
+				owner = AFR
+			}
+			create_unit = {
+				division = "name = \"King Division\" division_template = \"Militant Groups\" start_experience_factor = 0.25 start_equipment_factor = 0.35" 
+				owner = AFR
+			}
+			create_unit = {
+				division = "name = \"Malcom Division\" division_template = \"Militant Groups\" start_experience_factor = 0.25 start_equipment_factor = 0.35" 
+				owner = AFR
+			}
+			create_unit = {
+				division = "name = \"X Force Division\" division_template = \"Militant Groups\" start_experience_factor = 0.5 start_equipment_factor = 0.5" 
+				owner = AFR
+			}
+		}
+		}
+	}
+	focus = {
+		id = AFR_The_Black_Panther_Prowls_Again
+		icon = GFX_focus_secret_rearmament
+		allow_branch = {
+        tag = AFR
+		}
+		prerequisite = { focus = AFR_Raising_Black_Militias }
+		x = 1
+		y = 1
+		relative_position_id = AFR_Raising_Black_Militias
+		cost = 4
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = AFR_the_black_panther
+		}
+	}
+	focus = {
+		id = AFR_Move_In_on_the_Zionists
+		icon = GFX_focus_secret_rearmament
+		allow_branch = {
+        tag = AFR
+		}
+		prerequisite = { focus = AFR_Raising_Black_Militias }
+		x = -1
+		y = 1
+		relative_position_id = AFR_Raising_Black_Militias
+		cost = 4
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = AFR_Reintegrate_Zionists
+		}
+	}
+	focus = {
+		id = SCA_The_National_Army_of_South_Carolina
+		icon = GFX_focus_secret_rearmament
+		allow_branch = {
+        tag = SCA
+		}
+		prerequisite = { focus = CSA_so_it_begins }
+		x = -2
+		y = 2
+		relative_position_id = CSA_so_it_begins
+		cost = 4
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			army_experience = 50
+			division_template = {
+		    name = "South Carolina Militia"
+		#    division_names_group =
+			regiments = {
+				infantry = { x = 0 y = 0 }
+				infantry = { x = 0 y = 1 }
+				infantry = { x = 1 y = 0 }
+				infantry = { x = 1 y = 1 }
+				infantry = { x = 2 y = 0 }
+			}
+			support = { 
+	        } 
+		}
+		532 = {
+			create_unit = {
+				division = "name = \"1st South Carolinian Volunteer Regiment\" division_template = \"South Carolina Militia\" start_experience_factor = 0.25 start_equipment_factor = 0.25" 
+				owner = SCA
+			}
+		    create_unit = {
+				division = "name = \"2nd South Carolinian Volunteer Regiment\" division_template = \"South Carolina Militia\" start_experience_factor = 0.25 start_equipment_factor = 0.25" 
+				owner = SCA
+			}
+			create_unit = {
+				division = "name = \"3rd South Carolinian Volunteer Regiment\" division_template = \"South Carolina Militia\" start_experience_factor = 0.25 start_equipment_factor = 0.25" 
+				owner = SCA
+			}
+			create_unit = {
+				division = "name = \"Reorganized 387th South Carolinian National Guard Division\" division_template = \"South Carolina Militia\" start_experience_factor = 0.45 start_equipment_factor = 0.25" 
+				owner = SCA
+			}
+		}
+		}
+	}
+	focus = {
+		id = SCA_McCarty_and_the_Army_of_South_Carolina
+		icon = GFX_focus_secret_rearmament
+		allow_branch = {
+        tag = SCA
+		}
+		prerequisite = { focus = SCA_The_National_Army_of_South_Carolina }
+		x = 0
+		y = 1
+		relative_position_id = SCA_The_National_Army_of_South_Carolina
+		cost = 4
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+	completion_reward = {
+				add_equipment_to_stockpile = {
+	 	           type = infantry_equipment
+		           amount = 3000
+		           producer = FRA
+		        }
+		division_template = {
+		    name = "Army of South Carolina"
+		#    division_names_group =
+			regiments = {
+				infantry = { x = 0 y = 0 }
+				infantry = { x = 0 y = 1 }
+				infantry = { x = 1 y = 0 }
+				infantry = { x = 1 y = 1 }
+				infantry = { x = 2 y = 0 }
+				infantry = { x = 2 y = 1 }
+				infantry = { x = 3 y = 0 }
+				infantry = { x = 3 y = 1 }
+				infantry = { x = 4 y = 0 }
+			}
+			support = { 
+	        } 
+		}
+		532 = {
+			create_unit = {
+				division = "name = \"Sumter Garrison\" division_template = \"Army of South Carolina\" start_experience_factor = 0.3 start_equipment_factor = 0.25" 
+				owner = SCA
+			}
+			create_unit = {
+				division = "name = \"Secessionville Garrison\" division_template = \"Army of South Carolina\" start_experience_factor = 0.3 start_equipment_factor = 0.25" 
+				owner = SCA
+			}
+		}
+	}
+	}
+	focus = {
+		id = SCA_Whipping_this_rag_tag_army_into_shape
+		icon = GFX_focus_secret_rearmament
+		allow_branch = {
+        tag = SCA
+		}
+		prerequisite = { focus = SCA_McCarty_and_the_Army_of_South_Carolina }
+		x = 1
+		y = 1
+		relative_position_id = SCA_McCarty_and_the_Army_of_South_Carolina
+		cost = 4
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = SCA_Learning_from_Civil_War_campaigns
+		icon = GFX_focus_secret_rearmament
+		allow_branch = {
+        tag = SCA
+		}
+		prerequisite = { focus = SCA_McCarty_and_the_Army_of_South_Carolina }
+		x = -1
+		y = 1
+		relative_position_id = SCA_McCarty_and_the_Army_of_South_Carolina
+		cost = 4
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = SCA_McCartys_March_South
+		icon = GFX_focus_secret_rearmament
+		allow_branch = {
+        tag = SCA
+		}
+		prerequisite = { focus = SCA_Learning_from_Civil_War_campaigns }
+		prerequisite = { focus = SCA_Whipping_this_rag_tag_army_into_shape }
+		x = 1
+		y = 1
+		relative_position_id = SCA_Learning_from_Civil_War_campaigns
+		cost = 4
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = SCA_mcartys_march
 		}
 	}
 }
