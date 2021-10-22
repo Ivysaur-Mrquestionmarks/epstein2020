@@ -211,8 +211,12 @@ focus_tree = {
 		available_if_capitulated = no
 
 		completion_reward = {
+			custom_effect_tooltip =  new_tree
 			every_state = {
 			 	remove_dynamic_modifier = { modifier = CSA_southern_bloodshet}
+			}
+			if = { limit = {tag = CSA}
+					load_focus_tree = Dixie_Elections
 			}
 			hidden_effect = {
 				APA = {country_event = {
@@ -434,6 +438,8 @@ focus_tree = {
 		available_if_capitulated = no
 
 		completion_reward = {
+			unlock_decision_tooltip = CSA_units
+			set_country_flag = CSA_unit
 			division_template = {
 		    name = "Militant Groups"
 		#    division_names_group =
@@ -694,6 +700,128 @@ focus_tree = {
 
 		completion_reward = {
 			add_ideas = SCA_mcartys_march
+		}
+	}
+
+	focus = {
+		id = CSA_KKK_our_chance
+		icon = GFX_focus_secret_rearmament
+
+		prerequisite = { focus = CSA_so_it_begins }
+		allow_branch = {
+			tag = KKK
+		}
+		x = 4
+		y = 2
+		cost = 5
+
+		ai_will_do = {
+			factor = 3
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_war_support = 0.15
+			add_manpower = 25000
+		}
+	}
+
+	focus = {
+		id = CSA_KKK_offensive_focus
+		icon = GFX_focus_secret_rearmament
+
+		prerequisite = { focus = CSA_KKK_our_chance}
+
+		x = 3
+		y = 4
+		cost = 5
+
+		ai_will_do = {
+			factor = 3
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = KKK_DC_offensive_focus
+			unlock_decision_tooltip = CSA_KKK_desesperate_attack 
+		}
+	}
+	focus = {
+		id = CSA_KKK_raise_units
+		icon = GFX_focus_secret_rearmament
+
+		prerequisite = { focus = CSA_KKK_offensive_focus}
+
+		x = 3
+		y = 5
+		cost = 5
+
+		ai_will_do = {
+			factor = 3
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			create_unit = {
+				division = "division_template = \"militias\"	start_experience_factor = 0.25	start_equipment_factor = 1"
+				owner = ROOT
+				count = 1
+					
+			}			
+			unlock_decision_tooltip = CSA_units
+			set_country_flag = CSA_unit
+		}
+	}
+
+	focus = {
+		id = CSA_KKK_defend_the_klan_state
+		icon = GFX_focus_secret_rearmament
+
+		prerequisite = { focus = CSA_KKK_our_chance}
+
+		x = 1
+		y = 3
+		cost = 5
+
+		ai_will_do = {
+			factor = 3
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = KKK_defend_the_new_state
+			unlock_decision_tooltip = CSA_bomb_bridges
+			set_country_flag = CSA_boom  
+		}
+	}
+
+	focus = {
+		id = CSA_KKK_mantain_uncontrol
+		icon = GFX_focus_secret_rearmament
+
+		prerequisite = { focus = CSA_KKK_defend_the_klan_state}
+
+		x = 1
+		y = 5
+		cost = 5
+
+		ai_will_do = {
+			factor = 3
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_stability = 0.15
+			add_popularity = {
+    				ideology = autocratic
+    				popularity = 0.3
+			}
+			add_political_power = 20
 		}
 	}
 }
