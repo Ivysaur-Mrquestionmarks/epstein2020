@@ -8,19 +8,1193 @@ focus_tree = {
 		}
 	}
 	default = no
+	continuous_focus_position = { x = 200 y = 0 }
 	focus = {
 		id = FLA_floridian_civil_war
-		icon = GFX_goal_generic_funeral_icon
-		cost = 2.00
-		x = 30
+		icon = GFX_goal_florida_civil_war_focus
+		cost = 4.30
+		x = 15
 		y = -5
 		ai_will_do = { 
 			factor = 300
 		}
 		completion_reward = {
+			country_event = {
+				id = fla.1
+			}
+		}
+
+	}
+	
+	focus = {
+		id = FLA_the_state_of_our_nation
+		icon = GFX_goal_FLA_state_of_our_nation
+		cost = 2.00
+		x = 0
+		y = 1
+		ai_will_do = { 
+			factor = 300
+		}
+		prerequisite = {
+			focus = FLA_floridian_civil_war
+		}
+		relative_position_id = FLA_floridian_civil_war
+		completion_reward = {
+			add_political_power = 150
+		}
+
+	}
+	
+	focus = {
+		id = FLA_prepare_offensives
+		icon = GFX_goal_FLA_plan_offensives
+		cost = 5.00
+		x = 3
+		y = 1
+		available = {
+			NOT = {
+				has_idea = FLA_florida_civil_war_army
+			}
+		}			
+		ai_will_do = { 
+			factor = 300
+		}
+		prerequisite = {
+			focus = FLA_the_state_of_our_nation
+		}
+		relative_position_id = FLA_the_state_of_our_nation
+		completion_reward = {
 			
 		}
 
 	}
+	
+	focus = {
+		id = FLA_attack_nasa
+		icon = GFX_goal_FLA_attack_nasa
+		cost = 2.00
+		x = 2
+		y = 1
+		available = {
+			NOT = {
+				has_idea = FLA_attack_democrats_idea
+				has_idea = FLA_attack_seminoles_idea
+			}
+		}			
+		ai_will_do = { 
+			factor = 300
+		}
+		prerequisite = {
+			focus = FLA_prepare_offensives
+		}
+		relative_position_id = FLA_prepare_offensives
+		completion_reward = {
+			add_timed_idea = { idea = FLA_attack_nasa_idea days = 50 }
+		}
 
+	}
+	
+	focus = {
+		id = FLA_attack_seminoles
+		icon = GFX_goal_FLA_attack_sem
+		cost = 2.00
+		x = 0
+		y = 1
+		available = {
+			NOT = {
+				has_idea = FLA_attack_democrats_idea
+				has_idea = FLA_attack_nasa_idea
+			}
+		}			
+		ai_will_do = { 
+			factor = 300
+		}
+		prerequisite = {
+			focus = FLA_prepare_offensives
+		}
+		relative_position_id = FLA_prepare_offensives
+		completion_reward = {
+			add_timed_idea = { idea = FLA_attack_seminoles_idea days = 50 }
+		}
+
+	}
+	
+	focus = {
+		id = FLA_attack_democrats
+		icon = GFX_goal_FLA_attack_fld
+		cost = 2.00
+		prerequisite = {
+			focus = FLA_prepare_offensives
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_prepare_offensives
+		x = -2
+		y = 1
+		available = {
+			NOT = {
+				has_idea = FLA_attack_seminoles_idea
+				has_idea = FLA_attack_nasa_idea
+			}
+		}	
+		completion_reward = {
+			add_timed_idea = { idea = FLA_attack_democrats_idea days = 50 }
+		}
+
+	}
+	
+	focus = {
+		id = FLA_one_final_push
+		icon = GFX_goal_FLA_one_final_push
+		cost = 5.00
+		x = 0
+		y = 1
+		available = {
+			NOT = {
+				has_idea = FLA_attack_seminoles_idea
+				has_idea = FLA_attack_nasa_idea
+				has_idea = FLA_attack_democrats_idea
+			}
+		}			
+		ai_will_do = { 
+			factor = 300
+		}
+		prerequisite = {
+			focus = FLA_attack_democrats
+		}
+		prerequisite = {
+			focus = FLA_attack_nasa
+		}
+		prerequisite = {
+			focus = FLA_attack_seminoles
+		}
+		relative_position_id = FLA_attack_seminoles
+		completion_reward = {
+			add_timed_idea = { idea = FLA_final_push_idea days = 100 }
+		}
+
+	}
+	
+	focus = {
+		id = FLA_internal_matters
+		icon = GFX_goal_FLA_internal_matters
+		cost = 5.00
+		prerequisite = {
+			focus = FLA_the_state_of_our_nation
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_the_state_of_our_nation
+		x = -3
+		y = 1
+		available = {
+			
+		}	
+		completion_reward = {
+			add_stability = 0.10
+		}
+
+	}
+	
+	focus = {
+		id = FLA_address_the_military
+		icon = GFX_goal_FLA_fix_army
+		cost = 10.00
+		prerequisite = {
+			focus = FLA_internal_matters
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_internal_matters
+		x = -2
+		y = 1
+		available = {
+			
+		}	
+		completion_reward = {
+			remove_ideas = FLA_florida_civil_war_army
+		}
+
+	}
+	
+	focus = {
+		id = FLA_address_the_economy
+		icon = GFX_goal_FLA_fix_industry
+		cost = 10.00
+		prerequisite = {
+			focus = FLA_internal_matters
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_internal_matters
+		x = 2
+		y = 1
+		available = {
+			
+		}	
+		completion_reward = {
+			remove_ideas = FLA_florida_civil_war_industry
+		}
+
+	}
+	
+	focus = {
+		id = FLA_address_the_government
+		icon = GFX_goal_FLA_fix_power
+		cost = 10.00
+		prerequisite = {
+			focus = FLA_internal_matters
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_internal_matters
+		x = 0
+		y = 1
+		available = {
+			
+		}	
+		completion_reward = {
+			remove_ideas = FLA_florida_civil_war_power
+		}
+
+	}
+	
+	focus = {
+		id = FLA_solidify_nation
+		icon = GFX_goal_FLA_solidify_the_nation
+		cost = 2.00
+		prerequisite = { 
+			focus = FLA_address_the_government  
+		}
+		prerequisite = { 
+			focus = FLA_address_the_economy  
+		}
+		prerequisite = { 
+			focus = FLA_address_the_military  
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_address_the_government
+		x = 0
+		y = 1
+		available = {
+			
+		}	
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = 150
+		}
+
+	}
+	
+	focus = {
+		id = FLA_a_new_florida
+		icon = GFX_goal_FLA_our_new_nation
+		cost = 10.00
+		prerequisite = { 
+			focus = FLA_one_final_push 
+		}
+		prerequisite = { 
+			focus = FLA_solidify_nation  
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_solidify_nation
+		x = 3
+		y = 1
+		available = {
+			has_war = no
+		}	
+		completion_reward = {
+			
+		}
+
+	}
+	
+	focus = {
+		id = FLA_fully_estabilsh_anarchist_society
+		icon = GFX_goal_florida_civil_war_focus
+		cost = 10.00
+		prerequisite = { 
+			focus = FLA_a_new_florida 
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_a_new_florida
+		x = 0
+		y = 1
+		available = {
+		}	
+		completion_reward = {
+			
+		}
+
+	}
+	
+	focus = {
+		id = FLA_economy_of_the_people
+		icon = GFX_goal_florida_civil_war_focus
+		cost = 10.00
+		prerequisite = { 
+			focus = FLA_fully_estabilsh_anarchist_society 
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_fully_estabilsh_anarchist_society
+		x = -10
+		y = 1
+		available = {
+		}	
+		completion_reward = {
+			
+		}
+
+	}
+	
+	focus = {
+		id = FLA_buildup_miami
+		icon = GFX_goal_florida_civil_war_focus
+		cost = 10.00
+		prerequisite = { 
+			focus = FLA_economy_of_the_people 
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_economy_of_the_people
+		x = -4
+		y = 1
+		available = {
+		}	
+		completion_reward = {
+			
+		}
+
+	}
+	
+	focus = {
+		id = FLA_buildup_tampa
+		icon = GFX_goal_florida_civil_war_focus
+		cost = 10.00
+		prerequisite = { 
+			focus = FLA_economy_of_the_people 
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_economy_of_the_people
+		x = -2
+		y = 1
+		available = {
+		}	
+		completion_reward = {
+			
+		}
+
+	}
+	
+	focus = {
+		id = FLA_buildup_key_west
+		icon = GFX_goal_florida_civil_war_focus
+		cost = 10.00
+		prerequisite = { 
+			focus = FLA_economy_of_the_people 
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_economy_of_the_people
+		x = 0
+		y = 1
+		available = {
+		}	
+		completion_reward = {
+			
+		}
+
+	}
+	
+	focus = {
+		id = FLA_buildup_key_west
+		icon = GFX_goal_florida_civil_war_focus
+		cost = 10.00
+		prerequisite = { 
+			focus = FLA_economy_of_the_people 
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_economy_of_the_people
+		x = 0
+		y = 1
+		available = {
+		}	
+		completion_reward = {
+			
+		}
+
+	}
+	
+	focus = {
+		id = FLA_buildup_orlando
+		icon = GFX_goal_florida_civil_war_focus
+		cost = 10.00
+		prerequisite = { 
+			focus = FLA_economy_of_the_people 
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_economy_of_the_people
+		x = 2
+		y = 1
+		available = {
+		}	
+		completion_reward = {
+			
+		}
+
+	}
+	
+	focus = {
+		id = FLA_buildup_naples
+		icon = GFX_goal_florida_civil_war_focus
+		cost = 10.00
+		prerequisite = { 
+			focus = FLA_economy_of_the_people 
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_economy_of_the_people
+		x = 4
+		y = 1
+		available = {
+		}	
+		completion_reward = {
+			
+		}
+
+	}
+	
+	focus = {
+		id = FLA_for_the_greater_good
+		icon = GFX_goal_florida_civil_war_focus
+		cost = 10.00
+		prerequisite = { 
+			focus = FLA_buildup_naples 
+		}
+		prerequisite = { 
+			focus = FLA_buildup_key_west
+		}
+		prerequisite = { 
+			focus = FLA_buildup_orlando
+		}
+		prerequisite = { 
+			focus = FLA_buildup_miami
+		}
+		prerequisite = { 
+			focus = FLA_buildup_tampa
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_buildup_naples
+		x = -4
+		y = 2
+		available = {
+		}	
+		completion_reward = {
+			
+		}
+
+	}
+	
+	focus = {
+		id = FLA_war_economy
+		icon = GFX_goal_florida_civil_war_focus
+		cost = 10.00
+		prerequisite = { 
+			focus = FLA_for_the_greater_good
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_for_the_greater_good
+		x = 0
+		y = 2
+		available = {
+		}	
+		completion_reward = {
+			
+		}
+
+	}
+	
+	focus = {
+		id = FLA_the_post_war_military
+		icon = GFX_goal_florida_civil_war_focus
+		cost = 10.00
+		prerequisite = { 
+			focus = FLA_fully_estabilsh_anarchist_society
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_fully_estabilsh_anarchist_society
+		x = 10
+		y = 1
+		available = {
+		}	
+		completion_reward = {
+			
+		}
+
+	}
+	
+	focus = {
+		id = FLA_army
+		icon = GFX_goal_florida_civil_war_focus
+		cost = 10.00
+		prerequisite = { 
+			focus = FLA_the_post_war_military
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_the_post_war_military
+		x = 4
+		y = 1
+		available = {
+		}	
+		completion_reward = {
+			
+		}
+
+	}
+	
+	focus = {
+		id = FLA_air_force
+		icon = GFX_goal_florida_civil_war_focus
+		cost = 10.00
+		prerequisite = { 
+			focus = FLA_the_post_war_military
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_the_post_war_military
+		x = 0
+		y = 1
+		available = {
+		}	
+		completion_reward = {
+			
+		}
+
+	}
+	
+	focus = {
+		id = FLA_navy
+		icon = GFX_goal_florida_civil_war_focus
+		cost = 10.00
+		prerequisite = { 
+			focus = FLA_the_post_war_military
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_the_post_war_military
+		x = -4
+		y = 1
+		available = {
+		}	
+		completion_reward = {
+			
+		}
+
+	}
+	
+	focus = {
+		id = FLA_expand_the_doctrine
+		icon = GFX_goal_florida_civil_war_focus
+		cost = 10.00
+		prerequisite = { 
+			focus = FLA_army
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_army
+		x = 1
+		y = 1
+		available = {
+		}	
+		completion_reward = {
+			
+		}
+
+	}
+	
+	focus = {
+		id = FLA_new_weapons
+		icon = GFX_goal_florida_civil_war_focus
+		cost = 10.00
+		prerequisite = { 
+			focus = FLA_army
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_army
+		x = -1
+		y = 1
+		available = {
+		}	
+		completion_reward = {
+			
+		}
+
+	}
+	
+	focus = {
+		id = FLA_learn_from_mad_max
+		icon = GFX_goal_florida_civil_war_focus
+		cost = 10.00
+		prerequisite = { 
+			focus = FLA_expand_the_doctrine
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_expand_the_doctrine
+		x = 0
+		y = 1
+		available = {
+		}	
+		completion_reward = {
+			
+		}
+
+	}
+	
+	focus = {
+		id = FLA_anarchist_armor
+		icon = GFX_goal_florida_civil_war_focus
+		cost = 10.00
+		prerequisite = { 
+			focus = FLA_new_weapons
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_new_weapons
+		x = 0
+		y = 1
+		available = {
+		}	
+		completion_reward = {
+			
+		}
+
+	}
+	
+	focus = {
+		id = FLA_zeal
+		icon = GFX_goal_florida_civil_war_focus
+		cost = 10.00
+		prerequisite = { 
+			focus = FLA_anarchist_armor
+		}
+		prerequisite = { 
+			focus = FLA_learn_from_mad_max
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_learn_from_mad_max
+		x = -1
+		y = 1
+		available = {
+		}	
+		completion_reward = {
+			
+		}
+
+	}
+	
+	focus = {
+		id = FLA_pilot_training
+		icon = GFX_goal_florida_civil_war_focus
+		cost = 10.00
+		prerequisite = { 
+			focus = FLA_air_force
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_air_force
+		x = -1
+		y = 1
+		available = {
+		}	
+		completion_reward = {
+			
+		}
+
+	}
+	
+	focus = {
+		id = FLA_new_fighters
+		icon = GFX_goal_florida_civil_war_focus
+		cost = 10.00
+		prerequisite = { 
+			focus = FLA_pilot_training
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_pilot_training
+		x = 0
+		y = 1
+		available = {
+		}	
+		completion_reward = {
+			
+		}
+
+	}
+	
+	focus = {
+		id = FLA_expand_airbases
+		icon = GFX_goal_florida_civil_war_focus
+		cost = 10.00
+		prerequisite = { 
+			focus = FLA_air_force
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_air_force
+		x = 1
+		y = 1
+		available = {
+		}	
+		completion_reward = {
+			
+		}
+
+	}
+	
+	focus = {
+		id = FLA_new_bombers
+		icon = GFX_goal_florida_civil_war_focus
+		cost = 10.00
+		prerequisite = { 
+			focus = FLA_expand_airbases
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_expand_airbases
+		x = 0
+		y = 1
+		available = {
+		}	
+		completion_reward = {
+			
+		}
+
+	}
+	
+	focus = {
+		id = FLA_death_from_above
+		icon = GFX_goal_florida_civil_war_focus
+		cost = 10.00
+		prerequisite = { 
+			focus = FLA_new_bombers
+		}
+		prerequisite = { 
+			focus = FLA_new_fighters
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_new_bombers
+		x = -1
+		y = 1
+		available = {
+		}	
+		completion_reward = {
+			
+		}
+
+	}
+	
+	focus = {
+		id = FLA_protecting_our_shores
+		icon = GFX_goal_florida_civil_war_focus
+		cost = 10.00
+		prerequisite = { 
+			focus = FLA_navy
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_navy
+		x = -1
+		y = 1
+		available = {
+		}	
+		completion_reward = {
+			
+		}
+
+	}
+	
+	focus = {
+		id = FLA_muses_doctrine
+		icon = GFX_goal_florida_civil_war_focus
+		cost = 10.00
+		prerequisite = { 
+			focus = FLA_protecting_our_shores
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_protecting_our_shores
+		x = 0
+		y = 1
+		available = {
+		}	
+		completion_reward = {
+			
+		}
+
+	}
+	
+	focus = {
+		id = FLA_death_from_the_deep
+		icon = GFX_goal_florida_civil_war_focus
+		cost = 10.00
+		prerequisite = { 
+			focus = FLA_navy
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_navy
+		x = 1
+		y = 1
+		available = {
+		}	
+		completion_reward = {
+			
+		}
+
+	}
+	
+	focus = {
+		id = FLA_screens
+		icon = GFX_goal_florida_civil_war_focus
+		cost = 10.00
+		prerequisite = { 
+			focus = FLA_death_from_the_deep
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_death_from_the_deep
+		x = 0
+		y = 1
+		available = {
+		}	
+		completion_reward = {
+			
+		}
+
+	}
+	
+	focus = {
+		id = FLA_increase_output
+		icon = GFX_goal_florida_civil_war_focus
+		cost = 10.00
+		prerequisite = { 
+			focus = FLA_screens
+		}
+		prerequisite = { 
+			focus = FLA_muses_doctrine
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_screens
+		x = -1
+		y = 1
+		available = {
+		}	
+		completion_reward = {
+			
+		}
+
+	}
+	
+	focus = {
+		id = FLA_military_of_chaos
+		icon = GFX_goal_florida_civil_war_focus
+		cost = 10.00
+		prerequisite = { 
+			focus = FLA_increase_output
+		}
+		prerequisite = { 
+			focus = FLA_death_from_above
+		}
+		prerequisite = { 
+			focus = FLA_zeal
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_zeal
+		x = -4
+		y = 1
+		available = {
+		}	
+		completion_reward = {
+			
+		}
+
+	}
+	
+	focus = {
+		id = FLA_teachings_of_manson
+		icon = GFX_goal_florida_civil_war_focus
+		cost = 10.00
+		prerequisite = { 
+			focus = FLA_fully_estabilsh_anarchist_society
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_fully_estabilsh_anarchist_society
+		x = 0
+		y = 1
+		available = {
+		}	
+		completion_reward = {
+			
+		}
+
+	}
+	
+	focus = {
+		id = FLA_teachings_of_manson
+		icon = GFX_goal_florida_civil_war_focus
+		cost = 10.00
+		prerequisite = { 
+			focus = FLA_fully_estabilsh_anarchist_society
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_fully_estabilsh_anarchist_society
+		x = 0
+		y = 1
+		available = {
+		}	
+		completion_reward = {
+			
+		}
+
+	}
+	
+	focus = {
+		id = FLA_satanism
+		icon = GFX_goal_florida_civil_war_focus
+		cost = 10.00
+		prerequisite = { 
+			focus = FLA_teachings_of_manson
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_teachings_of_manson
+		x = -2
+		y = 1
+		available = {
+		}	
+		completion_reward = {
+			
+		}
+
+	}
+	
+	focus = {
+		id = FLA_narcotics
+		icon = GFX_goal_florida_civil_war_focus
+		cost = 10.00
+		prerequisite = { 
+			focus = FLA_teachings_of_manson
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_teachings_of_manson
+		x = 0
+		y = 1
+		available = {
+		}	
+		completion_reward = {
+			
+		}
+
+	}
+	
+	focus = {
+		id = FLA_the_cult_image
+		icon = GFX_goal_florida_civil_war_focus
+		cost = 10.00
+		prerequisite = { 
+			focus = FLA_teachings_of_manson
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_teachings_of_manson
+		x = 2
+		y = 1
+		available = {
+		}	
+		completion_reward = {
+			
+		}
+
+	}
+	
+	focus = {
+		id = FLA_open_temples
+		icon = GFX_goal_florida_civil_war_focus
+		cost = 10.00
+		prerequisite = { 
+			focus = FLA_satanism
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_satanism
+		x = 0
+		y = 2
+		available = {
+		}	
+		completion_reward = {
+			
+		}
+
+	}
+	
+	focus = {
+		id = FLA_expirmentation
+		icon = GFX_goal_florida_civil_war_focus
+		cost = 10.00
+		prerequisite = { 
+			focus = FLA_narcotics
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_narcotics
+		x = 0
+		y = 2
+		available = {
+		}	
+		completion_reward = {
+			
+		}
+
+	}
+	
+	focus = {
+		id = FLA_glorify_murder
+		icon = GFX_goal_florida_civil_war_focus
+		cost = 10.00
+		prerequisite = { 
+			focus = FLA_the_cult_image
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_the_cult_image
+		x = 0
+		y = 2
+		available = {
+		}	
+		completion_reward = {
+			
+		}
+
+	}
+	
+	focus = {
+		id = FLA_preapare_the_people
+		icon = GFX_goal_florida_civil_war_focus
+		cost = 10.00
+		prerequisite = { 
+			focus = FLA_expirmentation
+		}
+		prerequisite = { 
+			focus = FLA_open_temples
+		}
+		prerequisite = { 
+			focus = FLA_glorify_murder
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_glorify_murder
+		x = -2
+		y = 2
+		available = {
+		}	
+		completion_reward = {
+			
+		}
+
+	}
+	
+	focus = {
+		id = FLA_open_hells_gates
+		icon = GFX_goal_florida_civil_war_focus
+		cost = 10.00
+		prerequisite = { 
+			focus = FLA_war_economy
+		}
+		prerequisite = { 
+			focus = FLA_preapare_the_people
+		}
+		prerequisite = { 
+			focus = FLA_military_of_chaos
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = FLA_preapare_the_people
+		x = 0
+		y = 2
+		available = {
+		}	
+		completion_reward = {
+			
+		}
+
+	}
 }
+
