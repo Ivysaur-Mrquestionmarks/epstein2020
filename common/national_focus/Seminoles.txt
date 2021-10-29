@@ -1,0 +1,322 @@
+focus_tree = {
+	id = seminoles
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = SEM
+		}
+	}
+	default = no
+	continuous_focus_position = { x = 200 y = 0 }
+	focus = {
+		id = SEM_floridian_civil_war
+		icon = GFX_goal_florida_civil_war_focus
+		cost = 4.30
+		x = 15
+		y = -5
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			country_event = {
+				id = seminoles.1
+			}
+		}
+
+	}
+	
+	focus = {
+		id = SEM_the_state_of_our_nation
+		icon = GFX_goal_SEM_state_of_our_nation
+		cost = 2.00
+		x = 0
+		y = 1
+		ai_will_do = { 
+			factor = 300
+		}
+		prerequisite = {
+			focus = SEM_floridian_civil_war
+		}
+		relative_position_id = SEM_floridian_civil_war
+		completion_reward = {
+			add_political_power = 150
+		}
+
+	}
+	
+	focus = {
+		id = SEM_prepare_offensives
+		icon = GFX_goal_FLA_plan_offensives
+		cost = 5.00
+		x = 3
+		y = 1
+		available = {
+			NOT = {
+				has_idea = FLA_florida_civil_war_army
+			}
+		}			
+		ai_will_do = { 
+			factor = 300
+		}
+		prerequisite = {
+			focus = SEM_the_state_of_our_nation
+		}
+		relative_position_id = SEM_the_state_of_our_nation
+		completion_reward = {
+			
+		}
+
+	}
+	
+	focus = {
+		id = SEM_attack_anarchists
+		icon = GFX_goal_florida_attack_fla
+		cost = 2.00
+		x = 2
+		y = 1
+		available = {
+			NOT = {
+				has_idea = FLA_attack_democrats_idea
+				has_idea = FLA_attack_nasa_idea
+			}
+		}			
+		ai_will_do = { 
+			factor = 300
+		}
+		prerequisite = {
+			focus = SEM_prepare_offensives
+		}
+		relative_position_id = NSA_prepare_offensives
+		completion_reward = {
+			add_timed_idea = { idea = FLA_attack_anarchists_idea days = 50 }
+		}
+
+	}
+	
+	focus = {
+		id = SEM_attack_nasa
+		icon = GFX_goal_FLA_attack_nasa
+		cost = 2.00
+		x = 0
+		y = 1
+		available = {
+			NOT = {
+				has_idea = FLA_attack_democrats_idea
+				has_idea = FLA_attack_anarchists_idea
+			}
+		}			
+		ai_will_do = { 
+			factor = 300
+		}
+		prerequisite = {
+			focus = SEM_prepare_offensives
+		}
+		relative_position_id = SEM_prepare_offensives
+		completion_reward = {
+			add_timed_idea = { idea = FLA_attack_seminoles_idea days = 50 }
+		}
+
+	}
+	
+	focus = {
+		id = SEM_attack_democrats
+		icon = GFX_goal_FLA_attack_fld
+		cost = 2.00
+		prerequisite = {
+			focus = SEM_prepare_offensives
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = SEM_prepare_offensives
+		x = -2
+		y = 1
+		available = {
+			NOT = {
+				has_idea = FLA_attack_anarchists_idea
+				has_idea = FLA_attack_nasa_idea
+			}
+		}	
+		completion_reward = {
+			add_timed_idea = { idea = SEM_attack_democrats_idea days = 50 }
+		}
+
+	}
+	
+	focus = {
+		id = SEM_one_final_push
+		icon = GFX_goal_SEM_one_final_push
+		cost = 5.00
+		x = 0
+		y = 1
+		available = {
+			NOT = {
+				has_idea = FLA_attack_nasa_idea
+				has_idea = FLA_attack_anarchists_idea
+				has_idea = FLA_attack_democrats_idea
+			}
+		}			
+		ai_will_do = { 
+			factor = 300
+		}
+		prerequisite = {
+			focus = SEM_attack_democrats
+		}
+		prerequisite = {
+			focus = SEM_attack_anarchists
+		}
+		prerequisite = {
+			focus = SEM_attack_nasa
+		}
+		relative_position_id = NSA_attack_seminoles
+		completion_reward = {
+			add_timed_idea = { idea = SEM_final_push_idea days = 100 }
+		}
+
+	}
+	
+	focus = {
+		id = SEM_internal_matters
+		icon = GFX_goal_SEM_internal_matters
+		cost = 5.00
+		prerequisite = {
+			focus = SEM_the_state_of_our_nation
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = SEM_the_state_of_our_nation
+		x = -3
+		y = 1
+		available = {
+			
+		}	
+		completion_reward = {
+			add_stability = 0.10
+		}
+
+	}
+	
+	focus = {
+		id = SEM_address_the_military
+		icon = GFX_goal_SEM_army
+		cost = 10.00
+		prerequisite = {
+			focus = SEM_internal_matters
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = SEM_internal_matters
+		x = -2
+		y = 1
+		available = {
+			
+		}	
+		completion_reward = {
+			remove_ideas = FLA_florida_civil_war_army
+		}
+
+	}
+	
+	focus = {
+		id = SEM_address_the_economy
+		icon = GFX_goal_SEM_fix_industry
+		cost = 10.00
+		prerequisite = {
+			focus = SEM_internal_matters
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = SEM_internal_matters
+		x = 2
+		y = 1
+		available = {
+			
+		}	
+		completion_reward = {
+			remove_ideas = FLA_florida_civil_war_industry
+		}
+
+	}
+	
+	focus = {
+		id = SEM_address_the_government
+		icon = GFX_goal_SEM_fix_power
+		cost = 10.00
+		prerequisite = {
+			focus = SEM_internal_matters
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = SEM_internal_matters
+		x = 0
+		y = 1
+		available = {
+			
+		}	
+		completion_reward = {
+			remove_ideas = FLA_florida_civil_war_power
+		}
+
+	}
+	
+	focus = {
+		id = SEM_solidify_nation
+		icon = GFX_goal_SEM_solidify_the_nation
+		cost = 2.00
+		prerequisite = { 
+			focus = SEM_address_the_government  
+		}
+		prerequisite = { 
+			focus = SEM_address_the_economy  
+		}
+		prerequisite = { 
+			focus = SEM_address_the_military  
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = SEM_address_the_government
+		x = 0
+		y = 1
+		available = {
+			
+		}	
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = 150
+		}
+
+	}
+	
+	focus = {
+		id = SEM_a_new_florida
+		icon = GFX_goal_SEM_our_new_nation
+		cost = 10.00
+		prerequisite = { 
+			focus = SEM_one_final_push 
+		}
+		prerequisite = { 
+			focus = SEM_solidify_nation  
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		relative_position_id = SEM_solidify_nation
+		x = 3
+		y = 1
+		available = {
+			has_war = no
+		}	
+		completion_reward = {
+			
+		}
+
+	}
+	
+}
+

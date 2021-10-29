@@ -16,6 +16,7 @@ CSA_CW = {
 		has_completed_focus = CSA_so_it_begins
 		NOT = { has_completed_focus = CSA_victory}
 	}
+	visible_when_empty = yes
 }
 
 CSA_strikes = {
@@ -82,7 +83,7 @@ CSA_supress = {
 	}
 
 	visible = {
-		NOT = { has_completed_focus = CSA_victory}
+		NOT = { has_global_flag = Confederate_Collapse_ended}
 		any_controlled_state = {
 			OR = {
 				is_core_of = ARK
@@ -102,14 +103,35 @@ CSA_ARK = {
 
 	visible = {
 		NOt = {
-			any_country = {
-				has_completed_focus = CSA_victory
-			}
+			has_global_flag = Confederate_Collapse_ended
 		}
 		any_state = {
 			is_core_of = ARK
 		}
 	}
+}
+
+CSA_ARK_influence = {
+	#icon = hol_war_on_pacifism
+	
+	allowed = {
+		OR = {
+			tag = USA	
+			tag = ARK
+		}			
+				
+	}
+
+	visible = {
+		country_exists = ARK
+		NOT = {
+			has_global_flag = Confederate_Collapse_ended
+		}		
+	}
+	visible_when_empty = yes
+	scripted_gui = ARK_influence
+
+	priority = 85
 }
 
 CSA_SCA = {
@@ -122,12 +144,34 @@ CSA_SCA = {
 
 	visible = {
 		NOT = {
-			any_country = {
-				has_completed_focus = CSA_victory
-			}
+			has_global_flag = Confederate_Collapse_ended
 		}
 		any_state = {
 			is_core_of = SCA
 		}
 	}
 }
+
+CSA_SCA_influence = {
+	#icon = hol_war_on_pacifism
+	
+	allowed = {
+		OR = {
+			tag = FRA	
+			tag = SCA
+		}			
+				
+	}
+
+	visible = {
+		country_exists = SCA
+		NOT = {
+			has_global_flag = Confederate_Collapse_ended
+		}
+	}
+	visible_when_empty = yes
+	scripted_gui = SCA_influence
+
+	priority = 85
+}
+
