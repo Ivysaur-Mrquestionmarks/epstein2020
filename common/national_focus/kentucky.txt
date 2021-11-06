@@ -9,19 +9,250 @@ focus_tree = {
 	}
 	default = no
 	continuous_focus_position = { x = 20 y = 1 }
-	####################################
-	####	RESISTANCE TREE		####
-	####################################
+	focus = {
+		id = KFC_a_state_untamed
+		icon = GFX_goal_KFC_state_beneath_his_feet
+		mutually_exclusive = { focus = KFC_state_beneath_his_feet }
+		cost = 4.40
+		x = 50
+		y = 0
+		completion_reward = {
+			activate_mission = KFC_uprising_mission2
+		}
+
+	}
+	focus = {
+		id = KFC_mad_man_of_kentucky
+		icon = GFX_goal_RebelsAmongUs
+		cost = 3.00
+		prerequisite = {
+			focus = KFC_a_state_untamed
+		}
+		relative_position_id = KFC_a_state_untamed
+		x = 0
+		y = 1
+		completion_reward = {
+		    swap_ideas = {
+			    remove_idea = KFC_divided_resistance
+			    add_idea = KFC_scattered_resistance
+			}
+	    add_political_power = 100
+		    add_popularity = {
+				ideology = autocratic
+				popularity = 0.05
+			}
+		}
+
+	}
+	focus = {
+		id = KFC_dividing_dissent
+		icon = GFX_goal_AllyWithHoway
+		cost = 3.00
+		prerequisite = {
+			focus = KFC_mad_man_of_kentucky
+		}
+		relative_position_id = KFC_mad_man_of_kentucky
+		x = 0
+		y = 1
+		completion_reward = {
+			add_popularity = {
+				ideology = libertarian_right
+				popularity = -0.1
+			}
+		}
+
+	}
+	focus = {
+		id = KFC_the_communist
+		icon = GFX_goal_AllyWithGregFischer
+		cost = 4.00
+		prerequisite = {
+			focus = KFC_dividing_dissent
+		}
+		relative_position_id = KFC_dividing_dissent
+		x = -3
+		y = 1
+		completion_reward = {
+			add_popularity = {
+				ideology = authoritarian_left
+				popularity = 0.25
+			}
+		}
+
+	}
+	focus = {
+		id = KFC_the_warlord
+		icon = GFX_goal_AllyWithMattHiembach
+		cost = 4.00
+		prerequisite = {
+			focus = KFC_dividing_dissent
+		}
+		x = 3
+		y = 1
+		relative_position_id = KFC_dividing_dissent
+		completion_reward = {
+			add_popularity = {
+				ideology = autocratic
+				popularity = 0.05
+			}
+		}
+
+	}
+	focus = {
+		id = KFC_reach_out_to_the_colonel
+		icon = GFX_goal_KFC_harass_supply
+		cost = 4.00
+		prerequisite = {
+			focus = KFC_the_warlord
+		}
+		x = 0
+		y = 2
+		relative_position_id = KFC_the_warlord
+		completion_reward = {
+			set_country_flag = KFC_warlords_army_flag
+			custom_effect_tooltip = KFC_warlords_army_flag
+		}
+
+	}
+	focus = {
+		id = KFC_arresting_local_resistance_leaders
+		icon = GFX_goal_unknown
+		cost = 2.00
+		prerequisite = {
+			focus = KFC_reach_out_to_the_colonel
+		}
+		relative_position_id = KFC_reach_out_to_the_colonel
+		x = 0
+		y = 2
+		completion_reward = {
+			add_days_mission_timeout = {
+			    mission = KFC_uprising_mission2
+			    days = 80
+			}
+		}
+
+	}
+	focus = {
+		id = KFC_the_sportsman
+		icon = GFX_goal_AllyWithMattBevin
+		cost = 4.00
+		prerequisite = {
+			focus = KFC_dividing_dissent
+		}
+		relative_position_id = KFC_dividing_dissent
+		x = 0
+		y = 1
+		completion_reward = {
+			add_popularity = {
+				ideology = republican
+				popularity = 0.10
+			}
+		}
+
+	}
+	focus = {
+		id = KFC_secret_depots
+		icon = GFX_goal_KFC_tea_party
+		cost = 4.40
+		prerequisite = {
+			focus = KFC_the_sportsman
+		}
+		relative_position_id = KFC_the_sportsman
+		x = 0
+		y = 2
+		completion_reward = {
+			set_country_flag = KFC_secret_depots
+			custom_effect_tooltip = KFC_secret_depots2
+		}
+
+	}
+	focus = {
+		id = KFC_hiring_nra_mercs
+		icon = GFX_goal_unknown
+		cost = 6.00
+		prerequisite = {
+			focus = KFC_secret_depots
+		}
+		relative_position_id = KFC_secret_depots
+		x = 0
+		y = 2
+		completion_reward = {
+			set_country_flag = KFC_NRA_Mercenaries
+			custom_effect_tooltip = KFC_NRA_Mercenaries
+		}
+
+	}
+	focus = {
+		id = KFC_partisan_activity
+		icon = GFX_goal_KFC_secure_police
+		cost = 5.00
+		prerequisite = {
+			focus = KFC_the_communist
+		}
+		relative_position_id = KFC_the_communist
+		x = 0
+		y = 2
+		completion_reward = {
+			every_state = {
+				limit = {
+					is_owned_by = KFC
+				}
+				damage_building = {
+				    type = infrastructure
+				    damage = 1
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = KFC_revolutionary_warfare
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = KFC_partisan_activity
+		}
+		relative_position_id = KFC_partisan_activity
+		x = 0
+		y = 2
+		completion_reward = {
+			add_days_mission_timeout = {
+			    mission = KFC_uprising_mission2
+			    days = 30
+			}
+		}
+
+	}
+	focus = {
+		id = KFC_annihilate_resistance
+		icon = GFX_goal_unknown
+		cost = 8.00
+		prerequisite = {
+			focus = KFC_revolutionary_warfare
+		}
+		prerequisite = {
+			focus = KFC_hiring_nra_mercs
+		}
+		prerequisite = {
+			focus = KFC_arresting_local_resistance_leaders
+		}
+		relative_position_id = KFC_hiring_nra_mercs
+		x = 0
+		y = 2
+		completion_reward = {
+			country_event = { id = kentucky.20 }
+		}
+
+	}
 	focus = {
 		id = KFC_state_beneath_his_feet
 		icon = GFX_goal_KFC_state_beneath_his_feet
+		mutually_exclusive = { focus = KFC_a_state_untamed }
 		cost = 4.40
 		x = 8
 		y = 0
 		completion_reward = {
 			activate_mission = KFC_uprising_mission
-			mark_focus_tree_layout_dirty = yes
-			set_focus_dirty = yes
 		}
 
 	}
@@ -34,9 +265,6 @@ focus_tree = {
 		}
 		x = 8
 		y = 1
-		allow_branch = {
-			has_completed_focus = KFC_state_beneath_his_feet
-		}
 		completion_reward = {
 			swap_ideas = {
 			    remove_idea = KFC_divided_resistance
@@ -708,9 +936,6 @@ focus_tree = {
 		available = {
 			has_country_leader = { name = "Matt Bevin" ruling_only = yes }
 		}
-		bypass = {
-			has_country_leader = { name = "Matt Bevin" ruling_only = yes }
-		}
 
 	}
 	focus = {
@@ -725,20 +950,6 @@ focus_tree = {
 		}
 		x = 19
 		y = 12
-		available = {
-			NOT = {
-				has_war_with = USA
-			}
-		}
-		completion_reward = {
-			set_cosmetic_tag = KFC_loyalist_to_trump
-			USA = {
-				country_event = {
-					id = kentucky.17
-					hours = 1
-				}
-			}
-		}
 
 	}
 	focus = {
@@ -753,40 +964,6 @@ focus_tree = {
 		}
 		x = 21
 		y = 12
-		available = {
-			NOT = {
-				is_in_faction_with = USA
-			}
-		}
-		completion_reward = {
-			create_country_leader = {
-				name = "Matt Bevin"
-				picture = "gfx/leaders/KFC/bevin.dds"	
-				expire = "2060.1.1"
-				ideology = populist_conservatism
-				traits = {
-		
-				}
-			}
-			add_popularity = {
-			    ideology = libertarian_right
-			    popularity = 0.15
-			}
-			set_politics = {
-				ruling_party = libertarian_right
-			}
-			hidden_effect = {
-				create_country_leader = {
-					name = "Norman Arflack"
-					picture = "gfx/leaders/KFC/Norman_Arflack.png"	
-					expire = "2060.1.1"
-					ideology = trumpist
-					traits = {
-						PRA_quisling
-					}
-				}
-			}
-		}
 
 	}
 	focus = {
@@ -798,23 +975,6 @@ focus_tree = {
 		}
 		x = 19
 		y = 13
-		completion_reward = {
-			every_state = {
-				limit = {
-					is_controlled_by = KFC
-					any_neighbour_state = { NOT = { is_controlled_by = KFC } }
-				}
-				add_building_construction = {
-    				type = bunker
-    				level = 2
-				    instant_build = yes
-				    province = {
-				        all_provinces = yes
-				        limit_to_border = yes
-				    }
-				}
-			}
-		}
 
 	}
 	focus = {
@@ -826,38 +986,6 @@ focus_tree = {
 		}
 		x = 19
 		y = 14
-		available = {
-			is_in_faction_with = USA
-		}
-		bypass = {
-			NOT = {
-				is_in_faction_with = USA
-			}
-		}
-		completion_reward = {
-			random_state = {
-				limit = {
-					is_owned_by = KFC
-				}
-				add_extra_state_shared_building_slots = 3
-				add_building_construction = {
-				    type = industrial_complex
-				    level = 1
-				    instant_build = yes
-				}
-			}
-			random_state = {
-				limit = {
-					is_owned_by = USA
-				}
-				add_extra_state_shared_building_slots = 2
-				add_building_construction = {
-				    type = industrial_complex
-				    level = 2
-				    instant_build = yes
-				}
-			}
-		}
 
 	}
 	focus = {
@@ -869,30 +997,6 @@ focus_tree = {
 		}
 		x = 19
 		y = 15
-		completion_reward = {
-			random_state = {
-				limit = {
-					is_owned_by = KFC
-				}
-				add_extra_state_shared_building_slots = 1
-				add_building_construction = {
-				    type = arms_factory
-				    level = 1
-				    instant_build = yes
-				}
-			}
-			random_state = {
-				limit = {
-					is_owned_by = USA
-				}
-				add_extra_state_shared_building_slots = 1
-				add_building_construction = {
-				    type = arms_factory
-				    level = 1
-				    instant_build = yes
-				}
-			}
-		}
 
 	}
 	focus = {
@@ -904,15 +1008,6 @@ focus_tree = {
 		}
 		x = 21
 		y = 13
-		available = {
-			has_government = libertarian_right
-		}
-		completion_reward = {
-			add_popularity = {
-			    ideology = libertarian_right
-			    popularity = 0.15
-			}
-		}
 
 	}
 	focus = {
@@ -924,9 +1019,6 @@ focus_tree = {
 		}
 		x = 21
 		y = 14
-		completion_reward = {
-			add_ideas = KFC_donations
-		}
 
 	}
 	focus = {
@@ -938,12 +1030,6 @@ focus_tree = {
 		}
 		x = 21
 		y = 15
-		completion_reward = {
-			swap_ideas = {
-				remove_idea = KFC_donations
-				add_idea = KFC_donations_1
-			}
-		}
 
 	}
 	focus = {
@@ -956,13 +1042,6 @@ focus_tree = {
 		}
 		x = 23
 		y = 13
-		completion_reward = {
-			add_popularity = {
-			    ideology = democrat
-			    popularity = 0.05
-			}
-			add_ideas = KFC_working_with_dems
-		}
 
 	}
 	focus = {
@@ -974,16 +1053,6 @@ focus_tree = {
 		}
 		x = 23
 		y = 14
-		completion_reward = {
-			add_popularity = {
-			    ideology = democrat
-			    popularity = 0.01
-			}
-			swap_ideas = {
-				remove_idea = KFC_working_with_dems
-				add_idea = KFC_working_with_dems_1
-			}
-		}
 
 	}
 	focus = {
@@ -995,12 +1064,6 @@ focus_tree = {
 		}
 		x = 23
 		y = 15
-		completion_reward = {
-			swap_ideas = {
-				remove_idea = KFC_working_with_dems_1
-				add_idea = KFC_working_with_dems_2
-			}
-		}
 
 	}
 	focus = {
@@ -1013,12 +1076,6 @@ focus_tree = {
 		}
 		x = 25
 		y = 13
-		completion_reward = {
-			add_timed_idea = {
-				idea = KFC_year_of_the_bible
-				days = 365
-			}
-		}
 
 	}
 	focus = {
@@ -1031,9 +1088,6 @@ focus_tree = {
 		}
 		x = 17
 		y = 13
-		completion_reward = {
-			add_ideas = KFC_high_police_support
-		}
 
 	}
 	focus = {
@@ -1046,9 +1100,6 @@ focus_tree = {
 		}
 		x = 15
 		y = 13
-		completion_reward = {
-			add_ideas = KFC_concealed_carry
-		}
 
 	}
 	focus = {
@@ -1061,20 +1112,6 @@ focus_tree = {
 		}
 		x = 13
 		y = 13
-		completion_reward = {
-			add_popularity = {
-			    ideology = democrat
-			    popularity = -0.15
-			}
-			add_popularity = {
-			    ideology = libertarian_left
-			    popularity = -0.15
-			}
-			add_popularity = {
-			    ideology = authoritarian_left
-			    popularity = -0.15
-			}
-		}
 
 	}
 	focus = {

@@ -30,13 +30,7 @@ country_event = {
     					days = 0
 				}
 			}
-			KFC = {
-				country_event = {
-    					id = kentucky.18
-    					days = 35
-				}
-			}
-			every_country = { limit = {OR = {tag = AFS tag = USA tag = FRA tag = PRA}}
+			every_country = { limit = {OR = {tag = AFS tag = USA tag = FRA}}
 				country_event = {
     					id = kentucky.13
     					days = 0
@@ -424,9 +418,8 @@ country_event = {
 	#picture =
 	is_triggered_only = yes
 	fire_only_once = yes
-
 	option = {
-		name = kentucky.14.a
+		name = kentucky.14.a		
 		set_autonomy = {
    			target = FROM
     			autonomy_state = autonomy_dominion
@@ -505,5 +498,320 @@ country_event = {
 			set_country_leader_ideology = conservative
 			drop_cosmetic_tag = yes
 		}
+	}
+}
+#Communists Revolt
+country_event = {
+	id = kentucky.18
+	title = kentucky.18.t
+	desc = kentucky.18.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+		SKY = {
+		transfer_state = 575
+		}
+		SKY = {
+        add_state_core = 571
+		}
+		SKY = {
+        add_state_core = 576
+		}
+		SKY = {
+        add_state_core = 575
+		}
+		SKY = {
+        add_state_core = 574
+		}
+		SKY = {
+        add_state_core = 573
+		}
+		SKY = {
+        add_state_core = 572
+		}
+		SKY = {
+        add_state_core = 375
+		}
+		SKY = {
+        add_state_core = 330
+		}
+		SKY = {
+        add_state_core = 288
+		}
+		SKY = {
+        add_state_core = 261
+		}
+		SKY = {
+		load_oob = Commie_Kentucky
+		}
+		every_country = {
+  limit = { original_tag = KFC }
+  SKY = {
+    declare_war_on = {
+      target = PREV
+      type = annex_everything
+    }
+  }
+}
+		}
+	}
+	option = {	
+		name = kentucky.18.a
+		ai_chance = {
+			factor = 100
+		}
+		KFC = {
+	    add_popularity = {
+			ideology = authoritarian_left
+			popularity = -0.5
+		}
+	    }
+	}
+	option = {	
+		name = kentucky.18.b
+		ai_chance = {
+			factor = 100
+		}
+		KFC = {
+	    add_popularity = {
+			ideology = authoritarian_left
+			popularity = -0.5
+		}
+	    }
+		SKY = { change_tag_from = KFC }
+	}
+}
+country_event = {
+	id = kentucky.19
+	title = kentucky.19.t
+	desc = kentucky.19.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = kentucky.19.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+country_event = {
+	id = kentucky.20
+	title = kentucky.20.t
+	desc = kentucky.20.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			set_party_name = { 
+			    ideology = libertarian_right 
+			    long_name = KFC_resistance_party
+			    name = KFC_resistance_party
+			}
+			create_country_leader = {
+				name = "Bryan Howay"
+				picture = "gfx/leaders/KFC/howay.dds"
+				expire = "2060.1.1"
+				ideology = libertarian_ideology
+				traits = {
+					#
+				}
+			}
+			CSA = {
+				country_event = {
+    					id = kentucky.12
+    					days = 0
+				}
+			}
+			KFC = {
+				country_event = {
+    					id = kentucky.18
+    					days = 35
+				}
+			}
+			every_country = { limit = {OR = {tag = AFS tag = USA tag = FRA tag = PRA}}
+				country_event = {
+    					id = kentucky.13
+    					days = 0
+				}
+			}
+			remove_ideas = KFC_scattered_resistance
+			start_civil_war = {
+			    ruling_party = autocratic
+			    ideology = libertarian_right
+    			size = 0.65
+		    	states = { 
+		    	    330 375 261
+		    	}
+			}
+			if = {
+				limit = {
+					has_country_flag = KFC_secret_depots
+				}
+				add_offsite_building = { type = arms_factory level = 3 }
+				add_equipment_to_stockpile = {
+	 	           type = infantry_equipment
+		           amount = 5000
+		           producer = NRA
+		        }
+			}
+			if = {
+				limit = {
+					has_country_flag = KFC_NRA_Mercenaries
+				}
+				division_template = {
+					name = "NRA Mercenaries"
+					regiments = {
+						infantry = { x = 0 y = 0 }
+						infantry = { x = 0 y = 1 }
+						infantry = { x = 0 y = 2 }
+						infantry = { x = 0 y = 3 }
+						infantry = { x = 0 y = 4 }
+						infantry = { x = 1 y = 0 }
+						infantry = { x = 1 y = 1 }
+						infantry = { x = 1 y = 2 }
+						infantry = { x = 1 y = 3 }
+						infantry = { x = 2 y = 0 }
+						infantry = { x = 2 y = 1 }
+						infantry = { x = 2 y = 2 }
+						infantry = { x = 2 y = 3 }
+						infantry = { x = 3 y = 0 }
+						infantry = { x = 3 y = 1 }
+						infantry = { x = 3 y = 2 }
+						infantry = { x = 3 y = 3 }
+					}
+				}
+				250 = {
+					create_unit = {
+						division = "name = \"NRA Mercenary Division\" division_template = \"NRA Mercenaries\" start_experience_factor = 0.55" 
+						owner = KFC
+					}
+				}
+			}
+			if = {
+				limit = {
+					has_country_flag = KFC_warlords_army_flag
+				}
+				division_template = {
+					name = "Lamberton's Army of Kentucky"
+					regiments = {
+						infantry = { x = 0 y = 0 }
+						infantry = { x = 0 y = 1 }
+						infantry = { x = 0 y = 2 }
+						infantry = { x = 0 y = 3 }
+						infantry = { x = 0 y = 4 }
+						infantry = { x = 1 y = 0 }
+						infantry = { x = 1 y = 1 }
+						infantry = { x = 1 y = 2 }
+						infantry = { x = 1 y = 3 }
+						infantry = { x = 1 y = 4 }
+						artillery = { x = 2 y = 0 }
+						artillery = { x = 2 y = 1 }
+						artillery = { x = 2 y = 2 }
+					}
+				}
+				288 = {
+					create_unit = {
+						division = "name = \"1st Bulldog Brigade\" division_template = \"Lamberton's Army of Kentucky\" start_experience_factor = 0.8" 
+						owner = KFC
+					}
+					create_unit = {
+						division = "name = \"2nd Pike Scout Division\" division_template = \"Lamberton's Army of Kentucky\" start_experience_factor = 0.8" 
+						owner = KFC
+					}
+					create_unit = {
+						division = "name = \"Gilmer Division\" division_template = \"Lamberton's Army of Kentucky\" start_experience_factor = 0.8" 
+						owner = KFC
+					}
+				}
+			create_field_marshal = {
+				name = "Haldane B. Lamberton"
+				portrait_path="gfx/leaders/KFC/lamberton.tga" 
+				traits={ brilliant_strategist old_guard guerilla_fighter } 
+				skill = 3
+				attack_skill = 2
+				defense_skill = 4
+				planning_skill = 3
+				logistics_skill = 1
+			}
+			create_corps_commander = {
+				name = "Dennis R. Hawthorne"
+				portrait_path="gfx/leaders/KFC/hawthorne.tga" 
+				traits={ guerilla_fighter } 
+				skill = 3
+				attack_skill = 3
+				defense_skill = 2
+				planning_skill = 1
+				logistics_skill = 3
+			}
+			}
+			KFC = {
+				division_template = {
+					name = "Slave Army"
+					regiments = {
+						infantry = { x = 0 y = 0 }
+						infantry = { x = 0 y = 1 }
+						infantry = { x = 0 y = 2 }
+						infantry = { x = 0 y = 3 }
+						infantry = { x = 0 y = 4 }
+						infantry = { x = 1 y = 0 }
+						infantry = { x = 1 y = 1 }
+						infantry = { x = 1 y = 2 }
+					}
+				}
+			288 = {
+				create_unit = {
+					division = "name = \"Sellswords\" division_template = \"Slave Army\" start_experience_factor = 0.0" 
+					owner = KFC
+				}
+			}
+			288 = {
+				create_unit = {
+					division = "name = \"Slave Conscripts\" division_template = \"Slave Army\" start_experience_factor = 0.0" 
+					owner = KFC
+				}
+			}
+			}
+			KFC = {
+			every_unit_leader = {
+				limit = {
+					has_id = 131
+				}
+				set_nationality = KFC
+			}
+			every_unit_leader = {
+				limit = {
+					has_id = 132
+				}
+				set_nationality = KFC
+			}
+			every_unit_leader = {
+				limit = {
+					has_id = 133
+				}
+				set_nationality = KFC
+			}	
+			}
+		}
+	}
+	option = {
+		name = kentucky.20.a
+		ai_chance = {
+			factor = 100
+		}
+		create_field_marshal = {
+	name = "Roger Eaton"
+	portrait_path="gfx/leaders/KFC/colonel.dds" 
+	traits={ substance_addict brilliant_strategist aggressive_assaulter guerilla_fighter } 
+	skill = 3
+	attack_skill = 4
+	defense_skill = 1
+	planning_skill = 2
+	logistics_skill = 6
+}
+		add_war_support = 0.10
 	}
 }
