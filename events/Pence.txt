@@ -582,12 +582,27 @@ country_event = {
 	
 	option = {
 		name = npa.32.a	
+		ai_will_do = {
+			factor = 50
+		}
+		complete_national_focus = NPA_patriotic_propaganda
 	}
-	option = { 
+	option = {
 		name = npa.32.b
+		ai_will_do = {
+			factor = 50
+		}
+		add_war_support = 0.2
 	}
 	option = { 
 		name = npa.32.c
+		ai_will_do = {
+			factor = 0
+		}
+		custom_effect_tooltip = NPA_wtf_tt
+		hidden_effect = {
+		NPA = { news_event = { id = npa.35 days = 32 } }
+		}
 	}
 }
 
@@ -607,8 +622,9 @@ country_event = {
 		NPA = { annex_country = { target = ROOT transfer_troops = yes } }
 		NPA = { add_state_core = 23 add_state_core = 25 add_state_core = 104 add_state_core = 111 }
 		hidden_effect = {
+		NPA = { country_event = { id = npa.34 } }
 		every_owned_state = { 
-			limit = { is_owned_and_controlled_by = ROOT }
+			limit = { is_controlled_by = ROOT }
 			add_core_of = NPA
 		}
 		}
@@ -620,5 +636,52 @@ country_event = {
 			factor = 0
 		}
 		add_stability = -0.1
+	}
+}
+country_event = {
+	id = npa.34
+	title = npa.34.t
+	desc = npa.34.d
+	picture = event_NPA_Pence_Talks
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = npa.34.a	
+	}
+
+}
+
+news_event = {
+	id = npa.35
+	title = npa.35.t
+	desc = npa.35.d
+	picture = event_NPA_Pence_Talks
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = npa.35.a	
+	}
+}
+country_event = {
+	id = npa.36
+	title = npa.36.t
+	desc = npa.36.d
+	picture = event_NPA_Pence_Talks
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = npa.36.a	
+		207 = {
+		    add_extra_state_shared_building_slots = 6
+			add_building_construction = {
+    			type = industrial_complex
+    			level = 6
+    			instant_build = yes
+			}
+		}
+		add_political_power = 100
 	}
 }
