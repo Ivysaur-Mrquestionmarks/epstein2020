@@ -7,5 +7,305 @@ focus_tree = {
 			tag = KKK			
 		}
 	}
+	#industrial branch
+	focus = {
+		id = KKK_REBUILD_1
+		icon = GFX_goal_takeloans
 
+		#prerequisite = { focus = ITA_industrial_effort_2 }
+		x = 4
+		y = 1
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = KKK_rebuild_1
+		}
+	}
+
+	focus = {
+		id = KKK_infra
+		icon = GFX_goal_takeloans
+
+		prerequisite = { focus = KKK_REBUILD_1 }
+		x = 5
+		y = 2
+		cost = 6
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_timed_idea = {
+    				idea = KKK_rebuild_infra
+    				days = 270
+			}
+		}
+	}
+
+	focus = {
+		id = KKK_infra_N
+		icon = GFX_goal_takeloans
+
+		prerequisite = { focus = KKK_infra }
+		x = 5
+		y = 4
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_building_construction = {
+    					type = infrastructure
+    					level = 3
+    					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = KKK_docks
+		icon = GFX_goal_takeloans
+
+		prerequisite = { focus = KKK_infra_N }
+		x = 5
+		y = 6
+		cost = 7
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = { is_coastal = yes }
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+    					type = dockyard
+    					level = 3
+    					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = KKK_infra_C
+		icon = GFX_goal_takeloans
+
+		prerequisite = { focus = KKK_infra }
+		x = 7
+		y = 3
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_building_construction = {
+    					type = infrastructure
+    					level = 3
+    					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = KKK_mix_fac
+		icon = GFX_goal_takeloans
+
+		prerequisite = { focus = KKK_infra_C }
+		x = 7
+		y = 5
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+				add_building_construction = {
+    					type = arms_factory
+    					level = 1
+    					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = KKK_REBUILD_2
+		icon = GFX_goal_takeloans
+
+		prerequisite = { focus = KKK_REBUILD_1 }
+		x = 3
+		y = 2
+		cost = 7
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			swap_ideas = { 
+  				remove_idea = KKK_rebuild_1
+  				add_idea = KKK_rebuild_2
+			}
+		}
+	}
+
+	focus = {
+		id = KKK_force_labour
+		icon = GFX_goal_takeloans
+
+		prerequisite = { focus = KKK_REBUILD_2 }
+		x = 1
+		y = 3
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_stability = -0.1
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 3
+    					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = KKK_civs
+		icon = GFX_goal_takeloans
+
+		prerequisite = { focus = KKK_REBUILD_2 }
+		x = 3
+		y = 3
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 2
+    					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = KKK_mils
+		icon = GFX_goal_takeloans
+
+		prerequisite = { focus = KKK_civs }
+		x = 3
+		y = 4
+		cost = 5
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+    					type = arms_factory
+    					level = 2
+    					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = KKK_research_slot
+		icon = GFX_goal_takeloans
+
+		prerequisite = { focus = KKK_mils }
+		x = 3
+		y = 6
+		cost = 7
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_research_slot = 1
+		}
+	}
+
+	focus = {
+		id = KKK_slavery
+		icon = GFX_goal_takeloans
+
+		prerequisite = { focus = KKK_force_labour }
+		x = 1
+		y = 5
+		cost = 6
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = KKK_slavery 
+		}
+	}
+	#political
 }
