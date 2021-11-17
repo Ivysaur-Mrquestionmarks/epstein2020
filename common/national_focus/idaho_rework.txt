@@ -1,0 +1,626 @@
+﻿### search_filters = {FOCUS_FILTER_POLITICAL}
+### search_filters = {FOCUS_FILTER_RESEARCH}
+### search_filters = {FOCUS_FILTER_INDUSTRY}
+### search_filters = {FOCUS_FILTER_STABILITY}
+### search_filters = {FOCUS_FILTER_WAR_SUPPORT}
+### search_filters = {FOCUS_FILTER_MANPOWER}
+### search_filters = {FOCUS_FILTER_ANNEXATION}
+
+focus_tree = {
+	id = western_command
+	
+	country = {
+		factor = 0
+		
+		modifier = {
+			add = 10
+			tag = IDA
+		}
+	}
+	
+	default = no
+	
+	reset_on_civil_war = yes
+	
+	continuous_focus_position = { x = 250 y = 2000 }
+	
+	initial_show_position = {
+		focus = IDA_Our_Mission
+	}
+
+	focus = { #First focus, fires off backstory event
+		id = IDA_Our_Mission
+		icon = GFX_goal_continuous_air_production
+		x = 75
+		y = 0
+		cost = 2
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = {
+				id = idaho_rework.2
+			}
+		}
+		
+	}
+	focus = { #Switches lawlessness spirit with regaining control, lasts 30 days
+		id = IDA_Cement_Our_Control
+		icon = GFX_goal_continuous_air_production
+		x = 75
+		y = 1
+		cost = 3
+		prerequisite = {
+			focus = IDA_Our_Mission
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		
+		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_WAR_SUPPORT }
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power  = 25
+			remove_ideas = {
+				IDA_Lawlessness
+			}
+			add_timed_idea = { 
+				idea = IDA_Restoring_Order  
+				days = 30 
+			}
+		}
+	}
+	focus = { #Gain equipment, manpower, and one research slot
+		id = IDA_Support_From_The_East
+		icon = GFX_goal_continuous_air_production
+		x = 75
+		y = 2
+		cost = 3
+		prerequisite = {
+			focus = IDA_Cement_Our_Control
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		
+		search_filters = { FOCUS_FILTER_RESEARCH FOCUS_FILTER_MANPOWER }
+		completion_reward = {
+			add_research_slot = 1 
+			add_manpower = 1500 
+			add_equipment_to_stockpile = { 
+				type = infantry_equipment
+				amount = 2000
+				producer = USA
+			}
+			hidden_effect = {
+				country_event = { 
+					id = idaho_rework.3 
+					days = 10
+				}
+			}
+		}
+	}
+	focus = { #Fake focus, will auto-complete through event several days after the Mormon Coup
+		id = IDA_Begin_Planning_The_Invasion_Of_Montana
+		icon = GFX_goal_continuous_air_production
+		x = 75
+		y = 3
+		cost = 5
+		prerequisite = {
+			focus = IDA_Support_From_The_East
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			NOT = {
+				has_country_flag = wcz_mormon_coup
+			}
+		}
+		bypass = {
+			has_country_flag = wcz_mormon_coup
+		}
+		cancel = {
+			has_country_flag = wcz_mormon_coup
+		}
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			add_war_support = 0.1	
+			add_intel = {
+				target = MON
+				civilian_intel = 10
+				army_intel = 10
+			}
+		}
+	}
+	focus = { #Unlocked when LDS take over Utah; Player gets event to decide country path
+		id = IDA_A_Change_In_Plans
+		icon = GFX_goal_continuous_air_production
+		x = 75
+		y = 4
+		cost = 5
+		prerequisite = {
+			focus = IDA_Begin_Planning_The_Invasion_Of_Montana
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			has_country_flag = wcz_mormon_coup
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = {
+				id = idaho_rework.4
+			}
+		}
+	}
+	# Expansion WCZ Path #
+	focus = { #Expansionist Path Picked After IDA_A_Change_In_Plans, Creates faction and Gives Stankiewicz an attack bonus
+		id = IDA_We_March_Forward
+		icon = GFX_goal_generic_major_war
+		x = 50
+		y = 5
+		cost = 10
+		prerequisite = {
+			focus = IDA_A_Change_In_Plans
+		}
+		mutually_exclusive = {
+			focus = IDA_Dig_In
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			has_country_flag = wcz_expansion
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			create_faction = "Western Loyalists"
+			add_country_leader_trait = IDA_attack_bonus
+		}
+	}
+	focus = { #Remove demilitarized zones, gives political power
+		id = IDA_Revive_The_Color_Coded_War_Plans
+		icon = GFX_goal_generic_major_war
+		x = 50
+		y = 6
+		cost = 5
+		prerequisite = {
+			focus = IDA_A_Change_In_Plans
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_political_power = 50
+			400 = {
+				set_demilitarized_zone = no
+			}
+			517 = {
+				set_demilitarized_zone = no
+			}
+		}
+	}
+	#Initial Improvement
+	focus = { #Promote Veterans to help with Militia State (replace nation spirit)
+		id = IDA_Promote_Veterans_To_Command_Positions
+		icon = GFX_goal_generic_major_war
+		x = 49
+		y = 7
+		cost = 5
+		prerequisite = {
+			focus = IDA_Revive_The_Color_Coded_War_Plans
+		}
+		mutually_exclusive = {
+			focus = IDA_Encourage_Enlistment
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			NOT = {
+				has_idea = IDA_Militia_State_1
+			}
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = IDA_Militia_State_1
+				add_idea = IDA_Militia_State_2
+			}
+		}
+	}
+	focus = { #Help with manpower issues with Militia state (replace national spirit)
+		id = IDA_Encourage_Enlistment
+		icon = GFX_goal_generic_major_war
+		x = 51
+		y = 7
+		cost = 5
+		prerequisite = {
+			focus = IDA_Revive_The_Color_Coded_War_Plans
+		}
+		mutually_exclusive = {
+			focus = IDA_Promote_Veterans_To_Command_Positions
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			NOT = {
+				has_idea = IDA_Militia_State_1
+			}
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = IDA_Militia_State_1
+				add_idea = IDA_Militia_State_3
+			}
+		}
+	}
+	focus = { #Increase Taxes to help with Dependent Industry (replace focus)
+		id = IDA_Increase_Taxation
+		icon = GFX_goal_generic_major_war
+		x = 49
+		y = 8
+		cost = 5
+		prerequisite = {
+			focus = IDA_Promote_Veterans_To_Command_Positions
+			focus = IDA_Encourage_Enlistment
+		}
+		mutually_exclusive = {
+			focus = IDA_Mobilize_The_Economy
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			NOT = {
+				has_idea = IDA_Economic_Dependence_1
+			}
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_political_power = -45
+			add_popularity = {
+				ideology = libertarian_right
+				popularity = 0.1
+			}
+			add_popularity = {
+				ideology = autocratic
+				popularity = 0.05
+			}
+			swap_ideas = {
+				remove_idea = IDA_Economic_Dependence_1
+				add_idea = IDA_Economic_Dependence_2
+			}
+		}
+	}
+	focus = { #Mobilize economy, Switch Economy law to War Economy and Replace National Spirit
+		id = IDA_Mobilize_The_Economy
+		icon = GFX_goal_generic_major_war
+		x = 51
+		y = 8
+		cost = 8
+		prerequisite = {
+			focus = IDA_Promote_Veterans_To_Command_Positions
+			focus = IDA_Encourage_Enlistment
+		}
+		mutually_exclusive = {
+			focus = IDA_Increase_Taxation
+		}
+		ai_will_do = {
+			factor = 30
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			NOT = {
+				has_idea = IDA_Economic_Dependence_1
+			}
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_political_power = -25
+			if = {
+				limit = {
+					NOT = { has_idea = war_economy }
+					NOT = { has_idea = tot_economic_mobilisation }
+				}
+				add_ideas = war_economy
+			}
+			swap_ideas = {
+				remove_idea = IDA_Economic_Dependence_1
+				add_idea = IDA_Economic_Dependence_3
+			}
+		}
+	}
+	focus = { #Add Research Slot
+		id = IDA_Invest_In_The_University_Of_Idaho
+		icon = GFX_goal_generic_major_war
+		x = 50
+		y = 9
+		cost = 8
+		prerequisite = {
+			focus = IDA_Increase_Taxation
+			focus = IDA_Mobilize_The_Economy
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_research_slot = 1
+		}
+	}
+	# War Plan Brown - Montana 
+	focus = { #Beginning Focus to deal with Montana
+		id = IDA_War_Plan_Brown
+		icon = GFX_goal_generic_major_war
+		x = 45
+		y = 7
+		cost = 5
+		prerequisite = {
+			focus = IDA_Revive_The_Color_Coded_War_Plans
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 30
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			IDA = {
+				controls_state = 65
+			}
+			NOT = {
+				country_exists = MON
+				country_exists = LYM
+				country_exists = BKF
+			}
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			custom_effect_tooltip = wcz_montana_decisions
+			add_ideas = IDA_War_Plan_Brown_Spirit
+		}
+	}
+	# Defensive WCZ Path #
+	focus = { #Defensive Route Picked After IDA_A_Change_In_Plans, Gives Stankiewicz a defense bonus and mutual guarantee USA
+		id = IDA_Dig_In
+		icon = GFX_goal_generic_fortify_city
+		x = 100
+		y = 5
+		cost = 10
+		prerequisite = {
+			focus = IDA_A_Change_In_Plans
+		}
+		mutually_exclusive = {
+			focus = IDA_We_March_Forward
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			has_country_flag = wcz_defensive
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_country_leader_trait = IDA_defence_bonus
+		}
+	}
+	#focus = {
+	#	id = IDA_BOmb
+	#	icon = GFX_goal_generic_construction
+	#	x = 620
+	#	y = 0
+	#	cost = 10
+	#	ai_will_do = {
+	#		factor = 12
+	#	}
+	#	search_filters = { FOCUS_FILTER_RESEARCH FOCUS_FILTER_INDUSTRY }
+	#	completion_reward = {
+	#		add_tech_bonus = {
+	#			name = GER_four_year_plan
+	#			bonus = 1.0
+	#			uses = 2
+	#			category = industry
+	#		}
+	#		custom_effect_tooltip = JAP_strengthen_the_divine_wind_effect
+	#		hidden_effect = { set_technology = { suicide_craft = 1 } }
+	#	}
+	#	
+	#}
+}

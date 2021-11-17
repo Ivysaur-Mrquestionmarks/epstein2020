@@ -1,0 +1,1071 @@
+IDA_war_plan_brown_decision = { 
+	
+	IDA_MON_sow_dissent = { #Cost political power, Reduce stability and war support
+
+		icon = GFX_decision_eng_propaganda_campaigns
+
+		available = {
+			has_idea = IDA_War_Plan_Brown_Spirit
+			has_government = republican
+		}
+
+		cost = 30
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				MON = { 
+					is_in_faction_with = IDA
+				}
+			}
+		}
+
+		visible = {
+			has_idea = IDA_War_Plan_Brown_Spirit
+			has_government = republican
+		}
+		
+		days_remove = 5
+		days_re_enable = 30
+		
+		fixed_random_seed = no
+		complete_effect = { #60% chance to reduce 5% stability, 25% chance to reduce 10% stability, 10% chance to reduce 10% stability and 5% war support
+			random_list = {
+				65 = { #Small protests
+					MON = {
+						country_event = idaho_rework.6
+					}
+				}
+				25 = { #Medium protests
+					MON = {
+						country_event = idaho_rework.7
+					}
+				}
+				10 = { #Large protests
+					MON = {
+						country_event = idaho_rework.8
+					}
+				}
+			}
+		}
+	}
+	
+	IDA_MON_organize_strikes = { #Cost political power, Decrease production and construction speed
+
+		icon = GFX_decision_generic_construction
+
+		available = {
+			has_idea = IDA_War_Plan_Brown_Spirit
+			has_government = republican
+		}
+
+		cost = 35
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				MON = { 
+					is_in_faction_with = IDA
+				}
+			}
+		}
+
+		visible = {
+			has_idea = IDA_War_Plan_Brown_Spirit
+			has_government = republican
+		}
+		
+		days_remove = 5
+		days_re_enable = 30
+		
+		fixed_random_seed = no
+		complete_effect = { #65% chance for -5% construction and production, 25% chance for -10%, 10% chance for -15%
+			random_list = {
+				65 = { #Small strikes
+					MON = {
+						country_event = idaho_rework.9
+					}
+				}
+				25 = { #Medium strikes
+					MON = {
+						country_event = idaho_rework.10
+					}
+				}
+				10 = { #Large strikes
+					MON = {
+						country_event = idaho_rework.11
+					}
+				}
+			}
+		}
+	}
+	
+	IDA_MON_raid_weapons_shipments = { #Costs equipment and political power, Gain equipment, Montana loses equipment and manpower
+
+		icon = GFX_decision_generic_prepare_civil_war
+
+		available = {
+			has_idea = IDA_War_Plan_Brown_Spirit
+			has_government = republican
+			has_equipment = { infantry_equipment > 249 }
+		}
+		
+		cost = 25
+		
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				MON = { 
+					is_in_faction_with = IDA
+				}
+			}
+		}
+		
+		days_remove = 5
+		days_re_enable = 15
+		
+		visible = {
+			has_idea = IDA_War_Plan_Brown_Spirit
+			has_government = republican
+		}
+		
+		fixed_random_seed = no
+		complete_effect = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -250
+			}
+			random_list = {
+				50 = { #Normal Success
+					IDA = {
+						country_event = idaho_rework.14
+					}
+					hidden_effect = {
+						MON = {
+							country_event = idaho_rework.17
+						}
+					}
+				}
+				30 = { #Great Success
+					IDA = {
+						country_event = idaho_rework.15
+					}
+					hidden_effect = {
+						MON = {
+							country_event = idaho_rework.18
+						}
+					}
+				}
+				20 = { #Failure
+					IDA = {
+						country_event = idaho_rework.16
+					}
+					hidden_effect = {
+						MON = {
+							country_event = idaho_rework.19
+						}
+					}
+				}
+			}
+		}
+	}
+
+	IDA_MON_blow_up_roadways = { #Cost political power and equipment, Reduce division speed and supply (war only)/ Maybe add railway damage after later
+
+		icon = GFX_decision_oppression
+
+		available = {
+			has_idea = IDA_War_Plan_Brown_Spirit
+			has_government = republican
+			MON = {
+				has_war_with = IDA
+			}
+		}
+
+		cost = 35
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				MON = { 
+					is_in_faction_with = IDA
+				}
+			}
+		}
+		
+		days_remove = 10
+		days_re_enable = 30
+
+		visible = {
+			has_idea = IDA_War_Plan_Brown_Spirit
+			has_government = republican
+		}
+
+		complete_effect = { #Only one event this time 
+			MON = {
+				country_event = idaho_rework.20
+			}
+		}
+	}
+	
+	# Uprising Decisions - As of writing this, the A.I. will never take these decisions for simplicity #
+	IDA_MON_organize_militia_resistance = { #Helps with uprising strength, costs political power and command power
+
+		icon = GFX_decision_hol_draw_up_staff_plans
+
+		available = {
+			has_idea = IDA_War_Plan_Brown_Spirit
+			has_government = republican
+			command_power > 29
+			NOT = {
+				MON = {
+					has_government = republican
+				}
+			}
+		}
+
+		cost = 25
+
+		ai_will_do = {
+			factor = 0
+		}
+		
+		fire_only_once = yes
+		
+		visible = {
+			has_idea = IDA_War_Plan_Brown_Spirit
+			has_government = republican
+		}
+
+		complete_effect = {
+			add_command_power = -30
+			hidden_effect = {
+				if = {
+					limit = {
+						has_country_flag = wcz_MON_uprising_2
+					}   
+					clr_country_flag = wcz_MON_uprising_2
+					set_country_flag = wcz_MON_uprising_3
+				}
+				else_if = {
+					limit = {
+						has_country_flag = wcz_MON_uprising_1
+					}
+					clr_country_flag = wcz_MON_uprising_1
+					set_country_flag = wcz_MON_uprising_2
+				}
+				else = {
+					set_country_flag = wcz_MON_uprising_1
+					MON = {
+						country_event = idaho_rework.21
+					}
+				}
+			}
+		}
+	}
+
+	IDA_MON_smuggle_equipment_to_resistance_groups = { #Helps with uprising strength, costs equipment
+
+		icon = GFX_decision_generic_prepare_civil_war
+
+		available = {
+			has_idea = IDA_War_Plan_Brown_Spirit
+			has_government = republican
+			has_equipment = { infantry_equipment > 999 }
+			NOT = {
+				MON = {
+					has_government = republican
+				}
+			}
+		}
+
+		cost = 25
+
+		ai_will_do = {
+			factor = 0
+		}
+		
+		fire_only_once = yes
+		
+		visible = {
+			has_idea = IDA_War_Plan_Brown_Spirit
+			has_government = republican
+		}
+
+		complete_effect = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -1000
+			}
+			hidden_effect = {
+				if = {
+					limit = {
+						has_country_flag = wcz_MON_uprising_2
+					}   
+					clr_country_flag = wcz_MON_uprising_2
+					set_country_flag = wcz_MON_uprising_3
+				}
+				else_if = {
+					limit = {
+						has_country_flag = wcz_MON_uprising_1
+					}
+					clr_country_flag = wcz_MON_uprising_1
+					set_country_flag = wcz_MON_uprising_2
+				}
+				else = {
+					set_country_flag = wcz_MON_uprising_1
+					MON = {
+						country_event = idaho_rework.21
+					}
+				}
+			}
+		}
+	}
+	
+	IDA_MON_provide_advisors_for_resistance_groups = { #Helps with uprising, costs manpower
+
+		icon = GFX_decision_generic_army_support
+
+		available = {
+			has_idea = IDA_War_Plan_Brown_Spirit
+			has_government = republican
+			has_manpower > 249
+			NOT = {
+				MON = {
+					has_government = republican
+				}
+			}
+		}
+
+		cost = 25
+
+		ai_will_do = {
+			factor = 0
+		}
+		
+		fire_only_once = yes
+		
+		visible = {
+			has_idea = IDA_War_Plan_Brown_Spirit
+			has_government = republican
+		}
+
+		complete_effect = {
+			add_manpower = -250
+			hidden_effect = {
+				if = {
+					limit = {
+						has_country_flag = wcz_MON_uprising_2
+					}   
+					clr_country_flag = wcz_MON_uprising_2
+					set_country_flag = wcz_MON_uprising_3
+				}
+				else_if = {
+					limit = {
+						has_country_flag = wcz_MON_uprising_1
+					}
+					clr_country_flag = wcz_MON_uprising_1
+					set_country_flag = wcz_MON_uprising_2
+				}
+				else = {
+					set_country_flag = wcz_MON_uprising_1
+					MON = {
+						country_event = idaho_rework.21
+					}
+				}
+			}
+		}
+	}
+	
+	IDA_MON_launch_uprising = { #Starts uprising in Montana, strength depends on decisions taken (20% at start, increases in 20% increments) (war only)
+
+		icon = GFX_decision_revolt
+
+		available = {
+			has_idea = IDA_War_Plan_Brown_Spirit
+			has_government = republican
+			MON = {
+				has_war_with = IDA
+			}
+			NOT = {
+				MON = {
+					has_government = republican
+				}
+			}
+		}
+
+		cost = 25
+
+		ai_will_do = {
+			factor = 0
+		}
+		
+		fire_only_once = yes
+		
+		visible = {
+			has_idea = IDA_War_Plan_Brown_Spirit
+			has_government = republican
+		}
+
+		complete_effect = { #No prep = 20% strength, 1 prep = 40%, 2 preps = 60%, 3 preps = 80%
+			hidden_effect = {
+				if = {
+					limit = {
+						has_country_flag = wcz_MON_uprising_3
+					}
+					MON = {
+						country_event = idaho_rework.22
+					}
+				}
+				else_if = {
+					limit = {
+						has_country_flag = wcz_MON_uprising_2
+					}
+					MON = {
+						country_event = idaho_rework.23
+					}
+				}
+				else_if = {
+					limit = {
+						has_country_flag = wcz_MON_uprising_1
+					}
+					MON = {
+						country_event = idaho_rework.24
+					}
+				}
+				else = {
+					MON = {
+						country_event = idaho_rework.25
+					}
+				}
+			}
+		}
+	}
+}
+
+#Category only allowed for GER
+GER_military_buildup = {
+
+	GER_plan_z = {
+
+		icon = generic_naval
+
+		available = {
+			has_navy_size = {
+				unit = battleship
+				size > 9
+			}
+			has_navy_size = {
+				unit = battle_cruiser
+				size > 2
+			}
+			has_navy_size = {
+				unit = carrier
+				size > 3
+			}
+			has_navy_size = {
+				unit = heavy_cruiser
+				size > 19
+			}
+			has_navy_size = {
+				unit = light_cruiser
+				size > 19
+			}
+			has_navy_size = {
+				unit = destroyer
+				size > 99
+			}
+		}
+
+		fire_only_once = yes
+		days_mission_timeout = 1800
+		is_good = no
+		activation = {
+			has_completed_focus = GER_plan_z
+		}
+
+		
+		visible = {
+			has_completed_focus = GER_plan_z
+		}
+
+		complete_effect = {
+			add_war_support = 0.05
+			navy_experience = 150
+		}
+
+		
+	}
+
+	GER_jaegernotprogramm = {
+
+		icon = generic_air
+
+		available = {
+			has_war = yes
+			AND = {
+				has_deployed_air_force_size = {
+					type = fighter
+					size < 750
+				}
+				has_equipment = {
+					fighter_equipment < 250
+				}
+			}
+			NOT = {
+				has_idea = GER_jaegernotprogramm
+			}
+		}
+
+		cost = 50
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 1
+		}
+
+		visible = {
+			has_war = yes
+			AND = {
+				has_deployed_air_force_size = {
+					type = fighter
+					size < 750
+				}
+				has_equipment = {
+					fighter_equipment < 250
+				}
+			}
+			NOT = {
+				has_idea = GER_jaegernotprogramm
+			}
+		}
+
+		complete_effect = {
+			add_stability = -0.05
+			add_war_support = -0.05
+			add_timed_idea = { idea = GER_jaegernotprogramm days = 90 }
+		}
+	}
+}
+
+special_projects = {
+	GER_begin_heavy_water_production = {
+		allowed = { 
+			original_tag = GER 
+			has_dlc = "La Resistance"
+		}
+		available = {
+			110 = {
+				CONTROLLER = {
+					OR = {
+						tag = ROOT
+						is_subject_of = ROOT
+					}
+				}
+			}
+		}
+		visible = { has_tech = atomic_research }
+		cost = 0
+		ai_will_do = {
+			factor = 5 
+		}
+		cancel_trigger = { NOT = { has_global_flag = GER_heavy_water_production_underway } } #can be removed via intelligence ops
+		days_remove = 365
+		remove_effect = {
+			add_tech_bonus = {
+				name = GER_heavy_water
+				category = nuclear
+				uses = 2
+				bonus = 2
+			}
+		}
+		complete_effect = { set_global_flag = GER_heavy_water_production_underway }
+	}
+	GER_dismantle_maginot = {
+
+		icon = generic_construction
+
+		available = {
+			#has_war = yes
+			controls_state = 28
+			if = {
+				limit = {
+					FRA = { has_completed_focus = FRA_extend_the_maginot_line }
+				}
+				controls_state = 18
+				controls_state = 29
+			}
+		}
+
+		cost = 50
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 0
+		}
+		visible = {
+			#has_war = yes
+			controls_state = 28
+			if = {
+				limit = {
+					FRA = { has_completed_focus = FRA_extend_the_maginot_line }
+				}
+				controls_state = 18
+				controls_state = 29
+			}
+		}
+		days_remove = 180
+		modifier = {
+			civilian_factory_use = 5
+		}
+		remove_effect = {
+			28 = {
+				set_building_level = {
+					type = bunker
+					level = 2
+					province = {
+						all_provinces = yes
+						limit_to_border = no
+						level > 2
+					}
+				}
+			}
+			if = {
+				limit = {
+					FRA = { has_completed_focus = FRA_extend_the_maginot_line }
+				}
+				18 = {
+					set_building_level = {
+						type = bunker
+						level = 2
+						province = {
+							all_provinces = yes
+							limit_to_border = no
+							level > 2
+						}
+					}
+				}
+				29 = {
+					set_building_level = {
+						type = bunker
+						level = 2
+						province = {
+							all_provinces = yes
+							limit_to_border = no
+							level > 2
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					has_idea = FRA_protected_by_the_maginot_line
+				}
+				remove_ideas = FRA_protected_by_the_maginot_line
+			}
+		}
+		complete_effect = {
+			if = {
+				limit = { FRA = { has_completed_focus = FRA_extend_the_maginot_line } }
+				add_timed_idea = { idea = GER_dismantle_maginot days = 270 }
+				else = {
+					add_timed_idea = { idea = GER_dismantle_maginot days = 180 }
+				}
+			}
+		}
+	}	
+	GER_dismantle_czechoslovakian_forts = {
+
+		icon = generic_construction
+
+		available = {
+			#has_war = yes
+			controls_state = 69 # Sudetenland
+			controls_state = 74 # Eastern Sudetenland
+			controls_state = 9 # Bohemia
+			controls_state = 75 # Moravia
+		}
+
+		cost = 50
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 0
+		}
+		visible = {
+			#has_war = yes
+			controls_state = 69 # Sudetenland
+			controls_state = 74 # Eastern Sudetenland
+			controls_state = 9 # Bohemia
+			controls_state = 75 # Moravia
+		}
+		days_remove = 180
+		modifier = {
+			civilian_factory_use = 3
+		}
+		remove_effect = {
+			69 = {
+				set_building_level = {
+					type = bunker
+					level = 1
+					province = {
+						all_provinces = yes
+						limit_to_border = no
+						level > 1
+					}
+				}
+			}
+			74 = {
+				set_building_level = {
+					type = bunker
+					level = 1
+					province = {
+						all_provinces = yes
+						limit_to_border = no
+						level > 1
+					}
+				}
+			}
+			9 = {
+				set_building_level = {
+					type = bunker
+					level = 1
+					province = {
+						all_provinces = yes
+						limit_to_border = no
+						level > 1
+					}
+				}
+			}
+			75 = {
+				set_building_level = {
+					type = bunker
+					level = 1
+					province = {
+						all_provinces = yes
+						limit_to_border = no
+						level > 1
+					}
+				}
+			}
+			if = {
+				limit = {
+					72 = {
+						controller = {
+							OR = {
+								tag = ROOT
+								is_subject_of = ROOT
+							}
+						}
+					}
+					71 = {
+						controller = {
+							OR = {
+								tag = ROOT
+								is_subject_of = ROOT
+							}
+						}
+					}
+				}
+				72 = {
+					set_building_level = {
+						type = bunker
+						level = 1
+						province = {
+							all_provinces = yes
+							limit_to_border = no
+							level > 1
+						}
+					}
+				}
+				71 = {
+					set_building_level = {
+						type = bunker
+						level = 1
+						province = {
+							all_provinces = yes
+							limit_to_border = no
+							level > 1
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					70 = {
+						controller = {
+							OR = {
+								tag = ROOT
+								is_subject_of = ROOT
+							}
+						}
+					}
+				}
+				70 = {
+					set_building_level = {
+						type = bunker
+						level = 1
+						province = {
+							all_provinces = yes
+							limit_to_border = no
+							level > 1
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					73 = {
+						controller = {
+							OR = {
+								tag = ROOT
+								is_subject_of = ROOT
+							}
+						}
+					}
+					664 = {
+						controller = {
+							OR = {
+								tag = ROOT
+								is_subject_of = ROOT
+							}
+						}
+					}
+				}
+				73 = {
+					set_building_level = {
+						type = bunker
+						level = 1
+						province = {
+							all_provinces = yes
+							limit_to_border = no
+							level > 1
+						}
+					}
+				}
+				664 = {
+					set_building_level = {
+						type = bunker
+						level = 1
+						province = {
+							all_provinces = yes
+							limit_to_border = no
+							level > 1
+						}
+					}
+				}
+			}
+		}
+		complete_effect = {
+			add_timed_idea = { idea = GER_dismantle_czechoslovakian_forts days = 180 }
+		}
+	}	
+}
+
+GER_aid_hun_rom_democratic_civil_war = {
+
+	GER_aid_hun_democratic_civil_war = {
+
+		icon = generic_prepare_civil_war
+
+		available = {
+			HUN = {
+				NOT = { has_government = democratic }
+				NOT = { has_war_with = GER }
+				has_civil_war = yes
+				exists = yes
+				any_enemy_country = {
+					original_tag = HUN
+					has_government = democratic
+				}
+			}
+		}
+
+		cost = 0
+
+		ai_will_do = {
+			factor = 200
+		}
+
+		#Available if democratic civil war
+		visible = {
+			has_completed_focus = GER_align_hungary
+			GER = { has_government = democratic }
+		}
+
+		complete_effect = {
+			if = {
+				limit = {
+					HUN = { is_in_faction_with = GER }
+				}
+				remove_from_faction = HUN
+				random_country = {
+					limit = {
+						original_tag = HUN
+						has_government = democratic
+						has_war_with = HUN
+					}
+					GER = { add_to_faction = PREV }
+				}
+			}
+			random_country = {
+				limit = {
+					original_tag = HUN
+					has_government = democratic
+					has_war_with = HUN
+				}
+				GER = { add_to_war = { targeted_alliance = PREV enemy = HUN hostility_reason = asked_to_join } }
+			}
+		}
+	}
+
+	GER_aid_rom_democratic_civil_war = {
+
+		icon = generic_prepare_civil_war
+
+		available = {
+			ROM = {
+				NOT = { has_government = democratic }
+				NOT = { has_war_with = GER }
+				has_civil_war = yes
+				exists = yes
+				any_enemy_country = {
+					original_tag = ROM
+					has_government = democratic
+				}
+			}
+		}
+
+		cost = 0
+
+		ai_will_do = {
+			factor = 200
+		}
+
+		#Available if democratic civil war
+		visible = {
+			has_completed_focus = GER_align_romania
+			GER = { has_government = democratic }
+		}
+
+		complete_effect = {
+			if = {
+				limit = {
+					ROM = { is_in_faction_with = GER }
+				}
+				remove_from_faction = ROM
+				random_country = {
+					limit = {
+						original_tag = ROM
+						has_government = democratic
+						has_war_with = ROM
+					}
+					GER = { add_to_faction = PREV }
+				}
+			}
+			random_country = {
+				limit = {
+					original_tag = ROM
+					has_government = democratic
+					has_war_with = ROM
+				}
+				GER = { add_to_war = { targeted_alliance = PREV enemy = ROM hostility_reason = asked_to_join } }
+			}
+		}
+	}
+
+}
+
+GER_austro_hungarian_empire = {
+
+	GER_reform_austro_hungarian_empire = {
+
+		allowed = {
+			OR = {
+				original_tag = AUS
+				original_tag = HUN
+				original_tag = CZE
+			}
+		}
+
+		available = {
+			AUS = {
+				OR = {
+					has_government = neutrality
+					neutrality > 0.4
+				}
+			}
+			HUN = {
+				OR = {
+					has_government = neutrality
+					neutrality > 0.4
+				}
+			}
+			CZE = {
+				OR = {
+					has_government = neutrality
+					neutrality > 0.4
+				}
+			}
+		}
+
+		visible = {
+			GER = { 
+				has_completed_focus = GER_rekindle_imperial_sentiment 
+				has_government = neutrality
+			}
+			AUS = {
+				exists = yes
+			}
+			HUN = {
+				exists = yes
+			}
+			CZE = {
+				exists = yes
+			}
+			NOT = { has_global_flag = GER_reformed_austro_hungarian_empire }
+		}
+
+		cost = 0
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 200
+			modifier = {
+				factor = 0
+				tag = HUN
+			}
+			modifier = {
+				factor = 0
+				tag = CZE
+			}
+		}
+
+		complete_effect = {
+			custom_effect_tooltip = GER_reform_austro_hungarian_empire_tt
+			hidden_effect = { set_global_flag = GER_reformed_austro_hungarian_empire }
+			if = {
+				limit = {
+					tag = AUS
+				}
+				HUN = { country_event = { id = wtt_germany.68 hours = 1 } }
+				CZE = { country_event = { id = wtt_germany.68 hours = 3 } }
+			}
+			if = {
+				limit = {
+					tag = HUN
+				}
+				AUS = { country_event = { id = wtt_germany.68 hours = 1 } }
+				CZE = { country_event = { id = wtt_germany.68 hours = 3 } }
+			}
+			if = {
+				limit = {
+					tag = CZE
+				}
+				HUN = { country_event = { id = wtt_germany.68 hours = 1 } }
+				AUS = { country_event = { id = wtt_germany.68 hours = 3 } }
+			}
+		}
+	}
+}
