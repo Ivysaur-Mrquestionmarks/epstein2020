@@ -1,0 +1,657 @@
+add_namespace = idaho_rework
+country_event = { #WCZ gains ground, Stankiewicz loses trait
+	id = idaho_rework.1
+	title = idaho_rework.1.t
+	desc = idaho_rework.1.d
+	picture = GFX_report_event_Cornered_No_More
+	
+	fire_only_once = yes
+
+	mean_time_to_happen = {
+		days = 1
+	}
+
+	trigger = {
+		tag = IDA
+		num_of_controlled_states > 10
+		has_country_leader = { ruling_only = yes name = "Jeff Stankiewicz" }
+	}
+	
+	option = {
+		name = idaho_rework.1.a
+		ai_chance = {
+			factor = 10
+		}
+		remove_country_leader_trait = cornered_fox
+	}
+}
+country_event = { #First focus event, explains the purpose of the WCZ
+	id = idaho_rework.2
+	title = idaho_rework.2.t
+	desc = idaho_rework.2.d
+	picture = GFX_report_event_Donald_Trump_Phone_Call
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = idaho_rework.2.a
+		ai_chance = {
+			factor = 10
+		}
+		add_political_power = 15
+		army_experience = 5
+	}
+}
+country_event = { #LDS take over Utah, WCZ is alerted to this change
+	id = idaho_rework.3
+	title = idaho_rework.3.t
+	desc = idaho_rework.3.d
+	picture = GFX_report_event_LDS_Coup_Utah
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Set country flag to unlock decision focus
+		name = idaho_rework.3.a
+		ai_chance = {
+			factor = 10
+		}
+		add_political_power = -50
+		hidden_effect = {
+			set_country_flag = wcz_mormon_coup
+		}
+	}
+}
+country_event = { #LDS take over Utah, WCZ must decide whether to expand or defend
+	id = idaho_rework.4
+	title = idaho_rework.4.t
+	desc = idaho_rework.4.d
+	picture = GFX_report_event_Stankiewicz_Plans
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Expansion
+		name = idaho_rework.4.a
+		ai_chance = {
+			factor = 10
+			modifier = {
+      			factor = 0 
+      			OR = {
+					country_exists = USA
+      			}
+   			}
+		}
+		hidden_effect = {
+			set_country_flag = wcz_expansion
+		}
+	}
+	
+	option = { #Defensive
+		name = idaho_rework.4.b
+		ai_chance = {
+			factor = 10
+			modifier = {
+      			factor = 0 
+      			OR = {
+					country_exists = USA
+      			}
+   			}
+		}
+		hidden_effect = {
+			set_country_flag = wcz_defensive
+		}
+	}
+	
+	option = { #Ask Trump to decide (This is intended for the A.I., so a Trump player can control what the WCZ does)
+		name = idaho_rework.4.c
+		ai_chance = {
+			factor = 10
+		}
+		USA = {
+			country_event = idaho_rework.5
+		}
+	}
+}
+country_event = { #WCZ asks Trump for direction after Mormon coup
+	id = idaho_rework.5
+	title = idaho_rework.5.t
+	desc = idaho_rework.5.d
+	picture = GFX_report_event_Donald_Trump_Phone_Call
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Expansion
+		name = idaho_rework.5.a
+		ai_chance = {
+			factor = 10
+		}
+		IDA = {
+			country_event = idaho_rework.12
+		}
+	}
+	
+	option = { #Defensive
+		name = idaho_rework.5.b
+		ai_chance = {
+			factor = 10
+		}
+		IDA = {
+			country_event = idaho_rework.13
+		}
+	}
+}
+# War Plan Decisions #
+country_event = { #Montana/Utah War Plan Decision, Small Protests
+	id = idaho_rework.6
+	title = idaho_rework.6.t
+	desc = idaho_rework.6.d
+	picture = GFX_report_event_IDA_Anti_War_Protest
+	
+	is_triggered_only = yes
+	fire_only_once = no
+	
+	option = { #Reduce stability by 5%
+		name = idaho_rework.6.a
+		add_stability = -0.05
+	}
+}
+country_event = { #Montana/Utah War Plan Decision, Medium Protests
+	id = idaho_rework.7
+	title = idaho_rework.7.t
+	desc = idaho_rework.7.d
+	picture = GFX_report_event_IDA_Anti_War_Protest
+	
+	is_triggered_only = yes
+	fire_only_once = no
+	
+	option = { #Reduce stability by 10%
+		name = idaho_rework.7.a
+		add_stability = -0.1
+	}
+}
+country_event = { #Montana/Utah War Plan Decision, Large Protests
+	id = idaho_rework.8
+	title = idaho_rework.8.t
+	desc = idaho_rework.8.d
+	picture = GFX_report_event_IDA_Anti_War_Protest
+	
+	is_triggered_only = yes
+	fire_only_once = no
+	
+	option = { #Reduce stability by 10% and war support by 5%
+		name = idaho_rework.8.a
+		add_stability = -0.1
+		add_war_support = -0.05
+	}
+}
+country_event = { #Montana/Utah War Plan Decision, Small Strikes
+	id = idaho_rework.9
+	title = idaho_rework.9.t
+	desc = idaho_rework.9.d
+	picture = GFX_report_event_IDA_Strikes
+	
+	is_triggered_only = yes
+	fire_only_once = no
+	
+	option = { #Reduce production, construction, and repair by 5%
+		name = idaho_rework.9.a
+		add_timed_idea = {
+			idea = IDA_Small_Strikes
+			days = 30
+		}
+	}
+}
+country_event = { #Montana/Utah War Plan Decision, Medium Strikes
+	id = idaho_rework.10
+	title = idaho_rework.10.t
+	desc = idaho_rework.10.d
+	picture = GFX_report_event_IDA_Strikes
+	
+	is_triggered_only = yes
+	fire_only_once = no
+	
+	option = { #Reduce production, construction, and repair by 10%
+		name = idaho_rework.10.a
+		add_timed_idea = {
+			idea = IDA_Medium_Strikes
+			days = 30
+		}
+	}
+}
+country_event = { #Montana/Utah War Plan Decision, Large Strikes
+	id = idaho_rework.11
+	title = idaho_rework.11.t
+	desc = idaho_rework.11.d
+	picture = GFX_report_event_IDA_Strikes
+	
+	is_triggered_only = yes
+	fire_only_once = no
+	
+	option = { #Reduce production, construction, and repair by 10%
+		name = idaho_rework.11.a
+		add_timed_idea = {
+			idea = IDA_Large_Strikes
+			days = 30
+		}
+	}
+}
+### PAUSE ###
+country_event = { #Trump asks the WCZ to expand (see country event idaho_rework.5)
+	id = idaho_rework.12
+	title = idaho_rework.12.t
+	desc = idaho_rework.12.d
+	picture = GFX_report_event_Donald_Trump_Phone_Call
+	
+	is_triggered_only = yes
+	fire_only_once = no
+	
+	option = { 
+		name = idaho_rework.12.a
+		hidden_effect = {
+			set_country_flag = wcz_expansion
+		}
+	}
+}
+country_event = { #Trump asks the WCZ to defend (see country event idaho_rework.5)
+	id = idaho_rework.13
+	title = idaho_rework.13.t
+	desc = idaho_rework.13.d
+	picture = GFX_report_event_Donald_Trump_Phone_Call
+	
+	is_triggered_only = yes
+	fire_only_once = no
+	
+	option = { 
+		name = idaho_rework.13.a
+		hidden_effect = {
+			set_country_flag = wcz_defensive
+		}
+	}
+}
+# War Plan Decisions - Again #
+country_event = { #WCZ Raid (WCZ POV) - Normal Success
+	id = idaho_rework.14
+	title = idaho_rework.14.t
+	desc = idaho_rework.14.d
+	picture = GFX_report_event_IDA_Raid
+	
+	is_triggered_only = yes
+	fire_only_once = no
+	
+	option = { #WCZ net gains 250 equipment
+		name = idaho_rework.14.a
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 500
+			producer = FROM
+		}
+		army_experience = 5
+	}
+}
+country_event = { #WCZ Raid (WCZ POV) - Great Success
+	id = idaho_rework.15
+	title = idaho_rework.15.t
+	desc = idaho_rework.15.d
+	picture = GFX_report_event_IDA_Raid
+	
+	is_triggered_only = yes
+	fire_only_once = no
+	
+	option = { #WCZ net gains 500 equipment
+		name = idaho_rework.15.a
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 750
+			producer = FROM
+		}
+		army_experience = 5
+	}
+}
+country_event = { #WCZ Raid (WCZ POV) - Fail
+	id = idaho_rework.16
+	title = idaho_rework.16.t
+	desc = idaho_rework.16.d
+	picture = GFX_report_event_IDA_Raid
+	
+	is_triggered_only = yes
+	fire_only_once = no
+	
+	option = { #WCZ net loses 250 equipment and 25 manpower
+		name = idaho_rework.16.a
+		add_manpower = -25
+		army_experience = 10
+	}
+}
+country_event = { #WCZ Raid (MON/UTA POV) - Normal Success
+	id = idaho_rework.17
+	title = idaho_rework.17.t
+	desc = idaho_rework.17.d
+	picture = GFX_report_event_IDA_Raid
+	
+	is_triggered_only = yes
+	fire_only_once = no
+	
+	option = { #Montana/Utah net loss 250 equipment and 25 manpower
+		name = idaho_rework.17.a
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = -250
+			producer = FROM
+		}
+		add_manpower = -25
+	}
+}
+country_event = { #WCZ Raid (MON/UTA POV) - Great Success
+	id = idaho_rework.18
+	title = idaho_rework.18.t
+	desc = idaho_rework.18.d
+	picture = GFX_report_event_IDA_Raid
+	
+	is_triggered_only = yes
+	fire_only_once = no
+	
+	option = { #Montana/Utah net loss 500 equipment and 50 manpower
+		name = idaho_rework.18.a
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = -500
+			producer = FROM
+		}
+		add_manpower = -50
+	}
+}
+country_event = { #WCZ Raid (MON/UTA POV) - Failure
+	id = idaho_rework.19
+	title = idaho_rework.19.t
+	desc = idaho_rework.19.d
+	picture = GFX_report_event_IDA_Raid
+	
+	is_triggered_only = yes
+	fire_only_once = no
+	
+	option = { #Montana/Utah net gain 250 equipment
+		name = idaho_rework.19.a
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 250
+			producer = IDA
+		}
+		army_experience = 5
+	}
+}
+country_event = { #WCZ Destroys Roadways
+	id = idaho_rework.20
+	title = idaho_rework.20.t
+	desc = idaho_rework.20.d
+	picture = GFX_report_event_IDA_Destroy_Roads
+	
+	is_triggered_only = yes
+	fire_only_once = no
+	
+	option = { #Montana/Utah suffers movement speed and supply for 30 days
+		name = idaho_rework.20.a
+		add_timed_idea = {
+			idea = IDA_Roads_Blown
+			days = 30
+		}
+	}
+}
+country_event = { #MON/UTA Alert that an uprising is being planned against them.
+	id = idaho_rework.21
+	title = idaho_rework.21.t
+	desc = idaho_rework.21.d
+	picture = GFX_report_event_IDA_Militias_1
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #No effect, just an alert.
+		name = idaho_rework.21.a
+	}
+}
+country_event = { #MON 80% Strength Uprising.
+	id = idaho_rework.22
+	title = idaho_rework.22.t
+	desc = idaho_rework.22.d
+	picture = GFX_report_event_IDA_Militia_3
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Starts civil war in Montana
+		name = idaho_rework.22.a
+		ai_chance = {
+			factor = 10
+		}
+		start_civil_war = {
+			ideology = republican
+			ruling_party = ROOT
+			size = 0.8
+			only_own_territory = no
+			keep_political_leader = yes
+			keep_unit_leaders = {
+				
+			}
+			keep_unit_leaders_trigger = {
+				always = yes
+			}
+		}
+		random_other_country = {
+			limit = {
+				original_tag = MON
+				has_government = republican
+			}	
+			create_country_leader = {
+				name = "Chuck Baldwin"
+				desc = "DESC_LEADER_CHUCK_BALDWIN"
+				picture = "gfx/leaders/IDA/Chuck_Baldwin.dds"
+				expire = expire = "2060.1.1"
+				ideology = trumpist
+				traits = {		
+				}
+			}
+			create_field_marshal = {
+				name = "Ryan Payne"
+				desc = "DESC_GENERAL_RYAN_PAYNE"
+				portrait_path = "gfx/leaders/IDA/Ryan_Payne.dds"
+				traits = { organisational_leader guerilla_fighter }
+				skill = 2
+				attack_skill = 2
+				defense_skill = 2
+				planning_skill = 2
+				logistics_skill = 1
+			}
+		}
+		random_other_country = {
+			limit = {
+				original_tag = MON
+				has_government = republican
+			}
+			set_cosmetic_tag = IDA_Montana
+			load_focus_tree = idaho
+		}
+	}
+}
+country_event = { #MON 60% Strength Uprising.
+	id = idaho_rework.23
+	title = idaho_rework.23.t
+	desc = idaho_rework.23.d
+	picture = GFX_report_event_IDA_Militia_3
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Starts civil war in Montana
+		name = idaho_rework.23.a
+		start_civil_war = {
+			ideology = republican
+			ruling_party = ROOT
+			size = 0.6
+			only_own_territory = no
+			keep_political_leader = yes
+			keep_unit_leaders = {
+				
+			}
+			keep_unit_leaders_trigger = {
+				always = yes
+			}
+		}
+		random_other_country = {
+			limit = {
+				original_tag = MON
+				has_government = republican
+			}	
+			create_country_leader = {
+				name = "Chuck Baldwin"
+				desc = "DESC_LEADER_CHUCK_BALDWIN"
+				picture = "gfx/leaders/IDA/Chuck_Baldwin.dds"
+				expire = expire = "2060.1.1"
+				ideology = trumpist
+				traits = {		
+				}
+			}
+			create_field_marshal = {
+				name = "Ryan Payne"
+				desc = "DESC_GENERAL_RYAN_PAYNE"
+				portrait_path = "gfx/leaders/IDA/Ryan_Payne.dds"
+				traits = { organisational_leader guerilla_fighter }
+				skill = 2
+				attack_skill = 2
+				defense_skill = 2
+				planning_skill = 2
+				logistics_skill = 1
+			}
+		}
+		random_other_country = {
+			limit = {
+				original_tag = MON
+				has_government = republican
+			}
+			set_cosmetic_tag = IDA_Montana
+			load_focus_tree = idaho
+		}
+	}
+}
+country_event = { #MON 40% Strength Uprising.
+	id = idaho_rework.24
+	title = idaho_rework.24.t
+	desc = idaho_rework.24.d
+	picture = GFX_report_event_IDA_Militia_3
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Starts civil war in Montana
+		name = idaho_rework.24.a
+		start_civil_war = {
+			ideology = republican
+			ruling_party = ROOT
+			size = 0.4
+			only_own_territory = no
+			keep_political_leader = yes
+			keep_unit_leaders = {
+				
+			}
+			keep_unit_leaders_trigger = {
+				always = yes
+			}
+		}
+		random_other_country = {
+			limit = {
+				original_tag = MON
+				has_government = republican
+			}	
+			create_country_leader = {
+				name = "Chuck Baldwin"
+				desc = "DESC_LEADER_CHUCK_BALDWIN"
+				picture = "gfx/leaders/IDA/Chuck_Baldwin.dds"
+				expire = expire = "2060.1.1"
+				ideology = trumpist
+				traits = {		
+				}
+			}
+			create_field_marshal = {
+				name = "Ryan Payne"
+				desc = "DESC_GENERAL_RYAN_PAYNE"
+				portrait_path = "gfx/leaders/IDA/Ryan_Payne.dds"
+				traits = { organisational_leader guerilla_fighter }
+				skill = 2
+				attack_skill = 2
+				defense_skill = 2
+				planning_skill = 2
+				logistics_skill = 1
+			}
+		}
+		random_other_country = {
+			limit = {
+				original_tag = MON
+				has_government = republican
+			}
+			set_cosmetic_tag = IDA_Montana
+			load_focus_tree = idaho
+		}
+	}
+}
+country_event = { #MON 20% Strength Uprising.
+	id = idaho_rework.25
+	title = idaho_rework.25.t
+	desc = idaho_rework.25.d
+	picture = GFX_report_event_IDA_Militia_3
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Starts civil war in Montana
+		name = idaho_rework.25.a
+		start_civil_war = {
+			ideology = republican
+			ruling_party = ROOT
+			size = 0.2
+			only_own_territory = no
+			keep_political_leader = yes
+			keep_unit_leaders = {
+				
+			}
+			keep_unit_leaders_trigger = {
+				always = yes
+			}
+		}
+		random_other_country = {
+			limit = {
+				original_tag = MON
+				has_government = republican
+			}	
+			create_country_leader = {
+				name = "Chuck Baldwin"
+				desc = "DESC_LEADER_CHUCK_BALDWIN"
+				picture = "gfx/leaders/IDA/Chuck_Baldwin.dds"
+				expire = expire = "2060.1.1"
+				ideology = trumpist
+				traits = {		
+				}
+			}
+			create_field_marshal = {
+				name = "Ryan Payne"
+				desc = "DESC_GENERAL_RYAN_PAYNE"
+				portrait_path = "gfx/leaders/IDA/Ryan_Payne.dds"
+				traits = { organisational_leader guerilla_fighter }
+				skill = 2
+				attack_skill = 2
+				defense_skill = 2
+				planning_skill = 2
+				logistics_skill = 1
+			}
+		}
+		random_other_country = {
+			limit = {
+				original_tag = MON
+				has_government = republican
+			}
+			set_cosmetic_tag = IDA_Montana
+			load_focus_tree = idaho
+		}
+	}
+}
