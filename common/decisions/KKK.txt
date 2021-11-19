@@ -1,0 +1,47 @@
+KKK_purge = {
+	KKK_time = {
+		activation = {
+			always = no
+		}
+		available = {
+			always = no
+		}
+		is_good  = no
+		fire_only_once = yes
+		days_mission_timeout = 75
+		timeout_effect = {
+			add_ideas = KKK_failed_purge
+		}
+	}
+
+	KKK_city_time = {
+		state_target = yes
+          	target_trigger = {
+               		FROM = {
+                    		is_claimed_by = ROOT
+             		}
+		}
+		activation = {
+			always = yes
+		}
+		available = { 
+			FROM = {is_controlled_by = ROOT}
+		}
+		is_good  = no
+		fire_only_once = yes
+		days_mission_timeout = 45
+		timeout_effect = {
+			add_stability = -0.05
+			every_controlled_state = {
+				add_resistance_target = 5
+				add_resistance = 5
+			}
+		}
+		complete_effect = {
+			add_days_mission_timeout = {
+    				mission = KKK_time
+    				days = 45
+			}
+		}
+	}
+}
