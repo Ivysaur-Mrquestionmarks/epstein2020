@@ -540,9 +540,6 @@ focus_tree = {
 			
 		}
 		bypass = {
-			IDA = {
-				controls_state = 65
-			}
 			NOT = {
 				country_exists = MON
 				country_exists = LYM
@@ -561,6 +558,192 @@ focus_tree = {
 		completion_reward = {
 			custom_effect_tooltip = wcz_montana_decisions
 			add_ideas = IDA_War_Plan_Brown_Spirit
+		}
+	}
+	focus = { #Montana goes Trumpist (Ends puppet with Trump and join WCZ Faction0
+		id = IDA_Allies_Up_North
+		icon = GFX_goal_generic_major_war
+		x = 44
+		y = 8
+		cost = 5
+		prerequisite = {
+			focus = IDA_War_Plan_Brown
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 30
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			MON = {
+				has_completed_focus = MON_Side_With_Trump
+			}
+		}
+		bypass = {
+			NOT = {
+				country_exists = MON
+				country_exists = LYM
+				country_exists = BKF
+			}
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			if = {
+				limit = {
+					MON = {
+						is_puppet_of = USA
+					}
+				}
+			}
+			MON = {
+				remove_puppet = USA 
+			}
+			IDA = {
+				add_to_faction = MON
+			}
+		}
+	}
+	focus = { #Send event to Montana to negotiate the return of Idaho and Wyoming
+		id = IDA_Allies_Up_North
+		icon = GFX_goal_generic_major_war
+		x = 44
+		y = 9
+		cost = 5
+		prerequisite = {
+			focus = IDA_War_Plan_Brown
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 30
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			MON = {
+				has_completed_focus = MON_Side_With_Trump
+			}
+		}
+		bypass = {
+			NOT = {
+				country_exists = MON
+				country_exists = LYM
+				country_exists = BKF
+			}
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+		
+		}
+	}
+	focus = { #Montana doesn't go Trumpist (Gain political power, command power, war support)
+		id = IDA_The_Montana_Issue
+		icon = GFX_goal_generic_major_war
+		x = 46
+		y = 8
+		cost = 5
+		prerequisite = {
+			focus = IDA_War_Plan_Brown
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 30
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			MON = {
+				has_completed_focus = MON_Stick_To_Biden
+				has_completed_focus = MON_Self-Sufficiency_Plan
+			}
+		}
+		bypass = {
+			NOT = {
+				country_exists = MON
+				country_exists = LYM
+				country_exists = BKF
+			}
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			
+		}
+	}
+	focus = { #Beginning Focus to deal with Montana
+		id = IDA_The_Montana_Issue
+		icon = GFX_goal_generic_major_war
+		x = 46
+		y = 8
+		cost = 5
+		prerequisite = {
+			focus = IDA_War_Plan_Brown
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 30
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			MON = {
+				has_completed_focus = MON_Stick_To_Biden
+				has_completed_focus = MON_Self-Sufficiency_Plan
+			}
+		}
+		bypass = {
+			NOT = {
+				country_exists = MON
+				country_exists = LYM
+				country_exists = BKF
+			}
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			
 		}
 	}
 	# Defensive WCZ Path #
@@ -623,4 +806,406 @@ focus_tree = {
 	#	}
 	#	
 	#}
+}
+### WCZ Uprising Nation Tree ### 
+focus_tree = {
+	id = idaho_puppet
+	
+	country = {
+		factor = 0
+		
+	}
+	
+	default = no
+	
+	reset_on_civilwar = no
+	
+	continuous_focus_position = { x = 750 y = 500 }
+	
+	initial_show_position = {
+		focus = IDA_puppet_join_faction
+	}
+	
+		focus = {
+		id = IDA_puppet_join_faction
+		icon = GFX_goal_generic_alliance
+		x = 3
+		y = 0
+		cost = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			IDA = {
+                if = {
+                    limit = {
+                        OR = {
+                            has_dlc = "Together for Victory"
+                            has_dlc = "Man the Guns"
+                        }
+                    }
+                    set_autonomy = {
+                        target = ROOT
+                        autonomous_state = autonomy_colony
+                        freedom_level = 0.1
+                    }
+                    else = {
+                        puppet = ROOT
+                    }
+                }
+            }
+		}
+	}
+	focus = {
+		id = IDA_puppet_generic_military_improvement
+		icon = GFX_goal_generic_allies_build_infantry
+		x = 2
+		y = 1
+		cost = 1
+		prerequisite = { 
+			focus = IDA_puppet_join_faction 
+		}
+		available = {
+			has_civil_war = yes
+		}
+		bypass = {
+			has_civil_war = no
+		}
+		cancel = {
+			has_civil_war = no
+		}
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			army_experience = 5
+			add_tech_bonus = {
+				name = land_doc_bonus
+				bonus = 1.0
+				uses = 1
+				category = land_doctrine
+			}
+		}
+	}
+	focus = {
+		id = IDA_puppet_generic_military_modernisation
+		icon = GFX_goal_generic_small_arms
+		x = 4
+		y = 1
+		cost = 1
+		prerequisite = { 
+			focus = IDA_puppet_join_faction 
+		}
+		available = {
+			has_civil_war = yes
+		}
+		bypass = {
+			has_civil_war = no
+		}
+		cancel = {
+			has_civil_war = no
+		}
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = infantry_artillery_bonus
+				bonus = 1.0
+				uses = 1
+				category = infantry_weapons
+				category = artillery
+			}
+		}
+	}
+	focus = {
+		id = IDA_puppet_generic_offensive_military
+		icon = GFX_goal_generic_construct_mil_factory
+		x = 2
+		y = 2
+		cost = 1
+		prerequisite = { 
+			focus = IDA_puppet_generic_military_improvement 
+			focus = IDA_puppet_generic_military_modernisation
+		}
+		available = {
+			has_civil_war = yes
+		}
+		bypass = {
+			has_civil_war = no
+		}
+		cancel = {
+			has_civil_war = no
+		}
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				} 
+			}			
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				} 
+			}
+		}
+	}
+	focus = {
+		id = IDA_puppet_generic_industrial
+		icon = GFX_goal_generic_construct_civilian
+		x = 4
+		y = 2
+		cost = 1
+		prerequisite = { 
+			focus = IDA_puppet_generic_military_improvement 
+			focus = IDA_puppet_generic_military_modernisation
+		}
+		available = {
+			has_civil_war = yes
+		}
+		bypass = {
+			has_civil_war = no
+		}
+		cancel = {
+			has_civil_war = no
+		}
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1 
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1 
+			}	
+		}
+	}
+	focus = {
+		id = IDA_puppet_generic_researcher_1
+		icon = GFX_focus_research
+		x = 3
+		y = 3
+		cost = 1
+		prerequisite = { 
+			focus = IDA_puppet_generic_offensive_military 
+			focus = IDA_puppet_generic_industrial
+		}
+		available = {
+			has_civil_war = yes
+		}
+		bypass = {
+			has_civil_war = no
+		}
+		cancel = {
+			has_civil_war = no
+		}
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_research_slot = 1
+		}
+	}
+	focus = {
+		id = IDA_puppet_generic_researcher_2
+		icon = GFX_focus_research
+		x = 3
+		y = 4
+		cost = 1
+		prerequisite = { 
+			focus = IDA_puppet_generic_researcher_1 
+		}
+		available = {
+			has_civil_war = yes
+		}
+		bypass = {
+			has_civil_war = no
+		}
+		cancel = {
+			has_civil_war = no
+		}
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_research_slot = 1
+		}
+	}
+	focus = {
+		id = IDA_puppet_generic_infrastructure_stuff_1
+		icon = GFX_goal_generic_construct_infrastructure
+		x = 2
+		y = 5
+		cost = 1
+		prerequisite = { 
+			focus = IDA_puppet_generic_researcher_2 
+		}
+		available = {
+			has_civil_war = yes
+		}
+		bypass = {
+			has_civil_war = no
+		}
+		cancel = {
+			has_civil_war = no
+		}
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			random_owned_controlled_state = {
+			add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}	
+		}
+	
+	}
+	focus = {
+		id = IDA_puppet_generic_infrastructure_stuff_2
+		icon = GFX_goal_generic_construct_infrastructure
+		x = 4
+		y = 5
+		cost = 1
+		prerequisite = { 
+			focus = IDA_puppet_generic_researcher_2 
+		}
+		available = {
+			has_civil_war = yes
+		}
+		bypass = {
+			has_civil_war = no
+		}
+		cancel = {
+			has_civil_war = no
+		}
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = IDA_puppet_generic_secret_weps
+		icon = GFX_goal_generic_secret_weapon
+		x = 3
+		y = 6
+		cost = 1
+		prerequisite = { 
+			focus = IDA_puppet_generic_infrastructure_stuff_1
+			focus = IDA_puppet_generic_infrastructure_stuff_2 
+		}
+		available = {
+			has_civil_war = yes
+		}
+		bypass = {
+			has_civil_war = no
+		}
+		cancel = {
+			has_civil_war = no
+		}
+		
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = secret_bonus
+				bonus = 1.0
+				uses = 4
+				category = electronics
+				category = nuclear
+				category = rocketry
+			}
+		}
+	}
+	focus = {
+		id = IDA_puppet_annexation_and_core
+		icon = GFX_goal_tripartite_pact
+		x = 3
+		y = 7
+		cost = 1
+		prerequisite = { 
+			focus = IDA_puppet_generic_secret_weps 
+		}
+		available = {
+			has_war = no
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			IDA = {
+				every_state = {
+					limit = {
+						is_core_of = ROOT
+					}
+					add_core_of = IDA
+				}
+			}
+			IDA = {
+				country_event = idaho_rework.26
+			}
+			IDA = {
+				annex_country = {
+					target = ROOT
+					transfer_troops = yes
+				}
+			}
+		}
+	}
 }
