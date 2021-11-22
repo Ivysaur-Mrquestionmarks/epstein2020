@@ -215,7 +215,7 @@ focus_tree = {
 			}
 		}
 	}
-	# Expansion WCZ Path #
+	## Expansion WCZ Path ##
 	focus = { #Expansionist Path Picked After IDA_A_Change_In_Plans, Creates faction and Gives Stankiewicz an attack bonus
 		id = IDA_We_March_Forward
 		icon = GFX_goal_generic_major_war
@@ -291,7 +291,7 @@ focus_tree = {
 			}
 		}
 	}
-	#Initial Improvement
+	# Initial Improvement #
 	focus = { #Promote Veterans to help with Militia State (replace nation spirit)
 		id = IDA_Promote_Veterans_To_Command_Positions
 		icon = GFX_goal_generic_major_war
@@ -517,11 +517,11 @@ focus_tree = {
 			add_research_slot = 1
 		}
 	}
-	# War Plan Brown - Montana 
+	# War Plan Brown - Montana #
 	focus = { #Beginning Focus to deal with Montana
 		id = IDA_War_Plan_Brown
 		icon = GFX_goal_generic_major_war
-		x = 45
+		x = 46
 		y = 7
 		cost = 5
 		prerequisite = {
@@ -560,10 +560,11 @@ focus_tree = {
 			add_ideas = IDA_War_Plan_Brown_Spirit
 		}
 	}
-	focus = { #Montana goes Trumpist (Ends puppet with Trump and join WCZ Faction0
+	#Trumpist Montana
+	focus = { #Montana goes Trumpist (Event, Ends puppet with Trump and join WCZ Faction0
 		id = IDA_Allies_Up_North
 		icon = GFX_goal_generic_major_war
-		x = 44
+		x = 45
 		y = 8
 		cost = 5
 		prerequisite = {
@@ -600,25 +601,17 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
-			if = {
-				limit = {
-					MON = {
-						is_puppet_of = USA
-					}
-				}
-			}
+			add_political_power = 25
+			add_stability = 0.05
 			MON = {
-				remove_puppet = USA 
-			}
-			IDA = {
-				add_to_faction = MON
+				country_event = idaho_rework.27
 			}
 		}
 	}
 	focus = { #Send event to Montana to negotiate the return of Idaho and Wyoming
-		id = IDA_Allies_Up_North
+		id = IDA_Request_The_Return_Of_Our_Territories 
 		icon = GFX_goal_generic_major_war
-		x = 44
+		x = 45
 		y = 9
 		cost = 5
 		prerequisite = {
@@ -652,20 +645,175 @@ focus_tree = {
 		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = yes
+		
+		will_lead_to_war_with = MON
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
-		
+			MON = {
+				country_event = idaho_rework.28
+			}
 		}
 	}
-	focus = { #Montana doesn't go Trumpist (Gain political power, command power, war support)
-		id = IDA_The_Montana_Issue
+	focus = { #Improves Militia State debuffs, gain small amount of army exp, small boost to doctrine research
+		id = IDA_Montanan_Military_Advisors 
 		icon = GFX_goal_generic_major_war
-		x = 46
+		x = 45
+		y = 10
+		cost = 5
+		prerequisite = {
+			focus = IDA_Request_The_Return_Of_Our_Territories
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 30
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			has_country_flag = wcz_negotiations_finished
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			custom_effect_tooltip = wcz_army_improve
+			army_experience = 15
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+			if = {
+				limit = {
+					has_idea = IDA_Militia_State_1
+				}
+				swap_ideas = {
+					remove_idea = IDA_Militia_State_1
+					add_idea = IDA_Militia_State_4
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = IDA_Militia_State_2
+				}
+				swap_ideas = {
+					remove_idea = IDA_Militia_State_2
+					add_idea = IDA_Militia_State_4
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = IDA_Militia_State_3
+				}
+				swap_ideas = {
+					remove_idea = IDA_Militia_State_3
+					add_idea = IDA_Militia_State_4
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = IDA_Militia_State_4
+				}
+				swap_ideas = {
+					remove_idea = IDA_Militia_State_4
+					add_idea = IDA_Militia_State_5
+				}
+			}
+			remove_ideas = IDA_War_Plan_Brown_Spirit
+			if = {
+				limit = {
+					NOT = {
+						has_unit_leader = 19509
+					}
+				}
+				create_corps_commander = {
+					name = "Ryan Payne"
+					desc = "DESC_GENERAL_RYAN_PAYNE"
+					id = 19509
+					portrait_path = "gfx/leaders/IDA/Ryan_Payne.dds"
+					traits = { organisational_leader guerilla_fighter }
+					skill = 2
+					attack_skill = 2
+					defense_skill = 2
+					planning_skill = 2
+					logistics_skill = 1
+				}
+			}
+		}
+	}
+	#Not Trumpist Montana
+	focus = { #Montana doesn't go Trumpist (Add political power, command power, war support)
+		id = IDA_To_Slay_A_Beast
+		icon = GFX_goal_generic_major_war
+		x = 47
 		y = 8
 		cost = 5
 		prerequisite = {
 			focus = IDA_War_Plan_Brown
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 30
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			MON = {
+				OR = {
+					has_completed_focus = MON_Stick_To_Biden
+					has_completed_focus = MON_Self-Sufficiency_Plan
+					exists = no
+				}
+			}
+			
+		}
+		bypass = {
+			NOT = {
+				country_exists = MON
+				country_exists = LYM
+				country_exists = BKF
+			}
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_political_power = 50
+			add_command_power = 30
+			add_war_support = 0.1
+		}
+	}
+	focus = { #Gain war goal on Montana (Trumpist Montana path auto-completes this focus if Montana and the WCZ can't reach an agreement)
+		id = IDA_Operation_Treasure_Hunter
+		icon = GFX_goal_generic_major_war
+		x = 47
+		y = 9
+		cost = 5
+		prerequisite = {
+			focus = IDA_Request_The_Return_Of_Our_Territories
+			focus = IDA_To_Slay_A_Beast
 		}
 		mutually_exclusive = {
 			
@@ -696,20 +844,35 @@ focus_tree = {
 		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = yes
+		
+		will_lead_to_war_with = MON
+		will_lead_to_war_with = LYM
+		will_lead_to_war_with = BKF
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
-			
+			create_wargoal = {
+				type = annex_everything 
+				target = MON
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = LYM
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = BKF
+			}
 		}
 	}
-	focus = { #Beginning Focus to deal with Montana
-		id = IDA_The_Montana_Issue
+	focus = { #Improves Militia State debuffs, gives two 100% bonuses to land doctrine, 50 army experience  
+		id = IDA_Lessons_From_The_Big_Sky_Country
 		icon = GFX_goal_generic_major_war
-		x = 46
-		y = 8
+		x = 47
+		y = 10
 		cost = 5
 		prerequisite = {
-			focus = IDA_War_Plan_Brown
+			focus = IDA_Operation_Treasure_Hunter
 		}
 		mutually_exclusive = {
 			
@@ -721,17 +884,14 @@ focus_tree = {
 			
 		}
 		available = {
-			MON = {
-				has_completed_focus = MON_Stick_To_Biden
-				has_completed_focus = MON_Self-Sufficiency_Plan
-			}
-		}
-		bypass = {
 			NOT = {
 				country_exists = MON
 				country_exists = LYM
 				country_exists = BKF
 			}
+		}
+		bypass = {
+			
 		}
 		cancel = {
 		
@@ -743,10 +903,141 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
-			
+			custom_effect_tooltip = wcz_army_improve
+			army_experience = 30
+			add_tech_bonus = {
+				bonus = 1
+				uses = 2
+				category = land_doctrine
+			}
+			if = {
+				limit = {
+					has_idea = IDA_Militia_State_1
+				}
+				swap_ideas = {
+					remove_idea = IDA_Militia_State_1
+					add_idea = IDA_Militia_State_4
+				}
+			}
+			else_if  = {
+				limit = {
+					has_idea = IDA_Militia_State_2
+				}
+				swap_ideas = {
+					remove_idea = IDA_Militia_State_2
+					add_idea = IDA_Militia_State_4
+				}
+			}
+			else_if  = {
+				limit = {
+					has_idea = IDA_Militia_State_3
+				}
+				swap_ideas = {
+					remove_idea = IDA_Militia_State_3
+					add_idea = IDA_Militia_State_4
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = IDA_Militia_State_4
+				}
+				swap_ideas = {
+					remove_idea = IDA_Militia_State_4
+					add_idea = IDA_Militia_State_5
+				}
+			}
+			remove_ideas = IDA_War_Plan_Brown_Spirit
+			if = {
+				limit = {
+					NOT = {
+						has_unit_leader = 19509
+					}
+				}
+				create_corps_commander = {
+					name = "Ryan Payne"
+					desc = "DESC_GENERAL_RYAN_PAYNE"
+					id = 19509
+					portrait_path = "gfx/leaders/IDA/Ryan_Payne.dds"
+					traits = { organisational_leader guerilla_fighter }
+					skill = 2
+					attack_skill = 2
+					defense_skill = 2
+					planning_skill = 2
+					logistics_skill = 1
+				}
+			}
 		}
 	}
-	# Defensive WCZ Path #
+	focus = { #Montana final focus, improve Dependent Industry spirit, adds industry idea 
+		id =  IDA_Profits_From_The_Treasure_State
+		icon = GFX_goal_generic_major_war
+		x = 46
+		y = 11
+		cost = 5
+		prerequisite = {
+			focus = IDA_Montanan_Military_Advisors
+			focus = IDA_Lessons_From_The_Big_Sky_Country
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 30
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			custom_effect_tooltip = wcz_industry_improve
+			if = {
+				limit = {
+					has_idea = IDA_Economic_Dependence_1
+				}
+				swap_ideas = {
+					remove_idea = IDA_Economic_Dependence_1
+					add_idea = IDA_Economic_Dependence_4
+				}
+			}
+			else_if  = {
+				limit = {
+					has_idea = IDA_Economic_Dependence_2
+				}
+				swap_ideas = {
+					remove_idea = IDA_Economic_Dependence_2
+					add_idea = IDA_Economic_Dependence_4
+				}
+			}
+			else_if  = {
+				limit = {
+					has_idea = IDA_Economic_Dependence_3
+				}
+				swap_ideas = {
+					remove_idea = IDA_Economic_Dependence_3
+					add_idea = IDA_Economic_Dependence_4
+				}
+			}
+			add_timed_idea = {
+				idea = IDA_Montana_Profits_Spirit
+				days = 60
+			}
+		}
+	}
+	## Defensive WCZ Path ##
 	focus = { #Defensive Route Picked After IDA_A_Change_In_Plans, Gives Stankiewicz a defense bonus and mutual guarantee USA
 		id = IDA_Dig_In
 		icon = GFX_goal_generic_fortify_city
