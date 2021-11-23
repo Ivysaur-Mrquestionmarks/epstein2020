@@ -67,7 +67,7 @@ country_event = { #LDS take over Utah, WCZ must decide whether to expand or defe
 	id = idaho_rework.4
 	title = idaho_rework.4.t
 	desc = idaho_rework.4.d
-	picture = GFX_report_event_Stankiewicz_Plans
+	picture = GFX_report_event_Cornered_No_More
 	
 	is_triggered_only = yes
 	fire_only_once = yes
@@ -471,7 +471,7 @@ country_event = { #MON 80% Strength Uprising.
 				has_government = republican
 			}
 			set_cosmetic_tag = IDA_Montana
-			load_focus_tree = idaho
+			load_focus_tree = idaho_puppet
 		}
 	}
 }
@@ -531,7 +531,7 @@ country_event = { #MON 60% Strength Uprising.
 				has_government = republican
 			}
 			set_cosmetic_tag = IDA_Montana
-			load_focus_tree = idaho
+			load_focus_tree = idaho_puppet
 		}
 	}
 }
@@ -591,7 +591,7 @@ country_event = { #MON 40% Strength Uprising.
 				has_government = republican
 			}
 			set_cosmetic_tag = IDA_Montana
-			load_focus_tree = idaho
+			load_focus_tree = idaho_puppet
 		}
 	}
 }
@@ -651,7 +651,545 @@ country_event = { #MON 20% Strength Uprising.
 				has_government = republican
 			}
 			set_cosmetic_tag = IDA_Montana
-			load_focus_tree = idaho
+			load_focus_tree = idaho_puppet
+		}
+	}
+}
+country_event = { #WCZ gets alert that MON (Uprising) annexes itself into it
+	id = idaho_rework.26
+	title = idaho_rework.26.t
+	desc = idaho_rework.26.d
+	picture = GFX_report_event_IDA_Militias_1
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Get Ryan Payne as a general (Annexation happens in focus)
+		name = idaho_rework.26.a
+		create_corps_commander = {
+			name = "Ryan Payne"
+			desc = "DESC_GENERAL_RYAN_PAYNE"
+			id = 19509
+			portrait_path = "gfx/leaders/IDA/Ryan_Payne.dds"
+			traits = { organisational_leader guerilla_fighter }
+			skill = 2
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 2
+			logistics_skill = 1
+		}
+	}
+}
+# Trumpist Montana Events #
+country_event = { #MON alert that they are now in WCZ's faction
+	id = idaho_rework.27
+	title = idaho_rework.27.t
+	desc = idaho_rework.27.d
+	picture = GFX_report_event_IDA_Militias_1
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Removes puppet from MON, Join WCZ faction
+		name = idaho_rework.27.a
+		if = {
+			limit = {
+				is_puppet_of = USA
+			}
+			remove_puppet = USA 
+		}
+		IDA = {
+			add_to_faction = MON
+		}
+	}
+}
+country_event = { #WCZ and Montana Negotiate for Idaho and Wyoming (MON POV), AI will nearly always agree to return land peacefully
+	id = idaho_rework.28
+	title = idaho_rework.28.t
+	desc = idaho_rework.28.d
+	picture = GFX_report_event_IDA_Generic_Meeting
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Montana agrees to return all territory
+		name = idaho_rework.28.a
+		ai_chance = {
+			factor = 90
+		}
+		custom_effect_tooltip = give_wcz_idaho_and_wyoming
+		IDA = {
+			country_event = idaho_rework.29
+		}
+	}
+	
+	option = { #Montana offers to split territory
+		name = idaho_rework.28.b
+		ai_chance = {
+			factor = 10
+		}
+		custom_effect_tooltip = wcz_compromise_proposed
+		IDA = {
+			country_event = idaho_rework.30
+		}
+	}
+	
+	option = { #Montana refuses to return territory
+		name = idaho_rework.28.c
+		ai_chance = {
+			factor = 0
+		}
+		custom_effect_tooltip = wcz_angered
+		IDA = {
+			country_event = idaho_rework.31
+		}
+	}
+}
+country_event = { #WCZ and Montana Negotiate for Idaho and Wyoming (WCZ POV), Montana agreed to return all territory
+	id = idaho_rework.29
+	title = idaho_rework.29.t
+	desc = idaho_rework.29.d
+	picture = GFX_report_event_IDA_Generic_Meeting
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #WCZ gains back all of Idaho and Wyoming
+		name = idaho_rework.29.a
+		every_state = {
+			limit = { 
+				is_core_of = IDA 
+				CONTROLLER = {
+					tag = MON
+				}
+			}
+			remove_core_of = MON
+			IDA = {
+				transfer_state = PREV
+			}
+		}
+		hidden_effect = {
+			set_country_flag = wcz_negotiations_finished
+		}
+	}
+}
+country_event = { #WCZ and Montana Negotiate for Idaho and Wyoming (WCZ POV), Montana offered a compromise
+	id = idaho_rework.30
+	title = idaho_rework.30.t
+	desc = idaho_rework.30.d
+	picture = GFX_report_event_IDA_Generic_Meeting
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #WCZ gains only parts of Idaho and Wyoming
+		name = idaho_rework.30.a
+		ai_chance = {
+			factor = 10
+		}
+		custom_effect_tooltip = wcz_compromise_accepted
+		add_political_power = -25
+		every_state = {
+			limit = { 
+				is_core_of = IDA 
+				CONTROLLER = {
+					tag = MON
+				}
+				NOT = {
+					state = 99
+					state = 66
+					state = 63
+					state = 569
+				}
+			}
+			remove_core_of = MON
+			IDA = {
+				transfer_state = PREV
+			}
+		}
+		every_state = {
+			limit = { 
+				is_core_of = IDA 
+				CONTROLLER = {
+					tag = MON
+				}
+			}
+			remove_core_of = IDA
+		}
+		hidden_effect = {
+			set_country_flag = wcz_negotiations_finished
+		}
+	}
+	
+	option = { #Refuse compromise (sends event to Montana)
+		name = idaho_rework.30.b
+		ai_chance = {
+			factor = 10
+		}
+		custom_effect_tooltip = wcz_negotiation_escalated
+		MON = {
+			country_event = idaho_rework.32
+		}
+	}
+}
+country_event = { #WCZ and Montana Negotiate for Idaho and Wyoming (WCZ POV), Montana refused to return territory (WCZ AI will usually not accept this)
+	id = idaho_rework.31
+	title = idaho_rework.31.t
+	desc = idaho_rework.31.d
+	picture = GFX_report_event_IDA_Generic_Meeting
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #WCZ accepts
+		name = idaho_rework.31.a
+		ai_chance = {
+			factor = 10
+		}
+		custom_effect_tooltip = wcz_backed_down
+		add_political_power = -100
+		every_state = {
+			limit = { 
+				is_core_of = IDA 
+				CONTROLLER = {
+					tag = MON
+				}
+			}
+			remove_core_of = IDA
+		}
+		hidden_effect = {
+			set_country_flag = wcz_negotiations_finished
+		}
+		
+	}
+	
+	option = { #WCZ refuses (sends event to Montana)
+		name = idaho_rework.31.b
+		ai_chance = {
+			factor = 90
+		}
+		custom_effect_tooltip = wcz_negotiation_escalated
+		MON = {
+			country_event = idaho_rework.32
+		}
+	}
+}
+country_event = { #WCZ rejects Montana's demands, and threatens war with Montana (MON POV)
+	id = idaho_rework.32
+	title = idaho_rework.32.t
+	desc = idaho_rework.32.d
+	picture = GFX_report_event_IDA_Militia_3
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Montana backs down and returns territory
+		name = idaho_rework.32.a
+		ai_chance = {
+			factor = 90
+		}
+		custom_effect_tooltip = give_wcz_idaho_and_wyoming
+		every_state = {
+			limit = { 
+				is_core_of = IDA 
+				CONTROLLER = {
+					tag = MON
+				}
+			}
+			remove_core_of = MON
+			IDA = {
+				transfer_state = PREV
+			}
+		}
+		hidden_effect = {
+			set_country_flag = wcz_negotiations_finished
+		}
+	}
+	
+	option = { #Montana refuses to back down (MON AI will never escalate this further)
+		name = idaho_rework.32.b
+		ai_chance = {
+			factor = 0
+		}
+		custom_effect_tooltip = wcz_no_mediitaion 
+		IDA = {
+			country_event = idaho_rework.33
+		}
+	}
+	
+	option = { #Montana asks Trump for meditation (can not lead to war)
+		name = idaho_rework.32.c
+		ai_chance = {
+			factor = 10
+		}
+		custom_effect_tooltip = wcz_yes_mediaition
+		IDA = {
+			country_event = idaho_rework.36
+		}
+		USA = {
+			country_event = idaho_rework.37
+			days = 5
+		}
+	}
+}
+country_event = { #Montana refuses to submit to WCZ, WCZ goes to war with Montana
+	id = idaho_rework.33
+	title = idaho_rework.33.t
+	desc = idaho_rework.33.d
+	picture = GFX_report_event_IDA_Militia_3
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #WCZ goes to war alone
+		name = idaho_rework.33.a
+		ai_chance = {
+			factor = 10
+		}
+		add_war_support = 0.1
+		declare_war_on = {
+			target = MON
+			type = annex_everything
+		}
+		complete_national_focus = IDA_Operation_Treasure_Hunter
+	}
+	
+	option = { #WCZ asks for Trump to support them (Trump must have defeated the NPA)
+		name = idaho_rework.33.b
+		trigger = {
+			NOT = {
+				country_exists = NPA
+			}
+		}
+		ai_chance = {
+			factor = 100
+		}
+		USA = {
+			country_event = idaho_rework.34
+			days = 2
+		}
+	}
+}
+country_event = { #WCZ asks Trump to support them in a war against Montana
+	id = idaho_rework.34
+	title = idaho_rework.34.t
+	desc = idaho_rework.34.d
+	picture = GFX_report_event_IDA_Militia_3
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Trump agrees to support the war
+		name = idaho_rework.34.a
+		ai_chance = {
+			factor = 80
+		}
+		declare_war_on = {
+			target = MON
+			type = annex_everything
+		}
+		IDA = {
+			declare_war_on = {
+				target = MON
+				type = annex_everything
+			}
+			complete_national_focus = IDA_Operation_Treasure_Hunter
+		}
+	}
+	
+	option = { #Trump refuses to support the WCZ
+		name = idaho_rework.34.b
+		ai_chance = {
+			factor = 20
+		}
+		IDA = {
+			country_event = idaho_rework.35
+		}
+	}
+}
+country_event = { #Trump rejects supporting the WCZ against Montana
+	id = idaho_rework.35
+	title = idaho_rework.35.t
+	desc = idaho_rework.35.d
+	picture = GFX_report_event_IDA_Militia_3
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #WCZ declares war against MON
+		name = idaho_rework.35.a
+		add_war_support = 0.1
+		declare_war_on = {
+			target = MON
+			type = annex_everything
+		}
+		complete_national_focus = IDA_Operation_Treasure_Hunter
+	}
+}
+country_event = { #Alert that Montana asked for Trump to mediate the conflict
+	id = idaho_rework.36
+	title = idaho_rework.36.t
+	desc = idaho_rework.36.d
+	picture = GFX_report_event_IDA_Generic_Meeting
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Nothing, just a tooltip
+		name = idaho_rework.36.a
+		custom_effect_tooltip = wcz_yes_mediaition
+	}
+}
+country_event = { #USA event for Montana-WCZ conflict mediation
+	id = idaho_rework.37
+	title = idaho_rework.37.t
+	desc = idaho_rework.37.d
+	picture = GFX_report_event_IDA_Generic_Meeting
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Side with the WCZ
+		name = idaho_rework.37.a
+		ai_chance = {
+			factor = 10
+		}
+		IDA = {
+			country_event = idaho_rework.38
+			days = 3
+		}
+		MON = {
+			country_event = idaho_rework.38
+			days = 3
+		}
+	}
+	option = { #Side with Montana
+		name = idaho_rework.37.b
+		ai_chance = {
+			factor = 10
+		}
+		IDA = {
+			country_event = idaho_rework.39
+			days = 3
+		}
+		MON = {
+			country_event = idaho_rework.39
+			days = 3
+		}
+	}
+}
+country_event = { #USA sided with the WCZ
+	id = idaho_rework.38
+	title = idaho_rework.38.t
+	desc = idaho_rework.38.d
+	picture = GFX_report_event_IDA_Generic_Meeting
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #WCZ gets this event, actually transfers the territory
+		name = idaho_rework.38.a
+		trigger = {
+			tag = IDA
+		}
+		every_state = {
+			limit = { 
+				is_core_of = IDA 
+				CONTROLLER = {
+					tag = MON
+				}
+			}
+			remove_core_of = MON
+			IDA = {
+				transfer_state = PREV
+			}
+		}
+		hidden_effect = {
+			set_country_flag = wcz_negotiations_finished
+		}
+	}
+	option = { #Montana gets this event, doesn't actually do anything
+		name = idaho_rework.38.b
+		trigger = {
+			tag = MON
+		}
+		custom_effect_tooltip = give_wcz_idaho_and_wyoming
+	}
+}
+country_event = { #USA sided with Montana
+	id = idaho_rework.39
+	title = idaho_rework.39.t
+	desc = idaho_rework.39.d
+	picture = GFX_report_event_IDA_Generic_Meeting
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #WCZ gets this event, lose political power and stability (I considered removing the cores for the WCZ, but I decided to leave it as is.)
+		name = idaho_rework.39.a
+		trigger = { 
+			tag = IDA
+		}
+		add_political_power = -15
+		add_stability = -0.05
+		hidden_effect = {
+			set_country_flag = wcz_negotiations_finished
+		}
+	}
+	option = { #Montana gets this event, only gives political power
+		name = idaho_rework.39.b
+		trigger = {
+			tag = MON
+		}
+		add_political_power = 25
+	}
+}
+country_event = { #Event for if WCZ goes to war with Bidenist Montana (Sends event to peace out FRA and WCZ)
+	id = idaho_rework.40
+	title = idaho_rework.40.t
+	desc = idaho_rework.40.d
+	picture = GFX_report_event_IDA_Militia_3
+	
+	fire_only_once = yes
+
+	mean_time_to_happen = {
+		days = 7
+	}
+
+	trigger = {
+		tag = IDA
+		has_war_with = MON
+		has_war_with = FRA
+		MON = {
+			is_puppet_of = FRA
+		}
+	}
+	
+	option = {
+		name = idaho_rework.40.a
+		ai_chance = {
+			factor = 10
+		}
+		FRA = {
+			country_event = idaho_rework.41
+		}
+	}
+}
+country_event = { #Peace out FRA and WCZ
+	id = idaho_rework.41
+	title = idaho_rework.41.t
+	desc = idaho_rework.41.d
+	picture = GFX_report_event_IDA_Militia_3
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #FRA gets this event, white peace FRA and WCZ
+		name = idaho_rework.41.a
+		white_peace = IDA
+		set_truce = {
+			target = IDA
+			days = 270
 		}
 	}
 }
