@@ -571,7 +571,7 @@ focus_tree = {
 			focus = IDA_War_Plan_Brown
 		}
 		mutually_exclusive = {
-			
+			focus = IDA_To_Slay_A_Beast
 		}
 		ai_will_do = {
 			factor = 30
@@ -615,7 +615,7 @@ focus_tree = {
 		y = 9
 		cost = 5
 		prerequisite = {
-			focus = IDA_War_Plan_Brown
+			focus = IDA_Allies_Up_North
 		}
 		mutually_exclusive = {
 			
@@ -665,7 +665,7 @@ focus_tree = {
 			focus = IDA_Request_The_Return_Of_Our_Territories
 		}
 		mutually_exclusive = {
-			
+			focus = IDA_Lessons_From_The_Big_Sky_Country
 		}
 		ai_will_do = {
 			factor = 30
@@ -733,25 +733,6 @@ focus_tree = {
 				}
 			}
 			remove_ideas = IDA_War_Plan_Brown_Spirit
-			if = {
-				limit = {
-					NOT = {
-						has_unit_leader = 19509
-					}
-				}
-				create_corps_commander = {
-					name = "Ryan Payne"
-					desc = "DESC_GENERAL_RYAN_PAYNE"
-					id = 19509
-					portrait_path = "gfx/leaders/IDA/Ryan_Payne.dds"
-					traits = { organisational_leader guerilla_fighter }
-					skill = 2
-					attack_skill = 2
-					defense_skill = 2
-					planning_skill = 2
-					logistics_skill = 1
-				}
-			}
 		}
 	}
 	#Not Trumpist Montana
@@ -765,7 +746,7 @@ focus_tree = {
 			focus = IDA_War_Plan_Brown
 		}
 		mutually_exclusive = {
-			
+			focus = IDA_Allies_Up_North
 		}
 		ai_will_do = {
 			factor = 30
@@ -875,7 +856,7 @@ focus_tree = {
 			focus = IDA_Operation_Treasure_Hunter
 		}
 		mutually_exclusive = {
-			
+			focus = IDA_Montanan_Military_Advisors
 		}
 		ai_will_do = {
 			factor = 30
@@ -947,23 +928,12 @@ focus_tree = {
 				}
 			}
 			remove_ideas = IDA_War_Plan_Brown_Spirit
-			if = {
-				limit = {
-					NOT = {
-						has_unit_leader = 19509
+			IDA = {
+				every_state = {
+					limit = {
+						is_core_of = MON
 					}
-				}
-				create_corps_commander = {
-					name = "Ryan Payne"
-					desc = "DESC_GENERAL_RYAN_PAYNE"
-					id = 19509
-					portrait_path = "gfx/leaders/IDA/Ryan_Payne.dds"
-					traits = { organisational_leader guerilla_fighter }
-					skill = 2
-					attack_skill = 2
-					defense_skill = 2
-					planning_skill = 2
-					logistics_skill = 1
+				add_core_of = IDA
 				}
 			}
 		}
@@ -1035,6 +1005,69 @@ focus_tree = {
 				idea = IDA_Montana_Profits_Spirit
 				days = 60
 			}
+			if = {
+				limit = {
+					NOT = {
+						has_unit_leader = 19509
+					}
+				}
+				create_corps_commander = {
+					name = "Ryan Payne"
+					desc = "DESC_GENERAL_RYAN_PAYNE"
+					id = 19509
+					portrait_path = "gfx/leaders/IDA/Ryan_Payne.dds"
+					traits = { organisational_leader guerilla_fighter }
+					skill = 2
+					attack_skill = 2
+					defense_skill = 2
+					planning_skill = 2
+					logistics_skill = 1
+				}
+			}
+		}
+	}
+	# War Plan Yellow - Utah #
+	focus = { #Beginning Focus to deal with Montana
+		id = IDA_War_Plan_Yellow
+		icon = GFX_goal_generic_major_war
+		x = 55
+		y = 7
+		cost = 5
+		prerequisite = {
+			focus = IDA_Revive_The_Color_Coded_War_Plans
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 30
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			NOT = {
+				country_exists = UTA
+				country_exists = SIN
+				country_exists = MOL
+				country_exists = LAS
+			}
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			custom_effect_tooltip = wcz_utah_decisions
+			add_ideas = IDA_War_Plan_Yellow_Spirit
 		}
 	}
 	## Defensive WCZ Path ##
@@ -1488,8 +1521,21 @@ focus_tree = {
 					add_core_of = IDA
 				}
 			}
-			IDA = {
-				country_event = idaho_rework.26
+			if = {
+				limit = {
+					original_tag = MON
+				}
+				IDA = {
+					country_event = idaho_rework.26
+				}
+			}
+			else_if = {
+				limit = {
+					original_tag = UTA
+				}
+				IDA = {
+					country_event = idaho_rework.46
+				}
 			}
 			IDA = {
 				annex_country = {
