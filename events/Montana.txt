@@ -750,54 +750,41 @@ country_event = {
 
 	option = { 
 		name = montana.31.a
-		IDA = {
-			country_event = { id = montana.51 days = 1 }
+		ai_chance = {
+			factor = 10
+			modifier = {
+				factor = 10
+				AND = {
+					IDA = {
+						has_government = ROOT
+						has_completed_focus = IDA_Dig_In
+					}
+				}
+			}
+		}
+		MON = {
+			annex_country = {
+				target = IDA
+				transfer_troops = yes
+			}
 		}
 	}
 	option = { 
 		name = montana.31.b
-		USA = {
-		end_puppet = IDA
-		}
-		hidden_effect = {
-			IDA = { 
-				leave_faction = yes
-			}
-			MON = {
-				country_event = { id = montana.33 days = 1 }
-			}
-		}
-	}
-	option = { 
-		name = montana.31.c
-		hidden_effect = {
-			USA = {
-				end_puppet = IDA
-			}
-			IDA = { 
-				leave_faction = yes 
-				set_politics = {
-					ruling_party = autocratic
-					elections_allowed = no
+		ai_chance = {
+			factor = 10
+			modifier = {
+				factor = 10
+				OR = {
+					IDA = {
+						has_completed_focus = IDA_We_March_Forward
+					}
 				}
 			}
-			MON = {
-				country_event = { id = montana.34 days = 1 }
-			}
 		}
-		IDA = {
-			declare_war_on = {
-				target = USA
-				type = puppet_wargoal_focus
-			}
+		MON = {
+			country_event = { id = montana.32 days = 1 }
 		}
-		MON = { 		
-			declare_war_on = {
-				target = USA
-				type = puppet_wargoal_focus
-			}	
-		}
-		add_named_threat = { threat = 10 name = monthreat.4.t }
 	}
 }
 country_event = {
@@ -811,35 +798,55 @@ country_event = {
 
 	option = { 
 		name = montana.32.a
+		declare_war_on = {
+			target = IDA
+			type = annex_everything
+		}
+		hidden_effect = {
+			IDA = {
+				if = {
+					limit = {
+						has_completed_focus = IDA_We_March_Forward
+					}
+					complete_national_focus = IDA_Revive_The_Color_Coded_War_Plans
+					complete_national_focus = IDA_War_Plan_Brown
+				}
+			}
+		}
 	}
-}
-country_event = {
-	id = montana.33
-	title = montana.33.t
-	desc = montana.33.d
-	picture = event_revolt_put_down_01
-
-	is_triggered_only = yes
-	fire_only_once = yes
-
+	
 	option = { 
-		name = montana.33.a
-		create_wargoal = { type = annex_everything target = IDA }
+		name = montana.32.b
+		add_political_power = 25
 	}
 }
-country_event = {
-	id = montana.34
-	title = montana.34.t
-	desc = montana.34.d
-	picture = event_revolt_put_down_01
-
-	is_triggered_only = yes
-	fire_only_once = yes
-
-	option = { 
-		name = montana.34.a
-	}
-}
+#country_event = { #Former WCZ Question event
+#	id = montana.33
+#	title = montana.33.t
+#	desc = montana.33.d
+#	picture = event_revolt_put_down_01
+#
+#	is_triggered_only = yes
+#	fire_only_once = yes
+#
+#	option = { 
+#		name = montana.33.a
+#		create_wargoal = { type = annex_everything target = IDA }
+#	}
+#}
+#country_event = { #Former WCZ Question event
+#	id = montana.34
+#	title = montana.34.t
+#	desc = montana.34.d
+#	picture = event_revolt_put_down_01
+#
+#	is_triggered_only = yes
+#	fire_only_once = yes
+#
+#	option = { 
+#		name = montana.34.a
+#	}
+#}
 
 #SEPARATIST EVENTS
 #Idaho puppet transfer attempt
@@ -1787,48 +1794,48 @@ country_event = {
 }
 
 
-#Idaho has almost no choice 
+#Idaho has almost no choice (FREE EVENT SAPCE NOW)
 
-country_event = {
-	id = montana.51
-	title = montana.51.t
-	desc = montana.51.d
-	picture = event_MON_Secessionists_Good
-
-	is_triggered_only = yes
-	fire_only_once = yes
-
-	option = { 
-		name = montana.51.a
-		MON = {
-		annex_country = {
-			target = IDA
-			transfer_troops = no
-			}
-		custom_effect_tooltip = MON_annexIda
-		hidden_effect = {
-		MON = {
-			country_event = { id = montana.32 days = 1 }
-		}
-		}
-		}
-		}
-	option = { 
-		name = montana.51.b
-		MON = {
-		create_wargoal = { type = annex_everything target = IDA }
-		}
-		}
-	option = { 
-		name = montana.51.c
-		custom_effect_tooltip = MON_submitIda
-		hidden_effect = {
-		MON = {
-			country_event = { id = montana.52 days = 1 }
-		}
-		}
-		}
-	}
+#country_event = {
+#	id = montana.51
+#	title = montana.51.t
+#	desc = montana.51.d
+#	picture = event_MON_Secessionists_Good
+#
+#	is_triggered_only = yes
+#	fire_only_once = yes
+#
+#	option = { 
+#		name = montana.51.a
+#		MON = {
+#		annex_country = {
+#			target = IDA
+#			transfer_troops = yes
+#			}
+#		custom_effect_tooltip = MON_annexIda
+#		hidden_effect = {
+#			MON = {
+#				country_event = { id = montana.32 days = 1 }
+#			}
+#		}
+#		}
+#		}
+#	option = { 
+#		name = montana.51.b
+#		MON = {
+#		create_wargoal = { type = annex_everything target = IDA }
+#		}
+#		}
+#	option = { 
+#		name = montana.51.c
+#		custom_effect_tooltip = MON_submitIda
+#		hidden_effect = {
+#		MON = {
+#			country_event = { id = montana.52 days = 1 }
+#		}
+#		}
+#		}
+#	}
 	
 #Idaho suggestion - no annexation yeee
 
