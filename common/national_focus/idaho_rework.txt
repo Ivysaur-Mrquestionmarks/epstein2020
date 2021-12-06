@@ -20,8 +20,6 @@ focus_tree = {
 	
 	default = no
 	
-	reset_on_civil_war = yes
-	
 	continuous_focus_position = { x = 250 y = 2000 }
 	
 	initial_show_position = {
@@ -664,7 +662,7 @@ focus_tree = {
 			focus = IDA_War_Plan_Brown
 		}
 		mutually_exclusive = {
-			focus = IDA_To_Slay_A_Beast
+			focus = IDA_Enemies_In_The_Shining_Mountains
 		}
 		ai_will_do = {
 			factor = 30
@@ -1097,16 +1095,7 @@ focus_tree = {
 				idea = IDA_Montana_Profits_Spirit
 				days = 60
 			}
-			if = {
-				limit = {
-					NOT = {
-						has_character = IDA_ryan_payne
-					}
-				}
-				IDA_ryan_payne = { 
-					set_nationality = IDA 
-				} 
-			}
+			custom_effect_tooltip = wcz_ryan_payne_recruited
 		}
 	}
 	# War Plan Yellow - Utah #
@@ -1199,8 +1188,8 @@ focus_tree = {
 	focus = { #Unlock decisions to help the Freedom Coalition in the Mormon War, also allows to send volunteers
 		id = IDA_Support_The_Freedom_Coalition
 		icon = GFX_goal_IDA_War_Plan_Yellow_Focus
-		x = 56
-		y = 8
+		x = 57
+		y = 7
 		cost = 5
 		prerequisite = {
 			focus = IDA_War_Plan_Yellow
@@ -1237,6 +1226,58 @@ focus_tree = {
 		completion_reward = {
 			custom_effect_tooltip = wcz_support_primivitia_decisions
 			add_ideas = IDA_Volunteer_Corps
+		}
+	}
+	focus = { #Unlock decisions to help the Freedom Coalition in the Mormon War, also allows to send volunteers
+		id = IDA_Direct_Intervention
+		icon = GFX_goal_IDA_War_Plan_Yellow_Focus
+		x = 56
+		y = 8
+		cost = 5
+		prerequisite = {
+			focus = IDA_War_Plan_Yellow
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			date > 2023.1.1
+			UTA = {
+				OR = {
+					has_war_with = SIN
+					has_war_with = MOL
+					has_war_with = LAS
+					has_war_with = HOP
+				}
+			}
+		}
+		bypass = {
+			NOT = {
+				country_exists = UTA
+				country_exists = SIN
+				country_exists = MOL
+				country_exists = LAS
+			}
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		
+		will_lead_to_war_with = UTA
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			
 		}
 	}
 	## Defensive WCZ Path ##

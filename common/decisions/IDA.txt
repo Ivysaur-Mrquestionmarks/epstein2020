@@ -268,7 +268,7 @@ IDA_war_plan_brown_decision = {
 
 	IDA_MON_smuggle_equipment_to_resistance_groups = { #Helps with uprising strength, costs equipment
 
-		icon = GFX_decision_generic_prepare_civil_war
+		icon = GFX_decision_generic_industry
 
 		available = {
 			has_idea = IDA_War_Plan_Brown_Spirit
@@ -813,7 +813,7 @@ IDA_war_plan_yellow_decision = {
 	}
 	
 	# Uprising Decisions - As of writing this, the A.I. will never take these decisions for simplicity #
-	IDA_MON_organize_militia_resistance = { #Helps with uprising strength, costs political power and command power
+	IDA_UTA_organize_militia_resistance = { #Helps with uprising strength, costs political power and command power
 
 		icon = GFX_decision_hol_draw_up_staff_plans
 
@@ -871,7 +871,7 @@ IDA_war_plan_yellow_decision = {
 
 	IDA_UTA_smuggle_equipment_to_resistance_groups = { #Helps with uprising strength, costs equipment
 
-		icon = GFX_decision_generic_prepare_civil_war
+		icon = GFX_decision_generic_industry
 
 		available = {
 			has_idea = IDA_War_Plan_Yellow_Spirit
@@ -1046,6 +1046,312 @@ IDA_war_plan_yellow_decision = {
 						country_event = idaho_rework.45
 					}
 				}
+			}
+		}
+	}
+}
+
+IDA_support_utah_decision = { 
+	
+	IDA_send_UTA_equipment = { #Cost political power and equipment, Utah gains equipment
+
+		icon = GFX_decision_generic_prepare_civil_war
+
+		available = {
+			has_completed_focus = IDA_Support_The_Mormons
+			UTA = {
+				has_war_with = SIN
+				has_war_with = MOL
+				has_war_with = LAS
+			}
+			has_equipment = { infantry_equipment > 249 }
+		}
+
+		cost = 15
+		ai_will_do = {
+			factor = 10
+		}
+
+		visible = {
+			has_completed_focus = IDA_Support_The_Mormons
+			UTA = {
+				has_war_with = SIN
+				has_war_with = MOL
+				has_war_with = LAS
+			}
+		}
+		
+		days_re_enable = 10
+		
+		fixed_random_seed = no
+		complete_effect = { #Lose 250 equipment, Utah gains 250 equipment
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -250
+			}
+			UTA = {
+				country_event = idaho_rework.47
+			}
+		}
+	}
+	
+	IDA_send_UTA_manpower = { #Cost political power and manpower, Utah gains manpower
+
+		icon = GFX_decision_generic_prepare_civil_war
+
+		available = {
+			has_completed_focus = IDA_Support_The_Mormons
+			UTA = {
+				has_war_with = SIN
+				has_war_with = MOL
+				has_war_with = LAS
+			}
+			has_manpower = { infantry_equipment > 99 }
+		}
+
+		cost = 15
+		ai_will_do = {
+			factor = 10
+		}
+
+		visible = {
+			has_completed_focus = IDA_Support_The_Mormons
+			UTA = {
+				has_war_with = SIN
+				has_war_with = MOL
+				has_war_with = LAS
+			}
+		}
+		
+		days_re_enable = 10
+		
+		fixed_random_seed = no
+		complete_effect = { #Lose 100 manpower, Utah gains 100 manpower
+			add_manpower = -100
+			UTA = {
+				country_event = idaho_rework.48
+			}
+		}
+	}
+}
+
+IDA_support_primivitia_decision = { 
+	
+	IDA_send_SIN_equipment = { #Cost political power and equipment, Primivitia gains equipment
+
+		icon = GFX_decision_generic_prepare_civil_war
+
+		available = {
+			has_completed_focus = IDA_Support_The_Freedom_Coalition
+			SIN = {
+				has_war_with = UTA
+			}
+			has_equipment = { infantry_equipment > 249 }
+		}
+
+		cost = 15
+		ai_will_do = {
+			factor = 10
+		}
+
+		visible = {
+			has_completed_focus = IDA_Support_The_Freedom_Coalition
+			SIN = {
+				has_war_with = UTA
+			}
+		}
+		
+		days_re_enable = 10
+		
+		fixed_random_seed = no
+		complete_effect = { #Lose 250 equipment, Primivitia gains 250 equipment
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -250
+			}
+			SIN = {
+				country_event = idaho_rework.47
+			}
+		}
+	}
+	
+	IDA_send_SIN_manpower = { #Cost political power and manpower, Primivitia gains manpower
+
+		icon = GFX_decision_generic_prepare_civil_war
+
+		available = {
+			has_completed_focus = IDA_Support_The_Freedom_Coalition
+			SIN = {
+				has_war_with = UTA
+			}
+			has_manpower = { infantry_equipment > 99 }
+		}
+
+		cost = 15
+		ai_will_do = {
+			factor = 10
+		}
+
+		visible = {
+			has_completed_focus = IDA_Support_The_Freedom_Coalition
+			SIN = {
+				has_war_with = UTA
+			}
+		}
+		
+		days_re_enable = 10
+		
+		fixed_random_seed = no
+		complete_effect = { #Lose 100 manpower, Primivitia gains 100 manpower
+			add_manpower = -100
+			SIN = {
+				country_event = idaho_rework.48
+			}
+		}
+	}
+	
+	IDA_send_LAS_equipment = { #Cost political power and equipment, Las Vegas gains equipment
+
+		icon = GFX_decision_generic_prepare_civil_war
+
+		available = {
+			has_completed_focus = IDA_Support_The_Freedom_Coalition
+			LAS = {
+				has_war_with = UTA
+			}
+			has_equipment = { infantry_equipment > 249 }
+		}
+
+		cost = 15
+		ai_will_do = {
+			factor = 10
+		}
+
+		visible = {
+			has_completed_focus = IDA_Support_The_Freedom_Coalition
+			LAS = {
+				has_war_with = UTA
+			}
+		}
+		
+		days_re_enable = 10
+		
+		fixed_random_seed = no
+		complete_effect = { #Lose 250 equipment, Las Vegas gains 250 equipment
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -250
+			}
+			LAS = {
+				country_event = idaho_rework.47
+			}
+		}
+	}
+	
+	IDA_send_LAS_manpower = { #Cost political power and manpower, Las Vegas gains manpower
+
+		icon = GFX_decision_generic_prepare_civil_war
+
+		available = {
+			has_completed_focus = IDA_Support_The_Freedom_Coalition
+			LAS = {
+				has_war_with = UTA
+			}
+			has_manpower = { infantry_equipment > 99 }
+		}
+
+		cost = 15
+		ai_will_do = {
+			factor = 10
+		}
+
+		visible = {
+			has_completed_focus = IDA_Support_The_Freedom_Coalition
+			LAS = {
+				has_war_with = UTA
+			}
+		}
+		
+		days_re_enable = 10
+		
+		fixed_random_seed = no
+		complete_effect = { #Lose 100 manpower, Las Vegas gains 100 manpower
+			add_manpower = -100
+			LAS = {
+				country_event = idaho_rework.48
+			}
+		}
+	}
+	
+	IDA_send_MOL_equipment = { #Cost political power and equipment, Molossia gains equipment
+
+		icon = GFX_decision_generic_prepare_civil_war
+
+		available = {
+			has_completed_focus = IDA_Support_The_Freedom_Coalition
+			MOL = {
+				has_war_with = UTA
+			}
+			has_equipment = { infantry_equipment > 249 }
+		}
+
+		cost = 15
+		ai_will_do = {
+			factor = 10
+		}
+
+		visible = {
+			has_completed_focus = IDA_Support_The_Freedom_Coalition
+			MOL = {
+				has_war_with = UTA
+			}
+		}
+		
+		days_re_enable = 10
+		
+		fixed_random_seed = no
+		complete_effect = { #Lose 250 equipment, Molossia gains 250 equipment
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -250
+			}
+			MOL = {
+				country_event = idaho_rework.47
+			}
+		}
+	}
+	
+	IDA_send_MOL_manpower = { #Cost political power and manpower, Molossia gains manpower
+
+		icon = GFX_decision_generic_prepare_civil_war
+
+		available = {
+			has_completed_focus = IDA_Support_The_Freedom_Coalition
+			MOL = {
+				has_war_with = UTA
+			}
+			has_manpower = { infantry_equipment > 99 }
+		}
+
+		cost = 15
+		ai_will_do = {
+			factor = 10
+		}
+
+		visible = {
+			has_completed_focus = IDA_Support_The_Freedom_Coalition
+			MOL = {
+				has_war_with = UTA
+			}
+		}
+		
+		days_re_enable = 10
+		
+		fixed_random_seed = no
+		complete_effect = { #Lose 100 manpower, Molossia gains 100 manpower
+			add_manpower = -100
+			MOL = {
+				country_event = idaho_rework.48
 			}
 		}
 	}
