@@ -1,0 +1,4 @@
+NDefines.NGame.START_DATE = "2020.4.2.12"
+NDefines.NGame.END_DATE = "2028.4.2.12"
+NDefines.NDiplomacy.BASE_PEACE_LIBERATE_FACTOR = 0
+NDefines.NDiplomacy.TAKE_STATES_LIBERATE_COST_MULT = 50
