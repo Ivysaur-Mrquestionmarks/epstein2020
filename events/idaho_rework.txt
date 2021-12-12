@@ -450,7 +450,7 @@ country_event = { #MON 80% Strength Uprising.
 				expire = expire = "2060.1.1.1"
 				ideology = trumpist
 				traits = {	
-					pastor
+					right_wing_pastor
 				}
 			}
 			create_field_marshal = {
@@ -509,7 +509,7 @@ country_event = { #MON 60% Strength Uprising.
 				expire = expire = "2060.1.1.1"
 				ideology = trumpist
 				traits = {	
-					pastor
+					right_wing_pastor
 				}
 			}
 			create_field_marshal = {
@@ -568,7 +568,7 @@ country_event = { #MON 40% Strength Uprising.
 				expire = expire = "2060.1.1.1"
 				ideology = trumpist
 				traits = {	
-					pastor
+					right_wing_pastor
 				}
 			}
 			create_field_marshal = {
@@ -627,7 +627,7 @@ country_event = { #MON 20% Strength Uprising.
 				expire = expire = "2060.1.1.1"
 				ideology = trumpist
 				traits = {	
-					pastor
+					right_wing_pastor
 				}
 			}
 			create_field_marshal = {
@@ -670,7 +670,7 @@ country_event = { #MON alert that they are now in WCZ's faction
 	id = idaho_rework.27
 	title = idaho_rework.27.t
 	desc = idaho_rework.27.d
-	picture = GFX_report_event_Cornered_No_More
+	picture = GFX_report_event_IDA_Militias_1
 	
 	is_triggered_only = yes
 	fire_only_once = yes
@@ -1635,210 +1635,5 @@ country_event = { #WCZ sends manpower to Utah/Primivitia/Molossia/Las Vegas
 	option = { #Utah/Primivitia/Molossia/Las Vegas gains 100 manpower
 		name = idaho_rework.48.a
 		add_manpower = 100
-	}
-}
-country_event = { #WCZ intervenes in the Mormon War, demands Utah subjugate (Basically a catch-22 for Utah)
-	id = idaho_rework.49
-	title = idaho_rework.49.t
-	desc = idaho_rework.49.d
-	picture = GFX_report_event_IDA_Militia_3
-	
-	is_triggered_only = yes
-	
-	option = { #Utah accepts the offer (this is a game end for Utah, AI will always choose this option)
-		name = idaho_rework.49.a
-		ai_chance = {
-			factor = 10
-		}
-		custom_effect_tooltip = wcz_utah_accepts_intervention
-		load_focus_tree = idaho_puppet
-		IDA = { 
-			add_to_faction = UTA 
-		}
-		IDA = {
-			declare_war_on = {
-				target = MOL
-				type = annex_everything
-			}
-			declare_war_on = {
-				target = SIN
-				type = annex_everything
-			}
-			declare_war_on = {
-				target = LAS
-				type = annex_everything
-			}
-			if = {
-				limit = {
-					UTA = {
-						has_war_with = HOP
-					}
-				}
-				declare_war_on = {
-					target = HOP
-					type = annex_everything
-				}
-			}
-		}
-	}
-	
-	option = { #Utah denies the offer, WCZ declares war on them
-		name = idaho_rework.49.b
-		ai_chance = {
-			factor = 0
-		}
-		custom_effect_tooltip = wcz_utah_rejects_intervention
-		IDA = {
-			country_event = {
-				id = idaho_rework.50
-				days = 3
-			}
-		}
-	}
-}
-country_event = { #Utah rejects subjugation, WCZ attacks Utah
-	id = idaho_rework.50
-	title = idaho_rework.50.t
-	desc = idaho_rework.50.d
-	picture = GFX_report_event_IDA_Militia_4
-	
-	is_triggered_only = yes
-	
-	option = { #WCZ declares war on Utah
-		name = idaho_rework.50.a
-		declare_war_on = {
-			target = UTA
-			type = annex_everything
-		}
-	}
-}
-country_event = { #Utah is alerted that the WCZ wants to add them into their faction, Utah doesn't join immediately 
-	id = idaho_rework.51
-	title = idaho_rework.51.t
-	desc = idaho_rework.51.d
-	picture = GFX_report_event_Cornered_No_More
-	
-	is_triggered_only = yes
-	
-	option = { #Utah wants Logan back in exchange to join the faction
-		name = idaho_rework.51.a
-		IDA = {
-			country_event = idaho_rework.52
-		}
-	}
-	
-	option = { #Utah refuses to join the WCZ
-		name = idaho_rework.51.b
-		IDA = {
-			
-		}
-	}
-}
-country_event = { #Utah asks for the return of Logan in exchange to join the WCZ  
-	id = idaho_rework.52
-	title = idaho_rework.52.t
-	desc = idaho_rework.52.d
-	picture = GFX_report_event_IDA_Generic_Meeting
-	
-	is_triggered_only = yes
-	
-	option = { #WCZ gives Logan back
-		name = idaho_rework.52.a
-		UTA = {
-			country_event = idaho_rework.53
-		}
-	}
-	
-	option = { #WCZ asks for Nevada and Idaho territories in exchange for Logan
-		name = idaho_rework.52.b
-		UTA = {
-			country event = idaho_rework.54
-		}
-	}
-	
-	option = { #WCZ refuses to return Logan
-		name = idaho_rework.52.c
-		UTA = {
-			country event = idaho_rework.55
-		}
-	}
-}
-country_event = { #Utah is alerted to the return of Logan
-	id = idaho_rework.53
-	title = idaho_rework.53.t
-	desc = idaho_rework.53.d
-	picture = GFX_report_event_IDA_Generic_Meeting
-	
-	is_triggered_only = yes
-	
-	option = { #Utah gains Logan gets added to WCZ faction, WCZ loses core on Logan
-		name = idaho_rework.53.a
-		UTA = {
-			transfer_state = 520
-		}
-		IDA = {
-			add_to_faction = UTA
-			remove_state_core = 520
-		}
-	}
-}
-country_event = { #WCZ Proposes to trade Logan and Moffat for Nevada
-	id = idaho_rework.54
-	title = idaho_rework.54.t
-	desc = idaho_rework.54.d
-	picture = GFX_report_event_IDA_Generic_Meeting
-	
-	is_triggered_only = yes
-	
-	option = { #Utah accepts the offer, transfers states, add and remove respective cores
-		name = idaho_rework.54.a
-		IDA = {
-		# Transfers the states #
-			transfer_state = 522
-			transfer_state = 117
-			transfer_state = 419
-			transfer_state = 393
-			transfer_state = 522
-			transfer_state = 488
-			transfer_state = 46 #Vegas
-			transfer_state = 487 #Molossia
-		# Cores the states #
-			add_state_core = 522
-			add_state_core = 117
-			add_state_core = 419
-			add_state_core = 393
-			add_state_core = 522
-			add_state_core = 488
-			add_state_core = 46 #Vegas
-			add_state_core = 487 #Molossia
-		# Removes traded state cores #
-			remove_state_core = 520
-			remove_state_core = 517
-		}
-		UTA = {
-		# Transfers the states #
-			transfer_state = 520
-			transfer_state = 517
-		# Cores the states #
-			add_state_core = 520
-			add_state_core = 517
-		# Removes traded state cores #
-			remove_state_core = 522
-			remove_state_core = 117
-			remove_state_core = 419
-			remove_state_core = 393
-			remove_state_core = 522
-			remove_state_core = 488
-			remove_state_core = 46 #Vegas
-			remove_state_core = 487 #Molossia
-		}
-	}
-	
-	option = { #Utah refuses the offer
-		name = idaho_rework.54.b
-		transfer_state = 520
-		IDA = {
-			add_to_faction = UTA
-		}
 	}
 }
