@@ -781,11 +781,10 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			custom_effect_tooltip = wcz_army_improve
-			army_experience = 10
-			add_doctrine_cost_reduction = {
-				name = land_doc_bonus
-				cost_reduction = 0.25
-				uses = 2
+			army_experience = 15
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
 				category = land_doctrine
 			}
 			if = {
@@ -981,10 +980,9 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			custom_effect_tooltip = wcz_army_improve
-			army_experience = 25
-			add_doctrine_cost_reduction = {
-				name = land_doc_bonus
-				cost_reduction = 0.5
+			army_experience = 30
+			add_tech_bonus = {
+				bonus = 1
 				uses = 2
 				category = land_doctrine
 			}
@@ -1096,15 +1094,6 @@ focus_tree = {
 				swap_ideas = {
 					remove_idea = IDA_Economic_Dependence_3
 					add_idea = IDA_Economic_Dependence_4
-				}
-			}
-			else_if  = {
-				limit = {
-					has_idea = IDA_Economic_Dependence_4
-				}
-				swap_ideas = {
-					remove_idea = IDA_Economic_Dependence_4
-					add_idea = IDA_Economic_Miracle
 				}
 			}
 			add_timed_idea = {
@@ -1290,10 +1279,6 @@ focus_tree = {
 		available_if_capitulated = yes
 		
 		will_lead_to_war_with = UTA
-		will_lead_to_war_with = SIN
-		will_lead_to_war_with = MOL
-		will_lead_to_war_with = LAS
-		will_lead_to_war_with = HOP
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
@@ -1302,7 +1287,7 @@ focus_tree = {
 			}
 		}
 	}
-	focus = { #Utah wins the Mormon War and goes Republican, send Utah a faction invite
+	focus = { #Utah goes Republican (Church Conservative or Democratic)
 		id = IDA_Allies_Down_South
 		icon = GFX_goal_IDA_War_Plan_Yellow_Focus
 		x = 53
@@ -1341,8 +1326,6 @@ focus_tree = {
 		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = yes
-		
-		will_lead_to_war_with = UTA
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
@@ -1350,552 +1333,6 @@ focus_tree = {
 			add_stability = 0.05
 			UTA = {
 				country_event = idaho_rework.51
-			}
-		}
-	}
-	focus = { #Utah wins the Mormon War, but does not go Republican, gain war goal on Utah
-		id = IDA_Operation_Beekeeper
-		icon = GFX_goal_IDA_War_Plan_Yellow_Focus
-		x = 55
-		y = 10
-		cost = 5
-		prerequisite = {
-			focus = IDA_Support_The_Mormons
-			focus = IDA_Support_The_Freedom_Coalition
-			focus = IDA_Direct_Intervention
-		}
-		mutually_exclusive = {
-			
-		}
-		ai_will_do = {
-			factor = 50
-		}
-		allow_branch = {
-		
-		}
-		available = {
-			UTA = {
-				has_war = no
-				OR = {
-					has_completed_focus = UTA_The_Church_Is_Socialist
-					has_completed_focus = UTA_Preserve_Autocracy
-					has_completed_focus = UTA_Democrats
-				}
-			}
-		}
-		bypass = {
-			NOT = {
-				country_exists = UTA
-				country_exists = SIN
-				country_exists = MOL
-				country_exists = LAS
-			}
-		}
-		cancel = {
-		
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = yes
-		
-		will_lead_to_war_with = UTA
-
-		search_filters = { FOCUS_FILTER_POLITICAL }
-		completion_reward = {
-			create_wargoal = {
-				type = annex_everything 
-				target = UTA
-			}
-		}
-	}
-	focus = { #Freedom Coalition wins the Mormon War, gain war goal on Primivitia, Las vegas, and Molossia
-		id = IDA_Operation_Prometheus 
-		icon = GFX_goal_IDA_War_Plan_Yellow_Focus
-		x = 57
-		y = 10
-		cost = 5
-		prerequisite = {
-			focus = IDA_Support_The_Mormons
-			focus = IDA_Support_The_Freedom_Coalition
-			focus = IDA_Direct_Intervention
-		}
-		mutually_exclusive = {
-			
-		}
-		ai_will_do = {
-			factor = 50
-		}
-		allow_branch = {
-			
-		}
-		available = {
-			UTA = {
-				exists = no
-			}
-		}
-		bypass = {
-			NOT = {
-				country_exists = UTA
-				country_exists = SIN
-				country_exists = MOL
-				country_exists = LAS
-			}
-		}
-		cancel = {
-			
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = yes
-		
-		will_lead_to_war_with = SIN
-		will_lead_to_war_with = MOL
-		will_lead_to_war_with = LAS
-
-		search_filters = { FOCUS_FILTER_POLITICAL }
-		completion_reward = {
-			create_wargoal = {
-				type = annex_everything 
-				target = SIN
-			}
-			create_wargoal = {
-				type = annex_everything 
-				target = MOL
-			}
-			create_wargoal = {
-				type = annex_everything 
-				target = LAS
-			}
-		}
-	}
-	focus = { #Freedom Coalition wins the Mormon War and Vegas, Molossia, or Primivitia join Trump (This is more of a multiplayer focus, due to the conditions required to activate it)
-		id = IDA_Unexpected_Allies
-		icon = GFX_goal_IDA_War_Plan_Yellow_Focus
-		x = 59
-		y = 10
-		cost = 5
-		prerequisite = {
-			focus = IDA_Support_The_Mormons
-			focus = IDA_Support_The_Freedom_Coalition
-			focus = IDA_Direct_Intervention
-		}
-		mutually_exclusive = {
-			
-		}
-		ai_will_do = {
-			factor = 50
-		}
-		allow_branch = {
-			
-		}
-		available = { #Currently checks if they are in a faction with Trump, will probably change later
-			UTA = {
-				exists = no
-			}
-			OR = {
-				SIN = {
-					is_in_faction_with = USA
-				}
-				LAS = {
-					is_in_faction_with = USA
-				}
-				MOL = {
-					is_in_faction_with = USA
-				}
-			}
-		}
-		bypass = {
-			
-		}
-		cancel = {
-			
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = yes
-
-		search_filters = { FOCUS_FILTER_POLITICAL }
-		completion_reward = {
-			if = {
-				limit = {
-					SIN = {
-						is_in_faction_with = USA
-					}
-				}
-				SIN = {
-					country_event = idaho_rework.58
-				}
-			}
-			if = {
-				limit = {
-					LAS = {
-						is_in_faction_with = USA
-					}
-				}
-				LAS = {
-					country_event = idaho_rework.58
-				}
-			}
-			if = {
-				limit = {
-					MOL = {
-						is_in_faction_with = USA
-					}
-				}
-				MOL = {
-					country_event = idaho_rework.58
-				}
-			}
-		}
-	}
-	focus = { #Southwest was obtained peacefully, improves militia state debuffs
-		id = IDA_Utahn_Military_Advisors
-		icon = GFX_goal_IDA_War_Plan_Yellow_Focus
-		x = 54
-		y = 11
-		cost = 5
-		prerequisite = {
-			focus = IDA_Allies_Down_South
-			focus = IDA_Unexpected_Allies
-		}
-		mutually_exclusive = {
-			focus = IDA_Lessons_From_The_Southwest
-		}
-		ai_will_do = {
-			factor = 50
-		}
-		allow_branch = {
-			
-		}
-		available = { 
-			OR = {
-				UTA = {
-					is_in_faction_with = IDA
-				}
-				SIN = {
-					is_in_faction_with = IDA
-				}
-				MOL = {
-					is_in_faction_with = IDA
-				}
-				LAS = {
-					is_in_faction_with = IDA
-				}
-			}
-		}
-		bypass = {
-			
-		}
-		cancel = {
-			
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = yes
-
-		search_filters = { FOCUS_FILTER_POLITICAL }
-		completion_reward = {
-			custom_effect_tooltip = wcz_army_improve
-			army_experience = 10
-			add_tech_bonus = {
-				bonus = 0.25
-				uses = 1
-				category = land_doctrine
-			}
-			if = {
-				limit = {
-					has_idea = IDA_Militia_State_1
-				}
-				swap_ideas = {
-					remove_idea = IDA_Militia_State_1
-					add_idea = IDA_Militia_State_4
-				}
-			}
-			else_if = {
-				limit = {
-					has_idea = IDA_Militia_State_2
-				}
-				swap_ideas = {
-					remove_idea = IDA_Militia_State_2
-					add_idea = IDA_Militia_State_4
-				}
-			}
-			else_if = {
-				limit = {
-					has_idea = IDA_Militia_State_3
-				}
-				swap_ideas = {
-					remove_idea = IDA_Militia_State_3
-					add_idea = IDA_Militia_State_4
-				}
-			}
-			else_if = {
-				limit = {
-					has_idea = IDA_Militia_State_4
-				}
-				swap_ideas = {
-					remove_idea = IDA_Militia_State_4
-					add_idea = IDA_Militia_State_5
-				}
-			}
-			remove_ideas = IDA_War_Plan_Yellow_Spirit
-		}
-	}
-	focus = { #Southwest was conquered, improves militia state debuffs
-		id = IDA_Lessons_From_The_Southwest
-		icon = GFX_goal_IDA_War_Plan_Yellow_Focus
-		x = 58
-		y = 11
-		cost = 5
-		prerequisite = {
-			focus = IDA_Operation_Beekeeper
-			focus = IDA_Operation_Prometheus
-		}
-		mutually_exclusive = {
-			focus = IDA_Utahn_Military_Advisors
-		}
-		ai_will_do = {
-			factor = 50
-		}
-		allow_branch = {
-			
-		}
-		available = { 
-			UTA = {
-				exists = no
-			}
-			SIN = {
-				exists = no
-			}
-			LAS = {
-				exists = no
-			}
-			MOL = {
-				exists = no
-			}
-		}
-		bypass = {
-			
-		}
-		cancel = {
-			
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = yes
-
-		search_filters = { FOCUS_FILTER_POLITICAL }
-		completion_reward = {
-			custom_effect_tooltip = wcz_army_improve
-			army_experience = 25
-			add_doctrine_cost_reduction = {
-				name = land_doc_bonus
-				cost_reduction = 0.5
-				uses = 2
-				category = land_doctrine
-			}
-			if = {
-				limit = {
-					has_idea = IDA_Militia_State_1
-				}
-				swap_ideas = {
-					remove_idea = IDA_Militia_State_1
-					add_idea = IDA_Militia_State_4
-				}
-			}
-			else_if = {
-				limit = {
-					has_idea = IDA_Militia_State_2
-				}
-				swap_ideas = {
-					remove_idea = IDA_Militia_State_2
-					add_idea = IDA_Militia_State_4
-				}
-			}
-			else_if = {
-				limit = {
-					has_idea = IDA_Militia_State_3
-				}
-				swap_ideas = {
-					remove_idea = IDA_Militia_State_3
-					add_idea = IDA_Militia_State_4
-				}
-			}
-			else_if = {
-				limit = {
-					has_idea = IDA_Militia_State_4
-				}
-				swap_ideas = {
-					remove_idea = IDA_Militia_State_4
-					add_idea = IDA_Militia_State_5
-				}
-			}
-			remove_ideas = IDA_War_Plan_Yellow_Spirit
-		}
-	}
-	focus = { #Dependent industry fix in War Plan Yellow path
-		id = IDA_Industry_Of_The_Beehive_State
-		icon = GFX_goal_IDA_War_Plan_Yellow_Focus
-		x = 56
-		y = 12
-		cost = 5
-		prerequisite = {
-			focus = IDA_Utahn_Military_Advisors
-			focus = IDA_Lessons_From_The_Southwest
-		}
-		mutually_exclusive = {
-			
-		}
-		ai_will_do = {
-			factor = 50
-		}
-		allow_branch = {
-			
-		}
-		available = { 
-			
-		}
-		bypass = {
-			
-		}
-		cancel = {
-			
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = yes
-
-		search_filters = { FOCUS_FILTER_POLITICAL }
-		completion_reward = {
-			custom_effect_tooltip = wcz_industry_improve
-			if = {
-				limit = {
-					has_idea = IDA_Economic_Dependence_1
-				}
-				swap_ideas = {
-					remove_idea = IDA_Economic_Dependence_1
-					add_idea = IDA_Economic_Dependence_4
-				}
-			}
-			else_if  = {
-				limit = {
-					has_idea = IDA_Economic_Dependence_2
-				}
-				swap_ideas = {
-					remove_idea = IDA_Economic_Dependence_2
-					add_idea = IDA_Economic_Dependence_4
-				}
-			}
-			else_if  = {
-				limit = {
-					has_idea = IDA_Economic_Dependence_3
-				}
-				swap_ideas = {
-					remove_idea = IDA_Economic_Dependence_3
-					add_idea = IDA_Economic_Dependence_4
-				}
-			}
-			else_if  = {
-				limit = {
-					has_idea = IDA_Economic_Dependence_4
-				}
-				swap_ideas = {
-					remove_idea = IDA_Economic_Dependence_4
-					add_idea = IDA_Economic_Miracle
-				}
-			}
-			add_timed_idea = {
-				idea = IDA_Utah_Profits_Spirit
-				days = 60
-			}
-			IDA = {
-				every_state = {
-					limit = { 
-						is_owned_by = IDA
-					}
-					add_core_of = ROOT
-				}
-			}
-			custom_effect_tooltip = wcz_moutsos_recruited
-			custom_effect_tooltip = wcz_robertson_recruited
-			custom_effect_tooltip = wcz_cisneros_recruited
-			custom_effect_tooltip = wcz_wade_anderson_recruited
-			custom_effect_tooltip = wcz_keebler_recruited
-		}
-	}
-	focus = { #Focus just in case Amerikareich loses against Navajo and Tohono
-		id = IDA_Continue_The_Push_Down_South
-		icon = GFX_goal_IDA_War_Plan_Yellow_Focus
-		x = 56
-		y = 12
-		cost = 5
-		prerequisite = {
-			focus = IDA_Industry_Of_The_Beehive_State
-		}
-		mutually_exclusive = {
-			
-		}
-		ai_will_do = {
-			factor = 50
-		}
-		allow_branch = {
-			
-		}
-		available = { 
-			
-		}
-		bypass = {
-			NOT = {
-				country_exists = HOP
-				country_exists = NAV
-				country_exists = TOH
-				country_exists = HAM
-			}
-		}
-		cancel = {
-			
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = yes
-
-		search_filters = { FOCUS_FILTER_POLITICAL }
-		completion_reward = {
-			create_wargoal = {
-				type = annex_everything 
-				target = HOP
-			}
-			create_wargoal = {
-				type = annex_everything 
-				target = NAV
-			}
-			create_wargoal = {
-				type = annex_everything 
-				target = TOH
-			}
-			create_wargoal = {
-				type = annex_everything 
-				target = HAM
-			}
-			hidden_effect = {
-				IDA = {
-					every_state = {
-						limit = {
-							is_core_of = HOP
-							is_core_of = NAV
-							is_core_of = TOH
-							is_core_of = HAM
-						}
-					add_core_of = IDA
-					}
-				}
 			}
 		}
 	}
@@ -2035,11 +1472,11 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			army_experience = 15
-			add_doctrine_cost_reduction = {
+			army_experience = 5
+			add_tech_bonus = {
 				name = land_doc_bonus
-				cost_reduction = 0.5
-				uses = 2
+				bonus = 1.0
+				uses = 1
 				category = land_doctrine
 			}
 		}
