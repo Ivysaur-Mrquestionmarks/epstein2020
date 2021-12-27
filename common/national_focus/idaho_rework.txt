@@ -1738,8 +1738,8 @@ focus_tree = {
 			remove_ideas = IDA_War_Plan_Yellow_Spirit
 		}
 	}
-	focus = { #Dependent industry fix in War Plan Yellow path
-		id = IDA_Industry_Of_The_Beehive_State
+	focus = { #Focus just in case Amerikareich loses against Navajo and Tohono
+		id = IDA_Continue_The_Push_Down_South
 		icon = GFX_goal_IDA_War_Plan_Yellow_Focus
 		x = 56
 		y = 12
@@ -1747,6 +1747,76 @@ focus_tree = {
 		prerequisite = {
 			focus = IDA_Utahn_Military_Advisors
 			focus = IDA_Lessons_From_The_Southwest
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			
+		}
+		bypass = {
+			NOT = {
+				country_exists = HOP
+				country_exists = NAV
+				country_exists = TOH
+				country_exists = HAM
+			}
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything 
+				target = HOP
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = NAV
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = TOH
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = HAM
+			}
+			hidden_effect = {
+				IDA = {
+					every_state = {
+						limit = {
+							is_core_of = HOP
+							is_core_of = NAV
+							is_core_of = TOH
+							is_core_of = HAM
+						}
+					add_core_of = IDA
+					}
+				}
+			}
+		}
+	}
+	focus = { #Dependent industry fix in War Plan Yellow path
+		id = IDA_Industry_Of_The_Beehive_State
+		icon = GFX_goal_IDA_War_Plan_Yellow_Focus
+		x = 56
+		y = 13
+		cost = 5
+		prerequisite = {
+			focus = IDA_Continue_The_Push_Down_South
 		}
 		mutually_exclusive = {
 			
@@ -1827,76 +1897,6 @@ focus_tree = {
 			custom_effect_tooltip = wcz_cisneros_recruited
 			custom_effect_tooltip = wcz_wade_anderson_recruited
 			custom_effect_tooltip = wcz_keebler_recruited
-		}
-	}
-	focus = { #Focus just in case Amerikareich loses against Navajo and Tohono
-		id = IDA_Continue_The_Push_Down_South
-		icon = GFX_goal_IDA_War_Plan_Yellow_Focus
-		x = 56
-		y = 12
-		cost = 5
-		prerequisite = {
-			focus = IDA_Industry_Of_The_Beehive_State
-		}
-		mutually_exclusive = {
-			
-		}
-		ai_will_do = {
-			factor = 50
-		}
-		allow_branch = {
-			
-		}
-		available = { 
-			
-		}
-		bypass = {
-			NOT = {
-				country_exists = HOP
-				country_exists = NAV
-				country_exists = TOH
-				country_exists = HAM
-			}
-		}
-		cancel = {
-			
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = yes
-
-		search_filters = { FOCUS_FILTER_POLITICAL }
-		completion_reward = {
-			create_wargoal = {
-				type = annex_everything 
-				target = HOP
-			}
-			create_wargoal = {
-				type = annex_everything 
-				target = NAV
-			}
-			create_wargoal = {
-				type = annex_everything 
-				target = TOH
-			}
-			create_wargoal = {
-				type = annex_everything 
-				target = HAM
-			}
-			hidden_effect = {
-				IDA = {
-					every_state = {
-						limit = {
-							is_core_of = HOP
-							is_core_of = NAV
-							is_core_of = TOH
-							is_core_of = HAM
-						}
-					add_core_of = IDA
-					}
-				}
-			}
 		}
 	}
 	## Defensive WCZ Path ##
