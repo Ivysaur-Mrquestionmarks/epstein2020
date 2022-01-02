@@ -1,4 +1,42 @@
 add_namespace = idaho_rework
+### News Events ###
+news_event = {
+	id = idaho_rework.62
+	title = idaho_rework.62.t
+	desc = idaho_rework.62.d
+	picture = event_news_WCZ_Unites_The_Rockies
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = idaho_rework.62.a
+		trigger = {
+			NOT = {
+				tag = USA
+				tag = FRA
+				tag = IDA
+			}
+		}
+	}
+	option = {
+		name = idaho_rework.62.b
+		trigger = {
+			tag = USA
+		}
+	}
+	option = {
+		name = idaho_rework.62.c
+		trigger = {
+			tag = FRA
+		}
+	}
+	option = {
+		name = idaho_rework.62.e
+		trigger = {
+			tag = IDA
+		}
+	}
+}
+### Country Events ###
 country_event = { #WCZ gains ground, Stankiewicz loses trait
 	id = idaho_rework.1
 	title = idaho_rework.1.t
@@ -412,7 +450,7 @@ country_event = { #MON/UTA Alert that an uprising is being planned against them.
 		name = idaho_rework.21.a
 	}
 }
-country_event = { #MON 80% Strength Uprising.
+country_event = { #MON 65% Strength Uprising.
 	id = idaho_rework.22
 	title = idaho_rework.22.t
 	desc = idaho_rework.22.d
@@ -429,7 +467,7 @@ country_event = { #MON 80% Strength Uprising.
 		start_civil_war = {
 			ideology = republican
 			ruling_party = ROOT
-			size = 0.8
+			size = 0.65
 			keep_political_leader = yes
 			keep_unit_leaders = {
 				
@@ -464,7 +502,7 @@ country_event = { #MON 80% Strength Uprising.
 		}
 	}
 }
-country_event = { #MON 60% Strength Uprising.
+country_event = { #MON 50% Strength Uprising.
 	id = idaho_rework.23
 	title = idaho_rework.23.t
 	desc = idaho_rework.23.d
@@ -478,7 +516,7 @@ country_event = { #MON 60% Strength Uprising.
 		start_civil_war = {
 			ideology = republican
 			ruling_party = ROOT
-			size = 0.6
+			size = 0.5
 			keep_political_leader = yes
 			keep_unit_leaders = {
 				
@@ -513,7 +551,7 @@ country_event = { #MON 60% Strength Uprising.
 		}
 	}
 }
-country_event = { #MON 40% Strength Uprising.
+country_event = { #MON 35% Strength Uprising.
 	id = idaho_rework.24
 	title = idaho_rework.24.t
 	desc = idaho_rework.24.d
@@ -527,7 +565,7 @@ country_event = { #MON 40% Strength Uprising.
 		start_civil_war = {
 			ideology = republican
 			ruling_party = ROOT
-			size = 0.4
+			size = 0.35
 			keep_political_leader = yes
 			keep_unit_leaders = {
 				
@@ -1159,7 +1197,7 @@ country_event = { #Peace out FRA and WCZ
 		white_peace = IDA
 	}
 }
-country_event = { #UTA 80% Strength Uprising.
+country_event = { #UTA 65% Strength Uprising.
 	id = idaho_rework.42
 	title = idaho_rework.42.t
 	desc = idaho_rework.42.d
@@ -1176,7 +1214,7 @@ country_event = { #UTA 80% Strength Uprising.
 		start_civil_war = {
 			ideology = republican
 			ruling_party = ROOT
-			size = 0.8
+			size = 0.65
 			keep_political_leader = yes
 			keep_unit_leaders = {
 				
@@ -1210,7 +1248,7 @@ country_event = { #UTA 80% Strength Uprising.
 		}
 	}
 }
-country_event = { #UTA 60% Strength Uprising.
+country_event = { #UTA 50% Strength Uprising.
 	id = idaho_rework.43
 	title = idaho_rework.43.t
 	desc = idaho_rework.43.d
@@ -1224,7 +1262,7 @@ country_event = { #UTA 60% Strength Uprising.
 		start_civil_war = {
 			ideology = republican
 			ruling_party = ROOT
-			size = 0.6
+			size = 0.5
 			keep_political_leader = yes
 			keep_unit_leaders = {
 				
@@ -1258,7 +1296,7 @@ country_event = { #UTA 60% Strength Uprising.
 		}
 	}
 }
-country_event = { #UTA 40% Strength Uprising.
+country_event = { #UTA 35% Strength Uprising.
 	id = idaho_rework.44
 	title = idaho_rework.44.t
 	desc = idaho_rework.24.d
@@ -1272,7 +1310,7 @@ country_event = { #UTA 40% Strength Uprising.
 		start_civil_war = {
 			ideology = republican
 			ruling_party = ROOT
-			size = 0.4
+			size = 0.35
 			keep_political_leader = yes
 			keep_unit_leaders = {
 				
@@ -1807,12 +1845,75 @@ country_event = { #Freedom Coalition member (Vegas, Molossia, or Primivitia) rej
 	fire_only_once = yes
 	
 	option = { #Member gives WCZ military access, WCZ gives member military access
-		name = idaho_rework.59.a
+		name = idaho_rework.60.a
 		FROM = {
 			give_military_access = IDA
 		}
 		IDA = {
 			give_military_access = FROM
+		}
+	}
+}
+country_event = { #WCZ has conquered (peacefully or through war) the Rockies, gets event about last improvement to army 
+	id = idaho_rework.61
+	title = idaho_rework.61.t
+	desc = idaho_rework.61.d
+	picture = GFX_report_event_IDA_Stankiewicz_At_Attention
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Gives army national spirit (does not fix air force), send news event to other countries
+		name = idaho_rework.61.a
+		add_political_power = 50
+		if = { #All these are for anyone who cheats their way to this event
+				limit = {
+					has_idea = IDA_Militia_State_1
+				}
+				swap_ideas = {
+					remove_idea = IDA_Militia_State_1
+					add_idea = IDA_Army_Of_The_Redoubt
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = IDA_Militia_State_2
+				}
+				swap_ideas = {
+					remove_idea = IDA_Militia_State_2
+					add_idea = IDA_Army_Of_The_Redoubt
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = IDA_Militia_State_3
+				}
+				swap_ideas = {
+					remove_idea = IDA_Militia_State_3
+					add_idea = IDA_Army_Of_The_Redoubt
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = IDA_Militia_State_4
+				}
+				swap_ideas = {
+					remove_idea = IDA_Militia_State_4
+					add_idea = IDA_Army_Of_The_Redoubt
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = IDA_Militia_State_5
+				}
+				swap_ideas = {
+					remove_idea = IDA_Militia_State_5
+					add_idea = IDA_Army_Of_The_Redoubt
+				}
+			}
+		add_ideas = IDA_Lackluster_Air_Force
+		hidden_effect = {
+			news_event = idaho_rework.62
 		}
 	}
 }
