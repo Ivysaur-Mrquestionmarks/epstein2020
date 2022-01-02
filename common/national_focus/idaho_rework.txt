@@ -96,7 +96,7 @@ focus_tree = {
 			}
 		}
 	}
-	focus = { #Gain equipment, manpower, and one research slot
+	focus = { #Gain equipment and manpower
 		id = IDA_Support_From_The_East
 		icon = GFX_goal_cross_rubicon_planes
 		x = 75
@@ -124,7 +124,6 @@ focus_tree = {
 		
 		search_filters = { FOCUS_FILTER_RESEARCH FOCUS_FILTER_MANPOWER }
 		completion_reward = {
-			add_research_slot = 1 
 			add_manpower = 1500 
 			add_equipment_to_stockpile = { 
 				type = infantry_equipment
@@ -292,7 +291,7 @@ focus_tree = {
 	# Initial Improvement #
 	focus = { #Promote Veterans to help with Militia State (replace nation spirit)
 		id = IDA_Promote_Veterans_To_Command_Positions
-		icon = GFX_goal_generic_major_war
+		icon = GFX_goal_FLO_veterans
 		x = 49
 		y = 7
 		cost = 5
@@ -376,7 +375,7 @@ focus_tree = {
 	}
 	focus = { #Increase Taxes to help with Dependent Industry (replace focus)
 		id = IDA_Increase_Taxation
-		icon = GFX_focus_generic_self_management
+		icon = GFX_goal_Raise_Taxes
 		x = 49
 		y = 8
 		cost = 5
@@ -547,17 +546,19 @@ focus_tree = {
 		continue_if_invalid = no
 		available_if_capitulated = yes
 
-		search_filters = { FOCUS_FILTER_RESEARCH }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
 		completion_reward = {
-			add_building_construction = {
-				type = industrial_complex
-				level = 2
-				instant_build = yes
-			}
-			add_building_construction = {
-				type = arms_factory
-				level = 1
-				instant_build = yes
+			random_owned_state = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
 			}
 		}
 	}
@@ -593,19 +594,157 @@ focus_tree = {
 		continue_if_invalid = no
 		available_if_capitulated = yes
 
-		search_filters = { FOCUS_FILTER_RESEARCH }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
 		completion_reward = {
 			add_political_power = -25
-			add_building_construction = {
-				type = industrial_complex
-				level = 1
-				instant_build = yes
+			random_owned_state = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
 			}
-			add_building_construction = {
-				type = arms_factory
-				level = 2
-				instant_build = yes
+		}
+	}
+	focus = { #Adds two civilian factories and one military factory
+		id = IDA_Prop_Up_Local_Industry
+		icon = GFX_goal_generic_construct_civ_factory
+		x = 49
+		y = 10
+		cost = 8
+		prerequisite = {
+			focus = IDA_Increase_Taxation
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 20
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			random_owned_state = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
 			}
+		}
+	}
+	focus = { #Add two infrastructure to two randomly owned states
+		id = IDA_Improve_Local_Infrastructure
+		icon = GFX_goal_generic_construct_infrastructure
+		x = 50
+		y = 11
+		cost = 8
+		prerequisite = {
+			focus = IDA_Fuel_The_War_Machine
+			focus = IDA_Prop_Up_Local_Industry
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 20
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			random_owned_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = { #Gain national spirit that boosts infrastructure and railway construction speed
+		id = IDA_Interstate_Construction_Scheme
+		icon = GFX_goal_IDA_Generic_Road_Construction
+		x = 50
+		y = 12
+		cost = 10
+		prerequisite = {
+			focus = IDA_Improve_Local_Infrastructure
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 20
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_ideas = IDA_Interstate_Construction_Scheme
 		}
 	}
 	# War Plan Brown - Montana #
@@ -654,7 +793,7 @@ focus_tree = {
 	#Trumpist Montana
 	focus = { #Montana goes Trumpist (Event, Ends puppet with Trump and join WCZ Faction0
 		id = IDA_Allies_Up_North
-		icon = GFX_goal_IDA_War_Plan_Brown_Focus
+		icon = GFX_goal_Republicans
 		x = 45
 		y = 8
 		cost = 5
@@ -701,7 +840,7 @@ focus_tree = {
 	}
 	focus = { #Send event to Montana to negotiate the return of Idaho and Wyoming
 		id = IDA_Request_The_Return_Of_Our_Territories 
-		icon = GFX_goal_IDA_War_Plan_Brown_Focus
+		icon = GFX_goal_generic_forceful_treaty
 		x = 45
 		y = 9
 		cost = 5
@@ -748,7 +887,7 @@ focus_tree = {
 	}
 	focus = { #Improves Militia State debuffs, gain small amount of army exp, small boost to doctrine research
 		id = IDA_Montanan_Military_Advisors 
-		icon = GFX_goal_IDA_War_Plan_Brown_Focus
+		icon = GFX_focus_generic_military_mission
 		x = 45
 		y = 10
 		cost = 5
@@ -830,7 +969,7 @@ focus_tree = {
 	#Not Trumpist Montana
 	focus = { #Montana doesn't go Trumpist (Add political power, command power, war support)
 		id = IDA_Enemies_In_The_Shining_Mountains
-		icon = GFX_goal_IDA_War_Plan_Brown_Focus
+		icon = GFX_goal_attack_MON
 		x = 47
 		y = 8
 		cost = 5
@@ -880,11 +1019,12 @@ focus_tree = {
 	}
 	focus = { #Gain war goal on Montana (Trumpist Montana path auto-completes this focus if Montana and the WCZ can't reach an agreement)
 		id = IDA_Operation_Treasure_Hunter
-		icon = GFX_goal_IDA_War_Plan_Brown_Focus
+		icon = GFX_goal_IDA_Operation_Treasure_Hunter
 		x = 47
 		y = 9
 		cost = 5
 		prerequisite = {
+			focus = IDA_Allies_Up_North
 			focus = IDA_Enemies_In_The_Shining_Mountains
 		}
 		mutually_exclusive = {
@@ -926,7 +1066,7 @@ focus_tree = {
 		will_lead_to_war_with = LYM
 		will_lead_to_war_with = BKF
 
-		search_filters = { FOCUS_FILTER_POLITICAL }
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_ANNEXATION }
 		completion_reward = {
 			create_wargoal = {
 				type = annex_everything 
@@ -944,7 +1084,7 @@ focus_tree = {
 	}
 	focus = { #Improves Militia State debuffs, gives two 100% bonuses to land doctrine, 50 army experience  
 		id = IDA_Lessons_From_The_Big_Sky_Country
-		icon = GFX_goal_IDA_War_Plan_Brown_Focus
+		icon = GFX_goal_vet_LearnFromOurExpirences
 		x = 47
 		y = 10
 		cost = 5
@@ -1037,7 +1177,7 @@ focus_tree = {
 	}
 	focus = { #Montana final focus, improve Dependent Industry spirit, adds industry idea 
 		id =  IDA_Profits_From_The_Treasure_State
-		icon = GFX_goal_IDA_War_Plan_Brown_Focus
+		icon = GFX_goal_IDA_Profits_From_Montana
 		x = 46
 		y = 11
 		cost = 5
@@ -1160,7 +1300,7 @@ focus_tree = {
 	}
 	focus = { #Unlock decisions to help Utah in the Mormon War, also allows to send volunteers
 		id = IDA_Support_The_Mormons
-		icon = GFX_goal_IDA_War_Plan_Yellow_Focus
+		icon = GFX_focus_UTA_Mormons
 		x = 54
 		y = 8
 		cost = 5
@@ -1203,7 +1343,7 @@ focus_tree = {
 	}
 	focus = { #Unlock decisions to help the Freedom Coalition in the Mormon War, also allows to send volunteers
 		id = IDA_Support_The_Freedom_Coalition
-		icon = GFX_goal_IDA_War_Plan_Yellow_Focus
+		icon = GFX_goal_IDA_Freedom_Coalition
 		x = 58
 		y = 8
 		cost = 5
@@ -1246,7 +1386,7 @@ focus_tree = {
 	}
 	focus = { #Locked until 2023, WCZ demands Utah subjugate (focus is in case the Mormon War drags on)
 		id = IDA_Direct_Intervention
-		icon = GFX_goal_IDA_War_Plan_Yellow_Focus
+		icon = GFX_goal_generic_major_war
 		x = 56
 		y = 9
 		cost = 5
@@ -1304,7 +1444,7 @@ focus_tree = {
 	}
 	focus = { #Utah wins the Mormon War and goes Republican, send Utah a faction invite
 		id = IDA_Allies_Down_South
-		icon = GFX_goal_IDA_War_Plan_Yellow_Focus
+		icon = GFX_goal_Republicans
 		x = 53
 		y = 10
 		cost = 5
@@ -1355,7 +1495,7 @@ focus_tree = {
 	}
 	focus = { #Utah wins the Mormon War, but does not go Republican, gain war goal on Utah
 		id = IDA_Operation_Beekeeper
-		icon = GFX_goal_IDA_War_Plan_Yellow_Focus
+		icon = GFX_goal_IDA_Operation_Beekeeper
 		x = 55
 		y = 10
 		cost = 5
@@ -1401,7 +1541,7 @@ focus_tree = {
 		
 		will_lead_to_war_with = UTA
 
-		search_filters = { FOCUS_FILTER_POLITICAL }
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_ANNEXATION }
 		completion_reward = {
 			create_wargoal = {
 				type = annex_everything 
@@ -1411,7 +1551,7 @@ focus_tree = {
 	}
 	focus = { #Freedom Coalition wins the Mormon War, gain war goal on Primivitia, Las vegas, and Molossia
 		id = IDA_Operation_Prometheus 
-		icon = GFX_goal_IDA_War_Plan_Yellow_Focus
+		icon = GFX_focus_spr_torchbearers_of_tomorrow
 		x = 57
 		y = 10
 		cost = 5
@@ -1454,7 +1594,7 @@ focus_tree = {
 		will_lead_to_war_with = MOL
 		will_lead_to_war_with = LAS
 
-		search_filters = { FOCUS_FILTER_POLITICAL }
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_ANNEXATION }
 		completion_reward = {
 			create_wargoal = {
 				type = annex_everything 
@@ -1472,7 +1612,7 @@ focus_tree = {
 	}
 	focus = { #Freedom Coalition wins the Mormon War and Vegas, Molossia, or Primivitia join Trump (This is more of a multiplayer focus, due to the conditions required to activate it)
 		id = IDA_Unexpected_Allies
-		icon = GFX_goal_IDA_War_Plan_Yellow_Focus
+		icon = GFX_goal_Republicans
 		x = 59
 		y = 10
 		cost = 5
@@ -1517,7 +1657,7 @@ focus_tree = {
 		continue_if_invalid = no
 		available_if_capitulated = yes
 
-		search_filters = { FOCUS_FILTER_POLITICAL }
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_ANNEXATION }
 		completion_reward = {
 			if = {
 				limit = {
@@ -1553,7 +1693,7 @@ focus_tree = {
 	}
 	focus = { #Southwest was obtained peacefully, improves militia state debuffs
 		id = IDA_Utahn_Military_Advisors
-		icon = GFX_goal_IDA_War_Plan_Yellow_Focus
+		icon = GFX_focus_generic_military_mission
 		x = 54
 		y = 11
 		cost = 5
@@ -1647,7 +1787,7 @@ focus_tree = {
 	}
 	focus = { #Southwest was conquered, improves militia state debuffs
 		id = IDA_Lessons_From_The_Southwest
-		icon = GFX_goal_IDA_War_Plan_Yellow_Focus
+		icon = GFX_goal_vet_LearnFromOurExpirences
 		x = 58
 		y = 11
 		cost = 5
@@ -1740,7 +1880,7 @@ focus_tree = {
 	}
 	focus = { #Focus just in case Amerikareich loses against Navajo and Tohono
 		id = IDA_Continue_The_Push_Down_South
-		icon = GFX_goal_IDA_War_Plan_Yellow_Focus
+		icon = GFX_goal_Invade_Arizona
 		x = 56
 		y = 12
 		cost = 5
@@ -1776,7 +1916,7 @@ focus_tree = {
 		continue_if_invalid = no
 		available_if_capitulated = yes
 
-		search_filters = { FOCUS_FILTER_POLITICAL }
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_ANNEXATION }
 		completion_reward = {
 			create_wargoal = {
 				type = annex_everything 
@@ -1811,7 +1951,7 @@ focus_tree = {
 	}
 	focus = { #Dependent industry fix in War Plan Yellow path
 		id = IDA_Industry_Of_The_Beehive_State
-		icon = GFX_goal_IDA_War_Plan_Yellow_Focus
+		icon = GFX_goal_IDA_Profits_From_Utah
 		x = 56
 		y = 13
 		cost = 5
@@ -1841,7 +1981,7 @@ focus_tree = {
 		continue_if_invalid = no
 		available_if_capitulated = yes
 
-		search_filters = { FOCUS_FILTER_POLITICAL }
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_ANNEXATION }
 		completion_reward = {
 			custom_effect_tooltip = wcz_industry_improve
 			if = {
@@ -1897,6 +2037,50 @@ focus_tree = {
 			custom_effect_tooltip = wcz_cisneros_recruited
 			custom_effect_tooltip = wcz_wade_anderson_recruited
 			custom_effect_tooltip = wcz_keebler_recruited
+		}
+	}
+	# End of the Rocky Mountain Conquests #
+	focus = { #Militia state becomes fully fixed, fire off news event. WCZ will go after California and Cascadia next
+		id = IDA_Masters_Of_The_Rockies
+		icon = GFX_goal_IDA_Masters_Of_The_Rockies_Spirit
+		x = 50
+		y = 14
+		cost = 5
+		prerequisite = {
+			focus = IDA_Interstate_Construction_Scheme
+		}
+		prerequisite = {
+			focus = IDA_Industry_Of_The_Beehive_State
+		}
+		prerequisite = {
+			focus = IDA_Profits_From_The_Treasure_State
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = idaho_rework.61
 		}
 	}
 	## Defensive WCZ Path ##
