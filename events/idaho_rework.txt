@@ -52,14 +52,11 @@ country_event = { #WCZ gains ground, Stankiewicz loses trait
 	trigger = {
 		tag = IDA
 		num_of_controlled_states > 10
-		has_country_leader = { ruling_only = yes name = "Jeff Stankiewicz" }
+		IDA_jeff_stankiewicz = { is_country_leader = yes }
 	}
 	
 	option = {
 		name = idaho_rework.1.a
-		ai_chance = {
-			factor = 10
-		}
 		remove_country_leader_trait = cornered_fox
 	}
 }
@@ -1875,45 +1872,169 @@ country_event = { #WCZ has conquered (peacefully or through war) the Rockies, ge
 					add_idea = IDA_Army_Of_The_Redoubt
 				}
 			}
-			else_if = {
-				limit = {
-					has_idea = IDA_Militia_State_2
-				}
-				swap_ideas = {
-					remove_idea = IDA_Militia_State_2
-					add_idea = IDA_Army_Of_The_Redoubt
-				}
+		else_if = {
+			limit = {
+				has_idea = IDA_Militia_State_2
 			}
-			else_if = {
-				limit = {
-					has_idea = IDA_Militia_State_3
-				}
-				swap_ideas = {
-					remove_idea = IDA_Militia_State_3
-					add_idea = IDA_Army_Of_The_Redoubt
-				}
+			swap_ideas = {
+				remove_idea = IDA_Militia_State_2
+				add_idea = IDA_Army_Of_The_Redoubt
 			}
-			else_if = {
-				limit = {
-					has_idea = IDA_Militia_State_4
-				}
-				swap_ideas = {
-					remove_idea = IDA_Militia_State_4
-					add_idea = IDA_Army_Of_The_Redoubt
-				}
+		}
+		else_if = {
+			limit = {
+				has_idea = IDA_Militia_State_3
 			}
-			else_if = {
-				limit = {
-					has_idea = IDA_Militia_State_5
-				}
-				swap_ideas = {
-					remove_idea = IDA_Militia_State_5
-					add_idea = IDA_Army_Of_The_Redoubt
-				}
+			swap_ideas = {
+				remove_idea = IDA_Militia_State_3
+				add_idea = IDA_Army_Of_The_Redoubt
 			}
+		}
+		else_if = {
+			limit = {
+				has_idea = IDA_Militia_State_4
+			}
+			swap_ideas = {
+				remove_idea = IDA_Militia_State_4
+				add_idea = IDA_Army_Of_The_Redoubt
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = IDA_Militia_State_5
+			}
+			swap_ideas = {
+				remove_idea = IDA_Militia_State_5
+				add_idea = IDA_Army_Of_The_Redoubt
+			}
+		}
 		add_ideas = IDA_Lackluster_Air_Force
 		hidden_effect = {
 			news_event = idaho_rework.62
+		}
+	}
+}
+country_event = { #Nevada militias join the WCZ
+	id = idaho_rework.63
+	title = idaho_rework.63.t
+	desc = idaho_rework.63.d
+	picture = GFX_report_event_Cornered_No_More
+	
+	fire_only_once = yes
+
+	mean_time_to_happen = {
+		days = 1
+	}
+
+	trigger = {
+		tag = IDA
+		has_government = republican
+		owns_state = {
+			state = 49
+		}
+	}
+	
+	option = {
+		name = idaho_rework.63.a
+		custom_effect_tooltip = wcz_lequieu_recruited
+		custom_effect_tooltip = wcz_cavalier_recruited
+		add_manpower = 200
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 250
+			producer = NVD
+		}
+		hidden_effect = {
+			set_country_flag = wcz_nevada_militias_recruited
+			country_event = {
+				id = idaho_rework.63
+				days = 10
+			}
+		}
+	}
+}
+country_event = { #Bundys ask to join the WCZ
+	id = idaho_rework.64
+	title = idaho_rework.64.t
+	desc = idaho_rework.64.d
+	picture = GFX_report_event_Cornered_No_More
+	
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 10
+	}
+
+	trigger = {
+		tag = IDA
+		has_government = republican
+		owns_state = {
+			state = 49
+		}
+		NOT = {
+			country_exists = UTA
+		}
+	}
+	
+	option = { #Accept the Bundy's offer
+		name = idaho_rework.64.a
+		custom_effect_tooltip = wcz_ammon_bundy_recruited
+		custom_effect_tooltip = wcz_ryan_bundy_recruited
+		add_manpower = 4000
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 5000
+		}
+		add_popularity = {
+			ideology = libertarian_right
+			popularity = 0.4
+		}
+		hidden_effect = {
+			set_country_flag = wcz_bundys_recruited
+		}
+	}
+	option = { #Refuse the Bundy's offer
+		name = idaho_rework.64.b
+		add_manpower = 100
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 200
+		}
+	}
+}
+country_event = { #Bundys ask to join the WCZ
+	id = idaho_rework.65
+	title = idaho_rework.65.t
+	desc = idaho_rework.65.d
+	picture = GFX_report_event_Cornered_No_More
+	
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+
+	trigger = {
+		tag = IDA
+		has_government = republican
+		owns_state = {
+			state = 49
+		}
+	}
+	
+	option = {
+		name = idaho_rework.65.a
+		custom_effect_tooltip = wcz_arroyo_recruited
+		custom_effect_tooltip = wcz_oshaughnessy_recruited
+		custom_effect_tooltip = wcz_ritzheimer_recruited
+		add_manpower = 400
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 500
+			producer = AGB
+		}
+		hidden_effect = {
+			set_country_flag = wcz_arizona_militias_recruited
 		}
 	}
 }
