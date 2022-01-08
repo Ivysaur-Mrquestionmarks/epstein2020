@@ -683,7 +683,7 @@ country_event = { #MON alert that they are now in WCZ's faction
 		}
 	}
 }
-country_event = { #WCZ and Montana Negotiate for Idaho and Wyoming (MON POV), AI will nearly always agree to return land peacefully
+country_event = { #WCZ and Montana Negotiate for Idaho and Wyoming (MON POV), AI will usually agree to return land peacefully
 	id = idaho_rework.28
 	title = idaho_rework.28.t
 	desc = idaho_rework.28.d
@@ -695,33 +695,42 @@ country_event = { #WCZ and Montana Negotiate for Idaho and Wyoming (MON POV), AI
 	option = { #Montana agrees to return all territory
 		name = idaho_rework.28.a
 		ai_chance = {
-			factor = 90
+			factor = 60
 		}
 		custom_effect_tooltip = give_wcz_idaho_and_wyoming
 		IDA = {
-			country_event = idaho_rework.29
+			country_event = {
+				id = idaho_rework.29
+				days = 5
+			}
 		}
 	}
 	
 	option = { #Montana offers to split territory
 		name = idaho_rework.28.b
 		ai_chance = {
-			factor = 10
+			factor = 30
 		}
 		custom_effect_tooltip = wcz_compromise_proposed
 		IDA = {
-			country_event = idaho_rework.30
+			country_event = {
+				id = idaho_rework.30
+				days = 5
+			}
 		}
 	}
 	
 	option = { #Montana refuses to return territory
 		name = idaho_rework.28.c
 		ai_chance = {
-			factor = 0
+			factor = 10
 		}
 		custom_effect_tooltip = wcz_angered
 		IDA = {
-			country_event = idaho_rework.31
+			country_event = { 
+				id = idaho_rework.31
+				days = 5
+			}
 		}
 	}
 }
@@ -748,9 +757,7 @@ country_event = { #WCZ and Montana Negotiate for Idaho and Wyoming (WCZ POV), Mo
 				transfer_state = PREV
 			}
 		}
-		hidden_effect = {
-			set_country_flag = wcz_negotiations_finished
-		}
+		
 	}
 }
 country_event = { #WCZ and Montana Negotiate for Idaho and Wyoming (WCZ POV), Montana offered a compromise
@@ -796,9 +803,6 @@ country_event = { #WCZ and Montana Negotiate for Idaho and Wyoming (WCZ POV), Mo
 			}
 			remove_core_of = IDA
 		}
-		hidden_effect = {
-			set_country_flag = wcz_negotiations_finished
-		}
 	}
 	
 	option = { #Refuse compromise (sends event to Montana)
@@ -808,7 +812,10 @@ country_event = { #WCZ and Montana Negotiate for Idaho and Wyoming (WCZ POV), Mo
 		}
 		custom_effect_tooltip = wcz_negotiation_escalated
 		MON = {
-			country_event = idaho_rework.32
+			country_event = {
+				id = idaho_rework.32
+				days = 5
+			}
 		}
 	}
 }
@@ -837,10 +844,6 @@ country_event = { #WCZ and Montana Negotiate for Idaho and Wyoming (WCZ POV), Mo
 			}
 			remove_core_of = IDA
 		}
-		hidden_effect = {
-			set_country_flag = wcz_negotiations_finished
-		}
-		
 	}
 	
 	option = { #WCZ refuses (sends event to Montana)
@@ -850,7 +853,10 @@ country_event = { #WCZ and Montana Negotiate for Idaho and Wyoming (WCZ POV), Mo
 		}
 		custom_effect_tooltip = wcz_negotiation_escalated
 		MON = {
-			country_event = idaho_rework.32
+			country_event = {
+				id = idaho_rework.32
+				days = 5
+			}
 		}
 	}
 }
@@ -866,7 +872,7 @@ country_event = { #WCZ rejects Montana's demands, and threatens war with Montana
 	option = { #Montana backs down and returns territory
 		name = idaho_rework.32.a
 		ai_chance = {
-			factor = 90
+			factor = 70
 		}
 		custom_effect_tooltip = give_wcz_idaho_and_wyoming
 		every_state = {
@@ -881,19 +887,18 @@ country_event = { #WCZ rejects Montana's demands, and threatens war with Montana
 				transfer_state = PREV
 			}
 		}
-		hidden_effect = {
-			set_country_flag = wcz_negotiations_finished
-		}
 	}
 	
-	option = { #Montana refuses to back down (MON AI will never escalate this further)
+	option = { #Montana refuses to back down
 		name = idaho_rework.32.b
 		ai_chance = {
-			factor = 0
+			factor = 20
 		}
 		custom_effect_tooltip = wcz_no_mediitaion 
 		IDA = {
-			country_event = idaho_rework.33
+			country_event = {
+				id = idaho_rework.33
+			}
 		}
 	}
 	
@@ -929,11 +934,17 @@ country_event = { #Montana refuses to submit to WCZ, WCZ goes to war with Montan
 			factor = 10
 		}
 		add_war_support = 0.1
+		MON = {
+			leave_faction = yes
+		}
 		declare_war_on = {
 			target = MON
 			type = annex_everything
 		}
-		complete_national_focus = IDA_Operation_Treasure_Hunter
+		complete_national_focus = IDA_Enemies_In_The_Shining_Mountains
+		hidden_effect = {
+			set_country_flag = wcz_montana_negotiations_failed
+		}
 	}
 	
 	option = { #WCZ asks for Trump to support them (Trump must have defeated the NPA)
@@ -949,7 +960,7 @@ country_event = { #Montana refuses to submit to WCZ, WCZ goes to war with Montan
 		USA = { 
 			country_event = {
 				id = idaho_rework.34 
-				days = 2 
+				days = 3 
 			}
 		}
 	}
@@ -968,6 +979,9 @@ country_event = { #WCZ asks Trump to support them in a war against Montana
 		ai_chance = {
 			factor = 80
 		}
+		MON = {
+			leave_faction = yes
+		}
 		declare_war_on = {
 			target = MON
 			type = annex_everything
@@ -978,7 +992,9 @@ country_event = { #WCZ asks Trump to support them in a war against Montana
 				type = annex_everything
 			}
 			complete_national_focus = IDA_Enemies_In_The_Shining_Mountains
-			complete_national_focus = IDA_Operation_Treasure_Hunter
+			hidden_effect = {
+				set_country_flag = wcz_montana_negotiations_failed
+			}
 		}
 	}
 	
@@ -988,7 +1004,10 @@ country_event = { #WCZ asks Trump to support them in a war against Montana
 			factor = 20
 		}
 		IDA = {
-			country_event = idaho_rework.35
+			country_event = {
+				id = idaho_rework.35
+				days = 2
+			}
 		}
 	}
 }
@@ -1003,13 +1022,18 @@ country_event = { #Trump rejects supporting the WCZ against Montana
 	
 	option = { #WCZ declares war against MON
 		name = idaho_rework.35.a
+		MON = {
+			leave_faction = yes
+		}
 		add_war_support = 0.1
 		declare_war_on = {
 			target = MON
 			type = annex_everything
 		}
 		complete_national_focus = IDA_Enemies_In_The_Shining_Mountains
-		complete_national_focus = IDA_Operation_Treasure_Hunter
+		hidden_effect = {
+			set_country_flag = wcz_montana_negotiations_failed
+		}
 	}
 }
 country_event = { #Alert that Montana asked for Trump to mediate the conflict
@@ -1524,7 +1548,10 @@ country_event = { #Utah is alerted that the WCZ wants to add them into their fac
 			factor = 20
 		}
 		IDA = {
-			country_event = idaho_rework.52
+			country_event = {
+				id = idaho_rework.52
+				days = 5
+			}
 		}
 	}
 	
@@ -1535,7 +1562,10 @@ country_event = { #Utah is alerted that the WCZ wants to add them into their fac
 		}
 		custom_effect_tooltip = wcz_utah_negotiations_start
 		IDA = {
-			country_event = idaho_rework.53
+			country_event = {
+				id = idaho_rework.53
+				days = 5
+			}
 		}
 	}
 	
@@ -1546,7 +1576,10 @@ country_event = { #Utah is alerted that the WCZ wants to add them into their fac
 		}
 		custom_effect_tooltip = wcz_utah_rejects_intervention
 		IDA = {
-			country_event = idaho_rework.57
+			country_event = {
+				id = idaho_rework.57
+				days = 5
+			}
 		}
 	}
 }
@@ -1582,7 +1615,10 @@ country_event = { #Utah asks for the return of Logan in exchange to join the WCZ
 			factor = 30
 		}
 		UTA = {
-			country_event = idaho_rework.54
+			country_event = {
+				id = idaho_rework.54
+				days = 5
+			}
 		}
 	}
 	
@@ -1606,6 +1642,9 @@ country_event = { #Utah asks for the return of Logan in exchange to join the WCZ
 		declare_war_on = {
 			target = UTA
 			type = annex_everything
+		}
+		hidden_effect = {
+			set_country_flag = wcz_utah_negotiations_failed
 		}
 	}
 }
@@ -1772,6 +1811,9 @@ country_event = { #Utah accepts the trade, but wants to keep Vegas
 			target = UTA
 			type = annex_everything
 		}
+		hidden_effect = {
+			set_country_flag = wcz_utah_negotiations_failed
+		}
 	}
 }
 country_event = { #Event for if Utah rejects any offer made by the WCZ at any time
@@ -1789,6 +1831,9 @@ country_event = { #Event for if Utah rejects any offer made by the WCZ at any ti
 			target = UTA
 			type = annex_everything
 		}
+		hidden_effect = {
+			set_country_flag = wcz_utah_negotiations_failed
+		}
 	}
 }
 country_event = { #WZC asks a Freedom Coalition member (Vegas, Molossia, or Primivitia) to join them
@@ -1802,14 +1847,20 @@ country_event = { #WZC asks a Freedom Coalition member (Vegas, Molossia, or Prim
 	option = { #Member accepts the offer
 		name = idaho_rework.58.a
 		IDA = {
-			country_event = idaho_rework.59
+			country_event = {
+				id = idaho_rework.59
+				days = 3
+			}
 		}
 	}
 	
 	option = { #Member rejects the offer
 		name = idaho_rework.58.b
 		IDA = {
-			country_event = idaho_rework.60
+			country_event = {
+				id = idaho_rework.60
+				days = 3
+			}
 		}
 	}
 }
