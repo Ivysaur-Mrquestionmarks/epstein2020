@@ -122,12 +122,12 @@ focus_tree = {
 		continue_if_invalid = no
 		available_if_capitulated = yes
 		
-		search_filters = { FOCUS_FILTER_RESEARCH FOCUS_FILTER_MANPOWER }
+		search_filters = { FOCUS_FILTER_MANPOWER }
 		completion_reward = {
-			add_manpower = 1500 
+			add_manpower = 500
 			add_equipment_to_stockpile = { 
 				type = infantry_equipment
-				amount = 2000
+				amount = 750
 				producer = USA
 			}
 			hidden_effect = {
@@ -289,52 +289,10 @@ focus_tree = {
 		}
 	}
 	# Initial Improvement #
-	focus = { #Promote Veterans to help with Militia State (replace nation spirit)
-		id = IDA_Promote_Veterans_To_Command_Positions
-		icon = GFX_goal_FLO_veterans
-		x = 49
-		y = 7
-		cost = 8
-		prerequisite = {
-			focus = IDA_Revive_The_Color_Coded_War_Plans
-		}
-		mutually_exclusive = {
-			focus = IDA_Encourage_Enlistment
-		}
-		ai_will_do = {
-			factor = 50
-		}
-		allow_branch = {
-			
-		}
-		available = {
-			
-		}
-		bypass = {
-			NOT = {
-				has_idea = IDA_Militia_State_1
-			}
-		}
-		cancel = {
-		
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = yes
-
-		search_filters = { FOCUS_FILTER_POLITICAL }
-		completion_reward = {
-			swap_ideas = {
-				remove_idea = IDA_Militia_State_1
-				add_idea = IDA_Militia_State_2
-			}
-		}
-	}
 	focus = { #Help with manpower issues with Militia state (replace national spirit)
 		id = IDA_Encourage_Enlistment
 		icon = GFX_focus_generic_manpower
-		x = 51
+		x = 49
 		y = 7
 		cost = 8
 		prerequisite = {
@@ -370,6 +328,48 @@ focus_tree = {
 			swap_ideas = {
 				remove_idea = IDA_Militia_State_1
 				add_idea = IDA_Militia_State_3
+			}
+		}
+	}
+	focus = { #Promote Veterans to help with Militia State (replace nation spirit)
+		id = IDA_Promote_Veterans_To_Command_Positions
+		icon = GFX_goal_FLO_veterans
+		x = 51
+		y = 7
+		cost = 8
+		prerequisite = {
+			focus = IDA_Revive_The_Color_Coded_War_Plans
+		}
+		mutually_exclusive = {
+			focus = IDA_Encourage_Enlistment
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			NOT = {
+				has_idea = IDA_Militia_State_1
+			}
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = IDA_Militia_State_1
+				add_idea = IDA_Militia_State_2
 			}
 		}
 	}
@@ -843,7 +843,7 @@ focus_tree = {
 		icon = GFX_goal_generic_forceful_treaty
 		x = 45
 		y = 9
-		cost = 15
+		cost = 10
 		prerequisite = {
 			focus = IDA_Allies_Up_North
 		}
@@ -882,7 +882,7 @@ focus_tree = {
 			MON = {
 				country_event = {
 					id = idaho_rework.28
-					days = 10
+					days = 15
 				}
 			}
 		}
@@ -1248,9 +1248,12 @@ focus_tree = {
 				limit = {
 					has_idea = IDA_Economic_Dependence_4
 				}
-				swap_ideas = {
-					remove_idea = IDA_Economic_Dependence_4
-					add_idea = IDA_Economic_Miracle
+				remove_ideas = {
+					IDA_Economic_Dependence_4
+				}
+				add_timed_idea = { 
+					idea = IDA_Economic_Miracle  
+					days = 1825 
 				}
 			}
 			add_timed_idea = {
@@ -1409,7 +1412,7 @@ focus_tree = {
 			
 		}
 		available = {
-			date > 2023.1.1
+			date > 2023.6.1
 			UTA = {
 				OR = {
 					has_war_with = SIN
@@ -2049,9 +2052,12 @@ focus_tree = {
 				limit = {
 					has_idea = IDA_Economic_Dependence_4
 				}
-				swap_ideas = {
-					remove_idea = IDA_Economic_Dependence_4
-					add_idea = IDA_Economic_Miracle
+				remove_ideas = {
+					IDA_Economic_Dependence_4
+				}
+				add_timed_idea = { 
+					idea = IDA_Economic_Miracle  
+					days = 1825 
 				}
 			}
 			add_timed_idea = {
