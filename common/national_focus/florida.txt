@@ -1367,6 +1367,7 @@ focus_tree = {
 			    target = USA
 			    type = annex_everything
 			}
+			custom_effect_tooltip = unfinished_content_warning_tooltip
 		}
 
 
@@ -2189,7 +2190,7 @@ focus_tree = {
 			add_state_core = 533
 			add_state_core = 501
 		}
-
+		custom_effect_tooltip = unfinished_content_warning_tooltip
 	}
 	focus = {
 		id = FLO_the_great_miami_speech
@@ -3129,7 +3130,11 @@ focus_tree = {
 			}
 			add_ideas = { 
 				closed_economy
+			}
+			add_ideas = { 
 				civilian_economy
+			}
+			add_ideas = { 
 				disarmed_nation
 			}
 		}
@@ -3200,10 +3205,10 @@ focus_tree = {
 		x = 0
 		y = 1
 		completion_reward = {
-			add_stability = 0.15
+			add_stability = 0.10
 			add_popularity = {
 				ideology = republican
-				popularity = 0.15
+				popularity = 0.10
 			}
 		}
 
@@ -3315,7 +3320,7 @@ focus_tree = {
 	focus = {
 		id = FLO_invest_in_the_armed_forces
 		icon = GFX_goal_FLO_invest_in_armed_forces
-		cost = 10.00
+		cost = 5.00
 		relative_position_id = FLO_desantis
 		x = 20
 		y = 0
@@ -3355,7 +3360,7 @@ focus_tree = {
 	focus = {
 		id = FLO_exploit_key_west
 		icon = GFX_goal_FLO_exploit_key_west
-		cost = 10.00
+		cost = 5.00
 		relative_position_id = FLO_invest_in_the_armed_forces
 		prerequisite = {
 			focus = FLO_invest_in_the_armed_forces
@@ -3376,10 +3381,10 @@ focus_tree = {
 					}
 					is_core_of = ROOT
 				}
-				add_extra_state_shared_building_slots = 2
+				add_extra_state_shared_building_slots = 5
 				add_building_construction = {
 					type = dockyard
-					level = 2
+					level = 5
 					instant_build = yes
 				}
 			}
@@ -3389,7 +3394,7 @@ focus_tree = {
 	focus = {
 		id = FLO_naval_buildup
 		icon = GFX_goal_FLO_naval_buildup
-		cost = 10.00
+		cost = 2.00
 		relative_position_id = FLO_exploit_key_west
 		prerequisite = {
 			focus = FLO_exploit_key_west
@@ -3425,7 +3430,7 @@ focus_tree = {
 	focus = {
 		id = FLO_admiralty_of_florida
 		icon = GFX_goal_FLO_admirality
-		cost = 10.00
+		cost = 3.00
 		relative_position_id = FLO_naval_buildup
 		prerequisite = {
 			focus = FLO_naval_buildup
@@ -3443,7 +3448,7 @@ focus_tree = {
 	focus = {
 		id = FLO_tampa_bay_shipyards
 		icon = GFX_goal_FLO_tampa_shipyards
-		cost = 10.00
+		cost = 5.00
 		relative_position_id = FLO_naval_buildup
 		prerequisite = {
 			focus = FLO_naval_buildup
@@ -3464,10 +3469,10 @@ focus_tree = {
 					}
 					is_core_of = ROOT
 				}
-				add_extra_state_shared_building_slots = 2
+				add_extra_state_shared_building_slots = 5
 				add_building_construction = {
 					type = dockyard
-					level = 2
+					level = 5
 					instant_build = yes
 				}
 			}
@@ -3477,7 +3482,7 @@ focus_tree = {
 	focus = {
 		id = FLO_florida_rules_the_waves
 		icon = GFX_goal_FLO_rules_the_waves
-		cost = 10.00
+		cost = 2.00
 		relative_position_id = FLO_naval_buildup
 		prerequisite = {
 			focus = FLO_admiralty_of_florida
@@ -3488,27 +3493,56 @@ focus_tree = {
 		x = 0
 		y = 3
 		completion_reward = {
+			navy_experience = 10
+			add_doctrine_cost_reduction = {
+				name = naval_doc_bonus
+				cost_reduction = 0.5
+				uses = 3
+				category = naval_doctrine
+			}
 		}
 
 	}
 	focus = {
 		id = FLO_miami_defense_industry
 		icon = GFX_goal_FLO_miami_defense
-		cost = 10.00
+		cost = 5.00
 		relative_position_id = FLO_invest_in_the_armed_forces
 		prerequisite = {
 			focus = FLO_invest_in_the_armed_forces
 		}
 		x = 0
 		y = 1
+		available = {
+			owns_state = 580
+		}
 		completion_reward = {
+			add_ideas = {
+				partial_economic_mobilisation
+			}
+			580 = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 1
+						include_locked = yes
+					}
+					is_core_of = ROOT
+				}
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = arms_factory
+					level = 3
+					instant_build = yes
+				}
+			}
 		}
 
 	}
 	focus = {
 		id = FLO_reestablish_floridian_air_power
 		icon = GFX_goal_FLO_air_power
-		cost = 10.00
+		cost = 2.00
 		relative_position_id = FLO_miami_defense_industry
 		prerequisite = {
 			focus = FLO_miami_defense_industry
@@ -3516,13 +3550,20 @@ focus_tree = {
 		x = 0
 		y = 1
 		completion_reward = {
+			air_experience = 10
+			add_doctrine_cost_reduction = {
+				name = air_doc_bonus
+				cost_reduction = 0.5
+				uses = 3
+				category = air_doctrine
+			}
 		}
 
 	}
 	focus = {
 		id = FLO_new_fighter_designs
 		icon = GFX_goal_FLO_new_fighters_2
-		cost = 10.00
+		cost = 2.00
 		relative_position_id = FLO_reestablish_floridian_air_power
 		prerequisite = {
 			focus = FLO_reestablish_floridian_air_power
@@ -3530,13 +3571,26 @@ focus_tree = {
 		x = -1.5
 		y = 2
 		completion_reward = {
+			air_experience = 10
+			add_tech_bonus = {
+				name = fighter_bonus_2
+				bonus = 1.0
+				uses = 1
+				technology = early_fighter
+				technology = fighter1
+				technology = fighter2
+				technology = fighter3
+				technology = heavy_fighter1
+				technology = heavy_fighter2
+				technology = heavy_fighter3
+			}	
 		}
 
 	}
 	focus = {
 		id = FLO_bombers_galore
 		icon = GFX_goal_FLO_new_bombers
-		cost = 10.00
+		cost = 2.00
 		relative_position_id = FLO_reestablish_floridian_air_power
 		prerequisite = {
 			focus = FLO_reestablish_floridian_air_power
@@ -3544,13 +3598,26 @@ focus_tree = {
 		x = 1.5
 		y = 2
 		completion_reward = {
+			air_experience = 10
+			add_tech_bonus = {
+				name = bomber_bonus_2
+				bonus = 1.0
+				uses = 1
+				technology = early_bomber
+				technology = tactical_bomber1
+				technology = tactical_bomber2
+				technology = tactical_bomber3
+				technology = strategic_bomber1
+				technology = strategic_bomber2
+				technology = strategic_bomber3
+			}
 		}
 
 	}
 	focus = {
 		id = FLO_drop_em_in
 		icon = GFX_goal_FLO_drop_em_in
-		cost = 10.00
+		cost = 2.00
 		relative_position_id = FLO_reestablish_floridian_air_power
 		prerequisite = {
 			focus = FLO_new_fighter_designs
@@ -3561,6 +3628,16 @@ focus_tree = {
 		x = 0
 		y = 3
 		completion_reward = {
+			air_experience = 10
+			army_experience = 10
+			add_tech_bonus = {
+				name = paratrooper_bonus
+				bonus = 1.0
+				uses = 1
+				technology = paratroopers
+				technology = paratroopers2
+				technology = paratroopers3
+			}	
 		}
 
 	}
@@ -3575,6 +3652,13 @@ focus_tree = {
 		x = 3
 		y = 1
 		completion_reward = {
+			army_experience = 10
+			add_tech_bonus = {
+				name = infantry_bonus
+				bonus = 1.0
+				uses = 2
+				category = infantry_weapons
+			}
 		}
 
 	}
@@ -3589,13 +3673,17 @@ focus_tree = {
 		x = 0
 		y = 1
 		completion_reward = {
+			army_experience = 10
+			add_ideas = {
+				limited_conscription
+			}
 		}
 
 	}
 	focus = {
 		id = FLO_st_petersburg_motor
 		icon = GFX_goal_FLO_st_petersburg_motor
-		cost = 10.00
+		cost = 3.00
 		relative_position_id = FLO_army_expansion
 		prerequisite = {
 			focus = FLO_army_expansion
@@ -3603,13 +3691,20 @@ focus_tree = {
 		x = -1.5
 		y = 1
 		completion_reward = {
+			army_experience = 10
+			add_tech_bonus = {
+				name = motorized_bonus
+				bonus = 3.0
+				technology = motorised_infantry
+			}
+			custom_effect_tooltip = 4_FLO_tt
 		}
 
 	}
 	focus = {
 		id = FLO_officer_training_program
 		icon = GFX_goal_FLO_mil_high
-		cost = 10.00
+		cost = 3.00
 		relative_position_id = FLO_army_expansion
 		prerequisite = {
 			focus = FLO_army_expansion
@@ -3617,13 +3712,17 @@ focus_tree = {
 		x = 1.5
 		y = 1
 		completion_reward = {
+			army_experience = 10
+			add_ideas = {
+				FLO_generals
+			}
 		}
 
 	}
 	focus = {
 		id = FLO_florida_marches_on
 		icon = GFX_goal_FLO_florida_marches_on
-		cost = 10.00
+		cost = 2.00
 		relative_position_id = FLO_army_expansion
 		prerequisite = {
 			focus = FLO_st_petersburg_motor
@@ -3634,13 +3733,20 @@ focus_tree = {
 		x = 0
 		y = 3
 		completion_reward = {
+			army_experience = 10
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.5
+				uses = 3
+				category = land_doctrine
+			}
 		}
 
 	}
 	focus = {
 		id = FLO_floridian_marine_corps
 		icon = GFX_goal_FLO_USMC
-		cost = 10.00
+		cost = 4.00
 		relative_position_id = FLO_drop_em_in
 		prerequisite = {
 			focus = FLO_florida_rules_the_waves
@@ -3654,6 +3760,23 @@ focus_tree = {
 		x = 0
 		y = 1
 		completion_reward = {
+			add_tech_bonus = {
+				name = marine_bonus
+				bonus = 1.0
+				uses = 2
+				technology = marines
+				technology = marines2
+				technology = marines3
+			}
+			add_tech_bonus = {
+				name = invasion_tech_bonus
+				bonus = 1.0
+				uses = 2
+				technology = landing_craft
+			}
+			add_ideas = {
+				FLO_USMC
+			}
 		}
 
 	}
@@ -5361,6 +5484,7 @@ focus_tree = {
 		x = 1
 		y = 1
 		completion_reward = {
+			custom_effect_tooltip = unfinished_content_warning_tooltip
 		}
 	}
 	focus = {
@@ -5379,6 +5503,62 @@ focus_tree = {
 		x = 5
 		y = 1
 		completion_reward = {
+			every_state = {
+				limit = {
+					is_core_of = CUB
+					is_owned_by = CUB
+				}
+				add_core_of = FLO
+			}
+			every_state = {
+				limit = {
+					is_core_of = GTB
+					is_owned_by = GTB
+				}
+				add_core_of = FLO
+			}
+			every_state = {
+				limit = {
+					is_core_of = BAH
+					is_owned_by = BAH
+				}
+				add_core_of = FLO
+			}
+			every_state = {
+				limit = {
+					is_core_of = HAI
+					is_owned_by = HAI
+				}
+				add_core_of = FLO
+			}
+			every_state = {
+				limit = {
+					is_core_of = DOM
+					is_owned_by = DOM
+				}
+				add_core_of = FLO
+			}
+			every_state = {
+				limit = {
+					is_core_of = JAM
+					is_owned_by = JAM
+				}
+				add_core_of = FLO
+			}
+			every_state = {
+				limit = {
+					is_core_of = CAY
+					is_owned_by = CAY
+				}
+				add_core_of = FLO
+			}
+			every_state = {
+				limit = {
+					is_core_of = TAT
+					is_owned_by = TAT
+				}
+				add_core_of = FLO
+			}
 		}
 	}
 	focus = {
@@ -5391,7 +5571,12 @@ focus_tree = {
 		}
 		x = -2
 		y = 1
+		will_lead_to_war_with = BAH
 		completion_reward = {
+			declare_war_on = {
+			    target = BAH
+			    type = annex_everything
+			}
 		}
 	}
 	focus = {
@@ -5404,7 +5589,17 @@ focus_tree = {
 		}
 		x = 0
 		y = 1
+		will_lead_to_war_with = HAI
+		will_lead_to_war_with = DOM
 		completion_reward = {
+			declare_war_on = {
+			    target = HAI
+			    type = annex_everything
+			}
+			declare_war_on = {
+			    target = DOM
+			    type = annex_everything
+			}
 		}
 	}
 	focus = {
@@ -5417,7 +5612,12 @@ focus_tree = {
 		}
 		x = 2
 		y = 1
+		will_lead_to_war_with = JAM
 		completion_reward = {
+			declare_war_on = {
+			    target = JAM
+			    type = annex_everything
+			}
 		}
 	}
 	focus = {
@@ -5433,7 +5633,12 @@ focus_tree = {
 		}
 		x = -1
 		y = 1
+		will_lead_to_war_with = CAY
 		completion_reward = {
+			declare_war_on = {
+			    target = CAY
+			    type = annex_everything
+			}
 		}
 	}
 	focus = {
@@ -5449,7 +5654,12 @@ focus_tree = {
 		}
 		x = 1
 		y = 1
+		will_lead_to_war_with = TAT
 		completion_reward = {
+			declare_war_on = {
+			    target = TAT
+			    type = annex_everything
+			}
 		}
 	}
 	focus = {
@@ -5465,7 +5675,18 @@ focus_tree = {
 		}
 		x = -1
 		y = 1
+		will_lead_to_war_with = CUB
+		will_lead_to_war_with = GTB
 		completion_reward = {
+			custom_effect_tooltip = unfinished_content_warning_tooltip
+			declare_war_on = {
+			    target = CUB
+			    type = annex_everything
+			}		
+			declare_war_on = {
+			    target = GTB
+			    type = annex_everything
+			}
 		}
 	}
 	#JEB#
@@ -5657,6 +5878,7 @@ focus_tree = {
 			country_event = {
 				id = florida.42
 			}
+			custom_effect_tooltip = unfinished_content_warning_tooltip
 		}
 
 	}
