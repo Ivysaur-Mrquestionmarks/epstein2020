@@ -3127,6 +3127,11 @@ focus_tree = {
 				ideology = republican
 				popularity = 0.05
 			}
+			add_ideas = { 
+				closed_economy
+				civilian_economy
+				disarmed_nation
+			}
 		}
 	}
 	focus = {
@@ -3315,6 +3320,7 @@ focus_tree = {
 		x = 20
 		y = 0
 		available = {
+			owns_state = 582
 			OR = {
 				has_completed_focus = FLO_scott
 				has_completed_focus = FLO_gaetz
@@ -3323,6 +3329,26 @@ focus_tree = {
 			}
 		}
 		completion_reward = {
+			army_experience = 25
+			add_ideas = {
+				limited_conscription
+			}
+			582 = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 1
+						include_locked = yes
+					}
+					is_core_of = ROOT
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
 		}
 
 	}
@@ -3336,7 +3362,27 @@ focus_tree = {
 		}
 		x = -3
 		y = 1
+		available = {
+			owns_state = 345
+		}
 		completion_reward = {
+			navy_experience = 10
+			345 = {
+				limit = {
+					free_building_slots = {
+						building = dockyard
+						size > 1
+						include_locked = yes
+					}
+					is_core_of = ROOT
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+			}
 		}
 
 	}
@@ -3351,6 +3397,28 @@ focus_tree = {
 		x = 0
 		y = 1
 		completion_reward = {
+			navy_experience = 10
+			add_tech_bonus = {
+				name = dd_bonus
+				bonus = 1.0
+				ahead_reduction = 2
+				uses = 1
+				category = dd_tech
+			}
+			add_tech_bonus = {
+				name = bb_bonus
+				bonus = 1.0
+				ahead_reduction = 2
+				uses = 1
+				category = bb_tech
+			}
+			add_tech_bonus = {
+				name = cv_bonus
+				bonus = 1.0
+				ahead_reduction = 2
+				uses = 1
+				category = cv_tech
+			}
 		}
 
 	}
@@ -3365,6 +3433,10 @@ focus_tree = {
 		x = -1.5
 		y = 1
 		completion_reward = {
+			navy_experience = 10
+			add_ideas = {
+				FLO_admiralty
+			}
 		}
 
 	}
@@ -3378,7 +3450,27 @@ focus_tree = {
 		}
 		x = 1.5
 		y = 1
+		available = {
+			owns_state = 353
+		}
 		completion_reward = {
+			navy_experience = 10
+			353 = {
+				limit = {
+					free_building_slots = {
+						building = dockyard
+						size > 1
+						include_locked = yes
+					}
+					is_core_of = ROOT
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+			}
 		}
 
 	}
@@ -3568,7 +3660,7 @@ focus_tree = {
 	focus = {
 		id = FLO_the_floridian_economy
 		icon = GFX_goal_FLO_floridian_economy
-		cost = 10.00
+		cost = 2.00
 		relative_position_id = FLO_desantis
 		x = 9
 		y = 0
@@ -3581,13 +3673,19 @@ focus_tree = {
 			}
 		}
 		completion_reward = {
+			add_tech_bonus = {
+				name = industrial_bonus
+				bonus = 1.0
+				uses = 3
+				category = industry
+			}
 		}
 
 	}
 	focus = {
 		id = FLO_aircraft_production
 		icon = GFX_goal_FLO_aircraft_production
-		cost = 10.00
+		cost = 4.30
 		relative_position_id = FLO_the_floridian_economy
 		prerequisite = {
 			focus = FLO_the_floridian_economy
@@ -3595,13 +3693,15 @@ focus_tree = {
 		x = -2
 		y = 1
 		completion_reward = {
+			custom_effect_tooltip = 2_FLO_tt
+			air_experience = 50
 		}
 
 	}
 	focus = {
 		id = FLO_improve_inner_florida_roads
 		icon = GFX_goal_FLO_improve_florida_roads
-		cost = 10.00
+		cost = 3.00
 		relative_position_id = FLO_aircraft_production
 		prerequisite = {
 			focus = FLO_aircraft_production
@@ -3609,51 +3709,130 @@ focus_tree = {
 		x = 0
 		y = 1
 		completion_reward = {
+			build_railway = {
+				path = { 5033 11162 11143 880 11157 11144 6018 }
+			}
+			build_railway = {
+				path = { 11108 11114 2182 11144 }
+			}
+			build_railway = {
+				path = { 11242 5209 11236 5431 11229 2937 3260 }
+			}
+			build_railway = {
+				path = { 11236 1792 581 11274 }
+			}
+			build_railway = {
+				path = { 11157 2946 5941 11207 5431 }
+			}
+			add_building_construction = {
+					type = supply_node
+					level = 1
+					province = 2182
+					instant_build = yes
+			}
 		}
-
 	}
 	focus = {
 		id = FLO_floridian_interstate_system
 		icon = GFX_goal_FLO_interstate
-		cost = 10.00
+		cost = 3.00
 		relative_position_id = FLO_improve_inner_florida_roads
 		prerequisite = {
 			focus = FLO_improve_inner_florida_roads
 		}
 		x = 0
 		y = 1
+		available = {
+			owns_state = 581 
+			owns_state = 584
+			owns_state = 346
+		}
 		completion_reward = {
+			581 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 3
+					instant_build = yes
+				}
+			}
+			584 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 3
+					instant_build = yes
+				}
+			}
+			346 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 3
+					instant_build = yes
+				}
+			}
 		}
 
 	}
 	focus = {
 		id = FLO_miami_dade_manufacturing
 		icon = GFX_goal_FLO_miami_dale
-		cost = 10.00
+		cost = 5.00
 		relative_position_id = FLO_floridian_interstate_system
 		prerequisite = {
 			focus = FLO_floridian_interstate_system
 		}
 		x = 0
 		y = 1
-		completion_reward = {
+		available = {
+			owns_state = 580
 		}
-
+		completion_reward = {
+			580 = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 1
+						include_locked = yes
+					}
+					is_core_of = ROOT
+				}
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+					type = industrial_complex
+					level = 4
+					instant_build = yes
+				}
+			}
+		}
 	}
 	focus = {
 		id = FLO_tax_cuts_for_entertainment
 		icon = GFX_goal_FLO_tax_cuts
-		cost = 10.00
+		cost = 5.00
 		relative_position_id = FLO_the_floridian_economy
 		prerequisite = {
 			focus = FLO_the_floridian_economy
 		}
 		x = 0
 		y = 1
+		available = {
+			owns_state = 397
+		}
 		completion_reward = {
-		#hi areo just made this on effect. seemed to work here
-			remove_ideas = {
-				FLO_tourism
+			397 = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 1
+						include_locked = yes
+					}
+					is_core_of = ROOT
+				}
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+					type = industrial_complex
+					level = 4
+					instant_build = yes
+				}
 			}
 		}
 
@@ -3661,7 +3840,7 @@ focus_tree = {
 	focus = {
 		id = FLO_publix
 		icon = GFX_goal_FLO_publix
-		cost = 10.00
+		cost = 2.00
 		relative_position_id = FLO_tax_cuts_for_entertainment
 		prerequisite = {
 			focus = FLO_tax_cuts_for_entertainment
@@ -3669,13 +3848,14 @@ focus_tree = {
 		x = 0
 		y = 1
 		completion_reward = {
+			custom_effect_tooltip = 3_FLO_tt
 		}
 
 	}
 	focus = {
 		id = FLO_export_citrus
 		icon = GFX_goal_FLO_citrus
-		cost = 10.00
+		cost = 3.00
 		relative_position_id = FLO_publix
 		prerequisite = {
 			focus = FLO_publix
@@ -3683,13 +3863,16 @@ focus_tree = {
 		x = 0
 		y = 1
 		completion_reward = {
+			add_ideas = { 
+				export_focus
+			}
 		}
 
 	}
 	focus = {
 		id = FLO_fund_public_universities
 		icon = GFX_goal_FLO_universities
-		cost = 10.00
+		cost = 3.00
 		relative_position_id = FLO_export_citrus
 		prerequisite = {
 			focus = FLO_export_citrus
@@ -3697,20 +3880,41 @@ focus_tree = {
 		x = 0
 		y = 1
 		completion_reward = {
+			add_research_slot = 1
 		}
 
 	}
 	focus = {
 		id = FLO_expand_port_canaveral
 		icon = GFX_goal_FLO_port_canaveral
-		cost = 10.00
+		cost = 5.00
 		relative_position_id = FLO_the_floridian_economy
 		prerequisite = {
 			focus = FLO_the_floridian_economy
 		}
 		x = 2
 		y = 1
+		available = {
+			owns_state = 577
+		}
 		completion_reward = {
+			navy_experience = 50
+			577 = {
+				limit = {
+					free_building_slots = {
+						building = dockyard
+						size > 1
+						include_locked = yes
+					}
+					is_core_of = ROOT
+				}
+				add_extra_state_shared_building_slots = 5
+				add_building_construction = {
+					type = dockyard
+					level = 5
+					instant_build = yes
+				}
+			}
 		}
 
 	}
@@ -3724,14 +3928,49 @@ focus_tree = {
 		}
 		x = 0
 		y = 1
+		available = {
+			owns_state = 397
+			owns_state = 346
+		}
 		completion_reward = {
+			air_experience = 50
+			397 = {
+				limit = {
+					free_building_slots = {
+						building = air_base 
+						size > 1
+						include_locked = yes
+					}
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = air_base 
+					level = 4
+					instant_build = yes
+				}
+			}
+			346 = {
+				limit = {
+					free_building_slots = {
+						building = air_base 
+						size > 1
+						include_locked = yes
+					}
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = air_base 
+					level = 4
+					instant_build = yes
+				}
+			}
 		}
 
 	}
 	focus = {
 		id = FLO_must_be_the_sunshine
 		icon = GFX_goal_FLO_sunshine
-		cost = 10.00
+		cost = 2.00
 		relative_position_id = FLO_floridaair
 		prerequisite = {
 			focus = FLO_floridaair
@@ -3739,22 +3978,42 @@ focus_tree = {
 		x = 0
 		y = 1
 		completion_reward = {
+			add_stability = 0.10
+			add_political_power = 200
 		}
 
 	}
 	focus = {
 		id = FLO_florida_is_open_for_buisness
 		icon = GFX_goal_FLO_open
-		cost = 10.00
+		cost = 3.00
 		relative_position_id = FLO_must_be_the_sunshine
 		prerequisite = {
 			focus = FLO_must_be_the_sunshine
 		}
 		x = 0
 		y = 1
-		completion_reward = {
+		available = {
+			owns_state = 580
+			owns_state = 345
 		}
-
+		completion_reward = {
+			navy_experience = 50
+			580 = {
+				add_building_construction = {
+					type = naval_base
+					level = 5
+					instant_build = yes
+				}
+			}
+			345 = {
+				add_building_construction = {
+					type = naval_base
+					level = 5
+					instant_build = yes
+				}
+			}
+		}
 	}
 	focus = {
 		id = FLO_a_republican_economy
@@ -3773,6 +4032,9 @@ focus_tree = {
 		x = 0
 		y = 1
 		completion_reward = {
+			add_ideas = {
+				FLO_GOP_econ
+			}
 		}
 
 	}
