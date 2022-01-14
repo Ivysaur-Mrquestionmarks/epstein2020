@@ -59,17 +59,17 @@ country_event = {
 				}
 				add_core_of = NUN
 			}
-			#OOR = { #Orange Order is going to be completely phased out.
-			#	transfer_state = 91
-			#	transfer_state = 129
-			#	transfer_state = 133
-			#}
-			#every_state = {
-			#	limit = {
-			#		is_owned_by = OOR
-			#	}
-			#	add_core_of = OOR
-			#}
+			OOR = { #Orange Order is being entirely repurposed into Jordan Peterson tag
+				transfer_state = 91
+				transfer_state = 129
+				transfer_state = 133
+			}
+			every_state = {
+				limit = {
+					is_owned_by = OOR
+				}
+				add_core_of = OOR
+			}
 			NFL = {
 				transfer_state = 128
 				transfer_state = 175
@@ -255,14 +255,14 @@ country_event = {
 				navy_ratio = 0.0
 				air_ratio = 0.1
 			}
-			#transfer_units_fraction= {
-			#	target = OOR
-			#	size = 0.1
-			#	stockpile_ratio = 0.1
-			#	army_ratio = 0.1
-			#	navy_ratio = 0.0
-			#	air_ratio = 0.0
-			#}
+			transfer_units_fraction= {
+				target = OOR
+				size = 0.1
+				stockpile_ratio = 0.1
+				army_ratio = 0.1
+				navy_ratio = 0.0
+				air_ratio = 0.0
+			}
 			transfer_units_fraction= {
 				target = ANT
 				size = 0.1
@@ -357,6 +357,34 @@ country_event = {
  			    type = annex_everything
 			}
 			QUE = {
+				declare_war_on = {
+			  		target = MLC
+ 			    	type = annex_everything
+				}
+				#declare_war_on = { #quebec will now form a "deal with the devil" with trudeau govt.
+			  	#	target = CAN
+ 			    	#type = annex_everything
+				#}
+				declare_war_on = {
+			  		target = OOR
+ 			    	type = annex_everything
+				}
+				start_civil_war = {
+				    ideology = autocratic
+				    size = 0.4
+				    capital = 48
+				    states = { 
+				        48 377
+				    }
+				    keep_political_leader = no
+				    keep_political_party_members = no
+				}
+			}
+			every_country = {
+				limit = {
+					original_tag = QUE
+					has_government = autocratic
+				}
 				declare_war_on = {
 			  		target = MLC
  			    	type = annex_everything
@@ -747,6 +775,24 @@ country_event = {
 					is_core_of = OOR
 				}
 				add_core_of = ROOT
+			}
+		}
+		if = {
+			limit = {
+				country_exists = QUE
+				NOT = {
+					has_war_with = QUE
+				}
+			}
+			if = {
+				limit = {
+					is_in_faction_with = QUE
+				}
+				remove_from_faction = QUE
+			}
+			declare_war_on = {
+				target = QUE
+ 	    			type = annex_everything
 			}
 		}
 		if = {
