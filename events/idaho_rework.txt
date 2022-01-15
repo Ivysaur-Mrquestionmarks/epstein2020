@@ -1219,6 +1219,16 @@ country_event = { #Peace out FRA and WCZ
 			}
 		}
 		white_peace = IDA
+		if = {
+			limit = {
+				has_war_with = {
+					any_country = {
+						is_ally_with = IDA
+					}
+				}
+			}
+			white_peace = PREV
+		}
 	}
 }
 country_event = { #UTA 65% Strength Uprising.
@@ -1973,7 +1983,7 @@ country_event = { #Nevada militias join the WCZ
 	fire_only_once = yes
 
 	mean_time_to_happen = {
-		days = 10
+		days = 5
 	}
 
 	trigger = {
@@ -2016,7 +2026,7 @@ country_event = { #Bundys ask to join the WCZ
 	fire_only_once = yes
 	
 	mean_time_to_happen = {
-		days = 20
+		days = 15
 	}
 
 	trigger = {
@@ -2105,6 +2115,172 @@ country_event = { #Arizonan Militias join the WCZ
 		}
 		hidden_effect = {
 			set_country_flag = wcz_arizona_militias_recruited
+		}
+	}
+}
+country_event = { #WCZ decides what air doctrine it wants to focus on 
+	id = idaho_rework.66
+	title = idaho_rework.66.t
+	desc = idaho_rework.66.d
+	picture = GFX_report_event_IDA_Air_Force
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Focus on strategic bombing, gains bonus for strategic bombing doctrine
+		name = idaho_rework.66.a
+		custom_effect_tooltip = wcz_air_doctrine_choice
+		add_doctrine_cost_reduction = { 
+			name = air_doc_bonus
+			cost_reduction = 0.50
+			uses = 2
+			category = strategic_destruction_tree
+		}
+		swap_ideas = {
+			remove_idea = IDA_Lackluster_Air_Force_2
+			add_idea = IDA_Lackluster_Air_Force_3
+		}
+		hidden_effect = {
+			set_country_flag = wcz_strategic_destruction_focus
+		}
+	}
+	option = { #Focus on close air support, gains bonus for battlefield support doctrine
+		name = idaho_rework.66.b
+		custom_effect_tooltip = wcz_air_doctrine_choice
+		add_doctrine_cost_reduction = { 
+			name = air_doc_bonus
+			cost_reduction = 0.50
+			uses = 2
+			category = battlefield_support_tree
+		}
+		swap_ideas = {
+			remove_idea = IDA_Lackluster_Air_Force_2
+			add_idea = IDA_Lackluster_Air_Force_4
+		}
+		hidden_effect = {
+			set_country_flag = wcz_battlefield_support_focus
+		}
+	}
+	option = { #Focus on both (tactical bombers), gains bonus for operation integrity doctrine
+		name = idaho_rework.66.c
+		custom_effect_tooltip = wcz_air_doctrine_choice
+		add_doctrine_cost_reduction = { 
+			name = air_doc_bonus
+			cost_reduction = 0.50
+			uses = 2
+			category = operational_integrity_tree
+		}
+		swap_ideas = {
+			remove_idea = IDA_Lackluster_Air_Force_2
+			add_idea = IDA_Lackluster_Air_Force_5
+		}
+		hidden_effect = {
+			set_country_flag = wcz_operation_integrity_focus
+		}
+	}
+}
+country_event = { #Idaho and Wyoming National Guard wishes to be fully reinstates, WCZ must choose
+	id = idaho_rework.67
+	title = idaho_rework.67.t
+	desc = idaho_rework.67.d
+	picture = GFX_report_event_IDA_National_Guard
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Only permit the Air Force to return (Only gain air force advisors)
+		name = idaho_rework.67.a
+		custom_effect_tooltip = wcz_air_force_generals_reinstated
+		add_political_power = -30
+		air_experience = 15
+		if = {
+			limit = {
+				has_idea = IDA_Lackluster_Air_Force_3
+			}
+			swap_ideas = {
+				remove_idea = IDA_Lackluster_Air_Force_3
+				add_idea = IDA_Lackluster_Air_Force_6
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = IDA_Lackluster_Air_Force_4
+			}
+			swap_ideas = {
+				remove_idea = IDA_Lackluster_Air_Force_4
+				add_idea = IDA_Lackluster_Air_Force_6
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = IDA_Lackluster_Air_Force_5
+			}
+			swap_ideas = {
+				remove_idea = IDA_Lackluster_Air_Force_5
+				add_idea = IDA_Lackluster_Air_Force_6
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = IDA_Lackluster_Air_Force_6
+			}
+			swap_ideas = {
+				remove_idea = IDA_Lackluster_Air_Force_6
+				add_idea = IDA_Lackluster_Air_Force_7
+			}
+		}
+		hidden_effect = {
+			set_country_flag = wcz_air_force_generals_allowed
+		}
+	}
+	option = { #Permit the entire National Guard to be reinstated (Gain high skilled army and air advisors) 
+		name = idaho_rework.67.b
+		custom_effect_tooltip = wcz_air_and_army_generals_reinstated
+		add_political_power = -60
+		add_popularity = {
+			ideology = autocratic
+			popularity = 0.05
+		}
+		air_experience = 15
+		army_experience = 15
+		if = {
+			limit = {
+				has_idea = IDA_Lackluster_Air_Force_3
+			}
+			swap_ideas = {
+				remove_idea = IDA_Lackluster_Air_Force_3
+				add_idea = IDA_Lackluster_Air_Force_6
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = IDA_Lackluster_Air_Force_4
+			}
+			swap_ideas = {
+				remove_idea = IDA_Lackluster_Air_Force_4
+				add_idea = IDA_Lackluster_Air_Force_6
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = IDA_Lackluster_Air_Force_5
+			}
+			swap_ideas = {
+				remove_idea = IDA_Lackluster_Air_Force_5
+				add_idea = IDA_Lackluster_Air_Force_6
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = IDA_Lackluster_Air_Force_6
+			}
+			swap_ideas = {
+				remove_idea = IDA_Lackluster_Air_Force_6
+				add_idea = IDA_Lackluster_Air_Force_7
+			}
+		}
+		hidden_effect = {
+			set_country_flag = wcz_military_allowed_to_operate
 		}
 	}
 }

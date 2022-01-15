@@ -22,6 +22,7 @@ characters={
 		advisor = {
 			slot = army_chief
 			idea_token = IDA_Jeff_Stankiewicz_Chief
+			cost = 50
 			allowed = {
 				original_tag = IDA
 			}
@@ -53,6 +54,32 @@ characters={
 		portraits = {
 			civilian = {
 				large = "gfx/leaders/IDA/Gary_L_Sayler.dds"
+			}
+			army = {
+				small = "GFX_idea_Gary_L_Sayler_Chief"
+			}
+		}
+		advisor = {
+			slot = air_chief
+			idea_token = IDA_Gary_Sayler_Chief
+			cost = 50
+			allowed = {
+				original_tag = IDA
+			}
+			visible = {
+				OR = {
+					has_country_flag = wcz_air_force_generals_allowed
+					has_country_flag = wcz_military_allowed_to_operate
+				}
+			}
+			available = {
+				
+			}
+			traits = {
+				air_chief_old_guard 
+			}
+			ai_will_do = {
+				factor = 1
 			}
 		}
 		country_leader = {
@@ -334,6 +361,7 @@ characters={
 		advisor = {
 			slot = army_chief
 			idea_token = IDA_Ammon_Bundy_Chief
+			cost = 120
 			allowed = {
 				original_tag = IDA
 			}
@@ -473,108 +501,6 @@ characters={
 			}
 		}
 	}
-	IDA_alpine_services_llc = { #Company instead of a person
-		name = "Alpine Services LLC"
-		portraits = {
-			army = {
-				small = "GFX_idea_Alpine_Services_LLC_Theorist"
-			}
-		}
-		allowed_civil_war = {
-			always = yes
-		}
-
-		advisor = {
-			slot = theorist
-			idea_token = IDA_Alpine_Services_LLC_Theorist
-			cost = 150
-			allowed = {
-				original_tag = IDA	
-			}
-			visible = {
-				
-			}
-			available = {
-
-			}
-			traits = {
-				security_training_corporation 
-			}
-			ai_will_do = {
-				factor = 1
-			}
-		}
-	}
-	IDA_dugway_proving_ground = { #Place instead of a person
-		name = "Dugway Proving Ground"
-		portraits = {
-			army = {
-				small = "GFX_idea_Dugway_Proving_Ground_Theorist"
-			}
-		}
-		allowed_civil_war = {
-			always = yes
-		}
-
-		advisor = {
-			slot = theorist
-			idea_token = IDA_Dugway_Proving_Ground_Theorist
-			cost = 150
-			allowed = {
-				original_tag = IDA	
-			}
-			visible = {
-				
-			}
-			available = {
-				controls_state = 411
-			}
-			traits = {
-				us_army_testing_area 
-			}
-			ai_will_do = {
-				factor = 1
-			}
-		}
-		advisor = {
-			slot = army_chief
-			idea_token = IDA_Dugway_Proving_Ground_Army_Chief
-			allowed = {
-				original_tag = IDA	
-			}
-			visible = {
-				
-			}
-			available = {
-				controls_state = 411
-			}
-			traits = {
-				us_army_training_area 
-			}
-			ai_will_do = {
-				factor = 1
-			}
-		}
-		advisor = {
-			slot = air_chief
-			idea_token = IDA_Dugway_Proving_Ground_Air_Chief
-			allowed = {
-				original_tag = IDA	
-			}
-			visible = {
-				
-			}
-			available = {
-				controls_state = 411
-			}
-			traits = {
-				us_air_force_training_area 
-			}
-			ai_will_do = {
-				factor = 1
-			}
-		}
-	}
 	# Gained Advisors #
 	IDA_greg_gianforte = {
 		name = "Greg Gianforte"
@@ -676,7 +602,267 @@ characters={
 			}
 		}
 	}
+	# Theorists #
+	IDA_alpine_services_llc = { #Company instead of a person
+		name = "Alpine Services LLC"
+		portraits = {
+			army = {
+				small = "GFX_idea_Alpine_Services_LLC_Theorist"
+			}
+		}
+		allowed_civil_war = {
+			always = yes
+		}
+
+		advisor = {
+			slot = theorist
+			idea_token = IDA_Alpine_Services_LLC_Theorist
+			cost = 150
+			ledger = army
+			allowed = {
+				original_tag = IDA	
+			}
+			visible = {
+				
+			}
+			available = {
+
+			}
+			traits = {
+				security_training_corporation 
+			}
+			ai_will_do = {
+				factor = 1
+			}
+		}
+	}
+	IDA_dugway_proving_ground = { #Place instead of a person
+		name = "Dugway Proving Ground"
+		portraits = {
+			army = {
+				small = "GFX_idea_Dugway_Proving_Ground_Theorist"
+			}
+		}
+		allowed_civil_war = {
+			always = yes
+		}
+
+		advisor = {
+			slot = theorist
+			idea_token = IDA_Dugway_Proving_Ground_Theorist
+			cost = 150
+			ledger = army
+			allowed = {
+				original_tag = IDA	
+			}
+			visible = {
+				
+			}
+			available = {
+				OR = {
+					controls_state = 411
+					any_allied_country	= {
+						controls_state = 411
+					}
+				}
+			}
+			traits = {
+				us_army_testing_area 
+			}
+			ai_will_do = {
+				factor = 1
+			}
+		}
+		advisor = {
+			slot = army_chief
+			idea_token = IDA_Dugway_Proving_Ground_Army_Chief
+			cost = 80
+			allowed = {
+				original_tag = IDA	
+			}
+			visible = {
+				
+			}
+			available = {
+				OR = {
+					controls_state = 411
+					any_allied_country	= {
+						controls_state = 411
+					}
+				}
+			}
+			traits = {
+				us_army_training_area 
+			}
+			ai_will_do = {
+				factor = 1
+			}
+		}
+		advisor = {
+			slot = air_chief
+			idea_token = IDA_Dugway_Proving_Ground_Air_Chief
+			cost = 80
+			allowed = {
+				original_tag = IDA	
+			}
+			visible = {
+				
+			}
+			available = {
+				OR = {
+					controls_state = 411
+					any_allied_country = {
+						controls_state = 411
+					}
+				}
+			}
+			traits = {
+				us_air_force_training_area 
+			}
+			ai_will_do = {
+				factor = 1
+			}
+		}
+	}
+	IDA_blue_air_training = { #Company instead of a person
+		name = "Blue Air Training"
+		portraits = {
+			army = {
+				small = "GFX_idea_Blue_Air_Training_Theorist"
+			}
+		}
+		allowed_civil_war = {
+			always = yes
+		}
+
+		advisor = {
+			slot = theorist
+			idea_token = IDA_Blue_Air_Training_Theorist
+			cost = 150
+			ledger = air
+			allowed = {
+				original_tag = IDA	
+			}
+			visible = {
+				
+			}
+			available = {
+				OR = {
+					controls_state = 46
+					any_allied_country	 = {
+						controls_state = 46
+					}
+				}
+			}
+			traits = {
+				close_air_support_training_company 
+			}
+			ai_will_do = {
+				factor = 1
+			}
+		}
+	}
+	IDA_international_flight_training_school = { #Company instead of a person
+		name = "International Flight Training School"
+		portraits = {
+			army = {
+				small = "GFX_idea_IFTS_Theorist"
+			}
+		}
+		allowed_civil_war = {
+			always = yes
+		}
+
+		advisor = {
+			slot = theorist
+			idea_token = IDA_IFTS_Theorist
+			cost = 150
+			ledger = air
+			allowed = {
+				original_tag = IDA	
+			}
+			visible = {
+				has_country_flag = wcz_pmc_air_contracts
+			}
+			available = {
+				
+			}
+			traits = {
+				fighter_training_company 
+			}
+			ai_will_do = {
+				factor = 1
+			}
+		}
+	}
+	IDA_airborne_tactical_advantage_company = { #Company instead of a person
+		name = "Airborne Tactical Advantage Company"
+		portraits = {
+			army = {
+				small = "GFX_idea_ATAC_Theorist"
+			}
+		}
+		allowed_civil_war = {
+			always = yes
+		}
+
+		advisor = {
+			slot = theorist
+			idea_token = IDA_ATAC_Theorist
+			cost = 150
+			ledger = air
+			allowed = {
+				original_tag = IDA	
+			}
+			visible = {
+				has_country_flag = wcz_pmc_air_contracts
+			}
+			available = {
+				
+			}
+			traits = {
+				general_aircraft_training_company 
+			}
+			ai_will_do = {
+				factor = 1
+			}
+		}
+	}
+	IDA_top_aces = { #Company instead of a person
+		name = "Top Aces"
+		portraits = {
+			army = {
+				small = "GFX_idea_Top_Aces_Theorist"
+			}
+		}
+		allowed_civil_war = {
+			always = yes
+		}
+
+		advisor = {
+			slot = theorist
+			idea_token = IDA_Top_Aces_Theorist
+			cost = 150
+			ledger = air
+			allowed = {
+				original_tag = IDA	
+			}
+			visible = {
+				has_country_flag = wcz_pmc_air_contracts
+			}
+			available = {
+				
+			}
+			traits = {
+				bomber_training_company 
+			}
+			ai_will_do = {
+				factor = 1
+			}
+		}
+	}
 	# Military Staff (Some double as military leaders) #
+	# High Command #
 	IDA_john_tiegen = {
 		name = "John Tiegen"
 		portraits = {
@@ -688,6 +874,7 @@ characters={
 		advisor = {
 			slot = high_command
 			idea_token = IDA_John_Tiegen_Command
+			cost = 80
 			ledger = army
 			allowed = {
 				original_tag = IDA
@@ -726,6 +913,7 @@ characters={
 		advisor = {
 			slot = high_command
 			idea_token = IDA_Corey_Coon_Command
+			cost = 50
 			ledger = army
 			allowed = {
 				original_tag = IDA
@@ -737,7 +925,7 @@ characters={
 				
 			}
 			traits = {
-				army_infantry_2 
+				army_infantry_1 
 			}
 			ai_will_do = {
 				factor = 1
@@ -764,6 +952,7 @@ characters={
 		advisor = {
 			slot = high_command
 			idea_token = IDA_Marshall_Burt_Command
+			cost = 50
 			ledger = army
 			allowed = {
 				original_tag = IDA
@@ -792,6 +981,143 @@ characters={
 		}
 	}
 	# Gained Military Staff #
+	# Chiefs #
+	IDA_michael_garshak = {
+		name = "Michael Garshak"
+		portraits = {
+			army = {
+				small = "GFX_idea_Michael_Garshak_Chief"
+				large = "gfx/leaders/IDA/Michael_Garshak.png"
+			}
+		}
+		advisor = {
+			slot = army_chief
+			idea_token = IDA_Michael_Garshak_Chief
+			cost = 80
+			allowed = {
+				original_tag = IDA
+			}
+			visible = {
+				has_country_flag = wcz_military_allowed_to_operate
+			}
+			available = {
+				
+			}
+			traits = {
+				army_chief_defensive_2 
+			}
+			ai_will_do = {
+				factor = 1
+			}
+		}
+		corps_commander = {
+			traits = { career_officer defensive_doctrine combined_arms_expert paratrooper }
+			skill = 4
+			attack_skill = 3
+			defense_skill = 5
+			planning_skill = 5 
+			logistics_skill = 4
+			visible = { has_country_flag = wcz_military_allowed_to_operate }
+		}
+	}
+	IDA_gregory_porter = {
+		name = "Gregory C. Porter"
+		portraits = {
+			army = {
+				small = "GFX_idea_Gregory_C_Porter_Chief"
+				large = "gfx/leaders/IDA/Gregory_Porter.png"
+			}
+		}
+		advisor = {
+			slot = army_chief
+			idea_token = IDA_Gregory_C_Porter_Chief
+			cost = 80
+			allowed = {
+				original_tag = IDA
+			}
+			visible = {
+				has_country_flag = wcz_military_allowed_to_operate
+			}
+			available = {
+				
+			}
+			traits = {
+				army_chief_offensive_3 
+			}
+			ai_will_do = {
+				factor = 1
+			}
+		}
+		corps_commander = {
+			traits = { career_officer bearer_of_artillery offensive_doctrine desert_fox }
+			skill = 4
+			attack_skill = 5
+			defense_skill = 3
+			planning_skill = 4
+			logistics_skill = 5
+			visible = { has_country_flag = wcz_military_allowed_to_operate }
+		}
+	}
+	IDA_timothy_donnellan = {
+		name = "Timothy Donnellan"
+		portraits = {
+			army = {
+				small = "GFX_idea_Timothy_Donnellan_Chief"
+			}
+		}
+		advisor = {
+			slot = air_chief
+			idea_token = IDA_Timothy_Donnellan_Chief
+			cost = 120
+			allowed = {
+				original_tag = IDA
+			}
+			visible = {
+				has_country_flag = wcz_air_force_generals_allowed
+				has_country_flag = wcz_military_allowed_to_operate
+			}
+			available = {
+				
+			}
+			traits = {
+				air_chief_ground_support_3 
+			}
+			ai_will_do = {
+				factor = 1
+			}
+		}
+	}
+	IDA_barry_deibert = {
+		name = "Barry Deibert"
+		portraits = {
+			army = {
+				small = "GFX_idea_Barry_Deibert_Chief"
+			}
+		}
+		advisor = {
+			slot = air_chief
+			idea_token = IDA_Barry_Deibert_Chief
+			cost = 80
+			allowed = {
+				original_tag = IDA
+			}
+			visible = {
+				OR = {
+					has_country_flag = wcz_air_force_generals_allowed
+					has_country_flag = wcz_military_allowed_to_operate
+				}
+			}
+			available = {
+				
+			}
+			traits = {
+				air_chief_all_weather_2 
+			}
+			ai_will_do = {
+				factor = 1
+			}
+		}
+	}
 	IDA_john_trochmann = {
 		name = "John Trochmann"
 		portraits = {
@@ -802,7 +1128,7 @@ characters={
 		advisor = {
 			slot = army_chief
 			idea_token = IDA_John_Trochmann_Chief
-			ledger = army
+			cost = 50
 			allowed = {
 				original_tag = IDA
 			}
@@ -835,12 +1161,15 @@ characters={
 		advisor = {
 			slot = army_chief
 			idea_token = IDA_Eric_Moutsos_Chief
-			ledger = army
+			cost = 80
 			allowed = {
 				original_tag = IDA
 			}
 			visible = {
-				
+				OR = {
+					has_country_flag = wcz_air_force_generals_allowed
+					has_country_flag = wcz_military_allowed_to_operate
+				}
 			}
 			available = {
 				has_completed_focus = IDA_Industry_Of_The_Beehive_State
@@ -850,7 +1179,7 @@ characters={
 				}
 			}
 			traits = {
-				army_chief_offensive_2 
+				army_chief_morale_2 
 			}
 			ai_will_do = {
 				factor = 1
@@ -866,6 +1195,217 @@ characters={
 			visible = { has_completed_focus = IDA_Industry_Of_The_Beehive_State }
 		}
 	}
+	# High Command #
+	# Idaho and Wyoming National Guard #
+	IDA_farin_schwartz = {
+		name = "Farin Schwartz"
+		portraits = {
+			army = {
+				small = "GFX_idea_Farin_Schwartz_Command"
+				large = "gfx/leaders/IDA/Farin_Schwartz.png"
+			}
+		}
+		advisor = {
+			slot = high_command
+			idea_token = IDA_Farin_Schwartz_Command
+			cost = 120
+			ledger = army
+			allowed = {
+				original_tag = IDA
+			}
+			visible = {
+				has_country_flag = wcz_military_allowed_to_operate
+			}
+			available = {
+				
+			}
+			traits = {
+				army_armored_3 
+			}
+			ai_will_do = {
+				factor = 1
+			}
+		}
+		corps_commander = {
+			traits = { career_officer armor_officer bearer_of_artillery desert_fox combined_arms_expert }
+			skill = 3
+			attack_skill = 5
+			defense_skill = 2
+			planning_skill = 3
+			logistics_skill = 3
+			visible = { has_country_flag = wcz_military_allowed_to_operate }
+		}
+	}
+	IDA_brian_nesvik = {
+		name = "Brian Nesvik"
+		portraits = {
+			army = {
+				small = "GFX_idea_Brian_Nesvik_Command"
+				large = "gfx/leaders/IDA/Brian_Nesvik.png"
+			}
+		}
+		advisor = {
+			slot = high_command
+			idea_token = IDA_Brian_Nesvik_Command
+			cost = 80
+			ledger = army
+			allowed = {
+				original_tag = IDA
+			}
+			visible = {
+				has_country_flag = wcz_military_allowed_to_operate
+			}
+			available = {
+				
+			}
+			traits = {
+				army_artillery_2 
+			}
+			ai_will_do = {
+				factor = 1
+			}
+		}
+		corps_commander = {
+			traits = { career_officer bearer_of_artillery desert_fox }
+			skill = 4
+			attack_skill = 5
+			defense_skill = 3
+			planning_skill = 4
+			logistics_skill = 3
+			visible = { has_country_flag = wcz_military_allowed_to_operate }
+		}
+	}
+	IDA_kyle_e_carpenter = {
+		name = "Kyle E. Carpenter"
+		portraits = {
+			army = {
+				small = "GFX_idea_Kyle_E_Carpenter_Command"
+			}
+		}
+		advisor = {
+			slot = high_command
+			idea_token = IDA_Kyle_E_Carpenter_Command
+			cost = 80
+			ledger = air
+			allowed = {
+				original_tag = IDA
+			}
+			visible = {
+				OR = {
+					has_country_flag = wcz_air_force_generals_allowed
+					has_country_flag = wcz_military_allowed_to_operate
+				}
+			}
+			available = {
+				
+			}
+			traits = {
+				air_air_superiority_2 
+			}
+			ai_will_do = {
+				factor = 1
+			}
+		}
+	}
+	IDA_kelly_bongiovi = {
+		name = "Kelly Bongiovi"
+		gender = female
+		portraits = {
+			army = {
+				small = "GFX_idea_Kelly_Bongiovi_Command"
+			}
+		}
+		advisor = {
+			slot = high_command
+			idea_token = IDA_Kelly_Bongiovi_Command
+			cost = 80
+			ledger = air
+			allowed = {
+				original_tag = IDA
+			}
+			visible = {
+				OR = {
+					has_country_flag = wcz_air_force_generals_allowed
+					has_country_flag = wcz_military_allowed_to_operate
+				}
+			}
+			available = {
+				
+			}
+			traits = {
+				air_air_combat_training_2 
+			}
+			ai_will_do = {
+				factor = 1
+			}
+		}
+	}
+	IDA_michelle_mulberry = {
+		name = "Michelle Mulberry"
+		gender = female
+		portraits = {
+			army = {
+				small = "GFX_idea_Michelle_Mulberry_Command"
+			}
+		}
+		advisor = {
+			slot = high_command
+			idea_token = IDA_Michelle_Mulberry_Command
+			cost = 80
+			ledger = air
+			allowed = {
+				original_tag = IDA
+			}
+			visible = {
+				OR = {
+					has_country_flag = wcz_air_force_generals_allowed
+					has_country_flag = wcz_military_allowed_to_operate
+				}
+			}
+			available = {
+				
+			}
+			traits = {
+				air_pilot_training_2 
+			}
+			ai_will_do = {
+				factor = 1
+			}
+		}
+	}
+	IDA_darren_nogle = {
+		name = "Darren Nogle"
+		portraits = {
+			army = {
+				small = "GFX_idea_Darren_Nogle_Command"
+			}
+		}
+		advisor = {
+			slot = high_command
+			idea_token = IDA_Darren_Nogle_Command
+			cost = 80
+			ledger = air
+			allowed = {
+				original_tag = IDA
+			}
+			visible = {
+				OR = {
+					has_country_flag = wcz_air_force_generals_allowed
+					has_country_flag = wcz_military_allowed_to_operate
+				}
+			}
+			available = {
+				
+			}
+			traits = {
+				air_airborne_2 
+			}
+			ai_will_do = {
+				factor = 1
+			}
+		}
+	}
+	# Militia #
 	IDA_ryan_payne = {
 		name = "Ryan Payne"
 		portraits = {
@@ -877,6 +1417,7 @@ characters={
 		advisor = {
 			slot = high_command
 			idea_token = IDA_Ryan_Payne_Command
+			cost = 50
 			ledger = army
 			allowed = {
 				original_tag = IDA
@@ -888,7 +1429,7 @@ characters={
 				has_completed_focus = IDA_Profits_From_The_Treasure_State
 			}
 			traits = {
-				army_logistics_2 
+				army_logistics_1 
 			}
 			ai_will_do = {
 				factor = 1
@@ -915,6 +1456,7 @@ characters={
 		advisor = {
 			slot = high_command
 			idea_token = IDA_Ryan_Bundy_Command
+			cost = 120
 			ledger = army
 			allowed = {
 				original_tag = IDA
@@ -957,6 +1499,7 @@ characters={
 		advisor = {
 			slot = high_command
 			idea_token = IDA_James_Arroyo_Command
+			cost = 80
 			ledger = army
 			allowed = {
 				original_tag = IDA
@@ -972,7 +1515,7 @@ characters={
 				}
 			}
 			traits = {
-				army_regrouping_2 
+				army_concealment_2 
 			}
 			ai_will_do = {
 				factor = 1
@@ -1164,7 +1707,7 @@ characters={
 			}
 		}
 		corps_commander = {
-			traits = {  winter_specialist trickster guerilla_fighter }
+			traits = { winter_specialist trickster guerilla_fighter }
 			skill = 1
 			attack_skill = 1
 			defense_skill = 3

@@ -744,7 +744,7 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 		completion_reward = {
-			add_ideas = IDA_Interstate_Construction_Scheme
+			add_ideas = IDA_Interstate_Construction_Scheme_Spirit
 		}
 	}
 	# War Plan Brown - Montana #
@@ -1490,7 +1490,7 @@ focus_tree = {
 		select_effect = {
 			UTA = {
 				country_event = {
-					id = country_event = idaho_rework.51
+					id = idaho_rework.51
 					days = 10
 				}
 			}
@@ -2115,6 +2115,392 @@ focus_tree = {
 			country_event = idaho_rework.61
 		}
 	}
+	# Begining of the West Coast Campaign #
+	# Fixing Air Force Focuses #
+	focus = { #Improves air force debuff, gives a research bonus for fighter plans
+		id = IDA_To_Dominate_The_Skies
+		icon = GFX_focus_generic_little_entente
+		x = 50
+		y = 15
+		cost = 3
+		prerequisite = {
+			focus = IDA_Masters_Of_The_Rockies
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			
+		}
+		bypass = {
+			NOT = {
+				has_idea = IDA_Lackluster_Air_Force
+			}
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			custom_effect_tooltip = wcz_air_force_improvement
+			air_experience = 5
+			add_tech_bonus = {
+				name = fighter_bonus
+				bonus = 1.0
+				uses = 1
+				technology = light_fighter
+				technology = heavy_fighter
+			}
+			swap_ideas = {
+				remove_idea = IDA_Lackluster_Air_Force
+				add_idea = IDA_Lackluster_Air_Force_2
+			}
+		}
+	}
+	focus = { #Fires an event, Player chooses what air doctrine they want to focus on
+		id = IDA_A_Question_Of_Doctrine
+		icon = GFX_focus_generic_little_entente
+		x = 50
+		y = 16
+		cost = 5
+		prerequisite = {
+			focus = IDA_To_Dominate_The_Skies
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			
+		}
+		bypass = {
+			NOT = {
+				OR = {
+					has_idea = IDA_Lackluster_Air_Force
+					has_idea = IDA_Lackluster_Air_Force
+				}
+			}
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			custom_effect_tooltip = wcz_air_force_improvement
+			country_event = idaho_rework.66
+		}
+	}
+	focus = { #Adds a production buff dependent on what doctrine the player chose
+		id = IDA_Bolster_Aircraft_Production
+		icon = GFX_focus_generic_little_entente
+		x = 50
+		y = 17
+		cost = 3
+		prerequisite = {
+			focus = IDA_A_Question_Of_Doctrine
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 20
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = fighter_equipment
+				amount = 200
+				producer = IDA
+			}
+			if = {
+				limit = {
+					has_country_flag = wcz_strategic_destruction_focus
+				}
+				add_equipment_to_stockpile = {
+					type = strat_bomber_equipment
+					amount = 100
+					producer = IDA
+				}
+				add_ideas = IDA_Improved_Air_Production_1
+			}
+			else_if = {
+				limit = {
+					has_country_flag = wcz_battlefield_support_focus
+				}
+				add_equipment_to_stockpile = {
+					type = CAS_equipment
+					amount = 100
+					producer = IDA
+				}
+				add_ideas = IDA_Improved_Air_Production_2
+			}
+			else_if = {
+				limit = {
+					has_country_flag = wcz_operation_integrity_focus
+				}
+				add_equipment_to_stockpile = {
+					type = tac_bomber_equipment
+					amount = 100
+					producer = IDA
+				}
+				add_ideas = IDA_Improved_Air_Production_3
+			}
+			else = { #This is for anyone who auto-completes their way here or for Trumpist exiles
+				add_equipment_to_stockpile = {
+					type = CAS_equipment
+					amount = 100
+					producer = IDA
+				}
+				add_ideas = IDA_Improved_Air_Production_2
+			}
+		}
+	}
+	focus = { #Adds anti-air equipment, gives research buff to anti-air, builds anti-air in random states
+		id = IDA_Improve_Anti_Air_Capabilities
+		icon = GFX_focus_generic_little_entente
+		x = 50
+		y = 18
+		cost = 3
+		prerequisite = {
+			focus = IDA_Bolster_Aircraft_Production
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 20
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = anti_air_equipment
+				amount = 500
+				producer = IDA
+			}
+			add_tech_bonus = {
+				bonus = 1.0
+				uses = 1
+				category = cat_anti_air
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = anti_air_building
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = anti_air_building
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = anti_air_building
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = anti_air_building
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = anti_air_building
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = { #Further Improves Lackluster Air Force, Gain Advisors, Fires off an event
+		id = IDA_Reinstate_Air_Force_Generals
+		icon = GFX_focus_generic_little_entente
+		x = 49
+		y = 19
+		cost = 4
+		prerequisite = {
+			focus = IDA_A_Question_Of_Doctrine
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		select_effect = {
+			country_event = { #The Wyoming and Idaho National Guards will also request to be reinstated
+				id = idaho_rework.67
+				days = 20
+			}
+		}
+		
+		completion_reward = {
+			custom_effect_tooltip = wcz_air_force_improvement
+			custom_effect_tooltip = wcz_air_force_generals_reinstated
+			hidden_effect = { #Effect is for people who auto-complete this focus
+				set_country_flag = wcz_air_force_generals_allowed
+			}
+		}
+	}
+	focus = { #Further Improves Lackluster Air Force, Gain Theorists
+		id = IDA_Contract_Flight_Training_Companies
+		icon = GFX_focus_generic_little_entente
+		x = 51
+		y = 19
+		cost = 3
+		prerequisite = {
+			focus = IDA_A_Question_Of_Doctrine
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = { 
+			custom_effect_tooltip = wcz_air_force_improvement
+			custom_effect_tooltip = wcz_pmc_air_theorists
+			if = {
+				limit = {
+					has_idea = IDA_Lackluster_Air_Force_3
+				}
+				swap_ideas = {
+					remove_idea = IDA_Lackluster_Air_Force_3
+					add_idea = IDA_Lackluster_Air_Force_6
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = IDA_Lackluster_Air_Force_4
+				}
+				swap_ideas = {
+					remove_idea = IDA_Lackluster_Air_Force_4
+					add_idea = IDA_Lackluster_Air_Force_6
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = IDA_Lackluster_Air_Force_5
+				}
+				swap_ideas = {
+					remove_idea = IDA_Lackluster_Air_Force_5
+					add_idea = IDA_Lackluster_Air_Force_6
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = IDA_Lackluster_Air_Force_6
+				}
+				swap_ideas = {
+					remove_idea = IDA_Lackluster_Air_Force_6
+					add_idea = IDA_Lackluster_Air_Force_7
+				}
+			}
+			hidden_effect = {
+				set_country_flag = wcz_pmc_air_contracts
+			}
+		}
+	}
 	## Defensive WCZ Path ##
 	focus = { #Defensive Route Picked After IDA_A_Change_In_Plans, Gives Stankiewicz a defense bonus and mutual guarantee USA
 		id = IDA_Dig_In
@@ -2461,7 +2847,7 @@ focus_tree = {
 
 		completion_reward = {
 			random_owned_controlled_state = {
-			add_building_construction = {
+				add_building_construction = {
 					type = infrastructure
 					level = 2
 					instant_build = yes
