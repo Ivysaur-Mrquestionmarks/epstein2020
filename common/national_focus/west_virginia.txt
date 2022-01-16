@@ -11,6 +11,8 @@ focus_tree = {
 		}
 	}
 	
+	continuous_focus_position = { x = 50 y = 5000 }
+	
 	default = no
 	
 	focus = {
@@ -212,6 +214,7 @@ focus_tree = {
 		}
 		
 		completion_reward = {
+		    set_country_flag = Greed
 			add_stability = 0.05
 			add_manpower = -1844
 			
@@ -243,6 +246,7 @@ focus_tree = {
 		}
 		
 		completion_reward = {
+		    set_country_flag = Tucker
 			add_popularity = {
 				ideology = authoritarian_left
 				popularity = 0.06
@@ -307,6 +311,7 @@ focus_tree = {
         }
 		
 		completion_reward = {
+		    set_country_flag = Left_Militias
 			add_stability = -0.10
 			add_war_support = -0.10
 			add_popularity = {
@@ -417,15 +422,27 @@ focus_tree = {
 		
 		prerequisite = { 
 			focus = NRA_The_Final_Solution
-        }
-		
-		prerequisite = { 
 			focus = NRA_Work_Them_To_Death
         }
 		
+		
 		completion_reward = {
-			#event that Guangxi needs to add that will start the civil war
-			
+			if = {
+            limit = {
+			    AND = {
+                  has_country_flag = Tucker
+				}
+            }
+            NRA = {	country_event = { id = w_v.3 hours = 2 } }
+			}
+			if = {
+            limit = {
+                AND = {
+                  has_country_flag = Greed
+				}
+            }
+			NRA = {	country_event = { id = w_v.6 hours = 2 } }
+			}
 		}
 		
 	}
