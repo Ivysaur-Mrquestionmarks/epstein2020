@@ -439,7 +439,7 @@ focus_tree = {
 			focus = IDA_Increase_Taxation
 		}
 		ai_will_do = {
-			factor = 30
+			factor = 50
 		}
 		allow_branch = {
 			
@@ -490,7 +490,7 @@ focus_tree = {
 			
 		}
 		ai_will_do = {
-			factor = 50
+			factor = 25
 		}
 		allow_branch = {
 			
@@ -744,7 +744,7 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 		completion_reward = {
-			add_ideas = IDA_Interstate_Construction_Scheme
+			add_ideas = IDA_Interstate_Construction_Scheme_Spirit
 		}
 	}
 	# War Plan Brown - Montana #
@@ -1021,7 +1021,7 @@ focus_tree = {
 	}
 	focus = { #Gain war goal on Montana (Trumpist Montana path auto-completes this focus if Montana and the WCZ can't reach an agreement)
 		id = IDA_Operation_Treasure_Hunter
-		icon = GFX_goal_IDA_Operation_Treasure_Hunter
+		icon = GFX_goal_IDA_Operation_ 
 		x = 47
 		y = 9
 		cost = 5
@@ -1490,7 +1490,7 @@ focus_tree = {
 		select_effect = {
 			UTA = {
 				country_event = {
-					id = country_event = idaho_rework.51
+					id = idaho_rework.51
 					days = 10
 				}
 			}
@@ -1935,6 +1935,7 @@ focus_tree = {
 				country_exists = NAV
 				country_exists = TOH
 				country_exists = HAM
+				country_exists = AFO
 			}
 		}
 		cancel = {
@@ -1963,6 +1964,10 @@ focus_tree = {
 				type = annex_everything 
 				target = HAM
 			}
+			create_wargoal = {
+				type = annex_everything 
+				target = AFO
+			}
 			hidden_effect = {
 				IDA = {
 					every_state = {
@@ -1971,6 +1976,7 @@ focus_tree = {
 							is_core_of = NAV
 							is_core_of = TOH
 							is_core_of = HAM
+							is_core_of = AFO
 						}
 					add_core_of = IDA
 					}
@@ -2111,8 +2117,1173 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
-		completion_reward = {
+		completion_reward = { #Fires an event, which event is dependent on whether the Trumpists have been exiled or not
 			country_event = idaho_rework.61
+		}
+	}
+	# Begining of the West Coast Campaign #
+	# Fixing Air Force Focuses #
+	focus = { #Improves air force debuff, gives a research bonus for fighter plans
+		id = IDA_To_Dominate_The_Skies
+		icon = GFX_goal_FLO_by_air
+		x = 50
+		y = 15
+		cost = 3
+		prerequisite = {
+			focus = IDA_Masters_Of_The_Rockies
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			
+		}
+		bypass = {
+			NOT = {
+				has_idea = IDA_Lackluster_Air_Force
+			}
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			custom_effect_tooltip = wcz_air_force_improvement
+			air_experience = 5
+			add_tech_bonus = {
+				name = fighter_bonus
+				bonus = 1.0
+				uses = 1
+				technology = light_fighter
+				technology = heavy_fighter
+			}
+			swap_ideas = {
+				remove_idea = IDA_Lackluster_Air_Force
+				add_idea = IDA_Lackluster_Air_Force_2
+			}
+		}
+	}
+	focus = { #Fires an event, Player chooses what air doctrine they want to focus on
+		id = IDA_A_Question_Of_Doctrine
+		icon = GFX_goal_generic_air_doctrine
+		x = 50
+		y = 16
+		cost = 5
+		prerequisite = {
+			focus = IDA_To_Dominate_The_Skies
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			
+		}
+		bypass = {
+			NOT = {
+				has_idea = IDA_Lackluster_Air_Force_2 
+			}
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			custom_effect_tooltip = wcz_air_force_improvement
+			country_event = idaho_rework.66
+		}
+	}
+	focus = { #Adds a production buff dependent on what doctrine the player chose
+		id = IDA_Bolster_Aircraft_Production
+		icon = GFX_goal_generic_air_production
+		x = 50
+		y = 17
+		cost = 3
+		prerequisite = {
+			focus = IDA_A_Question_Of_Doctrine
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 20
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = fighter_equipment
+				amount = 200
+				producer = IDA
+			}
+			if = {
+				limit = {
+					has_country_flag = wcz_strategic_destruction_focus
+				}
+				add_equipment_to_stockpile = {
+					type = strat_bomber_equipment
+					amount = 100
+					producer = IDA
+				}
+				add_ideas = IDA_Improved_Air_Production_1
+			}
+			else_if = {
+				limit = {
+					has_country_flag = wcz_battlefield_support_focus
+				}
+				add_equipment_to_stockpile = {
+					type = CAS_equipment
+					amount = 100
+					producer = IDA
+				}
+				add_ideas = IDA_Improved_Air_Production_2
+			}
+			else_if = {
+				limit = {
+					has_country_flag = wcz_operation_integrity_focus
+				}
+				add_equipment_to_stockpile = {
+					type = tac_bomber_equipment
+					amount = 100
+					producer = IDA
+				}
+				add_ideas = IDA_Improved_Air_Production_3
+			}
+			else = { #This is for anyone who auto-completes their way here or for Trumpist exiles
+				add_equipment_to_stockpile = {
+					type = CAS_equipment
+					amount = 100
+					producer = IDA
+				}
+				add_ideas = IDA_Improved_Air_Production_2
+			}
+		}
+	}
+	focus = { #Adds anti-air equipment, gives research buff to anti-air, builds anti-air in random states
+		id = IDA_Improve_Anti_Air_Capabilities
+		icon = GFX_focus_generic_air_defense
+		x = 50
+		y = 18
+		cost = 3
+		prerequisite = {
+			focus = IDA_Bolster_Aircraft_Production
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 20
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = anti_air_equipment
+				amount = 500
+				producer = IDA
+			}
+			add_tech_bonus = {
+				bonus = 1.0
+				uses = 1
+				category = cat_anti_air
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = anti_air_building
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = anti_air_building
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = anti_air_building
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = anti_air_building
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = anti_air_building
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = { #Further Improves Lackluster Air Force, Gain Advisors, Fires off an event
+		id = IDA_Reinstate_Air_Force_Generals
+		icon = GFX_goal_FLO_trumps_finest
+		x = 49
+		y = 19
+		cost = 4
+		prerequisite = {
+			focus = IDA_A_Question_Of_Doctrine
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		select_effect = {
+			country_event = { #The Wyoming and Idaho National Guards will also request to be reinstated
+				id = idaho_rework.67
+				days = 20
+			}
+		}
+		
+		completion_reward = {
+			custom_effect_tooltip = wcz_air_force_improvement
+			custom_effect_tooltip = wcz_air_force_generals_reinstated
+			hidden_effect = { #Effect is for people who auto-complete this focus
+				set_country_flag = wcz_air_force_generals_allowed
+			}
+		}
+	}
+	focus = { #Further Improves Lackluster Air Force, Gain Theorists
+		id = IDA_Contract_Flight_Training_Companies
+		icon = GFX_goal_Passport
+		x = 51
+		y = 19
+		cost = 3
+		prerequisite = {
+			focus = IDA_A_Question_Of_Doctrine
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = { 
+			custom_effect_tooltip = wcz_air_force_improvement
+			custom_effect_tooltip = wcz_pmc_air_theorists
+			if = {
+				limit = {
+					has_idea = IDA_Lackluster_Air_Force_3
+				}
+				swap_ideas = {
+					remove_idea = IDA_Lackluster_Air_Force_3
+					add_idea = IDA_Lackluster_Air_Force_6
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = IDA_Lackluster_Air_Force_4
+				}
+				swap_ideas = {
+					remove_idea = IDA_Lackluster_Air_Force_4
+					add_idea = IDA_Lackluster_Air_Force_6
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = IDA_Lackluster_Air_Force_5
+				}
+				swap_ideas = {
+					remove_idea = IDA_Lackluster_Air_Force_5
+					add_idea = IDA_Lackluster_Air_Force_6
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = IDA_Lackluster_Air_Force_6
+				}
+				swap_ideas = {
+					remove_idea = IDA_Lackluster_Air_Force_6
+					add_idea = IDA_Lackluster_Air_Force_7
+				}
+			}
+			hidden_effect = {
+				set_country_flag = wcz_pmc_air_contracts
+			}
+		}
+	}
+	focus = { #Further Improves Lackluster Air Force, Gain Theorists
+		id = IDA_Eagles_Of_The_West
+		icon = GFX_goal_America_with_Eagle
+		x = 50
+		y = 20
+		cost = 3
+		prerequisite = {
+			focus = IDA_Reinstate_Air_Force_Generals
+		}
+		prerequisite = {
+			focus = IDA_Contract_Flight_Training_Companies
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = { #Fires an event, which event is dependent on whether the Trumpists have been exiled or not
+			country_event = idaho_rework.68
+		}
+	}
+	# War Plan Orange - Liberty and Cascadia #
+	focus = { #Begining focus to deal with Cascadia and Liberty
+		id = IDA_War_Plan_Orange
+		icon = GFX_goal_IDA_War_Plan_Orange_Focus
+		x = 46
+		y = 15
+		cost = 5
+		prerequisite = {
+			focus = IDA_Masters_Of_The_Rockies
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			
+		}
+		bypass = {
+			NOT = {
+				country_exists = CAS
+				country_exists = LIB
+				country_exists = SAZ
+			}
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			add_ideas = IDA_War_Plan_Orange_Spirit
+		}
+	}
+	focus = { #WCZ will approach Shea for support
+		id = IDA_Work_With_Shea
+		icon = GFX_goal_IDA_Work_With_Shea
+		x = 45
+		y = 16
+		cost = 8
+		prerequisite = {
+			focus = IDA_War_Plan_Orange
+		}
+		mutually_exclusive = {
+			focus = IDA_Operation_Inquisition
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			LIB = {
+				has_government = autocratic
+			}
+		}
+		bypass = {
+			
+		}
+		cancel = {
+			has_country_flag = wcz_LIB_refuesed_to_join_trumpists
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		
+		will_lead_to_war_with = LIB
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		select_effect = {
+			LIB = {
+				country_event = {
+					id = idaho_rework.69
+					days = 5
+				}
+			}
+		}
+		
+		completion_reward = {
+			add_political_power = 25
+			add_stability = 0.05
+		}
+	}
+	focus = { #WCZ gains war goal on Liberty
+		id = IDA_Operation_Inquisition
+		icon = GFX_goal_IDA_Operation_Inquisition
+		x = 47
+		y = 16
+		cost = 3
+		prerequisite = {
+			focus = IDA_War_Plan_Orange
+		}
+		mutually_exclusive = {
+			focus = IDA_Work_With_Shea
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			
+		}
+		bypass = {
+			NOT = {
+				country_exists = LIB
+			}
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		
+		will_lead_to_war_with = CAS
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = LIB
+			}
+		}
+	}
+	focus = { #WCZ gains war goal on Cascadia
+		id = IDA_Operation_Evergreen
+		icon = GFX_goal_Cascadian_War_Cry
+		x = 46
+		y = 17
+		cost = 5
+		prerequisite = {
+			focus = IDA_Work_With_Shea
+			focus = IDA_Operation_Inquisition
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			
+		}
+		bypass = {
+			NOT = {
+				country_exists = CAS
+				country_exists = SAZ
+			}
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		
+		will_lead_to_war_with = CAS
+		will_lead_to_war_with = SAZ
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = CAS
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = SAZ
+			}
+		}
+	}
+	focus = { #WCZ transfers Cascadian territory to Liberty, Liberty cores Cascadia
+		id = IDA_Proclaim_Shea_As_Governor_Of_Cascadia
+		icon = GFX_goal_happy_shea
+		x = 45
+		y = 18
+		cost = 5
+		prerequisite = {
+			focus = IDA_Work_With_Shea
+		}
+		prerequisite = {
+			focus = IDA_Operation_Evergreen
+		}
+		mutually_exclusive = {
+			focus = IDA_Integrate_Cascadia
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			LIB = {
+				is_in_faction_with = IDA
+			}
+			NOT = {
+				country_exists = CAS
+			}
+		}
+		bypass = {
+			
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			LIB = {
+				every_state = {
+					limit = {
+						is_core_of = CAS
+					}
+					add_core_of = LIB
+				}
+			}
+			CAS = {
+				every_core_state = {
+					limit = {
+						NOT = {
+							state = 562
+						}
+					}
+					transfer_state_to = LIB
+				}
+			}
+		}
+	}
+	focus = { #WCZ cores Cascadia and Liberty
+		id = IDA_Integrate_Cascadia
+		icon = GFX_goal_Cascadia_Fist
+		x = 47
+		y = 18
+		cost = 5
+		prerequisite = {
+			focus = IDA_Operation_Evergreen
+		}
+		mutually_exclusive = {
+			focus = IDA_Proclaim_Shea_As_Governor_Of_Cascadia
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			NOT = {
+				country_exists = CAS
+				country_exists = LIB
+			}
+		}
+		bypass = {
+			
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			add_political_power = -50
+			IDA = {
+				every_state = {
+					limit = {
+						is_core_of = CAS
+					}
+					add_core_of = IDA
+				}
+			}
+			IDA = {
+				every_state = {
+					limit = {
+						is_core_of = LIB
+					}
+					add_core_of = IDA
+				}
+			}
+		}
+	}
+	focus = { #WCZ gains a research slot
+		id = IDA_Reopen_Cascadian_Universities
+		icon = GFX_focus_research
+		x = 46
+		y = 20
+		cost = 3
+		prerequisite = {
+			focus = IDA_Proclaim_Shea_As_Governor_Of_Cascadia
+			focus = IDA_Integrate_Cascadia
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			add_research_slot = 1
+			hidden_effect = {
+				remove_ideas = IDA_War_Plan_Orange_Spirit
+			}
+		}
+	}
+	# War Plan White - California #
+	focus = { #Begining focus to deal with California, and all of its possible breakaway tags (PAC is dealt with in War Plan Indigo)
+		id = IDA_War_Plan_White
+		icon = GFX_goal_IDA_War_Plan_White_Focus
+		x = 54
+		y = 15
+		cost = 5
+		prerequisite = {
+			focus = IDA_Masters_Of_The_Rockies
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			
+		}
+		bypass = {
+			NOT = {
+				country_exists = PRA
+				country_exists = FIR
+				country_exists = JFR
+				country_exists = ACF
+				country_exists = HLY
+				country_exists = CST
+				country_exists = PRC
+				country_exists = NVD
+				country_exists = ABG
+				country_exists = BKR
+				country_exists = FSN
+				country_exists = MNT
+				country_exists = MOJ
+				country_exists = RWD
+				country_exists = SAC
+				country_exists = SBB
+				country_exists = THO
+			}
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			add_ideas = IDA_War_Plan_White_Spirit
+		}
+	}
+	focus = { #Gains war goal on all possible California tags
+		id = IDA_Operation_Wolverine
+		icon = GFX_goal_IDA_Operation_Wolverine
+		x = 53
+		y = 16
+		cost = 5
+		prerequisite = {
+			focus = IDA_War_Plan_White
+		}
+		mutually_exclusive = {
+			focus = IDA_Meet_With_Jenner
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			PRA = {
+				NOT = {
+					has_country_leader = {
+						name = "Caitlyn Jenner"
+						ruling_only = yes
+					}
+				}
+			}
+		}
+		bypass = {
+			NOT = {
+				country_exists = PRA
+				country_exists = FIR
+				country_exists = JFR
+				country_exists = ACF
+				country_exists = HLY
+				country_exists = CST
+				country_exists = PRC
+				country_exists = NVD
+				country_exists = ABG
+				country_exists = BKR
+				country_exists = FSN
+				country_exists = MNT
+				country_exists = MOJ
+				country_exists = RWD
+				country_exists = SAC
+				country_exists = SBB
+				country_exists = THO
+			}
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		
+		will_lead_to_war_with = PRA
+		will_lead_to_war_with = FIR
+		will_lead_to_war_with = JFR
+		will_lead_to_war_with = ACF
+		will_lead_to_war_with = HLY
+		will_lead_to_war_with = CST
+		will_lead_to_war_with = PRC
+		will_lead_to_war_with = NVD
+		will_lead_to_war_with = ABG
+		will_lead_to_war_with = BKR
+		will_lead_to_war_with = FSN
+		will_lead_to_war_with = MNT
+		will_lead_to_war_with = MOJ
+		will_lead_to_war_with = RWD
+		will_lead_to_war_with = SAC
+		will_lead_to_war_with = SBB
+		will_lead_to_war_with = THO
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = PRA
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = FIR
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = JFR
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = ACF
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = CST
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = PRC
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = NVD
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = ABG
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = BKR
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = FSN
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = MNT
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = MOJ
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = RWD
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = SAC
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = SBB
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = THO
+			}
+		}
+	}
+	focus = { #California went Trumpist under Jenner, following negotiations are favored for the PRA in this scenario
+		id = IDA_Meet_With_Jenner
+		icon = GFX_goal_Caitlyn_Jenner
+		x = 55
+		y = 16
+		cost = 5
+		prerequisite = {
+			focus = IDA_War_Plan_White
+		}
+		mutually_exclusive = {
+			focus = IDA_Operation_Wolverine
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			PRA = {
+				has_country_leader = {
+					name = "Caitlyn Jenner"
+					ruling_only = yes
+				}
+			}
+		}
+		bypass = {
+			
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		select_effect = {
+			country_event = { #The WCZ will decide how to approach Jenner California
+				id = idaho_rework.73
+				days = 10
+			}
+		}
+		
+		completion_reward = {
+			custom_effect_tooltip = wcz_jenner_negotiations
+		}
+	}
+	focus = { #WCZ gains cores on California (only possible after all of California has been conquered)
+		id = IDA_Integrate_California
+		icon = GFX_focus_NPA_Restore_Order_In_California
+		x = 54
+		y = 18
+		cost = 5
+		prerequisite = {
+			focus = IDA_Operation_Wolverine
+			focus = IDA_Meet_With_Jenner
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			
+		}
+		bypass = {
+			NOT = {
+				country_exists = ALA
+				country_exists = PAC
+			}
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			add_political_power = -50
+			IDA = {
+				every_state = {
+					limit = {
+						is_owned_by  = IDA
+					}
+					add_core_of = IDA
+				}
+			}
+		}
+	}
+	focus = { #WCZ gains one research slot
+		id = IDA_Reopen_Californian_Univeristies 
+		icon = GFX_focus_research
+		x = 54
+		y = 20
+		cost = 5
+		prerequisite = {
+			focus = IDA_Integrate_California
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			add_research_slot = 1
+			hidden_effect = {
+				remove_ideas = IDA_War_Plan_White_Spirit
+			}
+		}
+	}
+	# End of the West Coast Campaign, Beginning of War Plan Indigo - Alaska and Hawaii/Pacific Fleet #
+	focus = { #Gains small buff against Hawaii/PAC and Alaska
+		id = IDA_War_Plan_Indigo
+		icon = GFX_goal_IDA_War_Plan_Indigo_Focus
+		x = 50
+		y = 21
+		cost = 3
+		prerequisite = {
+			focus = IDA_Eagles_Of_The_West
+		}
+		prerequisite = {
+			focus = IDA_Reopen_Cascadian_Universities
+		}
+		prerequisite = {
+			focus = IDA_Reopen_Californian_Univeristies
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = { 
+			add_ideas = IDA_War_Plan_Indigo_Spirit
 		}
 	}
 	## Defensive WCZ Path ##
@@ -2129,7 +3300,7 @@ focus_tree = {
 			focus = IDA_We_March_Forward
 		}
 		ai_will_do = {
-			factor = 10
+			factor = 0
 		}
 		allow_branch = {
 			
@@ -2461,7 +3632,7 @@ focus_tree = {
 
 		completion_reward = {
 			random_owned_controlled_state = {
-			add_building_construction = {
+				add_building_construction = {
 					type = infrastructure
 					level = 2
 					instant_build = yes

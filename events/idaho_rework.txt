@@ -11,9 +11,15 @@ news_event = {
 		name = idaho_rework.62.a
 		trigger = {
 			NOT = {
-				tag = USA
-				tag = FRA
-				tag = IDA
+				any_country = {
+					limit = {
+						OR = {
+							tag = USA
+							tag = FRA
+							tag = IDA
+						}
+					}
+				}
 			}
 		}
 	}
@@ -1219,6 +1225,16 @@ country_event = { #Peace out FRA and WCZ
 			}
 		}
 		white_peace = IDA
+		if = {
+			limit = {
+				has_war_with = {
+					any_country = {
+						is_ally_with = IDA
+					}
+				}
+			}
+			white_peace = PREV
+		}
 	}
 }
 country_event = { #UTA 65% Strength Uprising.
@@ -1973,12 +1989,15 @@ country_event = { #Nevada militias join the WCZ
 	fire_only_once = yes
 
 	mean_time_to_happen = {
-		days = 10
+		days = 5
 	}
 
 	trigger = {
 		tag = IDA
-		has_government = republican
+		OR = {
+			has_government = republican
+			has_government = libertarian_right
+		}
 		OR = {
 			controls_state = 117
 			controls_state = 452
@@ -2016,12 +2035,15 @@ country_event = { #Bundys ask to join the WCZ
 	fire_only_once = yes
 	
 	mean_time_to_happen = {
-		days = 20
+		days = 15
 	}
 
 	trigger = {
 		tag = IDA
-		has_government = republican
+		OR = {
+			has_government = republican
+			has_government = libertarian_right
+		}
 		NOT = {
 			country_exists = UTA
 		}
@@ -2040,6 +2062,9 @@ country_event = { #Bundys ask to join the WCZ
 	
 	option = { #Accept the Bundy's offer
 		name = idaho_rework.64.a
+		ai_chance = {
+			factor = 10
+		}
 		custom_effect_tooltip = wcz_ammon_bundy_recruited
 		custom_effect_tooltip = wcz_ryan_bundy_recruited
 		add_manpower = 4000
@@ -2057,6 +2082,9 @@ country_event = { #Bundys ask to join the WCZ
 	}
 	option = { #Refuse the Bundy's offer
 		name = idaho_rework.64.b
+		ai_chance = {
+			factor = 10
+		}
 		add_manpower = 100
 		add_equipment_to_stockpile = {
 			type = infantry_equipment
@@ -2078,7 +2106,10 @@ country_event = { #Arizonan Militias join the WCZ
 
 	trigger = {
 		tag = IDA
-		has_government = republican
+		OR = {
+			has_government = republican
+			has_government = libertarian_right
+		}
 		OR = {
 			controls_state = 514
 			controls_state = 513
@@ -2105,6 +2136,693 @@ country_event = { #Arizonan Militias join the WCZ
 		}
 		hidden_effect = {
 			set_country_flag = wcz_arizona_militias_recruited
+		}
+	}
+}
+country_event = { #WCZ decides what air doctrine it wants to focus on 
+	id = idaho_rework.66
+	title = idaho_rework.66.t
+	desc = idaho_rework.66.d
+	picture = GFX_report_event_IDA_Air_Force
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Focus on strategic bombing, gains bonus for strategic bombing doctrine
+		name = idaho_rework.66.a
+		ai_chance = {
+			factor = 10
+		}
+		custom_effect_tooltip = wcz_air_doctrine_choice
+		add_doctrine_cost_reduction = { 
+			name = air_doc_bonus
+			cost_reduction = 0.50
+			uses = 2
+			category = strategic_destruction_tree
+		}
+		swap_ideas = {
+			remove_idea = IDA_Lackluster_Air_Force_2
+			add_idea = IDA_Lackluster_Air_Force_3
+		}
+		hidden_effect = {
+			set_country_flag = wcz_strategic_destruction_focus
+		}
+	}
+	option = { #Focus on close air support, gains bonus for battlefield support doctrine
+		name = idaho_rework.66.b
+		ai_chance = {
+			factor = 20
+		}
+		custom_effect_tooltip = wcz_air_doctrine_choice
+		add_doctrine_cost_reduction = { 
+			name = air_doc_bonus
+			cost_reduction = 0.50
+			uses = 2
+			category = battlefield_support_tree
+		}
+		swap_ideas = {
+			remove_idea = IDA_Lackluster_Air_Force_2
+			add_idea = IDA_Lackluster_Air_Force_4
+		}
+		hidden_effect = {
+			set_country_flag = wcz_battlefield_support_focus
+		}
+	}
+	option = { #Focus on both (tactical bombers), gains bonus for operation integrity doctrine
+		name = idaho_rework.66.c
+		ai_chance = {
+			factor = 10
+		}
+		custom_effect_tooltip = wcz_air_doctrine_choice
+		add_doctrine_cost_reduction = { 
+			name = air_doc_bonus
+			cost_reduction = 0.50
+			uses = 2
+			category = operational_integrity_tree
+		}
+		swap_ideas = {
+			remove_idea = IDA_Lackluster_Air_Force_2
+			add_idea = IDA_Lackluster_Air_Force_5
+		}
+		hidden_effect = {
+			set_country_flag = wcz_operation_integrity_focus
+		}
+	}
+}
+country_event = { #Idaho and Wyoming National Guard wish to be fully reinstates, WCZ must choose
+	id = idaho_rework.67
+	title = idaho_rework.67.t
+	desc = idaho_rework.67.d
+	picture = GFX_report_event_IDA_National_Guard
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Only permit the Air Force to return (Only gain air force advisors)
+		name = idaho_rework.67.a
+		ai_chance = {
+			factor = 10
+		}
+		custom_effect_tooltip = wcz_air_force_generals_reinstated
+		add_political_power = -30
+		air_experience = 15
+		if = {
+			limit = {
+				has_idea = IDA_Lackluster_Air_Force_3
+			}
+			swap_ideas = {
+				remove_idea = IDA_Lackluster_Air_Force_3
+				add_idea = IDA_Lackluster_Air_Force_6
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = IDA_Lackluster_Air_Force_4
+			}
+			swap_ideas = {
+				remove_idea = IDA_Lackluster_Air_Force_4
+				add_idea = IDA_Lackluster_Air_Force_6
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = IDA_Lackluster_Air_Force_5
+			}
+			swap_ideas = {
+				remove_idea = IDA_Lackluster_Air_Force_5
+				add_idea = IDA_Lackluster_Air_Force_6
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = IDA_Lackluster_Air_Force_6
+			}
+			swap_ideas = {
+				remove_idea = IDA_Lackluster_Air_Force_6
+				add_idea = IDA_Lackluster_Air_Force_7
+			}
+		}
+		hidden_effect = {
+			set_country_flag = wcz_air_force_generals_allowed
+			complete_national_focus = IDA_Reinstate_Air_Force_Generals
+		}
+	}
+	option = { #Permit the entire National Guard to be reinstated (Gain high skilled army and air advisors) 
+		name = idaho_rework.67.b
+		ai_chance = {
+			factor = 50
+		}
+		custom_effect_tooltip = wcz_air_and_army_generals_reinstated
+		add_political_power = -60
+		add_popularity = {
+			ideology = autocratic
+			popularity = 0.05
+		}
+		air_experience = 15
+		army_experience = 15
+		if = {
+			limit = {
+				has_idea = IDA_Lackluster_Air_Force_3
+			}
+			swap_ideas = {
+				remove_idea = IDA_Lackluster_Air_Force_3
+				add_idea = IDA_Lackluster_Air_Force_6
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = IDA_Lackluster_Air_Force_4
+			}
+			swap_ideas = {
+				remove_idea = IDA_Lackluster_Air_Force_4
+				add_idea = IDA_Lackluster_Air_Force_6
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = IDA_Lackluster_Air_Force_5
+			}
+			swap_ideas = {
+				remove_idea = IDA_Lackluster_Air_Force_5
+				add_idea = IDA_Lackluster_Air_Force_6
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = IDA_Lackluster_Air_Force_6
+			}
+			swap_ideas = {
+				remove_idea = IDA_Lackluster_Air_Force_6
+				add_idea = IDA_Lackluster_Air_Force_7
+			}
+		}
+		hidden_effect = {
+			set_country_flag = wcz_military_allowed_to_operate
+			complete_national_focus = IDA_Reinstate_Air_Force_Generals
+		}
+	}
+}
+country_event = { #Final event in air reform, gives small bonus to air
+	id = idaho_rework.68
+	title = idaho_rework.68.t
+	desc = idaho_rework.68.d
+	picture = GFX_report_event_IDA_Air_Force
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = idaho_rework.68.a
+		if = {
+			limit = {
+				has_idea = IDA_Lackluster_Air_Force
+			}
+			swap_ideas = {
+				remove_idea = IDA_Lackluster_Air_Force
+				add_idea = IDA_Eagles_Of_The_West_Spirit
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = IDA_Lackluster_Air_Force_2
+			}
+			swap_ideas = {
+				remove_idea = IDA_Lackluster_Air_Force_2
+				add_idea = IDA_Eagles_Of_The_West_Spirit
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = IDA_Lackluster_Air_Force_3
+			}
+			swap_ideas = {
+				remove_idea = IDA_Lackluster_Air_Force_3
+				add_idea = IDA_Eagles_Of_The_West_Spirit
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = IDA_Lackluster_Air_Force_4
+			}
+			swap_ideas = {
+				remove_idea = IDA_Lackluster_Air_Force_4
+				add_idea = IDA_Eagles_Of_The_West_Spirit
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = IDA_Lackluster_Air_Force_5
+			}
+			swap_ideas = {
+				remove_idea = IDA_Lackluster_Air_Force_5
+				add_idea = IDA_Eagles_Of_The_West_Spirit
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = IDA_Lackluster_Air_Force_6
+			}
+			swap_ideas = {
+				remove_idea = IDA_Lackluster_Air_Force_6
+				add_idea = IDA_Eagles_Of_The_West_Spirit
+			}
+		}
+		else_if = { #This is the legitimate one, all others are for people who cheat their way here
+			limit = {
+				has_idea = IDA_Lackluster_Air_Force_7
+			}
+			swap_ideas = {
+				remove_idea = IDA_Lackluster_Air_Force_7
+				add_idea = IDA_Eagles_Of_The_West_Spirit
+			}
+		}
+	}
+}
+country_event = { #WCZ asks Liberty to join them 
+	id = idaho_rework.69
+	title = idaho_rework.69.t
+	desc = idaho_rework.69.d
+	picture = GFX_report_event_Cornered_No_More
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Liberty joins the WCZ
+		name = idaho_rework.69.a
+		ai_chance = {
+			factor = 10
+		}
+		add_popularity = {
+			ideology = republican
+			popularity = 0.3
+		}
+		IDA = {
+			country_event = {
+				id = idaho_rework.70
+				days = 3
+			}
+		}
+	}
+	option = { #Liberty refuses to join 
+		name = idaho_rework.69.b
+		ai_chance = {
+			factor = 10
+		}
+		IDA = {
+			country_event = {
+				id = idaho_rework.71
+				days = 3
+			}
+		}
+	}
+}
+country_event = { #WCZ gets event that Liberty agreed to join them
+	id = idaho_rework.70
+	title = idaho_rework.70.t
+	desc = idaho_rework.70.d
+	picture = GFX_report_event_IDA_Shea_Joins_Trumpists
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Liberty joins the WCZ
+		name = idaho_rework.70.a
+		add_popularity = {
+			ideology = autocratic
+			popularity = 0.05
+		}
+		IDA = { 
+			add_to_faction = LIB 
+		}
+		hidden_effect = {
+			complete_national_focus = IDA_Work_With_Shea
+		}
+	}
+}
+country_event = { #WCZ gets event that Liberty refused to join them
+	id = idaho_rework.71
+	title = idaho_rework.71.t
+	desc = idaho_rework.71.d
+	picture = IDA_Shea_Refuses
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Liberty joins the WCZ
+		name = idaho_rework.71.a
+		create_wargoal = {
+			type = annex_everything
+			target = LIB
+		}
+		hidden_effect = {
+			set_country_flag = wcz_LIB_refuesed_to_join_trumpists
+			complete_national_focus = IDA_Operation_Inquisition
+		}
+	}
+}
+country_event = { #WCZ gets event that Liberty refused to join them
+	id = idaho_rework.71
+	title = idaho_rework.71.t
+	desc = idaho_rework.71.d
+	picture = GFX_report_event_IDA_Shea_Refuses
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Liberty joins the WCZ
+		name = idaho_rework.71.a
+		create_wargoal = {
+			type = annex_everything
+			target = LIB
+		}
+		hidden_effect = {
+			set_country_flag = wcz_LIB_refuesed_to_join_trumpists
+			complete_national_focus = IDA_Operation_Inquisition
+		}
+	}
+}
+country_event = { #Cascadian militas join the WCZ
+	id = idaho_rework.72
+	title = idaho_rework.72.t
+	desc = idaho_rework.72.d
+	picture = GFX_report_event_IDA_Cascadia_Militia
+	
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 20
+	}
+
+	trigger = {
+		tag = IDA
+		OR = {
+			has_government = republican
+			has_government = libertarian_right
+		}
+		NOT = {
+			country_exists = LIB
+		}
+		OR = {
+			controls_state = 116
+			controls_state = 492
+		}
+	}
+	
+	option = { 
+		name = idaho_rework.72.a
+		ai_chance = {
+			factor = 10
+		}
+		custom_effect_tooltip = wcz_joesph_rice_recruited
+		custom_effect_tooltip = wcz_joey_gibson_recruited
+		custom_effect_tooltip = wcz_matt_marshall_recruited
+		add_manpower = 500
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 700
+			producer = LIB
+		}
+		hidden_effect = {
+			set_country_flag = wcz_cascadia_militias_recruited
+		}
+	}
+}
+country_event = { #WCZ gets an event talking about how it wants to approach Jenner California
+	id = idaho_rework.73
+	title = idaho_rework.73.t
+	desc = idaho_rework.73.d
+	picture = GFX_report_event_IDA_Meeting_With_Jenner
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #WCZ asks California to be annex into the WCZ
+		name = idaho_rework.73.a
+		ai_chance = {
+			factor = 10
+		}
+		custom_effect_tooltip = wcz_end_of_our_nation
+		PRA = {
+			country_event = {
+				id = idaho_rework.74
+				days = 5
+			}
+		}
+	}
+	option = { #WCZ decides to annex itself into California, most likely scenario
+		name = idaho_rework.73.b
+		ai_chance = {
+			factor = 70
+		}
+		PRA = {
+			country_event = {
+				id = idaho_rework.78
+				days = 5
+			}
+		}
+	}
+	option = { #WCZ asks California to join its faction
+		name = idaho_rework.73.c
+		ai_chance = {
+			factor = 20
+		}
+		PRA = {
+			country_event = {
+				id = idaho_rework.79
+				days = 5
+			}
+		}
+	}
+	option = { #WCZ annexes itself into California, player tags to California (only allowed if the PRA is AI controlled)
+		name = idaho_rework.73.e
+		ai_chance = {
+			factor = 0
+		}
+		trigger = {
+			PRA = {
+				is_ai = yes
+			}
+		}
+		PRA = { change_tag_from = IDA }
+		every_other_country = {
+			limit = {
+				is_in_faction_with = IDA
+			}
+			leave_faction = yes
+			USA = {
+				add_to_faction = PREV
+			}
+		}
+		IDA = {
+			every_unit_leader = {
+				set_nationality = PRA
+			}
+		}
+		PRA = {
+			every_state = {
+				limit = {
+					is_owned_by = IDA
+				}
+				add_core_of = PRA
+			}
+		}
+		PRA = {
+			inherit_technology = IDA
+			annex_country = {
+				target = IDA
+				transfer_troops = yes
+			}
+		}
+	}
+}
+country_event = { #WCZ requests California to be annexed into the WCZ
+	id = idaho_rework.74
+	title = idaho_rework.74.t
+	desc = idaho_rework.74.d
+	picture = GFX_report_event_IDA_Stankiewicz_At_Attention
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #California agrees to be annexed, the A.I will almost always choose this option
+		name = idaho_rework.74.a
+		ai_chance = {
+			factor = 90
+		}
+		custom_effect_tooltip = wcz_end_of_our_nation
+		PRA = {
+			country_event = {
+				id = idaho_rework.75
+				days = 3
+			}
+		}
+	}
+	option = { #California will join the WCZ faction, the A.I. will almost never choose this option
+		name = idaho_rework.74.b
+		ai_chance = {
+			factor = 10
+		}
+		custom_effect_tooltip = wcz_join_faction
+		PRA = {
+			country_event = {
+				id = idaho_rework.76
+				days = 3
+			}
+		}
+	}
+	option = { #California will only give military access, the A.I. will never choose this option
+		name = idaho_rework.74.c
+		ai_chance = {
+			factor = 0
+		}
+		custom_effect_tooltip = wcz_military_access
+		PRA = {
+			country_event = {
+				id = idaho_rework.77
+				days = 3
+			}
+		}
+	}
+}
+country_event = { #California Agreed to Annexation
+	id = idaho_rework.75
+	title = idaho_rework.75.t
+	desc = idaho_rework.75.d
+	picture = GFX_report_event_IDA_Meeting_With_Jenner
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Annex California and transfer troops (cores are gained through a later focus)
+		name = idaho_rework.75.a
+		IDA = {
+			annex_country = {
+				target = PRA
+				transfer_troops = yes
+			}
+		}
+		hidden_effect = {
+			IDA = {
+				complete_national_focus = IDA_Meet_With_Jenner
+			}
+		}
+	}
+}
+country_event = { #California Joins the WCZ faction
+	id = idaho_rework.76
+	title = idaho_rework.76.t
+	desc = idaho_rework.76.d
+	picture = GFX_report_event_IDA_Meeting_With_Jenner
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Add California to the WCZ faction
+		name = idaho_rework.76.a
+		IDA = {
+			add_to_faction = PRA
+		}
+		hidden_effect = {
+			IDA = {
+				complete_national_focus = IDA_Meet_With_Jenner
+			}
+		}
+	}
+}
+country_event = { #California rejects helping the WCZ, they will give the WCZ military access though
+	id = idaho_rework.77
+	title = idaho_rework.77.t
+	desc = idaho_rework.77.d
+	picture = GFX_report_event_IDA_Meeting_With_Jenner
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #WCZ and California exchange military access, California joins Trump
+		name = idaho_rework.77.a
+		give_military_access = PRA
+		PRA = {
+			give_military_access = IDA
+		}
+		USA = {
+			add_to_faction = PRA
+		}
+		hidden_effect = {
+			IDA = {
+				complete_national_focus = IDA_Meet_With_Jenner
+			}
+		}
+	}
+}
+country_event = { #WCZ asks to be annexed by California
+	id = idaho_rework.78
+	title = idaho_rework.78.t
+	desc = idaho_rework.78.d
+	picture = GFX_report_event_IDA_Stankiewicz_At_Attention
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #WCZ is annexed by California, any members who joined the WCZ are moved to Trump's faction
+		name = idaho_rework.78.a
+		every_other_country = {
+			limit = {
+				is_in_faction_with = IDA
+			}
+			leave_faction = yes
+			USA = {
+				add_to_faction = PREV
+			}
+		}
+		PRA = {
+			every_state = {
+				limit = {
+					is_owned_by = IDA
+				}
+				add_core_of = PRA
+			}
+		}
+		PRA = {
+			annex_country = {
+				target = IDA
+				transfer_troops = yes
+			}
+		}
+	}
+}
+country_event = { #WCZ requests California join its faction, basically idaho_rework.72, but without the annexation option
+	id = idaho_rework.79
+	title = idaho_rework.79.t
+	desc = idaho_rework.79.d
+	picture = GFX_report_event_IDA_Stankiewicz_At_Attention
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #California will join the WCZ faction, the A.I. will always choose this option
+		name = idaho_rework.79.a
+		ai_chance = {
+			factor = 10
+		}
+		custom_effect_tooltip = wcz_join_faction
+		PRA = {
+			country_event = {
+				id = idaho_rework.76
+				days = 3
+			}
+		}
+	}
+	option = { #California will only give military access, the A.I. will never choose this option
+		name = idaho_rework.74.b
+		ai_chance = {
+			factor = 0
+		}
+		custom_effect_tooltip = wcz_military_access
+		PRA = {
+			country_event = {
+				id = idaho_rework.77
+				days = 3
+			}
 		}
 	}
 }
