@@ -29,14 +29,14 @@ IDA_war_plan_brown_decision = {
 		days_re_enable = 30
 		
 		fixed_random_seed = no
-		complete_effect = { #60% chance to reduce 5% stability, 25% chance to reduce 10% stability, 10% chance to reduce 10% stability and 5% war support
+		complete_effect = { #60% chance to reduce 5% stability, 30% chance to reduce 10% stability, 10% chance to reduce 10% stability and 5% war support
 			random_list = {
-				65 = { #Small protests
+				60 = { #Small protests
 					MON = {
 						country_event = idaho_rework.6
 					}
 				}
-				25 = { #Medium protests
+				30 = { #Medium protests
 					MON = {
 						country_event = idaho_rework.7
 					}
@@ -79,14 +79,14 @@ IDA_war_plan_brown_decision = {
 		days_re_enable = 30
 		
 		fixed_random_seed = no
-		complete_effect = { #65% chance for -5% construction and production, 25% chance for -10%, 10% chance for -15%
+		complete_effect = { #60% chance for -5% construction and production, 30% chance for -10%, 10% chance for -15%
 			random_list = {
-				65 = { #Small strikes
+				60 = { #Small strikes
 					MON = {
 						country_event = idaho_rework.9
 					}
 				}
-				25 = { #Medium strikes
+				30 = { #Medium strikes
 					MON = {
 						country_event = idaho_rework.10
 					}
@@ -107,10 +107,15 @@ IDA_war_plan_brown_decision = {
 		available = {
 			has_idea = IDA_War_Plan_Brown_Spirit
 			has_government = republican
+		}
+		
+		custom_cost_trigger = {
+			has_political_power > 29
 			has_equipment = { infantry_equipment > 249 }
 		}
 		
-		cost = 30
+		custom_cost_text = wcz_raid_equipment_cost
+
 		
 		ai_will_do = {
 			factor = 10
@@ -132,12 +137,8 @@ IDA_war_plan_brown_decision = {
 		
 		fixed_random_seed = no
 		complete_effect = {
-			add_equipment_to_stockpile = {
-				type = infantry_equipment
-				amount = -250
-			}
 			random_list = {
-				50 = { #Normal Success
+				60 = { #Normal Success
 					IDA = {
 						country_event = idaho_rework.14
 					}
@@ -157,7 +158,7 @@ IDA_war_plan_brown_decision = {
 						}
 					}
 				}
-				20 = { #Failure
+				10 = { #Failure
 					IDA = {
 						country_event = idaho_rework.16
 					}
@@ -168,10 +169,17 @@ IDA_war_plan_brown_decision = {
 					}
 				}
 			}
+			hidden_effect = {
+				add_political_power = -30
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = -250
+				}
+			}
 		}
 	}
 
-	IDA_MON_blow_up_roadways = { #Cost political power and equipment, Reduce division speed and supply (war only)/ Maybe add railway damage after later
+	IDA_MON_blow_up_roadways = { #Cost political power and equipment, Reduce division organization, recovery rate, and morale
 
 		icon = GFX_decision_oppression
 
@@ -182,8 +190,13 @@ IDA_war_plan_brown_decision = {
 				has_war_with = IDA
 			}
 		}
-
-		cost = 30
+		
+		custom_cost_trigger = {
+			has_political_power > 29
+			has_equipment = { infantry_equipment > 249 }
+		}
+		
+		custom_cost_text = wcz_raid_equipment_cost
 
 		ai_will_do = {
 			factor = 10
@@ -207,6 +220,61 @@ IDA_war_plan_brown_decision = {
 			MON = {
 				country_event = idaho_rework.20
 			}
+			hidden_effect = {
+				add_political_power = -30
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = -250
+				}
+			}
+		}
+	}
+	
+	IDA_MON_sabotage_communications = { #Cost political power and command power, Reduce division speed and supply (war only)/ Maybe add railway damage after later
+
+		icon = GFX_decision_hol_radio_oranje
+
+		available = {
+			has_idea = IDA_War_Plan_Brown_Spirit
+			has_government = republican
+			MON = {
+				has_war_with = IDA
+			}
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 29
+			command_power > 29
+		}
+		
+		custom_cost_text = wcz_sabotage_communications_cost
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				MON = { 
+					is_in_faction_with = IDA
+				}
+			}
+		}
+		
+		days_remove = 10
+		days_re_enable = 30
+
+		visible = {
+			has_idea = IDA_War_Plan_Brown_Spirit
+			has_government = republican
+		}
+
+		complete_effect = { #Only one event this time 
+			MON = {
+				country_event = idaho_rework.80
+			}
+			hidden_effect = {
+				add_political_power = -30
+				add_command_power = -30
+			}
 		}
 	}
 	
@@ -218,7 +286,6 @@ IDA_war_plan_brown_decision = {
 		available = {
 			has_idea = IDA_War_Plan_Brown_Spirit
 			has_government = republican
-			command_power > 29
 			NOT = {
 				MON = {
 					has_government = republican
@@ -226,7 +293,12 @@ IDA_war_plan_brown_decision = {
 			}
 		}
 
-		cost = 50
+		custom_cost_trigger = {
+			has_political_power > 49
+			command_power > 29
+		}
+		
+		custom_cost_text = wcz_organize_uprising_cost
 
 		ai_will_do = {
 			factor = 20
@@ -240,7 +312,6 @@ IDA_war_plan_brown_decision = {
 		}
 
 		complete_effect = {
-			add_command_power = -30
 			hidden_effect = {
 				if = {
 					limit = {
@@ -263,6 +334,10 @@ IDA_war_plan_brown_decision = {
 					}
 				}
 			}
+			hidden_effect = {
+				add_political_power = -50
+				add_command_power = -30
+			}
 		}
 	}
 
@@ -273,7 +348,6 @@ IDA_war_plan_brown_decision = {
 		available = {
 			has_idea = IDA_War_Plan_Brown_Spirit
 			has_government = republican
-			has_equipment = { infantry_equipment > 999 }
 			NOT = {
 				MON = {
 					has_government = republican
@@ -281,7 +355,12 @@ IDA_war_plan_brown_decision = {
 			}
 		}
 
-		cost = 50
+		custom_cost_trigger = {
+			has_political_power > 49
+			has_equipment = { infantry_equipment > 999 }
+		}
+		
+		custom_cost_text = wcz_smuggle_equipment_uprising_cost
 
 		ai_will_do = {
 			factor = 0
@@ -295,10 +374,6 @@ IDA_war_plan_brown_decision = {
 		}
 
 		complete_effect = {
-			add_equipment_to_stockpile = {
-				type = infantry_equipment
-				amount = -1000
-			}
 			hidden_effect = {
 				if = {
 					limit = {
@@ -319,6 +394,13 @@ IDA_war_plan_brown_decision = {
 					MON = {
 						country_event = idaho_rework.21
 					}
+				}
+			}
+			hidden_effect = {
+				add_political_power = -50
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = -1000
 				}
 			}
 		}
@@ -331,7 +413,6 @@ IDA_war_plan_brown_decision = {
 		available = {
 			has_idea = IDA_War_Plan_Brown_Spirit
 			has_government = republican
-			has_manpower > 249
 			NOT = {
 				MON = {
 					has_government = republican
@@ -339,7 +420,12 @@ IDA_war_plan_brown_decision = {
 			}
 		}
 
-		cost = 50
+		custom_cost_trigger = {
+			has_political_power > 49
+			has_manpower > 249
+		}
+		
+		custom_cost_text = wcz_provide_advisors_uprising_cost
 
 		ai_will_do = {
 			factor = 0
@@ -353,7 +439,6 @@ IDA_war_plan_brown_decision = {
 		}
 
 		complete_effect = {
-			add_manpower = -250
 			hidden_effect = {
 				if = {
 					limit = {
@@ -375,6 +460,10 @@ IDA_war_plan_brown_decision = {
 						country_event = idaho_rework.21
 					}
 				}
+			}
+			hidden_effect = {
+				add_political_power = -50
+				add_manpower = -250
 			}
 		}
 	}
@@ -481,9 +570,9 @@ IDA_war_plan_yellow_decision = {
 		days_re_enable = 30
 		
 		fixed_random_seed = no
-		complete_effect = { #60% chance to reduce 5% stability, 25% chance to reduce 10% stability, 10% chance to reduce 10% stability and 5% war support
+		complete_effect = { #60% chance to reduce 5% stability, 30% chance to reduce 10% stability, 10% chance to reduce 10% stability and 5% war support
 			random_list = {
-				65 = { #Small protests
+				60 = { #Small protests
 					if = {
 						limit = {
 							country_exists = UTA
@@ -501,7 +590,7 @@ IDA_war_plan_yellow_decision = {
 						}
 					}
 				}
-				25 = { #Medium protests
+				30 = { #Medium protests
 					if = {
 						limit = {
 							country_exists = UTA
@@ -536,6 +625,13 @@ IDA_war_plan_yellow_decision = {
 							country_event = idaho_rework.8
 						}
 					}
+				}
+			}
+			hidden_effect = {
+				add_political_power = -30
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = -250
 				}
 			}
 		}
@@ -575,9 +671,9 @@ IDA_war_plan_yellow_decision = {
 		days_re_enable = 30
 		
 		fixed_random_seed = no
-		complete_effect = { #65% chance for -5% construction and production, 25% chance for -10%, 10% chance for -15%
+		complete_effect = { #60% chance for -5% construction and production, 30% chance for -10%, 10% chance for -15%
 			random_list = {
-				65 = { #Small strikes
+				60 = { #Small strikes
 					if = {
 						limit = {
 							country_exists = UTA
@@ -595,7 +691,7 @@ IDA_war_plan_yellow_decision = {
 						}
 					}
 				}
-				25 = { #Medium strikes
+				30 = { #Medium strikes
 					if = {
 						limit = {
 							country_exists = UTA
@@ -642,10 +738,14 @@ IDA_war_plan_yellow_decision = {
 		available = {
 			has_idea = IDA_War_Plan_Yellow_Spirit
 			has_government = republican
+		}
+		
+		custom_cost_trigger = {
+			has_political_power > 29
 			has_equipment = { infantry_equipment > 249 }
 		}
 		
-		cost = 30
+		custom_cost_text = wcz_raid_equipment_cost
 		
 		ai_will_do = {
 			factor = 10
@@ -672,10 +772,6 @@ IDA_war_plan_yellow_decision = {
 		
 		fixed_random_seed = no
 		complete_effect = {
-			add_equipment_to_stockpile = {
-				type = infantry_equipment
-				amount = -250
-			}
 			random_list = {
 				50 = { #Normal Success
 					IDA = {
@@ -747,6 +843,13 @@ IDA_war_plan_yellow_decision = {
 					}
 				}
 			}
+			hidden_effect = {
+				add_political_power = -30
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = -250
+				}
+			}
 		}
 	}
 
@@ -812,6 +915,54 @@ IDA_war_plan_yellow_decision = {
 		}
 	}
 	
+	IDA_UTA_sabotage_communications = { #Cost political power and command power, Reduce division speed and supply (war only)/ Maybe add railway damage after later
+
+		icon = GFX_decision_hol_radio_oranje
+
+		available = {
+			has_idea = IDA_War_Plan_Yellow_Spirit
+			has_government = republican
+			UTA = {
+				has_war_with = IDA
+			}
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 29
+			command_power > 29
+		}
+		
+		custom_cost_text = wcz_sabotage_communications_cost
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				MON = { 
+					is_in_faction_with = IDA
+				}
+			}
+		}
+		
+		days_remove = 10
+		days_re_enable = 30
+
+		visible = {
+			has_idea = IDA_War_Plan_Yellow_Spirit
+			has_government = republican
+		}
+
+		complete_effect = { #Only one event this time 
+			UTA = {
+				country_event = idaho_rework.80
+			}
+			hidden_effect = {
+				add_political_power = -30
+				add_command_power = -30
+			}
+		}
+	}
+	
 	# Uprising Decisions - As of writing this, the A.I. will take one decision max before starting an uprising #
 	IDA_UTA_organize_militia_resistance = { #Helps with uprising strength, costs political power and command power
 
@@ -820,7 +971,6 @@ IDA_war_plan_yellow_decision = {
 		available = {
 			has_idea = IDA_War_Plan_Yellow_Spirit
 			has_government = republican
-			command_power > 29
 			NOT = {
 				UTA = {
 					has_government = republican
@@ -828,7 +978,12 @@ IDA_war_plan_yellow_decision = {
 			}
 		}
 
-		cost = 50
+		custom_cost_trigger = {
+			has_political_power > 49
+			command_power > 29
+		}
+		
+		custom_cost_text = wcz_organize_uprising_cost
 
 		ai_will_do = {
 			factor = 10
@@ -843,7 +998,6 @@ IDA_war_plan_yellow_decision = {
 		}
 
 		complete_effect = {
-			add_command_power = -30
 			hidden_effect = {
 				if = {
 					limit = {
@@ -866,6 +1020,10 @@ IDA_war_plan_yellow_decision = {
 					}
 				}
 			}
+			hidden_effect = {
+				add_political_power = -50
+				add_command_power = -30
+			}
 		}
 	}
 
@@ -876,7 +1034,6 @@ IDA_war_plan_yellow_decision = {
 		available = {
 			has_idea = IDA_War_Plan_Yellow_Spirit
 			has_government = republican
-			has_equipment = { infantry_equipment > 999 }
 			NOT = {
 				UTA = {
 					has_government = republican
@@ -884,7 +1041,12 @@ IDA_war_plan_yellow_decision = {
 			}
 		}
 
-		cost = 50
+		custom_cost_trigger = {
+			has_political_power > 49
+			has_equipment = { infantry_equipment > 999 }
+		}
+		
+		custom_cost_text = wcz_smuggle_equipment_uprising_cost
 
 		ai_will_do = {
 			factor = 0
@@ -899,10 +1061,6 @@ IDA_war_plan_yellow_decision = {
 		}
 
 		complete_effect = {
-			add_equipment_to_stockpile = {
-				type = infantry_equipment
-				amount = -1000
-			}
 			hidden_effect = {
 				if = {
 					limit = {
@@ -923,6 +1081,13 @@ IDA_war_plan_yellow_decision = {
 					UTA = {
 						country_event = idaho_rework.21
 					}
+				}
+			}
+			hidden_effect = {
+				add_political_power = -50
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = -1000
 				}
 			}
 		}
@@ -935,7 +1100,6 @@ IDA_war_plan_yellow_decision = {
 		available = {
 			has_idea = IDA_War_Plan_Yellow_Spirit
 			has_government = republican
-			has_manpower > 249
 			NOT = {
 				UTA = {
 					has_government = republican
@@ -943,7 +1107,13 @@ IDA_war_plan_yellow_decision = {
 			}
 		}
 
-		cost = 50
+		custom_cost_trigger = {
+			has_political_power > 49
+			has_manpower > 249
+		}
+		
+		custom_cost_text = wcz_provide_advisors_uprising_cost
+
 
 		ai_will_do = {
 			factor = 0
@@ -958,7 +1128,6 @@ IDA_war_plan_yellow_decision = {
 		}
 
 		complete_effect = {
-			add_manpower = -250
 			hidden_effect = {
 				if = {
 					limit = {
@@ -980,6 +1149,10 @@ IDA_war_plan_yellow_decision = {
 						country_event = idaho_rework.21
 					}
 				}
+			}
+			hidden_effect = {
+				add_political_power = -50
+				add_manpower = -250
 			}
 		}
 	}
@@ -1064,10 +1237,15 @@ IDA_support_utah_decision = {
 				has_war_with = MOL
 				has_war_with = LAS
 			}
-			has_equipment = { infantry_equipment > 249 }
 		}
 
-		cost = 25
+		custom_cost_trigger = {
+			has_political_power > 24
+			has_equipment = { infantry_equipment > 499 }
+		}
+		
+		custom_cost_text = wcz_sent_equipment_cost
+		
 		ai_will_do = {
 			factor = 10
 		}
@@ -1084,13 +1262,16 @@ IDA_support_utah_decision = {
 		days_re_enable = 10
 		
 		fixed_random_seed = no
-		complete_effect = { #Lose 250 equipment, Utah gains 250 equipment
-			add_equipment_to_stockpile = {
-				type = infantry_equipment
-				amount = -250
-			}
+		complete_effect = { #Lose 500 equipment, Utah gains 500 equipment
 			UTA = {
 				country_event = idaho_rework.47
+			}
+			hidden_effect = {
+				add_political_power = -25
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = -500
+				}
 			}
 		}
 	}
@@ -1106,10 +1287,15 @@ IDA_support_utah_decision = {
 				has_war_with = MOL
 				has_war_with = LAS
 			}
-			has_manpower > 99
 		}
 
-		cost = 25
+		custom_cost_trigger = {
+			has_political_power > 24
+			has_manpower > 249
+		}
+		
+		custom_cost_text = wcz_sent_manpower_cost
+		
 		ai_will_do = {
 			factor = 10
 		}
@@ -1126,10 +1312,13 @@ IDA_support_utah_decision = {
 		days_re_enable = 10
 		
 		fixed_random_seed = no
-		complete_effect = { #Lose 100 manpower, Utah gains 100 manpower
-			add_manpower = -100
+		complete_effect = { #Lose 250 manpower, Utah gains 250 manpower
 			UTA = {
 				country_event = idaho_rework.48
+			}
+			hidden_effect = {
+				add_political_power = -25
+				add_manpower = -250
 			}
 		}
 	}
@@ -1146,10 +1335,15 @@ IDA_support_primivitia_decision = {
 			SIN = {
 				has_war_with = UTA
 			}
-			has_equipment = { infantry_equipment > 249 }
 		}
 
-		cost = 25
+		custom_cost_trigger = {
+			has_political_power > 24
+			has_equipment = { infantry_equipment > 499 }
+		}
+		
+		custom_cost_text = wcz_sent_equipment_cost
+		
 		ai_will_do = {
 			factor = 10
 		}
@@ -1164,13 +1358,16 @@ IDA_support_primivitia_decision = {
 		days_re_enable = 10
 		
 		fixed_random_seed = no
-		complete_effect = { #Lose 250 equipment, Primivitia gains 250 equipment
-			add_equipment_to_stockpile = {
-				type = infantry_equipment
-				amount = -250
-			}
+		complete_effect = { #Lose 500 equipment, Primivitia gains 500 equipment
 			SIN = {
 				country_event = idaho_rework.47
+			}
+			hidden_effect = {
+				add_political_power = -25
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = -500
+				}
 			}
 		}
 	}
@@ -1184,10 +1381,15 @@ IDA_support_primivitia_decision = {
 			SIN = {
 				has_war_with = UTA
 			}
-			has_manpower > 99
 		}
 
-		cost = 25
+		custom_cost_trigger = {
+			has_political_power > 24
+			has_manpower > 249
+		}
+		
+		custom_cost_text = wcz_sent_manpower_cost
+		
 		ai_will_do = {
 			factor = 10
 		}
@@ -1202,10 +1404,13 @@ IDA_support_primivitia_decision = {
 		days_re_enable = 10
 		
 		fixed_random_seed = no
-		complete_effect = { #Lose 100 manpower, Primivitia gains 100 manpower
-			add_manpower = -100
+		complete_effect = { #Lose 250 manpower, Primivitia gains 250 manpower
 			SIN = {
 				country_event = idaho_rework.48
+			}
+			hidden_effect = {
+				add_political_power = -25
+				add_manpower = -250
 			}
 		}
 	}
@@ -1219,10 +1424,15 @@ IDA_support_primivitia_decision = {
 			LAS = {
 				has_war_with = UTA
 			}
-			has_equipment = { infantry_equipment > 249 }
 		}
 
-		cost = 25
+		custom_cost_trigger = {
+			has_political_power > 24
+			has_equipment = { infantry_equipment > 499 }
+		}
+		
+		custom_cost_text = wcz_sent_equipment_cost
+		
 		ai_will_do = {
 			factor = 10
 		}
@@ -1237,13 +1447,16 @@ IDA_support_primivitia_decision = {
 		days_re_enable = 10
 		
 		fixed_random_seed = no
-		complete_effect = { #Lose 250 equipment, Las Vegas gains 250 equipment
-			add_equipment_to_stockpile = {
-				type = infantry_equipment
-				amount = -250
-			}
+		complete_effect = { #Lose 500 equipment, Las Vegas gains 500 equipment
 			LAS = {
 				country_event = idaho_rework.47
+			}
+			hidden_effect = {
+				add_political_power = -25
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = -500
+				}
 			}
 		}
 	}
@@ -1257,10 +1470,15 @@ IDA_support_primivitia_decision = {
 			LAS = {
 				has_war_with = UTA
 			}
-			has_manpower > 99
 		}
 
-		cost = 25
+		custom_cost_trigger = {
+			has_political_power > 24
+			has_manpower > 249
+		}
+		
+		custom_cost_text = wcz_sent_manpower_cost
+		
 		ai_will_do = {
 			factor = 10
 		}
@@ -1275,10 +1493,13 @@ IDA_support_primivitia_decision = {
 		days_re_enable = 10
 		
 		fixed_random_seed = no
-		complete_effect = { #Lose 100 manpower, Las Vegas gains 100 manpower
-			add_manpower = -100
+		complete_effect = { #Lose 250 manpower, Las Vegas gains 250 manpower
 			LAS = {
 				country_event = idaho_rework.48
+			}
+			hidden_effect = {
+				add_political_power = -25
+				add_manpower = -250
 			}
 		}
 	}
@@ -1292,10 +1513,15 @@ IDA_support_primivitia_decision = {
 			MOL = {
 				has_war_with = UTA
 			}
-			has_equipment = { infantry_equipment > 249 }
 		}
 
-		cost = 25
+		custom_cost_trigger = {
+			has_political_power > 24
+			has_equipment = { infantry_equipment > 499 }
+		}
+		
+		custom_cost_text = wcz_sent_equipment_cost
+		
 		ai_will_do = {
 			factor = 10
 		}
@@ -1310,13 +1536,16 @@ IDA_support_primivitia_decision = {
 		days_re_enable = 10
 		
 		fixed_random_seed = no
-		complete_effect = { #Lose 250 equipment, Molossia gains 250 equipment
-			add_equipment_to_stockpile = {
-				type = infantry_equipment
-				amount = -250
-			}
+		complete_effect = { #Lose 500 equipment, Molossia gains 500 equipment
 			MOL = {
 				country_event = idaho_rework.47
+			}
+			hidden_effect = {
+				add_political_power = -25
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = -500
+				}
 			}
 		}
 	}
@@ -1330,10 +1559,15 @@ IDA_support_primivitia_decision = {
 			MOL = {
 				has_war_with = UTA
 			}
-			has_manpower > 99
 		}
 
-		cost = 25
+		custom_cost_trigger = {
+			has_political_power > 24
+			has_manpower > 249
+		}
+		
+		custom_cost_text = wcz_sent_manpower_cost
+		
 		ai_will_do = {
 			factor = 10
 		}
@@ -1348,10 +1582,981 @@ IDA_support_primivitia_decision = {
 		days_re_enable = 10
 		
 		fixed_random_seed = no
-		complete_effect = { #Lose 100 manpower, Molossia gains 100 manpower
-			add_manpower = -100
+		complete_effect = { #Lose 250 manpower, Molossia gains 250 manpower
 			MOL = {
 				country_event = idaho_rework.48
+			}
+			hidden_effect = {
+				add_political_power = -25
+				add_manpower = -250
+			}
+		}
+	}
+}
+
+IDA_war_plan_orange_decision = { 
+	
+	IDA_CAS_sow_dissent = { #Cost political power, Reduce stability and war support
+
+		icon = GFX_decision_eng_propaganda_campaigns
+
+		available = {
+			has_idea = IDA_War_Plan_Orange_Spirit
+			has_government = republican
+		}
+
+		cost = 30
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				CAS = { 
+					is_in_faction_with = IDA
+				}
+			}
+		}
+
+		visible = {
+			has_idea = IDA_War_Plan_Orange_Spirit
+			has_government = republican
+		}
+		
+		days_remove = 5
+		days_re_enable = 30
+		
+		fixed_random_seed = no
+		complete_effect = { #60% chance to reduce 5% stability, 30% chance to reduce 10% stability, 10% chance to reduce 10% stability and 5% war support
+			random_list = {
+				60 = { #Small protests
+					CAS = {
+						country_event = idaho_rework.6
+					}
+				}
+				30 = { #Medium protests
+					CAS = {
+						country_event = idaho_rework.7
+					}
+				}
+				10 = { #Large protests
+					CAS = {
+						country_event = idaho_rework.8
+					}
+				}
+			}
+		}
+	}
+	
+	IDA_CAS_organize_strikes = { #Cost political power, Decrease production and construction speed
+
+		icon = GFX_decision_generic_construction
+
+		available = {
+			has_idea = IDA_War_Plan_Orange_Spirit
+			has_government = republican
+		}
+
+		cost = 30
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				CAS = { 
+					is_in_faction_with = IDA
+				}
+			}
+		}
+
+		visible = {
+			has_idea = IDA_War_Plan_Orange_Spirit
+			has_government = republican
+		}
+		
+		days_remove = 5
+		days_re_enable = 30
+		
+		fixed_random_seed = no
+		complete_effect = { #60% chance for -5% construction and production, 30% chance for -10%, 10% chance for -15%
+			random_list = {
+				60 = { #Small strikes
+					CAS = {
+						country_event = idaho_rework.9
+					}
+				}
+				30 = { #Medium strikes
+					CAS = {
+						country_event = idaho_rework.10
+					}
+				}
+				10 = { #Large strikes
+					CAS = {
+						country_event = idaho_rework.11
+					}
+				}
+			}
+		}
+	}
+
+	IDA_CAS_blow_up_roadways = { #Cost political power and equipment, Reduce division speed and supply (war only)/ Maybe add railway damage after later
+
+		icon = GFX_decision_oppression
+
+		available = {
+			has_idea = IDA_War_Plan_Orange_Spirit
+			has_government = republican
+			CAS = {
+				has_war_with = IDA
+			}
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 29
+			has_equipment = { infantry_equipment > 249 }
+		}
+		
+		custom_cost_text = wcz_raid_equipment_cost
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				CAS = { 
+					is_in_faction_with = IDA
+				}
+			}
+		}
+		
+		days_remove = 10
+		days_re_enable = 30
+
+		visible = {
+			has_idea = IDA_War_Plan_Orange_Spirit
+			has_government = republican
+		}
+
+		complete_effect = { #Only one event this time 
+			CAS = {
+				country_event = idaho_rework.20
+			}
+			hidden_effect = {
+				add_political_power = -30
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = -250
+				}
+			}
+		}
+	}
+	
+	IDA_CAS_sabotage_communications = { #Cost political power and command power, Reduce division speed and supply (war only)/ Maybe add railway damage after later
+
+		icon = GFX_decision_hol_radio_oranje
+
+		available = {
+			has_idea = IDA_War_Plan_Orange_Spirit
+			has_government = republican
+			CAS = {
+				has_war_with = IDA
+			}
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 29
+			command_power > 29
+		}
+		
+		custom_cost_text = wcz_sabotage_communications_cost
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				CAS = { 
+					is_in_faction_with = IDA
+				}
+			}
+		}
+		
+		days_remove = 10
+		days_re_enable = 30
+
+		visible = {
+			has_idea = IDA_War_Plan_Orange_Spirit
+			has_government = republican
+		}
+
+		complete_effect = { #Only one event this time 
+			CAS = {
+				country_event = idaho_rework.80
+			
+			hidden_effect = {
+				add_political_power = -30
+				add_command_power = -30
+			}
+		}
+	}
+}
+
+IDA_war_plan_white_decision = { 
+	
+	IDA_PRA_sow_dissent = { #Cost political power, Reduce stability and war support
+
+		icon = GFX_decision_eng_propaganda_campaigns
+
+		available = {
+			has_idea = IDA_War_Plan_White_Spirit
+			has_government = republican
+		}
+
+		cost = 30
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				OR = {
+					PRA = { 
+						is_in_faction_with = IDA
+					}
+				}
+			}
+		}
+
+		visible = {
+			has_idea = IDA_War_Plan_White_Spirit
+			has_government = republican
+			PRA = {
+				exists = yes
+			}
+		}
+		
+		days_remove = 5
+		days_re_enable = 30
+		
+		fixed_random_seed = no
+		complete_effect = { #60% chance to reduce 5% stability, 30% chance to reduce 10% stability, 10% chance to reduce 10% stability and 5% war support
+			random_list = {
+				60 = { #Small protests
+					PRA = {
+						country_event = idaho_rework.6
+					}
+				}
+				30 = { #Medium protests
+					PRA = {
+						country_event = idaho_rework.7
+					}
+				}
+				10 = { #Large protests
+					PRA = {
+						country_event = idaho_rework.8
+					}
+				}
+			}
+		}
+	}
+	
+	IDA_PRA_organize_strikes = { #Cost political power, Decrease production and construction speed
+
+		icon = GFX_decision_generic_construction
+
+		available = {
+			has_idea = IDA_War_Plan_White_Spirit
+			has_government = republican
+		}
+
+		cost = 30
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				OR = {
+					PRA = { 
+						is_in_faction_with = IDA
+					}
+				}
+			}
+		}
+
+		visible = {
+			has_idea = IDA_War_Plan_White_Spirit
+			has_government = republican
+			PRA = {
+				exists = yes
+			}
+		}
+		
+		days_remove = 5
+		days_re_enable = 30
+		
+		fixed_random_seed = no
+		complete_effect = { #60% chance for -5% construction and production, 30% chance for -10%, 10% chance for -15%
+			random_list = {
+				60 = { #Small strikes
+					PRA = {
+						country_event = idaho_rework.9
+					}
+				}
+				30 = { #Medium strikes
+					PRA = {
+						country_event = idaho_rework.10
+					}
+				}
+				10 = { #Large strikes
+					PRA = {
+						country_event = idaho_rework.11
+					}
+				}
+			}
+		}
+	}
+
+	IDA_PRA_blow_up_roadways = { #Cost political power and equipment, Reduce division speed and supply (war only)/ Maybe add railway damage after later
+
+		icon = GFX_decision_oppression
+
+		available = {
+			has_idea = IDA_War_Plan_White_Spirit
+			has_government = republican
+			PRA = {
+				has_war_with = IDA
+			}
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 29
+			has_equipment = { infantry_equipment > 249 }
+		}
+		
+		custom_cost_text = wcz_raid_equipment_cost
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				PRA = { 
+					is_in_faction_with = IDA
+				}
+			}
+		}
+		
+		days_remove = 10
+		days_re_enable = 30
+
+		visible = {
+			has_idea = IDA_War_Plan_White_Spirit
+			has_government = republican
+			PRA = {
+				exists = yes
+			}
+		}
+
+		complete_effect = { #Only one event this time 
+			PRA = {
+				country_event = idaho_rework.20
+			}
+			hidden_effect = {
+				add_political_power = -30
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = -250
+				}
+			}
+		}
+	}
+	
+	IDA_PRA_sabotage_communications = { #Cost political power and command power, Reduce division speed and supply (war only)/ Maybe add railway damage after later
+
+		icon = GFX_decision_hol_radio_oranje
+
+		available = {
+			has_idea = IDA_War_Plan_White_Spirit
+			has_government = republican
+			PRA = {
+				has_war_with = IDA
+			}
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 29
+			command_power > 29
+		}
+		
+		custom_cost_text = wcz_sabotage_communications_cost
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				PRA = { 
+					is_in_faction_with = IDA
+				}
+			}
+		}
+		
+		days_remove = 10
+		days_re_enable = 30
+
+		visible = {
+			has_idea = IDA_War_Plan_White_Spirit
+			has_government = republican
+			PRA = {
+				country_exists = yes
+			}
+		}
+
+		complete_effect = { #Only one event this time 
+			PRA = {
+				country_event = idaho_rework.80
+			}
+			hidden_effect = {
+				add_political_power = -30
+				add_command_power = -30
+			}
+		}
+	}
+}
+
+IDA_pacific_fleet_decision = { 
+	
+	IDA_PAC_sow_dissent = { #Cost political power, Reduce stability and war support
+
+		icon = GFX_decision_eng_propaganda_campaigns
+
+		available = {
+			has_idea = IDA_War_Plan_Indigo_Spirit
+			has_government = republican
+		}
+
+		cost = 30
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				OR = {
+					PAC = { 
+						is_in_faction_with = IDA
+					}
+				}
+			}
+		}
+
+		visible = {
+			has_idea = IDA_War_Plan_Indigo_Spirit
+			has_government = republican
+			PAC = {
+				exists = yes
+			}
+		}
+		
+		days_remove = 5
+		days_re_enable = 30
+		
+		fixed_random_seed = no
+		complete_effect = { #60% chance to reduce 5% stability, 30% chance to reduce 10% stability, 10% chance to reduce 10% stability and 5% war support
+			random_list = {
+				60 = { #Small protests
+					PAC = {
+						country_event = idaho_rework.6
+					}
+				}
+				30 = { #Medium protests
+					PAC = {
+						country_event = idaho_rework.7
+					}
+				}
+				10 = { #Large protests
+					PAC = {
+						country_event = idaho_rework.8
+					}
+				}
+			}
+		}
+	}
+	
+	IDA_PAC_organize_strikes = { #Cost political power, Decrease production and construction speed
+
+		icon = GFX_decision_generic_construction
+
+		available = {
+			has_idea = IDA_War_Plan_Indigo_Spirit
+			has_government = republican
+		}
+
+		cost = 30
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				OR = {
+					PAC = { 
+						is_in_faction_with = IDA
+					}
+				}
+			}
+		}
+
+		visible = {
+			has_idea = IDA_War_Plan_Indigo_Spirit
+			has_government = republican
+			PAC = {
+				exists = yes
+			}
+		}
+		
+		days_remove = 5
+		days_re_enable = 30
+		
+		fixed_random_seed = no
+		complete_effect = { #60% chance for -5% construction and production, 30% chance for -10%, 10% chance for -15%
+			random_list = {
+				60 = { #Small strikes
+					PAC = {
+						country_event = idaho_rework.9
+					}
+				}
+				30 = { #Medium strikes
+					PAC = {
+						country_event = idaho_rework.10
+					}
+				}
+				10 = { #Large strikes
+					PAC = {
+						country_event = idaho_rework.11
+					}
+				}
+			}
+		}
+	}
+
+	IDA_PAC_blow_up_roadways = { #Cost political power and equipment, Reduce division speed and supply (war only)/ Maybe add railway damage after later
+
+		icon = GFX_decision_oppression
+
+		available = {
+			has_idea = IDA_War_Plan_Indigo_Spirit
+			has_government = republican
+			PAC = {
+				has_war_with = IDA
+			}
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 29
+			has_equipment = { infantry_equipment > 249 }
+		}
+		
+		custom_cost_text = wcz_raid_equipment_cost
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				PAC = { 
+					is_in_faction_with = IDA
+				}
+			}
+		}
+		
+		days_remove = 10
+		days_re_enable = 30
+
+		visible = {
+			has_idea = IDA_War_Plan_Indigo_Spirit
+			has_government = republican
+			PAC = {
+				exists = yes
+			}
+		}
+
+		complete_effect = { #Only one event this time 
+			PAC = {
+				country_event = idaho_rework.20
+			}
+			hidden_effect = {
+				add_political_power = -30
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = -250
+				}
+			}
+		}
+	}
+	
+	IDA_PAC_sabotage_communications = { #Cost political power and command power, Reduce division speed and supply (war only)/ Maybe add railway damage after later
+
+		icon = GFX_decision_hol_radio_oranje
+
+		available = {
+			has_idea = IDA_War_Plan_Indigo_Spirit
+			has_government = republican
+			PAC = {
+				has_war_with = IDA
+			}
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 29
+			command_power > 29
+		}
+		
+		custom_cost_text = wcz_sabotage_communications_cost
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				PAC = { 
+					is_in_faction_with = IDA
+				}
+			}
+		}
+		
+		days_remove = 10
+		days_re_enable = 30
+
+		visible = {
+			has_idea = IDA_War_Plan_Indigo_Spirit
+			has_government = republican
+			PAC = {
+				country_exists = yes
+			}
+		}
+
+		complete_effect = { #Only one event this time 
+			PAC = {
+				country_event = idaho_rework.80
+			}
+			hidden_effect = {
+				add_political_power = -30
+				add_command_power = -30
+			}
+		}
+	}
+	
+	IDA_PAC_bomb_ships = { #Cost political power, equipment, and command power, destroys a various amount of naval ships (amount is dependent on chance)
+
+		icon = GFX_decision_generic_naval
+
+		available = {
+			has_idea = IDA_War_Plan_Indigo_Spirit
+			has_government = republican
+			PAC = {
+				has_war_with = IDA
+			}
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 29
+			command_power > 39
+			has_equipment = { infantry_equipment > 499 }
+		}
+		
+		custom_cost_text = wcz_bomb_ships_cost
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				PAC = { 
+					is_in_faction_with = IDA
+				}
+			}
+		}
+		
+		days_remove = 10
+		days_re_enable = 10
+
+		visible = {
+			has_idea = IDA_War_Plan_Indigo_Spirit
+			has_government = republican
+			PAC = {
+				country_exists = yes
+			}
+		}
+
+		complete_effect = { #Only one event this time 
+			PAC = {
+				country_event = idaho_rework.81
+			}
+			hidden_effect = {
+				add_political_power = -30
+				add_command_power = -40
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = -499
+				}
+			}
+		}
+	}
+}
+
+IDA_alaska_decision = { 
+	
+	IDA_ALA_sow_dissent = { #Cost political power, Reduce stability and war support
+
+		icon = GFX_decision_eng_propaganda_campaigns
+
+		available = {
+			has_idea = IDA_War_Plan_Indigo_Spirit
+			has_government = republican
+		}
+
+		cost = 30
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				OR = {
+					ALA = { 
+						is_in_faction_with = IDA
+					}
+				}
+			}
+		}
+
+		visible = {
+			has_idea = IDA_War_Plan_Indigo_Spirit
+			has_government = republican
+			ALA = {
+				exists = yes
+			}
+		}
+		
+		days_remove = 5
+		days_re_enable = 30
+		
+		fixed_random_seed = no
+		complete_effect = { #60% chance to reduce 5% stability, 30% chance to reduce 10% stability, 10% chance to reduce 10% stability and 5% war support
+			random_list = {
+				60 = { #Small protests
+					ALA = {
+						country_event = idaho_rework.6
+					}
+				}
+				30 = { #Medium protests
+					ALA = {
+						country_event = idaho_rework.7
+					}
+				}
+				10 = { #Large protests
+					ALA = {
+						country_event = idaho_rework.8
+					}
+				}
+			}
+		}
+	}
+	
+	IDA_ALA_organize_strikes = { #Cost political power, Decrease production and construction speed
+
+		icon = GFX_decision_generic_construction
+
+		available = {
+			has_idea = IDA_War_Plan_Indigo_Spirit
+			has_government = republican
+		}
+
+		cost = 30
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				OR = {
+					ALA = { 
+						is_in_faction_with = IDA
+					}
+				}
+			}
+		}
+
+		visible = {
+			has_idea = IDA_War_Plan_Indigo_Spirit
+			has_government = republican
+			ALA = {
+				exists = yes
+			}
+		}
+		
+		days_remove = 5
+		days_re_enable = 30
+		
+		fixed_random_seed = no
+		complete_effect = { #60% chance for -5% construction and production, 30% chance for -10%, 10% chance for -15%
+			random_list = {
+				60 = { #Small strikes
+					ALA = {
+						country_event = idaho_rework.9
+					}
+				}
+				30 = { #Medium strikes
+					ALA = {
+						country_event = idaho_rework.10
+					}
+				}
+				10 = { #Large strikes
+					ALA = {
+						country_event = idaho_rework.11
+					}
+				}
+			}
+		}
+	}
+
+	IDA_ALA_blow_up_roadways = { #Cost political power and equipment, Reduce division speed and supply (war only)/ Maybe add railway damage after later
+
+		icon = GFX_decision_oppression
+
+		available = {
+			has_idea = IDA_War_Plan_Indigo_Spirit
+			has_government = republican
+			ALA = {
+				has_war_with = IDA
+			}
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 29
+			has_equipment = { infantry_equipment > 249 }
+		}
+		
+		custom_cost_text = wcz_raid_equipment_cost
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				ALA = { 
+					is_in_faction_with = IDA
+				}
+			}
+		}
+		
+		days_remove = 10
+		days_re_enable = 30
+
+		visible = {
+			has_idea = IDA_War_Plan_Indigo_Spirit
+			has_government = republican
+			ALA = {
+				exists = yes
+			}
+		}
+
+		complete_effect = { #Only one event this time 
+			ALA = {
+				country_event = idaho_rework.20
+			}
+			hidden_effect = {
+				add_political_power = -30
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = -250
+				}
+			}
+		}
+	}
+	
+	IDA_ALA_sabotage_communications = { #Cost political power and command power, Reduce division speed and supply (war only)/ Maybe add railway damage after later
+
+		icon = GFX_decision_hol_radio_oranje
+
+		available = {
+			has_idea = IDA_War_Plan_Indigo_Spirit
+			has_government = republican
+			ALA = {
+				has_war_with = IDA
+			}
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 29
+			command_power > 29
+		}
+		
+		custom_cost_text = wcz_sabotage_communications_cost
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				ALA = { 
+					is_in_faction_with = IDA
+				}
+			}
+		}
+		
+		days_remove = 10
+		days_re_enable = 30
+
+		visible = {
+			has_idea = IDA_War_Plan_Indigo_Spirit
+			has_government = republican
+			ALA = {
+				country_exists = yes
+			}
+		}
+
+		complete_effect = { #Only one event this time 
+			ALA = {
+				country_event = idaho_rework.80
+			}
+			hidden_effect = {
+				add_political_power = -30
+				add_command_power = -30
+			}
+		}
+	}
+	
+	IDA_ALA_bomb_ships = { #Cost political power, equipment, and command power, destroys a various amount of naval ships (amount is dependent on chance)
+
+		icon = GFX_decision_generic_naval
+
+		available = {
+			has_idea = IDA_War_Plan_Indigo_Spirit
+			has_government = republican
+			ALA = {
+				has_war_with = IDA
+			}
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 29
+			command_power > 39
+			has_equipment = { infantry_equipment > 499 }
+		}
+		
+		custom_cost_text = wcz_bomb_ships_cost
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				ALA = { 
+					is_in_faction_with = IDA
+				}
+			}
+		}
+		
+		days_remove = 10
+		days_re_enable = 10
+
+		visible = {
+			has_idea = IDA_War_Plan_Indigo_Spirit
+			has_government = republican
+			ALA = {
+				country_exists = yes
+			}
+		}
+
+		complete_effect = { #Only one event this time 
+			ALA = {
+				country_event = idaho_rework.81
+			}
+			hidden_effect = {
+				add_political_power = -30
+				add_command_power = -40
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = -499
+				}
 			}
 		}
 	}

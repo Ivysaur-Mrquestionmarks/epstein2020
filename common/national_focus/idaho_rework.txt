@@ -753,7 +753,7 @@ focus_tree = {
 		icon = GFX_goal_IDA_War_Plan_Brown_Focus
 		x = 46
 		y = 7
-		cost = 5
+		cost = 3
 		prerequisite = {
 			focus = IDA_Revive_The_Color_Coded_War_Plans
 		}
@@ -1021,7 +1021,7 @@ focus_tree = {
 	}
 	focus = { #Gain war goal on Montana (Trumpist Montana path auto-completes this focus if Montana and the WCZ can't reach an agreement)
 		id = IDA_Operation_Treasure_Hunter
-		icon = GFX_goal_IDA_Operation_ 
+		icon = GFX_goal_IDA_Operation_Treasure_Hunter 
 		x = 47
 		y = 9
 		cost = 5
@@ -1261,7 +1261,7 @@ focus_tree = {
 		icon = GFX_goal_IDA_War_Plan_Yellow_Focus
 		x = 56
 		y = 7
-		cost = 5
+		cost = 3
 		prerequisite = {
 			focus = IDA_Revive_The_Color_Coded_War_Plans
 		}
@@ -2551,7 +2551,7 @@ focus_tree = {
 		icon = GFX_goal_IDA_War_Plan_Orange_Focus
 		x = 46
 		y = 15
-		cost = 5
+		cost = 3
 		prerequisite = {
 			focus = IDA_Masters_Of_The_Rockies
 		}
@@ -2585,6 +2585,7 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		
 		completion_reward = {
+			custom_effect_tooltip = wcz_cascadia_decisions
 			add_ideas = IDA_War_Plan_Orange_Spirit
 		}
 	}
@@ -2905,7 +2906,7 @@ focus_tree = {
 		icon = GFX_goal_IDA_War_Plan_White_Focus
 		x = 54
 		y = 15
-		cost = 5
+		cost = 3
 		prerequisite = {
 			focus = IDA_Masters_Of_The_Rockies
 		}
@@ -2953,6 +2954,7 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		
 		completion_reward = {
+			custom_effect_tooltip = wcz_california_decisions
 			add_ideas = IDA_War_Plan_White_Spirit
 		}
 	}
@@ -3284,6 +3286,887 @@ focus_tree = {
 		
 		completion_reward = { 
 			add_ideas = IDA_War_Plan_Indigo_Spirit
+		}
+	}
+	# Navy Buildup Focuses #
+	focus = { #Auto research ships up to level 2, gain national spirit that decreases naval production cost
+		id = IDA_Expand_Our_Naval_Capabilities
+		icon = GFX_goal_FLO_by_sea
+		x = 50
+		y = 22
+		cost = 5
+		prerequisite = {
+			focus = IDA_War_Plan_Indigo
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = { 
+			custom_effect_tooltip = wcz_research_ships
+			if = {
+				limit = {
+					has_dlc = "Man the Guns"
+				}
+				add_ideas = IDA_Naval_Buildup
+			}
+			else = {
+				add_ideas = IDA_Naval_Buildup
+			}
+			hidden_effect = {
+				if = {
+					limit = {
+						has_dlc = "Man the Guns"
+					}
+					set_technology = {
+						early_ship_hull_light = 1
+						basic_ship_hull_light = 1
+						early_ship_hull_cruiser = 1
+						basic_ship_hull_cruiser = 1
+						early_ship_hull_heavy = 1
+						basic_ship_hull_heavy = 1
+						early_ship_hull_carrier = 1
+						basic_ship_hull_carrier = 1
+						early_ship_hull_submarine = 1
+						basic_ship_hull_submarine = 1
+					}
+				}
+				else = {
+					set_technology = {
+						early_destroyer = 1
+						basic_destroyer = 1
+						early_light_cruiser = 1
+						basic_light_cruiser = 1
+						early_heavy_cruiser = 1
+						basic_heavy_cruiser = 1
+						early_battlecruiser = 1
+						basic_battlecruiser = 1
+						early_battleship = 1
+						basic_battleship = 1
+						early_carrier = 1
+						basic_carrier = 1
+						early_submarine = 1
+						basic_submarine = 1
+					}
+				}
+			}
+		}
+	}
+	focus = { #Lose 75 political power, Gain: 1 battleship, 2 heavy cruisers, 10 destroyers, 20 submarines
+		id = IDA_Purchase_Foriegn_Ships
+		icon = GFX_goal_FLO_Cruisers
+		x = 50
+		y = 23
+		cost = 5
+		prerequisite = {
+			focus = IDA_Expand_Our_Naval_Capabilities
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = { 
+			add_political_power = -75
+			if = {
+				limit = {
+					has_dlc = "Man the Guns"
+				}
+				add_equipment_to_stockpile = {
+					type = ship_hull_heavy
+					amount = 1
+				}
+				add_equipment_to_stockpile = {
+					type = ship_hull_cruiser
+					amount = 2
+				}
+				add_equipment_to_stockpile = {
+					type = ship_hull_light
+					amount = 10
+				}
+				add_equipment_to_stockpile = {
+					type = ship_hull_submarine
+					amount = 20
+				}
+				add_equipment_to_stockpile = {
+					type = convoy
+					amount = 100
+				}
+			}
+			else = {
+				add_equipment_to_stockpile = {
+					type = ship_hull_heavy
+					amount = 1
+				}
+				add_equipment_to_stockpile = {
+					type = light_cruiser
+					amount = 2
+				}
+				add_equipment_to_stockpile = {
+					type = destroyer
+					amount = 10
+				}
+				add_equipment_to_stockpile = {
+					type = ship_hull_submarine
+					amount = 20
+				}
+				add_equipment_to_stockpile = {
+					type = convoy
+					amount = 100
+				}
+			}
+		}
+	}
+	focus = { #Get 50 naval experience, Gain admirals, theorist, command staff, get 2 100% doctrine reduction cost  
+		id = IDA_Reach_Out_To_Coast_Guard_Admirals
+		icon = GFX_goal_FLO_admirality
+		x = 44
+		y = 23
+		cost = 5
+		prerequisite = {
+			focus = IDA_Expand_Our_Naval_Capabilities
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = { 
+			custom_effect_tooltip = wcz_coast_guard_recruited
+			navy_experience = 50
+			add_doctrine_cost_reduction = {
+				name = naval_doc_bonus
+				cost_reduction = 1.0
+				uses = 2
+				category = naval_doctrine
+			}
+		}
+	}
+	focus = { #Add 25 naval exp, 15 army exp, auto research landing craft Add national spirit that buffs naval invasions 
+		id = IDA_Our_Own_Marine_Corps
+		icon = GFX_goal_pc_marine
+		x = 56
+		y = 23
+		cost = 5
+		prerequisite = {
+			focus = IDA_Expand_Our_Naval_Capabilities
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = { 
+			navy_experience = 25
+			army_experience = 15
+			add_ideas = IDA_Dedicated_Marine_Corps
+		}
+	}
+	# Operation Aloha - Pacific Fleet #
+	focus = { #Focus for if the Pacific Fleet won against California, unlocks decisions to sabotage Pacific Fleet
+		id = IDA_The_Fleet_In_California
+		icon = GFX_goal_rebuild_costal_dockyards
+		x = 46
+		y = 24
+		cost = 5
+		prerequisite = {
+			focus = IDA_Expand_Our_Naval_Capabilities
+		}
+		mutually_exclusive = {
+			focus = IDA_A_Tropical_Paradise
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			NOT = {
+				PAC = {
+					has_country_flag = HAW_Pacific_Collapse
+				}
+			}
+		}
+		bypass = {
+			NOT = {
+				country_exists = PAC
+			}
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = { #This unlocks the same decisions as the "A Tropical Paradise" focus, it's just meant to determine whether the player can negotiate/bypass the Fleet or not
+			custom_effect_tooltip = wcz_pac_decisions 
+		}
+	}
+	focus = { #Focus for if the Pacific Fleet lost against California, unlocks decisions to sabotage Hawaii
+		id = IDA_A_Tropical_Paradise
+		icon = GFX_goal_IDA_Hawaii
+		x = 48
+		y = 24
+		cost = 5
+		prerequisite = {
+			focus = IDA_Expand_Our_Naval_Capabilities
+		}
+		mutually_exclusive = {
+			focus = IDA_The_Fleet_In_California
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			PAC = {
+				has_country_flag = HAW_Pacific_Collapse
+			}
+		}
+		bypass = {
+			NOT = {
+				country_exists = PAC
+			}
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = { #This unlocks the same decisions as the "The Fleet in California" focus, it's just meant to determine whether the player can negotiate/bypass the Fleet or not
+			custom_effect_tooltip = wcz_hawaii_decisions 
+		}
+	}
+	focus = { #Gives war goal against the Pacific Fleet, if the Pacific Fleet beat California, the player is locked into this path
+		id = IDA_Operation_Aloha
+		icon = GFX_goal_IDA_Operation_Aloha
+		x = 45
+		y = 25
+		cost = 5
+		prerequisite = {
+			focus = IDA_The_Fleet_In_California
+			focus = IDA_A_Tropical_Paradise
+		}
+		mutually_exclusive = {
+			focus = IDA_Negotiate_With_Hawaii
+			focus = IDA_Bypass_Hawaii
+		}
+		ai_will_do = {
+			factor = 0
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			
+		}
+		bypass = {
+			NOT = {
+				country_exists = PAC
+			}
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything 
+				target = PAC
+			}
+		}
+	}
+	focus = { #The WCZ will negotiate with Hawaii to integrate it into the WCZ
+		id = IDA_Negotiate_With_Hawaii
+		icon = GFX_goal_generic_major_alliance
+		x = 47
+		y = 25
+		cost = 10
+		prerequisite = {
+			focus = IDA_A_Tropical_Paradise
+		}
+		mutually_exclusive = {
+			focus = IDA_Operation_Aloha
+			focus = IDA_Bypass_Hawaii
+		}
+		ai_will_do = {
+			factor = 100
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			PAC = {
+				is_ally_with = USA
+			}
+		}
+		bypass = {
+			
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		select_effect = {
+			PAC = {
+				country_event = {
+					id = idaho_rework.82
+					days = 5
+				}
+			}
+		}
+		
+		completion_reward = {
+			add_political_power = 25
+			add_stability = 0.05
+		}
+	}
+	focus = { #The WCZ will just ignore Hawaii
+		id = IDA_Bypass_Hawaii
+		icon = GFX_goal_generic_position_armies
+		x = 49
+		y = 25
+		cost = 3
+		prerequisite = {
+			focus = IDA_A_Tropical_Paradise
+		}
+		mutually_exclusive = {
+			focus = IDA_Operation_Aloha
+			focus = IDA_Negotiate_With_Hawaii
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			add_political_power = 25
+			add_stability = 0.05
+		}
+	}
+	focus = { #WCZ gains cores on the PAC 
+		id = IDA_Integrate_Our_New_Territories
+		icon = GFX_focus_generic_treaty
+		x = 45
+		y = 26
+		cost = 3
+		prerequisite = {
+			focus = IDA_Operation_Aloha
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			NOT = {
+				country_exists = PAC
+			}
+		}
+		bypass = {
+			
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			IDA = {
+				every_state = {
+					limit = {
+						is_core_of = PAC
+					}
+					add_core_of = IDA
+				}
+			}
+		}
+	}
+	# Operation Snowbird - Alaska #
+	focus = { #Staring focus for dealing with Alaska
+		id = IDA_The_Last_Frontier
+		icon = GFX_goal_IDA_Alaska
+		x = 53
+		y = 24
+		cost = 5
+		prerequisite = {
+			focus = IDA_Expand_Our_Naval_Capabilities
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			
+		}
+		bypass = {
+			NOT = {
+				country_exists = ALA
+			}
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			custom_effect_tooltip = wcz_alaska_tooltip
+		}
+	}
+	focus = { #The WCZ will just ignore Alaska
+		id = IDA_Bypass_Alaska
+		icon = GFX_goal_generic_position_armies
+		x = 51
+		y = 25
+		cost = 3
+		prerequisite = {
+			focus = IDA_The_Last_Frontier
+		}
+		mutually_exclusive = {
+			focus = IDA_Meet_With_Palin
+			focus = IDA_Operation_Snowbird
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			add_political_power = 25
+			add_stability = 0.05
+		}
+	}
+	focus = { #WCZ will ask Alaska to join them 
+		id = IDA_Meet_With_Palin
+		icon = GFX_goal_Sarah_Palin
+		x = 53
+		y = 25
+		cost = 10
+		prerequisite = {
+			focus = IDA_The_Last_Frontier
+		}
+		mutually_exclusive = {
+			focus = IDA_Bypass_Alaska
+			focus = IDA_Operation_Snowbird
+		}
+		ai_will_do = {
+			factor = 100
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			ALA = {
+				ALA_sarah_palin = { is_country_leader = yes }
+			}
+		}
+		bypass = {
+			
+		}
+		cancel = {
+			OR = {
+				has_completed_focus = IDA_Bypass_Alaska
+				has_completed_focus = IDA_Operation_Snowbird
+			}
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		select_effect = {
+			ALA = {
+				country_event = {
+					id = idaho_rework.87
+					days = 5
+				}
+			}
+		}
+		
+		completion_reward = {
+			add_political_power = 25
+			add_stability = 0.05
+		}
+	}
+	focus = { #The WCZ will gain a war goal on Alaska
+		id = IDA_Operation_Snowbird
+		icon = GFX_goal_IDA_Operation_Snowbird
+		x = 55
+		y = 25
+		cost = 5
+		prerequisite = {
+			focus = IDA_The_Last_Frontier
+		}
+		mutually_exclusive = {
+			focus = IDA_Bypass_Alaska
+			focus = IDA_Meet_With_Palin
+		}
+		ai_will_do = {
+			factor = 0
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			NOT = {
+				ALA = {
+					is_guaranteed_by = USA
+				}
+			}
+		}
+		bypass = {
+			
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything 
+				target = ALA
+			}
+		}
+	}
+	focus = { #WCZ gains cores on Alaska 
+		id = IDA_Integrate_Alaska
+		icon = GFX_goal_Alaskan_Independence
+		x = 55
+		y = 26
+		cost = 3
+		prerequisite = {
+			focus = IDA_Operation_Snowbird
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			NOT = {
+				country_exists = ALA
+			}
+		}
+		bypass = {
+			
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			IDA = {
+				every_state = {
+					limit = {
+						is_core_of = ALA
+					}
+					add_core_of = IDA
+				}
+			}
+		}
+	}
+	# End of War Plan Indigo, Start of the WCZ's "political" tree (it took long enough) #
+	focus = { #WCZ will gain an event which will fire off a news event, they will then gain an event and choose between the Loyalist and Lincoln paths
+		id = IDA_Mission_Accomplished
+		icon = GFX_goal_unknown
+		x = 50
+		y = 27
+		cost = 4
+		prerequisite = {
+			focus = IDA_Integrate_Our_New_Territories
+			focus = IDA_Negotiate_With_Hawaii
+			focus = IDA_Bypass_Hawaii
+		}
+		prerequisite = {
+			focus = IDA_Bypass_Alaska
+			focus = IDA_Meet_With_Palin
+			focus = IDA_Integrate_Alaska
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = { #If the Trumpists have been exiled, the WCZ will get an event unlocking the Trumpist exiles tree 
+			IDA = {
+				country_event = idaho_rework.94
+			}
+		}
+	}
+	# Loyalty to Trump #
+	focus = { #WCZ chose to remain loyal to Trump
+		id = IDA_Loyalty_To_The_East
+		icon = GFX_goal_trump_blue_lives_matter
+		x = 40
+		y = 28
+		cost = 5
+		prerequisite = {
+			focus = IDA_Mission_Accomplished
+		}
+		mutually_exclusive = {
+			focus = IDA_The_Lincoln_Declaration
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			has_country_flag = wcz_stayed_loyal_to_trump
+		}
+		bypass = {
+			
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = { #Fires off event, Stankiewicz will lose Western Expeditionary and gain "General of the West"
+			remove_country_leader_trait = IDA_attack_bonus
+			add_country_leader_trait = general_of_the_west
+		}
+	}
+	# Union of Lincoln #
+		focus = { #WCZ chose to declare a republic
+		id = IDA_The_Lincoln_Declaration
+		icon = GFX_goal_IDA_lincoln
+		x = 60
+		y = 28
+		cost = 5
+		prerequisite = {
+			focus = IDA_Mission_Accomplished
+		}
+		mutually_exclusive = {
+			focus = IDA_Loyalty_To_The_East
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			has_country_flag = wcz_union_of_lincoln_declared
+		}
+		bypass = {
+			
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = { #Fires off event, Stankiewicz will lose Western Expeditionary and gain "Interim President"
+			remove_country_leader_trait = IDA_attack_bonus
+			add_country_leader_trait = interim_president
 		}
 	}
 	## Defensive WCZ Path ##
