@@ -218,7 +218,7 @@ focus_tree = {
 		icon = GFX_focus_generic_little_entente
 		x = 50
 		y = 5
-		cost = 10
+		cost = 5
 		prerequisite = {
 			focus = IDA_A_Change_In_Plans
 		}
@@ -611,60 +611,12 @@ focus_tree = {
 			}
 		}
 	}
-	focus = { #Adds two civilian factories and one military factory
-		id = IDA_Prop_Up_Local_Industry
-		icon = GFX_goal_generic_construct_civ_factory
-		x = 49
-		y = 10
-		cost = 5
-		prerequisite = {
-			focus = IDA_Increase_Taxation
-		}
-		mutually_exclusive = {
-			
-		}
-		ai_will_do = {
-			factor = 20
-		}
-		allow_branch = {
-			
-		}
-		available = {
-			
-		}
-		bypass = {
-			
-		}
-		cancel = {
-		
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = yes
-
-		search_filters = { FOCUS_FILTER_INDUSTRY }
-		completion_reward = {
-			random_owned_state = {
-				add_building_construction = {
-					type = industrial_complex
-					level = 2
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = arms_factory
-					level = 1
-					instant_build = yes
-				}
-			}
-		}
-	}
 	focus = { #Add two infrastructure to two randomly owned states
 		id = IDA_Improve_Local_Infrastructure
 		icon = GFX_goal_generic_construct_infrastructure
 		x = 50
 		y = 11
-		cost = 5
+		cost = 8
 		prerequisite = {
 			focus = IDA_Fuel_The_War_Machine
 			focus = IDA_Prop_Up_Local_Industry
@@ -715,7 +667,7 @@ focus_tree = {
 		icon = GFX_goal_IDA_Generic_Road_Construction
 		x = 50
 		y = 12
-		cost = 10
+		cost = 8
 		prerequisite = {
 			focus = IDA_Improve_Local_Infrastructure
 		}
@@ -992,6 +944,7 @@ focus_tree = {
 				OR = {
 					has_completed_focus = MON_Stick_To_Biden
 					has_completed_focus = MON_Self-Sufficiency_Plan
+					has_completed_focus = MON_Montanian_Sovereign_Army
 					exists = no
 				}
 			}
@@ -1243,9 +1196,8 @@ focus_tree = {
 				remove_ideas = {
 					IDA_Economic_Dependence_4
 				}
-				add_timed_idea = { 
+				add_ideas = { 
 					idea = IDA_Economic_Miracle  
-					days = 1825 
 				}
 			}
 			add_timed_idea = {
@@ -1528,6 +1480,7 @@ focus_tree = {
 			UTA = {
 				has_war = no
 				OR = {
+					date > 2023.6.1
 					has_completed_focus = UTA_The_Church_Is_Socialist
 					has_completed_focus = UTA_Preserve_Autocracy
 					has_completed_focus = UTA_Democrats
@@ -1535,11 +1488,14 @@ focus_tree = {
 			}
 		}
 		bypass = {
-			NOT = {
-				country_exists = UTA
-				country_exists = SIN
-				country_exists = MOL
-				country_exists = LAS
+			OR = {
+				has_war_with = UTA
+				NOT = {
+					country_exists = UTA
+					country_exists = SIN
+					country_exists = MOL
+					country_exists = LAS
+				}
 			}
 		}
 		cancel = {
@@ -1912,7 +1868,7 @@ focus_tree = {
 		icon = GFX_goal_Invade_Arizona
 		x = 56
 		y = 12
-		cost = 5
+		cost = 3
 		prerequisite = {
 			focus = IDA_Utahn_Military_Advisors
 			focus = IDA_Lessons_From_The_Southwest
@@ -2003,7 +1959,16 @@ focus_tree = {
 			
 		}
 		available = { 
-			
+			NOT = {
+				country_exists = UTA
+				country_exists = SIN
+				country_exists = LAS
+				country_exists = MOL
+				country_exists = HOP
+				country_exists = NAV
+				country_exists = TOH
+				country_exists = HAM
+			}
 		}
 		bypass = {
 			
@@ -2053,9 +2018,8 @@ focus_tree = {
 				remove_ideas = {
 					IDA_Economic_Dependence_4
 				}
-				add_timed_idea = { 
+				add_ideas = { 
 					idea = IDA_Economic_Miracle  
-					days = 1825 
 				}
 			}
 			add_timed_idea = {
@@ -2646,7 +2610,7 @@ focus_tree = {
 		icon = GFX_goal_IDA_Operation_Inquisition
 		x = 47
 		y = 16
-		cost = 3
+		cost = 5
 		prerequisite = {
 			focus = IDA_War_Plan_Orange
 		}
@@ -3005,6 +2969,7 @@ focus_tree = {
 				country_exists = SAC
 				country_exists = SBB
 				country_exists = THO
+				country_exists = ORO
 			}
 		}
 		cancel = {
@@ -3032,6 +2997,7 @@ focus_tree = {
 		will_lead_to_war_with = SAC
 		will_lead_to_war_with = SBB
 		will_lead_to_war_with = THO
+		will_lead_to_war_with = ORO
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		
@@ -3099,6 +3065,10 @@ focus_tree = {
 			create_wargoal = {
 				type = annex_everything
 				target = THO
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = ORO
 			}
 		}
 	}
@@ -3172,13 +3142,28 @@ focus_tree = {
 			
 		}
 		available = { 
-			
+			NOT = {
+				country_exists = PRA
+				country_exists = FIR
+				country_exists = JFR
+				country_exists = ACF
+				country_exists = HLY
+				country_exists = CST
+				country_exists = PRC
+				country_exists = NVD
+				country_exists = ABG
+				country_exists = BKR
+				country_exists = FSN
+				country_exists = MNT
+				country_exists = MOJ
+				country_exists = RWD
+				country_exists = SAC
+				country_exists = SBB
+				country_exists = THO
+			}
 		}
 		bypass = {
-			NOT = {
-				country_exists = ALA
-				country_exists = PAC
-			}
+			
 		}
 		cancel = {
 			
@@ -4044,7 +4029,7 @@ focus_tree = {
 	# End of War Plan Indigo, Start of the WCZ's "political" tree (it took long enough) #
 	focus = { #WCZ will gain an event which will fire off a news event, they will then gain an event and choose between the Loyalist and Lincoln paths
 		id = IDA_Mission_Accomplished
-		icon = GFX_goal_unknown
+		icon = GFX_goal_IDA_Mission_Accomplished
 		x = 50
 		y = 27
 		cost = 4
