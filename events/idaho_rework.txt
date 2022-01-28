@@ -101,6 +101,47 @@ news_event = {
 		}
 	}
 }
+news_event = {
+	id = idaho_rework.105
+	title = idaho_rework.105.t
+	desc = idaho_rework.105.d
+	picture = event_news_IDA_Western_Independence
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = idaho_rework.105.a
+		trigger = {
+			NOT = {
+				any_country = {
+					limit = {
+						OR = {
+							tag = USA
+							is_ally_with = USA
+							tag = IDA
+						}
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = idaho_rework.105.b
+		trigger = {
+			OR = {
+				tag = USA
+				is_ally_with = USA
+			}
+		}
+	}
+	option = {
+		name = idaho_rework.105.c
+		trigger = {
+			OR = {
+				tag = IDA
+			}
+		}
+	}
+}
 ### Country Events ###
 country_event = { #WCZ gains ground, Stankiewicz loses trait
 	id = idaho_rework.1
@@ -2416,13 +2457,43 @@ country_event = { #Final event in air reform, gives small bonus to air
 				add_idea = IDA_Eagles_Of_The_West_Spirit
 			}
 		}
-		else_if = { #This is the legitimate one, all others are for people who cheat their way here
+		else_if = {
 			limit = {
 				has_idea = IDA_Lackluster_Air_Force_7
 			}
 			swap_ideas = {
 				remove_idea = IDA_Lackluster_Air_Force_7
 				add_idea = IDA_Eagles_Of_The_West_Spirit
+			}
+		}
+		else_if = { #These are the legitimate one, all others are for people who cheat their way here
+			limit = {
+				has_idea = IDA_Lackluster_Air_Force_7
+				has_country_flag = wcz_strategic_destruction_focus
+			}
+			swap_ideas = {
+				remove_idea = IDA_Lackluster_Air_Force_7
+				add_idea = IDA_Eagles_Of_The_West_Strategic_Destruction_Spirit
+			}
+		}
+		else_if = { #These are the legitimate one, all others are for people who cheat their way here
+			limit = {
+				has_idea = IDA_Lackluster_Air_Force_7
+				has_country_flag = wcz_battlefield_support_focus
+			}
+			swap_ideas = {
+				remove_idea = IDA_Lackluster_Air_Force_7
+				add_idea = IDA_Eagles_Of_The_West_Battlefield_Support_Spirit
+			}
+		}
+		else_if = { #These are the legitimate one, all others are for people who cheat their way here
+			limit = {
+				has_idea = IDA_Lackluster_Air_Force_7
+				has_country_flag = wcz_operation_integrity_focus
+			}
+			swap_ideas = {
+				remove_idea = IDA_Lackluster_Air_Force_7
+				add_idea = IDA_Eagles_Of_The_West_Operational_Integrity_Spirit
 			}
 		}
 	}
@@ -3390,7 +3461,7 @@ country_event = { #WCZ gains a spirit that reduces justify war goal tension limi
 		}
 	}
 }
-country_event = { 
+country_event = { #WCZ decided whether to stick with Trump or declare independence 
 	id = idaho_rework.96
 	title = idaho_rework.96.t
 	desc = idaho_rework.96.d
@@ -3418,6 +3489,230 @@ country_event = {
 		custom_effect_tooltip = wcz_pursued_independence
 		hidden_effect = {
 			set_country_flag = wcz_union_of_lincoln_declared
+		}
+	}
+}
+country_event = { #WCZ stuck with Trump, Stankiewicz gets the "General of the West" trait
+	id = idaho_rework.97
+	title = idaho_rework.97.t
+	desc = idaho_rework.97.d
+	picture = GFX_report_event_Donald_Trump_Phone_Call
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = idaho_rework.97.a
+		remove_country_leader_trait = IDA_attack_bonus
+		add_country_leader_trait = general_of_the_west
+	}
+}
+country_event = { #WCZ declares independence, Stankiewicz gets "Interim President" trait, set cosmetic tag to Lincoln, countries in WCZ faction get an event on what to do, Trump gets an event explaining the WCZ's actions, fires off news event 
+	id = idaho_rework.98
+	title = idaho_rework.98.t
+	desc = idaho_rework.98.d
+	picture = GFX_report_event_IDA_Lincoln_Declaration
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = idaho_rework.98.a
+		remove_country_leader_trait = IDA_attack_bonus
+		add_country_leader_trait = interim_president
+		hidden_effect = {
+			set_cosmetic_tag = IDA_Union_of_Lincoln
+			set_faction_name = "Lincoln Pact"
+			news_event = idaho_rework.105
+			USA = {
+				country_event = {
+					id = idaho_rework.99
+					days = 3
+				}
+			}
+			every_country = {
+				limit = {
+					is_in_faction_with = IDA
+				}
+				country_event = {
+					id = idaho_rework.100
+					days = 3
+				}
+			}
+		}
+	}
+}
+country_event = { #Trump is alerted that the WCZ broke free
+	id = idaho_rework.99
+	title = idaho_rework.99.t
+	desc = idaho_rework.99.d
+	picture = GFX_report_event_IDA_Lincoln_Declaration
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = idaho_rework.99.a
+		add_opinion_modifier = {
+			target = IDA
+			modifier = faction_traitor
+		}
+		hidden_effect = {
+			remove_opinion_modifier = {
+				target = IDA
+				modifier = aligned_administration
+			}
+			IDA = {
+				remove_opinion_modifier = {
+					target = USA
+					modifier = aligned_administration
+				}
+			}
+		}
+	}
+}
+country_event = { #WCZ faction get event of Lincoln deceleration, must decide whether to be annexed, remain in their faction, or join Trump
+	id = idaho_rework.100
+	title = idaho_rework.100.t
+	desc = idaho_rework.100.d
+	picture = GFX_report_event_IDA_Lincoln_Declaration
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #WCZ gets event to annex country
+		name = idaho_rework.100.a
+		ai_chance = {
+			factor = 10
+		}
+		custom_effect_tooltip = wcz_end_of_our_nation
+		IDA = {
+			country_event = {
+				id = idaho_rework.101
+				days = 2
+			}
+		}
+	}
+	
+	option = { #WCZ is alerted that the country stays with them, A.I. will never choose this option
+		name = idaho_rework.100.b
+		ai_chance = {
+			factor = 0
+		}
+		custom_effect_tooltip = wcz_puppet_us
+		IDA = {
+			country_event = {
+				id = idaho_rework.102
+				days = 2
+			}
+		}
+	}
+	
+	option = { #Trump gets event to add country to their faction
+		name = idaho_rework.100.c
+		ai_chance = {
+			factor = 10
+		}
+		custom_effect_tooltip = wcz_loyalty_to_trump
+		USA = {
+			country_event = {
+				id = idaho_rework.104
+				days = 2
+			}
+		}
+	}
+}
+country_event = { #WCZ is alerted that a state wants to be annexed by them
+	id = idaho_rework.101
+	title = idaho_rework.101.t
+	desc = idaho_rework.101.d
+	picture = GFX_report_event_IDA_Lincoln_Declaration
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Country is annexed by the WCZ
+		name = idaho_rework.101.a
+		IDA = {
+			annex_country = FROM
+			transfer_troops = YES
+		}
+		hidden_effect = {
+			IDA = {
+				every_state = {
+					limit = {
+						is_core_of = FROM
+					}
+					add_core_of = IDA
+				}
+			}
+		}
+	}
+}
+country_event = { #WCZ is alerted that a state wants to stay as a faction member
+	id = idaho_rework.102
+	title = idaho_rework.102.t
+	desc = idaho_rework.102.d
+	picture = GFX_report_event_IDA_Lincoln_Declaration
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Nothing since, they should already be in the faction
+		name = idaho_rework.102.a
+		ai_chance = {
+			factor = 10
+		}
+	}
+	
+	option = { #Country is rejected by the WCZ
+		name = idaho_rework.102.b
+		ai_chance = {
+			factor = 0
+		}
+		FROM = {
+			country_event = {
+				id = idaho_rework.103
+				days = 2
+			}
+		}
+	}
+}
+country_event = { #Country is alerted that the WCZ has refused their offer
+	id = idaho_rework.103
+	title = idaho_rework.103.t
+	desc = idaho_rework.103.d
+	picture = GFX_report_event_IDA_Lincoln_Declaration
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Trump gets event to add country to their faction
+		name = idaho_rework.103.a
+		USA = {
+			country_event = {
+				id = idaho_rework.104
+				days = 2
+			}
+		}
+	}
+}
+country_event = { #Trump is alerted that a WCZ faction member has remained loyal
+	id = idaho_rework.104
+	title = idaho_rework.104.t
+	desc = idaho_rework.104.d
+	picture = GFX_report_event_Donald_Trump_Phone_Call
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Trump gets event to add country to their faction
+		name = idaho_rework.104.a
+		FROM = {
+			leave_faction = yes
+		}
+		USA = {
+			add_to_faction = FROM
 		}
 	}
 }

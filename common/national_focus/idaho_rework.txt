@@ -1119,7 +1119,11 @@ focus_tree = {
 			IDA = {
 				every_state = {
 					limit = {
-						is_core_of = MON
+						OR = {
+							is_core_of = MON
+							is_core_of = LYM
+							is_core_of = BKF
+						}
 					}
 				add_core_of = IDA
 				}
@@ -1507,12 +1511,27 @@ focus_tree = {
 		available_if_capitulated = yes
 		
 		will_lead_to_war_with = UTA
+		will_lead_to_war_with = UNV
+		will_lead_to_war_with = UCL
+		will_lead_to_war_with = UAA
 
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_ANNEXATION }
 		completion_reward = {
 			create_wargoal = {
 				type = annex_everything 
 				target = UTA
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = UNV
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = UCL
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = UAA
 			}
 		}
 	}
@@ -1924,20 +1943,6 @@ focus_tree = {
 				type = annex_everything 
 				target = AFO
 			}
-			hidden_effect = {
-				IDA = {
-					every_state = {
-						limit = {
-							is_core_of = HOP
-							is_core_of = NAV
-							is_core_of = TOH
-							is_core_of = HAM
-							is_core_of = AFO
-						}
-					add_core_of = IDA
-					}
-				}
-			}
 		}
 	}
 	focus = { #Dependent industry fix in War Plan Yellow path
@@ -1968,6 +1973,10 @@ focus_tree = {
 				country_exists = NAV
 				country_exists = TOH
 				country_exists = HAM
+				country_exists = AFO
+				country_exists = UNV
+				country_exists = UCL
+				country_exists = UAA
 			}
 		}
 		bypass = {
@@ -2029,6 +2038,20 @@ focus_tree = {
 			IDA = {
 				every_state = {
 					limit = { 
+						OR = {
+							is_core_of = UTA
+							is_core_of = SIN
+							is_core_of = LAS
+							is_core_of = MOL
+							is_core_of = HOP
+							is_core_of = NAV
+							is_core_of = TOH
+							is_core_of = HAM
+							is_core_of = AFO
+							is_core_of = UNV
+							is_core_of = UCL
+							is_core_of = UAA
+						}
 						is_owned_by = IDA
 					}
 					add_core_of = ROOT
@@ -2807,15 +2830,10 @@ focus_tree = {
 			IDA = {
 				every_state = {
 					limit = {
-						is_core_of = CAS
-					}
-					add_core_of = IDA
-				}
-			}
-			IDA = {
-				every_state = {
-					limit = {
-						is_core_of = LIB
+						OR = {
+							is_core_of = LIB
+							is_core_of = CAS
+						}
 					}
 					add_core_of = IDA
 				}
@@ -3160,6 +3178,7 @@ focus_tree = {
 				country_exists = SAC
 				country_exists = SBB
 				country_exists = THO
+				country_exists = ORO
 			}
 		}
 		bypass = {
@@ -3180,7 +3199,26 @@ focus_tree = {
 			IDA = {
 				every_state = {
 					limit = {
-						is_owned_by  = IDA
+						OR = {
+							is_core_of = PRA
+							is_core_of = FIR
+							is_core_of = JFR
+							is_core_of = ACF
+							is_core_of = HLY
+							is_core_of = CST
+							is_core_of = PRC
+							is_core_of = NVD
+							is_core_of = ABG
+							is_core_of = BKR
+							is_core_of = FSN
+							is_core_of = MNT
+							is_core_of = MOJ
+							is_core_of = RWD
+							is_core_of = SAC
+							is_core_of = SBB
+							is_core_of = THO
+							is_core_of = ORO
+						}
 					}
 					add_core_of = IDA
 				}
@@ -4080,7 +4118,7 @@ focus_tree = {
 		icon = GFX_goal_trump_blue_lives_matter
 		x = 40
 		y = 28
-		cost = 5
+		cost = 7
 		prerequisite = {
 			focus = IDA_Mission_Accomplished
 		}
@@ -4110,8 +4148,7 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		
 		completion_reward = { #Fires off event, Stankiewicz will lose Western Expeditionary and gain "General of the West"
-			remove_country_leader_trait = IDA_attack_bonus
-			add_country_leader_trait = general_of_the_west
+			country_event = idaho_rework.97
 		}
 	}
 	# Union of Lincoln #
@@ -4120,7 +4157,7 @@ focus_tree = {
 		icon = GFX_goal_IDA_lincoln
 		x = 60
 		y = 28
-		cost = 5
+		cost = 7
 		prerequisite = {
 			focus = IDA_Mission_Accomplished
 		}
@@ -4150,8 +4187,7 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		
 		completion_reward = { #Fires off event, Stankiewicz will lose Western Expeditionary and gain "Interim President"
-			remove_country_leader_trait = IDA_attack_bonus
-			add_country_leader_trait = interim_president
+			
 		}
 	}
 	## Defensive WCZ Path ##
@@ -4161,7 +4197,7 @@ focus_tree = {
 		x = 100
 		y = 5
 		cost = 10
-		prerequisite = {
+		prerequisite = { 
 			focus = IDA_A_Change_In_Plans
 		}
 		mutually_exclusive = {
