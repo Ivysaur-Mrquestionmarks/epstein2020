@@ -960,6 +960,9 @@ country_event = { #WCZ rejects Montana's demands, and threatens war with Montana
 			IDA = {
 				transfer_state = PREV
 			}
+			IDA = {
+				complete_national_focus = IDA_Request_The_Return_Of_Our_Territories
+			}
 		}
 	}
 	
@@ -1376,20 +1379,6 @@ country_event = { #UTA 50% Strength Uprising.
 			set_cosmetic_tag = IDA_Utah
 			load_focus_tree = idaho_puppet
 		}
-		random_other_country = {
-			limit = {
-				has_cosmetic_tag = IDA_Utah
-			}	
-			create_country_leader = {
-				name = "Eric Moutsos"
-				desc = "DESC_GENERAL_ERIC_MOUTSOS"
-				picture = "gfx/leaders/IDA/Eric_Moutsos.dds"
-				expire = "2060.1.1.1"
-				ideology = trumpist
-				traits = {		
-				}
-			}
-		}
 	}
 }
 country_event = { #UTA 35% Strength Uprising.
@@ -1429,20 +1418,6 @@ country_event = { #UTA 35% Strength Uprising.
 			set_cosmetic_tag = IDA_Utah
 			load_focus_tree = idaho_puppet
 		}
-		random_other_country = {
-			limit = {
-				has_cosmetic_tag = IDA_Utah
-			}	
-			create_country_leader = {
-				name = "Eric Moutsos"
-				desc = "DESC_GENERAL_ERIC_MOUTSOS"
-				picture = "gfx/leaders/IDA/Eric_Moutsos.dds"
-				expire = "2060.1.1.1"
-				ideology = trumpist
-				traits = {		
-				}
-			}
-		}
 	}
 }
 country_event = { #UTA 20% Strength Uprising.
@@ -1481,20 +1456,6 @@ country_event = { #UTA 20% Strength Uprising.
 			}
 			set_cosmetic_tag = IDA_Utah
 			load_focus_tree = idaho_puppet
-		}
-		random_other_country = {
-			limit = {
-				has_cosmetic_tag = IDA_Utah
-			}	
-			create_country_leader = {
-				name = "Eric Moutsos"
-				desc = "DESC_GENERAL_ERIC_MOUTSOS"
-				picture = "gfx/leaders/IDA/Eric_Moutsos.dds"
-				expire = "2060.1.1.1"
-				ideology = trumpist
-				traits = {		
-				}
-			}
 		}
 	}
 }
@@ -2717,6 +2678,9 @@ country_event = { #WCZ gets an event talking about how it wants to approach Jenn
 			every_unit_leader = {
 				set_nationality = PRA
 			}
+			every_navy_leader = {
+				set_nationality = PRA
+			}
 		}
 		PRA = {
 			every_state = {
@@ -3714,5 +3678,229 @@ country_event = { #Trump is alerted that a WCZ faction member has remained loyal
 		USA = {
 			add_to_faction = FROM
 		}
+	}
+}
+country_event = { #WCZ sends event to Trump to annex them
+	id = idaho_rework.106
+	title = idaho_rework.106.t
+	desc = idaho_rework.106.d
+	picture = GFX_report_event_IDA_Stankiewicz_At_Attention
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Trump gets event to annex, puppet, or give autonomy to the WCZ
+		name = idaho_rework.106.a
+		USA = {
+			country_event = {
+				id = idaho_rework.107
+				days = 2
+			}
+		}
+	}
+}
+country_event = { #WCZ requests Trump annex them, Trump can either annex them, keep them as a puppet, or send them on another mission
+	id = idaho_rework.107
+	title = idaho_rework.107.t
+	desc = idaho_rework.107.d
+	picture = GFX_report_event_IDA_Stankiewicz_At_Attention
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Trump annexes the WCZ, transfers all admirals and generals, and gains cores on all their territory 
+		name = idaho_rework.107.a
+		ai_chance = {
+			factor = 10
+			modifier = {
+      			factor = 0 
+      			OR = {
+					IDA = {
+						is_ai = no
+					}
+      			}
+   			}
+		}
+		IDA = {
+			every_unit_leader = {
+				set_nationality = USA
+			}
+			every_navy_leader = {
+				set_nationality = USA
+			}
+		}
+		USA = {
+			every_state = {
+				limit = {
+					is_owned_by = IDA
+				}
+				add_core_of = USA
+			}
+		}
+		USA = {
+			annex_country = {
+				target = IDA
+				transfer_troops = yes
+			}
+		}
+	}
+	
+	option = { #Trump leaves them as a puppet, A.I. will never choose this option
+		name = idaho_rework.107.b
+		ai_chance = {
+			factor = 0
+		}
+		custom_effect_tooltip = wcz_trump_remains_as_a_puppet
+		IDA = {
+			country_event = {
+				id = idaho_rework.108
+				days = 2
+			}
+		}
+		hidden_effect = {
+			set_country_flag = wcz_annex_decision_unlock
+		}
+	}
+	
+	option = { #Trump send the WCZ to conquer North America
+		name = idaho_rework.107.c
+		ai_chance = {
+			factor = 10
+			modifier = {
+      			factor = 0 
+      			OR = {
+					IDA = {
+						is_ai = yes
+					}
+      			}
+   			}
+		}
+		custom_effect_tooltip = wcz_trump_a_new_mandate
+		IDA = {
+			country_event = {
+				id = idaho_rework.109
+				days = 2
+			}
+		}
+	}
+}
+country_event = { #WCZ is alerted that Trump will keep them as a puppet
+	id = idaho_rework.108
+	title = idaho_rework.108.t
+	desc = idaho_rework.108.d
+	picture = GFX_report_event_Donald_Trump_Phone_Call
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #WCZ unlocks decision to annex itself into Trump
+		name = idaho_rework.108.a
+		custom_effect_tooltip = wcz_remain_as_a_puppet
+		hidden_effect = {
+			set_country_flag = wcz_annex_decision_unlock
+		}
+	}
+}
+country_event = { #WCZ is alerted that Trump has given them a new mission
+	id = idaho_rework.109
+	title = idaho_rework.109.t
+	desc = idaho_rework.109.d
+	picture = GFX_report_event_Donald_Trump_Phone_Call
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #WCZ will unlock more focuses to conquer and puppet North America
+		name = idaho_rework.109.a
+		custom_effect_tooltip = wcz_new_mandate_explanation
+		USA = {
+			end_puppet = IDA
+		}
+		hidden_effect = {
+			set_country_flag = wcz_new_mandate_unlocked
+			mark_focus_tree_layout_dirty = yes
+		}
+	}
+}
+country_event = { #WCZ asks Trump for territories in Colorado and Montana
+	id = idaho_rework.110
+	title = idaho_rework.110.t
+	desc = idaho_rework.110.d
+	picture = GFX_report_event_Stankiewicz_Plans
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Trump agrees to return the territories 
+		name = idaho_rework.110.a
+		ai_chance = {
+			factor = 10
+		}
+		if = {
+			limit = {
+				country_exists = MON
+			}
+			MON = {
+				transfer_state = 453
+			}
+			IDA = {
+				# Wyoming States #
+				transfer_state = 422
+				transfer_state = 483
+				transfer_state = 446
+				transfer_state = 447
+				# Colorado States #
+				transfer_state = 416
+				transfer_state = 424
+				transfer_state = 413
+				transfer_state = 229
+			}
+		}
+		else = {
+			IDA = {
+				# Montana States #
+				transfer_state = 453
+				# Wyoming States #
+				transfer_state = 422
+				transfer_state = 483
+				transfer_state = 446
+				transfer_state = 447
+				# Colorado States #
+				transfer_state = 416
+				transfer_state = 424
+				transfer_state = 413
+				transfer_state = 229
+			}
+		}
+		USA = {
+			transfer_state = 565 #That one part of North Dakota that Montana owns
+			set_capital = 242 #Oklahoma City
+		}
+	}
+	
+	option = { #Trump refuses the offer
+		name = idaho_rework.110.b
+		ai_chance = {
+			factor = 0
+		}
+		IDA = {
+			country_event = {
+				id = idaho_rework.111
+				days = 2
+			}
+		}
+	}
+}
+country_event = { #WCZ is alerted that Trump refused the request to transfer territories
+	id = idaho_rework.111
+	title = idaho_rework.111.t
+	desc = idaho_rework.111.d
+	picture = GFX_report_event_Donald_Trump_Phone_Call
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Trump agrees to return the territories 
+		name = idaho_rework.111.a
 	}
 }
