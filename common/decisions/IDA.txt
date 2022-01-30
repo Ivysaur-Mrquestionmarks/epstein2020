@@ -111,7 +111,7 @@ IDA_war_plan_brown_decision = {
 		
 		custom_cost_trigger = {
 			has_political_power > 29
-			has_equipment = { infantry_equipment > 249 }
+			has_equipment = { infantry_equipment > 49 }
 		}
 		
 		custom_cost_text = wcz_raid_equipment_cost
@@ -173,7 +173,7 @@ IDA_war_plan_brown_decision = {
 				add_political_power = -30
 				add_equipment_to_stockpile = {
 					type = infantry_equipment
-					amount = -250
+					amount = -50
 				}
 			}
 		}
@@ -196,7 +196,7 @@ IDA_war_plan_brown_decision = {
 			has_equipment = { infantry_equipment > 249 }
 		}
 		
-		custom_cost_text = wcz_raid_equipment_cost
+		custom_cost_text = wcz_blow_roadways_cost
 
 		ai_will_do = {
 			factor = 10
@@ -742,7 +742,7 @@ IDA_war_plan_yellow_decision = {
 		
 		custom_cost_trigger = {
 			has_political_power > 29
-			has_equipment = { infantry_equipment > 249 }
+			has_equipment = { infantry_equipment > 49 }
 		}
 		
 		custom_cost_text = wcz_raid_equipment_cost
@@ -847,7 +847,7 @@ IDA_war_plan_yellow_decision = {
 				add_political_power = -30
 				add_equipment_to_stockpile = {
 					type = infantry_equipment
-					amount = -250
+					amount = -50
 				}
 			}
 		}
@@ -875,7 +875,7 @@ IDA_war_plan_yellow_decision = {
 			has_equipment = { infantry_equipment > 249 }
 		}
 		
-		custom_cost_text = wcz_raid_equipment_cost
+		custom_cost_text = wcz_blow_roadways_cost
 
 		ai_will_do = {
 			factor = 10
@@ -1725,7 +1725,7 @@ IDA_war_plan_orange_decision = {
 			has_equipment = { infantry_equipment > 249 }
 		}
 		
-		custom_cost_text = wcz_raid_equipment_cost
+		custom_cost_text = wcz_blow_roadways_cost
 
 		ai_will_do = {
 			factor = 10
@@ -1936,7 +1936,7 @@ IDA_war_plan_white_decision = {
 			has_equipment = { infantry_equipment > 249 }
 		}
 		
-		custom_cost_text = wcz_raid_equipment_cost
+		custom_cost_text = wcz_blow_roadways_cost
 
 		ai_will_do = {
 			factor = 10
@@ -2151,7 +2151,7 @@ IDA_pacific_fleet_decision = {
 			has_equipment = { infantry_equipment > 249 }
 		}
 		
-		custom_cost_text = wcz_raid_equipment_cost
+		custom_cost_text = wcz_blow_roadways_cost
 
 		ai_will_do = {
 			factor = 10
@@ -2293,271 +2293,547 @@ IDA_pacific_fleet_decision = {
 	}
 }
 
-IDA_alaska_decision = { 
+IDA_annex_decision = { 
 	
-	IDA_ALA_sow_dissent = { #Cost political power, Reduce stability and war support
+	IDA_trump_annex_the_wcz = { #Trump's decision to annex the WCZ
 
-		icon = GFX_decision_eng_propaganda_campaigns
+		icon = GFX_decision_eng_trade_unions_support
 
 		available = {
-			has_idea = IDA_War_Plan_Indigo_Spirit
-			has_government = republican
-		}
-
-		cost = 30
-		ai_will_do = {
-			factor = 10
-			modifier = {
-				factor = 0
-				OR = {
-					ALA = { 
-						is_in_faction_with = IDA
-					}
-				}
-			}
-		}
-
-		visible = {
-			has_idea = IDA_War_Plan_Indigo_Spirit
-			has_government = republican
-			ALA = {
+			tag = USA
+			has_country_flag = wcz_annex_decision_unlock
+			IDA = {
 				exists = yes
 			}
 		}
-		
-		days_remove = 5
-		days_re_enable = 30
+
+		cost = 0
+		ai_will_do = {
+			factor = 0
+		}
+
+		visible = {
+			tag = USA
+			has_country_flag = wcz_annex_decision_unlock
+			IDA = {
+				exists = yes
+			}
+		}
 		
 		fixed_random_seed = no
-		complete_effect = { #60% chance to reduce 5% stability, 30% chance to reduce 10% stability, 10% chance to reduce 10% stability and 5% war support
-			random_list = {
-				60 = { #Small protests
-					ALA = {
-						country_event = idaho_rework.6
-					}
+		complete_effect = { 
+			IDA = {
+				every_unit_leader = {
+					set_nationality = USA
 				}
-				30 = { #Medium protests
-					ALA = {
-						country_event = idaho_rework.7
-					}
+				every_navy_leader = {
+					set_nationality = USA
 				}
-				10 = { #Large protests
-					ALA = {
-						country_event = idaho_rework.8
+			}
+			USA = {
+				every_state = {
+					limit = {
+						is_owned_by = IDA
 					}
+					add_core_of = USA
+				}
+			}
+			USA = {
+				annex_country = {
+					target = IDA
+					transfer_troops = yes
 				}
 			}
 		}
 	}
 	
-	IDA_ALA_organize_strikes = { #Cost political power, Decrease production and construction speed
+	IDA_annex_the_wcz = { #WCZ's decision to annex itself into Trump
 
-		icon = GFX_decision_generic_construction
+		icon = GFX_decision_eng_trade_unions_support
 
 		available = {
-			has_idea = IDA_War_Plan_Indigo_Spirit
-			has_government = republican
-		}
-
-		cost = 30
-		ai_will_do = {
-			factor = 10
-			modifier = {
-				factor = 0
-				OR = {
-					ALA = { 
-						is_in_faction_with = IDA
-					}
-				}
-			}
-		}
-
-		visible = {
-			has_idea = IDA_War_Plan_Indigo_Spirit
-			has_government = republican
-			ALA = {
+			tag = IDA
+			has_country_flag = wcz_annex_decision_unlock
+			USA = {
 				exists = yes
 			}
 		}
-		
-		days_remove = 5
-		days_re_enable = 30
+
+		cost = 0
+		ai_will_do = {
+			factor = 0
+		}
+
+		visible = {
+			tag = IDA
+			has_country_flag = wcz_annex_decision_unlock
+			USA = {
+				exists = yes
+			}
+		}
 		
 		fixed_random_seed = no
-		complete_effect = { #60% chance for -5% construction and production, 30% chance for -10%, 10% chance for -15%
-			random_list = {
-				60 = { #Small strikes
-					ALA = {
-						country_event = idaho_rework.9
-					}
+		complete_effect = { 
+			IDA = {
+				every_unit_leader = {
+					set_nationality = USA
 				}
-				30 = { #Medium strikes
-					ALA = {
-						country_event = idaho_rework.10
-					}
+				every_navy_leader = {
+					set_nationality = USA
 				}
-				10 = { #Large strikes
-					ALA = {
-						country_event = idaho_rework.11
+			}
+			USA = {
+				every_state = {
+					limit = {
+						is_owned_by = IDA
 					}
+					add_core_of = USA
+				}
+			}
+			USA = {
+				annex_country = {
+					target = IDA
+					transfer_troops = yes
 				}
 			}
 		}
 	}
+}
 
-	IDA_ALA_blow_up_roadways = { #Cost political power and equipment, Reduce division speed and supply (war only)/ Maybe add railway damage after later
+IDA_establish_american_puppets = { 
+	
+	IDA_establish_the_canadian_command_zone = { #WCZ will release Vancouver as a puppet on any Canadian territory they may own
 
-		icon = GFX_decision_oppression
+		icon = GFX_decision_generic_decision
 
 		available = {
-			has_idea = IDA_War_Plan_Indigo_Spirit
-			has_government = republican
-			ALA = {
-				has_war_with = IDA
+			tag = IDA
+			VAN = {
+				exists = no
+			}
+			OR = {
+				IDA = {
+					OR = {
+						# British Columbia #
+						controls_state = 27
+						controls_state = 54
+						controls_state = 68
+						controls_state = 105
+						controls_state = 78
+						controls_state = 75
+						controls_state = 58
+						controls_state = 81
+						controls_state = 103
+						controls_state = 98
+						controls_state = 82
+						controls_state = 59
+						controls_state = 4
+						# Alberta #
+						controls_state = 32
+						controls_state = 6
+						controls_state = 5
+						controls_state = 30
+						controls_state = 69
+						controls_state = 76
+						# Saskatchewan #
+						controls_state = 31
+						controls_state = 36
+						controls_state = 8
+						controls_state = 149
+						controls_state = 1
+						# Manitoba #
+						controls_state = 120
+						controls_state = 71
+						controls_state = 56
+						controls_state = 26
+						controls_state = 9
+						# Ontario #
+						controls_state = 47
+						controls_state = 24
+						controls_state = 12
+						controls_state = 485
+						controls_state = 42
+						controls_state = 102
+						controls_state = 100
+						controls_state = 134
+						controls_state = 110
+						controls_state = 158
+						controls_state = 177
+						controls_state = 140
+						controls_state = 167
+						# Nunavut #
+						controls_state = 13
+						# Quebec #
+						controls_state = 377
+						controls_state = 48
+						controls_state = 21
+						controls_state = 7
+						controls_state = 133
+						controls_state = 129
+						controls_state = 91
+						controls_state = 128
+						controls_state = 72
+						controls_state = 163
+						controls_state = 18
+						controls_state = 135
+						# Newfoundland and Labrador #
+						controls_state = 10
+						controls_state = 20
+						controls_state = 17
+						controls_state = 164
+						controls_state = 156
+						controls_state = 49
+						# New Brunswick #
+						controls_state = 175
+						controls_state = 154
+						# Nova Scotia #
+						controls_state = 176
+						controls_state = 146
+						controls_state = 127
+						controls_state = 173
+						# Prince Edward Island #
+						controls_state = 145
+					}
+				}
+				all_allied_country = {
+					OR = {
+						# British Columbia #
+						controls_state = 27
+						controls_state = 54
+						controls_state = 68
+						controls_state = 105
+						controls_state = 78
+						controls_state = 75
+						controls_state = 58
+						controls_state = 81
+						controls_state = 103
+						controls_state = 98
+						controls_state = 82
+						controls_state = 59
+						controls_state = 4
+						# Alberta #
+						controls_state = 32
+						controls_state = 6
+						controls_state = 5
+						controls_state = 30
+						controls_state = 69
+						controls_state = 76
+						# Saskatchewan #
+						controls_state = 31
+						controls_state = 36
+						controls_state = 8
+						controls_state = 149
+						controls_state = 1
+						# Manitoba #
+						controls_state = 120
+						controls_state = 71
+						controls_state = 56
+						controls_state = 26
+						controls_state = 9
+						# Ontario #
+						controls_state = 47
+						controls_state = 24
+						controls_state = 12
+						controls_state = 485
+						controls_state = 42
+						controls_state = 102
+						controls_state = 100
+						controls_state = 134
+						controls_state = 110
+						controls_state = 158
+						controls_state = 177
+						controls_state = 140
+						controls_state = 167
+						# Nunavut #
+						controls_state = 13
+						# Quebec #
+						controls_state = 377
+						controls_state = 48
+						controls_state = 21
+						controls_state = 7
+						controls_state = 133
+						controls_state = 129
+						controls_state = 91
+						controls_state = 128
+						controls_state = 72
+						controls_state = 163
+						controls_state = 18
+						controls_state = 135
+						# Newfoundland and Labrador #
+						controls_state = 10
+						controls_state = 20
+						controls_state = 17
+						controls_state = 164
+						controls_state = 156
+						controls_state = 49
+						# New Brunswick #
+						controls_state = 175
+						controls_state = 154
+						# Nova Scotia #
+						controls_state = 176
+						controls_state = 146
+						controls_state = 127
+						controls_state = 173
+						# Prince Edward Island #
+						controls_state = 145
+					}
+				}
 			}
 		}
 
-		custom_cost_trigger = {
-			has_political_power > 29
-			has_equipment = { infantry_equipment > 249 }
-		}
-		
-		custom_cost_text = wcz_raid_equipment_cost
-
+		cost = 0
+		fire_only_once = yes
 		ai_will_do = {
 			factor = 10
-			modifier = {
-				factor = 0
-				ALA = { 
-					is_in_faction_with = IDA
-				}
+		}
+
+		visible = {
+			tag = IDA
+			VAN = {
+				exists = no
 			}
 		}
 		
-		days_remove = 10
-		days_re_enable = 30
-
-		visible = {
-			has_idea = IDA_War_Plan_Indigo_Spirit
-			has_government = republican
-			ALA = {
-				exists = yes
-			}
-		}
-
-		complete_effect = { #Only one event this time 
-			ALA = {
-				country_event = idaho_rework.20
-			}
-			hidden_effect = {
-				add_political_power = -30
-				add_equipment_to_stockpile = {
-					type = infantry_equipment
-					amount = -250
+		fixed_random_seed = no
+		complete_effect = { Release Vancouver as a puppet, set a cosmetic tag, give Vancouver cores on all of Canada (Quebec can be established later)
+			every_state = {
+				limit = {
+					OR = {
+						is_core_of = CAN
+						is_core_of = OOR
+						is_core_of = QUE
+						is_core_of = NFL
+						is_core_of = MLC
+						is_core_of = NUN
+						is_core_of = ALT
+						is_core_of = ARY
+						is_core_of = ANT
+						is_core_of = BRC
+						is_core_of = TEM
+						is_core_of = ANA
+					}
 				}
+				add_core_of = VAN
+			}
+			IDA = {
+				release_puppet = VAN
+			}
+			VAN = {
+				set_cosmetic_tag = IDA_Canada
 			}
 		}
 	}
 	
-	IDA_ALA_sabotage_communications = { #Cost political power and command power, Reduce division speed and supply (war only)/ Maybe add railway damage after later
+	IDA_return_canadian_territories = { #Return territories to Canadian Command
 
-		icon = GFX_decision_hol_radio_oranje
+		icon = GFX_decision_generic_decision
 
 		available = {
-			has_idea = IDA_War_Plan_Orange_Spirit
-			has_government = republican
-			ALA = {
-				has_war_with = IDA
+			tag = IDA
+			VAN = {
+				is_puppet_of = IDA
 			}
-		}
-
-		custom_cost_trigger = {
-			has_political_power > 29
-			command_power > 29
-		}
-		
-		custom_cost_text = wcz_sabotage_communications_cost
-
-		ai_will_do = {
-			factor = 10
-			modifier = {
-				factor = 0
-				ALA = { 
-					is_in_faction_with = IDA
+			OR = {
+				IDA = {
+					OR = {
+						# Vancouver #
+						controls_state = 27
+						controls_state = 54
+						controls_state = 68
+						controls_state = 105
+						controls_state = 78
+						controls_state = 75
+						controls_state = 58
+						controls_state = 81
+						controls_state = 103
+						controls_state = 98
+						controls_state = 82
+						controls_state = 59
+						controls_state = 4
+						# Alberta #
+						controls_state = 32
+						controls_state = 6
+						controls_state = 5
+						controls_state = 30
+						controls_state = 69
+						controls_state = 76
+						# Saskatchewan #
+						controls_state = 31
+						controls_state = 36
+						controls_state = 8
+						controls_state = 149
+						controls_state = 1
+						# Manitoba #
+						controls_state = 120
+						controls_state = 71
+						controls_state = 56
+						controls_state = 26
+						controls_state = 9
+						# Ontario #
+						controls_state = 47
+						controls_state = 24
+						controls_state = 12
+						controls_state = 485
+						controls_state = 42
+						controls_state = 102
+						controls_state = 100
+						controls_state = 134
+						controls_state = 110
+						controls_state = 158
+						controls_state = 177
+						controls_state = 140
+						controls_state = 167
+						# Nunavut #
+						controls_state = 13
+						# Quebec #
+						controls_state = 377
+						controls_state = 48
+						controls_state = 21
+						controls_state = 7
+						controls_state = 133
+						controls_state = 129
+						controls_state = 91
+						controls_state = 128
+						controls_state = 72
+						controls_state = 163
+						controls_state = 18
+						controls_state = 135
+						# Newfoundland and Labrador #
+						controls_state = 10
+						controls_state = 20
+						controls_state = 17
+						controls_state = 164
+						controls_state = 156
+						controls_state = 49
+						# New Brunswick #
+						controls_state = 175
+						controls_state = 154
+						# Nova Scotia #
+						controls_state = 176
+						controls_state = 146
+						controls_state = 127
+						controls_state = 173
+						# Prince Edward Island #
+						controls_state = 145
+					}
+				}
+				all_allied_country = {
+					OR = {
+						# Vancouver #
+						controls_state = 27
+						controls_state = 54
+						controls_state = 68
+						controls_state = 105
+						controls_state = 78
+						controls_state = 75
+						controls_state = 58
+						controls_state = 81
+						controls_state = 103
+						controls_state = 98
+						controls_state = 82
+						controls_state = 59
+						controls_state = 4
+						# Alberta #
+						controls_state = 32
+						controls_state = 6
+						controls_state = 5
+						controls_state = 30
+						controls_state = 69
+						controls_state = 76
+						# Saskatchewan #
+						controls_state = 31
+						controls_state = 36
+						controls_state = 8
+						controls_state = 149
+						controls_state = 1
+						# Manitoba #
+						controls_state = 120
+						controls_state = 71
+						controls_state = 56
+						controls_state = 26
+						controls_state = 9
+						# Ontario #
+						controls_state = 47
+						controls_state = 24
+						controls_state = 12
+						controls_state = 485
+						controls_state = 42
+						controls_state = 102
+						controls_state = 100
+						controls_state = 134
+						controls_state = 110
+						controls_state = 158
+						controls_state = 177
+						controls_state = 140
+						controls_state = 167
+						# Nunavut #
+						controls_state = 13
+						# Quebec #
+						controls_state = 377
+						controls_state = 48
+						controls_state = 21
+						controls_state = 7
+						controls_state = 133
+						controls_state = 129
+						controls_state = 91
+						controls_state = 128
+						controls_state = 72
+						controls_state = 163
+						controls_state = 18
+						controls_state = 135
+						# Newfoundland and Labrador #
+						controls_state = 10
+						controls_state = 20
+						controls_state = 17
+						controls_state = 164
+						controls_state = 156
+						controls_state = 49
+						# New Brunswick #
+						controls_state = 175
+						controls_state = 154
+						# Nova Scotia #
+						controls_state = 176
+						controls_state = 146
+						controls_state = 127
+						controls_state = 173
+						# Prince Edward Island #
+						controls_state = 145
+					}
 				}
 			}
 		}
-		
-		days_remove = 10
-		days_re_enable = 30
+
+		cost = 0
+		fire_only_once = no
+		ai_will_do = {
+			factor = 50
+		}
 
 		visible = {
-			has_idea = IDA_War_Plan_Orange_Spirit
-			has_government = republican
-		}
-
-		complete_effect = { #Only one event this time 
-			ALA = {
-				country_event = idaho_rework.80
+			tag = IDA
+			VAN = {
+				is_puppet_of = IDA
 			}
-			hidden_effect = {
-				add_political_power = -30
-				add_command_power = -30
-			}
-		}
-	}
-	
-	IDA_ALA_bomb_ships = { #Cost political power, equipment, and command power, destroys a various amount of naval ships (amount is dependent on chance)
-
-		icon = GFX_decision_generic_naval
-
-		available = {
-			has_idea = IDA_War_Plan_Indigo_Spirit
-			has_government = republican
-			ALA = {
-				has_war_with = IDA
-			}
-		}
-
-		custom_cost_trigger = {
-			has_political_power > 29
-			command_power > 39
-			has_equipment = { infantry_equipment > 499 }
 		}
 		
-		custom_cost_text = wcz_bomb_ships_cost
-
-		ai_will_do = {
-			factor = 10
-			modifier = {
-				factor = 0
-				ALA = { 
-					is_in_faction_with = IDA
+		fixed_random_seed = no
+		complete_effect = { Return territories to Canadian Command Zone
+			IDA = {
+				every_state = {
+					limit = {
+						is_owned_by = IDA
+						is_core_of = VAN
+					}
+					transfer_state_to = VAN
 				}
 			}
-		}
-		
-		days_remove = 10
-		days_re_enable = 10
-
-		visible = {
-			has_idea = IDA_War_Plan_Indigo_Spirit
-			has_government = republican
-			ALA = {
-				country_exists = yes
-			}
-		}
-
-		complete_effect = { #Only one event this time 
-			ALA = {
-				country_event = idaho_rework.81
-			}
-			hidden_effect = {
-				add_political_power = -30
-				add_command_power = -40
-				add_equipment_to_stockpile = {
-					type = infantry_equipment
-					amount = -499
+			all_allied_country = {
+				every_state = {
+					limit = {
+						is_owned_by = PREV
+						is_core_of = VAN
+					}
+					transfer_state_to = VAN
 				}
 			}
 		}
