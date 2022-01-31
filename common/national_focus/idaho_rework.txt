@@ -1360,7 +1360,7 @@ focus_tree = {
 			
 		}
 		available = {
-			date > 2023.6.1
+			date > 2023.5.1
 			UTA = {
 				OR = {
 					has_war_with = SIN
@@ -1484,7 +1484,7 @@ focus_tree = {
 			UTA = {
 				has_war = no
 				OR = {
-					date > 2023.6.1
+					date > 2023.5.1
 					has_completed_focus = UTA_The_Church_Is_Socialist
 					has_completed_focus = UTA_Preserve_Autocracy
 					has_completed_focus = UTA_Democrats
@@ -4110,12 +4110,15 @@ focus_tree = {
 			IDA = {
 				country_event = idaho_rework.94
 			}
+			hidden_effect = {
+				remove_ideas = IDA_War_Plan_Indigo_Spirit
+			}
 		}
 	}
 	# Loyalty to Trump #
 	focus = { #WCZ chose to remain loyal to Trump
 		id = IDA_Loyalty_To_The_East
-		icon = GFX_goal_trump_blue_lives_matter
+		icon = GFX_goal_trump_blue_lives_matter_small
 		x = 40
 		y = 28
 		cost = 7
@@ -4381,8 +4384,18 @@ focus_tree = {
 		}
 		available = { 
 			OR = {
-				country_exists = PAC
-				country_exists = ALA
+				PAC = {
+					exists = yes
+					NOT = {
+						is_ally_with = USA
+					}
+				}
+				ALA = {
+					exists = yes
+					NOT = {
+						is_ally_with = USA
+					}
+				}
 			}
 		}
 		bypass = {
@@ -4395,6 +4408,9 @@ focus_tree = {
 		cancel_if_invalid = yes
 		continue_if_invalid = no
 		available_if_capitulated = yes
+		
+		will_lead_to_war_with = PAC
+		will_lead_to_war_with = ALA
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		
@@ -4420,7 +4436,7 @@ focus_tree = {
 	}
 	focus = { #WCZ gains cores on Colorado and New Mexico
 		id = IDA_The_Fruits_Of_Loyalty
-		icon = GFX_goal_unknown
+		icon = GFX_goal_Auotnomy_foer_Denver
 		x = 44
 		y = 34
 		cost = 3
@@ -4468,6 +4484,584 @@ focus_tree = {
 			}
 			USA = {
 				country_event = idaho_rework.110
+			}
+		}
+	}
+	focus = { #WCZ gains buffs against all Canadian tags
+		id = IDA_War_Plan_Crimson
+		icon = GFX_goal_IDA_War_Plan_Crimson_Focus
+		x = 38
+		y = 35
+		cost = 3
+		prerequisite = {
+			focus = IDA_Neo_Monroe_Doctrine
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			has_country_flag = wcz_new_mandate_unlocked
+		}
+		available = { 
+			
+		}
+		bypass = {
+			NOT = {
+				country_exists = CAN
+				country_exists = OOR
+				country_exists = QUE
+				country_exists = NFL
+				country_exists = MLC
+				country_exists = NUN
+				country_exists = ALT
+				country_exists = ARY
+				country_exists = ANT
+				country_exists = VAN
+				country_exists = BRC
+				country_exists = TEM
+				country_exists = ANA
+			}
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			add_ideas = IDA_War_Plan_Crimson_Spirit
+		}
+	}
+	focus = { #WCZ gains war goals on all possible Canadian tags
+		id = IDA_Operation_Winter_Storm
+		icon = GFX_goal_unknown
+		x = 38
+		y = 36
+		cost = 3
+		prerequisite = {
+			focus = IDA_War_Plan_Crimson
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			has_country_flag = wcz_new_mandate_unlocked
+		}
+		available = { 
+			
+		}
+		bypass = {
+			NOT = {
+				country_exists = CAN
+				country_exists = OOR
+				country_exists = QUE
+				country_exists = NFL
+				country_exists = MLC
+				country_exists = NUN
+				country_exists = ALT
+				country_exists = ARY
+				country_exists = ANT
+				country_exists = VAN
+				country_exists = BRC
+				country_exists = TEM
+				country_exists = ANA
+			}
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		
+		will_lead_to_war_with = CAN
+		will_lead_to_war_with = OOR
+		will_lead_to_war_with = QUE
+		will_lead_to_war_with = NFL
+		will_lead_to_war_with = MLC
+		will_lead_to_war_with = NUN
+		will_lead_to_war_with = ALT
+		will_lead_to_war_with = ARY
+		will_lead_to_war_with = ANT
+		will_lead_to_war_with = VAN
+		will_lead_to_war_with = BRC
+		will_lead_to_war_with = TEM
+		will_lead_to_war_with = ANA
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything 
+				target = CAN
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = OOR
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = QUE
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = NFL
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = MLC
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = NUN
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = ALT
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = ARY
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = ANT
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = VAN
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = BRC
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = TEM
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = ANA
+			}
+		}
+	}
+	focus = { #WCZ gains buffs against all Mexican tags
+		id = IDA_War_Plan_Green
+		icon = GFX_goal_IDA_War_Plan_Green_Focus
+		x = 42
+		y = 35
+		cost = 3
+		prerequisite = {
+			focus = IDA_Neo_Monroe_Doctrine
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			has_country_flag = wcz_new_mandate_unlocked
+		}
+		available = { 
+			
+		}
+		bypass = {
+			NOT = {
+				country_exists = MEX
+				country_exists = BJC
+				country_exists = ZAP
+				country_exists = RMX
+				country_exists = WMX
+				country_exists = CAR
+				country_exists = YUC
+				country_exists = ADF
+				country_exists = PVB
+			}
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			add_ideas = IDA_War_Plan_Green_Spirit
+		}
+	}
+	focus = { #WCZ gains war goals on all possible Mexican tags
+		id = IDA_Operation_Border_Patrol
+		icon = GFX_goal_Secure_the_border
+		x = 42
+		y = 36
+		cost = 3
+		prerequisite = {
+			focus = IDA_War_Plan_Green
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			has_country_flag = wcz_new_mandate_unlocked
+		}
+		available = { 
+			
+		}
+		bypass = {
+			NOT = {
+				country_exists = MEX
+				country_exists = BJC
+				country_exists = ZAP
+				country_exists = RMX
+				country_exists = WMX
+				country_exists = CAR
+				country_exists = YUC
+				country_exists = ADF
+				country_exists = PVB
+			}
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		
+		will_lead_to_war_with = MEX
+		will_lead_to_war_with = BJC
+		will_lead_to_war_with = ZAP
+		will_lead_to_war_with = RMX
+		will_lead_to_war_with = WMX
+		will_lead_to_war_with = CAR
+		will_lead_to_war_with = YUC
+		will_lead_to_war_with = ADF
+		will_lead_to_war_with = PVB
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything 
+				target = MEX
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = BJC
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = ZAP
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = RMX
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = WMX
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = CAR
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = YUC
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = ADF
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = PVB
+			}
+		}
+	}
+	focus = { #WCZ gains against Central American, South American, and Caribbean tags (Not the Europeans or Commonwealth Nations though)
+		id = IDA_War_Plan_Violet
+		icon = GFX_goal_IDA_War_Plan_Violet_Focus
+		x = 40
+		y = 37
+		cost = 3
+		prerequisite = {
+			focus = IDA_Neo_Monroe_Doctrine
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			has_country_flag = wcz_new_mandate_unlocked
+		}
+		available = { 
+			
+		}
+		bypass = {
+			NOT = {
+				country_exists = GUA
+				country_exists = ELS
+				country_exists = HON
+				country_exists = NIC
+				country_exists = COS
+				country_exists = PAN
+				country_exists = CHI
+				country_exists = COL
+				country_exists = VEN
+				country_exists = CUB
+				country_exists = CUC
+				country_exists = GTB
+				country_exists = HAI
+				country_exists = HBI
+				country_exists = DOM
+				country_exists = CAY
+			}
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			add_ideas = IDA_War_Plan_Violet_Spirit
+		}
+	}
+	focus = { #WCZ gains war goals on all possible Central American tags (except Belize because they're a Commonwealth nation)
+		id = IDA_Operation_Just_Cause_II
+		icon = GFX_goal_Helicopter_Blitz
+		x = 38
+		y = 38
+		cost = 3
+		prerequisite = {
+			focus = IDA_War_Plan_Violet
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			has_country_flag = wcz_new_mandate_unlocked
+		}
+		available = { 
+			
+		}
+		bypass = {
+			NOT = {
+				country_exists = GUA
+				country_exists = ELS
+				country_exists = HON
+				country_exists = NIC
+				country_exists = COS
+				country_exists = PAN
+				country_exists = CHI
+			}
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		
+		will_lead_to_war_with = GUA
+		will_lead_to_war_with = ELS
+		will_lead_to_war_with = HON
+		will_lead_to_war_with = NIC
+		will_lead_to_war_with = COS
+		will_lead_to_war_with = PAN
+		will_lead_to_war_with = CHI
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything 
+				target = GUA
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = ELS
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = HON
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = NIC
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = COS
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = PAN
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = CHI
+			}
+		}
+	}
+	focus = { #WCZ gains war goals on all possible Caribbean tags (except the Europeans, the U.N., the Bahamas, Jamaica, and Trinidad )
+		id = IDA_Operation_Caribbean_Security
+		icon = GFX_Take_advantage_of_the_Caribbean
+		x = 40
+		y = 38
+		cost = 3
+		prerequisite = {
+			focus = IDA_War_Plan_Violet
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			has_country_flag = wcz_new_mandate_unlocked
+		}
+		available = { 
+			
+		}
+		bypass = {
+			NOT = {
+				country_exists = CUB
+				country_exists = CUC
+				country_exists = GTB
+				country_exists = HAI
+				country_exists = HBI
+				country_exists = DOM
+				country_exists = CAY
+			}
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		
+		will_lead_to_war_with = CUB
+		will_lead_to_war_with = CUC
+		will_lead_to_war_with = GTB
+		will_lead_to_war_with = HAI
+		will_lead_to_war_with = HBI
+		will_lead_to_war_with = DOM
+		will_lead_to_war_with = CAY
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything 
+				target = CUB
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = CUC
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = GTB
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = HAI
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = HBI
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = DOM
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = CAY
+			}
+		}
+	}
+	focus = { #WCZ gains war goals on all South American tags
+		id = IDA_Operation_Gideon
+		icon = GFX_goal_End_Fascism_in_Florida
+		x = 42
+		y = 38
+		cost = 3
+		prerequisite = {
+			focus = IDA_War_Plan_Violet
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			has_country_flag = wcz_new_mandate_unlocked
+		}
+		available = { 
+			
+		}
+		bypass = {
+			NOT = {
+				country_exists = COL
+				country_exists = VEN
+			}
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		
+		will_lead_to_war_with = COL
+		will_lead_to_war_with = VEN
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything 
+				target = COL
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = VEN
 			}
 		}
 	}
