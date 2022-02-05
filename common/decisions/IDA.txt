@@ -2402,19 +2402,19 @@ IDA_annex_decision = {
 
 IDA_establish_american_puppets = { 
 	
-	IDA_establish_the_canadian_command_zone = { #WCZ will release Vancouver as a puppet on any Canadian territory they may own
+	IDA_establish_the_canadian_command_zone = { #WCZ will release Trumpist Alberta as a puppet on any Canadian territory they may own
 
 		icon = GFX_decision_generic_decision
 
 		available = {
 			tag = IDA
-			VAN = {
+			ALT = {
 				exists = no
 			}
 			OR = {
 				IDA = {
 					OR = {
-						# British Columbia #
+						# Vancouver #
 						controls_state = 27
 						controls_state = 54
 						controls_state = 68
@@ -2495,9 +2495,9 @@ IDA_establish_american_puppets = {
 						controls_state = 145
 					}
 				}
-				all_allied_country = {
+				any_allied_country = {
 					OR = {
-						# British Columbia #
+						# Vancouver #
 						controls_state = 27
 						controls_state = 54
 						controls_state = 68
@@ -2584,18 +2584,18 @@ IDA_establish_american_puppets = {
 		cost = 0
 		fire_only_once = yes
 		ai_will_do = {
-			factor = 10
+			factor = 0
 		}
 
 		visible = {
 			tag = IDA
-			VAN = {
+			ALT = {
 				exists = no
 			}
 		}
 		
 		fixed_random_seed = no
-		complete_effect = { Release Vancouver as a puppet, set a cosmetic tag, give Vancouver cores on all of Canada (Quebec can be established later)
+		complete_effect = { #Release Trumpist Alberta as a puppet, set a cosmetic tag, give Trumpist Alberta cores on all of Canada (Quebec can be established later)
 			every_state = {
 				limit = {
 					OR = {
@@ -2608,18 +2608,55 @@ IDA_establish_american_puppets = {
 						is_core_of = ALT
 						is_core_of = ARY
 						is_core_of = ANT
+						is_core_of = VAN
 						is_core_of = BRC
 						is_core_of = TEM
 						is_core_of = ANA
 					}
 				}
-				add_core_of = VAN
+				add_core_of = ALT
 			}
 			IDA = {
-				release_puppet = VAN
+				every_state = {
+					limit = {
+						is_owned_by = IDA
+						is_core_of = ALT
+					}
+					transfer_state_to = ALT
+				}
 			}
-			VAN = {
+			every_country = {
+				limit = {
+					is_ally_with = IDA
+				}
+				every_state = {
+					limit = {
+						is_owned_by = PREV
+						is_core_of = ALT
+					}
+					transfer_state_to = ALT
+				}
+			}
+			IDA = {
+				if = {
+					limit = {
+                        OR = {
+                            has_dlc = "Together for Victory"
+                        }
+                    }
+					set_autonomy = {
+                        target = ALT
+                        autonomous_state = supervised_state
+                        freedom_level = 0.1
+                    }
+				}
+				else = {
+					puppet = ALT
+				}
+			}
+			ALT = {
 				set_cosmetic_tag = IDA_Canada
+				load_focus_tree = generic_focus
 			}
 		}
 	}
@@ -2630,7 +2667,7 @@ IDA_establish_american_puppets = {
 
 		available = {
 			tag = IDA
-			VAN = {
+			ALT = {
 				is_puppet_of = IDA
 			}
 			OR = {
@@ -2717,7 +2754,7 @@ IDA_establish_american_puppets = {
 						controls_state = 145
 					}
 				}
-				all_allied_country = {
+				any_allied_country = {
 					OR = {
 						# Vancouver #
 						controls_state = 27
@@ -2806,34 +2843,1258 @@ IDA_establish_american_puppets = {
 		cost = 0
 		fire_only_once = no
 		ai_will_do = {
-			factor = 50
+			factor = 0
 		}
 
 		visible = {
 			tag = IDA
-			VAN = {
+			ALT = {
 				is_puppet_of = IDA
 			}
 		}
 		
 		fixed_random_seed = no
-		complete_effect = { Return territories to Canadian Command Zone
+		complete_effect = { #Return territories to Canadian Command Zone
 			IDA = {
 				every_state = {
 					limit = {
 						is_owned_by = IDA
-						is_core_of = VAN
+						is_core_of = ALT
 					}
-					transfer_state_to = VAN
+					transfer_state_to = ALT
 				}
 			}
-			all_allied_country = {
+			every_country = {
+				limit = {
+					is_ally_with = IDA
+				}
 				every_state = {
 					limit = {
 						is_owned_by = PREV
-						is_core_of = VAN
+						is_core_of = ALT
 					}
-					transfer_state_to = VAN
+					transfer_state_to = ALT
+				}
+			}
+		}
+	}
+	
+	IDA_establish_the_quebecois_command_zone = { #WCZ will release Quebec as a puppet on any Québécois territory they may own
+
+		icon = GFX_decision_generic_decision
+
+		available = {
+			tag = IDA
+			QUE = {
+				exists = no
+			}
+			ALT = {
+				is_puppet_of = IDA
+			}
+			OR = {
+				IDA = {
+					OR = {
+						# Quebec #
+						controls_state = 377
+						controls_state = 48
+						controls_state = 21
+						controls_state = 7
+						controls_state = 133
+						controls_state = 129
+						controls_state = 91
+						controls_state = 128
+						controls_state = 72
+						controls_state = 163
+						controls_state = 18
+						controls_state = 135
+					}
+				}
+				any_allied_country = {
+					OR = {
+						# Quebec #
+						controls_state = 377
+						controls_state = 48
+						controls_state = 21
+						controls_state = 7
+						controls_state = 133
+						controls_state = 129
+						controls_state = 91
+						controls_state = 128
+						controls_state = 72
+						controls_state = 163
+						controls_state = 18
+						controls_state = 135
+					}
+				}
+			}
+		}
+
+		cost = 0
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 0
+		}
+
+		visible = {
+			tag = IDA
+			QUE = {
+				exists = no
+			}
+		}
+		
+		fixed_random_seed = no
+		complete_effect = { #Release Quebec as a puppet, set a cosmetic tag
+			IDA = {
+				every_state = {
+					limit = {
+						is_owned_by = IDA
+						is_core_of = QUE
+					}
+					transfer_state_to = QUE
+				}
+			}
+			every_country = {
+				limit = {
+					is_ally_with = IDA
+				}
+				every_state = {
+					limit = {
+						is_owned_by = PREV
+						is_core_of = QUE
+					}
+					transfer_state_to = QUE
+				}
+			}
+			IDA = {
+				if = {
+					limit = {
+                        OR = {
+                            has_dlc = "Together for Victory"
+                        }
+                    }
+					set_autonomy = {
+                        target = QUE
+                        autonomous_state = supervised_state
+                        freedom_level = 0.1
+                    }
+				}
+				else = {
+					puppet = QUE
+				}
+			}
+			QUE = {
+				set_cosmetic_tag = IDA_Quebec
+				load_focus_tree = generic_focus
+			}
+		}
+	}
+	
+	IDA_establish_the_mexican_command_zone = { #WCZ will release Mexico as a puppet on any Mexican territory they may own
+
+		icon = GFX_decision_generic_decision
+
+		available = {
+			tag = IDA
+			RKM = {
+				exists = no
+			}
+			OR = {
+				IDA = {
+					OR = {
+						# Aguascalientes #
+						controls_state = 631
+						# Baja California #
+						controls_state = 15
+						controls_state = 22
+						# Baja California Sur #
+						controls_state = 311
+						# Campeche #
+						controls_state = 630
+						# Chiapas #
+						controls_state = 351
+						# Chihuahua #
+						controls_state = 148
+						controls_state = 387
+						controls_state = 636
+						controls_state = 637
+						controls_state = 638
+						# Coahuila #
+						controls_state = 79
+						controls_state = 147
+						controls_state = 384
+						controls_state = 643
+						controls_state = 639
+						# Colima #
+						controls_state = 632
+						# Durango #
+						controls_state = 90
+						controls_state = 640
+						controls_state = 646
+						# Guanajuato #
+						controls_state = 633
+						# Guerrero #
+						controls_state = 395
+						# Hidalgo #
+						controls_state = 479
+						# Jalisco #
+						controls_state = 481
+						# State of Mexico and Mexico City #
+						controls_state = 478
+						# Michoacán #
+						controls_state = 126
+						controls_state = 374
+						# Morelos #
+						controls_state = 629
+						# Nayarit #
+						controls_state = 92
+						# Nuevo León #
+						controls_state = 385
+						controls_state = 641
+						controls_state = 644
+						# Oaxaca #
+						controls_state = 319
+						controls_state = 326
+						# Puebla and Tlaxcala #
+						controls_state = 480
+						# Querétaro #
+						controls_state = 634
+						# Quintana Roo #
+						controls_state = 318
+						# San Luis Potosí #
+						controls_state = 151
+						# Sinaloa #
+						controls_state = 93
+						controls_state = 334
+						controls_state = 341
+						controls_state = 645
+						# Sonora #
+						controls_state = 38
+						controls_state = 137
+						controls_state = 337
+						controls_state = 338
+						# Tabasco #
+						controls_state = 482
+						# Tamaulipas #
+						controls_state = 389
+						controls_state = 392
+						controls_state = 642
+						# Veracruz #
+						controls_state = 379
+						controls_state = 382
+						# Yucatán #
+						controls_state = 355
+						# Zacatecas #
+						controls_state = 139
+					}
+				}
+				any_allied_country = {
+					OR = {
+						# Aguascalientes #
+						controls_state = 631
+						# Baja California #
+						controls_state = 15
+						controls_state = 22
+						# Baja California Sur #
+						controls_state = 311
+						# Campeche #
+						controls_state = 630
+						# Chiapas #
+						controls_state = 351
+						# Chihuahua #
+						controls_state = 148
+						controls_state = 387
+						controls_state = 636
+						controls_state = 637
+						controls_state = 638
+						# Coahuila #
+						controls_state = 79
+						controls_state = 147
+						controls_state = 384
+						controls_state = 643
+						controls_state = 639
+						# Colima #
+						controls_state = 632
+						# Durango #
+						controls_state = 90
+						controls_state = 640
+						controls_state = 646
+						# Guanajuato #
+						controls_state = 633
+						# Guerrero #
+						controls_state = 395
+						# Hidalgo #
+						controls_state = 479
+						# Jalisco #
+						controls_state = 481
+						# State of Mexico and Mexico City #
+						controls_state = 478
+						# Michoacán #
+						controls_state = 126
+						controls_state = 374
+						# Morelos #
+						controls_state = 629
+						# Nayarit #
+						controls_state = 92
+						# Nuevo León #
+						controls_state = 385
+						controls_state = 641
+						controls_state = 644
+						# Oaxaca #
+						controls_state = 319
+						controls_state = 326
+						# Puebla and Tlaxcala #
+						controls_state = 480
+						# Querétaro #
+						controls_state = 634
+						# Quintana Roo #
+						controls_state = 318
+						# San Luis Potosí #
+						controls_state = 151
+						# Sinaloa #
+						controls_state = 93
+						controls_state = 334
+						controls_state = 341
+						controls_state = 645
+						# Sonora #
+						controls_state = 38
+						controls_state = 137
+						controls_state = 337
+						controls_state = 338
+						# Tabasco #
+						controls_state = 482
+						# Tamaulipas #
+						controls_state = 389
+						controls_state = 392
+						controls_state = 642
+						# Veracruz #
+						controls_state = 379
+						controls_state = 382
+						# Yucatán #
+						controls_state = 355
+						# Zacatecas #
+						controls_state = 139
+					}
+				}
+			}
+		}
+
+		cost = 0
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 0
+		}
+
+		visible = {
+			tag = IDA
+			RKM = {
+				exists = no
+			}
+		}
+		
+		fixed_random_seed = no
+		complete_effect = { #Release Mexico as a puppet, set a cosmetic tag, give Mexico cores on all of Mexico
+			every_state = {
+				limit = {
+					OR = {
+						is_core_of = MEX
+						is_core_of = BJC
+						is_core_of = ZAP
+						is_core_of = RMX
+						is_core_of = WMX
+						is_core_of = CAR
+						is_core_of = YUC
+						is_core_of = ADF
+						is_core_of = RIO
+						is_core_of = PVB
+					}
+				}
+				add_core_of = RKM
+			}
+			IDA = {
+				every_state = {
+					limit = {
+						is_owned_by = IDA
+						is_core_of = RKM
+					}
+					transfer_state_to = RKM
+				}
+			}
+			every_country = {
+				limit = {
+					is_ally_with = IDA
+				}
+				every_state = {
+					limit = {
+						is_owned_by = PREV
+						is_core_of = RKM
+					}
+					transfer_state_to = RKM
+				}
+			}
+			IDA = {
+				if = {
+					limit = {
+                        OR = {
+                            has_dlc = "Together for Victory"
+                        }
+                    }
+					set_autonomy = {
+                        target = RKM
+                        autonomous_state = supervised_state
+                        freedom_level = 0.1
+                    }
+				}
+				else = {
+					puppet = RKM
+				}
+			}
+			RKM = {
+				set_cosmetic_tag = IDA_Mexico
+				load_focus_tree = generic_focus
+			}
+		}
+	}
+	
+	IDA_return_mexican_territories = { #Return territories to Mexican Command
+
+		icon = GFX_decision_generic_decision
+
+		available = {
+			tag = IDA
+			RKM = {
+				is_puppet_of = IDA
+			}
+			OR = {
+				IDA = {
+					OR = {
+						# Aguascalientes #
+						controls_state = 631
+						# Baja California #
+						controls_state = 15
+						controls_state = 22
+						# Baja California Sur #
+						controls_state = 311
+						# Campeche #
+						controls_state = 630
+						# Chiapas #
+						controls_state = 351
+						# Chihuahua #
+						controls_state = 148
+						controls_state = 387
+						controls_state = 636
+						controls_state = 637
+						controls_state = 638
+						# Coahuila #
+						controls_state = 79
+						controls_state = 147
+						controls_state = 384
+						controls_state = 643
+						controls_state = 639
+						# Colima #
+						controls_state = 632
+						# Durango #
+						controls_state = 90
+						controls_state = 640
+						controls_state = 646
+						# Guanajuato #
+						controls_state = 633
+						# Guerrero #
+						controls_state = 395
+						# Hidalgo #
+						controls_state = 479
+						# Jalisco #
+						controls_state = 481
+						# State of Mexico and Mexico City #
+						controls_state = 478
+						# Michoacán #
+						controls_state = 126
+						controls_state = 374
+						# Morelos #
+						controls_state = 629
+						# Nayarit #
+						controls_state = 92
+						# Nuevo León #
+						controls_state = 385
+						controls_state = 641
+						controls_state = 644
+						# Oaxaca #
+						controls_state = 319
+						controls_state = 326
+						# Puebla and Tlaxcala #
+						controls_state = 480
+						# Querétaro #
+						controls_state = 634
+						# Quintana Roo #
+						controls_state = 318
+						# San Luis Potosí #
+						controls_state = 151
+						# Sinaloa #
+						controls_state = 93
+						controls_state = 334
+						controls_state = 341
+						controls_state = 645
+						# Sonora #
+						controls_state = 38
+						controls_state = 137
+						controls_state = 337
+						controls_state = 338
+						# Tabasco #
+						controls_state = 482
+						# Tamaulipas #
+						controls_state = 389
+						controls_state = 392
+						controls_state = 642
+						# Veracruz #
+						controls_state = 379
+						controls_state = 382
+						# Yucatán #
+						controls_state = 355
+						# Zacatecas #
+						controls_state = 139
+					}
+				}
+				any_allied_country = {
+					OR = {
+						# Aguascalientes #
+						controls_state = 631
+						# Baja California #
+						controls_state = 15
+						controls_state = 22
+						# Baja California Sur #
+						controls_state = 311
+						# Campeche #
+						controls_state = 630
+						# Chiapas #
+						controls_state = 351
+						# Chihuahua #
+						controls_state = 148
+						controls_state = 387
+						controls_state = 636
+						controls_state = 637
+						controls_state = 638
+						# Coahuila #
+						controls_state = 79
+						controls_state = 147
+						controls_state = 384
+						controls_state = 643
+						controls_state = 639
+						# Colima #
+						controls_state = 632
+						# Durango #
+						controls_state = 90
+						controls_state = 640
+						controls_state = 646
+						# Guanajuato #
+						controls_state = 633
+						# Guerrero #
+						controls_state = 395
+						# Hidalgo #
+						controls_state = 479
+						# Jalisco #
+						controls_state = 481
+						# State of Mexico and Mexico City #
+						controls_state = 478
+						# Michoacán #
+						controls_state = 126
+						controls_state = 374
+						# Morelos #
+						controls_state = 629
+						# Nayarit #
+						controls_state = 92
+						# Nuevo León #
+						controls_state = 385
+						controls_state = 641
+						controls_state = 644
+						# Oaxaca #
+						controls_state = 319
+						controls_state = 326
+						# Puebla and Tlaxcala #
+						controls_state = 480
+						# Querétaro #
+						controls_state = 634
+						# Quintana Roo #
+						controls_state = 318
+						# San Luis Potosí #
+						controls_state = 151
+						# Sinaloa #
+						controls_state = 93
+						controls_state = 334
+						controls_state = 341
+						controls_state = 645
+						# Sonora #
+						controls_state = 38
+						controls_state = 137
+						controls_state = 337
+						controls_state = 338
+						# Tabasco #
+						controls_state = 482
+						# Tamaulipas #
+						controls_state = 389
+						controls_state = 392
+						controls_state = 642
+						# Veracruz #
+						controls_state = 379
+						controls_state = 382
+						# Yucatán #
+						controls_state = 355
+						# Zacatecas #
+						controls_state = 139
+					}
+				}
+			}
+		}
+
+		cost = 0
+		fire_only_once = no
+		ai_will_do = {
+			factor = 0
+		}
+
+		visible = {
+			tag = IDA
+			RKM = {
+				is_puppet_of = IDA
+			}
+		}
+		
+		fixed_random_seed = no
+		complete_effect = { #Return territories to Mexican Command Zone
+			IDA = {
+				every_state = {
+					limit = {
+						is_owned_by = IDA
+						is_core_of = RKM
+					}
+					transfer_state_to = RKM
+				}
+			}
+			every_country = {
+				limit = {
+					is_ally_with = IDA
+				}
+				every_state = {
+					limit = {
+						is_owned_by = PREV
+						is_core_of = RKM
+					}
+					transfer_state_to = RKM
+				}
+			}
+		}
+	}
+	
+	IDA_establish_the_central_american_command_zone = { #WCZ will release Guatemala as a puppet on any Central American territory they may own
+
+		icon = GFX_decision_generic_decision
+
+		available = {
+			tag = IDA
+			GUA = {
+				exists = no
+			}
+			OR = {
+				IDA = {
+					OR = {
+						### Guatemala ###
+						controls_state = 321
+						controls_state = 367
+						### Honduras ###
+						controls_state = 52
+						controls_state = 370
+						controls_state = 548
+						### El Salvador ###
+						controls_state = 373
+						### Nicaragua ###
+						controls_state = 448
+						controls_state = 462
+						controls_state = 464
+						### Costa Rica ###
+						controls_state = 454
+						controls_state = 457
+						### Panama ###
+						controls_state = 336
+						controls_state = 463
+					}
+				}
+				any_allied_country = {
+					OR = {
+						### Guatemala ###
+						controls_state = 321
+						controls_state = 367
+						### Honduras ###
+						controls_state = 52
+						controls_state = 370
+						controls_state = 548
+						### El Salvador ###
+						controls_state = 373
+						### Nicaragua ###
+						controls_state = 448
+						controls_state = 462
+						controls_state = 464
+						### Costa Rica ###
+						controls_state = 454
+						controls_state = 457
+						### Panama ###
+						controls_state = 336
+						controls_state = 463
+					}
+				}
+			}
+		}
+
+		cost = 0
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 0
+		}
+
+		visible = {
+			tag = IDA
+			GUA = {
+				exists = no
+			}
+		}
+		
+		fixed_random_seed = no
+		complete_effect = { #Release Guatemala as a puppet, set a cosmetic tag, give Guatemala cores on all of Central America
+			every_state = {
+				limit = {
+					OR = {
+						is_core_of = GUA
+						is_core_of = HON
+						is_core_of = ELS
+						is_core_of = NIC
+						is_core_of = COS
+						is_core_of = PAN
+					}
+				}
+				add_core_of = GUA
+			}
+			IDA = {
+				every_state = {
+					limit = {
+						is_owned_by = IDA
+						is_core_of = GUA
+					}
+					transfer_state_to = GUA
+				}
+			}
+			every_country = {
+				limit = {
+					is_ally_with = IDA
+				}
+				every_state = {
+					limit = {
+						is_owned_by = PREV
+						is_core_of = GUA
+					}
+					transfer_state_to = GUA
+				}
+			}
+			IDA = {
+				if = {
+					limit = {
+                        OR = {
+                            has_dlc = "Together for Victory"
+                        }
+                    }
+					set_autonomy = {
+                        target = GUA
+                        autonomous_state = supervised_state
+                        freedom_level = 0.1
+                    }
+				}
+				else = {
+					puppet = GUA
+				}
+			}
+			GUA = {
+				set_cosmetic_tag = IDA_Central_America
+				load_focus_tree = generic_focus
+			}
+		}
+	}
+	
+	IDA_return_central_american_territories = { #Return territories to Central American Command
+
+		icon = GFX_decision_generic_decision
+
+		available = {
+			tag = IDA
+			GUA = {
+				is_puppet_of = IDA
+			}
+			OR = {
+				IDA = {
+					OR = {
+						### Guatemala ###
+						controls_state = 321
+						controls_state = 367
+						### Honduras ###
+						controls_state = 52
+						controls_state = 370
+						controls_state = 548
+						### El Salvador ###
+						controls_state = 373
+						### Nicaragua ###
+						controls_state = 448
+						controls_state = 462
+						controls_state = 464
+						### Costa Rica ###
+						controls_state = 454
+						controls_state = 457
+						### Panama ###
+						controls_state = 336
+						controls_state = 463
+					}
+				}
+				any_allied_country = {
+					OR = {
+						### Guatemala ###
+						controls_state = 321
+						controls_state = 367
+						### Honduras ###
+						controls_state = 52
+						controls_state = 370
+						controls_state = 548
+						### El Salvador ###
+						controls_state = 373
+						### Nicaragua ###
+						controls_state = 448
+						controls_state = 462
+						controls_state = 464
+						### Costa Rica ###
+						controls_state = 454
+						controls_state = 457
+						### Panama ###
+						controls_state = 336
+						controls_state = 463
+					}
+				}
+			}
+		}
+
+		cost = 0
+		fire_only_once = no
+		ai_will_do = {
+			factor = 0
+		}
+
+		visible = {
+			tag = IDA
+			GUA = {
+				is_puppet_of = IDA
+			}
+		}
+		
+		fixed_random_seed = no
+		complete_effect = { #Return territories to Central American Command Zone
+			IDA = {
+				every_state = {
+					limit = {
+						is_owned_by = IDA
+						is_core_of = GUA
+					}
+					transfer_state_to = GUA
+				}
+			}
+			every_country = {
+				limit = {
+					is_ally_with = IDA
+				}
+				every_state = {
+					limit = {
+						is_owned_by = PREV
+						is_core_of = GUA
+					}
+					transfer_state_to = GUA
+				}
+			}
+		}
+	}
+	
+	IDA_establish_the_south_american_command_zone = { #WCZ will release Colombia as a puppet on any South American territory they may own
+
+		icon = GFX_decision_generic_decision
+
+		available = {
+			tag = IDA
+			COL = {
+				exists = no
+			}
+			OR = {
+				IDA = {
+					OR = {
+						### Colombia ###
+						controls_state = 445
+						### Venezuela ###
+						controls_state = 383
+						controls_state = 450
+						controls_state = 461
+					}
+				}
+				any_allied_country = {
+					OR = {
+						### Colombia ###
+						controls_state = 445
+						### Venezuela ###
+						controls_state = 383
+						controls_state = 450
+						controls_state = 461
+					}
+				}
+			}
+		}
+
+		cost = 0
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 0
+		}
+
+		visible = {
+			tag = IDA
+			COL = {
+				exists = no
+			}
+		}
+		
+		fixed_random_seed = no
+		complete_effect = { #Release Colombia as a puppet, set a cosmetic tag, give Colombia cores on all of South America
+			every_state = {
+				limit = {
+					OR = {
+						is_core_of = COL
+						is_core_of = VEN
+					}
+				}
+				add_core_of = COL
+			}
+			IDA = {
+				every_state = {
+					limit = {
+						is_owned_by = IDA
+						is_core_of = COL
+					}
+					transfer_state_to = COL
+				}
+			}
+			every_country = {
+				limit = {
+					is_ally_with = IDA
+				}
+				every_state = {
+					limit = {
+						is_owned_by = PREV
+						is_core_of = COL
+					}
+					transfer_state_to = COL
+				}
+			}
+			IDA = {
+				if = {
+					limit = {
+                        OR = {
+                            has_dlc = "Together for Victory"
+                        }
+                    }
+					set_autonomy = {
+                        target = COL
+                        autonomous_state = supervised_state
+                        freedom_level = 0.1
+                    }
+				}
+				else = {
+					puppet = COL
+				}
+			}
+			COL = {
+				set_cosmetic_tag = IDA_South_America
+				load_focus_tree = generic_focus
+			}
+		}
+	}
+	
+	IDA_return_south_american_territories = { #Return territories to South American Command
+
+		icon = GFX_decision_generic_decision
+
+		available = {
+			tag = IDA
+			COL = {
+				is_puppet_of = IDA
+			}
+			OR = {
+				IDA = {
+					OR = {
+						### Colombia ###
+						controls_state = 445
+						### Venezuela ###
+						controls_state = 383
+						controls_state = 450
+						controls_state = 461
+					}
+				}
+				any_allied_country = {
+					OR = {
+						### Colombia ###
+						controls_state = 445
+						### Venezuela ###
+						controls_state = 383
+						controls_state = 450
+						controls_state = 461
+					}
+				}
+			}
+		}
+
+		cost = 0
+		fire_only_once = no
+		ai_will_do = {
+			factor = 0
+		}
+
+		visible = {
+			tag = IDA
+			COL = {
+				is_puppet_of = IDA
+			}
+		}
+		
+		fixed_random_seed = no
+		complete_effect = { #Return territories to South American Command Zone
+			IDA = {
+				every_state = {
+					limit = {
+						is_owned_by = IDA
+						is_core_of = COL
+					}
+					transfer_state_to = COL
+				}
+			}
+			every_country = {
+				limit = {
+					is_ally_with = IDA
+				}
+				every_state = {
+					limit = {
+						is_owned_by = PREV
+						is_core_of = COL
+					}
+					transfer_state_to = COL
+				}
+			}
+		}
+	}
+	
+	IDA_establish_the_caribbean_command_zone = { #WCZ will release Guantanamo Bay as a puppet on any Caribbean territory they may own
+
+		icon = GFX_decision_generic_decision
+
+		available = {
+			tag = IDA
+			GTB = {
+				exists = no
+			}
+			OR = {
+				IDA = {
+					OR = {
+						### Cayman Islands ###
+						controls_state = 159
+						### Cuba ###
+						controls_state = 349
+						controls_state = 362
+						controls_state = 378
+						controls_state = 391
+						# Guantanamo Bay #
+						controls_state = 490
+						### Haiti ###
+						controls_state = 405
+						controls_state = 498
+						controls_state = 499
+						### Dominican Republic ###
+						controls_state = 401
+					}
+				}
+				any_allied_country = {
+					OR = {
+						### Cayman Islands ###
+						controls_state = 159
+						### Cuba ###
+						controls_state = 349
+						controls_state = 362
+						controls_state = 378
+						controls_state = 391
+						# Guantanamo Bay #
+						controls_state = 490
+						### Haiti ###
+						controls_state = 405
+						controls_state = 498
+						controls_state = 499
+						### Dominican Republic ###
+						controls_state = 401
+					}
+				}
+			}
+		}
+
+		cost = 0
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 0
+		}
+
+		visible = {
+			tag = IDA
+			GTB = {
+				exists = no
+			}
+		}
+		
+		fixed_random_seed = no
+		complete_effect = { #Release Guantanamo Bay as a puppet, set a cosmetic tag, give Guantanamo cores on all applicable Caribbean nations
+			every_state = {
+				limit = {
+					OR = {
+						is_core_of = CAY
+						is_core_of = CUB
+						is_core_of = GTB
+						is_core_of = HAI
+						is_core_of = DOM
+					}
+				}
+				add_core_of = GTB
+			}
+			IDA = {
+				every_state = {
+					limit = {
+						is_owned_by = IDA
+						is_core_of = GTB
+					}
+					transfer_state_to = GTB
+				}
+			}
+			every_country = {
+				limit = {
+					is_ally_with = IDA
+				}
+				every_state = {
+					limit = {
+						is_owned_by = PREV
+						is_core_of = GTB
+					}
+					transfer_state_to = GTB
+				}
+			}
+			IDA = {
+				if = {
+					limit = {
+                        OR = {
+                            has_dlc = "Together for Victory"
+                        }
+                    }
+					set_autonomy = {
+                        target = GTB
+                        autonomous_state = supervised_state
+                        freedom_level = 0.1
+                    }
+				}
+				else = {
+					puppet = GTB
+				}
+			}
+			GTB = {
+				set_cosmetic_tag = IDA_Caribbean
+				load_focus_tree = generic_focus
+			}
+		}
+	}
+	
+	IDA_return_caribbean_territories = { #Return territories to Caribbean Command
+
+		icon = GFX_decision_generic_decision
+
+		available = {
+			tag = IDA
+			GTB = {
+				is_puppet_of = IDA
+			}
+			OR = {
+				IDA = {
+					OR = {
+						### Cayman Islands ###
+						controls_state = 159
+						### Cuba ###
+						controls_state = 349
+						controls_state = 362
+						controls_state = 378
+						controls_state = 391
+						# Guantanamo Bay #
+						controls_state = 490
+						### Haiti ###
+						controls_state = 405
+						controls_state = 498
+						controls_state = 499
+						### Dominican Republic ###
+						controls_state = 401
+					}
+				}
+				any_allied_country = {
+					OR = {
+						### Cayman Islands ###
+						controls_state = 159
+						### Cuba ###
+						controls_state = 349
+						controls_state = 362
+						controls_state = 378
+						controls_state = 391
+						# Guantanamo Bay #
+						controls_state = 490
+						### Haiti ###
+						controls_state = 405
+						controls_state = 498
+						controls_state = 499
+						### Dominican Republic ###
+						controls_state = 401
+					}
+				}
+			}
+		}
+
+		cost = 0
+		fire_only_once = no
+		ai_will_do = {
+			factor = 0
+		}
+
+		visible = {
+			tag = IDA
+			GTB = {
+				is_puppet_of = IDA
+			}
+		}
+		
+		fixed_random_seed = no
+		complete_effect = { #Return territories to South American Command Zone
+			IDA = {
+				every_state = {
+					limit = {
+						is_owned_by = IDA
+						is_core_of = GTB
+					}
+					transfer_state_to = GTB
+				}
+			}
+			every_country = {
+				limit = {
+					is_ally_with = IDA
+				}
+				every_state = {
+					limit = {
+						is_owned_by = PREV
+						is_core_of = GTB
+					}
+					transfer_state_to = GTB
 				}
 			}
 		}
