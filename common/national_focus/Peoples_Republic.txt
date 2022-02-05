@@ -117,10 +117,10 @@ focus_tree = {
       				factor = 0 
       				OR = {
 					has_game_rule = {
-              					rule = SAZ_free
-             					option = SAZ_FREE_NO 
-          				}
-      				}
+              			rule = SAZ_free
+             			option = SAZ_FREE_NO 
+          			}
+      			}
    			}
 		}
 		prerequisite = {
@@ -155,18 +155,18 @@ focus_tree = {
       				factor = 0 
       				OR = {
 					has_game_rule = {
-              					rule = SAZ_free
-             					option = SAZ_FREE_YES 
-          				}
+              			rule = SAZ_free
+             			option = SAZ_FREE_YES 
+          			}
 					has_game_rule = {
-              					rule = SAZ_free
-             					option = SAZ_FREE_RAZ 
-          				}
+              			rule = SAZ_free
+             			option = SAZ_FREE_RAZ 
+          			}
 					has_game_rule = {
-              					rule = SAZ_free
-             					option = SAZ_FREE_PRA 
-          				}
-      				}
+              			rule = SAZ_free
+             			option = SAZ_FREE_PRA 
+          			}
+      			}
    			}
 		}
 		prerequisite = {
@@ -914,25 +914,25 @@ focus_tree = {
 		ai_will_do = { 
 			factor = 300
 			modifier = {
-      				factor = 0 
-      				OR = {
+      			factor = 0 
+      			OR = {
 					has_game_rule = {
-              					rule = PRA_political_path
-             					option = PRA_PATH_COMMUNIST
-          				}
+              			rule = PRA_political_path
+             			option = PRA_PATH_COMMUNIST
+          			}
 					has_game_rule = {
-              					rule = PRA_political_path
-             					option = PRA_PATH_TOW
-          				}
+              			rule = PRA_political_path
+             			option = PRA_PATH_TOW
+          			}
 					has_game_rule = {
-              					rule = PRA_political_path
-             					option = PRA_PATH_FEDERAL
-          				}
+              			rule = PRA_political_path
+             			option = PRA_PATH_FEDERAL
+          			}
 					has_game_rule = {
-              					rule = PRA_political_path
-             					option = PRA_PATH_COLLAPSE
-          				}
-      				}
+              			rule = PRA_political_path
+             			option = PRA_PATH_COLLAPSE
+          			}
+      			}
    			}
 		}
 		completion_reward = {
@@ -1025,8 +1025,7 @@ focus_tree = {
 			focus = Reveal_Chinese_Hypocracy
 		}
 		completion_reward = {
-			remove_unit_leader = 1902
-			remove_unit_leader = 1901
+			custom_effect_tooltip = pra_loose_communist_generals
 			delete_unit_template_and_units = {
 				division_template = "Chinese Volunteers"
     			disband = no
@@ -1053,21 +1052,25 @@ focus_tree = {
 			focus = Propose_Dual_Citizenship
 		}
 		completion_reward = {
+			custom_effect_tooltip = pra_loose_american_generals
 			load_focus_tree = Tree_Anarchist_California
-			kill_country_leader = yes
-			create_country_leader = {
-				name = "Peter Lamborn Wilson"
-				picture = "gfx/leaders/PRA/Peter_Wilson.tga"
-				expire = "2060.1.1"
-				ideology = anarcho_communism
-				traits = {
-					anarchist_zeal
-				}
+			retire_character = PRA_bernie_sanders
+			PRA_peter_lamborn_wilson = {
+				promote_character = yes
 			}
 			set_cosmetic_tag = Anarchist_California
 			delete_unit_template_and_units = {
 				division_template = "National Guard"
     			disband = yes
+			}
+			hidden_effect = {
+				retire_character = PRA_authleft_bernie_sanders
+				every_unit_leader = {
+					limit = {
+						has_trait = anarchist_ally
+					}
+					remove_unit_leader_trait = anarchist_ally
+				}
 			}
 		}
 	}
@@ -1097,14 +1100,14 @@ focus_tree = {
       				factor = 0 
       				OR = {
 					has_game_rule = {
-              					rule = PRA_political_path
-             					option = PRA_PATH_COMMUNIST
-          				}
+              			rule = PRA_political_path
+             			option = PRA_PATH_COMMUNIST
+          			}
 					has_game_rule = {
-              					rule = PRA_political_path
-             					option = PRA_PATH_ANARCHY
-          				}
-      				}
+              			rule = PRA_political_path
+             			option = PRA_PATH_ANARCHY
+          			}
+      			}
    			}
 		}
 		completion_reward = {
@@ -1187,6 +1190,8 @@ focus_tree = {
 			focus = Force_them_out_now
 		}
 		completion_reward = {
+			custom_effect_tooltip = pra_loose_communist_generals
+			custom_effect_tooltip = pra_loose_anarchist_generals
 			add_stability = 0.15
 			add_popularity = {
 				ideology = authoritarian_left
@@ -1201,19 +1206,6 @@ focus_tree = {
 				popularity = 0.05
 			}
 			add_ideas = Sizzle_out_Radicalism
-			remove_unit_leader = 1913
-			remove_unit_leader = 1903
-			remove_unit_leader = 1904
-			remove_unit_leader = 1905
-			remove_unit_leader = 1906
-			remove_unit_leader = 1907
-			remove_unit_leader = 1908
-			remove_unit_leader = 1909
-			remove_unit_leader = 1910
-			remove_unit_leader = 1911
-			remove_unit_leader = 1912
-			remove_unit_leader = 1902
-			remove_unit_leader = 1901
 			delete_unit_template_and_units = {
 				division_template = "Chinese Volunteers"
     			disband = no
@@ -1221,176 +1213,6 @@ focus_tree = {
 			delete_unit_template_and_units = {
 				division_template = "Antifa Brigade"
     			disband = yes
-			}
-			create_corps_commander = {
-				name = "Evan L. Morrison"
-				portrait_path="gfx/leaders/PRA/Morrison.tga"
-				traits={ career_officer naval_invader naval_liason } 
-				skill = 3
-				attack_skill = 1
-				defense_skill = 4
-				planning_skill = 2
-				logistics_skill = 2
-			}
-			create_corps_commander = {
-				name = "David Baldwin"
-				portrait_path="gfx/leaders/PRA/Baldwin.tga"
-				traits={ career_officer infantry_officer } 
-				skill = 3
-				attack_skill = 1
-				defense_skill = 4
-				planning_skill = 2
-				logistics_skill = 2
-			}
-			create_field_marshal = {
-				name = "Ondra Berry"
-				portrait_path="gfx/leaders/PRA/Ondra_Berry.tga"
-				traits={ career_officer } 
-				skill = 2
-				attack_skill = 2
-				defense_skill = 3
-				planning_skill = 3
-				logistics_skill = 2
-			}
-			create_corps_commander = {
-				name = "Jason Soto"
-				portrait_path="gfx/leaders/PRA/Soto.tga"
-				traits={ career_officer } 
-				skill = 1
-				attack_skill = 1
-				defense_skill = 1
-				planning_skill = 1
-				logistics_skill = 1
-			}
-			create_corps_commander = {
-				name = "Rodney Scott"
-				portrait_path="gfx/leaders/PRA/Scott_leader.tga"
-				traits={ desert_fox infantry_officer } 
-				skill = 3
-				attack_skill = 1
-				defense_skill = 4
-				planning_skill = 2
-				logistics_skill = 2
-			}
-			create_corps_commander = {
-				name = "Carla Provost"
-				portrait_path="gfx/leaders/PRA/Provost.tga"
-				traits={ desert_fox career_officer } 
-				skill = 3
-				attack_skill = 1
-				defense_skill = 2
-				planning_skill = 4
-				logistics_skill = 1
-			}
-			create_corps_commander = {
-				name = "Vicente Paco"
-				portrait_path="gfx/leaders/PRA/Paco.tga"
-				traits={ desert_fox } 
-				skill = 1
-				attack_skill = 1
-				defense_skill = 2
-				planning_skill = 1
-				logistics_skill = 1
-			}
-			create_field_marshal = {
-				name = "Laura Yeager"
-				portrait_path="gfx/leaders/PRA/Laura_Yeager.tga"
-				traits={ career_officer infantry_officer } 
-				skill = 3
-				attack_skill = 4
-				defense_skill = 2
-				planning_skill = 2
-				logistics_skill = 1
-			}
-			create_corps_commander = {
-				name = "Scott M. Witt"
-				portrait_path="gfx/leaders/PRA/Scott_Witt.tga"
-				traits={ career_officer } 
-				skill = 2
-				attack_skill = 2
-				defense_skill = 3
-				planning_skill = 2
-				logistics_skill = 1
-			}
-			create_field_marshal = {
-				name = "Sheryl Dickinson"
-				portrait_path="gfx/leaders/PRA/Sheryl_Dickenson.tga"
-				traits={ infantry_officer career_officer } 
-				skill = 3
-				attack_skill = 3
-				defense_skill = 3
-				planning_skill = 4
-				logistics_skill = 2
-			}
-			create_corps_commander = {
-				name = "Joseph R. Baldwin"
-				portrait_path="gfx/leaders/PRA/Joseph_Baldwin.tga"
-				traits={ career_officer } 
-				skill = 2
-				attack_skill = 2
-				defense_skill = 2
-				planning_skill = 3
-				logistics_skill = 2
-			}
-			create_corps_commander = {
-				name = "Scott Flint"
-				portrait_path="gfx/leaders/PRA/Scott_Flint.tga"
-				traits={ desert_fox } 
-				skill = 3
-				attack_skill = 2
-				defense_skill = 3
-				planning_skill = 2
-				logistics_skill = 2
-			}
-			create_corps_commander = {
-				name = "Michael Hanifan"
-				portrait_path="gfx/leaders/PRA/Michael_Hanifan.tga"
-				traits={ career_officer infantry_officer } 
-				skill = 2
-				attack_skill = 2
-				defense_skill = 3
-				planning_skill = 3
-				logistics_skill = 2
-			}
-			create_corps_commander = {
-				name = "Troy Armstrong"
-				portrait_path="gfx/leaders/PRA/Troy_Armstrong.tga"
-				traits={ trait_cautious commando } 
-				skill = 2
-				attack_skill = 3
-				defense_skill = 2
-				planning_skill = 2
-				logistics_skill = 2
-			}
-			create_corps_commander = {
-				name = "Angela Salinas"
-				portrait_path="gfx/leaders/PRA/Angela_Salinas.tga"
-				traits={ career_officer } 
-				skill = 3
-				attack_skill = 3
-				defense_skill = 3
-				planning_skill = 3
-				logistics_skill = 4
-			}
-			create_corps_commander = {
-				name = "Joseph Medina"
-				portrait_path="gfx/leaders/PRA/Joseph_Medina.tga"
-				traits={ career_officer war_hero } 
-				skill = 2
-				attack_skill = 2
-				defense_skill = 2
-				planning_skill = 3
-				logistics_skill = 2
-			}
-			create_corps_commander = {
-				name = "Juan Ayala"
-				portrait_path="gfx/leaders/PRA/Juan_Ayala.tga"
-				traits={ career_officer trait_cautious } 
-				skill = 2
-				attack_skill = 2
-				defense_skill = 4
-				planning_skill = 2
-				logistics_skill = 2
 			}
 			remove_ideas = AngeredAnarchists
 			remove_ideas = AngeredChinese
@@ -1415,6 +1237,7 @@ focus_tree = {
 			focus = Push_them_out_slowly
 		}
 		completion_reward = {
+			custom_effect_tooltip = pra_californian_collapse_generals
 			add_stability = -0.05
 			add_popularity = {
 				ideology = authoritarian_left
@@ -1428,57 +1251,29 @@ focus_tree = {
 				ideology = democrat
 				popularity = 0.30
 			}
-			remove_unit_leader = 1913
-			remove_unit_leader = 1903
-			remove_unit_leader = 1904
-			remove_unit_leader = 1905
-			remove_unit_leader = 1906
-			remove_unit_leader = 1907
-			remove_unit_leader = 1908
-			remove_unit_leader = 1909
-			remove_unit_leader = 1910
-			remove_unit_leader = 1911
-			remove_unit_leader = 1912
-			remove_unit_leader = 1902
-			remove_unit_leader = 1901
 			delete_unit_template_and_units = {
 				division_template = "Chinese Volunteers"
-    			disband = no
+				disband = no
 			}
 			delete_unit_template_and_units = {
 				division_template = "Antifa Brigade"
-    			disband = yes
-			}
-			create_field_marshal = {
-				name = "Laura Yeager"
-				portrait_path="gfx/leaders/PRA/Laura_Yeager.tga"
-				traits={ career_officer infantry_officer } 
-				skill = 3
-				attack_skill = 4
-				defense_skill = 2
-				planning_skill = 2
-				logistics_skill = 1
-			}
-			create_corps_commander = {
-				name = "Scott M. Witt"
-				portrait_path="gfx/leaders/PRA/Scott_Witt.tga"
-				traits={ career_officer } 
-				skill = 2
-				attack_skill = 2
-				defense_skill = 3
-				planning_skill = 2
-				logistics_skill = 1
+				disband = yes
 			}
 			remove_ideas = AngeredAnarchists
 			remove_ideas = AngeredChinese
 			custom_effect_tooltip = Vice_President_abandons_us
-			remove_ideas = Peter_Lamborn_Wilson
-			remove_ideas = Joe_Sims
-			If = {
-				LIMIT = {
+			if = {
+				limit = {
 					has_idea = Peter_Lamborn_Wilson
 				}
 				remove_ideas = Peter_Lamborn_Wilson
+				add_ideas = Andrew_Yang
+			}
+			else_if = {
+				limit = {
+					has_idea = Joe_Sims
+				}
+				remove_ideas = Joe_Sims
 				add_ideas = Andrew_Yang
 			}
 			hidden_effect = {
@@ -1486,13 +1281,19 @@ focus_tree = {
 				set_global_flag = PRA_Bidenist_Collapse
 				set_country_flag = VP_Abandonment
 				Every_state = {
-    				Limit = { 
-    					is_owned_by = PRA
-    					NOT = { state = 456 }
-    					NOT = { state = 427 }
-    					NOT = { state = 298 }
-    				}
+					Limit = { 
+						is_owned_by = PRA
+						NOT = { state = 456 }
+						NOT = { state = 427 }
+						NOT = { state = 298 }
+					}
 					set_demilitarized_zone = yes
+				}
+				every_unit_leader = {
+					limit = {
+						has_trait = american_loyalist
+					}
+					remove_unit_leader_trait = american_loyalist
 				}
 			}
 		}
@@ -1527,6 +1328,12 @@ focus_tree = {
 				set_cosmetic_tag = Western_Bidenists
 				remove_ideas = Class_Conflict_Cali
 				set_country_flag = pra_did_amazing_grace
+				every_unit_leader = {
+					limit = {
+						has_trait = american_loyalist
+					}
+					remove_unit_leader_trait = american_loyalist
+				}
 			}
 		}
 	}
@@ -1557,8 +1364,8 @@ focus_tree = {
       			factor = 0 
       			OR = {
 					has_game_rule = {
-              					rule = PRA_political_path
-             					option = PRA_PATH_TOW
+						rule = PRA_political_path
+             			option = PRA_PATH_TOW
           			}
 					has_game_rule = {
               			rule = PRA_political_path
@@ -1640,10 +1447,6 @@ focus_tree = {
 				ideology = autocratic
 				popularity = -1.0
 			}
-			delete_unit_template_and_units = {
-				division_template = "National Guard"
-    			disband = yes
-			}
 		}
 	}
 	focus = {
@@ -1670,7 +1473,7 @@ focus_tree = {
 	focus = {
 		id = Purge_Anarchists
 		icon = GFX_goal_ANTIFA_burn
-		cost = 5.50
+		cost = 5
 		x = 11
 		y = 9
 		ai_will_do = { 
@@ -1683,6 +1486,7 @@ focus_tree = {
 			focus = Purge_Republicans
 		}
 		completion_reward = {
+			custom_effect_tooltip = pra_loose_anarchist_generals
 			add_manpower = -14372
 			add_stability = -0.17
 			add_popularity = {
@@ -1690,17 +1494,6 @@ focus_tree = {
 				popularity = -0.55
 			}
 			remove_ideas = AngeredAnarchists
-			remove_unit_leader = 1913
-			remove_unit_leader = 1903
-			remove_unit_leader = 1904
-			remove_unit_leader = 1905
-			remove_unit_leader = 1906
-			remove_unit_leader = 1907
-			remove_unit_leader = 1908
-			remove_unit_leader = 1909
-			remove_unit_leader = 1910
-			remove_unit_leader = 1911
-			remove_unit_leader = 1912
 			delete_unit_template_and_units = {
 				division_template = "Antifa Brigade"
     			disband = yes
@@ -1710,7 +1503,7 @@ focus_tree = {
 	focus = {
 		id = Chairman_Sanders
 		icon = GFX_goal_Chairman_Sanders
-		cost = 10.00
+		cost = 10
 		x = 9
 		y = 10
 		ai_will_do = { 
@@ -1727,40 +1520,23 @@ focus_tree = {
 			focus = Propose_Dual_Citizenship
 		}
 		completion_reward = {
+			custom_effect_tooltip = pra_loose_american_generals
 			load_focus_tree = Chinese_California
 			set_cosmetic_tag = Peoples_Republic
-			create_corps_commander = {
-				name = "Jarvis Tyner"
-				portrait_path = "gfx/leaders/PRA/Jarvis_Tyner.tga"
-			 	traits = { infantry_officer politically_connected }
-				skill = 2
-				attack_skill = 2
-				defense_skill = 2
-				planning_skill = 3
-				logistics_skill = 2
-			}
-			create_corps_commander = {
-				name = "Angela Davis"
-				portrait_path = "gfx/leaders/PRA/Angela_Davis.tga"
-			 	traits = { harsh_leader politically_connected }
-				skill = 2
-				attack_skill = 4
-				defense_skill = 2
-				planning_skill = 2
-				logistics_skill = 2
-			}
-			create_corps_commander = {
-				name = "Jonah Deocampo"
-				portrait_path = "gfx/leaders/PRA/Jonah_Deocampo.tga"
-			 	traits = { trait_reckless politically_connected }
-				skill = 1
-				attack_skill = 1
-				defense_skill = 1
-				planning_skill = 1
-				logistics_skill = 1
+			delete_unit_template_and_units = {
+				division_template = "National Guard"
+    			disband = yes
 			}
 			set_politics = {
 				ruling_party = authoritarian_left
+			}
+			hidden_effect = {
+				every_unit_leader = {
+					limit = {
+						has_trait = communist_ally
+					}
+					remove_unit_leader_trait = communist_ally
+				}
 			}
 		}
 	}
@@ -1812,17 +1588,17 @@ focus_tree = {
 			random_owned_controlled_state = {
 				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
-    					type = arms_factory
-    					level = 2
-    					instant_build = yes
+    				type = arms_factory
+    				level = 2
+    				instant_build = yes
 				}
 			}
 			random_owned_controlled_state = {
 				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
-    					type = arms_factory
-    					level = 2
-    					instant_build = yes
+    				type = arms_factory
+    				level = 2
+    				instant_build = yes
 				}
 			}
 		}
@@ -1901,10 +1677,10 @@ focus_tree = {
       				factor = 10 
       				OR = {
 					has_game_rule = {
-              					rule = PRA_collapse_path
-             					option = PRA_COLLAPSE_PATH_CONFED
-          				}
-      				}
+              			rule = PRA_collapse_path
+             			option = PRA_COLLAPSE_PATH_CONFED
+          			}
+      			}
    			}
 		}
 		completion_reward = {
@@ -1952,13 +1728,13 @@ focus_tree = {
 		ai_will_do = { 
 			factor = 10
 			modifier = {
-      				factor = 4000 
-      				OR = {
+      			factor = 10
+      			OR = {
 					has_game_rule = {
-              					rule = PRA_collapse_path
-             					option = PRA_COLLAPSE_PATH_SWORD
-          				}
-      				}
+              			rule = PRA_collapse_path
+             			option = PRA_COLLAPSE_PATH_SWORD
+          			}
+      			}
    			}
 		}
 		completion_reward = {
@@ -2054,7 +1830,7 @@ focus_tree = {
 					remove_ideas = Californian_Collapse_Idea
 				}
 			}
-			remove_idea = Californian_Collapse_Idea
+			remove_ideas = Californian_Collapse_Idea
 		}
 	}
 	focus = {
@@ -2159,15 +1935,9 @@ focus_tree = {
 			focus = The_Interior
 		}
 		completion_reward = {
-			retire_country_leader = yes
-			create_country_leader = {
-				name = "Californian Congress"
-				picture = "gfx/leaders/PRA/Califonia_Congress.tga"
-				expire = "2060.1.1"
-				ideology = establishment
-				traits = {
-						
-				}
+			retire_character = PRA_bernie_sanders
+			PRA_californian_congress = {
+				promote_character = yes
 			}
 			hidden_effect = {
 				news_event = { id = News_Events.6 days = 82 }
@@ -2193,21 +1963,11 @@ focus_tree = {
 			focus = Duf_Sundheim_Presidency
 		}
 		completion_reward = {
-			retire_country_leader = yes
+			retire_character = PRA_californian_congress
 			remove_ideas = Andrew_Yang
 			add_ideas = Generic_Vacant_Vice_President
-			add_popularity = {
-				ideology = democrat
-				popularity = 0.1
-			}
-			create_country_leader = {
-				name = "Andrew Yang"
-				picture = "gfx/leaders/PRA/yang.tga"
-				expire = "2060.1.1"
-				ideology = progressive
-				traits = {
-					Yang_Gang_Trait
-				}
+			PRA_andrew_yang = {
+				promote_character = yes
 			}
 		}
 	}
@@ -2245,7 +2005,7 @@ focus_tree = {
 	focus = {
 		id = Finish_His_Reforms
 		icon = GFX_goal_Sanders_Legacy
-		cost = 2.00
+		cost = 2
 		x = 2
 		y = 4
 		prerequisite = {
@@ -2297,7 +2057,7 @@ focus_tree = {
 	focus = {
 		id = Schmidt_Libertarian
 		icon = GFX_goal_Scott_Schmidt
-		cost = 5.00
+		cost = 5
 		x = 5
 		y = 3
 		prerequisite = {
@@ -2318,16 +2078,6 @@ focus_tree = {
 			add_popularity = {
 				ideology = libertarian_right
 				popularity = 0.1
-			}
-			create_country_leader = {
-				name = "Scott Schmidt"
-				picture = "gfx/leaders/PRA/Scott_Schmidt.tga"
-				expire = "2060.1.1"
-				ideology = libertarian_ideology
-				traits = {
-					Young_Liberatarian
-					NEW_Libertarian
-				}
 			}
 			set_politics = {
 				ruling_party = libertarian_right
@@ -2373,25 +2123,25 @@ focus_tree = {
 			random_owned_controlled_state = {
 				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
-    					type = industrial_complex
-    					level = 2
-    					instant_build = yes
+    				type = industrial_complex
+    				level = 2
+    				instant_build = yes
 				}
 			}
 			random_owned_controlled_state = {
 				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
-    					type = industrial_complex
-    					level = 2
-    					instant_build = yes
+    				type = industrial_complex
+    				level = 2
+    				instant_build = yes
 				}
 			}
 			random_owned_controlled_state = {
 				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
-    					type = industrial_complex
-    					level = 2
-    					instant_build = yes
+    				type = industrial_complex
+    				level = 2
+    				instant_build = yes
 				}
 			}
 		}
@@ -2428,7 +2178,7 @@ focus_tree = {
 	focus = {
 		id = Duf_Sundheim_Presidency
 		icon = GFX_goal_Duf_Sundheim
-		cost = 2.00
+		cost = 2
 		x = 10
 		y = 3
 		prerequisite = {
@@ -2449,15 +2199,6 @@ focus_tree = {
 			add_popularity = {
 				ideology = republican
 				popularity = 0.1
-			}
-			create_country_leader = {
-				name = "Duf Sundheim"
-				picture = "gfx/leaders/PRA/Duf_Sundheim.tga"
-				expire = "2060.1.1"
-				ideology = conservative
-				traits = {
-					Anti_Trump_Republican
-				}
 			}
 			set_politics = {
 				ruling_party = republican
@@ -2766,7 +2507,7 @@ focus_tree = {
 				}
 				create_wargoal = {
 	    			type = puppet_wargoal_focus
-    				target = MKF
+    				target = BKF
 				}
 			}
 		}
@@ -2836,10 +2577,10 @@ focus_tree = {
 		}
 		completion_reward = {
 			ABG = {
-			create_wargoal = {
-				type = annex_everything
-				target = UTA
-			}
+				create_wargoal = {
+					type = annex_everything
+					target = UTA
+				}
 			}
 		}
 	}
@@ -2886,10 +2627,10 @@ focus_tree = {
 		}
 		available = {
 			TEX = {
-			NOT = {
-			has_government = autocratic
-			has_government = authoritarian_left
-			}
+				NOT = {
+					has_government = autocratic
+					has_government = authoritarian_left
+				}
 			}
 		}
 		mutually_exclusive = {
@@ -2913,9 +2654,9 @@ focus_tree = {
 		available = {
 			TEX = {
 				OR = {
-				has_government = autocratic
-				has_government = authoritarian_left
-			}
+					has_government = autocratic
+					has_government = authoritarian_left
+				}
 			}
 		}
 		mutually_exclusive = {
@@ -3004,11 +2745,11 @@ focus_tree = {
 		cost = 5.00
 		x = 13
 		y = 3
-		prerequisite = {
-			focus = The_Democratic_Ticket
-		}
 		available = {
 			has_country_flag = LT_Governor_Kounalakis
+		}
+		prerequisite = {
+			focus = The_Democratic_Ticket
 		}
 		ai_will_do = { 
 			factor = 300
@@ -3403,25 +3144,25 @@ focus_tree = {
 			random_owned_controlled_state = {
 				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
-    					type = industrial_complex
-    					level = 2
-    					instant_build = yes
+    				type = industrial_complex
+    				level = 2
+    				instant_build = yes
 				}
 			}
 			random_owned_controlled_state = {
 				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
-    					type = industrial_complex
-    					level = 2
-    					instant_build = yes
+    				type = industrial_complex
+    				level = 2
+    				instant_build = yes
 				}
 			}
 			random_owned_controlled_state = {
 				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
-    					type = industrial_complex
-    					level = 2
-    					instant_build = yes
+    				type = industrial_complex
+    				level = 2
+    				instant_build = yes
 				}
 			}
 			add_popularity = {
@@ -3458,13 +3199,11 @@ focus_tree = {
 		cost = 5.00
 		x = 7
 		y = 4
+		available = {
+			PRA_adam_laxalt = { is_country_leader = yes }
+		}
 		prerequisite = {
 			focus = The_Nevadan
-		}
-		available = {
-			has_country_leader = {
-				name = "Adam Laxalt"
-			}
 		}
 		ai_will_do = { 
 			factor = 300
@@ -3496,13 +3235,11 @@ focus_tree = {
 		cost = 5.00
 		x = 7
 		y = 5
+		available = {
+			PRA_adam_laxalt = { is_country_leader = yes }
+		}
 		prerequisite = {
 			focus = Promote_Nevada_Industry
-		}
-		available = {
-			has_country_leader = {
-				name = "Adam Laxalt"
-			}
 		}
 		ai_will_do = { 
 			factor = 300
@@ -3518,13 +3255,11 @@ focus_tree = {
 		cost = 5.00
 		x = 7
 		y = 6
+		available = {
+			PRA_adam_laxalt = { is_country_leader = yes }
+		}
 		prerequisite = {
 			focus = Ignore_California
-		}
-		available = {
-			has_country_leader = {
-				name = "Adam Laxalt"
-			}
 		}
 		ai_will_do = { 
 			factor = 300
@@ -3533,19 +3268,17 @@ focus_tree = {
 			add_ideas = PRA_Funds_Diverted
 		}
 	}
-	focus = {
+	focus = { #Imagine having a focus that breaks a country, but no one knows because no one plays the path
 		id = Make_Nevada_Greater
 		icon = GFX_goal_Make_Nevada_Greater
 		cost = 5.00
 		x = 7
 		y = 7
+		available = {
+			PRA_adam_laxalt = { is_country_leader = yes }
+		}
 		prerequisite = {
 			focus = Divert_Californian_Funds
-		}
-		available = {
-			has_country_leader = {
-				name = "Adam Laxalt"
-			}
 		}
 		ai_will_do = { 
 			factor = 300
@@ -3569,7 +3302,6 @@ focus_tree = {
 						452 = {
 							is_controlled_by = PRA
 						}
-						
 					}
 					transfer_state = 452
 				}
@@ -3578,7 +3310,6 @@ focus_tree = {
 						394 = {
 							is_controlled_by = PRA
 						}
-						
 					}
 					transfer_state = 394
 				}
@@ -3587,7 +3318,6 @@ focus_tree = {
 						419 = {
 							is_controlled_by = PRA
 						}
-						
 					}
 					transfer_state = 419
 				}
@@ -3595,8 +3325,7 @@ focus_tree = {
 					Limit = {
 						393 = {
 							is_controlled_by = PRA
-						}
-						
+						}	
 					}
 					transfer_state = 393
 				}
@@ -3605,7 +3334,6 @@ focus_tree = {
 						487 = {
 							is_controlled_by = PRA
 						}
-						
 					}
 					transfer_state = 487
 				}
@@ -3614,7 +3342,6 @@ focus_tree = {
 						46 = {
 							is_controlled_by = PRA
 						}
-						
 					}
 					transfer_state = 46
 				}
@@ -3623,7 +3350,6 @@ focus_tree = {
 						491 = {
 							is_controlled_by = PRA
 						}
-						
 					}
 					transfer_state = 491
 				}
@@ -3632,7 +3358,6 @@ focus_tree = {
 						488 = {
 							is_controlled_by = PRA
 						}
-						
 					}
 					transfer_state = 488
 				}
@@ -3641,7 +3366,6 @@ focus_tree = {
 						117 = {
 							is_controlled_by = PRA
 						}
-						
 					}
 					transfer_state = 117
 				}
@@ -3650,7 +3374,6 @@ focus_tree = {
 						354 = {
 							is_controlled_by = PRA
 						}
-						
 					}
 					transfer_state = 354
 				}
@@ -3982,119 +3705,70 @@ focus_tree = {
 		completion_reward = {
 			add_stability = 0.25
 			retire_country_leader = yes
-			IF = {
+			if = {
 				limit = {
 					FRA = {
-						has_idea = {
-							FRA_kamala_harris_vp
-						}
+						has_idea = FRA_kamala_harris_vp
 					}
 				}
-				retire_country_leader = yes
-				create_country_leader = {
-					name = "Kamala Harris"
-					picture = "gfx/leaders/FRA/kamala.dds"
-					expire = "2060.1.1"
-					ideology = neoliberal
-					female = yes
-					traits = {
-						###
-					}
+				retire_character = PRA_bernie_sanders
+				PRA_kamala_harris = {
+					promote_character = yes
 				}
 			}
-			IF = {
+			else_if = {
 				limit = {
 					FRA = {
-						has_idea = {
-							FRA_nancy_pelosi_vp
-						}
+						has_idea = FRA_nancy_pelosi_vp
 					}
 				}
-				retire_country_leader = yes
-				create_country_leader = {
-					name = "Nancy Pelosi"
-					picture = "gfx/leaders/FRA/Pelosi.tga"
-					expire = "2060.1.1"
-					ideology = establishment
-					traits = {
-					
-					}
+				retire_character = PRA_bernie_sanders
+				PRA_nancy_pelosi = {
+					promote_character = yes
 				}
 			}
-			IF = {
+			else_if = {
 				limit = {
 					FRA = {
-						has_idea = {
-							FRA_mitch_mcconnell_vp
-						}
+						has_idea = FRA_mitch_mcconnell_vp
 					}
 				}
-				retire_country_leader = yes
-				create_country_leader = {
-					name = "Mitch McConnell"
-					picture = "gfx/leaders/FRA/herro.dds"
-					expire = "2060.1.1"
-					ideology = Bourbon_Democrat
-					traits = {
-						###
-					}
+				retire_character = PRA_bernie_sanders
+				PRA_mitch_mcconnell = {
+					promote_character = yes
 				}
 			}
-			IF = {
+			else_if = {
 				limit = {
 					FRA = {
-						has_idea = {
-							FRA_theodore_roosevelt_vp
-						}
+						has_idea = FRA_theodore_roosevelt_vp
 					}
 				}
-				retire_country_leader = yes
-				create_country_leader = {
-					name = "Theodore Roosevelt IV"
-					picture = "gfx/leaders/FRA/Theodore_Roosevelt_IV.tga"
-					expire = "2060.1.1"
-					ideology = Bourbon_Democrat
-					traits = {
-						old FRA_progressive_conservative_1
-					}
+				retire_character = PRA_bernie_sanders
+				PRA_theodore_roosevelt_iv = {
+					promote_character = yes
 				}
 			}
-			IF = {
+			else_if = {
 				limit = {
 					FRA = {
-						has_idea = {
-							FRA_jd_vance_vp
-						}
+						has_idea = FRA_jd_vance_vp
 					}
 				}
-				retire_country_leader = yes
-				create_country_leader = {
-					name = "J.D. Vance"
-					picture = "gfx/leaders/FRA/Vance.png"
-					expire = "2060.1.1"
-					ideology = Bourbon_Democrat
-					traits = {
-						FRA_progressive_conservative_1
-					}
+				retire_character = PRA_bernie_sanders
+				PRA_jd_vance = {
+					promote_character = yes
 				}
 			}
-			IF = {
+			else_if = {
 				limit = {
 					FRA = {
-						has_idea = {
-							FRA_daniel_mckee_vp
-						}
+						has_idea = FRA_daniel_mckee_vp
 					}
 				}
-				retire_country_leader = yes
-				create_country_leader = {
-					name = "Daniel McKee"
-					picture = "gfx/leaders/FRA/McKee.tga"
-					expire = "2060.1.1"
-					ideology = neoliberal
-					traits = {
-					
-					}
+				retire_character = PRA_bernie_sanders
+				PRA_daniel_mckee = {
+					promote_character = yes
 				}
 			}
 		}
@@ -4649,11 +4323,11 @@ focus_tree = {
 		}
 		completion_reward = {
 			Every_state = {
-    			Limit = { is_core_of = ALA}
+    			Limit = { is_core_of = ALA }
 				Add_core_of = PRA
 			}
 			Every_state = {
-    			Limit = { is_core_of = PAC}
+    			Limit = { is_core_of = PAC }
 				Add_core_of = PRA
 			}
 		}
@@ -4995,12 +4669,12 @@ focus_tree = {
 			hidden_effect = {
 				LOU = {
 					set_politics = {
-					ruling_party = democrat
+						ruling_party = democrat
 					}
 				}
 				OKL = {
 					set_politics = {
-					ruling_party = democrat
+						ruling_party = democrat
 					}
 				}
 			}
