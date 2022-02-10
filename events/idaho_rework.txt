@@ -3863,3 +3863,167 @@ country_event = { #WCZ is alerted that Trump refused the request to transfer ter
 		name = idaho_rework.111.a
 	}
 }
+country_event = { #First Lincoln Election event, explains how the election works, event is sent to all allied nations 
+	id = idaho_rework.112
+	title = idaho_rework.112.t
+	desc = idaho_rework.112.d
+	picture = GFX_report_event_IDA_Election
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Option for the WCZ, actually starts the election
+		name = idaho_rework.112.a
+		trigger = {
+			tag = IDA
+		}
+		ai_chance = {
+			factor = 10
+		}
+		IDA = {
+			country_event = {
+				id = idaho_rework.113
+				days = 5
+			}
+		}
+	}
+	
+	option = { #Option for the WCZ, actually starts the election
+		name = idaho_rework.112.b
+		trigger = {
+			tag = IDA
+		}
+		ai_chance = {
+			factor = 10
+		}
+		IDA = {
+			country_event = {
+				id = idaho_rework.113
+				days = 5
+			}
+		}
+	}
+	
+	option = { #Option for the WCZ, actually starts the election (confused confirmation)
+		name = idaho_rework.112.c
+		trigger = {
+			tag = IDA
+		}
+		ai_chance = {
+			factor = 10
+		}
+		custom_effect_tooltip = wcz_too_bad_for_you
+		IDA = {
+			country_event = {
+				id = idaho_rework.113
+				days = 5
+			}
+		}
+	}
+	
+	option = { #Option for all WCZ allies
+		name = idaho_rework.112.e
+		trigger = {
+			OR = {
+				NOT = {
+					tag = IDA
+				}
+			}
+		}
+		ai_chance = {
+			factor = 10
+		}
+		custom_effect_tooltip = wcz_idaho_elections_begin
+	}
+	option = { #Option for all WCZ allies
+		name = idaho_rework.112.f
+		trigger = {
+			OR = {
+				NOT = {
+					tag = IDA
+				}
+			}
+		}
+		ai_chance = {
+			factor = 10
+		}
+		custom_effect_tooltip = wcz_friendly_multiplayer_notice
+		custom_effect_tooltip = wcz_idaho_elections_begin
+	}
+	option = { #Option for all WCZ allies (confused confirmation)
+		name = idaho_rework.112.g
+		trigger = {
+			OR = {
+				NOT = {
+					tag = IDA
+				}
+			}
+		}
+		ai_chance = {
+			factor = 10
+		}
+		custom_effect_tooltip = wcz_yes_this_works_trust_me
+		custom_effect_tooltip = wcz_idaho_elections_begin
+	}
+}
+country_event = { #Idaho Lincoln Election event, choice between Republicans, Democrats, Libertarians, and Constitutionalists
+	id = idaho_rework.113
+	title = idaho_rework.113.t
+	desc = idaho_rework.113.d
+	picture = GFX_report_event_IDA_Idaho
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Republicans
+		name = idaho_rework.113.a
+		ai_chance = {
+			factor = 10
+		}
+		IDA = {
+			add_popularity = {
+				ideology = republican
+				popularity = 0.05
+			}
+		}
+	}
+	
+	option = { #Democrats
+		name = idaho_rework.113.b
+		ai_chance = {
+			factor = 10
+		}
+		IDA = {
+			add_popularity = {
+				ideology = democrat
+				popularity = 0.05
+			}
+		}
+	}
+	
+	option = { #Libertarians 
+		name = idaho_rework.113.c
+		ai_chance = {
+			factor = 10
+		}
+		IDA = {
+			add_popularity = {
+				ideology = libertarian_right
+				popularity = 0.05
+			}
+		}
+	}
+	
+	option = { #Constitutionalists 
+		name = idaho_rework.113.e
+		ai_chance = {
+			factor = 10
+		}
+		IDA = {
+			add_popularity = {
+				ideology = autocratic
+				popularity = 0.05
+			}
+		}
+	}
+}
