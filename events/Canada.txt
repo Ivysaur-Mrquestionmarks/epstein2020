@@ -576,15 +576,6 @@ country_event = {
 				}
 			}
 			MLC = {
-				create_country_leader = {
-					name = "Erin O'Tool"
-					picture = "gfx/leaders/CAN/O'tool.tga"
-					expire = "2060.1.1"
-					ideology = liberal
-					traits = {
-						###
-					}
-				}
 				add_popularity = {
 				    ideology = democrat
 				    popularity = 0.30
@@ -857,7 +848,7 @@ country_event = {
 	desc = Canada.10.d
 	#picture =
 	trigger = {
-		date > 2022.01.01
+		date > 2022.01.14
 		tag = CAN
 	}
 	mean_time_to_happen = { days = 10 }
@@ -866,7 +857,7 @@ country_event = {
 		name = Canada.10.a
 		add_stability = -0.10
 		add_political_power = -50
-		country_event = { id = Canada.11 days = 7 }
+		country_event = { id = Canada.11 days = 4 }
 	}
 }
 #The Truckers Are Coming
@@ -897,6 +888,7 @@ country_event = {
 		add_stability = -0.20
 		add_political_power = -200
 		news_event = { id = Canada.13 }
+		country_event = { id = Canada.14 days = 5 }
 	}
 }
 #Massacre in Ottawa
@@ -916,5 +908,46 @@ news_event = {
 		trigger = { tag = CAN }
 		add_political_power = -20
 		add_war_support = -0.10
+	}
+}
+#O'Toole disgraced after the Battle of Ottawa
+country_event = {
+	id = Canada.14
+	title = Canada.14.t
+	desc = Canada.14.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = Canada.14.a
+		add_popularity = {
+			ideology = republican
+			popularity = -0.05
+		}
+		hidden_effect = {
+			country_event = {
+				id = Canada.15
+				days = 3
+			}
+		}
+	}
+}
+#Pierre Poilievre takes charge
+country_event = {
+	id = Canada.15
+	title = Canada.15.t
+	desc = Canada.15.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = Canada.15.a
+		retire_character = CAN_erin_otoole
+		promote_character = CAN_pierre_poilievre
+		add_popularity = {
+			ideology = republican
+			popularity = 0.075
+		}
+		add_stability = -0.005
 	}
 }
