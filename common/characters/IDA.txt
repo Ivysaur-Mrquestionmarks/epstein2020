@@ -426,11 +426,11 @@ characters={
 			id = -1
 		}
 	}
-	IDA_jay_inslee = { #He's also a potential leader of Cascadia, but the Union of Lincoln can't exist if Cascadia exists
+	IDA_jay_inslee = { #He's also a potential leader of Cascadia, but the Union of Lincoln shouldn't (theoretically) exist if Cascadia exists
 		name = "Jay Inslee"
 		portraits = {
 			civilian = {
-				large = "GFX/leaders/CAS/inslee.dds"
+				large = "GFX/leaders/IDA/Jay_Inslee_Alternative.png"
 			}
 		}
 		country_leader = {
@@ -564,6 +564,20 @@ characters={
 			id = -1
 		}
 	}
+	IDA_scott_bradley = { #This dude is from Logan, Utah, so he'll always be available
+		name = "Scott Bradley"
+		portraits = {
+			civilian = {
+				large = "gfx/leaders/IDA/Scott_Bradley.png"
+			}
+		}
+		country_leader = {
+			ideology = fundamentalism
+			traits = {}
+			expire = "2060.1.1.1"
+			id = -1
+		}
+	}
 	IDA_chuck_baldwin = { 
 		name = "Chuck Baldwin"
 		portraits = {
@@ -595,10 +609,18 @@ characters={
 				
 			}
 			available = {
-				controls_state = 118
+				OR = {
+					controls_state = 118
+					any_allied_country	= {
+						controls_state = 118
+					}
+				}
 				OR = {
 					has_government = republican
 					has_government = libertarian_right
+				}
+				NOT = {
+					IDA_chuck_baldwin = { is_country_leader = yes }
 				}
 			}
 			traits = {
