@@ -52,86 +52,53 @@ country_event = {
 				set_demilitarized_zone = no
 			}
 			IDA = {
-				unlock_national_focus = IDA_caesar_looks_west
-				create_faction = Remnants
-				create_country_leader = {
-					name = "Gavin McInnes"
-					picture = "gfx/leaders/USA/mcinnes.dds"
-					expire = "2060.1.1"
-					ideology = trumpist
-					traits = {
-		
+				if = {
+					limit = {
+						NOT = {
+							has_completed_focus = IDA_We_March_Forward
+						}
 					}
+					complete_national_focus = IDA_We_March_Forward
+				}
+				set_country_flag = wcz_trumpist_exiles
+				IDA_donald_trump_jr = {
+					promote_character = yes
 				}
 			}
 			USA = {
 				every_unit_leader = {
-        				limit = {
-						OR = {
-            						has_id = 20101
-							has_id = 20103
-							has_id = 20105
-							has_id = 20109
-							has_id = 20115
-						}
-            				}
-            				set_nationality = IDA
-        			}
-				every_unit_leader = {
-        				limit = {
-						has_id = 20106
-            				}
-            				set_nationality = IDA
-					promote_leader = yes
-        			}
+            		set_nationality = IDA
+        		}
 			}
-		news_event = { id = maga.3 days = 1 } 
-		every_owned_state = { 
-			limit = { is_core_of = USA }
-			remove_core_of = USA
-		}
-		if = {
-			limit = {
-				has_idea = NPA_Motivation_High
+			news_event = { id = maga.3 days = 1 } 
+			every_owned_state = { 
+				limit = { is_core_of = USA }
+				remove_core_of = USA
 			}
-			remove_ideas = NPA_Motivation_High
-		}
-		if = {
-			limit = {
-				has_idea = NPA_Motivation_Medium
+			if = {
+				limit = {
+					has_idea = NPA_Motivation_High
+				}
+				remove_ideas = NPA_Motivation_High
 			}
-			remove_ideas = NPA_Motivation_Medium
-		}
-		if = {
-			limit = {
-				has_idea = NPA_Motivation_Low
+			if = {
+				limit = {
+					has_idea = NPA_Motivation_Medium
+				}
+				remove_ideas = NPA_Motivation_Medium
 			}
-			remove_ideas = NPA_Motivation_Low
-		}
-		if = {
-			limit = {
-				has_idea = NPA_Motivation_Soldified
+			if = {
+				limit = {
+					has_idea = NPA_Motivation_Low
+				}
+				remove_ideas = NPA_Motivation_Low
 			}
-			remove_ideas = NPA_Motivation_Soldified
-		}
-		if = {
-			limit = {
-				country_exists = MIN
+			if = {
+				limit = {
+					has_idea = NPA_Motivation_Soldified
+				}
+				remove_ideas = NPA_Motivation_Soldified
 			}
-			MIN = { country_event = { id = npa.33 } }
-		}
-		if = {
-			limit = {
-				country_exists = MIL
-			}
-			MIL = { country_event = { id = npa.33 } }
-		}
-		if = {
-			limit = {
-				country_exists = MNS
-			}
-			MNS = { country_event = { id = npa.33 } }
-		}
 		}
 	}
 }
