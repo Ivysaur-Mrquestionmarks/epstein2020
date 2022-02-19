@@ -13,7 +13,7 @@ American_reunification = {
 			}
 			FROM = {
 				is_owned_and_controlled_by = ROOT
-			NOT = {is_core_of = ROOT}
+				NOT = {is_core_of = ROOT}
 			}
 		}
 		available = {
@@ -168,25 +168,63 @@ American_reunification = {
 		complete_effect = {
 			set_country_flag = winner_of_the_2ACW
 			add_stability = 0.10
-			Every_state = {
-   				Limit = { 
+			every_state = {
+   				limit = { 
     				is_owned_by = ROOT
-				has_state_flag = part_of_america
+					has_state_flag = part_of_america
     			}
     			add_core_of = ROOT
     		}
 			custom_effect_tooltip = generic_unification_tt
-			if = { limit = {tag= CSA has_focus_tree = csa_jesus}
+			if = {
+				limit = {
+					tag = PAC 
+					has_country_flag = army_state
+				}
 				country_event = {
-    					id = News_events.84
+    				id = News_events.81
 				}
 			}
-			else_if = { limit = {tag= CSA NOT = {has_focus_tree = csa_jesus}}
-				country_event = {
-    					id = News_events.85
+			else_if = {
+				limit = {
+					tag = HOP
+					has_completed_focus = HOP_The_Jester
 				}
-			}			
+				country_event = {
+    				id = News_events.82
+				}
+			}
+			else_if = { 
+				limit = {
+					tag = CSA 
+					has_focus_tree = csa_jesus
+				}
+				country_event = {
+    				id = News_events.84
+				}
+			}
+			else_if = { 
+				limit = {
+					tag = CSA 
+					NOT = {has_focus_tree = csa_jesus}
+				}
+				country_event = {
+    				id = News_events.85
+				}
+			}
+			#All other reunification super events should go above this one
+			else = {
+				hidden_effect = {
+					set_country_flag = generic_american_unifier
+					country_event = {
+						id = _zzz.2 
+						days = 3
+					}
+				}
+				country_event = {
+    				id = News_events.92
+				}
+			}
 		}
-		
 	}
 }
