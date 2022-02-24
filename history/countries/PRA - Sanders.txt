@@ -49,6 +49,53 @@ if = {
 		engine_tech_1 = 1
 	}
 }
+if = {
+	limit = {
+		NOT = { has_dlc = "Man the Guns" }
+	}
+	set_technology = {
+		early_submarine = 1
+		early_destroyer = 1
+		basic_destroyer = 1
+		early_light_cruiser = 1
+		early_heavy_cruiser = 1
+		early_battleship = 1
+		early_battlecruiser = 1
+		early_carrier = 1
+		transport = 1
+	}
+}
+if = {
+	limit = {
+		has_dlc = "Man the Guns"
+	}
+	set_technology = {
+		basic_naval_mines = 1
+		submarine_mine_laying = 1
+		early_ship_hull_light = 1
+		basic_ship_hull_light = 1
+		early_ship_hull_submarine = 1
+		early_ship_hull_cruiser = 1
+		basic_ship_hull_cruiser = 1
+		early_ship_hull_heavy = 1
+		early_ship_hull_carrier = 1
+		basic_ship_hull_carrier = 1
+		basic_battery = 1
+		basic_light_battery = 1
+		basic_medium_battery = 1
+		basic_heavy_battery = 1
+		basic_torpedo = 1
+		sonar = 1
+		smoke_generator = 1
+		basic_depth_charges = 1
+		basic_secondary_battery = 1
+		basic_cruiser_armor_scheme = 1
+		basic_heavy_armor_scheme = 1
+		mtg_transport = 1
+		improved_secondary_battery = 1
+		basic_fire_control_system = 1
+	}
+}
 
 
 add_timed_idea = {
@@ -126,6 +173,8 @@ recruit_character = PRA_peter_lamborn_wilson
 recruit_character = PRA_robert_evans
 recruit_character = PRA_shanta_driver
 recruit_character = PRA_debbie_bookchin
+# Miscellaneous #
+recruit_character = PRA_patrick_henry_jones #WCZ Uprising Leader
 
 ### Political Advisors ###
 recruit_character = PRA_vancant_vice_president
@@ -228,10 +277,52 @@ if = {
 }
 if = {
 	limit = {
+		NOT = {
+			has_dlc = "Man the Guns"
+		}
+	}
+	create_equipment_variant = {
+		name = "China Destroyer Design"
+		type = destroyer_1
+		parent_version = 0
+		upgrades = {
+			ship_torpedo_upgrade = 1
+			destroyer_engine_upgrade = 1
+			ship_ASW_upgrade = 1
+			ship_anti_air_upgrade = 1
+		}
+	}
+	
+	create_equipment_variant = {
+		name = "China Cruiser Design"
+		type = light_cruiser_1
+		parent_version = 0
+		upgrades = {
+			ship_reliability_upgrade = 1
+			ship_engine_upgrade = 1
+			ship_gun_upgrade = 1
+			ship_anti_air_upgrade = 1
+		}
+	}
+	
+	create_equipment_variant = {
+		name = "China Carrier Class"
+		type = carrier_1
+		parent_version = 0
+		upgrades = {
+			ship_deckspace_upgrade = 2
+			carrier_armor_upgrade = 1
+			ship_engine_upgrade = 1
+			ship_reliability_upgrade = 1
+		}
+	}
+}
+if = {
+	limit = {
 		has_dlc = "Man the Guns"
 	}
 	create_equipment_variant = {
-		name = "China destroyer design"				
+		name = "China Destroyer Design"				
 		type = ship_hull_light_1
 		parent_version = 0
 		modules = {
@@ -247,7 +338,7 @@ if = {
 	}
 
 	create_equipment_variant = {
-		name = "China Cruiser design"
+		name = "China Cruiser Design"
 		type = ship_hull_cruiser_1
 		parent_version = 0
 		modules = {

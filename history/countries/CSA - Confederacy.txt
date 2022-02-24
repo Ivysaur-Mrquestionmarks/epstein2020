@@ -45,6 +45,55 @@ if = {
 		engine_tech_1 = 1
 	}
 }
+if = {
+	limit = {
+		not = { has_dlc = "Man the Guns" }
+	}
+	set_technology = {
+		early_submarine = 1
+		early_destroyer = 1
+		basic_destroyer = 1
+		early_light_cruiser = 1
+		early_heavy_cruiser = 1
+		early_battleship = 1
+		early_battlecruiser = 1
+		early_carrier = 1
+		transport = 1
+	}
+	set_naval_oob = "CSA_naval"
+}
+if = {
+	limit = {
+		has_dlc = "Man the Guns" 
+	}
+	set_technology = {
+		basic_naval_mines = 1
+		submarine_mine_laying = 1
+		early_ship_hull_light = 1
+		basic_ship_hull_light = 1
+		early_ship_hull_submarine = 1
+		early_ship_hull_cruiser = 1
+		basic_ship_hull_cruiser = 1
+		early_ship_hull_heavy = 1
+		early_ship_hull_carrier = 1
+		basic_ship_hull_carrier = 1
+		basic_battery = 1
+		basic_light_battery = 1
+		basic_medium_battery = 1
+		basic_heavy_battery = 1
+		basic_torpedo = 1
+		sonar = 1
+		smoke_generator = 1
+		basic_depth_charges = 1
+		basic_secondary_battery = 1
+		basic_cruiser_armor_scheme = 1
+		basic_heavy_armor_scheme = 1
+		mtg_transport = 1
+		improved_secondary_battery = 1
+		basic_fire_control_system = 1
+	}
+	set_naval_oob = "CSA_naval_mtg"
+}
 
 capital = 506
 
@@ -68,7 +117,6 @@ add_opinion_modifier = {
 }
 
 oob = "CSA_2021"
-set_naval_oob = "CSA_naval"
 set_variable = {
 	var = sexy_x
 	value = -200 #50 required for state take over, 58 max
@@ -221,11 +269,38 @@ recruit_character = CSA_wayne_justice
 recruit_character = CSA_arthur_brooks
 
 if = {
+	limit = {
+		NOT = { has_dlc = "Man the Guns" }
+	}
+	create_equipment_variant = {
+		name = "Submarine Hunter"
+		type = destroyer_1
+		parent_version = 0
+		upgrades = {
+			ship_reliability_upgrade = 2
+			ship_engine_upgrade = 2
+			ship_gun_upgrade = 2
+			ship_anti_air_upgrade = 2
+		}
+	}
+	create_equipment_variant = {
+		name = "Hunley Class"
+		type = submarine_1
+		parent_version = 0
+		upgrades = {
+			ship_reliability_upgrade = 3
+			sub_engine_upgrade = 2
+			sub_stealth_upgrade = 2
+			sub_torpedo_upgrade = 3
+		}
+	}
+}
+if = {
 	limit = { 
 		has_dlc = "Man the Guns" 
 	}
 	create_equipment_variant = {
-		name = "Submarine hunter"				
+		name = "Submarine Hunter"				
 		type = ship_hull_light_1
 		parent_version = 0
 		modules = {
@@ -241,7 +316,7 @@ if = {
 	}
 
 	create_equipment_variant = {
-		name = "Hunley class"
+		name = "Hunley Class"
 		type = ship_hull_submarine_1
 		parent_version = 0
 		modules = {

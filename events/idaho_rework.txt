@@ -730,7 +730,7 @@ country_event = { #WCZ Destroys Roadways
 		}
 	}
 }
-country_event = { #MON/UTA Alert that an uprising is being planned against them.
+country_event = { #MON/UTA/CAS/PRA/PAC/ALA Alert that an uprising is being planned against them.
 	id = idaho_rework.21
 	title = idaho_rework.21.t
 	desc = idaho_rework.21.d
@@ -739,8 +739,9 @@ country_event = { #MON/UTA Alert that an uprising is being planned against them.
 	is_triggered_only = yes
 	fire_only_once = yes
 	
-	option = { #No effect, just an alert.
+	option = { #Tooltip explaining potential civil war
 		name = idaho_rework.21.a
+		custom_effect_tooltip = wcz_potential_civil_war
 	}
 }
 country_event = { #MON 65% Strength Uprising.
@@ -2542,7 +2543,37 @@ country_event = { #Final event in air reform, gives small bonus to air
 	
 	option = {
 		name = idaho_rework.68.a
-		if = {
+		if = { #These are the legitimate one, all others are for people who cheat their way here
+			limit = {
+				has_idea = IDA_Lackluster_Air_Force_7
+				has_country_flag = wcz_strategic_destruction_focus
+			}
+			swap_ideas = {
+				remove_idea = IDA_Lackluster_Air_Force_7
+				add_idea = IDA_Eagles_Of_The_West_Strategic_Destruction_Spirit
+			}
+		}
+		else_if = { #These are the legitimate one, all others are for people who cheat their way here
+			limit = {
+				has_idea = IDA_Lackluster_Air_Force_7
+				has_country_flag = wcz_battlefield_support_focus
+			}
+			swap_ideas = {
+				remove_idea = IDA_Lackluster_Air_Force_7
+				add_idea = IDA_Eagles_Of_The_West_Battlefield_Support_Spirit
+			}
+		}
+		else_if = { #These are the legitimate one, all others are for people who cheat their way here
+			limit = {
+				has_idea = IDA_Lackluster_Air_Force_7
+				has_country_flag = wcz_operation_integrity_focus
+			}
+			swap_ideas = {
+				remove_idea = IDA_Lackluster_Air_Force_7
+				add_idea = IDA_Eagles_Of_The_West_Operational_Integrity_Spirit
+			}
+		}
+		else_if = {
 			limit = {
 				has_idea = IDA_Lackluster_Air_Force
 			}
@@ -2603,36 +2634,6 @@ country_event = { #Final event in air reform, gives small bonus to air
 			swap_ideas = {
 				remove_idea = IDA_Lackluster_Air_Force_7
 				add_idea = IDA_Eagles_Of_The_West_Spirit
-			}
-		}
-		else_if = { #These are the legitimate one, all others are for people who cheat their way here
-			limit = {
-				has_idea = IDA_Lackluster_Air_Force_7
-				has_country_flag = wcz_strategic_destruction_focus
-			}
-			swap_ideas = {
-				remove_idea = IDA_Lackluster_Air_Force_7
-				add_idea = IDA_Eagles_Of_The_West_Strategic_Destruction_Spirit
-			}
-		}
-		else_if = { #These are the legitimate one, all others are for people who cheat their way here
-			limit = {
-				has_idea = IDA_Lackluster_Air_Force_7
-				has_country_flag = wcz_battlefield_support_focus
-			}
-			swap_ideas = {
-				remove_idea = IDA_Lackluster_Air_Force_7
-				add_idea = IDA_Eagles_Of_The_West_Battlefield_Support_Spirit
-			}
-		}
-		else_if = { #These are the legitimate one, all others are for people who cheat their way here
-			limit = {
-				has_idea = IDA_Lackluster_Air_Force_7
-				has_country_flag = wcz_operation_integrity_focus
-			}
-			swap_ideas = {
-				remove_idea = IDA_Lackluster_Air_Force_7
-				add_idea = IDA_Eagles_Of_The_West_Operational_Integrity_Spirit
 			}
 		}
 	}
@@ -3576,7 +3577,7 @@ country_event = { #WCZ gains a spirit that reduces justify war goal tension limi
 			news_event = idaho_rework.95
 			country_event = {
 				id = idaho_rework.96
-				days = 20
+				days = 10
 			}
 		}
 	}
@@ -3662,6 +3663,7 @@ country_event = { #WCZ stuck with Trump, Stankiewicz gets the "General of the We
 	option = {
 		name = idaho_rework.97.a
 		remove_country_leader_trait = IDA_attack_bonus
+		remove_country_leader_trait = militia_leader
 		add_country_leader_trait = general_of_the_west
 	}
 }
@@ -3677,6 +3679,7 @@ country_event = { #WCZ declares independence, Stankiewicz gets "Interim Presiden
 	option = {
 		name = idaho_rework.98.a
 		remove_country_leader_trait = IDA_attack_bonus
+		remove_country_leader_trait = militia_leader
 		add_country_leader_trait = interim_president
 		hidden_effect = {
 			set_cosmetic_tag = IDA_Union_of_Lincoln
@@ -4112,7 +4115,7 @@ country_event = { #First Lincoln Election event, explains how the election works
 	option = { #Option for the WCZ, actually starts the election
 		name = idaho_rework.112.a
 		trigger = {
-			tag = IDA
+			has_cosmetic_tag = IDA_Union_of_Lincoln
 		}
 		ai_chance = {
 			factor = 10
@@ -4128,7 +4131,7 @@ country_event = { #First Lincoln Election event, explains how the election works
 	option = { #Option for the WCZ, actually starts the election
 		name = idaho_rework.112.b
 		trigger = {
-			tag = IDA
+			has_cosmetic_tag = IDA_Union_of_Lincoln
 		}
 		ai_chance = {
 			factor = 10
@@ -4144,7 +4147,7 @@ country_event = { #First Lincoln Election event, explains how the election works
 	option = { #Option for the WCZ, actually starts the election (confused confirmation)
 		name = idaho_rework.112.c
 		trigger = {
-			tag = IDA
+			has_cosmetic_tag = IDA_Union_of_Lincoln
 		}
 		ai_chance = {
 			factor = 10
@@ -4161,10 +4164,8 @@ country_event = { #First Lincoln Election event, explains how the election works
 	option = { #Option for all WCZ allies
 		name = idaho_rework.112.e
 		trigger = {
-			OR = {
-				NOT = {
-					tag = IDA
-				}
+			NOT = {
+				has_cosmetic_tag = IDA_Union_of_Lincoln
 			}
 		}
 		ai_chance = {
@@ -4175,10 +4176,8 @@ country_event = { #First Lincoln Election event, explains how the election works
 	option = { #Option for all WCZ allies
 		name = idaho_rework.112.f
 		trigger = {
-			OR = {
-				NOT = {
-					tag = IDA
-				}
+			NOT = {
+				has_cosmetic_tag = IDA_Union_of_Lincoln
 			}
 		}
 		ai_chance = {
@@ -4190,10 +4189,8 @@ country_event = { #First Lincoln Election event, explains how the election works
 	option = { #Option for all WCZ allies (confused confirmation)
 		name = idaho_rework.112.g
 		trigger = {
-			OR = {
-				NOT = {
-					tag = IDA
-				}
+			NOT = {
+				has_cosmetic_tag = IDA_Union_of_Lincoln
 			}
 		}
 		ai_chance = {
@@ -21363,7 +21360,7 @@ country_event = { #Trump decides whether it wants to accept Lincoln back into it
 				add_to_faction = PREV
 			}
 		}
-		hidden_effect
+		hidden_effect = {
 			remove_opinion_modifier = {
 				target = IDA
 				modifier = faction_traitor
@@ -21484,7 +21481,7 @@ country_event = { #GLA decides whether it wants to accept Lincoln into its facti
 		}
 		IDA = {
 			country_event = {
-				id = 
+				id = idaho_rework.194
 				days = 2
 			}
 		}
@@ -21507,5 +21504,729 @@ country_event = { #Notice that the GLA rejected Lincoln's offer to join them
 			refund_political_power = no
 		}
 		complete_national_focus = IDA_To_Make_Lincoln_Proud
+	}
+}
+country_event = { #CAS 65% Strength Uprising.
+	id = idaho_rework.200
+	title = idaho_rework.200.t
+	desc = idaho_rework.200.d
+	picture = GFX_report_event_IDA_Cascadia_Militia
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Starts civil war in Cascadia (Option is if Cascadia has a Republican government)
+		name = idaho_rework.200.a
+		trigger = {
+			CAS = {
+				has_government = republican
+			}
+		}
+		ai_chance = {
+			factor = 10
+		}
+		hidden_effect = {
+			CAS_jospeh_rice = {
+				promote_character = {
+					ideology = libertarian_ideology
+				}
+			}
+		}
+		start_civil_war = {
+			ideology = libertarian_right
+			size = 0.65
+			keep_political_leader = no
+			keep_unit_leaders = {
+				
+			}
+			keep_unit_leaders_trigger = {
+				always = yes
+			}
+		}
+		random_other_country = {
+			limit = {
+				original_tag = CAS
+				has_government = libertarian_right
+			}
+			set_cosmetic_tag = IDA_Cascadia
+			load_focus_tree = idaho_puppet
+		}
+	}
+	
+	option = { #Starts civil war in Cascadia (Option is if Cascadia does not have a Republican government)
+		name = idaho_rework.200.b
+		trigger = {
+			NOT = {
+				CAS = {
+					has_government = republican
+				}
+			}
+		}
+		ai_chance = {
+			factor = 10
+		}
+		hidden_effect = {
+			CAS_jospeh_rice = {
+				promote_character = {
+					ideology = trumpist
+				}
+			}
+		}
+		start_civil_war = {
+			ideology = republican
+			size = 0.65
+			keep_political_leader = no
+			keep_unit_leaders = {
+				
+			}
+			keep_unit_leaders_trigger = {
+				always = yes
+			}
+		}
+		random_other_country = {
+			limit = {
+				original_tag = CAS
+				has_government = republican
+			}
+			set_cosmetic_tag = IDA_Cascadia
+			load_focus_tree = idaho_puppet
+		}
+	}
+}
+country_event = { #CAS 50% Strength Uprising.
+	id = idaho_rework.201
+	title = idaho_rework.201.t
+	desc = idaho_rework.201.d
+	picture = GFX_report_event_IDA_Cascadia_Militia
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Starts civil war in Cascadia (Option is if Cascadia has a Republican government)
+		name = idaho_rework.201.a
+		trigger = {
+			CAS = {
+				has_government = republican
+			}
+		}
+		ai_chance = {
+			factor = 10
+		}
+		hidden_effect = {
+			CAS_jospeh_rice = {
+				promote_character = {
+					ideology = libertarian_ideology
+				}
+			}
+		}
+		start_civil_war = {
+			ideology = libertarian_right
+			size = 0.5
+			keep_political_leader = no
+			keep_unit_leaders = {
+				
+			}
+			keep_unit_leaders_trigger = {
+				always = yes
+			}
+		}
+		random_other_country = {
+			limit = {
+				original_tag = CAS
+				has_government = libertarian_right
+			}
+			set_cosmetic_tag = IDA_Cascadia
+			load_focus_tree = idaho_puppet
+		}
+	}
+	
+	option = { #Starts civil war in Cascadia (Option is if Cascadia does not have a Republican government)
+		name = idaho_rework.201.b
+		trigger = {
+			NOT = {
+				CAS = {
+					has_government = republican
+				}
+			}
+		}
+		ai_chance = {
+			factor = 10
+		}
+		hidden_effect = {
+			CAS_jospeh_rice = {
+				promote_character = {
+					ideology = trumpist
+				}
+			}
+		}
+		start_civil_war = {
+			ideology = republican
+			size = 0.5
+			keep_political_leader = no
+			keep_unit_leaders = {
+				
+			}
+			keep_unit_leaders_trigger = {
+				always = yes
+			}
+		}
+		random_other_country = {
+			limit = {
+				original_tag = CAS
+				has_government = republican
+			}
+			set_cosmetic_tag = IDA_Cascadia
+			load_focus_tree = idaho_puppet
+		}
+	}
+}
+country_event = { #CAS 35% Strength Uprising.
+	id = idaho_rework.202
+	title = idaho_rework.202.t
+	desc = idaho_rework.202.d
+	picture = GFX_report_event_IDA_Cascadia_Militia
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Starts civil war in Cascadia (Option is if Cascadia has a Republican government)
+		name = idaho_rework.202.a
+		trigger = {
+			CAS = {
+				has_government = republican
+			}
+		}
+		ai_chance = {
+			factor = 10
+		}
+		hidden_effect = {
+			CAS_jospeh_rice = {
+				promote_character = {
+					ideology = libertarian_ideology
+				}
+			}
+		}
+		start_civil_war = {
+			ideology = libertarian_right
+			size = 0.35
+			keep_political_leader = no
+			keep_unit_leaders = {
+				
+			}
+			keep_unit_leaders_trigger = {
+				always = yes
+			}
+		}
+		random_other_country = {
+			limit = {
+				original_tag = CAS
+				has_government = libertarian_right
+			}
+			set_cosmetic_tag = IDA_Cascadia
+			load_focus_tree = idaho_puppet
+		}
+	}
+	
+	option = { #Starts civil war in Cascadia (Option is if Cascadia does not have a Republican government)
+		name = idaho_rework.202.b
+		trigger = {
+			NOT = {
+				CAS = {
+					has_government = republican
+				}
+			}
+		}
+		ai_chance = {
+			factor = 10
+		}
+		hidden_effect = {
+			CAS_jospeh_rice = {
+				promote_character = {
+					ideology = trumpist
+				}
+			}
+		}
+		start_civil_war = {
+			ideology = republican
+			size = 0.35
+			keep_political_leader = no
+			keep_unit_leaders = {
+				
+			}
+			keep_unit_leaders_trigger = {
+				always = yes
+			}
+		}
+		random_other_country = {
+			limit = {
+				original_tag = CAS
+				has_government = republican
+			}
+			set_cosmetic_tag = IDA_Cascadia
+			load_focus_tree = idaho_puppet
+		}
+	}
+}
+country_event = { #CAS 20% Strength Uprising.
+	id = idaho_rework.203
+	title = idaho_rework.203.t
+	desc = idaho_rework.203.d
+	picture = GFX_report_event_IDA_Cascadia_Militia
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Starts civil war in Cascadia (Option is if Cascadia has a Republican government)
+		name = idaho_rework.203.a
+		trigger = {
+			CAS = {
+				has_government = republican
+			}
+		}
+		ai_chance = {
+			factor = 10
+		}
+		hidden_effect = {
+			CAS_jospeh_rice = {
+				promote_character = {
+					ideology = libertarian_ideology
+				}
+			}
+		}
+		start_civil_war = {
+			ideology = libertarian_right
+			size = 0.2
+			keep_political_leader = no
+			keep_unit_leaders = {
+				
+			}
+			keep_unit_leaders_trigger = {
+				always = yes
+			}
+		}
+		random_other_country = {
+			limit = {
+				original_tag = CAS
+				has_government = libertarian_right
+			}
+			set_cosmetic_tag = IDA_Cascadia
+			load_focus_tree = idaho_puppet
+		}
+	}
+	
+	option = { #Starts civil war in Cascadia (Option is if Cascadia does not have a Republican government)
+		name = idaho_rework.203.b
+		trigger = {
+			NOT = {
+				CAS = {
+					has_government = republican
+				}
+			}
+		}
+		ai_chance = {
+			factor = 10
+		}
+		hidden_effect = {
+			CAS_jospeh_rice = {
+				promote_character = {
+					ideology = trumpist
+				}
+			}
+		}
+		start_civil_war = {
+			ideology = republican
+			size = 0.35
+			keep_political_leader = no
+			keep_unit_leaders = {
+				
+			}
+			keep_unit_leaders_trigger = {
+				always = yes
+			}
+		}
+		random_other_country = {
+			limit = {
+				original_tag = CAS
+				has_government = republican
+			}
+			set_cosmetic_tag = IDA_Cascadia
+			load_focus_tree = idaho_puppet
+		}
+	}
+}
+country_event = { #WCZ gets alert that CAS (Uprising) annexes itself into it
+	id = idaho_rework.204
+	title = idaho_rework.204.t
+	desc = idaho_rework.204.d
+	picture = GFX_report_event_IDA_Cascadia_Militia
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Doesn't do much, Annexation happens in focus
+		name = idaho_rework.204.a
+		custom_effect_tooltip = wcz_loyalist_cascadia_annexed
+	}
+}
+country_event = { #PRA 65% Strength Uprising.
+	id = idaho_rework.205
+	title = idaho_rework.205.t
+	desc = idaho_rework.205.d
+	picture = GFX_report_event_IDA_Militia_2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Starts civil war in California (Option is if California has a Republican government)
+		name = idaho_rework.205.a
+		trigger = {
+			PRA = {
+				has_government = republican
+			}
+		}
+		ai_chance = {
+			factor = 10
+		}
+		hidden_effect = {
+			PRA_patrick_henry_jones = {
+				promote_character = {
+					ideology = military_dictatorship
+				}
+			}
+		}
+		start_civil_war = {
+			ideology = autocratic
+			size = 0.65
+			keep_political_leader = no
+			keep_unit_leaders = {
+				
+			}
+			keep_unit_leaders_trigger = {
+				always = yes
+			}
+		}
+		random_other_country = {
+			limit = {
+				original_tag = PRA
+				has_government = autocratic
+			}
+			set_cosmetic_tag = IDA_California
+			load_focus_tree = idaho_puppet
+		}
+	}
+	
+	option = { #Starts civil war in California (Option is if California does not have a Republican government)
+		name = idaho_rework.205.b
+		trigger = {
+			NOT = {
+				PRA = {
+					has_government = republican
+				}
+			}
+		}
+		ai_chance = {
+			factor = 10
+		}
+		hidden_effect = {
+			PRA_patrick_henry_jones = {
+				promote_character = {
+					ideology = trumpist
+				}
+			}
+		}
+		start_civil_war = {
+			ideology = republican
+			size = 0.65
+			keep_political_leader = no
+			keep_unit_leaders = {
+				
+			}
+			keep_unit_leaders_trigger = {
+				always = yes
+			}
+		}
+		random_other_country = {
+			limit = {
+				original_tag = PRA
+				has_government = republican
+			}
+			set_cosmetic_tag = IDA_California
+			load_focus_tree = idaho_puppet
+		}
+	}
+}
+country_event = { #PRA 50% Strength Uprising.
+	id = idaho_rework.206
+	title = idaho_rework.206.t
+	desc = idaho_rework.206.d
+	picture = GFX_report_event_IDA_Militia_2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Starts civil war in California (Option is if California has a Republican government)
+		name = idaho_rework.206.a
+		trigger = {
+			PRA = {
+				has_government = republican
+			}
+		}
+		ai_chance = {
+			factor = 10
+		}
+		hidden_effect = {
+			PRA_patrick_henry_jones = {
+				promote_character = {
+					ideology = libertarian_ideology
+				}
+			}
+		}
+		start_civil_war = {
+			ideology = libertarian_right
+			size = 0.5
+			keep_political_leader = no
+			keep_unit_leaders = {
+				
+			}
+			keep_unit_leaders_trigger = {
+				always = yes
+			}
+		}
+		random_other_country = {
+			limit = {
+				original_tag = PRA
+				has_government = libertarian_right
+			}
+			set_cosmetic_tag = IDA_California
+			load_focus_tree = idaho_puppet
+		}
+	}
+	
+	option = { #Starts civil war in California (Option is if California does not have a Republican government)
+		name = idaho_rework.207.b
+		trigger = {
+			NOT = {
+				PRA = {
+					has_government = republican
+				}
+			}
+		}
+		ai_chance = {
+			factor = 10
+		}
+		hidden_effect = {
+			PRA_patrick_henry_jones = {
+				promote_character = {
+					ideology = trumpist
+				}
+			}
+		}
+		start_civil_war = {
+			ideology = republican
+			size = 0.5
+			keep_political_leader = no
+			keep_unit_leaders = {
+				
+			}
+			keep_unit_leaders_trigger = {
+				always = yes
+			}
+		}
+		random_other_country = {
+			limit = {
+				original_tag = PRA
+				has_government = republican
+			}
+			set_cosmetic_tag = IDA_California
+			load_focus_tree = idaho_puppet
+		}
+	}
+}
+country_event = { #PRA 35% Strength Uprising.
+	id = idaho_rework.207
+	title = idaho_rework.207.t
+	desc = idaho_rework.207.d
+	picture = GFX_report_event_IDA_Militia_2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Starts civil war in California (Option is if California has a Republican government)
+		name = idaho_rework.207.a
+		trigger = {
+			PRA = {
+				has_government = republican
+			}
+		}
+		ai_chance = {
+			factor = 10
+		}
+		hidden_effect = {
+			PRA_patrick_henry_jones = {
+				promote_character = {
+					ideology = libertarian_ideology
+				}
+			}
+		}
+		start_civil_war = {
+			ideology = libertarian_right
+			size = 0.35
+			keep_political_leader = no
+			keep_unit_leaders = {
+				
+			}
+			keep_unit_leaders_trigger = {
+				always = yes
+			}
+		}
+		random_other_country = {
+			limit = {
+				original_tag = PRA
+				has_government = libertarian_right
+			}
+			set_cosmetic_tag = IDA_California
+			load_focus_tree = idaho_puppet
+		}
+	}
+	
+	option = { #Starts civil war in California (Option is if California does not have a Republican government)
+		name = idaho_rework.207.b
+		trigger = {
+			NOT = {
+				PRA = {
+					has_government = republican
+				}
+			}
+		}
+		ai_chance = {
+			factor = 10
+		}
+		hidden_effect = {
+			PRA_patrick_henry_jones = {
+				promote_character = {
+					ideology = trumpist
+				}
+			}
+		}
+		start_civil_war = {
+			ideology = republican
+			size = 0.35
+			keep_political_leader = no
+			keep_unit_leaders = {
+				
+			}
+			keep_unit_leaders_trigger = {
+				always = yes
+			}
+		}
+		random_other_country = {
+			limit = {
+				original_tag = PRA
+				has_government = republican
+			}
+			set_cosmetic_tag = IDA_California
+			load_focus_tree = idaho_puppet
+		}
+	}
+}
+country_event = { #PRA 20% Strength Uprising.
+	id = idaho_rework.208
+	title = idaho_rework.208.t
+	desc = idaho_rework.208.d
+	picture = GFX_report_event_IDA_Militia_2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Starts civil war in California (Option is if California has a Republican government)
+		name = idaho_rework.208.a
+		trigger = {
+			PRA = {
+				has_government = republican
+			}
+		}
+		ai_chance = {
+			factor = 10
+		}
+		hidden_effect = {
+			PRA_patrick_henry_jones = {
+				promote_character = {
+					ideology = libertarian_ideology
+				}
+			}
+		}
+		start_civil_war = {
+			ideology = libertarian_right
+			size = 0.2
+			keep_political_leader = no
+			keep_unit_leaders = {
+				
+			}
+			keep_unit_leaders_trigger = {
+				always = yes
+			}
+		}
+		random_other_country = {
+			limit = {
+				original_tag = PRA
+				has_government = libertarian_right
+			}
+			set_cosmetic_tag = IDA_California
+			load_focus_tree = idaho_puppet
+		}
+	}
+	
+	option = { #Starts civil war in California (Option is if California does not have a Republican government)
+		name = idaho_rework.208.b
+		trigger = {
+			NOT = {
+				CAS = {
+					has_government = republican
+				}
+			}
+		}
+		ai_chance = {
+			factor = 10
+		}
+		hidden_effect = {
+			PRA_patrick_henry_jones = {
+				promote_character = {
+					ideology = trumpist
+				}
+			}
+		}
+		start_civil_war = {
+			ideology = republican
+			size = 0.35
+			keep_political_leader = no
+			keep_unit_leaders = {
+				
+			}
+			keep_unit_leaders_trigger = {
+				always = yes
+			}
+		}
+		random_other_country = {
+			limit = {
+				original_tag = PRA
+				has_government = republican
+			}
+			set_cosmetic_tag = IDA_California
+			load_focus_tree = idaho_puppet
+		}
+	}
+}
+country_event = { #WCZ gets alert that CAS (Uprising) annexes itself into it
+	id = idaho_rework.209
+	title = idaho_rework.209.t
+	desc = idaho_rework.209.d
+	picture = GFX_report_event_IDA_Militia_2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Doesn't do much, Annexation happens in focus
+		name = idaho_rework.209.a
+		custom_effect_tooltip = wcz_loyalist_california_annexed
 	}
 }
