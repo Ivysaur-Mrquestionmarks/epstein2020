@@ -1206,8 +1206,8 @@ IDA_war_plan_yellow_decision = {
 					limit = {
 						has_country_flag = wcz_UTA_uprising_3
 					}
-					UTA = {
-						country_event = idaho_rework.42
+					UTA = { #idaho_rework.42 refuses to work for whatever reason 
+						country_event = idaho_rework.43
 					}
 				}
 				else_if = {
@@ -2675,7 +2675,7 @@ IDA_pacific_fleet_decision = {
 		icon = GFX_decision_hol_radio_oranje
 
 		available = {
-			has_idea = IDA_War_Plan_Orange_Spirit
+			has_idea = IDA_War_Plan_Indigo_Spirit
 			has_government = republican
 			PAC = {
 				has_war_with = IDA
@@ -2703,7 +2703,7 @@ IDA_pacific_fleet_decision = {
 		days_re_enable = 30
 
 		visible = {
-			has_idea = IDA_War_Plan_Orange_Spirit
+			has_idea = IDA_War_Plan_Indigo_Spirit
 			has_government = republican
 		}
 
@@ -2717,59 +2717,218 @@ IDA_pacific_fleet_decision = {
 			}
 		}
 	}
-	
-	IDA_PAC_bomb_ships = { #Cost political power, equipment, and command power, destroys a various amount of naval ships (amount is dependent on chance)
+}
 
-		icon = GFX_decision_generic_naval
+IDA_alaska_decision = { 
+	
+	IDA_ALA_sow_dissent = { #Cost political power, Reduce stability and war support
+
+		icon = GFX_decision_eng_propaganda_campaigns
 
 		available = {
 			has_idea = IDA_War_Plan_Indigo_Spirit
 			has_government = republican
-			PAC = {
+		}
+
+		cost = 30
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				OR = {
+					ALA = { 
+						is_in_faction_with = IDA
+					}
+				}
+			}
+		}
+
+		visible = {
+			has_idea = IDA_War_Plan_Indigo_Spirit
+			has_government = republican
+			ALA = {
+				exists = yes
+			}
+		}
+		
+		days_remove = 5
+		days_re_enable = 30
+		
+		fixed_random_seed = no
+		complete_effect = { #60% chance to reduce 5% stability, 30% chance to reduce 10% stability, 10% chance to reduce 10% stability and 5% war support
+			random_list = {
+				60 = { #Small protests
+					ALA = {
+						country_event = idaho_rework.6
+					}
+				}
+				30 = { #Medium protests
+					ALA = {
+						country_event = idaho_rework.7
+					}
+				}
+				10 = { #Large protests
+					ALA = {
+						country_event = idaho_rework.8
+					}
+				}
+			}
+		}
+	}
+	
+	IDA_ALA_organize_strikes = { #Cost political power, Decrease production and construction speed
+
+		icon = GFX_decision_generic_construction
+
+		available = {
+			has_idea = IDA_War_Plan_Indigo_Spirit
+			has_government = republican
+		}
+
+		cost = 30
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				OR = {
+					ALA = { 
+						is_in_faction_with = IDA
+					}
+				}
+			}
+		}
+
+		visible = {
+			has_idea = IDA_War_Plan_Indigo_Spirit
+			has_government = republican
+			ALA = {
+				exists = yes
+			}
+		}
+		
+		days_remove = 5
+		days_re_enable = 30
+		
+		fixed_random_seed = no
+		complete_effect = { #60% chance for -5% construction and production, 30% chance for -10%, 10% chance for -15%
+			random_list = {
+				60 = { #Small strikes
+					ALA = {
+						country_event = idaho_rework.9
+					}
+				}
+				30 = { #Medium strikes
+					ALA = {
+						country_event = idaho_rework.10
+					}
+				}
+				10 = { #Large strikes
+					ALA = {
+						country_event = idaho_rework.11
+					}
+				}
+			}
+		}
+	}
+
+	IDA_ALA_blow_up_roadways = { #Cost political power and equipment, Reduce division speed and supply (war only)/ Maybe add railway damage after later
+
+		icon = GFX_decision_oppression
+
+		available = {
+			has_idea = IDA_War_Plan_Indigo_Spirit
+			has_government = republican
+			ALA = {
 				has_war_with = IDA
 			}
 		}
 
 		custom_cost_trigger = {
 			has_political_power > 29
-			command_power > 39
-			has_equipment = { infantry_equipment > 499 }
+			has_equipment = { infantry_equipment > 249 }
 		}
 		
-		custom_cost_text = wcz_bomb_ships_cost
+		custom_cost_text = wcz_blow_roadways_cost
 
 		ai_will_do = {
 			factor = 10
 			modifier = {
 				factor = 0
-				PAC = { 
+				ALA = { 
 					is_in_faction_with = IDA
 				}
 			}
 		}
 		
 		days_remove = 10
-		days_re_enable = 10
+		days_re_enable = 30
 
 		visible = {
 			has_idea = IDA_War_Plan_Indigo_Spirit
 			has_government = republican
-			PAC = {
-				country_exists = yes
+			ALA = {
+				exists = yes
 			}
 		}
 
 		complete_effect = { #Only one event this time 
-			PAC = {
-				country_event = idaho_rework.81
+			ALA = {
+				country_event = idaho_rework.20
 			}
 			hidden_effect = {
 				add_political_power = -30
-				add_command_power = -40
 				add_equipment_to_stockpile = {
 					type = infantry_equipment
-					amount = -499
+					amount = -250
 				}
+			}
+		}
+	}
+	
+	IDA_ALA_sabotage_communications = { #Cost political power and command power, Reduce division speed and supply (war only)/ Maybe add railway damage after later
+
+		icon = GFX_decision_hol_radio_oranje
+
+		available = {
+			has_idea = IDA_War_Plan_Indigo_Spirit
+			has_government = republican
+			ALA = {
+				has_war_with = IDA
+			}
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 29
+			command_power > 29
+		}
+		
+		custom_cost_text = wcz_sabotage_communications_cost
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				ALA = { 
+					is_in_faction_with = IDA
+				}
+			}
+		}
+		
+		days_remove = 10
+		days_re_enable = 30
+
+		visible = {
+			has_idea = IDA_War_Plan_Indigo_Spirit
+			has_government = republican
+		}
+
+		complete_effect = { #Only one event this time 
+			ALA = {
+				country_event = idaho_rework.80
+			}
+			hidden_effect = {
+				add_political_power = -30
+				add_command_power = -30
 			}
 		}
 	}
