@@ -35,62 +35,9 @@ country_event = {
 	option = {
 		name = tribal.2.a
 		add_ideas = HOP_ss_divisions
-		hidden_effect = { create_faction = faction_black_swastika }
-		create_field_marshal = {
-			name = "James Mason"
-			portrait_path="gfx/leaders/CAS/siege.dds" 
-			id = 1488
-			desc = "DESC_LEADER_JAMES_MASON"
-			traits={ politically_connected trait_reckless harsh_leader guerilla_fighter } 
-			skill = 1
-			attack_skill = 1
-			defense_skill = 1
-			planning_skill = 1
-			logistics_skill = 1
-		}
-		create_corps_commander = {
-			name = "Augustus Sol Invictus"
-			portrait_path = "gfx/leaders/HOP/Invictus.dds"
-			id = 1489
-			traits = { politically_connected media_personality }
-			skill = 1
-			attack_skill = 1
-			defense_skill = 1
-			planning_skill = 1
-			logistics_skill = 1
-		}
-		create_corps_commander = {
-			name = "Paul Miller"
-			portrait_path = "gfx/leaders/HOP/miller.dds"
-			id = 1491
-			desc = "DESC_LEADER_PAUL_MILLER"
-			traits = { media_personality harsh_leader }
-			skill = 1
-			attack_skill = 1
-			defense_skill = 1
-			planning_skill = 1
-			logistics_skill = 1
-		}
-		create_corps_commander = {
-			name = "Kevin Strom"
-			portrait_path = "gfx/leaders/HOP/strom.dds"
-			id = 1492
-			traits = { politically_connected trait_cautious }
-			skill = 1
-			attack_skill = 1
-			defense_skill = 1
-			planning_skill = 1
-			logistics_skill = 1
-		}
-		create_country_leader = {
-			name = "James Mason"
-			picture = "gfx/leaders/CAS/siege.dds"
-			expire = "2060.1.1"
-			ideology = neonazism
-			desc = "DESC_LEADER_JAMES_MASON"
-			traits = {
-				read_siege
-			}
+		hidden_effect = { 
+			create_faction = faction_black_swastika 
+			set_country_flag = hop_nazis_are_here
 		}
 		set_politics = {
 			ruling_party = autocratic
@@ -210,12 +157,9 @@ country_event = {
 				limit = {
 					has_completed_focus = HOP_The_Loyalist
 				}
-				every_unit_leader = {
-        				limit = {
-    						has_id = 1489
-        			    }
-        			    promote_leader = yes
-        			}
+				HOP_augustus_sol_invictus = {
+					promote_leader = yes
+        		}
 			}
 			if = {
 				limit = {
@@ -235,16 +179,9 @@ country_event = {
 		trigger = {
 			has_completed_focus = HOP_The_Loyalist
 		}
-		kill_country_leader = yes
-		create_country_leader = {
-			name = "Augustus Sol Invictus"
-			picture = "gfx/leaders/HOP/InvictusEmperor.dds"
-			expire = "2060.1.1"
-			desc = "DESC_AUGUSTUS_SOL_INVICTUS_LEADER"
-			ideology = neonazism
-			traits = {
-				neo_nazi_caesar
-			}
+		retire_character = HOP_james_mason
+		HOP_augustus_sol_invictus = {
+			promote_character = yes
 		}
 		set_cosmetic_tag = HOP_sol_invictus
 	}
@@ -253,16 +190,9 @@ country_event = {
 			has_completed_focus = HOP_The_Jester
 		}
 		name = tribal.3.b
-		kill_country_leader = yes
-		create_country_leader = {
-			name = "Paul Miller"
-			picture = "gfx/leaders/HOP/miller.dds"
-			expire = "2060.1.1"
-			desc = "DESC_LEADER_PAUL_MILLER"
-			ideology = neonazism
-			traits = {
-				Gypsy_Crusader
-			}
+		retire_character = HOP_james_mason
+		HOP_paul_miller = {
+			promote_character = yes
 		}
 		set_cosmetic_tag = HOP_American_Reich
 	}
@@ -278,18 +208,9 @@ country_event = {
 	option = {
 		name = tribal.4.a
 		add_manpower = 350
-		create_corps_commander = {
-			name = "Mark Collett"
-			portrait_path = "gfx/leaders/HOP/collett.dds"
-			id = 1493
-			traits = { media_personality politically_connected winter_specialist }
-			skill = 1
-			attack_skill = 1
-			defense_skill = 1
-			planning_skill = 1
-			logistics_skill = 1
-		}
+		show_unit_leaders_tooltip = HOP_mark_collett
 		hidden_effect = {
+			set_country_flag = hop_british_nazis
 			45 = {
 				create_unit = {
 					division = "name = \"1st Auxillery Division\" division_template = \"SS Division\" start_experience_factor = 0.0" 
@@ -612,14 +533,13 @@ country_event = {
 		KKK = {
 			load_focus_tree = Atomwaffen_KKK_Klientstate
 			set_cosmetic_tag = KKK_Atomwaffen_Puppet
-			retire_country_leader = yes
-			create_country_leader = {
-				name = "Ray Larsen"
-				picture = "gfx/leaders/KKK/Ray_Larsen.tga"
-				expire = "2060.1.1"
-				ideology = theocracy
-				traits = {
-					Puppet_Emperor_of_the_Klan
+			add_country_leader_role = {
+				character = KKK_ray_larsen
+				promote_leader = yes
+				country_leader = {
+					ideology = theocracy
+					expire = “2060.1.1.1”
+					traits = { Puppet_Emperor_of_the_Klan }
 				}
 			}
 		}
@@ -731,14 +651,13 @@ country_event = {
        	KKK = {
        		load_focus_tree = Atomwaffen_KKK_Klientstate
 			set_cosmetic_tag = KKK_Atomwaffen_Puppet
-			retire_country_leader = yes
-			create_country_leader = {
-				name = "Ray Larsen"
-				picture = "gfx/leaders/KKK/Ray_Larsen.tga"
-				expire = "2060.1.1"
-				ideology = theocracy
-				traits = {
-					Puppet_Emperor_of_the_Klan
+			add_country_leader_role = {
+				character = KKK_ray_larsen
+				promote_leader = yes
+				country_leader = {
+					ideology = theocracy
+					expire = “2060.1.1.1”
+					traits = { Puppet_Emperor_of_the_Klan }
 				}
 			}
        	}
