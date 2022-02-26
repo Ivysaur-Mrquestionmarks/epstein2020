@@ -358,3 +358,108 @@ news_event = {
 		name = News_Events.9.a
 	}
 }
+
+#Invasion of Ukraine
+news_event = {
+	id = News_events.10
+	title = News_events.10.t
+	desc = News_events.10.d
+	picture = event_ukraine_war_1
+	trigger = {
+		date > 2022.2.20
+		NOT = {
+			has_global_flag = ukraine_annexed_by_putin
+		}
+	}
+	immediate = {
+		set_global_flag = ukraine_annexed_by_putin
+	}
+	major = yes
+	option = {
+		name = News_Events.10.a
+		if = {
+			limit = {
+				original_tag = ENG
+			}
+			country_event = { id = News_events.11 hours = 12 }
+		}
+	}
+}
+#Britain reacts to invasion of Ukraine
+country_event = {
+	id = News_events.11
+	title = News_events.11.t
+	desc = News_events.11.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	#picture =
+	option = {
+		name = News_events.11.a
+		add_war_support = 0.10
+		FFR = { country_event = { id = News_events.12 days = 2 } }
+	}
+}
+#French response
+country_event = {
+	id = News_events.12
+	title = News_events.12.t
+	desc = News_events.12.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	#picture =
+	option = {
+		name = News_events.12.a
+		add_war_support = -0.10
+		ENG = { country_event = { id = News_events.13 days = 1 } }
+	}
+}
+#Britain and France split- country event
+country_event = {
+	id = News_events.13
+	title = News_events.13.t
+	desc = News_events.13.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	#picture =
+	option = {
+		name = News_events.13.a
+		add_war_support = -0.025
+		news_event = { id = News_events.14 days = 1 }
+		news_event = { id = News_events.15 days = 6 }
+	}
+}
+#Franco-British Split- news event
+news_event = {
+	id = News_events.14
+	title = News_events.14.t
+	desc = News_events.14.d
+	picture = event_ukraine_war_2
+	major = yes
+	is_triggered_only = yes
+	option = {
+		name = News_events.14.a
+	}
+}
+#NATO dissolves
+news_event = {
+	id = News_events.15
+	title = News_events.15.t
+	desc = News_events.15.d
+	picture = event_ukraine_war_3
+	major = yes
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = {
+					original_tag = ENG
+					is_faction_leader = yes
+				}
+				dismantle_faction = yes
+			}
+		}
+	}
+	option = {
+		name = News_events.15.a
+	}
+}
