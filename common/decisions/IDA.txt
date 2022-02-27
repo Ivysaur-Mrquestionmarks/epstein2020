@@ -2717,6 +2717,255 @@ IDA_pacific_fleet_decision = {
 			}
 		}
 	}
+	
+	# Uprising Decisions - As of writing this, the A.I. will take one decision max before starting an uprising #
+	IDA_PAC_organize_militia_resistance = { #Helps with uprising strength, costs political power and command power
+
+		icon = GFX_decision_hol_draw_up_staff_plans
+
+		available = {
+			has_idea = IDA_War_Plan_Indigo_Spirit
+			has_government = republican
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 99
+			command_power > 109
+		}
+		
+		custom_cost_text = wcz_organize_PAC_ALA_uprising_cost
+
+		ai_will_do = {
+			factor = 20
+		}
+		
+		fire_only_once = yes
+		
+		visible = {
+			has_idea = IDA_War_Plan_Indigo_Spirit
+			has_government = republican
+		}
+
+		complete_effect = {
+			hidden_effect = {
+				if = {
+					limit = {
+						has_country_flag = wcz_PAC_uprising_2
+					}   
+					clr_country_flag = wcz_PAC_uprising_2
+					set_country_flag = wcz_PAC_uprising_3
+				}
+				else_if = {
+					limit = {
+						has_country_flag = wcz_PAC_uprising_1
+					}
+					clr_country_flag = wcz_PAC_uprising_1
+					set_country_flag = wcz_PAC_uprising_2
+				}
+				else = {
+					set_country_flag = wcz_PAC_uprising_1
+					PAC = {
+						country_event = idaho_rework.21
+					}
+				}
+			}
+			hidden_effect = {
+				add_political_power = -100
+				add_command_power = -110
+			}
+		}
+	}
+
+	IDA_PAC_smuggle_equipment_to_resistance_groups = { #Helps with uprising strength, costs equipment
+
+		icon = GFX_decision_generic_industry
+
+		available = {
+			has_idea = IDA_War_Plan_Indigo_Spirit
+			has_government = republican
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 49
+			has_equipment = { infantry_equipment > 9999 }
+			has_equipment = {
+				convoy > 99
+			}
+		}
+		
+		custom_cost_text = wcz_smuggle_equipment_PAC_ALA_uprising_cost
+
+		ai_will_do = {
+			factor = 0
+		}
+		
+		fire_only_once = yes
+		
+		visible = {
+			has_idea = IDA_War_Plan_Indigo_Spirit
+			has_government = republican
+		}
+
+		complete_effect = {
+			hidden_effect = {
+				if = {
+					limit = {
+						has_country_flag = wcz_PAC_uprising_2
+					}   
+					clr_country_flag = wcz_PAC_uprising_2
+					set_country_flag = wcz_PAC_uprising_3
+				}
+				else_if = {
+					limit = {
+						has_country_flag = wcz_PAC_uprising_1
+					}
+					clr_country_flag = wcz_PAC_uprising_1
+					set_country_flag = wcz_PAC_uprising_2
+				}
+				else = {
+					set_country_flag = wcz_PAC_uprising_1
+					PAC = {
+						country_event = idaho_rework.21
+					}
+				}
+			}
+			hidden_effect = {
+				add_political_power = -50
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = -5000
+				}
+				add_equipment_to_stockpile = {
+					type = convoy
+					amount = -100
+				}
+			}
+		}
+	}
+	
+	IDA_PAC_provide_advisors_for_resistance_groups = { #Helps with uprising, costs manpower
+
+		icon = GFX_decision_generic_army_support
+
+		available = {
+			has_idea = IDA_War_Plan_Indigo_Spirit
+			has_government = republican
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 49
+			has_manpower > 4999
+			has_equipment = {
+				convoy > 99
+			}
+		}
+		
+		custom_cost_text = wcz_provide_advisors_PAC_ALA_uprising_cost
+
+		ai_will_do = {
+			factor = 0
+		}
+		
+		fire_only_once = yes
+		
+		visible = {
+			has_idea = IDA_War_Plan_Indigo_Spirit
+			has_government = republican
+		}
+
+		complete_effect = {
+			hidden_effect = {
+				if = {
+					limit = {
+						has_country_flag = wcz_PAC_uprising_2
+					}   
+					clr_country_flag = wcz_PAC_uprising_2
+					set_country_flag = wcz_PAC_uprising_3
+				}
+				else_if = {
+					limit = {
+						has_country_flag = wcz_PAC_uprising_1
+					}
+					clr_country_flag = wcz_PAC_uprising_1
+					set_country_flag = wcz_PAC_uprising_2
+				}
+				else = {
+					set_country_flag = wcz_PAC_uprising_1
+					PAC = {
+						country_event = idaho_rework.21
+					}
+				}
+			}
+			hidden_effect = {
+				add_political_power = -50
+				add_manpower = -5000
+				add_equipment_to_stockpile = {
+					type = convoy
+					amount = -100
+				}
+			}
+		}
+	}
+	
+	IDA_PAC_launch_uprising = { #Starts uprising in the Pacific Fleet/Hawaii, strength depends on decisions taken (20% at start, increases in 15% increments) (War only)
+
+		icon = GFX_decision_revolt
+
+		available = {
+			has_idea = IDA_War_Plan_Indigo_Spirit
+			has_government = republican
+			PAC = {
+				has_war_with = IDA
+			}
+		}
+
+		cost = 50
+
+		ai_will_do = {
+			factor = 20
+		}
+		
+		fire_only_once = yes
+		
+		visible = {
+			has_idea = IDA_War_Plan_Indigo_Spirit
+			has_government = republican
+		}
+		
+		complete_effect = { #No prep = 20% strength, 1 prep = 35%, 2 preps = 50%, 3 preps = 65%
+			hidden_effect = {
+				if = {
+					limit = {
+						has_country_flag = wcz_PAC_uprising_3
+					}
+					PAC = {
+						country_event = idaho_rework.210
+					}
+				}
+				else_if = {
+					limit = {
+						has_country_flag = wcz_PAC_uprising_2
+					}
+					PAC = {
+						country_event = idaho_rework.211
+					}
+				}
+				else_if = {
+					limit = {
+						has_country_flag = wcz_PAC_uprising_1
+					}
+					PAC = {
+						country_event = idaho_rework.212
+					}
+				}
+				else = {
+					PAC = {
+						country_event = idaho_rework.213
+					}
+				}
+			}
+		}
+	}
 }
 
 IDA_alaska_decision = { 
@@ -2929,6 +3178,255 @@ IDA_alaska_decision = {
 			hidden_effect = {
 				add_political_power = -30
 				add_command_power = -30
+			}
+		}
+	}
+	
+	# Uprising Decisions - As of writing this, the A.I. will take one decision max before starting an uprising #
+	IDA_ALA_organize_militia_resistance = { #Helps with uprising strength, costs political power and command power
+
+		icon = GFX_decision_hol_draw_up_staff_plans
+
+		available = {
+			has_idea = IDA_War_Plan_Indigo_Spirit
+			has_government = republican
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 99
+			command_power > 109
+		}
+		
+		custom_cost_text = wcz_organize_PAC_ALA_uprising_cost
+
+		ai_will_do = {
+			factor = 20
+		}
+		
+		fire_only_once = yes
+		
+		visible = {
+			has_idea = IDA_War_Plan_Indigo_Spirit
+			has_government = republican
+		}
+
+		complete_effect = {
+			hidden_effect = {
+				if = {
+					limit = {
+						has_country_flag = wcz_ALA_uprising_2
+					}   
+					clr_country_flag = wcz_ALA_uprising_2
+					set_country_flag = wcz_ALA_uprising_3
+				}
+				else_if = {
+					limit = {
+						has_country_flag = wcz_PAC_uprising_1
+					}
+					clr_country_flag = wcz_ALA_uprising_1
+					set_country_flag = wcz_ALA_uprising_2
+				}
+				else = {
+					set_country_flag = wcz_ALA_uprising_1
+					ALA = {
+						country_event = idaho_rework.21
+					}
+				}
+			}
+			hidden_effect = {
+				add_political_power = -100
+				add_command_power = -110
+			}
+		}
+	}
+
+	IDA_ALA_smuggle_equipment_to_resistance_groups = { #Helps with uprising strength, costs equipment
+
+		icon = GFX_decision_generic_industry
+
+		available = {
+			has_idea = IDA_War_Plan_Indigo_Spirit
+			has_government = republican
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 49
+			has_equipment = { infantry_equipment > 9999 }
+			has_equipment = {
+				convoy > 99
+			}
+		}
+		
+		custom_cost_text = wcz_smuggle_equipment_PAC_ALA_uprising_cost
+
+		ai_will_do = {
+			factor = 0
+		}
+		
+		fire_only_once = yes
+		
+		visible = {
+			has_idea = IDA_War_Plan_Indigo_Spirit
+			has_government = republican
+		}
+
+		complete_effect = {
+			hidden_effect = {
+				if = {
+					limit = {
+						has_country_flag = wcz_ALA_uprising_2
+					}   
+					clr_country_flag = wcz_ALA_uprising_2
+					set_country_flag = wcz_ALA_uprising_3
+				}
+				else_if = {
+					limit = {
+						has_country_flag = wcz_PAC_uprising_1
+					}
+					clr_country_flag = wcz_ALA_uprising_1
+					set_country_flag = wcz_ALA_uprising_2
+				}
+				else = {
+					set_country_flag = wcz_ALA_uprising_1
+					ALA = {
+						country_event = idaho_rework.21
+					}
+				}
+			}
+			hidden_effect = {
+				add_political_power = -50
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = -5000
+				}
+				add_equipment_to_stockpile = {
+					type = convoy
+					amount = -100
+				}
+			}
+		}
+	}
+	
+	IDA_ALA_provide_advisors_for_resistance_groups = { #Helps with uprising, costs manpower
+
+		icon = GFX_decision_generic_army_support
+
+		available = {
+			has_idea = IDA_War_Plan_Indigo_Spirit
+			has_government = republican
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 49
+			has_manpower > 4999
+			has_equipment = {
+				convoy > 99
+			}
+		}
+		
+		custom_cost_text = wcz_provide_advisors_PAC_ALA_uprising_cost
+
+		ai_will_do = {
+			factor = 0
+		}
+		
+		fire_only_once = yes
+		
+		visible = {
+			has_idea = IDA_War_Plan_Indigo_Spirit
+			has_government = republican
+		}
+
+		complete_effect = {
+			hidden_effect = {
+				if = {
+					limit = {
+						has_country_flag = wcz_ALA_uprising_2
+					}   
+					clr_country_flag = wcz_ALA_uprising_2
+					set_country_flag = wcz_ALA_uprising_3
+				}
+				else_if = {
+					limit = {
+						has_country_flag = wcz_ALA_uprising_1
+					}
+					clr_country_flag = wcz_ALA_uprising_1
+					set_country_flag = wcz_ALA_uprising_2
+				}
+				else = {
+					set_country_flag = wcz_ALA_uprising_1
+					ALA = {
+						country_event = idaho_rework.21
+					}
+				}
+			}
+			hidden_effect = {
+				add_political_power = -50
+				add_manpower = -5000
+				add_equipment_to_stockpile = {
+					type = convoy
+					amount = -100
+				}
+			}
+		}
+	}
+	
+	IDA_ALA_launch_uprising = { #Starts uprising in Alaska, strength depends on decisions taken (20% at start, increases in 15% increments) (War only)
+
+		icon = GFX_decision_revolt
+
+		available = {
+			has_idea = IDA_War_Plan_Indigo_Spirit
+			has_government = republican
+			ALA = {
+				has_war_with = IDA
+			}
+		}
+
+		cost = 50
+
+		ai_will_do = {
+			factor = 20
+		}
+		
+		fire_only_once = yes
+		
+		visible = {
+			has_idea = IDA_War_Plan_Indigo_Spirit
+			has_government = republican
+		}
+		
+		complete_effect = { #No prep = 20% strength, 1 prep = 35%, 2 preps = 50%, 3 preps = 65%
+			hidden_effect = {
+				if = {
+					limit = {
+						has_country_flag = wcz_ALA_uprising_3
+					}
+					ALA = {
+						country_event = idaho_rework.215
+					}
+				}
+				else_if = {
+					limit = {
+						has_country_flag = wcz_ALA_uprising_2
+					}
+					ALA = {
+						country_event = idaho_rework.216
+					}
+				}
+				else_if = {
+					limit = {
+						has_country_flag = wcz_ALA_uprising_1
+					}
+					ALA = {
+						country_event = idaho_rework.217
+					}
+				}
+				else = {
+					ALA = {
+						country_event = idaho_rework.218
+					}
+				}
 			}
 		}
 	}
