@@ -22960,3 +22960,220 @@ country_event = { #WCZ gets alert that ALA (Uprising) annexes itself into it
 		custom_effect_tooltip = wcz_loyalist_alaska_annexed
 	}
 }
+country_event = { #Montana militias join the WCZ
+	id = idaho_rework.220
+	title = idaho_rework.220.t
+	desc = idaho_rework.220.d
+	picture = GFX_report_event_IDA_Militias_1
+	
+	fire_only_once = yes
+
+	mean_time_to_happen = {
+		days = 5
+	}
+
+	trigger = {
+		tag = IDA
+		OR = {
+			has_government = republican
+			has_government = libertarian_right
+		}
+		OR = {
+			controls_state = 35
+			controls_state = 39
+			controls_state = 64
+			controls_state = 67
+			controls_state = 70
+			controls_state = 86
+			controls_state = 118
+			controls_state = 119
+			controls_state = 453
+			controls_state = 567
+			controls_state = 570
+		}
+	}
+	
+	option = {
+		name = idaho_rework.220.a
+		show_unit_leaders_tooltip = IDA_ryan_payne
+		add_manpower = 300
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 350
+			producer = MON
+		}
+		hidden_effect = {
+			set_country_flag = wcz_montana_militias_recruited
+		}
+	}
+}
+country_event = { #Utah militias join the WCZ
+	id = idaho_rework.221
+	title = idaho_rework.221.t
+	desc = idaho_rework.221.d
+	picture = GFX_report_event_IDA_Militia_4
+	
+	fire_only_once = yes
+
+	mean_time_to_happen = {
+		days = 20
+	}
+
+	trigger = {
+		tag = IDA
+		OR = {
+			has_government = republican
+			has_government = libertarian_right
+		}
+		OR = {
+			controls_state = 406
+			controls_state = 410
+			controls_state = 411
+			controls_state = 414
+			controls_state = 512
+			controls_state = 519
+			controls_state = 520
+		}
+	}
+	
+	option = {
+		name = idaho_rework.221.a
+		show_unit_leaders_tooltip = IDA_eric_moutsos
+		show_unit_leaders_tooltip = IDA_casey_robertson
+		show_unit_leaders_tooltip = IDA_thad_cisneros
+		show_unit_leaders_tooltip = IDA_dylan_wade_anderson
+		show_unit_leaders_tooltip = IDA_william_keebler
+		add_manpower = 500
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 550
+			producer = UTA
+		}
+		hidden_effect = {
+			set_country_flag = wcz_utah_militias_recruited
+		}
+	}
+}
+country_event = { #WCZ chooses whether it wants National Guard advisors or Trump advisors
+	id = idaho_rework.222
+	title = idaho_rework.222.t
+	desc = idaho_rework.222.d
+	picture = GFX_report_event_IDA_National_Guard
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Trump advisors: gain republican popularity, gain army experience, gain doctrine bonus, reduce army debuffs
+		name = idaho_rework.222.a
+		add_popularity = {
+			ideology = republican
+			popularity = 0.05
+		}
+		army_experience = 50
+		add_doctrine_cost_reduction = {
+			name = land_doc_bonus
+			cost_reduction = 0.75
+			uses = 2
+			category = land_doctrine
+		}
+		swap_ideas = {
+			remove_idea = IDA_Militia_State_4 
+			add_idea = IDA_Militia_State_5
+		}
+	}
+	
+	option = { #National Guard advisors: loose political power, gain autocratic popularity, gain generals and advisors, gain army experience, gain doctrine bonus, reduce army debuffs
+		name = idaho_rework.222.b
+		custom_effect_tooltip = wcz_air_and_army_generals_reinstated
+		add_political_power = -50
+		add_popularity = {
+			ideology = autocratic
+			popularity = 0.15
+		}
+		army_experience = 25
+		add_doctrine_cost_reduction = {
+			name = land_doc_bonus
+			cost_reduction = 0.5
+			uses = 1
+			category = land_doctrine
+		}
+		swap_ideas = {
+			remove_idea = IDA_Militia_State_4 
+			add_idea = IDA_Militia_State_5
+		}
+		hidden_effect = {
+			set_country_flag = wcz_military_allowed_to_operate
+		}
+	}
+}
+country_event = { #Fully reforms army debuffs
+	id = idaho_rework.223
+	title = idaho_rework.223.t
+	desc = idaho_rework.223.d
+	picture = GFX_report_event_IDA_Stankiewicz_At_Attention
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = idaho_rework.223.a
+		add_political_power = 25
+		army_experience = 50
+		swap_ideas = {
+			remove_idea = IDA_Militia_State_5 
+			add_idea = IDA_Army_Of_The_Redoubt_2
+		}
+	}
+}
+country_event = { #WCZ decides what air doctrine it wants to focus on 
+	id = idaho_rework.224
+	title = idaho_rework.224.t
+	desc = idaho_rework.224.d
+	picture = GFX_report_event_IDA_Air_Force
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Focus on strategic bombing, gains bonus for strategic bombing doctrine
+		name = idaho_rework.224.a
+		ai_chance = {
+			factor = 10
+		}
+		custom_effect_tooltip = wcz_air_doctrine_choice
+		add_doctrine_cost_reduction = { 
+			name = air_doc_bonus
+			cost_reduction = 0.50
+			uses = 2
+			category = strategic_destruction_tree
+		}
+		add_ideas = IDA_Eagles_Of_The_West_Strategic_Destruction_Spirit
+	}
+	option = { #Focus on close air support, gains bonus for battlefield support doctrine
+		name = idaho_rework.224.b
+		ai_chance = {
+			factor = 20
+		}
+		custom_effect_tooltip = wcz_air_doctrine_choice
+		add_doctrine_cost_reduction = { 
+			name = air_doc_bonus
+			cost_reduction = 0.50
+			uses = 2
+			category = battlefield_support_tree
+		}
+		add_ideas = IDA_Eagles_Of_The_West_Battlefield_Support_Spirit
+	}
+	option = { #Focus on both (tactical bombers), gains bonus for operation integrity doctrine
+		name = idaho_rework.224.c
+		ai_chance = {
+			factor = 10
+		}
+		custom_effect_tooltip = wcz_air_doctrine_choice
+		add_doctrine_cost_reduction = { 
+			name = air_doc_bonus
+			cost_reduction = 0.50
+			uses = 2
+			category = operational_integrity_tree
+		}
+		add_ideas = IDA_Eagles_Of_The_West_Operational_Integrity_Spirit
+	}
+}

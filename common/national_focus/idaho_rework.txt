@@ -20,7 +20,7 @@ focus_tree = {
 	
 	default = no
 	
-	continuous_focus_position = { x = 3500 y = 2000 }
+	continuous_focus_position = { x = 2900 y = 190 }
 	
 	initial_show_position = {
 		focus = IDA_Our_Mission
@@ -1235,7 +1235,6 @@ focus_tree = {
 				idea = IDA_Montana_Profits_Spirit
 				days = 60
 			}
-			show_unit_leaders_tooltip = IDA_ryan_payne
 		}
 	}
 	# War Plan Yellow - Utah #
@@ -1653,6 +1652,7 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_ANNEXATION }
 		completion_reward = {
+			custom_effect_tooltip = wcz_freedom_coalition_offer
 			if = {
 				limit = {
 					SIN = {
@@ -2082,11 +2082,6 @@ focus_tree = {
 					add_core_of = ROOT
 				}
 			}
-			show_unit_leaders_tooltip = IDA_eric_moutsos
-			show_unit_leaders_tooltip = IDA_casey_robertson
-			show_unit_leaders_tooltip = IDA_thad_cisneros
-			show_unit_leaders_tooltip = IDA_dylan_wade_anderson
-			show_unit_leaders_tooltip = IDA_william_keebler
 		}
 	}
 	# End of the Rocky Mountain Conquests #
@@ -3377,7 +3372,7 @@ focus_tree = {
 				limit = {
 					has_dlc = "Man the Guns"
 				}
-				add_ideas = IDA_Naval_Buildup
+				add_ideas = IDA_Naval_Buildup_MTG
 			}
 			else = {
 				add_ideas = IDA_Naval_Buildup
@@ -6244,7 +6239,7 @@ focus_tree = {
 		icon = GFX_goal_fortify_the_westwall
 		x = 65
 		y = 5
-		cost = 10
+		cost = 5
 		prerequisite = { 
 			focus = IDA_A_Change_In_Plans
 		}
@@ -6274,6 +6269,273 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = { 
 			add_country_leader_trait = IDA_defence_bonus
+			give_guarantee = USA
+			USA = {
+				give_guarantee = IDA
+			}
+		}
+	}
+	focus = { #Available after the NPA is defeated, WCZ joins Loyalist faction
+		id = IDA_Reestablish_Links_With_The_East 
+		icon = GFX_goal_fortify_the_westwall
+		x = 66
+		y = 6
+		cost = 3
+		prerequisite = { 
+			focus = IDA_Dig_In
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 100
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			NPA = {
+				exists = no
+			}
+		}
+		bypass = {
+			is_in_faction_with = USA
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			USA = {
+				add_to_faction = IDA
+			}
+		}
+	}
+	# Military Reform Tree #
+	focus = { #Beginning of Army Reform Tree, Gain experience and slightly fixes militia state debuff
+		id = IDA_Professionalizing_Our_Army
+		icon = GFX_focus_NPA_We_Are_Who_We_Are
+		x = 60
+		y = 7
+		cost = 5
+		prerequisite = { 
+			focus = IDA_Dig_In
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			NOT = {
+				has_idea = IDA_Militia_State_1
+			}
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_political_power = 50
+			army_experience = 25
+			swap_ideas = {
+				remove_idea = IDA_Militia_State_1 
+				add_idea = IDA_Militia_State_4
+			}
+		}
+	}
+	focus = { #Choice between National Guard Advisors or Trump ones, gain army experience, improves military debuff
+		id = IDA_Bring_In_Military_Advisors
+		icon = GFX_goal_Meet_with_the_High_Command
+		x = 60
+		y = 8
+		cost = 7
+		prerequisite = { 
+			focus = IDA_Professionalizing_Our_Army
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			NOT = {
+				has_idea = IDA_Militia_State_4
+			}
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			country_event = idaho_rework.222
+		}
+	}
+	focus = { #Final Army Reform, completely removes army debuff
+		id = IDA_The_Army_Of_The_Redoubt
+		icon = GFX_goal_A_life_worth_fighting_for
+		x = 60
+		y = 9
+		cost = 9
+		prerequisite = { 
+			focus = IDA_Bring_In_Military_Advisors
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			NOT = {
+				has_idea = IDA_Militia_State_5
+			}
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			country_event = idaho_rework.223
+		}
+	}
+	focus = { #Player chooses what air doctrine they want
+		id = IDA_Establish_An_Air_Force
+		icon = GFX_goal_FLO_aircraft_production
+		x = 59
+		y = 10
+		cost = 7
+		prerequisite = { 
+			focus = IDA_The_Army_Of_The_Redoubt
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			OR = {
+				has_idea = IDA_Eagles_Of_The_West_Spirit
+				has_idea = IDA_Eagles_Of_The_West_Strategic_Destruction_Spirit
+				has_idea = IDA_Eagles_Of_The_West_Battlefield_Support_Spirit
+				has_idea = IDA_Eagles_Of_The_West_Operational_Integrity_Spirit
+			}
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			country_event = idaho_rework.224
+		}
+	}
+	focus = { #Player gets certain naval bonuses
+		id = IDA_Lay_The_Groundwork_For_A_Navy
+		icon = GFX_goal_FLO_Green_Water_Navy
+		x = 61
+		y = 10
+		cost = 7
+		prerequisite = { 
+			focus = IDA_The_Army_Of_The_Redoubt
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			OR = {
+				has_idea = IDA_Naval_Buildup
+				has_idea = IDA_Naval_Buildup_MTG
+			}
+			has_idea = IDA_Dedicated_Marine_Corps
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			navy_experience = 50
+			add_doctrine_cost_reduction = {
+				name = naval_doc_bonus
+				cost_reduction = 1.0
+				uses = 2
+				category = naval_doctrine
+			}
+			if = {
+				limit = {
+					has_dlc = "Man the Guns"
+				}
+				add_ideas = IDA_Naval_Buildup_MTG
+			}
+			else = {
+				add_ideas = IDA_Naval_Buildup
+			}
+			add_ideas = IDA_Dedicated_Marine_Corps
 		}
 	}
 	#focus = {
