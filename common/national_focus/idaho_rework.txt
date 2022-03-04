@@ -1510,7 +1510,7 @@ focus_tree = {
 			UTA = {
 				has_war = no
 				OR = {
-					date > 2023.5.1
+					date > 2023.3.1
 					has_completed_focus = UTA_The_Church_Is_Socialist
 					has_completed_focus = UTA_Preserve_Autocracy
 					has_completed_focus = UTA_Democrats
@@ -6275,17 +6275,59 @@ focus_tree = {
 			}
 		}
 	}
-	focus = { #Available after the NPA is defeated, WCZ joins Loyalist faction
-		id = IDA_Reestablish_Links_With_The_East 
-		icon = GFX_goal_fortify_the_westwall
-		x = 66
+	focus = { #Filler focus to make the tree look nicer, For if the NPA beat Trump
+		id = IDA_Defeat_In_The_East
+		icon = GFX_goal_FLO_jail_trump_supporters
+		x = 63
 		y = 6
 		cost = 3
 		prerequisite = { 
 			focus = IDA_Dig_In
 		}
 		mutually_exclusive = {
+			focus = IDA_Reestablish_Links_With_The_East
+		}
+		ai_will_do = {
+			factor = 100
+		}
+		allow_branch = {
 			
+		}
+		available = {
+			USA = {
+				exists = no
+			}
+			NPA = {
+				exists = yes
+			}
+		}
+		bypass = {
+			is_in_faction_with = USA
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			army_experience = 5
+		}
+	}
+	focus = { #Available after the NPA is defeated, WCZ joins Loyalist faction
+		id = IDA_Reestablish_Links_With_The_East 
+		icon = GFX_focus_MON_Meeting_With_The_Trump
+		x = 67
+		y = 6
+		cost = 3
+		prerequisite = { 
+			focus = IDA_Dig_In
+		}
+		mutually_exclusive = {
+			focus = IDA_Defeat_In_The_East
 		}
 		ai_will_do = {
 			factor = 100
@@ -6536,6 +6578,453 @@ focus_tree = {
 				add_ideas = IDA_Naval_Buildup
 			}
 			add_ideas = IDA_Dedicated_Marine_Corps
+		}
+	}
+	# Limited Expansion Path #
+	focus = { #Start of limited expansion, gives political power, army experience, command power, and volunteer spirit
+		id = IDA_Enter_The_Fray
+		icon = GFX_goal_pac_prep_war_free
+		x = 65
+		y = 7
+		cost = 5
+		prerequisite = { 
+			focus = IDA_Dig_In
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			NOT = {
+				has_country_flag = wcz_trumpist_exiles
+			}
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_political_power = 50
+			army_experience = 25
+			add_command_power = 30
+			add_ideas = IDA_Volunteer_Corps
+		}
+	}
+	focus = { #WCZ's will focus on expanding North, gain war support and intel on Montana
+		id = IDA_To_The_North
+		icon = GFX_goal_attack_MON
+		x = 63
+		y = 8
+		cost = 3
+		prerequisite = { 
+			focus = IDA_Enter_The_Fray
+		}
+		mutually_exclusive = {
+			focus = IDA_Hold_Our_Ground
+			focus = IDA_To_The_South
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_war_support = 0.1
+			add_intel = {
+				target = MON
+				civilian_intel = 5
+				army_intel = 5
+				airforce_intel = 5
+			}
+		}
+	}
+	focus = { #Gain political power, stability, war support, and party popularity
+		id = IDA_Hold_Our_Ground
+		icon = GFX_goal_generic_defence
+		x = 65
+		y = 8
+		cost = 3
+		prerequisite = { 
+			focus = IDA_Enter_The_Fray
+		}
+		mutually_exclusive = {
+			focus = IDA_To_The_North
+			focus = IDA_To_The_South
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_political_power = 50
+			add_stability = 0.15
+			add_war_support = 0.05
+			add_popularity = {
+				ideology = republican
+				popularity = 0.05
+			}
+		}
+	}
+	focus = { #WCZ's will focus on expanding South, gain war support and intel on Utah
+		id = IDA_To_The_South
+		icon = GFX_focus_UTA_identity
+		x = 67
+		y = 8
+		cost = 3
+		prerequisite = { 
+			focus = IDA_Enter_The_Fray
+		}
+		mutually_exclusive = {
+			focus = IDA_Enter_The_Fray
+			focus = IDA_Hold_Our_Ground
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			OR = {
+				country_exists = MON
+				country_exists = LYM
+				country_exists = BKF
+			}
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_war_support = 0.1
+			add_intel = {
+				target = UTA
+				civilian_intel = 5
+				army_intel = 5
+				airforce_intel = 5
+			}
+		}
+	}
+	focus = { #Montana went Trumpist, WCZ must decide what to do next
+		id = IDA_Open_Negotiations_With_Montana
+		icon = GFX_goal_generic_national_unity
+		x = 62
+		y = 9
+		cost = 10
+		prerequisite = { 
+			focus = IDA_To_The_North
+		}
+		mutually_exclusive = {
+			focus = IDA_Operation_Treasure_Hunter_2
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			MON = {
+				has_completed_focus = MON_Side_With_Trump
+			}
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		select_effect = {
+			country_event = {
+				id = idaho_rework.226
+				days = 5
+			}
+		}
+		
+		completion_reward = { 
+			add_political_power = 25
+		}
+	}
+	focus = { #Gain cores on Montana and war goals against Montanan tags
+		id = IDA_Operation_Treasure_Hunter_2
+		icon = GFX_goal_IDA_Operation_Treasure_Hunter
+		x = 64
+		y = 9
+		cost = 3
+		prerequisite = { 
+			focus = IDA_To_The_North
+		}
+		mutually_exclusive = {
+			focus = IDA_Open_Negotiations_With_Montana
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			OR = {
+				MON = {
+					OR = {
+						has_completed_focus = MON_Stick_To_Biden
+						has_completed_focus = MON_Self-Sufficiency_Plan
+						has_completed_focus = MON_Montanian_Sovereign_Army
+						exists = no
+					}
+				}
+				date > 2023.3.1
+			}
+		}
+		bypass = {
+			OR = {
+				NOT = {
+					country_exists = MON
+					country_exists = LYM
+					country_exists = BKF
+				}
+			}
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		
+		will_lead_to_war_with = MON
+		will_lead_to_war_with = LYM
+		will_lead_to_war_with = BKF
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			IDA = {
+				every_state = {
+					limit = {
+						OR = {
+							is_core_of = MON
+							is_core_of = LYM
+							is_core_of = BKF
+						}
+					}
+					add_core_of = IDA
+				}
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = MON
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = LYM
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = BKF
+			}
+		}
+	}
+	focus = { #WCZ gains war goals on Utah, Molossia, Vegas, Amerikareich and Primivitia
+		id = IDA_Operation_Beekeeper_2
+		icon = GFX_goal_IDA_Operation_Beekeeper
+		x = 66
+		y = 9
+		cost = 3
+		prerequisite = { 
+			focus = IDA_To_The_South
+		}
+		mutually_exclusive = {
+			focus = IDA_Propose_Unification_With_Utah
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			OR = {
+				date > 2023.3.1
+				UTA = {
+					OR = {
+						has_war_with = SIN
+						has_war_with = MOL
+						has_war_with = LAS
+						has_war_with = MOL
+					}
+				}
+				UTA = {
+					OR = {
+						has_completed_focus = UTA_The_Church_Is_Socialist
+						has_completed_focus = UTA_Preserve_Autocracy
+						has_completed_focus = UTA_Democrats
+					}
+				}
+				UTA = {
+					exists = no
+				}
+			}
+		}
+		bypass = {
+			OR = {
+				NOT = {
+					country_exists = UTA
+					country_exists = SIN
+					country_exists = LAS
+					country_exists = MOL
+				}
+			}
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			IDA = {
+				every_state = {
+					limit = {
+						OR = {
+							is_core_of = SIN
+							is_core_of = LAS
+							is_core_of = MOL
+						}
+					}
+					add_core_of = IDA
+				}
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = SIN
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = LAS
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = MOL
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = HOP
+			}
+		}
+	}
+	focus = { #Utah goes Republican, WCZ proposes integration with Utah
+		id = IDA_Propose_Unification_With_Utah
+		icon = GFX_focus_UTA_biden
+		x = 68
+		y = 9
+		cost = 3
+		prerequisite = { 
+			focus = IDA_To_The_South
+		}
+		mutually_exclusive = {
+			focus = IDA_Operation_Beekeeper_2
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			UTA = {
+				OR = {
+					has_completed_focus = UTA_The_Church_Is_Conservative
+					has_completed_focus = UTA_Republicans
+				}
+			}
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		select_effect = {
+			country_event = {
+				id = idaho_rework.232
+				days = 5
+			}
+		}
+		
+		completion_reward = { 
+			add_political_power = 25
 		}
 	}
 	#focus = {

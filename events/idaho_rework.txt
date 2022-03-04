@@ -1323,7 +1323,7 @@ country_event = { #USA event for Montana-WCZ conflict mediation
 	option = { #Side with the WCZ
 		name = idaho_rework.37.a
 		ai_chance = {
-			factor = 10
+			factor = 80
 		}
 		IDA = { 
 			country_event = {
@@ -1341,7 +1341,7 @@ country_event = { #USA event for Montana-WCZ conflict mediation
 	option = { #Side with Montana
 		name = idaho_rework.37.b
 		ai_chance = {
-			factor = 10
+			factor = 5
 		}
 		IDA = { 
 			country_event = {
@@ -1352,6 +1352,24 @@ country_event = { #USA event for Montana-WCZ conflict mediation
 		MON = { 
 			country_event = {
 				id = idaho_rework.39 
+				days = 3 
+			}
+		}
+	}
+	option = { #Split the territory between both of them
+		name = idaho_rework.37.c
+		ai_chance = {
+			factor = 20
+		}
+		IDA = { 
+			country_event = {
+				id = idaho_rework.225
+				days = 3 
+			}
+		}
+		MON = { 
+			country_event = {
+				id = idaho_rework.225
 				days = 3 
 			}
 		}
@@ -23065,6 +23083,9 @@ country_event = { #WCZ chooses whether it wants National Guard advisors or Trump
 	
 	option = { #Trump advisors: gain republican popularity, gain army experience, gain doctrine bonus, reduce army debuffs
 		name = idaho_rework.222.a
+		ai_chance = {
+			factor = 20
+		}
 		add_popularity = {
 			ideology = republican
 			popularity = 0.05
@@ -23084,6 +23105,9 @@ country_event = { #WCZ chooses whether it wants National Guard advisors or Trump
 	
 	option = { #National Guard advisors: loose political power, gain autocratic popularity, gain generals and advisors, gain army experience, gain doctrine bonus, reduce army debuffs
 		name = idaho_rework.222.b
+		ai_chance = {
+			factor = 80
+		}
 		custom_effect_tooltip = wcz_air_and_army_generals_reinstated
 		add_political_power = -50
 		add_popularity = {
@@ -23175,5 +23199,513 @@ country_event = { #WCZ decides what air doctrine it wants to focus on
 			category = operational_integrity_tree
 		}
 		add_ideas = IDA_Eagles_Of_The_West_Operational_Integrity_Spirit
+	}
+}
+country_event = { #USA splits Idaho and Wyoming between the WCZ and Montana
+	id = idaho_rework.225
+	title = idaho_rework.225.t
+	desc = idaho_rework.225.d
+	picture = GFX_report_event_IDA_Generic_Meeting
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #WCZ gets this event, actually transfers the territory
+		name = idaho_rework.225.a
+		trigger = {
+			tag = IDA
+		}
+		every_state = {
+			limit = { 
+				is_core_of = IDA 
+				CONTROLLER = {
+					tag = MON
+				}
+				NOT = {
+					state = 99
+					state = 66
+					state = 63
+					state = 569
+				}
+			}
+			remove_core_of = MON
+			IDA = {
+				transfer_state = PREV
+			}
+		}
+		every_state = {
+			limit = { 
+				is_core_of = IDA 
+				CONTROLLER = {
+					tag = MON
+				}
+			}
+			remove_core_of = IDA
+		}
+		IDA = {
+			complete_national_focus = IDA_Request_The_Return_Of_Our_Territories
+		}
+	}
+	option = { #Montana gets this event, doesn't actually do anything
+		name = idaho_rework.225.b
+		trigger = {
+			tag = MON
+		}
+	}
+}
+country_event = { #Passive WCZ decides what to do with friendly Montana
+	id = idaho_rework.226
+	title = idaho_rework.226.t
+	desc = idaho_rework.226.d
+	picture = GFX_report_event_IDA_Montana
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Ask Montana to annex the WCZ, A.I. will do this 100% of the time
+		name = idaho_rework.226.a
+		ai_chance = {
+			factor = 10
+		}
+		custom_effect_tooltip = wcz_end_of_our_nation
+		MON = {
+			country_event = {
+				id = idaho_rework.227
+				days = 3
+			}
+		}
+	}
+	option = { #Ask Montana to annex itself into the WCZ. A.I. will never do this
+		name = idaho_rework.226.b
+		ai_chance = {
+			factor = 0
+		}
+		MON = {
+			country_event = {
+				id = idaho_rework.230
+				days = 3
+			}
+		}
+	}
+	option = { #WCZ will ask for Wyoming and Idaho back
+		name = idaho_rework.226.c
+		ai_chance = {
+			factor = 0
+		}
+	}
+	option = { #Do nothing
+		name = idaho_rework.226.e
+		ai_chance = {
+			factor = 0
+		}
+		complete_national_focus = IDA_Open_Negotiations_With_Montana
+	}
+}
+country_event = { #WCZ asks Montana to annex them
+	id = idaho_rework.227
+	title = idaho_rework.227.t
+	desc = idaho_rework.227.d
+	picture = GFX_report_event_IDA_Montana
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Montana agrees to annex them, transfer troops and gains cores
+		name = idaho_rework.227.a
+		ai_chance = {
+			factor = 10
+		}
+		annex_country = {
+			target = IDA
+			transfer_troops = yes
+		}
+		every_state = {
+			limit = {
+				is_core_of = IDA
+			}
+			add_core_of = MON
+		}
+		IDA = {
+			every_unit_leader = {
+				set_nationality = MON
+			}
+		}
+	}
+	option = { #Montana rejects the offer
+		name = idaho_rework.227.b
+		ai_chance = {
+			factor = 0
+		}
+		IDA = {
+			country_event = {
+				id = idaho_rework.228
+				days = 3
+			}
+		}
+	}
+}
+country_event = { #WCZ is alerted that Montana rejects their offer (for anything really)
+	id = idaho_rework.228
+	title = idaho_rework.228.t
+	desc = idaho_rework.228.d
+	picture = GFX_report_event_IDA_Montana
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = idaho_rework.228.a
+		complete_national_focus = IDA_Open_Negotiations_With_Montana
+	}
+}
+country_event = { #WCZ asks Montana annex itself into the WCZ
+	id = idaho_rework.229
+	title = idaho_rework.229.t
+	desc = idaho_rework.229.d
+	picture = GFX_report_event_IDA_Montana
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Montana agrees to be annexed, transfer troops and gains cores
+		name = idaho_rework.229.a
+		ai_chance = {
+			factor = 10
+		}
+		custom_effect_tooltip = wcz_end_of_our_nation
+		IDA = {
+			annex_country = {
+				target = MON
+				transfer_troops = yes
+			}
+			every_state = {
+				limit = {
+					is_core_of = MON
+				}
+				add_core_of = IDA
+			}
+			complete_national_focus = IDA_Open_Negotiations_With_Montana
+		}
+		MON = {
+			every_unit_leader = {
+				set_nationality = IDA
+			}
+		}
+	}
+	option = { #Montana rejects the offer
+		name = idaho_rework.229.b
+		ai_chance = {
+			factor = 0
+		}
+		IDA = {
+			country_event = {
+				id = idaho_rework.228
+				days = 3
+			}
+		}
+	}
+}
+country_event = { #WCZ asks Montana to return Idaho and Wyoming
+	id = idaho_rework.230
+	title = idaho_rework.230.t
+	desc = idaho_rework.230.d
+	picture = GFX_report_event_IDA_Montana
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Montana agrees to return all of Idaho and Wyoming
+		name = idaho_rework.230.a
+		ai_chance = {
+			factor = 10
+		}
+		every_state = {
+			limit = { 
+				is_core_of = IDA 
+				CONTROLLER = {
+					tag = MON
+				}
+			}
+			remove_core_of = MON
+			IDA = {
+				transfer_state = PREV
+			}
+			IDA = {
+				complete_national_focus = IDA_Open_Negotiations_With_Montana
+			}
+		}
+	}
+	option = { #Montana offers to split the territory 
+		name = idaho_rework.230.b
+		ai_chance = {
+			factor = 0
+		}
+		IDA = {
+			country_event = {
+				id = idaho_rework.231
+				days = 3
+			}
+		}
+	}
+	option = { #Montana rejects the offer
+		name = idaho_rework.230.c
+		ai_chance = {
+			factor = 0
+		}
+		IDA = {
+			country_event = {
+				id = idaho_rework.228
+				days = 3
+			}
+		}
+	}
+}
+country_event = { #Montana proposes the territory be split
+	id = idaho_rework.231
+	title = idaho_rework.231.t
+	desc = idaho_rework.231.d
+	picture = GFX_report_event_IDA_Montana
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #WCZ accepts the compromise
+		name = idaho_rework.231.a
+		ai_chance = {
+			factor = 10
+		}
+		every_state = {
+			limit = { 
+				is_core_of = IDA 
+				CONTROLLER = {
+					tag = MON
+				}
+				NOT = {
+					state = 99
+					state = 66
+					state = 63
+					state = 569
+				}
+			}
+			remove_core_of = MON
+			IDA = {
+				transfer_state = PREV
+			}
+		}
+		every_state = {
+			limit = { 
+				is_core_of = IDA 
+				CONTROLLER = {
+					tag = MON
+				}
+			}
+			remove_core_of = IDA
+		}
+		IDA = {
+			complete_national_focus = IDA_Open_Negotiations_With_Montana
+		}
+	}
+	option = { #WCZ rejects the compromise
+		name = idaho_rework.231.b
+		ai_chance = {
+			factor = 0
+		}
+		IDA = {
+			complete_national_focus = IDA_Open_Negotiations_With_Montana
+		}
+	}
+}
+country_event = { #WCZ asks Montana to return Idaho and Wyoming
+	id = idaho_rework.230
+	title = idaho_rework.230.t
+	desc = idaho_rework.230.d
+	picture = GFX_report_event_IDA_Montana
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Montana agrees to return all of Idaho and Wyoming
+		name = idaho_rework.230.a
+		ai_chance = {
+			factor = 10
+		}
+		every_state = {
+			limit = { 
+				is_core_of = IDA 
+				CONTROLLER = {
+					tag = MON
+				}
+			}
+			remove_core_of = MON
+			IDA = {
+				transfer_state = PREV
+			}
+			IDA = {
+				complete_national_focus = IDA_Open_Negotiations_With_Montana
+			}
+		}
+	}
+	option = { #Montana offers to split the territory 
+		name = idaho_rework.230.b
+		ai_chance = {
+			factor = 0
+		}
+		IDA = {
+			country_event = {
+				id = idaho_rework.231
+				days = 3
+			}
+		}
+	}
+	option = { #Montana rejects the offer
+		name = idaho_rework.230.c
+		ai_chance = {
+			factor = 0
+		}
+		IDA = {
+			country_event = {
+				id = idaho_rework.228
+				days = 3
+			}
+		}
+	}
+}
+country_event = { #WCZ decides how it wants to appraoch Utah
+	id = idaho_rework.232
+	title = idaho_rework.232.t
+	desc = idaho_rework.232.d
+	picture = GFX_report_event_IDA_Utah
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #WCZ asks Utah to annex them
+		name = idaho_rework.232.a
+		ai_chance = {
+			factor = 10
+		}
+		UTA = {
+			country_event = {
+				id = idaho_rework.233
+				days = 3
+			}
+		}
+	}
+	option = { #WCZ asks Utah to join the WCZ
+		name = idaho_rework.232.b
+		ai_chance = {
+			factor = 0
+		}
+		UTA = {
+			country_event = {
+				id = idaho_rework.235
+				days = 3
+			}
+		}
+	}
+	option = { #WCZ bypasses the issue
+		name = idaho_rework.232.c
+		ai_chance = {
+			factor = 0
+		}
+		complete_national_focus = IDA_Propose_Unification_With_Utah
+	}
+}
+country_event = { #WCZ asks Utah to annex them
+	id = idaho_rework.233
+	title = idaho_rework.233.t
+	desc = idaho_rework.233.d
+	picture = GFX_report_event_IDA_Utah
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Utah agrees to annex them, transfer troops and gains cores
+		name = idaho_rework.233.a
+		ai_chance = {
+			factor = 10
+		}
+		annex_country = {
+			target = IDA
+			transfer_troops = yes
+		}
+		every_state = {
+			limit = {
+				is_core_of = IDA
+			}
+			add_core_of = UTA
+		}
+		IDA = {
+			every_unit_leader = {
+				set_nationality = UTA
+			}
+		}
+	}
+	option = { #Utah rejects the offer
+		name = idaho_rework.233.b
+		ai_chance = {
+			factor = 0
+		}
+		IDA = {
+			country_event = {
+				id = idaho_rework.234
+				days = 3
+			}
+		}
+	}
+}
+country_event = { #WCZ is alerted that Utah rejects their offer (for anything really)
+	id = idaho_rework.234
+	title = idaho_rework.234.t
+	desc = idaho_rework.234.d
+	picture = GFX_report_event_IDA_Utah
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = idaho_rework.234.a
+		complete_national_focus = IDA_Propose_Unification_With_Utah
+	}
+}
+country_event = { #WCZ asks Utah to join them
+	id = idaho_rework.235
+	title = idaho_rework.235.t
+	desc = idaho_rework.235.d
+	picture = GFX_report_event_IDA_Utah
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Utah agrees to be annexed them, transfer troops and gains cores
+		name = idaho_rework.235.a
+		ai_chance = {
+			factor = 10
+		}
+		annex_country = {
+			target = UTA
+			transfer_troops = yes
+		}
+		every_state = {
+			limit = {
+				is_core_of = UTA
+				is_core_of = SIN
+				is_core_of = LAS
+				is_core_of = MOL
+			}
+			add_core_of = IDA
+		}
+	}
+	option = { #Utah rejects the offer
+		name = idaho_rework.235.b
+		ai_chance = {
+			factor = 0
+		}
+		IDA = {
+			country_event = {
+				id = idaho_rework.234
+				days = 3
+			}
+		}
 	}
 }
