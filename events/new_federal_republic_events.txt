@@ -24,7 +24,7 @@ country_event = {
 	#Teddy overpowers Mitch
 	option = {
 		name = federal_republic.1.b
-		kill_country_leader = yes
+		retire_character = FRA_mitch_mcconnell
 		FRA_theodore_roosevelt_IV = { 
 			promote_character = yes
 		}
@@ -112,9 +112,27 @@ country_event = {
 			has_country_flag = mcconell_is_nominated_for_twenty_twenty_four
 		}
 		set_country_flag = president_mcconnell
+		FRA_mitch_mcconnell = {
+			promote_character = {
+				 ideology = Bourbon_Democrat
+			}
+		}
+		
 		hidden_effect = {
-			remove_ideas = FRA_kamala_harris_vp
-			clr_country_flag = vice_president_kamala
+			if = {
+				limit = {
+					has_idea = FRA_kamala_harris_vp
+				}
+				remove_ideas = FRA_kamala_harris_vp
+				clr_country_flag = vice_president_kamala
+			}
+			else_if = {
+				limit = {
+					has_idea = FRA_nancy_pelosi_vp
+				}
+				remove_ideas = FRA_nancy_pelosi_vp
+				clr_country_flag = vice_president_nancy
+			}
 			add_ideas = FRA_theodore_roosevelt_vp
 			set_country_flag = vice_president_teddy
 			news_event = { id = federal_republic.4 }
