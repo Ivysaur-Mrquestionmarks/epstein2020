@@ -24,7 +24,7 @@ country_event = {
 	#Teddy overpowers Mitch
 	option = {
 		name = federal_republic.1.b
-		kill_country_leader = yes
+		retire_character = FRA_mitch_mcconnell
 		FRA_theodore_roosevelt_IV = { 
 			promote_character = yes
 		}
@@ -112,9 +112,27 @@ country_event = {
 			has_country_flag = mcconell_is_nominated_for_twenty_twenty_four
 		}
 		set_country_flag = president_mcconnell
+		FRA_mitch_mcconnell = {
+			promote_character = {
+				 ideology = Bourbon_Democrat
+			}
+		}
+		
 		hidden_effect = {
-			remove_ideas = FRA_kamala_harris_vp
-			clr_country_flag = vice_president_kamala
+			if = {
+				limit = {
+					has_idea = FRA_kamala_harris_vp
+				}
+				remove_ideas = FRA_kamala_harris_vp
+				clr_country_flag = vice_president_kamala
+			}
+			else_if = {
+				limit = {
+					has_idea = FRA_nancy_pelosi_vp
+				}
+				remove_ideas = FRA_nancy_pelosi_vp
+				clr_country_flag = vice_president_nancy
+			}
 			add_ideas = FRA_theodore_roosevelt_vp
 			set_country_flag = vice_president_teddy
 			news_event = { id = federal_republic.4 }
@@ -199,11 +217,14 @@ country_event = {
 		add_stability = -0.05
 		add_ideas = FRA_wall_street_block
 		NYC = {
-			add_state_core = 228
-			add_state_core = 223
-			add_state_core = 222
-			add_state_core = 225
+			add_state_core = 213
 			add_state_core = 219
+			add_state_core = 222 #Queens
+			add_state_core = 223 #Manhattan
+			add_state_core = 225
+			add_state_core = 227 #Staten Island
+			add_state_core = 228 #Brooklyn
+			add_state_core = 590
 		}
 		release = NYC
 		unlock_decision_category_tooltip = FRA_the_wall_street_block_decision
@@ -215,8 +236,7 @@ country_event = {
 			}
 			set_country_flag = FRA_wall_street_block
 			NYC = {
-				add_state_claim = 220
-				add_state_claim = 227
+				add_state_claim = 220 #The Bronx
 			}
 			every_state = {
 				limit = {
@@ -235,7 +255,7 @@ news_event = {
 	id = federal_republic.10
 	title = federal_republic.10.t
 	desc = federal_republic.10.d
-	#picture =
+	picture = event_FRA_Wall_Street_Block
 	is_triggered_only = yes
 	major = yes
 	option = {
@@ -260,11 +280,18 @@ country_event = {
 		add_stability = -0.05
 		add_political_power = -15
 		VER = {
-			add_state_core = 168
+			# New Hampshire #
+			add_state_core = 168 #Concord
 			add_state_core = 178
-			add_state_core = 180
-			add_state_core = 617
+			add_state_core = 180 #Manchester
 			add_state_core = 616
+			add_state_core = 617
+			add_state_core = 618
+			# Vermont #
+			add_state_core = 171 #Burlington
+			add_state_core = 613
+			add_state_core = 614 #Montpelier 
+			add_state_core = 615
 		}
 		release = VER
 		unlock_decision_category_tooltip = FRA_green_mountain_boys_decision
@@ -277,15 +304,42 @@ country_event = {
 			set_country_flag = FRA_gmb_vermont
 			VER = {
 				load_oob = "VER_REBEL"
-				add_state_claim = 170
-				add_state_claim = 172
-				add_state_claim = 174
-			}
-			every_state = {
-				limit = {
-					is_owned_by = NEW
-				}
-				add_claim_by = VER
+				# Connecticut #
+				add_state_claim = 200 #Bridgeport
+				add_state_claim = 201 #New Haven
+				add_state_claim = 202
+				add_state_claim = 594
+				add_state_claim = 595 #Hartford
+				# Maine #
+				add_state_claim = 132
+				add_state_claim = 142
+				add_state_claim = 172 #Portland
+				add_state_claim = 174 #Augusta
+				add_state_claim = 179
+				add_state_claim = 619
+				add_state_claim = 620
+				add_state_claim = 621
+				add_state_claim = 622 #Bangor
+				add_state_claim = 623
+				add_state_claim = 628
+				# Massachusetts #
+				add_state_claim = 181
+				add_state_claim = 192 #Worcester 
+				add_state_claim = 193
+				add_state_claim = 210
+				add_state_claim = 211
+				add_state_claim = 212
+				add_state_claim = 214
+				add_state_claim = 216
+				add_state_claim = 221 #Boston
+				add_state_claim = 599
+				add_state_claim = 600
+				add_state_claim = 601
+				# Rhode Island #
+				add_state_claim = 203
+				add_state_claim = 217
+				add_state_claim = 597 #Providence
+				add_state_claim = 598
 			}
 			every_state = {
 				limit = {
@@ -304,7 +358,7 @@ news_event = {
 	id = federal_republic.12
 	title = federal_republic.12.t
 	desc = federal_republic.12.d
-	#picture =
+	picture = event_FRA_New_England_Rebellion
 	is_triggered_only = yes
 	major = yes
 	option = {

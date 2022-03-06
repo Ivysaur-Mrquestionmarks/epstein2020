@@ -67,6 +67,13 @@ characters={
 			expire = "2060.1.1.1"
 			id = -1
 		}
+		country_leader = {
+			desc = "DESC_LEADER_GARY_L_SAYLER"
+			traits = { retired_officer }
+			ideology = Authoritative_Democracy
+			expire = "2060.1.1.1"
+			id = -1
+		}
 		advisor = {
 			slot = air_chief
 			idea_token = IDA_Gary_Sayler_Chief
@@ -628,6 +635,161 @@ characters={
 		}
 	}
 	# Rocky Mountain Revolution #
+	IDA_fallen_government = { #Takes over if Stankiewicz dies in the revolt, replaced after the revolt ends
+		name = "Fallen Government"
+		portraits = {
+			civilian = {
+				large = "gfx/leaders/IDA/John_Earle_Sullivan_Trumpist.png"
+			}
+		}
+		country_leader = {
+			traits = { total_government_collapse }
+			ideology = conservative
+			expire = "2060.1.1.1"
+			id = -1
+		}
+	}
+	IDA_john_tiegen = { #Stankiewicz Replacement Leader
+		name = "John Tiegen"
+		portraits = {
+			civilian = {
+				large = "gfx/leaders/IDA/John_Tiegen.tga"
+			}
+			army = {
+				small = "GFX_idea_John_Tiegen_Command"
+				large="gfx/leaders/IDA/John_Tiegen.tga"
+			}
+		}
+		country_leader = {
+			desc = "DESC_GENERAL_JOHN_TIEGEN"
+			traits = { militia_leader }
+			ideology = trumpist
+			expire = "2060.1.1.1"
+			id = -1
+		}
+		advisor = {
+			slot = high_command
+			idea_token = IDA_John_Tiegen_Command
+			cost = 80
+			ledger = army
+			allowed = {
+				original_tag = IDA
+			}
+			visible = {
+				
+			}
+			available = {
+				
+			}
+			traits = {
+				army_commando_2 
+			}
+			ai_will_do = {
+				factor = 1
+			}
+		}
+		corps_commander = {
+			traits = { old_guard media_personality war_hero guerilla_fighter }
+			skill = 3
+			attack_skill = 2
+			defense_skill = 4
+			planning_skill = 1
+			logistics_skill = 2
+			legacy_id = 19501
+			visible = { NOT = { has_country_flag = wcz_rmlf_victory }}
+		}
+	}
+	IDA_eric_parker = { #Stankiewicz Replacement Leader
+		name = "Eric Parker"
+		portraits = {
+			civilian = {
+				large = "gfx/leaders/IDA/Eric_Parker.png"
+			}
+			army = {
+				small = "gfx/interface/ideas/IDA/Eric_Parker_General.dds"
+				large = "gfx/leaders/IDA/Eric_Parker.png"
+			}
+		}
+		country_leader = {
+			desc = "DESC_GENERAL_ERIC_PARKER"
+			traits = { militia_leader }
+			ideology = trumpist
+			expire = "2060.1.1.1"
+			id = -1
+		}
+		corps_commander = {
+			traits = { media_personality guerilla_fighter }
+			skill = 1
+			attack_skill = 2
+			defense_skill = 1
+			planning_skill = 1
+			logistics_skill = 1
+			legacy_id = 19506
+			visible = { NOT = { has_country_flag = wcz_rmlf_victory }}
+		}
+	}
+	IDA_boone_tidwell = { #Stankiewicz Replacement Leader
+		name = "Boone Tidwell"
+		portraits = {
+			civilian = {
+				large = "gfx/leaders/IDA/Boone_Tidwell.png"
+			}
+			army = {
+				small = "gfx/interface/ideas/IDA/Boone_Tidwell_General.dds"
+				large = "gfx/leaders/IDA/Boone_Tidwell.png"
+			}
+		}
+		country_leader = {
+			desc = "DESC_GENERAL_BOONE_TIDWELL"
+			traits = { militia_leader }
+			ideology = trumpist
+			expire = "2060.1.1.1"
+			id = -1
+		}
+		corps_commander = {
+			traits = { old_guard cavalry_officer guerilla_fighter }
+			skill = 1
+			attack_skill = 2
+			defense_skill = 1
+			planning_skill = 2
+			logistics_skill = 1
+			legacy_id = 19503
+			visible = { NOT = { has_country_flag = wcz_rmlf_victory }}
+		}
+	}
+	IDA_sam_brown = { #Stankiewicz Replacement Leader
+		name = "Sam Brown"
+		portraits = {
+			civilian = {
+				large = "gfx/leaders/FIR/brown.png"
+			}
+			army = {
+				small = "gfx/interface/ideas/FIR/Sam_Brown_General.dds"
+				large = "gfx/leaders/FIR/brown.png"
+			}
+		}
+		country_leader = {
+			desc = "DESC_LEADER_SAM_BROWN"
+			traits = { FIR_burned_man }
+			ideology = trumpist
+			expire = "2060.1.1.1"
+			id = -1
+		}
+		field_marshal = {
+			traits={ war_hero media_personality infantry_officer trickster ranger } 
+			skill = 4
+			attack_skill = 5
+			defense_skill = 3
+			planning_skill = 3
+			logistics_skill = 1
+			visible = { 
+				has_country_flag = wcz_sam_brown_arrives
+				NOT = {
+					has_country_flag = wcz_rmlf_victory
+				}
+			}
+		}
+	}
 	IDA_john_earle_sullivan_trumpist = { #Sullivan can turn Trumpist in the Rocky Mountain Revolution Path
 		name = "John Earle Sullivan"
 		portraits = {
@@ -636,7 +798,8 @@ characters={
 			}
 		}
 		country_leader = {
-			traits = { HOP_Turncoat }
+			desc = "DESC_LEADER_JOHN_EARLE_SULLIVAN"
+			traits = { HOP_Turncoat militia_leader }
 			ideology = trumpist
 			expire = "2060.1.1.1"
 			id = -1
@@ -1157,45 +1320,6 @@ characters={
 	}
 	# Military Staff (Some double as military leaders) #
 	# High Command #
-	IDA_john_tiegen = {
-		name = "John Tiegen"
-		portraits = {
-			army = {
-				small = "GFX_idea_John_Tiegen_Command"
-				large="gfx/leaders/IDA/John_Tiegen.tga"
-			}
-		}
-		advisor = {
-			slot = high_command
-			idea_token = IDA_John_Tiegen_Command
-			cost = 80
-			ledger = army
-			allowed = {
-				original_tag = IDA
-			}
-			visible = {
-				
-			}
-			available = {
-				
-			}
-			traits = {
-				army_commando_2 
-			}
-			ai_will_do = {
-				factor = 1
-			}
-		}
-		corps_commander = {
-			traits = { old_guard media_personality war_hero guerilla_fighter }
-			skill = 3
-			attack_skill = 2
-			defense_skill = 4
-			planning_skill = 1
-			logistics_skill = 2
-			legacy_id = 19501
-		}
-	}
 	IDA_corey_coon = {
 		name = "Corey Coon"
 		portraits = {
@@ -1422,10 +1546,7 @@ characters={
 				original_tag = IDA
 			}
 			visible = {
-				OR = {
-					has_country_flag = wcz_air_force_generals_allowed
-					has_country_flag = wcz_military_allowed_to_operate
-				}
+				
 			}
 			available = {
 				has_country_flag = wcz_utah_militias_recruited
@@ -2015,24 +2136,6 @@ characters={
 	}
 	### Military Leaders ###
 	# Army #
-	IDA_boone_tidwell = {
-		name = "Boone Tidwell"
-		portraits = {
-			army = {
-				small = "gfx/interface/ideas/IDA/Boone_Tidwell_General.dds"
-				large = "gfx/leaders/IDA/Boone_Tidwell.png"
-			}
-		}
-		corps_commander = {
-			traits = { old_guard cavalry_officer guerilla_fighter }
-			skill = 1
-			attack_skill = 2
-			defense_skill = 1
-			planning_skill = 2
-			logistics_skill = 1
-			legacy_id = 19503
-		}
-	}
 	IDA_brandon_curtiss = {
 		name = "Brandon Curtiss"
 		portraits = {
@@ -2049,24 +2152,7 @@ characters={
 			planning_skill = 2
 			logistics_skill = 2
 			legacy_id = 19504
-		}
-	}
-	IDA_eric_parker = {
-		name = "Eric Parker"
-		portraits = {
-			army = {
-				small = "gfx/interface/ideas/IDA/Eric_Parker_General.dds"
-				large = "gfx/leaders/IDA/Eric_Parker.png"
-			}
-		}
-		corps_commander = {
-			traits = { media_personality guerilla_fighter }
-			skill = 1
-			attack_skill = 2
-			defense_skill = 1
-			planning_skill = 1
-			logistics_skill = 1
-			legacy_id = 19506
+			visible = { NOT = { has_country_flag = wcz_rmlf_victory }}
 		}
 	}
 	IDA_joshua_wheeler = {
@@ -2085,28 +2171,10 @@ characters={
 			planning_skill = 2
 			logistics_skill = 1
 			legacy_id = 19507
+			visible = { NOT = { has_country_flag = wcz_rmlf_victory }}
 		}
 	}
 	# Gained Military Leaders #
-	# Fire Legion #
-	IDA_sam_brown = {
-		name = "Sam Brown"
-		portraits = {
-			army = {
-				small = "gfx/interface/ideas/FIR/Sam_Brown_General.dds"
-				large = "gfx/leaders/FIR/brown.png"
-			}
-		}
-		field_marshal = {
-			traits={ war_hero media_personality infantry_officer trickster ranger } 
-			skill = 4
-			attack_skill = 5
-			defense_skill = 3
-			planning_skill = 3
-			logistics_skill = 1
-			visible = { has_country_flag = wcz_sam_brown_arrives }
-		}
-	}
 	# Utah #
 	IDA_casey_robertson = {
 		name = "Casey Robertson"

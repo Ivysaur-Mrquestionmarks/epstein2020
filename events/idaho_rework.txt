@@ -145,7 +145,6 @@ news_event = {
 	major = yes
 	option = {
 		name = idaho_rework.195.a
-
 	}
 }
 news_event = {
@@ -167,21 +166,10 @@ news_event = {
 	option = {
 		name = idaho_rework.196.b
 		trigger = {
-			OR = {
-				tag = FRA
-				is_ally_with = FRA
-			}
-		}
-	}
-	option = {
-		name = idaho_rework.196.c
-		trigger = {
 			NOT = {
 				OR = {
 					tag = USA
 					is_ally_with = USA
-					tag = FRA
-					is_ally_with = FRA
 				}
 			}
 		}
@@ -235,7 +223,6 @@ news_event = {
 	major = yes
 	option = {
 		name = idaho_rework.198.a
-		
 	}
 }
 news_event = {
@@ -247,7 +234,53 @@ news_event = {
 	major = yes
 	option = {
 		name = idaho_rework.199.a
-		
+	}
+}
+news_event = {
+	id = idaho_rework.244
+	title = idaho_rework.244.t
+	desc = idaho_rework.244.d
+	picture = event_news_IDA_Revolt_In_The_Rockies
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = idaho_rework.244.a
+	}
+}
+news_event = {
+	id = idaho_rework.250
+	title = idaho_rework.250.t
+	desc = idaho_rework.250.d
+	picture = event_news_IDA_Bundy_Coup
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = idaho_rework.250.a
+		trigger = {
+			has_cosmetic_tag = IDA_Nauvoo
+		}
+	}
+	option = {
+		name = idaho_rework.250.b
+		trigger = {
+			NOT = {
+				has_cosmetic_tag = IDA_Nauvoo
+			}
+		}
+	}
+	option = {
+		name = idaho_rework.250.c
+	}
+}
+news_event = {
+	id = idaho_rework.253
+	title = idaho_rework.253.t
+	desc = idaho_rework.253.d
+	picture = event_news_IDA_Rocky_Mountain_Revolution
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = idaho_rework.253.a
 	}
 }
 ### Country Events ###
@@ -430,7 +463,7 @@ country_event = { #WCZ asks Trump for direction after Mormon coup
 	option = { #Defensive
 		name = idaho_rework.5.b
 		ai_chance = {
-			factor = 20
+			factor = 30
 			modifier = {
       			factor = 0 
       			OR = {
@@ -23127,6 +23160,11 @@ country_event = { #WCZ chooses whether it wants National Guard advisors or Trump
 		}
 		hidden_effect = {
 			set_country_flag = wcz_military_allowed_to_operate
+			set_party_name = { 
+				ideology = autocratic 
+				long_name = "Western Command - National Guard"
+				name = "WC-N"
+			}
 		}
 	}
 }
@@ -23515,61 +23553,6 @@ country_event = { #Montana proposes the territory be split
 		}
 	}
 }
-country_event = { #WCZ asks Montana to return Idaho and Wyoming
-	id = idaho_rework.230
-	title = idaho_rework.230.t
-	desc = idaho_rework.230.d
-	picture = GFX_report_event_IDA_Montana
-	
-	is_triggered_only = yes
-	fire_only_once = yes
-	
-	option = { #Montana agrees to return all of Idaho and Wyoming
-		name = idaho_rework.230.a
-		ai_chance = {
-			factor = 10
-		}
-		every_state = {
-			limit = { 
-				is_core_of = IDA 
-				CONTROLLER = {
-					tag = MON
-				}
-			}
-			remove_core_of = MON
-			IDA = {
-				transfer_state = PREV
-			}
-			IDA = {
-				complete_national_focus = IDA_Open_Negotiations_With_Montana
-			}
-		}
-	}
-	option = { #Montana offers to split the territory 
-		name = idaho_rework.230.b
-		ai_chance = {
-			factor = 0
-		}
-		IDA = {
-			country_event = {
-				id = idaho_rework.231
-				days = 3
-			}
-		}
-	}
-	option = { #Montana rejects the offer
-		name = idaho_rework.230.c
-		ai_chance = {
-			factor = 0
-		}
-		IDA = {
-			country_event = {
-				id = idaho_rework.228
-				days = 3
-			}
-		}
-	}
-}
 country_event = { #WCZ decides how it wants to appraoch Utah
 	id = idaho_rework.232
 	title = idaho_rework.232.t
@@ -23706,6 +23689,689 @@ country_event = { #WCZ asks Utah to join them
 				id = idaho_rework.234
 				days = 3
 			}
+		}
+	}
+}
+country_event = { #Start of the Rocky Mountain Revolution, flavor event
+	id = idaho_rework.236
+	title = idaho_rework.236.t
+	desc = idaho_rework.236.d
+	picture = GFX_report_event_IDA_Militias_1
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = idaho_rework.236.a
+		add_stability = -0.03
+		add_popularity = {
+			ideology = democrat
+			popularity = 0.01
+		}
+		add_popularity = {
+			ideology = libertarian_left
+			popularity = 0.01
+		}
+		add_popularity = {
+			ideology = authoritarian_left
+			popularity = 0.01
+		}
+		hidden_effect = {
+			country_event = {
+				id = idaho_rework.237
+				days = 5
+			}
+		}
+	}
+}
+country_event = { #Second event of the Rocky Mountain Revolution, flavor event
+	id = idaho_rework.237
+	title = idaho_rework.237.t
+	desc = idaho_rework.237.d
+	picture = GFX_report_event_IDA_Communications_Cut
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = idaho_rework.237.a
+		add_stability = -0.08
+		add_manpower = -50
+		add_popularity = {
+			ideology = democrat
+			popularity = 0.03
+		}
+		add_popularity = {
+			ideology = libertarian_left
+			popularity = 0.03
+		}
+		add_popularity = {
+			ideology = authoritarian_left
+			popularity = 0.03
+		}
+		random_owned_controlled_state = {
+			limit = {infrastructure > 1}
+			damage_building = {
+    			type = infrastructure
+    			damage = 1
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {infrastructure > 1}
+			damage_building = {
+    			type = infrastructure
+    			damage = 1
+			}
+		}		
+		hidden_effect = {
+			country_event = {
+				id = idaho_rework.238
+				days = 5
+			}
+		}
+	}
+}
+country_event = { #Third event of the Rocky Mountain Revolution, flavor event
+	id = idaho_rework.238
+	title = idaho_rework.238.t
+	desc = idaho_rework.238.d
+	picture = GFX_report_event_IDA_Raid
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = idaho_rework.238.a
+		add_stability = -0.15
+		add_manpower = -75
+		add_popularity = {
+			ideology = democrat
+			popularity = 0.03
+		}
+		add_popularity = {
+			ideology = libertarian_left
+			popularity = 0.03
+		}
+		add_popularity = {
+			ideology = authoritarian_left
+			popularity = 0.03
+		}
+		random_owned_controlled_state = {
+			limit = {infrastructure > 1}
+			damage_building = {
+    			type = infrastructure
+    			damage = 2
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {infrastructure > 1}
+			damage_building = {
+    			type = infrastructure
+    			damage = 2
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {infrastructure > 1}
+			damage_building = {
+    			type = infrastructure
+    			damage = 1
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {infrastructure > 1}
+			damage_building = {
+    			type = infrastructure
+    			damage = 1
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = idaho_rework.239
+				days = 3
+			}
+		}
+	}
+}
+country_event = { #Fourth event of the Rocky Mountain Revolution, flavor event
+	id = idaho_rework.239
+	title = idaho_rework.239.t
+	desc = idaho_rework.239.d
+	picture = GFX_report_event_IDA_Militia_3
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = idaho_rework.239.a
+		add_stability = -0.05
+		add_manpower = -100
+		add_popularity = {
+			ideology = democrat
+			popularity = 0.01
+		}
+		add_popularity = {
+			ideology = libertarian_left
+			popularity = 0.01
+		}
+		add_popularity = {
+			ideology = authoritarian_left
+			popularity = 0.01
+		}
+		hidden_effect = {
+			country_event = {
+				id = idaho_rework.240
+				days = 3
+			}
+		}
+	}
+}
+country_event = { #Fifth event of the Rocky Mountain Revolution, flavor event
+	id = idaho_rework.240
+	title = idaho_rework.240.t
+	desc = idaho_rework.240.d
+	picture = GFX_report_event_IDA_City_Battle
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = idaho_rework.240.a
+		hidden_effect = {
+			country_event = {
+				id = idaho_rework.241
+				days = 3
+			}
+		}
+	}
+}
+country_event = { #Sixth event of the Rocky Mountain Revolution, Stankiewicz makes a last stand against the invaders
+	id = idaho_rework.241
+	title = idaho_rework.241.t
+	desc = idaho_rework.241.d
+	picture = GFX_report_event_Stankiewicz_Plans
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Stankiewicz survives his last stand, leads to a Trumpist victory in the revolt
+		name = idaho_rework.241.a
+		ai_chance = {
+			factor = 70
+		}
+		hidden_effect = {
+			country_event = {
+				id = idaho_rework.242
+				days = 2
+			}
+		}
+	}
+	option = { #Stankiewicz survives dies in his last stand, RMLF is one step further to winning
+		name = idaho_rework.241.a
+		ai_chance = {
+			factor = 30
+		}
+		retire_character = IDA_jeff_stankiewicz
+		IDA_fallen_government = {
+			promote_character = yes
+		}
+		hidden_effect = {
+			country_event = {
+				id = idaho_rework.245
+				days = 2
+			}
+		}
+	}
+}
+country_event = { #Stankiewicz survived, militias manage to beat back the Front in Idaho Falls
+	id = idaho_rework.242
+	title = idaho_rework.242.t
+	desc = idaho_rework.242.d
+	picture = GFX_report_event_IDA_City_Battle
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = idaho_rework.242.a
+		add_stability = 0.1
+		hidden_effect = {
+			country_event = {
+				id = idaho_rework.243
+				days = 5
+			}
+		}
+	}
+}
+country_event = { #Stankiewicz survived, Trumpists victory in the revolution, loads new focus tree
+	id = idaho_rework.243
+	title = idaho_rework.243.t
+	desc = idaho_rework.243.d
+	picture = GFX_report_event_IDA_Celebrations_In_The_Streets
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = idaho_rework.243.a
+		custom_effect_tooltip = wcz_focus_tree_unlock
+		add_stability = 0.15
+		add_war_support = 0.05
+		add_popularity = {
+			ideology = democrat
+			popularity = -0.1
+		}
+		add_popularity = {
+			ideology = libertarian_left
+			popularity = -0.1
+		}
+		add_popularity = {
+			ideology = authoritarian_left
+			popularity = -0.1
+		}
+		add_popularity = {
+			ideology = republican
+			popularity = 0.15
+		}
+		hidden_effect = {
+			set_country_flag = wcz_rmlf_defeated
+			mark_focus_tree_layout_dirty = yes
+			complete_national_focus = IDA_Pursue_Further_Integration
+			complete_national_focus = IDA_Selecting_A_New_Commander
+			news_event = idaho_rework.244
+		}
+	}
+}
+country_event = { #Stankiewicz died, Idaho Falls falls to the RMLF
+	id = idaho_rework.245
+	title = idaho_rework.245.t
+	desc = idaho_rework.245.d
+	picture = event_revolt_put_down_01
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #If the WCZ chose National Guard advisors, they will end the revolt. If not, they will join the revolt.
+		name = idaho_rework.245.a
+		add_stability = -0.05
+		hidden_effect = {
+			if = {
+				limit = {
+					has_country_flag = wcz_military_allowed_to_operate
+				}
+				country_event = {
+					id = idaho_rework.246
+					days = 3
+				}
+			}
+			else = {
+				country_event = {
+					id = idaho_rework.247
+					days = 2
+				}
+			}
+		}
+	}
+}
+country_event = { #Stankiewicz died, National Guard steps in to stop the revolution, Trumpist victory, loads new focus tree
+	id = idaho_rework.246
+	title = idaho_rework.246.t
+	desc = idaho_rework.246.d
+	picture = GFX_report_event_IDA_National_Guard
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = idaho_rework.246.a
+		custom_effect_tooltip = wcz_focus_tree_unlock
+		IDA_gary_l_sayler = {
+			promote_character = {
+				ideology = Authoritative_Democracy
+			}
+		}
+		add_stability = 0.15
+		add_war_support = 0.05
+		add_popularity = {
+			ideology = democrat
+			popularity = -0.1
+		}
+		add_popularity = {
+			ideology = libertarian_left
+			popularity = -0.1
+		}
+		add_popularity = {
+			ideology = authoritarian_left
+			popularity = -0.1
+		}
+		add_popularity = {
+			ideology = republican
+			popularity = 0.15
+		}
+		hidden_effect = {
+			set_country_flag = wcz_rmlf_defeated
+			mark_focus_tree_layout_dirty = yes
+			complete_national_focus = IDA_Pursue_Further_Integration
+			complete_national_focus = IDA_Selecting_A_New_Commander
+			news_event = idaho_rework.244
+		}
+	}
+}
+country_event = { #Stankiewicz died, National Guard joins the revolt, RMLF gets one step close to winning
+	id = idaho_rework.247
+	title = idaho_rework.247.t
+	desc = idaho_rework.247.d
+	picture = GFX_report_event_IDA_National_Guard
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = idaho_rework.247.a
+		set_party_name = { 
+			ideology = autocratic 
+			long_name = "Rocky Mountain Liberation Front - National Guard"
+			name = "RMLF-N"
+		}
+		hidden_effect = {
+			if = { #WCZ choose to expand into Utah and the Bundys were recruited, revolution fails 
+				limit = {
+					has_country_flag = wcz_bundys_recruited
+				}
+				country_event = {
+					id = idaho_rework.248
+					days = 3
+				}
+			}
+			else_if = { #WCZ choose to expand, revolution fails
+				limit = {
+					OR = {
+						has_completed_focus = IDA_Open_Negotiations_With_Montana
+						has_completed_focus = IDA_Operation_Treasure_Hunter_2
+						has_completed_focus = IDA_Operation_Beekeeper_2
+						has_completed_focus = IDA_Propose_Unification_With_Utah
+					}
+				}
+				country_event = {
+					id = idaho_rework.251
+					days = 3
+				}
+			}
+			else = { #WCZ choose not to/failed to expand, revolution succeeds
+				country_event = {
+					id = idaho_rework.252
+					days = 3
+				}
+			}
+		}
+	}
+}
+country_event = { #Bundys steps in to stop the revolution, leads to the Bundy secret path
+	id = idaho_rework.248
+	title = idaho_rework.248.t
+	desc = idaho_rework.248.d
+	picture = GFX_report_event_IDA_Bundy_Support
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = idaho_rework.248.a
+		hidden_effect = {
+			country_event = {
+				id = idaho_rework.249
+				days = 2
+			}
+		}
+	}
+}
+country_event = { #Bundys steps in to stop the revolution, Bundy coup event
+	id = idaho_rework.249
+	title = idaho_rework.249.t
+	desc = idaho_rework.249.d
+	picture = GFX_report_event_IDA_Bundy_Support
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Ammon Bundy returns power to the militias
+		name = idaho_rework.249.a
+		ai_chance = {
+			factor = 10
+		}
+		custom_effect_tooltip = wcz_focus_tree_unlock
+		add_stability = 0.15
+		add_war_support = 0.05
+		add_popularity = {
+			ideology = democrat
+			popularity = -0.1
+		}
+		add_popularity = {
+			ideology = libertarian_left
+			popularity = -0.1
+		}
+		add_popularity = {
+			ideology = authoritarian_left
+			popularity = -0.1
+		}
+		add_popularity = {
+			ideology = republican
+			popularity = 0.15
+		}
+		hidden_effect = {
+			set_country_flag = wcz_rmlf_defeated
+			mark_focus_tree_layout_dirty = yes
+			complete_national_focus = IDA_Pursue_Further_Integration
+			news_event = idaho_rework.244
+		}
+	}
+	option = { #Ammon Bundy seizes control of the government
+		name = idaho_rework.249.b
+		ai_chance = {
+			factor = 0
+		}
+		custom_effect_tooltip = wcz_bundy_coup
+		add_stability = 0.15
+		add_war_support = 0.05
+		set_politics = {
+			ruling_party = libertarian_right
+			elections_allowed = no
+		}
+		IDA_ammon_bundy = {
+			promote_character = yes
+		}
+		leave_faction = yes
+		hidden_effect = {
+			USA = {
+				remove_opinion_modifier = {
+					target = IDA
+					modifier = aligned_administration
+				}
+			}
+			remove_opinion_modifier = {
+				target = USA
+				modifier = aligned_administration
+			}
+			IDA_brad_little = {
+				promote_character = yes
+			}
+			add_popularity = {
+				ideology = democrat
+				popularity = -0.1
+			}
+			add_popularity = {
+				ideology = libertarian_left
+				popularity = -0.1
+			}
+			add_popularity = {
+				ideology = authoritarian_left
+				popularity = -0.1
+			}
+			add_popularity = {
+				ideology = libertarian_right
+				popularity = 0.40
+			}
+			load_focus_tree = bundy
+			mark_focus_tree_layout_dirty = yes
+			set_cosmetic_tag = IDA_Nauvoo
+			news_event = idaho_rework.250
+		}
+	}
+}
+country_event = { #WCZ choose to expand, Trumpist forces arrive and end the revolution
+	id = idaho_rework.251
+	title = idaho_rework.251.t
+	desc = idaho_rework.251.d
+	picture = GFX_report_event_IDA_Militia_4
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = idaho_rework.251.a
+		custom_effect_tooltip = wcz_focus_tree_unlock
+		add_stability = 0.15
+		add_war_support = 0.05
+		add_popularity = {
+			ideology = democrat
+			popularity = -0.1
+		}
+		add_popularity = {
+			ideology = libertarian_left
+			popularity = -0.1
+		}
+		add_popularity = {
+			ideology = authoritarian_left
+			popularity = -0.1
+		}
+		add_popularity = {
+			ideology = republican
+			popularity = 0.15
+		}
+		hidden_effect = {
+			set_country_flag = wcz_rmlf_defeated
+			mark_focus_tree_layout_dirty = yes
+			complete_national_focus = IDA_Pursue_Further_Integration
+			news_event = idaho_rework.244
+		}
+	}
+}
+country_event = { #WCZ did not choose to expand, Rocky Mountain Revolution succeeds
+	id = idaho_rework.252
+	title = idaho_rework.252.t
+	desc = idaho_rework.252.d
+	picture = GFX_report_event_IDA_RMLF_Victory
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = idaho_rework.252.a
+		custom_effect_tooltip = wcz_focus_tree_unlock
+		custom_effect_tooltip = wcz_loose_generals
+		custom_effect_tooltip = wcz_air_and_army_generals_reinstated
+		add_stability = 0.2
+		add_war_support = 0.1
+		add_popularity = {
+			ideology = democrat
+			popularity = -0.15
+		}
+		add_popularity = {
+			ideology = libertarian_left
+			popularity = -0.15
+		}
+		add_popularity = {
+			ideology = authoritarian_left
+			popularity = 0.15
+		}
+		add_popularity = {
+			ideology = republican
+			popularity = -0.30
+		}
+		set_politics = {
+			ruling_party = democrat
+			elections_allowed = yes
+			election_frequency = 48
+		}
+		leave_faction = yes
+		hidden_effect = {
+			USA = {
+				remove_opinion_modifier = {
+					target = IDA
+					modifier = aligned_administration
+				}
+			}
+			remove_opinion_modifier = {
+				target = USA
+				modifier = aligned_administration
+			}
+			IDA_brad_little = {
+				promote_character = yes
+			}
+			set_country_flag = wcz_rmlf_victory
+			set_country_flag = wcz_military_allowed_to_operate
+			mark_focus_tree_layout_dirty = yes
+			complete_national_focus = IDA_Pursue_Further_Integration
+			news_event = idaho_rework.253
+		}
+	}
+}
+country_event = { #WCZ chooses a replacement leader for Stankiewicz if he died during the revolution
+	id = idaho_rework.254
+	title = idaho_rework.254.t
+	desc = idaho_rework.254.d
+	picture = GFX_report_event_IDA_Generic_Meeting
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #John Tiegen
+		name = idaho_rework.254.a
+		ai_chance = {
+			factor = 10
+		}
+		add_political_power = 25
+		add_stability = 0.05
+		IDA_john_tiegen = {
+			promote_character = yes
+			promote_leader = yes
+		}
+	}
+	option = { #Eric Parker
+		name = idaho_rework.254.b
+		ai_chance = {
+			factor = 10
+		}
+		add_political_power = 25
+		add_stability = 0.05
+		IDA_eric_parker = {
+			promote_character = yes
+			promote_leader = yes
+		}
+	}
+	option = { #Boone Tidwell
+		name = idaho_rework.254.c
+		ai_chance = {
+			factor = 10
+		}
+		add_political_power = 25
+		add_stability = 0.05
+		IDA_boone_tidwell = {
+			promote_character = yes
+			promote_leader = yes
+		}
+	}
+	option = { #Sam Brown
+		name = idaho_rework.254.e
+		trigger = {
+			has_country_flag = wcz_sam_brown_arrives
+		}
+		ai_chance = {
+			factor = 80
+		}
+		add_political_power = 25
+		add_stability = 0.05
+		IDA_sam_brown = {
+			promote_character = yes
 		}
 	}
 }

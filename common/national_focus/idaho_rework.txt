@@ -549,6 +549,7 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 		completion_reward = {
 			random_owned_state = {
+				add_extra_state_shared_building_slots = 3
 				add_building_construction = {
 					type = industrial_complex
 					level = 2
@@ -598,6 +599,7 @@ focus_tree = {
 		completion_reward = {
 			add_political_power = -25
 			random_owned_state = {
+				add_extra_state_shared_building_slots = 3
 				add_building_construction = {
 					type = industrial_complex
 					level = 1
@@ -3130,10 +3132,7 @@ focus_tree = {
 		}
 		available = { 
 			PRA = {
-				has_country_leader = {
-					name = "Caitlyn Jenner"
-					ruling_only = yes
-				}
+				PRA_caitlyn_jenner = { is_country_leader = yes }
 			}
 		}
 		bypass = {
@@ -6239,7 +6238,7 @@ focus_tree = {
 		icon = GFX_goal_fortify_the_westwall
 		x = 65
 		y = 5
-		cost = 5
+		cost = 10
 		prerequisite = { 
 			focus = IDA_A_Change_In_Plans
 		}
@@ -6302,7 +6301,7 @@ focus_tree = {
 			}
 		}
 		bypass = {
-			is_in_faction_with = USA
+			
 		}
 		cancel = {
 		
@@ -6341,7 +6340,7 @@ focus_tree = {
 			}
 		}
 		bypass = {
-			is_in_faction_with = USA
+			
 		}
 		cancel = {
 		
@@ -6356,6 +6355,12 @@ focus_tree = {
 			USA = {
 				add_to_faction = IDA
 			}
+			400 = {
+				set_demilitarized_zone = no
+			}
+			517 = {
+				set_demilitarized_zone = no
+			}
 		}
 	}
 	# Military Reform Tree #
@@ -6363,8 +6368,8 @@ focus_tree = {
 		id = IDA_Professionalizing_Our_Army
 		icon = GFX_focus_NPA_We_Are_Who_We_Are
 		x = 60
-		y = 7
-		cost = 5
+		y = 6
+		cost = 10
 		prerequisite = { 
 			focus = IDA_Dig_In
 		}
@@ -6407,8 +6412,8 @@ focus_tree = {
 		id = IDA_Bring_In_Military_Advisors
 		icon = GFX_goal_Meet_with_the_High_Command
 		x = 60
-		y = 8
-		cost = 7
+		y = 7
+		cost = 10
 		prerequisite = { 
 			focus = IDA_Professionalizing_Our_Army
 		}
@@ -6442,12 +6447,57 @@ focus_tree = {
 			country_event = idaho_rework.222
 		}
 	}
+	focus = { #Choice between National Guard Advisors or Trump ones, gain army experience, improves military debuff
+		id = IDA_Hold_Military_Excercises
+		icon = GFX_goal_generic_air_doctrine
+		x = 60
+		y = 8
+		cost = 10
+		prerequisite = { 
+			focus = IDA_Professionalizing_Our_Army
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_war_support = 0.05
+			add_command_power = 50
+			army_experience = 75
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.5
+				uses = 3
+				category = land_doctrine
+			}
+		}
+	}
 	focus = { #Final Army Reform, completely removes army debuff
 		id = IDA_The_Army_Of_The_Redoubt
 		icon = GFX_goal_A_life_worth_fighting_for
 		x = 60
 		y = 9
-		cost = 9
+		cost = 10
 		prerequisite = { 
 			focus = IDA_Bring_In_Military_Advisors
 		}
@@ -6486,7 +6536,7 @@ focus_tree = {
 		icon = GFX_goal_FLO_aircraft_production
 		x = 59
 		y = 10
-		cost = 7
+		cost = 10
 		prerequisite = { 
 			focus = IDA_The_Army_Of_The_Redoubt
 		}
@@ -6586,7 +6636,7 @@ focus_tree = {
 		icon = GFX_goal_pac_prep_war_free
 		x = 65
 		y = 7
-		cost = 5
+		cost = 10
 		prerequisite = { 
 			focus = IDA_Dig_In
 		}
@@ -6628,7 +6678,7 @@ focus_tree = {
 		icon = GFX_goal_attack_MON
 		x = 63
 		y = 8
-		cost = 3
+		cost = 5
 		prerequisite = { 
 			focus = IDA_Enter_The_Fray
 		}
@@ -6672,7 +6722,7 @@ focus_tree = {
 		icon = GFX_goal_generic_defence
 		x = 65
 		y = 8
-		cost = 3
+		cost = 5
 		prerequisite = { 
 			focus = IDA_Enter_The_Fray
 		}
@@ -6716,12 +6766,12 @@ focus_tree = {
 		icon = GFX_focus_UTA_identity
 		x = 67
 		y = 8
-		cost = 3
+		cost = 5
 		prerequisite = { 
 			focus = IDA_Enter_The_Fray
 		}
 		mutually_exclusive = {
-			focus = IDA_Enter_The_Fray
+			focus = IDA_To_The_North
 			focus = IDA_Hold_Our_Ground
 		}
 		ai_will_do = {
@@ -6811,7 +6861,7 @@ focus_tree = {
 		icon = GFX_goal_IDA_Operation_Treasure_Hunter
 		x = 64
 		y = 9
-		cost = 3
+		cost = 5
 		prerequisite = { 
 			focus = IDA_To_The_North
 		}
@@ -6860,18 +6910,6 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = { 
-			IDA = {
-				every_state = {
-					limit = {
-						OR = {
-							is_core_of = MON
-							is_core_of = LYM
-							is_core_of = BKF
-						}
-					}
-					add_core_of = IDA
-				}
-			}
 			create_wargoal = {
 				type = annex_everything 
 				target = MON
@@ -6891,7 +6929,7 @@ focus_tree = {
 		icon = GFX_goal_IDA_Operation_Beekeeper
 		x = 66
 		y = 9
-		cost = 3
+		cost = 5
 		prerequisite = { 
 			focus = IDA_To_The_South
 		}
@@ -6947,18 +6985,6 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = { 
-			IDA = {
-				every_state = {
-					limit = {
-						OR = {
-							is_core_of = SIN
-							is_core_of = LAS
-							is_core_of = MOL
-						}
-					}
-					add_core_of = IDA
-				}
-			}
 			create_wargoal = {
 				type = annex_everything 
 				target = SIN
@@ -6982,7 +7008,7 @@ focus_tree = {
 		icon = GFX_focus_UTA_biden
 		x = 68
 		y = 9
-		cost = 3
+		cost = 10
 		prerequisite = { 
 			focus = IDA_To_The_South
 		}
@@ -7027,6 +7053,1446 @@ focus_tree = {
 			add_political_power = 25
 		}
 	}
+	focus = { #Cores any new territories 
+		id = IDA_Integrate_Our_New_Territories_2
+		icon = GFX_focus_generic_treaty
+		x = 65
+		y = 10
+		cost = 10
+		prerequisite = { 
+			focus = IDA_Hold_Our_Ground
+			focus = IDA_Open_Negotiations_With_Montana
+			focus = IDA_Operation_Treasure_Hunter_2
+			focus = IDA_Operation_Beekeeper_2
+			focus = IDA_Propose_Unification_With_Utah
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			has_war = no
+		}
+		bypass = {
+			has_completed_focus = IDA_Hold_Our_Ground
+		}
+		cancel = {
+			has_war = yes
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			custom_effect_tooltip = wcz_integrate_cores
+			hidden_effect = {
+				if = {
+					limit = {
+						NOT = {
+							country_exists = MON
+							country_exists = LYM
+							country_exists = BKF
+						}
+					}
+					IDA = {
+						every_state = {
+							limit = {
+								OR = {
+									is_core_of = MON
+									is_core_of = LYM
+									is_core_of = BKF
+								}
+							}
+							add_core_of = IDA
+						}
+					}
+				}
+				if = {
+					limit = {
+						NOT = {
+							country_exists = UTA
+							country_exists = SIN
+							country_exists = LAS
+							country_exists = MOL
+						}
+					}
+					IDA = {
+						every_state = {
+							limit = {
+								OR = {
+									is_core_of = UTA
+									is_core_of = SIN
+									is_core_of = LAS
+									is_core_of = MOL
+								}
+							}
+							add_core_of = IDA
+						}
+					}
+				}
+			}
+		}
+	}
+	# Passive Industrial Reform #
+	focus = { #Start of economy tree, gives political power and improves economy
+		id = IDA_The_Road_To_Self_Sufficiency
+		icon = GFX_focus_MON_Industry_Of_The_Future
+		x = 70
+		y = 6
+		cost = 10
+		prerequisite = { 
+			focus = IDA_Dig_In
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			NOT = {
+				has_idea = IDA_Economic_Dependence_1
+			}
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_political_power = 30
+			swap_ideas = {
+				remove_idea = IDA_Economic_Dependence_1
+				add_idea = IDA_Economic_Dependence_4
+			}
+		}
+	}
+	focus = { #Add factories and building slots in Idaho
+		id = IDA_Invest_In_Idaho
+		icon = GFX_goal_Idaho_Supremacy
+		x = 69
+		y = 7
+		cost = 10
+		prerequisite = { 
+			focus = IDA_The_Road_To_Self_Sufficiency
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			NOT = {
+				has_idea = IDA_Economic_Dependence_1
+			}
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_political_power = -25
+			415 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			568 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = { #Add factories and building slots in Wyoming
+		id = IDA_Invest_In_Wyoming
+		icon = GFX_goal_Wyoming_Supremacy
+		x = 71
+		y = 7
+		cost = 10
+		prerequisite = { 
+			focus = IDA_The_Road_To_Self_Sufficiency
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_political_power = -25
+			400 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			412 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = { #Add factories and building slots in Wyoming
+		id = IDA_Nationwide_Infrastrucutre_Improvements
+		icon = GFX_goal_generic_construct_civilian
+		x = 70
+		y = 8
+		cost = 10
+		prerequisite = { 
+			focus = IDA_Invest_In_Idaho
+		}
+		prerequisite = { 
+			focus = IDA_Invest_In_Wyoming
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_political_power = -25
+			every_state = {
+				limit = {
+					is_owned_by = IDA
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = { #Removes industry debuffs, gain stability and political power
+		id = IDA_The_Bustling_Economy_Of_The_Redoubt
+		icon = GFX_goal_icon_Economies_of_Scale
+		x = 70
+		y = 9
+		cost = 10
+		prerequisite = { 
+			focus = IDA_Nationwide_Infrastrucutre_Improvements
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			NOT = {
+				has_idea = IDA_Economic_Dependence_4
+			}
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_stability = 0.1
+			add_political_power = 50
+			swap_ideas = {
+				remove_idea = IDA_Economic_Dependence_4
+				add_idea = IDA_Economic_Miracle
+			}
+		}
+	}
+	focus = { #Removes industry debuffs, gain stability and political power
+		id = IDA_Invest_In_Utah_State_University
+		icon = GFX_focus_research
+		x = 69
+		y = 10
+		cost = 10
+		prerequisite = { 
+			focus = IDA_The_Bustling_Economy_Of_The_Redoubt
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_research_slot = 1
+		}
+	}
+	focus = { #Gains a small amount of resources in a random state
+		id = IDA_Exploit_Resouce_Deposits
+		icon = GFX_goal_Alt_Energy
+		x = 71
+		y = 10
+		cost = 10
+		prerequisite = { 
+			focus = IDA_The_Bustling_Economy_Of_The_Redoubt
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_resource = {
+				type = oil
+				amount = 15
+				state = 412
+			}
+			add_resource = {
+				type = aluminium
+				amount = 5
+				state = 415
+			}
+			add_resource = {
+				type = rubber
+				amount = 5
+				state = 412
+			}
+			add_resource = {
+				type = tungsten
+				amount = 3
+				state = 415
+			}
+			add_resource = {
+				type = steel
+				amount = 5
+				state = 568
+			}
+			add_resource = {
+				type = chromium
+				amount = 3
+				state = 568
+			}
+		}
+	}
+	# Final Focus in Initial Passive Path #
+	focus = { #Trap focus, starts the Rocky Mountain Revolution event chain
+		id = IDA_Pursue_Further_Integration
+		icon = GFX_goal_FLO_trumps_finest
+		x = 65
+		y = 11
+		cost = 15
+		prerequisite = { 
+			focus = IDA_The_Army_Of_The_Redoubt
+		}
+		prerequisite = { 
+			focus = IDA_Integrate_Our_New_Territories_2
+		}
+		prerequisite = { 
+			focus = IDA_The_Bustling_Economy_Of_The_Redoubt
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			has_completed_focus = IDA_Reestablish_Links_With_The_East
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		select_effect = {
+			country_event = {
+				id = idaho_rework.236
+				days = 25
+			}
+		}
+		
+		completion_reward = { 
+			USA = {
+                if = {
+                    limit = {
+                        OR = {
+                            has_dlc = "Together for Victory"
+                            has_dlc = "Man the Guns"
+                        }
+                    }
+                    set_autonomy = {
+                        target = IDA
+                        autonomous_state = autonomy_colony
+                        freedom_level = 0.1
+                    }
+                    else = {
+                        puppet = IDA
+                    }
+                }
+            }
+		}
+	}
+	# Rocky Mountain Revolution Defeated #
+	focus = { #RMLF was defeated, WCZ will go on to conquer the West, This focus is if Stankiewicz died during the revolution
+		id = IDA_Selecting_A_New_Commander
+		icon = GFX_goal_Legacy_of_VA
+		x = 65
+		y = 11
+		cost = 3
+		prerequisite = { 
+			focus = IDA_Pursue_Further_Integration
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			has_country_flag = wcz_rmlf_defeated
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			country_event = idaho_rework.254
+		}
+	}
+	focus = { #Start of conquering the West, WCZ will gain war goals if player-controlled, Trump gets war goals if WCZ is A.I. controlled  
+		id = IDA_Continue_The_Mission
+		icon = GFX_goal_generic_major_war
+		x = 65
+		y = 12
+		cost = 3
+		prerequisite = { 
+			focus = IDA_Selecting_A_New_Commander
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			has_country_flag = wcz_rmlf_defeated
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_political_power = 25
+			add_stability = 0.05
+			add_war_support = 0.1
+			add_command_power = 30
+			add_ideas = IDA_Masters_Of_The_West
+		}
+	}
+	focus = { #War Goals against Montana tags
+		id = IDA_Operation_Treasure_Hunter_3
+		icon = GFX_goal_IDA_Operation_Treasure_Hunter
+		x = 63
+		y = 12
+		cost = 3
+		prerequisite = { 
+			focus = IDA_Continue_The_Mission
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			has_country_flag = wcz_rmlf_defeated
+		}
+		available = {
+			
+		}
+		bypass = {
+			OR = {
+				has_completed_focus = IDA_Operation_Treasure_Hunter_2
+				OR = {
+					NOT = {
+						country_exists = MON
+						country_exists = LYM
+						country_exists = BKF
+					}
+					has_war_with = MON
+					has_war_with = LYM
+					has_war_with = BKF
+				}
+			}
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		
+		will_lead_to_war_with = MON
+		will_lead_to_war_with = LYM
+		will_lead_to_war_with = BKF
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				USA = {
+					create_wargoal = {
+						type = annex_everything 
+						target = MON
+					}
+					create_wargoal = {
+						type = annex_everything 
+						target = LYM
+					}
+					create_wargoal = {
+						type = annex_everything 
+						target = BKF
+					}
+				}
+			}
+			else = {
+				create_wargoal = {
+					type = annex_everything 
+					target = MON
+				}
+				create_wargoal = {
+					type = annex_everything 
+					target = LYM
+				}
+				create_wargoal = {
+					type = annex_everything 
+					target = BKF
+				}
+			}
+		}
+	}
+	focus = { #War Goals against Utah, Nevada, Colorado, and Arizona tags
+		id = IDA_Operation_Beekeeper_3
+		icon = GFX_goal_IDA_Operation_Beekeeper
+		x = 65
+		y = 12
+		cost = 3
+		prerequisite = { 
+			focus = IDA_Continue_The_Mission
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			has_country_flag = wcz_rmlf_defeated
+		}
+		available = {
+			
+		}
+		bypass = {
+			OR = {
+				NOT = {
+					country_exists = UTA
+					country_exists = AFO
+					country_exists = UNV
+					country_exists = UCL
+					country_exists = UAA
+				}
+				has_war_with = UTA
+				has_war_with = AFO
+				has_war_with = UNV
+				has_war_with = UCL
+				has_war_with = UAA
+			}
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		
+		will_lead_to_war_with = UTA
+		will_lead_to_war_with = AFO
+		will_lead_to_war_with = UNV
+		will_lead_to_war_with = UCL
+		will_lead_to_war_with = UAA
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				USA = {
+					create_wargoal = {
+						type = annex_everything 
+						target = UTA
+					}
+					create_wargoal = {
+						type = annex_everything 
+						target = AFO
+					}
+					create_wargoal = {
+						type = annex_everything 
+						target = UNV
+					}
+					create_wargoal = {
+						type = annex_everything 
+						target = UCL
+					}
+					create_wargoal = {
+						type = annex_everything 
+						target = UAA
+					}
+				}
+			}
+			else = {
+				create_wargoal = {
+					type = annex_everything 
+					target = UTA
+				}
+				create_wargoal = {
+					type = annex_everything 
+					target = AFO
+				}
+				create_wargoal = {
+					type = annex_everything 
+					target = UNV
+				}
+				create_wargoal = {
+					type = annex_everything 
+					target = UCL
+				}
+				create_wargoal = {
+					type = annex_everything 
+					target = UAA
+				}
+			}
+		}
+	}
+	focus = { #War Goals against other Utah, Nevada, Colorado, and Arizona tags
+		id = IDA_Operation_Prometheus_2
+		icon = GFX_focus_spr_torchbearers_of_tomorrow
+		x = 67
+		y = 12
+		cost = 3
+		prerequisite = { 
+			focus = IDA_Continue_The_Mission
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			has_country_flag = wcz_rmlf_defeated
+		}
+		available = {
+			
+		}
+		bypass = {
+			OR = {
+				NOT = {
+					country_exists = HOP
+					country_exists = NAV
+					country_exists = TOH
+					country_exists = HAM
+					country_exists = SIN
+					country_exists = MOL
+					country_exists = LAS
+				}
+				has_war_with = HOP
+				has_war_with = NAV
+				has_war_with = TOH
+				has_war_with = HAM
+			}
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		
+		will_lead_to_war_with = HOP
+		will_lead_to_war_with = NAV
+		will_lead_to_war_with = TOH
+		will_lead_to_war_with = HAM
+		will_lead_to_war_with = SIN
+		will_lead_to_war_with = MOL
+		will_lead_to_war_with = LAS
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				USA = {
+					create_wargoal = {
+						type = annex_everything 
+						target = HOP
+					}
+					create_wargoal = {
+						type = annex_everything 
+						target = NAV
+					}
+					create_wargoal = {
+						type = annex_everything 
+						target = TOH
+					}
+					create_wargoal = {
+						type = annex_everything 
+						target = HAM
+					}
+					create_wargoal = {
+						type = annex_everything 
+						target = SIN
+					}
+					create_wargoal = {
+						type = annex_everything 
+						target = MOL
+					}
+					create_wargoal = {
+						type = annex_everything 
+						target = LAS
+					}
+				}
+			}
+			else = {
+				create_wargoal = {
+					type = annex_everything 
+					target = HOP
+				}
+				create_wargoal = {
+					type = annex_everything 
+					target = NAV
+				}
+				create_wargoal = {
+					type = annex_everything 
+					target = TOH
+				}
+				create_wargoal = {
+					type = annex_everything 
+					target = HAM
+				}
+				create_wargoal = {
+					type = annex_everything 
+					target = SIN
+				}
+				create_wargoal = {
+					type = annex_everything 
+					target = MOL
+				}
+				create_wargoal = {
+					type = annex_everything 
+					target = LAS
+				}
+			}
+		}
+	}
+	focus = { #War Goals against Cascadian tags
+		id = IDA_Operation_Evergreen_2
+		icon = GFX_goal_Cascadian_War_Cry
+		x = 64
+		y = 13
+		cost = 3
+		prerequisite = { 
+			focus = IDA_Operation_Treasure_Hunter_3
+		}
+		prerequisite = { 
+			focus = IDA_Operation_Beekeeper_3
+		}
+		prerequisite = { 
+			focus = IDA_Operation_Prometheus_2
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			has_country_flag = wcz_rmlf_defeated
+		}
+		available = {
+			
+		}
+		bypass = {
+			OR = {
+				NOT = {
+					country_exists = CAS
+					country_exists = LIB
+					country_exists = SAZ
+				}
+				has_war_with = CAS
+				has_war_with = LIB
+				has_war_with = SAZ
+			}
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		
+		will_lead_to_war_with = CAS
+		will_lead_to_war_with = LIB
+		will_lead_to_war_with = SAZ
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				USA = {
+					create_wargoal = {
+						type = annex_everything 
+						target = CAS
+					}
+					create_wargoal = {
+						type = annex_everything 
+						target = LIB
+					}
+					create_wargoal = {
+						type = annex_everything 
+						target = SAZ
+					}
+				}
+			}
+			else = {
+				create_wargoal = {
+					type = annex_everything 
+					target = CAS
+				}
+				create_wargoal = {
+					type = annex_everything 
+					target = LIB
+				}
+				create_wargoal = {
+					type = annex_everything 
+					target = SAZ
+				}
+			}
+		}
+	}
+	focus = { #War Goals against Californian tags
+		id = IDA_Operation_Wolverine_2
+		icon = GFX_goal_Cascadian_War_Cry
+		x = 66
+		y = 13
+		cost = 3
+		prerequisite = { 
+			focus = IDA_Operation_Treasure_Hunter_3
+		}
+		prerequisite = { 
+			focus = IDA_Operation_Beekeeper_3
+		}
+		prerequisite = { 
+			focus = IDA_Operation_Prometheus_2
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			has_country_flag = wcz_rmlf_defeated
+		}
+		available = {
+			
+		}
+		bypass = {
+			NOT = {
+				country_exists = PRA
+				country_exists = FIR
+				country_exists = JFR
+				country_exists = ACF
+				country_exists = HLY
+				country_exists = CST
+				country_exists = PRC
+				country_exists = NVD
+				country_exists = ABG
+				country_exists = BKR
+				country_exists = FSN
+				country_exists = MNT
+				country_exists = MOJ
+				country_exists = RWD
+				country_exists = SAC
+				country_exists = SBB
+				country_exists = THO
+				country_exists = ORO
+			}
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		
+		will_lead_to_war_with = PRA
+		will_lead_to_war_with = FIR
+		will_lead_to_war_with = JFR
+		will_lead_to_war_with = ACF
+		will_lead_to_war_with = HLY
+		will_lead_to_war_with = CST
+		will_lead_to_war_with = PRC
+		will_lead_to_war_with = NVD
+		will_lead_to_war_with = ABG
+		will_lead_to_war_with = BKR
+		will_lead_to_war_with = FSN
+		will_lead_to_war_with = MNT
+		will_lead_to_war_with = MOJ
+		will_lead_to_war_with = RWD
+		will_lead_to_war_with = SAC
+		will_lead_to_war_with = SBB
+		will_lead_to_war_with = THO
+		will_lead_to_war_with = ORO
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				USA = {
+					create_wargoal = {
+						type = annex_everything
+						target = PRA
+					}
+					create_wargoal = {
+						type = annex_everything
+						target = FIR
+					}
+					create_wargoal = {
+						type = annex_everything
+						target = JFR
+					}
+					create_wargoal = {
+						type = annex_everything
+						target = ACF
+					}
+					create_wargoal = {
+						type = annex_everything
+						target = CST
+					}
+					create_wargoal = {
+						type = annex_everything
+						target = PRC
+					}
+					create_wargoal = {
+						type = annex_everything
+						target = NVD
+					}
+					create_wargoal = {
+						type = annex_everything
+						target = ABG
+					}
+					create_wargoal = {
+						type = annex_everything
+						target = BKR
+					}
+					create_wargoal = {
+						type = annex_everything
+						target = FSN
+					}
+					create_wargoal = {
+						type = annex_everything
+						target = MNT
+					}
+					create_wargoal = {
+						type = annex_everything
+						target = MOJ
+					}
+					create_wargoal = {
+						type = annex_everything
+						target = RWD
+					}
+					create_wargoal = {
+						type = annex_everything
+						target = SAC
+					}
+					create_wargoal = {
+						type = annex_everything
+						target = SBB
+					}
+					create_wargoal = {
+						type = annex_everything
+						target = THO
+					}
+					create_wargoal = {
+						type = annex_everything
+						target = ORO
+					}
+				}
+			}
+			else = {
+				create_wargoal = {
+					type = annex_everything
+					target = PRA
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = FIR
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = JFR
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = ACF
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = CST
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = PRC
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = NVD
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = ABG
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = BKR
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = FSN
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = MNT
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = MOJ
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = RWD
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = SAC
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = SBB
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = THO
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = ORO
+				}
+			}
+		}
+	}
+	focus = { #War Goals against PAC
+		id = IDA_Operation_Aloha_2
+		icon = GFX_goal_IDA_Operation_Aloha
+		x = 64
+		y = 14
+		cost = 3
+		prerequisite = { 
+			focus = IDA_Operation_Evergreen_2
+		}
+		prerequisite = { 
+			focus = IDA_Operation_Wolverine_2
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			has_country_flag = wcz_rmlf_defeated
+		}
+		available = {
+			
+		}
+		bypass = {
+			NOT = {
+				country_exists = PAC
+			}
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		
+		will_lead_to_war_with = PAC
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				USA = {
+					create_wargoal = {
+						type = annex_everything
+						target = PAC
+					}
+				}
+			}
+			else = {
+				create_wargoal = {
+					type = annex_everything
+					target = PAC
+				}
+			}
+		}
+	}
+	focus = { #War Goals against ALA
+		id = IDA_Operation_Snowbird_2
+		icon = GFX_goal_IDA_Operation_Snowbird
+		x = 64
+		y = 14
+		cost = 3
+		prerequisite = { 
+			focus = IDA_Operation_Evergreen_2
+		}
+		prerequisite = { 
+			focus = IDA_Operation_Wolverine_2
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			has_country_flag = wcz_rmlf_defeated
+		}
+		available = {
+			
+		}
+		bypass = {
+			NOT = {
+				country_exists = ALA
+			}
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		
+		will_lead_to_war_with = ALA
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				USA = {
+					create_wargoal = {
+						type = annex_everything
+						target = ALA
+					}
+				}
+			}
+			else = {
+				create_wargoal = {
+					type = annex_everything
+					target = ALA
+				}
+			}
+		}
+	}
+	focus = { #WCZ Annexes itself into Trump, Trump gains all troops and cores on IDA
+		id = IDA_Our_Work_Here_Is_Done
+		icon = GFX_focus_generic_diplomatic_treaty
+		x = 65
+		y = 15
+		cost = 3
+		prerequisite = { 
+			focus = IDA_Operation_Aloha_2
+		}
+		prerequisite = { 
+			focus = IDA_Operation_Snowbird_2
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			has_country_flag = wcz_rmlf_defeated
+		}
+		available = {
+			has_war = no
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			every_state = {
+				limit = {
+					is_owned_by = IDA
+				}
+				add_core_of = USA
+			}
+			IDA = {
+				every_unit_leader = {
+					set_nationality = USA
+				}
+			}
+			USA = {
+				annex_country = {
+					target = IDA
+					transfer_troops = yes
+				}
+			}
+		}
+	}
+	# Rocky Mountain Revolution Succeeds #
+	focus = { #RMLF was defeated, WCZ will go on to conquer the West, This focus is if Stankiewicz died during the revolution
+		id = IDA_The_New_Kings_Of_The_Mountain
+		icon = GFX_goal_unknown
+		x = 65
+		y = 11
+		cost = 3
+		prerequisite = { 
+			focus = IDA_Pursue_Further_Integration
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			has_country_flag = wcz_rmlf_victory
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			
+		}
+	}
 	#focus = {
 	#	id = IDA_BOmb
 	#	icon = GFX_goal_generic_construction
@@ -7050,6 +8516,39 @@ focus_tree = {
 	#	
 	#}
 }
+### Bundy Coup Focus Tree #
+focus_tree = {
+	id = bundy
+	
+	country = {
+		factor = 0
+		
+	}
+	
+	default = no
+	
+	reset_on_civilwar = no
+	
+	continuous_focus_position = { x = 750 y = 500 }
+	
+	initial_show_position = {
+		focus = IDA_Gods_Faithful_Servants
+	}
+	
+	focus = {
+		id = IDA_Gods_Faithful_Servants
+		icon = GFX_goal_unknown
+		x = 3
+		y = 0
+		cost = 1
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			
+		}
+	}
+}
 ### WCZ Uprising Nation Tree ### 
 focus_tree = {
 	id = idaho_puppet
@@ -7069,7 +8568,7 @@ focus_tree = {
 		focus = IDA_puppet_join_faction
 	}
 	
-		focus = {
+	focus = {
 		id = IDA_puppet_join_faction
 		icon = GFX_goal_generic_alliance
 		x = 3
