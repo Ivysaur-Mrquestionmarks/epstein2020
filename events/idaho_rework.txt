@@ -283,6 +283,17 @@ news_event = {
 		name = idaho_rework.253.a
 	}
 }
+news_event = {
+	id = idaho_rework.255
+	title = idaho_rework.255.t
+	desc = idaho_rework.255.d
+	picture = event_news_IDA_America_Announces_Her_Ambitions
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = idaho_rework.255.a
+	}
+}
 ### Country Events ###
 country_event = { #WCZ gains ground, Stankiewicz loses trait
 	id = idaho_rework.1
@@ -365,6 +376,14 @@ country_event = { #LDS take over Utah, WCZ must decide whether to expand or defe
 					has_game_rule = {
               			rule = IDA_path
              			option = IDA_PATH_DEFENSE
+          			}
+					has_game_rule = {
+              			rule = IDA_path
+             			option = IDA_PATH_RMLF_DEFEAT
+          			}
+					has_game_rule = {
+              			rule = IDA_path
+             			option = IDA_PATH_RMLF_VICTORY
           			}
       			}
    			}
@@ -451,6 +470,14 @@ country_event = { #WCZ asks Trump for direction after Mormon coup
 					has_game_rule = {
               			rule = IDA_path
              			option = IDA_PATH_DEFENSE
+          			}
+					has_game_rule = {
+              			rule = IDA_path
+             			option = IDA_PATH_RMLF_DEFEAT
+          			}
+					has_game_rule = {
+              			rule = IDA_path
+             			option = IDA_PATH_RMLF_VICTORY
           			}
       			}
    			}
@@ -23140,6 +23167,15 @@ country_event = { #WCZ chooses whether it wants National Guard advisors or Trump
 		name = idaho_rework.222.b
 		ai_chance = {
 			factor = 80
+			modifier = {
+      			factor = 0 
+      			OR = {
+					has_game_rule = {
+              			rule = IDA_path
+             			option = IDA_PATH_RMLF_VICTORY
+          			}
+      			}
+   			}
 		}
 		custom_effect_tooltip = wcz_air_and_army_generals_reinstated
 		add_political_power = -50
@@ -23897,6 +23933,15 @@ country_event = { #Sixth event of the Rocky Mountain Revolution, Stankiewicz mak
 		name = idaho_rework.241.a
 		ai_chance = {
 			factor = 70
+			modifier = {
+      			factor = 0 
+      			OR = {
+					has_game_rule = {
+              			rule = IDA_path
+             			option = IDA_PATH_RMLF_VICTORY
+          			}
+      			}
+   			}
 		}
 		hidden_effect = {
 			country_event = {
@@ -23905,10 +23950,19 @@ country_event = { #Sixth event of the Rocky Mountain Revolution, Stankiewicz mak
 			}
 		}
 	}
-	option = { #Stankiewicz survives dies in his last stand, RMLF is one step further to winning
+	option = { #Stankiewicz dies in his last stand, RMLF is one step further to winning
 		name = idaho_rework.241.a
 		ai_chance = {
 			factor = 30
+			modifier = {
+      			factor = 0 
+      			OR = {
+					has_game_rule = {
+              			rule = IDA_path
+             			option = IDA_PATH_RMLF_DEFEAT
+          			}
+      			}
+   			}
 		}
 		retire_character = IDA_jeff_stankiewicz
 		IDA_fallen_government = {
@@ -24273,11 +24327,11 @@ country_event = { #WCZ did not choose to expand, Rocky Mountain Revolution succe
 		add_war_support = 0.1
 		add_popularity = {
 			ideology = democrat
-			popularity = -0.15
+			popularity = 0.15
 		}
 		add_popularity = {
 			ideology = libertarian_left
-			popularity = -0.15
+			popularity = 0.15
 		}
 		add_popularity = {
 			ideology = authoritarian_left
