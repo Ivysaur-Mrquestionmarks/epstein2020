@@ -516,22 +516,33 @@ country_event = {
 	fire_only_once = yes
 	immediate = {
 		hidden_effect = {
-			SKY = {
+			create_dynamic_country = {
+				
+    				original_tag = KFC
 				transfer_state = 575
 					every_state = {
 						limit = {is_core_of = KFC}	
-						add_core_of = SKY
+						add_core_of = PREV
 					}
 				load_oob = Commie_Kentucky
-			}
-			every_country = {
-  				limit = { original_tag = KFC }
-				declare_war_on = {
-					target = SKY
-					type = civil_war
+				set_politics = {
+					ruling_party = authoritarian_left
 				}
-				add_civil_war_target = SKY
-  				}
+				set_political_party = {
+    					ideology = authoritarian_left
+    					popularity = 75
+				}
+				set_cosmetic_tag = SKY
+				every_country_with_original_tag = {
+				  	original_tag_to_check = KFC
+					declare_war_on = {
+						target = PREV
+						type = civil_war
+					}
+					add_civil_war_target = PREV	
+				}
+				load_focus_tree = generic_focus
+
 			}
 		}
 	}
@@ -558,7 +569,10 @@ country_event = {
 			popularity = -0.5
 		}
 	    }
-		SKY = { change_tag_from = KFC }
+		every_country = {
+  			 limit = {has_cosmetic_tag = SKY}
+			 change_tag_from = KFC 
+		}
 	}
 }
 country_event = {
@@ -763,3 +777,4 @@ country_event = {
 		add_war_support = 0.10
 	}
 }
+
