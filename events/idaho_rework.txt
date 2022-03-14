@@ -294,6 +294,17 @@ news_event = {
 		name = idaho_rework.255.a
 	}
 }
+news_event = {
+	id = idaho_rework.260
+	title = idaho_rework.260.t
+	desc = idaho_rework.260.d
+	picture = event_news_IDA_WCZ_Restoration
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = idaho_rework.260.a
+	}
+}
 ### Country Events ###
 country_event = { #WCZ gains ground, Stankiewicz loses trait
 	id = idaho_rework.1
@@ -23173,6 +23184,22 @@ country_event = { #WCZ chooses whether it wants National Guard advisors or Trump
               			rule = IDA_path
              			option = IDA_PATH_RMLF_VICTORY
           			}
+					has_game_rule = {
+              			rule = IDA_path
+             			option = IDA_PATH_RMLF_VICTORY_MODERATE
+          			}
+					has_game_rule = {
+              			rule = IDA_path
+             			option = IDA_PATH_RMLF_VICTORY_EXTREME
+          			}
+					has_game_rule = {
+              			rule = IDA_path
+             			option = IDA_PATH_RMLF_VICTORY_GUARD
+          			}
+					has_game_rule = {
+              			rule = IDA_path
+             			option = IDA_PATH_RMLF_VICTORY_CIRCLE
+          			}
       			}
    			}
 		}
@@ -23939,6 +23966,22 @@ country_event = { #Sixth event of the Rocky Mountain Revolution, Stankiewicz mak
               			rule = IDA_path
              			option = IDA_PATH_RMLF_VICTORY
           			}
+					has_game_rule = {
+              			rule = IDA_path
+             			option = IDA_PATH_RMLF_VICTORY_MODERATE
+          			}
+					has_game_rule = {
+              			rule = IDA_path
+             			option = IDA_PATH_RMLF_VICTORY_EXTREME
+          			}
+					has_game_rule = {
+              			rule = IDA_path
+             			option = IDA_PATH_RMLF_VICTORY_GUARD
+          			}
+					has_game_rule = {
+              			rule = IDA_path
+             			option = IDA_PATH_RMLF_VICTORY_CIRCLE
+          			}
       			}
    			}
 		}
@@ -23950,7 +23993,7 @@ country_event = { #Sixth event of the Rocky Mountain Revolution, Stankiewicz mak
 		}
 	}
 	option = { #Stankiewicz dies in his last stand, RMLF is one step further to winning
-		name = idaho_rework.241.a
+		name = idaho_rework.241.b
 		ai_chance = {
 			factor = 30
 			modifier = {
@@ -24234,6 +24277,19 @@ country_event = { #Bundys steps in to stop the revolution, Bundy coup event
 		}
 		leave_faction = yes
 		hidden_effect = {
+			every_country = {
+				limit = {
+					has_war_with = {
+						tag = IDA
+					}
+				}
+				white_peace = IDA
+			}
+			set_party_name = { 
+				ideology = libertarian_right 
+				long_name = "New Reform Party" 
+				name = "NRP" 
+			}
 			USA = {
 				remove_opinion_modifier = {
 					target = IDA
@@ -24243,9 +24299,6 @@ country_event = { #Bundys steps in to stop the revolution, Bundy coup event
 			remove_opinion_modifier = {
 				target = USA
 				modifier = aligned_administration
-			}
-			IDA_brad_little = {
-				promote_character = yes
 			}
 			add_popularity = {
 				ideology = democrat
@@ -24345,8 +24398,17 @@ country_event = { #WCZ did not choose to expand, Rocky Mountain Revolution succe
 			elections_allowed = yes
 			election_frequency = 48
 		}
+		remove_ideas = IDA_American_Redoubt
 		leave_faction = yes
 		hidden_effect = {
+			every_country = {
+				limit = {
+					has_war_with = {
+						tag = IDA
+					}
+				}
+				white_peace = IDA
+			}
 			USA = {
 				remove_opinion_modifier = {
 					target = IDA
@@ -24357,13 +24419,10 @@ country_event = { #WCZ did not choose to expand, Rocky Mountain Revolution succe
 				target = USA
 				modifier = aligned_administration
 			}
-			IDA_brad_little = {
-				promote_character = yes
-			}
 			set_country_flag = wcz_rmlf_victory
 			set_country_flag = wcz_military_allowed_to_operate
 			mark_focus_tree_layout_dirty = yes
-			complete_national_focus = IDA_Pursue_Further_Integration
+			unlock_national_focus = IDA_Pursue_Further_Integration
 			news_event = idaho_rework.253
 		}
 	}
@@ -24425,6 +24484,283 @@ country_event = { #WCZ chooses a replacement leader for Stankiewicz if he died d
 		add_stability = 0.05
 		IDA_sam_brown = {
 			promote_character = yes
+		}
+	}
+}
+country_event = { #RMLF election event, player decides between the moderates, radicals, and extremists
+	id = idaho_rework.256
+	title = idaho_rework.256.t
+	desc = idaho_rework.256.d
+	picture = GFX_report_event_IDA_Election
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Moderates
+		name = idaho_rework.256.a
+		ai_chance = {
+			factor = 10
+			modifier = {
+      			factor = 0 
+      			OR = {
+					has_game_rule = {
+              			rule = IDA_path
+             			option = IDA_PATH_RMLF_VICTORY_RADICAL
+          			}
+					has_game_rule = {
+              			rule = IDA_path
+             			option = IDA_PATH_RMLF_VICTORY_EXTREME
+          			}
+					has_game_rule = {
+              			rule = IDA_path
+             			option = IDA_PATH_RMLF_VICTORY_GUARD
+          			}
+					has_game_rule = {
+              			rule = IDA_path
+             			option = IDA_PATH_RMLF_VICTORY_CIRCLE
+          			}
+      			}
+   			}
+		}
+		complete_national_focus = IDA_The_Moderates_Take_The_Lead
+		add_popularity = {
+			ideology = democrat
+			popularity = 0.25
+		}
+		hidden_effect = {
+			set_politics = {
+				ruling_party = democrat
+				elections_allowed = yes
+				election_frequency = 48
+			}
+			IDA_melissa_sue_robinson = {
+				promote_character = yes
+			}
+		}
+	}
+	option = { #Radicals
+		name = idaho_rework.256.b
+		ai_chance = {
+			factor = 10
+			modifier = {
+      			factor = 0 
+      			OR = {
+					has_game_rule = {
+              			rule = IDA_path
+             			option = IDA_PATH_RMLF_VICTORY_MODERATE
+          			}
+					has_game_rule = {
+              			rule = IDA_path
+             			option = IDA_PATH_RMLF_VICTORY_EXTREME
+          			}
+					has_game_rule = {
+              			rule = IDA_path
+             			option = IDA_PATH_RMLF_VICTORY_GUARD
+          			}
+					has_game_rule = {
+              			rule = IDA_path
+             			option = IDA_PATH_RMLF_VICTORY_CIRCLE
+          			}
+      			}
+   			}
+		}
+		complete_national_focus = IDA_The_Radicals_Come_Out_On_Top
+		add_popularity = {
+			ideology = libertarian_left
+			popularity = 0.25
+		}
+		hidden_effect = {
+			set_politics = {
+				ruling_party = libertarian_left
+				elections_allowed = yes
+				election_frequency = 48
+			}
+			IDA_nate_martin = {
+				promote_character = yes
+			}
+		}
+	}
+	option = { #Extremists 
+		name = idaho_rework.256.c
+		ai_chance = {
+			factor = 10
+			modifier = {
+      			factor = 0 
+      			OR = {
+					has_game_rule = {
+              			rule = IDA_path
+             			option = IDA_PATH_RMLF_VICTORY_MODERATE
+          			}
+					has_game_rule = {
+              			rule = IDA_path
+             			option = IDA_PATH_RMLF_VICTORY_RADICAL
+          			}
+      			}
+   			}
+		}
+		complete_national_focus = IDA_The_Extremeists_Pave_The_Way
+		add_popularity = {
+			ideology = authoritarian_left
+			popularity = 0.25
+		}
+		hidden_effect = {
+			set_politics = {
+				ruling_party = authoritarian_left
+				elections_allowed = yes
+				election_frequency = 48
+			}
+			IDA_john_earle_sullivan = {
+				promote_character = yes
+			}
+		}
+	}
+}
+country_event = { #National Guard attempts a coup after Sullivan attempts to seize total control
+	id = idaho_rework.257
+	title = idaho_rework.257.t
+	desc = idaho_rework.257.d
+	picture = GFX_report_event_IDA_National_Guard
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Coup fails, Sullivan takes direct control
+		name = idaho_rework.257.a
+		ai_chance = {
+			factor = 10
+			modifier = {
+      			factor = 0 
+      			OR = {
+					has_game_rule = {
+              			rule = IDA_path
+             			option = IDA_PATH_RMLF_VICTORY_GUARD
+          			}
+      			}
+   			}
+		}
+		retire_character = IDA_gary_l_sayler
+		add_manpower = -30
+		complete_national_focus = IDA_We_Must_Go_Further
+		add_popularity = {
+			ideology = authoritarian_left
+			popularity = 0.25
+		}
+		set_politics = {
+			ruling_party = authoritarian_left
+			elections_allowed = no
+		}
+	}
+	option = { #Coup succeeds, National Guard takes power
+		name = idaho_rework.257.b
+		ai_chance = {
+			factor = 10
+			modifier = {
+      			factor = 0 
+      			OR = {
+					has_game_rule = {
+              			rule = IDA_path
+             			option = IDA_PATH_RMLF_VICTORY_CIRCLE
+          			}
+      			}
+   			}
+		}
+		retire_character = IDA_john_earle_sullivan
+		add_manpower = -15
+		complete_national_focus = IDA_The_Guard_Steps_In
+		add_popularity = {
+			ideology = autocratic
+			popularity = 0.15
+		}
+		set_politics = {
+			ruling_party = autocratic
+			elections_allowed = no
+		}
+	}
+}
+country_event = { #Proud Boys offer their support to the extremists
+	id = idaho_rework.258
+	title = idaho_rework.258.t
+	desc = idaho_rework.258.d
+	picture = GFX_report_event_IDA_Proud_Boys
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Offer is accepted
+		name = idaho_rework.257.a
+		ai_chance = {
+			factor = 10
+		}
+		add_political_power = -25
+		add_manpower = 500
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 500
+		}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment
+			amount = 250
+		}
+		army_experience = 15
+		add_popularity = {
+			ideology = authoritarian_left
+			popularity = 0.1
+		}
+		create_unit = {
+			division = "name = \"Wyoming Proud Boys\" division_template = \"Light Foot Militia\" start_experience_factor = 0.5" 
+			owner = IDA
+		}
+		create_unit = {
+			division = "name = \"Idaho Proud Boys\" division_template = \"Light Foot Militia\" start_experience_factor = 0.5" 
+			owner = IDA
+		}
+		hidden_effect = {
+			set_country_flag = wcz_proud_boys_offer_accepted
+		}
+	}
+	option = { #Offer is rejected
+		name = idaho_rework.258.b
+		ai_chance = {
+			factor = 10
+			modifier = {
+      			factor = 0 
+      			OR = {
+					has_game_rule = {
+              			rule = IDA_path
+             			option = IDA_PATH_RMLF_VICTORY_CIRCLE
+          			}
+      			}
+   			}
+		}
+		add_political_power = 25
+	}
+}
+country_event = { #Proud Boys offer was accepted, Sullivan restores the WCZ
+	id = idaho_rework.259
+	title = idaho_rework.259.t
+	desc = idaho_rework.259.d
+	picture = GFX_report_event_Cornered_No_More
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = idaho_rework.259.a
+		set_politics = {
+			ruling_party = republican
+			elections_allowed = no
+		}
+		add_popularity = {
+			ideology = republican
+			popularity = 0.8
+		}
+		IDA_john_earle_sullivan_trumpist = {
+			promote_character = yes
+		}
+		unlock_national_focus = IDA_A_Fair_State
+		hidden_effect = {
+			clr_country_flag = wcz_rmlf_victory
+			news_event = idaho_rework.260
 		}
 	}
 }
