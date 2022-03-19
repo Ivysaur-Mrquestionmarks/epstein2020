@@ -1434,3 +1434,70 @@ Northern_Expansion = {
 		}
 	}
 }
+Denazify_New_Mexico = {
+
+	Denazify_New_Mexico_Option = {
+
+		icon = GFX_decision_oppression
+		
+		available = {
+			ROOT = {
+				owns_state = 40
+				NOT = { 
+					tag = HOP
+					has_government = autocratic
+				}
+			}
+			HOP = {
+				has_completed_focus = HOP_Raze_Navajo
+			}
+			NOT = {
+				has_global_flag = new_mexico_denazified
+			}
+		}
+
+		visible = {
+			ROOT = {
+				owns_state = 40
+				NOT = { 
+					tag = HOP
+					has_government = autocratic
+				}
+			}
+			HOP = {
+				has_completed_focus = HOP_Raze_Navajo
+			}
+			NOT = {
+				has_global_flag = new_mexico_denazified
+			}
+		}
+		
+		cost = 0
+		
+		ai_will_do = {
+			factor = 10
+		}
+		
+		fire_only_once = yes
+		
+		days_remove = 25
+
+		complete_effect = {
+			add_stability = 0.03
+			40 = {
+				set_state_name = "Navajo"
+			}
+			add_victory_points = {
+				province = 2939
+				value = -10
+			}
+			set_province_name = {
+			    id = 2939
+			    name = "Gallup"
+			}
+			hidden_effect = {
+				set_global_flag = new_mexico_denazified
+			}
+		}
+	}
+}
