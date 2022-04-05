@@ -20,7 +20,7 @@ focus_tree = {
 	
 	default = no
 	
-	continuous_focus_position = { x = 2900 y = 190 }
+	continuous_focus_position = { x = 2700 y = 190 }
 	
 	initial_show_position = {
 		focus = IDA_Our_Mission
@@ -29,7 +29,7 @@ focus_tree = {
 	focus = { #First focus, fires off backstory event
 		id = IDA_Our_Mission
 		icon = GFX_goal_ILFM_Support
-		x = 40
+		x = 37
 		y = 0
 		cost = 2
 		ai_will_do = {
@@ -60,7 +60,7 @@ focus_tree = {
 	focus = { #Switches lawlessness spirit with regaining control, lasts 30 days
 		id = IDA_Cement_Our_Control
 		icon = GFX_focus_MON_Mobilize_Militia
-		x = 40
+		x = 37
 		y = 1
 		cost = 3
 		prerequisite = {
@@ -99,7 +99,7 @@ focus_tree = {
 	focus = { #Gain equipment and manpower
 		id = IDA_Support_From_The_East
 		icon = GFX_goal_cross_rubicon_planes
-		x = 40
+		x = 37
 		y = 2
 		cost = 3
 		prerequisite = {
@@ -141,7 +141,7 @@ focus_tree = {
 	focus = { #Fake focus, will auto-complete through event several days after the Mormon Coup
 		id = IDA_Begin_Planning_The_Invasion_Of_Montana
 		icon = GFX_goal_focus_planning_bonus
-		x = 40
+		x = 37
 		y = 3
 		cost = 5
 		prerequisite = {
@@ -179,7 +179,7 @@ focus_tree = {
 	focus = { #Unlocked when LDS take over Utah; Player gets event to decide country path
 		id = IDA_A_Change_In_Plans
 		icon = GFX_goal_UTA_Mormon_Fire
-		x = 40
+		x = 37
 		y = 4
 		cost = 5
 		prerequisite = {
@@ -783,8 +783,16 @@ focus_tree = {
 		completion_reward = {
 			add_political_power = 25
 			add_stability = 0.05
-			MON = {
-				country_event = idaho_rework.27
+			if = {
+				limit = {
+					has_country_flag = wcz_trumpist_exiles
+				}
+				country_event = idaho_rework.263
+		}
+			else = {
+				MON = {
+					country_event = idaho_rework.27
+				}
 			}
 		}
 	}
@@ -808,7 +816,10 @@ focus_tree = {
 		}
 		available = {
 			NOT = {
-				has_country_flag = wcz_montana_negotiations_failed
+				OR = {
+					has_country_flag = wcz_montana_negotiations_failed
+					has_country_flag = wcz_trumpist_exiles
+				}
 			}
 		}
 		bypass = {
@@ -1472,10 +1483,23 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		
 		select_effect = {
-			UTA = {
-				country_event = {
-					id = idaho_rework.51
-					days = 10
+			if = {
+				limit = {
+					has_country_flag = wcz_trumpist_exiles
+				}
+				UTA = {
+					country_event = {
+						id = idaho_rework.265
+						days = 10
+					}
+				}
+			}
+			else = {
+				UTA = {
+					country_event = {
+						id = idaho_rework.51
+						days = 10
+					}
 				}
 			}
 		}
@@ -2127,10 +2151,18 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = { #Fires an event, which event is dependent on whether the Trumpists have been exiled or not
-			country_event = idaho_rework.61
+			if = {
+				limit = {
+					has_country_flag = wcz_trumpist_exiles
+				}
+				country_event = idaho_rework.267
+			}
+			else = {
+				country_event = idaho_rework.61
+			}
 		}
 	}
-	# Begining of the West Coast Campaign #
+	# Beginning of the West Coast Campaign #
 	# Fixing Air Force Focuses #
 	focus = { #Improves air force debuff, gives a research bonus for fighter plans
 		id = IDA_To_Dominate_The_Skies
@@ -2388,7 +2420,7 @@ focus_tree = {
 	}
 	focus = { #Further Improves Lackluster Air Force, Gain Advisors, Fires off an event
 		id = IDA_Reinstate_Air_Force_Generals
-		icon = GFX_goal_FLO_trumps_finest
+		icon = GFX_goal_Heavenly_Officers
 		x = 14
 		y = 19
 		cost = 4
@@ -2408,7 +2440,10 @@ focus_tree = {
 			
 		}
 		bypass = {
-			
+			OR = {
+				has_country_flag = wcz_air_force_generals_allowed
+				has_country_flag = wcz_military_allowed_to_operate
+			}
 		}
 		cancel = {
 			
@@ -2983,10 +3018,7 @@ focus_tree = {
 		available = { 
 			PRA = {
 				NOT = {
-					has_country_leader = {
-						name = "Caitlyn Jenner"
-						ruling_only = yes
-					}
+					PRA_caitlyn_jenner = { is_country_leader = yes }
 				}
 			}
 		}
@@ -3149,9 +3181,22 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		
 		select_effect = {
-			country_event = { #The WCZ will decide how to approach Jenner California
-				id = idaho_rework.73
-				days = 10
+			if = {
+				limit = {
+					has_country_flag = wcz_trumpist_exiles
+				}
+				PRA = {
+					country_event = {
+						id = idaho_rework.268
+						days = 10
+					}
+				}
+			}
+			else = {
+				country_event = { #The WCZ will decide how to approach Jenner California
+					id = idaho_rework.73
+					days = 10
+				}
 			}
 		}
 		
@@ -3179,25 +3224,31 @@ focus_tree = {
 			
 		}
 		available = { 
-			NOT = {
-				country_exists = PRA
-				country_exists = FIR
-				country_exists = JFR
-				country_exists = ACF
-				country_exists = HLY
-				country_exists = CST
-				country_exists = PRC
-				country_exists = NVD
-				country_exists = ABG
-				country_exists = BKR
-				country_exists = FSN
-				country_exists = MNT
-				country_exists = MOJ
-				country_exists = RWD
-				country_exists = SAC
-				country_exists = SBB
-				country_exists = THO
-				country_exists = ORO
+			OR = {
+				NOT = {
+					country_exists = PRA
+					country_exists = FIR
+					country_exists = JFR
+					country_exists = ACF
+					country_exists = HLY
+					country_exists = CST
+					country_exists = PRC
+					country_exists = NVD
+					country_exists = ABG
+					country_exists = BKR
+					country_exists = FSN
+					country_exists = MNT
+					country_exists = MOJ
+					country_exists = RWD
+					country_exists = SAC
+					country_exists = SBB
+					country_exists = THO
+					country_exists = ORO
+				}
+				PRA = {
+					is_in_faction_with = USA
+					is_in_faction_with = IDA
+				}
 			}
 		}
 		bypass = {
@@ -3353,7 +3404,10 @@ focus_tree = {
 			
 		}
 		bypass = {
-			
+			OR = {
+				has_idea = IDA_Naval_Buildup
+				has_idea = IDA_Naval_Buildup_MTG
+			}
 		}
 		cancel = {
 			
@@ -3567,7 +3621,7 @@ focus_tree = {
 			
 		}
 		bypass = {
-			
+			has_idea = IDA_Dedicated_Marine_Corps
 		}
 		cancel = {
 			
@@ -3738,7 +3792,7 @@ focus_tree = {
 		}
 		available = { 
 			PAC = {
-				is_ally_with = USA
+				has_completed_focus = PAC_HAW_join_loyalists
 			}
 		}
 		bypass = {
@@ -4127,7 +4181,15 @@ focus_tree = {
 		
 		completion_reward = { #If the Trumpists have been exiled, the WCZ will get an event unlocking the Trumpist exiles tree 
 			IDA = {
-				country_event = idaho_rework.94
+				if = {
+					limit = {
+						has_country_flag = wcz_trumpist_exiles
+					}
+					country_event = idaho_rework.271
+				}
+				else = {
+					country_event = idaho_rework.94
+				}
 			}
 			hidden_effect = {
 				remove_ideas = IDA_War_Plan_Indigo_Spirit
@@ -4257,13 +4319,28 @@ focus_tree = {
 		
 		completion_reward = {
 			USA = {
-				puppet = IDA
-			}
+                if = {
+                    limit = {
+                        OR = {
+                            has_dlc = "Together for Victory"
+                            has_dlc = "Man the Guns"
+                        }
+                    }
+                    set_autonomy = {
+                        target = IDA
+                        autonomous_state = autonomy_colony
+                        freedom_level = 0.1
+                    }
+                    else = {
+                        puppet = IDA
+                    }
+                }
+            }
 		}
 	}
 	focus = { #WCZ will send Trump an event, if WCZ is A.I. they will be annexed; if WCZ is a player, they can be given autonomy to conquer North America
 		id = IDA_Our_Work_Is_Done 
-		icon = GFX_goal_Hand_on_Bible
+		icon = GFX_goal_FLO_trumps_finest
 		x = 9
 		y = 31
 		cost = 5
@@ -6233,7 +6310,7 @@ focus_tree = {
 	focus = { #Defensive Route Picked After IDA_A_Change_In_Plans, Gives Stankiewicz a defense bonus and mutual guarantee USA
 		id = IDA_Dig_In
 		icon = GFX_goal_fortify_the_westwall
-		x = 65
+		x = 59
 		y = 5
 		cost = 5
 		prerequisite = { 
@@ -6274,7 +6351,7 @@ focus_tree = {
 	focus = { #Filler focus to make the tree look nicer, For if the NPA beat Trump
 		id = IDA_Defeat_In_The_East
 		icon = GFX_goal_FLO_jail_trump_supporters
-		x = 63
+		x = 57
 		y = 6
 		cost = 3
 		prerequisite = { 
@@ -6316,7 +6393,7 @@ focus_tree = {
 	focus = { #Available after the NPA is defeated, WCZ joins Loyalist faction
 		id = IDA_Reestablish_Links_With_The_East 
 		icon = GFX_focus_MON_Meeting_With_The_Trump
-		x = 67
+		x = 61
 		y = 6
 		cost = 3
 		prerequisite = { 
@@ -6364,7 +6441,7 @@ focus_tree = {
 	focus = { #Beginning of Army Reform Tree, Gain experience and slightly fixes militia state debuff
 		id = IDA_Professionalizing_Our_Army
 		icon = GFX_focus_NPA_We_Are_Who_We_Are
-		x = 60
+		x = 54
 		y = 6
 		cost = 7
 		prerequisite = { 
@@ -6408,7 +6485,7 @@ focus_tree = {
 	focus = { #Choice between National Guard Advisors or Trump ones, gain army experience, improves military debuff
 		id = IDA_Bring_In_Military_Advisors
 		icon = GFX_goal_Meet_with_the_High_Command
-		x = 60
+		x = 54
 		y = 7
 		cost = 7
 		prerequisite = { 
@@ -6447,7 +6524,7 @@ focus_tree = {
 	focus = { #Choice between National Guard Advisors or Trump ones, gain army experience, improves military debuff
 		id = IDA_Hold_Military_Excercises
 		icon = GFX_goal_generic_air_doctrine
-		x = 60
+		x = 54
 		y = 8
 		cost = 7
 		prerequisite = { 
@@ -6492,7 +6569,7 @@ focus_tree = {
 	focus = { #Final Army Reform, completely removes army debuff
 		id = IDA_The_Army_Of_The_Redoubt
 		icon = GFX_goal_A_life_worth_fighting_for
-		x = 60
+		x = 54
 		y = 9
 		cost = 7
 		prerequisite = { 
@@ -6531,7 +6608,7 @@ focus_tree = {
 	focus = { #Player chooses what air doctrine they want
 		id = IDA_Establish_An_Air_Force
 		icon = GFX_goal_FLO_aircraft_production
-		x = 59
+		x = 53
 		y = 10
 		cost = 7
 		prerequisite = { 
@@ -6573,7 +6650,7 @@ focus_tree = {
 	focus = { #Player gets certain naval bonuses
 		id = IDA_Lay_The_Groundwork_For_A_Navy
 		icon = GFX_goal_FLO_Green_Water_Navy
-		x = 61
+		x = 55
 		y = 10
 		cost = 7
 		prerequisite = { 
@@ -6631,7 +6708,7 @@ focus_tree = {
 	focus = { #Start of limited expansion, gives political power, army experience, command power, and volunteer spirit
 		id = IDA_Enter_The_Fray
 		icon = GFX_goal_pac_prep_war_free
-		x = 65
+		x = 59
 		y = 7
 		cost = 7
 		prerequisite = { 
@@ -6673,7 +6750,7 @@ focus_tree = {
 	focus = { #WCZ's will focus on expanding North, gain war support and intel on Montana
 		id = IDA_To_The_North
 		icon = GFX_goal_attack_MON
-		x = 63
+		x = 57
 		y = 8
 		cost = 5
 		prerequisite = { 
@@ -6742,7 +6819,7 @@ focus_tree = {
 	focus = { #Gain political power, stability, war support, and party popularity
 		id = IDA_Hold_Our_Ground
 		icon = GFX_goal_generic_defence
-		x = 65
+		x = 59
 		y = 8
 		cost = 5
 		prerequisite = { 
@@ -6786,7 +6863,7 @@ focus_tree = {
 	focus = { #WCZ's will focus on expanding South, gain war support and intel on Utah
 		id = IDA_To_The_South
 		icon = GFX_focus_UTA_identity
-		x = 67
+		x = 61
 		y = 8
 		cost = 5
 		prerequisite = { 
@@ -6859,7 +6936,7 @@ focus_tree = {
 	focus = { #Montana went Trumpist, WCZ must decide what to do next
 		id = IDA_Open_Negotiations_With_Montana
 		icon = GFX_goal_generic_national_unity
-		x = 62
+		x = 56
 		y = 9
 		cost = 10
 		prerequisite = { 
@@ -6906,7 +6983,7 @@ focus_tree = {
 	focus = { #Gain cores on Montana and war goals against Montanan tags
 		id = IDA_Operation_Treasure_Hunter_2
 		icon = GFX_goal_IDA_Operation_Treasure_Hunter
-		x = 64
+		x = 58
 		y = 9
 		cost = 5
 		prerequisite = { 
@@ -6974,7 +7051,7 @@ focus_tree = {
 	focus = { #WCZ gains war goals on Utah, Molossia, Vegas, Amerikareich and Primivitia
 		id = IDA_Operation_Beekeeper_2
 		icon = GFX_goal_IDA_Operation_Beekeeper
-		x = 66
+		x = 60
 		y = 9
 		cost = 5
 		prerequisite = { 
@@ -7053,7 +7130,7 @@ focus_tree = {
 	focus = { #Utah goes Republican, WCZ proposes integration with Utah
 		id = IDA_Propose_Unification_With_Utah
 		icon = GFX_focus_UTA_biden
-		x = 68
+		x = 62
 		y = 9
 		cost = 10
 		prerequisite = { 
@@ -7103,7 +7180,7 @@ focus_tree = {
 	focus = { #Cores any new territories 
 		id = IDA_Integrate_Our_New_Territories_2
 		icon = GFX_focus_generic_treaty
-		x = 65
+		x = 59
 		y = 10
 		cost = 7
 		prerequisite = { 
@@ -7188,7 +7265,7 @@ focus_tree = {
 	focus = { #Start of economy tree, gives political power and improves economy
 		id = IDA_The_Road_To_Self_Sufficiency
 		icon = GFX_focus_MON_Industry_Of_The_Future
-		x = 70
+		x = 64
 		y = 6
 		cost = 7
 		prerequisite = { 
@@ -7231,7 +7308,7 @@ focus_tree = {
 	focus = { #Add factories and building slots in Idaho
 		id = IDA_Invest_In_Idaho
 		icon = GFX_goal_Idaho_Supremacy
-		x = 69
+		x = 63
 		y = 7
 		cost = 7
 		prerequisite = { 
@@ -7294,7 +7371,7 @@ focus_tree = {
 	focus = { #Add factories and building slots in Wyoming
 		id = IDA_Invest_In_Wyoming
 		icon = GFX_goal_Wyoming_Supremacy
-		x = 71
+		x = 65
 		y = 7
 		cost = 7
 		prerequisite = { 
@@ -7357,7 +7434,7 @@ focus_tree = {
 	focus = { #Add factories and building slots in Wyoming
 		id = IDA_Nationwide_Infrastrucutre_Improvements
 		icon = GFX_goal_generic_construct_civilian
-		x = 70
+		x = 64
 		y = 8
 		cost = 7
 		prerequisite = { 
@@ -7407,7 +7484,7 @@ focus_tree = {
 	focus = { #Removes industry debuffs, gain stability and political power
 		id = IDA_The_Bustling_Economy_Of_The_Redoubt
 		icon = GFX_goal_icon_Economies_of_Scale
-		x = 70
+		x = 64
 		y = 9
 		cost = 7
 		prerequisite = { 
@@ -7451,7 +7528,7 @@ focus_tree = {
 	focus = { #Removes industry debuffs, gain stability and political power
 		id = IDA_Invest_In_Utah_State_University
 		icon = GFX_focus_research
-		x = 69
+		x = 63
 		y = 10
 		cost = 7
 		prerequisite = { 
@@ -7488,7 +7565,7 @@ focus_tree = {
 	focus = { #Gains a small amount of resources in a random state
 		id = IDA_Exploit_Resouce_Deposits
 		icon = GFX_goal_Alt_Energy
-		x = 71
+		x = 65
 		y = 10
 		cost = 7
 		prerequisite = { 
@@ -7554,8 +7631,8 @@ focus_tree = {
 	# Final Focus in Initial Passive Path #
 	focus = { #Trap focus, starts the Rocky Mountain Revolution event chain
 		id = IDA_Pursue_Further_Integration
-		icon = GFX_goal_FLO_trumps_finest
-		x = 65
+		icon = GFX_goal_Meet_With_the_Loyalists
+		x = 59
 		y = 11
 		cost = 15
 		prerequisite = { 
@@ -7624,7 +7701,7 @@ focus_tree = {
 	focus = { #RMLF was defeated, WCZ will go on to conquer the West, This focus is if Stankiewicz died during the revolution
 		id = IDA_Selecting_A_New_Commander
 		icon = GFX_goal_Legacy_of_VA
-		x = 65
+		x = 59
 		y = 12
 		cost = 3
 		prerequisite = { 
@@ -7661,7 +7738,7 @@ focus_tree = {
 	focus = { #Start of conquering the West, WCZ will gain war goals if player-controlled, Trump gets war goals if WCZ is A.I. controlled  
 		id = IDA_Continue_The_Mission
 		icon = GFX_goal_generic_major_war
-		x = 65
+		x = 59
 		y = 13
 		cost = 3
 		prerequisite = { 
@@ -7702,7 +7779,7 @@ focus_tree = {
 	focus = { #War Goals against Montana tags
 		id = IDA_Operation_Treasure_Hunter_3
 		icon = GFX_goal_IDA_Operation_Treasure_Hunter
-		x = 63
+		x = 57
 		y = 13
 		cost = 3
 		prerequisite = { 
@@ -7787,7 +7864,7 @@ focus_tree = {
 	focus = { #War Goals against Utah, Nevada, Colorado, and Arizona tags
 		id = IDA_Operation_Beekeeper_3
 		icon = GFX_goal_IDA_Operation_Beekeeper
-		x = 65
+		x = 59
 		y = 13
 		cost = 3
 		prerequisite = { 
@@ -7891,7 +7968,7 @@ focus_tree = {
 	focus = { #War Goals against other Utah, Nevada, Colorado, and Arizona tags
 		id = IDA_Operation_Prometheus_2
 		icon = GFX_focus_spr_torchbearers_of_tomorrow
-		x = 67
+		x = 61
 		y = 13
 		cost = 3
 		prerequisite = { 
@@ -8014,7 +8091,7 @@ focus_tree = {
 	focus = { #War Goals against Cascadian tags
 		id = IDA_Operation_Evergreen_2
 		icon = GFX_goal_Cascadian_War_Cry
-		x = 64
+		x = 58
 		y = 14
 		cost = 3
 		prerequisite = { 
@@ -8102,7 +8179,7 @@ focus_tree = {
 	focus = { #War Goals against Californian tags
 		id = IDA_Operation_Wolverine_2
 		icon = GFX_goal_IDA_Operation_Wolverine
-		x = 66
+		x = 60
 		y = 14
 		cost = 3
 		prerequisite = { 
@@ -8327,7 +8404,7 @@ focus_tree = {
 	focus = { #War Goals against PAC
 		id = IDA_Operation_Aloha_2
 		icon = GFX_goal_IDA_Operation_Aloha
-		x = 64
+		x = 58
 		y = 15
 		cost = 3
 		prerequisite = { 
@@ -8387,7 +8464,7 @@ focus_tree = {
 	focus = { #War Goals against ALA
 		id = IDA_Operation_Snowbird_2
 		icon = GFX_goal_IDA_Operation_Snowbird
-		x = 66
+		x = 60
 		y = 15
 		cost = 3
 		prerequisite = { 
@@ -8447,7 +8524,7 @@ focus_tree = {
 	focus = { #WCZ Annexes itself into Trump, Trump gains all troops and cores on IDA
 		id = IDA_Our_Work_Here_Is_Done
 		icon = GFX_focus_generic_diplomatic_treaty
-		x = 65
+		x = 59
 		y = 16
 		cost = 3
 		prerequisite = { 
@@ -8504,7 +8581,7 @@ focus_tree = {
 	focus = { #RMLF was successful, first focus in the RMLF tree
 		id = IDA_The_New_Kings_Of_The_Mountain
 		icon = GFX_goal_IDA_The_New_Kings_Of_The_Mountain
-		x = 65
+		x = 59
 		y = 12
 		cost = 5
 		prerequisite = { 
@@ -8554,7 +8631,7 @@ focus_tree = {
 	focus = { #Filler focus, gives more popularity and stability, slightly reduces manpower
 		id = IDA_Crackdown_On_Dissidents
 		icon = GFX_goal_generic_political_pressure
-		x = 62
+		x = 56
 		y = 13
 		cost = 3
 		prerequisite = { 
@@ -8597,7 +8674,7 @@ focus_tree = {
 	focus = { #Filler focus, gives more popularity, stability, and political power
 		id = IDA_Reestablish_Local_Government
 		icon = GFX_focus_generic_self_management
-		x = 64
+		x = 58
 		y = 13
 		cost = 3
 		prerequisite = { 
@@ -8647,7 +8724,7 @@ focus_tree = {
 	focus = { #Filler focus, gives more popularity, manpower, and political power
 		id = IDA_Release_POWs
 		icon = GFX_focus_generic_treaty
-		x = 66
+		x = 60
 		y = 13
 		cost = 3
 		prerequisite = { 
@@ -8701,7 +8778,7 @@ focus_tree = {
 	focus = { #Filler focus, gives more popularity, war support, and political power
 		id = IDA_Seize_Control_Of_Local_Media
 		icon = GFX_goal_Who_Said_Radio_was_Dead
-		x = 68
+		x = 62
 		y = 13
 		cost = 3
 		prerequisite = { 
@@ -8751,7 +8828,7 @@ focus_tree = {
 	focus = { #Election event, decides which RMLF faction will rule 
 		id = IDA_Hold_Internal_Elections
 		icon = GFX_goal_Maintain_Electoral_Fairness
-		x = 65
+		x = 59
 		y = 14
 		cost = 5
 		prerequisite = { 
@@ -8797,7 +8874,7 @@ focus_tree = {
 	focus = { #National Guard coup, beginning focus 
 		id = IDA_The_Guard_Steps_In
 		icon = GFX_goal_IDA_RMLF_National_Guard
-		x = 59
+		x = 53
 		y = 15
 		cost = 1
 		prerequisite = { 
@@ -8838,7 +8915,7 @@ focus_tree = {
 	focus = { #National Guard Coup path, reduce popularity of authoritarian left, increase autocratic popularity  
 		id = IDA_Purge_The_Extremeists
 		icon = GFX_goal_put_down_the_axe
-		x = 59
+		x = 53
 		y = 16
 		cost = 3
 		prerequisite = { 
@@ -8882,7 +8959,7 @@ focus_tree = {
 	focus = { #National Guard stays in power, add autocratic popularity  
 		id = IDA_A_Guiding_Hand
 		icon = GFX_goal_Generic_Military_Government
-		x = 58
+		x = 52
 		y = 17
 		cost = 3
 		prerequisite = { 
@@ -8924,7 +9001,7 @@ focus_tree = {
 	focus = { #National Guard gives up power, add democrat popularity, lose autocratic popularity  
 		id = IDA_Restore_The_Civilian_Government
 		icon = GFX_goal_support_democracy
-		x = 60
+		x = 54
 		y = 17
 		cost = 3
 		prerequisite = { 
@@ -8990,7 +9067,7 @@ focus_tree = {
 	focus = { #Gain national spirit that increases consumer goods, and provides military buffs
 		id = IDA_Increase_The_Military_Budget
 		icon = GFX_goal_fundmilitary
-		x = 58
+		x = 52
 		y = 18
 		cost = 3
 		prerequisite = { 
@@ -9027,7 +9104,7 @@ focus_tree = {
 	focus = { #Add stability, add political power, add party popularity 
 		id = IDA_Legislate_Token_Freedoms
 		icon = GFX_goal_continuous_boost_freedom
-		x = 58
+		x = 52
 		y = 19
 		cost = 3
 		prerequisite = { 
@@ -9069,7 +9146,7 @@ focus_tree = {
 	focus = { #Moderate victory, beginning focus  
 		id = IDA_The_Moderates_Take_The_Lead
 		icon = GFX_goal_IDA_RMLF_Moderates
-		x = 63
+		x = 57
 		y = 15
 		cost = 1
 		prerequisite = { 
@@ -9110,7 +9187,7 @@ focus_tree = {
 	focus = { #Decrease political power, increase stability and popularity
 		id = IDA_Promote_Minority_Rights
 		icon = GFX_goal_generic_propaganda
-		x = 63
+		x = 57
 		y = 16
 		cost = 3
 		prerequisite = { 
@@ -9152,7 +9229,7 @@ focus_tree = {
 	focus = { #Decrease political power, increase popularity and gives tech bonus
 		id = IDA_Increase_Education_Funding
 		icon = GFX_goal_Mandate_Lower_College_Tuition
-		x = 63
+		x = 57
 		y = 17
 		cost = 3
 		prerequisite = { 
@@ -9198,7 +9275,7 @@ focus_tree = {
 	focus = { #Gives national spirit that gives a small military buff
 		id = IDA_We_Must_Defend_Ourselves
 		icon = GFX_goal_MOL_all_sides
-		x = 65
+		x = 59
 		y = 17
 		cost = 3
 		prerequisite = { 
@@ -9236,7 +9313,7 @@ focus_tree = {
 	focus = { #Gives political power, stability, and war support 
 		id = IDA_A_Progressive_Bastion
 		icon = GFX_focus_generic_the_giant_wakes
-		x = 65
+		x = 59
 		y = 18
 		cost = 3
 		prerequisite = { 
@@ -9279,7 +9356,7 @@ focus_tree = {
 	focus = { #Radical victory, beginning focus  
 		id = IDA_The_Radicals_Come_Out_On_Top
 		icon = GFX_goal_IDA_RMLF_Radicals
-		x = 67
+		x = 61
 		y = 15
 		cost = 1
 		prerequisite = { 
@@ -9320,7 +9397,7 @@ focus_tree = {
 	focus = { #Decrease political power, increase popularity, add one civilian factory
 		id = IDA_Overhaul_The_Tax_Structure
 		icon = GFX_goal_FLO_tax_cuts
-		x = 67
+		x = 61
 		y = 16
 		cost = 3
 		prerequisite = { 
@@ -9369,7 +9446,7 @@ focus_tree = {
 	focus = { #Decrease political power, increase popularity, add stability
 		id = IDA_Socialize_Healthcare
 		icon = GFX_goal_A_better_VA
-		x = 67
+		x = 61
 		y = 17
 		cost = 3
 		prerequisite = { 
@@ -9411,7 +9488,7 @@ focus_tree = {
 	focus = { #Extremist victory, beginning focus  
 		id = IDA_The_Extremeists_Pave_The_Way
 		icon = GFX_goal_IDA_RMLF_Extremists
-		x = 72
+		x = 66
 		y = 15
 		cost = 1
 		prerequisite = { 
@@ -9452,7 +9529,7 @@ focus_tree = {
 	focus = { #Extremists democratic path, leads to them joining Biden
 		id = IDA_Stay_Within_The_System
 		icon = GFX_goal_pac_comunes
-		x = 70
+		x = 64
 		y = 16
 		cost = 3
 		prerequisite = { 
@@ -9503,7 +9580,7 @@ focus_tree = {
 	focus = { #Decrease political power, add popularity, add manpower
 		id = IDA_Support_ANTIFA
 		icon = GFX_goal_antifa_Concessions
-		x = 70
+		x = 64
 		y = 17
 		cost = 3
 		prerequisite = { 
@@ -9557,7 +9634,7 @@ focus_tree = {
 	focus = { #Add national spirit that gives army buffs
 		id = IDA_Increase_Militancy
 		icon = GFX_goal_Mandatory_Military_Service
-		x = 72
+		x = 66
 		y = 17
 		cost = 3
 		prerequisite = { 
@@ -9595,7 +9672,7 @@ focus_tree = {
 	focus = { #Decrease political power, add popularity, add one civilian factory
 		id = IDA_Enforce_Fair_Buisness_Practices
 		icon = GFX_goal_Anarchist_Trade
-		x = 70
+		x = 64
 		y = 18
 		cost = 3
 		prerequisite = { 
@@ -9644,7 +9721,7 @@ focus_tree = {
 	focus = { #Extremists autocratic path, leads to an independent Rockies
 		id = IDA_We_Must_Go_Further
 		icon = GFX_goal_Forceful_Conversion
-		x = 74
+		x = 68
 		y = 16
 		cost = 5
 		prerequisite = { 
@@ -9697,7 +9774,7 @@ focus_tree = {
 	focus = { #Decrease other ideology popularity, decrease manpower, increase political power and own popularity
 		id = IDA_Purge_The_Opposition
 		icon = GFX_Focus_Bloody_Purge
-		x = 74
+		x = 68
 		y = 17
 		cost = 5
 		prerequisite = { 
@@ -9765,11 +9842,11 @@ focus_tree = {
 	focus = { #Decrease other ideology popularity, decrease manpower, increase political power and own popularity
 		id = IDA_Seize_Financial_Assets
 		icon = GFX_goal_generic_control_money
-		x = 74
+		x = 68
 		y = 18
 		cost = 5
 		prerequisite = { 
-			focus = IDA_We_Must_Go_Further
+			focus = IDA_Purge_The_Opposition
 		}
 		mutually_exclusive = {
 			
@@ -9846,7 +9923,7 @@ focus_tree = {
 	focus = { #Increase stability, war support
 		id = IDA_A_Fair_State
 		icon = GFX_focus_spr_masters_of_our_own_fate
-		x = 72
+		x = 66
 		y = 19
 		cost = 5
 		prerequisite = { 
@@ -9899,7 +9976,7 @@ focus_tree = {
 	focus = { #Gain national spirit that increases consumer goods, and provides military buffs
 		id = IDA_An_Isolated_Fortress
 		icon = GFX_goal_generic_fortify_city
-		x = 62
+		x = 56
 		y = 20
 		cost = 3
 		prerequisite = { 
@@ -9938,7 +10015,7 @@ focus_tree = {
 	focus = { #Join Biden's faction
 		id = IDA_Support_The_Federalist_Cause
 		icon = GFX_goal_Joe_Biden_Admin
-		x = 64
+		x = 58
 		y = 20
 		cost = 3
 		prerequisite = { 
@@ -9995,7 +10072,7 @@ focus_tree = {
 	focus = { #Independent, autocratic Sullivan focus, gives national spirit that reduces war justification time." 
 		id = IDA_Export_Our_Revolution
 		icon = GFX_focus_spa_the_war_of_vengeance
-		x = 66
+		x = 60
 		y = 20
 		cost = 3
 		prerequisite = { 
@@ -10047,7 +10124,7 @@ focus_tree = {
 	focus = { #WCZ gets added to Trump's faction
 		id = IDA_The_Cycle_Of_Revolution
 		icon = GFX_goal_drumpf
-		x = 68
+		x = 62
 		y = 20
 		cost = 3
 		prerequisite = { 
@@ -10090,7 +10167,7 @@ focus_tree = {
 	focus = { #WCZ gets added to Trump's faction
 		id = IDA_Reunite_The_Rockies
 		icon = GFX_focus_generic_strike_at_democracy1
-		x = 65
+		x = 59
 		y = 21
 		cost = 2
 		prerequisite = { 
@@ -10130,7 +10207,7 @@ focus_tree = {
 	focus = { #War goals on Montana tags
 		id = IDA_Strike_At_Montana
 		icon = GFX_goal_attack_MON
-		x = 64
+		x = 58
 		y = 22
 		cost = 3
 		prerequisite = { 
@@ -10203,7 +10280,7 @@ focus_tree = {
 	focus = { #War goals on Utah and Nevada tags
 		id = IDA_Strike_At_Utah
 		icon = GFX_focus_UTA_identity
-		x = 66
+		x = 60
 		y = 22
 		cost = 3
 		prerequisite = { 
@@ -10308,7 +10385,7 @@ focus_tree = {
 	focus = { #War goals on Arizona tags
 		id = IDA_Move_Down_South
 		icon = GFX_goal_Arizona_Independent
-		x = 65
+		x = 59
 		y = 23
 		cost = 3
 		prerequisite = { 
@@ -10395,28 +10472,1497 @@ focus_tree = {
 			}
 		}
 	}
-	#focus = {
-	#	id = IDA_BOmb
-	#	icon = GFX_goal_generic_construction
-	#	x = 620
-	#	y = 0
-	#	cost = 10
-	#	ai_will_do = {
-	#		factor = 12
-	#	}
-	#	search_filters = { FOCUS_FILTER_RESEARCH FOCUS_FILTER_INDUSTRY }
-	#	completion_reward = {
-	#		add_tech_bonus = {
-	#			name = GER_four_year_plan
-	#			bonus = 1.0
-	#			uses = 2
-	#			category = industry
-	#		}
-	#		custom_effect_tooltip = JAP_strengthen_the_divine_wind_effect
-	#		hidden_effect = { set_technology = { suicide_craft = 1 } }
-	#	}
-	#	
-	#}
+	## Trumpist Exiles Tree ##
+	focus = { #Filler focus, just to start the Trumpist exiles tree
+		id = IDA_The_Exiles_Arrive
+		icon = GFX_goal_icon_The_great_retreat
+		x = 37
+		y = 7
+		cost = 3
+		prerequisite = {
+			
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			has_country_flag = wcz_trumpist_exiles
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_political_power = 15
+			add_popularity = {
+				ideology = republican
+				popularity = 0.05
+			}
+		}
+	}
+	focus = { #Filler focus, auto completed after the Exiles reunite the West
+		id = IDA_Our_Position_Secure 
+		icon = GFX_goal_Secure_the_border
+		x = 37
+		y = 8
+		cost = 3
+		prerequisite = {
+			focus = IDA_The_Exiles_Arrive
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			always = no
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_political_power = 25
+			add_stability = 0.05
+			add_war_support = 0.05
+		}
+	}
+	focus = { #Fires event, Collapse of the Duumvirate 
+		id = IDA_Snap_Back_To_Reality 
+		icon = GFX_goal_unknown
+		x = 37
+		y = 9
+		cost = 3
+		prerequisite = {
+			focus = IDA_Our_Position_Secure
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			country_event = idaho_rework.272
+		}
+	}
+	focus = { #Fires event, Decides who becomes leader of the exiles
+		id = IDA_The_Game_Of_Thrones
+		icon = GFX_goal_unknown
+		x = 37
+		y = 10
+		cost = 3
+		prerequisite = {
+			focus = IDA_Snap_Back_To_Reality
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			country_event = idaho_rework.273
+		}
+	}
+	# McInnes Paths #
+	focus = { #Fires flavor event, McInnes is cemented as the leader
+		id = IDA_The_Prince_Is_Dead
+		icon = GFX_goal_IDA_Don_Jr_Eliminated
+		x = 33
+		y = 11
+		cost = 1
+		prerequisite = {
+			focus = IDA_The_Game_Of_Thrones
+		}
+		mutually_exclusive = {
+			focus = IDA_There_Goes_The_Snake
+			focus = IDA_An_Emergency_Inaguration
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			has_country_flag = wcz_don_jr_assassinated
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			country_event = idaho_rework.274
+		}
+	}
+	focus = { #Start of McInnes' fascist path
+		id = IDA_We_Must_Go_Further_2
+		icon = GFX_goal_unknown
+		x = 31
+		y = 12
+		cost = 1
+		prerequisite = {
+			focus = IDA_The_Prince_Is_Dead
+		}
+		mutually_exclusive = {
+			focus = IDA_Continue_Trumps_Legacy
+			focus = IDA_An_American_Empire
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			always = no
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_political_power = 25
+			add_popularity = {
+				ideology = autocratic
+				popularity = 0.25
+			}
+		}
+	}
+	focus = { #Reduce manpower, add stability and war support, decrease republican popularity
+		id = IDA_Purge_The_Trumpists
+		icon = GFX_goal_Anti_Trump_Flag
+		x = 31
+		y = 13
+		cost = 3
+		prerequisite = {
+			focus = IDA_We_Must_Go_Further_2
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_manpower = -10000
+			add_stability = 0.05
+			add_war_support = 0.1
+			add_popularity = {
+				ideology = republican
+				popularity = -0.05
+			}
+		}
+	}
+	focus = { #Modifies Defenders of Western Civilization spirit, adds military buffs to spirit
+		id = IDA_Proud_Boy_Commissars
+		icon = GFX_goal_Proud_Boys
+		x = 31
+		y = 14
+		cost = 3
+		prerequisite = {
+			focus = IDA_Purge_The_Trumpists
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_manpower = 1500
+			army_experience = 10
+			swap_ideas = {
+				remove_idea = IDA_Defenders_Of_Western_Civilization_1
+				add_idea = IDA_Defenders_Of_Western_Civilization_2
+			}
+		}
+	}
+	focus = { #Modifies Defenders of Western Civilization spirit, add political power
+		id = IDA_Declare_Christianity_The_Official_Religion
+		icon = GFX_goal_Holy_word
+		x = 30
+		y = 15
+		cost = 3
+		prerequisite = {
+			focus = IDA_Proud_Boy_Commissars
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_political_power = 25
+			if = { #This one is just in case the previous focus is skipped or fails
+				limit = {
+					has_idea = IDA_Defenders_Of_Western_Civilization_1
+				}
+				swap_ideas = {
+					remove_idea = IDA_Defenders_Of_Western_Civilization_1
+					add_idea = IDA_Defenders_Of_Western_Civilization_3
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = IDA_Defenders_Of_Western_Civilization_2
+				}
+				swap_ideas = {
+					remove_idea = IDA_Defenders_Of_Western_Civilization_2
+					add_idea = IDA_Defenders_Of_Western_Civilization_3
+				}
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = IDA_Defenders_Of_Western_Civilization_3
+					add_idea = IDA_Defenders_Of_Western_Civilization_4
+				}
+			}
+		}
+	}
+	focus = { #Modifies Defenders of Western Civilization spirit, add political power
+		id = IDA_Declare_English_The_Official_Language
+		icon = GFX_goal_A_New_Lingua_Franca
+		x = 32
+		y = 15
+		cost = 3
+		prerequisite = {
+			focus = IDA_Proud_Boy_Commissars
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_political_power = 25
+			if = { #This one is just in case the previous focus is skipped or fails
+				limit = {
+					has_idea = IDA_Defenders_Of_Western_Civilization_1
+				}
+				swap_ideas = {
+					remove_idea = IDA_Defenders_Of_Western_Civilization_1
+					add_idea = IDA_Defenders_Of_Western_Civilization_3
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = IDA_Defenders_Of_Western_Civilization_2
+				}
+				swap_ideas = {
+					remove_idea = IDA_Defenders_Of_Western_Civilization_2
+					add_idea = IDA_Defenders_Of_Western_Civilization_3
+				}
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = IDA_Defenders_Of_Western_Civilization_3
+					add_idea = IDA_Defenders_Of_Western_Civilization_4
+				}
+			}
+		}
+	}
+	focus = { #Add leader trait to McInnes
+		id = IDA_Protectors_Of_Western_Civilization
+		icon = GFX_goal_As_Many_Men_As_It_Takes
+		x = 31
+		y = 16
+		cost = 3
+		prerequisite = {
+			focus = IDA_Declare_Christianity_The_Official_Religion
+		}
+		prerequisite = {
+			focus = IDA_Declare_English_The_Official_Language
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_country_leader_trait = guardian_of_western_civilization
+		}
+	}
+	focus = { #Start of McInnes/Trump Jr. Trumpist path
+		id = IDA_Continue_Trumps_Legacy
+		icon = GFX_goal_Donald_Trump_hugging_flag
+		x = 35
+		y = 12
+		cost = 1
+		prerequisite = {
+			focus = IDA_The_Prince_Is_Dead
+			focus = IDA_There_Goes_The_Snake
+		}
+		mutually_exclusive = {
+			focus = IDA_We_Must_Go_Further_2
+			focus = IDA_An_American_Empire
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			always = no
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_political_power = 25
+			add_popularity = {
+				ideology = republican
+				popularity = 0.25
+			}
+		}
+	}
+	focus = { #Decrease political power, Add army, air, and navy experience, Modifies the Making America Great Again spirit
+		id = IDA_Increase_Military_Spending
+		icon = GFX_goal_FLO_invest_in_armed_forces
+		x = 35
+		y = 13
+		cost = 3
+		prerequisite = {
+			focus = IDA_Continue_Trumps_Legacy
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_political_power = -50
+			army_experience = 25
+			navy_experience = 25
+			air_experience = 25
+			swap_ideas = {
+				remove_idea = IDA_Making_America_Great_Again_1
+				add_idea = IDA_Making_America_Great_Again_2
+			}
+		}
+	}
+	focus = { #Add political power, Switches economy to Export Focus if not already there or below, Modifies the Making America Great Again spirit
+		id = IDA_Protectionist_Economic_Policies
+		icon = GFX_goal_Focus_Generic_Maritime_Trade
+		x = 35
+		y = 14
+		cost = 3
+		prerequisite = {
+			focus = IDA_Increase_Military_Spending
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_political_power = 25
+			if = {
+				limit = {
+					has_idea = free_trade
+				}
+				add_ideas = export_focus
+			}
+			swap_ideas = {
+				remove_idea = IDA_Making_America_Great_Again_2
+				add_idea = IDA_Making_America_Great_Again_3
+			}
+		}
+	}
+	focus = { #Add research slot, Modifies the Making America Great Again spirit
+		id = IDA_Empower_School_Choice
+		icon = GFX_goal_Scholarship_for_Good_Christian
+		x = 35
+		y = 15
+		cost = 3
+		prerequisite = {
+			focus = IDA_Protectionist_Economic_Policies
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_research_slot = 1
+			swap_ideas = {
+				remove_idea = IDA_Making_America_Great_Again_3
+				add_idea = IDA_Making_America_Great_Again_4
+			}
+		}
+	}
+	focus = { #Add leader trait
+		id = IDA_Make_America_Great_Again
+		icon = GFX_goal_USA_Monument
+		x = 35
+		y = 16
+		cost = 3
+		prerequisite = {
+			focus = IDA_Empower_School_Choice
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_country_leader_trait = maga_spirit
+		}
+	}
+	# Trump Jr. Paths #
+	focus = { #Fires flavor event, Don Jr. is cemented as leader
+		id = IDA_There_Goes_The_Snake
+		icon = GFX_goal_IDA_McInnes_Eliminated
+		x = 37
+		y = 11
+		cost = 1
+		prerequisite = {
+			focus = IDA_The_Game_Of_Thrones
+		}
+		mutually_exclusive = {
+			focus = IDA_The_Prince_Is_Dead
+			focus = IDA_An_Emergency_Inaguration
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			has_country_flag = wcz_mcinnes_assasinated
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			country_event = idaho_rework.275
+		}
+	}
+	focus = { #Trump Jr. monarchist path
+		id = IDA_An_American_Empire
+		icon = GFX_goal_unknown
+		x = 39
+		y = 12
+		cost = 1
+		prerequisite = {
+			focus = IDA_There_Goes_The_Snake
+		}
+		mutually_exclusive = {
+			focus = IDA_We_Must_Go_Further_2
+			focus = IDA_Continue_Trumps_Legacy
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			always = no
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_political_power = 25
+			add_popularity = {
+				ideology = autocratic
+				popularity = 0.25
+			}
+		}
+	}
+	focus = { #Decrease manpower, add stability and war support, decrease republican popularity
+		id = IDA_Purge_The_Proud_Boys
+		icon = GFX_goal_Burn_Atlanta
+		x = 39
+		y = 13
+		cost = 3
+		prerequisite = {
+			focus = IDA_An_American_Empire
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_manpower = -10000
+			add_stability = 0.1
+			add_war_support = 0.05
+			add_popularity = {
+				ideology = republican
+				popularity = -0.05
+			}
+		}
+	}
+	focus = { #Increase popularity, modify Pax Americana spirit
+		id = IDA_The_Cult_Of_Trump
+		icon = GFX_goal_Trump_Statue
+		x = 39
+		y = 14
+		cost = 3
+		prerequisite = {
+			focus = IDA_Purge_The_Proud_Boys
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_popularity = {
+				ideology = autocratic
+				popularity = 0.05
+			}
+			swap_ideas = {
+				remove_idea = IDA_Pax_Americana_Spirit_1
+				add_idea = IDA_Pax_Americana_Spirit_2
+			}
+		}
+	}
+	focus = { #Army, air, navy experience, modify Pax Americana spirit
+		id = IDA_An_Army_Fit_For_An_Empire
+		icon = GFX_goal_focus_army_is_ready
+		x = 38
+		y = 15
+		cost = 3
+		prerequisite = {
+			focus = IDA_The_Cult_Of_Trump
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_political_power = -25
+			add_command_power = -30
+			army_experience = 25
+			navy_experience = 25
+			air_experience = 25
+			if = { #Just in case something in the previous focus breaks
+				limit = {
+					has_idea = IDA_Pax_Americana_Spirit_1
+				}
+				swap_ideas = {
+					remove_idea = IDA_Pax_Americana_Spirit_1
+					add_idea = IDA_Pax_Americana_Spirit_3
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = IDA_Pax_Americana_Spirit_2
+				}
+				swap_ideas = {
+					remove_idea = IDA_Pax_Americana_Spirit_2
+					add_idea = IDA_Pax_Americana_Spirit_3
+				}
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = IDA_Pax_Americana_Spirit_3
+					add_idea = IDA_Pax_Americana_Spirit_4
+				}
+			}
+		}
+	}
+	focus = { #Army, air, navy experience, modify Pax Americana spirit
+		id = IDA_Introduce_New_Traditions
+		icon = GFX_focus_NPA_Pride_In_Freedom
+		x = 40
+		y = 15
+		cost = 3
+		prerequisite = {
+			focus = IDA_The_Cult_Of_Trump
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_political_power = -25
+			if = { #Just in case something in the previous focus breaks
+				limit = {
+					has_idea = IDA_Pax_Americana_Spirit_1
+				}
+				swap_ideas = {
+					remove_idea = IDA_Pax_Americana_Spirit_1
+					add_idea = IDA_Pax_Americana_Spirit_3
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = IDA_Pax_Americana_Spirit_2
+				}
+				swap_ideas = {
+					remove_idea = IDA_Pax_Americana_Spirit_2
+					add_idea = IDA_Pax_Americana_Spirit_3
+				}
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = IDA_Pax_Americana_Spirit_3
+					add_idea = IDA_Pax_Americana_Spirit_4
+				}
+			}
+		}
+	}
+	focus = { #Add leader trait
+		id = IDA_The_American_Augustus
+		icon = GFX_goal_Generic_Caesar
+		x = 39
+		y = 16
+		cost = 3
+		prerequisite = {
+			focus = IDA_An_Army_Fit_For_An_Empire
+		}
+		prerequisite = {
+			focus = IDA_Introduce_New_Traditions
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_country_leader_trait = the_american_augustus
+		}
+	}
+	# Final focus in Trump Jr./McInnes paths before conquest begins
+	focus = { #Add leader trait
+		id = IDA_Lessons_Learned
+		icon = GFX_goal_Lessons_of_The_Civil_War
+		x = 35
+		y = 17
+		cost = 1
+		prerequisite = {
+			focus = IDA_Protectors_Of_Western_Civilization
+			focus = IDA_Make_America_Great_Again
+			focus = IDA_The_American_Augustus
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_political_power = 15
+		}
+	}
+	# Kavanaugh Paths #
+	focus = { #Fires off event, Brett Kavanaugh is sworn in as President
+		id = IDA_An_Emergency_Inaguration
+		icon = GFX_goal_Hand_on_Bible
+		x = 43
+		y = 11
+		cost = 1
+		prerequisite = {
+			focus = IDA_The_Game_Of_Thrones
+		}
+		mutually_exclusive = {
+			focus = IDA_The_Prince_Is_Dead
+			focus = IDA_There_Goes_The_Snake
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			has_country_flag = wcz_leadersip_crisis
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			country_event = idaho_rework.278
+		}
+	}
+	focus = { #Gives political power, gain national spirit Constitutional Originalism
+		id = IDA_Ideas_Of_The_Federalist_Society
+		icon = GFX_goal_IDA_James_Madison
+		x = 43
+		y = 12
+		cost = 3
+		prerequisite = {
+			focus = IDA_An_Emergency_Inaguration
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_political_power = 25
+			add_ideas = IDA_Constitutional_Originalism
+		}
+	}
+	focus = { #Add political power, Adds republican party popularity, modify national spirit Constitutional Originalism
+		id = IDA_Focus_On_Conservtaive_Values
+		icon = GFX_goal_IDA_Republican
+		x = 42
+		y = 13
+		cost = 3
+		prerequisite = {
+			focus = IDA_Ideas_Of_The_Federalist_Society
+		}
+		mutually_exclusive = {
+			focus = IDA_Emphasize_Libertarian_Aspects
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_political_power = 30
+			add_popularity = {
+				ideology = republican
+				popularity = 0.5			
+			}
+			swap_ideas = {
+				remove_idea = IDA_Constitutional_Originalism
+				add_idea = IDA_Constitutional_Originalism_Conservative_1
+			}
+		}
+	}
+	focus = { #Add political power, Adds lib-right party popularity, modify national spirit Constitutional Originalism, switch to lib-right ideology
+		id = IDA_Emphasize_Libertarian_Aspects
+		icon = GFX_goal_IDA_Libertarian
+		x = 44
+		y = 13
+		cost = 3
+		prerequisite = {
+			focus = IDA_Ideas_Of_The_Federalist_Society
+		}
+		mutually_exclusive = {
+			focus = IDA_Focus_On_Conservtaive_Values
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_political_power = 20
+			add_popularity = {
+				ideology = libertarian_right
+				popularity = 0.5			
+			}
+			swap_ideas = {
+				remove_idea = IDA_Constitutional_Originalism
+				add_idea = IDA_Constitutional_Originalism_Libertarian_1
+			}
+			set_politics = {
+				ruling_party = libertarian_right
+				elections_allowed = yes
+				election_frequency = 48
+			}
+			hidden_effect = {
+				IDA_brett_kavanaugh = {
+					promote_character = {
+						ideology = populist_conservatism
+					}
+				}
+			}
+		}
+	}
+	focus = { #Add political power, Add stability, modify national spirit Constitutional Originalism
+		id = IDA_Bring_Back_The_Constitution
+		icon = GFX_goal_A_confederate_Civil_rights_bill
+		x = 43
+		y = 14
+		cost = 3
+		prerequisite = {
+			focus = IDA_Focus_On_Conservtaive_Values
+			focus = IDA_Emphasize_Libertarian_Aspects
+		}
+		mutually_exclusive = {
+		
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_political_power = 20
+			add_stability = 0.1
+			if = {
+				limit = {
+					has_idea = IDA_Constitutional_Originalism_Conservative_1
+				}
+				swap_ideas = {
+					remove_idea = IDA_Constitutional_Originalism_Conservative_1
+					add_idea = IDA_Constitutional_Originalism_Conservative_2
+				}
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = IDA_Constitutional_Originalism_Libertarian_1
+					add_idea = IDA_Constitutional_Originalism_Libertarian_2
+				}
+			}
+		}
+	}
+	focus = { #Loose political power, Add war support, add manpower, add army, nacy, and air experience, modify national spirit Constitutional Originalism
+		id = IDA_Support_The_Troops
+		icon = GFX_goal_Icon_We_Have_a_War_to_Win_MAA
+		x = 43
+		y = 15
+		cost = 3
+		prerequisite = {
+			focus = IDA_Bring_Back_The_Constitution
+		}
+		mutually_exclusive = {
+		
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_political_power = -25
+			add_war_support = 0.1
+			add_manpower = 5000
+			army_experience = 15
+			navy_experience = 15
+			air_experience = 15
+			if = {
+				limit = {
+					has_idea = IDA_Constitutional_Originalism_Conservative_2
+				}
+				swap_ideas = {
+					remove_idea = IDA_Constitutional_Originalism_Conservative_2
+					add_idea = IDA_Constitutional_Originalism_Conservative_3
+				}
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = IDA_Constitutional_Originalism_Libertarian_2
+					add_idea = IDA_Constitutional_Originalism_Libertarian_3
+				}
+			}
+		}
+	}
+	focus = { #Add popularity, Modify national spirit Constitutional Originalism
+		id = IDA_Conservative_Spirit
+		icon = GFX_goal_Generic_Conservative
+		x = 42
+		y = 16
+		cost = 3
+		prerequisite = {
+			focus = IDA_Focus_On_Conservtaive_Values
+		}
+		prerequisite = {
+			focus = IDA_Support_The_Troops
+		}
+		mutually_exclusive = {
+		
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_popularity = {
+				ideology = republican
+				popularity = 0.05
+			}
+			swap_ideas = {
+				remove_idea = IDA_Constitutional_Originalism_Conservative_3
+				add_idea = IDA_Constitutional_Originalism_Conservative_4
+			}
+		}
+	}
+	focus = { #Add populairty, Modify national spirit Constitutional Originalism
+		id = IDA_Live_And_Let_Live
+		icon = GFX_focus_NPA_Appease_Right_Wing_Libertarians
+		x = 44
+		y = 16
+		cost = 3
+		prerequisite = {
+			focus = IDA_Emphasize_Libertarian_Aspects
+		}
+		prerequisite = {
+			focus = IDA_Support_The_Troops
+		}
+		mutually_exclusive = {
+		
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_popularity = {
+				ideology = libertarian_right
+				popularity = 0.05
+			}
+			swap_ideas = {
+				remove_idea = IDA_Constitutional_Originalism_Libertarian_3
+				add_idea = IDA_Constitutional_Originalism_Libertarian_4
+			}
+		}
+	}
+	focus = { #Start of Kavanaugh's foreign policy tree, gives a small amount of politcal power
+		id = IDA_Seek_New_Relations
+		icon = GFX_goal_Icon_Divine_Intervention_in_America_MAA
+		x = 43
+		y = 17
+		cost = 1
+		prerequisite = {
+			focus = IDA_Conservative_Spirit
+			focus = IDA_Live_And_Let_Live
+		}
+		mutually_exclusive = {
+		
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_political_power = 15
+		}
+	}
 }
 ### Bundy Coup Focus Tree #
 focus_tree = {

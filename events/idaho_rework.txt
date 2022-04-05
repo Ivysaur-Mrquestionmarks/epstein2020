@@ -305,6 +305,84 @@ news_event = {
 		name = idaho_rework.260.a
 	}
 }
+news_event = {
+	id = idaho_rework.262
+	title = idaho_rework.262.t
+	desc = idaho_rework.262.d
+	picture = event_news_IDA_Trumpist_Exiles
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = idaho_rework.262.a
+		trigger = {
+			has_cosmetic_tag = IDA_Exiles
+		}
+	}
+	option = {
+		name = idaho_rework.262.b
+		trigger = {
+			NOT = {
+				has_cosmetic_tag = IDA_Exiles
+			}
+		}
+	}
+}
+news_event = {
+	id = idaho_rework.276
+	title = idaho_rework.276.t
+	desc = idaho_rework.276.d
+	picture = event_news_IDA_McInnes_Siezes_Power
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = idaho_rework.276.a
+		trigger = {
+			has_cosmetic_tag = IDA_Exiles
+		}
+	}
+	option = {
+		name = idaho_rework.276.b
+		trigger = {
+			NOT = {
+				has_cosmetic_tag = IDA_Exiles
+			}
+		}
+	}
+}
+news_event = {
+	id = idaho_rework.279
+	title = idaho_rework.279.t
+	desc = idaho_rework.279.d
+	picture = event_news_IDA_President_Kavanaugh
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = idaho_rework.279.a
+		
+	}
+}
+news_event = {
+	id = idaho_rework.277
+	title = idaho_rework.277.t
+	desc = idaho_rework.277.d
+	picture = event_news_IDA_Don_Jr_Siezes_Power
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = idaho_rework.277.a
+		trigger = {
+			has_cosmetic_tag = IDA_Exiles
+		}
+	}
+	option = {
+		name = idaho_rework.277.b
+		trigger = {
+			NOT = {
+				has_cosmetic_tag = IDA_Exiles
+			}
+		}
+	}
+}
 ### Country Events ###
 country_event = { #WCZ gains ground, Stankiewicz loses trait
 	id = idaho_rework.1
@@ -1923,7 +2001,7 @@ country_event = { #Utah is alerted that the WCZ wants to add them into their fac
 	}
 	
 	option = { #Utah refuses to join the WCZ
-		name = idaho_rework.51.b
+		name = idaho_rework.51.c
 		ai_chance = {
 			factor = 30
 		}
@@ -3080,6 +3158,7 @@ country_event = { #California Joins the WCZ faction
 		hidden_effect = {
 			IDA = {
 				complete_national_focus = IDA_Meet_With_Jenner
+				complete_national_focus = IDA_Integrate_California
 			}
 		}
 	}
@@ -3105,6 +3184,7 @@ country_event = { #California rejects helping the WCZ, they will give the WCZ mi
 		hidden_effect = {
 			IDA = {
 				complete_national_focus = IDA_Meet_With_Jenner
+				complete_national_focus = IDA_Integrate_California
 			}
 		}
 	}
@@ -3262,7 +3342,7 @@ country_event = { #WCZ asks Hawaii to join them
 			factor = 80
 		}
 		custom_effect_tooltip = wcz_end_of_our_nation
-		PAC = {
+		IDA = {
 			country_event = {
 				id = idaho_rework.83
 				days = 3
@@ -3276,7 +3356,7 @@ country_event = { #WCZ asks Hawaii to join them
 			factor = 0
 		}
 		custom_effect_tooltip = wcz_join_faction
-		PAC = {
+		IDA = {
 			country_event = {
 				id = idaho_rework.84
 				days = 3
@@ -3286,13 +3366,37 @@ country_event = { #WCZ asks Hawaii to join them
 	
 	option = { #Hawaii will remain with Trump, they will give the WCZ military access
 		name = idaho_rework.82.c
+		trigger = {
+			PAC = {
+				is_in_faction_with = USA
+			}
+		}
 		ai_chance = {
 			factor = 20
 		}
 		custom_effect_tooltip = wcz_military_access
-		PAC = {
+		IDA = {
 			country_event = {
 				id = idaho_rework.85
+				days = 3
+			}
+		}
+	}
+	
+	option = { #Hawaii will refuse to join the Exiles
+		name = idaho_rework.82.e
+		trigger = {
+			USA = {
+				exists = no
+			}
+		}
+		ai_chance = {
+			factor = 0
+		}
+		custom_effect_tooltip = wcz_angered
+		IDA = {
+			country_event = {
+				id = idaho_rework.270
 				days = 3
 			}
 		}
@@ -3449,9 +3553,14 @@ country_event = { #WCZ asks Alaska to join them (90% sure there's dozens of vari
 	option = { #Alaska will reject the offer, only available if Alaska is not guaranteed by Trump
 		name = idaho_rework.87.c
 		trigger = {
-			NOT = {
-				ALA = {
-					is_guaranteed_by = USA
+			OR = {
+				NOT = {
+					ALA = {
+						is_guaranteed_by = USA
+					}
+				}
+				USA = {
+					exists = no
 				}
 			}
 		}
@@ -3477,6 +3586,9 @@ country_event = { #WCZ asks Alaska to join them (90% sure there's dozens of vari
 		trigger = {
 			ALA = {
 				is_guaranteed_by = USA
+			}
+			USA = {
+				exists = yes
 			}
 		}
 		ai_chance = {
@@ -3741,6 +3853,31 @@ country_event = { #Event for if WCZ goes to war with GLA guaranteed Alaska (GLA 
 	}
 }
 country_event = { #WCZ gains a spirit that reduces justify war goal tension limit and time, fires news event about the WCZ's conquest of the west, WCZ will gain a news event to decide what path they will choose.
+	id = idaho_rework.94
+	title = idaho_rework.94.t
+	desc = idaho_rework.94.d
+	picture = GFX_report_event_IDA_Celebrations_In_The_Streets
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = idaho_rework.94.a
+		add_ideas = IDA_Masters_Of_The_West
+		hidden_effect = { #Set unification country flag for any missed cores, fires news event about conquest, fires an event where the WCZ decides its path
+			set_country_flag = {
+    			flag = reunification_start
+    			value = 2
+			}
+			news_event = idaho_rework.95
+			country_event = {
+				id = idaho_rework.96
+				days = 10
+			}
+		}
+	}
+}
+country_event = { #Fixes event above because it's broken for whatever reason, WCZ gains a spirit that reduces justify war goal tension limit and time, fires news event about the WCZ's conquest of the west, WCZ will gain a news event to decide what path they will choose.
 	id = idaho_rework.94
 	title = idaho_rework.94.t
 	desc = idaho_rework.94.d
@@ -24953,3 +25090,720 @@ country_event = { #Proud Boys offer was accepted, Sullivan restores the WCZ
 		}
 	}
 }
+country_event = { #Trump loses the NPA war, Trumpist exiles arrive in the WCZ
+	id = idaho_rework.261
+	title = idaho_rework.261.t
+	desc = idaho_rework.261.d
+	picture = GFX_report_event_The_Exiles
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = idaho_rework.261.a
+		custom_effect_tooltip = wcz_expansion_unlocked
+		custom_effect_tooltip = wcz_army_improve
+		custom_effect_tooltip = wcz_industry_improve
+		custom_effect_tooltip = wcz_air_and_army_generals_reinstated
+		# Add Resources #
+		add_manpower = 10000
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 5000
+			producer = USA
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 1000
+			producer = USA
+		}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment
+			amount = 500
+			producer = USA
+		}
+		add_equipment_to_stockpile = {
+			type = motorized_equipment
+			amount = 300
+			producer = USA
+		}
+		
+		# Political Changes #
+		IDA_donald_trump_jr = {
+			promote_character = {
+				ideology = trumpist
+			}
+		}
+		USA = {
+			every_unit_leader = {
+				limit = {
+					NOT = {
+						has_trait = politically_connected
+					}
+				}
+            	set_nationality = IDA
+        	}
+		}
+		add_ideas = IDA_The_Duumvirate
+		add_ideas = IDA_Eagles_Of_The_West_Spirit
+		
+		# Unlock Expansionist Side of the Focus Tree #
+		if = {
+			limit = {
+				NOT = {
+					has_completed_focus = IDA_We_March_Forward
+				}
+			}
+			complete_national_focus = IDA_We_March_Forward
+		}
+		if = {
+			limit = {
+				has_completed_focus = IDA_Dig_In
+			}
+				complete_national_focus = IDA_Defeat_In_The_East
+		}
+		
+		# Fixes Militia State National Spirit #
+		if = { #Improves army to max
+			limit = {
+				has_idea = IDA_Militia_State_1
+			}
+			swap_ideas = {
+				remove_idea = IDA_Militia_State_1
+				add_idea = IDA_Army_Of_The_Redoubt_2
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = IDA_Militia_State_2
+			}
+			swap_ideas = {
+				remove_idea = IDA_Militia_State_2
+				add_idea = IDA_Army_Of_The_Redoubt_2
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = IDA_Militia_State_3
+			}
+			swap_ideas = {
+				remove_idea = IDA_Militia_State_3
+				add_idea = IDA_Army_Of_The_Redoubt_2
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = IDA_Militia_State_4
+			}
+			swap_ideas = {
+				remove_idea = IDA_Militia_State_4
+				add_idea = IDA_Army_Of_The_Redoubt_2
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = IDA_Militia_State_5
+			}
+			swap_ideas = {
+				remove_idea = IDA_Militia_State_5
+				add_idea = IDA_Army_Of_The_Redoubt_2
+			}
+		}
+		
+		# Dependent Industry Fix #
+		if = {
+			limit = {
+				has_idea = IDA_Economic_Dependence_1
+			}
+			swap_ideas = {
+				remove_idea = IDA_Economic_Dependence_1
+				add_idea = IDA_Economic_Miracle
+				}
+			}
+		else_if  = {
+			limit = {
+				has_idea = IDA_Economic_Dependence_2
+			}
+			swap_ideas = {
+				remove_idea = IDA_Economic_Dependence_2
+				add_idea = IDA_Economic_Miracle
+			}
+		}
+		else_if  = {
+			limit = {
+				has_idea = IDA_Economic_Dependence_3
+			}
+			swap_ideas = {
+				remove_idea = IDA_Economic_Dependence_3
+				add_idea = IDA_Economic_Miracle
+			}
+		}
+		else_if  = {
+			limit = {
+				has_idea = IDA_Economic_Dependence_4
+			}
+			remove_ideas = {
+				IDA_Economic_Dependence_4
+			}
+			add_ideas = { 
+				idea = IDA_Economic_Miracle  
+			}
+		}
+		# Create 5 Divisions #
+		create_unit = {
+			division = "name = \"Trumpist Exiles\" division_template = \"Veteran Combat Brigade\" start_experience_factor = 1.0 start_equipment_factor = 0.3" 
+			owner = IDA
+		}
+		create_unit = {
+			division = "name = \"Trumpist Exiles\" division_template = \"Veteran Combat Brigade\" start_experience_factor = 0.8 start_equipment_factor = 0.5" 
+			owner = IDA
+		}
+		create_unit = {
+			division = "name = \"Trumpist Exiles\" division_template = \"Light Foot Militia\" start_experience_factor = 1.0 start_equipment_factor = 0.2" 
+			owner = IDA
+		}
+		create_unit = {
+			division = "name = \"Trumpist Exiles\" division_template = \"Light Foot Militia\" start_experience_factor = 0.6 start_equipment_factor = 1.0" 
+			owner = IDA
+		}
+		create_unit = {
+			division = "name = \"Trumpist Exiles\" division_template = \"Light Foot Militia\" start_experience_factor = 0.5 start_equipment_factor = 1.0" 
+			owner = IDA
+		}
+		hidden_effect = {
+			set_cosmetic_tag = IDA_Exiles
+			set_country_flag = wcz_trumpist_exiles
+			set_country_flag = wcz_military_allowed_to_operate
+			unlock_national_focus = IDA_The_Exiles_Arrive
+			news_event = idaho_rework.262
+		}
+	}
+}
+country_event = { #Trumpist Exiles will demand Montana join them and return all territory, refusal leads to war
+	id = idaho_rework.263
+	title = idaho_rework.263.t
+	desc = idaho_rework.263.d
+	picture = GFX_report_event_The_Exiles
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Montana agrees to the demands
+		name = idaho_rework.263.a
+		ai_chance = {
+			factor = 10
+		}
+		custom_effect_tooltip = wcz_puppet_montana
+		IDA = {
+            if = {
+				limit = {
+					OR = {
+                        has_dlc = "Together for Victory"
+                        has_dlc = "Man the Guns"
+                    }
+				}
+				set_autonomy = {
+					target = MON
+					autonomous_state = autonomy_colony
+					freedom_level = 0.1
+				}
+				else = {
+					puppet = MON
+				}
+            }
+        }
+		every_state = {
+			limit = { 
+				is_core_of = IDA 
+				CONTROLLER = {
+					tag = MON
+				}
+			}
+			remove_core_of = MON
+			IDA = {
+				transfer_state = PREV
+			}
+			IDA = {
+				complete_national_focus = IDA_Request_The_Return_Of_Our_Territories
+			}
+		}
+	}
+	
+	option = { #Montana rejects the demands
+		name = idaho_rework.263.b
+		ai_chance = {
+			factor = 10
+		}
+		custom_effect_tooltip = wcz_angered
+		IDA = {
+			country_event = {
+				id = idaho_rework.264
+				days = 5
+			}
+		}
+	}
+}
+country_event = { #Trumpist Exiles are alerted to Montana's refusal, gain war goal against Montana
+	id = idaho_rework.264
+	title = idaho_rework.264.t
+	desc = idaho_rework.264.d
+	picture = GFX_report_event_IDA_Montana
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = idaho_rework.264.a
+		create_wargoal = {
+			type = annex_everything
+			target = MON
+		}
+		complete_national_focus = IDA_Enemies_In_The_Shining_Mountains
+		hidden_effect = {
+			set_country_flag = wcz_montana_negotiations_failed
+		}
+	}
+}
+country_event = { #Exiles demand Utah completely submits to them
+	id = idaho_rework.265
+	title = idaho_rework.265.t
+	desc = idaho_rework.265.d
+	picture = GFX_report_event_The_Exiles
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Utah accepts the demands
+		name = idaho_rework.265.a
+		ai_chance = {
+			factor = 10
+		}
+		custom_effect_tooltip = wcz_puppet
+		IDA = {
+			if = {
+				limit = {
+					OR = {
+						has_dlc = "Together for Victory"
+						has_dlc = "Man the Guns"
+					}
+				}
+				set_autonomy = {
+					target = UTA
+					autonomous_state = autonomy_colony
+					freedom_level = 0.1
+				}
+				else = {
+					puppet = UTA
+				}
+			}
+		}
+		IDA = {
+			complete_national_focus = IDA_Allies_Down_South
+		}
+	}
+	
+	option = { #Utah rejects the demands
+		name = idaho_rework.265.b
+		ai_chance = {
+			factor = 10
+		}
+		custom_effect_tooltip = wcz_angered
+		IDA = {
+			country_event = {
+				id = idaho_rework.266
+				days = 5
+			}
+		}
+	}
+}
+country_event = { #Trumpist Exiles are alerted to Utah's refusal, gain war goal against Utah
+	id = idaho_rework.266
+	title = idaho_rework.266.t
+	desc = idaho_rework.266.d
+	picture = GFX_report_event_IDA_Utah
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = idaho_rework.266.a
+		create_wargoal = {
+			type = annex_everything
+			target = UTA
+		}
+		complete_national_focus = IDA_Operation_Beekeeper
+		hidden_effect = {
+			set_country_flag = wcz_utah_negotiations_failed
+		}
+	}
+}
+country_event = { #Trumpist Exiles Rockies reunification event, increase party popularity, add political power, gain access to suicide aircraft
+	id = idaho_rework.267
+	title = idaho_rework.267.t
+	desc = idaho_rework.267.d
+	picture = GFX_report_event_IDA_Plane_Crash
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = idaho_rework.267.a
+		custom_effect_tooltip = wcz_the_ultimate_sacrifice
+		add_political_power = 65
+		add_popularity = {
+			ideology = republican
+			popularity = 0.5
+		}
+		hidden_effect = {
+			set_technology = { suicide_craft = 1 } 
+			news_event = idaho_rework.62
+		}
+	}
+}
+country_event = { #Exiles demand Jenner completely submits to them
+	id = idaho_rework.268
+	title = idaho_rework.268.t
+	desc = idaho_rework.268.d
+	picture = GFX_report_event_The_Exiles
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Jenner accepts the demands
+		name = idaho_rework.268.a
+		ai_chance = {
+			factor = 10
+		}
+		custom_effect_tooltip = wcz_puppet
+		IDA = {
+			if = {
+				limit = {
+					OR = {
+						has_dlc = "Together for Victory"
+						has_dlc = "Man the Guns"
+					}
+				}
+				set_autonomy = {
+					target = PRA
+					autonomous_state = autonomy_colony
+					freedom_level = 0.1
+				}
+				else = {
+					puppet = PRA
+				}
+			}
+		}
+		IDA = {
+			complete_national_focus = IDA_Meet_With_Jenner
+		}
+	}
+	
+	option = { #Jenner rejects the demands
+		name = idaho_rework.268.b
+		ai_chance = {
+			factor = 10
+		}
+		custom_effect_tooltip = wcz_angered
+		IDA = {
+			country_event = {
+				id = idaho_rework.269
+				days = 5
+			}
+		}
+	}
+}
+country_event = { #Trumpist Exiles are alerted to Jenner's refusal, gain war goal against the PRA
+	id = idaho_rework.269
+	title = idaho_rework.269.t
+	desc = idaho_rework.269.d
+	picture = GFX_report_event_IDA_Meeting_With_Jenner
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = idaho_rework.269.a
+		create_wargoal = {
+			type = annex_everything
+			target = PRA
+		}
+		complete_national_focus = IDA_Meet_With_Jenner
+		complete_national_focus = IDA_Operation_Wolverine
+	}
+}
+country_event = { #Trumpist Exiles are alerted to Hawaii's refusal
+	id = idaho_rework.270
+	title = idaho_rework.270.t
+	desc = idaho_rework.270.d
+	picture = GFX_report_event_IDA_Hawaii
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Attack Hawaii
+		name = idaho_rework.270.a
+		create_wargoal = {
+			type = annex_everything
+			target = PAC
+		}
+		complete_national_focus = IDA_Operation_Aloha
+		hidden_effect = {
+			uncomplete_national_focus = {
+				focus = IDA_Negotiate_With_Hawaii
+				uncomplete_children = yes
+				refund_political_power = no
+			}
+		}
+	}
+	
+	option = { #Ignore Hawaii
+		name = idaho_rework.270.b
+		complete_national_focus = IDA_Bypass_Hawaii
+		hidden_effect = {
+			uncomplete_national_focus = {
+				focus = IDA_Negotiate_With_Hawaii
+				uncomplete_children = yes
+				refund_political_power = no
+			}
+		}
+	}
+}
+country_event = { #Exiles gains a spirit that reduces justify war goal tension limit and time, fires news event about the WCZ's conquest of the west, opens up the Exiles tree
+	id = idaho_rework.271
+	title = idaho_rework.271.t
+	desc = idaho_rework.271.d
+	picture = GFX_report_event_IDA_Celebrations_In_The_Streets
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = idaho_rework.271.a
+		complete_national_focus = IDA_Our_Position_Secure
+		add_ideas = IDA_Masters_Of_The_West
+		hidden_effect = { #Set unification country flag for any missed cores, fires news event about conquest, opens up the exiles tree
+			set_country_flag = {
+    			flag = reunification_start
+    			value = 2
+			}
+			news_event = idaho_rework.95
+		}
+	}
+}
+country_event = { #McInnes and Don Jr. Split, modifies the Duumvirate spirit
+	id = idaho_rework.272
+	title = idaho_rework.272.t
+	desc = idaho_rework.272.d
+	picture = GFX_report_event_The_Exiles
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = idaho_rework.272.a
+		add_political_power = -50
+		swap_ideas = {
+			remove_idea = IDA_The_Duumvirate
+			add_idea = IDA_Unity_Shattered
+		}
+	}
+}
+country_event = { #McInnes and Don Jr. Split, removes the Duumvirate spirit, decides who becomes ruler of the Exiles
+	id = idaho_rework.273
+	title = idaho_rework.273.t
+	desc = idaho_rework.273.d
+	picture = GFX_report_event_IDA_City_Battle
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #McInnes dies, Trump Jr. comes out on top
+		name = idaho_rework.273.a
+		ai_chance = {
+			factor = 10
+		}
+		custom_effect_tooltip = wcz_mcinnes_death
+		add_political_power = -25
+		add_stability = -0.05
+		remove_ideas = IDA_Unity_Shattered
+		retire_character = IDA_gavin_mcinnes
+		hidden_effect = {
+			set_country_flag = wcz_mcinnes_assasinated
+		}
+	}
+	option = { #Trump Jr. dies, McInnes comes out on top
+		name = idaho_rework.273.b
+		ai_chance = {
+			factor = 10
+		}
+		custom_effect_tooltip = wcz_trump_jr_death
+		add_political_power = -25
+		add_stability = -0.05
+		remove_ideas = IDA_Unity_Shattered
+		retire_character = IDA_donald_trump_jr
+		IDA_gavin_mcinnes = {
+			promote_character = {
+				ideology = trumpist
+			}
+		}
+		hidden_effect = {
+			set_country_flag = wcz_don_jr_assassinated
+		}
+	}
+	option = { #Trump Jr. and McInnes die, leads to Brett Kavanaugh becoming president
+		name = idaho_rework.273.c
+		ai_chance = {
+			factor = 5
+		}
+		custom_effect_tooltip = wcz_dead_leadership
+		add_political_power = -50
+		add_stability = -0.1
+		remove_ideas = IDA_Unity_Shattered
+		retire_character = IDA_donald_trump_jr
+		retire_character = IDA_gavin_mcinnes
+		IDA_fallen_government = {
+			promote_character = yes
+		}
+		hidden_effect = {
+			set_country_flag = wcz_leadersip_crisis
+		}
+	}
+}
+country_event = { #McInnes seizes power after Don Jr.'s death, decides whether to go fascist or Trumpist
+	id = idaho_rework.274
+	title = idaho_rework.274.t
+	desc = idaho_rework.274.d
+	picture = GFX_report_event_IDA_McInnes
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #McInnes stays Trumpist, adds national spirit
+		name = idaho_rework.274.a
+		ai_chance = {
+			factor = 10
+		}
+		add_political_power = 25
+		add_popularity = {
+			ideology = republican
+			popularity = 0.50
+		}
+		complete_national_focus = IDA_Continue_Trumps_Legacy
+		add_country_leader_trait = true_forty_six
+		add_ideas = IDA_Making_America_Great_Again_1
+		hidden_effect = {
+			news_event = idaho_rework.276
+		}
+	}
+	option = { #McInnes goes fascist, sets cosmetic tag, adds national spirit
+		name = idaho_rework.274.b
+		ai_chance = {
+			factor = 10
+		}
+		add_political_power = 25
+		add_popularity = {
+			ideology = autocratic
+			popularity = 0.50
+		}
+		IDA_gavin_mcinnes = {
+			promote_character = {
+				ideology = fascism
+			}
+		}
+		complete_national_focus = IDA_We_Must_Go_Further
+		add_country_leader_trait = western_chauvanist
+		add_ideas = IDA_Defenders_Of_Western_Civilization_1
+		hidden_effect = {
+			set_cosmetic_tag = IDA_Occidencia
+			news_event = idaho_rework.276
+		}
+	}
+}
+country_event = { #Don Jr. seizes power after McInnes' death, decides whether to go monarchist or Trumpist
+	id = idaho_rework.275
+	title = idaho_rework.275.t
+	desc = idaho_rework.275.d
+	picture = GFX_report_event_IDA_Don_Jr
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Don Jr. stays Trumpist, adds national spirit
+		name = idaho_rework.275.a
+		ai_chance = {
+			factor = 10
+		}
+		add_political_power = 25
+		add_popularity = {
+			ideology = republican
+			popularity = 0.50
+		}
+		complete_national_focus = IDA_Continue_Trumps_Legacy
+		swap_ruler_traits = {
+			remove = sins_of_the_father
+			add = true_forty_six
+		}
+		add_ideas = IDA_Making_America_Great_Again_1
+		hidden_effect = {
+			news_event = idaho_rework.277
+		}
+	}
+	option = { #Don Jr. goes monarchist, sets cosmetic tag, adds national spirit
+		name = idaho_rework.275.b
+		ai_chance = {
+			factor = 10
+		}
+		add_political_power = 25
+		add_popularity = {
+			ideology = autocratic
+			popularity = 0.50
+		}
+		complete_national_focus = IDA_An_American_Empire
+		IDA_donald_trump_jr = {
+			promote_character = {
+				ideology = absolute_monarchy
+			}
+		}
+		add_country_leader_trait = trump_I
+		add_ideas = IDA_Pax_Americana_Spirit_1
+		hidden_effect = {
+			set_cosmetic_tag = IDA_Pax_Americana
+			news_event = idaho_rework.277
+		}
+	}
+}
+country_event = { #Brett Kavanaugh is inaugurated as President after Don Jr. and McInnes' death
+	id = idaho_rework.278
+	title = idaho_rework.278.t
+	desc = idaho_rework.278.d
+	picture = GFX_report_event_IDA_Brett_Kavanaugh
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = idaho_rework.278.a
+		ai_chance = {
+			factor = 10
+		}
+		add_political_power = 25
+		add_stability = 0.1
+		add_popularity = {
+			ideology = republican
+			popularity = 0.35
+		}
+		add_popularity = {
+			ideology = libertarian_right
+			popularity = 0.15
+		}
+		IDA_brett_kavanaugh = {
+			promote_character = {
+				ideology = conservative
+			}
+		}
+		hidden_effect = {
+			news_event = idaho_rework.279
+		}
+	}
+}
+
