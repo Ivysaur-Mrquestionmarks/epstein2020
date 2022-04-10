@@ -350,18 +350,6 @@ news_event = {
 	}
 }
 news_event = {
-	id = idaho_rework.279
-	title = idaho_rework.279.t
-	desc = idaho_rework.279.d
-	picture = event_news_IDA_President_Kavanaugh
-	is_triggered_only = yes
-	major = yes
-	option = {
-		name = idaho_rework.279.a
-		
-	}
-}
-news_event = {
 	id = idaho_rework.277
 	title = idaho_rework.277.t
 	desc = idaho_rework.277.d
@@ -381,6 +369,59 @@ news_event = {
 				has_cosmetic_tag = IDA_Exiles
 			}
 		}
+	}
+}
+news_event = {
+	id = idaho_rework.279
+	title = idaho_rework.279.t
+	desc = idaho_rework.279.d
+	picture = event_news_IDA_President_Kavanaugh
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = idaho_rework.279.a
+		
+	}
+}
+news_event = {
+	id = idaho_rework.283
+	title = idaho_rework.283.t
+	desc = idaho_rework.283.d
+	picture = event_news_IDA_A_Tale_Of_Two_Brothers
+	
+	fire_only_once = yes
+	
+	mean_time_to_happen = {
+		days = 1
+	}
+	
+	trigger = {
+		tag = IDA
+		IDA = {
+			has_war_with = FLO
+			IDA_donald_trump_jr = { is_country_leader = yes }
+		}
+		FLO = {
+			FLO_barron_trump = { is_country_leader = yes }
+		}
+	}
+	
+	major = yes
+	option = {
+		name = idaho_rework.283.a
+		
+	}
+}
+news_event = {
+	id = idaho_rework.286
+	title = idaho_rework.286.t
+	desc = idaho_rework.286.d
+	picture = event_news_IDA_American_Hegemony
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = idaho_rework.286.a
+		
 	}
 }
 ### Country Events ###
@@ -25160,75 +25201,28 @@ country_event = { #Trump loses the NPA war, Trumpist exiles arrive in the WCZ
 			limit = {
 				has_completed_focus = IDA_Dig_In
 			}
-				complete_national_focus = IDA_Defeat_In_The_East
+			complete_national_focus = IDA_Defeat_In_The_East
 		}
 		
 		# Fixes Militia State National Spirit #
-		if = { #Improves army to max
-			limit = {
-				has_idea = IDA_Militia_State_1
-			}
-			remove_ideas = IDA_Militia_State_1
-			add_ideas = IDA_Army_Of_The_Redoubt_2
+		remove_ideas = {
+			IDA_Militia_State_1
+			IDA_Militia_State_2
+			IDA_Militia_State_3
+			IDA_Militia_State_4
+			IDA_Militia_State_5
 		}
-		else_if = {
-			limit = {
-				has_idea = IDA_Militia_State_2
-			}
-			remove_ideas = IDA_Militia_State_2
-			add_ideas = IDA_Army_Of_The_Redoubt_2
-		}
-		else_if = {
-			limit = {
-				has_idea = IDA_Militia_State_3
-			}
-			remove_ideas = IDA_Militia_State_3
-			add_ideas = IDA_Army_Of_The_Redoubt_2
-		}
-		else_if = {
-			limit = {
-				has_idea = IDA_Militia_State_4
-			}
-			remove_ideas = IDA_Militia_State_4
-			add_ideas = IDA_Army_Of_The_Redoubt_2
-		}
-		else_if = {
-			limit = {
-				has_idea = IDA_Militia_State_5
-			}
-			remove_ideas = IDA_Militia_State_5
-			add_ideas = IDA_Army_Of_The_Redoubt_2
-		}
+		add_ideas = IDA_Army_Of_The_Redoubt_2
 		
 		# Dependent Industry Fix #
-		if = {
-			limit = {
-				has_idea = IDA_Economic_Dependence_1
-			}
-			remove_ideas = IDA_Economic_Dependence_1
-			add_ideas = IDA_Economic_Miracle
+		remove_ideas = {
+			IDA_Economic_Dependence_1
+			IDA_Economic_Dependence_2
+			IDA_Economic_Dependence_3
+			IDA_Economic_Dependence_4
 		}
-		else_if  = {
-			limit = {
-				has_idea = IDA_Economic_Dependence_2
-			}
-			remove_ideas = IDA_Economic_Dependence_2
-			add_ideas = IDA_Economic_Miracle
-		}
-		else_if  = {
-			limit = {
-				has_idea = IDA_Economic_Dependence_3
-			}
-			remove_ideas = IDA_Economic_Dependence_3
-			add_ideas = IDA_Economic_Miracle
-		}
-		else_if  = {
-			limit = {
-				has_idea = IDA_Economic_Dependence_4
-			}
-			remove_ideas = IDA_Economic_Dependence_4
-			add_ideas = idea = IDA_Economic_Miracle
-		}
+		add_ideas = IDA_Economic_Miracle
+		
 		# Create 5 Divisions #
 		create_unit = {
 			division = "name = \"Trumpist Exiles\" division_template = \"Veteran Combat Brigade\" start_experience_factor = 1.0 start_equipment_factor = 0.3" 
@@ -25256,6 +25250,21 @@ country_event = { #Trump loses the NPA war, Trumpist exiles arrive in the WCZ
 			set_country_flag = wcz_military_allowed_to_operate
 			unlock_national_focus = IDA_The_Exiles_Arrive
 			news_event = idaho_rework.262
+			set_party_name = {
+				ideology = republican
+				long_name = "The Patriot Party"
+				name = "TPP"
+			}
+			set_party_name = {
+				ideology = autocratic
+				long_name = "Committee for American Salvation"
+				name = "CFAS"
+			}
+			set_party_name = {
+				ideology = libertarian_right
+				long_name = "Federalist Society"
+				name = "FS"
+			}
 		}
 	}
 }
@@ -25601,6 +25610,19 @@ country_event = { #McInnes and Don Jr. Split, removes the Duumvirate spirit, dec
 		name = idaho_rework.273.a
 		ai_chance = {
 			factor = 10
+			modifier = {
+      			factor = 0 
+      			OR = {
+					has_game_rule = {
+              			rule = IDA_path
+             			option = IDA_PATH_EXILES_MCINNES
+          			}
+					has_game_rule = {
+              			rule = IDA_path
+             			option = IDA_PATH_EXILES_DEMOCRATIC
+          			}
+      			}
+   			}
 		}
 		custom_effect_tooltip = wcz_mcinnes_death
 		add_political_power = -25
@@ -25615,6 +25637,19 @@ country_event = { #McInnes and Don Jr. Split, removes the Duumvirate spirit, dec
 		name = idaho_rework.273.b
 		ai_chance = {
 			factor = 10
+			modifier = {
+      			factor = 0 
+      			OR = {
+					has_game_rule = {
+              			rule = IDA_path
+             			option = IDA_PATH_EXILES_EMPIRE
+          			}
+					has_game_rule = {
+              			rule = IDA_path
+             			option = IDA_PATH_EXILES_DEMOCRATIC
+          			}
+      			}
+   			}
 		}
 		custom_effect_tooltip = wcz_trump_jr_death
 		add_political_power = -25
@@ -25634,6 +25669,23 @@ country_event = { #McInnes and Don Jr. Split, removes the Duumvirate spirit, dec
 		name = idaho_rework.273.c
 		ai_chance = {
 			factor = 5
+			modifier = {
+      			factor = 0 
+      			OR = {
+					has_game_rule = {
+              			rule = IDA_path
+             			option = IDA_PATH_EXILES_TRUMP
+          			}
+					has_game_rule = {
+              			rule = IDA_path
+             			option = IDA_PATH_EXILES_MCINNES
+          			}
+					has_game_rule = {
+              			rule = IDA_path
+             			option = IDA_PATH_EXILES_EMPIRE
+          			}
+      			}
+   			}
 		}
 		custom_effect_tooltip = wcz_dead_leadership
 		add_political_power = -50
@@ -25662,6 +25714,15 @@ country_event = { #McInnes seizes power after Don Jr.'s death, decides whether t
 		name = idaho_rework.274.a
 		ai_chance = {
 			factor = 10
+			modifier = {
+      			factor = 0 
+      			OR = {
+					has_game_rule = {
+              			rule = IDA_path
+             			option = IDA_PATH_EXILES_MCINNES
+          			}
+      			}
+   			}
 		}
 		add_political_power = 25
 		add_popularity = {
@@ -25679,6 +25740,15 @@ country_event = { #McInnes seizes power after Don Jr.'s death, decides whether t
 		name = idaho_rework.274.b
 		ai_chance = {
 			factor = 10
+			modifier = {
+      			factor = 0 
+      			OR = {
+					has_game_rule = {
+              			rule = IDA_path
+             			option = IDA_PATH_EXILES_TRUMP
+          			}
+      			}
+   			}
 		}
 		add_political_power = 25
 		add_popularity = {
@@ -25694,6 +25764,10 @@ country_event = { #McInnes seizes power after Don Jr.'s death, decides whether t
 		add_country_leader_trait = western_chauvanist
 		add_ideas = IDA_Defenders_Of_Western_Civilization_1
 		hidden_effect = {
+			set_politics = {
+				ruling_party = autocratic
+				elections_allowed = no
+			}
 			set_cosmetic_tag = IDA_Occidencia
 			news_event = idaho_rework.276
 		}
@@ -25712,6 +25786,15 @@ country_event = { #Don Jr. seizes power after McInnes' death, decides whether to
 		name = idaho_rework.275.a
 		ai_chance = {
 			factor = 10
+			modifier = {
+      			factor = 0 
+      			OR = {
+					has_game_rule = {
+              			rule = IDA_path
+             			option = IDA_PATH_EXILES_EMPIRE
+          			}
+      			}
+   			}
 		}
 		add_political_power = 25
 		add_popularity = {
@@ -25732,6 +25815,15 @@ country_event = { #Don Jr. seizes power after McInnes' death, decides whether to
 		name = idaho_rework.275.b
 		ai_chance = {
 			factor = 10
+			modifier = {
+      			factor = 0 
+      			OR = {
+					has_game_rule = {
+              			rule = IDA_path
+             			option = IDA_PATH_EXILES_TRUMP
+          			}
+      			}
+   			}
 		}
 		add_political_power = 25
 		add_popularity = {
@@ -25747,6 +25839,10 @@ country_event = { #Don Jr. seizes power after McInnes' death, decides whether to
 		add_country_leader_trait = trump_I
 		add_ideas = IDA_Pax_Americana_Spirit_1
 		hidden_effect = {
+			set_politics = {
+				ruling_party = autocratic
+				elections_allowed = no
+			}
 			set_cosmetic_tag = IDA_Pax_Americana
 			news_event = idaho_rework.277
 		}
@@ -25783,6 +25879,148 @@ country_event = { #Brett Kavanaugh is inaugurated as President after Don Jr. and
 		}
 		hidden_effect = {
 			news_event = idaho_rework.279
+			set_party_name = {
+				ideology = republican
+				long_name = "Federalist Society"
+				name = "FS"
+			}
+		}
+	}
+}
+country_event = { #Exiles ask the NPA if they can join their faction
+	id = idaho_rework.280
+	title = idaho_rework.280.t
+	desc = idaho_rework.280.d
+	picture = GFX_report_event_IDA_Brett_Kavanaugh
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #NPA agrees, if they don't have a faction, they'll make one
+		name = idaho_rework.280.a
+		ai_chance = {
+			factor = 10
+		}
+		if = {
+			limit = {
+				NPA = {
+					is_faction_leader = yes
+				}
+			}
+			every_country = {
+				limit = {
+					is_in_faction_with = IDA
+				}
+				NPA = {
+					add_to_faction = PREV
+					add_to_faction = IDA
+				}
+			}
+		}
+		else = {
+			create_faction = "Alliance for American Freedom"
+			every_country = {
+				limit = {
+					is_in_faction_with = IDA
+				}
+				NPA = {
+					add_to_faction = PREV
+					add_to_faction = IDA
+				}
+			}
+		}
+	}
+	option = {
+		name = idaho_rework.280.b
+		ai_chance = {
+			factor = 0
+		}
+		IDA = {
+			country_event = idaho_rework.282
+		}
+	}
+}
+country_event = { #Exiles ask the GLA if they can join their faction
+	id = idaho_rework.281
+	title = idaho_rework.281.t
+	desc = idaho_rework.281.d
+	picture = GFX_report_event_IDA_Brett_Kavanaugh
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = idaho_rework.281.a
+		ai_chance = {
+			factor = 10
+		}
+		every_country = {
+			limit = {
+				is_in_faction_with = IDA
+			}
+			GLA = {
+				add_to_faction = PREV
+				add_to_faction = IDA
+			}
+		}
+	}
+	option = {
+		name = idaho_rework.281.b
+		ai_chance = {
+			factor = 0
+		}
+		IDA = {
+			country_event = idaho_rework.282
+		}
+	}
+}
+country_event = { #Exiles are alerted to being rejected by the NPA/GLA
+	id = idaho_rework.282
+	title = idaho_rework.282.t
+	desc = idaho_rework.282.d
+	picture = GFX_report_event_IDA_Generic_Meeting
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = idaho_rework.282.a
+		complete_national_focus = IDA_The_Last_Bastion_Of_Freedom
+	}
+}
+country_event = { #McInnes post unification event, unlocks the world conquest tree
+	id = idaho_rework.284
+	title = idaho_rework.284.t
+	desc = idaho_rework.284.d
+	picture = GFX_report_event_IDA_Occindencia_Flag
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = idaho_rework.283.a
+		custom_effect_tooltip = wcz_world_conquest
+		hidden_effect = {
+			set_country_flag = wcz_post_unification_imperialsm
+			mark_focus_tree_layout_dirty = yes
+		}
+	}
+}
+country_event = { #Trump Jr. post unification event, unlocks the world conquest tree
+	id = idaho_rework.285
+	title = idaho_rework.285.t
+	desc = idaho_rework.285.d
+	picture = GFX_report_event_IDA_Pax_Americana_Flag
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = idaho_rework.285.a
+		custom_effect_tooltip = wcz_world_conquest
+		hidden_effect = {
+			set_country_flag = wcz_post_unification_imperialsm
+			mark_focus_tree_layout_dirty = yes
 		}
 	}
 }

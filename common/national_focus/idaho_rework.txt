@@ -787,8 +787,10 @@ focus_tree = {
 				limit = {
 					has_country_flag = wcz_trumpist_exiles
 				}
-				country_event = idaho_rework.263
-		}
+				MON = {
+					country_event = idaho_rework.263
+				}
+			}
 			else = {
 				MON = {
 					country_event = idaho_rework.27
@@ -2782,8 +2784,8 @@ focus_tree = {
 			}
 		}
 	}
-	focus = { #WCZ transfers Cascadian territory to Liberty, Liberty cores Cascadia
-		id = IDA_Proclaim_Shea_As_Governor_Of_Cascadia
+	focus = { #WCZ transfers Cascadian territory to Liberty, Liberty cores Washington
+		id = IDA_Proclaim_Shea_As_Governor_Of_Washington
 		icon = GFX_goal_happy_shea
 		x = 10
 		y = 18
@@ -2826,21 +2828,35 @@ focus_tree = {
 		
 		completion_reward = {
 			LIB = {
-				every_state = {
-					limit = {
-						is_core_of = CAS
-					}
-					add_core_of = LIB
-				}
-			}
-			CAS = {
 				every_core_state = {
 					limit = {
 						NOT = {
+							state = 73
+							state = 74
+							state = 85
+							state = 88
+							state = 89
+							state = 94
+							state = 95
+							state = 150
+							state = 496
 							state = 562
 						}
 					}
 					transfer_state_to = LIB
+				}
+			}
+			IDA = {
+				every_state = {
+					limit = {
+						OR = {
+							is_core_of = CAS
+						}
+						NOT = {
+							is_owned_by = LIB
+						}
+					}
+					add_core_of = IDA
 				}
 			}
 		}
@@ -2855,7 +2871,7 @@ focus_tree = {
 			focus = IDA_Operation_Evergreen
 		}
 		mutually_exclusive = {
-			focus = IDA_Proclaim_Shea_As_Governor_Of_Cascadia
+			focus = IDA_Proclaim_Shea_As_Governor_Of_Washington
 		}
 		ai_will_do = {
 			factor = 50
@@ -2904,7 +2920,7 @@ focus_tree = {
 		y = 20
 		cost = 3
 		prerequisite = {
-			focus = IDA_Proclaim_Shea_As_Governor_Of_Cascadia
+			focus = IDA_Proclaim_Shea_As_Governor_Of_Washington
 			focus = IDA_Integrate_Cascadia
 		}
 		mutually_exclusive = {
@@ -5802,7 +5818,7 @@ focus_tree = {
 			add_war_support = 0.1
 		}
 	}
-	focus = { #War Goals Against Southern tags, Florida, and Virginia
+	focus = { #War Goals Against Northeastern tags
 		id = IDA_Operation_Chocolate_Chip
 		icon = GFX_goal_Celebrate_the_Establishment
 		x = 17
@@ -7754,7 +7770,12 @@ focus_tree = {
 			has_country_flag = wcz_rmlf_defeated
 		}
 		available = {
-			
+			OR = {
+				is_ai = no
+				FRA = {
+					exists = no
+				}
+			}
 		}
 		bypass = {
 			
@@ -7780,7 +7801,7 @@ focus_tree = {
 		id = IDA_Operation_Treasure_Hunter_3
 		icon = GFX_goal_IDA_Operation_Treasure_Hunter
 		x = 57
-		y = 13
+		y = 14
 		cost = 3
 		prerequisite = { 
 			focus = IDA_Continue_The_Mission
@@ -7795,7 +7816,14 @@ focus_tree = {
 			has_country_flag = wcz_rmlf_defeated
 		}
 		available = {
-			
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				FRA = {	
+					exists = no
+				}
+			}
 		}
 		bypass = {
 			OR = {
@@ -7865,7 +7893,7 @@ focus_tree = {
 		id = IDA_Operation_Beekeeper_3
 		icon = GFX_goal_IDA_Operation_Beekeeper
 		x = 59
-		y = 13
+		y = 14
 		cost = 3
 		prerequisite = { 
 			focus = IDA_Continue_The_Mission
@@ -7880,7 +7908,14 @@ focus_tree = {
 			has_country_flag = wcz_rmlf_defeated
 		}
 		available = {
-			
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				FRA = {	
+					exists = no
+				}
+			}
 		}
 		bypass = {
 			OR = {
@@ -7969,7 +8004,7 @@ focus_tree = {
 		id = IDA_Operation_Prometheus_2
 		icon = GFX_focus_spr_torchbearers_of_tomorrow
 		x = 61
-		y = 13
+		y = 14
 		cost = 3
 		prerequisite = { 
 			focus = IDA_Continue_The_Mission
@@ -7984,7 +8019,14 @@ focus_tree = {
 			has_country_flag = wcz_rmlf_defeated
 		}
 		available = {
-			
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				FRA = {	
+					exists = no
+				}
+			}
 		}
 		bypass = {
 			OR = {
@@ -8092,7 +8134,7 @@ focus_tree = {
 		id = IDA_Operation_Evergreen_2
 		icon = GFX_goal_Cascadian_War_Cry
 		x = 58
-		y = 14
+		y = 15
 		cost = 3
 		prerequisite = { 
 			focus = IDA_Operation_Treasure_Hunter_3
@@ -8113,7 +8155,14 @@ focus_tree = {
 			has_country_flag = wcz_rmlf_defeated
 		}
 		available = {
-			
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				FRA = {	
+					exists = no
+				}
+			}
 		}
 		bypass = {
 			OR = {
@@ -8180,7 +8229,7 @@ focus_tree = {
 		id = IDA_Operation_Wolverine_2
 		icon = GFX_goal_IDA_Operation_Wolverine
 		x = 60
-		y = 14
+		y = 15
 		cost = 3
 		prerequisite = { 
 			focus = IDA_Operation_Treasure_Hunter_3
@@ -8201,7 +8250,7 @@ focus_tree = {
 			has_country_flag = wcz_rmlf_defeated
 		}
 		available = {
-			
+		
 		}
 		bypass = {
 			NOT = {
@@ -8405,7 +8454,7 @@ focus_tree = {
 		id = IDA_Operation_Aloha_2
 		icon = GFX_goal_IDA_Operation_Aloha
 		x = 58
-		y = 15
+		y = 16
 		cost = 3
 		prerequisite = { 
 			focus = IDA_Operation_Evergreen_2
@@ -8465,7 +8514,7 @@ focus_tree = {
 		id = IDA_Operation_Snowbird_2
 		icon = GFX_goal_IDA_Operation_Snowbird
 		x = 60
-		y = 15
+		y = 16
 		cost = 3
 		prerequisite = { 
 			focus = IDA_Operation_Evergreen_2
@@ -8525,7 +8574,7 @@ focus_tree = {
 		id = IDA_Our_Work_Here_Is_Done
 		icon = GFX_focus_generic_diplomatic_treaty
 		x = 59
-		y = 16
+		y = 17
 		cost = 3
 		prerequisite = { 
 			focus = IDA_Operation_Aloha_2
@@ -8543,7 +8592,7 @@ focus_tree = {
 			has_country_flag = wcz_rmlf_defeated
 		}
 		available = {
-			has_war = no
+			
 		}
 		bypass = {
 			
@@ -11961,6 +12010,1257 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = { 
 			add_political_power = 15
+		}
+	}
+	focus = { #The Exiles will ask to join the NPA
+		id = IDA_The_Devil_You_Know
+		icon = GFX_focus_NPA_Forge_New_Alliances
+		x = 41
+		y = 18
+		cost = 3
+		prerequisite = {
+			focus = IDA_Seek_New_Relations
+		}
+		mutually_exclusive = {
+			focus = IDA_The_Last_Bastion_Of_Freedom
+			focus = IDA_The_Defenders_Of_Liberty
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			NPA = {
+				exists = yes
+				OR = {
+					has_government = republican
+					has_government = libertarian_right
+				}
+				has_completed_focus = NPA_path_of_the_lone_wolf
+			}
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			NPA = {
+				country_event = idaho_rework.280
+			}
+		}
+	}
+	focus = { #Exiles won't join anyone, add stability, war support, and political power
+		id = IDA_The_Last_Bastion_Of_Freedom
+		icon = GFX_focus_NPA_Freedom_Bird
+		x = 43
+		y = 18
+		cost = 3
+		prerequisite = {
+			focus = IDA_Seek_New_Relations
+		}
+		mutually_exclusive = {
+			focus = IDA_The_Devil_You_Know
+			focus = IDA_The_Defenders_Of_Liberty
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_political_power = 50
+			add_stability = 0.1
+			add_war_support = 0.1
+		}
+	}
+	focus = { #Exiles will ask to join the GLA's faction
+		id = IDA_The_Defenders_Of_Liberty
+		icon = GFX_focus_NPA_Agree_To_Disagree
+		x = 45
+		y = 18
+		cost = 3
+		prerequisite = {
+			focus = IDA_Seek_New_Relations
+		}
+		mutually_exclusive = {
+			focus = IDA_The_Devil_You_Know
+			focus = IDA_The_Last_Bastion_Of_Freedom
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			GLA = {
+				exists = yes
+				is_faction_leader = yes
+				OR = {
+					has_government = republican
+					has_government = libertarian_right
+				}
+			}
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			GLA = {
+				country_event = idaho_rework.281
+			}
+		}
+	}
+	# Reuniting America Tree #
+	focus = { #Gain national spirit War Plan Black
+		id = IDA_War_Plan_Black
+		icon = GFX_goal_IDA_War_Plan_Black_Focus
+		x = 38
+		y = 19
+		cost = 3
+		prerequisite = {
+			focus = IDA_Lessons_Learned
+			focus = IDA_The_Devil_You_Know
+			focus = IDA_The_Last_Bastion_Of_Freedom
+			focus = IDA_The_Defenders_Of_Liberty
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = { 
+			add_ideas = IDA_War_Plan_Black_Spirit
+		}
+	}
+	focus = { #War goals on GLA, KMT, AFS, NPA, DET, Kentucky, and ISA
+		id = IDA_Operation_True_Freedom_2
+		icon = GFX_goal_BOOG_libertyordeath
+		x = 34
+		y = 20
+		cost = 3
+		prerequisite = {
+			focus = IDA_War_Plan_Black
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			
+		}
+		bypass = {
+			NOT = {
+				country_exists = GLA
+				country_exists = AFS
+				country_exists = NPA
+				country_exists = KMT
+				country_exists = KFC
+				country_exists = DET
+				country_exists = ISA
+			}
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		will_lead_to_war_with = GLA
+		will_lead_to_war_with = AFS
+		will_lead_to_war_with = NPA
+		will_lead_to_war_with = KMT
+		will_lead_to_war_with = KFC
+		will_lead_to_war_with = DET
+		will_lead_to_war_with = ISA
+		
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = GLA
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = AFS
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = NPA
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = KMT
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = KFC
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = DET
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = ISA
+			}
+		}
+	}
+	focus = { #Gain war goal against NPA and Minnesota tags
+		id = IDA_Operation_Dantes_Inferno
+		icon = GFX_goal_IDA_Dantes_Inferno
+		x = 38
+		y = 20
+		cost = 3
+		prerequisite = {
+			focus = IDA_War_Plan_Black
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = {
+			
+		}
+		bypass = {
+			NOT = {
+				country_exists = USA
+				country_exists = MIN
+				country_exists = MIL
+				country_exists = MNS
+			}
+		}
+		cancel = {
+		
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		will_lead_to_war_with = USA
+		will_lead_to_war_with = MIN
+		will_lead_to_war_with = MIL
+		will_lead_to_war_with = MNS
+		
+		completion_reward = { 
+			create_wargoal = {
+				type = annex_everything
+				target = USA
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = MIN
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = MIL
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = MNS
+			}
+		}
+	}
+	focus = { #War goals against Texas
+		id = IDA_Operation_Alamo_2
+		icon = GFX_focus_NPA_Intervene_in_Texas
+		x = 42
+		y = 20
+		cost = 3
+		prerequisite = {
+			focus = IDA_War_Plan_Black
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			
+		}
+		bypass = {
+			NOT = {
+				country_exists = TEX
+				country_exists = OKL
+				country_exists = LOU
+				country_exists = NMX
+				country_exists = RED
+				country_exists = BLA
+				country_exists = CRN
+				country_exists = CRU
+				country_exists = BET
+				country_exists = SAN
+				country_exists = BSH
+				country_exists = FAL
+			}
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		will_lead_to_war_with = TEX
+		will_lead_to_war_with = OKL
+		will_lead_to_war_with = LOU
+		will_lead_to_war_with = NMX
+		will_lead_to_war_with = RED
+		will_lead_to_war_with = BLA
+		will_lead_to_war_with = CRN
+		will_lead_to_war_with = CRU
+		will_lead_to_war_with = BET
+		will_lead_to_war_with = SAN
+		will_lead_to_war_with = BSH
+		will_lead_to_war_with = FAL
+		
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = TEX
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = OKL
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = LOU
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = NMX
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = RED
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = BLA
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = CRN
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = CRU
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = BET
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = SAN
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = BSH
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = FAL
+			}
+		}
+	}
+	focus = { #War Goals Against Northeastern tags
+		id = IDA_Operation_Chocolate_Chip_2
+		icon = GFX_goal_Celebrate_the_Establishment
+		x = 36
+		y = 21
+		cost = 3
+		prerequisite = {
+			focus = IDA_War_Plan_Black
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			
+		}
+		bypass = {
+			NOT = {
+				country_exists = FRA
+				country_exists = NRA
+				country_exists = TIM
+				country_exists = NEW
+				country_exists = FME
+				country_exists = NAB
+				country_exists = WBK
+			}
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		will_lead_to_war_with = FRA
+		will_lead_to_war_with = NRA
+		will_lead_to_war_with = TIM
+		will_lead_to_war_with = NEW
+		will_lead_to_war_with = FME
+		will_lead_to_war_with = NAB
+		will_lead_to_war_with = WBK
+		
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = FRA
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = NRA
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = TIM
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = NEW
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = FME
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = NAB
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = WBK
+			}
+		}
+	}
+	focus = { #War Goals Against Southern tags, Texas, Florida, and Virginia
+		id = IDA_Operation_Lost_Cause_2
+		icon = GFX_focus_NPA_Watch_the_South_Burn
+		x = 40
+		y = 21
+		cost = 3
+		prerequisite = {
+			focus = IDA_War_Plan_Black
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			
+		}
+		available = { 
+			
+		}
+		bypass = {
+			NOT = {
+				country_exists = CSA
+				country_exists = KKK
+				country_exists = AFR
+				country_exists = APA
+				country_exists = CSB
+				country_exists = ARK
+				country_exists = LGB
+				country_exists = ZIO
+				country_exists = ARK
+				country_exists = SCA
+				country_exists = FLO
+				country_exists = FLA
+				country_exists = NSA
+				country_exists = FLD
+				country_exists = SEM
+				country_exists = GKJ
+				country_exists = VIR
+				country_exists = RVR
+				country_exists = MGV
+			}
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		will_lead_to_war_with = CSA
+		will_lead_to_war_with = KKK
+		will_lead_to_war_with = AFR
+		will_lead_to_war_with = APA
+		will_lead_to_war_with = CSB
+		will_lead_to_war_with = ARK
+		will_lead_to_war_with = LGB
+		will_lead_to_war_with = ZIO
+		will_lead_to_war_with = ARK
+		will_lead_to_war_with = SCA
+		will_lead_to_war_with = FLO
+		will_lead_to_war_with = FLA
+		will_lead_to_war_with = NSA
+		will_lead_to_war_with = FLD
+		will_lead_to_war_with = SEM
+		will_lead_to_war_with = GKJ
+		will_lead_to_war_with = VIR
+		will_lead_to_war_with = RVR
+		will_lead_to_war_with = MGV
+		
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = CSA
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = KKK
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = AFR
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = APA
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = CSB
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = ARK
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = LGB
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = ZIO
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = ARK
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = SCA
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = FLO
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = FLA
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = NSA
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = FLD
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = SEM
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = GKJ
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = VIR
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = RVR
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = MGV
+			}
+		}
+	}
+	# Post-Unification World Conquest #
+	focus = { #Filler focus, gives political power, stability, war support, army, air, and navy exp
+		id = IDA_Onwards_America
+		icon = GFX_goal_icon_FRA_imperialism
+		x = 38
+		y = 22
+		cost = 1
+		prerequisite = {
+			focus = IDA_Operation_True_Freedom_2
+		}
+		prerequisite = {
+			focus = IDA_Operation_Dantes_Inferno
+		}
+		prerequisite = {
+			focus = IDA_Operation_Alamo_2
+		}
+		prerequisite = {
+			focus = IDA_Operation_Chocolate_Chip_2
+		}
+		prerequisite = {
+			focus = IDA_Operation_Lost_Cause_2
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			has_country_flag = wcz_post_unification_imperialsm
+		}
+		available = { 
+			
+		}
+		bypass = {
+			
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_political_power = 25
+			add_stability = 0.05
+			add_war_support = 0.05
+			army_experience = 50
+			air_experience = 50
+			navy_experience = 50
+		}
+	}
+	focus = { #WCZ gains war goals on all possible Canadian tags
+		id = IDA_Operation_Winter_Storm_2
+		icon = GFX_goal_Canadian_Arms 
+		x = 36
+		y = 23
+		cost = 3
+		prerequisite = {
+			focus = IDA_Onwards_America
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			has_country_flag = wcz_post_unification_imperialsm
+		}
+		available = { 
+			
+		}
+		bypass = {
+			NOT = {
+				country_exists = CAN
+				country_exists = OOR
+				country_exists = QUE
+				country_exists = NFL
+				country_exists = MLC
+				country_exists = NUN
+				country_exists = ALT
+				country_exists = ARY
+				country_exists = ANT
+				country_exists = VAN
+				country_exists = BRC
+				country_exists = TEM
+				country_exists = ANA
+			}
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		
+		will_lead_to_war_with = CAN
+		will_lead_to_war_with = OOR
+		will_lead_to_war_with = QUE
+		will_lead_to_war_with = NFL
+		will_lead_to_war_with = MLC
+		will_lead_to_war_with = NUN
+		will_lead_to_war_with = ALT
+		will_lead_to_war_with = ARY
+		will_lead_to_war_with = ANT
+		will_lead_to_war_with = VAN
+		will_lead_to_war_with = BRC
+		will_lead_to_war_with = TEM
+		will_lead_to_war_with = ANA
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything 
+				target = CAN
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = OOR
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = QUE
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = NFL
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = MLC
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = NUN
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = ALT
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = ARY
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = ANT
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = VAN
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = BRC
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = TEM
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = ANA
+			}
+		}
+	}
+	focus = { #WCZ gains war goals on all possible Mexican tags
+		id = IDA_Operation_Border_Patrol_2
+		icon = GFX_goal_Secure_the_border
+		x = 40
+		y = 23
+		cost = 3
+		prerequisite = {
+			focus = IDA_Onwards_America
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			has_country_flag = wcz_post_unification_imperialsm
+		}
+		available = { 
+			
+		}
+		bypass = {
+			NOT = {
+				country_exists = MEX
+				country_exists = BJC
+				country_exists = ZAP
+				country_exists = RMX
+				country_exists = WMX
+				country_exists = CAR
+				country_exists = YUC
+				country_exists = ADF
+				country_exists = PVB
+			}
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		
+		will_lead_to_war_with = MEX
+		will_lead_to_war_with = BJC
+		will_lead_to_war_with = ZAP
+		will_lead_to_war_with = RMX
+		will_lead_to_war_with = WMX
+		will_lead_to_war_with = CAR
+		will_lead_to_war_with = YUC
+		will_lead_to_war_with = ADF
+		will_lead_to_war_with = PVB
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything 
+				target = MEX
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = BJC
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = ZAP
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = RMX
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = WMX
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = CAR
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = YUC
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = ADF
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = PVB
+			}
+		}
+	}
+	focus = { #WCZ gains war goals on all possible Central American tags
+		id = IDA_Operation_Just_Cause_II_2
+		icon = GFX_goal_Helicopter_Blitz
+		x = 34
+		y = 24
+		cost = 3
+		prerequisite = {
+			focus = IDA_Onwards_America
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			has_country_flag = wcz_post_unification_imperialsm
+		}
+		available = { 
+			
+		}
+		bypass = {
+			NOT = {
+				country_exists = BLZ
+				country_exists = GUA
+				country_exists = ELS
+				country_exists = HON
+				country_exists = NIC
+				country_exists = COS
+				country_exists = PAN
+				country_exists = CHI
+			}
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		
+		will_lead_to_war_with = BLZ
+		will_lead_to_war_with = GUA
+		will_lead_to_war_with = ELS
+		will_lead_to_war_with = HON
+		will_lead_to_war_with = NIC
+		will_lead_to_war_with = COS
+		will_lead_to_war_with = PAN
+		will_lead_to_war_with = CHI
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything 
+				target = BLZ
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = GUA
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = ELS
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = HON
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = NIC
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = COS
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = PAN
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = CHI
+			}
+		}
+	}
+	focus = { #WCZ gains war goals on all possible Caribbean tags
+		id = IDA_Operation_Caribbean_Security_2
+		icon = GFX_Take_advantage_of_the_Caribbean
+		x = 38
+		y = 24
+		cost = 3
+		prerequisite = {
+			focus = IDA_Onwards_America
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			has_country_flag = wcz_post_unification_imperialsm
+		}
+		available = { 
+			
+		}
+		bypass = {
+			NOT = {
+				country_exists = CUB
+				country_exists = CUC
+				country_exists = GTB
+				country_exists = HAI
+				country_exists = HBI
+				country_exists = DOM
+				country_exists = CAY
+				country_exists = PUE
+				country_exists = ENG
+				country_exists = BEF
+				country_exists = FFR
+				country_exists = HOL
+				country_exists = BAH
+				country_exists = JAM
+				country_exists = TAT
+			}
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		
+		will_lead_to_war_with = CUB
+		will_lead_to_war_with = CUC
+		will_lead_to_war_with = GTB
+		will_lead_to_war_with = HAI
+		will_lead_to_war_with = HBI
+		will_lead_to_war_with = DOM
+		will_lead_to_war_with = CAY
+		will_lead_to_war_with = PUE
+		will_lead_to_war_with = ENG
+		will_lead_to_war_with = BEF
+		will_lead_to_war_with = FFR
+		will_lead_to_war_with = HOL
+		will_lead_to_war_with = BAH
+		will_lead_to_war_with = JAM
+		will_lead_to_war_with = TAT
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything 
+				target = CUB
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = CUC
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = GTB
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = HAI
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = HBI
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = DOM
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = CAY
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = PUE
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = ENG
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = BEF
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = FFR
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = HOL
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = BAH
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = JAM
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = TAT
+			}
+		}
+	}
+	focus = { #WCZ gains war goals on all South American tags
+		id = IDA_Operation_Gideon_2
+		icon = GFX_goal_End_Fascism_in_Florida
+		x = 42
+		y = 24
+		cost = 3
+		prerequisite = {
+			focus = IDA_Onwards_America
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			has_country_flag = wcz_post_unification_imperialsm
+		}
+		available = { 
+			
+		}
+		bypass = {
+			NOT = {
+				country_exists = COL
+				country_exists = VEN
+			}
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		
+		will_lead_to_war_with = COL
+		will_lead_to_war_with = VEN
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything 
+				target = COL
+			}
+			create_wargoal = {
+				type = annex_everything 
+				target = VEN
+			}
+		}
+	}
+	focus = { #Cores all owned states, only available after every tag has been defeated
+		id = IDA_A_New_American_Era
+		icon = GFX_goal_icon_Consolidate_our_realm
+		x = 38
+		y = 25
+		cost = 3
+		prerequisite = {
+			focus = IDA_Operation_Winter_Storm_2
+			focus = IDA_Operation_Border_Patrol_2
+			focus = IDA_Operation_Just_Cause_II_2
+			focus = IDA_Operation_Caribbean_Security_2
+			focus = IDA_Operation_Gideon_2
+		}
+		mutually_exclusive = {
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		allow_branch = {
+			has_country_flag = wcz_post_unification_imperialsm
+		}
+		available = { 
+			all_country = {
+				NOT = {
+					tag = IDA
+					is_ally_with = IDA
+				}
+				exists = no
+			}
+		}
+		bypass = {
+			
+		}
+		cancel = {
+			
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.5
+			add_war_support = 0.5
+			every_owned_state = {
+				add_core_of = IDA
+			}
+			hidden_effect = {
+				news_event = idaho_rework.286
+			}
 		}
 	}
 }
