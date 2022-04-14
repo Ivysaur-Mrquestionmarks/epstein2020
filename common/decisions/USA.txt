@@ -149,3 +149,179 @@ American_reunification = {
 	}
 
 }
+
+USA_path_to_war = {
+	USA_war_AFS = {
+		icon = military_operation
+	
+		allowed = {
+			original_tag = USA
+		}
+		available = {
+			threat > 0.35
+			NOT = {has_war = yes}
+		}
+		visible = {
+			AFS = {exists = yes}
+		}
+
+		cost = 50
+
+		days_remove = 25
+		fire_only_once = yes
+
+		remove_effect = {
+			create_wargoal = {
+    				type = annex_everything
+    				target = AFS
+			}
+		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	USA_war_KFC = {
+		icon = military_operation
+	
+		allowed = {
+			original_tag = USA
+		}
+		available = {
+			threat > 0.35
+			NOT = {has_war = yes}
+		}
+		visible = {
+			AFS = {exists = yes}
+		}
+
+		cost = 50
+
+		days_remove = 25
+		fire_only_once = yes
+
+		remove_effect = {
+			every_country_with_original_tag = {
+				original_tag_to_check = KFC
+				ROOT = {
+					create_wargoal = {
+    						type = annex_everything
+    						target = PREV
+					}
+				}
+			}
+		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+}
+USA_FRA_war_desicions = {
+	USA_FRA_economic_resources = {
+		icon = military_operation
+	
+
+		available = {
+			#
+		}
+
+
+		cost = 150
+
+		days_remove = 100
+		fire_only_once = yes
+
+		remove_effect = {
+			add_offsite_building = { type = arms_factory level = 2 }
+			capital_scope = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+    					type = arms_factory
+    					level = 3
+    					instant_build = yes
+				}
+			}
+		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	USA_FRA_forts = {
+		icon = military_operation
+	
+
+		available = {
+			surrender_progress > 0.25
+		}
+
+
+		cost = 200
+
+		days_remove = 120
+		fire_only_once = yes
+
+		modifier = {
+			production_speed_bunker_factor = 1.5
+		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	USA_FRA_mobilisation = {
+		icon = military_operation
+	
+
+		available = {
+			surrender_progress > 0.5
+		}
+
+
+		cost = 150
+
+		days_remove = 100
+		fire_only_once = yes
+
+		remove_effect = {
+			add_manpower = 100000
+			add_equipment_to_stockpile = {
+    				type = infantry_equipment
+    				amount = 2000
+    				producer = ROOT
+			}
+		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	USA_FRA_homeland_offensive = {
+		icon = military_operation
+	
+
+		available = {
+			surrender_progress > 0.75
+		}
+
+
+		cost = 300
+
+		days_remove = 150
+		fire_only_once = yes
+
+		modifier = {
+			army_core_attack_factor = 0.25
+			army_core_defence_factor = 0.25
+		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+}
