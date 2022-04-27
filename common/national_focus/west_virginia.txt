@@ -512,7 +512,7 @@ focus_tree = {
 		completion_reward = {
 			add_manpower = 2500
 			add_equipment_to_stockpile = {
-			    type = infantry_equipment
+			    type = infantry_equipment_0
 			    amount = 500
 			    producer = NRA
 			}
@@ -625,7 +625,7 @@ focus_tree = {
 			add_manpower = 5000
 			add_stability = -0.03
 			add_equipment_to_stockpile = {
-			    type = infantry_equipment
+			    type = infantry_equipment_0
 			    amount = 100
 			    producer = NRA
 			}
@@ -902,7 +902,6 @@ focus_tree = {
 		
 		completion_reward = {
 			add_stability = -0.10
-			add_political_power = -100
 			
 		}
 		
@@ -1333,7 +1332,7 @@ focus_tree = {
 		}
 		
 		completion_reward = {
-			add_political_power = -50
+			add_political_power = -100
 			
 		}
 		
@@ -1896,6 +1895,660 @@ focus_tree = {
 		
 		
 	}
+	
+	
+	
+	
+	
+	### army ###
+	
+	
+	
+	focus = {
+		id = NRA_What_To_Do_With_The_Militias
+		
+		cost = 1.00
+		
+		x = 63
+		
+		y = 24
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NRA_The_Morning_After 
+		}
+		
+		completion_reward = {
+			add_war_support = -0.10 
+			
+		}
+		
+		
+	}
+	
+	
+	focus = {
+		id = NRA_Keep_The_Militias
+		
+		cost = 5.00
+		
+		x = 61
+		
+		y = 25
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NRA_What_To_Do_With_The_Militias 
+		}
+		
+		mutually_exclusive = {
+			focus = NRA_Form_A_Professional_Army
+		}
+		
+		mutually_exclusive = {
+			focus = NRA_Integrate_Them_Into_The_Army
+		}
+		
+		completion_reward = {
+			add_ideas = NRA_Militia 
+			
+		}
+		
+		
+	}
+	
+	
+	focus = {
+		id = NRA_Form_A_Professional_Army
+		
+		cost = 5.00
+		
+		x = 65
+		
+		y = 25
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NRA_What_To_Do_With_The_Militias 
+		}
+		
+		mutually_exclusive = {
+			focus = NRA_Integrate_Them_Into_The_Army
+		}
+		
+		mutually_exclusive = {
+			focus = NRA_Keep_The_Militias
+		}
+		
+		completion_reward = {
+			add_ideas = NRA_Army 
+			
+		}
+		
+		
+	}
+	
+	
+	focus = {
+		id = NRA_Integrate_Them_Into_The_Army
+		
+		cost = 5.00
+		
+		x = 63
+		
+		y = 25
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NRA_What_To_Do_With_The_Militias 
+		}
+		
+		mutually_exclusive = {
+			focus = NRA_Form_A_Professional_Army
+		}
+		
+		mutually_exclusive = {
+			focus = NRA_Keep_The_Militias
+		}
+		
+		completion_reward = {
+			add_ideas = NRA_Both 
+			
+		}
+		
+		
+	}
+	
+	
+	
+	focus = {
+		id = NRA_The_Appalachian_Air_Force
+		
+		cost = 5.00
+		
+		x = 60
+		
+		y = 26
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NRA_Keep_The_Militias
+			focus = NRA_Form_A_Professional_Army
+			focus = NRA_Integrate_Them_Into_The_Army
+		}
+		
+		completion_reward = {
+			air_experience = 50 
+			
+		}
+		
+	}
+	
+	
+	focus = {
+		id = NRA_The_Red_Appalachian_Army
+		
+		cost = 5.00
+		
+		x = 63
+		
+		y = 26
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NRA_Keep_The_Militias
+			focus = NRA_Form_A_Professional_Army
+			focus = NRA_Integrate_Them_Into_The_Army
+		}
+		
+		completion_reward = {
+			army_experience = 50 
+			
+		}
+		
+	}
+	
+	
+	focus = {
+		id = NRA_The_Appalachian_Navy
+		
+		cost = 5.00
+		
+		x = 66
+		
+		y = 26
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NRA_Keep_The_Militias
+			focus = NRA_Form_A_Professional_Army
+			focus = NRA_Integrate_Them_Into_The_Army
+		}
+		
+		completion_reward = {
+			navy_experience = 50 
+			
+		}
+		
+	}
+	
+	
+	
+	focus = {
+		id = NRA_Build_New_Airports
+		
+		cost = 10.00
+		
+		x = 59
+		
+		y = 27
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NRA_The_Appalachian_Air_Force
+		}
+		
+		completion_reward = {
+		
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = air_base 
+				    level = 1
+				    instant_build = yes
+				}
+				
+			}
+			
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = air_base 
+				    level = 1
+				    instant_build = yes
+				}
+				
+			}
+			
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = air_base 
+				    level = 1
+				    instant_build = yes
+				}
+				
+			}
+			
+		}
+		
+	}
+	
+	
+	
+	focus = {
+		id = NRA_Prepare_For_Air_Raids
+		
+		cost = 10.00
+		
+		x = 61
+		
+		y = 27
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NRA_The_Appalachian_Air_Force
+		}
+		
+		completion_reward = {
+		
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = anti_air_building 
+				    level = 1
+				    instant_build = yes
+				}
+				
+			}
+			
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = anti_air_building
+				    level = 1
+				    instant_build = yes
+				}
+				
+			}
+			
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = anti_air_building
+				    level = 2
+				    instant_build = yes
+				}
+				
+			}
+			
+		}
+		
+	}
+	
+	
+	focus = {
+		id = NRA_Fighters_Initiative
+		
+		cost = 5.00
+		
+		x = 60
+		
+		y = 28
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NRA_The_Appalachian_Air_Force
+		}
+		
+		prerequisite = { 
+			focus = NRA_Build_New_Airports
+			focus = NRA_Prepare_For_Air_Raids
+		}
+		
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1.00
+				uses = 1
+				category = light_fighter
+			}
+			
+			add_tech_bonus = {
+				bonus = 1.00
+				uses = 1
+				category = cat_heavy_fighter
+			}
+			
+			add_equipment_to_stockpile = {
+			    type = fighter_equipment_0
+			    amount = 50
+			    producer = NRA
+			}
+			
+		}
+		
+	}
+	
+	
+	focus = {
+		id = NRA_Extra_Fundings_To_The_Air_Force
+		
+		cost = 5.00
+		
+		x = 60
+		
+		y = 29
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NRA_Fighters_Initiative
+			
+		}
+		
+		completion_reward = {
+			
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = arms_factory 
+				    level = 1
+				    instant_build = yes
+				}
+				
+			}
+			
+		}
+		
+	}
+	
+	
+	focus = {
+		id = NRA_Light_Bombers_Effort
+		
+		cost = 7.00
+		
+		x = 59
+		
+		y = 30
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NRA_Extra_Fundings_To_The_Air_Force
+		}
+		
+		mutually_exclusive = {
+			focus = NRA_Heavy_Bombers_Effort
+		}
+		
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 2.00
+				uses = 1
+				category = cas_bomber
+			}
+			
+			add_tech_bonus = {
+				bonus = 1.00
+				uses = 1
+				category = naval_bomber
+			}
+			
+		}
+		
+	}
+	
+	
+	focus = {
+		id = NRA_Heavy_Bombers_Effort
+		
+		cost = 7.00
+		
+		x = 61
+		
+		y = 30
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NRA_Extra_Fundings_To_The_Air_Force
+		}
+		
+		mutually_exclusive = {
+			focus = NRA_Light_Bombers_Effort
+		}
+		
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 2.00
+				uses = 1
+				category = tactical_bomber
+			}
+			
+			add_tech_bonus = {
+				bonus = 1.00
+				uses = 1
+				category = cat_strategic_bomber
+			}
+			
+		}
+		
+	}
+	
+	focus = {
+		id = NRA_Study_New_Air_Doctrines
+		
+		cost = 10.00
+		
+		x = 60
+		
+		y = 31
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NRA_Heavy_Bombers_Effort
+			focus = NRA_Light_Bombers_Effort
+		}
+		
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = air_doc_bonus
+				cost_reduction = 0.5
+				uses = 2
+				category = air_doctrine
+			}
+			
+		}
+		
+	}
+	
+	
+	focus = {
+		id = NRA_Cheaper_Planes
+		
+		cost = 10.00
+		
+		x = 60
+		
+		y = 32
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NRA_Study_New_Air_Doctrines
+		}
+		
+		completion_reward = {
+			add_ideas = NRA_Cheap_Planes
+			
+		}
+		
+	}
+	
+	
+	focus = {
+		id = NRA_Kickstart_Rockets_Production
+		
+		cost = 5.00
+		
+		x = 60
+		
+		y = 33
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NRA_Cheaper_Planes
+		}
+		
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 3.00
+				uses = 1
+				category = rocketry
+			}
+			
+		}
+		
+	}
+	
+	
+	
+	focus = {
+		id = NRA_Research_Nuclear_Energy
+		
+		cost = 5.00
+		
+		x = 58
+		
+		y = 35
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NRA_Kickstart_Rockets_Production
+		}
+		
+		prerequisite = { 
+			focus = NRA_The_Appalachian_Industrial_And_Economic_Boom
+		}
+		
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1.00
+				uses = 1
+				category = nuclear
+			}
+			
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
