@@ -18,21 +18,25 @@ focus_tree = {
 		id = KFC_a_state_untamed
 		icon = GFX_goal_KFC_state_beneath_his_feet
 		mutually_exclusive = { focus = KFC_state_beneath_his_feet }
-		allow_branch = {
-
-				NOT = {has_completed_focus = KFC_state_beneath_his_feet}
-
-		}
 		bypass = {
 			NOT = {tag = KFC}
 			has_government = autocratic
 		}
 		cost = 4.40
-		x = 80
+		x = 10
 		y = 0
+		available = {
+			always = no
+		}
+		allow_branch = {
+
+				NOT = { has_completed_focus = KFC_state_beneath_his_feet }
+
+		}
 		completion_reward = {
 			activate_mission = KFC_uprising_mission2
 			mark_focus_tree_layout_dirty = yes
+			custom_effect_tooltip = unfinished_content_warning_tooltip
 		}
 
 	}
@@ -46,6 +50,11 @@ focus_tree = {
 		bypass = {
 			NOT = {tag = KFC}
 			has_government = autocratic
+		}
+		allow_branch = {
+
+				has_completed_focus = KFC_a_state_untamed
+
 		}
 		relative_position_id = KFC_a_state_untamed
 		x = 0
@@ -1900,10 +1909,6 @@ focus_tree = {
 		id = KFC_state_beneath_his_feet
 		icon = GFX_goal_KFC_state_beneath_his_feet
 		mutually_exclusive = { focus = KFC_a_state_untamed }
-		allow_branch = {
-
-				NOT = {has_completed_focus = KFC_a_state_untamed }
-		}
 		bypass = {
 			NOT = {tag = KFC}
 			has_government = libertarian_right 
@@ -1911,6 +1916,10 @@ focus_tree = {
 		cost = 4.40
 		x = 8
 		y = 0
+		allow_branch = {
+
+				NOT = { has_completed_focus = KFC_a_state_untamed }
+		}
 		completion_reward = {
 			activate_mission = KFC_uprising_mission
 			mark_focus_tree_layout_dirty = yes
@@ -1927,6 +1936,10 @@ focus_tree = {
 		bypass = {
 			NOT = {tag = KFC}
 			has_government = libertarian_right 
+		}
+		allow_branch = {
+
+				has_completed_focus = KFC_state_beneath_his_feet
 		}
 		x = 8
 		y = 1
@@ -2645,6 +2658,9 @@ focus_tree = {
 		available = {
 			has_country_leader = { name = "Matt Bevin" ruling_only = yes }
 		}
+		bypass = {
+			has_country_leader = { name = "Matt Bevin" ruling_only = yes }
+		}
 
 	}
 	focus = {
@@ -2659,6 +2675,23 @@ focus_tree = {
 		}
 		x = 19
 		y = 12
+		available = {
+			country_exists = USA
+			NOT = {
+				has_war_with = USA
+			}
+		}
+		bypass = {
+			is_in_faction_with = USA
+		}
+		completion_reward = {
+			set_cosmetic_tag = KFC_loyalist_to_trump
+			USA = {
+				country_event = {
+					id = kentucky.21
+				}
+			}
+		}
 
 	}
 	focus = {
@@ -2673,6 +2706,31 @@ focus_tree = {
 		}
 		x = 21
 		y = 12
+		available = {
+			NOT = {
+				is_in_faction_with = USA
+			}
+		}
+		completion_reward = {
+			add_popularity = {
+				ideology = libertarian_right
+				popularity = 0.10
+			}
+			add_country_leader_role = {
+			  Character = KFC_matt_bevin
+			  Promote_leader = yes
+			  Country_leader = {
+				ideology = Christian_Libertarianism
+			  }
+			}
+			set_politics = {
+				ruling_party = libertarian_right
+			    elections_allowed = yes
+			    long_name = "Tea Party of Kentucky"
+    			name = "Tea Party"
+			}
+			set_cosmetic_tag = KFC_tea_party_libertarians
+		}
 
 	}
 	focus = {
@@ -2684,6 +2742,22 @@ focus_tree = {
 		}
 		x = 19
 		y = 13
+		completion_reward = {
+			every_state = {
+				limit = {
+					is_controlled_by = KFC
+				}
+				add_building_construction = {
+				    type = bunker
+				    level = 2
+				    instant_build = yes
+				    province = {
+				        all_provinces = yes
+				        limit_to_border = yes
+				    }
+				}
+			}
+		}
 
 	}
 	focus = {
@@ -2695,6 +2769,35 @@ focus_tree = {
 		}
 		x = 19
 		y = 14
+		available = {
+			is_in_faction_with = USA
+		}
+		bypass = {
+			NOT = {
+				is_in_faction_with = USA
+			}
+		}
+		completion_reward = {
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+    				type = industrial_complex
+				    level = 2
+				    instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+    				type = industrial_complex
+				    level = 2
+				    instant_build = yes
+				}
+			}
+			USA = {
+				add_offsite_building = { type = industrial_complex level = 2 }
+			}
+		}
 
 	}
 	focus = {
@@ -2706,6 +2809,32 @@ focus_tree = {
 		}
 		x = 19
 		y = 15
+		completion_reward = {
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+    				type = arms_factory
+				    level = 2
+				    instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+    				type = arms_factory
+				    level = 2
+				    instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+    				type = arms_factory
+				    level = 2
+				    instant_build = yes
+				}
+			}
+		}
 
 	}
 	focus = {
@@ -2717,6 +2846,12 @@ focus_tree = {
 		}
 		x = 21
 		y = 13
+		completion_reward = {
+			add_popularity = {
+				ideology = libertarian_right
+				popularity = 0.205
+			}
+		}
 
 	}
 	focus = {
@@ -2728,6 +2863,9 @@ focus_tree = {
 		}
 		x = 21
 		y = 14
+		completion_reward = {
+			add_offsite_building = { type = industrial_complex level = 4 }
+		}
 
 	}
 	focus = {
@@ -2739,6 +2877,10 @@ focus_tree = {
 		}
 		x = 21
 		y = 15
+		completion_reward = {
+			add_offsite_building = { type = industrial_complex level = -1 }
+			add_offsite_building = { type = arms_factory level = 6 }
+		}
 
 	}
 	focus = {
@@ -2751,6 +2893,13 @@ focus_tree = {
 		}
 		x = 23
 		y = 13
+		completion_reward = {
+			add_popularity = {
+				ideology = democrat
+				popularity = 0.05
+			}
+			add_ideas = KFC_multipolar_democracy_1
+		}
 
 	}
 	focus = {
@@ -2762,6 +2911,12 @@ focus_tree = {
 		}
 		x = 23
 		y = 14
+		completion_reward = {
+			swap_ideas = {
+			    remove_idea = KFC_multipolar_democracy_1
+			    add_idea = KFC_multipolar_democracy_2
+			}
+		}
 
 	}
 	focus = {
@@ -2773,6 +2928,12 @@ focus_tree = {
 		}
 		x = 23
 		y = 15
+		completion_reward = {
+			swap_ideas = {
+			    remove_idea = KFC_multipolar_democracy_2
+			    add_idea = KFC_multipolar_democracy_3
+			}
+		}
 
 	}
 	focus = {
@@ -2785,6 +2946,9 @@ focus_tree = {
 		}
 		x = 25
 		y = 13
+		completion_reward = {
+			add_timed_idea = { idea = KFC_year_of_the_bible days = 365 }
+		}
 
 	}
 	focus = {
