@@ -356,6 +356,7 @@ focus_tree = {
 		mutually_exclusive = {
 			focus = The_Red_and_Blue_Banner
 			focus = Cripocracy
+			focus = LASD_takeover
 		}
 		completion_reward = {
 			add_stability = 0.01
@@ -476,6 +477,7 @@ focus_tree = {
 		mutually_exclusive = {
 			focus = The_Red_and_Blue_Banner
 			focus = Blood_Takeover
+			focus = LASD_takeover
 		}
 		completion_reward = {
 			add_stability = 0.01
@@ -628,8 +630,9 @@ focus_tree = {
 			focus = Bloody_Coup
 		}
 		mutually_exclusive = {
-			focus = Cripocracy
-			focus = Blood_Takeover
+		focus = Blood_Takeover
+		focus = LASD_takeover
+		focus = Cripocracy
 		}
 		ai_will_do = { 
 			factor = 300
@@ -846,6 +849,207 @@ focus_tree = {
 			add_war_support = 0.25
 		}
 	}
+	
+	focus = {
+		id = LASD_takeover
+		icon = GFX_goal_and_may_god_have_mercy
+		cost = 10.00
+		x = 57
+		y = 3
+		prerequisite = {
+			focus = Bloody_Coup
+		}
+		mutually_exclusive = {
+			focus = Cripocracy
+			focus = Blood_Takeover
+			focus = The_Red_and_Blue_Banner
+		}
+		ai_will_do = { 
+			factor = 300
+			modifier = {
+      			factor = 0 
+      			OR = {
+					has_game_rule = {
+              			rule = HLY_path
+             			option = HLY_PATH_ROCK
+          			}
+					has_game_rule = {
+              			rule = HLY_path
+             			option = HLY_PATH_KOREA
+          			}
+					has_game_rule = {
+              			rule = HLY_path
+             			option = HLY_PATH_BARRYMORE
+          			}
+					has_game_rule = {
+              			rule = HLY_path
+             			option = HLY_PATH_MILLER
+          			}
+					has_game_rule = {
+              			rule = HLY_path
+             			option = HLY_PATH_WALT
+          			}
+      			}
+   			}
+		}
+		
+		completion_reward = {
+			add_stability = +.75
+			add_popularity = {
+				ideology = republican
+				popularity = 0.75
+			}
+			swap_ideas = {
+				remove_idea = LA_Riots
+			}
+			set_politics = {
+				ruling_party = republican
+			}
+		}
+	}
+	focus = {
+		id = establish_order
+		icon = GFX_goal_and_may_god_have_mercy
+		cost = 10.00
+		x = 57
+		y = 4
+		prerequisite = {
+			focus = LASD_takeover
+		}
+		completion_reward = {
+			add_stability = +.75
+			add_popularity = {
+				ideology = republican
+				popularity = 0.75
+			}
+		}
+	}
+	focus = {
+		id = end_the_riots
+		icon = GFX_goal_and_may_god_have_mercy
+		cost = 10.00
+		x = 55
+		y = 5
+		prerequisite = {
+			focus = establish_order
+		}
+		completion_reward = {
+			add_stability = +.75
+			add_popularity = {
+				ideology = republican
+				popularity = 0.75
+			}
+		}
+	}
+	focus = {
+		id = dispatch_swat
+		icon = GFX_goal_and_may_god_have_mercy
+		cost = 10.00
+		x = 55
+		y = 6
+		prerequisite = {
+			focus = end_the_riots
+		}
+		completion_reward = {
+			add_stability = +.75
+			add_popularity = {
+				ideology = republican
+				popularity = 0.75
+			}
+		}
+	}
+	focus = {
+		id = back_the_blue
+		icon = GFX_goal_and_may_god_have_mercy
+		cost = 10.00
+		x = 57
+		y = 5
+		prerequisite = {
+			focus = establish_order
+		}
+		completion_reward = {
+			add_stability = +.75
+			add_popularity = {
+				ideology = republican
+				popularity = 0.75
+			}
+		}
+	}
+	focus = {
+		id = merge_the_departments
+		icon = GFX_goal_and_may_god_have_mercy
+		cost = 10.00
+		x = 57
+		y = 6
+		prerequisite = {
+			focus = back_the_blue
+		}
+		completion_reward = {
+			add_stability = +.75
+			add_popularity = {
+				ideology = republican
+				popularity = 0.75
+			}
+		}
+	}
+	focus = {
+		id = put_trust_back_in_the_community
+		icon = GFX_goal_and_may_god_have_mercy
+		cost = 10.00
+		x = 59
+		y = 5
+		prerequisite = {
+			focus = establish_order
+		}
+		completion_reward = {
+			add_stability = +.75
+			add_popularity = {
+				ideology = republican
+				popularity = 0.75
+			}
+		}
+	}
+	focus = {
+		id = outreach_programs
+		icon = GFX_goal_and_may_god_have_mercy
+		cost = 10.00
+		x = 59
+		y = 6
+		prerequisite = {
+			focus = put_trust_back_in_the_community
+		}
+		completion_reward = {
+			add_stability = +.75
+			add_popularity = {
+				ideology = republican
+				popularity = 0.75
+			}
+		}
+	}
+	focus = {
+		id = liberate_cali
+		icon = GFX_goal_and_may_god_have_mercy
+		cost = 10.00
+		x = 57
+		y = 7
+		prerequisite = {
+			focus = dispatch_swat
+		}
+		prerequisite = {
+			focus = merge_the_departments
+		}
+		prerequisite = {
+			focus = outreach_programs
+		}
+		completion_reward = {
+			add_stability = +.75
+			add_popularity = {
+				ideology = republican
+				popularity = 0.75
+			}
+		}
+	}
+	
 	focus = {
 		id = From_the_rooftops
 		icon = GFX_goal_Generic_Sniper_Assassin
@@ -2435,3 +2639,4 @@ focus_tree = {
 		}
 	}
 }
+
