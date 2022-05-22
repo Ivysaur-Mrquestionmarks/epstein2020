@@ -136,8 +136,8 @@ focus_tree = {
 				set_state_name = "Hitlerstadt"
 			}
 			set_capital = {
-			  state = 40 
-			  remember_old_capital = no
+				state = 40 
+				remember_old_capital = no
 			}
 			every_state = {
 				limit = {
@@ -819,6 +819,22 @@ focus_tree = {
     			target = SIN
     			type = annex_everything
 			}
+			declare_war_on = {
+    			target = LAS
+    			type = annex_everything
+			}
+			declare_war_on = {
+    			target = MOL
+    			type = annex_everything
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = AFO
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = HAM
+			}
 		}
 	}
 	focus = {
@@ -916,7 +932,10 @@ focus_tree = {
 			add_war_support = 0.05
 			every_state = {
 				limit = {
-					is_core_of = TEX
+					OR = {
+						is_core_of = TEX
+						is_core_of = NMX
+					}
 				}
 				add_core_of = HOP
 			}
@@ -934,7 +953,10 @@ focus_tree = {
 		bypass = {
 			all_state = {
 				limit = {
-					is_core_of = TEX
+					OR = {
+						is_core_of = TEX
+						is_core_of = NMX
+					}
 				}
 				is_owned_by = ROOT
 			}
@@ -1204,7 +1226,10 @@ focus_tree = {
 					add_ideas = HOP_Long_African_March
 				}
 			}
-			set_capital = 242
+			set_capital = {
+				state = 242 
+				remember_old_capital = no
+			}
 			set_province_name = {
 			   	id = 3690
 				name = "Neue Berlin"
@@ -1271,7 +1296,7 @@ focus_tree = {
 				}
 				release_autonomy = {
 					target = KKK
-					autonomy_state = dominion
+					autonomy_state = autonomy_puppet
 					freedom_level = 0
 				}
 			}
@@ -1407,10 +1432,12 @@ focus_tree = {
 				KKK = {
 					owns_state = 316
 					owns_state = 315
+					owns_state = 611
 				}
 				HOP = {
 					owns_state = 316
 					owns_state = 315
+					owns_state = 611
 				}
 			}
 		}
@@ -1418,7 +1445,12 @@ focus_tree = {
 			AFR = {
 				transfer_state = 316
 				transfer_state = 315
+				transfer_state = 611
+				add_state_core = 316
+				add_state_core = 315
+				add_state_core = 611
 				set_cosmetic_tag = KKK_HOP_African_Reservation
+				load_focus_tree = generic_focus
 				set_politics = {
 					ruling_party = autocratic
 				}
@@ -1445,8 +1477,12 @@ focus_tree = {
     				autonomy_state = autonomy_reservation
 				}
 			}
+			set_capital = {
+				state = 316 
+				remember_old_capital = no
+			}
 			set_province_name = {
-			   	id = 10878
+			   	id = 6372
 				name = "Rockwell"
 			}
 			316 = {
@@ -1455,6 +1491,22 @@ focus_tree = {
 			}
 			315 = {
 				set_state_name = "Mason"
+			}
+			if = {
+				limit = {
+					has_completed_focus = HOP_The_Jester
+				}
+				611 = {
+					set_state_name = "Miller"
+				}
+			}
+			else_if = {
+				limit = {
+					has_completed_focus = HOP_The_Loyalist
+				}
+				611 = {
+					set_state_name = "Sol Invictus"
+				}
 			}
 		}
 	}
@@ -1579,7 +1631,7 @@ focus_tree = {
 				}
 				release_autonomy = {
 					target = RKM
-					autonomy_state = puppet
+					autonomy_state = autonomy_puppet
 					freedom_level = 0
 				}
 			}
