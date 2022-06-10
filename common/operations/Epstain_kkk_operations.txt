@@ -1,0 +1,91 @@
+KKK_activate_5th_columb = {
+	icon = GFX_operations_coup_government
+	name = KKK_uprising
+	desc = KKK_uprising_desc
+	days = 180
+
+	allowed = {
+		tag = KKK
+	}
+	available = { 
+	}
+	visible = {
+	}
+	danger_level = 50
+	operatives = 3
+	network_strength = 85
+
+	requirements = { #SCOPE_COUNTRY
+	}
+
+	equipment = {
+		infantry_equipment = 7500
+		support_equipment = 500
+	}
+
+	outcome_modifiers = { operation_outcome }
+	cost_modifiers = { operation_cost }
+	risk_modifiers = { operation_risk }
+
+	required_tokens = {
+		token_civilian
+		token_army
+	}
+
+	operation_target = {
+		targets = { TEX FLO VIR KFC }
+	}
+
+	outcome_potential = {
+		FROM = {
+			start_civil_war = {
+			   	ruling_party = libertarian_right
+			    	ideology = autocratic
+    				size = 0.5
+			}
+		}
+	}
+
+	outcome_execute = {
+		FROM = {
+			random_owned_controlled_state = {
+				limit = { any_neighbor_state = {is_owned_by = KKK} }
+				set_temp_variable = { _state = THIS }
+			}
+			create_dynamic_country = {
+    				original_tag = FROM	
+				transfer_state = _state
+			}
+		}
+	}
+
+	phases = { #infiltration
+		infiltration_border = { base = 25 }
+		infiltration_submarine = { base = 25 }
+		infiltration_paradrop = { 
+			base = 25 
+			modifier = {
+				ROOT = { 
+					has_equipment = {
+						transport_plane_equipment < 1
+					}
+				}
+				factor = 0.1 #less likely if we have no transports
+			}
+		}
+		infiltration_diplomatic = {
+			base = 25
+			modifier = {
+				factor = 20
+				ROOT = { has_war = no }
+				FROM = {
+					has_war = no
+				}
+			}
+		}
+	}
+	phases = { lar_fra_coup_pre_position_units = { base = 100 } }
+	phases = { lar_fra_launch_coup = { base = 100 } }
+
+	will_lead_to_war_with = yes
+}
