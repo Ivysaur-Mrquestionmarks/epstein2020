@@ -2514,8 +2514,18 @@ focus_tree = {
 		completion_reward = {
 			add_tech_bonus = {
 				bonus = 1.00
-				uses = 1
+				uses = 3
 				category = nuclear
+			}
+			
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = nuclear_reactor 
+				    level = 1
+				    instant_build = yes
+				}
+				
 			}
 			
 		}
@@ -3325,7 +3335,12 @@ focus_tree = {
 				type = annex_everything 
 				target = TIM
 			}
-
+			
+			set_rule = { 
+				can_create_factions = yes 
+			}
+			
+			create_faction = "NRA_charlestone_pact_faction"
 			
 		}
 		
@@ -3419,13 +3434,8 @@ focus_tree = {
 		}
 		
 		completion_reward = {
-			set_rule = { 
-				can_create_factions = yes 
-			}
-			
+		
 			### kentuchy gets the event to join the faction
-			
-			create_faction = "NRA_charlestone_pact_faction"
 			
 		}
 		
@@ -3459,19 +3469,225 @@ focus_tree = {
 	}
 	
 	
+	focus = {
+		id = NRA_1861_Once_Again
+		
+		cost = 2.00
+		
+		x = 72
+		
+		y = 30
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NRA_Integrate_Kentuchy
+		}
+		
+		mutually_exclusive = {
+			focus = NRA_Invite_Virginia_To_The_Pact
+		}
+		
+		will_lead_to_war_with = VIR 
+		will_lead_to_war_with = MGV
+		will_lead_to_war_with = RVR
+		
+		completion_reward = {
+			create_wargoal = { 
+				type = annex_everything 
+				target = VIR 
+			}
+			
+			create_wargoal = { 
+				type = annex_everything 
+				target = MGV
+			}
+			
+			create_wargoal = { 
+				type = annex_everything 
+				target = RVR  
+			}
+
+			
+		}
+		
+	}
 	
 	
+	focus = {
+		id = NRA_Invite_Virginia_To_The_Pact
+		
+		cost = 2.00
+		
+		x = 74
+		
+		y = 30
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NRA_Integrate_Kentuchy
+		}
+		
+		mutually_exclusive = {
+			focus = NRA_1861_Once_Again
+		}
+		
+		completion_reward = {
+		
+			### virginia gets the event to join the faction
+			
+		}
+		
+	}
 	
 	
+	focus = {
+		id = NRA_Integrate_Virginia
+		
+		cost = 1.00
+		
+		x = 73
+		
+		y = 31
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NRA_1861_Once_Again
+			focus = NRA_Invite_Virginia_To_The_Pact
+		}
+		
+		completion_reward = {
+			
+			### claim and cores in all of Virginia
+			
+		}
+		
+	}
 	
 	
+	focus = {
+		id = NRA_Put_An_End_To_Northern_Anarchism
+		
+		cost = 2.00
+		
+		x = 72
+		
+		y = 32
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NRA_Integrate_Virginia
+		}
+		
+		mutually_exclusive = {
+			focus = NRA_A_Meeting_With_AOC
+		}
+		
+		will_lead_to_war_with = AFS	
+		
+		completion_reward = {
+			create_wargoal = { 
+				type = annex_everything 
+				target = AFS
+			}
+			
+		}
+		
+	}
 	
 	
+	focus = {
+		id = NRA_A_Meeting_With_AOC
+		
+		cost = 2.00
+		
+		x = 74
+		
+		y = 32
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NRA_Integrate_Virginia
+		}
+		
+		mutually_exclusive = {
+			focus = NRA_Put_An_End_To_Northern_Anarchism
+		}
+		
+		completion_reward = {
+		
+			### ohio gets the event to join the faction
+			
+		}
+		
+	}
 	
 	
+	focus = {
+		id = NRA_Integrate_Ohio
+		
+		cost = 1.00
+		
+		x = 73
+		
+		y = 33
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NRA_Put_An_End_To_Northern_Anarchism
+			focus = NRA_A_Meeting_With_AOC
+		}
+		
+		completion_reward = {
+			
+			### claim and cores in all of Ohio
+			
+		}
+		
+	}
 	
 	
-	
+	focus = {
+		id = NRA_Membership_For_Detroit
+		
+		cost = 1.00
+		
+		x = 73
+		
+		y = 34
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NRA_Integrate_Ohio
+		}
+		
+		completion_reward = {
+		
+			### detroit gets the event to join the faction
+			
+		}
+		
+	}
 	
 	
 	
