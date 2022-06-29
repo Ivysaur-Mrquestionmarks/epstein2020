@@ -13,14 +13,14 @@ focus_tree = {
 	default = no
 
 
-	continuous_focus_position = { x = 20 y = 1 }
+	continuous_focus_position = { x = 50 y = 5000 }
 	focus = {
 		id = KFC_a_state_untamed
-		icon = GFX_goal_KFC_state_beneath_his_feet
+		icon = GFX_goal_Icon_A_State_Untamed_MAA
 		mutually_exclusive = { focus = KFC_state_beneath_his_feet }
 		bypass = {
 			NOT = {tag = KFC}
-			has_government = autocratic
+			has_government = libertarian_right
 		}
 		cost = 4.40
 		x = 10
@@ -36,19 +36,104 @@ focus_tree = {
 		completion_reward = {
 			activate_mission = KFC_uprising_mission2
 			mark_focus_tree_layout_dirty = yes
+			swap_ideas = {
+			    remove_idea = KFC_divided_resistance
+			    add_idea = KFC_growing_resistance
+			}
 		}
 
 	}
 	focus = {
-		id = KFC_mad_man_of_kentucky
-		icon = GFX_goal_RebelsAmongUs
+		id = KFC_infiltrate_resistance_groups
+		icon = GFX_goal_Icon_Infiltrate_Resistance_Groups_MAA
 		cost = 3.00
 		prerequisite = {
 			focus = KFC_a_state_untamed
 		}
 		bypass = {
 			NOT = {tag = KFC}
-			has_government = autocratic
+			has_government = libertarian_right
+		}
+		allow_branch = {
+
+				has_completed_focus = KFC_a_state_untamed
+
+		}
+		relative_position_id = KFC_a_state_untamed
+		x = -3
+		y = 1
+		completion_reward = {
+		    
+		}
+
+	}
+	focus = {
+		id = KFC_hunt_the_partisans
+		icon = GFX_goal_Icon_Hunt_the_Partisans_MAA
+		cost = 4.00
+		prerequisite = {
+			focus = KFC_infiltrate_resistance_groups
+		}
+		bypass = {
+			NOT = {tag = KFC}
+			has_government = libertarian_right 
+		}
+		relative_position_id = KFC_infiltrate_resistance_groups
+		x = -1
+		y = 1
+		completion_reward = {
+			
+		}
+
+	}
+	focus = {
+		id = KFC_anti_partisan_measures
+		icon = GFX_goal_Icon_Anti_Partisan_Measures_MAA
+		cost = 4.00
+		prerequisite = {
+			focus = KFC_hunt_the_partisans
+		}
+		bypass = {
+			NOT = {tag = KFC}
+			has_government = libertarian_right 
+		}
+		relative_position_id = KFC_hunt_the_partisans
+		x = 0
+		y = 1
+		completion_reward = {
+			
+		}
+
+	}
+	focus = {
+		id = KFC_track_the_rat
+		icon = GFX_goal_Icon_Track_the_Rat_MAA
+		cost = 4.00
+		prerequisite = {
+			focus = KFC_infiltrate_resistance_groups
+		}
+		bypass = {
+			NOT = {tag = KFC}
+			has_government = libertarian_right 
+		}
+		relative_position_id = KFC_infiltrate_resistance_groups
+		x = 1
+		y = 1
+		completion_reward = {
+			
+		}
+
+	}
+	focus = {
+		id = KFC_expand_the_coal_mines
+		icon = GFX_goal_Icon_Expand_the_Coal_Mines_MAA
+		cost = 3.00
+		prerequisite = {
+			focus = KFC_a_state_untamed
+		}
+		bypass = {
+			NOT = {tag = KFC}
+			has_government = libertarian_right
 		}
 		allow_branch = {
 
@@ -59,1848 +144,160 @@ focus_tree = {
 		x = 0
 		y = 1
 		completion_reward = {
-		    swap_ideas = {
-			    remove_idea = KFC_divided_resistance
-			    add_idea = KFC_scattered_resistance
-			}
-	    add_political_power = 100
-		    add_popularity = {
-				ideology = autocratic
-				popularity = 0.05
-			}
+		    
 		}
 
 	}
 	focus = {
-		id = KFC_dividing_dissent
-		icon = GFX_goal_AllyWithHoway
+		id = KFC_mirror_wva_operations
+		icon = GFX_goal_Icon_Mirror_West_Virginias_Operations_MAA
+		cost = 4.00
+		prerequisite = {
+			focus = KFC_expand_the_coal_mines
+		}
+		bypass = {
+			NOT = {tag = KFC}
+			has_government = libertarian_right
+		}
+		relative_position_id = KFC_expand_the_coal_mines
+		x = 0
+		y = 1
+		completion_reward = {
+			
+		}
+
+	}
+	focus = {
+		id = KFC_the_colonels_secret_enforcers
+		icon = GFX_goal_Icon_The_Colonels_Secret_Enforcers_MAA
 		cost = 3.00
 		prerequisite = {
-			focus = KFC_mad_man_of_kentucky
+			focus = KFC_a_state_untamed
 		}
 		bypass = {
 			NOT = {tag = KFC}
-			has_government = autocratic
+			has_government = libertarian_right
 		}
-		relative_position_id = KFC_mad_man_of_kentucky
-		x = 0
-		y = 1
-		completion_reward = {
-			add_popularity = {
-				ideology = libertarian_right
-				popularity = -0.1
-			}
-		}
+		allow_branch = {
 
-	}
-	focus = {
-		id = KFC_the_communist
-		icon = GFX_goal_AllyWithGregFischer
-		cost = 4.00
-		prerequisite = {
-			focus = KFC_dividing_dissent
-		}
-		bypass = {
-			NOT = {tag = KFC}
-			has_government = autocratic
-		}
-		relative_position_id = KFC_dividing_dissent
-		x = -3
-		y = 1
-		completion_reward = {
-			add_popularity = {
-				ideology = authoritarian_left
-				popularity = 0.25
-			}
-		}
+				has_completed_focus = KFC_a_state_untamed
 
-	}
-	focus = {
-		id = KFC_the_warlord
-		icon = GFX_goal_AllyWithMattHiembach
-		cost = 4.00
-		prerequisite = {
-			focus = KFC_dividing_dissent
 		}
-		bypass = {
-			NOT = {tag = KFC}
-			has_government = autocratic
-		}
-		x = 3
-		y = 1
-		relative_position_id = KFC_dividing_dissent
-		completion_reward = {
-			add_popularity = {
-				ideology = autocratic
-				popularity = 0.05
-			}
-		}
-
-	}
-	focus = {
-		id = KFC_reach_out_to_the_colonel
-		icon = GFX_goal_KFC_harass_supply
-		cost = 4.00
-		prerequisite = {
-			focus = KFC_the_warlord
-		}
-		bypass = {
-			NOT = {tag = KFC}
-			has_government = autocratic
-		}
-		x = 0
-		y = 2
-		relative_position_id = KFC_the_warlord
-		completion_reward = {
-			set_country_flag = KFC_warlords_army_flag
-			custom_effect_tooltip = KFC_warlords_army_flag
-		}
-
-	}
-	focus = {
-		id = KFC_arresting_local_resistance_leaders
-		icon = GFX_goal_unknown
-		cost = 2.00
-		prerequisite = {
-			focus = KFC_reach_out_to_the_colonel
-		}
-		bypass = {
-			NOT = {tag = KFC}
-			has_government = autocratic
-		}
-		relative_position_id = KFC_reach_out_to_the_colonel
-		x = 0
-		y = 2
-		completion_reward = {
-			add_days_mission_timeout = {
-			    mission = KFC_uprising_mission2
-			    days = 80
-			}
-		}
-
-	}
-	focus = {
-		id = KFC_the_sportsman
-		icon = GFX_goal_AllyWithMattBevin
-		cost = 4.00
-		prerequisite = {
-			focus = KFC_dividing_dissent
-		}
-		bypass = {
-			NOT = {tag = KFC}
-			has_government = autocratic
-		}
-		relative_position_id = KFC_dividing_dissent
-		x = 0
-		y = 1
-		completion_reward = {
-			add_popularity = {
-				ideology = republican
-				popularity = 0.10
-			}
-		}
-
-	}
-	focus = {
-		id = KFC_secret_depots
-		icon = GFX_goal_KFC_tea_party
-		cost = 4.40
-		prerequisite = {
-			focus = KFC_the_sportsman
-		}
-		bypass = {
-			NOT = {tag = KFC}
-			has_government = autocratic
-		}
-		relative_position_id = KFC_the_sportsman
-		x = 0
-		y = 2
-		completion_reward = {
-			set_country_flag = KFC_secret_depots
-			custom_effect_tooltip = KFC_secret_depots2
-		}
-
-	}
-	focus = {
-		id = KFC_hiring_nra_mercs
-		icon = GFX_goal_unknown
-		cost = 6.00
-		prerequisite = {
-			focus = KFC_secret_depots
-		}
-		bypass = {
-			NOT = {tag = KFC}
-			has_government = autocratic
-		}
-		relative_position_id = KFC_secret_depots
-		x = 0
-		y = 2
-		completion_reward = {
-			set_country_flag = KFC_NRA_Mercenaries
-			custom_effect_tooltip = KFC_NRA_Mercenaries
-		}
-
-	}
-	focus = {
-		id = KFC_partisan_activity
-		icon = GFX_goal_KFC_secure_police
-		cost = 5.00
-		prerequisite = {
-			focus = KFC_the_communist
-		}
-		bypass = {
-			NOT = {tag = KFC}
-			has_government = autocratic
-		}
-		relative_position_id = KFC_the_communist
-		x = 0
-		y = 2
-		completion_reward = {
-			every_state = {
-				limit = {
-					is_owned_by = KFC
-				}
-				damage_building = {
-				    type = infrastructure
-				    damage = 1
-				}
-			}
-		}
-
-	}
-	focus = {
-		id = KFC_revolutionary_warfare
-		icon = GFX_goal_unknown
-		cost = 5.00
-		prerequisite = {
-			focus = KFC_partisan_activity
-		}
-		bypass = {
-			NOT = {tag = KFC}
-			has_government = autocratic
-		}
-		relative_position_id = KFC_partisan_activity
-		x = 0
-		y = 2
-		completion_reward = {
-			add_days_mission_timeout = {
-			    mission = KFC_uprising_mission2
-			    days = 30
-			}
-		}
-
-	}
-	focus = {
-		id = KFC_annihilate_resistance
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_revolutionary_warfare
-		}
-		prerequisite = {
-			focus = KFC_hiring_nra_mercs
-		}
-		prerequisite = {
-			focus = KFC_arresting_local_resistance_leaders
-		}
-		relative_position_id = KFC_hiring_nra_mercs
-		x = 0
-		y = 2
-		completion_reward = {
-			country_event = { id = kentucky.20 }
-		}
-
-	}
-	focus = {
-		id = KFC_state_under_the_confederate_banner
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_annihilate_resistance
-		}
-		relative_position_id = KFC_annihilate_resistance
-		x = 0
-		y = 1
-		completion_reward = {
-		    add_stability = 0.15
-			add_popularity = {
-               ideology = autocratic 
-               popularity = 0.05
-            }
-		}
-
-	}
-	focus = {
-		id = KFC_corporate_conspiracy
-		mutually_exclusive = { focus = KFC_kentucky_fried_insanity }
-		mutually_exclusive = { focus = KFC_empower_lambertons_clique }
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_state_under_the_confederate_banner
-		}
-		relative_position_id = KFC_state_under_the_confederate_banner
-		x = 18
-		y = 1
-		completion_reward = {
-		   add_political_power = 50
-		}
-
-	}
-	focus = {
-		id = KFC_raid_trucks
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_corporate_conspiracy
-		}
-		relative_position_id = KFC_corporate_conspiracy
-		x = -1
-		y = 1
-		completion_reward = {
-		    add_equipment_to_stockpile = {
-                type = infantry_equipment
-                amount = 1500
-                producer = CSA
-		    }
-		}
-
-	}
-	focus = {
-		id = KFC_invite_nra_personal
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_raid_trucks
-		}
-		relative_position_id = KFC_raid_trucks
-		x = 0
-		y = 1
-		completion_reward = {
-		       
-		}
-
-	}
-	focus = {
-		id = KFC_csa_investments
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_invite_nra_personal
-			focus = KFC_economic_union_with_csa
-		}
-		relative_position_id = KFC_invite_nra_personal
-		x = 3
-		y = 2
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_steal_money_from_csa_economy
-		mutually_exclusive = { focus = KFC_expand_gun_production }
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_csa_investments
-			focus = KFC_parasitic_partnership
-		}
-		relative_position_id = KFC_csa_investments
-		x = 2
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_csa_weapons
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_steal_money_from_csa_economy
-		}
-		relative_position_id = KFC_steal_money_from_csa_economy
-		x = 0
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_csa_planes
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_csa_weapons
-		}
-		relative_position_id = KFC_csa_weapons
-		x = 1
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_csa_vehicles
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_csa_weapons
-		}
-		relative_position_id = KFC_csa_weapons
-		x = -1
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_expand_gun_production
-		mutually_exclusive = { focus = KFC_steal_money_from_csa_economy }
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_csa_investments
-		}
-		relative_position_id = KFC_csa_investments
-		x = -2
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_unban_bump_stocks
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_expand_gun_production
-		}
-		relative_position_id = KFC_expand_gun_production
-		x = 0
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_expand_weapons_stockpile
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_unban_bump_stocks
-		}
-		relative_position_id = KFC_unban_bump_stocks
-		x = -1
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_out_of_state_weapons_production
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_unban_bump_stocks
-		}
-		relative_position_id = KFC_unban_bump_stocks
-		x = 1
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_siphon_government_funds
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_corporate_conspiracy
-		}
-		relative_position_id = KFC_corporate_conspiracy
-		x = -6
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_supply_weapons
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_siphon_government_funds
-		}
-		relative_position_id = KFC_siphon_government_funds
-		x = 0
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_fund_private_militias
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_corporate_conspiracy
-		}
-		relative_position_id = KFC_corporate_conspiracy
-		x = -10
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_fund_a_private_army
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_fund_private_militias
-		}
-		relative_position_id = KFC_fund_private_militias
-		x = 0
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_build_secret_armories
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_supply_weapons
-		}
-		relative_position_id = KFC_supply_weapons
-		x = 1
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_build_secret_munitions_plants
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_fund_a_private_army
-		}
-		relative_position_id = KFC_fund_a_private_army
-		x = -1
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_fund_underground_sporting_good_stores
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_fund_a_private_army
-		}
-		prerequisite = {
-			focus = KFC_supply_weapons
-		}
-		relative_position_id = KFC_fund_a_private_army
-		x = 2
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_bribe_government_officials
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_fund_underground_sporting_good_stores
-		}
-		prerequisite = {
-			focus = KFC_fund_a_private_army
-		}
-		prerequisite = {
-			focus = KFC_supply_weapons
-		}
-		relative_position_id = KFC_fund_underground_sporting_good_stores
-		x = 1
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_recruit_mine_workers
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_fund_underground_sporting_good_stores
-		}
-		prerequisite = {
-			focus = KFC_fund_a_private_army
-		}
-		prerequisite = {
-			focus = KFC_supply_weapons
-		}
-		relative_position_id = KFC_fund_underground_sporting_good_stores
-		x = -1
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_turning_a_blind_scope
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_recruit_mine_workers
-		}
-		relative_position_id = KFC_recruit_mine_workers
-		x = 0
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_leaving_the_doors_unlocked
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_bribe_government_officials
-		}
-		relative_position_id = KFC_bribe_government_officials
-		x = 0
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_integrate_war_lords_armys
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_leaving_the_doors_unlocked
-		}
-		relative_position_id = KFC_leaving_the_doors_unlocked
-		x = 1
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_arrest_warlords
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_turning_a_blind_scope
-		}
-		relative_position_id = KFC_turning_a_blind_scope
-		x = -1
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_call_a_board_meeting
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_turning_a_blind_scope
-		}
-		prerequisite = {
-			focus = KFC_leaving_the_doors_unlocked
-		}
-		relative_position_id = KFC_leaving_the_doors_unlocked
-		x = -1
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_corporate_paradise
-		mutually_exclusive = { focus = KFC_democracy_returns_to_the_commonwealth }
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_integrate_war_lords_armys
-		}
-		prerequisite = {
-			focus = KFC_arrest_warlords
-		}
-		prerequisite = {
-			focus = KFC_call_a_board_meeting
-		}
-		relative_position_id = KFC_call_a_board_meeting
-		x = -1
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_democracy_returns_to_the_commonwealth
-		mutually_exclusive = { focus = KFC_corporate_paradise }
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_integrate_war_lords_armys
-		}
-		prerequisite = {
-			focus = KFC_arrest_warlords
-		}
-		prerequisite = {
-			focus = KFC_call_a_board_meeting
-		}
-		relative_position_id = KFC_call_a_board_meeting
-		x = 1
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_kentucky_fried_insanity
-		mutually_exclusive = { focus = KFC_corporate_conspiracy }
-		mutually_exclusive = { focus = KFC_empower_lambertons_clique }
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_state_under_the_confederate_banner
-		}
-		relative_position_id = KFC_state_under_the_confederate_banner
-		x = 26
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_enforce_his_will
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_kentucky_fried_insanity
-		}
-		relative_position_id = KFC_kentucky_fried_insanity
-		x = 8
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_nationalize_the_mines
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_enforce_his_will
-		}
-		relative_position_id = KFC_enforce_his_will
-		x = 0
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_the_colonels_private_weapons_depot
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_nationalize_the_mines
-		}
-		relative_position_id = KFC_nationalize_the_mines
-		x = 0
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_destroy_remaining_dissent
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_kentucky_fried_insanity
-		}
-		relative_position_id = KFC_kentucky_fried_insanity
+		relative_position_id = KFC_a_state_untamed
 		x = 3
 		y = 1
 		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_expand_mines
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_destroy_remaining_dissent
-		}
-		relative_position_id = KFC_destroy_remaining_dissent
-		x = 0
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_tennessean_munitions_plants
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_expand_mines
-		}
-		relative_position_id = KFC_expand_mines
-		x = -1
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_arkansan_munitions_plants
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_expand_mines
-		}
-		relative_position_id = KFC_expand_mines
-		x = 1
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_parasitic_partnership
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_arkansan_munitions_plants
-			focus = KFC_tennessean_munitions_plants
-		}
-		relative_position_id = KFC_arkansan_munitions_plants
-		x = -1
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_execute_resistance_members
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_kentucky_fried_insanity
-		}
-		relative_position_id = KFC_kentucky_fried_insanity
-		x = 13
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_permanent_forced_labor
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_execute_resistance_members
-		}
-		relative_position_id = KFC_execute_resistance_members
-		x = 0
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_absorb_their_armys
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_permanent_forced_labor
-		}
-		relative_position_id = KFC_permanent_forced_labor
-		x = -1
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_eliminate_the_war_lords
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_permanent_forced_labor
-		}
-		relative_position_id = KFC_permanent_forced_labor
-		x = 1
-		y = 1
-		completion_reward = {
+		    
 		}
 
 	}
 	focus = {
 		id = KFC_hire_more_mercenaries
-		icon = GFX_goal_unknown
-		cost = 8.00
+		icon = GFX_goal_Icon_Hire_More_Mercenaries_MAA
+		cost = 4.00
 		prerequisite = {
-			focus = KFC_absorb_their_armys
+			focus = KFC_the_colonels_secret_enforcers
 		}
-		prerequisite = {
-			focus = KFC_eliminate_the_war_lords
+		bypass = {
+			NOT = {tag = KFC}
+			has_government = libertarian_right
 		}
-		relative_position_id = KFC_eliminate_the_war_lords
-		x = -1
-		y = 3
+		relative_position_id = KFC_the_colonels_secret_enforcers
+		x = 1
+		y = 1
 		completion_reward = {
+			set_country_flag = KFC_Mercenaries
 		}
 
 	}
 	focus = {
-		id = KFC_contact_triple_canopy
-		icon = GFX_goal_unknown
-		cost = 8.00
+		id = KFC_increase_arms_deliveries
+		icon = GFX_goal_Icon_Increase_Arm_Deliveries_MAA
+		cost = 4.00
 		prerequisite = {
 			focus = KFC_hire_more_mercenaries
+		}
+		bypass = {
+			NOT = {tag = KFC}
+			has_government = libertarian_right
 		}
 		relative_position_id = KFC_hire_more_mercenaries
 		x = 0
 		y = 1
 		completion_reward = {
+			set_country_flag = KFC_Foreign_Arms
 		}
 
 	}
 	focus = {
-		id = KFC_contact_wagner_group
-		icon = GFX_goal_unknown
-		cost = 8.00
+		id = KFC_secure_our_supply_lines
+		icon = GFX_goal_Icon_Secure_Our_Supply_Line_MAA
+		cost = 4.00
 		prerequisite = {
-			focus = KFC_hire_more_mercenaries
+			focus = KFC_the_colonels_secret_enforcers
 		}
-		relative_position_id = KFC_hire_more_mercenaries
-		x = -5
-		y = 1
-		completion_reward = {
+		bypass = {
+			NOT = {tag = KFC}
+			has_government = libertarian_right
 		}
-
-	}
-	focus = {
-		id = KFC_contact_executive_outcomes
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_hire_more_mercenaries
-		}
-		relative_position_id = KFC_hire_more_mercenaries
-		x = -10
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_the_mad_colonels_ambitions
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_contact_executive_outcomes
-			focus = KFC_contact_wagner_group
-			focus = KFC_contact_triple_canopy
-		}
-		relative_position_id = KFC_contact_wagner_group
-		x = 0
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_demand_proper_loyalty
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_the_mad_colonels_ambitions
-		}
-		relative_position_id = KFC_the_mad_colonels_ambitions
-		x = 5
-		y = 2
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_vacate_government_positions
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_demand_proper_loyalty
-		}
-		relative_position_id = KFC_demand_proper_loyalty
+		relative_position_id = KFC_the_colonels_secret_enforcers
 		x = -1
 		y = 1
 		completion_reward = {
+			set_country_flag = KFC_Logistics_Division
+			set_country_flag = KFC_Logistics_Division2
+			set_country_flag = KFC_Logistics_Division3
+			set_country_flag = KFC_Logistics_Division4
 		}
 
 	}
 	focus = {
-		id = KFC_kill_potential_opposition
-		icon = GFX_goal_unknown
-		cost = 8.00
+		id = KFC_a_bucket_of_fried_chicken
+		icon = GFX_goal_Icon_A_Bucket_of_Chicken
+		cost = 4.00
 		prerequisite = {
-			focus = KFC_demand_proper_loyalty
-		}
-		relative_position_id = KFC_demand_proper_loyalty
-		x = 1
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_morning_of_the_roosters_wails
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_kill_potential_opposition
+			focus = KFC_mirror_wva_operations
 		}
 		prerequisite = {
-			focus = KFC_vacate_government_positions
+			focus = KFC_track_the_rat
 		}
-		relative_position_id = KFC_kill_potential_opposition
-		x = -1
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_expanding_the_mad_mans_wealth
-		icon = GFX_goal_unknown
-		cost = 8.00
 		prerequisite = {
-			focus = KFC_morning_of_the_roosters_wails
+			focus = KFC_secure_our_supply_lines
 		}
-		relative_position_id = KFC_morning_of_the_roosters_wails
+		bypass = {
+			NOT = {tag = KFC}
+			has_government = libertarian_right
+		}
+		relative_position_id = KFC_mirror_wva_operations
 		x = 0
 		y = 1
 		completion_reward = {
+			
 		}
 
 	}
 	focus = {
-		id = KFC_heavy_weapons_program
-		icon = GFX_goal_unknown
-		cost = 8.00
+		id = KFC_annihilate_resistance
+		icon = GFX_goal_Icon_Annihilate_Resistance_MAA
+		cost = 4.00
 		prerequisite = {
-			focus = KFC_the_mad_colonels_ambitions
+			focus = KFC_anti_partisan_measures
 		}
-		relative_position_id = KFC_the_mad_colonels_ambitions
-		x = -5
-		y = 2
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_chemical_weapons_research
-		icon = GFX_goal_unknown
-		cost = 8.00
 		prerequisite = {
-			focus = KFC_the_mad_colonels_ambitions
+			focus = KFC_increase_arms_deliveries
 		}
-		relative_position_id = KFC_the_mad_colonels_ambitions
+		prerequisite = {
+			focus = KFC_a_bucket_of_fried_chicken
+		}
+		bypass = {
+			NOT = {tag = KFC}
+			has_government = libertarian_right
+		}
+		relative_position_id = KFC_a_bucket_of_fried_chicken
 		x = 0
 		y = 1
 		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_manufacture_drones
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_the_mad_colonels_ambitions
-		}
-		relative_position_id = KFC_the_mad_colonels_ambitions
-		x = -2
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_experimental_shells
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_the_mad_colonels_ambitions
-		}
-		relative_position_id = KFC_the_mad_colonels_ambitions
-		x = 2
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_outfit_drones_with_chemical_weapons
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_experimental_shells
-		}
-		prerequisite = {
-			focus = KFC_chemical_weapons_research
-		}
-		relative_position_id = KFC_experimental_shells
-		x = 0
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_examine_ratnik_suits
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_manufacture_drones
-		}
-		prerequisite = {
-			focus = KFC_chemical_weapons_research
-		}
-		relative_position_id = KFC_manufacture_drones
-		x = 0
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_super_soldier_program
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_the_mad_colonels_ambitions
-		}
-		relative_position_id = KFC_the_mad_colonels_ambitions
-		x = 0
-		y = 2
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_subject_001
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_super_soldier_program
-		}
-		relative_position_id = KFC_super_soldier_program
-		x = -2
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_subject_042
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_super_soldier_program
-		}
-		relative_position_id = KFC_super_soldier_program
-		x = 0
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_subject_978
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_super_soldier_program
-		}
-		relative_position_id = KFC_super_soldier_program
-		x = 2
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_subject_11322
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_subject_001
-		}
-		prerequisite = {
-			focus = KFC_subject_042
-		}
-		prerequisite = {
-			focus = KFC_subject_978
-		}
-		relative_position_id = KFC_subject_042
-		x = 0
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_tribute_to_the_confederacy
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_kentucky_fried_insanity
-		}
-		relative_position_id = KFC_kentucky_fried_insanity
-		x = -1
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_economic_union_with_csa
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_tribute_to_the_confederacy
-		}
-		relative_position_id = KFC_tribute_to_the_confederacy
-		x = 0
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_empower_lambertons_clique
-		mutually_exclusive = { focus = KFC_corporate_conspiracy }
-		mutually_exclusive = { focus = KFC_kentucky_fried_insanity }
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_state_under_the_confederate_banner
-		}
-		relative_position_id = KFC_state_under_the_confederate_banner
-		x = -12
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_meet_with_fellow_warlords
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_empower_lambertons_clique
-		}
-		relative_position_id = KFC_empower_lambertons_clique
-		x = 11
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_rally_the_larkin_clique
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_meet_with_fellow_warlords
-		}
-		relative_position_id = KFC_meet_with_fellow_warlords
-		x = 0
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_rally_the_withers_clique
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_meet_with_fellow_warlords
-		}
-		relative_position_id = KFC_meet_with_fellow_warlords
-		x = 4
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_rally_the_wertzier_clique
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_meet_with_fellow_warlords
-		}
-		relative_position_id = KFC_meet_with_fellow_warlords
-		x = -4
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_rally_the_tongate_clique
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_meet_with_fellow_warlords
-		}
-		relative_position_id = KFC_meet_with_fellow_warlords
-		x = 2
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_rally_the_harlan_clique
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_meet_with_fellow_warlords
-		}
-		relative_position_id = KFC_meet_with_fellow_warlords
-		x = -2
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_One_Union_Under_the_Kentuckian_Banner
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_rally_the_harlan_clique
-		}
-		prerequisite = {
-			focus = KFC_rally_the_tongate_clique
-		}
-		prerequisite = {
-			focus = KFC_rally_the_larkin_clique
-		}
-		prerequisite = {
-			focus = KFC_rally_the_withers_clique
-		}
-		prerequisite = {
-			focus = KFC_rally_the_wertzier_clique
-		}
-		relative_position_id = KFC_rally_the_larkin_clique
-		x = 0
-		y = 2
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_returning_to_normal_decency
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_One_Union_Under_the_Kentuckian_Banner
-		}
-		relative_position_id = KFC_One_Union_Under_the_Kentuckian_Banner
-		x = 0
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_the_scheming_marshals
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_returning_to_normal_decency
-		}
-		relative_position_id = KFC_returning_to_normal_decency
-		x = 0
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_lambertons_cult_of_personality
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_the_scheming_marshals
-		}
-		relative_position_id = KFC_the_scheming_marshals
-		x = 0
-		y = 5
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_subvert_marshal_scheming
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_the_scheming_marshals
-		}
-		relative_position_id = KFC_the_scheming_marshals
-		x = -2
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_mysterious_disappearances #trigger event finding private jacobs
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_the_scheming_marshals
-		}
-		relative_position_id = KFC_the_scheming_marshals
-		x = 2
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_keep_our_allies_close
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_mysterious_disappearances
-		}
-		prerequisite = {
-			focus = KFC_subvert_marshal_scheming
-		}
-		relative_position_id = KFC_subvert_marshal_scheming
-		x = 2
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_and_our_enemies_closer
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_keep_our_allies_close
-		}
-		relative_position_id = KFC_keep_our_allies_close
-		x = 0
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_ending_the_nightmare
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_empower_lambertons_clique
-		}
-		relative_position_id = KFC_empower_lambertons_clique
-		x = 0
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_to_the_countryside 
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_ending_the_nightmare
-		}
-		relative_position_id = KFC_ending_the_nightmare
-		x = 0
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_wage_guerilla_campaign
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_to_the_countryside
-		}
-		relative_position_id = KFC_to_the_countryside
-		x = -1
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_take_inspiration_from_the_swamp_fox
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_wage_guerilla_campaign
-		}
-		relative_position_id = KFC_wage_guerilla_campaign
-		x = 0
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_remember_mill_springs
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_take_inspiration_from_the_swamp_fox
-		}
-		relative_position_id = KFC_take_inspiration_from_the_swamp_fox
-		x = 0
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_meet_with_mattis
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_to_the_countryside
-		}
-		relative_position_id = KFC_to_the_countryside
-		x = 1
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_the_mad_dog_can_bite
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_meet_with_mattis
-		}
-		relative_position_id = KFC_meet_with_mattis
-		x = 0
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_afs_air_drops
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_the_mad_dog_can_bite
-		}
-		relative_position_id = KFC_the_mad_dog_can_bite
-		x = 0
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_begin_the_rebuilding_process
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_remember_mill_springs
-		}
-		prerequisite = {
-			focus = KFC_afs_air_drops
-		}
-		relative_position_id = KFC_afs_air_drops
-		x = -1
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_consolidate_state_power
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_begin_the_rebuilding_process
-		}
-		relative_position_id = KFC_begin_the_rebuilding_process
-		x = 0
-		y = 2
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_put_the_people_to_work
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_consolidate_state_power
-		}
-		relative_position_id = KFC_consolidate_state_power
-		x = 1
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_road_work_ahead
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_put_the_people_to_work
-		}
-		relative_position_id = KFC_put_the_people_to_work
-		x = 0
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_revive_munitions_factories
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_road_work_ahead
-		}
-		relative_position_id = KFC_road_work_ahead
-		x = 0
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_deal_with_hyperinflation
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_consolidate_state_power
-		}
-		relative_position_id = KFC_consolidate_state_power
-		x = -1
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_create_import_barriers
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_deal_with_hyperinflation
-		}
-		relative_position_id = KFC_deal_with_hyperinflation
-		x = 0
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_protect_local_markets
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_create_import_barriers
-		}
-		relative_position_id = KFC_create_import_barriers
-		x = 0
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_reopen_the_mines
-		mutually_exclusive = { focus = KFC_look_to_other_options }
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_begin_the_rebuilding_process
-		}
-		relative_position_id = KFC_begin_the_rebuilding_process
-		x = -5
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_standing_back
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_reopen_the_mines
-		}
-		relative_position_id = KFC_reopen_the_mines
-		x = -1
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_and_standing_by
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_standing_back
-		}
-		relative_position_id = KFC_standing_back
-		x = 0
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_reaping_the_rewards
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_and_standing_by
-		}
-		relative_position_id = KFC_and_standing_by
-		x = 0
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_begin_exporting_coal
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_reaping_the_rewards
-		}
-		relative_position_id = KFC_reaping_the_rewards
-		x = 0
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_look_to_other_options
-		mutually_exclusive = { focus = KFC_reopen_the_mines }
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_begin_the_rebuilding_process
-		}
-		relative_position_id = KFC_begin_the_rebuilding_process
-		x = 5
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_green_energy
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_look_to_other_options
-		}
-		relative_position_id = KFC_look_to_other_options
-		x = 2
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_dig_for_oil
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_look_to_other_options
-		}
-		relative_position_id = KFC_look_to_other_options
-		x = 0 
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_sweet_black_gold
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_dig_for_oil
-		}
-		relative_position_id = KFC_dig_for_oil
-		x = 0 
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_refine_the_south_to_hell
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_sweet_black_gold
-		}
-		relative_position_id = KFC_sweet_black_gold
-		x = 0 
-		y = 1
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = KFC_expand_petroleum_storages
-		icon = GFX_goal_unknown
-		cost = 8.00
-		prerequisite = {
-			focus = KFC_refine_the_south_to_hell
-		}
-		relative_position_id = KFC_refine_the_south_to_hell
-		x = 0 
-		y = 1
-		completion_reward = {
+			country_event = { id = kentucky.20 }
 		}
 
 	}
@@ -3016,7 +1413,7 @@ focus_tree = {
 	}
 	focus = {
 		id = KFC_fischer_in_command
-		icon = GFX_goal_fischer_in_command
+		icon = GFX_goal_unknown
 		cost = 1.00
 		prerequisite = {
 			focus = KFC_second_constitutional_convention
@@ -3213,7 +1610,7 @@ focus_tree = {
 	}
 	focus = {
 		id = KFC_give_a_day
-		icon = GFX_goal_KFC_give_a_day
+		icon = GFX_goal_unknown
 		cost = 9.00
 		prerequisite = {
 			focus = KFC_fischer_in_command
@@ -3348,7 +1745,7 @@ focus_tree = {
 	}
 	focus = {
 		id = KFC_breonnas_law
-		icon = GFX_goal_KFC_breonnas_law
+		icon = GFX_goal_unknown
 		cost = 5.00
 		prerequisite = {
 			focus = KFC_fischer_in_command
