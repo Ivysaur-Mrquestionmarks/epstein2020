@@ -30,8 +30,8 @@ country_event = {
 			}
 			CSA = {
 				country_event = {
-    					id = kentucky.12
-    					days = 0
+    				id = kentucky.12
+    				days = 0
 				}
 			}
 			every_country = { limit = {OR = {tag = AFS tag = USA tag = FRA}}
@@ -47,6 +47,9 @@ country_event = {
 			    ruling_party = libertarian_right
 			    ideology = autocratic
     			size = 0.5
+				keep_unit_leaders_trigger = {
+				  has_trait = resistance_sympathies
+	            }
 		    	states = { 
 		    	    330 375 572 573 575
 		    	}
@@ -64,14 +67,33 @@ country_event = {
 			create_corps_commander = {
 				name = "Norman Arflack"
 				portrait_path="gfx/leaders/KFC/Norman_Arflack.png" 
-				traits={ guerilla_fighter } 
+				traits={ guerilla_fighter trait_reckless } 
 				skill = 3
-				id = 134
 				attack_skill = 3
 				defense_skill = 3
 				planning_skill = 2
 				logistics_skill = 2
 			}
+			create_corps_commander = {
+                name = "Haldane B. Lamberton"
+                portrait_path="gfx/leaders/KFC/lamberton.tga" 
+                traits={ old_guard } 
+                skill = 3
+                attack_skill = 2
+                defense_skill = 4
+                planning_skill = 3
+                logistics_skill = 1
+            }
+            create_corps_commander = {
+                name = "Dennis R. Hawthorne"
+                portrait_path="gfx/leaders/KFC/hawthorne.tga" 
+                traits={ guerilla_fighter } 
+                skill = 3
+                attack_skill = 3
+                defense_skill = 2
+                planning_skill = 1
+                logistics_skill = 3
+            }
 			if = {
 				limit = {
 					has_country_flag = KFC_tea_party_allies
@@ -163,25 +185,7 @@ country_event = {
 						infantry = { x = 1 y = 1 }
 						infantry = { x = 1 y = 2 }
 					}
-				}
-			}
-			every_unit_leader = {
-				limit = {
-					has_id = 131
-				}
-				set_nationality = PREV
-			}
-			every_unit_leader = {
-				limit = {
-					has_id = 132
-				}
-				set_nationality = PREV
-			}
-			every_unit_leader = {
-				limit = {
-					has_id = 133
-				}
-				set_nationality = PREV
+				} 
 			}
 			330 = {
 				create_unit = {
@@ -200,6 +204,10 @@ country_event = {
 	option = {
 		name = kentucky.1.a
 		add_war_support = 0.10
+		add_popularity = {
+			ideology = autocratic
+			popularity = -0.3
+		}
 		add_ideas = KFC_Proxy_War
 		every_neighbor_country = {
 			limit = {
@@ -209,6 +217,55 @@ country_event = {
   				focus = KFC_state_beneath_his_feet
   				uncomplete_children = yes
   				refund_political_power = no
+			}
+			transfer_state = 375
+			every_unit_leader = {
+				limit = {
+					has_id = 131
+				}
+				set_nationality = PREV
+			}
+			every_unit_leader = {
+				limit = {
+					has_id = 132
+				}
+				set_nationality = PREV
+			}
+			every_unit_leader = {
+				limit = {
+					has_id = 133
+				}
+				set_nationality = PREV
+			}
+			every_unit_leader = {
+				limit = {
+					has_id = 134
+				}
+				set_nationality = PREV
+			}
+			every_unit_leader = {
+				limit = {
+					has_id = 135
+				}
+				set_nationality = PREV
+			}
+			every_unit_leader = {
+				limit = {
+					has_id = 136
+				}
+				set_nationality = PREV
+			}
+			every_unit_leader = {
+				limit = {
+					has_id = 137
+				}
+				set_nationality = PREV
+			}
+			every_unit_leader = {
+				limit = {
+					has_id = 138
+				}
+				set_nationality = PREV
 			}
 			complete_national_focus = KFC_a_state_untamed
 			complete_national_focus = KFC_infiltrate_resistance_groups
@@ -559,6 +616,10 @@ country_event = {
     					ideology = authoritarian_left
     					popularity = 75
 				}
+				add_popularity = {
+			ideology = libertarian_left
+			popularity = 0.25
+		}
 				set_cosmetic_tag = SKY
 				every_country_with_original_tag = {
 				  	original_tag_to_check = KFC
@@ -598,7 +659,7 @@ country_event = {
 				planning_skill = 1
 				logistics_skill = 1
 			    }
-				create_field_marshal = {
+				create_corps_commander = {
 				name = "Otis Lumburro"
 				portrait_path="gfx/leaders/KFC/generic_antifa.dds" 
 				traits={ guerilla_fighter } 
@@ -633,6 +694,10 @@ country_event = {
 			ideology = authoritarian_left
 			popularity = -0.5
 		}
+		add_popularity = {
+			ideology = libertarian_left
+			popularity = -0.5
+		}
 		}
 	}
 	option = {	
@@ -643,6 +708,10 @@ country_event = {
 		KFC = {
 	    add_popularity = {
 			ideology = authoritarian_left
+			popularity = -0.5
+		}
+		add_popularity = {
+			ideology = libertarian_left
 			popularity = -0.5
 		}
 	    }
@@ -717,6 +786,7 @@ country_event = {
 				capital = 375
 				keep_unit_leaders_trigger = {
 		          has_trait = kfc_logistics_manager
+				  has_trait = loyalty_to_the_colonel
 	            }
 				keep_unit_leaders = {
                     131 132 133 134 135 136 137 138 139 140
@@ -739,6 +809,18 @@ country_event = {
 		ai_chance = {
 			factor = 100
 		}
+		    add_popularity = {
+				ideology = republican
+				popularity = -0.5
+			} 
+			add_popularity = {
+				ideology = democrat
+				popularity = -0.5
+			} 
+			add_popularity = {
+				ideology = libertarian_right
+				popularity = -0.5
+			} 
 		add_war_support = 0.10
 		add_ideas = KFC_Proxy_War
 		hidden_effect = {
@@ -818,6 +900,46 @@ country_event = {
 			limit = {
 				has_completed_focus = KFC_a_state_untamed
 			}
+			create_field_marshal = {
+				name = "Bryan Howay"
+				portrait_path="gfx/leaders/KFC/howay.dds" 
+				traits={ brilliant_strategist old_guard guerilla_fighter } 
+				skill = 3
+				attack_skill = 2
+				defense_skill = 2
+				planning_skill = 5
+				logistics_skill = 3
+			}
+			create_corps_commander = {
+				name = "Norman Arflack"
+				portrait_path="gfx/leaders/KFC/Norman_Arflack.png" 
+				traits={ guerilla_fighter } 
+				skill = 3
+				attack_skill = 3
+				defense_skill = 3
+				planning_skill = 2
+				logistics_skill = 2
+			}
+			create_corps_commander = {
+                name = "Haldane B. Lamberton"
+                portrait_path="gfx/leaders/KFC/lamberton.tga" 
+                traits={ brilliant_strategist old_guard guerilla_fighter } 
+                skill = 3
+                attack_skill = 2
+                defense_skill = 4
+                planning_skill = 3
+                logistics_skill = 1
+            }
+            create_corps_commander = {
+                name = "Dennis R. Hawthorne"
+                portrait_path="gfx/leaders/KFC/hawthorne.tga" 
+                traits={ guerilla_fighter } 
+                skill = 3
+                attack_skill = 3
+                defense_skill = 2
+                planning_skill = 1
+                logistics_skill = 3
+            }
 			uncomplete_national_focus = {
   				focus = KFC_a_state_untamed
   				uncomplete_children = yes
@@ -837,6 +959,7 @@ country_event = {
 			complete_national_focus = KFC_louisville_pd
 			complete_national_focus = KFC_utilise_connections
 			complete_national_focus = KFC_time_is_right
+			set_country_flag = Fischer_Dead
 		}
 	}
 }
@@ -869,7 +992,7 @@ country_event = {
 				add_popularity = {
 					ideology = authoritarian_left
 					popularity = 0.175
-				}
+				} 
 			}
 		}
 	}
@@ -933,6 +1056,255 @@ country_event = {
                 amount = 950
                 producer = CSA
 		    }
+		}
+	}
+}
+
+#Heimbach raids
+country_event = {
+	id = kentucky.24
+	title = kentucky.24.t
+	desc = kentucky.24.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		#bruh
+		name = kentucky.24.a
+		ai_chance = {
+			factor = 100
+		}
+		KFC = {
+		    add_equipment_to_stockpile = {
+                type = infantry_equipment
+                amount = -453
+                producer = CSA
+		    }
+			add_war_support = -0.05
+			every_state = {
+				limit = {
+					is_owned_by = KFC
+				}
+				damage_building = {
+				    type = infrastructure
+				    damage = 1
+				}
+			}
+			activate_mission = KFC_heimbach_raid_mission
+			set_country_flag = KFC_Heimbach_Raiding_Look_Out
+		}
+	}
+}
+
+#hunting partisans
+country_event = {
+	id = kentucky.25
+	title = kentucky.25.t
+	desc = kentucky.25.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		#bruh
+		name = kentucky.25.a
+		ai_chance = {
+			factor = 100
+		}
+		add_days_mission_timeout = {
+		    mission = KFC_heimbach_raid_mission
+			days = 15
+		}
+		add_stability = 0.05
+		add_political_power = 20
+	}
+}
+
+#plotting against fischer and ex gov
+country_event = {
+	id = kentucky.26
+	title = kentucky.26.t
+	desc = kentucky.26.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		#bruh
+		name = kentucky.26.a
+		ai_chance = {
+			factor = 100
+		}
+		hidden_effect = { 
+		country_event = {
+    		id = kentucky.27
+    		days = 4
+		} 
+		}
+	}
+}
+
+#plotting against fischer and ex gov
+country_event = {
+	id = kentucky.27
+	title = kentucky.27.t
+	desc = kentucky.27.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		#bruh
+		name = kentucky.27.a
+		ai_chance = {
+			factor = 100
+		}
+		add_political_power = 50
+		add_days_mission_timeout = {
+			mission = KFC_uprising_mission2
+			days = -20
+		}
+		swap_ideas = {
+			remove_idea = KFC_growing_resistance2
+			add_idea = KFC_growing_resistance3
+		}
+		news_event = {
+    		id = kentucky.28
+    		days = 0
+		}
+	}
+}
+
+#plotting against fischer and ex gov
+news_event = {
+	id = kentucky.28
+	title = kentucky.28.t
+	desc = kentucky.28.d
+	#picture =
+	major = yes
+	is_triggered_only = yes
+	option = {
+		#bruh
+		name = kentucky.28.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+#ex gov
+country_event = {
+	id = kentucky.29
+	title = kentucky.29.t
+	desc = kentucky.29.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		#assassin
+		name = kentucky.29.a
+		ai_chance = {
+			factor = 100
+		}
+		hidden_effect = {
+		country_event = {
+    		id = kentucky.30
+    	    days = 21
+		}
+		}
+	}
+	option = {
+		#bomb
+		name = kentucky.29.b
+		ai_chance = {
+			factor = 100
+		}
+		hidden_effect = {
+		country_event = {
+    		id = kentucky.31
+    	    days = 20
+		}
+		}
+	}
+}
+
+#bomb did it
+country_event = {
+	id = kentucky.30
+	title = kentucky.30.t
+	desc = kentucky.30.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		#bruh
+		name = kentucky.30.a
+		ai_chance = {
+			factor = 100
+		}
+		news_event = {
+    		id = kentucky.32
+    		days = 0
+		}
+		swap_ideas = {
+			remove_idea = KFC_growing_resistance3
+			add_idea = KFC_growing_resistance4
+		}
+	}
+}
+
+#asassin fail
+country_event = {
+	id = kentucky.31
+	title = kentucky.31.t
+	desc = kentucky.31.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		#bruh
+		name = kentucky.31.a
+		ai_chance = {
+			factor = 100
+		}
+		news_event = {
+    		id = kentucky.33
+    		days = 0
+		}
+		swap_ideas = {
+			remove_idea = KFC_growing_resistance3
+			add_idea = KFC_growing_resistance41
+		}
+	}
+}
+
+#succeeded
+news_event = {
+	id = kentucky.32
+	title = kentucky.32.t
+	desc = kentucky.32.d
+	#picture =
+	major = yes
+	is_triggered_only = yes
+	option = {
+		#bruh
+		name = kentucky.32.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+#failed
+news_event = {
+	id = kentucky.33
+	title = kentucky.33.t
+	desc = kentucky.33.d
+	#picture =
+	major = yes
+	is_triggered_only = yes
+	option = {
+		#bruh
+		name = kentucky.33.a
+		ai_chance = {
+			factor = 100
 		}
 	}
 }

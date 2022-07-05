@@ -68,3 +68,675 @@ KFC_colonel_category = {
 	}
 
 }
+KFC_heimbachs_raids_category = {
+
+	KFC_heimbach_raid_mission = {
+
+		icon = generic_civil_support
+
+		allowed = {
+			always = no
+		}
+		available = {
+			has_country_flag = KFC_No_More_Raiding
+		}
+		visible = {
+		    AND = {
+			original_tag = KFC
+			has_country_flag = KFC_Heimbach_Raiding_Look_Out
+			}
+		}
+		
+		activation = {
+		    always = no #triggered by event
+		}
+
+		is_good = no
+
+		days_mission_timeout = 35
+
+		timeout_effect = {
+			every_state = {
+				limit = {
+					is_owned_by = KFC
+				}
+				damage_building = {
+				    type = infrastructure
+				    damage = 1
+				}
+			}
+			activate_mission = KFC_heimbach_raid_mission
+		}
+
+		complete_effect = {
+			add_stability = 0.25
+			add_political_power = 70
+			add_popularity = {
+				ideology = authoritarian_left
+				popularity = -0.30
+			}
+			add_popularity = {
+				ideology = libertarian_left
+				popularity = -0.30
+			}
+		}
+
+
+	}
+	KFC_Increase_Patrols = {
+
+		icon = generic_ignite_civil_war
+		
+        available = {
+            original_tag = KFC
+		}
+		visible = {
+			has_country_flag = KFC_Heimbach_Raiding_Look_Out
+		}
+		
+		ai_will_do = {
+			factor = 50
+		}
+		
+		days_remove = 25
+		
+		cost = 20
+		
+		is_good = no
+
+		complete_effect = {
+		    add_days_mission_timeout = {
+			    mission = KFC_heimbach_raid_mission
+			    days = 10
+			}
+		}
+
+		
+	}
+	KFC_Raid_Homes_of_Suspected_Partisans = {
+
+		icon = generic_ignite_civil_war
+		
+        available = {
+            original_tag = KFC
+		}
+		visible = {
+			has_country_flag = KFC_Heimbach_Raiding_Look_Out
+		}
+		
+		ai_will_do = {
+			factor = 50
+		}
+		
+		days_remove = 20
+		
+		cost = 35
+		
+		is_good = no
+
+		complete_effect = {
+		    add_stability = -0.05
+			add_war_support = -0.08
+		    add_days_mission_timeout = {
+			    mission = KFC_heimbach_raid_mission
+			    days = 15
+			}
+		}
+
+		
+	}
+	KFC_Raid_Partisan_Bases = {
+
+		icon = generic_ignite_civil_war
+		
+        available = {
+            original_tag = KFC
+		}
+		visible = {
+			has_country_flag = KFC_Heimbach_Raiding_Look_Out
+		}
+		
+		ai_will_do = {
+			factor = 50
+		}
+		
+		days_remove = 30
+		
+		cost = 75
+		
+		is_good = no
+
+		complete_effect = {
+		    add_political_power = 20
+		    add_days_mission_timeout = {
+			    mission = KFC_heimbach_raid_mission
+			    days = 20
+			}
+		}
+	}
+}
+KFC_buying_generals_category = {
+
+	KFC_buying_generals1 = {
+
+		icon = generic_civil_support
+
+		available = {
+			has_country_flag = KFC_General_Bought1
+		}
+		visible = {
+			original_tag = KFC
+		}
+
+
+		is_good = no
+
+		days_mission_timeout = 50
+
+		timeout_effect = {
+		    add_stability = -0.05
+			army_experience = -5
+		}
+
+		complete_effect = {
+			army_experience = 10
+		}
+
+
+	}
+	KFC_bribes1 = {
+
+		icon = generic_ignite_civil_war
+		
+        available = {
+            original_tag = KFC
+		}
+		visible = {
+			original_tag = KFC
+		}
+		
+		ai_will_do = {
+			factor = 50
+		}
+		
+		fire_only_once = yes
+				
+		cost = 30
+		
+		is_good = no
+
+		complete_effect = {
+		    set_country_flag = KFC_General_Bought1
+		    if = {
+                limit = {
+                    has_completed_focus = KFC_state_beneath_his_feet
+                }
+			    remove_trait = {
+                    character = KFC_Robert_Larkin
+                    slot = corps_commander
+                    trait = questioned_loyalty
+                }
+			    remove_trait = {
+                    character = KFC_Robert_Larkin
+                    slot = corps_commander
+                    trait = politically_connected
+                }
+			    add_trait = {
+                   character = KFC_Robert_Larkin
+                   slot = corps_commander
+                   trait = resistance_sympathies
+                }
+			}
+			if = {
+                limit = {
+                    has_completed_focus = KFC_a_state_untamed
+                }
+			    remove_trait = {
+                    character = KFC_Robert_Larkin
+                    slot = corps_commander
+                    trait = questioned_loyalty
+                }
+			    add_trait = {
+                   character = KFC_Robert_Larkin
+                   slot = corps_commander
+                   trait = loyalty_to_the_colonel
+                }
+			}		    
+		}
+	}
+	KFC_buying_generals2 = {
+
+		icon = generic_civil_support
+
+		available = {
+			has_country_flag = KFC_General_Bought2
+		}
+		visible = {
+			original_tag = KFC
+		}
+
+
+		is_good = no
+
+		days_mission_timeout = 50
+
+		timeout_effect = {
+			add_stability = -0.05
+			army_experience = -5
+		}
+
+		complete_effect = {
+			army_experience = 10
+		}
+
+
+	}
+	KFC_bribes2 = {
+
+		icon = generic_ignite_civil_war
+		
+        available = {
+            original_tag = KFC
+		}
+		visible = {
+			original_tag = KFC
+		}
+		
+		ai_will_do = {
+			factor = 50
+		}
+		
+		fire_only_once = yes
+				
+		cost = 30
+		
+		is_good = no
+
+		complete_effect = {
+		   set_country_flag = KFC_General_Bought2
+		    if = {
+                limit = {
+                    has_completed_focus = KFC_state_beneath_his_feet
+                }
+			    remove_trait = {
+                    character = KFC_Brian_Wertzler
+                    slot = corps_commander
+                    trait = questioned_loyalty
+                }
+			    remove_trait = {
+                    character = KFC_Brian_Wertzler
+                    slot = corps_commander
+                    trait = politically_connected
+                }
+			    add_trait = {
+                   character = KFC_Brian_Wertzler
+                   slot = corps_commander
+                   trait = resistance_sympathies
+                }
+			}
+			if = {
+                limit = {
+                    has_completed_focus = KFC_a_state_untamed
+                }
+			    remove_trait = {
+                    character = KFC_Brian_Wertzler
+                    slot = corps_commander
+                    trait = questioned_loyalty
+                }
+			    add_trait = {
+                   character = KFC_Brian_Wertzler
+                   slot = corps_commander
+                   trait = loyalty_to_the_colonel
+                }
+			}
+		}
+	}
+	KFC_buying_generals3 = {
+
+		icon = generic_civil_support
+
+		available = {
+			has_country_flag = KFC_General_Bought3
+		}
+		visible = {
+			original_tag = KFC
+		}
+
+
+		is_good = no
+
+		days_mission_timeout = 50
+
+		timeout_effect = {
+			add_stability = -0.05
+			army_experience = -5
+		}
+
+		complete_effect = {
+			army_experience = 10
+		}
+
+
+	}
+	KFC_bribes3 = {
+
+		icon = generic_ignite_civil_war
+		
+        available = {
+            original_tag = KFC
+		}
+		visible = {
+			original_tag = KFC
+		}
+		
+		ai_will_do = {
+			factor = 50
+		}
+		
+		fire_only_once = yes
+				
+		cost = 30
+		
+		is_good = no
+
+		complete_effect = {
+		    set_country_flag = KFC_General_Bought3
+		    if = {
+                limit = {
+                    has_completed_focus = KFC_state_beneath_his_feet
+                }
+			    remove_trait = {
+                    character = KFC_Dwight_Harlan
+                    slot = corps_commander
+                    trait = questioned_loyalty
+                }
+			    remove_trait = {
+                    character = KFC_Dwight_Harlan
+                    slot = corps_commander
+                    trait = politically_connected
+                }
+			    add_trait = {
+                   character = KFC_Dwight_Harlan
+                   slot = corps_commander
+                   trait = resistance_sympathies
+                }
+			}
+			if = {
+                limit = {
+                    has_completed_focus = KFC_a_state_untamed
+                }
+			    remove_trait = {
+                    character = KFC_Dwight_Harlan
+                    slot = corps_commander
+                    trait = questioned_loyalty
+                }
+			    add_trait = {
+                   character = KFC_Dwight_Harlan
+                   slot = corps_commander
+                   trait = loyalty_to_the_colonel
+                }
+			}
+		}
+	}
+	KFC_buying_generals4 = {
+
+		icon = generic_civil_support
+
+		available = {
+			has_country_flag = KFC_General_Bought4
+		}
+		visible = {
+			original_tag = KFC
+		}
+
+
+		is_good = no
+
+		days_mission_timeout = 50
+
+		timeout_effect = {
+			add_stability = -0.05
+			army_experience = -5
+		}
+
+		complete_effect = {
+			army_experience = 10
+		}
+
+
+	}
+	KFC_bribes4 = {
+
+		icon = generic_ignite_civil_war
+		
+        available = {
+            original_tag = KFC
+		}
+		visible = {
+			original_tag = KFC
+		}
+		
+		ai_will_do = {
+			factor = 50
+		}
+		
+		fire_only_once = yes
+				
+		cost = 30
+		
+		is_good = no
+
+		complete_effect = {
+		    set_country_flag = KFC_General_Bought4
+		    if = {
+                limit = {
+                    has_completed_focus = KFC_state_beneath_his_feet
+                }
+			    remove_trait = {
+                    character = KFC_Jesse_Withers
+                    slot = corps_commander
+                    trait = questioned_loyalty
+                }
+			    remove_trait = {
+                    character = KFC_Jesse_Withers
+                    slot = corps_commander
+                    trait = politically_connected
+                }
+			    add_trait = {
+                   character = KFC_Jesse_Withers
+                   slot = corps_commander
+                   trait = resistance_sympathies
+                }
+			}
+			if = {
+                limit = {
+                    has_completed_focus = KFC_a_state_untamed
+                }
+			    remove_trait = {
+                    character = KFC_Jesse_Withers
+                    slot = corps_commander
+                    trait = questioned_loyalty
+                }
+			    add_trait = {
+                   character = KFC_Jesse_Withers
+                   slot = corps_commander
+                   trait = loyalty_to_the_colonel
+                }
+			}
+		}
+	}
+	KFC_buying_generals5 = {
+
+		icon = generic_civil_support
+
+		available = {
+			has_country_flag = KFC_General_Bought5
+		}
+		visible = {
+			original_tag = KFC
+		}
+
+
+		is_good = no
+
+		days_mission_timeout = 50
+
+		timeout_effect = {
+			add_stability = -0.05
+			army_experience = -5
+		}
+
+		complete_effect = {
+			army_experience = 10
+		}
+
+
+	}
+	KFC_bribes5 = {
+
+		icon = generic_ignite_civil_war
+		
+        available = {
+            original_tag = KFC
+		}
+		visible = {
+			original_tag = KFC
+		}
+		
+		ai_will_do = {
+			factor = 50
+		}
+		
+		fire_only_once = yes
+				
+		cost = 30
+		
+		is_good = no
+
+		complete_effect = {
+		    set_country_flag = KFC_General_Bought5
+		   if = {
+                limit = {
+                    has_completed_focus = KFC_state_beneath_his_feet
+                }
+			    remove_trait = {
+                    character = KFC_Charles_Walker
+                    slot = corps_commander
+                    trait = questioned_loyalty
+                }
+			    remove_trait = {
+                    character = KFC_Charles_Walker
+                    slot = corps_commander
+                    trait = politically_connected
+                }
+			    add_trait = {
+                   character = KFC_Charles_Walker
+                   slot = corps_commander
+                   trait = resistance_sympathies
+                }
+			}
+			if = {
+                limit = {
+                    has_completed_focus = KFC_a_state_untamed
+                }
+			    remove_trait = {
+                    character = KFC_Charles_Walker
+                    slot = corps_commander
+                    trait = questioned_loyalty
+                }
+			    add_trait = {
+                   character = KFC_Charles_Walker
+                   slot = corps_commander
+                   trait = loyalty_to_the_colonel
+                }
+			}
+		}
+	}
+	KFC_buying_generals6 = {
+
+		icon = generic_civil_support
+
+		available = {
+			has_country_flag = KFC_General_Bought6
+		}
+		visible = {
+			original_tag = KFC
+		}
+
+
+		is_good = no
+
+		days_mission_timeout = 50
+
+		timeout_effect = {
+			add_stability = -0.05
+			army_experience = -5
+		}
+
+		complete_effect = {
+			army_experience = 10
+		}
+
+
+	}
+	KFC_bribes6 = {
+
+		icon = generic_ignite_civil_war
+		
+        available = {
+            original_tag = KFC
+		}
+		visible = {
+			original_tag = KFC
+		}
+		
+		ai_will_do = {
+			factor = 50
+		}
+		
+		fire_only_once = yes
+				
+		cost = 30
+		
+		is_good = no
+
+		complete_effect = {
+		    set_country_flag = KFC_General_Bought6
+			if = {
+                limit = {
+                    has_completed_focus = KFC_state_beneath_his_feet
+                }
+			    remove_trait = {
+                    character = KFC_William_Ewing
+                    slot = corps_commander
+                    trait = questioned_loyalty
+                }
+			    remove_trait = {
+                    character = KFC_William_Ewing
+                    slot = corps_commander
+                    trait = politically_connected
+                }
+			    add_trait = {
+                   character = KFC_William_Ewing
+                   slot = corps_commander
+                   trait = resistance_sympathies
+                }
+			}
+			if = {
+                limit = {
+                    has_completed_focus = KFC_a_state_untamed
+                }
+			    remove_trait = {
+                    character = KFC_William_Ewing
+                    slot = corps_commander
+                    trait = questioned_loyalty
+                }
+			    add_trait = {
+                   character = KFC_William_Ewing
+                   slot = corps_commander
+                   trait = loyalty_to_the_colonel
+                }
+			}
+		}
+	}
+}
