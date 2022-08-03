@@ -383,7 +383,7 @@ focus_tree = {
 	focus = {
 		id = GKJ_begin_buildup
 		icon = GFX_goal_GKJ_buildup
-		cost = 2.00
+		cost = 5.00
 		x = 0
 		y = 2
 		relative_position_id = GKJ_my_time_has_just_begun
@@ -394,7 +394,7 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_timed_idea = { idea = GKJ_buildup days = 120 }
 		}
 
 	}
@@ -402,7 +402,7 @@ focus_tree = {
 	focus = {
 		id = GKJ_army_focus
 		icon = GFX_goal_GKJ_army
-		cost = 2.00
+		cost = 3.00
 		x = 4
 		y = 1
 		relative_position_id = GKJ_begin_buildup
@@ -413,7 +413,10 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			army_experience = 10
+			add_ideas = {
+				limited_conscription
+			}
 		}
 
 	}
@@ -421,7 +424,7 @@ focus_tree = {
 	focus = {
 		id = GKJ_cornerstone_of_the_war
 		icon = GFX_goal_GKJ_cornerstone
-		cost = 2.00
+		cost = 5.00
 		x = -1
 		y = 1
 		relative_position_id = GKJ_begin_buildup
@@ -432,7 +435,9 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_ideas = {
+				war_economy
+			}
 		}
 
 	}
@@ -440,7 +445,7 @@ focus_tree = {
 	focus = {
 		id = GKJ_expand_shipyards
 		icon = GFX_goal_GKJ_dockyards
-		cost = 2.00
+		cost = 5.00
 		x = 1
 		y = 1
 		relative_position_id = GKJ_begin_buildup
@@ -450,8 +455,43 @@ focus_tree = {
 		ai_will_do = { 
 			factor = 300
 		}
+		available = {
+			owns_state = 580
+			owns_state = 582
+		}	
 		completion_reward = {
-			
+			580 = {
+				limit = {
+					free_building_slots = {
+						building = dockyard
+						size > 1
+						include_locked = yes
+					}
+					is_core_of = ROOT
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+			}
+			582 = {
+				limit = {
+					free_building_slots = {
+						building = dockyard
+						size > 1
+						include_locked = yes
+					}
+					is_core_of = ROOT
+				}
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = dockyard
+					level = 3
+					instant_build = yes
+				}
+			}
 		}
 
 	}
@@ -470,7 +510,13 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			army_experience = 25
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.5
+				uses = 2
+				category = land_doctrine
+			}
 		}
 
 	}
@@ -508,7 +554,9 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_ideas = {
+				GKJ_zeal_idea
+			}
 		}
 
 	}
@@ -516,7 +564,7 @@ focus_tree = {
 	focus = {
 		id = GKJ_miami_munt
 		icon = GFX_goal_GKJ_miami_munt
-		cost = 2.00
+		cost = 3.00
 		x = -1
 		y = 2
 		relative_position_id = GKJ_expand_shipyards
@@ -529,8 +577,26 @@ focus_tree = {
 		ai_will_do = { 
 			factor = 300
 		}
+		available = {
+			owns_state = 580
+		}
 		completion_reward = {
-			
+			580 = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 1
+						include_locked = yes
+					}
+					is_core_of = ROOT
+				}
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = arms_factory
+					level = 3
+					instant_build = yes
+				}
+			}
 		}
 
 	}
@@ -549,7 +615,13 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			air_experience = 50
+			add_doctrine_cost_reduction = {
+				name = air_doc_bonus
+				cost_reduction = 0.5
+				uses = 2
+				category = air_doctrine
+			}	
 		}
 
 	}
@@ -568,7 +640,13 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			navy_experience = 50
+			add_doctrine_cost_reduction = {
+				name = naval_doc_bonus
+				cost_reduction = 0.5
+				uses = 2
+				category = naval_doctrine
+			}
 		}
 
 	}
@@ -590,7 +668,9 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_ideas = {
+				GKJ_templar_school_idea
+			}
 		}
 
 	}
@@ -613,7 +693,9 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_ideas = {
+				GKJ_eng_idea
+			}
 		}
 
 	}
@@ -636,7 +718,9 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_ideas = {
+				GKJ_home_idea
+			}
 		}
 
 	}
@@ -659,7 +743,9 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_ideas = {
+				GKJ_def_idea
+			}
 		}
 
 	}
@@ -682,7 +768,9 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_ideas = {
+				GKJ_off_idea
+			}
 		}
 
 	}
@@ -705,7 +793,9 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_ideas = {
+				GKJ_brk_idea
+			}
 		}
 
 	}
@@ -719,6 +809,9 @@ focus_tree = {
 		relative_position_id = GKJ_miami_munt
 		prerequisite = {
 			focus = GKJ_miami_munt
+		}
+		prerequisite = {
+			focus = GKJ_de_maimification
 		}
 		prerequisite = {
 			focus = GKJ_conversion
@@ -1568,7 +1661,12 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_political_power = 150
+			add_stability = 0.10
+			add_popularity = {
+			    ideology = autocratic
+			    popularity = 0.10
+			}
 		}
 
 	}
@@ -1644,8 +1742,35 @@ focus_tree = {
 		ai_will_do = { 
 			factor = 300
 		}
+		available = {
+			owns_state = 580
+		}
 		completion_reward = {
-			
+			news_event = { id = News_Events.101 hours = 4 }
+			580 = {
+				add_manpower = -12563
+				damage_building = {
+					type = infrastructure
+					damage = 10
+				}
+				damage_building = {
+					type = industrial_complex
+					damage = 10
+				}
+				damage_building = {
+					type = arms_factory
+					damage = 10
+				}
+				remove_building = {
+					type = arms_factory
+					level = 2
+				}
+				remove_building = {
+					type = industrial_complex
+					level = 3
+				}
+				add_extra_state_shared_building_slots = -3
+			}
 		}
 
 	}
