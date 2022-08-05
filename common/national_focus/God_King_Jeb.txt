@@ -394,7 +394,7 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			add_timed_idea = { idea = GKJ_buildup days = 120 }
+			add_timed_idea = { idea = GKJ_buildup days = 200 }
 		}
 
 	}
@@ -807,6 +807,11 @@ focus_tree = {
 		x = 0
 		y = 2
 		relative_position_id = GKJ_miami_munt
+		available = {
+			NOT = {
+				has_idea = GKJ_buildup
+			}
+		}
 		prerequisite = {
 			focus = GKJ_miami_munt
 		}
@@ -830,7 +835,8 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_war_support = 0.15
+			add_political_power = 100
 		}
 
 	}
@@ -842,6 +848,11 @@ focus_tree = {
 		x = 2
 		y = 1
 		relative_position_id = GKJ_final_steps
+		available = {
+			NOT= {
+				has_global_flag = Dixie_Collapse_Global
+			}
+		}
 		mutually_exclusive = {  focus = GKJ_intervene  }
 		prerequisite = {
 			focus = GKJ_final_steps
@@ -849,8 +860,12 @@ focus_tree = {
 		ai_will_do = { 
 			factor = 300
 		}
+		will_lead_to_war_with = CSA
 		completion_reward = {
-			
+			declare_war_on = {
+			    target = CSA
+			    type = annex_everything
+			}
 		}
 
 	}
@@ -862,6 +877,9 @@ focus_tree = {
 		x = -2
 		y = 1
 		relative_position_id = GKJ_final_steps
+		available = {
+			has_global_flag = Dixie_Collapse_Global
+		}
 		mutually_exclusive = {  focus = GKJ_false_profit  }
 		prerequisite = {
 			focus = GKJ_final_steps
@@ -869,8 +887,17 @@ focus_tree = {
 		ai_will_do = { 
 			factor = 300
 		}
-		completion_reward = {
-			
+		will_lead_to_war_with = CSA
+		will_lead_to_war_with = CSB
+		completion_reward = { 
+			declare_war_on = {
+			    target = CSA
+			    type = annex_everything
+			}
+			declare_war_on = {
+			    target = CSB
+			    type = annex_everything
+			}
 		}
 
 	}
@@ -882,6 +909,9 @@ focus_tree = {
 		x = -2
 		y = 1
 		relative_position_id = GKJ_false_profit
+		available = {
+			owns_state = 10
+		}
 		prerequisite = {
 			focus = GKJ_false_profit
 			focus = GKJ_intervene
@@ -890,7 +920,10 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			country_event = {
+				id = gkj.9
+				hours = 4
+			}
 		}
 
 	}
