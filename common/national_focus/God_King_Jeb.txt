@@ -835,6 +835,7 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
+			add_research_slot = 1
 			add_war_support = 0.15
 			add_political_power = 100
 		}
@@ -844,7 +845,7 @@ focus_tree = {
 	focus = {
 		id = GKJ_false_profit
 		icon = GFX_goal_CSA_kanye_purge
-		cost = 4.00
+		cost = 5.00
 		x = 2
 		y = 1
 		relative_position_id = GKJ_final_steps
@@ -951,10 +952,15 @@ focus_tree = {
 	focus = {
 		id = GKJ_all_together_or_all_alone
 		icon = GFX_goal_GKJ_all_together
-		cost = 2.00
+		cost = 3.00
 		x = 1
 		y = 1
 		relative_position_id = GKJ_false_profit
+		available = {
+			CSA = {
+				country_exists = NO
+			}
+		}
 		prerequisite = {
 			focus = GKJ_false_profit
 			focus = GKJ_intervene
@@ -963,7 +969,13 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			every_state = {
+				limit = {
+					is_core_of = CSA
+					is_owned_by = CSA
+				}
+				add_core_of = GKJ
+			}
 		}
 
 	}
@@ -983,7 +995,11 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_war_support = 0.15
+			add_popularity = {
+			    ideology = autocratic
+			    popularity = 0.10
+			}
 		}
 
 	}
@@ -991,10 +1007,15 @@ focus_tree = {
 	focus = {
 		id = GKJ_home_of_washington
 		icon = GFX_goal_Gods_Virginia
-		cost = 2.00
+		cost = 5.00
 		x = 2
 		y = 1
 		relative_position_id = GKJ_all_together_or_all_alone
+		available = {
+			NOT = {
+				country_exists = CSA
+			}
+		}
 		prerequisite = {
 			focus = GKJ_all_together_or_all_alone
 		}
@@ -1004,8 +1025,17 @@ focus_tree = {
 		ai_will_do = { 
 			factor = 300
 		}
+		will_lead_to_war_with = VIR
+		will_lead_to_war_with = RVR
 		completion_reward = {
-			
+			declare_war_on = {
+			    target = VIR
+			    type = annex_everything
+			}
+			declare_war_on = {
+			    target = RVR
+			    type = annex_everything
+			}
 		}
 
 	}
@@ -1013,10 +1043,15 @@ focus_tree = {
 	focus = {
 		id = GKJ_kentucky
 		icon = GFX_goal_Kill_Kentucky
-		cost = 2.00
+		cost = 5.00
 		x = -3
 		y = 2
 		relative_position_id = GKJ_all_together_or_all_alone
+		available = {
+			NOT = {
+				country_exists = CSA
+			}
+		}
 		prerequisite = {
 			focus = GKJ_all_together_or_all_alone
 		}
@@ -1027,7 +1062,11 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			will_lead_to_war_with = KFC
+			declare_war_on = {
+			    target = KFC
+			    type = annex_everything
+			}
 		}
 
 	}
@@ -1035,11 +1074,16 @@ focus_tree = {
 	focus = {
 		id = GKJ_brother
 		icon = GFX_goal_TEX_angel_bush
-		cost = 2.00
+		cost = 5.00
 		x = -2
 		y = 1
 		relative_position_id = GKJ_look_west
 		mutually_exclusive = {  focus = GKJ_revenge_for_george  }
+		available = {
+			TEX = {
+				is_ai = yes
+			}
+		}
 		prerequisite = {
 			focus = GKJ_look_west
 		}
@@ -1047,7 +1091,10 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_political_power = -150
+			GKJ = {
+				puppet = TEX
+			}
 		}
 
 	}
@@ -1055,7 +1102,7 @@ focus_tree = {
 	focus = {
 		id = GKJ_revenge_for_george
 		icon = GFX_focus_NPA_Intervene_in_Texas
-		cost = 2.00
+		cost = 5.00
 		x = 0
 		y = 1
 		relative_position_id = GKJ_look_west
@@ -1067,7 +1114,11 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			will_lead_to_war_with = TEX
+			declare_war_on = {
+			    target = TEX
+			    type = annex_everything
+			}
 		}
 
 	}
@@ -1079,6 +1130,14 @@ focus_tree = {
 		x = -1
 		y = 1
 		relative_position_id = GKJ_revenge_for_george
+		available = {
+			OR = {
+				TEX = { is_puppet = yes }
+				TEX = {
+					country_exists = NO 
+				}
+			}
+		}
 		prerequisite = {
 			focus = GKJ_revenge_for_george
 			focus = GKJ_brother
@@ -1095,18 +1154,30 @@ focus_tree = {
 	focus = {
 		id = GKJ_wv
 		icon = GFX_goal_GKJ_app
-		cost = 2.00
+		cost = 5.00
 		x = 0
 		y = 1
 		relative_position_id = GKJ_home_of_washington
+		available = {
+			RVR = {
+				country_exists = NO
+			}
+			VIR = {
+				country_exists = NO
+			}
+		}
 		prerequisite = {
 			focus = GKJ_home_of_washington
 		}
 		ai_will_do = { 
 			factor = 300
 		}
+		will_lead_to_war_with = NRA
 		completion_reward = {
-			
+			declare_war_on = {
+			    target = NRA
+			    type = annex_everything
+			}
 		}
 
 	}
@@ -1114,7 +1185,7 @@ focus_tree = {
 	focus = {
 		id = GKJ_we_take_no_sides
 		icon = GFX_goal_GKJ_our_own_way
-		cost = 2.00
+		cost = 3.00
 		x = -5
 		y = 2
 		relative_position_id = GKJ_wv
@@ -1131,7 +1202,9 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_research_slot = 1
+			add_stability = 0.10
+			create_faction = "Ordained American Front"
 		}
 
 	}
@@ -1526,7 +1599,7 @@ focus_tree = {
 		y = 3
 		relative_position_id = GKJ_the_chinese_puppet
 		prerequisite = {
-			focus = GKJ_the_chinese_puppet
+			focus = GKJ_temple
 		}
 		prerequisite = {
 			focus = GKJ_uproot_chinese_control
@@ -1546,10 +1619,15 @@ focus_tree = {
 	focus = {
 		id = GKJ_expand_mining
 		icon = GFX_goal_Icon_Expand_the_Coal_Mines_MAA
-		cost = 2.00
+		cost = 3.00
 		x = 1
 		y = 1
 		relative_position_id = GKJ_wv
+		available = {
+			NPA = {
+				country_exists = NO
+			}
+		}
 		prerequisite = {
 			focus = GKJ_wv
 		}
@@ -1557,7 +1635,30 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			372 = {
+				add_resource = {
+					type = aluminium
+					amount = 20
+				}
+			}
+			372 = {
+				add_resource = {
+					type = tungsten
+					amount = 20
+				}
+			}
+			372 = {
+				add_resource = {
+					type = steel
+					amount = 25
+				}
+			}
+			372 = {
+				add_resource = {
+					type = chromium
+					amount = 5
+				}
+			}
 		}
 
 	}
@@ -1565,7 +1666,7 @@ focus_tree = {
 	focus = {
 		id = GKJ_rely_on_texas_oil
 		icon = GFX_goal_texas_buisiness
-		cost = 2.00
+		cost = 3.00
 		x = 1
 		y = 1
 		relative_position_id = GKJ_fate_of_texas
@@ -1577,7 +1678,33 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_ideas = {
+				GKJ_texas_oil_idea
+			}
+			314 = {
+				add_resource = {
+					type = oil
+					amount = 5
+				}
+			}
+			57 = {
+				add_resource = {
+					type = oil
+					amount = 10
+				}
+			}
+			43 = {
+				add_resource = {
+					type = oil
+					amount = 10
+				}
+			}
+			50 = {
+				add_resource = {
+					type = oil
+					amount = 15
+				}
+			}
 		}
 
 	}
@@ -1585,7 +1712,7 @@ focus_tree = {
 	focus = {
 		id = GKJ_diversify_oil_usage
 		icon = GFX_goal_Generic_Oil_Concern
-		cost = 2.00
+		cost = 3.00
 		x = -1
 		y = 1
 		relative_position_id = GKJ_fate_of_texas
@@ -1597,7 +1724,27 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_ideas = {
+				GKJ_diversified_oil
+			}
+			324 = {
+				add_resource = {
+					type = oil
+					amount = 15
+				}
+			}
+			611 = {
+				add_resource = {
+					type = oil
+					amount = 5
+				}
+			}
+			581 = {
+				add_resource = {
+					type = oil
+					amount = 10
+				}
+			}
 		}
 
 	}
@@ -1738,8 +1885,12 @@ focus_tree = {
 		ai_will_do = { 
 			factor = 300
 		}
+		will_lead_to_war_with = CSA
 		completion_reward = {
-			
+			country_event = {
+				id = gkj.11
+				hours = 4
+			}
 		}
 
 	}
@@ -1991,7 +2142,8 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_political_power = -200
+			add_stability = -0.10
 		}
 
 	}
@@ -2012,7 +2164,7 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_political_power = 150
 		}
 
 	}
@@ -2040,7 +2192,8 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_political_power = -200
+			add_stability = -0.10
 		}
 
 	}
@@ -2117,6 +2270,47 @@ focus_tree = {
 		}
 		completion_reward = {
 			#greg locke, timothy phelps, shea
+		}
+
+	}
+	
+	focus = {
+		id = GKJ_root_out_corruption
+		icon = GFX_goal_GKJ_corruption
+		cost = 2.00
+		x = 3
+		y = 1
+		relative_position_id = GKJ_fate_of_texas
+		prerequisite = {
+			focus = GKJ_fate_of_texas
+		}
+		prerequisite = {
+			focus = GKJ_recruit_southern_preachers
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
+		}
+
+	}
+	
+	focus = {
+		id = GKJ_temple
+		icon = GFX_goal_GKJ_temple_az
+		cost = 2.00
+		x = 0
+		y = 1
+		relative_position_id = GKJ_the_chinese_puppet
+		prerequisite = {
+			focus = GKJ_the_chinese_puppet
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		completion_reward = {
+			
 		}
 
 	}
