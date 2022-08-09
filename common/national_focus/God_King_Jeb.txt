@@ -1212,10 +1212,15 @@ focus_tree = {
 	focus = {
 		id = GKJ_focus_on_trump
 		icon = GFX_goal_drumpf
-		cost = 2.00
+		cost = 3.00
 		x = -4
 		y = 1
 		relative_position_id = GKJ_we_take_no_sides
+		available = {
+			NOT = {
+				has_idea = GKJ_focus_on_biden_idea
+			}
+		}
 		prerequisite = {
 			focus = GKJ_we_take_no_sides
 		}
@@ -1223,7 +1228,7 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_timed_idea = { idea = GKJ_focus_on_trump_idea days = 365 }
 		}
 
 	}
@@ -1231,10 +1236,15 @@ focus_tree = {
 	focus = {
 		id = GKJ_focus_on_biden
 		icon = GFX_goal_Joe_Biden_Admin
-		cost = 2.00
+		cost = 3.00
 		x = 4
 		y = 1
 		relative_position_id = GKJ_we_take_no_sides
+		available = {
+			NOT = {
+				has_idea = GKJ_focus_on_trump_idea
+			}
+		}
 		prerequisite = {
 			focus = GKJ_we_take_no_sides
 		}
@@ -1242,7 +1252,7 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_timed_idea = { idea = GKJ_focus_on_biden_idea days = 365 }
 		}
 
 	}
@@ -1250,18 +1260,27 @@ focus_tree = {
 	focus = {
 		id = GKJ_ohio
 		icon = GFX_goal_GKJ_ohio
-		cost = 2.00
+		cost = 5.00
 		x = 0
 		y = 1
 		relative_position_id = GKJ_focus_on_trump
+		available = {
+			GKJ = {
+				has_war = NO
+			}
+		}
 		prerequisite = {
 			focus = GKJ_focus_on_trump
 		}
 		ai_will_do = { 
 			factor = 300
 		}
+		will_lead_to_war_with = AFS
 		completion_reward = {
-			
+			declare_war_on = {
+			    target = AFS
+			    type = annex_everything
+			}
 		}
 
 	}
@@ -1269,18 +1288,27 @@ focus_tree = {
 	focus = {
 		id = GKJ_godless_libertarians
 		icon = GFX_goal_GKJ_godless_ancap
-		cost = 2.00
+		cost = 5.00
 		x = 2
 		y = 1
 		relative_position_id = GKJ_focus_on_trump
+		available = {
+			GKJ = {
+				has_war = NO
+			}
+		}
 		prerequisite = {
 			focus = GKJ_focus_on_trump
 		}
 		ai_will_do = { 
 			factor = 300
 		}
+		will_lead_to_war_with = GLA
 		completion_reward = {
-			
+			declare_war_on = {
+			    target = GLA
+			    type = annex_everything
+			}
 		}
 
 	}
@@ -1288,18 +1316,27 @@ focus_tree = {
 	focus = {
 		id = GKJ_backstab_brutus
 		icon = GFX_goal_GKJ_backstab
-		cost = 2.00
+		cost = 5.00
 		x = -2
 		y = 1
 		relative_position_id = GKJ_focus_on_trump
+		available = {
+			GKJ = {
+				has_war = NO
+			}
+		}
 		prerequisite = {
 			focus = GKJ_focus_on_trump
 		}
 		ai_will_do = { 
 			factor = 300
 		}
+		will_lead_to_war_with = NPA
 		completion_reward = {
-			
+			declare_war_on = {
+			    target = NPA
+			    type = annex_everything
+			}
 		}
 
 	}
@@ -1307,10 +1344,24 @@ focus_tree = {
 	focus = {
 		id = GKJ_march_to_denver
 		icon = GFX_goal_GKJ_march_to_denver
-		cost = 2.00
+		cost = 5.00
 		x = 0
 		y = 2
 		relative_position_id = GKJ_ohio
+		available = {
+			NPA = {
+				country_exists = NO
+			}
+			AFS = {
+				country_exists = NO
+			}
+			GLA = {
+				country_exists = NO
+			}
+			GKJ = {
+				has_war = NO
+			}
+		}
 		prerequisite = {
 			focus = GKJ_ohio
 		}
@@ -1323,8 +1374,12 @@ focus_tree = {
 		ai_will_do = { 
 			factor = 300
 		}
+		will_lead_to_war_with = USA
 		completion_reward = {
-			
+			declare_war_on = {
+			    target = USA
+			    type = annex_everything
+			}
 		}
 
 	}
@@ -1332,10 +1387,16 @@ focus_tree = {
 	focus = {
 		id = GKJ_prepare_inf
 		icon = GFX_goal_Road_Construction
-		cost = 2.00
+		cost = 3.00
 		x = -2
 		y = 1
 		relative_position_id = GKJ_focus_on_biden
+		available = {
+			owns_state = 188
+			owns_state = 169
+			owns_state = 347
+			owns_state = 273
+		}
 		prerequisite = {
 			focus = GKJ_focus_on_biden
 		}
@@ -1343,7 +1404,37 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+		build_railway = {
+			path = { 9222 1498 9184 9140 1813 1237 3829 6219 5029 }
+		}
+			188 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 3
+					instant_build = yes
+				}
+			}
+			169 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 3
+					instant_build = yes
+				}
+			}
+			347 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 3
+					instant_build = yes
+				}
+			}
+			273 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 3
+					instant_build = yes
+				}
+			}
 		}
 
 	}
@@ -1351,7 +1442,7 @@ focus_tree = {
 	focus = {
 		id = GKJ_prepare_air
 		icon = GFX_goal_FLO_aircraft_production
-		cost = 2.00
+		cost = 4.00
 		x = 0
 		y = 1
 		relative_position_id = GKJ_focus_on_biden
@@ -1361,8 +1452,24 @@ focus_tree = {
 		ai_will_do = { 
 			factor = 300
 		}
+		will_lead_to_war_with = TIM
 		completion_reward = {
-			
+			air_experience = 25
+			188 = {
+				limit = {
+					free_building_slots = {
+						building = air_base 
+						size > 1
+						include_locked = yes
+					}
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = air_base 
+					level = 5
+					instant_build = yes
+				}
+			}
 		}
 
 	}
@@ -1370,18 +1477,27 @@ focus_tree = {
 	focus = {
 		id = GKJ_invade_the_compound
 		icon = GFX_goal_GKJ_tim_pool
-		cost = 2.00
+		cost = 5.00
 		x = 2
 		y = 1
 		relative_position_id = GKJ_focus_on_biden
+		available = {
+			GKJ = {
+				has_war = NO
+			}
+		}
 		prerequisite = {
 			focus = GKJ_focus_on_biden
 		}
 		ai_will_do = { 
 			factor = 300
 		}
+		will_lead_to_war_with = TIM
 		completion_reward = {
-			
+			declare_war_on = {
+			    target = TIM
+			    type = annex_everything
+			}
 		}
 
 	}
@@ -1389,10 +1505,18 @@ focus_tree = {
 	focus = {
 		id = GKJ_march_to_dc
 		icon = GFX_goal_GKJ_invade_dc
-		cost = 2.00
+		cost = 5.00
 		x = 0
 		y = 2
 		relative_position_id = GKJ_prepare_air
+		available = {
+			TIM = {
+				country_exists = NO
+			}
+			GKJ = {
+				has_war = NO
+			}
+		}
 		prerequisite = {
 			focus = GKJ_prepare_air
 		}
@@ -1405,8 +1529,12 @@ focus_tree = {
 		ai_will_do = { 
 			factor = 300
 		}
+		will_lead_to_war_with = FRA
 		completion_reward = {
-			
+			declare_war_on = {
+			    target = FRA
+			    type = annex_everything
+			}
 		}
 
 	}
@@ -1414,10 +1542,18 @@ focus_tree = {
 	focus = {
 		id = GKJ_nazis
 		icon = GFX_goal_CSA_God_hates_nazis
-		cost = 2.00
+		cost = 5.00
 		x = -4
 		y = 1
 		relative_position_id = GKJ_march_to_dc
+		available = {
+			USA = {
+				country_exists = NO
+			}
+			FRA = {
+				country_exists = NO
+			}
+		}
 		prerequisite = {
 			focus = GKJ_march_to_dc
 		}
@@ -1427,8 +1563,12 @@ focus_tree = {
 		ai_will_do = { 
 			factor = 300
 		}
+		will_lead_to_war_with = HOP
 		completion_reward = {
-			
+			declare_war_on = {
+			    target = HOP
+			    type = annex_everything
+			}
 		}
 
 	}
@@ -1436,18 +1576,27 @@ focus_tree = {
 	focus = {
 		id = GKJ_misguided_polygamists
 		icon = GFX_goal_UTA_wrath_of_god
-		cost = 2.00
+		cost = 5.00
 		x = 0
 		y = 1
 		relative_position_id = GKJ_nazis
+		available = {
+			HOP = {
+				country_exists = NO
+			}
+		}
 		prerequisite = {
 			focus = GKJ_nazis
 		}
 		ai_will_do = { 
 			factor = 300
 		}
+		will_lead_to_war_with = UTA
 		completion_reward = {
-			
+			declare_war_on = {
+			    target = UTA
+			    type = annex_everything
+			}
 		}
 
 	}
@@ -1455,10 +1604,18 @@ focus_tree = {
 	focus = {
 		id = GKJ_the_chinese_puppet
 		icon = GFX_goal_Chairman_Sanders
-		cost = 2.00
+		cost = 5.00
 		x = 0
 		y = 1
 		relative_position_id = GKJ_misguided_polygamists
+		available = {
+			UTA = { 
+				country_exists = NO
+			}
+			CAS = { 
+				country_exists = NO
+			}
+		}
 		prerequisite = {
 			focus = GKJ_misguided_polygamists
 		}
@@ -1471,8 +1628,12 @@ focus_tree = {
 		ai_will_do = { 
 			factor = 300
 		}
+		will_lead_to_war_with = PRA
 		completion_reward = {
-			
+			declare_war_on = {
+			    target = PRA
+			    type = annex_everything
+			}
 		}
 
 	}
@@ -1484,6 +1645,11 @@ focus_tree = {
 		x = 2
 		y = 1
 		relative_position_id = GKJ_nazis
+		available = {
+			LIB = {
+				is_ai = yes
+			}
+		}
 		prerequisite = {
 			focus = GKJ_nazis
 		}
@@ -1491,7 +1657,6 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
 		}
 
 	}
@@ -1499,18 +1664,27 @@ focus_tree = {
 	focus = {
 		id = GKJ_cascadia
 		icon = GFX_focus_MON_Intervene_In_Cascadia
-		cost = 2.00
+		cost = 5.00
 		x = -2
 		y = 1
 		relative_position_id = GKJ_nazis
+		available = {
+			HOP = {
+				country_exists = NO
+			}
+		}
 		prerequisite = {
 			focus = GKJ_nazis
 		}
 		ai_will_do = { 
 			factor = 300
 		}
+		will_lead_to_war_with = CAS
 		completion_reward = {
-			
+			declare_war_on = {
+			    target = CAS
+			    type = annex_everything
+			}
 		}
 
 	}
@@ -1518,7 +1692,7 @@ focus_tree = {
 	focus = {
 		id = GKJ_the_scraps
 		icon = GFX_goal_Icon_Divine_Intervention_in_America_MAA
-		cost = 2.00
+		cost = 3.00
 		x = 0
 		y = 2
 		relative_position_id = GKJ_we_take_no_sides
@@ -1529,7 +1703,9 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_ideas = {
+				GKJ_the_scraps_idea
+			}
 		}
 
 	}
@@ -1594,10 +1770,24 @@ focus_tree = {
 	focus = {
 		id = GKJ_a_ordained_america
 		icon = GFX_goal_Battle_for_the_Soul_of_the_Nation
-		cost = 2.00
+		cost = 5.00
 		x = 0
 		y = 3
 		relative_position_id = GKJ_the_chinese_puppet
+		available = {
+			all_state = {	
+				OR = {
+					NOT = {has_state_flag = part_of_america}
+					is_owned_by = ROOT
+					owner = { is_ally_with = ROOT }
+					owner = { tag = AFR }
+					AND = {
+						ROOT = {original_tag = HOP}
+						owner = { tag = KKK }
+					}
+				}		
+			}
+		}
 		prerequisite = {
 			focus = GKJ_temple
 		}
@@ -1619,7 +1809,7 @@ focus_tree = {
 	focus = {
 		id = GKJ_expand_mining
 		icon = GFX_goal_Icon_Expand_the_Coal_Mines_MAA
-		cost = 3.00
+		cost = 47.00
 		x = 1
 		y = 1
 		relative_position_id = GKJ_wv
@@ -1898,10 +2088,15 @@ focus_tree = {
 	focus = {
 		id = GKJ_legacy_of_waco
 		icon = GFX_goal_GKJ_waco
-		cost = 2.00
+		cost = 3.00
 		x = 0
 		y = 1
 		relative_position_id = GKJ_expand_mining
+		available = {
+			GKJ = {
+				owns_state = 80
+			}
+		}
 		prerequisite = {
 			focus = GKJ_expand_mining
 		}
@@ -1909,7 +2104,10 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			country_event = {
+				id = gkj.12
+				hours = 4
+			}
 		}
 
 	}
@@ -1917,10 +2115,17 @@ focus_tree = {
 	focus = {
 		id = GKJ_absorb_cia
 		icon = GFX_goal_GKJ_cia
-		cost = 2.00
+		cost = 3.00
 		x = 2
 		y = 1
 		relative_position_id = GKJ_march_to_dc
+		available = { 
+			has_intelligence_agency = yes
+			owns_state = 188
+			FRA = {
+				country_exists = NO
+			}
+		}
 		prerequisite = {
 			focus = GKJ_march_to_dc
 		}
@@ -1928,7 +2133,9 @@ focus_tree = {
 			factor = 300
 		}
 		completion_reward = {
-			
+			add_ideas = {
+				GKJ_cia
+			}
 		}
 
 	}
@@ -2278,7 +2485,7 @@ focus_tree = {
 		id = GKJ_root_out_corruption
 		icon = GFX_goal_GKJ_corruption
 		cost = 2.00
-		x = 3
+		x = 6
 		y = 1
 		relative_position_id = GKJ_fate_of_texas
 		prerequisite = {
