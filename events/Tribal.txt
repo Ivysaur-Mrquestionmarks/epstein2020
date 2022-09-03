@@ -176,7 +176,7 @@ country_event = {
 	option = {
 		name = tribal.3.a
 		trigger = {
-			has_completed_focus = HOP_The_Loyalist
+			has_country_flag = hop_invictus_chosen_as_successor
 		}
 		retire_character = HOP_james_mason
 		HOP_augustus_sol_invictus = {
@@ -186,7 +186,7 @@ country_event = {
 	}
 	option = {
 		trigger = {
-			has_completed_focus = HOP_The_Jester
+			has_country_flag = hop_miller_chosen_as_successor
 		}
 		name = tribal.3.b
 		retire_character = HOP_james_mason
@@ -194,6 +194,16 @@ country_event = {
 			promote_character = yes
 		}
 		set_cosmetic_tag = HOP_American_Reich
+	}
+	option = {
+		trigger = {
+			has_country_flag = hop_russell_chosen_as_successor
+		}
+		name = tribal.3.c
+		retire_character = HOP_james_mason
+		HOP_brandon_russell = {
+			promote_character = yes
+		}
 	}
 }
 #foreign volunteers
@@ -720,5 +730,99 @@ news_event = {
 	option = {
 		name = tribal.21.a
 
+	}
+}
+#Americans or Aryans?
+country_event = {
+	id = tribal.22
+	title = tribal.22.t
+	desc = tribal.22.d
+	picture = event_fascists_01
+	is_triggered_only = yes
+	fire_only_once = yes
+	#Americans First!
+	option = {
+		name = tribal.22.a
+		set_cosmetic_tag = HOP_american_empire
+	}
+	#Aryans First!
+	option = {
+		name = tribal.22.b
+		effect_tooltip = { set_cosmetic_tag = HOP_autocratic }
+	}
+}
+#Successorship
+country_event = {
+	id = tribal.23
+	title = tribal.23.t
+	desc = tribal.23.d
+	picture = event_fascists_01
+	is_triggered_only = yes
+	fire_only_once = yes
+	#Miller
+	option = {
+		name = tribal.23.a
+		set_country_flag = hop_miller_chosen_as_successor
+		HOP_paul_miller = { promote_leader = yes }
+		ai_chance = {
+			factor = 10
+			modifier = {
+      				factor = 0 
+      				OR = {
+					has_game_rule = {
+              					rule = HOP_path
+             					option = HOP_PATH_ROME
+          				}
+      				}
+   			}
+		}
+	}
+	#Russell
+	option = {
+		name = tribal.23.b
+		set_country_flag = hop_russell_chosen_as_successor
+		HOP_brandon_russell = { promote_leader = yes }
+		ai_chance = {
+			factor = 10
+			modifier = {
+      				factor = 0 
+      				OR = {
+					has_game_rule = {
+              					rule = HOP_path
+             					option = HOP_PATH_JOKER
+          				}
+      				}
+   			}
+		}
+		ai_chance = {
+			factor = 10
+			modifier = {
+      				factor = 0 
+      				OR = {
+					has_game_rule = {
+              					rule = HOP_path
+             					option = HOP_PATH_ROME
+          				}
+      				}
+   			}
+		}
+	}
+	#Invictus
+	option = {
+		name = tribal.23.c
+		set_country_flag = hop_invictus_chosen_as_successor
+		HOP_augustus_sol_invictus = { promote_leader = yes }
+		ai_chance = {
+			factor = 10
+			modifier = {
+      				factor = 0 
+      				OR = {
+					has_game_rule = {
+              					rule = HOP_path
+             					option = HOP_PATH_JOKER
+          				}
+      				}
+   			}
+		}
 	}
 }
