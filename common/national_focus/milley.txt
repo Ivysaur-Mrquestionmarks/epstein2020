@@ -1,0 +1,208 @@
+focus_tree = {
+	id = MIL
+	
+	country = {
+		factor = 0
+		
+		modifier = {
+			add = 10
+			tag = MIL
+		}
+	}
+		
+	default = no
+    continuous_focus_position = { x = 5000 y = 5000 }
+    
+	focus = {
+		id = MIL_Marshal_Milleys_Gamble
+		#prerequisite = { focus = coup_the_communists }
+		icon = GFX_goal_support_fascism
+
+		available = {
+		}
+
+		x = 0
+		y = 1
+		
+	   #relative_position_id = coup_the_communists
+				
+		cost = 5
+		
+        
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		completion_reward = {
+		    add_political_power = -50
+			add_command_power = 25
+		}
+	}
+	focus = {
+		id = MIL_Operation_Thomsonite
+		prerequisite = { focus = MIL_Marshal_Milleys_Gamble }
+		icon = GFX_goal_support_fascism
+		available = {
+		}
+
+		x = 0
+		y = 1
+		
+	   relative_position_id = MIL_Marshal_Milleys_Gamble
+				
+		cost = 2
+		
+        
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		completion_reward = {
+		    add_manpower = -10000
+			army_experience = 30
+		}
+	}
+	focus = {
+		id = MIL_Recall_Our_Agents
+		prerequisite = { focus = MIL_Operation_Thomsonite }
+		icon = GFX_goal_support_fascism
+		available = {
+		}
+
+		x = 0
+		y = 1
+		
+	   relative_position_id = MIL_Operation_Thomsonite
+				
+		cost = 2
+		
+        
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		completion_reward = {
+		    
+		}
+	}
+	focus = {
+		id = MIL_Fuel_the_Jets
+		prerequisite = { focus = MIL_Operation_Thomsonite }
+		icon = GFX_goal_support_fascism
+		available = {
+		}
+
+		x = -2
+		y = 1
+		
+	   relative_position_id = MIL_Operation_Thomsonite
+				
+		cost = 2
+		
+        
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		completion_reward = {
+		    add_equipment_to_stockpile = {
+                type = fighter_equipment
+                amount = 150
+                producer = MIL
+		    }
+			add_equipment_to_stockpile = {
+                type = transport_plane_equipment
+                amount = 20
+                producer = MIL
+		    }
+			add_fuel = -100
+		}
+	}
+	focus = {
+		id = MIL_Prep_our_Paratroopers
+		prerequisite = { focus = MIL_Operation_Thomsonite }
+		icon = GFX_goal_support_fascism
+		available = {
+		}
+
+		x = 2
+		y = 1
+		
+	   relative_position_id = MIL_Operation_Thomsonite
+				
+		cost = 2
+		
+        
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		completion_reward = {
+		    add_equipment_to_stockpile = {
+                type = infantry_equipment
+                amount = -1500
+                producer = MIL
+		    }
+		}
+	}
+	focus = {
+		id = MIL_Wings_Over_Minnesota
+		prerequisite = { focus = MIL_Fuel_the_Jets }
+		prerequisite = { focus = MIL_Prep_our_Paratroopers }
+		prerequisite = { focus = MIL_Recall_Our_Agents }
+		icon = GFX_goal_support_fascism
+		available = {
+		}
+
+		x = 2
+		y = 1
+		
+	   relative_position_id = MIL_Fuel_the_Jets
+				
+		cost = 2
+		
+        
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		completion_reward = {
+		    country_event = {
+				id = milley.1
+			}
+		}
+	}
+	focus = {
+		id = MIL_The_Marshal_Victorious
+		prerequisite = { focus = MIL_Wings_Over_Minnesota }
+		icon = GFX_goal_support_fascism
+		available = {
+		}
+
+		x = 0
+		y = 1
+		
+	   relative_position_id = MIL_Wings_Over_Minnesota
+				
+		cost = 2
+		
+        
+		
+		available_if_capitulated = no
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+
+		completion_reward = {
+		    add_political_power = 100
+			add_command_power = 15
+			army_experience = 15
+			remove_ideas = MIL_Enemy_Intel
+		}
+	}
+}     
