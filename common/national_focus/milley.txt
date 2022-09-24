@@ -16,12 +16,12 @@ focus_tree = {
 	focus = {
 		id = MIL_Marshal_Milleys_Gamble
 		#prerequisite = { focus = coup_the_communists }
-		icon = GFX_goal_support_fascism
+		icon = GFX_goal_Icon_Milleys_Gamble_MAA
 
 		available = {
 		}
 
-		x = 0
+		x = 8
 		y = 1
 		
 	   #relative_position_id = coup_the_communists
@@ -42,7 +42,7 @@ focus_tree = {
 	focus = {
 		id = MIL_Operation_Thomsonite
 		prerequisite = { focus = MIL_Marshal_Milleys_Gamble }
-		icon = GFX_goal_support_fascism
+		icon = GFX_goal_Icon_Operation_Thomsonite_MAA
 		available = {
 		}
 
@@ -51,7 +51,7 @@ focus_tree = {
 		
 	   relative_position_id = MIL_Marshal_Milleys_Gamble
 				
-		cost = 2
+		cost = 5
 		
         
 		
@@ -67,7 +67,7 @@ focus_tree = {
 	focus = {
 		id = MIL_Recall_Our_Agents
 		prerequisite = { focus = MIL_Operation_Thomsonite }
-		icon = GFX_goal_support_fascism
+		icon = GFX_goal_Icon_Recall_Our_Agents_MAA
 		available = {
 		}
 
@@ -85,13 +85,16 @@ focus_tree = {
 		continue_if_invalid = no
 
 		completion_reward = {
-		    
+		    add_timed_idea = {
+                idea = MIL_enemy_intel
+                days = 90
+            }
 		}
 	}
 	focus = {
 		id = MIL_Fuel_the_Jets
 		prerequisite = { focus = MIL_Operation_Thomsonite }
-		icon = GFX_goal_support_fascism
+		icon = GFX_goal_Icon_Fuel_the_Jets_MAA
 		available = {
 		}
 
@@ -125,7 +128,7 @@ focus_tree = {
 	focus = {
 		id = MIL_Prep_our_Paratroopers
 		prerequisite = { focus = MIL_Operation_Thomsonite }
-		icon = GFX_goal_support_fascism
+		icon = GFX_goal_Icon_Prep_Our_Paratroopers_MAA
 		available = {
 		}
 
@@ -155,7 +158,7 @@ focus_tree = {
 		prerequisite = { focus = MIL_Fuel_the_Jets }
 		prerequisite = { focus = MIL_Prep_our_Paratroopers }
 		prerequisite = { focus = MIL_Recall_Our_Agents }
-		icon = GFX_goal_support_fascism
+		icon = GFX_goal_Icon_Wings_Over_Minnesota_MAA
 		available = {
 		}
 
@@ -181,8 +184,12 @@ focus_tree = {
 	focus = {
 		id = MIL_The_Marshal_Victorious
 		prerequisite = { focus = MIL_Wings_Over_Minnesota }
-		icon = GFX_goal_support_fascism
+		icon = GFX_goal_Icon_The_Marshal_Victorious_MAA
 		available = {
+		    NOT = {
+			    country_exists = MIN
+				country_exists = MNS
+			}
 		}
 
 		x = 0
@@ -202,7 +209,17 @@ focus_tree = {
 		    add_political_power = 100
 			add_command_power = 15
 			army_experience = 15
-			remove_ideas = MIL_Enemy_Intel
+			remove_ideas = MIL_minneapolis_gamble
+			remove_trait = {
+                character = MIL_mark_milley
+                ideology = establishment
+                trait = MIL_gambler_from_massachusets
+            }
+			add_trait = {
+                character = MIL_mark_milley
+                ideology = establishment
+                trait = MIL_The_Marshal_of_Minnesota
+            }
 		}
 	}
 }     
