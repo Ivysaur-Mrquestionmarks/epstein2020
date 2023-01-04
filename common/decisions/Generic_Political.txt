@@ -1,358 +1,944 @@
-black_market = {
+resource_importation = {
 
-	sumatran_rubber = { 
+	import_rubber = { 
 		
 		icon = rubber
 
 		available = {
-			NOT = { has_country_flag = importing_resources_flag }
+			NOT = { has_country_flag = importing_rubber_flag }
             any_state = {
             	is_fully_controlled_by = ROOT
             	is_owned_by = ROOT
             }
+		}
+		
+		cost = 0
+		ai_will_do = {
+			factor = 10
 		}
 
 		visible = {
-			NOT = { has_country_flag = importing_resources_flag }
+			NOT = { has_country_flag = importing_rubber_flag }
             any_state = {
             	is_fully_controlled_by = ROOT
             	is_owned_by = ROOT
             }
 		}
 
-		fire_only_once = no
-
-		cost = 100
-		days_remove = 180
-
-		modifier = {
-			stability_factor = -0.05
-			political_power_gain = -0.1
-		}
-
-		ai_will_do = {
-			factor = 1
-		}
 		complete_effect = { 
-			random_owned_controlled_state = {
-				add_resource = {
-					type = rubber
-					amount = 12
-				}
-				set_state_flag = import_zone
+			ROOT = {
+				country_event = resources.1 
 			}
-			set_country_flag = importing_resources_flag
-		}
-		
-		remove_effect = { 
-			random_owned_controlled_state = {
-				limit = {
-					has_state_flag =import_zone
-				}
-				clr_state_flag = import_zone 
-				add_resource = {
-					type = rubber
-					amount = -12
-				}
+			hidden_effect = {
+				set_country_flag = importing_rubber_flag
 			}
-			clr_country_flag = importing_resources_flag
 		}
 	}
 	
-	american_oil = { 
+	remove_import_rubber = { 
+		
+		icon = rubber
+
+		available = {
+			has_country_flag = importing_rubber_flag
+			hidden_trigger = {
+				NOT = {
+					has_idea = idea_ai_rubber_import_limit
+				}
+			}
+		}
+		
+		cost = 0
+		ai_will_do = {
+			factor = 10
+		}
+
+		visible = {
+			has_country_flag = importing_rubber_flag
+		}
+
+		complete_effect = { 
+			if = {
+				limit = {
+					has_idea = idea_importing_rubber_5
+				}
+				remove_ideas = idea_importing_rubber_5
+				random_owned_controlled_state = {
+					limit = {
+						has_state_flag = rubber_import_zone
+					} 
+					add_resource = {
+						type = rubber
+						amount = -5
+					}
+					clr_state_flag = rubber_import_zone
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = idea_importing_rubber_10
+				}
+				remove_ideas = idea_importing_rubber_10
+				random_owned_controlled_state = {
+					limit = {
+						has_state_flag = rubber_import_zone
+					} 
+					add_resource = {
+						type = rubber
+						amount = -10
+					}
+					clr_state_flag = rubber_import_zone
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = idea_importing_rubber_15
+				}
+				remove_ideas = idea_importing_rubber_15
+				random_owned_controlled_state = {
+					limit = {
+						has_state_flag = rubber_import_zone
+					} 
+					add_resource = {
+						type = rubber
+						amount = -15
+					}
+					clr_state_flag = rubber_import_zone
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = idea_importing_rubber_20
+				}
+				remove_ideas = idea_importing_rubber_20
+				random_owned_controlled_state = {
+					limit = {
+						has_state_flag = rubber_import_zone
+					} 
+					add_resource = {
+						type = rubber
+						amount = -20
+					}
+					clr_state_flag = rubber_import_zone
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = idea_importing_rubber_30
+				}
+				remove_ideas = idea_importing_rubber_30
+				random_owned_controlled_state = {
+					limit = {
+						has_state_flag = rubber_import_zone
+					} 
+					add_resource = {
+						type = rubber
+						amount = -30
+					}
+					clr_state_flag = rubber_import_zone
+				}
+			}
+			else = {
+				remove_ideas = idea_importing_rubber_40
+				random_owned_controlled_state = {
+					limit = {
+						has_state_flag = rubber_import_zone
+					} 
+					add_resource = {
+						type = rubber
+						amount = -40
+					}
+					clr_state_flag = rubber_import_zone
+				}
+			}
+			hidden_effect = {
+				clr_country_flag = importing_rubber_flag
+			}
+		}
+	}
+	
+	import_oil = { 
 		
 		icon = oil
 
 		available = {
-			NOT = { has_country_flag = importing_resources_flag }
+			NOT = { has_country_flag = importing_oil_flag }
             any_state = {
             	is_fully_controlled_by = ROOT
             	is_owned_by = ROOT
             }
+		}
+		
+		cost = 0
+		ai_will_do = {
+			factor = 10
 		}
 
 		visible = {
-			NOT = { has_country_flag = importing_resources_flag }
+			NOT = { has_country_flag = importing_oil_flag }
             any_state = {
             	is_fully_controlled_by = ROOT
             	is_owned_by = ROOT
             }
 		}
 
-		fire_only_once = no
-
-		cost = 100
-		days_remove = 180
-
-		modifier = {
-			stability_factor = -0.05
-			political_power_gain = -0.1
-		}
-
-		ai_will_do = {
-			factor = 1
-		}
 		complete_effect = { 
-			random_owned_controlled_state = {
-				set_state_flag = import_zone
-				add_resource = {
-					type = oil
-					amount = 12
-				}
+			ROOT = {
+				country_event = resources.3
 			}
-			set_country_flag = importing_resources_flag
-		}
-		
-		remove_effect = { 
-			random_owned_controlled_state= {
-				limit = {
-					has_state_flag = import_zone
-				}
-				clr_state_flag = import_zone 
-				add_resource = {
-					type = oil
-					amount = -12
-				}
+			hidden_effect = {
+				set_country_flag = importing_oil_flag
 			}
-			clr_country_flag = importing_resources_flag
 		}
 	}
 	
-	swedish_tungsten = { 
+	remove_import_oil = { 
+		
+		icon = oil
+
+		available = {
+			has_country_flag = importing_oil_flag
+			hidden_trigger = {
+				NOT = {
+					has_idea = idea_ai_oil_import_limit
+				}
+			}
+		}
+		
+		cost = 0
+		ai_will_do = {
+			factor = 10
+		}
+
+		visible = {
+			has_country_flag = importing_oil_flag
+		}
+
+		complete_effect = { 
+			if = {
+				limit = {
+					has_idea = idea_importing_oil_5
+				}
+				remove_ideas = idea_importing_oil_5
+				random_owned_controlled_state = {
+					limit = {
+						has_state_flag = oil_import_zone
+					} 
+					add_resource = {
+						type = oil
+						amount = -5
+					}
+					clr_state_flag = oil_import_zone
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = idea_importing_oil_10
+				}
+				remove_ideas = idea_importing_oil_10
+				random_owned_controlled_state = {
+					limit = {
+						has_state_flag = oil_import_zone
+					} 
+					add_resource = {
+						type = oil
+						amount = -10
+					}
+					clr_state_flag = oil_import_zone
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = idea_importing_oil_15
+				}
+				remove_ideas = idea_importing_oil_15
+				random_owned_controlled_state = {
+					limit = {
+						has_state_flag = oil_import_zone
+					} 
+					add_resource = {
+						type = oil
+						amount = -15
+					}
+					clr_state_flag = oil_import_zone
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = idea_importing_oil_20
+				}
+				remove_ideas = idea_importing_oil_20
+				random_owned_controlled_state = {
+					limit = {
+						has_state_flag = oil_import_zone
+					} 
+					add_resource = {
+						type = oil
+						amount = -20
+					}
+					clr_state_flag = oil_import_zone
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = idea_importing_oil_30
+				}
+				remove_ideas = idea_importing_oil_30
+				random_owned_controlled_state = {
+					limit = {
+						has_state_flag = oil_import_zone
+					} 
+					add_resource = {
+						type = oil
+						amount = -30
+					}
+					clr_state_flag = oil_import_zone
+				}
+			}
+			else = {
+				remove_ideas = idea_importing_oil_40
+				random_owned_controlled_state = {
+					limit = {
+						has_state_flag = oil_import_zone
+					} 
+					add_resource = {
+						type = oil
+						amount = -40
+					}
+					clr_state_flag = oil_import_zone
+				}
+			}
+			hidden_effect = {
+				clr_country_flag = importing_oil_flag
+			}
+		}
+	}
+	
+	import_tungsten = { 
 		
 		icon = tungsten
 
 		available = {
-			NOT = { has_country_flag = importing_resources_flag }
+			NOT = { has_country_flag = importing_tungsten_flag }
             any_state = {
             	is_fully_controlled_by = ROOT
             	is_owned_by = ROOT
             }
+		}
+		
+		cost = 0
+		ai_will_do = {
+			factor = 10
 		}
 
 		visible = {
-			NOT = { has_country_flag = importing_resources_flag }
+			NOT = { has_country_flag = importing_tungsten_flag }
             any_state = {
             	is_fully_controlled_by = ROOT
             	is_owned_by = ROOT
             }
 		}
 
-		fire_only_once = no
-
-		cost = 100
-		days_remove = 180
-
-		modifier = {
-			stability_factor = -0.05
-			political_power_gain = -0.1
-		}
-
-		ai_will_do = {
-			factor = 1
-		}
 		complete_effect = { 
-			random_owned_controlled_state = {
-				set_state_flag = import_zone
-				add_resource = {
-					type = tungsten
-					amount = 12
-				}
+			ROOT = {
+				country_event = resources.5
 			}
-			set_country_flag = importing_resources_flag
-		}
-		
-		remove_effect = { 
-			random_owned_controlled_state= {
-				limit = {
-					has_state_flag =import_zone
-				}
-				clr_state_flag = import_zone 
-				add_resource = {
-					type = tungsten
-					amount = -12
-				}
+			hidden_effect = {
+				set_country_flag = importing_tungsten_flag
 			}
-			clr_country_flag = importing_resources_flag
 		}
 	}
 	
-	yugoslavian_aluminium = { 
+	remove_import_tungsten = { 
+		
+		icon = tungsten
+
+		available = {
+			has_country_flag = importing_tungsten_flag
+			hidden_trigger = {
+				NOT = {
+					has_idea = idea_ai_tungsten_import_limit
+				}
+			}
+		}
+		
+		cost = 0
+		ai_will_do = {
+			factor = 10
+		}
+
+		visible = {
+			has_country_flag = importing_tungsten_flag
+		}
+
+		complete_effect = { 
+			if = {
+				limit = {
+					has_idea = idea_importing_tungsten_5
+				}
+				remove_ideas = idea_importing_tungsten_5
+				random_owned_controlled_state = {
+					limit = {
+						has_state_flag = tungsten_import_zone
+					} 
+					add_resource = {
+						type = tungsten
+						amount = -5
+					}
+					clr_state_flag = tungsten_import_zone
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = idea_importing_tungsten_10
+				}
+				remove_ideas = idea_importing_tungsten_10
+				random_owned_controlled_state = {
+					limit = {
+						has_state_flag = tungsten_import_zone
+					} 
+					add_resource = {
+						type = tungsten
+						amount = -10
+					}
+					clr_state_flag = tungsten_import_zone
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = idea_importing_tungsten_15
+				}
+				remove_ideas = idea_importing_tungsten_15
+				random_owned_controlled_state = {
+					limit = {
+						has_state_flag = tungsten_import_zone
+					} 
+					add_resource = {
+						type = tungsten
+						amount = -15
+					}
+					clr_state_flag = tungsten_import_zone
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = idea_importing_tungsten_20
+				}
+				remove_ideas = idea_importing_tungsten_20
+				random_owned_controlled_state = {
+					limit = {
+						has_state_flag = tungsten_import_zone
+					} 
+					add_resource = {
+						type = tungsten
+						amount = -20
+					}
+					clr_state_flag = tungsten_import_zone
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = idea_importing_tungsten_30
+				}
+				remove_ideas = idea_importing_tungsten_30
+				random_owned_controlled_state = {
+					limit = {
+						has_state_flag = tungsten_import_zone
+					} 
+					add_resource = {
+						type = tungsten
+						amount = -30
+					}
+					clr_state_flag = tungsten_import_zone
+				}
+			}
+			else = {
+				remove_ideas = idea_importing_tungsten_40
+				random_owned_controlled_state = {
+					limit = {
+						has_state_flag = tungsten_import_zone
+					} 
+					add_resource = {
+						type = tungsten
+						amount = -40
+					}
+					clr_state_flag = tungsten_import_zone
+				}
+			}
+			hidden_effect = {
+				clr_country_flag = importing_tungsten_flag
+			}
+		}
+	}
+	
+	import_aluminium = { 
 		
 		icon = aluminium
 
 		available = {
-			NOT = { has_country_flag = importing_resources_flag }
+			NOT = { has_country_flag = importing_aluminium_flag }
             any_state = {
             	is_fully_controlled_by = ROOT
             	is_owned_by = ROOT
             }
+		}
+		
+		cost = 0
+		ai_will_do = {
+			factor = 10
 		}
 
 		visible = {
-			NOT = { has_country_flag = importing_resources_flag }
+			NOT = { has_country_flag = importing_aluminium_flag }
             any_state = {
             	is_fully_controlled_by = ROOT
             	is_owned_by = ROOT
             }
 		}
 
-		fire_only_once = no
-
-		cost = 100
-		days_remove = 180
-
-		modifier = {
-			stability_factor = -0.05
-			political_power_gain = -0.1
-		}
-
-		ai_will_do = {
-			factor = 1
-		}
 		complete_effect = { 
-			random_owned_controlled_state = {
-				set_state_flag = import_zone
-
-				add_resource = {
-					type = aluminium
-					amount = 12
-				}
+			ROOT = {
+				country_event = resources.7
 			}
-			set_country_flag = importing_resources_flag
-		}
-		
-		remove_effect = { 
-			random_owned_controlled_state= {
-				limit = {
-					has_state_flag = import_zone
-				}
-				clr_state_flag = import_zone 
-				add_resource = {
-					type = aluminium
-					amount = -12
-				}
+			hidden_effect = {
+				set_country_flag = importing_aluminium_flag
 			}
-			clr_country_flag = importing_resources_flag
 		}
 	}
 	
-	german_coal = { 
+	remove_import_aluminium = { 
+		
+		icon = aluminium
+
+		available = {
+			has_country_flag = importing_aluminium_flag
+			hidden_trigger = {
+				NOT = {
+					has_idea = idea_ai_aluminium_import_limit
+				}
+			}
+		}
+		
+		cost = 0
+		ai_will_do = {
+			factor = 10
+		}
+
+		visible = {
+			has_country_flag = importing_aluminium_flag
+		}
+
+		complete_effect = { 
+			if = {
+				limit = {
+					has_idea = idea_importing_aluminium_5
+				}
+				remove_ideas = idea_importing_aluminium_5
+				random_owned_controlled_state = {
+					limit = {
+						has_state_flag = aluminium_import_zone
+					} 
+					add_resource = {
+						type = aluminium
+						amount = -5
+					}
+					clr_state_flag = aluminium_import_zone
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = idea_importing_aluminium_10
+				}
+				remove_ideas = idea_importing_aluminium_10
+				random_owned_controlled_state = {
+					limit = {
+						has_state_flag = aluminium_import_zone
+					} 
+					add_resource = {
+						type = aluminium
+						amount = -10
+					}
+					clr_state_flag = aluminium_import_zone
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = idea_importing_aluminium_15
+				}
+				remove_ideas = idea_importing_aluminium_15
+				random_owned_controlled_state = {
+					limit = {
+						has_state_flag = aluminium_import_zone
+					} 
+					add_resource = {
+						type = aluminium
+						amount = -15
+					}
+					clr_state_flag = aluminium_import_zone
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = idea_importing_aluminium_20
+				}
+				remove_ideas = idea_importing_aluminium_20
+				random_owned_controlled_state = {
+					limit = {
+						has_state_flag = aluminium_import_zone
+					} 
+					add_resource = {
+						type = aluminium
+						amount = -20
+					}
+					clr_state_flag = aluminium_import_zone
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = idea_importing_aluminium_30
+				}
+				remove_ideas = idea_importing_aluminium_30
+				random_owned_controlled_state = {
+					limit = {
+						has_state_flag = aluminium_import_zone
+					} 
+					add_resource = {
+						type = aluminium
+						amount = -30
+					}
+					clr_state_flag = aluminium_import_zone
+				}
+			}
+			else = {
+				remove_ideas = idea_importing_aluminium_40
+				random_owned_controlled_state = {
+					limit = {
+						has_state_flag = aluminium_import_zone
+					} 
+					add_resource = {
+						type = aluminium
+						amount = -40
+					}
+					clr_state_flag = aluminium_import_zone
+				}
+			}
+			hidden_effect = {
+				clr_country_flag = importing_aluminium_flag
+			}
+		}
+	}
+	
+	import_chromium = { 
 		
 		icon = chromium
 
 		available = {
-			NOT = { has_country_flag = importing_resources_flag }
+			NOT = { has_country_flag = importing_chromium_flag }
             any_state = {
             	is_fully_controlled_by = ROOT
             	is_owned_by = ROOT
             }
+		}
+		
+		cost = 0
+		ai_will_do = {
+			factor = 10
 		}
 
 		visible = {
-			NOT = { has_country_flag = importing_resources_flag }
+			NOT = { has_country_flag = importing_chromium_flag }
             any_state = {
             	is_fully_controlled_by = ROOT
             	is_owned_by = ROOT
             }
 		}
 
-		fire_only_once = no
-
-		cost = 100
-		days_remove = 240
-
-		modifier = {
-			stability_factor = -0.05
-			political_power_gain = -0.1
-		}
-
-		ai_will_do = {
-			factor = 1
-		}
 		complete_effect = { 
-			random_owned_controlled_state = {
-				set_state_flag = import_zone
-				add_resource = {
-					type = chromium
-					amount = 12
-				}
+			ROOT = {
+				country_event = resources.9
 			}
-			set_country_flag = importing_resources_flag
-		}
-		
-		remove_effect = { 
-			random_owned_controlled_state= {
-				limit = {
-					has_state_flag = import_zone
-				}
-				clr_state_flag = import_zone 
-				add_resource = {
-					type = chromium
-					amount = -12
-				}
+			hidden_effect = {
+				set_country_flag = importing_chromium_flag
 			}
-			clr_country_flag = importing_resources_flag
 		}
 	}
 	
-	soviet_steel = { 
+	remove_import_chromium = { 
+		
+		icon = chromium
+
+		available = {
+			has_country_flag = importing_chromium_flag
+			hidden_trigger = {
+				NOT = {
+					has_idea = idea_ai_chromium_import_limit
+				}
+			}
+		}
+		
+		cost = 0
+		ai_will_do = {
+			factor = 10
+		}
+
+		visible = {
+			has_country_flag = importing_chromium_flag
+		}
+
+		complete_effect = { 
+			if = {
+				limit = {
+					has_idea = idea_importing_chromium_5
+				}
+				remove_ideas = idea_importing_chromium_5
+				random_owned_controlled_state = {
+					limit = {
+						has_state_flag = chromium_import_zone
+					} 
+					add_resource = {
+						type = chromium
+						amount = -5
+					}
+					clr_state_flag = chromium_import_zone
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = idea_importing_chromium_10
+				}
+				remove_ideas = idea_importing_chromium_10
+				random_owned_controlled_state = {
+					limit = {
+						has_state_flag = chromium_import_zone
+					} 
+					add_resource = {
+						type = chromium
+						amount = -10
+					}
+					clr_state_flag = chromium_import_zone
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = idea_importing_chromium_15
+				}
+				remove_ideas = idea_importing_chromium_15
+				random_owned_controlled_state = {
+					limit = {
+						has_state_flag = chromium_import_zone
+					} 
+					add_resource = {
+						type = chromium
+						amount = -15
+					}
+					clr_state_flag = chromium_import_zone
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = idea_importing_chromium_20
+				}
+				remove_ideas = idea_importing_chromium_20
+				random_owned_controlled_state = {
+					limit = {
+						has_state_flag = chromium_import_zone
+					} 
+					add_resource = {
+						type = chromium
+						amount = -20
+					}
+					clr_state_flag = chromium_import_zone
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = idea_importing_chromium_30
+				}
+				remove_ideas = idea_importing_chromium_30
+				random_owned_controlled_state = {
+					limit = {
+						has_state_flag = chromium_import_zone
+					} 
+					add_resource = {
+						type = chromium
+						amount = -30
+					}
+					clr_state_flag = chromium_import_zone
+				}
+			}
+			else = {
+				remove_ideas = idea_importing_chromium_40
+				random_owned_controlled_state = {
+					limit = {
+						has_state_flag = chromium_import_zone
+					} 
+					add_resource = {
+						type = chromium
+						amount = -40
+					}
+					clr_state_flag = chromium_import_zone
+				}
+			}
+			hidden_effect = {
+				clr_country_flag = importing_chromium_flag
+			}
+		}
+	}
+	
+	import_steel = { 
 		
 		icon = steel
 
 		available = {
-			NOT = { has_country_flag = importing_resources_flag }
+			NOT = { has_country_flag = importing_steel_flag }
             any_state = {
             	is_fully_controlled_by = ROOT
             	is_owned_by = ROOT
             }
+		}
+		
+		cost = 0
+		ai_will_do = {
+			factor = 10
 		}
 
 		visible = {
-			NOT = { has_country_flag = importing_resources_flag }
+			NOT = { has_country_flag = importing_steel_flag }
             any_state = {
             	is_fully_controlled_by = ROOT
             	is_owned_by = ROOT
             }
 		}
 
-		fire_only_once = no
-
-		cost = 100
-		days_remove = 180
-
-		modifier = {
-			stability_factor = -0.05
-			political_power_gain = -0.1
-		}
-
-		ai_will_do = {
-			factor = 1
-		}
-		
 		complete_effect = { 
-			random_owned_controlled_state = {
-				set_state_flag = import_zone
-				add_resource = {
-					type = steel
-					amount = 12
+			ROOT = {
+				country_event = resources.11
+			}
+			hidden_effect = {
+				set_country_flag = importing_steel_flag
+			}
+		}
+	}
+	
+	remove_import_steel = { 
+		
+		icon = steel
+
+		available = {
+			has_country_flag = importing_steel_flag
+			hidden_trigger = {
+				NOT = {
+					has_idea = idea_ai_steel_import_limit
 				}
 			}
-			set_country_flag = importing_resources_flag
 		}
 		
-		remove_effect = { 
-			random_owned_controlled_state= {
+		cost = 0
+		ai_will_do = {
+			factor = 10
+		}
+
+		visible = {
+			has_country_flag = importing_steel_flag
+		}
+
+		complete_effect = { 
+			if = {
 				limit = {
-					has_state_flag = import_zone
+					has_idea = idea_importing_steel_5
 				}
-				clr_state_flag = import_zone 
-				add_resource = {
-					type = steel
-					amount = -12
+				remove_ideas = idea_importing_steel_5
+				random_owned_controlled_state = {
+					limit = {
+						has_state_flag = steel_import_zone
+					} 
+					add_resource = {
+						type = steel
+						amount = -5
+					}
+					clr_state_flag = steel_import_zone
 				}
 			}
-			clr_country_flag = importing_resources_flag
+			else_if = {
+				limit = {
+					has_idea = idea_importing_steel_10
+				}
+				remove_ideas = idea_importing_steel_10
+				random_owned_controlled_state = {
+					limit = {
+						has_state_flag = steel_import_zone
+					} 
+					add_resource = {
+						type = steel
+						amount = -10
+					}
+					clr_state_flag = steel_import_zone
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = idea_importing_steel_15
+				}
+				remove_ideas = idea_importing_steel_15
+				random_owned_controlled_state = {
+					limit = {
+						has_state_flag = steel_import_zone
+					} 
+					add_resource = {
+						type = steel
+						amount = -15
+					}
+					clr_state_flag = steel_import_zone
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = idea_importing_steel_20
+				}
+				remove_ideas = idea_importing_steel_20
+				random_owned_controlled_state = {
+					limit = {
+						has_state_flag = steel_import_zone
+					} 
+					add_resource = {
+						type = steel
+						amount = -20
+					}
+					clr_state_flag = steel_import_zone
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = idea_importing_steel_30
+				}
+				remove_ideas = idea_importing_steel_30
+				random_owned_controlled_state = {
+					limit = {
+						has_state_flag = steel_import_zone
+					} 
+					add_resource = {
+						type = steel
+						amount = -30
+					}
+					clr_state_flag = steel_import_zone
+				}
+			}
+			else = {
+				remove_ideas = idea_importing_steel_40
+				random_owned_controlled_state = {
+					limit = {
+						has_state_flag = steel_import_zone
+					} 
+					add_resource = {
+						type = steel
+						amount = -40
+					}
+					clr_state_flag = steel_import_zone
+				}
+			}
+			hidden_effect = {
+				clr_country_flag = importing_steel_flag
+			}
 		}
 	}
 }
