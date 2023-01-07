@@ -1,4 +1,4 @@
-version="1.12.1"
+version="1.12.7"
 tags={
 	"Map"
 }
@@ -42,4 +42,4 @@ replace_path="music"
 replace_path="common/occupation_laws"
 replace_path="common/units/names_railway_guns"
 name="MakeAmericaAgain"
-supported_version="1.11.*"
+supported_version="1.12.7"
