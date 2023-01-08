@@ -117,12 +117,9 @@ country_event = {
 	fire_only_once = yes
 	immediate = {
 		hidden_effect = {
-			create_faction = carribean_communist_alliance
 			add_to_faction = HAI
 			CUC = {
 				transfer_state = 349
-				create_faction = carribean_liberal_alliance
-				add_to_faction = HBI
 			}
 			transfer_units_fraction= {
 				target = CUC
@@ -160,50 +157,41 @@ country_event = {
 		}
 	}
 }
-#Seize Juventud?
+#Florida is alerted to Cubans leaving to fight in the Cuban Civil War
 country_event = {
 	id = carribean.6
 	title = carribean.6.t
 	desc = carribean.6.d
-	#picture =
 	is_triggered_only = yes
 	fire_only_once = yes
-	#of course!
 	option = {
 		name = carribean.6.a
 		ai_chance = {
-			factor = 100
+			factor = 10
 		}
-		FLC = {
-			transfer_state = 391
-			add_state_core = 391
-			add_state_core = 362
-			add_state_core = 378
-			add_state_core = 349
-			add_state_core = 490
-		}
-		if = {
-			limit = {
-				OR = {
-					has_dlc = "Together for Victory"
-					has_dlc = "Man the Guns"
-				}
-			}
-			set_autonomy = {
-				target = FLC
-				autonomous_state = autonomy_colony
-				freedom_level = 0.1
-			}
-			else = {
-				puppet = FLC
-			}
+		add_manpower = -5000
+		CUC = {
+			add_manpower = 5000
 		}
 	}
-	#Nah!
 	option = {
 		name = carribean.6.b
 		ai_chance = {
-			factor = 0
+			factor = 10
+		}
+		add_manpower = -5000
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 5000
+			producer = FLO
+		}
+		CUC = {
+			add_manpower = 5000
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 5000
+				producer = FLO
+			}
 		}
 	}
 }
