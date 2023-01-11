@@ -53,7 +53,7 @@ focus_tree = {
 		icon = GFX_focus_generic_provoke_border_clashes
 		cost = 5.00
 		x = 5
-		y = 2
+		y = 3
 		ai_will_do = { 
 			factor = 300
 		}
@@ -75,9 +75,9 @@ focus_tree = {
 	focus = {
 		id = The_Seattle_Peace_Accord
 		icon = GFX_focus_generic_treaty
-		cost = 2.00
+		cost = 20
 		x = 5
-		y = 3
+		y = 4
 		ai_will_do = { 
 			factor = 300
 		}
@@ -85,111 +85,23 @@ focus_tree = {
 			focus = recognize_the_stalemate
 		}
 		bypass = {
-			NOT = {
-				CAS = {
-					exists = yes
-				}
-			}
-		}
-		completion_reward = {
-			add_war_support = -0.15
 			CAS = {
-				add_war_support = 0.15
-			}
-			white_peace = CAS
-			remove_mission = PRA_defeat_cascadia
-			hidden_effect = {
-				remove_mission = PRA_cascadia_war
-				set_country_flag = 1stCASWar
+				exists = no
 			}
 		}
-
-	}
-	focus = {
-		id = Seattle_for_Concessions
-		icon = GFX_goal_generic_forceful_treaty
-		cost = 5.00
-		x = 4
-		y = 4
-		ai_will_do = { 
-			factor = 300
-			modifier = {
-      				factor = 0 
-      				OR = {
-					has_game_rule = {
-              			rule = SAZ_free
-             			option = SAZ_FREE_NO 
-          			}
-      			}
-   			}
-		}
-		prerequisite = {
-			focus = The_Seattle_Peace_Accord
-		}
-		mutually_exclusive = {
-			focus = Recognize_Cascadian_Claim
-		}
-		bypass = {
-			NOT = {
-				CAS = {
-					exists = yes
-				}
+		
+		select_effect = {
+			country_event = {
+				id = seattle_accords.1
+				days = 5
 			}
 		}
+		
 		completion_reward = {
-			CAS = {
-				country_event = { id = cascadia.2 days = 5 }
-			}
+			add_political_power = 50
+			add_stability = 0.1
+			add_war_support = -0.05
 		}
-
-	}
-	focus = {
-		id = Recognize_Cascadian_Claim
-		icon = GFX_goal_generic_intelligence_exchange
-		cost = 5.00
-		x = 6
-		y = 4
-		ai_will_do = { 
-			factor = 300
-			modifier = {
-      				factor = 0 
-      				OR = {
-					has_game_rule = {
-              			rule = SAZ_free
-             			option = SAZ_FREE_YES 
-          			}
-					has_game_rule = {
-              			rule = SAZ_free
-             			option = SAZ_FREE_RAZ 
-          			}
-					has_game_rule = {
-              			rule = SAZ_free
-             			option = SAZ_FREE_PRA 
-          			}
-      			}
-   			}
-		}
-		prerequisite = {
-			focus = The_Seattle_Peace_Accord
-		}
-		mutually_exclusive = {
-			focus = Seattle_for_Concessions
-		}
-		bypass = {
-			NOT = {
-				CAS = {
-					exists = yes
-				}
-			}
-		}
-		completion_reward = {
-			add_stability = -0.1
-			CAS = {
-				add_stability = 0.1
-				transfer_state = 125
-			}
-		}
-
 	}
 	focus = {
 		id = Form_an_iron_curtain
@@ -201,14 +113,12 @@ focus_tree = {
 			factor = 300
 		}
 		prerequisite = {
-			focus = Recognize_Cascadian_Claim
-			focus = Seattle_for_Concessions
+			focus = The_Seattle_Peace_Accord
 		}
 		completion_reward = {
 			add_political_power = 50
 			add_stability = 0.1
 		}
-
 	}
 
 	focus = {
@@ -659,32 +569,43 @@ focus_tree = {
 		y = 7
 		ai_will_do = { 
 			factor = 300
+			modifier = {
+      			factor = 0 
+      			OR = {
+          			has_game_rule = {
+              			rule = SAZ_FREE
+             			option = SAZ_FREE_YES_PRA
+          			}
+				}
+			}
 		}
 		available = {
 			NOT = {
 				has_war_with = PAC
+				has_war_with = CAS
 			}
-			country_exists = SAZ
-			has_completed_focus = The_Chinese_help
+			OR = {
+				has_completed_focus = The_Chinese_help
+				has_completed_focus = ANTIFA_concessions
+			}
+			owns_state = 125
+			owns_state = 136
 		}
 		prerequisite = {
 			focus = American_Great_Patriotic_War
 		}
 		mutually_exclusive = {
-			focus = Grant_Seattle_autonomy
+			focus = Seattle_Development_Plan
 			focus = Seattle_Immigration_Decree
 		}
 		completion_reward = {
-			add_manpower = -50
-			SAZ = {
-				add_stability = -0.1
-				add_ideas = PRAInfluence
-			}
+			add_political_power = -50
+			add_command_power = -25
 		}
 	}
 	focus = {
-		id = Assassinate_the_Raz
-		icon = GFX_goal_se_uh_oh
+		id = Bolster_The_Garrison
+		icon = GFX_focus_generic_manpower
 		cost = 7.00
 		x = 1
 		y = 8
@@ -695,13 +616,11 @@ focus_tree = {
 			focus = Crush_Seattle_Soveriegnty
 		}
 		completion_reward = {
-			SAZ = { country_event = { id = California.1 days = 1 } }
-			add_popularity = {
-				ideology = authoritarian_left
-				popularity = 0.1
-			}
-			hidden_effect = {
-				set_country_flag = Seattle_Tyrant
+			add_manpower = -500
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -250
+				producer = PRA
 			}
 		}
 	}
@@ -715,41 +634,35 @@ focus_tree = {
 			factor = 300
 		}
 		prerequisite = {
-			focus = Assassinate_the_Raz
+			focus = Bolster_The_Garrison
 		}
 		bypass = {
-			SAZ = {
-				exists = no
-			}
+			
 		}
 		available = {
-			SAZ = {
-				is_puppet_of = PRA
-			}
+			
 		}
 		completion_reward = {
-			IF = {
-				LIMIT = {
-					NOT = {
-						is_ai = yes
-					}
+			if = {
+				limit = {
+					has_completed_focus = The_Chinese_help
 				}
 				add_popularity = {
-						ideology = authoritarian_left
-						popularity = 0.02
+					ideology = authoritarian_left
+					popularity = 0.05
 				}
 			}
 			else = {
-				annex_country = {
-   					target = SAZ
-   					transfer_troops = yes
+				add_popularity = {
+					ideology = libertarian_left
+					popularity = 0.05
 				}
 			}
 		}
 	}
 	focus = {
-		id = Grant_Seattle_autonomy
-		icon = GFX_goal_Fix_Seattle
+		id = Seattle_Development_Plan
+		icon = GFX_focus_SOV_merge_plants
 		cost = 10.00
 		x = 3
 		y = 7
@@ -762,12 +675,11 @@ focus_tree = {
 		available = {
 			NOT = {
 				has_war_with = PAC
+				has_war_with = CAS
 			}
-			OR = {
-				has_completed_focus = ANTIFA_concessions 
-				has_completed_focus = Tow_the_line 
-			}
-			country_exists = SAZ
+			has_completed_focus = Tow_the_line 
+			owns_state = 125
+			owns_state = 136
 		}
 		mutually_exclusive = {
 			focus = Crush_Seattle_Soveriegnty
@@ -785,8 +697,8 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = Make_Raz_Minister
-		icon = GFX_goal_se_razzle_dazzle
+		id = Rebuild_Seattles_Industries
+		icon = GFX_goal_continuous_non_factory_construct
 		cost = 5.00
 		x = 3
 		y = 8
@@ -794,21 +706,29 @@ focus_tree = {
 			factor = 300
 		}
 		prerequisite = {
-			focus = Grant_Seattle_autonomy
+			focus = Seattle_Development_Plan
 		}
 		bypass = {
-			has_completed_focus = Tow_the_line
+			
 		}
 		completion_reward = {
-			add_popularity = {
-				ideology = libertarian_left
-				popularity = 0.1
+			125 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
 			}
 		}
 	}
 	focus = {
-		id = Cascadian_Autonomous_Zone
-		icon = GFX_goal_se_aut
+		id = Shining_City_On_The_Sea
+		icon = GFX_focus_POL_develop_polish_shipbuilding
 		cost = 10.00
 		x = 3
 		y = 9
@@ -816,15 +736,16 @@ focus_tree = {
 			factor = 300
 		}
 		prerequisite = {
-			focus = Make_Raz_Minister
+			focus = Rebuild_Seattles_Industries
 		}
 		bypass = {
-			has_completed_focus = Tow_the_line
+			
 		}
 		completion_reward = {
-			create_wargoal = {
-				target = CAS
-				type = annex_everything
+			add_political_power = 25
+			add_popularity = {
+				ideology = democrat
+				popularity = 0.05
 			}
 		}
 	}
@@ -842,12 +763,17 @@ focus_tree = {
 		}
 		available = {
 			NOT = {
-				country_exists = SAZ
+				has_war_with = PAC
+				has_war_with = CAS
+			}
+			NOT = {
+				owns_state = 125
+				owns_state = 136
 			}
 		}
 		mutually_exclusive = {
 			focus = Crush_Seattle_Soveriegnty
-			focus = Grant_Seattle_autonomy
+			focus = Seattle_Development_Plan
 			}
 		completion_reward = {
 			add_manpower = 257432
@@ -938,6 +864,15 @@ focus_tree = {
 		completion_reward = {
 			add_stability = -0.25
 			remove_ideas = HappyChinese
+			hidden_effect = {
+				if = {
+					limit = {
+						owns_state = 125
+						owns_state = 136
+					}
+					country_event = seattle_independence.1
+				}
+			}
 		}
 	}
 	focus = {
@@ -1048,7 +983,7 @@ focus_tree = {
 			focus = Solidify_the_Movement
 		}
 		prerequisite = {
-			focus = Cascadian_Autonomous_Zone
+			focus = Crush_Seattle_Soveriegnty
 			focus = Propose_Dual_Citizenship
 		}
 		completion_reward = {
@@ -1280,8 +1215,8 @@ focus_tree = {
 				country_event = { id = California.2 days = 40 }
 				set_global_flag = PRA_Bidenist_Collapse
 				set_country_flag = VP_Abandonment
-				Every_state = {
-					Limit = { 
+				evry_state = {
+					limit = { 
 						is_owned_by = PRA
 						NOT = { state = 456 }
 						NOT = { state = 427 }
@@ -1315,8 +1250,7 @@ focus_tree = {
 			focus = Push_them_out_slowly
 		}
 		prerequisite = {
-			focus = Cascadian_Autonomous_Zone
-			focus = Annex_Seattle
+			focus = Shining_City_On_The_Sea
 			focus = Propose_Dual_Citizenship
 		}
 		completion_reward = {
@@ -1386,6 +1320,15 @@ focus_tree = {
 			add_stability = 0.05
 			remove_ideas = HappyAnarchists
 			add_ideas = AngeredAnarchists
+			hidden_effect = {
+				if = {
+					limit = {
+						owns_state = 125
+						owns_state = 136
+					}
+					country_event = seattle_independence.1
+				}
+			}
 		}
 	}
 	focus = {

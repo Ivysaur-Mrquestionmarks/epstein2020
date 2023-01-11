@@ -1,65 +1,651 @@
+add_namespace = seattle_accords
 add_namespace = California
 
-#Seattle
+# Seattle Accords Introduction Event #
 country_event = {
-	id = California.1
-	title = California.1.t
-	desc = California.1.d
-	picture = event_communists_01 
+	id = seattle_accords.1
+	title = seattle_accords.1.t
+	desc = seattle_accords.1.d
+	picture = event_NPA_motivation_lowered 
 	is_triggered_only = yes
 	fire_only_once = yes
-	#Chinese Troops Kill Raz
+	
 	option = {
-		name = California.1.a
+		name = seattle_accords.1.a
 		ai_chance = {
-			factor = 4000
-			modifier = {
-      			factor = 0 
-      			OR = {
-					has_game_rule = {
-              			rule = SAZ_free
-             			option = SAZ_FREE_RAZ 
-          			}
-      			}
-   			}
+			factor = 10
 		}
-		add_manpower = -1
-		kill_country_leader = yes
-		set_politics = {
-			ruling_party = authoritarian_left
-		}
-	}
-	#Lord Raz Survives, declares independence
-	option = {
-		name = California.1.b
-		ai_chance = {
-			factor = 1
-			modifier = {
-      				factor = 0 
-      				OR = {
-					has_game_rule = {
-              			rule = SAZ_free
-             			option = SAZ_FREE_PRA 
-          			}
-      			}
-   			}
-		}
-		PRA = {
-			end_puppet = SAZ
-			create_wargoal = {
-				target = SAZ
-				type = annex_everything
+		custom_effect_tooltip = PRA_seattle_accord_rules
+		CAS = {
+			country_event = {
+				id = seattle_accords.2
+				days = 5
 			}
-		}
-		add_popularity = {
-			ideology = autocratic
-			popularity = 0.5
-		}
-		set_politics = {
-			ruling_party = autocratic
 		}
 	}
 }
+country_event = { #Cascadia gets peace invite from California
+	id = seattle_accords.2
+	title = seattle_accords.2.t
+	desc = seattle_accords.2.d
+	picture = event_NPA_motivation_lowered 
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = seattle_accords.2.a
+		ai_chance = {
+			factor = 10
+		}
+		custom_effect_tooltip = CAS_seattle_accord_rules
+		CAS = {
+			country_event = {
+				id = seattle_accords.4
+				days = 10
+			}
+		}
+		hidden_effect = {
+			PRA = {
+				country_event = {
+					id = seattle_accords.3
+					days = 1
+				}
+			}
+		}
+	}
+}
+country_event = { #California is notified that Cascadia accepted invite
+	id = seattle_accords.3
+	title = seattle_accords.3.t
+	desc = seattle_accords.3.d
+	picture = event_NPA_motivation_lowered 
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = seattle_accords.3.a
+		ai_chance = {
+			factor = 10
+		}
+	}
+}
+country_event = { #Cascadia's 1st Demands: Seattle
+	id = seattle_accords.4
+	title = seattle_accords.4.t
+	desc = seattle_accords.4.d
+	picture = GFX_report_event_IDA_Washington 
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Cascadia demands the PRA return Seattle
+		name = seattle_accords.4.a
+		ai_chance = {
+			factor = 90
+			modifier = {
+      			factor = 0 
+      			OR = {
+          			has_game_rule = {
+              			rule = CAS_political_path
+             			option = PRA_CAS_NONE
+          			}
+					has_game_rule = {
+              			rule = CAS_political_path
+             			option = PRA_CAS_BUFFER
+          			}
+				}
+			}
+		}
+		PRA = {
+			country_event = {
+				id = seattle_accords.5
+				days = 5
+			}
+		}
+	}
+	
+	option = { #Cascadia refuses to demand Seattle
+		name = seattle_accords.4.b
+		ai_chance = {
+			factor = 10
+			modifier = {
+      			factor = 0 
+      			OR = {
+          			has_game_rule = {
+              			rule = CAS_political_path
+             			option = PRA_CAS_SEATTLE
+          			}
+					has_game_rule = {
+              			rule = CAS_political_path
+             			option = PRA_CAS_ALL
+          			}
+					has_game_rule = {
+              			rule = CAS_political_path
+             			option = PRA_CAS_FAIL
+          			}
+				}
+			}
+		}
+		hidden_effect = {
+			CAS = {
+				country_event = {
+					id = seattle_accords.7
+					days = 3
+				}
+			}
+		}
+	}
+}
+country_event = { #Cascadia's 1st Demands: Seattle, PRA Response
+	id = seattle_accords.5
+	title = seattle_accords.5.t
+	desc = seattle_accords.5.d
+	picture = GFX_report_event_IDA_Washington 
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #California agrees to return Seattle
+		name = seattle_accords.5.a
+		ai_chance = {
+			factor = 95
+			modifier = {
+      			factor = 0 
+      			OR = {
+          			has_game_rule = {
+              			rule = CAS_political_path
+             			option = PRA_CAS_FAIL
+          			}
+				}
+			}
+		}
+		CAS = {
+			country_event = {
+				id = seattle_accords.6
+				days = 1
+			}
+		}
+		hidden_effect = {
+			PRA = {
+				set_country_flag = PRA_CAS_returned_seattle
+			}
+		}
+	}
+	
+	option = { #California refuses to return Seattle
+		name = seattle_accords.5.b
+		ai_chance = {
+			factor = 5
+			modifier = {
+      			factor = 0 
+      			OR = {
+          			has_game_rule = {
+              			rule = CAS_political_path
+             			option = PRA_CAS_SEATTLE
+          			}
+					has_game_rule = {
+              			rule = CAS_political_path
+             			option = PRA_CAS_ALL
+          			}
+				}
+			}
+		}
+		custom_effect_tooltip = PRA_angry_cascadia
+		PRA = {
+			country_event = {
+				id = seattle_accords.7
+				days = 1
+			}
+		}
+	}
+}
+country_event = { #Cascadia is alerted to return of Seattle
+	id = seattle_accords.6
+	title = seattle_accords.6.t
+	desc = seattle_accords.6.d
+	picture = GFX_report_event_IDA_Washington 
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Adds country flag for return of Seattle
+		name = seattle_accords.6.a
+		ai_chance = {
+			factor = 10
+		}
+		custom_effect_tooltip = PRA_seattle_ceded
+		CAS = {
+			country_event = {
+				id = seattle_accords.9
+				days = 5
+			}
+		}
+	}
+}
+country_event = { #Cascadia is alerted to California's refusal to return Seattle
+	id = seattle_accords.7
+	title = seattle_accords.7.t
+	desc = seattle_accords.7.d
+	picture = GFX_report_event_IDA_Washington 
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Cascadia backs down
+		name = seattle_accords.7.a
+		ai_chance = {
+			factor = 30
+			modifier = {
+      			factor = 0 
+      			OR = {
+          			has_game_rule = {
+              			rule = CAS_political_path
+             			option = PRA_CAS_FAIL
+          			}
+				}
+			}
+		}
+		PRA = {
+			country_event = {
+				id = seattle_accords.8
+				days = 1
+			}
+		}
+		hidden_effect = {
+			CAS = {
+				country_event = {
+					id = seattle_accords.9
+					days = 5
+				}
+			}
+		}
+	}
+	
+	option = { #Talks fail, back to war
+		name = seattle_accords.7.b
+		ai_chance = {
+			factor = 70
+		}
+		PRA = {
+			country_event = {
+				id = seattle_accords.12
+				days = 5
+			}
+		}
+		CAS = {
+			country_event = {
+				id = seattle_accords.12
+				days = 5
+			}
+		}
+	}
+}
+country_event = { #California is alerted to Cascadia backing down
+	id = seattle_accords.8
+	title = seattle_accords.8.t
+	desc = seattle_accords.8.d
+	picture = GFX_report_event_IDA_Generic_Meeting 
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = seattle_accords.8.a
+		ai_chance = {
+			factor = 10
+		}
+	}
+}
+country_event = { #Cascadia's 2nd Demand: Buffer States
+	id = seattle_accords.9
+	title = seattle_accords.9.t
+	desc = seattle_accords.9.d
+	picture = GFX_report_event_IDA_Nevada 
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Cascadia demands buffer states be created
+		name = seattle_accords.9.a
+		ai_chance = {
+			factor = 95
+			modifier = {
+      			factor = 0 
+				has_game_rule = {
+              		rule = CAS_political_path
+             		option = PRA_CAS_NONE
+          		}
+      			has_game_rule = {
+              		rule = CAS_political_path
+             		option = PRA_CAS_SEATTLE
+          		}
+			}
+		}
+		custom_effect_tooltip = CAS_angry_california
+		PRA = {
+			country_event = {
+				id = seattle_accords.10
+				days = 5
+			}
+		}
+	}
+	
+	option = { #Cascadia refuses to propose buffer states
+		name = seattle_accords.9.b
+		ai_chance = {
+			factor = 5
+			modifier = {
+      			factor = 0 
+				has_game_rule = {
+              		rule = CAS_political_path
+             		option = PRA_CAS_BUFFER
+          		}
+				has_game_rule = {
+              		rule = CAS_political_path
+             		option = PRA_CAS_ALL
+          		}
+			}
+		}
+		PRA = {
+			country_event = {
+				id = seattle_accords.13
+				days = 5
+			}
+		}
+		CAS = {
+			country_event = {
+				id = seattle_accords.13
+				days = 5
+			}
+		}
+	}
+}
+country_event = { #Cascadia's 2nd Demand: Buffer States, PRA response
+	id = seattle_accords.10
+	title = seattle_accords.10.t
+	desc = seattle_accords.10.d
+	picture = GFX_report_event_IDA_Nevada 
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #California agrees
+		name = seattle_accords.10.a
+		ai_chance = {
+			factor = 5
+		}
+		CAS = {
+			country_event = {
+				id = seattle_accords.11
+				days = 5
+			}
+		}
+		hidden_effect = {
+			PRA = {
+				set_country_flag = PRA_CAS_buffers_created
+			}
+		}
+	}
+	
+	option = { #California refuses to create buffer states
+		name = seattle_accords.10.b
+		ai_chance = {
+			factor = 95
+			modifier = {
+      			factor = 0 
+				has_game_rule = {
+              		rule = CAS_political_path
+             		option = PRA_CAS_BUFFER
+          		}
+				has_game_rule = {
+              		rule = CAS_political_path
+             		option = PRA_CAS_ALL
+          		}
+			}
+		}
+		PRA = {
+			country_event = {
+				id = seattle_accords.12
+				days = 5
+			}
+		}
+		CAS = {
+			country_event = {
+				id = seattle_accords.12
+				days = 5
+			}
+		}
+	}
+}
+country_event = { #Cascadia is alerted to buffer state creation
+	id = seattle_accords.11
+	title = seattle_accords.11.t
+	desc = seattle_accords.11.d
+	picture = GFX_report_event_IDA_Nevada 
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #California option, cedes Seattle 
+		name = seattle_accords.11.a
+		ai_chance = {
+			factor = 10
+		}
+		PRA = {
+			country_event = {
+				id = seattle_accords.13
+				days = 5
+			}
+		}
+		CAS = {
+			country_event = {
+				id = seattle_accords.13
+				days = 5
+			}
+		}
+	}
+}
+country_event = { #Seattle Accords fail
+	id = seattle_accords.12
+	title = seattle_accords.12.t
+	desc = seattle_accords.12.d
+	picture = GFX_report_event_IDA_Generic_Meeting 
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #California option, autocompletes focus and removes any country flags related to peace talks
+		name = seattle_accords.12.a
+		trigger = {
+			tag = PRA
+		}
+		ai_chance = {
+			factor = 10
+		}
+		custom_effect_tooltip = PRA_CAS_peace_decision
+		complete_national_focus = The_Seattle_Peace_Accord
+		hidden_effect = {
+			clr_country_flag = PRA_CAS_returned_seattle
+			clr_country_flag = PRA_CAS_buffers_created
+		}
+	}
+	option = { #Cascadia option
+		name = seattle_accords.12.b
+		trigger = {
+			tag = CAS
+		}
+		ai_chance = {
+			factor = 10
+		}
+		custom_effect_tooltip = PRA_CAS_peace_decision
+	}
+}
+country_event = { #Seattle Accords succeed
+	id = seattle_accords.13
+	title = seattle_accords.13.t
+	desc = seattle_accords.13.d
+	picture = GFX_report_event_IDA_Generic_Meeting 
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #California option, autocompletes focus and performs any agreed upon actions
+		name = seattle_accords.13.a
+		trigger = {
+			tag = PRA
+		}
+		ai_chance = {
+			factor = 10
+		}
+		complete_national_focus = The_Seattle_Peace_Accord
+		white_peace = CAS
+		give_military_access = CAS
+		if = {
+			limit = {
+				has_country_flag = PRA_CAS_returned_seattle
+			}
+			CAS = {
+				transfer_state = 125
+				transfer_state = 136
+			}
+		}
+		if = {
+			limit = {
+				has_country_flag = PRA_CAS_buffers_created
+			}
+			white_peace = FIR
+			white_peace = ORO
+			FIR = {
+				transfer_state = 394
+				transfer_state = 452
+				give_military_access = PRA
+				give_military_access = CAS
+			}
+			ORO = {
+				transfer_state = 199
+				transfer_state = 295
+				transfer_state = 51
+				transfer_state = 364
+				transfer_state = 296
+				transfer_state = 635
+				transfer_state = 366
+				transfer_state = 298
+				give_military_access = PRA
+				give_military_access = CAS
+			}
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					has_country_flag = PRA_CAS_returned_seattle
+				}
+				CAS = {
+					country_event = {
+						id = seattle_independence.3
+						days = 10
+					}
+				}
+			}
+			if = {
+				limit = {
+					has_country_flag = PRA_CAS_buffers_created
+				}
+				ORO = {
+					every_owned_state = {
+						add_core_of = ORO
+					}
+					set_cosmetic_tag = ORO_Jefferson
+					set_politics = {
+						ruling_party = libertarian_right
+						elections_allowed = no
+					}
+					set_political_party = {
+						ideology = libertarian_right
+						popularity = 100
+					}
+				}
+			}
+			news_event = {
+				id = seattle_accords.16
+				days = 1
+			}
+			set_country_flag = cascadian_peace
+		}
+	}
+	option = { #Cascadia option
+		name = seattle_accords.13.b
+		trigger = {
+			tag = CAS
+		}
+		ai_chance = {
+			factor = 10
+		}
+		give_military_access = PRA
+		hidden_effect = {
+			set_country_flag = cascadian_peace
+		}
+	}
+}
+country_event = { #Cascadia starts peace talks, invites California
+	id = seattle_accords.14
+	title = seattle_accords.14.t
+	desc = seattle_accords.14.d
+	picture = GFX_report_event_IDA_Generic_Meeting 
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { 
+		name = seattle_accords.14.a
+		ai_chance = {
+			factor = 10
+		}
+		PRA = {
+			country_event = {
+				id = seattle_accords.15
+				days = 5
+			}
+		}
+	}
+}
+country_event = { #Cascadia starts peace talks, invites PRA; PRA response
+	id = seattle_accords.15
+	title = seattle_accords.15.t
+	desc = seattle_accords.15.d
+	picture = GFX_report_event_IDA_Generic_Meeting 
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { California accepts
+		name = seattle_accords.15.a
+		ai_chance = {
+			factor = 10
+		}
+		CAS = {
+			country_event = {
+				id = seattle_accords.4
+				days = 5
+			}
+		}
+	}
+	
+	option = { #California refuses
+		name = seattle_accords.15.b
+		ai_chance = {
+			factor = 0
+		}
+		CAS = {
+			country_event = {
+				id = seattle_accords.12
+				days = 5
+			}
+		}
+	}
+}
+news_event = { #Cascadia starts peace talks, invites PRA; PRA response
+	id = seattle_accords.16
+	title = seattle_accords.16.t
+	desc = seattle_accords.16.d
+	picture = event_PRA_Seattle_Accords 
+	is_triggered_only = yes
+	major = yes
+	
+	option = { California accepts
+		name = seattle_accords.16.a
+	}
+}
+
+# California.1 was a Seattle event, it has been removed now #
+
 #The Great Collapse: China Seizes Treaty Ports
 country_event = {
 	id = California.2
@@ -176,18 +762,25 @@ country_event = {
 				}
 				release = CAS
 			}
+			if = {
+				limit = {
+					owns_state = 125
+					owns_state = 136
+				}
+				release = SAZ
+			}
 			country_event = { id = California.5 days = 15 }
 			JFR = {
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						366 = {
 							is_controlled_by = PRA
 						}
 					}
 					transfer_state = 366
 				}
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						429 = {
 							is_controlled_by = PRA
 						}
@@ -195,8 +788,8 @@ country_event = {
 					}
 					transfer_state = 429
 				}
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						635 = {
 							is_controlled_by = PRA
 						}
@@ -204,8 +797,8 @@ country_event = {
 					}
 					transfer_state = 635
 				}
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						394 = {
 							is_controlled_by = PRA
 						}
@@ -213,8 +806,8 @@ country_event = {
 					}
 					transfer_state = 394
 				}
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						452 = {
 							is_controlled_by = PRA
 						}
@@ -222,16 +815,16 @@ country_event = {
 					}
 					transfer_state = 452
 				}
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						296 = {
 							is_controlled_by = PRA
 						}
 					}
 					transfer_state = 296
 				}
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						364 = {
 							is_controlled_by = PRA
 						}
@@ -239,8 +832,8 @@ country_event = {
 					}
 					transfer_state = 364
 				}
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						199 = {
 							is_controlled_by = PRA
 						}
@@ -248,8 +841,8 @@ country_event = {
 					}
 					transfer_state = 199
 				}
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						51 = {
 							is_controlled_by = PRA
 						}
@@ -257,12 +850,11 @@ country_event = {
 					}
 					transfer_state = 51
 				}
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						295 = {
 							is_controlled_by = PRA
 						}
-						
 					}
 					transfer_state = 295
 				}
@@ -306,24 +898,24 @@ country_event = {
 		hidden_effect = {
 			country_event = { id = California.5 days = 15 }
 			JFR = {
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						366 = {
 							is_controlled_by = PRA
 						}
 					}
 					transfer_state = 366
 				}
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						635 = {
 							is_controlled_by = PRA
 						}
 					}
 					transfer_state = 635
 				}
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						429 = {
 							is_controlled_by = PRA
 						}
@@ -331,30 +923,30 @@ country_event = {
 					}
 					transfer_state = 429
 				}
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						394 = {
 							is_controlled_by = PRA
 						}
 					}
-						transfer_state = 394
-						394 = {
-							set_demilitarized_zone = no
-						}
+					transfer_state = 394
+					394 = {
+						set_demilitarized_zone = no
+					}
 				}
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						452 = {
 							is_controlled_by = PRA
 						}
 					}
-						transfer_state = 452
-						452 = {
-							set_demilitarized_zone = no
-						}
+					transfer_state = 452
+					452 = {
+						set_demilitarized_zone = no
+					}
 				}
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						296 = {
 							is_controlled_by = PRA
 						}
@@ -365,52 +957,49 @@ country_event = {
 					}
 					
 				}
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						364 = {
 							is_controlled_by = PRA
 						}
 					}
-						transfer_state = 364
-						364 = {
-							set_demilitarized_zone = no
-						}
-					
+					transfer_state = 364
+					364 = {
+						set_demilitarized_zone = no
+					}					
 				}
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						199 = {
 							is_controlled_by = PRA
 						}
 					}
-						transfer_state = 199
-						199 = {
-							set_demilitarized_zone = no
-						}
+					transfer_state = 199
+					199 = {
+						set_demilitarized_zone = no
+					}
 				}
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						51 = {
 							is_controlled_by = PRA
 						}
 					}
-						transfer_state = 51
-						51 = {
-							set_demilitarized_zone = no
-						}
-					
+					transfer_state = 51
+					51 = {
+						set_demilitarized_zone = no
+					}
 				}
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						295 = {
 							is_controlled_by = PRA
 						}
 					}
-						transfer_state = 295
-						295 = {
-							set_demilitarized_zone = no
-						}
-					
+					transfer_state = 295
+					295 = {
+						set_demilitarized_zone = no
+					}
 				}
 				add_state_core = 199
 				add_state_core = 51
@@ -457,41 +1046,38 @@ country_event = {
 		hidden_effect = {
 			country_event = { id = California.6 days = 20 }
 			SAC = {
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						366 = {
 							is_controlled_by = JFR
 						}
 					}
-						transfer_state = 366
-						366 = {
-							set_demilitarized_zone = no
-						}
-					
+					transfer_state = 366
+					366 = {
+						set_demilitarized_zone = no
+					}
 				}
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						429 = {
 							is_controlled_by = JFR
 						}
 					}
-						transfer_state = 429
-						429 = {
-							set_demilitarized_zone = no
-						}
-					
+					transfer_state = 429
+					429 = {
+						set_demilitarized_zone = no
+					}
 				}
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						635 = {
 							is_controlled_by = JFR
 						}
 					}
-						transfer_state = 635
-						635 = {
-							set_demilitarized_zone = no
-						}
-					
+					transfer_state = 635
+					635 = {
+						set_demilitarized_zone = no
+					}
 				}
 				add_ideas = {
 					Californian_Collapse_Idea
@@ -519,8 +1105,8 @@ country_event = {
 		SAC = { change_tag_from = PRA }
 		hidden_effect = {
 			SAC = {
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						366 = {
 							is_controlled_by = JFR
 						}
@@ -530,8 +1116,8 @@ country_event = {
 						set_demilitarized_zone = no
 					}
 				}
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						429 = {
 							is_controlled_by = JFR
 						}
@@ -541,8 +1127,8 @@ country_event = {
 						set_demilitarized_zone = no
 					}
 				}
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						635 = {
 							is_controlled_by = JFR
 						}
@@ -590,8 +1176,8 @@ country_event = {
 		hidden_effect = {
 			country_event = { id = California.7 days = 10 }
 			ACF = {
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						459 = {
 							is_controlled_by = PRA
 						}
@@ -601,8 +1187,8 @@ country_event = {
 						set_demilitarized_zone = no
 					}
 				}
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						460 = {
 							is_controlled_by = PRA
 						}
@@ -612,8 +1198,8 @@ country_event = {
 						set_demilitarized_zone = no
 					}
 				}
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						342 = {
 							is_controlled_by = PRA
 						}
@@ -623,8 +1209,8 @@ country_event = {
 						set_demilitarized_zone = no
 					}
 				}
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						451 = {
 							is_controlled_by = PRA
 						}
@@ -634,8 +1220,8 @@ country_event = {
 						set_demilitarized_zone = no
 					}
 				}
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						444 = {
 							is_controlled_by = PRA
 						}
@@ -674,8 +1260,8 @@ country_event = {
 		ACF = { change_tag_from = PRA }
 		hidden_effect = {
 			ACF = {
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						459 = {
 							is_controlled_by = PRA
 						}
@@ -685,8 +1271,8 @@ country_event = {
 						set_demilitarized_zone = no
 					}
 				}
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						460 = {
 							is_controlled_by = PRA
 						}
@@ -696,8 +1282,8 @@ country_event = {
 						set_demilitarized_zone = no
 					}
 				}
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						342 = {
 							is_controlled_by = PRA
 						}
@@ -707,8 +1293,8 @@ country_event = {
 						set_demilitarized_zone = no
 					}
 				}
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						451 = {
 							is_controlled_by = PRA
 						}
@@ -718,8 +1304,8 @@ country_event = {
 						set_demilitarized_zone = no
 					}
 				}
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						444 = {
 							is_controlled_by = PRA
 						}
@@ -766,8 +1352,8 @@ country_event = {
 		}
 		hidden_effect = {
 			HLY = {
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						449 = {
 							is_controlled_by = PRA
 						}
@@ -777,8 +1363,8 @@ country_event = {
 						set_demilitarized_zone = no
 					}
 				}
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						493 = {
 							is_controlled_by = PRA
 						}
@@ -788,8 +1374,8 @@ country_event = {
 						set_demilitarized_zone = no
 					}
 				}
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						494 = {
 							is_controlled_by = PRA
 						}
@@ -799,8 +1385,8 @@ country_event = {
 						set_demilitarized_zone = no
 					}
 				}
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						302 = {
 							is_controlled_by = PRA
 						}
@@ -810,8 +1396,8 @@ country_event = {
 						set_demilitarized_zone = no
 					}
 				}
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						297 = {
 							is_controlled_by = PRA
 						}
@@ -977,8 +1563,8 @@ country_event = {
 		HLY = { change_tag_from = PRA }
 		hidden_effect = {
 			HLY = {
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						449 = {
 							is_controlled_by = PRA
 						}
@@ -988,8 +1574,8 @@ country_event = {
 						set_demilitarized_zone = no
 					}
 				}
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						493 = {
 							is_controlled_by = PRA
 						}
@@ -999,8 +1585,8 @@ country_event = {
 						set_demilitarized_zone = no
 					}
 				}
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						494 = {
 							is_controlled_by = PRA
 						}
@@ -1010,8 +1596,8 @@ country_event = {
 						set_demilitarized_zone = no
 					}
 				}
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						302 = {
 							is_controlled_by = PRA
 						}
@@ -1021,8 +1607,8 @@ country_event = {
 						set_demilitarized_zone = no
 					}
 				}
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						297 = {
 							is_controlled_by = PRA
 						}
@@ -1197,8 +1783,8 @@ country_event = {
 		}
 		hidden_effect = {
 			CST = {
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						297 = {
 							is_controlled_by = HLY
 						}
@@ -1221,8 +1807,8 @@ country_event = {
 		CST = { change_tag_from = HLY }
 		hidden_effect = {
 			CST = {
-				If = {
-					Limit = {
+				if = {
+					limit = {
 						297 = {
 							is_controlled_by = HLY
 						}
@@ -1676,26 +2262,25 @@ country_event = { #Repatriation?
 		}
 		add_ideas = Full_Repatriation
 		set_country_flag = Full_Repatriation
-		set_country_flag = TheGreatDecider
 		hidden_effect = {
+			set_temp_variable = {
+				failures = 0
+			}
+			if = { limit = { has_country_flag = CommieVP } add_to_temp_variable = { failures = 1 }}
+			if = { limit = { has_country_flag = AnarchistVP } add_to_temp_variable = { failures = 1 }}
+			if = { limit = { has_country_flag = Seattle_Tyrant } add_to_temp_variable = { failures = 1 }}
+			if = { limit = { has_country_flag = MediaRadicalization } add_to_temp_variable = { failures = 1 }}
+			if = { limit = { has_country_flag = Keep_Ideology_Police } add_to_temp_variable = { failures = 1 }}
+			if = { limit = { has_country_flag = Disband_Workers_Congress } add_to_temp_variable = { failures = 1 }}
+			if = { limit = { has_country_flag = Angry_Chinese } add_to_temp_variable = { failures = 1 }}
+			if = { limit = { has_country_flag = Angry_Monopolies } add_to_temp_variable = { failures = 1 }}
+			if = { limit = { has_country_flag = No_Repatriation } add_to_temp_variable = { failures = 1 }}
+			if = { limit = { has_country_flag = Full_Repatriation } add_to_temp_variable = { failures = 1 }}
+			
 			if = {
 				limit = {
-					count_triggers = {
-						amount = 3
-						OR = {
-							has_country_flag = CommieVP
-							has_country_flag = AnarchistVP
-						}
-						has_country_flag = Seattle_Tyrant
-						has_country_flag = MediaRadicalization
-						has_country_flag = Keep_Ideology_Police
-						has_country_flag = Disband_Workers_Congress
-						has_country_flag = Angry_Chinese
-						has_country_flag = Angry_Monopolies
-						OR = {
-							has_country_flag = No_Repatriation
-							has_country_flag = Full_Repatriation
-						}
+					check_variable = {
+						failures > 3
 					}
 				}
 				country_event = {
@@ -1708,7 +2293,7 @@ country_event = { #Repatriation?
 					id = California.30
 					days = 10
 				}
-			}
+			}			
 		}
 	}
 	option = { #Repatriate no armed forces
@@ -1727,26 +2312,25 @@ country_event = { #Repatriation?
 		}
 		add_ideas = No_Repatriation
 		set_country_flag = No_Repatriation
-		set_country_flag = TheGreatDecider
 		hidden_effect = {
+			set_temp_variable = {
+				failures = 0
+			}
+			if = { limit = { has_country_flag = CommieVP } add_to_temp_variable = { failures = 1 }}
+			if = { limit = { has_country_flag = AnarchistVP } add_to_temp_variable = { failures = 1 }}
+			if = { limit = { has_country_flag = Seattle_Tyrant } add_to_temp_variable = { failures = 1 }}
+			if = { limit = { has_country_flag = MediaRadicalization } add_to_temp_variable = { failures = 1 }}
+			if = { limit = { has_country_flag = Keep_Ideology_Police } add_to_temp_variable = { failures = 1 }}
+			if = { limit = { has_country_flag = Disband_Workers_Congress } add_to_temp_variable = { failures = 1 }}
+			if = { limit = { has_country_flag = Angry_Chinese } add_to_temp_variable = { failures = 1 }}
+			if = { limit = { has_country_flag = Angry_Monopolies } add_to_temp_variable = { failures = 1 }}
+			if = { limit = { has_country_flag = No_Repatriation } add_to_temp_variable = { failures = 1 }}
+			if = { limit = { has_country_flag = Full_Repatriation } add_to_temp_variable = { failures = 1 }}
+			
 			if = {
 				limit = {
-					count_triggers = {
-						amount = 3
-						OR = {
-							has_country_flag = CommieVP
-							has_country_flag = AnarchistVP
-						}
-						has_country_flag = Seattle_Tyrant
-						has_country_flag = MediaRadicalization
-						has_country_flag = Keep_Ideology_Police
-						has_country_flag = Disband_Workers_Congress
-						has_country_flag = Angry_Chinese
-						has_country_flag = Angry_Monopolies
-						OR = {
-							has_country_flag = No_Repatriation
-							has_country_flag = Full_Repatriation
-						}
+					check_variable = {
+						failures > 3
 					}
 				}
 				country_event = {
@@ -1759,7 +2343,7 @@ country_event = { #Repatriation?
 					id = California.30
 					days = 10
 				}
-			}
+			}			
 		}
 	}
 	option = { #Repatriate Everyone under O-4
@@ -1777,26 +2361,25 @@ country_event = { #Repatriation?
    			}
 		}
 		add_ideas = Partial_Repatriation
-		set_country_flag = TheGreatDecider
 		hidden_effect = {
+			set_temp_variable = {
+				failures = 0
+			}
+			if = { limit = { has_country_flag = CommieVP } add_to_temp_variable = { failures = 1 }}
+			if = { limit = { has_country_flag = AnarchistVP } add_to_temp_variable = { failures = 1 }}
+			if = { limit = { has_country_flag = Seattle_Tyrant } add_to_temp_variable = { failures = 1 }}
+			if = { limit = { has_country_flag = MediaRadicalization } add_to_temp_variable = { failures = 1 }}
+			if = { limit = { has_country_flag = Keep_Ideology_Police } add_to_temp_variable = { failures = 1 }}
+			if = { limit = { has_country_flag = Disband_Workers_Congress } add_to_temp_variable = { failures = 1 }}
+			if = { limit = { has_country_flag = Angry_Chinese } add_to_temp_variable = { failures = 1 }}
+			if = { limit = { has_country_flag = Angry_Monopolies } add_to_temp_variable = { failures = 1 }}
+			if = { limit = { has_country_flag = No_Repatriation } add_to_temp_variable = { failures = 1 }}
+			if = { limit = { has_country_flag = Full_Repatriation } add_to_temp_variable = { failures = 1 }}
+			
 			if = {
 				limit = {
-					count_triggers = {
-						amount = 3
-						OR = {
-							has_country_flag = CommieVP
-							has_country_flag = AnarchistVP
-						}
-						has_country_flag = Seattle_Tyrant
-						has_country_flag = MediaRadicalization
-						has_country_flag = Keep_Ideology_Police
-						has_country_flag = Disband_Workers_Congress
-						has_country_flag = Angry_Chinese
-						has_country_flag = Angry_Monopolies
-						OR = {
-							has_country_flag = No_Repatriation
-							has_country_flag = Full_Repatriation
-						}
+					check_variable = {
+						failures > 3
 					}
 				}
 				country_event = {
@@ -1809,7 +2392,7 @@ country_event = { #Repatriation?
 					id = California.30
 					days = 10
 				}
-			}
+			}			
 		}
 	}
 }
@@ -1819,7 +2402,6 @@ country_event = { #Fucked up
 	id = California.29
 	title = California.29.t
 	desc = California.29.d
-	#picture =  event_Nevadan_Kennedy 
 	is_triggered_only = yes
 	fire_only_once = yes
 	option = { #You fucked up
@@ -1831,7 +2413,6 @@ country_event = { #Fucked up
 		add_ideas = Civil_war_Imminent
 		hidden_effect = {
 			set_country_flag = Fuckedup
-			clr_country_flag = Successfully_Deradicalized
 			set_politics = {
 				ruling_party = democrat
         		elections_allowed = no
@@ -1843,7 +2424,6 @@ country_event = { #Didn't Fuck up
 	id = California.30
 	title = California.30.t
 	desc = California.30.d
-	#picture =  event_Nevadan_Kennedy 
 	is_triggered_only = yes
 	fire_only_once = yes
 	option = { #You didn't fuck it up, congrats
@@ -1853,7 +2433,6 @@ country_event = { #Didn't Fuck up
 		}
 		complete_national_focus = Push_out_the_Radicals
 		hidden_effect = {
-			clr_country_flag = Fuckedup
 			set_country_flag = Successfully_Deradicalized
 		}
 	}

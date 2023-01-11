@@ -1,0 +1,311 @@
+add_namespace = seattle_independence
+add_namespace = seattle
+
+## Seattle Independence Events ##
+country_event = { #PRA Seattle indpendence event, protests in Seattle
+	id = seattle_independence.1
+	title = seattle_independence.1.t
+	desc = seattle_independence.1.d
+	picture = GFX_report_event_IDA_City_Battle
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Activates Seattle indpendence mission
+		name = seattle_independence.1.a
+		ai_chance = {
+			factor = 10
+			modifier = {
+      			factor = 0 
+      			OR = {
+          			has_game_rule = {
+              			rule = SAZ_FREE
+             			option = SAZ_FREE_NO_PRA
+          			}
+				}
+			}
+		}
+ 	    activate_mission = PRA_resolve_seattle_crisis
+	}
+	
+	option = { #For AI game rule only, does nothing
+		name = seattle_independence.1.b
+		trigger = {
+			is_ai = yes
+			has_game_rule = { rule = SAZ_FREE option = SAZ_FREE_NO_PRA }
+		}
+		ai_chance = {
+			factor = 10
+		}
+	}
+}
+country_event = { #PRA Seattle indpendence event, Seattle declares independence
+	id = seattle_independence.2
+	title = seattle_independence.2.t
+	desc = seattle_independence.2.d
+	picture = GFX_report_event_IDA_Washington
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Seattle is released
+		name = seattle_independence.2.a
+		ai_chance = {
+			factor = 10
+		}
+ 	    release = SAZ
+		hidden_effect = {
+			SAZ = { change_tag_from = ROOT }
+		}
+	}
+	
+	option = { #Seattle is release, player tags to Seattle
+		name = seattle_independence.2.b
+		trigger = {
+			is_ai = no
+		}
+		release = SAZ
+		SAZ = { load_oob = SAZ_starting_units }
+		hidden_effect = {
+			SAZ = { change_tag_from = ROOT }
+		}
+	}
+}
+country_event = { #CAS Seattle indpendence event, unrest in Seattle
+	id = seattle_independence.3
+	title = seattle_independence.3.t
+	desc = seattle_independence.3.d
+	picture = GFX_report_event_IDA_City_Battle
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Seattle is released as a puppet
+		name = seattle_independence.3.a
+		ai_chance = {
+			factor = 10
+			modifier = {
+      			factor = 0 
+      			OR = {
+          			has_game_rule = {
+              			rule = SAZ_FREE
+             			option = SAZ_FREE_NO_CASCADIA
+          			}
+				}
+			}
+		}
+		CAS = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				release_autonomy = {
+					target = SAZ
+					autonomy_state = dominion
+				}
+			}
+			else = {
+				release_puppet = SAZ
+			}
+		}
+		SAZ = { load_oob = SAZ_starting_units }
+		custom_effect_tooltip = saz_autocratic_independence
+		hidden_effect = {
+			125 = {
+				add_core_of = CAS
+			}
+			136 = {
+				add_core_of = CAS
+			}
+		}
+	}
+	
+	option = { #Seattle is released as a puppet, player tags to Seattle
+		name = seattle_independence.3.b
+		ai_chance = {
+			factor = 10
+			modifier = {
+      			factor = 0 
+      			OR = {
+          			has_game_rule = {
+              			rule = SAZ_FREE
+             			option = SAZ_FREE_NO_CASCADIA
+          			}
+				}
+			}
+		}
+		CAS = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				release_autonomy = {
+					target = SAZ
+					autonomy_state = dominion
+				}
+			}
+			else = {
+				release_puppet = SAZ
+			}
+		}
+		SAZ = { change_tag_from = ROOT }
+		custom_effect_tooltip = saz_autocratic_independence
+		hidden_effect = {
+			125 = {
+				add_core_of = CAS
+			}
+			136 = {
+				add_core_of = CAS
+			}
+			SAZ = { load_oob = SAZ_starting_units }
+		}
+	}
+	
+	option = { #Unrest in Seattle is squashed
+		name = seattle_independence.3.c
+		ai_chance = {
+			factor = 90
+			modifier = {
+      			factor = 0 
+      			OR = {
+          			has_game_rule = {
+              			rule = SAZ_FREE
+             			option = SAZ_FREE_YES_CASCADIA
+          			}
+				}
+			}
+		}
+		add_political_power = -50
+		add_stability = -0.05
+		add_manpower = -1000
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = -1000
+			producer = CAS
+		}
+	}
+}
+country_event = { #CAS Seattle indpendence event, Seattle breaks free after Nazis coup government 
+	id = seattle_independence.4
+	title = seattle_independence.4.t
+	desc = seattle_independence.4.d
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Seattle becomes indpendent 
+		name = seattle_independence.4.a
+		ai_chance = {
+			factor = 10
+		}
+		CAS = {
+			end_puppet = SAZ
+		}
+	}
+	
+	option = { #Seattle becomes indpendent 
+		name = seattle_independence.4.b
+		ai_chance = {
+			factor = 10
+		}
+		CAS = {
+			end_puppet = SAZ
+		}
+	}
+}
+
+# Actual Seattle Events #
+country_event = { #Seattle attempts to seize more land after war with Cascadia and Liberty
+	id = seattle.1
+	title = seattle.1.t
+	desc = seattle.1.d
+	
+	trigger = {
+		tag = SAZ
+		CAS = {
+			has_war_with = LIB
+		}
+	}
+	fire_only_once = yes
+	
+	immediate = {
+		if = {
+			limit = {
+				SAZ = {
+					is_puppet_of = CAS
+				}
+			}
+			CAS = {
+				end_puppet = SAZ
+			}
+			white_peace = LIB
+		}
+	}
+	
+	option = { #Seattle attempts to seize more land 
+		name = seattle.1.a
+		ai_chance = {
+			factor = 70
+		}
+		add_state_core = 60
+		add_state_core = 29
+		add_state_core = 107
+		add_state_core = 123
+		add_state_core = 131
+		CAS = {
+			country_event = {
+				id = seattle.2
+				days = 1
+			}
+		}
+	}
+	
+	option = { #Seattle remains aloof 
+		name = seattle.1.b
+		ai_chance = {
+			factor = 30
+		}
+	
+	}
+}
+country_event = { #CAS is alerted to Seattle trying to seize land 
+	id = seattle.2
+	title = seattle.2.t
+	desc = seattle.2.d
+	picture = GFX_report_event_IDA_Raid
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Cascadia attacks 
+		name = seattle.2.a
+		ai_chance = {
+			factor = 10
+		}
+		add_war_support	= 0.05
+		declare_war_on = {
+			target = SAZ
+			type = annex_everything
+		}
+	}
+	
+	option = { #Cascadia relents
+		name = seattle.2.b
+		ai_chance = {
+			factor = 10
+		}
+		add_stability = -0.03
+		add_war_support = -0.03
+		SAZ = {
+			transfer_state = 60
+			transfer_state = 29
+			transfer_state = 107
+			transfer_state = 123
+			transfer_state = 131
+		}
+		create_wargoal = {
+			type = annex_everything
+			target = SAZ
+		}
+	}
+}
