@@ -1,15 +1,28 @@
-PRA_cascadia_war = {
-	icon = hol_war_on_pacifism
+PRA_CAS_seattle_accord = {
+	icon = usa_intervention_mandate
 	
 	allowed = {
 		OR = {
 			original_tag = PRA
+			original_tag = CAS
 		}
 	}
 
 	visible = {
 		NOT = { has_country_flag = cascadian_peace }
-		has_war_with = CAS
+		CAS = {
+			exists = yes
+		}
+		PRA = {
+			has_completed_focus = The_Seattle_Peace_Accord
+		}
+	}
+}
+PRA_seattle_crisis = { 
+	icon = saf_anti_colonialist_crusade
+	
+	allowed = {
+		original_tag = PRA
 	}
 }
 PRA_chairman_sanders_decisions = {
@@ -65,5 +78,10 @@ PRA_Free_Our_Neighbors = { #Anarchist puppet Canada, Mexico, and Yucatan
 		original_tag = PRA
 	}
 
-	visible_when_empty = yes
+	visible = {
+		OR = {
+			has_completed_focus = APRA_By_Any_Means_Necessary
+			has_completed_focus = APRA_Democratic_Communalism
+		}
+	}
 }

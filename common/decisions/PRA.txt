@@ -9,6 +9,9 @@ PRA_CAS_seattle_accord = {
 				original_tag = CSA
 			}
 		}
+		
+		fire_only_once = no
+		 
 		available = {
 			NOT = { has_country_flag = cascadian_peace }
 			CAS = {
@@ -36,8 +39,15 @@ PRA_CAS_seattle_accord = {
 		}
 
 		complete_effect = {
-			add_war_support = 0.01
-			add_political_power = 10
+			if = {
+				limit = {
+					tag = PRA
+				}
+				country_event = seattle_accords.1
+			}
+			else = {
+				country_event = seattle_accords.14
+			}
 		}
 	}
 }
@@ -45,25 +55,22 @@ PRA_CAS_seattle_accord = {
 PRA_seattle_crisis = {
 	PRA_resolve_seattle_crisis = {
 		icon = revolt
-		
-		allowed = {
-			original_tag = PRA
-		}
-
-		available =  {
-			hidden_trigger = { always = no }
-		}
-
 		activation = {
-			always = no
+			has_country_flag = SAZ_seattle_rebellion
 		}
-		
+		available =  {
+			hidden_trigger = {
+				NOT = {
+					has_country_flag = SAZ_seattle_rebellion
+				}
+			}
+		}
 		cancel_trigger = {
-			has_completed_focus = Annex_Seattle
+			has_completed_focus = Crush_Seattle_Soveriegnty
 		}
 		
 		is_good = no
-		days_mission_timeout = 90
+		days_mission_timeout = 120
 		timeout_effect = {
 			country_event = seattle_independence.2
 		}

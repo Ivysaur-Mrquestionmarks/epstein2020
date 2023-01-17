@@ -19,23 +19,22 @@ country_event = { #PRA Seattle indpendence event, protests in Seattle
       			factor = 0 
       			OR = {
           			has_game_rule = {
-              			rule = SAZ_FREE
-             			option = SAZ_FREE_NO_PRA
+              			rule = SAZ_free
+             			option = SAZ_free_NO_PRA
           			}
 				}
 			}
 		}
- 	    activate_mission = PRA_resolve_seattle_crisis
-	}
-	
-	option = { #For AI game rule only, does nothing
-		name = seattle_independence.1.b
-		trigger = {
-			is_ai = yes
-			has_game_rule = { rule = SAZ_FREE option = SAZ_FREE_NO_PRA }
-		}
-		ai_chance = {
-			factor = 10
+		activate_mission_tooltip = PRA_resolve_seattle_crisis
+		hidden_effect = {
+			set_country_flag = SAZ_seattle_rebellion
+			if = {
+				limit = {
+					is_ai = yes
+					has_game_rule = { rule = SAZ_free option = SAZ_free_NO_PRA }
+				}
+				complete_national_focus = Crush_Seattle_Soveriegnty
+			}
 		}
 	}
 }
@@ -55,7 +54,7 @@ country_event = { #PRA Seattle indpendence event, Seattle declares independence
 		}
  	    release = SAZ
 		hidden_effect = {
-			SAZ = { change_tag_from = ROOT }
+			SAZ = { load_oob = "SAZ_starting_units" }
 		}
 	}
 	
@@ -65,8 +64,8 @@ country_event = { #PRA Seattle indpendence event, Seattle declares independence
 			is_ai = no
 		}
 		release = SAZ
-		SAZ = { load_oob = SAZ_starting_units }
 		hidden_effect = {
+			SAZ = { load_oob = "SAZ_starting_units" }
 			SAZ = { change_tag_from = ROOT }
 		}
 	}
@@ -88,8 +87,8 @@ country_event = { #CAS Seattle indpendence event, unrest in Seattle
       			factor = 0 
       			OR = {
           			has_game_rule = {
-              			rule = SAZ_FREE
-             			option = SAZ_FREE_NO_CASCADIA
+              			rule = SAZ_free
+             			option = SAZ_free_NO_CASCADIA
           			}
 				}
 			}
@@ -101,7 +100,7 @@ country_event = { #CAS Seattle indpendence event, unrest in Seattle
 				}
 				release_autonomy = {
 					target = SAZ
-					autonomy_state = dominion
+					autonomy_state = autonomy_dominion
 				}
 			}
 			else = {
@@ -128,8 +127,8 @@ country_event = { #CAS Seattle indpendence event, unrest in Seattle
       			factor = 0 
       			OR = {
           			has_game_rule = {
-              			rule = SAZ_FREE
-             			option = SAZ_FREE_NO_CASCADIA
+              			rule = SAZ_free
+             			option = SAZ_free_NO_CASCADIA
           			}
 				}
 			}
@@ -141,7 +140,7 @@ country_event = { #CAS Seattle indpendence event, unrest in Seattle
 				}
 				release_autonomy = {
 					target = SAZ
-					autonomy_state = dominion
+					autonomy_state = autonomy_dominion
 				}
 			}
 			else = {
@@ -169,8 +168,8 @@ country_event = { #CAS Seattle indpendence event, unrest in Seattle
       			factor = 0 
       			OR = {
           			has_game_rule = {
-              			rule = SAZ_FREE
-             			option = SAZ_FREE_YES_CASCADIA
+              			rule = SAZ_free
+             			option = SAZ_free_YES_CASCADIA
           			}
 				}
 			}
