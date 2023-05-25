@@ -1,60 +1,80 @@
-PRA_cascadia_war = {
-
-	PRA_defeat_cascadia = {
+PRA_CAS_seattle_accord = {
+	PRA_CAS_propose_peace = {
 
 		icon = generic_civil_support
 
 		allowed = {
 			OR = {
 				original_tag = PRA
+				original_tag = CSA
 			}
 		}
+		
+		fire_only_once = no
+		 
 		available = {
-			OR = {
-				NOT = { country_exists = CAS }
-				CAS = { is_subject = yes }
-				NOT = { has_country_flag = 1stCASWar }
-				CAS = {
-					is_in_faction = yes
-					has_capitulated = yes
-				}
+			NOT = { has_country_flag = cascadian_peace }
+			CAS = {
+				exists = yes
+			}
+			PRA = {
+				has_completed_focus = The_Seattle_Peace_Accord
 			}
 		}
+		
+		cost = 35
+
+		ai_will_do = {
+			base = 0
+		}
+		
 		visible = {
 			NOT = { has_country_flag = cascadian_peace }
-			has_war_with = CAS
-		}
-
-		activation = {
-			has_war_with = CAS
-		}
-
-		is_good = no
-
-		days_mission_timeout = 299
-
-		timeout_effect = {
-			white_peace = CAS
-			add_war_support = -0.03
-			add_stability = -0.03
-			add_political_power = -50
-			CAS = { transfer_state = 138 }
-			125 = {
-				set_demilitarized_zone = yes
+			CAS = {
+				exists = yes
 			}
-			hidden_effect = {
-				set_country_flag = cascadian_peace
+			PRA = {
+				has_completed_focus = The_Seattle_Peace_Accord
 			}
 		}
 
 		complete_effect = {
-			add_war_support = 0.01
-			add_political_power = 10
+			if = {
+				limit = {
+					tag = PRA
+				}
+				country_event = seattle_accords.1
+			}
+			else = {
+				country_event = seattle_accords.14
+			}
 		}
-
-
 	}
+}
 
+PRA_seattle_crisis = {
+	PRA_resolve_seattle_crisis = {
+		icon = revolt
+		activation = {
+			has_country_flag = SAZ_seattle_rebellion
+		}
+		available =  {
+			hidden_trigger = {
+				NOT = {
+					has_country_flag = SAZ_seattle_rebellion
+				}
+			}
+		}
+		cancel_trigger = {
+			has_completed_focus = Crush_Seattle_Soveriegnty
+		}
+		
+		is_good = no
+		days_mission_timeout = 120
+		timeout_effect = {
+			country_event = seattle_independence.2
+		}
+	}
 }
 
 PRA_chairman_sanders_decisions = {
@@ -70,13 +90,23 @@ PRA_chairman_sanders_decisions = {
 
 		available = {
 			has_government = authoritarian_left
-			has_country_leader = { name = "Bernie Sanders" ruling_only = yes }
+			has_country_leader = { 
+				character = PRA_authleft_bernie_sanders 
+				ruling_only = yes 
+			}
 			NOT = { has_country_flag = bernie_is_unit_leader }
 		}
 
 		visible = {
 			has_government = authoritarian_left
-			has_country_leader = { name = "Bernie Sanders" ruling_only = yes }
+			available = {
+				has_government = authoritarian_left
+				has_country_leader = { 
+					character = PRA_authleft_bernie_sanders 
+					ruling_only = yes 
+				}
+				NOT = { has_country_flag = bernie_is_unit_leader }
+			}
 		}
 
 		cost = 35
@@ -89,11 +119,9 @@ PRA_chairman_sanders_decisions = {
 			hidden_effect = {
 				set_country_flag = bernie_is_unit_leader
 			}
-			create_field_marshal = {
-				name = "Bernie Sanders"
-				portrait_path = "gfx/leaders/PRA/Evil_Bernie.tga"
+			add_field_marshal_role  = {
+				character = PRA_authleft_bernie_sanders
 				traits = { politically_connected inflexible_strategist guerilla_fighter }
-				id = 1999
 				skill = 2
 				attack_skill = 2
 				defense_skill = 2
@@ -106,42 +134,7 @@ PRA_chairman_sanders_decisions = {
 
 
 }
-#PRA_American_Confederation = {
-#	PRA_Grant_Nevada_Land = {
-#		icon = border_war
-#		available = {
-#			any_state = {
- #       			is_core_of = NVD
-#			        owner = {
- # 			         	NOT = {tag = NVD} #optional, test it without this first
- #			          	any_allied_country = {
- #			               tag = NVD
- #			           }
- #			       }
-#			    }
-#			}
-#			has_completed_focus = Subjugate_Nevada
-#		}
-#		cost = 35
-#		ai_will_do = {
-#			base = 25
-#		}
-#		complete_effect = {
-#			every_state = {
-#				Limit = {
-#		            is_core_of = NVD
- #       			owner = {
-  #          			NOT = {tag = NVD} #optional, test it without this first
-   #            			any_allied_country = {
-    #               			tag = NVD
-     #          			}
-      #     			}
-       #			}
-       	#		transfer_state = THIS
-       	#	}
-		#}
-#	}
-#}
+
 # Anarchist California Expansion Decisions #
 PRA_Convincing_The_Populace = {
 	PRA_Integrate_The_Pacific = {
@@ -151,24 +144,27 @@ PRA_Convincing_The_Populace = {
 		available = {
 			has_completed_focus = APRA_By_Any_Means_Necessary
 			has_government = libertarian_left
-			# Alaska #
-			controls_state = 2
-			controls_state = 11
-			controls_state = 14
-			controls_state = 16
-			controls_state = 19
-			controls_state = 96
-			controls_state = 404
-			# Hawaii #
-			controls_state = 432
-			controls_state = 433
-			controls_state = 435
-			controls_state = 436
-			controls_state = 437
-			controls_state = 438
-			controls_state = 439
-			controls_state = 440
-			controls_state = 441
+			custom_trigger_tooltip = {
+				tooltip = PRA_owns_hawaii_and_alaska
+				# Alaska #
+				controls_state = 2
+				controls_state = 11
+				controls_state = 14
+				controls_state = 16
+				controls_state = 19
+				controls_state = 96
+				controls_state = 404
+				# Hawaii #
+				controls_state = 432
+				controls_state = 433
+				controls_state = 435
+				controls_state = 436
+				controls_state = 437
+				controls_state = 438
+				controls_state = 439
+				controls_state = 440
+				controls_state = 441
+			}
 		}
 
 		cost = 25
@@ -183,25 +179,28 @@ PRA_Convincing_The_Populace = {
 		}
 
 		complete_effect = {
-			PRA = {
-				# Alaska #
-				add_state_core = 2
-				add_state_core = 11
-				add_state_core = 14
-				add_state_core = 16
-				add_state_core = 19
-				add_state_core = 96
-				add_state_core = 404
-				# Hawaii #
-				add_state_core = 432
-				add_state_core = 433
-				add_state_core = 435
-				add_state_core = 436
-				add_state_core = 437
-				add_state_core = 438
-				add_state_core = 439
-				add_state_core = 440
-				add_state_core = 441
+			custom_effect_tooltip = PRA_core_alaska_and_hawaii
+			hidden_effect = {
+				PRA = {
+					# Alaska #
+					add_state_core = 2
+					add_state_core = 11
+					add_state_core = 14
+					add_state_core = 16
+					add_state_core = 19
+					add_state_core = 96
+					add_state_core = 404
+					# Hawaii #
+					add_state_core = 432
+					add_state_core = 433
+					add_state_core = 435
+					add_state_core = 436
+					add_state_core = 437
+					add_state_core = 438
+					add_state_core = 439
+					add_state_core = 440
+					add_state_core = 441
+				}
 			}
 		}
 	}
@@ -212,42 +211,45 @@ PRA_Convincing_The_Populace = {
 		available = {
 			has_completed_focus = APRA_By_Any_Means_Necessary
 			has_government = libertarian_left
-			# Oregon #
-			controls_state = 73
-			controls_state = 74
-			controls_state = 85
-			controls_state = 88
-			controls_state = 89
-			controls_state = 94
-			controls_state = 95
-			controls_state = 150
-			controls_state = 496
-			controls_state = 562
-			# Washington #
-			controls_state = 29
-			controls_state = 60
-			controls_state = 62
-			controls_state = 97
-			controls_state = 101
-			controls_state = 107
-			controls_state = 108
-			controls_state = 109
-			controls_state = 112
-			controls_state = 113
-			controls_state = 114
-			controls_state = 115
-			controls_state = 116
-			controls_state = 121
-			controls_state = 122
-			controls_state = 123
-			controls_state = 125
-			controls_state = 131
-			controls_state = 136
-			controls_state = 138
-			controls_state = 141
-			controls_state = 492
-			controls_state = 497
-			controls_state = 561
+			custom_trigger_tooltip = {
+				tooltip = PRA_owns_oregon_and_washington
+				# Oregon #
+				controls_state = 73
+				controls_state = 74
+				controls_state = 85
+				controls_state = 88
+				controls_state = 89
+				controls_state = 94
+				controls_state = 95
+				controls_state = 150
+				controls_state = 496
+				controls_state = 562
+				# Washington #
+				controls_state = 29
+				controls_state = 60
+				controls_state = 62
+				controls_state = 97
+				controls_state = 101
+				controls_state = 107
+				controls_state = 108
+				controls_state = 109
+				controls_state = 112
+				controls_state = 113
+				controls_state = 114
+				controls_state = 115
+				controls_state = 116
+				controls_state = 121
+				controls_state = 122
+				controls_state = 123
+				controls_state = 125
+				controls_state = 131
+				controls_state = 136
+				controls_state = 138
+				controls_state = 141
+				controls_state = 492
+				controls_state = 497
+				controls_state = 561
+			}
 		}
 
 		cost = 50
@@ -262,44 +264,46 @@ PRA_Convincing_The_Populace = {
 		}
 
 		complete_effect = {
-			PRA = {
-				annex_country = SAZ
-				# Oregon #
-				add_state_core = 73
-				add_state_core = 74
-				add_state_core = 85
-				add_state_core = 88
-				add_state_core = 89
-				add_state_core = 94
-				add_state_core = 95
-				add_state_core = 150
-				add_state_core = 496
-				add_state_core = 562
-				# Washington #
-				add_state_core = 29
-				add_state_core = 60
-				add_state_core = 62
-				add_state_core = 97
-				add_state_core = 101
-				add_state_core = 107
-				add_state_core = 108
-				add_state_core = 109
-				add_state_core = 112
-				add_state_core = 113
-				add_state_core = 114
-				add_state_core = 115
-				add_state_core = 116
-				add_state_core = 121
-				add_state_core = 122
-				add_state_core = 123
-				add_state_core = 125
-				add_state_core = 131
-				add_state_core = 136
-				add_state_core = 138
-				add_state_core = 141
-				add_state_core = 492
-				add_state_core = 497
-				add_state_core = 561
+			custom_effect_tooltip = PRA_core_oregon_and_washington
+			hidden_effect = {
+				PRA = {
+					# Oregon #
+					add_state_core = 73
+					add_state_core = 74
+					add_state_core = 85
+					add_state_core = 88
+					add_state_core = 89
+					add_state_core = 94
+					add_state_core = 95
+					add_state_core = 150
+					add_state_core = 496
+					add_state_core = 562
+					# Washington #
+					add_state_core = 29
+					add_state_core = 60
+					add_state_core = 62
+					add_state_core = 97
+					add_state_core = 101
+					add_state_core = 107
+					add_state_core = 108
+					add_state_core = 109
+					add_state_core = 112
+					add_state_core = 113
+					add_state_core = 114
+					add_state_core = 115
+					add_state_core = 116
+					add_state_core = 121
+					add_state_core = 122
+					add_state_core = 123
+					add_state_core = 125
+					add_state_core = 131
+					add_state_core = 136
+					add_state_core = 138
+					add_state_core = 141
+					add_state_core = 492
+					add_state_core = 497
+					add_state_core = 561
+				}
 			}
 		}
 	}
@@ -310,39 +314,42 @@ PRA_Convincing_The_Populace = {
 		available = {
 			has_completed_focus = APRA_By_Any_Means_Necessary
 			has_government = libertarian_left
-			# Idaho #
-			controls_state = 65
-			controls_state = 66
-			controls_state = 99
-			controls_state = 354
-			controls_state = 415
-			controls_state = 417
-			controls_state = 522
-			controls_state = 563
-			controls_state = 568
-			controls_state = 569
-			# Montana #
-			controls_state = 35
-			controls_state = 39
-			controls_state = 64
-			controls_state = 67
-			controls_state = 70
-			controls_state = 86
-			controls_state = 118
-			controls_state = 119
-			controls_state = 453
-			controls_state = 567
-			controls_state = 570
-			# Wyoming #
-			controls_state = 63
-			controls_state = 400
-			controls_state = 412
-			controls_state = 422
-			controls_state = 425
-			controls_state = 430
-			controls_state = 446
-			controls_state = 447
-			controls_state = 483
+			custom_trigger_tooltip = {
+				tooltip = PRA_owns_northern_rockies
+				# Idaho #
+				controls_state = 65
+				controls_state = 66
+				controls_state = 99
+				controls_state = 354
+				controls_state = 415
+				controls_state = 417
+				controls_state = 522
+				controls_state = 563
+				controls_state = 568
+				controls_state = 569
+				# Montana #
+				controls_state = 35
+				controls_state = 39
+				controls_state = 64
+				controls_state = 67
+				controls_state = 70
+				controls_state = 86
+				controls_state = 118
+				controls_state = 119
+				controls_state = 453
+				controls_state = 567
+				controls_state = 570
+				# Wyoming #
+				controls_state = 63
+				controls_state = 400
+				controls_state = 412
+				controls_state = 422
+				controls_state = 425
+				controls_state = 430
+				controls_state = 446
+				controls_state = 447
+				controls_state = 483
+			}
 		}
 
 		cost = 50 
@@ -357,40 +364,43 @@ PRA_Convincing_The_Populace = {
 		}
 
 		complete_effect = {
-			PRA = {
-				# Idaho #
-				add_state_core = 65
-				add_state_core = 66
-				add_state_core = 99
-				add_state_core = 354
-				add_state_core = 415
-				add_state_core = 417
-				add_state_core = 522
-				add_state_core = 563
-				add_state_core = 568
-				add_state_core = 569
-				# Montana #
-				add_state_core = 35
-				add_state_core = 39
-				add_state_core = 64
-				add_state_core = 67
-				add_state_core = 70
-				add_state_core = 86
-				add_state_core = 118
-				add_state_core = 119
-				add_state_core = 453
-				add_state_core = 567
-				add_state_core = 570
-				# Wyoming #
-				add_state_core = 63
-				add_state_core = 400
-				add_state_core = 412
-				add_state_core = 422
-				add_state_core = 425
-				add_state_core = 430
-				add_state_core = 446
-				add_state_core = 447
-				add_state_core = 483
+			custom_effect_tooltip = PRA_core_northern_rockies
+			hidden_effect = {
+				PRA = {
+					# Idaho #
+					add_state_core = 65
+					add_state_core = 66
+					add_state_core = 99
+					add_state_core = 354
+					add_state_core = 415
+					add_state_core = 417
+					add_state_core = 522
+					add_state_core = 563
+					add_state_core = 568
+					add_state_core = 569
+					# Montana #
+					add_state_core = 35
+					add_state_core = 39
+					add_state_core = 64
+					add_state_core = 67
+					add_state_core = 70
+					add_state_core = 86
+					add_state_core = 118
+					add_state_core = 119
+					add_state_core = 453
+					add_state_core = 567
+					add_state_core = 570
+					# Wyoming #
+					add_state_core = 63
+					add_state_core = 400
+					add_state_core = 412
+					add_state_core = 422
+					add_state_core = 425
+					add_state_core = 430
+					add_state_core = 446
+					add_state_core = 447
+					add_state_core = 483
+				}
 			}
 		}
 	}
@@ -401,53 +411,56 @@ PRA_Convincing_The_Populace = {
 		available = {
 			has_completed_focus = APRA_By_Any_Means_Necessary
 			has_government = libertarian_left
-			# Arizona #
-			controls_state = 3
-			controls_state = 33
-			controls_state = 61
-			controls_state = 365
-			controls_state = 489
-			controls_state = 495 
-			controls_state = 513
-			controls_state = 514
-			controls_state = 515
-			# Colorado #
-			controls_state = 45
-			controls_state = 229
-			controls_state = 348
-			controls_state = 413
-			controls_state = 416
-			controls_state = 424
-			controls_state = 486
-			controls_state = 510
-			controls_state = 517
-			controls_state = 518
-			# Nevada #
-			controls_state = 46
-			controls_state = 117
-			controls_state = 393
-			controls_state = 394
-			controls_state = 419
-			controls_state = 452
-			controls_state = 487
-			controls_state = 488
-			controls_state = 491
-			controls_state = 521
-			# New Mexico #
-			controls_state = 40
-			controls_state = 249
-			controls_state = 310
-			controls_state = 335
-			controls_state = 352
-			controls_state = 511
-			# Utah #
-			controls_state = 406
-			controls_state = 410
-			controls_state = 411
-			controls_state = 414
-			controls_state = 512
-			controls_state = 519
-			controls_state = 520
+			custom_trigger_tooltip = {
+				tooltip = PRA_owns_southwest
+				# Arizona #
+				controls_state = 3
+				controls_state = 33
+				controls_state = 61
+				controls_state = 365
+				controls_state = 489
+				controls_state = 495 
+				controls_state = 513
+				controls_state = 514
+				controls_state = 515
+				# Colorado #
+				controls_state = 45
+				controls_state = 229
+				controls_state = 348
+				controls_state = 413
+				controls_state = 416
+				controls_state = 424
+				controls_state = 486
+				controls_state = 510
+				controls_state = 517
+				controls_state = 518
+				# Nevada #
+				controls_state = 46
+				controls_state = 117
+				controls_state = 393
+				controls_state = 394
+				controls_state = 419
+				controls_state = 452
+				controls_state = 487
+				controls_state = 488
+				controls_state = 491
+				controls_state = 521
+				# New Mexico #
+				controls_state = 40
+				controls_state = 249
+				controls_state = 310
+				controls_state = 335
+				controls_state = 352
+				controls_state = 511
+				# Utah #
+				controls_state = 406
+				controls_state = 410
+				controls_state = 411
+				controls_state = 414
+				controls_state = 512
+				controls_state = 519
+				controls_state = 520
+			}
 		}
 
 		cost = 50
@@ -462,54 +475,57 @@ PRA_Convincing_The_Populace = {
 		}
 
 		complete_effect = {
-			PRA = {
-				# Arizona #
-				add_state_core = 3
-				add_state_core = 33
-				add_state_core = 61
-				add_state_core = 365
-				add_state_core = 489
-				add_state_core = 495 
-				add_state_core = 513
-				add_state_core = 514
-				add_state_core = 515
-				# Colorado #
-				add_state_core = 45
-				add_state_core = 229
-				add_state_core = 348
-				add_state_core = 413
-				add_state_core = 416
-				add_state_core = 424
-				add_state_core = 486
-				add_state_core = 510
-				add_state_core = 517
-				add_state_core = 518
-				# Nevada #
-				add_state_core = 46
-				add_state_core = 117
-				add_state_core = 393
-				add_state_core = 394
-				add_state_core = 419
-				add_state_core = 452
-				add_state_core = 487
-				add_state_core = 488
-				add_state_core = 491
-				add_state_core = 521
-				# New Mexico #
-				add_state_core = 40
-				add_state_core = 249
-				add_state_core = 310
-				add_state_core = 335
-				add_state_core = 352
-				add_state_core = 511
-				# Utah #
-				add_state_core = 406
-				add_state_core = 410
-				add_state_core = 411
-				add_state_core = 414
-				add_state_core = 512
-				add_state_core = 519
-				add_state_core = 520
+			custom_effect_tooltip = PRA_core_southwest
+			hidden_effect = {
+				PRA = {
+					# Arizona #
+					add_state_core = 3
+					add_state_core = 33
+					add_state_core = 61
+					add_state_core = 365
+					add_state_core = 489
+					add_state_core = 495 
+					add_state_core = 513
+					add_state_core = 514
+					add_state_core = 515
+					# Colorado #
+					add_state_core = 45
+					add_state_core = 229
+					add_state_core = 348
+					add_state_core = 413
+					add_state_core = 416
+					add_state_core = 424
+					add_state_core = 486
+					add_state_core = 510
+					add_state_core = 517
+					add_state_core = 518
+					# Nevada #
+					add_state_core = 46
+					add_state_core = 117
+					add_state_core = 393
+					add_state_core = 394
+					add_state_core = 419
+					add_state_core = 452
+					add_state_core = 487
+					add_state_core = 488
+					add_state_core = 491
+					add_state_core = 521
+					# New Mexico #
+					add_state_core = 40
+					add_state_core = 249
+					add_state_core = 310
+					add_state_core = 335
+					add_state_core = 352
+					add_state_core = 511
+					# Utah #
+					add_state_core = 406
+					add_state_core = 410
+					add_state_core = 411
+					add_state_core = 414
+					add_state_core = 512
+					add_state_core = 519
+					add_state_core = 520
+				}
 			}
 		}
 	}
@@ -520,45 +536,48 @@ PRA_Convincing_The_Populace = {
 		available = {
 			has_completed_focus = APRA_By_Any_Means_Necessary
 			has_government = libertarian_left
-			# Iowa #
-			controls_state = 185
-			controls_state = 186
-			controls_state = 187
-			# Kansas #
-			controls_state = 233
-			controls_state = 235
-			controls_state = 240
-			controls_state = 243
-			controls_state = 426
-			# Nebraska #
-			controls_state = 83
-			controls_state = 234
-			controls_state = 423
-			controls_state = 566
-			# North Dakota #
-			controls_state = 41
-			controls_state = 421
-			controls_state = 431
-			controls_state = 564
-			controls_state = 565
-			# Minnesota #
-			controls_state = 23
-			controls_state = 25
-			controls_state = 111
-			controls_state = 184
-			# Missouri #
-			controls_state = 230
-			controls_state = 231
-			controls_state = 232
-			controls_state = 236
-			controls_state = 238
-			controls_state = 239
-			controls_state = 505
-			# South Dakota #
-			controls_state = 434
-			controls_state = 442
-			controls_state = 443
-			controls_state = 484
+			custom_trigger_tooltip = {
+				tooltip = PRA_owns_great_plains
+				# Iowa #
+				controls_state = 185
+				controls_state = 186
+				controls_state = 187
+				# Kansas #
+				controls_state = 233
+				controls_state = 235
+				controls_state = 240
+				controls_state = 243
+				controls_state = 426
+				# Nebraska #
+				controls_state = 83
+				controls_state = 234
+				controls_state = 423
+				controls_state = 566
+				# North Dakota #
+				controls_state = 41
+				controls_state = 421
+				controls_state = 431
+				controls_state = 564
+				controls_state = 565
+				# Minnesota #
+				controls_state = 23
+				controls_state = 25
+				controls_state = 111
+				controls_state = 184
+				# Missouri #
+				controls_state = 230
+				controls_state = 231
+				controls_state = 232
+				controls_state = 236
+				controls_state = 238
+				controls_state = 239
+				controls_state = 505
+				# South Dakota #
+				controls_state = 434
+				controls_state = 442
+				controls_state = 443
+				controls_state = 484
+			}
 		}
 
 		cost = 75
@@ -573,46 +592,49 @@ PRA_Convincing_The_Populace = {
 		}
 
 		complete_effect = {
-			PRA = {
-				# Iowa #
-				add_state_core = 185
-				add_state_core = 186
-				add_state_core = 187
-				# Kansas #
-				add_state_core = 233
-				add_state_core = 235
-				add_state_core = 240
-				add_state_core = 243
-				add_state_core = 426
-				# Nebraska #
-				add_state_core = 83
-				add_state_core = 234
-				add_state_core = 423
-				add_state_core = 566
-				# North Dakota #
-				add_state_core = 41
-				add_state_core = 421
-				add_state_core = 431
-				add_state_core = 564
-				add_state_core = 565
-				# Minnesota #
-				add_state_core = 23
-				add_state_core = 25
-				add_state_core = 111
-				add_state_core = 184
-				# Missouri #
-				add_state_core = 230
-				add_state_core = 231
-				add_state_core = 232
-				add_state_core = 236
-				add_state_core = 238
-				add_state_core = 239
-				add_state_core = 505
-				# South Dakota #
-				add_state_core = 434
-				add_state_core = 442
-				add_state_core = 443
-				add_state_core = 484
+			custom_effect_tooltip = PRA_core_great_plains
+			hidden_effect = {
+				PRA = {
+					# Iowa #
+					add_state_core = 185
+					add_state_core = 186
+					add_state_core = 187
+					# Kansas #
+					add_state_core = 233
+					add_state_core = 235
+					add_state_core = 240
+					add_state_core = 243
+					add_state_core = 426
+					# Nebraska #
+					add_state_core = 83
+					add_state_core = 234
+					add_state_core = 423
+					add_state_core = 566
+					# North Dakota #
+					add_state_core = 41
+					add_state_core = 421
+					add_state_core = 431
+					add_state_core = 564
+					add_state_core = 565
+					# Minnesota #
+					add_state_core = 23
+					add_state_core = 25
+					add_state_core = 111
+					add_state_core = 184
+					# Missouri #
+					add_state_core = 230
+					add_state_core = 231
+					add_state_core = 232
+					add_state_core = 236
+					add_state_core = 238
+					add_state_core = 239
+					add_state_core = 505
+					# South Dakota #
+					add_state_core = 434
+					add_state_core = 442
+					add_state_core = 443
+					add_state_core = 484
+				}
 			}
 		}
 	}
@@ -623,27 +645,30 @@ PRA_Convincing_The_Populace = {
 		available = {
 			has_completed_focus = APRA_By_Any_Means_Necessary
 			has_government = libertarian_left
-			# Texas #
-			controls_state = 28
-			controls_state = 34
-			controls_state = 37
-			controls_state = 43
-			controls_state = 44
-			controls_state = 50
-			controls_state = 53
-			controls_state = 55
-			controls_state = 57
-			controls_state = 77
-			controls_state = 80
-			controls_state = 84
-			controls_state = 87
-			controls_state = 143
-			controls_state = 270
-			controls_state = 274
-			controls_state = 286
-			controls_state = 301
-			controls_state = 306
-			controls_state = 314
+			custom_trigger_tooltip = {
+				tooltip = PRA_owns_texas
+				# Texas #
+				controls_state = 28
+				controls_state = 34
+				controls_state = 37
+				controls_state = 43
+				controls_state = 44
+				controls_state = 50
+				controls_state = 53
+				controls_state = 55
+				controls_state = 57
+				controls_state = 77
+				controls_state = 80
+				controls_state = 84
+				controls_state = 87
+				controls_state = 143
+				controls_state = 270
+				controls_state = 274
+				controls_state = 286
+				controls_state = 301
+				controls_state = 306
+				controls_state = 314
+			}
 		}
 
 		cost = 75
@@ -658,28 +683,31 @@ PRA_Convincing_The_Populace = {
 		}
 
 		complete_effect = {
-			PRA = {
-				# Texas #
-				add_state_core = 28
-				add_state_core = 34
-				add_state_core = 37
-				add_state_core = 43
-				add_state_core = 44
-				add_state_core = 50
-				add_state_core = 53
-				add_state_core = 55
-				add_state_core = 57
-				add_state_core = 77
-				add_state_core = 80
-				add_state_core = 84
-				add_state_core = 87
-				add_state_core = 143
-				add_state_core = 270
-				add_state_core = 274
-				add_state_core = 286
-				add_state_core = 301
-				add_state_core = 306
-				add_state_core = 314
+			custom_effect_tooltip = PRA_core_texas
+			hidden_effect = {
+				PRA = {
+					# Texas #
+					add_state_core = 28
+					add_state_core = 34
+					add_state_core = 37
+					add_state_core = 43
+					add_state_core = 44
+					add_state_core = 50
+					add_state_core = 53
+					add_state_core = 55
+					add_state_core = 57
+					add_state_core = 77
+					add_state_core = 80
+					add_state_core = 84
+					add_state_core = 87
+					add_state_core = 143
+					add_state_core = 270
+					add_state_core = 274
+					add_state_core = 286
+					add_state_core = 301
+					add_state_core = 306
+					add_state_core = 314
+				}
 			}
 		}
 	}
@@ -690,44 +718,47 @@ PRA_Convincing_The_Populace = {
 		available = {
 			has_completed_focus = APRA_By_Any_Means_Necessary
 			has_government = libertarian_left
-			# Illinois #
-			controls_state = 194
-			controls_state = 196
-			controls_state = 197
-			controls_state = 198
-			controls_state = 209
-			controls_state = 215
-			controls_state = 268
-			# Indiana #
-			controls_state = 204
-			controls_state = 206
-			controls_state = 207
-			controls_state = 218
-			controls_state = 224
-			controls_state = 559
-			# Ohio #
-			controls_state = 205
-			controls_state = 208
-			controls_state = 226
-			controls_state = 396
-			controls_state = 399
-			controls_state = 560
-			# Michigan #
-			controls_state = 130
-			controls_state = 152
-			controls_state = 153
-			controls_state = 157
-			controls_state = 160
-			controls_state = 161
-			controls_state = 162
-			controls_state = 165
-			controls_state = 190
-			# Wisconsin #
-			controls_state = 104
-			controls_state = 106
-			controls_state = 124
-			controls_state = 155
-			controls_state = 195
+			custom_trigger_tooltip = {
+				tooltip = PRA_owns_rust_belt
+				# Illinois #
+				controls_state = 194
+				controls_state = 196
+				controls_state = 197
+				controls_state = 198
+				controls_state = 209
+				controls_state = 215
+				controls_state = 268
+				# Indiana #
+				controls_state = 204
+				controls_state = 206
+				controls_state = 207
+				controls_state = 218
+				controls_state = 224
+				controls_state = 559
+				# Ohio #
+				controls_state = 205
+				controls_state = 208
+				controls_state = 226
+				controls_state = 396
+				controls_state = 399
+				controls_state = 560
+				# Michigan #
+				controls_state = 130
+				controls_state = 152
+				controls_state = 153
+				controls_state = 157
+				controls_state = 160
+				controls_state = 161
+				controls_state = 162
+				controls_state = 165
+				controls_state = 190
+				# Wisconsin #
+				controls_state = 104
+				controls_state = 106
+				controls_state = 124
+				controls_state = 155
+				controls_state = 195
+			}
 		}
 
 		cost = 75
@@ -742,45 +773,48 @@ PRA_Convincing_The_Populace = {
 		}
 
 		complete_effect = {
-			PRA = {
-				# Illinois #
-				add_state_core = 194
-				add_state_core = 196
-				add_state_core = 197
-				add_state_core = 198
-				add_state_core = 209
-				add_state_core = 215
-				add_state_core = 268
-				# Indiana #
-				add_state_core = 204
-				add_state_core = 206
-				add_state_core = 207
-				add_state_core = 218
-				add_state_core = 224
-				add_state_core = 559
-				# Ohio #
-				add_state_core = 205
-				add_state_core = 208
-				add_state_core = 226
-				add_state_core = 396
-				add_state_core = 399
-				add_state_core = 560
-				# Michigan #
-				add_state_core = 130
-				add_state_core = 152
-				add_state_core = 153
-				add_state_core = 157
-				add_state_core = 160
-				add_state_core = 161
-				add_state_core = 162
-				add_state_core = 165
-				add_state_core = 190
-				# Wisconsin #
-				add_state_core = 104
-				add_state_core = 106
-				add_state_core = 124
-				add_state_core = 155
-				add_state_core = 195
+			custom_effect_tooltip = PRA_core_rust_belt
+			hidden_effect = {
+				PRA = {
+					# Illinois #
+					add_state_core = 194
+					add_state_core = 196
+					add_state_core = 197
+					add_state_core = 198
+					add_state_core = 209
+					add_state_core = 215
+					add_state_core = 268
+					# Indiana #
+					add_state_core = 204
+					add_state_core = 206
+					add_state_core = 207
+					add_state_core = 218
+					add_state_core = 224
+					add_state_core = 559
+					# Ohio #
+					add_state_core = 205
+					add_state_core = 208
+					add_state_core = 226
+					add_state_core = 396
+					add_state_core = 399
+					add_state_core = 560
+					# Michigan #
+					add_state_core = 130
+					add_state_core = 152
+					add_state_core = 153
+					add_state_core = 157
+					add_state_core = 160
+					add_state_core = 161
+					add_state_core = 162
+					add_state_core = 165
+					add_state_core = 190
+					# Wisconsin #
+					add_state_core = 104
+					add_state_core = 106
+					add_state_core = 124
+					add_state_core = 155
+					add_state_core = 195
+				}
 			}
 		}
 	}
@@ -791,136 +825,139 @@ PRA_Convincing_The_Populace = {
 		available = {
 			has_completed_focus = APRA_By_Any_Means_Necessary
 			has_government = libertarian_left
-			# Alabama #
-			controls_state = 289
-			controls_state = 291 
-			controls_state = 294
-			controls_state = 303
-			controls_state = 320
-			controls_state = 381
-			controls_state = 386
-			controls_state = 420
-			controls_state = 551
-			controls_state = 552
-			# Arkansas #
-			controls_state = 267
-			controls_state = 269
-			controls_state = 279
-			controls_state = 535
-			controls_state = 536
-			# Florida #
-			controls_state = 322
-			controls_state = 323
-			controls_state = 324
-			controls_state = 327
-			controls_state = 339
-			controls_state = 345
-			controls_state = 346
-			controls_state = 353
-			controls_state = 397
-			controls_state = 577
-			controls_state = 578
-			controls_state = 579
-			controls_state = 580
-			controls_state = 581
-			controls_state = 582
-			controls_state = 583
-			controls_state = 584
-			controls_state = 602
-			controls_state = 603
-			# Georgia #
-			controls_state = 290
-			controls_state = 299
-			controls_state = 300
-			controls_state = 309
-			controls_state = 328
-			controls_state = 329
-			controls_state = 506
-			controls_state = 507
-			controls_state = 508
-			controls_state = 509
-			# Kentucky #
-			controls_state = 237
-			controls_state = 246
-			controls_state = 250
-			controls_state = 288
-			controls_state = 330
-			controls_state = 571
-			controls_state = 572
-			controls_state = 573
-			controls_state = 574
-			controls_state = 575
-			controls_state = 576
-			# Louisiana #
-			controls_state = 307
-			controls_state = 312
-			controls_state = 315
-			controls_state = 316
-			controls_state = 317
-			controls_state = 609
-			controls_state = 610
-			controls_state = 611
-			controls_state = 612
-			# Mississippi #
-			controls_state = 287
-			controls_state = 388
-			controls_state = 407
-			controls_state = 604
-			controls_state = 605
-			controls_state = 606
-			controls_state = 607
-			controls_state = 608
-			# North Carolina #
-			controls_state = 263
-			controls_state = 264
-			controls_state = 265
-			controls_state = 266
-			controls_state = 275
-			controls_state = 308
-			controls_state = 331
-			controls_state = 516
-			controls_state = 534
-			# Oklahoma #
-			controls_state = 251
-			controls_state = 252
-			controls_state = 253
-			controls_state = 254
-			controls_state = 255
-			controls_state = 256
-			controls_state = 257
-			controls_state = 258
-			controls_state = 259
-			controls_state = 272
-			controls_state = 278
-			# South Carolina #
-			controls_state = 282
-			controls_state = 283
-			controls_state = 284
-			controls_state = 293
-			controls_state = 325
-			controls_state = 532
-			controls_state = 533
-			# Tennessee #
-			controls_state = 260
-			controls_state = 261
-			controls_state = 262
-			controls_state = 271
-			controls_state = 280
-			controls_state = 333
-			controls_state = 591
-			controls_state = 592
-			controls_state = 593
-			# Virginia #
-			controls_state = 169
-			controls_state = 188
-			controls_state = 332
-			controls_state = 371
-			controls_state = 375
-			controls_state = 380
-			controls_state = 477
-			controls_state = 500
-			controls_state = 501
-			controls_state = 502
+			custom_trigger_tooltip = {
+				tooltip = PRA_owns_south
+				# Alabama #
+				controls_state = 289
+				controls_state = 291 
+				controls_state = 294
+				controls_state = 303
+				controls_state = 320
+				controls_state = 381
+				controls_state = 386
+				controls_state = 420
+				controls_state = 551
+				controls_state = 552
+				# Arkansas #
+				controls_state = 267
+				controls_state = 269
+				controls_state = 279
+				controls_state = 535
+				controls_state = 536
+				# Florida #
+				controls_state = 322
+				controls_state = 323
+				controls_state = 324
+				controls_state = 327
+				controls_state = 339
+				controls_state = 345
+				controls_state = 346
+				controls_state = 353
+				controls_state = 397
+				controls_state = 577
+				controls_state = 578
+				controls_state = 579
+				controls_state = 580
+				controls_state = 581
+				controls_state = 582
+				controls_state = 583
+				controls_state = 584
+				controls_state = 602
+				controls_state = 603
+				# Georgia #
+				controls_state = 290
+				controls_state = 299
+				controls_state = 300
+				controls_state = 309
+				controls_state = 328
+				controls_state = 329
+				controls_state = 506
+				controls_state = 507
+				controls_state = 508
+				controls_state = 509
+				# Kentucky #
+				controls_state = 237
+				controls_state = 246
+				controls_state = 250
+				controls_state = 288
+				controls_state = 330
+				controls_state = 571
+				controls_state = 572
+				controls_state = 573
+				controls_state = 574
+				controls_state = 575
+				controls_state = 576
+				# Louisiana #
+				controls_state = 307
+				controls_state = 312
+				controls_state = 315
+				controls_state = 316
+				controls_state = 317
+				controls_state = 609
+				controls_state = 610
+				controls_state = 611
+				controls_state = 612
+				# Mississippi #
+				controls_state = 287
+				controls_state = 388
+				controls_state = 407
+				controls_state = 604
+				controls_state = 605
+				controls_state = 606
+				controls_state = 607
+				controls_state = 608
+				# North Carolina #
+				controls_state = 263
+				controls_state = 264
+				controls_state = 265
+				controls_state = 266
+				controls_state = 275
+				controls_state = 308
+				controls_state = 331
+				controls_state = 516
+				controls_state = 534
+				# Oklahoma #
+				controls_state = 251
+				controls_state = 252
+				controls_state = 253
+				controls_state = 254
+				controls_state = 255
+				controls_state = 256
+				controls_state = 257
+				controls_state = 258
+				controls_state = 259
+				controls_state = 272
+				controls_state = 278
+				# South Carolina #
+				controls_state = 282
+				controls_state = 283
+				controls_state = 284
+				controls_state = 293
+				controls_state = 325
+				controls_state = 532
+				controls_state = 533
+				# Tennessee #
+				controls_state = 260
+				controls_state = 261
+				controls_state = 262
+				controls_state = 271
+				controls_state = 280
+				controls_state = 333
+				controls_state = 591
+				controls_state = 592
+				controls_state = 593
+				# Virginia #
+				controls_state = 169
+				controls_state = 188
+				controls_state = 332
+				controls_state = 371
+				controls_state = 375
+				controls_state = 380
+				controls_state = 477
+				controls_state = 500
+				controls_state = 501
+				controls_state = 502
+			}
 		}
 
 		cost = 100
@@ -935,137 +972,140 @@ PRA_Convincing_The_Populace = {
 		}
 
 		complete_effect = {
-			PRA = {
-				# Alabama #
-				add_state_core = 289
-				add_state_core = 291 
-				add_state_core = 294
-				add_state_core = 303
-				add_state_core = 320
-				add_state_core = 381
-				add_state_core = 386
-				add_state_core = 420
-				add_state_core = 551
-				add_state_core = 552
-				# Arkansas #
-				add_state_core = 267
-				add_state_core = 269
-				add_state_core = 279
-				add_state_core = 535
-				add_state_core = 536
-				# Florida #
-				add_state_core = 322
-				add_state_core = 323
-				add_state_core = 324
-				add_state_core = 327
-				add_state_core = 339
-				add_state_core = 345
-				add_state_core = 346
-				add_state_core = 353
-				add_state_core = 397
-				add_state_core = 577
-				add_state_core = 578
-				add_state_core = 579
-				add_state_core = 580
-				add_state_core = 581
-				add_state_core = 582
-				add_state_core = 583
-				add_state_core = 584
-				add_state_core = 602
-				add_state_core = 603
-				# Georgia #
-				add_state_core = 290
-				add_state_core = 299
-				add_state_core = 300
-				add_state_core = 309
-				add_state_core = 328
-				add_state_core = 329
-				add_state_core = 506
-				add_state_core = 507
-				add_state_core = 508
-				add_state_core = 509
-				# Kentucky #
-				add_state_core = 237
-				add_state_core = 246
-				add_state_core = 250
-				add_state_core = 288
-				add_state_core = 330
-				add_state_core = 571
-				add_state_core = 572
-				add_state_core = 573
-				add_state_core = 574
-				add_state_core = 575
-				add_state_core = 576
-				# Louisiana #
-				add_state_core = 307
-				add_state_core = 312
-				add_state_core = 315
-				add_state_core = 316
-				add_state_core = 317
-				add_state_core = 609
-				add_state_core = 610
-				add_state_core = 611
-				add_state_core = 612
-				# Mississippi #
-				add_state_core = 287
-				add_state_core = 388
-				add_state_core = 407
-				add_state_core = 604
-				add_state_core = 605
-				add_state_core = 606
-				add_state_core = 607
-				add_state_core = 608
-				# North Carolina #
-				add_state_core = 263
-				add_state_core = 264
-				add_state_core = 265
-				add_state_core = 266
-				add_state_core = 275
-				add_state_core = 308
-				add_state_core = 331
-				add_state_core = 516
-				add_state_core = 534
-				# Oklahoma #
-				add_state_core = 251
-				add_state_core = 252
-				add_state_core = 253
-				add_state_core = 254
-				add_state_core = 255
-				add_state_core = 256
-				add_state_core = 257
-				add_state_core = 258
-				add_state_core = 259
-				add_state_core = 272
-				add_state_core = 278
-				# South Carolina #
-				add_state_core = 282
-				add_state_core = 283
-				add_state_core = 284
-				add_state_core = 293
-				add_state_core = 325
-				add_state_core = 532
-				add_state_core = 533
-				# Tennessee #
-				add_state_core = 260
-				add_state_core = 261
-				add_state_core = 262
-				add_state_core = 271
-				add_state_core = 280
-				add_state_core = 333
-				add_state_core = 591
-				add_state_core = 592
-				add_state_core = 593
-				# Virginia #
-				add_state_core = 169
-				add_state_core = 188
-				add_state_core = 332
-				add_state_core = 371
-				add_state_core = 375
-				add_state_core = 380
-				add_state_core = 477
-				add_state_core = 500
-				add_state_core = 501
-				add_state_core = 502
+			custom_effect_tooltip = PRA_core_south
+			hidden_effect = {
+				PRA = {
+					# Alabama #
+					add_state_core = 289
+					add_state_core = 291 
+					add_state_core = 294
+					add_state_core = 303
+					add_state_core = 320
+					add_state_core = 381
+					add_state_core = 386
+					add_state_core = 420
+					add_state_core = 551
+					add_state_core = 552
+					# Arkansas #
+					add_state_core = 267
+					add_state_core = 269
+					add_state_core = 279
+					add_state_core = 535
+					add_state_core = 536
+					# Florida #
+					add_state_core = 322
+					add_state_core = 323
+					add_state_core = 324
+					add_state_core = 327
+					add_state_core = 339
+					add_state_core = 345
+					add_state_core = 346
+					add_state_core = 353
+					add_state_core = 397
+					add_state_core = 577
+					add_state_core = 578
+					add_state_core = 579
+					add_state_core = 580
+					add_state_core = 581
+					add_state_core = 582
+					add_state_core = 583
+					add_state_core = 584
+					add_state_core = 602
+					add_state_core = 603
+					# Georgia #
+					add_state_core = 290
+					add_state_core = 299
+					add_state_core = 300
+					add_state_core = 309
+					add_state_core = 328
+					add_state_core = 329
+					add_state_core = 506
+					add_state_core = 507
+					add_state_core = 508
+					add_state_core = 509
+					# Kentucky #
+					add_state_core = 237
+					add_state_core = 246
+					add_state_core = 250
+					add_state_core = 288
+					add_state_core = 330
+					add_state_core = 571
+					add_state_core = 572
+					add_state_core = 573
+					add_state_core = 574
+					add_state_core = 575
+					add_state_core = 576
+					# Louisiana #
+					add_state_core = 307
+					add_state_core = 312
+					add_state_core = 315
+					add_state_core = 316
+					add_state_core = 317
+					add_state_core = 609
+					add_state_core = 610
+					add_state_core = 611
+					add_state_core = 612
+					# Mississippi #
+					add_state_core = 287
+					add_state_core = 388
+					add_state_core = 407
+					add_state_core = 604
+					add_state_core = 605
+					add_state_core = 606
+					add_state_core = 607
+					add_state_core = 608
+					# North Carolina #
+					add_state_core = 263
+					add_state_core = 264
+					add_state_core = 265
+					add_state_core = 266
+					add_state_core = 275
+					add_state_core = 308
+					add_state_core = 331
+					add_state_core = 516
+					add_state_core = 534
+					# Oklahoma #
+					add_state_core = 251
+					add_state_core = 252
+					add_state_core = 253
+					add_state_core = 254
+					add_state_core = 255
+					add_state_core = 256
+					add_state_core = 257
+					add_state_core = 258
+					add_state_core = 259
+					add_state_core = 272
+					add_state_core = 278
+					# South Carolina #
+					add_state_core = 282
+					add_state_core = 283
+					add_state_core = 284
+					add_state_core = 293
+					add_state_core = 325
+					add_state_core = 532
+					add_state_core = 533
+					# Tennessee #
+					add_state_core = 260
+					add_state_core = 261
+					add_state_core = 262
+					add_state_core = 271
+					add_state_core = 280
+					add_state_core = 333
+					add_state_core = 591
+					add_state_core = 592
+					add_state_core = 593
+					# Virginia #
+					add_state_core = 169
+					add_state_core = 188
+					add_state_core = 332
+					add_state_core = 371
+					add_state_core = 375
+					add_state_core = 380
+					add_state_core = 477
+					add_state_core = 500
+					add_state_core = 501
+					add_state_core = 502
+				}
 			}
 		}
 	}
@@ -1076,105 +1116,108 @@ PRA_Convincing_The_Populace = {
 		available = {
 			has_completed_focus = APRA_By_Any_Means_Necessary
 			has_government = libertarian_left
-			# Connecticut #
-			controls_state = 200
-			controls_state = 201
-			controls_state = 202
-			controls_state = 594
-			controls_state = 595
-			# Delaware #
-			controls_state = 558
-			# Maine #
-			controls_state = 132
-			controls_state = 142
-			controls_state = 172
-			controls_state = 174
-			controls_state = 179
-			controls_state = 619
-			controls_state = 620
-			controls_state = 621
-			controls_state = 622
-			controls_state = 623
-			controls_state = 628
-			# Maryland #
-			controls_state = 244
-			controls_state = 248
-			controls_state = 402
-			controls_state = 503
-			# Massachusetts #
-			controls_state = 181
-			controls_state = 192
-			controls_state = 193
-			controls_state = 210
-			controls_state = 211
-			controls_state = 212
-			controls_state = 214
-			controls_state = 216
-			controls_state = 221
-			controls_state = 599
-			controls_state = 600
-			controls_state = 601
-			# New Hampshire #
-			controls_state = 168
-			controls_state = 178
-			controls_state = 180
-			controls_state = 616
-			controls_state = 617
-			controls_state = 618
-			# New Jersey #
-			controls_state = 245
-			controls_state = 247
-			controls_state = 624
-			controls_state = 625
-			controls_state = 626
-			controls_state = 627
-			# New York #
-			controls_state = 170
-			controls_state = 183
-			controls_state = 191
-			controls_state = 219
-			controls_state = 220
-			controls_state = 222
-			controls_state = 223
-			controls_state = 225
-			controls_state = 227
-			controls_state = 228
-			controls_state = 276
-			controls_state = 281
-			controls_state = 357
-			controls_state = 553
-			controls_state = 554
-			controls_state = 555
-			controls_state = 556
-			controls_state = 557
-			controls_state = 590
-			# Pennsylvania #
-			controls_state = 273
-			controls_state = 277
-			controls_state = 285
-			controls_state = 292
-			controls_state = 358
-			controls_state = 360
-			controls_state = 361
-			controls_state = 504
-			# Rhode Island #
-			controls_state = 203
-			controls_state = 217
-			controls_state = 597
-			controls_state = 598
-			# Vermont #
-			controls_state = 171
-			controls_state = 613
-			controls_state = 614
-			controls_state = 615
-			# Washington D.C. #
-			controls_state = 242
-			# West Virginia #
-			controls_state = 347
-			controls_state = 356
-			controls_state = 368
-			controls_state = 372
-			controls_state = 403
+			custom_trigger_tooltip = {
+				tooltip = PRA_owns_northeast
+				# Connecticut #
+				controls_state = 200
+				controls_state = 201
+				controls_state = 202
+				controls_state = 594
+				controls_state = 595
+				# Delaware #
+				controls_state = 558
+				# Maine #
+				controls_state = 132
+				controls_state = 142
+				controls_state = 172
+				controls_state = 174
+				controls_state = 179
+				controls_state = 619
+				controls_state = 620
+				controls_state = 621
+				controls_state = 622
+				controls_state = 623
+				controls_state = 628
+				# Maryland #
+				controls_state = 244
+				controls_state = 248
+				controls_state = 402
+				controls_state = 503
+				# Massachusetts #
+				controls_state = 181
+				controls_state = 192
+				controls_state = 193
+				controls_state = 210
+				controls_state = 211
+				controls_state = 212
+				controls_state = 214
+				controls_state = 216
+				controls_state = 221
+				controls_state = 599
+				controls_state = 600
+				controls_state = 601
+				# New Hampshire #
+				controls_state = 168
+				controls_state = 178
+				controls_state = 180
+				controls_state = 616
+				controls_state = 617
+				controls_state = 618
+				# New Jersey #
+				controls_state = 245
+				controls_state = 247
+				controls_state = 624
+				controls_state = 625
+				controls_state = 626
+				controls_state = 627
+				# New York #
+				controls_state = 170
+				controls_state = 183
+				controls_state = 191
+				controls_state = 219
+				controls_state = 220
+				controls_state = 222
+				controls_state = 223
+				controls_state = 225
+				controls_state = 227
+				controls_state = 228
+				controls_state = 276
+				controls_state = 281
+				controls_state = 357
+				controls_state = 553
+				controls_state = 554
+				controls_state = 555
+				controls_state = 556
+				controls_state = 557
+				controls_state = 590
+				# Pennsylvania #
+				controls_state = 273
+				controls_state = 277
+				controls_state = 285
+				controls_state = 292
+				controls_state = 358
+				controls_state = 360
+				controls_state = 361
+				controls_state = 504
+				# Rhode Island #
+				controls_state = 203
+				controls_state = 217
+				controls_state = 597
+				controls_state = 598
+				# Vermont #
+				controls_state = 171
+				controls_state = 613
+				controls_state = 614
+				controls_state = 615
+				# Washington D.C. #
+				controls_state = 242
+				# West Virginia #
+				controls_state = 347
+				controls_state = 356
+				controls_state = 368
+				controls_state = 372
+				controls_state = 403
+			}
 		}
 
 		cost = 100
@@ -1189,106 +1232,109 @@ PRA_Convincing_The_Populace = {
 		}
 
 		complete_effect = {
-			PRA = {
-				# Connecticut #
-				add_state_core = 200
-				add_state_core = 201
-				add_state_core = 202
-				add_state_core = 594
-				add_state_core = 595
-				# Delaware #
-				add_state_core = 558
-				# Maine #
-				add_state_core = 132
-				add_state_core = 142
-				add_state_core = 172
-				add_state_core = 174
-				add_state_core = 179
-				add_state_core = 619
-				add_state_core = 620
-				add_state_core = 621
-				add_state_core = 622
-				add_state_core = 623
-				add_state_core = 628
-				# Maryland #
-				add_state_core = 244
-				add_state_core = 248
-				add_state_core = 402
-				add_state_core = 503
-				# Massachusetts #
-				add_state_core = 181
-				add_state_core = 192
-				add_state_core = 193
-				add_state_core = 210
-				add_state_core = 211
-				add_state_core = 212
-				add_state_core = 214
-				add_state_core = 216
-				add_state_core = 221
-				add_state_core = 599
-				add_state_core = 600
-				add_state_core = 601
-				# New Hampshire #
-				add_state_core = 168
-				add_state_core = 178
-				add_state_core = 180
-				add_state_core = 616
-				add_state_core = 617
-				add_state_core = 618
-				# New Jersey #
-				add_state_core = 245
-				add_state_core = 247
-				add_state_core = 624
-				add_state_core = 625
-				add_state_core = 626
-				add_state_core = 627
-				# New York #
-				add_state_core = 170
-				add_state_core = 183
-				add_state_core = 191
-				add_state_core = 219
-				add_state_core = 220
-				add_state_core = 222
-				add_state_core = 223
-				add_state_core = 225
-				add_state_core = 227
-				add_state_core = 228
-				add_state_core = 276
-				add_state_core = 281
-				add_state_core = 357
-				add_state_core = 553
-				add_state_core = 554
-				add_state_core = 555
-				add_state_core = 556
-				add_state_core = 557
-				add_state_core = 590
-				# Pennsylvania #
-				add_state_core = 273
-				add_state_core = 277
-				add_state_core = 285
-				add_state_core = 292
-				add_state_core = 358
-				add_state_core = 360
-				add_state_core = 361
-				add_state_core = 504
-				# Rhode Island #
-				add_state_core = 203
-				add_state_core = 217
-				add_state_core = 597
-				add_state_core = 598
-				# Vermont #
-				add_state_core = 171
-				add_state_core = 613
-				add_state_core = 614
-				add_state_core = 615
-				# Washington D.C. #
-				add_state_core = 242
-				# West Virginia #
-				add_state_core = 347
-				add_state_core = 356
-				add_state_core = 368
-				add_state_core = 372
-				add_state_core = 403
+			custom_effect_tooltip = PRA_core_northeast
+			hidden_effect = {
+				PRA = {
+					# Connecticut #
+					add_state_core = 200
+					add_state_core = 201
+					add_state_core = 202
+					add_state_core = 594
+					add_state_core = 595
+					# Delaware #
+					add_state_core = 558
+					# Maine #
+					add_state_core = 132
+					add_state_core = 142
+					add_state_core = 172
+					add_state_core = 174
+					add_state_core = 179
+					add_state_core = 619
+					add_state_core = 620
+					add_state_core = 621
+					add_state_core = 622
+					add_state_core = 623
+					add_state_core = 628
+					# Maryland #
+					add_state_core = 244
+					add_state_core = 248
+					add_state_core = 402
+					add_state_core = 503
+					# Massachusetts #
+					add_state_core = 181
+					add_state_core = 192
+					add_state_core = 193
+					add_state_core = 210
+					add_state_core = 211
+					add_state_core = 212
+					add_state_core = 214
+					add_state_core = 216
+					add_state_core = 221
+					add_state_core = 599
+					add_state_core = 600
+					add_state_core = 601
+					# New Hampshire #
+					add_state_core = 168
+					add_state_core = 178
+					add_state_core = 180
+					add_state_core = 616
+					add_state_core = 617
+					add_state_core = 618
+					# New Jersey #
+					add_state_core = 245
+					add_state_core = 247
+					add_state_core = 624
+					add_state_core = 625
+					add_state_core = 626
+					add_state_core = 627
+					# New York #
+					add_state_core = 170
+					add_state_core = 183
+					add_state_core = 191
+					add_state_core = 219
+					add_state_core = 220
+					add_state_core = 222
+					add_state_core = 223
+					add_state_core = 225
+					add_state_core = 227
+					add_state_core = 228
+					add_state_core = 276
+					add_state_core = 281
+					add_state_core = 357
+					add_state_core = 553
+					add_state_core = 554
+					add_state_core = 555
+					add_state_core = 556
+					add_state_core = 557
+					add_state_core = 590
+					# Pennsylvania #
+					add_state_core = 273
+					add_state_core = 277
+					add_state_core = 285
+					add_state_core = 292
+					add_state_core = 358
+					add_state_core = 360
+					add_state_core = 361
+					add_state_core = 504
+					# Rhode Island #
+					add_state_core = 203
+					add_state_core = 217
+					add_state_core = 597
+					add_state_core = 598
+					# Vermont #
+					add_state_core = 171
+					add_state_core = 613
+					add_state_core = 614
+					add_state_core = 615
+					# Washington D.C. #
+					add_state_core = 242
+					# West Virginia #
+					add_state_core = 347
+					add_state_core = 356
+					add_state_core = 368
+					add_state_core = 372
+					add_state_core = 403
+				}
 			}
 		}
 	}
@@ -1301,24 +1347,27 @@ PRA_Establish_Autonomous_Communes = {
 		available = {
 			has_completed_focus = APRA_Democratic_Communalism
 			has_government = libertarian_left
-			# Alaska #
-			controls_state = 2
-			controls_state = 11
-			controls_state = 14
-			controls_state = 16
-			controls_state = 19
-			controls_state = 96
-			controls_state = 404
-			# Hawaii #
-			controls_state = 432
-			controls_state = 433
-			controls_state = 435
-			controls_state = 436
-			controls_state = 437
-			controls_state = 438
-			controls_state = 439
-			controls_state = 440
-			controls_state = 441
+			custom_trigger_tooltip = {
+				tooltip = PRA_owns_hawaii_and_alaska
+				# Alaska #
+				controls_state = 2
+				controls_state = 11
+				controls_state = 14
+				controls_state = 16
+				controls_state = 19
+				controls_state = 96
+				controls_state = 404
+				# Hawaii #
+				controls_state = 432
+				controls_state = 433
+				controls_state = 435
+				controls_state = 436
+				controls_state = 437
+				controls_state = 438
+				controls_state = 439
+				controls_state = 440
+				controls_state = 441
+			}
 		}
 
 		cost = 25
@@ -1333,25 +1382,28 @@ PRA_Establish_Autonomous_Communes = {
 		}
 
 		complete_effect = {
-			PRA = {
-				# Alaska #
-				add_state_core = 2
-				add_state_core = 11
-				add_state_core = 14
-				add_state_core = 16
-				add_state_core = 19
-				add_state_core = 96
-				add_state_core = 404
-				# Hawaii #
-				add_state_core = 432
-				add_state_core = 433
-				add_state_core = 435
-				add_state_core = 436
-				add_state_core = 437
-				add_state_core = 438
-				add_state_core = 439
-				add_state_core = 440
-				add_state_core = 441
+			custom_effect_tooltip = PRA_core_alaska_and_hawaii
+			hidden_effect = {
+				PRA = {
+					# Alaska #
+					add_state_core = 2
+					add_state_core = 11
+					add_state_core = 14
+					add_state_core = 16
+					add_state_core = 19
+					add_state_core = 96
+					add_state_core = 404
+					# Hawaii #
+					add_state_core = 432
+					add_state_core = 433
+					add_state_core = 435
+					add_state_core = 436
+					add_state_core = 437
+					add_state_core = 438
+					add_state_core = 439
+					add_state_core = 440
+					add_state_core = 441
+				}
 			}
 		}
 	}
@@ -1362,42 +1414,45 @@ PRA_Establish_Autonomous_Communes = {
 		available = {
 			has_completed_focus = APRA_Democratic_Communalism
 			has_government = libertarian_left
-			# Oregon #
-			controls_state = 73
-			controls_state = 74
-			controls_state = 85
-			controls_state = 88
-			controls_state = 89
-			controls_state = 94
-			controls_state = 95
-			controls_state = 150
-			controls_state = 496
-			controls_state = 562
-			# Washington #
-			controls_state = 29
-			controls_state = 60
-			controls_state = 62
-			controls_state = 97
-			controls_state = 101
-			controls_state = 107
-			controls_state = 108
-			controls_state = 109
-			controls_state = 112
-			controls_state = 113
-			controls_state = 114
-			controls_state = 115
-			controls_state = 116
-			controls_state = 121
-			controls_state = 122
-			controls_state = 123
-			controls_state = 125
-			controls_state = 131
-			controls_state = 136
-			controls_state = 138
-			controls_state = 141
-			controls_state = 492
-			controls_state = 497
-			controls_state = 561
+			custom_trigger_tooltip = {
+				tooltip = PRA_owns_oregon_and_washington
+				# Oregon #
+				controls_state = 73
+				controls_state = 74
+				controls_state = 85
+				controls_state = 88
+				controls_state = 89
+				controls_state = 94
+				controls_state = 95
+				controls_state = 150
+				controls_state = 496
+				controls_state = 562
+				# Washington #
+				controls_state = 29
+				controls_state = 60
+				controls_state = 62
+				controls_state = 97
+				controls_state = 101
+				controls_state = 107
+				controls_state = 108
+				controls_state = 109
+				controls_state = 112
+				controls_state = 113
+				controls_state = 114
+				controls_state = 115
+				controls_state = 116
+				controls_state = 121
+				controls_state = 122
+				controls_state = 123
+				controls_state = 125
+				controls_state = 131
+				controls_state = 136
+				controls_state = 138
+				controls_state = 141
+				controls_state = 492
+				controls_state = 497
+				controls_state = 561
+			}
 		}
 
 		cost = 50
@@ -1412,44 +1467,46 @@ PRA_Establish_Autonomous_Communes = {
 		}
 
 		complete_effect = {
-			PRA = {
-				annex_country = SAZ
-				# Oregon #
-				add_state_core = 73
-				add_state_core = 74
-				add_state_core = 85
-				add_state_core = 88
-				add_state_core = 89
-				add_state_core = 94
-				add_state_core = 95
-				add_state_core = 150
-				add_state_core = 496
-				add_state_core = 562
-				# Washington #
-				add_state_core = 29
-				add_state_core = 60
-				add_state_core = 62
-				add_state_core = 97
-				add_state_core = 101
-				add_state_core = 107
-				add_state_core = 108
-				add_state_core = 109
-				add_state_core = 112
-				add_state_core = 113
-				add_state_core = 114
-				add_state_core = 115
-				add_state_core = 116
-				add_state_core = 121
-				add_state_core = 122
-				add_state_core = 123
-				add_state_core = 125
-				add_state_core = 131
-				add_state_core = 136
-				add_state_core = 138
-				add_state_core = 141
-				add_state_core = 492
-				add_state_core = 497
-				add_state_core = 561
+			custom_effect_tooltip = PRA_core_oregon_and_washington
+			hidden_effect = {
+				PRA = {
+					# Oregon #
+					add_state_core = 73
+					add_state_core = 74
+					add_state_core = 85
+					add_state_core = 88
+					add_state_core = 89
+					add_state_core = 94
+					add_state_core = 95
+					add_state_core = 150
+					add_state_core = 496
+					add_state_core = 562
+					# Washington #
+					add_state_core = 29
+					add_state_core = 60
+					add_state_core = 62
+					add_state_core = 97
+					add_state_core = 101
+					add_state_core = 107
+					add_state_core = 108
+					add_state_core = 109
+					add_state_core = 112
+					add_state_core = 113
+					add_state_core = 114
+					add_state_core = 115
+					add_state_core = 116
+					add_state_core = 121
+					add_state_core = 122
+					add_state_core = 123
+					add_state_core = 125
+					add_state_core = 131
+					add_state_core = 136
+					add_state_core = 138
+					add_state_core = 141
+					add_state_core = 492
+					add_state_core = 497
+					add_state_core = 561
+				}
 			}
 		}
 	}
@@ -1460,86 +1517,89 @@ PRA_Establish_Autonomous_Communes = {
 		available = {
 			has_completed_focus = APRA_Democratic_Communalism
 			has_government = libertarian_left
-			# Arizona #
-			controls_state = 3
-			controls_state = 33
-			controls_state = 61
-			controls_state = 365
-			controls_state = 489
-			controls_state = 495 
-			controls_state = 513
-			controls_state = 514
-			controls_state = 515
-			# Colorado #
-			controls_state = 45
-			controls_state = 229
-			controls_state = 348
-			controls_state = 413
-			controls_state = 416
-			controls_state = 424
-			controls_state = 486
-			controls_state = 510
-			controls_state = 517
-			controls_state = 518
-			# Idaho #
-			controls_state = 65
-			controls_state = 66
-			controls_state = 99
-			controls_state = 354
-			controls_state = 415
-			controls_state = 417
-			controls_state = 522
-			controls_state = 563
-			controls_state = 568
-			controls_state = 569
-			# Montana #
-			controls_state = 35
-			controls_state = 39
-			controls_state = 64
-			controls_state = 67
-			controls_state = 70
-			controls_state = 86
-			controls_state = 118
-			controls_state = 119
-			controls_state = 453
-			controls_state = 567
-			controls_state = 570
-			# Nevada #
-			controls_state = 46
-			controls_state = 117
-			controls_state = 393
-			controls_state = 394
-			controls_state = 419
-			controls_state = 452
-			controls_state = 487
-			controls_state = 488
-			controls_state = 491
-			controls_state = 521
-			# New Mexico #
-			controls_state = 40
-			controls_state = 249
-			controls_state = 310
-			controls_state = 335
-			controls_state = 352
-			controls_state = 511
-			# Utah #
-			controls_state = 406
-			controls_state = 410
-			controls_state = 411
-			controls_state = 414
-			controls_state = 512
-			controls_state = 519
-			controls_state = 520
-			# Wyoming #
-			controls_state = 63
-			controls_state = 400
-			controls_state = 412
-			controls_state = 422
-			controls_state = 425
-			controls_state = 430
-			controls_state = 446
-			controls_state = 447
-			controls_state = 483
+			custom_trigger_tooltip = {
+				tooltip = PRA_owns_rockies
+				# Arizona #
+				controls_state = 3
+				controls_state = 33
+				controls_state = 61
+				controls_state = 365
+				controls_state = 489
+				controls_state = 495 
+				controls_state = 513
+				controls_state = 514
+				controls_state = 515
+				# Colorado #
+				controls_state = 45
+				controls_state = 229
+				controls_state = 348
+				controls_state = 413
+				controls_state = 416
+				controls_state = 424
+				controls_state = 486
+				controls_state = 510
+				controls_state = 517
+				controls_state = 518
+				# Idaho #
+				controls_state = 65
+				controls_state = 66
+				controls_state = 99
+				controls_state = 354
+				controls_state = 415
+				controls_state = 417
+				controls_state = 522
+				controls_state = 563
+				controls_state = 568
+				controls_state = 569
+				# Montana #
+				controls_state = 35
+				controls_state = 39
+				controls_state = 64
+				controls_state = 67
+				controls_state = 70
+				controls_state = 86
+				controls_state = 118
+				controls_state = 119
+				controls_state = 453
+				controls_state = 567
+				controls_state = 570
+				# Nevada #
+				controls_state = 46
+				controls_state = 117
+				controls_state = 393
+				controls_state = 394
+				controls_state = 419
+				controls_state = 452
+				controls_state = 487
+				controls_state = 488
+				controls_state = 491
+				controls_state = 521
+				# New Mexico #
+				controls_state = 40
+				controls_state = 249
+				controls_state = 310
+				controls_state = 335
+				controls_state = 352
+				controls_state = 511
+				# Utah #
+				controls_state = 406
+				controls_state = 410
+				controls_state = 411
+				controls_state = 414
+				controls_state = 512
+				controls_state = 519
+				controls_state = 520
+				# Wyoming #
+				controls_state = 63
+				controls_state = 400
+				controls_state = 412
+				controls_state = 422
+				controls_state = 425
+				controls_state = 430
+				controls_state = 446
+				controls_state = 447
+				controls_state = 483
+			}
 		}
 
 		cost = 50
@@ -1554,103 +1614,113 @@ PRA_Establish_Autonomous_Communes = {
 		}
 
 		complete_effect = {
-			BKF = {
-				# Arizona #
-				transfer_state = 3
-				transfer_state = 33
-				transfer_state = 61
-				transfer_state = 365
-				transfer_state = 489
-				transfer_state = 495 
-				transfer_state = 513
-				transfer_state = 514
-				transfer_state = 515
-				# Colorado #
-				transfer_state = 45
-				transfer_state = 229
-				transfer_state = 348
-				transfer_state = 413
-				transfer_state = 416
-				transfer_state = 424
-				transfer_state = 486
-				transfer_state = 510
-				transfer_state = 517
-				transfer_state = 518
-				# Idaho #
-				transfer_state = 65
-				transfer_state = 66
-				transfer_state = 99
-				transfer_state = 354
-				transfer_state = 415
-				transfer_state = 417
-				transfer_state = 522
-				transfer_state = 563
-				transfer_state = 568
-				transfer_state = 569
-				# Montana #
-				transfer_state = 35
-				transfer_state = 39
-				transfer_state = 64
-				transfer_state = 67
-				transfer_state = 70
-				transfer_state = 86
-				transfer_state = 118
-				transfer_state = 119
-				transfer_state = 453
-				transfer_state = 567
-				transfer_state = 570
-				# Nevada #
-				transfer_state = 46
-				transfer_state = 117
-				transfer_state = 393
-				transfer_state = 394
-				transfer_state = 419
-				transfer_state = 452
-				transfer_state = 487
-				transfer_state = 488
-				transfer_state = 491
-				transfer_state = 521
-				# New Mexico #
-				transfer_state = 40
-				transfer_state = 249
-				transfer_state = 310
-				transfer_state = 335
-				transfer_state = 352
-				transfer_state = 511
-				# Utah #
-				transfer_state = 406
-				transfer_state = 410
-				transfer_state = 411
-				transfer_state = 414
-				transfer_state = 512
-				transfer_state = 519
-				transfer_state = 520
-				# Wyoming #
-				transfer_state = 63
-				transfer_state = 400
-				transfer_state = 412
-				transfer_state = 422
-				transfer_state = 425
-				transfer_state = 430
-				transfer_state = 446
-				transfer_state = 447
-				transfer_state = 483
-				
-				every_state = {
-				LIMIT = {
-					is_owned_by = BKF
+			custom_effect_tooltip = PRA_puppet_rockies
+			hidden_effect = {
+				BKF = {
+					# Arizona #
+					transfer_state = 3
+					transfer_state = 33
+					transfer_state = 61
+					transfer_state = 365
+					transfer_state = 489
+					transfer_state = 495 
+					transfer_state = 513
+					transfer_state = 514
+					transfer_state = 515
+					# Colorado #
+					transfer_state = 45
+					transfer_state = 229
+					transfer_state = 348
+					transfer_state = 413
+					transfer_state = 416
+					transfer_state = 424
+					transfer_state = 486
+					transfer_state = 510
+					transfer_state = 517
+					transfer_state = 518
+					# Idaho #
+					transfer_state = 65
+					transfer_state = 66
+					transfer_state = 99
+					transfer_state = 354
+					transfer_state = 415
+					transfer_state = 417
+					transfer_state = 522
+					transfer_state = 563
+					transfer_state = 568
+					transfer_state = 569
+					# Montana #
+					transfer_state = 35
+					transfer_state = 39
+					transfer_state = 64
+					transfer_state = 67
+					transfer_state = 70
+					transfer_state = 86
+					transfer_state = 118
+					transfer_state = 119
+					transfer_state = 453
+					transfer_state = 567
+					transfer_state = 570
+					# Nevada #
+					transfer_state = 46
+					transfer_state = 117
+					transfer_state = 393
+					transfer_state = 394
+					transfer_state = 419
+					transfer_state = 452
+					transfer_state = 487
+					transfer_state = 488
+					transfer_state = 491
+					transfer_state = 521
+					# New Mexico #
+					transfer_state = 40
+					transfer_state = 249
+					transfer_state = 310
+					transfer_state = 335
+					transfer_state = 352
+					transfer_state = 511
+					# Utah #
+					transfer_state = 406
+					transfer_state = 410
+					transfer_state = 411
+					transfer_state = 414
+					transfer_state = 512
+					transfer_state = 519
+					transfer_state = 520
+					# Wyoming #
+					transfer_state = 63
+					transfer_state = 400
+					transfer_state = 412
+					transfer_state = 422
+					transfer_state = 425
+					transfer_state = 430
+					transfer_state = 446
+					transfer_state = 447
+					transfer_state = 483
+					
+					every_state = {
+						limit = {
+							is_owned_by = BKF
+						}
+						add_core_of = BKF
+					}
+					
+					load_focus_tree = generic_focus
+					set_cosmetic_tag = Bookchin_Rockies_Commune
 				}
-				add_core_of = BKF
-				}
-				
-				load_focus_tree = generic_focus
-				set_cosmetic_tag = Bookchin_Rockies_Commune
-			}
-			PRA = {
-				puppet = BKF
-				set_autonomy = {
-					target = PREV
-					autonomy_state = autonomy_dominion
+				PRA = {
+					if = {
+						limit = {
+							has_dlc = "Together for Victory"
+						}
+						set_autonomy = {
+							target = BKF
+							autonomous_state = integrated_puppet
+						}
+					}
+					else = {
+						puppet = BKF
+					}
 				}
 			}
 		}
@@ -1662,83 +1732,86 @@ PRA_Establish_Autonomous_Communes = {
 		available = {
 			has_completed_focus = APRA_Democratic_Communalism
 			has_government = libertarian_left
-			# Illinois #
-			controls_state = 194
-			controls_state = 196
-			controls_state = 197
-			controls_state = 198
-			controls_state = 209
-			controls_state = 215
-			controls_state = 268
-			# Indiana #
-			controls_state = 204
-			controls_state = 206
-			controls_state = 207
-			controls_state = 218
-			controls_state = 224
-			controls_state = 559
-			# Iowa #
-			controls_state = 185
-			controls_state = 186
-			controls_state = 187
-			# Kansas #
-			controls_state = 233
-			controls_state = 235
-			controls_state = 240
-			controls_state = 243
-			controls_state = 426
-			# Michigan #
-			controls_state = 130
-			controls_state = 152
-			controls_state = 153
-			controls_state = 157
-			controls_state = 160
-			controls_state = 161
-			controls_state = 162
-			controls_state = 165
-			controls_state = 190
-			# Minnesota #
-			controls_state = 23
-			controls_state = 25
-			controls_state = 111
-			controls_state = 184
-			# Missouri #
-			controls_state = 230
-			controls_state = 231
-			controls_state = 232
-			controls_state = 236
-			controls_state = 238
-			controls_state = 239
-			controls_state = 505
-			# Nebraska #
-			controls_state = 83
-			controls_state = 234
-			controls_state = 423
-			controls_state = 566
-			# North Dakota #
-			controls_state = 41
-			controls_state = 421
-			controls_state = 431
-			controls_state = 564
-			controls_state = 565
-			# Ohio #
-			controls_state = 205
-			controls_state = 208
-			controls_state = 226
-			controls_state = 396
-			controls_state = 399
-			controls_state = 560
-			# South Dakota #
-			controls_state = 434
-			controls_state = 442
-			controls_state = 443
-			controls_state = 484
-			# Wisconsin #
-			controls_state = 104
-			controls_state = 106
-			controls_state = 124
-			controls_state = 155
-			controls_state = 195
+			custom_trigger_tooltip = {
+				tooltip = PRA_owns_midwest
+				# Illinois #
+				controls_state = 194
+				controls_state = 196
+				controls_state = 197
+				controls_state = 198
+				controls_state = 209
+				controls_state = 215
+				controls_state = 268
+				# Indiana #
+				controls_state = 204
+				controls_state = 206
+				controls_state = 207
+				controls_state = 218
+				controls_state = 224
+				controls_state = 559
+				# Iowa #
+				controls_state = 185
+				controls_state = 186
+				controls_state = 187
+				# Kansas #
+				controls_state = 233
+				controls_state = 235
+				controls_state = 240
+				controls_state = 243
+				controls_state = 426
+				# Michigan #
+				controls_state = 130
+				controls_state = 152
+				controls_state = 153
+				controls_state = 157
+				controls_state = 160
+				controls_state = 161
+				controls_state = 162
+				controls_state = 165
+				controls_state = 190
+				# Minnesota #
+				controls_state = 23
+				controls_state = 25
+				controls_state = 111
+				controls_state = 184
+				# Missouri #
+				controls_state = 230
+				controls_state = 231
+				controls_state = 232
+				controls_state = 236
+				controls_state = 238
+				controls_state = 239
+				controls_state = 505
+				# Nebraska #
+				controls_state = 83
+				controls_state = 234
+				controls_state = 423
+				controls_state = 566
+				# North Dakota #
+				controls_state = 41
+				controls_state = 421
+				controls_state = 431
+				controls_state = 564
+				controls_state = 565
+				# Ohio #
+				controls_state = 205
+				controls_state = 208
+				controls_state = 226
+				controls_state = 396
+				controls_state = 399
+				controls_state = 560
+				# South Dakota #
+				controls_state = 434
+				controls_state = 442
+				controls_state = 443
+				controls_state = 484
+				# Wisconsin #
+				controls_state = 104
+				controls_state = 106
+				controls_state = 124
+				controls_state = 155
+				controls_state = 195
+			}
 		}
 
 		cost = 70
@@ -1753,100 +1826,110 @@ PRA_Establish_Autonomous_Communes = {
 		}
 
 		complete_effect = {
-			USA = {
-				# Illinois #
-				transfer_state = 194
-				transfer_state = 196
-				transfer_state = 197
-				transfer_state = 198
-				transfer_state = 209
-				transfer_state = 215
-				transfer_state = 268
-				# Indiana #
-				transfer_state = 204
-				transfer_state = 206
-				transfer_state = 207
-				transfer_state = 218
-				transfer_state = 224
-				transfer_state = 559
-				# Iowa #
-				transfer_state = 185
-				transfer_state = 186
-				transfer_state = 187
-				# Kansas #
-				transfer_state = 233
-				transfer_state = 235
-				transfer_state = 240
-				transfer_state = 243
-				transfer_state = 426
-				# Michigan #
-				transfer_state = 130
-				transfer_state = 152
-				transfer_state = 153
-				transfer_state = 157
-				transfer_state = 160
-				transfer_state = 161
-				transfer_state = 162
-				transfer_state = 165
-				transfer_state = 190
-				# Minnesota #
-				transfer_state = 23
-				transfer_state = 25
-				transfer_state = 111
-				transfer_state = 184
-				# Missouri #
-				transfer_state = 230
-				transfer_state = 231
-				transfer_state = 232
-				transfer_state = 236
-				transfer_state = 238
-				transfer_state = 239
-				transfer_state = 505
-				# Nebraska #
-				transfer_state = 83
-				transfer_state = 234
-				transfer_state = 423
-				transfer_state = 566
-				# North Dakota #
-				transfer_state = 41
-				transfer_state = 421
-				transfer_state = 431
-				transfer_state = 564
-				transfer_state = 565
-				# Ohio #
-				transfer_state = 205
-				transfer_state = 208
-				transfer_state = 226
-				transfer_state = 396
-				transfer_state = 399
-				transfer_state = 560
-				# South Dakota #
-				transfer_state = 434
-				transfer_state = 442
-				transfer_state = 443
-				transfer_state = 484
-				# Wisconsin #
-				transfer_state = 104
-				transfer_state = 106
-				transfer_state = 124
-				transfer_state = 155
-				transfer_state = 195
-				
-				every_state = {
-				LIMIT = {
-					is_owned_by = USA
+			custom_effect_tooltip = PRA_puppet_midwest
+			hidden_effect = {
+				LAK = {
+					# Illinois #
+					transfer_state = 194
+					transfer_state = 196
+					transfer_state = 197
+					transfer_state = 198
+					transfer_state = 209
+					transfer_state = 215
+					transfer_state = 268
+					# Indiana #
+					transfer_state = 204
+					transfer_state = 206
+					transfer_state = 207
+					transfer_state = 218
+					transfer_state = 224
+					transfer_state = 559
+					# Iowa #
+					transfer_state = 185
+					transfer_state = 186
+					transfer_state = 187
+					# Kansas #
+					transfer_state = 233
+					transfer_state = 235
+					transfer_state = 240
+					transfer_state = 243
+					transfer_state = 426
+					# Michigan #
+					transfer_state = 130
+					transfer_state = 152
+					transfer_state = 153
+					transfer_state = 157
+					transfer_state = 160
+					transfer_state = 161
+					transfer_state = 162
+					transfer_state = 165
+					transfer_state = 190
+					# Minnesota #
+					transfer_state = 23
+					transfer_state = 25
+					transfer_state = 111
+					transfer_state = 184
+					# Missouri #
+					transfer_state = 230
+					transfer_state = 231
+					transfer_state = 232
+					transfer_state = 236
+					transfer_state = 238
+					transfer_state = 239
+					transfer_state = 505
+					# Nebraska #
+					transfer_state = 83
+					transfer_state = 234
+					transfer_state = 423
+					transfer_state = 566
+					# North Dakota #
+					transfer_state = 41
+					transfer_state = 421
+					transfer_state = 431
+					transfer_state = 564
+					transfer_state = 565
+					# Ohio #
+					transfer_state = 205
+					transfer_state = 208
+					transfer_state = 226
+					transfer_state = 396
+					transfer_state = 399
+					transfer_state = 560
+					# South Dakota #
+					transfer_state = 434
+					transfer_state = 442
+					transfer_state = 443
+					transfer_state = 484
+					# Wisconsin #
+					transfer_state = 104
+					transfer_state = 106
+					transfer_state = 124
+					transfer_state = 155
+					transfer_state = 195
+					
+					every_state = {
+						limit = {
+							is_owned_by = LAK
+						}
+						add_core_of = LAK
+					}
+					
+					load_focus_tree = generic_focus
+					set_cosmetic_tag = Bookchin_Midwest_Commune
 				}
-				add_core_of = USA
-				}
-				
-				load_focus_tree = generic_focus
-				set_cosmetic_tag = Bookchin_Midwest_Commune
-			}
-			PRA = {
-				puppet = USA
-				set_autonomy = {
-					target = PREV
-					autonomy_state = autonomy_dominion
+				PRA = {
+					if = {
+						limit = {
+							has_dlc = "Together for Victory"
+						}
+						set_autonomy = {
+							target = LAK
+							autonomous_state = integrated_puppet
+						}
+					}
+					else = {
+						puppet = LAK
+					}
 				}
 			}
 		}
@@ -1858,157 +1941,160 @@ PRA_Establish_Autonomous_Communes = {
 		available = {
 			has_completed_focus = APRA_Democratic_Communalism
 			has_government = libertarian_left
-			# Alabama #
-			controls_state = 289
-			controls_state = 291 
-			controls_state = 294
-			controls_state = 303
-			controls_state = 320
-			controls_state = 381
-			controls_state = 386
-			controls_state = 420
-			controls_state = 551
-			controls_state = 552
-			# Arkansas #
-			controls_state = 267
-			controls_state = 269
-			controls_state = 279
-			controls_state = 535
-			controls_state = 536
-			# Florida #
-			controls_state = 322
-			controls_state = 323
-			controls_state = 324
-			controls_state = 327
-			controls_state = 339
-			controls_state = 345
-			controls_state = 346
-			controls_state = 353
-			controls_state = 397
-			controls_state = 577
-			controls_state = 578
-			controls_state = 579
-			controls_state = 580
-			controls_state = 581
-			controls_state = 582
-			controls_state = 583
-			controls_state = 584
-			controls_state = 602
-			controls_state = 603
-			# Georgia #
-			controls_state = 290
-			controls_state = 299
-			controls_state = 300
-			controls_state = 309
-			controls_state = 328
-			controls_state = 329
-			controls_state = 506
-			controls_state = 507
-			controls_state = 508
-			controls_state = 509
-			# Kentucky #
-			controls_state = 237
-			controls_state = 246
-			controls_state = 250
-			controls_state = 288
-			controls_state = 330
-			controls_state = 571
-			controls_state = 572
-			controls_state = 573
-			controls_state = 574
-			controls_state = 575
-			controls_state = 576
-			# Louisiana #
-			controls_state = 307
-			controls_state = 312
-			controls_state = 315
-			controls_state = 316
-			controls_state = 317
-			controls_state = 609
-			controls_state = 610
-			controls_state = 611
-			controls_state = 612
-			# Mississippi #
-			controls_state = 287
-			controls_state = 388
-			controls_state = 407
-			controls_state = 604
-			controls_state = 605
-			controls_state = 606
-			controls_state = 607
-			controls_state = 608
-			# North Carolina #
-			controls_state = 263
-			controls_state = 264
-			controls_state = 265
-			controls_state = 266
-			controls_state = 275
-			controls_state = 308
-			controls_state = 331
-			controls_state = 516
-			controls_state = 534
-			# Oklahoma #
-			controls_state = 251
-			controls_state = 252
-			controls_state = 253
-			controls_state = 254
-			controls_state = 255
-			controls_state = 256
-			controls_state = 257
-			controls_state = 258
-			controls_state = 259
-			controls_state = 272
-			controls_state = 278
-			# South Carolina #
-			controls_state = 282
-			controls_state = 283
-			controls_state = 284
-			controls_state = 293
-			controls_state = 325
-			controls_state = 532
-			controls_state = 533
-			# Tennessee #
-			controls_state = 260
-			controls_state = 261
-			controls_state = 262
-			controls_state = 271
-			controls_state = 280
-			controls_state = 333
-			controls_state = 591
-			controls_state = 592
-			controls_state = 593
-			# Texas #
-			controls_state = 28
-			controls_state = 34
-			controls_state = 37
-			controls_state = 43
-			controls_state = 44
-			controls_state = 50
-			controls_state = 53
-			controls_state = 55
-			controls_state = 57
-			controls_state = 77
-			controls_state = 80
-			controls_state = 84
-			controls_state = 87
-			controls_state = 143
-			controls_state = 270
-			controls_state = 274
-			controls_state = 286
-			controls_state = 301
-			controls_state = 306
-			controls_state = 314
-			# Virginia #
-			controls_state = 169
-			controls_state = 188
-			controls_state = 332
-			controls_state = 371
-			controls_state = 375
-			controls_state = 380
-			controls_state = 477
-			controls_state = 500
-			controls_state = 501
-			controls_state = 502
+			custom_trigger_tooltip = {
+				tooltip = PRA_owns_south
+				# Alabama #
+				controls_state = 289
+				controls_state = 291 
+				controls_state = 294
+				controls_state = 303
+				controls_state = 320
+				controls_state = 381
+				controls_state = 386
+				controls_state = 420
+				controls_state = 551
+				controls_state = 552
+				# Arkansas #
+				controls_state = 267
+				controls_state = 269
+				controls_state = 279
+				controls_state = 535
+				controls_state = 536
+				# Florida #
+				controls_state = 322
+				controls_state = 323
+				controls_state = 324
+				controls_state = 327
+				controls_state = 339
+				controls_state = 345
+				controls_state = 346
+				controls_state = 353
+				controls_state = 397
+				controls_state = 577
+				controls_state = 578
+				controls_state = 579
+				controls_state = 580
+				controls_state = 581
+				controls_state = 582
+				controls_state = 583
+				controls_state = 584
+				controls_state = 602
+				controls_state = 603
+				# Georgia #
+				controls_state = 290
+				controls_state = 299
+				controls_state = 300
+				controls_state = 309
+				controls_state = 328
+				controls_state = 329
+				controls_state = 506
+				controls_state = 507
+				controls_state = 508
+				controls_state = 509
+				# Kentucky #
+				controls_state = 237
+				controls_state = 246
+				controls_state = 250
+				controls_state = 288
+				controls_state = 330
+				controls_state = 571
+				controls_state = 572
+				controls_state = 573
+				controls_state = 574
+				controls_state = 575
+				controls_state = 576
+				# Louisiana #
+				controls_state = 307
+				controls_state = 312
+				controls_state = 315
+				controls_state = 316
+				controls_state = 317
+				controls_state = 609
+				controls_state = 610
+				controls_state = 611
+				controls_state = 612
+				# Mississippi #
+				controls_state = 287
+				controls_state = 388
+				controls_state = 407
+				controls_state = 604
+				controls_state = 605
+				controls_state = 606
+				controls_state = 607
+				controls_state = 608
+				# North Carolina #
+				controls_state = 263
+				controls_state = 264
+				controls_state = 265
+				controls_state = 266
+				controls_state = 275
+				controls_state = 308
+				controls_state = 331
+				controls_state = 516
+				controls_state = 534
+				# Oklahoma #
+				controls_state = 251
+				controls_state = 252
+				controls_state = 253
+				controls_state = 254
+				controls_state = 255
+				controls_state = 256
+				controls_state = 257
+				controls_state = 258
+				controls_state = 259
+				controls_state = 272
+				controls_state = 278
+				# South Carolina #
+				controls_state = 282
+				controls_state = 283
+				controls_state = 284
+				controls_state = 293
+				controls_state = 325
+				controls_state = 532
+				controls_state = 533
+				# Tennessee #
+				controls_state = 260
+				controls_state = 261
+				controls_state = 262
+				controls_state = 271
+				controls_state = 280
+				controls_state = 333
+				controls_state = 591
+				controls_state = 592
+				controls_state = 593
+				# Texas #
+				controls_state = 28
+				controls_state = 34
+				controls_state = 37
+				controls_state = 43
+				controls_state = 44
+				controls_state = 50
+				controls_state = 53
+				controls_state = 55
+				controls_state = 57
+				controls_state = 77
+				controls_state = 80
+				controls_state = 84
+				controls_state = 87
+				controls_state = 143
+				controls_state = 270
+				controls_state = 274
+				controls_state = 286
+				controls_state = 301
+				controls_state = 306
+				controls_state = 314
+				# Virginia #
+				controls_state = 169
+				controls_state = 188
+				controls_state = 332
+				controls_state = 371
+				controls_state = 375
+				controls_state = 380
+				controls_state = 477
+				controls_state = 500
+				controls_state = 501
+				controls_state = 502
+			}
 		}
 
 		cost = 80
@@ -2023,174 +2109,184 @@ PRA_Establish_Autonomous_Communes = {
 		}
 
 		complete_effect = {
-			CSA = {
-				# Alabama #
-				transfer_state = 289
-				transfer_state = 291 
-				transfer_state = 294
-				transfer_state = 303
-				transfer_state = 320
-				transfer_state = 381
-				transfer_state = 386
-				transfer_state = 420
-				transfer_state = 551
-				transfer_state = 552
-				# Arkansas #
-				transfer_state = 267
-				transfer_state = 269
-				transfer_state = 279
-				transfer_state = 535
-				transfer_state = 536
-				# Florida #
-				transfer_state = 322
-				transfer_state = 323
-				transfer_state = 324
-				transfer_state = 327
-				transfer_state = 339
-				transfer_state = 345
-				transfer_state = 346
-				transfer_state = 353
-				transfer_state = 397
-				transfer_state = 577
-				transfer_state = 578
-				transfer_state = 579
-				transfer_state = 580
-				transfer_state = 581
-				transfer_state = 582
-				transfer_state = 583
-				transfer_state = 584
-				transfer_state = 602
-				transfer_state = 603
-				# Georgia #
-				transfer_state = 290
-				transfer_state = 299
-				transfer_state = 300
-				transfer_state = 309
-				transfer_state = 328
-				transfer_state = 329
-				transfer_state = 506
-				transfer_state = 507
-				transfer_state = 508
-				transfer_state = 509
-				# Kentucky #
-				transfer_state = 237
-				transfer_state = 246
-				transfer_state = 250
-				transfer_state = 288
-				transfer_state = 330
-				transfer_state = 571
-				transfer_state = 572
-				transfer_state = 573
-				transfer_state = 574
-				transfer_state = 575
-				transfer_state = 576
-				# Louisiana #
-				transfer_state = 307
-				transfer_state = 312
-				transfer_state = 315
-				transfer_state = 316
-				transfer_state = 317
-				transfer_state = 609
-				transfer_state = 610
-				transfer_state = 611
-				transfer_state = 612
-				# Mississippi #
-				transfer_state = 287
-				transfer_state = 388
-				transfer_state = 407
-				transfer_state = 604
-				transfer_state = 605
-				transfer_state = 606
-				transfer_state = 607
-				transfer_state = 608
-				# North Carolina #
-				transfer_state = 263
-				transfer_state = 264
-				transfer_state = 265
-				transfer_state = 266
-				transfer_state = 275
-				transfer_state = 308
-				transfer_state = 331
-				transfer_state = 516
-				transfer_state = 534
-				# Oklahoma #
-				transfer_state = 251
-				transfer_state = 252
-				transfer_state = 253
-				transfer_state = 254
-				transfer_state = 255
-				transfer_state = 256
-				transfer_state = 257
-				transfer_state = 258
-				transfer_state = 259
-				transfer_state = 272
-				transfer_state = 278
-				# South Carolina #
-				transfer_state = 282
-				transfer_state = 283
-				transfer_state = 284
-				transfer_state = 293
-				transfer_state = 325
-				transfer_state = 532
-				transfer_state = 533
-				# Tennessee #
-				transfer_state = 260
-				transfer_state = 261
-				transfer_state = 262
-				transfer_state = 271
-				transfer_state = 280
-				transfer_state = 333
-				transfer_state = 591
-				transfer_state = 592
-				transfer_state = 593
-				# Texas #
-				transfer_state = 28
-				transfer_state = 34
-				transfer_state = 37
-				transfer_state = 43
-				transfer_state = 44
-				transfer_state = 50
-				transfer_state = 53
-				transfer_state = 55
-				transfer_state = 57
-				transfer_state = 77
-				transfer_state = 80
-				transfer_state = 84
-				transfer_state = 87
-				transfer_state = 143
-				transfer_state = 270
-				transfer_state = 274
-				transfer_state = 286
-				transfer_state = 301
-				transfer_state = 306
-				transfer_state = 314
-				# Virginia #
-				transfer_state = 169
-				transfer_state = 188
-				transfer_state = 332
-				transfer_state = 371
-				transfer_state = 375
-				transfer_state = 380
-				transfer_state = 477
-				transfer_state = 500
-				transfer_state = 501
-				transfer_state = 502
-				
-				every_state = {
-				LIMIT = {
-					is_owned_by = CSA
+			custom_effect_tooltip = PRA_puppet_south
+			hidden_effect = {
+				ABM = {
+					# Alabama #
+					transfer_state = 289
+					transfer_state = 291 
+					transfer_state = 294
+					transfer_state = 303
+					transfer_state = 320
+					transfer_state = 381
+					transfer_state = 386
+					transfer_state = 420
+					transfer_state = 551
+					transfer_state = 552
+					# Arkansas #
+					transfer_state = 267
+					transfer_state = 269
+					transfer_state = 279
+					transfer_state = 535
+					transfer_state = 536
+					# Florida #
+					transfer_state = 322
+					transfer_state = 323
+					transfer_state = 324
+					transfer_state = 327
+					transfer_state = 339
+					transfer_state = 345
+					transfer_state = 346
+					transfer_state = 353
+					transfer_state = 397
+					transfer_state = 577
+					transfer_state = 578
+					transfer_state = 579
+					transfer_state = 580
+					transfer_state = 581
+					transfer_state = 582
+					transfer_state = 583
+					transfer_state = 584
+					transfer_state = 602
+					transfer_state = 603
+					# Georgia #
+					transfer_state = 290
+					transfer_state = 299
+					transfer_state = 300
+					transfer_state = 309
+					transfer_state = 328
+					transfer_state = 329
+					transfer_state = 506
+					transfer_state = 507
+					transfer_state = 508
+					transfer_state = 509
+					# Kentucky #
+					transfer_state = 237
+					transfer_state = 246
+					transfer_state = 250
+					transfer_state = 288
+					transfer_state = 330
+					transfer_state = 571
+					transfer_state = 572
+					transfer_state = 573
+					transfer_state = 574
+					transfer_state = 575
+					transfer_state = 576
+					# Louisiana #
+					transfer_state = 307
+					transfer_state = 312
+					transfer_state = 315
+					transfer_state = 316
+					transfer_state = 317
+					transfer_state = 609
+					transfer_state = 610
+					transfer_state = 611
+					transfer_state = 612
+					# Mississippi #
+					transfer_state = 287
+					transfer_state = 388
+					transfer_state = 407
+					transfer_state = 604
+					transfer_state = 605
+					transfer_state = 606
+					transfer_state = 607
+					transfer_state = 608
+					# North Carolina #
+					transfer_state = 263
+					transfer_state = 264
+					transfer_state = 265
+					transfer_state = 266
+					transfer_state = 275
+					transfer_state = 308
+					transfer_state = 331
+					transfer_state = 516
+					transfer_state = 534
+					# Oklahoma #
+					transfer_state = 251
+					transfer_state = 252
+					transfer_state = 253
+					transfer_state = 254
+					transfer_state = 255
+					transfer_state = 256
+					transfer_state = 257
+					transfer_state = 258
+					transfer_state = 259
+					transfer_state = 272
+					transfer_state = 278
+					# South Carolina #
+					transfer_state = 282
+					transfer_state = 283
+					transfer_state = 284
+					transfer_state = 293
+					transfer_state = 325
+					transfer_state = 532
+					transfer_state = 533
+					# Tennessee #
+					transfer_state = 260
+					transfer_state = 261
+					transfer_state = 262
+					transfer_state = 271
+					transfer_state = 280
+					transfer_state = 333
+					transfer_state = 591
+					transfer_state = 592
+					transfer_state = 593
+					# Texas #
+					transfer_state = 28
+					transfer_state = 34
+					transfer_state = 37
+					transfer_state = 43
+					transfer_state = 44
+					transfer_state = 50
+					transfer_state = 53
+					transfer_state = 55
+					transfer_state = 57
+					transfer_state = 77
+					transfer_state = 80
+					transfer_state = 84
+					transfer_state = 87
+					transfer_state = 143
+					transfer_state = 270
+					transfer_state = 274
+					transfer_state = 286
+					transfer_state = 301
+					transfer_state = 306
+					transfer_state = 314
+					# Virginia #
+					transfer_state = 169
+					transfer_state = 188
+					transfer_state = 332
+					transfer_state = 371
+					transfer_state = 375
+					transfer_state = 380
+					transfer_state = 477
+					transfer_state = 500
+					transfer_state = 501
+					transfer_state = 502
+					
+					every_state = {
+						limit = {
+							is_owned_by = ABM
+						}
+						add_core_of = ABM
+					}
+					
+					load_focus_tree = generic_focus
+					set_cosmetic_tag = Bookchin_Southern_Commune
 				}
-				add_core_of = CSA
-				}
-				
-				load_focus_tree = generic_focus
-				set_cosmetic_tag = Bookchin_Southern_Commune
-			}
-			PRA = {
-				puppet = CSA
-				set_autonomy = {
-					target = PREV
-					autonomy_state = autonomy_dominion
+				PRA = {
+					if = {
+						limit = {
+							has_dlc = "Together for Victory"
+						}
+						set_autonomy = {
+							target = ABM
+							autonomous_state = integrated_puppet
+						}
+					}
+					else = {
+						puppet = ABM
+					}
 				}
 			}
 		}
@@ -2202,105 +2298,108 @@ PRA_Establish_Autonomous_Communes = {
 		available = {
 			has_completed_focus = APRA_Democratic_Communalism
 			has_government = libertarian_left
-			# Connecticut #
-			controls_state = 200
-			controls_state = 201
-			controls_state = 202
-			controls_state = 594
-			controls_state = 595
-			# Delaware #
-			controls_state = 558
-			# Maine #
-			controls_state = 132
-			controls_state = 142
-			controls_state = 172
-			controls_state = 174
-			controls_state = 179
-			controls_state = 619
-			controls_state = 620
-			controls_state = 621
-			controls_state = 622
-			controls_state = 623
-			controls_state = 628
-			# Maryland #
-			controls_state = 244
-			controls_state = 248
-			controls_state = 402
-			controls_state = 503
-			# Massachusetts #
-			controls_state = 181
-			controls_state = 192
-			controls_state = 193
-			controls_state = 210
-			controls_state = 211
-			controls_state = 212
-			controls_state = 214
-			controls_state = 216
-			controls_state = 221
-			controls_state = 599
-			controls_state = 600
-			controls_state = 601
-			# New Hampshire #
-			controls_state = 168
-			controls_state = 178
-			controls_state = 180
-			controls_state = 616
-			controls_state = 617
-			controls_state = 618
-			# New Jersey #
-			controls_state = 245
-			controls_state = 247
-			controls_state = 624
-			controls_state = 625
-			controls_state = 626
-			controls_state = 627
-			# New York #
-			controls_state = 170
-			controls_state = 183
-			controls_state = 191
-			controls_state = 219
-			controls_state = 220
-			controls_state = 222
-			controls_state = 223
-			controls_state = 225
-			controls_state = 227
-			controls_state = 228
-			controls_state = 276
-			controls_state = 281
-			controls_state = 357
-			controls_state = 553
-			controls_state = 554
-			controls_state = 555
-			controls_state = 556
-			controls_state = 557
-			controls_state = 590
-			# Pennsylvania #
-			controls_state = 273
-			controls_state = 277
-			controls_state = 285
-			controls_state = 292
-			controls_state = 358
-			controls_state = 360
-			controls_state = 361
-			controls_state = 504
-			# Rhode Island #
-			controls_state = 203
-			controls_state = 217
-			controls_state = 597
-			controls_state = 598
-			# Vermont #
-			controls_state = 171
-			controls_state = 613
-			controls_state = 614
-			controls_state = 615
-			# Washington D.C. #
-			controls_state = 242
-			# West Virginia #
-			controls_state = 347
-			controls_state = 356
-			controls_state = 368
-			controls_state = 372
-			controls_state = 403
+			custom_trigger_tooltip = {
+				tooltip = PRA_owns_northeast
+				# Connecticut #
+				controls_state = 200
+				controls_state = 201
+				controls_state = 202
+				controls_state = 594
+				controls_state = 595
+				# Delaware #
+				controls_state = 558
+				# Maine #
+				controls_state = 132
+				controls_state = 142
+				controls_state = 172
+				controls_state = 174
+				controls_state = 179
+				controls_state = 619
+				controls_state = 620
+				controls_state = 621
+				controls_state = 622
+				controls_state = 623
+				controls_state = 628
+				# Maryland #
+				controls_state = 244
+				controls_state = 248
+				controls_state = 402
+				controls_state = 503
+				# Massachusetts #
+				controls_state = 181
+				controls_state = 192
+				controls_state = 193
+				controls_state = 210
+				controls_state = 211
+				controls_state = 212
+				controls_state = 214
+				controls_state = 216
+				controls_state = 221
+				controls_state = 599
+				controls_state = 600
+				controls_state = 601
+				# New Hampshire #
+				controls_state = 168
+				controls_state = 178
+				controls_state = 180
+				controls_state = 616
+				controls_state = 617
+				controls_state = 618
+				# New Jersey #
+				controls_state = 245
+				controls_state = 247
+				controls_state = 624
+				controls_state = 625
+				controls_state = 626
+				controls_state = 627
+				# New York #
+				controls_state = 170
+				controls_state = 183
+				controls_state = 191
+				controls_state = 219
+				controls_state = 220
+				controls_state = 222
+				controls_state = 223
+				controls_state = 225
+				controls_state = 227
+				controls_state = 228
+				controls_state = 276
+				controls_state = 281
+				controls_state = 357
+				controls_state = 553
+				controls_state = 554
+				controls_state = 555
+				controls_state = 556
+				controls_state = 557
+				controls_state = 590
+				# Pennsylvania #
+				controls_state = 273
+				controls_state = 277
+				controls_state = 285
+				controls_state = 292
+				controls_state = 358
+				controls_state = 360
+				controls_state = 361
+				controls_state = 504
+				# Rhode Island #
+				controls_state = 203
+				controls_state = 217
+				controls_state = 597
+				controls_state = 598
+				# Vermont #
+				controls_state = 171
+				controls_state = 613
+				controls_state = 614
+				controls_state = 615
+				# Washington D.C. #
+				controls_state = 242
+				# West Virginia #
+				controls_state = 347
+				controls_state = 356
+				controls_state = 368
+				controls_state = 372
+				controls_state = 403
+			}
 		}
 
 		cost = 80
@@ -2315,122 +2414,132 @@ PRA_Establish_Autonomous_Communes = {
 		}
 
 		complete_effect = {
-			FRA = {
-				# Connecticut #
-				transfer_state = 200
-				transfer_state = 201
-				transfer_state = 202
-				transfer_state = 594
-				transfer_state = 595
-				# Delaware #
-				transfer_state = 558
-				# Maine #
-				transfer_state = 132
-				transfer_state = 142
-				transfer_state = 172
-				transfer_state = 174
-				transfer_state = 179
-				transfer_state = 619
-				transfer_state = 620
-				transfer_state = 621
-				transfer_state = 622
-				transfer_state = 623
-				transfer_state = 628
-				# Maryland #
-				transfer_state = 244
-				transfer_state = 248
-				transfer_state = 402
-				transfer_state = 503
-				# Massachusetts #
-				transfer_state = 181
-				transfer_state = 192
-				transfer_state = 193
-				transfer_state = 210
-				transfer_state = 211
-				transfer_state = 212
-				transfer_state = 214
-				transfer_state = 216
-				transfer_state = 221
-				transfer_state = 599
-				transfer_state = 600
-				transfer_state = 601
-				# New Hampshire #
-				transfer_state = 168
-				transfer_state = 178
-				transfer_state = 180
-				transfer_state = 616
-				transfer_state = 617
-				transfer_state = 618
-				# New Jersey #
-				transfer_state = 245
-				transfer_state = 247
-				transfer_state = 624
-				transfer_state = 625
-				transfer_state = 626
-				transfer_state = 627
-				# New York #
-				transfer_state = 170
-				transfer_state = 183
-				transfer_state = 191
-				transfer_state = 219
-				transfer_state = 220
-				transfer_state = 222
-				transfer_state = 223
-				transfer_state = 225
-				transfer_state = 227
-				transfer_state = 228
-				transfer_state = 276
-				transfer_state = 281
-				transfer_state = 357
-				transfer_state = 553
-				transfer_state = 554
-				transfer_state = 555
-				transfer_state = 556
-				transfer_state = 557
-				transfer_state = 590
-				# Pennsylvania #
-				transfer_state = 273
-				transfer_state = 277
-				transfer_state = 285
-				transfer_state = 292
-				transfer_state = 358
-				transfer_state = 360
-				transfer_state = 361
-				transfer_state = 504
-				# Rhode Island #
-				transfer_state = 203
-				transfer_state = 217
-				transfer_state = 597
-				transfer_state = 598
-				# Vermont #
-				transfer_state = 171
-				transfer_state = 613
-				transfer_state = 614
-				transfer_state = 615
-				# Washington D.C. #
-				transfer_state = 242
-				# West Virginia #
-				transfer_state = 347
-				transfer_state = 356
-				transfer_state = 368
-				transfer_state = 372
-				transfer_state = 403
-				
-				every_state = {
-				LIMIT = {
-					is_owned_by = FRA
+			custom_effect_tooltip = PRA_puppet_northeast
+			hidden_effect = {
+				PVD = {
+					# Connecticut #
+					transfer_state = 200
+					transfer_state = 201
+					transfer_state = 202
+					transfer_state = 594
+					transfer_state = 595
+					# Delaware #
+					transfer_state = 558
+					# Maine #
+					transfer_state = 132
+					transfer_state = 142
+					transfer_state = 172
+					transfer_state = 174
+					transfer_state = 179
+					transfer_state = 619
+					transfer_state = 620
+					transfer_state = 621
+					transfer_state = 622
+					transfer_state = 623
+					transfer_state = 628
+					# Maryland #
+					transfer_state = 244
+					transfer_state = 248
+					transfer_state = 402
+					transfer_state = 503
+					# Massachusetts #
+					transfer_state = 181
+					transfer_state = 192
+					transfer_state = 193
+					transfer_state = 210
+					transfer_state = 211
+					transfer_state = 212
+					transfer_state = 214
+					transfer_state = 216
+					transfer_state = 221
+					transfer_state = 599
+					transfer_state = 600
+					transfer_state = 601
+					# New Hampshire #
+					transfer_state = 168
+					transfer_state = 178
+					transfer_state = 180
+					transfer_state = 616
+					transfer_state = 617
+					transfer_state = 618
+					# New Jersey #
+					transfer_state = 245
+					transfer_state = 247
+					transfer_state = 624
+					transfer_state = 625
+					transfer_state = 626
+					transfer_state = 627
+					# New York #
+					transfer_state = 170
+					transfer_state = 183
+					transfer_state = 191
+					transfer_state = 219
+					transfer_state = 220
+					transfer_state = 222
+					transfer_state = 223
+					transfer_state = 225
+					transfer_state = 227
+					transfer_state = 228
+					transfer_state = 276
+					transfer_state = 281
+					transfer_state = 357
+					transfer_state = 553
+					transfer_state = 554
+					transfer_state = 555
+					transfer_state = 556
+					transfer_state = 557
+					transfer_state = 590
+					# Pennsylvania #
+					transfer_state = 273
+					transfer_state = 277
+					transfer_state = 285
+					transfer_state = 292
+					transfer_state = 358
+					transfer_state = 360
+					transfer_state = 361
+					transfer_state = 504
+					# Rhode Island #
+					transfer_state = 203
+					transfer_state = 217
+					transfer_state = 597
+					transfer_state = 598
+					# Vermont #
+					transfer_state = 171
+					transfer_state = 613
+					transfer_state = 614
+					transfer_state = 615
+					# Washington D.C. #
+					transfer_state = 242
+					# West Virginia #
+					transfer_state = 347
+					transfer_state = 356
+					transfer_state = 368
+					transfer_state = 372
+					transfer_state = 403
+					
+					every_state = {
+						limit = {
+							is_owned_by = PVD
+						}
+						add_core_of = PVD
+					}
+					
+					load_focus_tree = generic_focus
+					set_cosmetic_tag = Bookchin_Northeastern_Commune
 				}
-				add_core_of = FRA
-				}
-				
-				load_focus_tree = generic_focus
-				set_cosmetic_tag = Bookchin_Northeastern_Commune
-			}
-			PRA = {
-				puppet = FRA
-				set_autonomy = {
-					target = PREV
-					autonomy_state = autonomy_dominion
+				PRA = {
+					if = {
+						limit = {
+							has_dlc = "Together for Victory"
+						}
+						set_autonomy = {
+							target = PVD
+							autonomous_state = integrated_puppet
+						}
+					}
+					else = {
+						puppet = PVD
+					}
 				}
 			}
 		}
@@ -2444,88 +2553,91 @@ PRA_Free_Our_Neighbors = {
 		available = {
 			has_completed_focus = APRA_Liberate_Canada
 			has_government = libertarian_left
-			controls_state = 27
-			### Canada ###
-			# Alberta #
-			controls_state = 5
-			controls_state = 6
-			controls_state = 30
-			controls_state = 32
-			controls_state = 69
-			controls_state = 76
-			# British Columbia #
-			controls_state = 4
-			controls_state = 27
-			controls_state = 54
-			controls_state = 58
-			controls_state = 59
-			controls_state = 68
-			controls_state = 75
-			controls_state = 78
-			controls_state = 81
-			controls_state = 82
-			controls_state = 98
-			controls_state = 103
-			controls_state = 105
-			# Manitoba #
-			controls_state = 9
-			controls_state = 26
-			controls_state = 56
-			controls_state = 71
-			controls_state = 120
-			# New Brunswick #
-			controls_state = 154
-			controls_state = 175
-			# Newfoundland and Labrador #
-			controls_state = 10
-			controls_state = 17
-			controls_state = 20
-			controls_state = 49
-			controls_state = 156
-			controls_state = 164
-			# Nova Scotia #
-			controls_state = 127
-			controls_state = 146
-			controls_state = 173
-			controls_state = 176
-			# Nunavut #
-			controls_state = 13
-			# Ontario #
-			controls_state = 12
-			controls_state = 24
-			controls_state = 42
-			controls_state = 47
-			controls_state = 100
-			controls_state = 102
-			controls_state = 110
-			controls_state = 134
-			controls_state = 140
-			controls_state = 158
-			controls_state = 167
-			controls_state = 177
-			controls_state = 485
-			# Prince Edward Island #
-			controls_state = 145
-			# Quebec #
-			controls_state = 7
-			controls_state = 18
-			controls_state = 21
-			controls_state = 48
-			controls_state = 72
-			controls_state = 91
-			controls_state = 128
-			controls_state = 129
-			controls_state = 133
-			controls_state = 135
-			controls_state = 163
-			controls_state = 377
-			# Saskatchewan #
-			controls_state = 1
-			controls_state = 8
-			controls_state = 31
-			controls_state = 36
-			controls_state = 149
+			custom_trigger_tooltip = {
+				tooltip = PRA_owns_canada
+				### Canada ###
+				# Alberta #
+				controls_state = 5
+				controls_state = 6
+				controls_state = 30
+				controls_state = 32
+				controls_state = 69
+				controls_state = 76
+				# British Columbia #
+				controls_state = 4
+				controls_state = 27
+				controls_state = 54
+				controls_state = 58
+				controls_state = 59
+				controls_state = 68
+				controls_state = 75
+				controls_state = 78
+				controls_state = 81
+				controls_state = 82
+				controls_state = 98
+				controls_state = 103
+				controls_state = 105
+				# Manitoba #
+				controls_state = 9
+				controls_state = 26
+				controls_state = 56
+				controls_state = 71
+				controls_state = 120
+				# New Brunswick #
+				controls_state = 154
+				controls_state = 175
+				# Newfoundland and Labrador #
+				controls_state = 10
+				controls_state = 17
+				controls_state = 20
+				controls_state = 49
+				controls_state = 156
+				controls_state = 164
+				# Nova Scotia #
+				controls_state = 127
+				controls_state = 146
+				controls_state = 173
+				controls_state = 176
+				# Nunavut #
+				controls_state = 13
+				# Ontario #
+				controls_state = 12
+				controls_state = 24
+				controls_state = 42
+				controls_state = 47
+				controls_state = 100
+				controls_state = 102
+				controls_state = 110
+				controls_state = 134
+				controls_state = 140
+				controls_state = 158
+				controls_state = 167
+				controls_state = 177
+				controls_state = 485
+				# Prince Edward Island #
+				controls_state = 145
+				# Quebec #
+				controls_state = 7
+				controls_state = 18
+				controls_state = 21
+				controls_state = 48
+				controls_state = 72
+				controls_state = 91
+				controls_state = 128
+				controls_state = 129
+				controls_state = 133
+				controls_state = 135
+				controls_state = 163
+				controls_state = 377
+				# Saskatchewan #
+				controls_state = 1
+				controls_state = 8
+				controls_state = 31
+				controls_state = 36
+				controls_state = 149
+			}
 		}
+		
 		cost = 0
 		fire_only_once = yes
 		ai_will_do = {
@@ -2536,98 +2648,110 @@ PRA_Free_Our_Neighbors = {
 			has_government = libertarian_left
 		}
 		complete_effect = {
-			release_puppet = ANA
-			set_autonomy = {
-					target = PREV
-					autonomy_state = autonomy_supervised_state
+			custom_effect_tooltip = PRA_puppet_canada
+			hidden_effect = {
+				ANA = {
+					### Canada ###
+					# Alberta #
+					transfer_state = 5
+					transfer_state = 6
+					transfer_state = 30
+					transfer_state = 32
+					transfer_state = 69
+					transfer_state = 76
+					# British Columbia #
+					transfer_state = 4
+					transfer_state = 27
+					transfer_state = 54
+					transfer_state = 58
+					transfer_state = 59
+					transfer_state = 68
+					transfer_state = 75
+					transfer_state = 78
+					transfer_state = 81
+					transfer_state = 82
+					transfer_state = 98
+					transfer_state = 103
+					transfer_state = 105
+					# Manitoba #
+					transfer_state = 9
+					transfer_state = 26
+					transfer_state = 56
+					transfer_state = 71
+					transfer_state = 120
+					# New Brunswick #
+					transfer_state = 154
+					transfer_state = 175
+					# Newfoundland and Labrador #
+					transfer_state = 10
+					transfer_state = 17
+					transfer_state = 20
+					transfer_state = 49
+					transfer_state = 156
+					transfer_state = 164
+					# Nova Scotia #
+					transfer_state = 127
+					transfer_state = 146
+					transfer_state = 173
+					transfer_state = 176
+					# Nunavut #
+					transfer_state = 13
+					# Ontario #
+					transfer_state = 12
+					transfer_state = 24
+					transfer_state = 42
+					transfer_state = 47
+					transfer_state = 100
+					transfer_state = 102
+					transfer_state = 110
+					transfer_state = 134
+					transfer_state = 140
+					transfer_state = 158
+					transfer_state = 167
+					transfer_state = 177
+					transfer_state = 485
+					# Prince Edward Island #
+					transfer_state = 145
+					# Quebec #
+					transfer_state = 7
+					transfer_state = 18
+					transfer_state = 21
+					transfer_state = 48
+					transfer_state = 72
+					transfer_state = 91
+					transfer_state = 128
+					transfer_state = 129
+					transfer_state = 133
+					transfer_state = 135
+					transfer_state = 163
+					transfer_state = 377
+					# Saskatchewan #
+					transfer_state = 1
+					transfer_state = 8
+					transfer_state = 31
+					transfer_state = 36
+					transfer_state = 149
+					
+					every_state = {
+						limit = {
+							is_owned_by = ANA
+						}
+						add_core_of = ANA
+					}
 				}
-			ANA = {
-				### Canada ###
-				# Alberta #
-				transfer_state = 5
-				transfer_state = 6
-				transfer_state = 30
-				transfer_state = 32
-				transfer_state = 69
-				transfer_state = 76
-				# British Columbia #
-				transfer_state = 4
-				transfer_state = 27
-				transfer_state = 54
-				transfer_state = 58
-				transfer_state = 59
-				transfer_state = 68
-				transfer_state = 75
-				transfer_state = 78
-				transfer_state = 81
-				transfer_state = 82
-				transfer_state = 98
-				transfer_state = 103
-				transfer_state = 105
-				# Manitoba #
-				transfer_state = 9
-				transfer_state = 26
-				transfer_state = 56
-				transfer_state = 71
-				transfer_state = 120
-				# New Brunswick #
-				transfer_state = 154
-				transfer_state = 175
-				# Newfoundland and Labrador #
-				transfer_state = 10
-				transfer_state = 17
-				transfer_state = 20
-				transfer_state = 49
-				transfer_state = 156
-				transfer_state = 164
-				# Nova Scotia #
-				transfer_state = 127
-				transfer_state = 146
-				transfer_state = 173
-				transfer_state = 176
-				# Nunavut #
-				transfer_state = 13
-				# Ontario #
-				transfer_state = 12
-				transfer_state = 24
-				transfer_state = 42
-				transfer_state = 47
-				transfer_state = 100
-				transfer_state = 102
-				transfer_state = 110
-				transfer_state = 134
-				transfer_state = 140
-				transfer_state = 158
-				transfer_state = 167
-				transfer_state = 177
-				transfer_state = 485
-				# Prince Edward Island #
-				transfer_state = 145
-				# Quebec #
-				transfer_state = 7
-				transfer_state = 18
-				transfer_state = 21
-				transfer_state = 48
-				transfer_state = 72
-				transfer_state = 91
-				transfer_state = 128
-				transfer_state = 129
-				transfer_state = 133
-				transfer_state = 135
-				transfer_state = 163
-				transfer_state = 377
-				# Saskatchewan #
-				transfer_state = 1
-				transfer_state = 8
-				transfer_state = 31
-				transfer_state = 36
-				transfer_state = 149
-				
-				every_state = {
-				LIMIT = {
-					is_owned_by = ANA
-				}
-				add_core_of = ANA
+				PRA = {
+					if = {
+						limit = {
+							has_dlc = "Together for Victory"
+						}
+						set_autonomy = {
+							target = ANA
+							autonomous_state = integrated_puppet
+						}
+					}
+					else = {
+						puppet = ANA
+					}
 				}
 			}
 		}
@@ -2639,91 +2763,94 @@ PRA_Free_Our_Neighbors = {
 		available = {
 			has_completed_focus = APRA_Liberate_Mexico
 			has_government = libertarian_left
-			### Mexico ###
-			# Aguascalientes #
-			controls_state = 631
-			# Baja California #
-			controls_state = 15
-			controls_state = 22
-			# Baja California Sur #
-			controls_state = 311
-			# Campeche #
-			controls_state = 630
-			# Chiapas #
-			controls_state = 351
-			# Chihuahua #
-			controls_state = 148
-			controls_state = 387
-			controls_state = 636
-			controls_state = 637
-			controls_state = 638
-			# Coahuila #
-			controls_state = 79
-			controls_state = 147
-			controls_state = 384
-			controls_state = 643
-			controls_state = 639
-			# Colima #
-			controls_state = 632
-			# Durango #
-			controls_state = 90
-			controls_state = 640
-			controls_state = 646
-			# Guanajuato #
-			controls_state = 633
-			# Guerrero #
-			controls_state = 395
-			# Hidalgo #
-			controls_state = 479
-			# Jalisco #
-			controls_state = 481
-			# State of Mexico and Mexico City #
-			controls_state = 478
-			# Michoacán #
-			controls_state = 126
-			controls_state = 374
-			# Morelos #
-			controls_state = 629
-			# Nayarit #
-			controls_state = 92
-			# Nuevo León #
-			controls_state = 385
-			controls_state = 641
-			controls_state = 644
-			# Oaxaca #
-			controls_state = 319
-			controls_state = 326
-			# Puebla and Tlaxcala #
-			controls_state = 480
-			# Querétaro #
-			controls_state = 634
-			# Quintana Roo #
-			controls_state = 318
-			# San Luis Potosí #
-			controls_state = 151
-			# Sinaloa #
-			controls_state = 93
-			controls_state = 334
-			controls_state = 341
-			controls_state = 645
-			# Sonora #
-			controls_state = 38
-			controls_state = 137
-			controls_state = 337
-			controls_state = 338
-			# Tabasco #
-			controls_state = 482
-			# Tamaulipas #
-			controls_state = 389
-			controls_state = 392
-			controls_state = 642
-			# Veracruz #
-			controls_state = 379
-			controls_state = 382
-			# Yucatán #
-			controls_state = 355
-			# Zacatecas #
-			controls_state = 139
+			custom_trigger_tooltip = {
+				tooltip = PRA_owns_mexico
+				### Mexico ###
+				# Aguascalientes #
+				controls_state = 631
+				# Baja California #
+				controls_state = 15
+				controls_state = 22
+				# Baja California Sur #
+				controls_state = 311
+				# Campeche #
+				controls_state = 630
+				# Chiapas #
+				controls_state = 351
+				# Chihuahua #
+				controls_state = 148
+				controls_state = 387
+				controls_state = 636
+				controls_state = 637
+				controls_state = 638
+				# Coahuila #
+				controls_state = 79
+				controls_state = 147
+				controls_state = 384
+				controls_state = 643
+				controls_state = 639
+				# Colima #
+				controls_state = 632
+				# Durango #
+				controls_state = 90
+				controls_state = 640
+				controls_state = 646
+				# Guanajuato #
+				controls_state = 633
+				# Guerrero #
+				controls_state = 395
+				# Hidalgo #
+				controls_state = 479
+				# Jalisco #
+				controls_state = 481
+				# State of Mexico and Mexico City #
+				controls_state = 478
+				# Michoacán #
+				controls_state = 126
+				controls_state = 374
+				# Morelos #
+				controls_state = 629
+				# Nayarit #
+				controls_state = 92
+				# Nuevo León #
+				controls_state = 385
+				controls_state = 641
+				controls_state = 644
+				# Oaxaca #
+				controls_state = 319
+				controls_state = 326
+				# Puebla and Tlaxcala #
+				controls_state = 480
+				# Querétaro #
+				controls_state = 634
+				# Quintana Roo #
+				controls_state = 318
+				# San Luis Potosí #
+				controls_state = 151
+				# Sinaloa #
+				controls_state = 93
+				controls_state = 334
+				controls_state = 341
+				controls_state = 645
+				# Sonora #
+				controls_state = 38
+				controls_state = 137
+				controls_state = 337
+				controls_state = 338
+				# Tabasco #
+				controls_state = 482
+				# Tamaulipas #
+				controls_state = 389
+				controls_state = 392
+				controls_state = 642
+				# Veracruz #
+				controls_state = 379
+				controls_state = 382
+				# Yucatán #
+				controls_state = 355
+				# Zacatecas #
+				controls_state = 139
+			}
 		}
 		cost = 0 
 		fire_only_once = yes
@@ -2736,14 +2863,24 @@ PRA_Free_Our_Neighbors = {
 		}
 		complete_effect = {
 			release_puppet = YUC
-			set_autonomy = {
-				target = PREV
-				autonomy_state = autonomy_supervised_state
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = YUC
+					autonomous_state = integrated_puppet
+				}
 			}
 			release_puppet = ZAP
-			set_autonomy = {
-				target = PREV
-				autonomy_state = autonomy_supervised_state
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = ZAP
+					autonomous_state = integrated_puppet
+				}
 			}
 		}
 	}

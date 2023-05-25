@@ -1,0 +1,36 @@
+# Stole this code from Equestria at War and Kaiserreich, so credit to where credit is due.
+# This feature is great and they should add it to the base game.
+# - Nyanfu
+
+scripted_diplomatic_actions = {
+
+	recall_volunteers = {
+	
+		allowed = {
+			ROOT = { is_ai = no }
+		}
+		visible = {
+			FROM = {
+				has_volunteers_amount_from = { tag = ROOT count > 0 }
+			}
+			NOT = { ROOT = { has_country_flag = recalling_volunteers_from_@PREV } }
+		}
+		
+		cost = 0
+		requires_acceptance = no
+		show_acceptance_on_action_button = no
+
+		icon = 1
+
+		complete_effect = {
+			ROOT = {
+				set_country_flag = { flag = recalling_volunteers_from_@PREV days = 30 value = 1 }
+				recall_volunteers_from = PREV
+			}
+		}
+		
+		ai_desire = {
+			base = 0
+		}
+	}
+}

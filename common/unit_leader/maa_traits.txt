@@ -1,0 +1,448 @@
+# leader_traits contain a list of UnitLeaderTrait with the following structure:
+# trait_key = {
+# 	type = all # or either of field_marshal, corps_commander, navy
+#	trait_type = basic_trait # or either of status_trait, personality_trait, assignable_trait, basic_terrain_trait, assignable_terrain_trait, exile
+#	attack_skill = 0 # integer
+#	defense_skill = 0 # integer
+#	logistics_skill = 0 # integer
+#	planning_skill = 0 # integer
+#	maneuvering_skill = 0 # integer
+#	coordination_skill = 0 # integer
+#	attack_skill_factor = 0.0 # decimal
+#	defense_skill_factor = 0.0 # decimal
+#	logistics_skill_factor = 0.0 # decimal
+#	planning_skill_factor = 0.0 # decimal
+#	maneuvering_skill_factor = 0.0 # decimal
+#	coordination_skill_factor = 0.0 # decimal
+#	show_in_combat = yes # boolean
+#	override_effect_tooltip = "" # loc key
+#	custom_effect_tooltip = "" # loc key
+#	custom_prerequisite_tooltip = "" # loc key
+#	custom_gain_xp_trigger_tooltip = "" # loc key
+#	mutually_exclusive = other_trait # trait key
+#	parent = other_trait # trait key
+#	num_parents_needed = -1 # integer, -1 means "all"
+#	gui_row = -1 # integer, starts at 0, -1 means auto
+#	gui_column = -1 # integer, starts at 0, -1 means auto
+#	allowed = trigger # scope is a unit leader
+#	prerequisites = trigger # scope is an unit leader
+#	gain_xp = trigger # scope is a combatant
+#	gain_xp_leader = trigger # scope is a unit leader. ROOT is country you are from and FROM is any target nationality for agents
+#	gain_xp_on_spotting = 0 # integer
+#	modifier = { } # list of modifiers
+#	non_shared_modifier = {} #
+#	corps_commander_modifier = {} #
+#	field_marshal_modifier = {} #
+#	sub_unit_modifiers = { # list of sub unit def
+#		# e.g.
+#		submarine {
+#			units = {} # list of adjusters
+#			# list of modifiers e.g.
+#			naval_visibility = -0.1
+#		}
+#	}
+#	trait_xp_factor = {} # list of trait_key/decimal
+#	on_add = effect # scope is an unit leader
+#	on_remove = effect # scope is an unit leader
+#	daily_effect = effect # scope is an unit leader
+#	cost = 1000 # integer
+#	ai_will_do = {} # weight
+#	new_commander_weight = {} # weight
+#	enable_ability = ability_key
+#}
+leader_traits = {
+
+	### Custom Traits ###
+	# General #
+	air_force_ties = { 
+	
+		type = land
+		trait_type = personality_trait
+		
+		allowed = {
+			always = yes
+		}
+		
+		modifier = {
+			air_cas_efficiency = 0.15
+			air_cas_present_factor = 0.07
+		}
+
+		new_commander_weight = {
+			factor = 1
+		}
+	}
+	
+	army_aviaton_background = {
+	
+		type = land
+		trait_type = personality_trait
+		
+		allowed = {
+			always = yes
+		}
+
+		modifier = {
+			army_speed_factor = 0.05
+			air_cas_present_factor = 0.05
+		}
+
+		new_commander_weight = { 
+			factor = 1
+		}
+	}
+	
+	military_intelligence_officer = {
+	
+		type = land
+		trait_type = personality_trait
+		
+		allowed = {
+			always = yes
+		}
+
+		modifier = {
+			coordination_bonus = 0.05
+			initiative_factor = 0.05
+		}
+
+		new_commander_weight = { 
+			factor = 1
+		}
+	}
+	
+	national_guard_member = {
+	
+		type = all
+		trait_type = personality_trait
+		
+		allowed = {
+			always = yes
+		}
+
+		modifier = {
+			army_core_attack_factor = 0.05
+			army_core_defence_factor = 0.05
+		}
+		
+		defense_skill = 1
+
+		new_commander_weight = { 
+			factor = 0
+		}
+	}
+	
+	# Mercenaries #
+	wagner_group_trait = { 
+	
+		type = all
+		trait_type = personality_trait
+		
+		allowed = {
+			always = no
+		}
+		
+		modifier = {
+			planning_speed = 0.20
+		}
+
+		attack_skill_factor = 1
+		
+		non_shared_modifier = {
+			experience_gain_factor = -0.25
+		}
+	
+		new_commander_weight = { factor = 0 }
+	}
+	
+	Aegis_group_trait = { 
+	
+		type = all
+		trait_type = personality_trait
+		
+		allowed = {
+			always = no
+		}
+		
+		modifier = {
+			planning_speed = 0.20
+		}
+
+		attack_skill_factor = 1
+		
+		non_shared_modifier = {
+			experience_gain_factor = -0.25
+		}
+		
+		new_commander_weight = { factor = 0 }
+	}
+	
+	G4S_group_trait = { 
+	
+		type = all
+		trait_type = personality_trait
+		
+		allowed = {
+			always = no
+		}
+		
+		modifier = {
+			planning_speed = 0.20
+		}
+
+		attack_skill_factor = 1
+		
+		non_shared_modifier = {
+			experience_gain_factor = -0.25
+		}
+		
+		new_commander_weight = { factor = 0 }
+	}
+	
+	Academi_group_trait = { 
+	
+		type = all
+		trait_type = personality_trait
+		
+		allowed = {
+			always = no
+		}
+		
+		modifier = {
+			planning_speed = 0.20
+		}
+
+		attack_skill_factor = 1
+		
+		non_shared_modifier = {
+			experience_gain_factor = -0.25
+		}
+		
+		new_commander_weight = { factor = 0 }
+	}
+	
+	Triple_Canopy_group_trait = { 
+	
+		type = all
+		trait_type = personality_trait
+		
+		allowed = {
+			always = no
+		}
+		
+		modifier = {
+			planning_speed = 0.20
+		}
+
+		attack_skill_factor = 1
+		
+		non_shared_modifier = {
+			experience_gain_factor = -0.25
+		}
+		
+		new_commander_weight = { factor = 0 }
+	}
+	
+	# AFS - American Free State #
+	mattis_loyalist_trait = { 
+	
+		type = all
+		trait_type = personality_trait
+		
+		allowed = {
+			always = no
+		}
+		
+		modifier = {
+			planning_speed = 0.20
+		}
+		
+		attack_skill = 1
+		
+		non_shared_modifier = {
+			experience_gain_factor = -0.05
+		}
+		
+		new_commander_weight = { factor = 0 }
+	}
+
+	supreme_loyalist_trait = { 
+		type = all
+		trait_type = personality_trait
+		
+		allowed = {
+			always = no
+		}
+		
+		modifier = {
+			wounded_chance_factor = -0.5
+		}
+		
+		defense_skill = 1
+		
+		non_shared_modifier = {
+			experience_gain_factor = -0.05
+		}
+		
+		new_commander_weight = { factor = 0 }
+	}
+
+	aoc_loyalist_trait = { 
+		type = all
+		trait_type = personality_trait
+		
+		allowed = {
+			always = no
+		}
+		
+		modifier = {
+			reassignment_duration_factor = -0.80
+		}
+
+		planning_skill = 1
+		
+		non_shared_modifier = {
+			experience_gain_factor = -0.05
+		}
+		
+		new_commander_weight = { factor = 0 }
+	}
+	
+	# CSA - Confederate States of America #
+	Loyal_to_west = { 
+		type = all
+		trait_type = personality_trait
+		
+		allowed = {
+			always = no
+		}
+		
+		non_shared_modifier = {
+			promote_cost_factor = -0.1
+		}
+		
+		new_commander_weight = { factor = 0 }
+	}
+	
+	# KFC - Kentucky #
+	questioned_loyalty = { 
+	
+		type = all
+		trait_type = personality_trait
+		
+		allowed = {
+			always = no
+		}
+		
+		non_shared_modifier = {
+			promote_cost_factor = 0.75
+			reassignment_duration_factor = 0.9   
+			experience_gain_factor = -0.05
+		}
+		
+		planning_skill = -1
+		
+		new_commander_weight = { factor = 0 }
+	}
+	
+	kfc_logistics_manager = { 
+	
+		type = all
+		trait_type = personality_trait
+		
+		allowed = {
+			always = no
+		}
+		
+		modifier = {
+		    supply_consumption_factor = -0.08
+			supply_node_range = 0.01
+			supply_factor = 0.05
+		}
+		
+		logistics_skill = 1
+		
+		new_commander_weight = { factor = 0 }
+	}
+	
+	glutton = { 
+		
+		type = all
+		trait_type = personality_trait
+		
+		allowed = {
+			always = no
+		}
+		
+		logistics_skill = -1
+		defense_skill = 1
+		
+		modifier = {
+		    supply_consumption_factor = 0.15
+			army_speed_factor = -0.05
+			army_defence_factor = 0.1
+		}
+		
+		new_commander_weight = { factor = 0 }
+	}
+	
+	loyalty_to_the_colonel = {
+
+		type = all
+		trait_type = personality_trait
+		
+		allowed = {
+			always = no
+		}
+
+		new_commander_weight = { factor = 0 }
+	}
+	
+	resistance_sympathies = {
+
+		type = all
+		trait_type = personality_trait
+		
+		allowed = {
+			always = no
+		}
+
+		new_commander_weight = { factor = 0 }
+	}
+	
+	# PRA - People's Republic of America #
+	communist_ally = {
+
+		type = all
+		trait_type = personality_trait
+
+		allowed = {
+			always = no
+		}
+
+		new_commander_weight = { factor = 0 }
+	}
+	anarchist_ally = {
+
+		type = all
+		trait_type = personality_trait
+
+		allowed = {
+			always = no
+		}
+
+		new_commander_weight = { factor = 0 }
+	}
+	
+	american_loyalist = {
+
+		type = all
+		trait_type = personality_trait
+
+		allowed = {
+			always = no
+		}
+
+		new_commander_weight = { factor = 0 }
+	}
+}

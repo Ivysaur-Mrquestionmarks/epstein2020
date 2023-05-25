@@ -57,7 +57,23 @@ country_event = {
       			}
    			}
 		}
-		hidden_effect = { country_event = { id = cascadia.4 days = 7 } }
+		hidden_effect = { 
+			country_event = { 
+				id = cascadia.4 
+				days = 7 
+			} 
+			if = {
+				limit = {
+					SAZ = {
+						is_puppet_of = CAS
+					}
+				}
+				country_event = { 
+					id = seattle_independence.4
+					days = 3
+				} 
+			}
+		}
 	}
 	#nope!
 	option = {
@@ -123,147 +139,7 @@ country_event = {
 		}
 	}
 }
-country_event = {
-	id = cascadia.2
-	title = cascadia.2.t
-	desc = cascadia.2.d
-	picture = event_communists_01 
-	is_triggered_only = yes
-	fire_only_once = yes
-	#Push into Seattle
-	option = {
-		name = cascadia.2.a
-		ai_chance = {
-			factor = 75
-			modifier = {
-      			factor = 0 
-      			OR = {
-					has_game_rule = {
-              			rule = SAZ_free
-             			option = SAZ_FREE_YES 
-          			}
-					has_game_rule = {
-              			rule = SAZ_free
-             			option = SAZ_FREE_RAZ 
-          			}
-					has_game_rule = {
-              			rule = SAZ_free
-             			option = SAZ_FREE_PRA 
-          			}
-      			}
-   			}
-		}
-		CAS = {
-			transfer_state = 125
-			transfer_state = 136
-			add_stability = -0.05
-			give_military_access = PRA
-		}
-		125 = {
-			set_demilitarized_zone = no
-		}
-		136 = {
-			set_demilitarized_zone = no
-		}
-	}
-	#Keep that hellhole of a city
-	option = {
-		name = cascadia.2.b
-		ai_chance = {
-			factor = 25
-			modifier = {
-      				factor = 0 
-      				OR = {
-					has_game_rule = {
-              			rule = SAZ_free
-             			option = SAZ_FREE_NO 
-          			}
-      			}
-   			}
-		}
-		PRA = {
-			add_stability = 0.05
-			country_event = { id = cascadia.3 days = 30 }
-			SAZ = {
-				add_state_core = 125
-				add_state_core = 136
-			}
-		}
-	}
-}
-country_event = {
-	id = cascadia.3
-	title = cascadia.3.t
-	desc = cascadia.3.d
-	picture = event_communists_01 
-	is_triggered_only = yes
-	fire_only_once = yes
-	#Send some Chinese troops to "fix" the situation
-	option = {
-		name = cascadia.3.a
-		ai_chance = {
-			factor = 75
-			modifier = {
-      			factor = 0 
-      			OR = {
-					has_game_rule = {
-              			rule = SAZ_free
-             			option = SAZ_FREE_YES 
-          			}
-					has_game_rule = {
-              			rule = SAZ_free
-             			option = SAZ_FREE_RAZ 
-          			}
-					has_game_rule = {
-              			rule = SAZ_free
-             			option = SAZ_FREE_PRA 
-          			}
-      			}
-   			}
-		}
-		add_stability = 0.05
-		add_manpower = -2500
-		add_popularity = {
-			ideology = authoritarian_left
-			popularity = 0.1
-		}
-
-	}
-	#Oh yeah, Chaz time
-	option = {
-		name = cascadia.3.b
-		ai_chance = {
-			factor = 25
-			modifier = {
-      			factor = 0 
-      			OR = {
-					has_game_rule = {
-              			rule = SAZ_free
-             			option = SAZ_FREE_NO 
-          			}
-      			}
-   			}
-		}
-		release_autonomy = {
-   			target = SAZ
-   			autonomy_state = autonomy_integrated_puppet
-    		freedom_level = 0.8
-		}
-	}
-	#Play as Chaz
-	option = {
-		name = cascadia.3.c
-		ai_chance = {
-			factor = 0
-		}
-		release_autonomy = {
-   			target = SAZ
-   			autonomy_state = autonomy_integrated_puppet
-    		freedom_level = 0.8
-		}
-		SAZ = { change_tag_from = PRA }
-	}	
-}
+# Cascadia.2 and Cascadia.3 were Seattle events and have been removed #
 #what to do with the army? Neo-Nazi Coup
 country_event = {
 	id = cascadia.4

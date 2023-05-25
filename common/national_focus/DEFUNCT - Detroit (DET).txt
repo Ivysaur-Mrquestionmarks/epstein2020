@@ -1,0 +1,255 @@
+focus_tree = {
+	id = DET
+	country = {
+		factor = 0
+		#modifier = { #Defunct until someone comes back to dev Detriot
+		#	add = 10
+		#	tag = DET
+		#}
+	}
+	focus = {
+		id = DET_motor_city_running_on_empty
+		icon = GFX_goal_unknown
+		x = 5
+		y = 3
+		cost = 10
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = { 
+		focus = DET_the_campaign
+		}
+		completion_reward = {
+		swap_ideas = { remove_idea = DET_consequences_of_deindustrialization add_idea = DET_industry1 }
+		}
+	}
+
+
+
+	focus = {
+		id = DET_we_need_leadership
+		icon = GFX_goal_unknown
+		x = 30
+		y = 0
+		cost = 5
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_political_power= 50
+		}
+	}
+
+	focus = {
+		id = DET_reinstate_elections
+		icon = GFX_goal_unknown
+		x = 30
+		y = 1
+		cost = 5
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = { 
+			focus = DET_we_need_leadership
+		}
+		completion_reward = {
+			add_political_power= 50
+		}
+	}
+	focus = {
+		id = DET_the_campaign
+		icon = GFX_goal_unknown
+		x = 30
+		y = 2
+		cost = 8
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = { 
+			focus = DET_reinstate_elections
+		}
+		completion_reward = {
+			country_event = detroit.1
+		}
+	}
+	focus = {
+		id = DET_the_left_wins
+		icon = GFX_goal_unknown
+		x = 15
+		y = 3
+		cost = 5
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = {
+			focus = DET_the_campaign
+		}
+		available = {
+			has_country_flag = DET_left
+		}
+		completion_reward = {
+		add_popularity = { ideology = libertarian_left popularity = 0.1 }
+		}
+	}
+		focus = {
+		id = DET_dsa_stay
+		icon = GFX_goal_unknown
+		x = 10
+		y = 4
+		cost = 5
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = { 
+			focus = DET_the_left_wins
+		}
+		mutually_exclusive = {
+			focus = DET_dsa_go
+	}
+		completion_reward = {
+			add_political_power= 150
+		}
+	}
+		focus = {
+		id = DET_dsa_go
+		icon = GFX_goal_unknown
+		x = 20
+		y = 4
+		cost = 5
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = { 
+			focus = DET_the_left_wins
+		}
+		mutually_exclusive = {
+			focus = DET_dsa_stay
+	}
+		completion_reward = {
+			add_political_power= -150
+		}
+	}
+		focus = {
+		id = DET_rashida_question
+		icon = GFX_goal_unknown
+		x = 10
+		y = 5
+		cost = 5
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = { 
+			focus = DET_dsa_stay
+		}
+		completion_reward = {
+			country_event = detroit.2
+		}
+	}
+		focus = {
+		id = DET_dsa_left
+		icon = GFX_goal_unknown
+		x = 8
+		y = 5
+		cost = 5
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = { 
+			focus = DET_dsa_stay
+		}
+		completion_reward = {
+			country_event = detroit.2
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		focus = {
+		id = DET_the_liberals_win
+		icon = GFX_goal_unknown
+		x = 30
+		y = 3
+		cost = 0
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+		has_country_flag = DET_liberal
+		}
+		prerequisite = {
+		focus = DET_the_campaign
+		}
+		completion_reward = {
+		add_popularity = { ideology = authoritarian_left popularity = 0.1 }
+		}
+	}
+		focus = {
+		id = DET_the_conservatives_win
+		icon = GFX_goal_unknown
+		x = 45
+		y = 3
+		cost = 0
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+		has_country_flag = DET_conservative
+		}
+		prerequisite = {
+		focus = DET_the_campaign
+		}
+		completion_reward = {
+		add_popularity = { ideology = republican popularity = 0.1 }
+		}
+	}
+	}
+#End of focuses 
+ }
