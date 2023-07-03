@@ -1,0 +1,1231 @@
+focus_tree = {
+	id = det
+	continuous_focus_position = { x = -40 y = 1050 } 
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = DET
+		}
+	}
+	#Formalize Our Army
+	focus = {
+		id = DET_formalize_our_army
+		icon = GFX_focus_chi_army_reform
+		x = 3
+		y = 0
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_MANPOWER
+		}
+		completion_reward = {
+			
+						army_experience = 5
+						add_doctrine_cost_reduction = {
+							name = land_doc_bonus
+							cost_reduction = 0.5
+							uses = 1
+							category = land_doctrine
+						}
+					
+		}
+	}
+
+	#We Live In Detroit
+	focus = {
+		id = DET_we_live_in_detroit
+		icon = GFX_goal_generic_political_pressure
+		x = 18
+		y = 0
+		cost = 1
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		completion_reward = {
+			add_political_power = 100
+			
+			
+		}
+	}
+
+	#Military Training
+	focus = {
+		id = DET_military_training
+		icon = GFX_goal_continuous_reduce_training_time
+		x = 3
+		y = 1
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_MANPOWER
+		}
+		prerequisite = { focus = DET_formalize_our_army  }
+		completion_reward = {
+			
+						army_experience = 5
+						add_doctrine_cost_reduction = {
+							name = land_doc_bonus
+							cost_reduction = 0.5
+							uses = 1
+							category = land_doctrine
+						}
+					
+			
+		}
+	}
+
+	#Grand Strategy
+	focus = {
+		id = DET_grand_strategy
+		icon = GFX_goal_unknown
+		x = 3
+		y = 5
+		prerequisite = { } prerequisite = { }
+		cost = 10
+		available_if_capitulated = yes
+		completion_reward = {
+			
+						add_doctrine_cost_reduction = {
+							name = land_doc_bonus
+							cost_reduction = 0.5
+							uses = 1
+							category = land_doctrine
+						}
+					
+		}
+	}
+
+	#Army Specialisation
+	focus = {
+		id = DET_army_specialisation
+		icon = GFX_goal_unknown
+		x = 1
+		y = 5
+		prerequisite = { focus = DET_fortification_effort  } prerequisite = { focus = DET_revitalise_the_war_industry  }
+		cost = 10
+		available_if_capitulated = yes
+		completion_reward = {
+			
+					add_ideas = special_forces
+						add_tech_bonus = {
+							name = special_forces_bonus
+							bonus = 1.0
+							uses = 1
+							technology = paratroopers
+							technology = paratroopers2
+							technology = marines
+							technology = marines2
+							technology = tech_mountaineers
+							technology = tech_mountaineers2
+						}
+					
+		}
+	}
+
+	#Defensive Military
+	focus = {
+		id = DET_defensive_military
+		icon = GFX_goal_unknown
+		x = 2
+		y = 2
+		prerequisite = { focus = DET_military_training  }
+		mutually_exclusive = { focus = DET_offensive_military  }
+		cost = 5
+		available_if_capitulated = no
+		completion_reward = {
+			
+					add_stability = 0.05
+					add_ideas = idea_army_of_defense
+					
+		}
+	}
+
+	#Heighten Military Production
+	focus = {
+		id = DET_heighten_military_production
+		icon = GFX_goal_generic_production2
+		x = 2
+		y = 3
+		prerequisite = { focus = DET_defensive_military  }
+		cost = 10
+		available_if_capitulated = no
+		completion_reward = {
+			
+					add_ideas = idea_equipment_production
+					
+		}
+	}
+
+	#Fortification Effort
+	focus = {
+		id = DET_fortification_effort
+		icon = GFX_goal_unknown
+		x = 2
+		y = 4
+		prerequisite = { focus = DET_heighten_military_production  }
+		cost = 10
+		available_if_capitulated = no
+		completion_reward = {
+			
+					add_ideas = idea_fortification_bonus
+					
+		}
+	}
+
+	#Offensive Military
+	focus = {
+		id = DET_offensive_military
+		icon = GFX_goal_unknown
+		x = 4
+		y = 2
+		prerequisite = { focus = DET_military_training  }
+		mutually_exclusive = { focus = DET_defensive_military  }
+		cost = 5
+		available_if_capitulated = no
+		completion_reward = {
+			
+					add_war_support = 0.05
+					add_ideas = idea_army_of_offense
+					
+		}
+	}
+
+	#Enable Reservists
+	focus = {
+		id = DET_enable_reservists
+		icon = GFX_goal_unknown
+		x = 4
+		y = 3
+		prerequisite = { focus = DET_offensive_military  }
+		cost = 10
+		available_if_capitulated = no
+		completion_reward = {
+			
+					add_ideas = idea_enable_reservists
+					
+		}
+	}
+
+	#Revitalise the War Industry
+	focus = {
+		id = DET_revitalise_the_war_industry
+		icon = GFX_DET_revitalise_the_war_industry-177633
+		x = 4
+		y = 4
+		prerequisite = { focus = DET_enable_reservists  }
+		cost = 10
+		available_if_capitulated = no
+		completion_reward = {
+			
+						random_owned_controlled_state = {
+							add_extra_state_shared_building_slots = 1
+							add_building_construction = {
+								type = arms_factory
+								level = 1
+								instant_build = yes
+							} 
+						}			
+						random_owned_controlled_state = {
+							add_extra_state_shared_building_slots = 1
+							add_building_construction = {
+								type = arms_factory
+								level = 1
+								instant_build = yes
+							} 
+						}
+					
+		}
+	}
+
+	#Look to the Skies
+	focus = {
+		id = DET_look_to_the_skies
+		icon = GFX_goal_unknown
+		x = 11
+		y = 0
+		cost = 10
+		available_if_capitulated = no
+		completion_reward = {
+			
+						air_experience = 25
+						add_doctrine_cost_reduction = {
+							name = land_doc_bonus
+							cost_reduction = 0.5
+							uses = 1
+							category = air_doctrine
+						}
+				
+					
+		}
+	}
+
+	#Air Base Construction
+	focus = {
+		id = DET_air_base_construction
+		icon = GFX_goal_unknown
+		x = 8
+		y = 2
+		prerequisite = { focus = DET_aerial_battle_plan  }
+		cost = 10
+		available_if_capitulated = no
+		completion_reward = {
+			
+						random_owned_controlled_state = {
+							add_building_construction = {
+								type = air_base
+								level = 2
+								instant_build = yes
+							}	
+						}
+					
+		}
+	}
+
+	#Air Force Construction
+	focus = {
+		id = DET_air_force_construction
+		icon = GFX_DET_air_force_construction-177633
+		x = 8
+		y = 3
+		prerequisite = { focus = DET_air_base_construction  }
+		cost = 10
+		available_if_capitulated = no
+		completion_reward = {
+			
+						random_owned_controlled_state = {
+							add_extra_state_shared_building_slots = 2
+							add_building_construction = {
+								type = arms_factory
+								level = 2
+								instant_build = yes
+							} 
+						}
+					
+		}
+	}
+
+	#Aerial Battle Plan
+	focus = {
+		id = DET_aerial_battle_plan
+		icon = GFX_goal_generic_air_doctrine
+		x = 11
+		y = 1
+		prerequisite = { focus = DET_look_to_the_skies  }
+		cost = 10
+		available_if_capitulated = no
+		completion_reward = {
+			
+						add_doctrine_cost_reduction = {
+							name = land_doc_bonus
+							cost_reduction = 0.5
+							uses = 1
+							category = air_doctrine
+						}	
+					
+		}
+	}
+
+	#Grand Aerial Strategy
+	focus = {
+		id = DET_grand_aerial_strategy
+		icon = GFX_goal_generic_air_doctrine
+		x = 10
+		y = 2
+		prerequisite = { focus = DET_aerial_battle_plan  }
+		cost = 10
+		available_if_capitulated = no
+		completion_reward = {
+			
+						add_doctrine_cost_reduction = {
+							name = land_doc_bonus
+							cost_reduction = 0.5
+							uses = 1
+							category = air_doctrine
+						}	
+					
+		}
+	}
+
+	#Fighter Development I
+	focus = {
+		id = DET_fighter_development_i
+		icon = GFX_goal_unknown
+		x = 12
+		y = 2
+		prerequisite = { focus = DET_aerial_battle_plan  }
+		cost = 10
+		available_if_capitulated = no
+		completion_reward = {
+			
+						add_tech_bonus = {
+							name = fighter_bonus
+							bonus = 1.0
+							uses = 1
+							technology = early_fighter
+							technology = fighter1
+							technology = fighter2
+							technology = fighter3
+							technology = heavy_fighter1
+							technology = heavy_fighter2
+							technology = heavy_fighter3
+						}	
+					
+		}
+	}
+
+	#Fighter Development II
+	focus = {
+		id = DET_fighter_development_ii
+		icon = GFX_goal_unknown
+		x = 12
+		y = 3
+		prerequisite = { focus = DET_fighter_development_i  }
+		cost = 10
+		available_if_capitulated = no
+		completion_reward = {
+			
+						add_tech_bonus = {
+							name = fighter_bonus_2
+							bonus = 1.0
+							uses = 1
+							technology = early_fighter
+							technology = fighter1
+							technology = fighter2
+							technology = fighter3
+							technology = heavy_fighter1
+							technology = heavy_fighter2
+							technology = heavy_fighter3
+						}	
+					
+		}
+	}
+
+	#CAS Production
+	focus = {
+		id = DET_cas_production
+		icon = GFX_goal_unknown
+		x = 12
+		y = 4
+		prerequisite = { focus = DET_fighter_development_ii  }
+		cost = 10
+		available_if_capitulated = no
+		completion_reward = {
+			
+						add_tech_bonus = {
+							name = CAS_bonus
+							bonus = 1.0
+							ahead_reduction = 2
+							uses = 1
+							category = cas_bomber
+						}	
+					
+		}
+	}
+
+	#Bomber Development I
+	focus = {
+		id = DET_bomber_development_i
+		icon = GFX_goal_unknown
+		x = 14
+		y = 2
+		prerequisite = { focus = DET_aerial_battle_plan  }
+		cost = 10
+		available_if_capitulated = no
+		completion_reward = {
+			
+						add_tech_bonus = {
+							name = bomber_bonus
+							bonus = 1.0
+							uses = 1
+							technology = strategic_bomber1
+							technology = strategic_bomber2
+							technology = strategic_bomber3
+							category = tactical_bomber
+						}	
+					
+		}
+	}
+
+	#Bomber Development II
+	focus = {
+		id = DET_bomber_development_ii
+		icon = GFX_goal_unknown
+		x = 14
+		y = 3
+		prerequisite = { focus = DET_bomber_development_i  }
+		cost = 10
+		available_if_capitulated = no
+		completion_reward = {
+			
+						add_tech_bonus = {
+							name = bomber_bonus
+							bonus = 1.0
+							uses = 1
+							technology = strategic_bomber1
+							technology = strategic_bomber2
+							technology = strategic_bomber3
+							category = tactical_bomber
+						}	
+					
+		}
+	}
+
+	#Naval Bomber Research
+	focus = {
+		id = DET_naval_bomber_research
+		icon = GFX_goal_unknown
+		x = 14
+		y = 4
+		prerequisite = { focus = DET_bomber_development_ii  }
+		cost = 10
+		available_if_capitulated = no
+		completion_reward = {
+			
+						add_tech_bonus = {
+							name = nav_bomber_bonus
+							bonus = 1.0
+							ahead_reduction = 2
+							uses = 1
+							category = naval_bomber
+						}
+					
+		}
+	}
+
+	#Rocket Development
+	focus = {
+		id = DET_rocket_development
+		icon = GFX_goal_unknown
+		x = 13
+		y = 5
+		prerequisite = { } prerequisite = { }
+		cost = 10
+		available_if_capitulated = no
+		completion_reward = {
+			
+						add_tech_bonus = {
+							name = jet_rocket_bonus
+							ahead_reduction = 2
+							uses = 2
+							category = rocketry
+							category = jet_technology
+						}
+					
+		}
+	}
+
+	#Nuclear Development
+	focus = {
+		id = DET_nuclear_development
+		icon = GFX_goal_unknown
+		x = 13
+		y = 6
+		prerequisite = { }
+		cost = 10
+		available_if_capitulated = no
+		completion_reward = {
+			
+						add_tech_bonus = {
+							name = nuclear_bonus
+							ahead_reduction = 2
+							category = nuclear
+						}
+					
+		}
+	}
+
+	#Research Effort I
+	focus = {
+		id = DET_research_effort_i
+		icon = GFX_goal_unknown
+		x = 31
+		y = 1
+		prerequisite = { focus = DET_industrial_focus  }
+		cost = 10
+		available_if_capitulated = no
+		completion_reward = {
+			
+						add_research_slot = 1
+					
+		}
+	}
+
+	#Research Effort II
+	focus = {
+		id = DET_research_effort_ii
+		icon = GFX_goal_unknown
+		x = 31
+		y = 2
+		prerequisite = { focus = DET_research_effort_i  }
+		cost = 10
+		available = {
+			
+						num_of_factories > 50
+					
+		}
+		available_if_capitulated = no
+		completion_reward = {
+			
+						add_research_slot = 1
+					
+		}
+	}
+
+	#Secret Weapon Development
+	focus = {
+		id = DET_secret_weapon_development
+		icon = GFX_goal_unknown
+		x = 30
+		y = 3
+		prerequisite = { focus = DET_research_effort_i  focus = DET_arms_effort_i  }
+		cost = 10
+		available_if_capitulated = no
+		completion_reward = {
+			
+						add_tech_bonus = {
+							name = secret_bonus
+							bonus = 1.0
+							uses = 4
+							category = electronics
+							category = nuclear
+							category = rocketry
+						}
+					
+		}
+	}
+
+	#Industrial Focus
+	focus = {
+		id = DET_industrial_focus
+		icon = GFX_goal_unknown
+		x = 30
+		y = 0
+		cost = 10
+		available_if_capitulated = no
+		completion_reward = {
+			
+						add_tech_bonus = {
+							name = industrial_bonus_1
+							bonus = 1.0
+							uses = 1
+							category = industry
+						}
+					
+		}
+	}
+
+	#Support Urbanisation
+	focus = {
+		id = DET_support_urbanisation
+		icon = GFX_goal_unknown
+		x = 27
+		y = 1
+		prerequisite = { focus = DET_industrial_focus  }
+		cost = 10
+		available_if_capitulated = no
+		completion_reward = {
+			
+						random_owned_state = {
+							add_extra_state_shared_building_slots = 1 
+						}
+						random_owned_state = {
+							add_extra_state_shared_building_slots = 1 
+						}	
+					
+		}
+	}
+
+	#Civilian Economy I
+	focus = {
+		id = DET_civilian_economy_i
+		icon = GFX_goal_unknown
+		x = 26
+		y = 2
+		prerequisite = { focus = DET_support_urbanisation  }
+		cost = 10
+		available_if_capitulated = no
+		completion_reward = {
+			
+					random_owned_controlled_state = {
+							add_extra_state_shared_building_slots = 1
+							add_building_construction = {
+								type = industrial_complex
+								level = 1
+								instant_build = yes
+								} }
+					
+		}
+	}
+
+	#Civilian Economy II
+	focus = {
+		id = DET_civilian_economy_ii
+		icon = GFX_goal_unknown
+		x = 26
+		y = 3
+		prerequisite = { focus = DET_civilian_economy_i  }
+		cost = 10
+		available_if_capitulated = no
+		completion_reward = {
+			
+					random_owned_controlled_state = {
+							add_extra_state_shared_building_slots = 1
+							add_building_construction = {
+								type = industrial_complex
+								level = 1
+								instant_build = yes
+								} }
+					
+		}
+	}
+
+	#Civilian Economy III
+	focus = {
+		id = DET_civilian_economy_iii
+		icon = GFX_goal_unknown
+		x = 26
+		y = 4
+		prerequisite = { focus = DET_civilian_economy_ii  }
+		cost = 15
+		available_if_capitulated = no
+		completion_reward = {
+			
+					random_owned_controlled_state = {
+							add_extra_state_shared_building_slots = 1
+							add_building_construction = {
+								type = industrial_complex
+								level = 1
+								instant_build = yes
+								} }
+					random_owned_controlled_state = {
+							add_extra_state_shared_building_slots = 1
+							add_building_construction = {
+								type = industrial_complex
+								level = 1
+								instant_build = yes
+								} }
+					
+		}
+	}
+
+	#Civilian Economy IV
+	focus = {
+		id = DET_civilian_economy_iv
+		icon = GFX_goal_unknown
+		x = 26
+		y = 5
+		prerequisite = { focus = DET_civilian_economy_iii  }
+		cost = 20
+		available_if_capitulated = no
+		completion_reward = {
+			
+					random_owned_controlled_state = {
+							add_extra_state_shared_building_slots = 1
+							add_building_construction = {
+								type = industrial_complex
+								level = 1
+								instant_build = yes
+								} }
+					random_owned_controlled_state = {
+							add_extra_state_shared_building_slots = 1
+							add_building_construction = {
+								type = industrial_complex
+								level = 1
+								instant_build = yes
+								} }
+					
+		}
+	}
+
+	#Civilian Economy V
+	focus = {
+		id = DET_civilian_economy_v
+		icon = GFX_goal_unknown
+		x = 26
+		y = 6
+		prerequisite = { focus = DET_civilian_economy_iv  }
+		cost = 25
+		available_if_capitulated = no
+		completion_reward = {
+			
+					random_owned_controlled_state = {
+							add_extra_state_shared_building_slots = 2
+							add_building_construction = {
+								type = industrial_complex
+								level = 2
+								instant_build = yes
+								} }
+					random_owned_controlled_state = {
+							add_extra_state_shared_building_slots = 2
+							add_building_construction = {
+								type = industrial_complex
+								level = 2
+								instant_build = yes
+								} }
+					
+		}
+	}
+
+	#Arms Effort I
+	focus = {
+		id = DET_arms_effort_i
+		icon = GFX_DET_arms_effort_i-177633
+		x = 28
+		y = 2
+		prerequisite = { focus = DET_support_urbanisation  }
+		cost = 10
+		available_if_capitulated = no
+		completion_reward = {
+			
+					random_owned_controlled_state = {
+							add_extra_state_shared_building_slots = 1
+							add_building_construction = {
+								type = arms_factory
+								level = 1
+								instant_build = yes
+								} }
+					
+		}
+	}
+
+	#Arms Effort II
+	focus = {
+		id = DET_arms_effort_ii
+		icon = GFX_DET_arms_effort_ii-177633
+		x = 28
+		y = 3
+		prerequisite = { focus = DET_arms_effort_i  }
+		cost = 10
+		available_if_capitulated = no
+		completion_reward = {
+			
+					random_owned_controlled_state = {
+							add_extra_state_shared_building_slots = 1
+							add_building_construction = {
+								type = arms_factory
+								level = 1
+								instant_build = yes
+								} }
+					
+		}
+	}
+
+	#Arms Effort III
+	focus = {
+		id = DET_arms_effort_iii
+		icon = GFX_DET_arms_effort_iii-177633
+		x = 28
+		y = 4
+		prerequisite = { focus = DET_arms_effort_ii  }
+		cost = 15
+		available_if_capitulated = no
+		completion_reward = {
+			
+					random_owned_controlled_state = {
+							add_extra_state_shared_building_slots = 1
+							add_building_construction = {
+								type = arms_factory
+								level = 1
+								instant_build = yes
+								} }
+					random_owned_controlled_state = {
+							add_extra_state_shared_building_slots = 1
+							add_building_construction = {
+								type = arms_factory
+								level = 1
+								instant_build = yes
+								} }
+					
+		}
+	}
+
+	#Arms Effort IV
+	focus = {
+		id = DET_arms_effort_iv
+		icon = GFX_DET_arms_effort_iv-177633
+		x = 28
+		y = 5
+		prerequisite = { focus = DET_arms_effort_iii  }
+		cost = 20
+		available_if_capitulated = no
+		completion_reward = {
+			
+					random_owned_controlled_state = {
+							add_extra_state_shared_building_slots = 1
+							add_building_construction = {
+								type = arms_factory
+								level = 1
+								instant_build = yes
+								} }
+					random_owned_controlled_state = {
+							add_extra_state_shared_building_slots = 1
+							add_building_construction = {
+								type = arms_factory
+								level = 1
+								instant_build = yes
+								} }
+					
+		}
+	}
+
+	#Arms Effort V
+	focus = {
+		id = DET_arms_effort_v
+		icon = GFX_DET_arms_effort_v-177633
+		x = 28
+		y = 6
+		prerequisite = { focus = DET_arms_effort_iv  }
+		cost = 25
+		available_if_capitulated = no
+		completion_reward = {
+			
+					random_owned_controlled_state = {
+							add_extra_state_shared_building_slots = 2
+							add_building_construction = {
+								type = arms_factory
+								level = 2
+								instant_build = yes
+								} }
+					random_owned_controlled_state = {
+							add_extra_state_shared_building_slots = 2
+							add_building_construction = {
+								type = arms_factory
+								level = 2
+								instant_build = yes
+								} }
+					
+		}
+	}
+
+	#Infrastructure Expansion I
+	focus = {
+		id = DET_infrastructure_expansion_i
+		icon = GFX_goal_unknown
+		x = 33
+		y = 1
+		prerequisite = { focus = DET_industrial_focus  }
+		cost = 10
+		available_if_capitulated = no
+		completion_reward = {
+			
+					random_owned_controlled_state = {
+					add_building_construction = {
+								type = infrastructure
+								level = 2
+								instant_build = yes
+							}
+					
+		}
+	}
+
+	#Infrastructure Expansion II
+	focus = {
+		id = DET_infrastructure_expansion_ii
+		icon = GFX_goal_unknown
+		x = 33
+		y = 2
+		prerequisite = { focus = DET_infrastructure_expansion_i  }
+		cost = 10
+		available_if_capitulated = no
+		completion_reward = {
+			
+					random_owned_controlled_state = {
+					add_building_construction = {
+								type = infrastructure
+								level = 2
+								instant_build = yes
+							}
+					
+		}
+	}
+
+	#Infrastructure Expansion III
+	focus = {
+		id = DET_infrastructure_expansion_iii
+		icon = GFX_goal_unknown
+		x = 33
+		y = 3
+		prerequisite = { focus = DET_infrastructure_expansion_ii  }
+		cost = 15
+		available_if_capitulated = no
+		completion_reward = {
+			
+					random_owned_controlled_state = {
+					add_building_construction = {
+								type = infrastructure
+								level = 2
+								instant_build = yes
+							}
+					}
+					random_owned_controlled_state = {
+					add_building_construction = {
+								type = infrastructure
+								level = 2
+								instant_build = yes
+							}
+					
+		}
+	}
+
+	#Naval Expansion
+	focus = {
+		id = DET_naval_expansion
+		icon = GFX_goal_generic_construct_naval_dockyard
+		x = 38
+		y = 0
+		cost = 10
+		available_if_capitulated = no
+		available = {
+			 any_state = {
+							is_coastal = yes
+							is_controlled_by = ROOT
+						
+		}
+		completion_reward = {
+			
+					random_owned_controlled_state = {
+								limit = {
+									is_coastal = yes
+									free_building_slots = {
+										building = dockyard
+										size > 2
+										include_locked = yes
+									}
+								}
+								add_extra_state_shared_building_slots = 3
+								add_building_construction = {
+									type = dockyard
+									level = 3
+									instant_build = yes
+								}
+							}	
+		}
+	}
+
+	#Naval Stratagems
+	focus = {
+		id = DET_naval_stratagems
+		icon = GFX_goal_generic_navy_doctrines_tactics
+		x = 38
+		y = 1
+		prerequisite = { focus = DET_naval_expansion  }
+		cost = 10
+		available_if_capitulated = no
+		completion_reward = {
+			
+					navy_experience = 25
+			
+						add_doctrine_cost_reduction = {
+							name = land_doc_bonus
+							cost_reduction = 0.5
+							uses = 1
+							category = naval_doctrine
+						}
+			
+						
+		}
+	}
+
+	#Plan Naval Dominance
+	focus = {
+		id = DET_plan_naval_dominance
+		icon = GFX_goal_generic_navy_doctrines_tactics
+		x = 38
+		y = 2
+		prerequisite = { focus = DET_naval_stratagems  }
+		cost = 10
+		available_if_capitulated = no
+		completion_reward = {
+			
+						add_doctrine_cost_reduction = {
+							name = land_doc_bonus
+							cost_reduction = 0.5
+							uses = 1
+							category = naval_doctrine
+						}
+						
+		}
+	}
+
+	#Submarine Development I
+	focus = {
+		id = DET_submarine_development_i
+		icon = GFX_goal_unknown
+		x = 35
+		y = 3
+		prerequisite = { focus = DET_plan_naval_dominance  }
+		cost = 10
+		available_if_capitulated = no
+		completion_reward = {
+			
+					add_tech_bonus = {
+							name = ss_bonus
+							bonus = 1.0
+							ahead_reduction = 2
+							uses = 1
+							category = ss_tech
+						}
+						
+		}
+	}
+
+	#Submarine Development II
+	focus = {
+		id = DET_submarine_development_ii
+		icon = GFX_DET_submarine_development_ii-136503
+		x = 35
+		y = 4
+		prerequisite = { focus = DET_submarine_development_i  }
+		cost = 10
+		available_if_capitulated = no
+		completion_reward = {
+			
+					add_tech_bonus = {
+							name = ss_bonus_2
+							bonus = 1.0
+							ahead_reduction = 2
+							uses = 1
+							category = ss_tech
+						}
+						
+		}
+	}
+
+	#Destroyer Development I
+	focus = {
+		id = DET_destroyer_development_i
+		icon = GFX_DET_destroyer_development_i-5616
+		x = 37
+		y = 3
+		prerequisite = { focus = DET_plan_naval_dominance  }
+		cost = 10
+		available_if_capitulated = no
+		completion_reward = {
+			
+					add_tech_bonus = {
+							name = dd_bonus
+							bonus = 1.0
+							ahead_reduction = 2
+							uses = 1
+							category = dd_tech
+						}
+						
+		}
+	}
+
+	#Destroyer Development II
+	focus = {
+		id = DET_destroyer_development_ii
+		icon = GFX_DET_destroyer_development_ii-5616
+		x = 37
+		y = 4
+		prerequisite = { focus = DET_destroyer_development_i  }
+		cost = 10
+		available_if_capitulated = no
+		completion_reward = {
+			
+					add_tech_bonus = {
+							name = dd_bonus_2
+							bonus = 1.0
+							ahead_reduction = 2
+							uses = 1
+							category = dd_tech
+						}
+						
+		}
+	}
+
+	#Cruiser Development I
+	focus = {
+		id = DET_cruiser_development_i
+		icon = GFX_goal_generic_navy_cruiser
+		x = 39
+		y = 3
+		prerequisite = { focus = DET_plan_naval_dominance  }
+		cost = 10
+		available_if_capitulated = no
+		completion_reward = {
+			
+					add_tech_bonus = {
+							name = cr_bonus
+							bonus = 1.0
+							ahead_reduction = 2
+							uses = 1
+							category = cl_tech
+							category = ca_tech
+						}
+						
+		}
+	}
+
+	#Cruiser Development II
+	focus = {
+		id = DET_cruiser_development_ii
+		icon = GFX_goal_unknown
+		x = 39
+		y = 4
+		prerequisite = { focus = DET_cruiser_development_i  }
+		cost = 10
+		available_if_capitulated = no
+		completion_reward = {
+			
+					add_tech_bonus = {
+							name = cr_bonus_2
+							bonus = 1.0
+							ahead_reduction = 2
+							uses = 1
+							category = cl_tech
+							category = ca_tech
+						}
+						
+		}
+	}
+
+	#Capital Ship Development I
+	focus = {
+		id = DET_capital_ship_development_i
+		icon = GFX_goal_unknown
+		x = 41
+		y = 3
+		prerequisite = { focus = DET_plan_naval_dominance  }
+		cost = 10
+		available_if_capitulated = no
+		completion_reward = {
+			
+					add_tech_bonus = {
+							name = capital_ships_bonus
+							bonus = 1.0
+							ahead_reduction = 2
+							uses = 1
+							category = bc_tech
+							category = bb_tech
+							category = cv_tech
+						}
+						
+		}
+	}
+
+	#Capital Ship Development II
+	focus = {
+		id = DET_capital_ship_development_ii
+		icon = GFX_DET_capital_ship_development_ii-5615
+		x = 41
+		y = 4
+		prerequisite = { focus = DET_capital_ship_development_i  }
+		cost = 10
+		available_if_capitulated = no
+		completion_reward = {
+			
+						add_tech_bonus = {
+							name = capital_ships_bonus_2
+							bonus = 1.0
+							ahead_reduction = 2
+							uses = 1
+							category = bc_tech
+							category = bb_tech
+							category = cv_tech
+						}
+					
+		}
+	}
+
+}
