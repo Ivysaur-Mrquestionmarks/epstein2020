@@ -1418,4 +1418,492 @@ focus_tree = {
 			}						
 		}
 	}
+
+	#Foreign policy branch
+
+	focus = {
+		id = CSA_interventionism
+		icon = GFX_goal_no_police
+		allow_branch = {
+			country_exists = D01
+		}
+		#prerequisite = { focus = CSA_restore_segregation }
+		x = 36
+		y = 1
+		cost = 0
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+					
+		}
+	}
+
+	focus = {
+		id = CSA_Help_NRA
+		icon = GFX_goal_no_police
+		available = { 
+			NRA = {
+				has_civil_war = yes
+			}
+		}
+		prerequisite = { focus = CSA_interventionism }
+		x = 35
+		y = 2
+		cost = 1
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			every_country_with_original_tag = {
+    				original_tag_to_check = NRA
+				limit = {has_government = autocratic}	
+				country_event = {
+    					id = south.83
+    					days = 3
+				}
+				effect_tooltip = {
+					add_equipment_to_stockpile = {
+    						type = infantry_equipment
+    						amount = 1000
+    						producer = CSA
+					}
+				}			
+			}	
+		}
+	}
+
+	focus = {
+		id = CSA_Help_KFC
+		icon = GFX_goal_no_police
+		available = { 
+			KFC = {
+				has_civil_war = yes
+			}
+		}
+		prerequisite = { focus = CSA_interventionism }
+		x = 37
+		y = 2
+		cost = 1
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			every_country_with_original_tag = {
+    				original_tag_to_check = KFC
+				limit = {has_government = autocratic}	
+				country_event = {
+    					id = south.83
+    					days = 3
+				}
+				effect_tooltip = {
+					add_equipment_to_stockpile = {
+    						type = infantry_equipment
+    						amount = 1000
+    						producer = CSA
+					}
+				}			
+			}	
+		}
+	}
+
+
+
+
+	focus = {
+		id = CSA_KFC_mil_acces
+		icon = GFX_goal_no_police
+		available = { 
+			KFC = {
+				has_civil_war = yes
+			}
+		}
+		prerequisite = { focus = CSA_Help_KFC }
+		x = 37
+		y = 4
+		cost = 1
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			every_country_with_original_tag = {
+    				original_tag_to_check = KFC
+				limit = {has_government = autocratic}	
+				diplomatic_relation = {
+    					country = CSA
+    					relation = military_access
+    					active = yes
+				}			
+			}	
+		}
+	}
+
+	focus = {
+		id = CSA_KFC_nap
+		icon = GFX_goal_no_police
+		available = { 
+			KFC = {
+				has_civil_war = yes
+			}
+		}
+		prerequisite = { focus = CSA_Help_KFC }
+		x = 39
+		y = 3
+		cost = 1
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			every_country_with_original_tag = {
+    				original_tag_to_check = KFC
+				limit = {has_government = autocratic}	
+				diplomatic_relation = {
+    					country = CSA
+    					relation = non_aggression_pact
+    					active = yes
+				}			
+			}	
+		}
+	}
+
+
+	focus = {
+		id = CSA_KFC_incursion #Operation Jefferson
+		icon = GFX_goal_no_police
+		available = { 
+			KFC = {
+				has_civil_war = yes
+			}
+		}
+		prerequisite = { focus = CSA_KFC_nap }
+		x = 39
+		y = 5
+		cost = 3
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			every_country_with_original_tag = {
+    				original_tag_to_check = KFC
+				limit = {has_government = autocratic}	
+				country_event = {
+    					id = south.87
+    					days = 3
+				}
+				effect_tooltip = {	
+					261 = {
+						create_unit = {
+							division = "division_template = \"counter revolutionaries\"	start_experience_factor = 0.25	start_equipment_factor = 1"
+							owner = PREV
+							allow_spawning_on_enemy_provs = yes
+							count = 4
+						}						
+					}
+				}		
+			}	
+		}
+	}
+
+	focus = {
+		id = CSA_KFC_invest
+		icon = GFX_goal_no_police
+		available = { 
+			KFC = {
+				NOT = {has_civil_war = yes}
+				has_government = autocratic
+			
+			}
+		}
+		prerequisite = { focus = CSA_KFC_mil_acces }
+		x = 37
+		y = 6
+		cost = 3
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			KFC = {
+				country_event = {
+    					id = south.88
+    					days = 3
+				}
+				effect_tooltip = {
+
+					random_owned_controlled_state = {
+						add_extra_state_shared_building_slots = 3
+						add_building_construction = {
+							type = industrial_complex
+							level = 3
+							instant_build = yes
+						} 
+					}
+				}
+	
+			}
+				
+		}
+	}
+
+	focus = {
+		id = CSA_bomb_NRA
+		icon = GFX_goal_no_police
+		available = { 
+			NRA = {
+				has_civil_war = yes
+			}
+		}
+		prerequisite = { focus = CSA_Help_NRA }
+		x = 35
+		y = 4
+		cost = 2
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			every_country_with_original_tag = {
+    				original_tag_to_check = NRA
+				limit = {has_government = authoritarian_left}	
+				country_event = {
+    					id = south.85
+    					days = 3
+				}			
+			}	
+		}
+	}
+
+	focus = {
+		id = CSA_ask_NRA
+		icon = GFX_goal_no_police
+		available = { 
+			NRA = {
+				NOT = {has_civil_war = yes}
+				has_government = autocratic
+			}
+		}
+		prerequisite = { focus = CSA_bomb_NRA }
+		x = 35
+		y = 6
+		cost = 1
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			NRA = {	
+				country_event = {
+    					id = south.86
+    					days = 3
+				}
+				custom_effect_tooltip = needs_approval
+				effect_tooltip = {
+					every_country_with_original_tag = {
+    						original_tag_to_check = KFC
+						limit = {NOT = {has_government = autocratic}}	
+						NRA = {
+							declare_war_on = {
+    								target = PREV
+    								type = annex_everything
+							}
+						}
+					}
+				}							
+			}	
+		}
+	}
+
+
+
+	focus = {
+		id = CSA_NRA_nap
+		icon = GFX_goal_no_police
+		available = { 
+			NRA = {
+				has_civil_war = yes
+			}
+		}
+		prerequisite = { focus = CSA_Help_NRA }
+		x = 33
+		y = 3
+		cost = 1
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			every_country_with_original_tag = {
+    				original_tag_to_check = NRA
+				limit = {has_government = autocratic}	
+				diplomatic_relation = {
+    					country = CSA
+    					relation = non_aggression_pact
+    					active = yes
+				}			
+			}	
+		}
+	}
+
+	focus = {
+		id = CSA_advisors_NRA
+		icon = GFX_goal_no_police
+		available = { 
+			NRA = {
+				has_civil_war = yes
+			}
+		}
+		prerequisite = { focus = CSA_NRA_nap }
+		x = 33
+		y = 5
+		cost = 3
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			every_country_with_original_tag = {
+    				original_tag_to_check = NRA
+				limit = {has_government = autocratic}	
+				country_event = {
+    					id = south.84
+    					days = 3
+				}
+				effect_tooltip = {
+					add_ideas = CSA_NRA_advisors
+				}			
+			}	
+		}
+	}
+
+	focus = {
+		id = CSA_faction
+		icon = GFX_goal_no_police
+		available = { 
+			NRA = {
+				NOT = {has_civil_war = yes}
+				has_government = autocratic
+			}
+			KFC = {
+				NOT = {has_civil_war = yes}
+				has_government = autocratic
+			
+			}
+		}
+		prerequisite = { focus = CSA_ask_NRA }
+		prerequisite = { focus = CSA_KFC_invest }
+		x = 36
+		y = 7
+		cost = 1
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			NRA = {	
+				country_event = {
+    					id = south.89
+    					days = 3
+				}
+				custom_effect_tooltip = needs_approval							
+			}	
+			effect_tooltip = { #Yeezy club
+				create_faction = "The Apalachian Yeezy Club"
+				add_to_faction = NRA
+			}
+		}
+	}
+
+	focus = {
+		id = CSA_invade_AFS
+		icon = GFX_goal_no_police
+		available = { 
+			is_in_faction = yes
+		}
+		prerequisite = { focus = CSA_faction }
+
+		x = 36
+		y = 9
+		cost = 3
+		will_lead_to_war_with = AFS
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			create_wargoal = {
+    				type = puppet_wargoal_focus
+    				target = AFS
+			}
+		}
+	}
+
+	focus = {
+		id = CSA_puppet_AFS
+		icon = GFX_goal_no_police
+		available = { 
+			is_in_faction = yes
+			NOT = {country_exists = AFS}
+		}
+
+		prerequisite = { focus = CSA_invade_AFS}
+		x = 36
+		y = 10
+		cost = 0
+		will_lead_to_war_with = AFS
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			release_puppet = AFS
+		}
+	}
 }
