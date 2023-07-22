@@ -2097,9 +2097,9 @@ country_event = {
 		SCA= { change_tag_from = ROOT }
 	}
 }
-######
-#MISC#
-######
+#############
+#Super event#
+#############
 
 news_event = { #Golden circle formed
 	id = south.81
@@ -2122,4 +2122,194 @@ news_event = { #Golden circle formed
 		}
 	}
 }
+
+#############################
+#Early game, apalachia bloc.#
+#############################
+
+country_event = { #The apalachan revolt starts, and Tarrio recomends sending troops to crush the revolt before it expands to the csa
+	id = south.82
+	title = south.82.t
+	desc = south.82.d
+	#picture =
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = south.82.a
+		mark_focus_tree_layout_dirty = yes
+		custom_effect_tooltip =  new_tree
+		complete_national_focus = CSA_interventionism
+	}
+}
+
+country_event = { #(Corporate west virginia or KFC perspective), The CSA has just sent us guns to crush the rebels
+	id = south.83
+	title = south.83.t
+	desc = south.83.d
+	#picture =
+	#fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = south.83.a
+		add_equipment_to_stockpile = {
+    			type = infantry_equipment
+    			amount = 1000
+    			producer = CSA
+		}
+	}
+}
+
+country_event = { #(Corporate west virginia perspective), The CSA sends advisors to crush the Tucker
+	id = south.84
+	title = south.84.t
+	desc = south.84.d
+	#picture =
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = south.84.a
+		add_ideas = CSA_NRA_advisors
+	}
+}
+
+
+country_event = { #(Tucker's perspective), The CSA bombs us. BTW, the effect doesn't shows text, but the units still get damage, so point it out.
+	id = south.85
+	title = south.85.t
+	desc = south.85.d
+	#picture =
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = south.85.a
+		damage_units = {
+    			#province = 42
+    			#state = 5
+    			region = 99
+    			limit = { has_government = authoritarian_left }
+    			#damage = 0.3
+    			org_damage = 0.3
+    			str_damage = 0.1
+    			ratio = yes
+    			army = yes
+    			navy = no
+		}
+	}
+}
+
+
+country_event = { #Corporate west virgnia gets asked to intervine in the kentucky civil war on the side of the cornel.
+	id = south.86
+	title = south.86.t
+	desc = south.86.d
+	#picture =
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = south.86.a #Yes
+		ai_chance = {
+			factor = 100
+		}	
+		every_country_with_original_tag = {
+    			original_tag_to_check = KFC
+			limit = {NOT = {has_government = autocratic}}	
+			NRA = {
+				declare_war_on = {
+    					target = PREV
+    					type = annex_everything
+				}
+			}
+		}	
+	}
+	option = {
+		name = south.86.b #No
+		ai_chance = {
+			factor = 0
+		}		
+	}
+}
+
+country_event = { #(colonel pov) Operation Jefferson, 6 thousand confederate troops will pass the border to kentucky passing as protestors against the free kentucky goverment, then they will take over boder regions, faking a pro coolonel uprising.
+	id = south.87
+	title = south.87.t
+	desc = south.87.d
+	#picture =
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = south.87.a #Yes
+		ai_chance = {
+			factor = 100
+		}	
+		division_template = {
+			name = "counter revolutionaries"
+			regiments = {
+				infantry = { x = 0 y = 0 }
+				infantry = { x = 0 y = 1 }
+				infantry = { x = 0 y = 2 }
+				infantry = { x = 1 y = 0 }
+				infantry = { x = 1 y = 1 }
+				infantry = { x = 1 y = 2 }
+			}
+		}	
+		261 = {
+			create_unit = {
+				division = "division_template = \"counter revolutionaries\"	start_experience_factor = 0.25	start_equipment_factor = 1"
+				owner = ROOT
+				allow_spawning_on_enemy_provs = yes
+				count = 4
+			}						
+		}
+	}
+}
+
+country_event = { #(Colonel's kentucky pov)After the civil war the csa is investing on us for reconstruction
+	id = south.88
+	title = south.88.t
+	desc = south.88.d
+	#picture =
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = south.88.a
+		ai_chance = {
+			factor = 100
+		}	
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 3
+			add_building_construction = {
+				type = industrial_complex
+				level = 3
+				instant_build = yes
+			} 
+		}	
+	}
+}
+
+
+country_event = { #(Corporate west virgnia pov) west virgnia gets invited to a faction with the csa and their puppet (kentucky), to help each other in the case of any further uprisings.
+	id = south.89
+	title = south.89.t
+	desc = south.89.d
+	#picture =
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = south.89.a #Yes
+		ai_chance = {
+			factor = 100
+		}	
+		CSA = {
+			create_faction = "The Apalachian Yeezys Club"
+			add_to_faction = NRA
+		}	
+	}
+	option = {
+		name = south.89.b #No, lol.
+		ai_chance = {
+			factor = 0
+		}		
+	}
+}
+
 
