@@ -9,8 +9,6 @@ focus_tree = {
 	}
 	default = no
 	continuous_focus_position = { x = 200 y = 1800 }
-	
-	###PLACEHOLDER FOCUS NAMES UNTIL I GET GOOD IDEAS###
 
 	#Starting situation
 
@@ -18,7 +16,7 @@ focus_tree = {
 		id = OBX_an_isolated_community
 		icon = 
 		cost = 1
-		x = 4
+		x = 5
 		y = 1
 		ai_will_do = { 
 			factor = 5
@@ -32,10 +30,8 @@ focus_tree = {
 		id = OBX_reject_independence
 		icon = 
 		cost = 1
-		mutually_exclusive = {
-			focus = OBX_our_own_path
-		}
-		x = -2
+		relative_position_id = OBX_an_isolated_community
+		x = -3
 		y = 1
 		ai_will_do = { 
 			factor = 5
@@ -43,7 +39,9 @@ focus_tree = {
 		prerequisite = {
 			focus = OBX_an_isolated_community
 		}
-		relative_position_id = OBX_an_isolated_community
+		mutually_exclusive = {
+			focus = OBX_our_own_path
+		}
 		completion_reward = {
 			
 		}
@@ -53,9 +51,7 @@ focus_tree = {
 		id = OBX_rejoin_virginia
 		icon = 
 		cost = 1
-		mutually_exclusive = {
-			focus = OBX_north_carolina_is_home
-		}
+		relative_position_id = OBX_reject_independence
 		x = -1
 		y = 1
 		ai_will_do = { 
@@ -64,7 +60,9 @@ focus_tree = {
 		prerequisite = {
 			focus = OBX_reject_independence
 		}
-		relative_position_id = OBX_reject_independence
+		mutually_exclusive = {
+			focus = OBX_north_carolina_is_home
+		}
 		completion_reward = {
 			
 		}
@@ -74,9 +72,7 @@ focus_tree = {
 		id = OBX_north_carolina_is_home
 		icon = 
 		cost = 1
-		mutually_exclusive = {
-			focus = OBX_rejoin_virginia
-		}
+		relative_position_id = OBX_reject_independence
 		x = 1
 		y = 1
 		ai_will_do = { 
@@ -85,7 +81,9 @@ focus_tree = {
 		prerequisite = {
 			focus = OBX_reject_independence
 		}
-		relative_position_id = OBX_reject_independence
+		mutually_exclusive = {
+			focus = OBX_rejoin_virginia
+		}
 		completion_reward = {
 			
 		}
@@ -95,10 +93,8 @@ focus_tree = {
 		id = OBX_our_own_path
 		icon = 
 		cost = 1
-		mutually_exclusive = {
-			focus = OBX_reject_independence
-		}
-		x = 2
+		relative_position_id = OBX_an_isolated_community
+		x = 3
 		y = 1
 		ai_will_do = { 
 			factor = 5
@@ -106,7 +102,9 @@ focus_tree = {
 		prerequisite = {
 			focus = OBX_an_isolated_community
 		}
-		relative_position_id = OBX_an_isolated_community
+		mutually_exclusive = {
+			focus = OBX_reject_independence
+		}
 		completion_reward = {
 			
 		}
@@ -116,7 +114,8 @@ focus_tree = {
 		id = OBX_an_interim_leader
 		icon = 
 		cost = 1
-		x = 0
+		relative_position_id = OBX_our_own_path
+		x = -2
 		y = 1
 		ai_will_do = { 
 			factor = 5
@@ -124,7 +123,6 @@ focus_tree = {
 		prerequisite = {
 			focus = OBX_our_own_path
 		}
-		relative_position_id = OBX_our_own_path
 		completion_reward = {
 			
 		}
@@ -134,15 +132,122 @@ focus_tree = {
 		id = OBX_a_meeting_for_our_future
 		icon = 
 		cost = 1
+		relative_position_id = OBX_our_own_path
 		x = 0
 		y = 1
+		ai_will_do = { 
+			factor = 5
+		}
+		available = { has_completed_focus = OBX_an_interim_leader }
+		prerequisite = {
+			focus = OBX_our_own_path
+		}
+		completion_reward = {
+			
+		}
+	}
+
+	focus = {
+		id = OBX_prepare_for_liberation
+		icon = 
+		cost = 1
+		relative_position_id = OBX_our_own_path
+		x = 2
+		y = 1
+		ai_will_do = { 
+			factor = 5
+		}
+		available = { has_completed_focus = OBX_a_meeting_for_our_future }
+		prerequisite = {
+			focus = OBX_our_own_path
+		}
+		completion_reward = {
+			
+		}
+	}
+
+	focus = {
+		id = OBX_reach_out_to_nc_leaders
+		icon = 
+		cost = 1
+		relative_position_id = OBX_our_own_path
+		x = -1
+		y = 2
 		ai_will_do = { 
 			factor = 5
 		}
 		prerequisite = {
 			focus = OBX_an_interim_leader
 		}
-		relative_position_id = OBX_an_interim_leader
+		prerequisite = {
+			focus = OBX_a_meeting_for_our_future
+		}
+		prerequisite = {
+			focus = OBX_prepare_for_liberation
+		}
+		completion_reward = {
+			
+		}
+	}
+
+	focus = {
+		id = OBX_reach_out_to_sc_leaders
+		icon = 
+		cost = 1
+		relative_position_id = OBX_our_own_path
+		x = 1
+		y = 2
+		ai_will_do = { 
+			factor = 5
+		}
+		prerequisite = {
+			focus = OBX_an_interim_leader
+		}
+		prerequisite = {
+			focus = OBX_a_meeting_for_our_future
+		}
+		prerequisite = {
+			focus = OBX_prepare_for_liberation
+		}
+		completion_reward = {
+			
+		}
+	}
+
+	focus = {
+		id = OBX_arm_fellow_oppressed_carolinians
+		icon = 
+		cost = 1
+		relative_position_id = OBX_our_own_path
+		x = 0
+		y = 3
+		ai_will_do = { 
+			factor = 5
+		}
+		prerequisite = {
+			focus = OBX_reach_out_to_sc_leaders
+		}
+		prerequisite = {
+			focus = OBX_reach_out_to_nc_leaders
+		}
+		completion_reward = {
+			
+		}
+	}
+
+	focus = {
+		id = OBX_fighting_against_evil
+		icon = 
+		cost = 1
+		relative_position_id = OBX_arm_fellow_oppressed_carolinians
+		x = 0
+		y = 1
+		ai_will_do = { 
+			factor = 5
+		}
+		prerequisite = {
+			focus = OBX_arm_fellow_oppressed_carolinians
+		}
 		completion_reward = {
 			
 		}
@@ -154,12 +259,138 @@ focus_tree = {
 		id = OBX_democratic_tradition
 		icon = 
 		cost = 1
-		x = 15
+		relative_position_id = OBX_an_isolated_community
+		x = 20
+		y = 0
+		ai_will_do = { 
+			factor = 5
+		}
+		completion_reward = {
+			
+		}
+	}
+
+	focus = {
+		id = OBX_jeff_jackson
+		icon = 
+		cost = 1
+		relative_position_id = OBX_democratic_tradition
+		x = -10
 		y = 1
 		ai_will_do = { 
 			factor = 5
 		}
-		relative_position_id = OBX_an_isolated_community
+		prerequisite = {
+			focus = OBX_democratic_tradition
+		}
+		completion_reward = {
+			
+		}
+	}
+
+	focus = {
+		id = OBX_nc_dem_placeholder
+		icon = 
+		cost = 1
+		relative_position_id = OBX_democratic_tradition
+		x = -7
+		y = 1
+		ai_will_do = { 
+			factor = 5
+		}
+		prerequisite = {
+			focus = OBX_democratic_tradition
+		}
+		completion_reward = {
+			
+		}
+	}
+
+	focus = {
+		id = OBX_jim_clyburn
+		icon = 
+		cost = 1
+		relative_position_id = OBX_democratic_tradition
+		x = -4
+		y = 1
+		ai_will_do = { 
+			factor = 5
+		}
+		prerequisite = {
+			focus = OBX_democratic_tradition
+		}
+		completion_reward = {
+			
+		}
+	}
+
+	focus = {
+		id = OBX_nikki_haley
+		icon = 
+		cost = 1
+		relative_position_id = OBX_democratic_tradition
+		x = 4
+		y = 1
+		ai_will_do = { 
+			factor = 5
+		}
+		prerequisite = {
+			focus = OBX_democratic_tradition
+		}
+		completion_reward = {
+			
+		}
+	}
+
+	focus = {
+		id = OBX_nc_rep_placeholder
+		icon = 
+		cost = 1
+		relative_position_id = OBX_democratic_tradition
+		x = 7
+		y = 1
+		ai_will_do = { 
+			factor = 5
+		}
+		prerequisite = {
+			focus = OBX_democratic_tradition
+		}
+		completion_reward = {
+			
+		}
+	}
+
+	focus = {
+		id = OBX_tim_scott
+		icon = 
+		cost = 1
+		relative_position_id = OBX_democratic_tradition
+		x = 10
+		y = 1
+		ai_will_do = { 
+			factor = 5
+		}
+		prerequisite = {
+			focus = OBX_democratic_tradition
+		}
+		completion_reward = {
+			
+		}
+	}
+
+	focus = {
+		id = OBX_begin_reconstruction
+		icon = 
+		cost = 1
+		relative_position_id = OBX_democratic_tradition
+		x = 0
+		y = 1
+		ai_will_do = { 
+			factor = 5
+		}
+		prerequisite = {
+			focus = OBX_democratic_tradition
+		}
 		completion_reward = {
 			
 		}
@@ -171,12 +402,12 @@ focus_tree = {
 		id = OBX_a_call_across_the_sea
 		icon = 
 		cost = 1
-		x = 18
+		relative_position_id = OBX_an_isolated_community
+		x = 38
 		y = 1
 		ai_will_do = { 
 			factor = 5
 		}
-		relative_position_id = OBX_an_isolated_community
 		completion_reward = {
 			
 		}
@@ -188,12 +419,12 @@ focus_tree = {
 		id = OBX_historical_patterns
 		icon = 
 		cost = 1
-		x = 21
+		relative_position_id = OBX_an_isolated_community
+		x = 40
 		y = 1
 		ai_will_do = { 
 			factor = 5
 		}
-		relative_position_id = OBX_an_isolated_community
 		completion_reward = {
 			
 		}
@@ -205,12 +436,12 @@ focus_tree = {
 		id = OBX_ahoy_me_hearties
 		icon = 
 		cost = 1
-		x = 24
+		relative_position_id = OBX_an_isolated_community
+		x = 42
 		y = 1
 		ai_will_do = { 
 			factor = 5
 		}
-		relative_position_id = OBX_an_isolated_community
 		completion_reward = {
 			
 		}
@@ -222,12 +453,12 @@ focus_tree = {
 		id = OBX_five_oclock_somewhere
 		icon = 
 		cost = 1
-		x = 27
+		relative_position_id = OBX_an_isolated_community
+		x = 44
 		y = 1
 		ai_will_do = { 
 			factor = 5
 		}
-		relative_position_id = OBX_an_isolated_community
 		completion_reward = {
 			
 		}
@@ -239,12 +470,12 @@ focus_tree = {
 		id = OBX_NASCAR
 		icon = 
 		cost = 1
-		x = 30
+		relative_position_id = OBX_an_isolated_community
+		x = 46
 		y = 1
 		ai_will_do = { 
 			factor = 5
 		}
-		relative_position_id = OBX_an_isolated_community
 		completion_reward = {
 			
 		}
@@ -256,12 +487,12 @@ focus_tree = {
 		id = OBX_wild_islands
 		icon = 
 		cost = 1
-		x = 33
+		relative_position_id = OBX_an_isolated_community
+		x = 48
 		y = 1
 		ai_will_do = { 
 			factor = 5
 		}
-		relative_position_id = OBX_an_isolated_community
 		completion_reward = {
 			
 		}
@@ -272,14 +503,15 @@ focus_tree = {
 	focus = {
 		id = OBX_society
 		icon = 
+		relative_position_id = OBX_an_isolated_community
 		cost = 1
-		x = 36
-		y = 1
+		x = 55
+		y = 2
 		ai_will_do = { 
 			factor = 5
 		}
-		relative_position_id = OBX_an_isolated_community
 		completion_reward = {
 			
 		}
 	}
+}
