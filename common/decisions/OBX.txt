@@ -14,14 +14,250 @@ OBX_preparing_for_liberation = {
 			has_completed_focus = OBX_prepare_for_liberation
 		}
 
-		cost = 50
+		cost = 100
 		
 		fire_only_once = yes
-		
-		days_remove = 25
 
 		complete_effect = {
-			set_country_flag = support_level_1_complete
+			custom_effect_tooltip = OBX_support_level_1_tooltip
+			hidden_effect = { 
+				set_country_flag = support_level_1_complete
+			}
+		}
+	}
+
+	OBX_support_level_2 = {
+
+		icon = generic_civil_support
+
+		allowed = {
+			has_country_flag = support_level_1_complete
+		}
+		available = {
+			has_country_flag = support_level_1_complete
+		}
+		visible = {
+			has_completed_focus = OBX_prepare_for_liberation
+		}
+
+		cost = 200
+		
+		fire_only_once = yes
+
+		complete_effect = {
+			custom_effect_tooltip = OBX_support_level_2_tooltip
+			hidden_effect = { 
+				set_country_flag = support_level_2_complete
+			}
+		}
+	}
+
+	OBX_support_level_3 = {
+
+		icon = generic_civil_support
+
+		allowed = {
+			has_country_flag = support_level_2_complete
+		}
+		available = {
+			has_country_flag = support_level_2_complete
+		}
+		visible = {
+			has_completed_focus = OBX_prepare_for_liberation
+		}
+
+		cost = 300
+		
+		fire_only_once = yes
+
+		complete_effect = {
+			custom_effect_tooltip = OBX_support_level_3_tooltip
+			hidden_effect = { 
+				set_country_flag = support_level_3_complete
+			}
+		}
+	}
+
+	OBX_reach_out_to_nc_leaders_decision = {
+
+		icon = generic_civil_support
+
+		allowed = {
+			has_completed_focus = OBX_reach_out_to_nc_leaders
+		}
+		available = {
+			has_completed_focus = OBX_reach_out_to_nc_leaders
+		}
+		visible = {
+			has_completed_focus = OBX_prepare_for_liberation
+		}
+
+		cost = 75
+		
+		fire_only_once = yes
+
+		complete_effect = {
+			custom_effect_tooltip = OBX_reach_out_to_nc_leaders_tooltip
+			hidden_effect = { 
+				set_country_flag = reached_out_to_nc_leaders
+			}
+		}
+	}
+
+	OBX_reach_out_to_sc_leaders_decision = {
+
+		icon = generic_civil_support
+
+		allowed = {
+			has_completed_focus = OBX_reach_out_to_sc_leaders
+		}
+		available = {
+			has_completed_focus = OBX_reach_out_to_sc_leaders
+			has_country_flag = reached_out_to_nc_leaders
+		}
+		visible = {
+			has_completed_focus = OBX_prepare_for_liberation
+		}
+
+		cost = 150
+		
+		fire_only_once = yes
+
+		complete_effect = {
+			custom_effect_tooltip = OBX_reach_out_to_sc_leaders_tooltip
+			hidden_effect = { 
+				set_country_flag = reached_out_to_sc_leaders
+			}
+		}
+	}
+
+	OBX_revolt_decision = {
+
+		icon = generic_civil_support
+
+		allowed = {
+			has_completed_focus = OBX_fighting_against_evil
+		}
+		available = {
+			has_completed_focus = OBX_fighting_against_evil
+			has_country_flag = support_level_1_complete
+		}
+		visible = {
+			has_completed_focus = OBX_prepare_for_liberation
+		}
+
+		cost = 150
+		
+		fire_only_once = yes
+
+		complete_effect = {
+			declare_war_on = {
+    			target = CSA
+    			type = annex_everything
+			}
+			custom_effect_tooltip = OBX_revolt_tooltip
+			hidden_effect = {
+				if = {
+					limit = { { has_country_flag = support_level_1_complete } { has_country_flag = reached_out_to_nc_leaders } }
+					OBX = {
+						division_template = {
+    						name = "Carolina Resistance"
+    						is_locked = yes
+    						regiments = {
+        						infantry = { x = 0 y = 0 }
+							}
+    					}
+					}
+					create_unit = {
+						division = "division_template = \"Carolina Resistance\"	start_experience_factor = 0.2	start_equipment_factor = 1"
+						location = 1837
+						owner = OBX
+						allow_spawning_on_enemy_provs = yes
+					}
+				}
+				if = {
+					limit = { { has_country_flag = support_level_1_complete } { has_country_flag = reached_out_to_sc_leaders } { has_country_flag = reached_out_to_nc_leaders } }
+					OBX = {
+						division_template = {
+    						name = "Carolina Resistance"
+    						is_locked = yes
+    						regiments = {
+        						infantry = { x = 0 y = 0 }
+							}
+    					}
+					}
+				}
+				if = {
+					limit = { { has_country_flag = support_level_2_complete } { has_country_flag = reached_out_to_nc_leaders } }
+					OBX = {
+						division_template = {
+    						name = "Carolina Resistance"
+    						is_locked = yes
+    						regiments = {
+        						infantry = { x = 0 y = 0 }
+       							infantry = { x = 0 y = 1 }
+       							infantry = { x = 1 y = 0 }
+        						infantry = { x = 1 y = 1 }
+							}
+    					}
+					}
+				}
+				if = {
+					limit = { { has_country_flag = support_level_2_complete } { has_country_flag = reached_out_to_sc_leaders } { has_country_flag = reached_out_to_nc_leaders } }
+					OBX = {
+						division_template = {
+    						name = "Carolina Resistance"
+    						is_locked = yes
+    						regiments = {
+        						infantry = { x = 0 y = 0 }
+       							infantry = { x = 0 y = 1 }
+       							infantry = { x = 1 y = 0 }
+        						infantry = { x = 1 y = 1 }
+							}
+    					}
+					}
+				}
+				if = {
+					limit = { { has_country_flag = support_level_3_complete } { has_country_flag = reached_out_to_nc_leaders } }
+					OBX = {
+						division_template = {
+    						name = "Carolina Resistance"
+    						is_locked = yes
+    						regiments = {
+        						infantry = { x = 0 y = 0 }
+       							infantry = { x = 0 y = 1 }
+       							infantry = { x = 0 y = 2 }
+       							infantry = { x = 1 y = 0 }
+       							infantry = { x = 1 y = 1 }
+       							infantry = { x = 1 y = 2 }
+       							infantry = { x = 2 y = 0 }
+        						infantry = { x = 2 y = 1 }
+        						infantry = { x = 2 y = 2 }
+							}
+    					}
+					}
+				}
+				if = {
+					limit = { { has_country_flag = support_level_3_complete } { has_country_flag = reached_out_to_sc_leaders } { has_country_flag = reached_out_to_nc_leaders } }
+					OBX = {
+						division_template = {
+    						name = "Carolina Resistance"
+    						is_locked = yes
+    						regiments = {
+        						infantry = { x = 0 y = 0 }
+       							infantry = { x = 0 y = 1 }
+       							infantry = { x = 0 y = 2 }
+       							infantry = { x = 1 y = 0 }
+       							infantry = { x = 1 y = 1 }
+       							infantry = { x = 1 y = 2 }
+       							infantry = { x = 2 y = 0 }
+        						infantry = { x = 2 y = 1 }
+        						infantry = { x = 2 y = 2 }
+							}
+    					}
+					}
+				}
+			}
 		}
 	}
 
