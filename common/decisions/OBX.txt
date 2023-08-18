@@ -14,7 +14,7 @@ OBX_preparing_for_liberation = {
 			has_completed_focus = OBX_prepare_for_liberation
 		}
 
-		cost = 100
+		cost = 50
 		
 		fire_only_once = yes
 
@@ -22,6 +22,7 @@ OBX_preparing_for_liberation = {
 			custom_effect_tooltip = OBX_support_level_1_tooltip
 			hidden_effect = { 
 				set_country_flag = support_level_1_complete
+				set_country_flag = revolt_unlocked
 			}
 		}
 	}
@@ -40,7 +41,7 @@ OBX_preparing_for_liberation = {
 			has_completed_focus = OBX_prepare_for_liberation
 		}
 
-		cost = 200
+		cost = 75
 		
 		fire_only_once = yes
 
@@ -48,6 +49,7 @@ OBX_preparing_for_liberation = {
 			custom_effect_tooltip = OBX_support_level_2_tooltip
 			hidden_effect = { 
 				set_country_flag = support_level_2_complete
+				clr_country_flag = support_level_1_complete
 			}
 		}
 	}
@@ -66,7 +68,7 @@ OBX_preparing_for_liberation = {
 			has_completed_focus = OBX_prepare_for_liberation
 		}
 
-		cost = 300
+		cost = 100
 		
 		fire_only_once = yes
 
@@ -74,6 +76,7 @@ OBX_preparing_for_liberation = {
 			custom_effect_tooltip = OBX_support_level_3_tooltip
 			hidden_effect = { 
 				set_country_flag = support_level_3_complete
+				clr_country_flag = support_level_2_complete
 			}
 		}
 	}
@@ -119,7 +122,7 @@ OBX_preparing_for_liberation = {
 			has_completed_focus = OBX_prepare_for_liberation
 		}
 
-		cost = 150
+		cost = 75
 		
 		fire_only_once = yes
 
@@ -140,13 +143,13 @@ OBX_preparing_for_liberation = {
 		}
 		available = {
 			has_completed_focus = OBX_fighting_against_evil
-			has_country_flag = support_level_1_complete
+			has_country_flag = revolt_unlocked
 		}
 		visible = {
 			has_completed_focus = OBX_prepare_for_liberation
 		}
 
-		cost = 150
+		cost = 50
 		
 		fire_only_once = yes
 
@@ -158,106 +161,42 @@ OBX_preparing_for_liberation = {
 			custom_effect_tooltip = OBX_revolt_tooltip
 			hidden_effect = {
 				if = {
-					limit = { { has_country_flag = support_level_1_complete } { has_country_flag = reached_out_to_nc_leaders } }
-					OBX = {
-						division_template = {
-    						name = "Carolina Resistance"
-    						is_locked = yes
-    						regiments = {
-        						infantry = { x = 0 y = 0 }
-							}
-    					}
+					limit = { has_country_flag = support_level_1_complete }
+					load_oob = OBX_support_1_only
+					if = {
+						limit = { has_country_flag = reached_out_to_nc_leaders }
+						load_oob = OBX_support_1_nc_support
 					}
-					create_unit = {
-						division = "division_template = \"Carolina Resistance\"	start_experience_factor = 0.2	start_equipment_factor = 1"
-						location = 1837
-						owner = OBX
-						allow_spawning_on_enemy_provs = yes
+					if = {
+						limit = { has_country_flag = reached_out_to_sc_leaders }
+						load_oob = OBX_support_1_sc_support
 					}
 				}
 				if = {
-					limit = { { has_country_flag = support_level_1_complete } { has_country_flag = reached_out_to_sc_leaders } { has_country_flag = reached_out_to_nc_leaders } }
-					OBX = {
-						division_template = {
-    						name = "Carolina Resistance"
-    						is_locked = yes
-    						regiments = {
-        						infantry = { x = 0 y = 0 }
-							}
-    					}
+					limit = { has_country_flag = support_level_2_complete }
+					load_oob = OBX_support_2_only
+					if = {
+						limit = { has_country_flag = reached_out_to_nc_leaders }
+						load_oob = OBX_support_2_nc_support
+					}
+					if = {
+						limit = { has_country_flag = reached_out_to_sc_leaders }
+						load_oob = OBX_support_2_sc_support
 					}
 				}
 				if = {
-					limit = { { has_country_flag = support_level_2_complete } { has_country_flag = reached_out_to_nc_leaders } }
-					OBX = {
-						division_template = {
-    						name = "Carolina Resistance"
-    						is_locked = yes
-    						regiments = {
-        						infantry = { x = 0 y = 0 }
-       							infantry = { x = 0 y = 1 }
-       							infantry = { x = 1 y = 0 }
-        						infantry = { x = 1 y = 1 }
-							}
-    					}
+					limit = { has_country_flag = support_level_3_complete }
+					load_oob = OBX_support_3_only
+					if = {
+						limit = { has_country_flag = reached_out_to_nc_leaders }
+						load_oob = OBX_support_3_nc_support
+					}
+					if = {
+						limit = { has_country_flag = reached_out_to_sc_leaders }
+						load_oob = OBX_support_3_sc_support
 					}
 				}
-				if = {
-					limit = { { has_country_flag = support_level_2_complete } { has_country_flag = reached_out_to_sc_leaders } { has_country_flag = reached_out_to_nc_leaders } }
-					OBX = {
-						division_template = {
-    						name = "Carolina Resistance"
-    						is_locked = yes
-    						regiments = {
-        						infantry = { x = 0 y = 0 }
-       							infantry = { x = 0 y = 1 }
-       							infantry = { x = 1 y = 0 }
-        						infantry = { x = 1 y = 1 }
-							}
-    					}
-					}
-				}
-				if = {
-					limit = { { has_country_flag = support_level_3_complete } { has_country_flag = reached_out_to_nc_leaders } }
-					OBX = {
-						division_template = {
-    						name = "Carolina Resistance"
-    						is_locked = yes
-    						regiments = {
-        						infantry = { x = 0 y = 0 }
-       							infantry = { x = 0 y = 1 }
-       							infantry = { x = 0 y = 2 }
-       							infantry = { x = 1 y = 0 }
-       							infantry = { x = 1 y = 1 }
-       							infantry = { x = 1 y = 2 }
-       							infantry = { x = 2 y = 0 }
-        						infantry = { x = 2 y = 1 }
-        						infantry = { x = 2 y = 2 }
-							}
-    					}
-					}
-				}
-				if = {
-					limit = { { has_country_flag = support_level_3_complete } { has_country_flag = reached_out_to_sc_leaders } { has_country_flag = reached_out_to_nc_leaders } }
-					OBX = {
-						division_template = {
-    						name = "Carolina Resistance"
-    						is_locked = yes
-    						regiments = {
-        						infantry = { x = 0 y = 0 }
-       							infantry = { x = 0 y = 1 }
-       							infantry = { x = 0 y = 2 }
-       							infantry = { x = 1 y = 0 }
-       							infantry = { x = 1 y = 1 }
-       							infantry = { x = 1 y = 2 }
-       							infantry = { x = 2 y = 0 }
-        						infantry = { x = 2 y = 1 }
-        						infantry = { x = 2 y = 2 }
-							}
-    					}
-					}
-				}
-			}
+			}	
 		}
 	}
 
