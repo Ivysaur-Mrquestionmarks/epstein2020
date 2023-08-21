@@ -1,0 +1,204 @@
+OBX_preparing_for_liberation = {
+
+	OBX_support_level_1 = {
+
+		icon = generic_civil_support
+
+		allowed = {
+			has_completed_focus = OBX_prepare_for_liberation
+		}
+		available = {
+			has_completed_focus = OBX_prepare_for_liberation
+		}
+		visible = {
+			has_completed_focus = OBX_prepare_for_liberation
+		}
+
+		cost = 50
+		
+		fire_only_once = yes
+
+		complete_effect = {
+			custom_effect_tooltip = OBX_support_level_1_tooltip
+			hidden_effect = { 
+				set_country_flag = support_level_1_complete
+				set_country_flag = revolt_unlocked
+			}
+		}
+	}
+
+	OBX_support_level_2 = {
+
+		icon = generic_civil_support
+
+		allowed = {
+			has_country_flag = support_level_1_complete
+		}
+		available = {
+			has_country_flag = support_level_1_complete
+		}
+		visible = {
+			has_completed_focus = OBX_prepare_for_liberation
+		}
+
+		cost = 75
+		
+		fire_only_once = yes
+
+		complete_effect = {
+			custom_effect_tooltip = OBX_support_level_2_tooltip
+			hidden_effect = { 
+				set_country_flag = support_level_2_complete
+				clr_country_flag = support_level_1_complete
+			}
+		}
+	}
+
+	OBX_support_level_3 = {
+
+		icon = generic_civil_support
+
+		allowed = {
+			has_country_flag = support_level_2_complete
+		}
+		available = {
+			has_country_flag = support_level_2_complete
+		}
+		visible = {
+			has_completed_focus = OBX_prepare_for_liberation
+		}
+
+		cost = 100
+		
+		fire_only_once = yes
+
+		complete_effect = {
+			custom_effect_tooltip = OBX_support_level_3_tooltip
+			hidden_effect = { 
+				set_country_flag = support_level_3_complete
+				clr_country_flag = support_level_2_complete
+			}
+		}
+	}
+
+	OBX_reach_out_to_nc_leaders_decision = {
+
+		icon = generic_civil_support
+
+		allowed = {
+			has_completed_focus = OBX_reach_out_to_nc_leaders
+		}
+		available = {
+			has_completed_focus = OBX_reach_out_to_nc_leaders
+		}
+		visible = {
+			has_completed_focus = OBX_prepare_for_liberation
+		}
+
+		cost = 75
+		
+		fire_only_once = yes
+
+		complete_effect = {
+			custom_effect_tooltip = OBX_reach_out_to_nc_leaders_tooltip
+			hidden_effect = { 
+				set_country_flag = reached_out_to_nc_leaders
+			}
+		}
+	}
+
+	OBX_reach_out_to_sc_leaders_decision = {
+
+		icon = generic_civil_support
+
+		allowed = {
+			has_completed_focus = OBX_reach_out_to_sc_leaders
+		}
+		available = {
+			has_completed_focus = OBX_reach_out_to_sc_leaders
+			has_country_flag = reached_out_to_nc_leaders
+		}
+		visible = {
+			has_completed_focus = OBX_prepare_for_liberation
+		}
+
+		cost = 75
+		
+		fire_only_once = yes
+
+		complete_effect = {
+			custom_effect_tooltip = OBX_reach_out_to_sc_leaders_tooltip
+			hidden_effect = { 
+				set_country_flag = reached_out_to_sc_leaders
+			}
+		}
+	}
+
+	OBX_revolt_decision = {
+
+		icon = generic_civil_support
+
+		allowed = {
+			has_completed_focus = OBX_fighting_against_evil
+		}
+		available = {
+			has_completed_focus = OBX_fighting_against_evil
+			has_country_flag = revolt_unlocked
+		}
+		visible = {
+			has_completed_focus = OBX_prepare_for_liberation
+		}
+
+		cost = 50
+		
+		fire_only_once = yes
+
+		complete_effect = {
+			declare_war_on = {
+    			target = CSA
+    			type = annex_everything
+			}
+			custom_effect_tooltip = OBX_revolt_tooltip
+			hidden_effect = {
+				clr_country_flag = unlock_preparing_for_liberation_decisions
+				if = {
+					limit = { has_country_flag = support_level_1_complete }
+					load_oob = OBX_support_1_only
+					if = {
+						limit = { has_country_flag = reached_out_to_nc_leaders }
+						load_oob = OBX_support_1_nc_support
+					}
+					if = {
+						limit = { has_country_flag = reached_out_to_sc_leaders }
+						load_oob = OBX_support_1_sc_support
+					}
+				}
+				if = {
+					limit = { has_country_flag = support_level_2_complete }
+					load_oob = OBX_support_2_only
+					if = {
+						limit = { has_country_flag = reached_out_to_nc_leaders }
+						load_oob = OBX_support_2_nc_support
+					}
+					if = {
+						limit = { has_country_flag = reached_out_to_sc_leaders }
+						load_oob = OBX_support_2_sc_support
+					}
+				}
+				if = {
+					limit = { has_country_flag = support_level_3_complete }
+					load_oob = OBX_support_3_only
+					if = {
+						limit = { has_country_flag = reached_out_to_nc_leaders }
+						load_oob = OBX_support_3_nc_support
+					}
+					if = {
+						limit = { has_country_flag = reached_out_to_sc_leaders }
+						load_oob = OBX_support_3_sc_support
+					}
+				}
+			}	
+		}
+	}
+
+}
