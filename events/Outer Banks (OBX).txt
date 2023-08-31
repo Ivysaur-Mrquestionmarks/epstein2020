@@ -133,7 +133,7 @@ country_event = {
 	}
 }
 
-#OBX captures atlanta
+#OBX captures atlanta (for obx)
 country_event = {
 	id = obx.9
 	title = obx.9.t
@@ -154,6 +154,19 @@ country_event = {
 	}
 }
 
+#international ''atlanta taken by carolinian rebels'' event
+news_event = {
+	id = obx.24
+	title = obx.24.t
+	desc = obx.24.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = obx.24.a
+	}
+}
+
 #Most Militia disband
 country_event = {
 	id = obx.10
@@ -164,12 +177,14 @@ country_event = {
 	fire_only_once = yes
 	option = {
 		name = obx.10.a
-		for_loop_effect = {
+		hidden_effect = { 
 			var_limit = 4
 			limit = { has_country_flag = reached_out_to_nc_leaders }
 			var_limit = 15
 			limit = { has_country_flag = reached_out_to_sc_leaders }
 			var_limit = 25
+		}
+		for_loop_effect = {
    			end = var_limit
     		compare_type = less_than
     		value = temp
@@ -182,3 +197,381 @@ country_event = {
 		}
 	}
 }
+
+#gop primary
+country_event = {
+	id = obx.11
+	title = obx.11.t
+	desc = obx.11.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = obx.11.a
+		hidden_effect = {
+			set_country_flag = haley_win_primary
+			country_event = {
+				id = obx.12
+				days = 5
+			}
+		}
+	}
+	option = {
+		name = obx.11.b
+		hidden_effect = {
+			set_country_flag = scott_win_primary
+			country_event = {
+				id = obx.12
+				days = 5
+			}
+		}
+	}
+	option = {
+		name = obx.11.c
+		hidden_effect = {
+			set_country_flag = robinson_win_primary
+			country_event = {
+				id = obx.12
+				days = 5
+			}
+		}
+	}
+}
+
+#democrat primary
+country_event = {
+	id = obx.12
+	title = obx.12.t
+	desc = obx.12.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = obx.12.a
+		hidden_effect = {
+			set_country_flag = jackson_win_primary
+			country_event = {
+				id = obx.13
+				days = 5
+			}
+		}
+	}
+	option = {
+		name = obx.12.b
+		hidden_effect = {
+			set_country_flag = cooper_win_primary
+			country_event = {
+				id = obx.13
+				days = 5
+			}
+		}
+	}
+	option = {
+		name = obx.12.c
+		hidden_effect = {
+			set_country_flag = clyburn_win_primary
+			country_event = {
+				id = obx.13
+				days = 5
+			}
+		}
+	}
+}
+#earnhardt jr enters the race
+country_event = {
+	id = obx.13
+	title = obx.13.t
+	desc = obx.13.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = obx.13.a
+		hidden_effect = {
+			country_event = {
+				id = obx.14
+				days = 5
+			}
+		}
+	}
+}
+
+#buffett enters the race
+country_event = {
+	id = obx.14
+	title = obx.14.t
+	desc = obx.14.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = obx.14.a
+		hidden_effect = {
+			limit = { has_country_flag = nikki_win_primary }
+				limit = { has_country_flag = jackson_win_primary }
+				country_event = {
+					id = obx.15
+					days = 5
+				}
+				limit = { has_country_flag = cooper_win_primary }
+				country_event = {
+					id = obx.16
+					days = 5
+				}
+				limit = { has_country_flag = clyburn_win_primary }
+				country_event = {
+					id = obx.17
+					days = 5
+				}
+			limit = { has_country_flag = scott_win_primary }
+				limit = { has_country_flag = jackson_win_primary }
+				country_event = {
+					id = obx.18
+					days = 5
+				}
+				limit = { has_country_flag = cooper_win_primary }
+				country_event = {
+					id = obx.19
+					days = 5
+				}
+				limit = { has_country_flag = clyburn_win_primary }
+				country_event = {
+					id = obx.20
+					days = 5
+				}
+			limit = { has_country_flag = robinson_win_primary }
+				limit = { has_country_flag = jackson_win_primary }
+				country_event = {
+					id = obx.21
+					days = 5
+				}
+				limit = { has_country_flag = cooper_win_primary }
+				country_event = {
+					id = obx.22
+					days = 5
+				}
+				limit = { has_country_flag = clyburn_win_primary }
+				country_event = {
+					id = obx.23
+					days = 5
+				}
+		}
+	}
+}
+
+#election nikki/jackson
+country_event = {
+	id = obx.15
+	title = obx.15.t
+	desc = obx.15.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = obx.15.a
+		OBX_nikki_haley = { promote_character = yes }
+	}
+	option = {
+		name = obx.15.b
+		OBX_jeff_jackson = { promote_character = yes }
+		set_politics = { ruling_party = democrat }
+	}
+	option = {
+		name = obx.15.c
+		OBX_dale_earnhardt_jr = { promote_character = yes }
+		set_politics = { ruling_party = libertarian_right }
+	}
+	option = {
+		name = obx.15.d
+		OBX_jimmy_buffett = { promote_character = yes }
+		set_politics = { ruling_party = democrat }
+	}
+}
+
+#election nikki/cooper
+country_event = {
+	id = obx.16
+	title = obx.16.t
+	desc = obx.16.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = obx.16.a
+	}
+	option = {
+		name = obx.16.b
+	}
+	option = {
+		name = obx.16.c
+	}
+	option = {
+		name = obx.16.d
+		OBX_jimmy_buffett = { promote_character = yes }
+		set_politics = { ruling_party = democrat }
+	}
+}
+
+#election nikki/clyburn
+country_event = {
+	id = obx.17
+	title = obx.17.t
+	desc = obx.17.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = obx.17.a
+	}
+	option = {
+		name = obx.17.b
+	}
+	option = {
+		name = obx.17.c
+	}
+	option = {
+		name = obx.17.d
+		OBX_jimmy_buffett = { promote_character = yes }
+		set_politics = { ruling_party = democrat }
+	}
+}
+
+#election scott/jackson
+country_event = {
+	id = obx.18
+	title = obx.18.t
+	desc = obx.18.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = obx.18.a
+	}
+	option = {
+		name = obx.18.b
+	}
+	option = {
+		name = obx.18.c
+	}
+	option = {
+		name = obx.18.d
+		OBX_jimmy_buffett = { promote_character = yes }
+		set_politics = { ruling_party = democrat }
+	}
+}
+
+#election scott/cooper
+country_event = {
+	id = obx.19
+	title = obx.19.t
+	desc = obx.19.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = obx.19.a
+	}
+	option = {
+		name = obx.19.b
+	}
+	option = {
+		name = obx.19.c
+	}
+	option = {
+		name = obx.19.d
+		OBX_jimmy_buffett = { promote_character = yes }
+		set_politics = { ruling_party = democrat }
+	}
+}
+
+#election scott/clyburn
+country_event = {
+	id = obx.20
+	title = obx.20.t
+	desc = obx.20.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = obx.20.a
+	}
+	option = {
+		name = obx.20.b
+	}
+	option = {
+		name = obx.20.c
+	}
+	option = {
+		name = obx.20.d
+		OBX_jimmy_buffett = { promote_character = yes }
+		set_politics = { ruling_party = democrat }
+	}
+}
+
+#election robinson/jackson
+country_event = {
+	id = obx.21
+	title = obx.21.t
+	desc = obx.21.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = obx.21.a
+	}
+	option = {
+		name = obx.21.b
+	}
+	option = {
+		name = obx.21.c
+	}
+	option = {
+		name = obx.21.d
+	}
+}
+
+#election robinson/cooper
+country_event = {
+	id = obx.22
+	title = obx.22.t
+	desc = obx.22.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = obx.23.a
+	}
+	option = {
+		name = obx.23.b
+	}
+	option = {
+		name = obx.23.c
+	}
+	option = {
+		name = obx.23.d
+	}
+}
+
+#election robinson/clyburn
+country_event = {
+	id = obx.23
+	title = obx.23.t
+	desc = obx.23.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = obx.23.a
+	}
+	option = {
+		name = obx.23.b
+	}
+	option = {
+		name = obx.23.c
+	}
+	option = {
+		name = obx.23.d
+	}
+}
+
+#events needed: we need to reform government, shadowy man appears (colonial), democracy and #united carolina!, move capital to charlotte, let's hold elections 
