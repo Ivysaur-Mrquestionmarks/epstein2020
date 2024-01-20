@@ -840,6 +840,7 @@ technologies = {
 			small_bomb_bay
 			medium_bomb_bay
 			large_bomb_bay
+			#torpedo_mounting
 		}
 		
 		research_cost = 1
@@ -852,6 +853,10 @@ technologies = {
 
 		path = {
 			leads_to_tech = photo_reconnaisance
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = air_to_sea_missile
 			research_cost_coeff = 1
 		}
 		
@@ -870,6 +875,47 @@ technologies = {
 					has_tech = iw_large_airframe
 				}
 				factor = 5
+			}
+		}
+	}
+
+	air_to_sea_missile = {
+
+		enable_equipment_modules = {
+			torpedo_mounting
+		}
+		
+		research_cost = 1
+		start_year = 2000
+
+		folder = {
+			name = bba_air_techs_folder
+			position = { x = 0 y = 4 }
+		}
+
+		allow_branch = { has_dlc = "La Resistance" }
+		
+		categories = {
+			air_equipment
+			plane_modules_tech
+		}
+		
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				OR = {
+					has_tech = iw_small_airframe
+					has_tech = iw_large_airframe
+				}
+				factor = 5
+			}
+			modifier = { #How isn't his in the base game? Lol.
+				NOT = {
+					any_controlled_state = {
+						is_coastal = yes
+					}
+				}
+				factor = 0
 			}
 		}
 	}
@@ -896,13 +942,7 @@ technologies = {
 		}
 		
 		ai_will_do = {
-			factor = 1
-			modifier = {
-				OR = {
-					has_tech = basic_medium_airframe
-				}
-				factor = 5
-			}
+			factor = 0 #It is kinda useless 
 		}
 	}
 
