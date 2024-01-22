@@ -299,6 +299,13 @@ country_event = {
 		add_stability = -0.02
 		country_event = { id = alamo.7 days = 2 }
 	}
+	option = {
+		name = alamo.6.b
+		hidden_effect = {
+			country_event = { id = alamo.7 days = 2 }
+		}
+		BLA = { change_tag_from = TEX }
+	}
 }
 #Crenshaw sets off to put down the bandits
 country_event = {
@@ -357,6 +364,19 @@ country_event = {
 				days = 3
 			}
 		}
+	}
+	option = {
+		name = alamo.7.b
+		hidden_effect = {
+			country_event = { id = alamo.8 days = 3 }
+		}
+		CRN = {
+			declare_war_on = {
+			    target = BLA
+			    type = annex_everything
+			}
+		}
+		CRN = { change_tag_from = TEX }
 	}
 }
 #New Mexico breaks off
@@ -422,6 +442,58 @@ country_event = {
 			}
 		}
 	}
+	option = {
+		name = alamo.8.b
+		hidden_effect = {
+			release = NMX
+			country_event = { id = alamo.9 days = 5 }
+			NMX = {
+				division_template = {
+				    name = "Militia"
+				#    division_names_group =
+					regiments = {
+						infantry = { x = 0 y = 0 }
+						infantry = { x = 0 y = 1 }
+						infantry = { x = 0 y = 2 }
+						infantry = { x = 1 y = 0 }
+						infantry = { x = 1 y = 1 }
+						infantry = { x = 1 y = 2 }
+						infantry = { x = 1 y = 3 }
+						infantry = { x = 2 y = 0 }
+						infantry = { x = 2 y = 1 }
+						infantry = { x = 2 y = 2 }
+					}
+				}
+			}
+			310 = {
+				create_unit = {
+					division = "name = \"1st New Mexican Regiment\" division_template = \"Militia\" start_experience_factor = 0.6" 
+					owner = NMX
+				}
+			}
+			249 = {
+				create_unit = {
+					division = "name = \"2nd New Mexican Regiment\" division_template = \"Militia\" start_experience_factor = 0.4" 
+					owner = NMX
+				}
+			}
+			HAM = {
+				start_border_war = {
+				    change_state_after_war = yes
+				    attacker = {
+				        state = 510
+				        num_provinces = 2
+				    }
+				
+				    defender = {
+				        state = 249
+				        num_provinces = 2
+				    }
+				}
+			}
+		}
+		NMX = { change_tag_from = TEX }
+	}
 }
 #The Reconquista Begins
 country_event = {
@@ -462,6 +534,13 @@ country_event = {
 		name = alamo.9.a
 		add_stability = -0.02
 		hidden_effect = { country_event = { id = alamo.10 days = 3 } }
+	}
+	option = {
+		name = alamo.9.b
+		hidden_effect = {
+			country_event = { id = alamo.10 days = 3 }
+		}
+		FAL = { change_tag_from = TEX }
 	}
 }
 #Red Army rises up
@@ -505,7 +584,7 @@ country_event = {
 			}
 			country_event = {
 				id = alamo.11
-				hours = 2
+				days = 2
 			}
 		}
 	}
@@ -518,6 +597,16 @@ country_event = {
 			    type = annex_everything
 			}
 		}
+	}
+	option = {
+		name = alamo.10.b
+		RED = {
+			declare_war_on = {
+			    target = FAL
+			    type = annex_everything
+			}
+		}
+		RED = { change_tag_from = TEX }
 	}
 }
 #Free Texan Army returns
@@ -561,12 +650,40 @@ country_event = {
 	option = {
 		name = alamo.11.a
 		set_cosmetic_tag = Hornberger
+		37 = {
+			add_core_of = SAN
+		}
 		release = SAN
 		country_event = {
 			id = alamo.12
 			days = 5
 		}
 	}
+	option = {
+		name = alamo.11.b
+		hidden_effect = {
+			set_cosmetic_tag = Hornberger
+			37 = {
+				add_core_of = SAN
+			}
+			release = SAN
+			country_event = { id = alamo.12 days = 5 }
+		}
+		FTA = { change_tag_from = TEX }
+	}
+	option = {
+		name = alamo.11.c
+		hidden_effect = {
+			set_cosmetic_tag = Hornberger
+			37 = {
+				add_core_of = SAN
+			}
+			release = SAN
+			country_event = { id = alamo.12 days = 5 }
+		}
+		SAN = { change_tag_from = TEX }
+	}
+
 }
 #Beto O'Rourke rises up in the cities
 country_event = {
@@ -659,6 +776,35 @@ country_event = {
 			}
 		}
 	}
+	option = {
+		name = alamo.12.b
+		hidden_effect = {
+			#country_event = {
+			#	id = alamo.13 #why?
+			#	days = 1
+			#}
+			country_event = {
+				id = alamo.14
+				days = 10
+			}
+		}
+		BET = { change_tag_from = TEX }
+	}
+	option = {
+		name = alamo.12.c
+		hidden_effect = {
+			#country_event = {
+			#	id = alamo.13 #why?
+			#	days = 1
+			#}
+			country_event = {
+				id = alamo.14
+				days = 10
+			}
+		}
+		CRU = { change_tag_from = TEX }
+	}
+
 }
 #Bush rises up
 country_event = {
@@ -697,9 +843,6 @@ country_event = {
 				}
 			}
 		}
-	}
-	option = {
-		name = alamo.14.a
 		hidden_effect = {
 		#lou and okl
 		312 = {
@@ -758,6 +901,21 @@ country_event = {
 				}
 			}
 		}
+	}
+	option = {
+		name = alamo.14.a
+	}
+	option = {
+		name = alamo.14.b
+		BSH = { change_tag_from = TEX }
+	}
+	option = {
+		name = alamo.14.c
+		LOU = { change_tag_from = TEX }
+	}
+	option = {
+		name = alamo.14.e
+		OKL = { change_tag_from = TEX }
 	}
 }
 #Hornberger offers an alliance
