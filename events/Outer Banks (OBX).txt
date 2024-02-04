@@ -23,7 +23,7 @@ country_event = {
 	}
 }
 
-#an isolated community
+#we are an isolated community
 country_event = {
 	id = obx.2
 	title = obx.2.t
@@ -36,7 +36,7 @@ country_event = {
 	}
 }
 
-#reject independence
+#we reject independence
 country_event = {
 	id = obx.3
 	title = obx.3.t
@@ -49,7 +49,7 @@ country_event = {
 	}
 }
 
-#a meeting
+#a meeting to decide our future
 country_event = {
 	id = obx.4
 	title = obx.4.t
@@ -65,7 +65,7 @@ country_event = {
 	}
 }
 
-#pirates attack
+#pirates attack us
 country_event = {
 	id = obx.5
 	title = obx.5.t
@@ -120,7 +120,7 @@ country_event = {
 	}
 }
 
-#our future
+#our future, pirates were repelled so we kinda have to start again/finish up
 country_event = {
 	id = obx.8
 	title = obx.8.t
@@ -133,7 +133,7 @@ country_event = {
 	}
 }
 
-#OBX captures atlanta (for obx)
+#OBX captures atlanta event (for obx)
 country_event = {
 	id = obx.9
 	title = obx.9.t
@@ -146,20 +146,20 @@ country_event = {
 		hidden_effect = {
 			country_event = {
 				id = obx.25
-				days = 1
+				days = 3
 			}
 		}
 	}
 }
 
-#international ''atlanta taken by carolinian rebels'' event
+#international atlanta taken by carolinian rebels event
 news_event = {
 	id = obx.24
 	title = obx.24.t
 	desc = obx.24.d
-	#picture =
+	picture = event_news_war_with_canada
 	is_triggered_only = yes
-	fire_only_once = yes
+	major = yes
 	option = {
 		name = obx.24.a
 	}
@@ -227,7 +227,7 @@ country_event = {
 	}
 }
 
-#Most Militia disband
+#Militia disband
 country_event = {
 	id = obx.10
 	title = obx.10.t
@@ -238,17 +238,25 @@ country_event = {
 	option = {
 		name = obx.10.a
 		hidden_effect = {
-			if = {
-    			every_country_division = { 
-    				has_template = "Carolina Revolutionaries"
-    			}
-        		destroy_unit = yes
-    		}
+			delete_unit_template_and_units = {
+    			division_template = "Carolina Revolutionaries"
+    			disband = yes #will refund equipment and manpower
+			}
+			delete_unit_template_and_units = {
+    			division_template = "Carolina Revolutionaries 2"
+    			disband = yes #will refund equipment and manpower
+			}
+			delete_unit_template_and_units = {
+    			division_template = "Carolina Revolutionaries 3"
+    			disband = yes #will refund equipment and manpower
+			}
+    		remove_ideas = OBX_gun_production
+    		remove_ideas = OBX_marsh_masters
 		}
 	}
 }
 
-#gop primary
+#GOP primary
 country_event = {
 	id = obx.11
 	title = obx.11.t
@@ -709,5 +717,3 @@ country_event = {
 		set_politics = { ruling_party = democrat }
 	}
 }
-
-#events needed: atlanta peace accord, we need to reform government, shadowy man appears (colonial), democracy and #united carolina!, move capital to charlotte, let's hold elections 
