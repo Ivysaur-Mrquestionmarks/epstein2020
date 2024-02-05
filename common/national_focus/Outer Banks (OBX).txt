@@ -127,7 +127,7 @@ focus_tree = {
 	focus = {
 		id = OBX_an_interim_leader
 		icon = GFX_goal_OBX_an_interim_leader
-		cost = 7
+		cost = 1
 		relative_position_id = OBX_our_own_path
 		x = -2
 		y = 1
@@ -145,7 +145,7 @@ focus_tree = {
 	focus = {
 		id = OBX_a_meeting_for_our_future
 		icon = GFX_goal_OBX_a_meeting_for_our_future
-		cost = 7
+		cost = 1
 		relative_position_id = OBX_our_own_path
 		x = 0
 		y = 1
@@ -186,12 +186,12 @@ focus_tree = {
 	}
 
 	focus = {
-		id = OBX_reach_out_to_nc_leaders
-		icon = GFX_goal_OBX_reach_out_to_nc_leaders
+		id = OBX_arm_fellow_oppressed_carolinians
+		icon = GFX_goal_OBX_arm_fellow_oppressed_carolinians
 		cost = 2
-		relative_position_id = OBX_our_own_path
-		x = -1
-		y = 2
+		relative_position_id = OBX_a_meeting_for_our_future
+		x = 0
+		y = 1
 		ai_will_do = { 
 			factor = 5
 		}
@@ -203,6 +203,24 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = OBX_prepare_for_liberation
+		}
+		completion_reward = {
+			add_ideas = OBX_gun_production
+		}
+	}
+
+	focus = {
+		id = OBX_reach_out_to_nc_leaders
+		icon = GFX_goal_OBX_reach_out_to_nc_leaders
+		cost = 3
+		relative_position_id = OBX_arm_fellow_oppressed_carolinians
+		x = -1
+		y = 1
+		ai_will_do = { 
+			factor = 5
+		}
+		prerequisite = {
+			focus = OBX_arm_fellow_oppressed_carolinians
 		}
 		completion_reward = {
 			custom_effect_tooltip = OBX_reach_out_to_nc_leaders_unlocked_tooltip
@@ -212,21 +230,15 @@ focus_tree = {
 	focus = {
 		id = OBX_reach_out_to_sc_leaders
 		icon = GFX_goal_OBX_reach_out_to_sc_leaders
-		cost = 2
-		relative_position_id = OBX_our_own_path
+		cost = 3
+		relative_position_id = OBX_arm_fellow_oppressed_carolinians
 		x = 1
-		y = 2
+		y = 1
 		ai_will_do = { 
 			factor = 5
 		}
 		prerequisite = {
-			focus = OBX_an_interim_leader
-		}
-		prerequisite = {
-			focus = OBX_a_meeting_for_our_future
-		}
-		prerequisite = {
-			focus = OBX_prepare_for_liberation
+			focus = OBX_arm_fellow_oppressed_carolinians
 		}
 		completion_reward = {
 			custom_effect_tooltip = OBX_reach_out_to_sc_leaders_unlocked_tooltip
@@ -234,38 +246,20 @@ focus_tree = {
 	}
 
 	focus = {
-		id = OBX_arm_fellow_oppressed_carolinians
-		icon = GFX_goal_OBX_arm_fellow_oppressed_carolinians
-		cost = 3
-		relative_position_id = OBX_our_own_path
-		x = 0
-		y = 3
-		ai_will_do = { 
-			factor = 5
-		}
-		prerequisite = {
-			focus = OBX_reach_out_to_sc_leaders
-		}
-		prerequisite = {
-			focus = OBX_reach_out_to_nc_leaders
-		}
-		completion_reward = {
-			add_ideas = OBX_gun_production
-		}
-	}
-
-	focus = {
 		id = OBX_fighting_against_evil
 		icon = GFX_goal_OBX_fighting_against_evil
-		cost = 3
-		relative_position_id = OBX_arm_fellow_oppressed_carolinians
-		x = 0
+		cost = 4
+		relative_position_id = OBX_reach_out_to_nc_leaders
+		x = 1
 		y = 1
 		ai_will_do = { 
 			factor = 5
 		}
 		prerequisite = {
-			focus = OBX_arm_fellow_oppressed_carolinians
+			focus = OBX_reach_out_to_nc_leaders
+		}
+		prerequisite = {
+			focus = OBX_reach_out_to_sc_leaders
 		}
 		completion_reward = {
 			custom_effect_tooltip = OBX_fighting_against_evil_tooltip
@@ -277,7 +271,7 @@ focus_tree = {
 	focus = {
 		id = OBX_reform_government
 		icon = GFX_goal_OBX_Reform_the_Government
-		cost = 8
+		cost = 5
 		relative_position_id = OBX_an_isolated_community
 		x = 24
 		y = 0
@@ -291,11 +285,11 @@ focus_tree = {
 			
 		}
 	}
-	
+
 	focus = {
 		id = OBX_democratic_tradition
 		icon = GFX_goal_OBX_Democratic_Tradition 
-		cost = 8
+		cost = 2
 		relative_position_id = OBX_reform_government
 		x = 0
 		y = 1
@@ -315,7 +309,7 @@ focus_tree = {
 	focus = {
 		id = OBX_jeff_jackson
 		icon = GFX_goal_OBX_Jeffrey_Jackson 
-		cost = 8
+		cost = 1
 		relative_position_id = OBX_democratic_tradition
 		x = -15
 		y = 1
@@ -332,14 +326,15 @@ focus_tree = {
 			focus = OBX_democratic_tradition
 		}
 		completion_reward = {
-			
+			add_political_power = 50
+			#event
 		}
 	}
 
 	focus = {
 		id = OBX_connect_with_the_people
 		icon = GFX_goal_OBX_Connect_with_the_People
-		cost = 8
+		cost = 5
 		relative_position_id = OBX_jeff_jackson
 		x = -1
 		y = 1
@@ -350,14 +345,18 @@ focus_tree = {
 			focus = OBX_jeff_jackson
 		}
 		completion_reward = {
-			
+			add_popularity = {
+				ideology = democrat
+				popularity = 0.1
+			}
+			#event
 		}
 	}
 
 	focus = {
 		id = OBX_transparency
 		icon = GFX_goal_OBX_Transparency
-		cost = 8
+		cost = 5
 		relative_position_id = OBX_jeff_jackson
 		x = 1
 		y = 1
@@ -368,14 +367,14 @@ focus_tree = {
 			focus = OBX_jeff_jackson
 		}
 		completion_reward = {
-			
+			add_stability = 0.1
 		}
 	}
 
 	focus = {
 		id = OBX_root_out_corruption
 		icon = GFX_goal_OBX_Root_Out_Corruption
-		cost = 8
+		cost = 5
 		relative_position_id = OBX_connect_with_the_people
 		x = 0
 		y = 1
@@ -389,14 +388,16 @@ focus_tree = {
 			focus = OBX_transparency
 		}
 		completion_reward = {
-			
+			add_ideas = {
+				OBX_anticorruption
+			}
 		}
 	}
 
 	focus = {
 		id = OBX_reform_criminal_justice
 		icon = GFX_goal_OBX_Reform_the_Criminal_Justice
-		cost = 8
+		cost = 5
 		relative_position_id = OBX_transparency
 		x = 0
 		y = 1
@@ -410,14 +411,15 @@ focus_tree = {
 			focus = OBX_transparency
 		}
 		completion_reward = {
-			
+			add_manpower = 10000
+			add_war_support = 0.1
 		}
 	}
 
 	focus = {
 		id = OBX_by_the_people_for_the_people
 		icon = GFX_goal_OBX_For_the_People_by_the_People
-		cost = 8
+		cost = 5
 		relative_position_id = OBX_root_out_corruption
 		x = 1
 		y = 1
@@ -431,14 +433,15 @@ focus_tree = {
 			focus = OBX_reform_criminal_justice
 		}
 		completion_reward = {
-			
+			add_ideas = OBX_for_the_people
+			#event
 		}
 	}
 
 	focus = {
 		id = OBX_roy_cooper
 		icon = GFX_goal_OBX_Roy_Cooper 
-		cost = 8
+		cost = 1
 		relative_position_id = OBX_democratic_tradition
 		x = -10
 		y = 1
@@ -455,14 +458,15 @@ focus_tree = {
 			focus = OBX_democratic_tradition
 		}
 		completion_reward = {
-			
+			add_political_power = 50
+			#event
 		}
 	}
 
 	focus = {
 		id = OBX_combat_opioid_epidemic
 		icon = GFX_goal_OBX_Combat_the_Opioid_Epidemic
-		cost = 8
+		cost = 5
 		relative_position_id = OBX_roy_cooper
 		x = -1
 		y = 1
@@ -473,14 +477,14 @@ focus_tree = {
 			focus = OBX_roy_cooper
 		}
 		completion_reward = {
-			
+			add_ideas = OBX_opioid_crisis
 		}
 	}
 
 	focus = {
 		id = OBX_fight_for_equality
 		icon = GFX_goal_OBX_Fight_for_Equality
-		cost = 8
+		cost = 5
 		relative_position_id = OBX_roy_cooper
 		x = 1
 		y = 1
@@ -491,14 +495,14 @@ focus_tree = {
 			focus = OBX_roy_cooper
 		}
 		completion_reward = {
-			
+			add_stability = 0.1
 		}
 	}
 
 	focus = {
 		id = OBX_fund_public_healthcare
 		icon = GFX_goal_OBX_Fund_Public_Healthcare
-		cost = 8
+		cost = 5
 		relative_position_id = OBX_combat_opioid_epidemic
 		x = 0
 		y = 1
@@ -512,14 +516,17 @@ focus_tree = {
 			focus = OBX_fight_for_equality
 		}
 		completion_reward = {
-			
+			swap_ideas = {
+				remove_idea = OBX_opioid_crisis
+				add_idea = OBX_opioid_crisis2
+			}
 		}
 	}
 
 	focus = {
 		id = OBX_work_to_combat_climate_change
 		icon = GFX_goal_OBX_Work_to_Combat_Cimate_Change
-		cost = 8
+		cost = 5
 		relative_position_id = OBX_fight_for_equality
 		x = 0
 		y = 1
@@ -533,14 +540,29 @@ focus_tree = {
 			focus = OBX_fight_for_equality
 		}
 		completion_reward = {
-			
+			random_owned_controlled_state = {
+                add_extra_state_shared_building_slots = 1
+                add_building_construction = {
+                    type = infrastructure
+                    level = 1
+                    instant_build = yes
+                }
+            }
+            random_owned_controlled_state = {
+                add_extra_state_shared_building_slots = 1
+                add_building_construction = {
+                    type = infrastructure
+                    level = 1
+                    instant_build = yes
+                }
+            }
 		}
 	}
 
 	focus = {
 		id = OBX_carolina_is_for_all
 		icon = GFX_goal_OBX_Carolina_is_for_All
-		cost = 8
+		cost = 5
 		relative_position_id = OBX_fund_public_healthcare
 		x = 1
 		y = 1
@@ -554,14 +576,19 @@ focus_tree = {
 			focus = OBX_work_to_combat_climate_change
 		}
 		completion_reward = {
-			
+			add_political_power = 100
+			add_popularity = {
+				ideology = democrat
+				popularity = 0.1
+			}
+			#event
 		}
 	}
 
 	focus = {
 		id = OBX_jim_clyburn
 		icon = GFX_goal_OBX_Jim_Clyburn 
-		cost = 8
+		cost = 1
 		relative_position_id = OBX_democratic_tradition
 		x = -5
 		y = 1
@@ -578,14 +605,15 @@ focus_tree = {
 			focus = OBX_democratic_tradition
 		}
 		completion_reward = {
-			
+			add_political_power = 50
+			#event
 		}
 	}
 
 	focus = {
 		id = OBX_protect_organized_labor
 		icon = GFX_goal_OBX_Protect_Organized_Labor
-		cost = 8
+		cost = 5
 		relative_position_id = OBX_jim_clyburn
 		x = -1
 		y = 1
@@ -596,14 +624,14 @@ focus_tree = {
 			focus = OBX_jim_clyburn
 		}
 		completion_reward = {
-			
+			add_ideas = OBX_organized_labor
 		}
 	}
 
 	focus = {
 		id = OBX_expand_our_ports
 		icon = GFX_goal_OBX_Expand_Our_Ports
-		cost = 8
+		cost = 5
 		relative_position_id = OBX_jim_clyburn
 		x = 1
 		y = 1
@@ -614,14 +642,29 @@ focus_tree = {
 			focus = OBX_jim_clyburn
 		}
 		completion_reward = {
-			
+			532 = {
+                add_extra_state_shared_building_slots = 2
+                add_building_construction = {
+                    type = dockyard
+                    level = 2
+                    instant_build = yes
+                }
+            }
+            325 = {
+                add_extra_state_shared_building_slots = 2
+                add_building_construction = {
+                    type = dockyard
+                    level = 2
+                    instant_build = yes
+                }
+            }
 		}
 	}
 
 	focus = {
 		id = OBX_support_minority_groups
 		icon = GFX_goal_OBX_Support_Minority_Groups
-		cost = 8
+		cost = 5
 		relative_position_id = OBX_protect_organized_labor
 		x = 0
 		y = 1
@@ -635,14 +678,15 @@ focus_tree = {
 			focus = OBX_expand_our_ports
 		}
 		completion_reward = {
-			
+			add_stability = 0.1
+			add_war_support = 0.1
 		}
 	}
 
 	focus = {
 		id = OBX_nuclear_energy_incentives
 		icon = GFX_goal_OBX_Nuclear_Incentives
-		cost = 8
+		cost = 5
 		relative_position_id = OBX_expand_our_ports
 		x = 0
 		y = 1
@@ -656,14 +700,18 @@ focus_tree = {
 			focus = OBX_expand_our_ports
 		}
 		completion_reward = {
-			
+			add_tech_bonus = {
+				bonus = 1.5
+				uses = 1
+				category = nuclear
+			}
 		}
 	}
 
 	focus = {
 		id = OBX_equity_and_progress
 		icon = GFX_goal_OBX_Equity_and_Progress
-		cost = 8
+		cost = 5
 		relative_position_id = OBX_support_minority_groups
 		x = 1
 		y = 1
@@ -677,14 +725,15 @@ focus_tree = {
 			focus = OBX_nuclear_energy_incentives
 		}
 		completion_reward = {
-			
+			add_ideas = OBX_progress
+			#event
 		}
 	}
 
 	focus = {
 		id = OBX_nikki_haley
 		icon = GFX_goal_OBX_Nikki_Haley
-		cost = 8
+		cost = 1
 		relative_position_id = OBX_democratic_tradition
 		x = 5
 		y = 1
@@ -701,14 +750,15 @@ focus_tree = {
 			focus = OBX_democratic_tradition
 		}
 		completion_reward = {
-			
+			add_political_power = 50
+			#event
 		}
 	}
 
 	focus = {
 		id = OBX_modern_reaganomics
 		icon = GFX_goal_OBX_Reaganomics
-		cost = 8
+		cost = 5
 		relative_position_id = OBX_nikki_haley
 		x = -1
 		y = 1
@@ -719,14 +769,14 @@ focus_tree = {
 			focus = OBX_nikki_haley
 		}
 		completion_reward = {
-			
+			add_ideas = OBX_reaganomics
 		}
 	}
 
 	focus = {
 		id = OBX_reach_out_to_european_allies
 		icon = GFX_goal_OBX_Reach_Out_to_European_Allies
-		cost = 8
+		cost = 5
 		relative_position_id = OBX_nikki_haley
 		x = 1
 		y = 1
@@ -737,14 +787,24 @@ focus_tree = {
 			focus = OBX_nikki_haley
 		}
 		completion_reward = {
-			
+			add_equipment_to_stockpile = {
+    			type = infantry_equipment
+    			amount = 1000
+    			producer = BEF
+			}
+			add_equipment_to_stockpile = {
+    			type = infantry_equipment
+    			amount = 1000
+    			producer = FFR
+			}
+			#event
 		}
 	}
 
 	focus = {
 		id = OBX_support_the_mic
 		icon = GFX_goal_OBX_Support_the_Military_Industrial_Complex
-		cost = 8
+		cost = 5
 		relative_position_id = OBX_modern_reaganomics
 		x = 0
 		y = 1
@@ -758,14 +818,33 @@ focus_tree = {
 			focus = OBX_reach_out_to_european_allies
 		}
 		completion_reward = {
-			
+			random_owned_controlled_state = {
+                add_extra_state_shared_building_slots = 1
+                add_building_construction = {
+                    type = arms_factory
+                    level = 1
+                    instant_build = yes
+                }
+            }
+            random_owned_controlled_state = {
+                add_extra_state_shared_building_slots = 1
+                add_building_construction = {
+                    type = arms_factory
+                    level = 1
+                    instant_build = yes
+                }
+            }
+            swap_ideas = {
+            	remove_idea = OBX_reaganomics
+            	add_idea = OBX_reaganomics2
+            }
 		}
 	}
 
 	focus = {
 		id = OBX_apply_for_un_membership
 		icon = GFX_goal_OBX_Apply_for_UN_Membership
-		cost = 8
+		cost = 5
 		relative_position_id = OBX_reach_out_to_european_allies
 		x = 0
 		y = 1
@@ -779,14 +858,15 @@ focus_tree = {
 			focus = OBX_reach_out_to_european_allies
 		}
 		completion_reward = {
-			
+			add_ideas = OBX_un_member
+			#event
 		}
 	}
 
 	focus = {
 		id = OBX_carolina_on_world_stage
 		icon = GFX_goal_OBX_Carolina_on_the_World_Stage
-		cost = 8
+		cost = 5
 		relative_position_id = OBX_support_the_mic
 		x = 1
 		y = 1
@@ -800,14 +880,16 @@ focus_tree = {
 			focus = OBX_apply_for_un_membership
 		}
 		completion_reward = {
-			
+			add_political_power = 50
+			add_stability = 0.1
+			#event
 		}
 	}
 
 	focus = {
 		id = OBX_tim_scott
 		icon = GFX_goal_OBX_Tim_Scott
-		cost = 8
+		cost = 1
 		relative_position_id = OBX_democratic_tradition
 		x = 10
 		y = 1
@@ -824,14 +906,15 @@ focus_tree = {
 			focus = OBX_democratic_tradition
 		}
 		completion_reward = {
-			
+			add_political_power = 50
+			#event
 		}
 	}
 
 	focus = {
 		id = OBX_balanced_budget
 		icon = GFX_goal_OBX_A_Balanced_Budget
-		cost = 8
+		cost = 5
 		relative_position_id = OBX_tim_scott
 		x = -1
 		y = 1
@@ -842,14 +925,14 @@ focus_tree = {
 			focus = OBX_tim_scott
 		}
 		completion_reward = {
-			
+			add_ideas = OBX_balanced_budget
 		}
 	}
 
 	focus = {
 		id = OBX_promote_10_commandments
 		icon = GFX_goal_OBX_Promote_the_Ten_Commandments
-		cost = 8
+		cost = 5
 		relative_position_id = OBX_tim_scott
 		x = 1
 		y = 1
@@ -860,14 +943,15 @@ focus_tree = {
 			focus = OBX_tim_scott
 		}
 		completion_reward = {
-			
+			add_stability = 0.2
+			add_war_support = -0.15
 		}
 	}
 
 	focus = {
 		id = OBX_abortion_ban
 		icon = GFX_goal_OBX_Abortion_Ban
-		cost = 8
+		cost = 5
 		relative_position_id = OBX_balanced_budget
 		x = 0
 		y = 1
@@ -881,14 +965,17 @@ focus_tree = {
 			focus = OBX_promote_10_commandments
 		}
 		completion_reward = {
-			
+			add_popularity = {
+				ideology = republican
+				popularity = 0.1
+			}
 		}
 	}
 
 	focus = {
 		id = OBX_put_god_back_in_schools
 		icon = GFX_goal_OBX_Put_God_Back_in_Schools
-		cost = 8
+		cost = 5
 		relative_position_id = OBX_promote_10_commandments
 		x = 0
 		y = 1
@@ -902,14 +989,14 @@ focus_tree = {
 			focus = OBX_promote_10_commandments
 		}
 		completion_reward = {
-			
+			add_political_power = 25
 		}
 	}
 
 	focus = {
 		id = OBX_faith_fueled_stewardship
 		icon = GFX_goal_OBX_Faith_fueled_Stewardship
-		cost = 8
+		cost = 5
 		relative_position_id = OBX_abortion_ban
 		x = 1
 		y = 1
@@ -923,14 +1010,15 @@ focus_tree = {
 			focus = OBX_put_god_back_in_schools
 		}
 		completion_reward = {
-			
+			add_ideas = OBX_servant_of_the_lord
+			#event
 		}
 	}
 
 	focus = {
 		id = OBX_mark_robinson
 		icon = GFX_goal_OBX_Mark_Robinson
-		cost = 8
+		cost = 1
 		relative_position_id = OBX_democratic_tradition
 		x = 15
 		y = 1
@@ -947,14 +1035,15 @@ focus_tree = {
 			focus = OBX_democratic_tradition
 		}
 		completion_reward = {
-			
+			add_political_power = 50
+			#event
 		}
 	}
 
 	focus = {
 		id = OBX_move_away_from_science
 		icon = GFX_goal_OBX_Stay_Away_from_Science
-		cost = 8
+		cost = 5
 		relative_position_id = OBX_mark_robinson
 		x = -1
 		y = 1
@@ -965,14 +1054,14 @@ focus_tree = {
 			focus = OBX_mark_robinson
 		}
 		completion_reward = {
-			
+			add_ideas = OBX_science_denial
 		}
 	}
 
 	focus = {
 		id = OBX_take_down_jews_commies
 		icon = GFX_goal_OBX_Take_Down_Jews_and_Communists
-		cost = 8
+		cost = 5
 		relative_position_id = OBX_mark_robinson
 		x = 1
 		y = 1
@@ -983,14 +1072,17 @@ focus_tree = {
 			focus = OBX_mark_robinson
 		}
 		completion_reward = {
-			
+			add_manpower = -10000
+			add_stability = 0.2
+			add_war_support = 0.2
+			#event
 		}
 	}
 
 	focus = {
 		id = OBX_ban_socialism
 		icon = GFX_goal_OBX_Ban_Soclialism
-		cost = 8
+		cost = 5
 		relative_position_id = OBX_move_away_from_science
 		x = 0
 		y = 1
@@ -1004,14 +1096,21 @@ focus_tree = {
 			focus = OBX_take_down_jews_commies
 		}
 		completion_reward = {
-			
+			add_popularity = {
+    			ideology = authoritarian_left
+    			popularity = -0.05
+			}
+			add_popularity = {
+    			ideology = libertarian_right
+    			popularity = 0.05
+			}
 		}
 	}
 
 	focus = {
 		id = OBX_criminalize_godless_activities
 		icon = GFX_goal_OBX_Criminalize_Godless_Activities
-		cost = 8
+		cost = 5
 		relative_position_id = OBX_take_down_jews_commies
 		x = 0
 		y = 1
@@ -1025,14 +1124,21 @@ focus_tree = {
 			focus = OBX_take_down_jews_commies
 		}
 		completion_reward = {
-			
+			add_popularity = {
+    			ideology = libertarian_left
+    			popularity = -0.05
+			}
+			add_popularity = {
+    			ideology = libertarian_right
+    			popularity = 0.05
+			}
 		}
 	}
 
 	focus = {
 		id = OBX_cleansing_carolina_of_heathens
 		icon = GFX_goal_OBX_Cleansing_Carolina_of_Heathens
-		cost = 8
+		cost = 5
 		relative_position_id = OBX_ban_socialism
 		x = 1
 		y = 1
@@ -1046,14 +1152,15 @@ focus_tree = {
 			focus = OBX_criminalize_godless_activities
 		}
 		completion_reward = {
-			
+			add_ideas = OBX_pure_carolina
+			#event
 		}
 	}
 
 	focus = {
 		id = OBX_begin_reconstruction
 		icon = GFX_goal_OBX_Begin_Reconstruction
-		cost = 8
+		cost = 5
 		relative_position_id = OBX_democratic_tradition
 		x = 0
 		y = 1
@@ -1074,7 +1181,7 @@ focus_tree = {
 	focus = {
 		id = OBX_protect_rights_of_all_carolinians
 		icon = GFX_goal_OBX_Protect_the_Rights_of_all_Carolinians
-		cost = 8
+		cost = 5
 		relative_position_id = OBX_begin_reconstruction
 		x = 0
 		y = 1
@@ -1085,14 +1192,14 @@ focus_tree = {
 			focus = OBX_begin_reconstruction
 		}
 		completion_reward = {
-			add_stability = 0.1
+			add_ideas = OBX_carolinian_bill_of_rights
 		}
 	}
 
 	focus = {
 		id = OBX_agriculture_grants
 		icon = GFX_goal_OBX_Agricultural_Grants
-		cost = 8
+		cost = 5
 		relative_position_id = OBX_protect_rights_of_all_carolinians
 		x = 0
 		y = 1
@@ -1112,7 +1219,7 @@ focus_tree = {
 	focus = {
 		id = OBX_bring_jobs_to_cities
 		icon = GFX_goal_OBX_Bring_Jobs_to_Cities
-		cost = 8
+		cost = 5
 		relative_position_id = OBX_agriculture_grants
 		x = -1
 		y = 1
@@ -1132,7 +1239,7 @@ focus_tree = {
 	focus = {
 		id = OBX_carolinian_universities
 		icon = GFX_goal_OBX_Carolinian_Universities
-		cost = 8
+		cost = 5
 		relative_position_id = OBX_agriculture_grants
 		x = 1
 		y = 1
@@ -1152,7 +1259,7 @@ focus_tree = {
 	focus = {
 		id = OBX_mountain_development
 		icon = GFX_goal_OBX_Mountain_Development
-		cost = 8
+		cost = 5
 		relative_position_id = OBX_bring_jobs_to_cities
 		x = 0
 		y = 1
@@ -1168,13 +1275,18 @@ focus_tree = {
 		completion_reward = {
 			add_state_core = 266
 			add_state_core = 331
+			add_resource = {
+    			type = steel
+    			amount = 25
+    			state = 266
+			}
 		}
 	}
 
 	focus = {
 		id = OBX_look_out_for_overlooked_regions
 		icon = GFX_goal_OBX_Look_Out_for_Overlooked_Regions
-		cost = 8
+		cost = 5
 		relative_position_id = OBX_bring_jobs_to_cities
 		x = 2
 		y = 1
@@ -1226,6 +1338,10 @@ focus_tree = {
 		y = 1
 		ai_will_do = { 
 			factor = 5
+		}
+		mutually_exclusive = {
+			focus = OBX_side_with_trump
+			focus = OBX_on_our_own
 		}
 		prerequisite = {
 			focus = OBX_carolina_united_once_more
@@ -1280,6 +1396,10 @@ focus_tree = {
 		y = 1
 		ai_will_do = { 
 			factor = 5
+		}
+		mutually_exclusive = {
+			focus = OBX_side_with_trump
+			focus = OBX_side_with_biden
 		}
 		prerequisite = {
 			focus = OBX_carolina_united_once_more
@@ -1571,6 +1691,10 @@ focus_tree = {
 		ai_will_do = { 
 			factor = 5
 		}
+		mutually_exclusive = {
+			focus = OBX_side_with_biden
+			focus = OBX_on_our_own
+		}
 		prerequisite = {
 			focus = OBX_carolina_united_once_more
 		}
@@ -1762,22 +1886,7 @@ focus_tree = {
                     instant_build = yes
                 }
             }
-            random_owned_controlled_state = {
-                add_extra_state_shared_building_slots = 1
-                add_building_construction = {
-                    type = industrial_complex
-                    level = 1
-                    instant_build = yes
-                }
-            }
-            random_owned_controlled_state = {
-                add_extra_state_shared_building_slots = 1
-                add_building_construction = {
-                    type = industrial_complex
-                    level = 1
-                    instant_build = yes
-                }
-            }
+            add_research_slot = 1
 		}
 	}
 
