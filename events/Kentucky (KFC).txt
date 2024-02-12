@@ -613,10 +613,10 @@ country_event = {
 			create_dynamic_country = {
     			original_tag = KFC
 				transfer_state = 575
-					every_state = {
-						limit = {is_core_of = KFC}	
-						add_core_of = PREV
-					}
+				every_state = {
+					limit = {is_core_of = KFC}	
+					add_core_of = PREV
+				}
 				load_oob = Commie_Kentucky
 				set_politics = {
 					ruling_party = authoritarian_left
@@ -626,9 +626,9 @@ country_event = {
     					popularity = 75
 				}
 				add_popularity = {
-			ideology = libertarian_left
-			popularity = 0.25
-		}
+					ideology = libertarian_left
+					popularity = 0.25
+				}
 				set_cosmetic_tag = SKY
 				every_country_with_original_tag = {
 				  	original_tag_to_check = KFC
@@ -649,47 +649,62 @@ country_event = {
 				    }
 			    }
 				create_field_marshal = {
-				name = "Arnold Farr"
-				portrait_path="gfx/leaders/KFC/farr.dds" 
-				traits={ guerilla_fighter } 
-				skill = 3
-				attack_skill = 1
-				defense_skill = 3
-				planning_skill = 2
-				logistics_skill = 5
+					name = "Arnold Farr"
+					portrait_path="gfx/leaders/KFC/farr.dds" 
+					traits={ guerilla_fighter } 
+					skill = 3
+					attack_skill = 1
+					defense_skill = 3
+					planning_skill = 2
+					logistics_skill = 3
 			    }
 				create_corps_commander = {
-				name = "Dean Watts"
-				portrait_path="gfx/leaders/KFC/generic_antifa0.dds" 
-				traits={ guerilla_fighter } 
-				skill = 1
-				attack_skill = 1
-				defense_skill = 2
-				planning_skill = 1
-				logistics_skill = 1
+					name = "Dean Watts"
+					portrait_path="gfx/leaders/KFC/generic_antifa0.dds" 
+					traits={ guerilla_fighter } 
+					skill = 1
+					attack_skill = 1
+					defense_skill = 2
+					planning_skill = 1
+					logistics_skill = 1
 			    }
 				create_corps_commander = {
-				name = "Otis Lumburro"
-				portrait_path="gfx/leaders/KFC/generic_antifa.dds" 
-				traits={ guerilla_fighter } 
-				skill = 1
-				attack_skill = 1
-				defense_skill = 1
-				planning_skill = 1
-				logistics_skill = 1
+					name = "Otis Lumburro"
+					portrait_path="gfx/leaders/KFC/generic_antifa.dds" 
+					traits={ guerilla_fighter } 
+					skill = 1
+					attack_skill = 1
+					defense_skill = 1
+					planning_skill = 1
+					logistics_skill = 1
 			    }
 				create_corps_commander = {
-				name = "Andy Woods"
-				portrait_path="gfx/leaders/KFC/generic_antifa2.dds" 
-				traits={ guerilla_fighter } 
-				skill = 1
-				attack_skill = 1
-				defense_skill = 1
-				planning_skill = 1
-				logistics_skill = 2
+					name = "Andy Woods"
+					portrait_path="gfx/leaders/KFC/generic_antifa2.dds" 
+					traits={ guerilla_fighter } 
+					skill = 1
+					attack_skill = 1
+					defense_skill = 1
+					planning_skill = 1
+					logistics_skill = 2
 			    }
+				division_template = {
+					name = "Kentucky Peoples Volunteers"
+					is_locked = yes
+					regiments = {
+						infantry = { x = 0 y = 0 }
+						infantry = { x = 0 y = 1 }
+						infantry = { x = 0 y = 2 }
+					}
+					support = {
+						recon = { x = 0 y = 0 }
+						engineer = { x = 0 y = 1 }
+					}
+				}
 				add_ideas = KFC_Peoples_War
 				add_ideas = KFC_Proxy_War
+				set_country_flag = KFC_Commies
+				#activate_mission = KFC_Volunteer_Demobilization_Mission
 			}
 		}
 	}
@@ -715,14 +730,14 @@ country_event = {
 			factor = 100
 		}
 		KFC = {
-	    add_popularity = {
-			ideology = authoritarian_left
-			popularity = -0.5
-		}
-		add_popularity = {
-			ideology = libertarian_left
-			popularity = -0.5
-		}
+			add_popularity = {
+				ideology = authoritarian_left
+				popularity = -0.5
+			}
+			add_popularity = {
+				ideology = libertarian_left
+				popularity = -0.5
+			}
 	    }
 		every_country = {
   			limit = {has_cosmetic_tag = SKY}
@@ -1325,11 +1340,213 @@ country_event = {
 	fire_only_once = yes
 	option = {
 		#bruh
-		name = kentucky.31.a
+		name = kentucky.34.a
 		ai_chance = {
 			factor = 100
 		}
         set_country_flag = KFC_No_More_Raiding
 	}
 }
+
+#Supply truck Raiding, commie kentucky
+country_event = {
+	id = kentucky.35
+	title = kentucky.35.t
+	desc = kentucky.35.d
+	#picture =
+	is_triggered_only = yes
+	#fire_only_once = yes
+	option = {
+		#bruh
+		name = kentucky.35.a
+		ai_chance = {
+			factor = 100
+		}
+        add_timed_idea = {
+			idea = KFC_Supply_Trucks_Raided
+			days = 31
+		}
+		every_country = {
+			limit = {
+				has_cosmetic_tag = SKY
+			}
+			country_event = { 
+				id = kentucky.36
+				days = 0
+			}
+		}
+	}
+}
+
+#Supply truck Raiding, commie kentucky reward
+country_event = {
+	id = kentucky.36
+	title = kentucky.36.t
+	desc = kentucky.36.d
+	#picture =
+	is_triggered_only = yes
+	#fire_only_once = yes
+	option = {
+		#bruh
+		name = kentucky.36.a
+		ai_chance = {
+			factor = 100
+		}
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 1732
+			producer = KFC
+		}
+	}
+	option = {
+		#bruh
+		name = kentucky.36.b
+		ai_chance = {
+			factor = 100
+		}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment
+			amount = 889
+			producer = KFC
+		}
+	}
+	option = {
+		#bruh
+		name = kentucky.36.c
+		ai_chance = {
+			factor = 100
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 927
+			producer = KFC
+		}
+        
+	}
+}
+
+#Sabotage
+country_event = {
+	id = kentucky.37
+	title = kentucky.37.t
+	desc = kentucky.37.d
+	#picture =
+	is_triggered_only = yes
+	#fire_only_once = yes
+	option = {
+		#bruh
+		name = kentucky.37.a
+		ai_chance = {
+			factor = 100
+		}
+        every_state = {
+			damage_building = {
+				type = infrastructure
+			    damage = 3
+			}
+			damage_building = {
+				type = rail_way
+			    damage = 3
+			}
+			damage_building = {
+				type = supply_node
+			    damage = 1
+			}
+			damage_building = {
+				type = industrial_complex
+			    damage = 2
+			}
+			damage_building = {
+				type = arms_factory
+			    damage = 2
+			}
+		}
+	}
+}
+
+#Black market
+country_event = {
+	id = kentucky.38
+	title = kentucky.38.t
+	desc = kentucky.38.d
+	#picture =
+	is_triggered_only = yes
+	#fire_only_once = yes
+	option = {
+		#bruh
+		name = kentucky.38.a
+		ai_chance = {
+			factor = 100
+		}
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 1732
+			producer = USA
+		}
+		add_timed_idea = {
+			idea = KFC_Black_Market_Purchases
+			days = 31
+		}
+		
+	}
+	option = {
+		#bruh
+		name = kentucky.38.b
+		ai_chance = {
+			factor = 100
+		}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment
+			amount = 889
+			producer = AFS
+		}
+		add_timed_idea = {
+			idea = KFC_Black_Market_Purchases
+			days = 31
+		}
+		
+	}
+	option = {
+		#bruh
+		name = kentucky.38.c
+		ai_chance = {
+			factor = 100
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 927
+			producer = FRA
+		}
+		add_timed_idea = {
+			idea = KFC_Black_Market_Purchases
+			days = 31
+		}
+		
+        
+	}
+	option = {
+		#bruh
+		name = kentucky.38.e
+		ai_chance = {
+			factor = 100
+		}
+		add_equipment_to_stockpile = {
+			type = small_plane_airframe
+			amount = 6
+			producer = USA
+		}
+		add_equipment_to_stockpile = {
+			type = small_plane_cas_airframe
+			amount = 4
+		    producer = FRA
+		}
+		add_timed_idea = {
+			idea = KFC_Black_Market_Purchases
+			days = 31
+		}
+
+        
+	}
+}
+
 
