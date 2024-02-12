@@ -320,7 +320,17 @@ country_event = {
 		set_country_flag = vice_president_desantis
 		remove_ideas = Generic_Vacant_Vice_President
 		add_ideas = USA_ron_desantis_advisor
-		FLO = { country_event = { id = maga.10 } }
+		if = {
+			limit = {
+				FLO = {
+					has_completed_focus = FLO_desantis
+				}
+			}
+			FLO = { country_event = { id = maga.10 } }
+		}
+		else = {
+			FLO = { country_event = { id = maga.11 } }
+		}
 	}
 	#Nepotism moment
 	option = {
@@ -344,7 +354,7 @@ country_event = {
 		add_popularity = { ideology = autocratic popularity = 0.10 }
 	}
 }
-#DeSantis leaves for Denver
+#DeSantis leaves for Denver (he is leader of FLO)
 country_event = {
 	id = maga.10
 	title = maga.10.t
@@ -354,6 +364,21 @@ country_event = {
 	fire_only_once = yes
 	option = {
 		name = maga.10.a
+		add_political_power = 10
+		add_stability = 0.01
+	}
+}
+
+#DeSantis leaves for Denver (he is not leader of FLO)
+country_event = {
+	id = maga.11
+	title = maga.11.t
+	desc = maga.11.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = maga.11.a
 		add_political_power = 10
 		add_stability = 0.01
 	}
