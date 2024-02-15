@@ -6,13 +6,13 @@ focus_tree = {
 
 		modifier = {
 			add = 10
-			original_tag = KFC
+			has_cosmetic_tag = SKY
 		}
 	}
 
 
 	continuous_focus_position = { x = 50 y = 5000 }
-	SKY_focus = {
+	focus = {
 		id = SKY_the_Unlikely_Outcome
 		icon = GFX_goal_Icon_A_State_Untamed_MAA
 		cost = 4.40
@@ -34,10 +34,10 @@ focus_tree = {
 		}
 
 	}
-	SKY_focus = {
+	focus = {
 		id = SKY_Seize_the_Colonels_Assets
 		icon = GFX_goal_Icon_Infiltrate_Resistance_Groups_MAA
-		cost = 3.00
+		cost = 10.00
 		prerequisite = {
 			focus = SKY_the_Unlikely_Outcome
 		}
@@ -46,11 +46,14 @@ focus_tree = {
 		x = 0
 		y = 1
 		completion_reward = {
-			
+			swap_ideas = {
+				remove_idea = KFC_Economic_Disaster
+				add_idea = KFC_Economic_Disaster2
+			}
 		}
 
 	}
-	SKY_focus = {
+	focus = {
 		id = SKY_Working_POWS
 		icon = GFX_goal_Icon_Infiltrate_Resistance_Groups_MAA
 		cost = 3.00
@@ -66,7 +69,7 @@ focus_tree = {
 		}
 
 	}
-	SKY_focus = {
+	focus = {
 		id = SKY_Create_Peoples_Economic_Council
 		icon = GFX_goal_Icon_Infiltrate_Resistance_Groups_MAA
 		cost = 3.00
@@ -78,11 +81,11 @@ focus_tree = {
 		x = 0
 		y = 1
 		completion_reward = {
-			
+			custom_effect_tooltip = peoples_economic_council_decisions_loc
 		}
 
 	}
-	SKY_focus = {
+	focus = {
 		id = SKY_Working_Volunteers
 		icon = GFX_goal_Icon_Infiltrate_Resistance_Groups_MAA
 		cost = 3.00
@@ -98,7 +101,7 @@ focus_tree = {
 		}
 
 	}
-        SKY_focus = {
+    focus = {
 		id = SKY_Repair_Factories
 		icon = GFX_goal_Icon_Infiltrate_Resistance_Groups_MAA
 		cost = 3.00
@@ -107,14 +110,14 @@ focus_tree = {
 		}
 		
 		relative_position_id = SKY_Working_POWS
-		x = -2
+		x = -1
 		y = 1
 		completion_reward = {
 			
 		}
 
 	}
-	SKY_focus = {
+	focus = {
 		id = SKY_Highway_Repair
 		icon = GFX_goal_Icon_Infiltrate_Resistance_Groups_MAA
 		cost = 3.00
@@ -123,18 +126,22 @@ focus_tree = {
 		}
 		
 		relative_position_id = SKY_Working_Volunteers
-		x = 2
+		x = 1
 		y = 1
 		completion_reward = {
-			
+			swap_ideas = {
+				remove_idea = KFC_Economic_Disaster2
+				add_idea = KFC_Economic_Disaster3
+			}
+			custom_effect_tooltip = highway_repair_decisions_loc
 		}
 
 	}
-        SKY_focus = {
+    focus = {
 		id = SKY_Land_Reforms
 		icon = GFX_goal_Icon_Infiltrate_Resistance_Groups_MAA
 		cost = 3.00
-                mutually_exclusive = {
+        mutually_exclusive = {
 			focus = SKY_Civilian_Development
 		}
 		prerequisite = {
@@ -145,11 +152,11 @@ focus_tree = {
 		x = 1
 		y = 1
 		completion_reward = {
-			
+			custom_effect_tooltip = land_reforms_decisions_loc
 		}
 
 	}
-	SKY_focus = {
+	focus = {
 		id = SKY_Civilian_Development
 		icon = GFX_goal_Icon_Infiltrate_Resistance_Groups_MAA
 		cost = 3.00
@@ -164,30 +171,34 @@ focus_tree = {
 		x = -1
 		y = 1
 		completion_reward = {
-			
+			custom_effect_tooltip = civilian_development_decisions_loc
 		}
 
 	}
-        SKY_focus = {
+    focus = {
 		id = SKY_Bent_but_Unbroken
 		icon = GFX_goal_Icon_Infiltrate_Resistance_Groups_MAA
 		cost = 3.00
 		prerequisite = {
 			focus = SKY_Highway_Repair
 		}
-                prerequisite = {
-			focus = SKY_Create_Peoples_Economic_Council
-		}
-                prerequisite = {
+        prerequisite = {
 			focus = SKY_Repair_Factories
-                        focus = SKY_Land_Reforms
+		}
+        prerequisite = {
+			focus = SKY_Civilian_Development
+            focus = SKY_Land_Reforms
 		}
 		
-		relative_position_id = SKY_Create_Peoples_Economic_Council
+		relative_position_id = SKY_Land_Reforms
 		x = -1
 		y = 1
 		completion_reward = {
-			
+			remove_idea = KFC_Economic_Disaster3
+			add_timed_idea = {
+				idea = KFC_Economic_Disaster4
+				days = 125
+			}		
 		}
 
 	}
