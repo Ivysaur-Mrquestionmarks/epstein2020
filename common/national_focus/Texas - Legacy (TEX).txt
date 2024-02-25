@@ -1,5 +1,7 @@
 focus_tree = {
 	id = texas_legacy
+	
+	
 	country = {
 		factor = 0
 		modifier = {
@@ -7,7 +9,12 @@ focus_tree = {
 			tag = TEX
 		}
 	}
+	
+	
 	default = no
+	continuous_focus_position = { x = 50 y = 3000 }
+	
+	
 	focus = {
 		id = TEX_economy
 		icon = GFX_goal_Foundations_of_Economy
@@ -27,7 +34,7 @@ focus_tree = {
 		id = TEX_lone_star
 		icon = GFX_focus_lone_star
 		cost = 10.00
-		x = 14
+		x = 30
 		y = 0
 		completion_reward = {
 			add_political_power = 100
@@ -37,12 +44,13 @@ focus_tree = {
 	focus = {
 		id = TEX_black_gold
 		icon = GFX_goal_texas_buisiness
+		x = -2
+		y = 1
+		relative_position_id = TEX_economy
 		cost = 10.00
 		prerequisite = {
 			focus = TEX_economy
 		}
-		x = 1
-		y = 1
 		completion_reward = {
 			add_resource = {
 			    type = oil
@@ -56,11 +64,12 @@ focus_tree = {
 		id = TEX_synthetic
 		icon = GFX_goal_To_The_Moon
 		cost = 10.00
+		x = 0
+		y = 1
+		relative_position_id = TEX_black_gold
 		prerequisite = {
 			focus = TEX_black_gold
 		}
-		x = 1
-		y = 2
 		completion_reward = {
 			add_tech_bonus = {
 			    bonus = 1.5
@@ -73,12 +82,13 @@ focus_tree = {
 	focus = {
 		id = TEX_haliburton
 		icon = GFX_focus_halliburton
+		x = 0
+		y = 1
+		relative_position_id = TEX_synthetic
 		cost = 10.00
 		prerequisite = {
 			focus = TEX_synthetic
 		}
-		x = 1
-		y = 3
 		available = {
 			owns_state = 259
 		}
@@ -103,17 +113,18 @@ focus_tree = {
 		id = TEX_arming_a_state
 		icon = GFX_focus_tex_gun
 		cost = 10.00
+		x = 0
+		y = 1
+		relative_position_id = TEX_economy
 		prerequisite = {
 			focus = TEX_economy
 		}
-		x = 3
-		y = 1
 		completion_reward = {
 			77 = {
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
     				type = arms_factory
-    				level = 1
+    				level = 2
     				instant_build = yes
 				}
 			}
@@ -123,17 +134,18 @@ focus_tree = {
 	focus = {
 		id = TEX_military_industrial_complex
 		icon = GFX_goal_Military_IC
+		x = 0
+		y = 1
+		relative_position_id = TEX_arming_a_state
 		cost = 10.00
 		prerequisite = {
 			focus = TEX_arming_a_state
 		}
-		x = 3
-		y = 2
 		completion_reward = {
 			34 = {
 				add_extra_state_shared_building_slots = 3
 				add_building_construction = {
-    				type = arms_factory
+    	 			type = arms_factory
     				level = 3
     				instant_build = yes
 				}
@@ -144,12 +156,13 @@ focus_tree = {
 	focus = {
 		id = TEX_mechanised_ranches
 		icon = GFX_focus_mex_caudillo_private_armies
+		x = 2
+		y = 1
+		relative_position_id = TEX_economy
 		cost = 10.00
 		prerequisite = {
 			focus = TEX_economy
 		}
-		x = 5
-		y = 1
 		completion_reward = {
 			286 = {
 				add_extra_state_shared_building_slots = 3
@@ -165,12 +178,13 @@ focus_tree = {
 	focus = {
 		id = TEX_research_slot_one
 		icon = GFX_focus_research
+		x = 1
+		y = 1
+		relative_position_id = TEX_mechanised_ranches
 		cost = 10.00
 		prerequisite = {
 			focus = TEX_mechanised_ranches
 		}
-		x = 6
-		y = 2
 		completion_reward = {
 			add_research_slot = 1
 		}
@@ -179,12 +193,13 @@ focus_tree = {
 	focus = {
 		id = TEX_research_slot_two
 		icon = GFX_focus_research2
+		x = 0
+		y = 1
+		relative_position_id = TEX_research_slot_one
 		cost = 13.00
 		prerequisite = {
 			focus = TEX_research_slot_one
 		}
-		x = 6
-		y = 3
 		available = {
 			has_completed_focus = TEX_complete_recovery
 		}
@@ -196,6 +211,9 @@ focus_tree = {
 	focus = {
 		id = TEX_uncle_sam_industry
 		icon = GFX_TEX_uncle_sam
+		x = 1
+		y = 4
+		relative_position_id = TEX_economy
 		cost = 14.00
 		prerequisite = {
 			focus = TEX_haliburton
@@ -206,8 +224,6 @@ focus_tree = {
 		prerequisite = {
 			focus = TEX_mechanised_ranches
 		}
-		x = 4
-		y = 4
 		completion_reward = {
 			44 = {
 				add_extra_state_shared_building_slots = 6
@@ -223,12 +239,13 @@ focus_tree = {
 	focus = {
 		id = TEX_question_of_government
 		icon = GFX_goal_generic_propaganda
+		x = 0
+		y = 1
+		relative_position_id = TEX_lone_star
 		cost = 10.00
 		prerequisite = {
 			focus = TEX_lone_star
 		}
-		x = 14
-		y = 1
 		completion_reward = {
 			add_stability = 0.10
 		}
@@ -436,14 +453,15 @@ focus_tree = {
 		id = TEX_constitution
 		icon = GFX_focus_texan_constitution
 		cost = 10.00
+		x = -10
+		y = 1
+		relative_position_id = TEX_question_of_government
 		prerequisite = {
 			focus = TEX_question_of_government
 		}
 		mutually_exclusive = {
 			focus = TEX_different_direction
 		}
-		x = 10
-		y = 2
 		completion_reward = {
 			add_stability = 0.10
 			add_popularity = {
@@ -460,6 +478,9 @@ focus_tree = {
 	focus = {
 		id = TEX_elections
 		icon = GFX_goal_Texas_election
+		x = 0
+		y = 1
+		relative_position_id = TEX_constitution
 		cost = 10.00
 		prerequisite = {
 			focus = TEX_constitution
@@ -467,8 +488,6 @@ focus_tree = {
 		available = {
 			date > 2021.04.15
 		}
-		x = 9
-		y = 3
 		completion_reward = {
 			hidden_effect = {
 				country_event = { id = texas.3 days = 2 }
@@ -479,12 +498,13 @@ focus_tree = {
 	focus = {
 		id = TEX_results
 		icon = GFX_goal_Fight_for_Freedom
+		x = 0
+		y = 1
+		relative_position_id = TEX_elections
 		cost = 10.00
 		prerequisite = {
 			focus = TEX_elections
 		}
-		x = 9
-		y = 4
 		available = {
 			always = no
 		}
@@ -506,8 +526,6 @@ focus_tree = {
 		available = {
 			has_country_flag = beto_elected_president
 		}
-		x = 11
-		y = 5
 		completion_reward = {
 			add_popularity = {
 			    ideology = democrat
@@ -810,14 +828,15 @@ focus_tree = {
 		id = TEX_different_direction
 		icon = GFX_focus_usa_voter_registration_act
 		cost = 10.00
+		x = 10
+		y = 1
+		relative_position_id = TEX_question_of_government
 		prerequisite = {
 			focus = TEX_question_of_government
 		}
 		mutually_exclusive = {
 			focus = TEX_constitution
 		}
-		x = 18
-		y = 2
 		completion_reward = {
 			add_ideas = TEX_different_direction
 		}
@@ -826,12 +845,13 @@ focus_tree = {
 	focus = {
 		id = TEX_monarchist_party_usa
 		icon = GFX_focus_tex_monarch
+		x = -2
+		y = 1
+		relative_position_id = TEX_different_direction
 		cost = 10.00
 		prerequisite = {
 			focus = TEX_different_direction
 		}
-		x = 19
-		y = 3
 		completion_reward = {
 			swap_ideas = {
 			    remove_idea = TEX_different_direction
@@ -844,12 +864,13 @@ focus_tree = {
 	focus = {
 		id = TEX_embrace_texan_monarchism
 		icon = GFX_focus_rom_royal_dictatorship
+		x = 0
+		y = 1
+		relative_position_id = TEX_different_direction
 		cost = 10.00
 		prerequisite = {
-			focus = TEX_monarchist_party_usa
+			focus = TEX_different_direction
 		}
-		x = 20
-		y = 4
 		completion_reward = {
 			add_popularity = {
 			    ideology = autocratic
@@ -861,12 +882,13 @@ focus_tree = {
 	focus = {
 		id = TEX_secure_papal_crown
 		icon = GFX_focus_raid_for_crown
+		x = 2
+		y = 1
+		relative_position_id = TEX_different_direction
 		cost = 10.00
 		prerequisite = {
-			focus = TEX_embrace_texan_monarchism
+			focus = TEX_different_direction
 		}
-		x = 21
-		y = 5
 		completion_reward = {
 			country_event = { id = texas.6 }
 		}
@@ -876,11 +898,18 @@ focus_tree = {
 		id = TEX_great_monarchy_referendum
 		icon = GFX_focus_TexanMonarchy
 		cost = 10.00
+		x = 0
+		y = 2
+		relative_position_id = TEX_different_direction
+		prerequisite = {
+			focus = TEX_embrace_texan_monarchism
+		}
 		prerequisite = {
 			focus = TEX_secure_papal_crown
 		}
-		x = 22
-		y = 6
+		prerequisite = {
+			focus = TEX_monarchist_party_usa
+		}
 		completion_reward = {
 			remove_ideas = TEX_different_direction_2
 			set_politics = {
@@ -900,6 +929,9 @@ focus_tree = {
 	focus = {
 		id = TEX_liberal_king
 		icon = GFX_goal_liberal_king
+		x = -12
+		y = 1
+		relative_position_id = TEX_great_monarchy_referendum
 		cost = 10.00
 		prerequisite = {
 			focus = TEX_great_monarchy_referendum
@@ -908,8 +940,6 @@ focus_tree = {
 			focus = TEX_texan_king
 			focus = TEX_european_king
 		}
-		x = 17
-		y = 7
 		completion_reward = {
 			set_party_name = { 
 			    ideology = democrat
@@ -939,6 +969,9 @@ focus_tree = {
 		id = TEX_texan_king
 		icon = GFX_goal_a_texan_king
 		cost = 10.00
+		x = 0
+		y = 1
+		relative_position_id = TEX_great_monarchy_referendum
 		prerequisite = {
 			focus = TEX_great_monarchy_referendum
 		}
@@ -946,8 +979,6 @@ focus_tree = {
 			focus = TEX_liberal_king
 			focus = TEX_european_king
 		}
-		x = 22
-		y = 7
 		completion_reward = {
 			hidden_effect = {
 				country_event = { id = texas.9 }
@@ -976,12 +1007,13 @@ focus_tree = {
 	focus = {
 		id = TEX_dreams_of_texan_empire
 		icon = GFX_goal_texan_empire
+		x = 0
+		y = 1
+		relative_position_id = TEX_texan_king
 		cost = 10.00
 		prerequisite = {
 			focus = TEX_texan_king
 		}
-		x = 22
-		y = 8
 		completion_reward = {
 			add_ideas = TEX_royal_guard
 		}
@@ -990,12 +1022,13 @@ focus_tree = {
 	focus = {
 		id = TEX_emperor_not_king
 		icon = GFX_focus_generic_monarchy_2
+		x = 0
+		y = 1
+		relative_position_id = TEX_dreams_of_texan_empire
 		cost = 10.00
 		prerequisite = {
 			focus = TEX_dreams_of_texan_empire
 		}
-		x = 22
-		y = 9
 		completion_reward = {
 			set_cosmetic_tag = TEX_american_empire
 			add_country_leader_trait = texan_emperor
@@ -1016,12 +1049,13 @@ focus_tree = {
 	focus = {
 		id = TEX_Texan_Tsarism
 		icon = GFX_focus_BUL_restore_the_bulgarian_patriarchate
+		x = -2
+		y = 1
+		relative_position_id = TEX_emperor_not_king
 		cost = 10.00
 		prerequisite = {
 			focus = TEX_emperor_not_king
 		}
-		x = 20
-		y = 10
 		completion_reward = {
 			add_ideas = TEX_tsarism
 		}
@@ -1030,12 +1064,13 @@ focus_tree = {
 	focus = {
 		id = TEX_royal_armament_factories
 		icon = GFX_goal_royal_armament
+		x = 0
+		y = 1
+		relative_position_id = TEX_emperor_not_king
 		cost = 20.00
 		prerequisite = {
 			focus = TEX_emperor_not_king
 		}
-		x = 22
-		y = 10
 		completion_reward = {
 			55 = {
 				add_extra_state_shared_building_slots = 8
@@ -1051,12 +1086,13 @@ focus_tree = {
 	focus = {
 		id = TEX_royal_patriotism
 		icon = GFX_goal_Conservative
+		x = 2
+		y = 1
+		relative_position_id = TEX_emperor_not_king
 		cost = 10.00
 		prerequisite = {
 			focus = TEX_emperor_not_king
 		}
-		x = 24
-		y = 10
 		completion_reward = {
 			add_manpower = 5000
 		}
@@ -1065,6 +1101,9 @@ focus_tree = {
 	focus = {
 		id = TEX_weak_mexico
 		icon = GFX_focus_attack_mexico
+		x = 0
+		y = 1
+		relative_position_id = TEX_royal_armament_factories
 		cost = 10.00
 		prerequisite = {
 			focus = TEX_royal_armament_factories
@@ -1075,8 +1114,6 @@ focus_tree = {
 		prerequisite = {
 			focus = TEX_Texan_Tsarism
 		}
-		x = 22
-		y = 11
 		completion_reward = {
 			every_country = {
 				limit = {
@@ -1094,12 +1131,13 @@ focus_tree = {
 	focus = {
 		id = TEX_Emperor_of_all_americans
 		icon = GFX_focus_mex_jefe_maximo
+		x = 0
+		y = 1
+		relative_position_id = TEX_weak_mexico
 		cost = 10.00
 		prerequisite = {
 			focus = TEX_weak_mexico
 		}
-		x = 22
-		y = 12
 		completion_reward = {
 			add_state_core = 79
 		}
@@ -1108,6 +1146,9 @@ focus_tree = {
 	focus = {
 		id = TEX_god_chose_us
 		icon = GFX_goal_god_chose_us
+		x = 0
+		y = 1
+		relative_position_id = TEX_royal_patriotism
 		cost = 10.00
 		prerequisite = {
 			focus = TEX_royal_armament_factories
@@ -1119,8 +1160,6 @@ focus_tree = {
 			focus = TEX_Texan_Tsarism
 		}
 		will_lead_to_war_with = CSA
-		x = 24
-		y = 11
 		available = {
 			has_war = no
 		}
@@ -1135,24 +1174,23 @@ focus_tree = {
 	focus = {
 		id = TEX_knights_golden_circle
 		icon = GFX_focus_usa_honor_the_confederacy
+		x = 0
+		y = 1
+		relative_position_id = TEX_god_chose_us
 		cost = 10.00
 		prerequisite = {
 			focus = TEX_god_chose_us
 		}
-		x = 24
-		y = 12
 		available = {
 			NOT = {
 				has_war_with = CSA
 			}
 		}
 		completion_reward = {
-			every_owned_state = {
-				limit = {
-					is_core_of = CSA
+			Every_state = {
+					Limit = { is_core_of = CSA }
+					Add_core_of = TEX
 				}
-				add_core_of = TEX
-			}
 		}
 
 	}
@@ -1160,11 +1198,12 @@ focus_tree = {
 		id = TEX_tribal_occupation_zone
 		icon = GFX_goal_texas_natives
 		cost = 10.00
+		x = 0
+		y = 1
+		relative_position_id = TEX_kill_atomwaffen
 		prerequisite = {
 			focus = TEX_kill_atomwaffen
 		}
-		x = 1
-		y = 7
 		available = {
 			NOT = {
 				has_war_with = HOP
@@ -1897,6 +1936,9 @@ focus_tree = {
 	focus = {
 		id = TEX_european_king
 		icon = GFX_focus_TexanKonig
+		x = 7
+		y = 1
+		relative_position_id = TEX_great_monarchy_referendum
 		cost = 10.00
 		prerequisite = {
 			focus = TEX_great_monarchy_referendum
@@ -1905,8 +1947,6 @@ focus_tree = {
 			focus = TEX_texan_king
 			focus = TEX_liberal_king
 		}
-		x = 27
-		y = 7
 		completion_reward = {
 			create_country_leader = {
 				name = "George I"
@@ -1935,28 +1975,96 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_westminster
-		icon = GFX_goal_texas_westminsteer
+		icon = GFX_goal_Generic_Rule_Britannia
+		x = 0
+		y = 1
+		relative_position_id = TEX_liberal_king
 		cost = 10.00
 		prerequisite = {
 			focus = TEX_liberal_king
 		}
-		x = 17
-		y = 8
 		completion_reward = {
 			add_political_power = -500
 			add_stability = 0.05
 		}
-
 	}
 	focus = {
-		id = TEX_meet_beto
-		icon = GFX_goal_texas_prince_harry_1
+		id = TEX_British_Command
+		icon = GFX_focus_chi_british_cooperation
+		x = 0
+		y = 1
+		relative_position_id = TEX_westminster
 		cost = 10.00
 		prerequisite = {
 			focus = TEX_westminster
 		}
-		x = 17
-		y = 9
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = TEX_Royal_Texan_Army
+		icon = GFX_focus_NORDIC_mon_selector_army
+		x = -2
+		y = 1
+		relative_position_id = TEX_British_Command
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_British_Command
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = TEX_Royal_Texan_Navy
+		icon = GFX_focus_NORDIC_mon_navy
+		x = 0
+		y = 1
+		relative_position_id = TEX_British_Command
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_British_Command
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = TEX_Royal_Texan_Airforce
+		icon = GFX_focus_NORDIC_mon_airforce
+		x = 2
+		y = 1
+		relative_position_id = TEX_British_Command
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_British_Command
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = TEX_deradicalization
+		icon = GFX_goal_texas_westminsteer
+		x = 5
+		y = 1
+		relative_position_id = TEX_westminster
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_westminster
+		}
+		completion_reward = {
+			add_political_power = -500
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = TEX_meet_beto
+		icon = GFX_goal_texas_prince_harry_1
+		x = -1
+		y = 1
+		relative_position_id = TEX_deradicalization
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_deradicalization
+		}
 		completion_reward = {
 			add_political_power = 80
 		}
@@ -1965,12 +2073,13 @@ focus_tree = {
 	focus = {
 		id = TEX_meet_bush
 		icon = GFX_goal_George_Bush_Victory
+		x = 1
+		y = 1
+		relative_position_id = TEX_deradicalization
 		cost = 10.00
 		prerequisite = {
-			focus = TEX_meet_beto
+			focus = TEX_deradicalization
 		}
-		x = 17
-		y = 10
 		completion_reward = {
 			set_party_name = { 
 			    ideology = republican
@@ -1995,14 +2104,80 @@ focus_tree = {
 
 	}
 	focus = {
-		id = TEX_appoint_new_prime_minister
-		icon = GFX_focus_generic_treaty
+		id = TEX_Grand_Coalition
+		icon = GFX_goal_Old_party_politics
+		x = -1
+		y = 1
+		relative_position_id = TEX_meet_bush
 		cost = 10.00
 		prerequisite = {
 			focus = TEX_meet_bush
 		}
-		x = 17
-		y = 11
+		prerequisite = {
+			focus = TEX_meet_beto
+		}
+		completion_reward = {
+			add_political_power = 200
+			add_popularity = {
+			    ideology = democrat
+			    popularity = 0.15
+			}
+			add_popularity = {
+			    ideology = republican
+			    popularity = 0.15
+			}
+			add_stability = 0.20
+		}
+	}
+	focus = {
+		id = TEX_Renewable_Compromise
+		icon = GFX_goal_Alt_Energy
+		x = -1
+		y = 1
+		relative_position_id = TEX_Grand_Coalition
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_Grand_Coalition
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = TEX_Increase_Energy_Regulations
+		icon = GFX_goal_Interior
+		x = 1
+		y = 1
+		relative_position_id = TEX_Grand_Coalition
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_Grand_Coalition
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = TEX_Controlled_Immigration
+		icon = GFX_focus_generic_treaty
+		x = 0
+		y = 2
+		relative_position_id = TEX_Grand_Coalition
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_Grand_Coalition
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = TEX_a_Devolved_Kingdom
+		icon = GFX_focus_hol_the_foundations_of_defense
+		x = -5
+		y = 1
+		relative_position_id = TEX_westminster
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_westminster
+		}
 		completion_reward = {
 			add_political_power = 200
 			add_popularity = {
@@ -2011,17 +2186,59 @@ focus_tree = {
 			}
 			add_stability = -0.20
 		}
-
+	}
+	focus = {
+		id = TEX_Reclaim_Our_Crownlands
+		icon = GFX_goal_Down_with_the_Black_Swastika
+		x = -1
+		y = 1
+		relative_position_id = TEX_a_Devolved_Kingdom
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_a_Devolved_Kingdom
+		}
+		completion_reward = {
+			add_political_power = 200
+			add_popularity = {
+			    ideology = democrat
+			    popularity = 0.15
+			}
+			add_stability = -0.20
+		}
+	}
+	focus = {
+		id = TEX_Support_Father
+		icon = GFX_goal_texas_helping_canada_monarchists
+		x = 1
+		y = 1
+		relative_position_id = TEX_a_Devolved_Kingdom
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_a_Devolved_Kingdom
+		}
+		completion_reward = {
+			add_political_power = 200
+			add_popularity = {
+			    ideology = democrat
+			    popularity = 0.15
+			}
+			add_stability = -0.20
+		}
 	}
 	focus = {
 		id = TEX_unique_situation
 		icon = GFX_goal_Work_with_Democrats
+		x = 0
+		y = 1
+		relative_position_id = TEX_Reclaim_Our_Crownlands
 		cost = 10.00
+		mutually_exclusive = { focus = TEX_Dominion_of_Texas }
 		prerequisite = {
-			focus = TEX_appoint_new_prime_minister
+			focus = TEX_Support_Father
 		}
-		x = 17
-		y = 12
+		prerequisite = {
+			focus = TEX_Reclaim_Our_Crownlands
+		}
 		completion_reward = {
 			FRA = {
 				country_event = {
@@ -2033,8 +2250,95 @@ focus_tree = {
 
 	}
 	focus = {
+		id = TEX_Dominion_of_Texas
+		icon = GFX_focus_eng_unite_the_anglosphere
+		x = 0
+		y = 1
+		relative_position_id = TEX_Support_Father
+		mutually_exclusive = { focus = TEX_unique_situation }
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_Support_Father
+		}
+		prerequisite = {
+			focus = TEX_Reclaim_Our_Crownlands
+		}
+		completion_reward = {
+			FRA = {
+				country_event = {
+					id = texas_foreign.5 days = 1
+				}
+			}
+			set_cosmetic_tag = TEX_harry_principality
+		}
+
+	}
+	focus = {
+		id = TEX_Bring_Back_Southern_Colonies
+		icon = GFX_goal_FLO_Strike_North
+		x = 0
+		y = 1
+		relative_position_id = TEX_Dominion_of_Texas
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_Dominion_of_Texas
+		}
+		prerequisite = {
+			focus = TEX_Reclaim_Our_Crownlands
+		}
+		completion_reward = {
+			FRA = {
+				country_event = {
+					id = texas_foreign.5 days = 1
+				}
+			}
+			set_cosmetic_tag = TEX_harry_principality
+		}
+	}
+	focus = {
+		id = TEX_March_Down_Florida
+		icon = GFX_goal_OBX_restore_normalcy_in_florida
+		x = 0
+		y = 1
+		relative_position_id = TEX_Bring_Back_Southern_Colonies
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_Bring_Back_Southern_Colonies
+		}
+		prerequisite = {
+			focus = TEX_Reclaim_Our_Crownlands
+		}
+		completion_reward = {
+			FRA = {
+				country_event = {
+					id = texas_foreign.5 days = 1
+				}
+			}
+			set_cosmetic_tag = TEX_harry_principality
+		}
+	}
+	focus = {
+		id = TEX_Dominion_of_the_Gulf_and_South_Atlantic
+		icon = GFX_goal_OBX_Royal_Militias
+		x = 0
+		y = 1
+		relative_position_id = TEX_March_Down_Florida
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_March_Down_Florida
+		}
+		prerequisite = {
+			focus = TEX_Reclaim_Our_Crownlands
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
 		id = TEX_nazis_were_republican
 		icon = GFX_focus_For_Hitler
+		x = 0
+		y = 1
+		relative_position_id = TEX_Texan_Tsarism
 		cost = 10.00
 		prerequisite = {
 			focus = TEX_royal_armament_factories
@@ -2045,8 +2349,6 @@ focus_tree = {
 		prerequisite = {
 			focus = TEX_Texan_Tsarism
 		}
-		x = 20
-		y = 11
 		will_lead_to_war_with = HOP
 		available = {
 			has_war = no
@@ -2062,12 +2364,13 @@ focus_tree = {
 	focus = {
 		id = TEX_unite_tribes
 		icon = GFX_goal_texas_natives
+		x = 0
+		y = 1
+		relative_position_id = TEX_nazis_were_republican
 		cost = 10.00
 		prerequisite = {
 			focus = TEX_nazis_were_republican
 		}
-		x = 20
-		y = 12
 		completion_reward = {
 			every_state = {
                 limit = {
@@ -2081,6 +2384,9 @@ focus_tree = {
 	focus = {
 		id = TEX_war_for_the_midwest
 		icon = GFX_goal_drumpf
+		x = 0
+		y = 1
+		relative_position_id = TEX_Emperor_of_all_americans
 		cost = 10.00
 		prerequisite = {
 			focus = TEX_unite_tribes
@@ -2091,8 +2397,6 @@ focus_tree = {
 		prerequisite = {
 			focus = TEX_knights_golden_circle
 		}
-		x = 22
-		y = 13
 		available = {
 			has_war = no
 		}
@@ -2115,11 +2419,12 @@ focus_tree = {
 		id = TEX_deustch_connections
 		icon = GFX_focus_ger_revive_kaiserreich
 		cost = 10.00
+		x = 0
+		y = 1
+		relative_position_id = TEX_european_king
 		prerequisite = {
 			focus = TEX_european_king
 		}
-		x = 27
-		y = 8
 		completion_reward = {
 			add_offsite_building = { type = industrial_complex level = 4 }
 			add_offsite_building = { type = arms_factory level = 1 }
@@ -2129,12 +2434,13 @@ focus_tree = {
 	focus = {
 		id = TEX_adopt_bullpups
 		icon = GFX_focus_ger_oppose_hitler
+		x = 0
+		y = 1
+		relative_position_id = TEX_deustch_connections
 		cost = 10.00
 		prerequisite = {
 			focus = TEX_deustch_connections
 		}
-		x = 27
-		y = 9
 		completion_reward = {
 			add_ideas = TEX_bullpup_rifles
 		}
@@ -2143,12 +2449,13 @@ focus_tree = {
 	focus = {
 		id = TEX_Prussian_Discipline
 		icon = GFX_focus_ger_return_of_the_kaiser
+		x = 0
+		y = 1
+		relative_position_id = TEX_adopt_bullpups
 		cost = 10.00
 		prerequisite = {
 			focus = TEX_adopt_bullpups
 		}
-		x = 27
-		y = 10
 		completion_reward = {
 			add_ideas = TEX_Prussian_Discipline
 		}
@@ -2157,12 +2464,13 @@ focus_tree = {
 	focus = {
 		id = TEX_were_actual_germans
 		icon = GFX_focus_Rise_Of_Evil
+		x = 0
+		y = 1
+		relative_position_id = TEX_Prussian_Discipline
 		cost = 10.00
 		prerequisite = {
 			focus = TEX_Prussian_Discipline
 		}
-		x = 27
-		y = 11
 		available = {
 			has_war = no
 		}
@@ -2184,12 +2492,13 @@ focus_tree = {
 	focus = {
 		id = TEX_abolish_socialism
 		icon = GFX_focus_ger_bulwark_against_bolshevism
+		x = 0
+		y = 1
+		relative_position_id = TEX_were_actual_germans
 		cost = 10.00
 		prerequisite = {
 			focus = TEX_were_actual_germans
 		}
-		x = 27
-		y = 12
 		will_lead_to_war_with = PRA
 		available = {
 			has_war = no
@@ -2207,7 +2516,7 @@ focus_tree = {
 		id = TEX_cowboy_country
 		icon = GFX_goal_Generic_Gunslinger
 		cost = 10.00
-		x = 27
+		x = 60
 		y = 0
 		available = {
 			OR = {
@@ -2223,8 +2532,9 @@ focus_tree = {
 		id = TEX_tribal_integration
 		icon = GFX_goal_texas_natives
 		cost = 10.00
-		x = 25
+		x = -2
 		y = 1
+		relative_position_id = TEX_cowboy_country
 		prerequisite = {
 			focus = TEX_cowboy_country
 		}
@@ -2237,8 +2547,9 @@ focus_tree = {
 		id = TEX_official_bilingualism
 		icon = GFX_goal_biilingual
 		cost = 10.00
-		x = 27
+		x = 0
 		y = 1
+		relative_position_id = TEX_cowboy_country
 		prerequisite = {
 			focus = TEX_cowboy_country
 		}
@@ -2250,8 +2561,9 @@ focus_tree = {
 		id = TEX_strengthen_what_we_have
 		icon = GFX_goal_Hunters
 		cost = 12.55
-		x = 29
+		x = 2
 		y = 1
+		relative_position_id = TEX_cowboy_country
 		prerequisite = {
 			focus = TEX_cowboy_country
 		}
@@ -2269,8 +2581,9 @@ focus_tree = {
 		id = TEX_recovering_from_great_frost
 		icon = GFX_goal_Interior
 		cost = 10.00
-		x = 24
-		y = 2
+		x = 0
+		y = 10
+		relative_position_id = TEX_cowboy_country
 		completion_reward = {
 			swap_ideas = {
 			    remove_idea = TEX_great_frost_1
@@ -2282,8 +2595,9 @@ focus_tree = {
 		id = TEX_bring_back_coal
 		icon = GFX_goal_ReopenMills
 		cost = 10.00
-		x = 24
-		y = 3
+		x = 0
+		y = 1
+		relative_position_id = TEX_recovering_from_great_frost
 		prerequisite = {
 			focus = TEX_recovering_from_great_frost
 		}
@@ -2298,8 +2612,9 @@ focus_tree = {
 		id = TEX_nuclear_power
 		icon = GFX_goal_Alt_Energy
 		cost = 10.00
-		x = 22
-		y = 4
+		x = -2
+		y = 1
+		relative_position_id = TEX_bring_back_coal
 		prerequisite = {
 			focus = TEX_bring_back_coal
 		}
@@ -2318,8 +2633,9 @@ focus_tree = {
 		id = TEX_knock_down_wind_turbines
 		icon = GFX_goal_generic_construction2
 		cost = 10.00
-		x = 24
-		y = 4
+		x = 0
+		y = 1
+		relative_position_id = TEX_bring_back_coal
 		prerequisite = {
 			focus = TEX_bring_back_coal
 		}
@@ -2346,8 +2662,9 @@ focus_tree = {
 		id = TEX_complete_recovery
 		icon = GFX_goal_Celebration_of_Anarchism
 		cost = 10.00
-		x = 24
-		y = 5
+		x = 0
+		y = 1
+		relative_position_id = TEX_knock_down_wind_turbines
 		prerequisite = {
 			focus = TEX_knock_down_wind_turbines
 		}
