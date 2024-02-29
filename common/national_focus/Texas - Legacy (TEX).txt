@@ -19,7 +19,7 @@ focus_tree = {
 		id = TEX_economy
 		icon = GFX_goal_Foundations_of_Economy
 		cost = 10.00
-		x = 3
+		x = 4
 		y = 0
 		completion_reward = {
 			add_tech_bonus = {
@@ -34,7 +34,7 @@ focus_tree = {
 		id = TEX_lone_star
 		icon = GFX_focus_lone_star
 		cost = 10.00
-		x = 30
+		x = 20
 		y = 0
 		completion_reward = {
 			add_political_power = 100
@@ -451,7 +451,7 @@ focus_tree = {
 	#}
 	focus = {
 		id = TEX_constitution
-		icon = GFX_focus_texan_constitution
+		icon = GFX_goal_Allow_Mail_in_Votes
 		cost = 10.00
 		x = -10
 		y = 1
@@ -513,7 +513,7 @@ focus_tree = {
 	focus = {
 		id = TEX_underdog_no_more
 		icon = GFX_goal_Beto_ORourke_Victory
-		x = 13
+		x = 8
 		y = 1
 		relative_position_id = TEX_results
 		cost = 10.00
@@ -524,7 +524,7 @@ focus_tree = {
 			focus = TEX_out_of_retirement
 			focus = TEX_loyalty_to_trump
 			focus = TEX_in_bed_with_ted
-			focus = TEX_miller_coup
+			#focus = TEX_miller_coup
 		}
 		available = {
 			has_country_flag = beto_elected_president
@@ -667,7 +667,7 @@ focus_tree = {
 			focus = TEX_loyalty_to_trump
 			focus = TEX_out_of_retirement
 			focus = TEX_underdog_no_more
-			focus = TEX_miller_coup
+			#focus = TEX_miller_coup
 		}
 		available = {
 			has_country_flag = cruz_wins_election
@@ -719,7 +719,7 @@ focus_tree = {
 			focus = TEX_in_bed_with_ted
 			focus = TEX_out_of_retirement
 			focus = TEX_underdog_no_more
-			focus = TEX_miller_coup
+			#focus = TEX_miller_coup
 		}
 		available = {
 			has_country_flag = patrick_is_president
@@ -749,7 +749,7 @@ focus_tree = {
 			focus = TEX_loyalty_to_trump
 			focus = TEX_in_bed_with_ted
 			focus = TEX_underdog_no_more
-			focus = TEX_miller_coup
+			#focus = TEX_miller_coup
 		}
 		available = {
 			has_country_flag = back_in_black
@@ -778,40 +778,12 @@ focus_tree = {
 			}
 		}
 
-	}
-	focus = {
-		id = TEX_miller_coup
-		icon = GFX_goal_Free_Texan_Army_Coup
-		x = 10
-		y = 1
-		relative_position_id = TEX_results
-		cost = 10.00
-		prerequisite = {
-			focus = TEX_results
-		}
-		mutually_exclusive = {
-			focus = TEX_underdog_no_more
-			focus = TEX_out_of_retirement
-			focus = TEX_loyalty_to_trump
-			focus = TEX_in_bed_with_ted
-		}
-		available = {
-			has_country_flag = miller_coup
-		}
-		completion_reward = {
-			add_popularity = {
-			    ideology = authoritarian_left
-			    popularity = 0.1
-			}
-		}
-
-	}
-	
+	}	
 	focus = {
 		id = TEX_different_direction
 		icon = GFX_focus_usa_voter_registration_act
 		cost = 10.00
-		x = 30
+		x = 60
 		y = 1
 		relative_position_id = TEX_question_of_government
 		prerequisite = {
@@ -826,10 +798,31 @@ focus_tree = {
 
 	}
 	focus = {
+		id = TEX_miller_coup
+		icon = GFX_goal_Free_Texan_Army_Coup
+		x = 70
+		y = 0
+		#relative_position_id = TEX_results
+		#cost = 10.00
+		#prerequisite = {
+		#	focus = TEX_results
+		#}
+		available = {
+			has_country_flag = miller_coup
+		}
+		completion_reward = {
+			add_popularity = {
+			    ideology = autocratic
+			    popularity = 0.1
+			}
+		}
+
+	}
+	focus = {
 		id = TEX_monarchist_proposal
 		icon = GFX_focus_usa_voter_registration_act
 		cost = 10.00
-		x = 0
+		x = -35
 		y = 1
 		relative_position_id = TEX_different_direction
 		prerequisite = {
@@ -839,6 +832,11 @@ focus_tree = {
 			focus = TEX_constitution
 		}
 		completion_reward = {
+			swap_ideas = {
+			    remove_idea = TEX_different_direction
+			    add_idea = TEX_different_direction_2
+			}
+			hidden_effect = { country_event = { id = texas.7 days = 2 } }
 		}
 
 	}
@@ -853,11 +851,7 @@ focus_tree = {
 			focus = TEX_monarchist_proposal
 		}
 		completion_reward = {
-			swap_ideas = {
-			    remove_idea = TEX_different_direction
-			    add_idea = TEX_different_direction_2
-			}
-			hidden_effect = { country_event = { id = texas.7 days = 2 } }
+			
 		}
 
 	}
@@ -900,7 +894,7 @@ focus_tree = {
 		cost = 10.00
 		x = 0
 		y = 2
-		relative_position_id = TEX_different_direction
+		relative_position_id = TEX_monarchist_proposal
 		prerequisite = {
 			focus = TEX_embrace_texan_monarchism
 		}
@@ -960,7 +954,7 @@ focus_tree = {
 				expire = "2060.1.1"
 				ideology = establishment
 				traits = {
-		
+					TEX_King_of_Texans
 				}
 			}
 			set_cosmetic_tag = TEX_harry_principality
@@ -971,7 +965,7 @@ focus_tree = {
 		id = TEX_texan_king
 		icon = GFX_goal_a_texan_king
 		cost = 10.00
-		x = 52
+		x = 57
 		y = 18
 		#relative_position_id = TEX_great_monarchy_referendum
 		#prerequisite = {
@@ -2719,6 +2713,51 @@ focus_tree = {
 		}
 	}
 	focus = {
+		id = TEX_brit_american_plan
+		icon = GFX_focus_generic_treaty
+		x = -3
+		y = 1
+		relative_position_id = TEX_Grand_Coalition
+		cost = 10.00
+		allow_branch = { has_completed_focus = TEX_Dominion_of_the_Gulf_and_South_Atlantic }
+		prerequisite = {
+			focus = TEX_Grand_Coalition
+		}
+		completion_reward = {
+				country_event = texas.17
+		}
+	}
+	focus = {
+		id = TEX_a_crazy_plan
+		icon = GFX_focus_generic_treaty
+		x = 0
+		y = 1
+		relative_position_id = TEX_brit_american_plan
+		cost = 10.00
+		allow_branch = { has_completed_focus = TEX_Dominion_of_America }
+		prerequisite = {
+			focus = TEX_brit_american_plan
+		}
+		completion_reward = {
+			country_event = texas.19
+		}
+	}
+	focus = {
+		id = TEX_a_visit_to_london
+		icon = GFX_focus_generic_treaty
+		x = 0
+		y = 1
+		relative_position_id = TEX_a_crazy_plan
+		cost = 10.00
+		allow_branch = { has_country_flag = bombed_royal_family }
+		prerequisite = {
+			focus = TEX_a_crazy_plan
+		}
+		completion_reward = {
+			country_event = texas.21
+		}
+	}
+	focus = {
 		id = TEX_a_Devolved_Kingdom
 		icon = GFX_focus_hol_the_foundations_of_defense
 		x = -5
@@ -2854,21 +2893,21 @@ focus_tree = {
 		prerequisite = {
 			focus = TEX_March_Down_Florida
 		}
-		mutually_exclusive = { focus = TEX_We_Must_Go_Further_harry }
 		completion_reward = {
+				country_event = texas.16
 		}
 	}
 	focus = {
 		id = TEX_We_Must_Go_Further_harry
 		icon = GFX_goal_OBX_Royal_Militias
-		x = -2
+		x = 0
 		y = 1
-		relative_position_id = TEX_March_Down_Florida
+		relative_position_id = TEX_Dominion_of_the_Gulf_and_South_Atlantic
 		cost = 10.00
+		allow_branch = { has_completed_focus = TEX_brit_american_plan }
 		prerequisite = {
-			focus = TEX_March_Down_Florida
+			focus = TEX_Dominion_of_the_Gulf_and_South_Atlantic
 		}
-		mutually_exclusive = { focus = TEX_Dominion_of_the_Gulf_and_South_Atlantic }
 		completion_reward = {
 		}
 	}
@@ -3006,24 +3045,22 @@ focus_tree = {
 			focus = TEX_Secure_the_northern_rockies
 		}
 		completion_reward = {
+				country_event = texas.18
 		}
 	}
 	focus = {
 		id = TEX_Even_Further
 		icon = GFX_goal_OBX_Royal_Militias
-		x = 6
-		y = 1
+		x = 9
+		y = -4
 		relative_position_id = TEX_East_into_biden
 		cost = 10.00
-		prerequisite = {
-			focus = TEX_East_into_biden
+		available = {
+			has_completed_focus = TEX_Into_Ohio
+			has_completed_focus = TEX_Secure_the_northern_rockies
+			has_completed_focus = TEX_East_into_biden
 		}
-		prerequisite = {
-			focus = TEX_Into_Ohio
-		}
-		prerequisite = {
-			focus = TEX_Secure_the_northern_rockies
-		}
+		allow_branch = { has_completed_focus = TEX_a_visit_to_london }
 		completion_reward = {
 		}
 	}
@@ -3417,7 +3454,7 @@ focus_tree = {
 	focus = {
 		id = TEX_the_liberal_Kaiser
 		icon = GFX_focus_ger_oppose_hitler
-		x = 5
+		x = 4
 		y = 1
 		relative_position_id = TEX_Only_Allow_2
 		mutually_exclusive = { focus = TEX_the_authoritarian_Kaiser }
@@ -3542,13 +3579,16 @@ focus_tree = {
 			focus = TEX_no_gov_in_social_policy
 		}
 		completion_reward = {
-				country_event = texas.11
+			swap_ideas = {
+				remove_idea = TEX_true_libertarianism
+				add_idea = TEX_enshrine_liberty
+			}
 		}
 	}
 	focus = {
 		id = TEX_pro_monarchism
 		icon = GFX_goal_Every_man_an_Empire
-		x = -5
+		x = -4
 		y = 1
 		relative_position_id = TEX_enshrine_liberty
 		cost = 10.00
@@ -4466,8 +4506,8 @@ focus_tree = {
 		id = TEX_recovering_from_great_frost
 		icon = GFX_goal_Interior
 		cost = 10.00
-		x = 0
-		y = 6
+		x = -2
+		y = 0
 		relative_position_id = TEX_Economy
 		completion_reward = {
 			swap_ideas = {
@@ -4572,8 +4612,8 @@ focus_tree = {
 	focus = {
 		id = TEX_Beto_holds_on
 		icon = GFX_goal_Beto_ORourke_Victory
-		x = -5
-		y = 1
+		x = 0
+		y = 4
 		relative_position_id = TEX_the_oil_bill
 		cost = 10.00
 		prerequisite = {
@@ -4913,8 +4953,8 @@ focus_tree = {
 	focus = {
 		id = TEX_Cruz_Coup
 		icon = GFX_goal_Ted_Cruz_Victory
-		x = 3
-		y = 1
+		x = 4
+		y = 0
 		relative_position_id = TEX_the_oil_bill
 		cost = 10.00
 		prerequisite = {
@@ -5067,7 +5107,7 @@ focus_tree = {
 	focus = {
 		id = TEX_the_hispanic_candidate
 		icon = GFX
-		x = 5
+		x = 20
 		y = 1
 		relative_position_id = TEX_great_monarchy_referendum
 		cost = 10.00
@@ -5078,6 +5118,22 @@ focus_tree = {
 				focus = TEX_european_king
 				focus = TEX_liberal_king
 				#focus = TEX_texan_king
+		}
+		available = {
+				has_country_flag = "Hispanic Monarchy"
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = TEX_assure_the_anglos
+		icon = GFX
+		x = 0
+		y = 1
+		relative_position_id = TEX_the_hispanic_candidate
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_the_hispanic_candidate
 		}
 		available = {
 		}
@@ -5092,7 +5148,7 @@ focus_tree = {
 		id = TEX_red_does_not_stain_the_black_gold
 		icon = GFX
 		x = 25
-		y = 20
+		y = 24
 		#relative_position_id = 
 		cost = 10.00
 		prerequisite = {
