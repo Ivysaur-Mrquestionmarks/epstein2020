@@ -115,7 +115,7 @@ focus_tree = {
 		icon = gfx/icons/RMV/legacyof1995.tga
 		x = 25
 		y = 5
-		cost = 10
+		cost = 2
 		search_filters = { FOCUS_FILTER_POLITICAL } 
 		ai_will_do = {
 			factor = 1
@@ -123,10 +123,99 @@ focus_tree = {
 		prerequisite = {
 			focus = RMV_maybe_we_should_do_something
 		}
+		completion_reward = {
+			add_offsite_building = { type = industrial_complex level = 1 }
 		}
-		completion_reward = 
-			add_ideas = {
-				war_economy           
 		}
-		
+	
+focus = {
+		id = RMV_looking_inward
+		icon = gfx/icons/RMV/lookinginward.tga
+		x = 20
+		y = 6
+		cost = 5
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = {
+			focus = RMV_leagacyof1995
+		}
+		}
+		completion_reward = {
+			add_research_slot = 1           
+		}
 
+focus = {
+		id = RMV_looking_outward
+		icon = gfx/icons/RMV/lookingoutward.tga
+		x = 30
+		y = 6
+		cost = 5
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = {
+			focus = RMV_leagacyof1995
+		}
+		completion_reward = {
+			add_offsite_building = { type = industrial_complex level = 1 }
+		}
+		}
+
+focus = {
+		id = RMV_repurpose_tourist_shops
+		icon = gfx/icons/RMV/tourist.tga
+		x = 20
+		y = 7
+		cost = 10
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = {
+			focus = RMV_looking_inward
+		}
+		}
+		completion_reward = {
+			random_owned_state = {
+				limit = {
+					is_controlled_by = RMV
+				}
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+				    type = industrial_complex
+				    level = 2
+				    instant_build = yes
+				}
+			}           
+		}
+
+		focus = {
+		id = RMV_disarm_the_boats
+		icon = gfx/icons/RMV/lookingoutward.tga
+		x = 20
+		y = 8
+		cost = 10
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = {
+			focus = RMV_leagacyof1995
+		}
+		completion_reward = {
+			random_owned_state = {
+				limit = {
+					is_controlled_by = RMV
+				}
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+				    type = arms_factory
+				    level = 2
+				    instant_build = yes
+				}
+			}   
+		}
+		}
