@@ -237,7 +237,7 @@ focus_tree = {
 
 	}
 	focus = {
-		id = TEX_question_of_government
+		id = TEX_the_election_debate
 		icon = GFX_goal_generic_propaganda
 		x = 0
 		y = 1
@@ -450,17 +450,20 @@ focus_tree = {
 	#
 	#}
 	focus = {
-		id = TEX_constitution
+		id = TEX_allow_the_vote
 		icon = GFX_goal_Allow_Mail_in_Votes
 		cost = 10.00
 		x = -10
 		y = 1
-		relative_position_id = TEX_question_of_government
+		relative_position_id = TEX_the_election_debate
 		prerequisite = {
-			focus = TEX_question_of_government
+			focus = TEX_the_election_debate
 		}
 		mutually_exclusive = {
 			focus = TEX_different_direction
+		}
+		allow_branch = {
+				NOT = { has_completed_focus = TEX_different_direction }
 		}
 		completion_reward = {
 			add_stability = 0.10
@@ -472,6 +475,21 @@ focus_tree = {
 			    ideology = democrat
 			    popularity = 0.1
 			}
+			mark_focus_tree_layout_dirty = yes
+		}
+
+	}
+	focus = {
+		id = TEX_constitution
+		icon = GFX_goal_Allow_Mail_in_Votes
+		cost = 10.00
+		x = 0
+		y = 1
+		relative_position_id = TEX_allow_the_vote
+		prerequisite = {
+			focus = TEX_allow_the_vote
+		}
+		completion_reward = {
 		}
 
 	}
@@ -797,15 +815,26 @@ focus_tree = {
 		cost = 10.00
 		x = 60
 		y = 1
-		relative_position_id = TEX_question_of_government
+		relative_position_id = TEX_the_election_debate
 		prerequisite = {
-			focus = TEX_question_of_government
+			focus = TEX_the_election_debate
+		}
+		allow_branch = {
+				NOT = { has_completed_focus = TEX_allow_the_vote }
 		}
 		mutually_exclusive = {
-			focus = TEX_constitution
+			focus = TEX_allow_the_vote
+		}
+		offset = {
+			x = -60
+			y = 2
+			trigger = {
+				has_completed_focus = TEX_different_direction
+			}
 		}
 		completion_reward = {
 			add_ideas = TEX_different_direction
+			mark_focus_tree_layout_dirty = yes
 		}
 
 	}
@@ -840,8 +869,18 @@ focus_tree = {
 		prerequisite = {
 			focus = TEX_different_direction
 		}
+		allow_branch = {
+				NOT = { has_completed_focus = TEX_crack_down_on_insurgents }
+		}
 		mutually_exclusive = {
-			focus = TEX_constitution
+			focus = TEX_crack_down_on_insurgents
+		}
+		offset = {
+			x = 35
+			y = 0
+			trigger = {
+				has_completed_focus = TEX_monarchist_proposal
+			}
 		}
 		completion_reward = {
 			swap_ideas = {
@@ -856,6 +895,7 @@ focus_tree = {
 					traits = {
 					}
 			}
+			mark_focus_tree_layout_dirty = yes
 			hidden_effect = { country_event = { id = texas.7 days = 2 } }
 		}
 
@@ -6646,13 +6686,38 @@ focus_tree = {
 			focus = TEX_different_direction
 		}
 		mutually_exclusive = {
-			focus = TEX_constitution
+			focus = TEX_monarchist_proposal
+		}
+		allow_branch = {
+				NOT = { has_completed_focus = TEX_monarchist_proposal }
+		}
+		offset = {
+			x = -25
+			y = 0
+			trigger = {
+				has_completed_focus = TEX_crack_down_on_insurgents
+			}
 		}
 		completion_reward = {
 			swap_ideas = {
 			    remove_idea = TEX_different_direction
 			    add_idea = TEX_different_direction_4
 			}
+			mark_focus_tree_layout_dirty = yes
+		}
+
+	}
+	focus = {
+		id = TEX_invite_radicals
+		icon = GFX_focus_usa_voter_registration_act
+		cost = 10.00
+		x = 0
+		y = 1
+		relative_position_id = TEX_crack_down_on_insurgents
+		prerequisite = {
+			focus = TEX_crack_down_on_insurgents
+		}
+		completion_reward = {
 		}
 
 	}
