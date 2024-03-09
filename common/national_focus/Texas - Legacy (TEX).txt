@@ -556,7 +556,7 @@ focus_tree = {
 	focus = {
 		id = TEX_underdog_no_more
 		icon = GFX_goal_Beto_ORourke_Victory
-		x = 12
+		x = 14
 		y = 1
 		relative_position_id = TEX_results
 		cost = 5
@@ -793,7 +793,7 @@ focus_tree = {
 	focus = {
 		id = TEX_out_of_retirement
 		icon = GFX_goal_George_Bush_Victory
-		x = 5
+		x = 7
 		y = 1
 		relative_position_id = TEX_results
 		cost = 5
@@ -2469,6 +2469,38 @@ focus_tree = {
 			focus = TEX_george_republican
 		}
 		completion_reward = {
+				swap_ideas = {
+					remove_idea = TEX_oil_baron_influence
+					add_idea = TEX_friendly_oil_barons
+				}
+		}
+	}
+	focus = {
+		id = TEX_assemble_the_old_cabinet
+		icon = GFX_goal_TEX_angel_bush
+		x = -1
+		y = 1
+		relative_position_id = TEX_befriend_oil_barons
+		cost = 5
+		prerequisite = {
+			focus = TEX_befriend_oil_barons
+		}
+		completion_reward = {
+				add_ideas = TEX_the_old_cabinet
+		}
+	}
+	focus = {
+		id = TEX_dereg_energy
+		icon = GFX_goal_TEX_angel_bush
+		x = 1
+		y = 1
+		relative_position_id = TEX_befriend_oil_barons
+		cost = 5
+		prerequisite = {
+			focus = TEX_befriend_oil_barons
+		}
+		completion_reward = {
+				add_ideas = TEX_dereged_energy
 		}
 	}
 	focus = {
@@ -2520,6 +2552,10 @@ focus_tree = {
 			focus = TEX_george_not_care
 		}
 		completion_reward = {		
+				swap_ideas = {
+					remove_idea = TEX_oil_baron_influence
+					add_idea = TEX_oil_barons_controlled
+				}
 		}
 	}
 	focus = {
@@ -2534,6 +2570,7 @@ focus_tree = {
 			focus = TEX_george_republican
 		}
 		completion_reward = {
+				add_country_leader_trait = TEX_Cowboy
 		}
 	}
 	focus = {
@@ -2550,6 +2587,7 @@ focus_tree = {
 			focus = TEX_a_true_cowboy
 		}
 		completion_reward = {
+				add_ideas = TEX_new_patriot_bill
 		}
 	}
 	focus = {
@@ -2564,6 +2602,7 @@ focus_tree = {
 			focus = TEX_george_republican
 		}
 		completion_reward = {
+				add_ideas = TEX_george_texas1
 		}
 	}
 	focus = {
@@ -2577,6 +2616,10 @@ focus_tree = {
 			focus = TEX_crush_the_texan_trumpists
 		}
 		completion_reward = {
+				swap_ideas = {
+					remove_idea = TEX_george_texas1
+					add_idea = TEX_george_texas2
+				}
 		}
 	}
 	focus = {
@@ -2590,6 +2633,10 @@ focus_tree = {
 			focus = TEX_imprison_cruz
 		}
 		completion_reward = {
+				swap_ideas = {
+					remove_idea = TEX_george_texas2
+					add_idea = TEX_george_texas3
+				}
 		}
 	}
 	focus = {
@@ -2644,10 +2691,67 @@ focus_tree = {
 			focus = TEX_squash_insurgency
 		}
 		mutually_exclusive = { focus = TEX_invade_the_freedom_coalition }
+		mutually_exclusive = { focus = TEX_sit_down_with_mitt }
 		available = {
 			has_war = no
 		}
 		completion_reward = {
+				create_wargoal = {
+					target = AFO
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = UTA
+					type = annex_everything
+				}
+		}
+
+	}
+	focus = {
+		id = TEX_sit_down_with_mitt
+		icon = GFX_goal_put_down_insurgency
+		x = -6
+		y = 1
+		relative_position_id = TEX_squash_insurgency
+		cost = 5
+		prerequisite = {
+			focus = TEX_squash_insurgency
+		}
+		mutually_exclusive = { focus = TEX_invade_the_freedom_coalition }
+		mutually_exclusive = { focus = TEX_invade_the_mormons }
+		available = {
+			has_war = no
+		}
+		completion_reward = {
+				SIN = { country_event = texas.33 }
+				IF = { 
+					limit = { country_exists = MOL }
+					create_wargoal = {
+						target = MOL
+						type = annex_everything
+					}
+				}
+				IF = { 
+					limit = { country_exists = AFO }
+					create_wargoal = {
+						target = AFO
+						type = annex_everything
+					}
+				}
+				IF = { 
+					limit = { country_exists = HAM }
+					create_wargoal = {
+						target = HAM
+						type = annex_everything
+					}
+				}
+				IF = { 
+					limit = { country_exists = MOL }
+					create_wargoal = {
+						target = LAS
+						type = annex_everything
+					}
+				}
 		}
 
 	}
@@ -2662,10 +2766,31 @@ focus_tree = {
 			focus = TEX_squash_insurgency
 		}
 		mutually_exclusive = { focus = TEX_invade_the_mormons }
+		mutually_exclusive = { focus = TEX_sit_down_with_mitt }
 		available = {
 			has_war = no
 		}
 		completion_reward = {
+				create_wargoal = {
+					target = MOL
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = AFO
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = SIN
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = HAM
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = LAS
+					type = annex_everything
+				}
 		}
 
 	}
@@ -2679,6 +2804,7 @@ focus_tree = {
 		prerequisite = {
 			focus = TEX_invade_the_mormons
 			focus = TEX_invade_the_freedom_coalition
+			focus = TEX_sit_down_with_mitt
 		}
 		will_lead_to_war_with = PRA
 		available = {
@@ -2689,30 +2815,93 @@ focus_tree = {
 			    target = PRA
 			    type = annex_everything
 			}
-		}
-	}
-	focus = {
-		id = TEX_secure_the_flank
-		icon = GFX_goal_put_down_insurgency
-		x = 1
-		y = 1
-		relative_position_id = TEX_invade_the_mormons
-		cost = 5
-		prerequisite = {
-			focus = TEX_invade_the_mormons
-			focus = TEX_invade_the_freedom_coalition
-		}
-		will_lead_to_war_with = PRA
-		available = {
-			has_war = no
-		}
-		completion_reward = {
-			declare_war_on = {
-			    target = PRA
-			    type = annex_everything
+			if = { 
+				limit = { country_exists = JFR }
+				create_wargoal = {
+					target = JFR
+					type = annex_everything
+				}
 			}
+			if = { 
+				limit = { country_exists = PRC }
+				create_wargoal = {
+					target = PRC
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = HLY }
+				create_wargoal = {
+					target = HLY
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = CST }
+				create_wargoal = {
+					target = CST
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = ACF }
+				create_wargoal = {
+					target = ACF
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = SAC }
+				create_wargoal = {
+					target = SAC
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = ABG }
+				create_wargoal = {
+					target = ABG
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = NVD }
+				create_wargoal = {
+					target = NVD
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = SIL }
+				create_wargoal = {
+					target = SIL
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = FIR }
+				create_wargoal = {
+					target = FIR
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = ORO }
+				create_wargoal = {
+					target = ORO
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = BJC }
+				create_wargoal = {
+					target = BJC
+					type = annex_everything
+				}
+			}			
 		}
 	}
+	
 	focus = {
 		id = TEX_end_cascadian_nazis
 		icon = GFX_goal_put_down_insurgency
@@ -2728,9 +2917,13 @@ focus_tree = {
 			has_war = no
 		}
 		completion_reward = {
-			declare_war_on = {
-			    target = PRA
-			    type = annex_everything
+			create_wargoal = {
+					target = CAS
+					type = annex_everything
+				}
+			create_wargoal = {
+				target = LIB
+				type = annex_everything
 			}
 		}
 	}
@@ -2749,37 +2942,15 @@ focus_tree = {
 			has_war = no
 		}
 		completion_reward = {
-			declare_war_on = {
-			    target = PRA
-			    type = annex_everything
+			create_wargoal = {
+				target = MON
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = IDA
+				type = annex_everything
 			}
 		}
-	}
-	focus = {
-		id = TEX_eastern_blitzkrieg
-		icon = GFX_goal_attack_csa
-		cost = 5
-		x = 1
-		y = 1
-		relative_position_id = TEX_squash_insurgency
-		prerequisite = {
-			focus = TEX_squash_insurgency
-		}
-		mutually_exclusive = {
-			focus = TEX_restore_order_in_dixie
-		}
-		available = {
-			CSA = {
-				has_country_leader = {
-				    name = "Kanye West"
-				    ruling_only = yes
-				}
-			}
-			has_government = autocratic
-		}
-		completion_reward = {
-		}
-
 	}
 	focus = {
 		id = TEX_restore_order_in_dixie
@@ -2790,9 +2961,6 @@ focus_tree = {
 		cost = 5
 		prerequisite = {
 			focus = TEX_squash_insurgency
-		}
-		mutually_exclusive = {
-			focus = TEX_eastern_blitzkrieg
 		}
 		available = {
 			has_war = no
@@ -2855,7 +3023,6 @@ focus_tree = {
 		cost = 5
 		prerequisite = {
 			focus = TEX_restore_order_in_dixie
-			focus = TEX_eastern_blitzkrieg
 		}
 		available = {
 			has_war = no
@@ -2935,6 +3102,23 @@ focus_tree = {
 		}
 		will_lead_to_war_with = FRA
 		completion_reward = {
+				create_wargoal = {
+					target = FRA
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = NEW
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = NAB
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = WBK
+					type = annex_everything
+				}
+
 		}
 	}
 	focus = {
@@ -2953,6 +3137,60 @@ focus_tree = {
 		}
 		will_lead_to_war_with = FRA
 		completion_reward = {
+				create_wargoal = {
+					target = GLA
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = KMT
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = MIL
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = MNS
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = MIN
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = ISA
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = DET
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = AFS
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = RVR
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = VIR
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = OBX
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = NRA
+					type = annex_everything
+				}	
+				create_wargoal = {
+					target = KFC
+					type = annex_everything
+				}
+
+
 		}
 	}
 	
