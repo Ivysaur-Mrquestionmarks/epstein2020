@@ -793,7 +793,7 @@ focus_tree = {
 	focus = {
 		id = TEX_out_of_retirement
 		icon = GFX_goal_George_Bush_Victory
-		x = 4
+		x = 5
 		y = 1
 		relative_position_id = TEX_results
 		cost = 5
@@ -1735,6 +1735,31 @@ focus_tree = {
 		}
 	}
 	focus = {
+		id = TEX_send_former_rebels_to_rio_grande
+		icon = GFX_goal_End_New_Mexican_Rebels
+		x = -1
+		y = 1
+		relative_position_id = TEX_end_new_mexican_rebels
+		cost =1
+		prerequisite = {
+			focus = TEX_end_new_mexican_rebels
+		}
+		prerequisite = {
+			focus = TEX_provide_for_the_border_patrol
+		}
+		completion_reward = {
+			RIO = { add_manpower = 10000 }
+			57 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = industrial_complex
+    				level = 1
+    				instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
 		id = TEX_cultural_counter_revolution
 		icon = GFX_goal_Cultural_Counter_Revolution
 		x = 2
@@ -1809,7 +1834,7 @@ focus_tree = {
 		x = 2
 		y = 1
 		relative_position_id = TEX_surrounded_on_all_fronts
-		cost = 5
+		cost = 3
 		prerequisite = {
 			focus = TEX_surrounded_on_all_fronts
 			focus = TEX_Trumps_fuel_silo
@@ -1966,7 +1991,7 @@ focus_tree = {
 		x = 0
 		y = 1
 		relative_position_id = TEX_defenders_of_Texan_Stability
-		cost = 5
+		cost = 3
 		prerequisite = {
 			focus = TEX_defenders_of_Texan_Stability
 		}
@@ -1982,12 +2007,66 @@ focus_tree = {
 		}
 	}
 	focus = {
+		id = TEX_ties_with_texan_nra
+		icon = GFX_goal_Encourage_Gun_Owners_To_Enlist
+		x = 0
+		y = 1
+		relative_position_id = TEX_Encourage_Gun_Owners_to_Enlist
+		cost = 3
+		prerequisite = {
+			focus = TEX_Encourage_Gun_Owners_to_Enlist
+		}
+		completion_reward = {
+			286 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = arms_factory
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			swap_ideas = {
+				remove_idea = TEX_NRA_moderate
+				add_idea = TEX_NRA_empowered
+			}
+		}
+	}
+	focus = {
+		id = TEX_provide_for_the_border_patrol
+		icon = GFX_goal_Encourage_Gun_Owners_To_Enlist
+		x = 1
+		y = 1
+		relative_position_id = TEX_ties_with_texan_nra
+		cost = 3
+		prerequisite = {
+			focus = TEX_ties_with_texan_nra
+		}
+		prerequisite = {
+			focus = TEX_send_migrants_back
+		}
+		completion_reward = {
+			306 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+    				type = arms_factory
+    				level = 3
+    				instant_build = yes
+				}
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_1
+				amount = 5000
+			}
+
+		}
+	}
+	focus = {
 		id = TEX_Trumps_fuel_silo
 		icon = GFX_goal_Trumps_Personal_Silo
 		x = 0
 		y = 1
 		relative_position_id = TEX_loyalty_to_trump
-		cost = 5
+		cost = 2
 		prerequisite = {
 			focus = TEX_loyalty_to_trump
 		}
@@ -2021,6 +2100,9 @@ focus_tree = {
 			focus = TEX_loyalty_to_trump
 		}
 		completion_reward = {
+				add_ideas = TEX_pro_life
+				custom_effect_tooltip = TEX_anti_trump_revolt_tooltip_sadface
+				hidden_effect = { country_event = { id = alamo.3 } }
 		}
 	}
 	focus = {
@@ -2034,6 +2116,7 @@ focus_tree = {
 			focus = TEX_Ban_Abortion
 		}
 		completion_reward = {
+				add_ideas = TEX_trumpist_advisors
 		}
 	}
 	focus = {
@@ -2047,6 +2130,7 @@ focus_tree = {
 			focus = TEX_Trumpist_Advisors
 		}
 		completion_reward = {
+				country_event = texas.32
 		}
 	}
 	focus = {
@@ -2060,8 +2144,7 @@ focus_tree = {
 			focus = TEX_Trumps_fuel_silo
 		}
 		completion_reward = {
-			custom_effect_tooltip = TEX_anti_trump_revolt_tooltip_sadface
-			hidden_effect = { country_event = { id = alamo.3 } }
+			add_ideas = TEX_epa_abolished
 		}
 
 	}
@@ -2079,7 +2162,7 @@ focus_tree = {
 			has_civil_war = no
 		}
 		completion_reward = {
-			USA = { country_event = { id = texas_foreign.1 hours = 3 } }
+			USA = { country_event = texas_foreign.1  }
 		}
 	}
 	focus = {
@@ -2092,7 +2175,17 @@ focus_tree = {
 		prerequisite = {
 			focus = TEX_finally_join_trump
 		}
+		prerequisite = {
+			focus = TEX_Extradite_Democrats_and_RINOs
+		}
 		completion_reward = {
+			253 = { transfer_state_to = TEX }
+			252 = { transfer_state_to = TEX }
+			254 = { transfer_state_to = TEX }
+			255 = { transfer_state_to = TEX }
+			256 = { transfer_state_to = TEX }
+			257 = { transfer_state_to = TEX }
+			
 		}
 	}
 	focus = {
@@ -2105,15 +2198,39 @@ focus_tree = {
 		prerequisite = {
 			focus = TEX_finally_join_trump
 		}
+		prerequisite = {
+			focus = TEX_Extradite_Democrats_and_RINOs
+		}
 		completion_reward = {
 			add_ideas = TEX_dont_mess_with_texas
 		}
 
 	}
 	focus = {
+		id = TEX_legalize_lobbying
+		icon = GFX_goal_Dont_Mess_With_Texas
+		x = 0
+		y = 1
+		relative_position_id = TEX_dont_mess_with_texas
+		cost = 4
+		prerequisite = {
+			focus = TEX_dont_mess_with_texas
+		}
+		prerequisite = {
+			focus = TEX_deregulate_the_economy
+		}
+		completion_reward = {
+				swap_ideas = {
+					remove_idea = TEX_econ_dergegulate
+					add_idea = TEX_econ_dergegulate2
+				}
+		}
+
+	}
+	focus = {
 		id = TEX_Texan_command_zone
 		icon = GFX_goal_Buy_Oklahoma
-		x = -1
+		x = -0
 		y = 1
 		relative_position_id = TEX_buy_oklahoma
 		cost = 5
@@ -2124,12 +2241,17 @@ focus_tree = {
 			focus = TEX_dont_mess_with_texas
 		}
 		completion_reward = {
+			set_cosmetic_tag = TEX_CMZ
+			swap_ideas = {
+				remove_idea = TEX_trumpist_advisors
+				add_idea = TEX_trumpist_advisors2
+			}
 		}
 	}
 	focus = {
 		id = TEX_Texan_claim_dixie_for_trump
 		icon = GFX_goal_Buy_Oklahoma
-		x = 0
+		x = -1
 		y = 1
 		relative_position_id = TEX_Texan_command_zone
 		cost = 5
@@ -2137,12 +2259,80 @@ focus_tree = {
 			focus = TEX_Texan_command_zone
 		}
 		completion_reward = {
+				create_wargoal = {
+					target = CSA
+					type = annex_everything
+				}
+				IF = { 
+					limit = { country_exists = KKK }
+					create_wargoal = {
+						target = KKK
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = LGB }
+					create_wargoal = {
+						target = LGB
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = sca }
+					create_wargoal = {
+						target = sca
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = ZIO }
+					create_wargoal = {
+						target = ZIO
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = ARK }
+					create_wargoal = {
+						target = ARK
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = AFR }
+					create_wargoal = {
+						target = AFR
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = RHO }
+					create_wargoal = {
+						target = RHO
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = SCA }
+					create_wargoal = {
+						target = SCA
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = CSB }
+					create_wargoal = {
+						target = CSB
+						type = annex_everything
+					}
+				}
+
 		}
 	}
 	focus = {
-		id = TEX_put_down_nazis_against_trump
+		id = TEX_return_trumpism_to_southwest
 		icon = GFX_goal_Buy_Oklahoma
-		x = 2
+		x = 1
 		y = 1
 		relative_position_id = TEX_Texan_command_zone
 		cost = 5
@@ -2150,6 +2340,58 @@ focus_tree = {
 			focus = TEX_Texan_command_zone
 		}
 		completion_reward = {
+				create_wargoal = {
+						target = HOP
+						type = annex_everything
+				}
+		}
+	}
+	focus = {
+		id = TEX_panhandle_treaty
+		icon = GFX_goal_Buy_Oklahoma
+		x = -1
+		y = 1
+		relative_position_id = TEX_return_trumpism_to_southwest
+		cost = 5
+		prerequisite = {
+			focus = TEX_return_trumpism_to_southwest
+		}
+		prerequisite = {
+			focus = TEX_Texan_claim_dixie_for_trump
+		}
+		completion_reward = {
+				FLO = { country_event = texas.32 }
+
+		}
+	}
+	focus = {
+		id = TEX_southern_command_center
+		icon = GFX_goal_Buy_Oklahoma
+		x = 0
+		y = 1
+		relative_position_id = TEX_panhandle_treaty
+		cost = 5
+		prerequisite = {
+			focus = TEX_panhandle_treaty
+		}
+		completion_reward = {
+				every_state = {
+						limit = { is_core_of = CSA }
+						add_core_of = TEX
+				}
+				every_state = {
+						limit = { is_core_of = HOP }
+						add_core_of = TEX
+				}
+				every_state = {
+						limit = { is_core_of = TOH }
+						add_core_of = TEX
+				}
+				every_state = {
+						limit = { is_core_of = NAV }
+						add_core_of = TEX
+				}
+				set_cosmetic_tag = TEX_CSA_USA
 		}
 	}
 	focus = {
