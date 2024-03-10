@@ -747,6 +747,7 @@ country_event = {
 	fire_only_once = yes
 	option = { #No
 		name = texas.40.a
+		country_event = { id = texas.45 days = 5 }
 	}
 	option = { #Yes
 		name = texas.40.b
@@ -754,6 +755,7 @@ country_event = {
 			flag = oil_bill
 			value = 1
 		}
+		country_event = { id = texas.45 days = 5 }
 	}
 }
 #Beto Retains Control
@@ -764,9 +766,12 @@ country_event = {
 	#picture =
 	is_triggered_only = yes
 	fire_only_once = yes
-	option = { #No
+	option = {
 		name = texas.41.a
 		clr_country_flag = oil_bill
+		set_country_flag = beto_held_on
+		mark_focus_tree_layout_dirty = yes
+		complete_national_focus = TEX_Beto_holds_on
 	}
 }
 #Republicans Coup
@@ -780,6 +785,9 @@ country_event = {
 	option = { #No
 		name = texas.42.a
 		clr_country_flag = oil_bill
+		set_country_flag = cruz_coup
+		mark_focus_tree_layout_dirty = yes
+		complete_national_focus = TEX_Cruz_Coup
 	}
 }
 #Moderate oil barons coup
@@ -790,9 +798,13 @@ country_event = {
 	#picture =
 	is_triggered_only = yes
 	fire_only_once = yes
-	option = { #No
+	option = { 
 		name = texas.43.a
 		clr_country_flag = oil_bill
+		set_country_flag = oil_barons_moderates
+		mark_focus_tree_layout_dirty = yes
+		complete_national_focus = TEX_red_does_not_stain_the_black_gold
+		complete_national_focus = TEX_the_council
 	}
 }
 #Hardliner oil barons coup
@@ -806,6 +818,92 @@ country_event = {
 	option = { #No
 		name = texas.44.a
 		clr_country_flag = oil_bill
+		set_country_flag = oil_barons_radicals
+		mark_focus_tree_layout_dirty = yes
+		
+		complete_national_focus = TEX_red_does_not_stain_the_black_gold
+		complete_national_focus = TEX_the_biggest_one_of_all
+	}
+}
+#Oil_bill_passes
+country_event = {
+	id = texas.45
+	title = texas.45.t
+	desc = texas.45.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #No
+		name = texas.45.a
+		complete_national_focus = TEX_the_oil_bill
+		hidden_effect = {
+			IF = {
+				limit = { 
+					has_country_flag = {
+						flag = oil_bill
+						value < 2
+					}
+				}
+				country_event = { id = texas.41 days = 5 }
+			}
+			IF = {
+				limit = { 
+					has_country_flag = {
+						flag = oil_bill
+						#OR = {
+							value = 2
+						#	value = 3
+						#}
+					}
+				}
+				country_event = { id = texas.42 days = 5 }
+			}
+			IF = {
+				limit = { 
+					has_country_flag = {
+						flag = oil_bill
+						#OR = {
+						#	value = 2
+							value = 3
+						#}
+					}
+				}
+				country_event = { id = texas.42 days = 5 }
+			}
+			IF = {
+				limit = { 
+					has_country_flag = {
+						flag = oil_bill
+						#OR = {
+						#	value = 4
+							value = 5
+						#}
+					}
+				}
+				country_event = { id = texas.43 days = 5 }
+			}
+			IF = {
+				limit = { 
+					has_country_flag = {
+						flag = oil_bill
+						#OR = {
+							value = 4
+						#	value = 5
+						#}
+					}
+				}
+				country_event = { id = texas.43 days = 5 }
+			}
+			IF = {
+				limit = { 
+					has_country_flag = {
+						flag = oil_bill
+						value = 6
+					}
+				}
+				country_event = { id = texas.44 days = 5 }
+			}
+		}
 	}
 }
 

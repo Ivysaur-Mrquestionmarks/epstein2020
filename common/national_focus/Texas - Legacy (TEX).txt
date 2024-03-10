@@ -735,7 +735,7 @@ focus_tree = {
 		x = -1
 		y = 1
 		relative_position_id = TEX_crack_down_on_trumpists
-		cost = 5
+		cost = 20
 		prerequisite = {
 			focus = TEX_crack_down_on_trumpists
 		}
@@ -746,48 +746,6 @@ focus_tree = {
 		}
 		select_effect = { country_event = texas.34 }
 		completion_reward = {
-				IF = {
-					limit = { 
-						has_country_flag = {
-							flag = oil_bill
-							value < 2
-						}
-					}
-					country_event = texas.41
-				}
-				ELSE_IF = {
-					limit = { 
-						has_country_flag = {
-							flag = oil_bill
-							OR = {
-								value = 2
-								value = 3
-							}
-						}
-					}
-					country_event = texas.42
-				}
-				ELSE_IF = {
-					limit = { 
-						has_country_flag = {
-							flag = oil_bill
-							OR = {
-								value = 4
-								value = 5
-							}
-						}
-					}
-					country_event = texas.43
-				}
-				ELSE_IF = {
-					limit = { 
-						has_country_flag = {
-							flag = oil_bill
-							value = 6
-						}
-					}
-					country_event = texas.44
-				}
 				custom_effect_tooltip = tex_oil_bill_tt
 				
 		}
@@ -6432,7 +6390,10 @@ focus_tree = {
 		cost = 5
 		prerequisite = {
 		}
-		allow_branch = { NOT = { has_completed_focus = TEX_different_direction } }
+		allow_branch = { 
+				NOT = { has_completed_focus = TEX_different_direction }
+				#has_country_flag = cruz_coup
+		}
 		available = {
 				has_country_flag = cruz_coup
 		}
@@ -7303,13 +7264,23 @@ focus_tree = {
 		x = 25
 		y = 24
 		#relative_position_id = 
-		allow_branch = { NOT = { has_completed_focus = TEX_different_direction } }
+		allow_branch = { 
+			NOT = { has_completed_focus = TEX_different_direction }
+			#OR = {
+			#	has_country_flag = oil_barons_moderates
+			#	has_country_flag = oil_barons_radicals
+			#}
+				
+		}
 		cost = 5
 		prerequisite = {
 			#focus = 
 		}
 		available = {
-				has_country_flag = oil_barons
+			OR = {
+				has_country_flag = oil_barons_moderates
+				has_country_flag = oil_barons_radicals
+			}
 		}
 		completion_reward = {
 		}
