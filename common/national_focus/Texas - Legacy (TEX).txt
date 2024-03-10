@@ -595,6 +595,7 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
+				add_ideas = TEX_progressive_texas
 		}
 	}
 	focus = {
@@ -610,6 +611,24 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
+				IF = {
+					limit = { 
+						NOT = { 
+							has_idea = TEX_workers_rights
+							has_idea = TEX_workers_rights2
+						}
+					}
+					add_ideas = TEX_workers_rights
+				}
+				ELSE_IF = {
+					limit = { 
+						has_idea = TEX_workers_rights
+					}
+					swap_ideas = {
+						remove_idea = TEX_workers_rights
+						add_idea = TEX_workers_rights
+					}
+				}
 		}
 	}
 	focus = {
@@ -625,6 +644,24 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
+				IF = {
+					limit = { 
+						NOT = { 
+							has_idea = TEX_workers_rights
+							has_idea = TEX_workers_rights2
+						}
+					}
+					add_ideas = TEX_workers_rights
+				}
+				ELSE_IF = {
+					limit = { 
+						has_idea = TEX_workers_rights
+					}
+					swap_ideas = {
+						remove_idea = TEX_workers_rights
+						add_idea = TEX_workers_rights
+					}
+				}
 		}
 	}
 	focus = {
@@ -640,6 +677,7 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
+				add_ideas = TEX_free_healthcare
 		}
 	}
 	focus = {
@@ -658,6 +696,12 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
+				remove_ideas = TEX_New_Mexican_Terrorism
+				310 = { add_core_of = TEX }
+				249 = { add_core_of TEX }
+				335 = { add_core_of = TEX }
+				add_stability = 0.1
+
 		}
 	}
 	focus = {
@@ -676,6 +720,13 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
+				remove_ideas = TEX_Oklahoma_Rebels
+				258 = { add_core_of = TEX }
+				add_popularity = {
+					ideology = republican
+					popularity = -0.5
+				}
+				
 		}
 	}
 	focus = {
@@ -693,7 +744,52 @@ focus_tree = {
 		}
 		available = {
 		}
+		select_effect = { country_event = texas.34 }
 		completion_reward = {
+				IF = {
+					limit = { 
+						has_country_flag = {
+							flag = oil_bill
+							value < 2
+						}
+					}
+					country_event = texas.41
+				}
+				ELSE_IF = {
+					limit = { 
+						has_country_flag = {
+							flag = oil_bill
+							OR = {
+								value = 2
+								value = 3
+							}
+						}
+					}
+					country_event = texas.42
+				}
+				ELSE_IF = {
+					limit = { 
+						has_country_flag = {
+							flag = oil_bill
+							OR = {
+								value = 4
+								value = 5
+							}
+						}
+					}
+					country_event = texas.43
+				}
+				ELSE_IF = {
+					limit = { 
+						has_country_flag = {
+							flag = oil_bill
+							value = 6
+						}
+					}
+					country_event = texas.44
+				}
+				custom_effect_tooltip = tex_oil_bill_tt
+				
 		}
 	}
 	focus = {
@@ -2721,6 +2817,7 @@ focus_tree = {
 		mutually_exclusive = { focus = TEX_invade_the_mormons }
 		available = {
 			has_war = no
+			SIN = { has_completed_focus = Remember_2012 }
 		}
 		completion_reward = {
 				SIN = { country_event = texas.33 }
@@ -3187,6 +3284,10 @@ focus_tree = {
 				}	
 				create_wargoal = {
 					target = KFC
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = NPA
 					type = annex_everything
 				}
 
@@ -4094,17 +4195,17 @@ focus_tree = {
 		cost = 5
 		prerequisite = {
 			focus = TEX_retake_Virginia_colony
+		}
+		completion_reward = {
+			add_country_leader_trait = TEX_King_of_Appalachia
 			create_wargoal = {
-					target = NRA
-					type = annex_everything
+				target = NRA
+				type = annex_everything
 			}	
 			create_wargoal = {
 				target = KFC
 				type = annex_everything
 			}
-		}
-		completion_reward = {
-			add_country_leader_trait = TEX_King_of_Appalachia
 		}
 	}
 	focus = {
@@ -5632,8 +5733,8 @@ focus_tree = {
 		id = TEX_cowboy_country
 		icon = GFX_goal_Generic_Gunslinger
 		cost = 5
-		x = 1
-		y = 5
+		x = 15
+		y = 0
 		relative_position_id = TEX_recovering_from_great_frost
 		available = {
 			OR = {
