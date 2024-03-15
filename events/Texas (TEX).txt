@@ -464,6 +464,7 @@ country_event = {
 	fire_only_once = yes
 	option = {
 		name = texas.26.a
+		add_ideas = TEX_german_language
 	}
 }
 #Civil War!
@@ -474,8 +475,165 @@ country_event = {
 	#picture =
 	is_triggered_only = yes
 	fire_only_once = yes
-	option = {
+	immediate = {
+		hidden_effect = {
+			release = OKL
+			release = LOU
+			release = NMX
+			LOU = {
+				transfer_state = 312
+				transfer_state = 610
+				transfer_state = 28
+				every_owned_state = {
+					add_core_of = LOU
+				}
+				
+			}
+			OKL = {
+				transfer_state = 272
+				transfer_state = 259
+				transfer_state = 278
+				transfer_state = 251
+				transfer_state = 270
+				every_owned_state = {
+					add_core_of = OKL
+				}
+			}
+			NMX = {
+				transfer_state = 249
+				transfer_state = 310
+				transfer_state = 301
+				transfer_state = 335
+				every_owned_state = {
+					add_core_of = NMX
+				}
+			}
+			BSH = {
+				transfer_state = 286
+				transfer_state = 274
+				transfer_state = 84
+				transfer_state = 80
+				transfer_state = 306
+				every_state = {
+					limit = { is_core_of = TEX }
+					add_core_of = BSH
+				}
+			}
+			transfer_units_fraction= {
+			    target = OKL
+			    size = 0.1
+ 			    stockpile_ratio = 0.1
+			    army_ratio = 0.1
+			    navy_ratio = 0.0
+			    air_ratio = 0.3
+			    keep_unit_leaders_trigger = {
+			    	OR = {
+ 			    		has_trait = war_hero
+ 			    		has_trait = armor_officer
+					has_trait = old_guard
+					has_trait = infantry_officer
+ 			    	}
+			   }
+			}
+			transfer_units_fraction= {
+			    target = BSH
+			    size = 0.35
+ 			    stockpile_ratio = 0.2
+			    army_ratio = 0.2
+			    navy_ratio = 0.0
+			    air_ratio = 0.3
+			    keep_unit_leaders_trigger = {
+			    	OR = {
+ 			    		has_trait = war_hero
+ 			    		has_trait = armor_officer
+					has_trait = old_guard
+					has_trait = infantry_officer
+ 			    	}
+			   }
+			}
+			transfer_units_fraction= {
+			    target = LOU
+			    size = 0.05
+ 			    stockpile_ratio = 0.1
+			    army_ratio = 0.1
+			    navy_ratio = 0.5
+			    air_ratio = 0.0
+			    keep_unit_leaders_trigger = {
+			    	OR = {
+ 			    		has_trait = war_hero
+ 			    		has_trait = armor_officer
+					has_trait = old_guard
+					has_trait = infantry_officer
+ 			    	}
+			   }
+			}
+			transfer_units_fraction= {
+			    target = NMX
+			    size = 0.1
+ 			    stockpile_ratio = 0.1
+			    army_ratio = 0.1
+			    navy_ratio = 0.0
+			    air_ratio = 0.0
+			    keep_unit_leaders_trigger = {
+			    	OR = {
+ 			    		has_trait = war_hero
+ 			    		has_trait = armor_officer
+					has_trait = old_guard
+					has_trait = infantry_officer
+ 			    	}
+			   }
+			}
+			
+			
+		}
+	}
+	option = { #deal with the breakaways later
 		name = texas.27.a
+		declare_war_on = {
+		    target = BSH
+		    type = annex_everything
+		}
+		set_country_flag = deal_with_breakaways_later
+	}
+	option = { #damn them all!
+		name = texas.27.b
+		declare_war_on = {
+		    target = OKL
+		    type = annex_everything
+		}
+		declare_war_on = {
+		    target = LOU
+		    type = annex_everything
+		}
+		declare_war_on = {
+		    target = NMX
+		    type = annex_everything
+		}
+		declare_war_on = {
+		    target = BSH
+		    type = annex_everything
+		}
+		country_event = texas.58
+	}
+	option = { for freedom! (be revolters)
+		name = texas.27.c 
+		declare_war_on = {
+		    target = OKL
+		    type = annex_everything
+		}
+		declare_war_on = {
+		    target = LOU
+		    type = annex_everything
+		}
+		declare_war_on = {
+		    target = NMX
+		    type = annex_everything
+		}
+		declare_war_on = {
+		    target = BSH
+		    type = annex_everything
+		}
+		country_event = texas.59
 	}
 }
 #George Bush Coup Succeeds
@@ -491,6 +649,65 @@ country_event = {
 		set_country_flag = texan_bush_coup
 		mark_focus_tree_layout_dirty = yes
 		complete_national_focus = TEX_bush_coup
+	}
+}
+#Rio Grande Loyalty Question
+country_event = {
+	id = texas.58
+	title = texas.58.t
+	desc = texas.58.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #stay loyal
+		name = texas.58.a
+	}
+	option = { #revolt
+		name = texas.58.b
+		RIO = { 
+			change_tag_from = TEX
+		}
+		RIO = {
+			declare_war_on = {
+				target = TEX
+				type = annex_everything
+			}
+			transfer_state = 314
+			transfer_state = 57
+			transfer_state = 43
+			transfer_state = 50
+			set_country_flag = rio_revolt
+			mark_focus_tree_layout_dirty = yes
+		}
+		every_state = {
+			limit = { is_core_of = TEX }
+			add_core_of = RIO
+		}
+	}
+}
+#Become a Minor Country in Civil War
+country_event = {
+	id = texas.59
+	title = texas.59.t
+	desc = texas.59.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { for freedom! (louisiana)
+		name = texas.59.a  
+		LOU = { change_tag_from = TEX }
+	}
+	option = { for freedom! (oklahoma)
+		name = texas.59.b 
+		OKL = { change_tag_from = TEX }
+	}
+	option = { for freedom! (nmx)
+		name = texas.59.c 
+		NMX = { change_tag_from = TEX }
+	}
+	option = { for freedom! (bush)
+		name = texas.59.e 
+		BSH = { change_tag_from = TEX }
 	}
 }
 #George Bush wants to hold elections, public wants him as monarch
