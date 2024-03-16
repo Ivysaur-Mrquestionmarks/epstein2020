@@ -12677,11 +12677,12 @@ focus_tree = {
 			}
 			create_country_leader = {
 				name = "George W. Bush"
-				picture = "gfx/leaders/TEX/Evil_George_Bush"
+				picture = "gfx/leaders/TEX/George_Bush_Coup.dds"
 				ideology = populist_conservatism
 				expire = "2060.1.1"
 				traits = {}
 			}
+			drop_cosmetic_tag = yes
 		}
 	}
 	focus = {
@@ -12786,6 +12787,7 @@ focus_tree = {
 			focus = TEX_unban_political_parties
 		}
 		completion_reward = {
+			country_event = texas.60
 		}
 
 	}
@@ -12796,7 +12798,7 @@ focus_tree = {
 		x = 0
 		y = 1
 		relative_position_id = TEX_back_to_elections
-		available = { has_country_flag = texan_monarch }
+		allow_branch = { has_country_flag = texan_monarch }
 		prerequisite = {
 			focus = TEX_back_to_elections
 			focus = TEX_back_to_elections
@@ -12837,6 +12839,7 @@ focus_tree = {
 		
 				}
 			}
+			set_cosmetic_tag = TEX_american_empire
 		}
 	}
 	focus = {
@@ -12849,12 +12852,20 @@ focus_tree = {
 		prerequisite = {
 			focus = TEX_texan_king
 		}
+		available = { 
+			FLO = { 
+				OR = {
+					has_completed_focus =  FLO_fuentes
+					has_completed_focus =  FLO_gaetz
+				}
+			} 
+		}
 		mutually_exclusive = {
 				focus = TEX_negotiate_for_jeb
 				focus = TEX_funeral_for_jeb
 		}
 		completion_reward = {
-			
+			country_event = texas.61
 		}
 	}
 	focus = {
@@ -12867,12 +12878,21 @@ focus_tree = {
 		prerequisite = {
 			focus = TEX_texan_king
 		}
+		available = { 
+			FLO = { 
+				OR = {
+					has_completed_focus =  FLO_scott
+					has_completed_focus =  FLO_desantis2
+					has_completed_focus =  FLO_rubio
+				}
+			} 
+		}
 		mutually_exclusive = {
 				focus = TEX_rescue_jeb
 				focus = TEX_funeral_for_jeb
 		}
 		completion_reward = {
-			
+			country_event = texas.63
 		}
 	}
 	focus = {
@@ -12885,16 +12905,17 @@ focus_tree = {
 		prerequisite = {
 			focus = TEX_texan_king
 		}
+		available = { FLO = { has_completed_focus = FLO_barron } }
 		mutually_exclusive = {
 				focus = TEX_negotiate_for_jeb
 				focus = TEX_rescue_jeb
 		}
 		completion_reward = {
-			
+			country_event = texas.62
 		}
 	}
 	focus = {
-		id = TEX_keep_texas_neutral
+		id = TEX_declare_independence
 		icon = GFX_goal_a_texan_king
 		cost = 5
 		x = 0
@@ -12913,9 +12934,9 @@ focus_tree = {
 		cost = 5
 		x = 0
 		y = 1
-		relative_position_id = TEX_keep_texas_neutral
+		relative_position_id = TEX_declare_independence
 		prerequisite = {
-			focus = TEX_keep_texas_neutral
+			focus = TEX_declare_independence
 		}
 		completion_reward = {
 			
@@ -12927,9 +12948,9 @@ focus_tree = {
 		cost = 5
 		x = -2
 		y = 1
-		relative_position_id = TEX_keep_texas_neutral
+		relative_position_id = TEX_declare_independence
 		prerequisite = {
-			focus = TEX_keep_texas_neutral
+			focus = TEX_declare_independence
 		}
 		completion_reward = {
 			
@@ -12941,16 +12962,16 @@ focus_tree = {
 		cost = 5
 		x = 2
 		y = 1
-		relative_position_id = TEX_keep_texas_neutral
+		relative_position_id = TEX_declare_independence
 		prerequisite = {
-			focus = TEX_keep_texas_neutral
+			focus = TEX_declare_independence
 		}
 		completion_reward = {
 			
 		}
 	}
 	focus = {
-		id = TEX_declare_independence
+		id = TEX_get_international_recognition
 		icon = GFX_goal_a_texan_king
 		cost = 5
 		x = 0
@@ -12970,24 +12991,10 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = TEX_get_international_recognition
-		icon = GFX_goal_a_texan_king
-		cost = 5
-		x = 0
-		y = 1
-		relative_position_id = TEX_declare_independence
-		prerequisite = {
-			focus = TEX_declare_independence
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
 		id = TEX_celebrate_the_kingdom
 		icon = GFX_goal_a_texan_king
 		cost = 5
-		x = 0
+		x = -1
 		y = 1
 		relative_position_id = TEX_get_international_recognition
 		prerequisite = {
@@ -12995,6 +13002,173 @@ focus_tree = {
 		}
 		completion_reward = {
 			
+		}
+	}
+	focus = {
+		id = TEX_texan_federation
+		icon = GFX_goal_a_texan_king
+		cost = 5
+		x = 1
+		y = 1
+		relative_position_id = TEX_get_international_recognition
+		prerequisite = {
+			focus = TEX_get_international_recognition
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = TEX_claim_south_mississippi
+		icon = GFX_goal_a_texan_king
+		cost = 5
+		x = 2
+		y = 1
+		relative_position_id = TEX_texan_federation
+		prerequisite = {
+			focus = TEX_texan_federation
+		}
+		will_lead_to_war_with = KKK
+		will_lead_to_war_with = LGB
+		will_lead_to_war_with = CSA
+		completion_reward = {
+			279 = { add_core_of = OKL }
+			604 = { add_core_of = LOU }
+			536 = { add_core_of = OKL }
+			535 = { add_core_of = OKL }
+			505 = { add_core_of = OKL }
+			267 = { add_core_of = OKL }
+			269 = { add_core_of = OKL }
+			set_country_flag = bush_dixie_war
+			IF = { 
+				limit = { country_exists = LGB }
+				create_wargoal = {
+					target = LGB
+					type = annex_everything
+				}
+			}
+			IF = { 
+				limit = { country_exists = KKK } 
+				create_wargoal = {
+					target = KKK
+					type = annex_everything
+				}
+			}
+			IF = { 
+				limit = { country_exists = CSA } 
+				create_wargoal = {
+					target = CSA
+					type = annex_everything
+				}
+			}
+			IF = { 
+				limit = { country_exists = ARK }
+				create_wargoal = {
+					target = ARK
+					type = annex_everything
+				}
+			}
+			IF = { 
+				limit = { country_exists = ZIO }
+				create_wargoal = {
+					target = ZIO
+					type = annex_everything
+				}
+			}
+			IF = { 
+				limit = { country_exists = AFR }
+				create_wargoal = {
+					target = AFR
+					type = annex_everything
+				}
+			}
+			IF = { 
+				limit = { country_exists = CSB }
+				create_wargoal = {
+					target = CSB
+					type = annex_everything
+				}
+			}
+			IF = { 
+				limit = { country_exists = SCA }
+				create_wargoal = {
+					target = SCA
+					type = annex_everything
+				}
+			}
+		}
+	}
+	focus = {
+		id = TEX_claim_badlands
+		icon = GFX_goal_a_texan_king
+		cost = 5
+		x = -2
+		y = 1
+		relative_position_id = TEX_texan_federation
+		prerequisite = {
+			focus = TEX_texan_federation
+		}
+		completion_reward = {
+			365 = {
+				add_core_of = NMX
+			}
+			61 = {
+				add_core_of = NMX
+			}
+			515 = {
+				add_core_of = NMX
+			}
+			512 = {
+				add_core_of = NMX
+			}
+			IF = {
+				limit = { 515 = { is_owned_by = UTA } }
+				UTA = { country_event = texas.69 }
+			}
+			IF = {
+				limit = { 515 = { is_owned_by = HOP } }
+				HOP = { country_event = texas.69 }
+			}
+		}
+	}
+	focus = {
+		id = TEX_a_deal_with_trump
+		icon = GFX_goal_a_texan_king
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = TEX_texan_federation
+		prerequisite = {
+			focus = TEX_texan_federation
+		}
+		completion_reward = {
+			252 = {
+				transfer_state_to = OKL
+			}
+			253 = {
+				transfer_state_to = OKL
+			}
+			254 = {
+				transfer_state_to = OKL
+			}
+			255 = {
+				transfer_state_to = OKL
+			}
+			256 = {
+				transfer_state_to = OKL
+			}
+			257 = {
+				transfer_state_to = OKL
+			}
+			OKL = {
+				every_owned_state = {
+					add_core_of = OKL
+				}
+			}
+			USA = { 
+				add_manpower = 50000
+				add_offsite_building = { type = arms_factory level = 5 }
+			}
 		}
 	}
 	focus = {

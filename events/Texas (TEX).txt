@@ -1778,8 +1778,6 @@ country_event = {
 		316 = { transfer_state_to = TEX }
 	}
 }
-
-
 #execution of cheney
 country_event = {
 	id = texas.57
@@ -1790,6 +1788,183 @@ country_event = {
 	fire_only_once = yes
 	option = { #BYE BYE
 		name = texas.57.a
+		add_manpower = -1
+	}
+}
+
+
+#new elections (or is it?)
+country_event = {
+	id = texas.60
+	title = texas.60.t
+	desc = texas.60.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = texas.60.a
+		set_country_flag = texan_monarch
+		mark_focus_tree_layout_dirty = yes
+		complete_national_focus = TEX_a_different_plan
+		complete_national_focus = TEX_texan_king
+	}
+}
+#rescue jeb
+country_event = {
+	id = texas.61
+	title = texas.61.t
+	desc = texas.61.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = texas.61.a
+		add_ideas = TEX_jeb
+	}
+}
+#jeb funeral
+country_event = {
+	id = texas.62
+	title = texas.62.t
+	desc = texas.62.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = texas.62.a
+		add_ideas = TEX_jeb_martyr
+	}
+}
+#negotiate for jeb 
+country_event = {
+	id = texas.63
+	title = texas.63.t
+	desc = texas.63.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #prisoner exchange
+		name = texas.63.a
+		FLO = { country_event = texas.64 }
+	}
+	option = { #economic concessions
+		name = texas.63.b
+		FLO = { country_event = texas.65 }
+	}
+	option = { #resource rights
+		name = texas.63.c
+		FLO = { country_event = texas.66 }
+	}
+}
+#flo pov of prisoner exchange 
+country_event = {
+	id = texas.64
+	title = texas.64.t
+	desc = texas.64.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #yes
+		name = texas.64.a
+		add_manpower = 5000
+		TEX = { country_event = texas.67 }
+	}
+	option = { #no
+		name = texas.64.b 
+		TEX = { country_event = texas.68 }
+	}
+}
+#flo pov of econ concessions 
+country_event = {
+	id = texas.65
+	title = texas.65.t
+	desc = texas.65.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #yes
+		name = texas.65.a
+		add_ideas = TEX_econ_concessions_from_tex
+		TEX = { add_ideas = TEX_econ_concessions_to_flo }
+		TEX = { country_event = texas.67 }
+	}
+	option = { #no
+		name = texas.65.b 
+		TEX = { country_event = texas.68 }
+	}
+}
+#flo pov of resource rights 
+country_event = {
+	id = texas.66
+	title = texas.66.t
+	desc = texas.66.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #yes
+		name = texas.66.a
+		give_resource_rights = { receiver = FLO state = 53 }
+		TEX = { country_event = texas.67 }
+	}
+	option = { #no
+		name = texas.66.b
+		TEX = { country_event = texas.68 }
+	}
+}
+#jeb released
+country_event = {
+	id = texas.67
+	title = texas.67.t
+	desc = texas.67.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #yes
+		name = texas.67.a
+		add_ideas = TEX_jeb
+	}
+}
+#negotiations rejected
+country_event = {
+	id = texas.68
+	title = texas.68.t
+	desc = texas.68.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #womp womp
+		name = texas.68.a
+		country_event = { id = texas.61 days = 5 }
+	}
+}
+
+#texas demands new mexican lands!
+country_event = {
+	id = texas.69
+	title = texas.689.t
+	desc = texas.689.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = no
+	option = { #we must give in
+		name = texas.69.a
+		NMX = {
+			transfer_state = 40
+			transfer_state = 352
+			transfer_state = 365
+			transfer_state = 515
+			transfer_state = 61
+			transfer_state = 512
+		}
+	}
+	option = { #over my dead body!
+		name = texas.69.b
+		TEX = {
+			create_wargoal = {
+				target = ROOT
+				type = annex_everything
+			}
+		}
 	}
 }
 
