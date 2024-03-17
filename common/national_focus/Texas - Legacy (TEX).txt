@@ -12856,7 +12856,7 @@ focus_tree = {
 		id = TEX_rescue_jeb
 		icon = GFX_goal_a_texan_king
 		cost = 5
-		x = 6
+		x = 5
 		y = 1
 		relative_position_id = TEX_texan_king
 		prerequisite = {
@@ -12882,7 +12882,7 @@ focus_tree = {
 		id = TEX_negotiate_for_jeb
 		icon = GFX_goal_a_texan_king
 		cost = 5
-		x = 8
+		x = 7
 		y = 1
 		relative_position_id = TEX_texan_king
 		prerequisite = {
@@ -12909,7 +12909,7 @@ focus_tree = {
 		id = TEX_funeral_for_jeb
 		icon = GFX_goal_a_texan_king
 		cost = 5
-		x = 10
+		x = 3
 		y = 1
 		relative_position_id = TEX_texan_king
 		prerequisite = {
@@ -12927,7 +12927,7 @@ focus_tree = {
 	focus = {
 		id = TEX_declare_independence
 		icon = GFX_goal_a_texan_king
-		cost = 5
+		cost = 0
 		x = 0
 		y = 1
 		relative_position_id = TEX_texan_king
@@ -12935,7 +12935,7 @@ focus_tree = {
 			focus = TEX_texan_king
 		}
 		completion_reward = {
-			
+			news_event = texas.71
 		}
 	}
 	focus = {
@@ -12949,7 +12949,7 @@ focus_tree = {
 			focus = TEX_declare_independence
 		}
 		completion_reward = {
-			
+			USA = { give_guarantee = TEX }
 		}
 	}
 	focus = {
@@ -12963,7 +12963,7 @@ focus_tree = {
 			focus = TEX_declare_independence
 		}
 		completion_reward = {
-			
+			FRA = { give_guarantee = TEX }
 		}
 	}
 	focus = {
@@ -12977,7 +12977,7 @@ focus_tree = {
 			focus = TEX_declare_independence
 		}
 		completion_reward = {
-			
+			PRA = { give_guarantee = TEX }
 		}
 	}
 	focus = {
@@ -13251,42 +13251,33 @@ focus_tree = {
 		id = TEX_welcome_moderates
 		icon = GFX_goal_a_texan_king
 		cost = 5
-		x = 4
+		x = 10
 		y = 1
 		relative_position_id = TEX_texan_king
 		prerequisite = {
 			focus = TEX_texan_king
 		}
 		completion_reward = {
-			
+			add_ideas = TEX_moderate_texas
 		}
 	}
 	focus = {
 		id = TEX_land_of_moderatism
 		icon = GFX_goal_a_texan_king
 		cost = 5
-		x = 0
-		y = 2
-		relative_position_id = TEX_welcome_moderates
-		prerequisite = {
-			focus = TEX_welcome_moderates
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_banish_extremists
-		icon = GFX_goal_a_texan_king
-		cost = 5
 		x = -1
-		y = 3
+		y = 1
 		relative_position_id = TEX_welcome_moderates
 		prerequisite = {
 			focus = TEX_welcome_moderates
 		}
 		completion_reward = {
-			
+			swap_ideas = {
+				remove_idea = TEX_moderate_texas
+				add_idea = TEX_moderate_texas2
+			}
+			add_manpower = 5000
+			add_stability = 0.05
 		}
 	}
 	focus = {
@@ -13294,13 +13285,136 @@ focus_tree = {
 		icon = GFX_goal_a_texan_king
 		cost = 5
 		x = 1
-		y = 3
+		y = 1
 		relative_position_id = TEX_welcome_moderates
 		prerequisite = {
 			focus = TEX_welcome_moderates
 		}
 		completion_reward = {
+			country_event = texas.70
+			hidden_effect = {
+				create_country_leader = {
+					name = "George II"
+					picture = "gfx/leaders/TEX/Portrait_George_Bush_Monarch_MAA.png"
+					expire = "2060.1.1"
+					ideology = neocon
+					traits = {
 			
+					}
+				}
+				create_country_leader = {
+					name = "George II"
+					picture = "gfx/leaders/TEX/Portrait_George_Bush_Monarch_MAA.png"
+					expire = "2060.1.1"
+					ideology = establishment
+					traits = {
+			
+					}
+				}
+				set_party_name = { 
+					ideology = libertarian_right
+					long_name = libertarian_ideology
+					name = libertarian_ideology
+				}
+				set_party_name = { 
+					ideology = libertarian_left
+					long_name = CAS_libertarian_left_party
+					name = CAS_libertarian_left_party
+				}
+			}
+		}
+	}
+	focus = {
+		id = TEX_declare_new_elections
+		icon = GFX_goal_a_texan_king
+		cost = 5
+		x = 1
+		y = 1
+		relative_position_id = TEX_land_of_moderatism
+		prerequisite = {
+			focus = TEX_land_of_moderatism
+		}
+		prerequisite = {
+			focus = TEX_parliamentary_monarchy
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = TEX_green_dem_coalition
+		icon = GFX_goal_a_texan_king
+		cost = 5
+		x = -3
+		y = 1
+		relative_position_id = TEX_declare_new_elections
+		prerequisite = {
+			focus = TEX_declare_new_elections
+		}
+		mutually_exclusive = {
+			focus = TEX_dems
+			focus = TEX_gop
+			focus = TEX_gop_lib_coalition
+		}
+		completion_reward = {
+			add_ideas = TEX_dem_green_gov
+		}
+	}
+	focus = {
+		id = TEX_dems
+		icon = GFX_goal_a_texan_king
+		cost = 5
+		x = -1
+		y = 1
+		relative_position_id = TEX_declare_new_elections
+		prerequisite = {
+			focus = TEX_declare_new_elections
+		}
+		mutually_exclusive = {
+			focus = TEX_green_dem_coalition
+			focus = TEX_gop
+			focus = TEX_gop_lib_coalition
+		}
+		completion_reward = {
+			add_ideas = TEX_dem_gov
+		}
+	}
+	focus = {
+		id = TEX_gop
+		icon = GFX_goal_a_texan_king
+		cost = 5
+		x = 1
+		y = 1
+		relative_position_id = TEX_declare_new_elections
+		prerequisite = {
+			focus = TEX_declare_new_elections
+		}
+		mutually_exclusive = {
+			focus = TEX_green_dem_coalition
+			focus = TEX_dems
+			focus = TEX_gop_lib_coalition
+		}
+		completion_reward = {
+			add_ideas = TEX_gop_gov
+		}
+	}
+	focus = {
+		id = TEX_gop_lib_coalition
+		icon = GFX_goal_a_texan_king
+		cost = 5
+		x = 3
+		y = 1
+		relative_position_id = TEX_declare_new_elections
+		prerequisite = {
+			focus = TEX_declare_new_elections
+		}
+		mutually_exclusive = {
+			focus = TEX_green_dem_coalition
+			focus = TEX_dems
+			focus = TEX_gop
+		}
+		completion_reward = {
+			add_ideas = TEX_gop_lib_gov
 		}
 	}
 	focus = {
@@ -13314,7 +13428,7 @@ focus_tree = {
 			focus = TEX_texan_king
 		}
 		completion_reward = {
-			
+			add_ideas = TEX_moderate_renewbles
 		}
 	}
 	focus = {
@@ -13328,35 +13442,29 @@ focus_tree = {
 			focus = TEX_moderate_climate_regulation
 		}
 		completion_reward = {
-			
+			add_resource = {
+				type = oil
+				amount = 50
+				state = 143
+			}
+			add_offsite_building = { type = synthetic_refinery level = 4 }
 		}
 	}
 	focus = {
 		id = TEX_clamp_down_on_oil_barons
 		icon = GFX_goal_a_texan_king
 		cost = 5
-		x = -1
+		x = -0
 		y = 1
 		relative_position_id = TEX_still_produce_oil
 		prerequisite = {
 			focus = TEX_still_produce_oil
 		}
 		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_clamp_down_on_climate_activists
-		icon = GFX_goal_a_texan_king
-		cost = 5
-		x = 1
-		y = 1
-		relative_position_id = TEX_still_produce_oil
-		prerequisite = {
-			focus = TEX_still_produce_oil
-		}
-		completion_reward = {
-			
+			swap_ideas = {
+				remove_idea = TEX_oil_baron_influence
+				add_idea = TEX_oil_barons_crushed
+			}
 		}
 	}
 	focus = {
@@ -13384,7 +13492,10 @@ focus_tree = {
 			focus = TEX_a_new_texan_royal_army
 		}
 		completion_reward = {
-			
+			swap_ideas = {
+				remove_idea = TEX_royal_guard
+				add_idea = TEX_royal_guard2
+			}
 		}
 	}
 	focus = {
@@ -13398,7 +13509,10 @@ focus_tree = {
 			focus = TEX_land_of
 		}
 		completion_reward = {
-			
+			swap_ideas = {
+				remove_idea = TEX_royal_guard2
+				add_idea = TEX_royal_guard3
+			}
 		}
 	}
 	focus = {
@@ -13412,7 +13526,20 @@ focus_tree = {
 			focus = TEX_land_of
 		}
 		completion_reward = {
-			
+			random_owned_state = {
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
 		}
 	}
 	focus = {
@@ -13427,6 +13554,20 @@ focus_tree = {
 		}
 		completion_reward = {
 			
+			random_owned_state = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
 		}
 	}
 	
