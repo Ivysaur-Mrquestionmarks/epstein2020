@@ -14138,7 +14138,7 @@ focus_tree = {
 		id = TEX_creation_of_paramilitaries
 		icon = GFX_goal_Free_Texan_Army_Coup
 		cost = 5
-		x = -2
+		x = -3
 		y = 1
 		relative_position_id = TEX_the_Miller_gov
 		prerequisite = {
@@ -14156,11 +14156,14 @@ focus_tree = {
 		id = TEX_promote_individualism_and_independence
 		icon = GFX_goal_Free_Texan_Army_Coup
 		cost = 5
-		x = -2
+		x = -1
 		y = 1
 		relative_position_id = TEX_creation_of_paramilitaries
 		prerequisite = {
 			focus = TEX_creation_of_paramilitaries
+		}
+		prerequisite = {
+			focus = TEX_achieve_international_recognition
 		}
 		completion_reward = {
 			add_war_support = 0.1
@@ -14173,7 +14176,7 @@ focus_tree = {
 		id = TEX_close_the_borders
 		icon = GFX_goal_Free_Texan_Army_Coup
 		cost = 5
-		x = 0
+		x = 1
 		y = 1
 		relative_position_id = TEX_creation_of_paramilitaries
 		prerequisite = {
@@ -14257,10 +14260,10 @@ focus_tree = {
 
 	}
 	focus = {
-		id = TEX_greater_texan_dreams
+		id = TEX_push_our_limits
 		icon = GFX_goal_Free_Texan_Army_Coup
 		cost = 5
-		x = -2
+		x = -1
 		y = 1
 		relative_position_id = TEX_control_the_oil_barons
 		prerequisite = {
@@ -14273,8 +14276,67 @@ focus_tree = {
 			focus = TEX_Texan_welfare
 		}
 		completion_reward = {
-			set_cosmetic_tag = TEX_GREATER_TEXAS
 			set_country_flag = TEX_GREATER_TEXAS
+		}
+
+	}
+	focus = {
+		id = TEX_greater_texas
+		icon = GFX_goal_Free_Texan_Army_Coup
+		cost = 5
+		x = -2
+		y = 1
+		relative_position_id = TEX_push_our_limits
+		prerequisite = {
+			focus = TEX_push_our_limits
+		}
+		prerequisite = {
+			focus = TEX_oil_for_independence_and_territories
+		}
+		available = {
+			TEX = {
+				controls_state = 279
+				controls_state = 536
+				controls_state = 535
+				controls_state = 505
+				controls_state = 269
+				controls_state = 267
+				controls_state = 307
+				controls_state = 612
+				controls_state = 609
+				controls_state = 611
+				controls_state = 316
+				controls_state = 315
+				controls_state = 317
+				controls_state = 350
+				controls_state = 40
+				controls_state = 511
+				controls_state = 515
+				controls_state = 365
+				controls_state = 61
+			}
+		}
+		completion_reward = {
+			set_cosmetic_tag = TEX_GREATER_TEXAS
+			350 = { add_core_of = TEX }
+			40 = { add_core_of = TEX }
+			511 = { add_core_of = TEX }
+			515 = { add_core_of = TEX }
+			365 = { add_core_of = TEX }
+			61 = { add_core_of = TEX }
+			536 = { add_core_of = TEX }
+			535 = { add_core_of = TEX }
+			267 = { add_core_of = TEX }
+			307 = { add_core_of = TEX }
+			612 = { add_core_of = TEX }
+			609 = { add_core_of = TEX }
+			611 = { add_core_of = TEX }
+			316 = { add_core_of = TEX }
+			315 = { add_core_of = TEX }
+			317 = { add_core_of = TEX }
+			505 = { add_core_of = TEX }
+			269 = { add_core_of = TEX }
+			279 = { add_core_of = TEX }
 		}
 
 	}
@@ -14284,11 +14346,15 @@ focus_tree = {
 		cost = 5
 		x = 0
 		y = 1
-		relative_position_id = TEX_greater_texan_dreams
+		relative_position_id = TEX_texanize_rio_grande
 		prerequisite = {
-			focus = TEX_greater_texan_dreams
+			focus = TEX_reject_collective_imperialism
+		}
+		prerequisite = {
+			focus = TEX_texanize_rio_grande
 		}
 		completion_reward = {
+			USA = { country_event = texas.76 }
 		}
 
 	}
@@ -14305,13 +14371,37 @@ focus_tree = {
 			focus = TEX_TNM
 		}
 		completion_reward = {
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
 		}
 
 	}
 	focus = {
 		id = TEX_expand_texan_oil_production
 		icon = GFX_goal_Free_Texan_Army_Coup
-		cost = 5
+		cost = 4
 		x = -1
 		y = 1
 		relative_position_id = TEX_the_Texan_industry
@@ -14319,6 +14409,11 @@ focus_tree = {
 			focus = TEX_the_Texan_industry
 		}
 		completion_reward = {
+			add_resource = {
+				type = oil
+				amount = 50
+				state = 50
+			}
 		}
 
 	}
@@ -14333,6 +14428,7 @@ focus_tree = {
 			focus = TEX_the_Texan_industry
 		}
 		completion_reward = {
+			add_ideas = TEX_export_econ1
 		}
 
 	}
@@ -14348,6 +14444,10 @@ focus_tree = {
 			focus = TEX_expand_texan_oil_production
 		}
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = TEX_export_econ1
+				add_idea = TEX_export_product1
+			}
 		}
 
 	}
@@ -14363,6 +14463,14 @@ focus_tree = {
 			focus = TEX_expand_texan_oil_production
 		}
 		completion_reward = {
+			IF = {
+				limit = { has_idea = TEX_bad_migrant_treatment }
+				swap_ideas = {
+					remove_idea = TEX_bad_migrant_treatment
+					add_idea = TEX_bad_migrant_treatment2
+				}
+			}
+			else = { add_ideas = TEX_bad_migrant_treatment }
 		}
 
 	}
@@ -14370,7 +14478,7 @@ focus_tree = {
 		id = TEX_strip_migrant_protections
 		icon = GFX_goal_Free_Texan_Army_Coup
 		cost = 5
-		x = 0
+		x = -1
 		y = 1
 		relative_position_id = TEX_made_in_texas
 		prerequisite = {
@@ -14378,21 +14486,14 @@ focus_tree = {
 			focus = TEX_welfare_for_TEXANS_only
 		}
 		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = TEX_promote_texan_work_ethic
-		icon = GFX_goal_Free_Texan_Army_Coup
-		cost = 5
-		x = 0
-		y = 1
-		relative_position_id = TEX_welfare_for_TEXANS_only
-		prerequisite = {
-			focus = TEX_welfare_for_TEXANS_only
-			focus = TEX_made_in_texas
-		}
-		completion_reward = {
+			IF = {
+				limit = { has_idea = TEX_bad_migrant_treatment }
+				swap_ideas = {
+					remove_idea = TEX_bad_migrant_treatment
+					add_idea = TEX_bad_migrant_treatment2
+				}
+			}
+			else = { add_ideas = TEX_bad_migrant_treatment }
 		}
 
 	}
@@ -14401,19 +14502,35 @@ focus_tree = {
 	focus = {
 		id = TEX_achieving_texit
 		icon = GFX_goal_Free_Texan_Army_Coup
-		cost = 5
-		x = -16
+		cost = 2
+		x = -15
 		y = 1
 		relative_position_id = TEX_TNM
 		prerequisite = {
 			focus = TEX_TNM
 		}
 		completion_reward = {
+			add_political_power = 50
 		}
 
 	}
 	focus = {
 		id = TEX_achieve_international_recognition
+		icon = GFX_goal_Free_Texan_Army_Coup
+		cost = 5
+		x = 1
+		y = 1
+		relative_position_id = TEX_achieving_texit
+		prerequisite = {
+			focus = TEX_achieving_texit
+		}
+		completion_reward = {
+			add_ideas = TEX_independent_and_recognized
+		}
+
+	}
+	focus = {
+		id = TEX_promote_texanism
 		icon = GFX_goal_Free_Texan_Army_Coup
 		cost = 5
 		x = -1
@@ -14423,48 +14540,7 @@ focus_tree = {
 			focus = TEX_achieving_texit
 		}
 		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = TEX_joining_the_UN
-		icon = GFX_goal_Free_Texan_Army_Coup
-		cost = 5
-		x = 0
-		y = 1
-		relative_position_id = TEX_achieve_international_recognition
-		prerequisite = {
-			focus = TEX_achieve_international_recognition
-		}
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = TEX_align_with_other_nationalist_movements
-		icon = GFX_goal_Free_Texan_Army_Coup
-		cost = 5
-		x = 0
-		y = 1
-		relative_position_id = TEX_joining_the_UN
-		prerequisite = {
-			focus = TEX_joining_the_UN
-		}
-		completion_reward = {
-		}
-
-	}
-	focus = {
-		id = TEX_promote_texanism
-		icon = GFX_goal_Free_Texan_Army_Coup
-		cost = 5
-		x = 1
-		y = 1
-		relative_position_id = TEX_achieving_texit
-		prerequisite = {
-			focus = TEX_achieving_texit
-		}
-		completion_reward = {
+			add_ideas = TEX_Texanism
 		}
 
 	}
@@ -14472,45 +14548,41 @@ focus_tree = {
 		id = TEX_distance_from_americanism
 		icon = GFX_goal_Free_Texan_Army_Coup
 		cost = 5
-		x = 0
+		x = 1
 		y = 1
 		relative_position_id = TEX_promote_texanism
 		prerequisite = {
 			focus = TEX_promote_texanism
 		}
+		prerequisite = {
+			focus = TEX_achieve_international_recognition
+		}
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = TEX_Texanism
+				add_idea = TEX_Texanism2
+			}
 		}
 
 	}
 	focus = {
-		id = TEX_texanization
+		id = TEX_reject_collective_imperialism
 		icon = GFX_goal_Free_Texan_Army_Coup
 		cost = 5
-		x = 0
+		x = 1
 		y = 1
 		relative_position_id = TEX_distance_from_americanism
 		prerequisite = {
 			focus = TEX_distance_from_americanism
 		}
-		completion_reward = {
-		}
-
-	}
-	
-	focus = {
-		id = TEX_support_other_independence_movements
-		icon = GFX_goal_Free_Texan_Army_Coup
-		cost = 5
-		x = 1
-		y = 1
-		relative_position_id = TEX_align_with_other_nationalist_movements
 		prerequisite = {
-			focus = TEX_align_with_other_nationalist_movements
-		}
-		prerequisite = {
-			focus = TEX_texanization
+			focus = TEX_promote_individualism_and_independence
 		}
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = TEX_Texanism2
+				add_idea = TEX_Texanism3
+			}
 		}
 
 	}
@@ -14545,6 +14617,9 @@ focus_tree = {
 		}
 		mutually_exclusive = { focus = TEX_everyone_deserves_liberty }
 		completion_reward = {
+			set_politics = {
+				ruling_party = authoritarian_left
+			}
 		}
 
 	}
