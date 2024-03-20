@@ -2302,12 +2302,12 @@ focus_tree = {
 			focus = TEX_Extradite_Democrats_and_RINOs
 		}
 		completion_reward = {
-			253 = { transfer_state_to = TEX }
-			252 = { transfer_state_to = TEX }
-			254 = { transfer_state_to = TEX }
-			255 = { transfer_state_to = TEX }
-			256 = { transfer_state_to = TEX }
-			257 = { transfer_state_to = TEX }
+			253 = { transfer_state_to = TEX  add_core_of = TEX }
+			252 = { transfer_state_to = TEX  add_core_of = TEX }
+			254 = { transfer_state_to = TEX  add_core_of = TEX }
+			255 = { transfer_state_to = TEX  add_core_of = TEX }
+			256 = { transfer_state_to = TEX  add_core_of = TEX }
+			257 = { transfer_state_to = TEX  add_core_of = TEX }
 			
 		}
 	}
@@ -3283,12 +3283,6 @@ focus_tree = {
 			focus = TEX_end_cascadian_nazis
 		}
 		available = {
-			has_government = autocratic
-			has_country_leader = { name = "George W. Bush" ruling_only = yes }
-			OR = {
-				has_war = no
-				has_war_with = USA
-			}
 		}
 		will_lead_to_war_with = USA
 		completion_reward = {
@@ -3318,8 +3312,6 @@ focus_tree = {
 			focus = TEX_the_showdown
 		}
 		available = {
-			has_government = autocratic
-			has_country_leader = { name = "George W. Bush" ruling_only = yes }
 		}
 		will_lead_to_war_with = FRA
 		completion_reward = {
@@ -3353,10 +3345,9 @@ focus_tree = {
 			focus = TEX_finish_harris
 		}
 		available = {
-			has_government = autocratic
-			has_country_leader = { name = "George W. Bush" ruling_only = yes }
 		}
-		will_lead_to_war_with = FRA
+		will_lead_to_war_with = GLA
+		will_lead_to_war_with = AFS
 		completion_reward = {
 				create_wargoal = {
 					target = GLA
@@ -3416,6 +3407,80 @@ focus_tree = {
 				}
 
 
+		}
+	}
+	focus = {
+		id = TEX_show_the_light
+		icon = GFX_focus_BushVsTrump
+		x = -1
+		y = 1
+		relative_position_id = TEX_mop_up_the_remainders
+		cost = 7.00
+		prerequisite = {
+			focus = TEX_mop_up_the_remainders
+		}
+		mutually_exclusive = { focus = TEX_embrace_the_dark }
+		available = {
+			has_government = republican
+		}
+		completion_reward = {
+			add_stability = 0.2
+			every_owned_state = {
+				add_core_of = TEX 
+			}
+		}
+	}
+	focus = {
+		id = TEX_embrace_the_dark
+		icon = GFX_focus_BushVsTrump
+		x = 1
+		y = 1
+		relative_position_id = TEX_mop_up_the_remainders
+		cost = 7.00
+		prerequisite = {
+			focus = TEX_mop_up_the_remainders
+		}
+		mutually_exclusive = { focus = TEX_show_the_light }
+		available = {
+			has_government = autocratic 
+		}
+		completion_reward = {
+			add_war_support = 0.2
+			every_owned_state = {
+				add_core_of = TEX 
+			}
+		}
+	}
+	focus = {
+		id = TEX_a_bighter_future
+		icon = GFX_focus_BushVsTrump
+		x = 0
+		y = 1
+		relative_position_id = TEX_show_the_light
+		cost = 0
+		prerequisite = {
+			focus = TEX_show_the_light
+		}
+		available = {
+		}
+		completion_reward = {
+			set_cosmetic_tag = TEX_bright_future
+		}
+	}
+	focus = {
+		id = TEX_an_organic_republic
+		icon = GFX_focus_BushVsTrump
+		x = 0
+		y = 1
+		relative_position_id = TEX_embrace_the_dark
+		cost = 0
+		prerequisite = {
+			focus = TEX_embrace_the_dark
+		}
+		available = {
+		}
+		completion_reward = {
+			set_cosmetic_tag = TEX_organic_republic
 		}
 	}
 	
@@ -9564,7 +9629,19 @@ focus_tree = {
 				}
 			}
 			335 = { remove_core_of = NMX }
-			release = NMX
+			every_state = {
+				limit = { is_core_of = TEX }
+				remove_core_of = NMX
+			}
+			NMX = {
+				drop_cosmetic_tag = yes
+				transfer_state = 310
+				transfer_state = 335
+				transfer_state = 249
+				every_owned_state = {
+					add_core_of = NMX
+				}
+			}
 			PRA = { puppet = NMX give_guarantee = TEX}
 		}
 	}
