@@ -19,8 +19,15 @@ focus_tree = {
 		id = TEX_lone_star
 		icon = GFX_focus_lone_star
 		cost = 5
-		x = 40
+		x = 50
 		y = 0
+		allow_branch = {
+			NOT = {
+				has_completed_focus = TEX_the_reluctant_president 
+				has_completed_focus = TEX_OH_NO 
+				has_completed_focus = TEX_red_does_not_stain_the_black_gold				
+			}
+		}
 		completion_reward = {
 			add_political_power = 100
 		}
@@ -253,7 +260,12 @@ focus_tree = {
 			focus = TEX_different_direction
 		}
 		allow_branch = {
-				NOT = { has_completed_focus = TEX_different_direction }
+				NOT = { 
+					has_completed_focus = TEX_different_direction 
+					has_completed_focus = TEX_the_reluctant_president
+					has_completed_focus = TEX_red_does_not_stain_the_black_gold
+					has_completed_focus = TEX_OH_NO
+				}
 		}
 		offset = {
 			x = 10
@@ -727,27 +739,27 @@ focus_tree = {
 		}
 
 	}
-	focus = {
-		id = TEX_miller_coup
-		icon = GFX_goal_Free_Texan_Army_Coup
-		x = 70
-		y = 0
-		#relative_position_id = TEX_results
-		#cost = 5
-		#prerequisite = {
-		#	focus = TEX_results
-		#}
-		available = {
-			has_country_flag = miller_coup
-		}
-		completion_reward = {
-			add_popularity = {
-			    ideology = autocratic
-			    popularity = 0.1
-			}
-		}
-
-	}
+	#focus = {
+	#	id = TEX_miller_coup
+	#	icon = GFX_goal_Free_Texan_Army_Coup
+	#	x = 70
+	#	y = 0
+	#	#relative_position_id = TEX_results
+	#	#cost = 5
+	#	#prerequisite = {
+	#	#	focus = TEX_results
+	#	#}
+	#	available = {
+	#		has_country_flag = miller_coup
+	#	}
+	#	completion_reward = {
+	#		add_popularity = {
+	#		    ideology = autocratic
+	#		    popularity = 0.1
+	#		}
+	#	}
+	#
+	#}
 	focus = {
 		id = TEX_monarchist_proposal
 		icon = GFX_focus_usa_voter_registration_act
@@ -759,8 +771,12 @@ focus_tree = {
 			focus = TEX_different_direction
 		}
 		allow_branch = {
-				NOT = { has_completed_focus = TEX_crack_down_on_insurgents }
-				NOT = { has_completed_focus = TEX_allow_the_vote }
+				NOT = {
+					has_completed_focus = TEX_crack_down_on_insurgents
+					has_completed_focus = TEX_allow_the_vote
+					has_completed_focus = TEX_the_reluctant_president
+					has_completed_focus = TEX_red_does_not_stain_the_black_gold
+				}
 		}
 		mutually_exclusive = {
 			focus = TEX_crack_down_on_insurgents
@@ -5224,7 +5240,7 @@ focus_tree = {
 		x = 0
 		y = 1
 		relative_position_id = TEX_limit_spending
-		cost = 5
+		cost = 1
 		prerequisite = {
 			focus = TEX_limit_spending
 		}
@@ -5247,7 +5263,7 @@ focus_tree = {
 		x = -4
 		y = 1
 		relative_position_id = TEX_enshrine_liberty
-		cost = 5
+		cost = 1
 		prerequisite = {
 			focus = TEX_enshrine_liberty
 			focus = TEX_the_language_bill
@@ -5269,7 +5285,7 @@ focus_tree = {
 		x = 0
 		y = 1
 		relative_position_id = TEX_pro_monarchism
-		cost = 8.00
+		cost = 1
 		prerequisite = {
 			focus = TEX_pro_monarchism
 		}
@@ -5283,10 +5299,11 @@ focus_tree = {
 		x = 4
 		y = 1
 		relative_position_id = TEX_pro_monarchism
-		cost = 5.00
+		cost = 1
 		prerequisite = {
 			focus = TEX_pro_monarchism
 		}
+		available = { NOT = { country_exists = HOP } }
 		completion_reward = {
 				create_faction = "Pan-Monarchist Front"
 		}
@@ -5418,12 +5435,116 @@ focus_tree = {
 		x = -4
 		y = 1
 		relative_position_id = TEX_pro_monarchism
-		cost = 5.00
+		cost = 0
 		prerequisite = {
 			focus = TEX_pro_monarchism
 		}
+		available = { NOT = { country_exists = HOP } }
 		completion_reward = {
 				#set_country_flag = monarchist_movement_1
+				if = {
+					limit = { has_country_flag = schizo_kaiser }
+					mark_focus_tree_layout_dirty = yes
+				}
+		}
+	}
+	focus = {
+		id = TEX_a_greater_german_american_union
+		icon = GFX_goal_American_Diplomacy
+		x = -10
+		y = 1
+		relative_position_id = TEX_national_diplo
+		cost = 0
+		prerequisite = {
+			focus = TEX_national_diplo
+		}
+		#allow_branch = { has_country_flag = schizo_kaiser }
+		available = { NOT = { country_exists = HOP } }
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = TEX_claim_the_british_throne
+		icon = GFX_goal_American_Diplomacy
+		x = -2
+		y = 1
+		relative_position_id = TEX_a_greater_german_american_union
+		cost = 0
+		prerequisite = {
+			focus = TEX_a_greater_german_american_union
+		}
+		mutually_exclusive = { focus = TEX_continue_to_align_the_british }
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = TEX_continue_to_align_the_british
+		icon = GFX_goal_American_Diplomacy
+		x = 0
+		y = 1
+		relative_position_id = TEX_claim_the_british_throne
+		cost = 0
+		prerequisite = {
+			focus = TEX_claim_the_british_throne
+		}
+		mutually_exclusive = { focus = TEX_claim_the_british_throne }
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = TEX_invite_european_monarchies
+		icon = GFX_goal_American_Diplomacy
+		x = 2
+		y = 1
+		relative_position_id = TEX_a_greater_german_american_union
+		cost = 0
+		prerequisite = {
+			focus = TEX_a_greater_german_american_union
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = TEX_revive_a_colonial_past
+		icon = GFX_goal_American_Diplomacy
+		x = -2
+		y = 1
+		relative_position_id = TEX_invite_european_monarchies
+		cost = 0
+		prerequisite = {
+			focus = TEX_invite_european_monarchies
+		}
+		prerequisite = {
+			focus = TEX_claim_the_british_throne
+			focus = TEX_continue_to_align_the_british
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = TEX_return_americas_to_european_rule
+		icon = GFX_goal_American_Diplomacy
+		x = -0
+		y = 1
+		relative_position_id = TEX_revive_a_colonial_past
+		cost = 0
+		prerequisite = {
+			focus = TEX_revive_a_colonial_past
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = TEX_divide_the_spoils
+		icon = GFX_goal_American_Diplomacy
+		x = -0
+		y = 1
+		relative_position_id = TEX_return_americas_to_european_rule
+		cost = 0
+		prerequisite = {
+			focus = TEX_return_americas_to_european_rule
+		}
+		completion_reward = {
 		}
 	}
 	focus = {
@@ -8175,6 +8296,8 @@ focus_tree = {
 				NOT = { 
 					has_completed_focus = TEX_different_direction 
 					has_completed_focus = TEX_Beto_holds_on 
+					has_completed_focus = TEX_the_reluctant_president
+					has_completed_focus = TEX_red_does_not_stain_the_black_gold
 				}
 				has_country_flag = cruz_coup
 		}
@@ -8352,6 +8475,8 @@ focus_tree = {
 			}
 			set_country_flag = abbott_return
 			mark_focus_tree_layout_dirty = yes
+			complete_national_focus = TEX_the_reluctant_president
+			complete_national_focus = TEX_transition_to_parliamentarianism
 		}
 	}
 	focus = {
@@ -9981,12 +10106,19 @@ focus_tree = {
 		id = TEX_the_reluctant_president
 		icon = GFX_goal_Hand_The_Reigns_Greg
 		x = 0
-		y = 25
-		relative_position_id = TEX_the_oil_bill
+		y = 50
+		relative_position_id = TEX_lone_star
 		allow_branch = { 
 			NOT = { has_completed_focus = TEX_different_direction }
 			OR = {
 				has_country_flag = abbott_return
+			}
+		}
+		offset = {
+			x = -5
+			y = -50
+			trigger = {
+				has_completed_focus = TEX_the_reluctant_president
 			}
 		}
 		cost = 0
@@ -10003,6 +10135,7 @@ focus_tree = {
 				ideology = libertarian_right
 				popularity = 0.15
 			}
+			mark_focus_tree_layout_dirty = yes
 		}
 	}
 	focus = {
@@ -11256,7 +11389,7 @@ focus_tree = {
 		prerequisite = {
 			focus = TEX_meet_with_brian_kemp
 		}
-		#allow_branch = { has_country_flag = dixie_in_exile }
+		allow_branch = { has_country_flag = dixie_in_exile }
 		bypass = { has_country_flag = dixie_in_exile }
 		available = {
 		}
@@ -11975,6 +12108,56 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
+			every_state = {
+				limit = { is_core_of = FRA }
+				remove_core_of = FRA
+			}
+			298 = { add_core_of = FRA }
+			366 = { add_core_of = FRA }
+			635 = { add_core_of = FRA }
+			296 = { add_core_of = FRA }
+			364 = { add_core_of = FRA }
+			51 = { add_core_of = FRA }
+			295 = { add_core_of = FRA }
+			199 = { add_core_of = FRA }
+			394 = { add_core_of = FRA }
+			452 = { add_core_of = FRA }
+			85 = { add_core_of = FRA }
+			150 = { add_core_of = FRA }
+			562 = { add_core_of = FRA }
+			88 = { add_core_of = FRA }
+			95 = { add_core_of = FRA }
+			74 = { add_core_of = FRA }
+			94 = { add_core_of = FRA }
+			496 = { add_core_of = FRA }
+			62 = { add_core_of = FRA }
+			141 = { add_core_of = FRA }
+			122 = { add_core_of = FRA }
+			29 = { add_core_of = FRA }
+			122 = { add_core_of = FRA }
+			89 = { add_core_of = FRA }
+			109 = { add_core_of = FRA }
+			112 = { add_core_of = FRA }
+			60 = { add_core_of = FRA }
+			115 = { add_core_of = FRA }
+			113 = { add_core_of = FRA }
+			101 = { add_core_of = FRA }
+			492 = { add_core_of = FRA }
+			497 = { add_core_of = FRA }
+			121 = { add_core_of = FRA }
+			60 = { add_core_of = FRA }
+			114 = { add_core_of = FRA }
+			115 = { add_core_of = FRA }
+			101 = { add_core_of = FRA }
+			116 = { add_core_of = FRA }
+			561 = { add_core_of = FRA }
+			107 = { add_core_of = FRA }
+			123 = { add_core_of = FRA }
+			117 = { add_core_of = FRA }
+			411 = { add_core_of = FRA }
+			521 = { add_core_of = FRA }
+			520 = { add_core_of = FRA }
+			414 = { add_core_of = FRA }
 		}
 	}
 	
@@ -12664,12 +12847,22 @@ focus_tree = {
 		y = 24
 		#relative_position_id = 
 		allow_branch = { 
-			NOT = { has_completed_focus = TEX_different_direction }
+			NOT = { 
+				has_completed_focus = TEX_different_direction
+				has_completed_focus = TEX_OH_NO
+			}
 			OR = {
 				has_country_flag = oil_barons_moderates
 				has_country_flag = oil_barons_radicals
 			}
 				
+		}
+		offset = {
+			x = 5
+			y = -25
+			trigger = {
+				has_completed_focus = TEX_red_does_not_stain_the_black_gold
+			}
 		}
 		cost = 5
 		prerequisite = {
@@ -12722,6 +12915,7 @@ focus_tree = {
 				set_division_force_allow_recruiting = {
 					division_template = "Mercenary Contracters"
 				}
+				mark_focus_tree_layout_dirty = yes
 			}
 		}
 	}
@@ -14756,6 +14950,13 @@ focus_tree = {
 		available = {
 				has_country_flag = beto_coup
 		}
+		offset = {
+			x = 25
+			y = -24
+			trigger = {
+				has_completed_focus = TEX_OH_NO
+			}
+		}
 		completion_reward = {
 			set_politics = {
 				ruling_party = authoritarian_left
@@ -14793,6 +14994,7 @@ focus_tree = {
 			270 = { set_demilitarized_zone = yes }
 			28 = { set_demilitarized_zone = yes }
 			80 = { set_demilitarized_zone = yes }
+			mark_focus_tree_layout_dirty = yes
 		}
 	}
 	focus = {
@@ -16902,8 +17104,12 @@ focus_tree = {
 			focus = TEX_monarchist_proposal
 		}
 		allow_branch = {
-				NOT = { has_completed_focus = TEX_monarchist_proposal }
-				NOT = { has_completed_focus = TEX_allow_the_vote }
+				NOT = { 
+					has_completed_focus = TEX_monarchist_proposal
+					has_completed_focus = TEX_allow_the_vote
+					has_completed_focus = TEX_the_reluctant_president
+					has_completed_focus = TEX_red_does_not_stain_the_black_gold
+				}
 		}
 		offset = {
 			x = -20
