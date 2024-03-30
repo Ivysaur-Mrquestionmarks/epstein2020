@@ -362,14 +362,15 @@ focus_tree = {
 	###Consolidating Power
 	focus = {
 		id = RIO_a_loyal_state
-		icon = GFX
+		icon = GFX_goal_National_Guard_Smaller
 		x = -15
 		y = 2
 		relative_position_id = RIO_the_autonomous_state
 		cost = 5
-		#prerequisite = {
-		#	focus = RIO_reap_fruits_of_loyalty
-		#}
+		available = { has_country_flag = loyal_state }
+		prerequisite = {
+			focus = RIO_the_autonomous_state
+		}
 		completion_reward = {
 		}
 
@@ -377,7 +378,7 @@ focus_tree = {
 	
 	focus = {
 		id = RIO_purge_those_unloyal
-		icon = GFX
+		icon = GFX_goal_National_Guard_Smaller
 		x = -4
 		y = 1
 		relative_position_id = RIO_a_loyal_state
@@ -387,11 +388,16 @@ focus_tree = {
 		}
 		mutually_exclusive = { focus = RIO_reconciliation }
 		completion_reward = {
+			add_popularity = {
+				ideology = autocratic
+				popularity = 0.2
+			}
+			add_political_power = 50
 		}
 	}
 	focus = {
 		id = RIO_dissolve_the_settlers_association
-		icon = GFX
+		icon = GFX_goal_National_Guard_Smaller
 		x = -1
 		y = 1
 		relative_position_id = RIO_purge_those_unloyal
@@ -400,11 +406,12 @@ focus_tree = {
 			focus = RIO_purge_those_unloyal
 		}
 		completion_reward = {
+			remove_ideas = RIO_american_settlers
 		}
 	}
 	focus = {
 		id = RIO_reduce_migrant_autonomy
-		icon = GFX
+		icon = GFX_goal_National_Guard_Smaller
 		x = 1
 		y = 1
 		relative_position_id = RIO_purge_those_unloyal
@@ -413,11 +420,12 @@ focus_tree = {
 			focus = RIO_purge_those_unloyal
 		}
 		completion_reward = {
+			remove_ideas = RIO_migrant_crisis2
 		}
 	}
 	focus = {
 		id = RIO_the_sword_of_texas
-		icon = GFX
+		icon = GFX_goal_National_Guard_Smaller
 		x = -1
 		y = 1
 		relative_position_id = RIO_reduce_migrant_autonomy
@@ -433,6 +441,7 @@ focus_tree = {
 			focus = RIO_work_with_border_patrol
 		}
 		completion_reward = {
+			add_ideas = RIO_sword_of_texas
 		}
 	}
 	focus = {
@@ -446,6 +455,11 @@ focus_tree = {
 			focus = RIO_the_sword_of_texas
 		}
 		completion_reward = {
+			643 = { add_core_of = RIO }
+			385 = { add_core_of = RIO }
+			642 = { add_core_of = RIO }
+			550 = { add_core_of = RIO }
+			385 = { add_core_of = RIO } 
 		}
 	}
 	focus = {
@@ -459,6 +473,7 @@ focus_tree = {
 			focus = RIO_the_sword_of_texas
 		}
 		completion_reward = {
+			TEX = { country_event = national_guard.6 }
 		}
 	}
 	focus = {
@@ -475,6 +490,127 @@ focus_tree = {
 			focus = RIO_claim_the_greater_rio
 		}
 		completion_reward = {
+			if = { 
+				limit = { country_exists = MEX } 
+				declare_war_on = {
+					target = MEX
+					type = annex_everything
+				}
+				TEX = {
+					declare_war_on = {
+						target = MEX
+						type = annex_everything
+					}
+				}
+			}
+			if = { 
+				limit = { country_exists = ADF } 
+				declare_war_on = {
+					target = ADF
+					type = annex_everything
+				}
+				TEX = {
+					declare_war_on = {
+						target = ADF
+						type = annex_everything
+					}
+				}
+			}
+			if = { 
+				limit = { country_exists = PVB } 
+				declare_war_on = {
+					target = PVB
+					type = annex_everything
+				}
+				TEX = {
+					declare_war_on = {
+						target = PVB
+						type = annex_everything
+					}
+				}
+			}
+			if = { 
+				limit = { country_exists = YUC } 
+				declare_war_on = {
+					target = YUC
+					type = annex_everything
+				}
+				TEX = {
+					declare_war_on = {
+						target = YUC
+						type = annex_everything
+					}
+				}
+			}
+			if = { 
+				limit = { country_exists = ZAP } 
+				declare_war_on = {
+					target = ZAP
+					type = annex_everything
+				}
+				TEX = {
+					declare_war_on = {
+						target = ZAP
+						type = annex_everything
+					}
+				}
+			}
+			if = { 
+				limit = { country_exists = WMX } 
+				declare_war_on = {
+					target = WMX
+					type = annex_everything
+				}
+				TEX = {
+					declare_war_on = {
+						target = WMX
+						type = annex_everything
+					}
+				}
+			}
+			if = { 
+				limit = { country_exists = BJC } 
+				declare_war_on = {
+					target = BJC
+					type = annex_everything
+				}
+				TEX = {
+					declare_war_on = {
+						target = BJC
+						type = annex_everything
+					}
+				}
+			}
+			if = { 
+				limit = { country_exists = CAR } 
+				declare_war_on = {
+					target = CAR
+					type = annex_everything
+				}
+				TEX = {
+					declare_war_on = {
+						target = CAR
+						type = annex_everything
+					}
+				}
+			}
+			if = { 
+				limit = { country_exists = RMX } 
+				declare_war_on = {
+					target = RMX
+					type = annex_everything
+				}
+				TEX = {
+					declare_war_on = {
+						target = RMX
+						type = annex_everything
+					}
+				}
+			}
+			add_timed_idea = {
+				idea = RIO_time_to_strike
+				days = 250
+			}
 		}
 	}
 	
