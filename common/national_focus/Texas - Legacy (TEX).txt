@@ -31,6 +31,17 @@ focus_tree = {
 				has_completed_focus = TEX_red_does_not_stain_the_black_gold				
 			}
 		}
+		offset = {
+			x = -15
+			y = 0
+			trigger = {
+				OR = {
+					has_completed_focus = TEX_monarchist_proposal
+					has_completed_focus = TEX_crack_down_on_insurgents
+					has_completed_focus = TEX_allow_the_vote
+				}
+			}
+		}
 		completion_reward = {
 			add_political_power = 100
 		}
@@ -163,6 +174,16 @@ focus_tree = {
 			y = 2
 			trigger = {
 				has_completed_focus = TEX_different_direction
+			}
+		}
+		offset = {
+			x = -0
+			y = -2
+			trigger = {
+				OR = {
+					has_completed_focus = TEX_monarchist_proposal
+					has_completed_focus = TEX_crack_down_on_insurgents
+				}
 			}
 		}
 		completion_reward = {
@@ -311,7 +332,7 @@ focus_tree = {
 	focus = {
 		id = TEX_in_bed_with_ted
 		icon = GFX_goal_Cruz_Control
-		x = -12
+		x = -16
 		y = 1
 		relative_position_id = TEX_results
 		cost = 5
@@ -617,6 +638,17 @@ focus_tree = {
 			focus = TEX_Bring_49_and_50_back_into_the_fold
 		}
 		available = {
+			NOT = {
+				country_exists = UTA
+				country_exists = SIN
+				country_exists = AFO
+				country_exists = CAS
+				country_exists = PAC
+				country_exists = MON
+				country_exists = IDA
+				country_exists = MON
+				country_exists = MOL
+			}
 		}
 		completion_reward = {
 				set_cosmetic_tag = TEX_WRA
@@ -652,6 +684,8 @@ focus_tree = {
 					limit = { is_core_of = MOL }
 					add_core_of = TEX
 				}
+				set_country_flag = cruise_goes_on
+				mark_focus_tree_layout_dirty = yes
 				hidden_effect = {
 						USA = {
 							transfer_state = 118
@@ -673,8 +707,216 @@ focus_tree = {
 							transfer_state = 517
 							transfer_state = 510
 							transfer_state = 348
+							transfer_state = 486
 						}
 				}
+		}
+	}
+	focus = {
+		id = TEX_surrounded_on_all_fronts
+		icon = GFX_goal_Surrounded_On_All_Fronts
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = TEX_in_bed_with_ted
+		prerequisite = {
+			focus = TEX_in_bed_with_ted
+		}
+		completion_reward = {
+			add_ideas = TEX_armed_neutrality
+		}
+
+	}
+	focus = {
+		id = TEX_Cozy_up_to_Oil_Barons
+		icon = GFX_goal_Cozy_Up_To_Oil_Barons
+		x = 4
+		y = 1
+		relative_position_id = TEX_surrounded_on_all_fronts
+		cost = 5
+		prerequisite = {
+			focus = TEX_surrounded_on_all_fronts
+			focus = TEX_Trumps_fuel_silo
+		}
+		completion_reward = {
+				swap_ideas = {
+						remove_idea = TEX_oil_baron_influence
+						add_idea = TEX_powerful_oil_barons
+				}
+		}
+	}
+	focus = {
+		id = TEX_expand_oil_production
+		icon = GFX_goal_Expand_Oil_Production
+		x = 0
+		y = 1
+		relative_position_id = TEX_Cozy_up_to_Oil_Barons
+		cost = 5
+		prerequisite = {
+			focus = TEX_Cozy_up_to_Oil_Barons
+		}
+		completion_reward = {
+				swap_ideas = {
+						remove_idea = TEX_powerful_oil_barons
+						add_idea = TEX_oil_barons_in_gov
+				}
+		}
+	}
+	focus = {
+		id = TEX_deregulate_the_economy
+		icon = GFX_goal_Deregulate_The_Economy
+		x = 0
+		y = 1
+		relative_position_id = TEX_expand_oil_production
+		cost = 5
+		prerequisite = {
+			focus = TEX_expand_oil_production
+			focus = TEX_finish_the_wall
+		}
+		completion_reward = {
+				add_ideas = TEX_econ_dergegulate
+		}
+	}
+	focus = {
+		id = TEX_send_migrants_back
+		icon = GFX_goal_Send_Migrants_Back
+		x = -2
+		y = 1
+		relative_position_id = TEX_expand_oil_production
+		cost = 5
+		prerequisite = {
+			focus = TEX_expand_oil_production
+			focus = TEX_finish_the_wall
+		}
+		completion_reward = {
+			add_manpower = -50000
+			RIO = { add_manpower = 50000 }
+			add_stability  = 0.2
+		}
+	}
+	focus = {
+		id = TEX_end_new_mexican_rebels
+		icon = GFX_goal_End_New_Mexican_Rebels
+		x = -1
+		y = 1
+		relative_position_id = TEX_legalize_lobbying
+		cost = 1
+		prerequisite = {
+			focus = TEX_legalize_lobbying
+		}
+		completion_reward = {
+			remove_ideas = TEX_New_Mexican_Terrorism
+			310 = { add_core_of = TEX }
+			249 = { add_core_of TEX }
+			335 = { add_core_of = TEX }
+		}
+	}
+	focus = {
+		id = TEX_send_former_rebels_to_rio_grande
+		icon = GFX_goal_End_New_Mexican_Rebels
+		x = 1
+		y = 1
+		relative_position_id = TEX_provide_for_the_border_patrol
+		cost = 1
+		prerequisite = {
+			focus = TEX_provide_for_the_border_patrol
+		}
+		completion_reward = {
+			RIO = { add_manpower = 10000 }
+			57 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = industrial_complex
+    				level = 1
+    				instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = TEX_cultural_counter_revolution
+		icon = GFX_goal_Cultural_Counter_Revolution
+		x = 1
+		y = 3
+		relative_position_id = TEX_send_migrants_back
+		cost = 5
+		prerequisite = {
+			focus = TEX_send_migrants_back
+			focus = TEX_deregulate_the_economy
+		}
+		completion_reward = {
+				add_ideas = TEX_cultural_counterrevolution
+		}
+	}
+	focus = {
+		id = TEX_the_ten_commandments_in_school
+		icon = GFX_goal_10_Commandments_School
+		x = 1
+		y = 1
+		relative_position_id = TEX_cultural_counter_revolution
+		cost = 5
+		prerequisite = {
+			focus = TEX_cultural_counter_revolution
+		}
+		completion_reward = {
+				IF = { 
+					limit = { has_idea = TEX_cultural_counterrevolution }
+					swap_ideas = { 
+						remove_idea = TEX_cultural_counterrevolution
+						add_idea = TEX_cultural_counterrevolution2
+					}
+				}
+				ELSE_IF = { 
+					limit = { has_idea = TEX_cultural_counterrevolution2 }
+					swap_ideas = { 
+						remove_idea = TEX_cultural_counterrevolution2
+						add_idea = TEX_cultural_counterrevolution3
+					}
+				}
+		}
+	}
+	focus = {
+		id = TEX_ban_LGBTQIA2S_Thinking
+		icon = GFX_goal_Ban_LGBT_Thinking
+		x = -1
+		y = 1
+		relative_position_id = TEX_cultural_counter_revolution
+		cost = 5
+		prerequisite = {
+			focus = TEX_cultural_counter_revolution
+		}
+		completion_reward = {
+				IF = { 
+					limit = { has_idea = TEX_cultural_counterrevolution }
+					swap_ideas = { 
+						remove_idea = TEX_cultural_counterrevolution
+						add_idea = TEX_cultural_counterrevolution2
+					}
+				}
+				ELSE_IF = { 
+					limit = { has_idea = TEX_cultural_counterrevolution2 }
+					swap_ideas = { 
+						remove_idea = TEX_cultural_counterrevolution2
+						add_idea = TEX_cultural_counterrevolution3
+					}
+				}
+		}
+	}
+	focus = {
+		id = TEX_cruise_goes_on
+		icon = GFX_goal_Generic_Liberalism
+		cost = 0
+		x = 0
+		y = 3
+		relative_position_id = TEX_cultural_counter_revolution
+		prerequisite = {
+			focus = TEX_cultural_counter_revolution
+		}
+		available = {
+		}
+		allow_branch = { has_country_flag = cruise_goes_on }
+		completion_reward = {
+				
 		}
 	}
 	focus = {
@@ -683,9 +925,9 @@ focus_tree = {
 		cost = 5
 		x = 1
 		y = 1
-		relative_position_id = TEX_Western_Republic_of_America
+		relative_position_id = TEX_cruise_goes_on
 		prerequisite = {
-			focus = TEX_Western_Republic_of_America
+			focus = TEX_cruise_goes_on
 		}
 		available = {
 		}
@@ -706,9 +948,9 @@ focus_tree = {
 		cost = 5
 		x = -1
 		y = 1
-		relative_position_id = TEX_Western_Republic_of_America
+		relative_position_id = TEX_cruise_goes_on
 		prerequisite = {
-			focus = TEX_Western_Republic_of_America
+			focus = TEX_cruise_goes_on
 		}
 		available = {
 		}
@@ -951,196 +1193,6 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = TEX_surrounded_on_all_fronts
-		icon = GFX_goal_Surrounded_On_All_Fronts
-		cost = 5
-		x = 0
-		y = 1
-		relative_position_id = TEX_in_bed_with_ted
-		prerequisite = {
-			focus = TEX_in_bed_with_ted
-		}
-		completion_reward = {
-			add_ideas = TEX_armed_neutrality
-		}
-
-	}
-	focus = {
-		id = TEX_Cozy_up_to_Oil_Barons
-		icon = GFX_goal_Cozy_Up_To_Oil_Barons
-		x = 4
-		y = 1
-		relative_position_id = TEX_surrounded_on_all_fronts
-		cost = 5
-		prerequisite = {
-			focus = TEX_surrounded_on_all_fronts
-			focus = TEX_Trumps_fuel_silo
-		}
-		completion_reward = {
-				swap_ideas = {
-						remove_idea = TEX_oil_baron_influence
-						add_idea = TEX_powerful_oil_barons
-				}
-		}
-	}
-	focus = {
-		id = TEX_expand_oil_production
-		icon = GFX_goal_Expand_Oil_Production
-		x = 0
-		y = 1
-		relative_position_id = TEX_Cozy_up_to_Oil_Barons
-		cost = 5
-		prerequisite = {
-			focus = TEX_Cozy_up_to_Oil_Barons
-		}
-		completion_reward = {
-				swap_ideas = {
-						remove_idea = TEX_powerful_oil_barons
-						add_idea = TEX_oil_barons_in_gov
-				}
-		}
-	}
-	focus = {
-		id = TEX_deregulate_the_economy
-		icon = GFX_goal_Deregulate_The_Economy
-		x = 0
-		y = 1
-		relative_position_id = TEX_expand_oil_production
-		cost = 5
-		prerequisite = {
-			focus = TEX_expand_oil_production
-			focus = TEX_finish_the_wall
-		}
-		completion_reward = {
-				add_ideas = TEX_econ_dergegulate
-		}
-	}
-	focus = {
-		id = TEX_send_migrants_back
-		icon = GFX_goal_Send_Migrants_Back
-		x = -2
-		y = 1
-		relative_position_id = TEX_expand_oil_production
-		cost = 5
-		prerequisite = {
-			focus = TEX_expand_oil_production
-			focus = TEX_finish_the_wall
-		}
-		completion_reward = {
-			add_manpower = -50000
-			RIO = { add_manpower = 50000 }
-			add_stability  = 0.2
-		}
-	}
-	focus = {
-		id = TEX_end_new_mexican_rebels
-		icon = GFX_goal_End_New_Mexican_Rebels
-		x = -1
-		y = 1
-		relative_position_id = TEX_legalize_lobbying
-		cost = 1
-		prerequisite = {
-			focus = TEX_legalize_lobbying
-		}
-		completion_reward = {
-			remove_ideas = TEX_New_Mexican_Terrorism
-			310 = { add_core_of = TEX }
-			249 = { add_core_of TEX }
-			335 = { add_core_of = TEX }
-		}
-	}
-	focus = {
-		id = TEX_send_former_rebels_to_rio_grande
-		icon = GFX_goal_End_New_Mexican_Rebels
-		x = 1
-		y = 1
-		relative_position_id = TEX_provide_for_the_border_patrol
-		cost = 1
-		prerequisite = {
-			focus = TEX_provide_for_the_border_patrol
-		}
-		completion_reward = {
-			RIO = { add_manpower = 10000 }
-			57 = {
-				add_extra_state_shared_building_slots = 1
-				add_building_construction = {
-    				type = industrial_complex
-    				level = 1
-    				instant_build = yes
-				}
-			}
-		}
-	}
-	focus = {
-		id = TEX_cultural_counter_revolution
-		icon = GFX_goal_Cultural_Counter_Revolution
-		x = 1
-		y = 3
-		relative_position_id = TEX_send_migrants_back
-		cost = 5
-		prerequisite = {
-			focus = TEX_send_migrants_back
-			focus = TEX_deregulate_the_economy
-		}
-		completion_reward = {
-				add_ideas = TEX_cultural_counterrevolution
-		}
-	}
-	focus = {
-		id = TEX_the_ten_commandments_in_school
-		icon = GFX_goal_10_Commandments_School
-		x = 1
-		y = 1
-		relative_position_id = TEX_cultural_counter_revolution
-		cost = 5
-		prerequisite = {
-			focus = TEX_cultural_counter_revolution
-		}
-		completion_reward = {
-				IF = { 
-					limit = { has_idea = TEX_cultural_counterrevolution }
-					swap_ideas = { 
-						remove_idea = TEX_cultural_counterrevolution
-						add_idea = TEX_cultural_counterrevolution2
-					}
-				}
-				ELSE_IF = { 
-					limit = { has_idea = TEX_cultural_counterrevolution2 }
-					swap_ideas = { 
-						remove_idea = TEX_cultural_counterrevolution2
-						add_idea = TEX_cultural_counterrevolution3
-					}
-				}
-		}
-	}
-	focus = {
-		id = TEX_ban_LGBTQIA2S_Thinking
-		icon = GFX_goal_Ban_LGBT_Thinking
-		x = -1
-		y = 1
-		relative_position_id = TEX_cultural_counter_revolution
-		cost = 5
-		prerequisite = {
-			focus = TEX_cultural_counter_revolution
-		}
-		completion_reward = {
-				IF = { 
-					limit = { has_idea = TEX_cultural_counterrevolution }
-					swap_ideas = { 
-						remove_idea = TEX_cultural_counterrevolution
-						add_idea = TEX_cultural_counterrevolution2
-					}
-				}
-				ELSE_IF = { 
-					limit = { has_idea = TEX_cultural_counterrevolution2 }
-					swap_ideas = { 
-						remove_idea = TEX_cultural_counterrevolution2
-						add_idea = TEX_cultural_counterrevolution3
-					}
-				}
-		}
-	}
-	focus = {
 		id = TEX_neuter_democrats
 		icon = GFX_goal_Neuter_The_Democrats
 		x = 2
@@ -1378,7 +1430,7 @@ focus_tree = {
 	focus = {
 		id = TEX_loyalty_to_trump
 		icon = GFX_goal_Loyalty_To_The_Big_Man
-		x = -6
+		x = -10
 		y = 1
 		relative_position_id = TEX_results
 		cost = 5
@@ -1891,7 +1943,7 @@ focus_tree = {
 	focus = {
 		id = TEX_george_republican
 		icon = GFX_goal_TEX_angel_bush
-		x = -3
+		x = -7
 		y = 1
 		relative_position_id = TEX_george_not_forgive
 		cost = 5
@@ -1913,9 +1965,9 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = TEX_befriend_oil_barons
+		id = TEX_assemble_the_old_cabinet
 		icon = GFX_goal_TEX_angel_bush
-		x = -1
+		x = 0
 		y = 1
 		relative_position_id = TEX_george_republican
 		cost = 5
@@ -1930,14 +1982,14 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = TEX_assemble_the_old_cabinet
+		id = TEX_befriend_oil_barons
 		icon = GFX_goal_TEX_angel_bush
 		x = -1
 		y = 1
-		relative_position_id = TEX_befriend_oil_barons
+		relative_position_id = TEX_assemble_the_old_cabinet
 		cost = 5
 		prerequisite = {
-			focus = TEX_befriend_oil_barons
+			focus = TEX_assemble_the_old_cabinet
 		}
 		completion_reward = {
 				add_ideas = TEX_the_old_cabinet
@@ -1946,8 +1998,8 @@ focus_tree = {
 	focus = {
 		id = TEX_george_dereg_energy
 		icon = GFX_goal_TEX_angel_bush
-		x = 0
-		y = 2
+		x = -1
+		y = 1
 		relative_position_id = TEX_befriend_oil_barons
 		cost = 5
 		prerequisite = {
@@ -1960,7 +2012,7 @@ focus_tree = {
 	focus = {
 		id = TEX_george_not_care
 		icon = GFX_goal_TEX_devil_bush
-		x = 3
+		x = 7
 		y = 1
 		relative_position_id = TEX_george_not_forgive
 		cost = 5
@@ -1996,14 +2048,28 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = TEX_oil_barons_under_me
+		id = TEX_power_to_the_vp
 		icon = GFX_goal_TEX_devil_bush
-		x = 1
+		x = 0
 		y = 1
 		relative_position_id = TEX_george_not_care
 		cost = 5
 		prerequisite = {
 			focus = TEX_george_not_care
+		}
+		completion_reward = {		
+				add_ideas = TEX_cheney_idea
+		}
+	}
+	focus = {
+		id = TEX_oil_barons_under_me
+		icon = GFX_goal_TEX_devil_bush
+		x = 1
+		y = 1
+		relative_position_id = TEX_power_to_the_vp
+		cost = 5
+		prerequisite = {
+			focus = TEX_power_to_the_vp
 		}
 		completion_reward = {		
 				swap_ideas = {
@@ -2013,32 +2079,14 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = TEX_a_true_cowboy
-		icon = GFX_goal_war_drums
-		x = 5
-		y = 1
-		relative_position_id = TEX_george_republican
-		cost = 5
-		prerequisite = {
-			focus = TEX_george_not_care
-			focus = TEX_george_republican
-		}
-		completion_reward = {
-				add_country_leader_trait = TEX_Cowboy
-		}
-	}
-	focus = {
 		id = TEX_military_industrial_complex_expansion
 		icon = GFX_goal_war_drums
 		x = -1
 		y = 1
-		relative_position_id = TEX_a_true_cowboy
+		relative_position_id = TEX_a_new_patriot_bill
 		cost = 5
 		prerequisite = {
-			focus = TEX_a_true_cowboy
-		}
-		prerequisite = {
-			focus = TEX_drums_of_war
+			focus = TEX_a_new_patriot_bill
 		}
 		completion_reward = {
 			add_offsite_building = { type = arms_factory level = 4 }
@@ -2047,18 +2095,54 @@ focus_tree = {
 	focus = {
 		id = TEX_a_new_patriot_bill
 		icon = GFX_goal_Force_Texas_into_the_fold_Peace
-		x = 1
+		x = -1
 		y = 1
-		relative_position_id = TEX_a_true_cowboy
+		relative_position_id = TEX_power_to_the_vp
 		cost = 5
 		prerequisite = {
-			focus = TEX_oil_barons_under_me
+			focus = TEX_power_to_the_vp
 		}
 		prerequisite = {
-			focus = TEX_a_true_cowboy
+			#focus = TEX_a_true_cowboy
 		}
 		completion_reward = {
 				add_ideas = TEX_new_patriot_bill
+		}
+	}
+	focus = {
+		id = TEX_put_dick_in_dictator
+		icon = GFX_goal_Force_Texas_into_the_fold_Peace
+		x = 1
+		y = 1
+		relative_position_id = TEX_a_new_patriot_bill
+		cost = 5
+		prerequisite = {
+			focus = TEX_a_new_patriot_bill
+		}
+		prerequisite = {
+			focus = TEX_oil_barons_under_me
+		}
+		completion_reward = {
+			add_political_power = 150
+			add_stability = 0.05
+			add_war_support = 0.2
+		}
+	}
+	focus = {
+		id = TEX_a_true_cowboy
+		icon = GFX_goal_war_drums
+		x = 3
+		y = 1
+		relative_position_id = TEX_a_new_patriot_bill
+		cost = 5
+		prerequisite = {
+			focus = TEX_a_new_patriot_bill
+		}
+		prerequisite = {
+			focus = TEX_oil_barons_under_me
+		}
+		completion_reward = {
+				add_country_leader_trait = TEX_Cowboy
 		}
 	}
 	focus = {
@@ -2066,11 +2150,10 @@ focus_tree = {
 		icon = GFX_goal_war_drums
 		x = 1
 		y = 1
-		relative_position_id = TEX_george_republican
+		relative_position_id = TEX_assemble_the_old_cabinet
 		cost = 5
 		prerequisite = {
-			focus = TEX_george_not_care
-			focus = TEX_george_republican
+			focus = TEX_assemble_the_old_cabinet
 		}
 		completion_reward = {
 				add_ideas = TEX_george_texas1
@@ -2153,7 +2236,7 @@ focus_tree = {
 	focus = {
 		id = TEX_drums_of_war
 		icon = GFX_goal_war_drums
-		x = 3
+		x = 7
 		y = 1
 		relative_position_id = TEX_george_republican
 		cost = 5
@@ -2163,21 +2246,6 @@ focus_tree = {
 		}
 		completion_reward = {
 			add_country_leader_trait = forty_three
-		}
-
-	}
-	focus = {
-		id = TEX_squash_insurgency
-		icon = GFX_goal_kill_james_mason
-		x = 0
-		y = 2
-		relative_position_id = TEX_drums_of_war
-		cost = 5
-		prerequisite = {
-			focus = TEX_drums_of_war
-		}
-		will_lead_to_war_with = HOP
-		completion_reward = {
 			declare_war_on = {
 			    target = HOP
 			    type = annex_everything
@@ -2194,12 +2262,12 @@ focus_tree = {
 	focus = {
 		id = TEX_invade_the_mormons
 		icon = GFX_goal_put_down_insurgency
-		x = -4
+		x = -2
 		y = 1
-		relative_position_id = TEX_squash_insurgency
+		relative_position_id = TEX_drums_of_war
 		cost = 5
 		prerequisite = {
-			focus = TEX_squash_insurgency
+			focus = TEX_drums_of_war
 		}
 		mutually_exclusive = { focus = TEX_invade_the_freedom_coalition }
 		mutually_exclusive = { focus = TEX_sit_down_with_mitt }
@@ -2223,12 +2291,12 @@ focus_tree = {
 	focus = {
 		id = TEX_sit_down_with_mitt
 		icon = GFX_goal_put_down_insurgency
-		x = 0
+		x = 2
 		y = 1
-		relative_position_id = TEX_squash_insurgency
+		relative_position_id = TEX_drums_of_war
 		cost = 5
 		prerequisite = {
-			focus = TEX_squash_insurgency
+			focus = TEX_drums_of_war
 		}
 		mutually_exclusive = { focus = TEX_invade_the_freedom_coalition }
 		mutually_exclusive = { focus = TEX_invade_the_mormons }
@@ -2277,12 +2345,12 @@ focus_tree = {
 	focus = {
 		id = TEX_invade_the_freedom_coalition
 		icon = GFX_goal_put_down_insurgency
-		x = -2
+		x = -0
 		y = 1
-		relative_position_id = TEX_squash_insurgency
+		relative_position_id = TEX_drums_of_war
 		cost = 5
 		prerequisite = {
-			focus = TEX_squash_insurgency
+			focus = TEX_drums_of_war
 		}
 		mutually_exclusive = { focus = TEX_invade_the_mormons }
 		mutually_exclusive = { focus = TEX_sit_down_with_mitt }
@@ -2321,14 +2389,12 @@ focus_tree = {
 	focus = {
 		id = TEX_secure_the_flank
 		icon = GFX_goal_put_down_insurgency
-		x = 2
+		x = -4
 		y = 1
-		relative_position_id = TEX_invade_the_mormons
+		relative_position_id = TEX_drums_of_war
 		cost = 5
 		prerequisite = {
-			focus = TEX_invade_the_mormons
-			focus = TEX_invade_the_freedom_coalition
-			focus = TEX_sit_down_with_mitt
+			focus = TEX_drums_of_war
 		}
 		will_lead_to_war_with = PRA
 		available = {
@@ -2455,12 +2521,14 @@ focus_tree = {
 	focus = {
 		id = TEX_restore_the_rockies
 		icon = GFX_goal_put_down_insurgency
-		x = -1
+		x = 0
 		y = 1
-		relative_position_id = TEX_secure_the_flank
+		relative_position_id = TEX_invade_the_freedom_coalition
 		cost = 5
 		prerequisite = {
-			focus = TEX_secure_the_flank
+			focus = TEX_invade_the_freedom_coalition
+			focus = TEX_sit_down_with_mitt
+			focus = TEX_invade_the_mormons
 		}
 		will_lead_to_war_with = MON
 		will_lead_to_war_with = IDA
@@ -2481,12 +2549,12 @@ focus_tree = {
 	focus = {
 		id = TEX_restore_order_in_dixie
 		icon = GFX_goal_attack_csa
-		x = 2
+		x = 4
 		y = 1
-		relative_position_id = TEX_squash_insurgency
+		relative_position_id = TEX_drums_of_war
 		cost = 5
 		prerequisite = {
-			focus = TEX_squash_insurgency
+			focus = TEX_drums_of_war
 		}
 		available = {
 			has_war = no
@@ -2570,8 +2638,8 @@ focus_tree = {
 	focus = {
 		id = TEX_revenge_at_last
 		icon = GFX_focus_BushVsTrump
-		x = 0
-		y = 2
+		x = -1
+		y = 1
 		relative_position_id = TEX_restore_order_in_dixie
 		cost = 5
 		prerequisite = {
@@ -2601,7 +2669,7 @@ focus_tree = {
 	focus = {
 		id = TEX_the_showdown
 		icon = GFX_focus_BushVsTrump
-		x = -2
+		x = -3
 		y = 1
 		relative_position_id = TEX_revenge_at_last
 		cost = 7.00
@@ -4302,9 +4370,9 @@ focus_tree = {
 	focus = {
 		id = TEX_Even_Further
 		icon = GFX_goal_OBX_Royal_Militias
-		x = 11
-		y = -3
-		relative_position_id = TEX_East_into_biden
+		x = 0
+		y = 1
+		relative_position_id = TEX_Controlled_Immigration
 		cost = 0
 		available = {
 			has_completed_focus = TEX_Into_Ohio
@@ -4328,6 +4396,14 @@ focus_tree = {
 		}
 		completion_reward = {
 				set_cosmetic_tag = TEX_ENG
+				set_capital = { state = 285 }
+				285 = {
+					set_state_name = "Pendragon"
+				}
+				set_province_name = {
+					id = 4807
+					name = "Pendragon Imperial City"
+				}
 		}
 	}
 	focus = {
@@ -4376,30 +4452,9 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = TEX_Demand_Carribean_Subjugation
-		icon = GFX_goal_OBX_Royal_Militias
-		x = -3
-		y = 1
-		relative_position_id = TEX_the_REAL_British_Empire
-		cost = 5
-		prerequisite = {
-			focus = TEX_the_REAL_British_Empire
-		}
-		completion_reward = {
-				CUB = { country_event = texas.22 }
-				HAI = { country_event = texas.22 }
-				BAH = { country_event = texas.22 }
-				DOM = { country_event = texas.22 }
-				PUE = { country_event = texas.22 }
-				CAY = { country_event = texas.22 }
-				JAM = { country_event = texas.22 }
-				TAT = { country_event = texas.22 }
-		}
-	}
-	focus = {
 		id = TEX_Demand_Central_American_Subjugation
 		icon = GFX_goal_OBX_Royal_Militias
-		x = -5
+		x = -3
 		y = 1
 		relative_position_id = TEX_the_REAL_British_Empire
 		cost = 5
@@ -4419,9 +4474,39 @@ focus_tree = {
 		}
 	}
 	focus = {
+		id = TEX_Demand_Carribean_Subjugation
+		icon = GFX_goal_OBX_Royal_Militias
+		x = 2
+		y = 1
+		relative_position_id = TEX_Demand_Central_American_Subjugation
+		cost = 5
+		prerequisite = {
+			focus = TEX_Demand_Central_American_Subjugation
+		}
+		prerequisite = {
+			focus = TEX_Demand_Mexican_Subjugation
+		}
+		prerequisite = {
+			focus = TEX_Demand_Canadian_Subjugation
+		}
+		prerequisite = {
+			focus = TEX_Demand_Hawaii_and_Alaskan_Subjugation
+		}
+		completion_reward = {
+				CUB = { country_event = texas.22 }
+				HAI = { country_event = texas.22 }
+				BAH = { country_event = texas.22 }
+				DOM = { country_event = texas.22 }
+				PUE = { country_event = texas.22 }
+				CAY = { country_event = texas.22 }
+				JAM = { country_event = texas.22 }
+				TAT = { country_event = texas.22 }
+		}
+	}
+	focus = {
 		id = TEX_Demand_Hawaii_and_Alaskan_Subjugation
 		icon = GFX_goal_OBX_Royal_Militias
-		x = 5
+		x = 3
 		y = 1
 		relative_position_id = TEX_the_REAL_British_Empire
 		cost = 5
@@ -4436,12 +4521,21 @@ focus_tree = {
 	focus = {
 		id = TEX_Demand_European_Colonial_Holdings
 		icon = GFX_goal_OBX_Royal_Militias
-		x = 3
+		x = 4
 		y = 1
-		relative_position_id = TEX_the_REAL_British_Empire
+		relative_position_id = TEX_Demand_Central_American_Subjugation
 		cost = 5
 		prerequisite = {
-			focus = TEX_the_REAL_British_Empire
+			focus = TEX_Demand_Central_American_Subjugation
+		}
+		prerequisite = {
+			focus = TEX_Demand_Mexican_Subjugation
+		}
+		prerequisite = {
+			focus = TEX_Demand_Canadian_Subjugation
+		}
+		prerequisite = {
+			focus = TEX_Demand_Hawaii_and_Alaskan_Subjugation
 		}
 		completion_reward = {
 				FFR = { country_event = texas.22 }
@@ -4454,7 +4548,7 @@ focus_tree = {
 		id = TEX_american_hegemony_harry
 		icon = GFX_goal_OBX_Royal_Militias
 		x = 0
-		y = 2
+		y = 3
 		relative_position_id = TEX_the_REAL_British_Empire
 		cost = 5
 		prerequisite = {
@@ -4462,18 +4556,6 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = TEX_Demand_Carribean_Subjugation
-		}
-		prerequisite = {
-			focus = TEX_Demand_Mexican_Subjugation
-		}
-		prerequisite = {
-			focus = TEX_Demand_Canadian_Subjugation
-		}
-		prerequisite = {
-			focus = TEX_Demand_Hawaii_and_Alaskan_Subjugation
-		}
-		prerequisite = {
-			focus = TEX_Demand_Central_American_Subjugation
 		}
 		available = {
 				NOT = {
@@ -4492,20 +4574,6 @@ focus_tree = {
 				every_state = {
 					add_core_of = TEX
 				}
-		}
-	}
-	focus = {
-		id = TEX_are_we_still_liberals
-		icon = GFX_goal_OBX_Royal_Militias
-		x = 0
-		y = 1
-		relative_position_id = TEX_american_hegemony_harry
-		cost = 5
-		prerequisite = {
-			focus = TEX_american_hegemony_harry
-		}
-		completion_reward = {
-				country_event = texas.23
 		}
 	}
 	
@@ -6763,7 +6831,7 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_utilize_the_rangers
-		icon = GFX_goal_Hunters
+		icon = GFX_goal_focustexenarmy
 		cost = 5
 		x = -4
 		y = 1
@@ -6801,7 +6869,7 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_paratrooper_program
-		icon = GFX_goal_Hunters
+		icon = GFX_goal_focusparatrooper
 		cost = 2
 		x = 2
 		y = 1
@@ -6982,7 +7050,7 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_advancements_in_stealth_tech
-		icon = GFX_goal_biilingual
+		icon = GFX_goal_focusstealthbomberresearch
 		cost = 5
 		x = -1
 		y = 1
@@ -7063,7 +7131,7 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_expand_coast_guard
-		icon = GFX_goal_biilingual
+		icon = GFX_goal_focusexpandthecoastguard
 		cost = 5
 		x = 0
 		y = 1
@@ -7090,7 +7158,7 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_coordinate_border_patrol_and_coast_guard
-		icon = GFX_goal_biilingual
+		icon = GFX_goal_focusborderpatrolandcoastguard
 		cost = 5
 		x = 0
 		y = 1
@@ -7129,7 +7197,7 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_carrier_fighters
-		icon = GFX_goal_biilingual
+		icon = GFX_goal_focuscarrieraircraft
 		cost = 5
 		x = 0
 		y = 1
@@ -7298,12 +7366,12 @@ focus_tree = {
 		}
 	}
 	
-	######First Beto Tree
+	###### First Beto Tree
 	
 	focus = {
 		id = TEX_underdog_no_more
 		icon = GFX_goal_Beto_ORourke_Victory
-		x = 14
+		x = 18
 		y = 1
 		relative_position_id = TEX_results
 		cost = 5
@@ -7517,7 +7585,7 @@ focus_tree = {
 				
 		}
 	}
-	#########Normal Beto
+	######### Normal Beto
 	
 	
 	
@@ -7548,10 +7616,11 @@ focus_tree = {
 			}
 		}
 		completion_reward = {
-				add_popularity = {
-					ideology = democrat
-					popularity = 0.15
-				}
+			add_popularity = {
+				ideology = democrat
+				popularity = 0.15
+			}
+			mark_focus_tree_layout_dirty = yes
 		}
 	}
 	focus = {
@@ -7672,7 +7741,7 @@ focus_tree = {
 	focus = {
 		id = TEX_Rekindle_southern_spirit
 		icon = GFX_goal_Beto_ORourke_Victory
-		x = 1
+		x = 2
 		y = 1
 		relative_position_id = TEX_still_a_democracy
 		cost = 1
@@ -7780,7 +7849,7 @@ focus_tree = {
 	focus = {
 		id = TEX_end_the_floridian_feifdom
 		icon = GFX_goal_Beto_ORourke_Victory
-		x = 0
+		x = -1
 		y = 1
 		relative_position_id = TEX_end_the_second_confederacy
 		cost = 5
@@ -7836,12 +7905,12 @@ focus_tree = {
 	focus = {
 		id = TEX_unite_with_virginia
 		icon = GFX_goal_Beto_ORourke_Victory
-		x = 0
+		x = 1
 		y = 1
-		relative_position_id = TEX_end_the_floridian_feifdom
+		relative_position_id = TEX_end_the_second_confederacy
 		cost = 5
 		prerequisite = {
-			focus = TEX_end_the_floridian_feifdom
+			focus = TEX_end_the_second_confederacy
 		}
 		available = {
 		}
@@ -7884,10 +7953,13 @@ focus_tree = {
 	focus = {
 		id = TEX_the_southern_united_states_of_america
 		icon = GFX_goal_Beto_ORourke_Victory
-		x = 0
+		x = -1
 		y = 1
 		relative_position_id = TEX_unite_with_virginia
 		cost = 5
+		prerequisite = {
+			focus = TEX_end_the_floridian_feifdom
+		}
 		prerequisite = {
 			focus = TEX_unite_with_virginia
 		}
@@ -7943,7 +8015,7 @@ focus_tree = {
 	focus = {
 		id = TEX_Continue_Progressive_Policies
 		icon = GFX_goal_Icon_Progressive_Doctrine_MAA
-		x = -4
+		x = -7
 		y = 1
 		relative_position_id = TEX_still_a_democracy
 		cost = 5
@@ -7978,12 +8050,12 @@ focus_tree = {
 	focus = {
 		id = TEX_Utilize_Immigration
 		icon = GFX_goal_Neutralise_Current_Immigrants
-		x = 0
+		x = 3
 		y = 1
-		relative_position_id = TEX_End_Interest_On_Student_Loans
+		relative_position_id = TEX_Continue_Progressive_Policies
 		cost = 5
 		prerequisite = {
-			focus = TEX_End_Interest_On_Student_Loans
+			focus = TEX_Continue_Progressive_Policies
 		}
 		available = {
 		}
@@ -8000,7 +8072,7 @@ focus_tree = {
 		cost = 5
 		prerequisite = {
 			focus = TEX_Utilize_Immigration
-			focus = TEX_green_energy
+			focus = TEX_End_Interest_On_Student_Loans
 		}
 		available = {
 		}
@@ -8046,7 +8118,7 @@ focus_tree = {
 	focus = {
 		id = TEX_Joining_the_Legitimists
 		icon = GFX_goal_Joe_Biden_Admin
-		x = 4
+		x = 7
 		y = 1
 		relative_position_id = TEX_still_a_democracy
 		cost = 5
@@ -8067,7 +8139,7 @@ focus_tree = {
 	focus = {
 		id = TEX_Legitimist_economic_aid
 		icon = GFX_goal_Receive_Biden_Economic_Aid
-		x = -1
+		x = 1
 		y = 1
 		relative_position_id = TEX_Joining_the_Legitimists
 		bypass = { NOT = { country_exists = FRA } }
@@ -8104,7 +8176,7 @@ focus_tree = {
 	focus = {
 		id = TEX_send_migrants_to_trump
 		icon = GFX_goal_Beto_ORourke_Victory
-		x = 1
+		x = -3
 		y = 1
 		relative_position_id = TEX_Joining_the_Legitimists
 		cost = 5
@@ -8126,14 +8198,15 @@ focus_tree = {
 	focus = {
 		id = TEX_flood_trump
 		icon = GFX_goal_Beto_ORourke_Victory
-		x = 0
+		x = -1
 		y = 1
-		relative_position_id = TEX_send_migrants_to_trump
+		relative_position_id = TEX_Joining_the_Legitimists
 		cost = 5
 		prerequisite = {
-			focus = TEX_send_migrants_to_trump
+			focus = TEX_Joining_the_Legitimists
 		}
 		available = {
+			has_completed_focus = TEX_send_migrants_to_trump
 		}
 		completion_reward = {
 				USA = { add_ideas = TEX_flood_trumptardia1 }
@@ -8147,7 +8220,7 @@ focus_tree = {
 		relative_position_id = TEX_flood_trump
 		cost = 5
 		prerequisite = {
-			focus = TEX_Legitimist_army_support
+			focus = TEX_send_migrants_to_trump
 		}
 		prerequisite = {
 			focus = TEX_flood_trump
@@ -8166,7 +8239,7 @@ focus_tree = {
 	focus = {
 		id = TEX_Aiming_for_the_Sunbelt
 		icon = GFX_goal_Beto_ORourke_Victory
-		x = -1
+		x = -2
 		y = 1
 		relative_position_id = TEX_still_a_democracy
 		cost = 1
@@ -8206,7 +8279,7 @@ focus_tree = {
 	focus = {
 		id = TEX_Seize_Utah_and_Nevada
 		icon = GFX_goal_Beto_ORourke_Victory
-		x = 0
+		x = 1
 		y = 1
 		relative_position_id = TEX_End_the_Bigots
 		cost = 5
@@ -8261,12 +8334,12 @@ focus_tree = {
 	focus = {
 		id = TEX_Unite_With_Bernie
 		icon = GFX_goal_Beto_ORourke_Victory
-		x = 0
+		x = -1
 		y = 1
-		relative_position_id = TEX_Seize_Utah_and_Nevada
+		relative_position_id = TEX_End_the_Bigots
 		cost = 5
 		prerequisite = {
-			focus = TEX_Seize_Utah_and_Nevada
+			focus = TEX_End_the_Bigots
 		}
 		will_lead_to_war_with = PRA
 		available = {
@@ -8482,12 +8555,15 @@ focus_tree = {
 	focus = {
 		id = TEX_The_Legitimist_Sunbelt
 		icon = GFX_goal_Beto_ORourke_Victory
-		x = 0
+		x = 1
 		y = 1
 		relative_position_id = TEX_Unite_With_Bernie
 		cost = 5
 		prerequisite = {
 			focus = TEX_Unite_With_Bernie
+		}
+		prerequisite = {
+			focus = TEX_Seize_Utah_and_Nevada
 		}
 		available = {
 		}
@@ -8582,7 +8658,7 @@ focus_tree = {
 	focus = {
 		id = TEX_Cruz_Coup
 		icon = GFX_goal_Cruz_Coup
-		x = 4
+		x = 3
 		y = 0
 		relative_position_id = TEX_the_oil_bill
 		cost = 5
