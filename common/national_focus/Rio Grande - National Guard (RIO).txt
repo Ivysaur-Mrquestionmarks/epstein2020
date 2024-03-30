@@ -17,17 +17,20 @@ focus_tree = {
 ###########Starting Tree
 	focus = {
 		id = RIO_national_guard_state
-		icon = GFX
+		icon = GFX_goal_National_Guard_Smaller
 		cost = 5
 		x = 20
 		y = 0
+		select_effect = { country_event = national_guard.1 }
 		completion_reward = {
+			add_manpower = 50000
+			add_political_power = 100
 		}
 
 	}
 	focus = {
 		id = RIO_set_up_refugee_camps
-		icon = GFX
+		icon = GFX_goal_National_Guard_Smaller
 		x = 0
 		y = 1
 		relative_position_id = RIO_national_guard_state
@@ -36,12 +39,25 @@ focus_tree = {
 			focus = RIO_national_guard_state
 		}
 		completion_reward = {
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
 		}
 
 	}
 	focus = {
 		id = RIO_orders_from_the_top
-		icon = GFX
+		icon = GFX_goal_National_Guard_Smaller
 		x = 0
 		y = 1
 		relative_position_id = RIO_set_up_refugee_camps
@@ -50,12 +66,13 @@ focus_tree = {
 			focus = RIO_set_up_refugee_camps
 		}
 		completion_reward = {
+			country_event = national_guard.2
 		}
 
 	}
 	focus = {
 		id = RIO_stabilize_the_border
-		icon = GFX
+		icon = GFX_goal_National_Guard_Smaller
 		x = 0
 		y = 2
 		relative_position_id = RIO_orders_from_the_top
@@ -64,6 +81,11 @@ focus_tree = {
 			focus = RIO_orders_from_the_top
 		}
 		completion_reward = {
+			641 = { set_demilitarized_zone = no }
+			79 = { set_demilitarized_zone = no }
+			659 = {
+				set_demilitarized_zone = no
+			}
 		}
 
 	}
@@ -71,8 +93,8 @@ focus_tree = {
 
 	focus = {
 		id = RIO_reap_fruits_of_loyalty
-		icon = GFX
-		x = -5
+		icon = GFX_goal_National_Guard_Smaller
+		x = -4
 		y = 1
 		mutually_exclusive = { focus = RIO_our_judgement_is_better }
 		relative_position_id = RIO_orders_from_the_top
@@ -81,12 +103,17 @@ focus_tree = {
 			focus = RIO_orders_from_the_top
 		}
 		completion_reward = {
+			add_political_power = 50
+			add_popularity = {
+				ideology = autocratic
+				popularity = 0.1
+			}
 		}
 
 	}
 	focus = {
 		id = RIO_receive_additional_funds
-		icon = GFX
+		icon = GFX_goal_National_Guard_Smaller
 		x = -1
 		y = 1
 		relative_position_id = RIO_reap_fruits_of_loyalty
@@ -95,12 +122,16 @@ focus_tree = {
 			focus = RIO_reap_fruits_of_loyalty
 		}
 		completion_reward = {
+			add_timed_idea = {
+				idea = RIO_additional_funds
+				days = 250
+			}
 		}
 
 	}
 	focus = {
 		id = RIO_citizenship_for_military_service
-		icon = GFX
+		icon = GFX_goal_National_Guard_Smaller
 		x = 0
 		y = 1
 		relative_position_id = RIO_receive_additional_funds
@@ -109,12 +140,14 @@ focus_tree = {
 			focus = RIO_receive_additional_funds
 		}
 		completion_reward = {
+			add_stability = 0.1
+			add_manpower = 10000
 		}
 
 	}
 	focus = {
 		id = RIO_invite_texan_volunteers
-		icon = GFX
+		icon = GFX_goal_National_Guard_Smaller
 		x = 1
 		y = 1
 		relative_position_id = RIO_reap_fruits_of_loyalty
@@ -123,12 +156,13 @@ focus_tree = {
 			focus = RIO_reap_fruits_of_loyalty
 		}
 		completion_reward = {
+			79 = { add_manpower = 50000 }
 		}
 
 	}
 	focus = {
 		id = RIO_speed_up_naturalization
-		icon = GFX
+		icon = GFX_goal_National_Guard_Smaller
 		x = 0
 		y = 1
 		relative_position_id = RIO_invite_texan_volunteers
@@ -137,12 +171,16 @@ focus_tree = {
 			focus = RIO_invite_texan_volunteers
 		}
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = RIO_migrant_crisis
+				add_idea = RIO_migrant_crisis2
+			}
 		}
 
 	}
 	focus = {
 		id = RIO_the_autonomous_state
-		icon = GFX
+		icon = GFX_goal_National_Guard_Smaller
 		x = 1
 		y = 1
 		relative_position_id = RIO_citizenship_for_military_service
@@ -154,6 +192,7 @@ focus_tree = {
 			focus = RIO_citizenship_for_military_service
 		}
 		completion_reward = {
+			country_event = national_guard.3
 		}
 
 	}
@@ -162,8 +201,8 @@ focus_tree = {
 
 	focus = {
 		id = RIO_our_judgement_is_better
-		icon = GFX
-		x = 5
+		icon = GFX_goal_National_Guard_Smaller
+		x = 4
 		y = 1
 		relative_position_id = RIO_orders_from_the_top
 		cost = 5
@@ -177,7 +216,7 @@ focus_tree = {
 	}
 	focus = {
 		id = RIO_stockpile_weapons
-		icon = GFX
+		icon = GFX_goal_National_Guard_Smaller
 		x = 1
 		y = 1
 		relative_position_id = RIO_our_judgement_is_better
@@ -186,12 +225,22 @@ focus_tree = {
 			focus = RIO_our_judgement_is_better
 		}
 		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 5000
+				producer = TEX
+			}
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = 500
+				producer = TEX
+			}
 		}
 
 	}
 	focus = {
 		id = RIO_divert_funds
-		icon = GFX
+		icon = GFX_goal_National_Guard_Smaller
 		x = -1
 		y = 1
 		relative_position_id = RIO_our_judgement_is_better
@@ -200,12 +249,16 @@ focus_tree = {
 			focus = RIO_our_judgement_is_better
 		}
 		completion_reward = {
+			add_timed_idea = {
+				idea = RIO_diverted_funds
+				days = 250
+			}
 		}
 
 	}
 	focus = {
 		id = RIO_the_national_guard_only
-		icon = GFX
+		icon = GFX_goal_National_Guard_Smaller
 		x = 0
 		y = 2
 		relative_position_id = RIO_our_judgement_is_better
@@ -221,12 +274,16 @@ focus_tree = {
 			focus = RIO_recruit_texan_rangers
 		}
 		completion_reward = {
+			army_experience = 50
+			add_command_power = 50
+			add_war_support = 0.1
+			set_country_flag = nat_guard_alone
 		}
 
 	}
 	focus = {
 		id = RIO_recruit_the_migrants
-		icon = GFX
+		icon = GFX_goal_Send_Migrants_Back
 		x = -2
 		y = 2
 		relative_position_id = RIO_our_judgement_is_better
@@ -242,12 +299,17 @@ focus_tree = {
 			focus = RIO_recruit_texan_rangers
 		}
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = RIO_migrant_crisis
+				add_idea = RIO_migrant_crisis2
+			}
+			set_country_flag = migrants_help
 		}
 
 	}
 	focus = {
 		id = RIO_recruit_texan_rangers
-		icon = GFX
+		icon = GFX_goal_IDA_An_American_Empire_MAA
 		x = 2
 		y = 2
 		relative_position_id = RIO_our_judgement_is_better
@@ -263,13 +325,20 @@ focus_tree = {
 			focus = RIO_the_national_guard_only
 		}
 		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 5000
+				producer = TEX
+			}
+			add_manpower = 50000
+			set_country_flag = settlers_help
 		}
 
 	}
 	
 	focus = {
 		id = RIO_independence
-		icon = GFX
+		icon = GFX_goal_National_Guard_Smaller
 		x = 0
 		y = 1
 		relative_position_id = RIO_the_national_guard_only
@@ -280,6 +349,8 @@ focus_tree = {
 			focus = RIO_the_national_guard_only
 		}
 		completion_reward = {
+			country_event = national_guard.4
+			TEX = { country_event = national_guard.5 }
 		}
 
 	}
