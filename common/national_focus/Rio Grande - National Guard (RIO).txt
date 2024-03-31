@@ -277,7 +277,7 @@ focus_tree = {
 			army_experience = 50
 			add_command_power = 50
 			add_war_support = 0.1
-			set_country_flag = nat_guard_alone
+			set_country_flag = nat_guard_alone 
 		}
 
 	}
@@ -303,7 +303,7 @@ focus_tree = {
 				remove_idea = RIO_migrant_crisis
 				add_idea = RIO_migrant_crisis2
 			}
-			set_country_flag = migrants_help
+			set_country_flag = migrants_help 
 		}
 
 	}
@@ -1232,11 +1232,12 @@ focus_tree = {
 		x = 15
 		y = 2
 		relative_position_id = RIO_independence
-		cost = 5
+		cost = 1
 		#prerequisite = {
 		#	focus = RIO_reap_fruits_of_loyalty
 		#}
 		completion_reward = {
+			add_political_power = 50
 		}
 	}
 	focus = {
@@ -1245,11 +1246,12 @@ focus_tree = {
 		x = 0
 		y = 1
 		relative_position_id = RIO_new_freedom
-		cost = 5
+		cost = 1
 		prerequisite = {
 			focus = RIO_new_freedom
 		}
 		completion_reward = {
+			add_stability = -0.1
 		}
 	}
 	focus = {
@@ -1262,7 +1264,22 @@ focus_tree = {
 		prerequisite = {
 			focus = RIO_problems_rear
 		}
-		completion_reward = {
+		completion_reward = { #  
+			IF = { 
+				limit = { has_country_flag = nat_guard_alone }
+				country_event = national_guard.7
+				clr_country_flag = nat_guard_alone
+			}
+			IF = { 
+				limit = { has_country_flag = migrants_help }
+				country_event = national_guard.8
+				clr_country_flag = migrants_help
+			}
+			IF = { 
+				limit = { has_country_flag = settlers_help }
+				country_event = national_guard.9
+				clr_country_flag = settlers_help
+			}
 		}
 	}
 	
@@ -1285,6 +1302,10 @@ focus_tree = {
 			focus = RIO_settlers_association_control
 		}
 		completion_reward = {
+			add_popularity = {
+				ideology = autocratic
+				popularity = 1
+			}
 		}
 	}
 	focus = {
@@ -1298,6 +1319,10 @@ focus_tree = {
 			focus = RIO_national_guard_on_top
 		}
 		completion_reward = {
+			add_timed_idea = {
+				idea = RIO_martial_law
+				days = 360
+			}
 		}
 	}
 	focus = {
@@ -1311,6 +1336,7 @@ focus_tree = {
 			focus = RIO_enact_marshal_law
 		}
 		completion_reward = {
+			add_ideas = RIO_military_state
 		}
 	}
 	focus = {
@@ -1324,6 +1350,10 @@ focus_tree = {
 			focus = RIO_full_military_takeover
 		}
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = RIO_military_state
+				add_idea = RIO_military_state2
+			}
 		}
 	}
 	focus = {
@@ -1337,6 +1367,19 @@ focus_tree = {
 			focus = RIO_enact_marshal_law
 		}
 		completion_reward = {
+			set_party_name = {
+				ideology = republican
+				name = TEX_republican_banned
+				long_name = TEX_republican_banned
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
 		}
 	}
 	focus = {
@@ -1350,6 +1393,10 @@ focus_tree = {
 			focus = RIO_dissolve_settlers_association
 		}
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = RIO_american_settlers
+				add_idea = RIO_militias_integrated_into_guard
+			}
 		}
 	}
 	focus = {
@@ -1363,6 +1410,25 @@ focus_tree = {
 			focus = RIO_enact_marshal_law
 		}
 		completion_reward = {
+			set_party_name = {
+				ideology = democrat
+				name = TEX_republican_banned
+				long_name = TEX_republican_banned
+			}
+			set_party_name = {
+				ideology = libertarian_left
+				name = TEX_republican_banned
+				long_name = TEX_republican_banned
+			}
+			add_stability = 0.1
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
 		}
 	}
 	focus = {
@@ -1376,6 +1442,7 @@ focus_tree = {
 			focus = RIO_dissolve_migrant_unions
 		}
 		completion_reward = {
+			remove_ideas = RIO_migrant_crisis
 		}
 	}
 	focus = {
@@ -1395,6 +1462,10 @@ focus_tree = {
 			focus = RIO_institute_censorship
 		}
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = RIO_military_state2
+				add_idea = RIO_military_state3
+			}
 		}
 	}
 	
@@ -1410,62 +1481,198 @@ focus_tree = {
 			focus = RIO_an_army_with_a_state
 		}
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = RIO_military_state3
+				add_idea = RIO_military_state4
+			}
 		}
 	}
 	focus = {
 		id = RIO_remember_our_duty
 		icon = GFX
-		x = 2
+		x = 0
 		y = 1
 		relative_position_id = RIO_war_plans
 		cost = 5
 		prerequisite = {
 			focus = RIO_war_plans
 		}
-		mutually_exclusive = { focus = RIO_claim_the_texan_mantle }
 		completion_reward = {
-		}
-	}
-	focus = {
-		id = RIO_claim_the_texan_mantle
-		icon = GFX
-		x = -2
-		y = 1
-		relative_position_id = RIO_war_plans
-		cost = 5
-		prerequisite = {
-			focus = RIO_war_plans
-		}
-		mutually_exclusive = { focus = RIO_remember_our_duty }
-		completion_reward = {
+			add_ideas = RIO_duty
 		}
 	}
 	focus = {
 		id = RIO_expand_our_domain
 		icon = GFX
-		x = -2
+		x = 0
 		y = 1
 		relative_position_id = RIO_remember_our_duty
 		cost = 5
 		prerequisite = {
 			focus = RIO_remember_our_duty
-			focus = RIO_claim_the_texan_mantle
 		}
+		will_lead_to_war_with = MEX
+		will_lead_to_war_with = ADF
+		will_lead_to_war_with = YUC
+		will_lead_to_war_with = BJC
+		will_lead_to_war_with = ZAP
+		will_lead_to_war_with = WMX
+		will_lead_to_war_with = RMX
+		will_lead_to_war_with = CAR
+		will_lead_to_war_with = ZAP
 		completion_reward = {
+			if = { 
+				limit = { country_exists = MEX } 
+				declare_war_on = {
+					target = MEX
+					type = annex_everything
+				}
+				TEX = {
+					declare_war_on = {
+						target = MEX
+						type = annex_everything
+					}
+				}
+			}
+			if = { 
+				limit = { country_exists = ADF } 
+				declare_war_on = {
+					target = ADF
+					type = annex_everything
+				}
+				TEX = {
+					declare_war_on = {
+						target = ADF
+						type = annex_everything
+					}
+				}
+			}
+			if = { 
+				limit = { country_exists = PVB } 
+				declare_war_on = {
+					target = PVB
+					type = annex_everything
+				}
+				TEX = {
+					declare_war_on = {
+						target = PVB
+						type = annex_everything
+					}
+				}
+			}
+			if = { 
+				limit = { country_exists = YUC } 
+				declare_war_on = {
+					target = YUC
+					type = annex_everything
+				}
+				TEX = {
+					declare_war_on = {
+						target = YUC
+						type = annex_everything
+					}
+				}
+			}
+			if = { 
+				limit = { country_exists = ZAP } 
+				declare_war_on = {
+					target = ZAP
+					type = annex_everything
+				}
+				TEX = {
+					declare_war_on = {
+						target = ZAP
+						type = annex_everything
+					}
+				}
+			}
+			if = { 
+				limit = { country_exists = WMX } 
+				declare_war_on = {
+					target = WMX
+					type = annex_everything
+				}
+				TEX = {
+					declare_war_on = {
+						target = WMX
+						type = annex_everything
+					}
+				}
+			}
+			if = { 
+				limit = { country_exists = BJC } 
+				declare_war_on = {
+					target = BJC
+					type = annex_everything
+				}
+				TEX = {
+					declare_war_on = {
+						target = BJC
+						type = annex_everything
+					}
+				}
+			}
+			if = { 
+				limit = { country_exists = CAR } 
+				declare_war_on = {
+					target = CAR
+					type = annex_everything
+				}
+				TEX = {
+					declare_war_on = {
+						target = CAR
+						type = annex_everything
+					}
+				}
+			}
+			if = { 
+				limit = { country_exists = RMX } 
+				declare_war_on = {
+					target = RMX
+					type = annex_everything
+				}
+				TEX = {
+					declare_war_on = {
+						target = RMX
+						type = annex_everything
+					}
+				}
+			}
+			add_timed_idea = {
+				idea = RIO_time_to_strike
+				days = 100
+			}
 		}
 	}
 	focus = {
 		id = RIO_continue_marching
 		icon = GFX
-		x = -2
+		x = 0
 		y = 1
 		relative_position_id = RIO_expand_our_domain
 		cost = 5
 		prerequisite = {
 			focus = RIO_expand_our_domain
 		}
-		mutually_exclusive = { focus = RIO_turn_our_attention_north }
+		available = { has_completed_focus = RIO_remember_our_duty }
 		completion_reward = {
+			modify_timed_idea = {
+				idea = RIO_time_to_strike
+				days = 250
+			}
+			643 = { add_core_of = RIO }
+			385 = { add_core_of = RIO }
+			642 = { add_core_of = RIO }
+			550 = { add_core_of = RIO }
+			385 = { add_core_of = RIO } 
+			384 = { add_core_of = RIO }
+			387 = { add_core_of = RIO }
+			148 = { add_core_of = RIO }
+			638 = { add_core_of = RIO }
+			337 = { add_core_of = RIO }
+			137 = { add_core_of = RIO }
+			38 = { add_core_of = RIO }
+			22 = { add_core_of = RIO }
 		}
 	}
 	focus = {
@@ -1478,63 +1685,91 @@ focus_tree = {
 		prerequisite = {
 			focus = RIO_continue_marching
 		}
+		prerequisite = {
+			focus = RIO_import_resources
+		}
+		prerequisite = {
+			focus = RIO_deny_ethnic_cleansing
+		}
 		completion_reward = {
+			set_cosmetic_tag = RIO_border_state
+			every_state = {
+				limit = { is_core_of = RIO }
+				remove_core_of = MEX
+			}
+			release_puppet = MEX
+			MEX = { set_cosmetic_tag = RIO_mex_occupation }
 		}
 	}
 	focus = {
-		id = RIO_turn_our_attention_north
+		id = RIO_reestablish_texan_ties
 		icon = GFX
 		x = 2
 		y = 1
-		relative_position_id = RIO_expand_our_domain
+		relative_position_id = RIO_remember_our_duty
 		cost = 5
 		prerequisite = {
-			focus = RIO_expand_our_domain
+			focus = RIO_remember_our_duty
 		}
-		mutually_exclusive = { focus = RIO_continue_marching }
 		completion_reward = {
+			diplomatic_relation = {
+				country = TEX
+				relation = non_aggression_pact
+				active = yes
+			}
 		}
 	}
 	focus = {
-		id = RIO_build_intel_network
+		id = RIO_import_resources
 		icon = GFX
-		x = 1
+		x = 0
 		y = 1
-		relative_position_id = RIO_turn_our_attention_north
+		relative_position_id = RIO_reestablish_texan_ties
 		cost = 5
 		prerequisite = {
-			focus = RIO_turn_our_attention_north
+			focus = RIO_reestablish_texan_ties
 		}
 		completion_reward = {
+			add_ideas = RIO_imported_resources
 		}
 	}
 	focus = {
-		id = RIO_increase_conscription
+		id = RIO_migrant_resettlement_programs
 		icon = GFX
-		x = -1
+		x = -2
 		y = 1
-		relative_position_id = RIO_turn_our_attention_north
+		relative_position_id = RIO_remember_our_duty
 		cost = 5
 		prerequisite = {
-			focus = RIO_turn_our_attention_north
+			focus = RIO_remember_our_duty
 		}
 		completion_reward = {
+			random_owned_state = {
+				add_manpower = 50000
+			}
+			random_owned_state = {
+				add_manpower = 50000
+			}
+			random_owned_state = {
+				add_manpower = 50000
+			}
+			random_owned_state = {
+				add_manpower = 50000
+			}
 		}
 	}
 	focus = {
-		id = RIO_reclaim_texas
+		id = RIO_deny_ethnic_cleansing
 		icon = GFX
-		x = -1
+		x = 0
 		y = 1
-		relative_position_id = RIO_build_intel_network
+		relative_position_id = RIO_migrant_resettlement_programs
 		cost = 5
 		prerequisite = {
-			focus = RIO_build_intel_network
-		}
-		prerequisite = {
-			focus = RIO_increase_conscription
+			focus = RIO_migrant_resettlement_programs
 		}
 		completion_reward = {
+			add_ideas = RIO_international_blind_eye
 		}
 	}
 	
@@ -1551,6 +1786,7 @@ focus_tree = {
 			focus = RIO_migrants_topple_the_guard
 		}
 		completion_reward = {
+			add_ideas = RIO_recognize_spanish
 		}
 	}
 	focus = {
@@ -1564,6 +1800,10 @@ focus_tree = {
 			focus = RIO_spanish_as_AN_official_language
 		}
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = RIO_recognize_spanish
+				add_idea = RIO_recognize_spanish2
+			}
 		}
 	}
 	focus = {
@@ -1577,6 +1817,7 @@ focus_tree = {
 			focus = RIO_promote_hispanic_work_ethic
 		}
 		completion_reward = {
+			add_ideas = RIO_catholic
 		}
 	}
 	focus = {
@@ -1586,10 +1827,15 @@ focus_tree = {
 		y = 1
 		relative_position_id = RIO_promote_hispanic_work_ethic
 		cost = 5
+		available = { NOT = { has_completed_focus = RIO_our_own_devils } } 
 		prerequisite = {
 			focus = RIO_promote_hispanic_work_ethic
 		}
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = RIO_recognize_spanish2
+				add_idea = RIO_recognize_spanish3
+			}
 		}
 	}
 	focus = {
@@ -1604,6 +1850,7 @@ focus_tree = {
 			focus = RIO_settlers_association_control
 		}
 		completion_reward = {
+			add_ideas = RIO_recognize_english
 		}
 	}
 	focus = {
@@ -1617,6 +1864,10 @@ focus_tree = {
 			focus = RIO_english_as_AN_official_language
 		}
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = RIO_recognize_english
+				add_idea = RIO_recognize_english2
+			}
 		}
 	}
 	focus = {
@@ -1630,6 +1881,7 @@ focus_tree = {
 			focus = RIO_citizenship_for_americans
 		}
 		completion_reward = {
+			add_offsite_building = { type = arms_factory level = 3 }
 		}
 	}
 	focus = {
@@ -1642,7 +1894,12 @@ focus_tree = {
 		prerequisite = {
 			focus = RIO_citizenship_for_americans
 		}
+		available = { NOT = { has_completed_focus = RIO_deal_with_the_devil } } 
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = RIO_recognize_english2
+				add_idea = RIO_recognize_english3
+			}
 		}
 	}
 	
