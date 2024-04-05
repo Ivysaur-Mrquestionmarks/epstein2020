@@ -378,7 +378,7 @@ focus_tree = {
 	focus = {
 		id = RIO_a_loyal_state
 		icon = GFX_goal_National_Guard_Smaller
-		x = -15
+		x = -25
 		y = 2
 		relative_position_id = RIO_the_autonomous_state
 		cost = 5
@@ -1245,7 +1245,7 @@ focus_tree = {
 	focus = {
 		id = RIO_new_freedom
 		icon = GFX
-		x = 15
+		x = 30
 		y = 2
 		relative_position_id = RIO_independence
 		cost = 1
@@ -2343,7 +2343,7 @@ focus_tree = {
 		prerequisite = {
 			focus = RIO_proclaim_hispanic_supremacy
 		}
-		allow_branch = { has_country_flag = rio_election }
+		#allow_branch = { has_country_flag = rio_election }
 		completion_reward = {
 		}
 	}
@@ -4692,7 +4692,299 @@ focus_tree = {
 			MEX = { set_cosmetic_tag = RIO_mex_occupation }
 		}
 	}
-
+	
+	# Navy #
+	focus = {
+		id = RIO_transform_the_river_fleet
+		icon = GFX
+		x = -20
+		y = 1
+		relative_position_id = RIO_the_rift_forms
+		cost = 5
+		prerequisite = {
+			focus = RIO_the_rift_forms
+		}
+		available = { controls_state = 660 }
+		completion_reward = {
+			navy_experience = 50
+			add_ideas = RIO_new_navy
+		}
+	}
+	focus = {
+		id = RIO_research_subs
+		icon = GFX
+		x = 1
+		y = 1
+		relative_position_id = RIO_transform_the_river_fleet
+		cost = 5
+		prerequisite = {
+			focus = RIO_transform_the_river_fleet
+		}
+		available = { controls_state = 660 }
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1.5
+				uses = 2
+				category = ss_tech
+			}
+		}
+	}
+	focus = {
+		id = RIO_research_destroyers
+		icon = GFX
+		x = -1
+		y = 1
+		relative_position_id = RIO_transform_the_river_fleet
+		cost = 5
+		prerequisite = {
+			focus = RIO_transform_the_river_fleet
+		}
+		available = { controls_state = 660 }
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1.5
+				uses = 2
+				category = dd_tech
+			}
+		}
+	}
+	focus = {
+		id = RIO_naval_academy
+		icon = GFX
+		x = -1
+		y = 1
+		relative_position_id = RIO_research_subs
+		cost = 5
+		prerequisite = {
+			focus = RIO_research_subs
+		}
+		prerequisite = {
+			focus = RIO_research_destroyers
+		}
+		available = { controls_state = 660 }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = RIO_new_navy
+				add_idea = RIO_new_navy2
+			}
+		}
+	}
+	focus = {
+		id = RIO_atttract_merchants
+		icon = GFX
+		x = -3
+		y = 1
+		relative_position_id = RIO_transform_the_river_fleet
+		cost = 2
+		prerequisite = {
+			focus = RIO_transform_the_river_fleet
+		}
+		available = { controls_state = 660 }
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = convoy
+				amount = 50
+				producer = RIO
+			}
+		}
+	}
+	focus = {
+		id = RIO_new_ports
+		icon = GFX
+		x = 3
+		y = 1
+		relative_position_id = RIO_transform_the_river_fleet
+		cost = 5
+		prerequisite = {
+			focus = RIO_transform_the_river_fleet
+		}
+		available = { controls_state = 660 }
+		completion_reward = {
+			660 = {
+				add_building_construction = {
+					type = naval_base
+					level = 4
+					instant_build = yes
+					province = 11292
+				}
+			}
+		}
+	}
+	focus = {
+		id = RIO_new_dockyards
+		icon = GFX
+		x = 0
+		y = 1
+		relative_position_id = RIO_new_ports
+		cost = 5
+		prerequisite = {
+			focus = RIO_new_ports
+		}
+		available = { controls_state = 660 }
+		completion_reward = {
+			660 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	
+	# Air #
+	focus = {
+		id = RIO_into_the_sky
+		icon = GFX
+		x = 20
+		y = 1
+		relative_position_id = RIO_the_rift_forms
+		cost = 5
+		prerequisite = {
+			focus = RIO_the_rift_forms
+		}
+		completion_reward = {
+			add_ideas = RIO_sky
+			air_experience = 50
+		}
+	}
+	focus = {
+		id = RIO_open_new_airfields
+		icon = GFX
+		x = 3
+		y = 1
+		relative_position_id = RIO_into_the_sky
+		cost = 5
+		prerequisite = {
+			focus = RIO_into_the_sky
+		}
+		completion_reward = {
+			every_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = RIO_use_texan_blueprints
+		icon = GFX
+		x = 1
+		y = 1
+		relative_position_id = RIO_into_the_sky
+		cost = 5
+		prerequisite = {
+			focus = RIO_into_the_sky
+		}
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1
+				uses = 1
+				category = light_air
+			}
+			add_tech_bonus = {
+				bonus = 1
+				uses = 1
+				category = medium_air
+			}
+			add_tech_bonus = {
+				bonus = 1
+				uses = 1
+				category = heavy_air
+			}
+		}
+	}
+	focus = {
+		id = RIO_fund_plane_factories
+		icon = GFX
+		x = 1
+		y = 1
+		relative_position_id = RIO_use_texan_blueprints
+		cost = 5
+		prerequisite = {
+			focus = RIO_use_texan_blueprints
+		}
+		prerequisite = {
+			focus = RIO_open_new_airfields
+		}
+		completion_reward = {
+			add_offsite_building = { type = arms_factory level = 2 }
+		}
+	}
+	focus = {
+		id = RIO_specialization
+		icon = GFX
+		x = -1
+		y = 1
+		relative_position_id = RIO_into_the_sky
+		cost = 5
+		prerequisite = {
+			focus = RIO_into_the_sky
+		}
+		mutually_exclusive = { focus = RIO_multirole_aircraft }
+		completion_reward = {
+			add_ideas = RIO_special_air
+		}
+	}
+	focus = {
+		id = RIO_research_stealth_fighters
+		icon = GFX
+		x = 0
+		y = 1
+		relative_position_id = RIO_specialization
+		cost = 5
+		prerequisite = {
+			focus = RIO_specialization
+			focus = RIO_multirole_aircraft
+		}
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1.5
+				uses = 3
+				category = rocketry
+			}
+		}
+	}
+	focus = {
+		id = RIO_multirole_aircraft
+		icon = GFX
+		x = -3
+		y = 1
+		relative_position_id = RIO_into_the_sky
+		cost = 5
+		prerequisite = {
+			focus = RIO_into_the_sky
+		}
+		mutually_exclusive = { focus = RIO_specialization }
+		completion_reward = {
+			add_ideas = RIO_many_missions_air
+		}
+	}
+	focus = {
+		id = RIO_heli_research
+		icon = GFX
+		x = 0
+		y = 1
+		relative_position_id = RIO_multirole_aircraft
+		cost = 5
+		prerequisite = {
+			focus = RIO_multirole_aircraft
+			focus = RIO_specialization
+		}
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1.5
+				uses = 3
+				category = helicopters
+			}
+		}
+	}
+	
 	
 	
 	
