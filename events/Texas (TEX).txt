@@ -697,7 +697,10 @@ country_event = {
 	fire_only_once = yes
 	option = { #for freedom! (louisiana)
 		name = texas.59.a  
-		LOU = { change_tag_from = TEX }
+		LOU = { 
+			change_tag_from = TEX
+			inherit_technology = TEX
+		}
 	}
 	option = { #for freedom! (oklahoma)
 		name = texas.59.b 
@@ -1379,7 +1382,7 @@ country_event = {
 			}
 			transfer_units_fraction= {
 			    target = LOU
-			    size = 0.3
+			    size = 0.2
  			    stockpile_ratio = 0.1
 			    army_ratio = 0.1
 			    navy_ratio = 0.5
@@ -1395,7 +1398,7 @@ country_event = {
 			}
 			transfer_units_fraction= {
 			    target = NMX
-			    size = 0.3
+			    size = 0.5
  			    stockpile_ratio = 0.4
 			    army_ratio = 0.3
 			    navy_ratio = 0.0
@@ -1491,6 +1494,52 @@ country_event = {
 		every_state = {
 			limit = { is_core_of = OKL }
 			add_core_of = TEX
+		}
+	}
+	option = { #switch to louisiana
+		name = texas.44.a
+		clr_country_flag = oil_bill
+		set_country_flag = oil_barons_radicals
+		mark_focus_tree_layout_dirty = yes
+		
+		complete_national_focus = TEX_red_does_not_stain_the_black_gold
+		complete_national_focus = TEX_the_biggest_one_of_all
+		declare_war_on = {
+		    target = OKL
+		    type = annex_everything
+		}
+		declare_war_on = {
+		    target = LOU
+		    type = annex_everything
+		}
+		declare_war_on = {
+		    target = NMX
+		    type = annex_everything
+		}
+		create_country_leader = {
+			name = "Baron Cheney"
+			picture = "gfx/leaders/TEX/Dick_Cheney.tga"
+			expire = "2060.1.1"
+			ideology = despotism
+			traits = {
+			}
+		}
+		set_cosmetic_tag = TEX_OIL
+		every_state = {
+			limit = { is_core_of = NMX }
+			add_core_of = TEX
+		}
+		every_state = {
+			limit = { is_core_of = LOU }
+			add_core_of = TEX
+		}
+		every_state = {
+			limit = { is_core_of = OKL }
+			add_core_of = TEX
+		}
+		LOU = { 
+			change_tag_from = TEX
+			inherit_technology = TEX
 		}
 	}
 }
@@ -3343,10 +3392,10 @@ country_event = {
 			#	id = alamo.13 #why?
 			#	days = 1
 			#}
-			#country_event = {
-			#	id = alamo.14
-			#	days = 10
-			#}
+			country_event = {
+				id = alamo.14
+				days = 10
+			}
 		}
 		BET = { change_tag_from = TEX }
 	}
@@ -3357,16 +3406,16 @@ country_event = {
 			#	id = alamo.13 #why?
 			#	days = 1
 			#}
-			#country_event = {
-			#	id = alamo.14
-			#	days = 10
-			#}
+			country_event = {
+				id = alamo.14
+				days = 10
+			}
 		}
 		CRU = { change_tag_from = TEX }
 	}
 
 }
-#Bush rises up
+#Louisiana and Oklahoma declare independence
 country_event = {
 	id = alamo.14 #I KNOW IT'S OUT OF ORDER, I FUCKED UP LOL SUE ME
 	title = alamo.14.t
@@ -3376,90 +3425,65 @@ country_event = {
 	fire_only_once = yes
 	immediate = {
 		hidden_effect = {
+			#lou and okl
+			312 = {
+				add_core_of = LOU
+			}
+			610 = {
+				add_core_of = LOU
+			}
 			28 = {
-				add_core_of = BSH
+				add_core_of = LOU
 			}
-			release = BSH
-			transfer_units_fraction= {
-				target = BSH
-				size = 0.1
-				stockpile_ratio = 0.3
-				army_ratio = 0.1
-				navy_ratio = 0.0
-				air_ratio = 0.3
-				keep_unit_leaders_trigger = {
-					OR = {
- 			    	has_trait = war_hero
- 			    	has_trait = armor_officer
-					has_trait = old_guard
-					has_trait = infantry_officer
- 			    	}
+			release = LOU
+				transfer_units_fraction= {
+					target = BSH
+					size = 0.05
+					stockpile_ratio = 0.3
+					army_ratio = 0.1
+					navy_ratio = 0.0
+					air_ratio = 0.3
+					keep_unit_leaders_trigger = {
+						OR = {
+						has_trait = war_hero
+						has_trait = armor_officer
+						has_trait = old_guard
+						has_trait = infantry_officer
+						}
+					}
 				}
+			272 = {
+				add_core_of = OKL
 			}
-			BSH = {
-				declare_war_on = {
-				    target = BET
-				    type = annex_everything
+			278 = {
+				add_core_of = OKL
+			}
+			259 = {
+				add_core_of = OKL
+			}
+			258 = {
+				add_core_of = OKL
+			}
+			251 = {
+				add_core_of = OKL
+			}
+			release = OKL
+				transfer_units_fraction= {
+					target = BSH
+					size = 0.05
+					stockpile_ratio = 0.3
+					army_ratio = 0.1
+					navy_ratio = 0.0
+					air_ratio = 0.3
+					keep_unit_leaders_trigger = {
+						OR = {
+						has_trait = war_hero
+						has_trait = armor_officer
+						has_trait = old_guard
+						has_trait = infantry_officer
+						}
+					}
 				}
-			}
-		}
-		hidden_effect = {
-		#lou and okl
-		312 = {
-			add_core_of = LOU
-		}
-		610 = {
-			add_core_of = LOU
-		}
-		release = LOU
-			transfer_units_fraction= {
-				target = BSH
-				size = 0.05
-				stockpile_ratio = 0.3
-				army_ratio = 0.1
-				navy_ratio = 0.0
-				air_ratio = 0.3
-				keep_unit_leaders_trigger = {
-					OR = {
- 			    	has_trait = war_hero
- 			    	has_trait = armor_officer
-					has_trait = old_guard
-					has_trait = infantry_officer
- 			    	}
-				}
-			}
-		272 = {
-			add_core_of = OKL
-		}
-		278 = {
-			add_core_of = OKL
-		}
-		259 = {
-			add_core_of = OKL
-		}
-		258 = {
-			add_core_of = OKL
-		}
-		251 = {
-			add_core_of = OKL
-		}
-		release = OKL
-			transfer_units_fraction= {
-				target = BSH
-				size = 0.05
-				stockpile_ratio = 0.3
-				army_ratio = 0.1
-				navy_ratio = 0.0
-				air_ratio = 0.3
-				keep_unit_leaders_trigger = {
-					OR = {
- 			    	has_trait = war_hero
- 			    	has_trait = armor_officer
-					has_trait = old_guard
-					has_trait = infantry_officer
- 			    	}
-				}
-			}
 		}
 	}
 	option = {
@@ -3467,14 +3491,13 @@ country_event = {
 	}
 	option = {
 		name = alamo.14.b
-		BSH = { change_tag_from = TEX }
+		LOU = { 
+			change_tag_from = TEX
+			inherit_technology = TEX
+		}
 	}
 	option = {
 		name = alamo.14.c
-		LOU = { change_tag_from = TEX }
-	}
-	option = {
-		name = alamo.14.e
 		OKL = { change_tag_from = TEX }
 	}
 }
