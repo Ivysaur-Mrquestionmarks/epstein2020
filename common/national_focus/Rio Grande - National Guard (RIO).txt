@@ -5126,7 +5126,18 @@ focus_tree = {
 		}
 		cost = 1
 		completion_reward = {
-			add_political_power = 25
+			add_stability = -0.50
+			add_war_support = -0.50
+			add_political_power = -150
+			641 = { 
+				set_demilitarized_zone = no 
+			}
+			79 = { 
+				set_demilitarized_zone = no 
+			}
+			659 = {
+				set_demilitarized_zone = no
+			}
 		}
 	
 	}
@@ -6062,18 +6073,971 @@ focus_tree = {
 	}
 	
 	
+	focus = {
+		id = RIO_Change_Of_Ideas
+		
+		x = 20
+		y = 1
+		relative_position_id = RIO_Welcome_To_Blood_Meridian
+		available = {
+			has_completed_focus = RIO_Welcome_To_Blood_Meridian
+		}
+		cost = 1
+		completion_reward = {
+			add_political_power = 100
+		}
 	
+	}
 	
+	focus = {
+		id = RIO_Politics_Of_The_Old_West
+		
+		x = -5
+		y = 1
+		relative_position_id = RIO_Change_Of_Ideas
+		prerequisite = {
+			focus = RIO_Change_Of_Ideas
+		}
+		cost = 1
+		completion_reward = {
+			add_ideas = RIO_Political_Old_West_1
+		}
 	
+	}
 	
+	focus = {
+		id = RIO_Create_A_New_Caste_System
+		
+		x = -7
+		y = 2
+		relative_position_id = RIO_Change_Of_Ideas
+		prerequisite = {
+			focus = RIO_Politics_Of_The_Old_West
+		}
+		cost = 2
+		completion_reward = {
+			add_manpower = -5000
+			add_stability = -0.05
+		}
 	
+	}
 	
+	focus = {
+		id = RIO_Total_Control
+		
+		x = -5
+		y = 2
+		relative_position_id = RIO_Change_Of_Ideas
+		prerequisite = {
+			focus = RIO_Politics_Of_The_Old_West
+		}
+		cost = 2
+		completion_reward = {
+			add_ideas = RIO_Total_Oceania
+		}
 	
+	}
 	
+	focus = {
+		id = RIO_Enemies_Inside
+		
+		x = -3
+		y = 2
+		relative_position_id = RIO_Change_Of_Ideas
+		prerequisite = {
+			focus = RIO_Politics_Of_The_Old_West
+		}
+		cost = 2
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = RIO_Political_Old_West_1
+				add_idea = RIO_Political_Old_West_2
+			}
+		}
 	
+	}
 	
+	focus = {
+		id = RIO_Enemies_Outside
+		
+		x = -3
+		y = 3
+		relative_position_id = RIO_Change_Of_Ideas
+		prerequisite = {
+			focus = RIO_Enemies_Inside
+		}
+		cost = 2
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = RIO_Political_Old_West_2
+				add_idea = RIO_Political_Old_West_3
+			}
+		}
 	
+	}
 	
+	focus = {
+		id = RIO_Purges
+		
+		x = -3
+		y = 4
+		relative_position_id = RIO_Change_Of_Ideas
+		prerequisite = {
+			focus = RIO_Enemies_Outside
+		}
+		cost = 2
+		completion_reward = {
+			add_stability = 0.05
+			add_manpower = -10000
+		}
+	
+	}
+	
+	focus = {
+		id = RIO_Cowboy_Supremacy
+		
+		x = -9
+		y = 3
+		relative_position_id = RIO_Change_Of_Ideas
+		available = {
+			has_completed_focus = RIO_The_Settlers
+		}
+		prerequisite = {
+			focus = RIO_Create_A_New_Caste_System
+		}
+		mutually_exclusive = {
+			focus = RIO_Red_Skin_Supremacy
+		}
+		mutually_exclusive = {
+			focus = RIO_Atlantean_Supremacy
+		}
+		cost = 2
+		completion_reward = {
+			add_ideas = RIO_Hyperborea_1
+		}
+	
+	}
+	
+	focus = {
+		id = RIO_Red_Skin_Supremacy
+		
+		x = -5
+		y = 3
+		relative_position_id = RIO_Change_Of_Ideas
+		available = {
+			has_completed_focus = RIO_The_Comanches
+		}
+		prerequisite = {
+			focus = RIO_Create_A_New_Caste_System
+		}
+		mutually_exclusive = {
+			focus = RIO_Cowboy_Supremacy
+		}
+		mutually_exclusive = {
+			focus = RIO_Atlantean_Supremacy
+		}
+		cost = 2
+		completion_reward = {
+			add_ideas = RIO_Amerindia_1
+		}
+	
+	}
+	
+	focus = {
+		id = RIO_Atlantean_Supremacy
+		
+		x = -7
+		y = 3
+		relative_position_id = RIO_Change_Of_Ideas
+		available = {
+			has_completed_focus = RIO_The_Chicanos
+		}
+		prerequisite = {
+			focus = RIO_Create_A_New_Caste_System
+		}
+		mutually_exclusive = {
+			focus = RIO_Cowboy_Supremacy
+		}
+		mutually_exclusive = {
+			focus = RIO_Red_Skin_Supremacy
+		}
+		cost = 2
+		completion_reward = {
+			#event
+			add_ideas = RIO_Atlantis_1
+		}
+	
+	}
+	
+	focus = {
+		id = RIO_The_Other_Minorities
+		
+		x = -7
+		y = 4
+		relative_position_id = RIO_Change_Of_Ideas
+		prerequisite = {
+			focus = RIO_Cowboy_Supremacy
+			focus = RIO_Red_Skin_Supremacy
+			focus = RIO_Atlantean_Supremacy
+		}
+		cost = 2
+		completion_reward = {
+			#event
+			add_stability = 0.05
+		}
+	
+	}
+	
+	focus = {
+		id = RIO_New_Identity_Politics
+		
+		x = -7
+		y = 5
+		relative_position_id = RIO_Change_Of_Ideas
+		prerequisite = {
+			focus = RIO_The_Other_Minorities
+		}
+		cost = 2
+		completion_reward = {
+			add_stability = 0.10
+			add_popularity = {
+				ideology = autocratic
+				popularity = 0.10
+			}
+		}
+	
+	}
+	
+	focus = {
+		id = RIO_Denounce_Neo_Nazism
+		
+		x = -9
+		y = 6
+		relative_position_id = RIO_Change_Of_Ideas
+		available = {
+			has_completed_focus = RIO_The_Settlers
+		}
+		prerequisite = {
+			focus = RIO_New_Identity_Politics
+		}
+		mutually_exclusive = {
+			focus = RIO_We_Are_The_Pure_Atlanteans
+		}
+		mutually_exclusive = {
+			focus = RIO_Liberate_Our_Native_Brothers
+		}
+		cost = 2
+		completion_reward = {
+			add_stability = 0.10
+			add_war_support = -0.05
+			add_popularity = {
+				ideology = autocratic
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = republican
+				popularity = 0.02
+			}
+			add_popularity = {
+				ideology = libertarian_left
+				popularity = 0.02
+			}
+		}
+	
+	}
+	
+	focus = {
+		id = RIO_Freedom_Aint_Free
+		
+		x = -9
+		y = 7
+		relative_position_id = RIO_Change_Of_Ideas
+		prerequisite = {
+			focus = RIO_Denounce_Neo_Nazism
+		}
+		cost = 2
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = RIO_Hyperborea_1
+				add_idea = RIO_Hyperborea_2
+			}
+		}
+	
+	}
+	
+	focus = {
+		id = RIO_We_Are_The_Pure_Atlanteans
+		
+		x = -7
+		y = 6
+		relative_position_id = RIO_Change_Of_Ideas
+		available = {
+			has_completed_focus = RIO_The_Chicanos
+		}
+		prerequisite = {
+			focus = RIO_New_Identity_Politics
+		}
+		mutually_exclusive = {
+			focus = RIO_Denounce_Neo_Nazism
+		}
+		mutually_exclusive = {
+			focus = RIO_Liberate_Our_Native_Brothers
+		}
+		cost = 2
+		completion_reward = {
+			add_stability = 0.10
+			add_war_support = 0.05
+			add_popularity = {
+				ideology = autocratic
+				popularity = -0.07
+			}
+		}
+	
+	}
+	
+	focus = {
+		id = RIO_Rio_Grandese_Mysticism
+		
+		x = -7
+		y = 7
+		relative_position_id = RIO_Change_Of_Ideas
+		prerequisite = {
+			focus = RIO_We_Are_The_Pure_Atlanteans
+		}
+		cost = 2
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = RIO_Atlantis_1
+				add_idea = RIO_Atlantis_2
+			}
+		}
+	
+	}
+	
+	focus = {
+		id = RIO_Liberate_Our_Native_Brothers
+		
+		x = -5
+		y = 6
+		relative_position_id = RIO_Change_Of_Ideas
+		available = {
+			has_completed_focus = RIO_The_Comanches
+		}
+		prerequisite = {
+			focus = RIO_New_Identity_Politics
+		}
+		mutually_exclusive = {
+			focus = RIO_Denounce_Neo_Nazism
+		}
+		mutually_exclusive = {
+			focus = RIO_We_Are_The_Pure_Atlanteans
+		}
+		cost = 2
+		completion_reward = {
+			add_stability = 0.10
+			add_popularity = {
+				ideology = autocratic
+				popularity = 0.10
+			}
+			add_popularity = {
+				ideology = libertarian_right
+				popularity = 0.06
+			}
+		}
+	
+	}
+	
+	focus = {
+		id = RIO_More_Like_Under_New_Management
+		
+		x = -5
+		y = 7
+		relative_position_id = RIO_Change_Of_Ideas
+		prerequisite = {
+			focus = RIO_Liberate_Our_Native_Brothers
+		}
+		cost = 2
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = RIO_Amerindia_1
+				add_idea = RIO_Amerindia_2
+			}
+		}
+	
+	}
+	
+	focus = {
+		id = RIO_A_White_Rio_Grande
+		
+		x = -9
+		y = 8
+		relative_position_id = RIO_Change_Of_Ideas
+		prerequisite = {
+			focus = RIO_Freedom_Aint_Free
+		}
+		cost = 1
+		completion_reward = {
+			#event
+		}
+	
+	}
+	
+	focus = {
+		id = RIO_A_Red_Rio_Grande
+		
+		x = -5
+		y = 8
+		relative_position_id = RIO_Change_Of_Ideas
+		prerequisite = {
+			focus = RIO_More_Like_Under_New_Management
+		}
+		cost = 1
+		completion_reward = {
+			#event
+		}
+	
+	}
+	
+	focus = {
+		id = RIO_A_Tanned_Rio_Grande
+		
+		x = -7
+		y = 8
+		relative_position_id = RIO_Change_Of_Ideas
+		prerequisite = {
+			focus = RIO_Rio_Grandese_Mysticism
+		}
+		cost = 1
+		completion_reward = {
+			#event
+		}
+	
+	}
+	
+	focus = {
+		id = RIO_Enforce_Nativism
+		
+		x = -7
+		y = 9
+		relative_position_id = RIO_Change_Of_Ideas
+		available = {
+			has_completed_focus = RIO_A_Pure_Rio_Grande
+		}
+		prerequisite = {
+			focus = RIO_A_White_Rio_Grande
+			focus = RIO_A_Red_Rio_Grande
+			focus = RIO_A_Tanned_Rio_Grande
+		}
+		cost = 5
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = RIO_Political_Old_West_4
+				add_idea = RIO_Political_Old_West_5
+			}
+		}
+	
+	}
+	
+	focus = {
+		id = RIO_A_Pure_Rio_Grande
+		
+		x = -4
+		y = 5
+		relative_position_id = RIO_Change_Of_Ideas
+		prerequisite = {
+			focus = RIO_The_Other_Minorities
+		}
+		prerequisite = {
+			focus = RIO_Purges
+		}
+		cost = 3
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = RIO_Political_Old_West_3
+				add_idea = RIO_Political_Old_West_4
+			}
+		}
+	
+	}
+	
+	focus = {
+		id = RIO_Everything_For_The_War
+		
+		x = 5
+		y = 1
+		relative_position_id = RIO_Change_Of_Ideas
+		prerequisite = {
+			focus = RIO_Change_Of_Ideas
+		}
+		cost = 1
+		completion_reward = {
+			add_ideas = RIO_Total_War_Effort_1
+		}
+	
+	}
+	
+	focus = {
+		id = RIO_New_Industrial_Tools
+		
+		x = 3
+		y = 2
+		relative_position_id = RIO_Change_Of_Ideas
+		prerequisite = {
+			focus = RIO_Everything_For_The_War
+		}
+		cost = 2
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1.0
+				uses = 2
+				category = industry
+			
+			}
+		}
+	
+	}
+	
+	focus = {
+		id = RIO_As_Black_As_Gold
+		
+		x = 2
+		y = 3
+		relative_position_id = RIO_Change_Of_Ideas
+		prerequisite = {
+			focus = RIO_New_Industrial_Tools
+		}
+		cost = 2
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1.0
+				uses = 2
+				category = synth_resources
+			
+			}
+		}
+	
+	}
+	
+	focus = {
+		id = RIO_Upgrade_Our_Computers
+		
+		x = 5
+		y = 2
+		relative_position_id = RIO_Change_Of_Ideas
+		prerequisite = {
+			focus = RIO_Everything_For_The_War
+		}
+		cost = 2
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1.0 
+				uses = 2 
+				category = electronics
+			}
+		}
+	
+	}
+	
+	focus = {
+		id = RIO_Oil_Revenues
+		
+		x = 4
+		y = 3
+		relative_position_id = RIO_Change_Of_Ideas
+		prerequisite = {
+			focus = RIO_New_Industrial_Tools
+		}
+		prerequisite = {
+			focus = RIO_Upgrade_Our_Computers
+		}
+		cost = 3
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = RIO_Total_War_Effort_1
+				add_idea = RIO_Total_War_Effort_2
+			}
+		}
+	
+	}
+	
+	focus = {
+		id = RIO_Big_Brain_Time
+		
+		x = 5
+		y = 4
+		relative_position_id = RIO_Change_Of_Ideas
+		prerequisite = {
+			focus = RIO_Oil_Revenues
+			focus = RIO_Upgrade_Our_Computers
+		}
+		cost = 3
+		completion_reward = {
+			add_ideas = RIO_Smart_Blood
+		}
+	
+	}
+	
+	focus = {
+		id = RIO_Transform_The_Meth_Labs
+		
+		x = 5
+		y = 5
+		relative_position_id = RIO_Change_Of_Ideas
+		prerequisite = {
+			focus = RIO_Big_Brain_Time
+		}
+		cost = 4
+		completion_reward = {
+			add_research_slot = 1
+		}
+	
+	}
+	
+	focus = {
+		id = RIO_Expand_Fuel_Production
+		
+		x = 3
+		y = 4
+		relative_position_id = RIO_Change_Of_Ideas
+		prerequisite = {
+			focus = RIO_As_Black_As_Gold
+		}
+		prerequisite = {
+			focus = RIO_Oil_Revenues
+		}
+		cost = 3
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = RIO_Total_War_Effort_2
+				add_idea = RIO_Total_War_Effort_3
+			}
+		}
+	
+	}
+	
+	focus = {
+		id = RIO_Siege_Mentality
+		
+		x = 7
+		y = 2
+		relative_position_id = RIO_Change_Of_Ideas
+		prerequisite = {
+			focus = RIO_Everything_For_The_War
+		}
+		cost = 2
+		completion_reward = {
+			add_ideas = RIO_Siege
+		}
+	
+	}
+	
+	focus = {
+		id = RIO_Everyone_Is_A_Soldier
+		
+		x = 7
+		y = 3
+		relative_position_id = RIO_Change_Of_Ideas
+		prerequisite = {
+			focus = RIO_Siege_Mentality
+		}
+		cost = 2
+		completion_reward = {
+			add_manpower = 25000
+		}
+	
+	}
+	
+	focus = {
+		id = RIO_Make_Them_Work
+		
+		x = 0
+		y = 2
+		relative_position_id = RIO_Change_Of_Ideas
+		prerequisite = {
+			focus = RIO_Politics_Of_The_Old_West
+		}
+		prerequisite = {
+			focus = RIO_Everything_For_The_War
+		}
+		cost = 2
+		completion_reward = {
+			add_ideas = RIO_Must_Work_1
+		}
+	
+	}
+	
+	focus = {
+		id = RIO_Make_Them_Pay
+		
+		x = 0
+		y = 3
+		relative_position_id = RIO_Change_Of_Ideas
+		prerequisite = {
+			focus = RIO_Make_Them_Work
+		}
+		cost = 2
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = RIO_Must_Work_1
+				add_idea = RIO_Must_Work_2
+			}
+		}
+	
+	}
+	
+	focus = {
+		id = RIO_Open_More_Maquiladoras
+		
+		x = 0
+		y = 4
+		relative_position_id = RIO_Change_Of_Ideas
+		prerequisite = {
+			focus = RIO_Make_Them_Pay
+		}
+		cost = 2
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = industrial_complex 
+				    level = 1
+				    instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = industrial_complex 
+				    level = 1
+				    instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+				    type = industrial_complex 
+				    level = 2
+				    instant_build = yes
+				}
+			}
+		}
+	
+	}
+	
+	focus = {
+		id = RIO_Get_More_Military_Industries
+		
+		x = -2
+		y = 5
+		relative_position_id = RIO_Change_Of_Ideas
+		prerequisite = {
+			focus = RIO_Open_More_Maquiladoras
+			focus = RIO_Purges
+		}
+		cost = 3
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = arms_factory 
+				    level = 1
+				    instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = arms_factory 
+				    level = 1
+				    instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+				    type = arms_factory 
+				    level = 2
+				    instant_build = yes
+				}
+			}
+		}
+	
+	}
+	
+	focus = {
+		id = RIO_Sea_Of_Petroleum
+		
+		x = 3
+		y = 5
+		relative_position_id = RIO_Change_Of_Ideas
+		prerequisite = {
+			focus = RIO_Open_More_Maquiladoras
+			focus = RIO_Expand_Fuel_Production
+		}
+		cost = 3
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = synthetic_refinery 
+				    level = 1
+				    instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = synthetic_refinery 
+				    level = 1
+				    instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+				    type = synthetic_refinery 
+				    level = 2
+				    instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = fuel_silo
+				    level = 1
+				    instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = fuel_silo
+				    level = 1
+				    instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+				    type = fuel_silo
+				    level = 2
+				    instant_build = yes
+				}
+			}
+		}
+	
+	}
+	
+	focus = {
+		id = RIO_Force_Them_To_Build_Roads
+		
+		x = 0
+		y = 5
+		relative_position_id = RIO_Change_Of_Ideas
+		prerequisite = {
+			focus = RIO_Open_More_Maquiladoras
+		}
+		cost = 3
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = infrastructure 
+				    level = 1
+				    instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = infrastructure 
+				    level = 1
+				    instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+				    type = infrastructure 
+				    level = 2
+				    instant_build = yes
+				}
+			}
+		}
+	
+	}
+	
+	focus = {
+		id = RIO_New_Supply_Lines
+		
+		x = 0
+		y = 6
+		relative_position_id = RIO_Change_Of_Ideas
+		prerequisite = {
+			focus = RIO_Sea_Of_Petroleum
+		}
+		prerequisite = {
+			focus = RIO_Force_Them_To_Build_Roads
+		}
+		cost = 4
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = RIO_Total_War_Effort_3
+				add_idea = RIO_Total_War_Effort_4
+			}
+		}
+	
+	}
+	
+	focus = {
+		id = RIO_More_And_More
+		
+		x = -2
+		y = 6
+		relative_position_id = RIO_Change_Of_Ideas
+		prerequisite = {
+			focus = RIO_Get_More_Military_Industries
+		}
+		prerequisite = {
+			focus = RIO_Force_Them_To_Build_Roads
+		}
+		cost = 4
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = RIO_Must_Work_2
+				add_idea = RIO_Must_Work_3
+			}
+		}
+	
+	}
+	
+	focus = {
+		id = RIO_Claim_The_North_American_Mandate
+		
+		x = 0
+		y = 1
+		relative_position_id = RIO_Welcome_To_Blood_Meridian
+		available = {
+			has_completed_focus = RIO_Welcome_To_Blood_Meridian
+		}
+		available = {
+			has_completed_focus = RIO_Change_Of_Tactics
+		}
+		available = {
+			has_completed_focus = RIO_Change_Of_Ideas
+		}
+		available = {
+			has_completed_focus = RIO_Politics_Of_The_Old_West
+		}
+		available = {
+			has_completed_focus = RIO_Everything_For_The_War
+		}
+		cost = 1
+		completion_reward = {
+			add_ideas = RIO_North_America_Conquest
+		}
+	
+	}
 	
 	
 	
