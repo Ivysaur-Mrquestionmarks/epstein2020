@@ -28,7 +28,44 @@ focus_tree = {
 		prerequisite = {
 		#	focus = 
 		}
+		#allow_branch = { has_country_flag = LOU_dixie }
 		completion_reward = {
+				division_template = {
+					name = "Confederate Militants"
+					is_locked = yes
+					division_cap = 30 
+					#division_names_group = USA_INF_01
+					priority = 1
+					template_counter = 60
+					regiments = {
+						infantry = { x = 0 y = 0 }
+						infantry = { x = 0 y = 1 }
+						infantry = { x = 0 y = 2 }
+						infantry = { x = 1 y = 0 }
+						infantry = { x = 1 y = 1 }
+						infantry = { x = 1 y = 2 }
+						infantry = { x = 2 y = 0 }
+						infantry = { x = 2 y = 1 }
+						infantry = { x = 2 y = 2 }
+						artillery_brigade  = { x = 3 y = 0 }
+					}
+					support = {
+						military_police = { x = 0 y = 0 }
+						recon = { x = 0 y = 1 }
+						engineer = { x = 0 y = 2 }
+						
+					}
+				}
+				set_division_force_allow_recruiting = {
+					division_template = "Confederate Militants"
+				}
+			random_owned_state = {
+				create_unit = {
+					division = "name = \"CSA Volunteer Corps\"  division_template = \"Confederate Militants\"  start_experience_factor = 1"
+					owner = LOU
+					count = 2
+				}
+			}
 		}
 	}
 	focus = {
@@ -42,6 +79,11 @@ focus_tree = {
 			focus = LOU_dixie
 		}
 		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 5000
+			}
+			add_manpower = 15000
 		}
 	}
 	focus = {
@@ -55,6 +97,7 @@ focus_tree = {
 			focus = LOU_dixie
 		}
 		completion_reward = {
+			add_ideas = LOU_confederate_high_command
 		}
 	}
 	focus = {
@@ -71,6 +114,14 @@ focus_tree = {
 			focus = LOU_kanye_commanders
 		}
 		completion_reward = {
+			set_cosmetic_tag = LOU_kanye_puppet
+			CSA = { 
+				puppet = LOU
+				country_event = louisiana.2
+			}
+			hidden_effect = {
+				add_ideas = LOU_disorganized_armed_forces
+			}
 		}
 	}
 	
@@ -79,10 +130,10 @@ focus_tree = {
 	focus = {
 		id = LOU_kanyeism
 		icon = GFX
-		x = -28
+		x = -29
 		y = 1
 		relative_position_id = LOU_military_district_of_louisiana
-		cost = 5
+		cost = 0
 		prerequisite = {
 			focus = LOU_military_district_of_louisiana
 		}
@@ -101,6 +152,10 @@ focus_tree = {
 			focus = LOU_kanyeism
 		}
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = LOU_black_nationalist_rebels
+				add_idea = LOU_black_nationalist_rebels_weak
+			}
 		}
 	}
 	focus = {
@@ -114,6 +169,20 @@ focus_tree = {
 			focus = LOU_eliminate_black_nationalists
 		}
 		completion_reward = {
+			IF = {
+				limit = { has_idea = LOU_black_nationalist_rebels_weak }
+				swap_ideas = {
+					remove_idea = LOU_black_nationalist_rebels_weak
+					add_idea = LOU_black_nationalist_rebels_weak2
+				}
+			}
+			IF = {
+				limit = { has_idea = LOU_black_nationalist_rebels_weak2 }
+				swap_ideas = {
+					remove_idea = LOU_black_nationalist_rebels_weak2
+					add_idea = LOU_black_nationalist_rebels_weak3
+				}
+			}
 		}
 	}
 	focus = {
@@ -127,6 +196,20 @@ focus_tree = {
 			focus = LOU_eliminate_black_nationalists
 		}
 		completion_reward = {
+			IF = {
+				limit = { has_idea = LOU_black_nationalist_rebels_weak }
+				swap_ideas = {
+					remove_idea = LOU_black_nationalist_rebels_weak
+					add_idea = LOU_black_nationalist_rebels_weak2
+				}
+			}
+			IF = {
+				limit = { has_idea = LOU_black_nationalist_rebels_weak2 }
+				swap_ideas = {
+					remove_idea = LOU_black_nationalist_rebels_weak2
+					add_idea = LOU_black_nationalist_rebels_weak3
+				}
+			}
 		}
 	}
 	focus = {
@@ -143,6 +226,7 @@ focus_tree = {
 			focus = LOU_increase_police_budget
 		}
 		completion_reward = {
+			remove_ideas = LOU_black_nationalist_rebels_weak3
 		}
 	}
 	focus = {
@@ -156,6 +240,10 @@ focus_tree = {
 			focus = LOU_kanyeism
 		}
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = LOU_white_nationalist_rebels
+				add_idea = LOU_white_nationalist_rebels_weak
+			}
 		}
 	}
 	focus = {
@@ -169,6 +257,20 @@ focus_tree = {
 			focus = LOU_eliminate_white_nationalists
 		}
 		completion_reward = {
+			IF = {
+				limit = { has_idea = LOU_white_nationalist_rebels_weak }
+				swap_ideas = {
+					remove_idea = LOU_white_nationalist_rebels_weak
+					add_idea = LOU_white_nationalist_rebels_weak2
+				}
+			}
+			IF = {
+				limit = { has_idea = LOU_white_nationalist_rebels_weak2 }
+				swap_ideas = {
+					remove_idea = LOU_white_nationalist_rebels_weak2
+					add_idea = LOU_white_nationalist_rebels_weak3
+				}
+			}
 		}
 	}
 	focus = {
@@ -182,6 +284,20 @@ focus_tree = {
 			focus = LOU_eliminate_white_nationalists
 		}
 		completion_reward = {
+			IF = {
+				limit = { has_idea = LOU_white_nationalist_rebels_weak }
+				swap_ideas = {
+					remove_idea = LOU_white_nationalist_rebels_weak
+					add_idea = LOU_white_nationalist_rebels_weak2
+				}
+			}
+			IF = {
+				limit = { has_idea = LOU_white_nationalist_rebels_weak2 }
+				swap_ideas = {
+					remove_idea = LOU_white_nationalist_rebels_weak2
+					add_idea = LOU_white_nationalist_rebels_weak3
+				}
+			}
 		}
 	}
 	focus = {
@@ -198,6 +314,7 @@ focus_tree = {
 			focus = LOU_root_out_klan_influence
 		}
 		completion_reward = {
+			remove_ideas = LOU_white_nationalist_rebels_weak3
 		}
 	}
 	focus = {
@@ -1820,7 +1937,7 @@ focus_tree = {
 		id = LOU_spoils_of_war
 		icon = GFX
 		x = 0
-		y = 4
+		y = 1
 		relative_position_id = LOU_an_opportunity
 		cost = 5
 		prerequisite = {
@@ -2264,6 +2381,22 @@ focus_tree = {
 		completion_reward = {
 		}
 	}
+	focus = {
+		id = LOU_east_american_union
+		icon = GFX
+		x = -1
+		y = 1
+		relative_position_id = LOU_canadian_cajuns
+		cost = 5
+		prerequisite = {
+			focus = LOU_home_at_last
+		}
+		prerequisite = {
+			focus = LOU_canadian_cajuns
+		}
+		completion_reward = {
+		}
+	}
 	
 	
 	
@@ -2288,7 +2421,7 @@ focus_tree = {
 		id = LOU_end_of_another_crisis
 		icon = GFX
 		x = 0
-		y = 4
+		y = 1
 		relative_position_id = LOU_last_bastion_of_kanyeism
 		cost = 5
 		prerequisite = {
@@ -3136,7 +3269,7 @@ focus_tree = {
 	focus = {
 		id = LOU_rumours_of_discontent
 		icon = GFX
-		x = 35
+		x = 29
 		y = 1
 		relative_position_id = LOU_military_district_of_louisiana
 		cost = 5
