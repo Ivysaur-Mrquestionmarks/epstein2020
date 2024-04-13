@@ -138,6 +138,9 @@ focus_tree = {
 			focus = LOU_military_district_of_louisiana
 		}
 		mutually_exclusive = { focus = LOU_rumours_of_discontent }
+		ai_will_do = { 
+			factor = 90
+		}
 		completion_reward = {
 		}
 	}
@@ -323,11 +326,12 @@ focus_tree = {
 		x = 0
 		y = 1
 		relative_position_id = LOU_kanyeism
-		cost = 5
+		cost = 0
 		prerequisite = {
 			focus = LOU_kanyeism
 		}
 		completion_reward = {
+			add_political_power = 35
 		}
 	}
 	focus = {
@@ -341,6 +345,7 @@ focus_tree = {
 			focus = LOU_a_more_consolidated_approach
 		}
 		completion_reward = {
+			add_ideas = LOU_theocracy
 		}
 	}
 	focus = {
@@ -354,6 +359,13 @@ focus_tree = {
 			focus = LOU_a_more_consolidated_approach
 		}
 		completion_reward = {
+			add_war_support = 0.05
+			add_stability = 0.15
+			add_popularity = {
+				ideology = autocratic
+				popularity = 0.2
+			}
+			add_political_power = 50
 		}
 	}
 	focus = {
@@ -370,6 +382,44 @@ focus_tree = {
 			focus = LOU_rewrite_constitution
 		}
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = LOU_theocracy
+				add_idea = LOU_theocracy2
+			}
+		}
+	}
+	focus = {
+		id = LOU_complete_control_question
+		icon = GFX
+		x = 2
+		y = 1
+		relative_position_id = LOU_jesus_loves_us
+		cost = 5
+		prerequisite = {
+			focus = LOU_jesus_loves_us
+		}
+		prerequisite = {
+			focus = LOU_seperate_but_equal
+		}
+		prerequisite = {
+			focus = LOU_break_gangs
+		}
+		available = {
+			OR = {
+				is_ai = yes
+				NOT = { has_global_flag = Dixie_Collapse_Global }
+			}
+		}
+		ai_will_do = { 
+			factor = 100
+		}
+		mutually_exclusive = { focus = LOU_the_western_bulwark }
+		completion_reward = {
+			CSA = { annex_country = LOU }
+			every_state = {
+				limit = { is_core_of = LOU }
+				add_core_of = CSA
+			}
 		}
 	}
 	focus = {
@@ -388,26 +438,30 @@ focus_tree = {
 		prerequisite = {
 			focus = LOU_break_gangs
 		}
+		mutually_exclusive = { focus = LOU_complete_control_question }
 		completion_reward = {
+			country_event = lou_csa.4
 		}
 	}
 	focus = {
 		id = LOU_request_arkansas
 		icon = GFX
-		x = 0
-		y = 1
+		x = -3
+		y = 2
 		relative_position_id = LOU_the_western_bulwark
 		cost = 5
 		prerequisite = {
 			focus = LOU_the_western_bulwark
 		}
+		available = { NOT = { has_global_flag = Dixie_Collapse_Global } }
 		completion_reward = {
+			CSA = { country_event = lou_csa.5 }
 		}
 	}
 	focus = {
 		id = LOU_a_better_tomorrow
 		icon = GFX
-		x = -4
+		x = 2
 		y = 1
 		relative_position_id = LOU_the_western_bulwark
 		cost = 5
@@ -415,6 +469,7 @@ focus_tree = {
 			focus = LOU_the_western_bulwark
 		}
 		completion_reward = {
+			country_event = lou_csa.6
 		}
 	}
 	focus = {
@@ -428,6 +483,8 @@ focus_tree = {
 			focus = LOU_a_better_tomorrow
 		}
 		completion_reward = {
+			add_political_power = 50
+			set_major = yes
 		}
 	}
 	focus = {
@@ -436,11 +493,15 @@ focus_tree = {
 		x = 1
 		y = 1
 		relative_position_id = LOU_forget_past
-		cost = 5
+		cost = 1
 		prerequisite = {
 			focus = LOU_forget_past
 		}
 		completion_reward = {
+			add_popularity = {
+				ideology = democrat
+				popularity = -1
+			}
 		}
 	}
 	focus = {
@@ -449,11 +510,15 @@ focus_tree = {
 		x = -1
 		y = 1
 		relative_position_id = LOU_forget_past
-		cost = 5
+		cost = 1
 		prerequisite = {
 			focus = LOU_forget_past
 		}
 		completion_reward = {
+			add_popularity = {
+				ideology = libertarian_left
+				popularity = -1
+			}
 		}
 	}
 	focus = {
@@ -470,61 +535,15 @@ focus_tree = {
 			focus = LOU_ban_the_gays
 		}
 		completion_reward = {
-		}
-	}
-	focus = {
-		id = LOU_unite_the_people
-		icon = GFX
-		x = -3
-		y = 1
-		relative_position_id = LOU_a_better_tomorrow
-		cost = 5
-		prerequisite = {
-			focus = LOU_a_better_tomorrow
-		}
-		completion_reward = {
-		}
-	}
-	focus = {
-		id = LOU_for_god_loves_all
-		icon = GFX
-		x = -1
-		y = 1
-		relative_position_id = LOU_unite_the_people
-		cost = 5
-		prerequisite = {
-			focus = LOU_unite_the_people
-		}
-		completion_reward = {
-		}
-	}
-	focus = {
-		id = LOU_and_forgives_all
-		icon = GFX
-		x = 1
-		y = 1
-		relative_position_id = LOU_unite_the_people
-		cost = 5
-		prerequisite = {
-			focus = LOU_unite_the_people
-		}
-		completion_reward = {
-		}
-	}
-	focus = {
-		id = LOU_only_if_you_convert
-		icon = GFX
-		x = 1
-		y = 1
-		relative_position_id = LOU_for_god_loves_all
-		cost = 5
-		prerequisite = {
-			focus = LOU_for_god_loves_all
-		}
-		prerequisite = {
-			focus = LOU_and_forgives_all
-		}
-		completion_reward = {
+			random_owned_state = {
+				add_manpower = 50000
+			}
+			random_owned_state = {
+				add_manpower = 50000
+			}
+			316 = {
+				add_manpower = 100000
+			}
 		}
 	}
 	focus = {
@@ -537,7 +556,12 @@ focus_tree = {
 		prerequisite = {
 			focus = LOU_a_better_tomorrow
 		}
+		available = { has_completed_focus = LOU_allow_christian_immigrants }
 		completion_reward = {
+			add_timed_idea = {
+				idea = LOU_democratization_theocracy
+				days = 70
+			}
 		}
 	}
 	focus = {
@@ -551,6 +575,14 @@ focus_tree = {
 			focus = LOU_work_with_civil_servants
 		}
 		completion_reward = {
+			add_popularity = {
+				ideology = republican
+				popularity = 0.2
+			}
+			add_popularity = {
+				ideology = authoritarian_left
+				popularity = 0.2
+			}
 		}
 	}
 	focus = {
@@ -564,6 +596,7 @@ focus_tree = {
 			focus = LOU_a_christian_coalition
 		}
 		completion_reward = {
+			country_event = lou_csa.7
 		}
 	}
 	focus = {
@@ -591,6 +624,7 @@ focus_tree = {
 			focus = LOU_the_right
 		}
 		completion_reward = {
+			
 		}
 	}
 	focus = {
@@ -1024,12 +1058,12 @@ focus_tree = {
 	focus = {
 		id = LOU_prove_our_loyalty
 		icon = GFX
-		x = 4
+		x = -3
 		y = 1
-		relative_position_id = LOU_the_western_bulwark
-		cost = 5
+		relative_position_id = LOU_a_better_tomorrow
+		cost = 0
 		prerequisite = {
-			focus = LOU_the_western_bulwark
+			focus = LOU_a_better_tomorrow
 		}
 		completion_reward = {
 		}
@@ -1045,6 +1079,7 @@ focus_tree = {
 			focus = LOU_prove_our_loyalty
 		}
 		completion_reward = {
+			add_ideas = LOU_missionaries
 		}
 	}
 	focus = {
@@ -1058,6 +1093,10 @@ focus_tree = {
 			focus = LOU_jesuit_missionaries
 		}
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = LOU_missionaries
+				add_idea = LOU_missionaries2
+			}
 		}
 	}
 	focus = {
@@ -1071,6 +1110,10 @@ focus_tree = {
 			focus = LOU_prove_our_loyalty
 		}
 		completion_reward = {
+			create_intelligence_agency = {
+				name = "God's Eyes"
+				icon = GFX_intelligence_agency_logo_agency
+			}
 		}
 	}
 	focus = {
@@ -1084,28 +1127,8 @@ focus_tree = {
 			focus = LOU_god_is_watching
 		}
 		completion_reward = {
-		}
-	}
-	focus = {
-		id = LOU_conplete_control_question
-		icon = GFX
-		x = 1
-		y = 1
-		relative_position_id = LOU_so_is_kanye
-		cost = 5
-		prerequisite = {
-			focus = LOU_so_is_kanye
-		}
-		prerequisite = {
-			focus = LOU_spread_the_gospel
-		}
-		available = {
-			OR = {
-				is_ai = yes
-				NOT = { has_global_flag = Dixie_Collapse_Global }
-			}
-		}
-		completion_reward = {
+			add_ideas = LOU_kanye_watching
+			upgrade_intelligence_agency = upgrade_form_department
 		}
 	}
 	
@@ -1116,7 +1139,7 @@ focus_tree = {
 	focus = {
 		id = LOU_organize_the_military
 		icon = GFX
-		x = -20
+		x = -9
 		y = 1
 		relative_position_id = LOU_kanyeism
 		cost = 5
@@ -1124,6 +1147,10 @@ focus_tree = {
 			focus = LOU_kanyeism
 		}
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = LOU_disorganized_armed_forces
+				add_idea = LOU_disorganized_armed_forces2
+			}
 		}
 	}
 	focus = {
@@ -1138,6 +1165,15 @@ focus_tree = {
 		}
 		mutually_exclusive = { focus = LOU_integrate_militias }
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = LOU_disorganized_armed_forces2
+				add_idea = LOU_disorganized_armed_forces3
+			}
+			army_experience = 50
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 5000
+			}
 		}
 	}
 	focus = {
@@ -1152,6 +1188,11 @@ focus_tree = {
 		}
 		mutually_exclusive = { focus = LOU_disband_militias }
 		completion_reward = {
+			add_manpower = 50000
+			swap_ideas = {
+				remove_idea = LOU_disorganized_armed_forces2
+				add_idea = LOU_disorganized_armed_forces3
+			}
 		}
 	}
 	focus = {
@@ -1167,6 +1208,11 @@ focus_tree = {
 		}
 		mutually_exclusive = { focus = LOU_independent_high_command }
 		completion_reward = {
+			add_command_power = 150
+			swap_ideas = {
+				remove_idea = LOU_disorganized_armed_forces3
+				add_idea = LOU_disorganized_armed_forces4
+			}
 		}
 	}
 	focus = {
@@ -1182,6 +1228,12 @@ focus_tree = {
 		}
 		mutually_exclusive = { focus = LOU_confederate_advisors }
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = LOU_disorganized_armed_forces3
+				add_idea = LOU_disorganized_armed_forces4
+			}
+			army_experience = 50
+			add_manpower = 5000
 		}
 	}
 	focus = {
@@ -1197,6 +1249,11 @@ focus_tree = {
 		}
 		mutually_exclusive = { focus = LOU_more_guns }
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = LOU_disorganized_armed_forces4
+				add_idea = LOU_disorganized_armed_forces5
+			}
+			add_ideas = LOU_guns_better
 		}
 	}
 	focus = {
@@ -1212,6 +1269,11 @@ focus_tree = {
 		}
 		mutually_exclusive = { focus = LOU_better_guns }
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = LOU_disorganized_armed_forces4
+				add_idea = LOU_disorganized_armed_forces5
+			}
+			add_ideas = LOU_guns_more
 		}
 	}
 	focus = {
@@ -1226,6 +1288,7 @@ focus_tree = {
 			focus = LOU_more_guns
 		}
 		completion_reward = {
+			remove_ideas = LOU_disorganized_armed_forces5
 		}
 	}
 	focus = {
@@ -1244,7 +1307,7 @@ focus_tree = {
 	focus = {
 		id = LOU_crusader_spirit
 		icon = GFX
-		x = -2
+		x = -1
 		y = 1
 		relative_position_id = LOU_baton_rouge_training_grounds
 		cost = 5
@@ -1268,35 +1331,9 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = LOU_fight_for_god
-		icon = GFX
-		x = 2
-		y = 1
-		relative_position_id = LOU_baton_rouge_training_grounds
-		cost = 5
-		prerequisite = {
-			focus = LOU_baton_rouge_training_grounds
-		}
-		completion_reward = {
-		}
-	}
-	focus = {
-		id = LOU_good_soldiers_go_to_heaven
-		icon = GFX
-		x = 0
-		y = 1
-		relative_position_id = LOU_fight_for_god
-		cost = 5
-		prerequisite = {
-			focus = LOU_fight_for_god
-		}
-		completion_reward = {
-		}
-	}
-	focus = {
 		id = LOU_christian_tanks
 		icon = GFX
-		x = 0
+		x = 1
 		y = 1
 		relative_position_id = LOU_baton_rouge_training_grounds
 		cost = 5
@@ -1322,7 +1359,7 @@ focus_tree = {
 	focus = {
 		id = LOU_new_orleans_naval_academy
 		icon = GFX
-		x = 6
+		x = 4
 		y = 1
 		relative_position_id = LOU_military_reform_complete
 		cost = 5
@@ -1333,35 +1370,9 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = LOU_christian_expand_naval_theory
-		icon = GFX
-		x = -2
-		y = 1
-		relative_position_id = LOU_new_orleans_naval_academy
-		cost = 5
-		prerequisite = {
-			focus = LOU_new_orleans_naval_academy
-		}
-		completion_reward = {
-		}
-	}
-	focus = {
-		id = LOU_christian_river_fight_specialists
-		icon = GFX
-		x = 0
-		y = 1
-		relative_position_id = LOU_christian_expand_naval_theory
-		cost = 5
-		prerequisite = {
-			focus = LOU_christian_expand_naval_theory
-		}
-		completion_reward = {
-		}
-	}
-	focus = {
 		id = LOU_christian_expand_dockyards
 		icon = GFX
-		x = 2
+		x = 1
 		y = 1
 		relative_position_id = LOU_new_orleans_naval_academy
 		cost = 5
@@ -1387,7 +1398,7 @@ focus_tree = {
 	focus = {
 		id = LOU_christian_destroyers
 		icon = GFX
-		x = 0
+		x = -1
 		y = 1
 		relative_position_id = LOU_new_orleans_naval_academy
 		cost = 5
@@ -1413,7 +1424,7 @@ focus_tree = {
 	focus = {
 		id = LOU_laffayette_flight_school
 		icon = GFX
-		x = -6
+		x = -4
 		y = 1
 		relative_position_id = LOU_military_reform_complete
 		cost = 5
@@ -1424,22 +1435,9 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = LOU_christian_paratroopers1
-		icon = GFX
-		x = 2
-		y = 1
-		relative_position_id = LOU_laffayette_flight_school
-		cost = 5
-		prerequisite = {
-			focus = LOU_laffayette_flight_school
-		}
-		completion_reward = {
-		}
-	}
-	focus = {
 		id = LOU_christian_flying1
 		icon = GFX
-		x = -2
+		x = -1
 		y = 1
 		relative_position_id = LOU_laffayette_flight_school
 		cost = 5
@@ -1463,22 +1461,9 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = LOU_christian_paratroopers2
-		icon = GFX
-		x = 0
-		y = 1
-		relative_position_id = LOU_christian_paratroopers1
-		cost = 5
-		prerequisite = {
-			focus = LOU_christian_paratroopers1
-		}
-		completion_reward = {
-		}
-	}
-	focus = {
 		id = LOU_christian_planes1
 		icon = GFX
-		x = 0
+		x = 1
 		y = 1
 		relative_position_id = LOU_laffayette_flight_school
 		cost = 5
@@ -1509,7 +1494,7 @@ focus_tree = {
 	focus = {
 		id = LOU_confederate_investments
 		icon = GFX
-		x = -12
+		x = -21
 		y = 1
 		relative_position_id = LOU_kanyeism
 		cost = 5
@@ -1714,6 +1699,12 @@ focus_tree = {
 		prerequisite = {
 			focus = LOU_military_district_of_louisiana
 		}
+		#allow_branch = {
+		#	OR = {
+		#		has_country_flag = lou_csa_intervention_cajuns
+		#		has_country_flag = lou_csa_intervention_kanyeists
+		#	}
+		#}
 		completion_reward = {
 		}
 	}
@@ -1930,6 +1921,7 @@ focus_tree = {
 		prerequisite = {
 			focus = LOU_the_collapse
 		}
+		available = { has_country_flag = lou_csa_intervention_cajuns }
 		completion_reward = {
 		}
 	}
@@ -1937,7 +1929,7 @@ focus_tree = {
 		id = LOU_spoils_of_war
 		icon = GFX
 		x = 0
-		y = 1
+		y = 2
 		relative_position_id = LOU_an_opportunity
 		cost = 5
 		prerequisite = {
@@ -2030,8 +2022,8 @@ focus_tree = {
 	focus = {
 		id = LOU_population_transfers
 		icon = GFX
-		x = 0
-		y = 1
+		x = -1
+		y = 3
 		relative_position_id = LOU_the_new_center_of_the_south
 		cost = 5
 		prerequisite = {
@@ -2044,7 +2036,7 @@ focus_tree = {
 		id = LOU_the_european_example
 		icon = GFX
 		x = 0
-		y = 1
+		y = 2
 		relative_position_id = LOU_economic_integration
 		cost = 5
 		prerequisite = {
@@ -2128,11 +2120,17 @@ focus_tree = {
 		id = LOU_texan_cajuns
 		icon = GFX
 		x = 0
-		y = 1
+		y = 2
 		relative_position_id = LOU_reunite_the_peninsula
 		cost = 5
+		#prerequisite = {
+		#	focus = LOU_reunite_the_peninsula
+		#}
 		prerequisite = {
-			focus = LOU_reunite_the_peninsula
+			focus = LOU_work_with_seminoles
+		}
+		prerequisite = {
+			focus = LOU_import_floridian_gators
 		}
 		completion_reward = {
 		}
@@ -2140,7 +2138,7 @@ focus_tree = {
 	focus = {
 		id = LOU_work_with_seminoles
 		icon = GFX
-		x = -2
+		x = -1
 		y = 1
 		relative_position_id = LOU_reunite_the_peninsula
 		cost = 5
@@ -2186,7 +2184,7 @@ focus_tree = {
 		id = LOU_joint_weapons_development
 		icon = GFX
 		x = 1
-		y = 1
+		y = 2
 		relative_position_id = LOU_military_integration
 		cost = 5
 		prerequisite = {
@@ -2249,14 +2247,11 @@ focus_tree = {
 		id = LOU_the_second_southern_reorganization
 		icon = GFX
 		x = 0
-		y = 1
+		y = 3
 		relative_position_id = LOU_ready_for_the_next_conflict
 		cost = 5
 		prerequisite = {
 			focus = LOU_invite_unemployed_to_work
-		}
-		prerequisite = {
-			focus = LOU_import_floridian_gators
 		}
 		prerequisite = {
 			focus = LOU_joint_weapons_development
@@ -2266,9 +2261,6 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = LOU_texan_cajuns
-		}
-		prerequisite = {
-			focus = LOU_work_with_seminoles
 		}
 		prerequisite = {
 			focus = LOU_ready_for_the_next_conflict
@@ -2414,6 +2406,7 @@ focus_tree = {
 		prerequisite = {
 			focus = LOU_the_collapse
 		}
+		available = { has_country_flag = lou_csa_intervention_kanyeists }
 		completion_reward = {
 		}
 	}
@@ -3277,6 +3270,9 @@ focus_tree = {
 			focus = LOU_military_district_of_louisiana
 		}
 		mutually_exclusive = { focus = LOU_kanyeism }
+		ai_will_do = { 
+			factor = 10
+		}
 		completion_reward = {
 		}
 	}

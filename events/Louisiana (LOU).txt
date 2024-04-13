@@ -1,35 +1,37 @@
-add_namespace = louisiana
+add_namespace = lou_csa
 
 
 
 #Confederate collapse, become free
 country_event = {
-	id = louisiana.1
-	title = louisiana.1.t
-	desc = louisiana.1.d
+	id = lou_csa.1
+	title = lou_csa.1.t
+	desc = lou_csa.1.d
 	#picture =
 	is_triggered_only = yes
 	fire_only_once = no
 	option = {
-		name = louisiana.1.a
+		name = lou_csa.1.a
 		set_autonomy = {
 			target = LOU
 			autonomous_state = autonomy_free
 			end_wars = yes
 			end_civil_wars = yes
 		}
+		set_country_flag = lou_csa_intervention_kanyeists
+		mark_focus_tree_layout_dirty = yes
 	}
 }
 #Louisiana requests the rest of louisiana
 country_event = {
-	id = louisiana.2
-	title = louisiana.2.t
-	desc = louisiana.2.d
+	id = lou_csa.2
+	title = lou_csa.2.t
+	desc = lou_csa.2.d
 	#picture =
 	is_triggered_only = yes
 	fire_only_once = no
 	option = { #yes
-		name = louisiana.2.a
+		name = lou_csa.2.a
 		ai_chance = { factor = 100 }
 		LOU = {
 			transfer_state = 315
@@ -43,6 +45,103 @@ country_event = {
 	}
 	option = { #no
 		ai_chance = { factor = 0 }
-		name = louisiana.2.a
+		name = lou_csa.2.a
+	}
+}
+#Cajun CSA Collapse
+country_event = {
+	id = lou_csa.3
+	title = lou_csa.3.t
+	desc = lou_csa.3.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = no
+	option = {
+		name = lou_csa.3.a
+	}
+}
+#Western Kanye Bulwark
+country_event = {
+	id = lou_csa.4
+	title = lou_csa.4.t
+	desc = lou_csa.4.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = no
+	option = { 
+		name = lou_csa.4.a
+		add_political_power = 50
+		add_war_support = 0.2
+		set_country_flag = lou_csa_intervention_cajuns
+		mark_focus_tree_layout_dirty = yes
+	}
+}
+#Louisiana requests Arkansas
+country_event = {
+	id = lou_csa.5
+	title = lou_csa.5.t
+	desc = lou_csa.5.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = no
+	option = { #yes
+		name = lou_csa.5.a
+		ai_chance = { factor = 100 }
+		LOU = {
+			transfer_state = 279
+			transfer_state = 536
+			transfer_state = 535
+			transfer_state = 267
+			transfer_state = 265
+			transfer_state = 505
+			add_state_core = 279
+			add_state_core = 536
+			add_state_core = 535
+			add_state_core = 267
+			add_state_core = 265
+			add_state_core = 505
+		}
+	}
+	option = { #no
+		ai_chance = { factor = 0 }
+		name = lou_csa.5.a
+	}
+}
+
+#Plans for a better tmrw
+country_event = {
+	id = lou_csa.6
+	title = lou_csa.6.t
+	desc = lou_csa.6.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = no
+	option = { 
+		name = lou_csa.6.a
+		add_stability = 0.1
+		add_political_power = 50
+	}
+}
+#inner party elections
+country_event = {
+	id = lou_csa.7
+	title = lou_csa.7.t
+	desc = lou_csa.7.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = no
+	option = { #right
+		name = lou_csa.7.a
+		set_politics = {
+			ruling_party = republican
+		}
+		complete_national_focus = LOU_the_right
+	}
+	option = { #left
+		name = lou_csa.7.b 
+		set_politics = {
+			ruling_party = authoritarian_left
+		}
+		complete_national_focus = LOU_the_left
 	}
 }
