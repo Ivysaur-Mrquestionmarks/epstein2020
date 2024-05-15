@@ -9461,104 +9461,38 @@ focus_tree = {
 			add_stability = 0.2
 			add_war_support = 0.2
 			add_political_power = 50
+			set_country_flag = Tortilla_Treaty
+			mark_focus_tree_layout_dirty = yes
 		}
 	}
 	focus = {
-		id = TEX_a_new_spanish_empire
-		icon = GFX_focus_tex_bilingual
-		x = -6
-		y = 1
+		id = TEX_New_Treaty_of_Tordesillas
+		icon = GFX_goal_Treaty_of_Tortilla
+		x = 0
+		y = 3
 		relative_position_id = TEX_united_and_ready
-		cost = 5
-		prerequisite = {
-			focus = TEX_united_and_ready
-		}
-		mutually_exclusive = { focus = TEX_hispano_americanism }
-
+		cost =0
+		#prerequisite = {
+		#	focus = TEX_united_and_ready
+		#}
 		available = {
+			has_completed_focus = TEX_united_and_ready
+		}
+		allow_branch = {
+			has_country_flag = Tortilla_Treaty
 		}
 		completion_reward = {
-			set_cosmetic_tag = TEX_viceroy
-				add_country_leader_trait = TEX_viceroy_tejas
-		}
-	}
-	focus = {
-		id = TEX_viceroy_of_new_granada
-		icon = GFX_focus_tex_bilingual
-		x = 0
-		y = 1
-		relative_position_id = TEX_a_new_spanish_empire
-		cost = 5
-		prerequisite = {
-			focus = TEX_a_new_spanish_empire
-		}
-		available = {
-			NOT = { 
-					country_exists = PAN
-					country_exists = CHI
-			}
-		}
-		will_lead_to_war_with = COL
-		will_lead_to_war_with = VEN
-		completion_reward = {
-				create_wargoal = {
-					type = annex_everything
-					target = COL
-				}
-				create_wargoal = {
-					type = annex_everything
-					target = VEN
-				}
-				every_state = {
-					limit = { is_core_of = COL }
-					add_core_of = TEX
-				}
-				every_state = {
-					limit = { is_core_of = VEN }
-					add_core_of = TEX
-				}
-				add_country_leader_trait = 	TEX_viceroy_new_granada
-		}
-	}
-	focus = {
-		id = TEX_cascadia_was_spanish
-		icon = GFX_focus_tex_bilingual
-		x = 0
-		y = 1
-		relative_position_id = TEX_viceroy_of_new_granada
-		cost = 5
-		prerequisite = {
-			focus = TEX_viceroy_of_new_granada
-		}
-		will_lead_to_war_with = CAS
-		will_lead_to_war_with = LIB
-		available = {
-		}
-		completion_reward = {
-			create_wargoal = {
-				target = CAS
-				type = annex_everything
-			}
-			create_wargoal = {
-				target = LIB
-				type = annex_everything
-			}
-			every_state = {
-				limit = { is_core_of = CAS }
-				add_core_of = TEX
-			}
 		}
 	}
 	focus = {
 		id = TEX_return_normalcy_to_mexico
 		icon = GFX_focus_tex_bilingual
 		x = 0
-		y = 2
-		relative_position_id = TEX_united_and_ready
+		y = 1
+		relative_position_id = TEX_New_Treaty_of_Tordesillas
 		cost = 5
 		prerequisite = {
-			focus = TEX_a_new_spanish_empire
-			focus = TEX_hispano_americanism
+			focus = TEX_New_Treaty_of_Tordesillas
 		}
 		will_lead_to_war_with = RMX
 		will_lead_to_war_with = MEX
@@ -9635,13 +9569,12 @@ focus_tree = {
 	focus = {
 		id = TEX_into_carribean
 		icon = GFX_focus_tex_bilingual
-		x = 2
-		y = 2
-		relative_position_id = TEX_united_and_ready
+		x = 1
+		y = 1
+		relative_position_id = TEX_viceroy_of_new_spain
 		cost = 5
 		prerequisite = {
-			focus = TEX_a_new_spanish_empire
-			focus = TEX_hispano_americanism
+			focus = TEX_viceroy_of_new_spain
 		}
 		available = {
 		}
@@ -9703,9 +9636,6 @@ focus_tree = {
 		prerequisite = {
 			focus = TEX_into_carribean
 		}
-		available = {
-			has_completed_focus = TEX_a_new_spanish_empire
-		}
 		completion_reward = {
 			every_state = {
 				limit = { is_core_of = CUB }
@@ -9736,13 +9666,12 @@ focus_tree = {
 	focus = {
 		id = TEX_reconquer_central_America
 		icon = GFX_focus_tex_bilingual
-		x = 4
-		y = 2
-		relative_position_id = TEX_united_and_ready
+		x = -1
+		y = 1
+		relative_position_id = TEX_viceroy_of_new_spain
 		cost = 5
 		prerequisite = {
-			focus = TEX_a_new_spanish_empire
-			focus = TEX_hispano_americanism
+			focus = TEX_viceroy_of_new_spain
 		}
 		will_lead_to_war_with = GUA
 		will_lead_to_war_with =  BLZ
@@ -9799,12 +9728,15 @@ focus_tree = {
 	focus = {
 		id = TEX_reintigration_into_the_empire
 		icon = GFX_focus_tex_bilingual
-		x = 0
+		x = -1
 		y = 1
 		relative_position_id = TEX_reconquer_central_America
 		cost = 5
 		prerequisite = {
 			focus = TEX_reconquer_central_America
+		}
+		prerequisite = {
+			focus = TEX_viceroy_of_new_granada
 		}
 		available = {
 			NOT = { has_completed_focus = TEX_hispano_americanism }
@@ -9858,18 +9790,45 @@ focus_tree = {
 				}
 				add_core_of = TEX
 			}
+			every_state = {
+				limit = { is_core_of = COL }
+				add_core_of = TEX
+			}
+			every_state = {
+				limit = { is_core_of = VEN }
+				add_core_of = TEX
+			}
+		}
+	}
+	focus = {
+		id = TEX_memories_of_humiliation
+		icon = GFX_focus_tex_bilingual
+		x = 6
+		y = 1
+		relative_position_id = TEX_return_normalcy_to_mexico
+		cost = 5
+		prerequisite = {
+			focus = TEX_return_normalcy_to_mexico
+		}
+		available = {
+		}
+		completion_reward = {
+			add_political_power = -50
+			add_command_power = 50
+			army_experience = 50
+			add_war_support = 0.1
+			add_stability = -0.1
 		}
 	}
 	focus = {
 		id = TEX_revenge_for_seven_years_war
 		icon = GFX_focus_tex_bilingual
-		x = -4
-		y = 2
-		relative_position_id = TEX_united_and_ready
+		x = 2
+		y = 1
+		relative_position_id = TEX_memories_of_humiliation
 		cost = 5
 		prerequisite = {
-			focus = TEX_a_new_spanish_empire
-			focus = TEX_hispano_americanism
+			focus = TEX_memories_of_humiliation
 		}
 		will_lead_to_war_with = CSA
 		will_lead_to_war_with = KKK
@@ -10011,7 +9970,7 @@ focus_tree = {
 	focus = {
 		id = TEX_integrate_the_south
 		icon = GFX_focus_tex_bilingual
-		x = 0
+		x = 1
 		y = 1
 		relative_position_id = TEX_revenge_for_seven_years_war
 		cost = 5
@@ -10038,13 +9997,12 @@ focus_tree = {
 	focus = {
 		id = TEX_reverse_the_cession
 		icon = GFX_focus_tex_bilingual
-		x = -2
-		y = 2
-		relative_position_id = TEX_united_and_ready
+		x = 0
+		y = 1
+		relative_position_id = TEX_memories_of_humiliation
 		cost = 5
 		prerequisite = {
-			focus = TEX_a_new_spanish_empire
-			focus = TEX_hispano_americanism
+			focus = TEX_memories_of_humiliation
 		}
 		will_lead_to_war_with = HOP
 		will_lead_to_war_with = NVD
@@ -10125,12 +10083,12 @@ focus_tree = {
 	focus = {
 		id = TEX_reclaim_alta_california
 		icon = GFX_focus_tex_bilingual
-		x = 0
+		x = -2
 		y = 1
-		relative_position_id = TEX_reverse_the_cession
+		relative_position_id = TEX_memories_of_humiliation
 		cost = 5
 		prerequisite = {
-			focus = TEX_reverse_the_cession
+			focus = TEX_memories_of_humiliation
 		}
 		available = {
 		}
@@ -10246,13 +10204,13 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_hispano_americanism
-		icon = GFX_focus_tex_bilingual
-		x = 6
+		icon = GFX_goal_Follow_the_Nation
+		x = -6
 		y = 1
-		relative_position_id = TEX_united_and_ready
+		relative_position_id = TEX_return_normalcy_to_mexico
 		cost = 1
 		prerequisite = {
-			focus = TEX_united_and_ready
+			focus = TEX_return_normalcy_to_mexico
 		}
 		mutually_exclusive = { focus = TEX_a_new_spanish_empire }
 		available = {
@@ -10263,17 +10221,21 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_reunite_america
-		icon = GFX_focus_tex_bilingual
-		x = 0
+		icon = GFX
+		x = -2
 		y = 1
-		relative_position_id = TEX_hispano_americanism
+		relative_position_id = TEX_revenge_for_seven_years_war
 		cost = 5
 		prerequisite = {
-			focus = TEX_hispano_americanism
+			focus = TEX_reverse_the_cession
+		}
+		prerequisite = {
+			focus = TEX_revenge_for_seven_years_war
+		}
+		prerequisite = {
+			focus = TEX_reclaim_alta_california
 		}
 		will_lead_to_war_with = USA
-		will_lead_to_war_with = CAS
-		will_lead_to_war_with = LIB
 		will_lead_to_war_with = MON
 		will_lead_to_war_with = IDA
 		will_lead_to_war_with = VIR
@@ -10409,12 +10371,13 @@ focus_tree = {
 	focus = {
 		id = TEX_eradicate_the_francophones
 		icon = GFX_focus_tex_bilingual
-		x = 0
+		x = 1
 		y = 1
-		relative_position_id = TEX_reunite_america
+		relative_position_id = TEX_hispano_americanism
 		cost = 5
 		prerequisite = {
-			focus = TEX_reunite_america
+			focus = TEX_hispano_americanism
+			focus = TEX_a_new_spanish_empire
 		}
 		available = {
 		}
@@ -10484,6 +10447,124 @@ focus_tree = {
 					type = annex_everything
 					target = FFR
 				}
+		}
+	}
+	focus = {
+		id = TEX_returning_to_roots
+		icon = GFX_focus_tex_bilingual
+		x = -1
+		y = 1
+		relative_position_id = TEX_hispano_americanism
+		cost = 5
+		prerequisite = {
+			focus = TEX_hispano_americanism
+		}
+		available = {
+			30 = { is_owned_by = TEX }
+		}
+		completion_reward = {
+				every_state = {
+					limit = { is_core_of = ALT }
+					add_core_of = TEX
+				}
+				every_state = {
+					limit = { is_core_of = CAN }
+					add_core_of = TEX
+				}
+				every_state = {
+					limit = { is_core_of = WPC }
+					add_core_of = TEX
+				}
+				every_state = {
+					limit = { is_core_of = QUE }
+					add_core_of = TEX
+				}
+				every_state = {
+					limit = { is_core_of = VAN }
+					add_core_of = TEX
+				}
+				every_state = {
+					limit = { is_core_of = ONT }
+					add_core_of = TEX
+				}
+		}
+	}
+	focus = {
+		id = TEX_a_new_spanish_empire
+		icon = GFX_goal_Follow_Duty
+		x = -4
+		y = 1
+		relative_position_id = TEX_return_normalcy_to_mexico
+		cost = 5
+		prerequisite = {
+			focus = TEX_return_normalcy_to_mexico
+		}
+		mutually_exclusive = { focus = TEX_hispano_americanism }
+
+		available = {
+		}
+		completion_reward = {
+			set_cosmetic_tag = TEX_viceroy
+				add_country_leader_trait = TEX_viceroy_tejas
+		}
+	}
+	focus = {
+		id = TEX_viceroy_of_new_granada
+		icon = GFX_focus_tex_bilingual
+		x = -3
+		y = 1
+		relative_position_id = TEX_viceroy_of_new_spain
+		cost = 5
+		prerequisite = {
+			focus = TEX_viceroy_of_new_spain
+		}
+		available = {
+			NOT = { 
+					country_exists = PAN
+					country_exists = CHI
+			}
+		}
+		will_lead_to_war_with = COL
+		will_lead_to_war_with = VEN
+		completion_reward = {
+				create_wargoal = {
+					type = annex_everything
+					target = COL
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = VEN
+				}
+				add_country_leader_trait = 	TEX_viceroy_new_granada
+		}
+	}
+	focus = {
+		id = TEX_cascadia_was_spanish
+		icon = GFX_focus_tex_bilingual
+		x = -1
+		y = 1
+		relative_position_id = TEX_reclaim_alta_california
+		cost = 5
+		prerequisite = {
+			focus = TEX_reclaim_alta_california
+		}
+		will_lead_to_war_with = CAS
+		will_lead_to_war_with = LIB
+		available = {
+		}
+		completion_reward = {
+			create_wargoal = {
+				target = CAS
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = LIB
+				type = annex_everything
+			}
+			every_state = {
+				limit = { is_core_of = CAS }
+				add_core_of = TEX
+			}
 		}
 	}
 	
