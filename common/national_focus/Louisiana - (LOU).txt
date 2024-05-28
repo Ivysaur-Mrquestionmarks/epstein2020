@@ -4876,6 +4876,7 @@ focus_tree = {
 			hidden_effect = { 
 				add_ideas = {
 					LOU_cajun_unknown
+					LOU_cajun_isolation
 				}
 			}
 		}
@@ -5813,11 +5814,17 @@ focus_tree = {
 		x = -8
 		y = 1
 		relative_position_id = LOU_the_cajuns
-		cost = 5
+		cost = 1
 		prerequisite = {
 			focus = LOU_the_cajuns
 		}
 		completion_reward = {
+			add_political_power = 25
+			diplomatic_relation = {
+				country = ffr
+				relation = non_aggression_pact
+				active = yes
+			}
 		}
 	}
 	focus = {
@@ -5831,6 +5838,10 @@ focus_tree = {
 			focus = LOU_treaty_with_france
 		}
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = LOU_cajun_isolation
+				add_idea = LOU_cajun_isolation2
+			}
 		}
 	}
 	focus = {
@@ -5839,11 +5850,12 @@ focus_tree = {
 		x = 1
 		y = 1
 		relative_position_id = LOU_treaty_with_france
-		cost = 5
+		cost = 3
 		prerequisite = {
 			focus = LOU_treaty_with_france
 		}
 		completion_reward = {
+			army_experience = 50
 		}
 	}
 	focus = {
@@ -5860,6 +5872,7 @@ focus_tree = {
 			focus = LOU_a_fully_professional_army
 		}
 		completion_reward = {
+			remove_ideas = LOU_cajun_isolation2
 		}
 	}
 	focus = {
@@ -5868,10 +5881,11 @@ focus_tree = {
 		x = 1
 		y = 1
 		relative_position_id = LOU_enter_world_stage
-		cost = 5
+		cost = 0
 		prerequisite = {
 			focus = LOU_enter_world_stage
 		}
+		available = { has_global_flag = canadian_civil_war }
 		completion_reward = {
 		}
 	}
@@ -5886,6 +5900,7 @@ focus_tree = {
 			focus = LOU_the_situation_in_canada
 		}
 		completion_reward = {
+			country_event = lou_cajuns.6
 		}
 	}
 	focus = {
@@ -5898,8 +5913,24 @@ focus_tree = {
 		prerequisite = {
 			focus = LOU_return_to_acadia
 		}
+		available = { 
+			NOT = { 
+				country_exists = CAN
+				country_exists = PTR
+				country_exists = MRT
+				country_exists = ONT
+			}
+		}
 		mutually_exclusive = { focus = LOU_the_exiled_army }
 		completion_reward = {
+			every_state = {
+				limit = { is_core_of = MRT }
+				add_core_of = LOU
+			}
+			every_state = {
+				limit = { is_core_of = CAN }
+				add_core_of = QUE
+			}
 		}
 	}
 	focus = {
@@ -5912,8 +5943,18 @@ focus_tree = {
 		prerequisite = {
 			focus = LOU_return_to_acadia
 		}
+		available = {
+			OR = { 
+				NOT = { 
+					country_exists = QUE
+				}
+				QUE = { has_capitulated = yes }
+			}
+		}
 		mutually_exclusive = { focus = LOU_a_grand_liberation }
 		completion_reward = {
+			add_manpower = 100000
+			army_experience = 100
 		}
 	}
 	focus = {
@@ -5923,11 +5964,42 @@ focus_tree = {
 		y = 1
 		relative_position_id = LOU_the_exiled_army
 		cost = 5
+		available = {
+			154 = { 
+				OR = {
+					is_owned_by = QUE
+					is_owned_by = LOU
+				}
+			}
+			175 = { 
+				OR = {
+					is_owned_by = QUE
+					is_owned_by = LOU
+				}
+			}
+			176 = { 
+				OR = {
+					is_owned_by = QUE
+					is_owned_by = LOU
+				}
+			}
+			173 = { 
+				OR = {
+					is_owned_by = QUE
+					is_owned_by = LOU
+				}
+			}
+		}
 		prerequisite = {
 			focus = LOU_the_exiled_army
 			focus = LOU_a_grand_liberation
 		}
 		completion_reward = {
+			set_cosmetic_tag = LOU_acadia
+			every_state = {
+				limit = { is_core_of = MRT }
+				transfer_state_to = LOU
+			}
 		}
 	}
 	focus = {
@@ -5940,7 +6012,26 @@ focus_tree = {
 		prerequisite = {
 			focus = LOU_new_old_acadia
 		}
+		will_lead_to_war_with = NEW
+		will_lead_to_war_with = WBK
+		will_lead_to_war_with = NAB
 		completion_reward = {
+			every_state = {
+				limit = { is_core_of = NEW }
+				add_core_of = LOU
+			}
+			create_wargoal = {
+				target = NEW
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = WBK
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = NAB
+				type = annex_everything
+			}
 		}
 	}
 	focus = {
@@ -5953,7 +6044,13 @@ focus_tree = {
 		prerequisite = {
 			focus = LOU_new_old_acadia
 		}
+		available = { is_ai = no }
 		completion_reward = {
+			annex_country = QUE
+			every_state = {
+				limit = { is_core_of = QUE }
+				add_core_of = LOU
+			}
 		}
 	}
 	focus = {
@@ -5967,6 +6064,7 @@ focus_tree = {
 			focus = LOU_enter_world_stage
 		}
 		completion_reward = {
+			add_war_support = 0.2
 		}
 	}
 	focus = {
@@ -5979,7 +6077,61 @@ focus_tree = {
 		prerequisite = {
 			focus = LOU_the_situation_in_haiti
 		}
+		will_lead_to_war_with = DOM
+		will_lead_to_war_with = HBI
+		will_lead_to_war_with = HAI
 		completion_reward = {
+			declare_war_on = {
+				target = HAI
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = HBI
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = DOM
+				type = annex_everything
+			}
+			division_template = {
+				name = "UN Peacekeeping Force"
+				is_locked = yes
+				division_cap = 30 
+				#division_names_group = USA_INF_01
+				priority = 1
+				template_counter = 60
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+					infantry = { x = 1 y = 2 }
+					infantry = { x = 2 y = 0 }
+					infantry = { x = 2 y = 1 }
+					infantry = { x = 2 y = 2 }
+					artillery_brigade  = { x = 3 y = 0 }
+				}
+				support = {
+					military_police = { x = 0 y = 0 }
+					recon = { x = 0 y = 1 }
+					engineer = { x = 0 y = 2 }
+					
+				}
+			}
+			set_division_force_allow_recruiting = {
+				division_template = "UN Peacekeeping Force"
+			}
+			498 = {
+				create_unit = {
+					division = "name = \"UN Peacekeeping Battallion\"  division_template = \"UN Peacekeeping Force\"  start_experience_factor = 1"
+					allow_spawning_on_enemy_provs = yes
+					owner = LOU
+					province = 11784
+					count = 2
+					
+				}
+			}
 		}
 	}
 	focus = {
@@ -5993,6 +6145,14 @@ focus_tree = {
 			focus = LOU_international_intervention
 		}
 		completion_reward = {
+			every_state = {
+				limit = { is_core_of = HAI }
+				add_core_of = LOU
+			}
+			every_state = {
+				limit = { is_core_of = HBI }
+				add_core_of = LOU
+			}
 		}
 	}
 	
