@@ -15,7 +15,7 @@ country_event = {
 	option = {
 		name = corporate.1.a
 		ai_chance = {
-			factor = 100
+			factor = 1
 		}
 	}		
 }
@@ -32,7 +32,7 @@ country_event = {
 	option = {
 		name = corporate.2.a
 		ai_chance = {
-			factor = 100
+			factor = 1
 		}
 	}		
 }
@@ -49,7 +49,7 @@ country_event = {
 	option = {
 		name = corporate.3.a
 		ai_chance = {
-			factor = 100
+			factor = 1
 		}
 	}		
 }
@@ -66,12 +66,64 @@ country_event = {
 	option = {
 		name = corporate.4.a
 		ai_chance = {
-			factor = 100
+			factor = 1
 		}
 	}		
 }
 
+#Merc WV offers contract (other country pov)
+country_event = {
+	id = corporate.5
+	title = corporate.5.t
+	desc = corporate.5.d
+	#picture =  
+	is_triggered_only = yes
+	#fire_only_once = yes
+	option = { #Accept
+		name = corporate.5.a
+		ai_chance = {
+			factor = 1
+		}
+		custom_effect_tooltip = NRA_costs
+		set_country_flag = NRA_contract
+		FROM = {
+			country_event = {
+    				id = corporate.6
+    				days = 1
+    				random_days = 2
+			}
+		}
+	}
 
+	option = {  #ignore
+		name = corporate.5.b
+		ai_chance = {
+			factor = 0
+		}
+	}			
+}
+
+#contract was accepted :D (NRA POV)
+
+country_event = {
+	id = corporate.6
+	title = corporate.6.t
+	desc = corporate.6.d
+	#picture =  
+	is_triggered_only = yes
+	#fire_only_once = yes
+	option = {
+		name = corporate.6.a
+		ai_chance = {
+			factor = 1
+		}
+		add_ai_strategy = {
+    			type = send_volunteers_desire
+    			id = FROM
+    			value = 200
+		}
+	}		
+}
 
 
 

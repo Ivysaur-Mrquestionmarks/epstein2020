@@ -321,39 +321,106 @@
 				
 			}
 		
-		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		}		
 	}
+	
+NRA_mercs = {
+	
+	NRA_offer_contract = {
+		target_trigger = {
+		 	FROM = {
+				has_war = yes
+				NOT = {
+					tag = FRA
+					tag = PRA
+				}
+			}
+		}
+		visible = {
+			FROM = {
+				has_war = yes
+				NOT = {
+					has_country_flag = NRA_contract
+					has_volunteers_amount_from = { #Can't regain a contract if you are already sending them volunteers
+    						tag = ROOT
+    						count > 1
+					}
+				}
+
+			}
+		}
+		cost = 30
+		days_remove = 3
+		days_re_enable = 35
+		ai_will_do = {
+			base = 50
+		}
+		remove_effect = {
+			FROM = {
+				country_event = {
+    					id = corporate.5
+    					days = 1
+    					random_days = 1
+				}
+			}
+		}
+	}
+
+
+	
+	NRA_charge_contract = {
+		target_trigger = {
+			FROM = {
+		 		has_country_flag = NRA_contract
+			}
+		}
+		visible = {
+			FROM = {
+		 		has_country_flag = NRA_contract
+			}
+		}
+		available = {
+			FROM = {
+				has_volunteers_amount_from = { 
+    					tag = ROOT
+    					count > 1
+				}
+			}
+		}
+    		cancel_trigger = {
+			FROM = {
+       			 	has_war = no
+			}
+    		}
+
+		days_remove = 150
+
+		ai_will_do = {
+			base = 50
+		}
+		remove_effect = {
+			add_offsite_building = { type = industrial_complex level = 1 }
+			FROM = {
+				clr_country_flag = NRA_contract
+			}	
+		}
+		complete_effect = {
+			add_offsite_building = { type = industrial_complex level = 1 }
+			FROM = {
+				add_timed_idea = {
+    					idea = NRA_payments
+    					days = 62
+				}
+			}
+		}
+		cancel_effect = {
+			add_offsite_building = { type = industrial_complex level = 2 }
+			add_manpower = 10000	
+			add_political_power = 75
+			army_experience = 15
+			FROM = {
+				clr_country_flag = NRA_contract
+			}		
+		}
+	}
+}
