@@ -1,0 +1,2363 @@
+focus_tree = {
+	id = texas_legacy
+	#country = {
+	#	factor = 0
+	#	modifier = {
+	#		add = 10
+	#		tag = TEX
+	#	}
+	}
+	#default = no
+	focus = {
+		id = TEX_economy
+		icon = GFX_goal_Foundations_of_Economy
+		cost = 10.00
+		x = 3
+		y = 0
+		completion_reward = {
+			add_tech_bonus = {
+			    bonus = 1.5
+			    uses = 1
+			    category = industry
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_lone_star
+		icon = GFX_focus_lone_star
+		cost = 10.00
+		x = 14
+		y = 0
+		completion_reward = {
+			add_political_power = 100
+		}
+
+	}
+	focus = {
+		id = TEX_black_gold
+		icon = GFX_goal_texas_buisiness
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_economy
+		}
+		x = 1
+		y = 1
+		completion_reward = {
+			add_resource = {
+			    type = oil
+			    amount = 50
+			    state = 286
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_synthetic
+		icon = GFX_goal_To_The_Moon
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_black_gold
+		}
+		x = 1
+		y = 2
+		completion_reward = {
+			add_tech_bonus = {
+			    bonus = 1.5
+			    uses = 2
+			    category = synth_resources
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_haliburton
+		icon = GFX_focus_halliburton
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_synthetic
+		}
+		x = 1
+		y = 3
+		available = {
+			owns_state = 259
+		}
+		bypass = {
+			NOT = {
+				owns_state = 259
+			}
+		}
+		completion_reward = {
+			259 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+    				type = synthetic_refinery
+    				level = 2
+    				instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_arming_a_state
+		icon = GFX_focus_tex_gun
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_economy
+		}
+		x = 3
+		y = 1
+		completion_reward = {
+			77 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = arms_factory
+    				level = 1
+    				instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_military_industrial_complex
+		icon = GFX_goal_Military_IC
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_arming_a_state
+		}
+		x = 3
+		y = 2
+		completion_reward = {
+			34 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+    				type = arms_factory
+    				level = 3
+    				instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_mechanised_ranches
+		icon = GFX_focus_mex_caudillo_private_armies
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_economy
+		}
+		x = 5
+		y = 1
+		completion_reward = {
+			286 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+    				type = industrial_complex
+    				level = 3
+    				instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_research_slot_one
+		icon = GFX_focus_research
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_mechanised_ranches
+		}
+		x = 6
+		y = 2
+		completion_reward = {
+			add_research_slot = 1
+		}
+
+	}
+	focus = {
+		id = TEX_research_slot_two
+		icon = GFX_focus_research2
+		cost = 13.00
+		prerequisite = {
+			focus = TEX_research_slot_one
+		}
+		x = 6
+		y = 3
+		available = {
+			has_completed_focus = TEX_complete_recovery
+		}
+		completion_reward = {
+			add_research_slot = 1
+		}
+
+	}
+	focus = {
+		id = TEX_uncle_sam_industry
+		icon = GFX_TEX_uncle_sam
+		cost = 14.00
+		prerequisite = {
+			focus = TEX_haliburton
+		}
+		prerequisite = {
+			focus = TEX_military_industrial_complex
+		}
+		prerequisite = {
+			focus = TEX_mechanised_ranches
+		}
+		x = 4
+		y = 4
+		completion_reward = {
+			44 = {
+				add_extra_state_shared_building_slots = 6
+				add_building_construction = {
+    				type = industrial_complex
+    				level = 6
+    				instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_question_of_government
+		icon = GFX_goal_generic_propaganda
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_lone_star
+		}
+		x = 14
+		y = 1
+		completion_reward = {
+			add_stability = 0.10
+		}
+
+	}
+	#focus = {
+	#	id = TEX_Establish_the_Rio_Grande
+	#	icon = GFX_goal_Generic_Redraw_Borders
+	#	cost = 5.00
+	#	available = {
+	#		OR = {
+	#			has_completed_focus = TEX_george_republican
+	#			has_completed_focus = TEX_george_not_care
+	#			has_completed_focus = TEX_texan_king
+	#			has_completed_focus = TEX_liberal_king
+	#			has_completed_focus = TEX_european_king
+	#			has_completed_focus = TEX_underdog_no_more
+	#			has_completed_focus = TEX_loyalty_to_trump
+	#		}
+	#		controls_state = 79
+	#	}
+	#	x = 14
+	#	y = 3
+	#	completion_reward = {
+	#		IF = {
+	#			LIMIT = {
+	#				has_completed_focus = TEX_george_republican
+	#			}
+	#			release_puppet = RIO
+	#			RIO = {
+	#				set_cosmetic_tag = RIO_Provisional_Rio_Grande
+	#				add_popularity = {
+	#				    ideology = autocratic
+	#				    popularity = 0.5
+	#				}
+	#				set_politics = {
+	#					ruling_party = autocratic
+	#				}
+	#				create_country_leader = {
+	#					name = "Colin Powell"
+	#					picture = "gfx/leaders/TEX/Powell.tga"
+	#					expire = "2060.1.1"
+	#					ideology = military_dictatorship
+	#					traits = {
+	#						RIO_Military_Governor
+	#						retired_officer
+	#					}
+	#				}
+	#			}
+	#		}
+	#		IF = {
+	#			LIMIT = {
+	#				has_completed_focus = TEX_george_not_care
+	#			}
+	#			release_puppet = RIO
+	#			RIO = {
+	#				set_cosmetic_tag = RIO_South_Texas
+	#				add_popularity = {
+	#				    ideology = autocratic
+	#				    popularity = 0.5
+	#				}
+	#				set_politics = {
+	#					ruling_party = autocratic
+	#				}
+	#				create_country_leader = {
+	#					name = "Dick Cheney"
+	#					picture = "gfx/leaders/TEX/Cheney.tga"
+	#					expire = "2060.1.1"
+	#					ideology = fascism
+	#					traits = {
+	#						RIO_Forty_Six_VP
+	#					}
+	#				}
+	#			}
+	#		}
+	#		IF = {
+	#			LIMIT = {
+	#				has_completed_focus = TEX_texan_king
+	#			}
+	#			release_puppet = RIO
+	#			RIO = {
+	#				set_cosmetic_tag = RIO_Duchy_of_Rio_Grande
+	#				add_popularity = {
+	#				    ideology = autocratic
+	#				    popularity = 0.5
+	#				}
+	#				set_politics = {
+	#					ruling_party = autocratic
+	#				}
+	#				create_country_leader = {
+	#					name = "Dan Crenshaw"
+	#					picture = "gfx/leaders/TEX/Crenshaw.tga"
+	#					expire = "2060.1.1"
+	#					ideology = despotism
+	#					traits = {
+	#						RIO_Duke_of_the_Grande
+	#					}
+	#				}
+	#			}
+	#		}
+	#		IF = {
+	#			LIMIT = {
+	#				has_completed_focus = TEX_liberal_king
+	#			}
+	#			release_puppet = RIO
+	#			RIO = {
+	#				set_cosmetic_tag = RIO_Duchy_of_Rio_Grande_United_Kingdom
+	#				add_popularity = {
+	#					ideology = democrat
+	#					popularity = 0.5
+	#				}
+	#				set_politics = {
+	#					ruling_party = democrat
+	#				}
+	#				create_country_leader = {
+	#					name = "Enrique I"
+	#					picture = "gfx/leaders/TEX/harry.dds"
+	#					expire = "2060.1.1"
+	#					ideology = establishment
+	#					traits = {
+	#							RIO_Prince_of_the_Grande
+	#					}
+	#				}
+	#			}
+	#		}
+	#		IF = {
+	#			LIMIT = {
+	#				has_completed_focus = TEX_european_king
+	#			}
+	#			release_puppet = RIO
+	#			RIO = {
+	#				set_cosmetic_tag = RIO_Herzogtum_Rio_Grande
+	#				#add_popularity = {
+	#				 #   ideology = libertarian_right
+	#				  #  popularity = 0.5
+	#				#}
+	#				set_politics = {
+	#					ruling_party = libertarian_right
+	#				}
+	#				create_country_leader = {
+	#					name = "Maximiliano II"
+	#					picture = "gfx/leaders/TEX/max_habsburg.png"
+	#					expire = "2060.1.1"
+	#					ideology = Minarchism
+	#					traits = {
+	#						RIO_Hapsburg_Prince
+	#					}
+	#				}
+	#			}
+	#		}
+	#		IF = {
+	#			LIMIT = {
+	#				has_completed_focus = TEX_underdog_no_more
+	#			}
+	#			release_puppet = RIO
+	#			RIO = {
+	#				set_cosmetic_tag = RIO_Fed_Territory_of_Mexico
+	#				add_popularity = {
+	#				    ideology = democrat
+	#				    popularity = 0.5
+	#				}
+	#				set_politics = {
+	#					ruling_party = democrat
+	#				}
+	#				create_country_leader = {
+	#					name = "Robert J. Bodisch"
+	#					picture = "gfx/leaders/TEX/bodisch.tga"
+	#					expire = "2060.1.1"
+	#					ideology = establishment
+	#					traits = {
+	#						RIO_Military_Governor
+	#					}
+	#				}
+	#			}
+	#		}
+	#		IF = {
+	#			LIMIT = {
+	#				has_completed_focus = TEX_loyalty_to_trump
+	#			}
+	#			release_puppet = RIO
+	#			RIO = {
+	#				set_cosmetic_tag = RIO_Trumpist_Mexico
+	#				add_popularity = {
+	#				    ideology = republican
+	#				    popularity = 0.5
+	#				}
+	#				set_politics = {
+	#					ruling_party = republican
+	#				}
+	#				create_country_leader = {
+	#					name = "Dan Crenshaw"
+	#					picture = "gfx/leaders/TEX/Crenshaw.tga"
+	#					expire = "2060.1.1"
+	#					ideology = trumpist
+	#					traits = {
+	#						RIO_Military_Governor
+	#					}
+	#				}
+	#			}
+	#		}
+	#	}
+	#
+	#}
+	focus = {
+		id = TEX_constitution
+		icon = GFX_focus_texan_constitution
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_question_of_government
+		}
+		mutually_exclusive = {
+			focus = TEX_different_direction
+		}
+		x = 10
+		y = 2
+		completion_reward = {
+			add_stability = 0.10
+			add_popularity = {
+			    ideology = republican
+			    popularity = 0.1
+			}
+			add_popularity = {
+			    ideology = democrat
+			    popularity = 0.1
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_elections
+		icon = GFX_goal_Texas_election
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_constitution
+		}
+		available = {
+			date > 2021.04.15
+		}
+		select_effect = {
+			country_event = { id = texas.5 days = 10 }
+		}
+		x = 9
+		y = 3
+		completion_reward = {
+			hidden_effect = {
+				country_event = { id = texas.3 days = 2 }
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_results
+		icon = GFX_goal_Fight_for_Freedom
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_elections
+		}
+		x = 9
+		y = 4
+		available = {
+			always = no
+		}
+
+	}
+	focus = {
+		id = TEX_underdog_no_more
+		icon = GFX_goal_Beto_ORourke_Victory
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_results
+		}
+		mutually_exclusive = {
+			focus = TEX_out_of_retirement
+			focus = TEX_loyalty_to_trump
+			focus = TEX_in_bed_with_ted
+			focus = TEX_miller_coup
+		}
+		available = {
+			has_country_flag = beto_elected_president
+		}
+		x = 11
+		y = 5
+		completion_reward = {
+			add_popularity = {
+			    ideology = democrat
+			    popularity = 0.5
+			}
+			set_politics = {
+				ruling_party = democrat
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_in_bed_with_ted
+		icon = GFX_goal_Ted_Cruz_Victory
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_results
+		}
+		mutually_exclusive = {
+			focus = TEX_loyalty_to_trump
+			focus = TEX_out_of_retirement
+			focus = TEX_underdog_no_more
+			focus = TEX_miller_coup
+		}
+		x = 3
+		y = 5
+		available = {
+			has_country_flag = cruz_wins_election
+		}
+		completion_reward = {
+			add_popularity = {
+			    ideology = libertarian_right
+			    popularity = 0.15
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_kill_atomwaffen
+		icon = GFX_goal_Down_with_the_Black_Swastika
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_in_bed_with_ted
+		}
+		available = {
+			HOP = {
+				exists = yes
+				has_government = autocratic
+			}
+		}
+		x = 1
+		y = 6
+		will_lead_to_war_with = HOP
+		completion_reward = {
+			declare_war_on = {
+			    target = HOP
+			    type = annex_everything
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_loyalty_to_trump
+		icon = GFX_goal_Dan_Patrick_Victory
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_results
+		}
+		mutually_exclusive = {
+			focus = TEX_in_bed_with_ted
+			focus = TEX_out_of_retirement
+			focus = TEX_underdog_no_more
+			focus = TEX_miller_coup
+		}
+		x = 5
+		y = 5
+		available = {
+			has_country_flag = patrick_is_president
+		}
+		completion_reward = {
+			add_popularity = {
+			    ideology = republican
+			    popularity = 0.5
+			}
+			set_politics = {
+				ruling_party = republican
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_out_of_retirement
+		icon = GFX_goal_George_Bush_Victory
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_results
+		}
+		mutually_exclusive = {
+			focus = TEX_loyalty_to_trump
+			focus = TEX_in_bed_with_ted
+			focus = TEX_underdog_no_more
+			focus = TEX_miller_coup
+		}
+		x = 8
+		y = 5
+		available = {
+			has_country_flag = back_in_black
+		}
+		completion_reward = {
+			add_popularity = {
+			    ideology = republican
+			    popularity = 0.5
+			}
+			set_politics = {
+				ruling_party = republican
+			}
+			set_party_name = { 
+			    ideology = republican
+			    long_name = TEX_bush_republican_party_long 
+			    name = TEX_bush_republican_party
+			}
+			create_country_leader = {
+				name = "George W. Bush"
+				picture = "gfx/leaders/TEX/bush.dds"
+				expire = "2060.1.1"
+				ideology = neocon
+				traits = {
+		
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_join_legitimist_coalition
+		icon = GFX_CAN_Help_Biden
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_underdog_no_more
+		}
+		x = 11
+		y = 6
+		completion_reward = {
+			add_stability = -0.20
+			FRA = {
+				country_event = { id = texas_foreign.1 }
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_stay_calm
+		icon = GFX_goal_calm_down
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_join_legitimist_coalition
+		}
+		x = 10
+		y = 7
+		completion_reward = {
+			add_political_power = 120
+			add_stability = -0.05
+		}
+
+	}
+	focus = {
+		id = TEX_miller_coup
+		icon = GFX_goal_Free_Texan_Army_Coup
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_results
+		}
+		mutually_exclusive = {
+			focus = TEX_underdog_no_more
+			focus = TEX_out_of_retirement
+			focus = TEX_loyalty_to_trump
+			focus = TEX_in_bed_with_ted
+		}
+		x = 14
+		y = 5
+		available = {
+			has_country_flag = miller_coup
+		}
+		completion_reward = {
+			add_popularity = {
+			    ideology = authoritarian_left
+			    popularity = 0.1
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_pull_out_oklahoma
+		icon = GFX_goal_texas_oklahoma
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_miller_coup
+		}
+		x = 13
+		y = 6
+		completion_reward = {
+			release = OKL
+		}
+
+	}
+	focus = {
+		id = TEX_leave_louisiana
+		icon = GFX_goal_texas_louisiana
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_miller_coup
+		}
+		x = 15
+		y = 6
+		completion_reward = {
+			release = LOU
+		}
+
+	}
+	focus = {
+		id = TEX_a_true_neutral_texas
+		icon = GFX_goal_generic_neutrality_focus
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_leave_louisiana
+		}
+		prerequisite = {
+			focus = TEX_pull_out_oklahoma
+		}
+		x = 14
+		y = 7
+		completion_reward = {
+			add_ideas = TEX_true_neutrality
+		}
+
+	}
+	focus = {
+		id = TEX_one_party_state
+		icon = GFX_goal_auth_left_one_party_state
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_a_true_neutral_texas
+		}
+		x = 11
+		y = 8
+		completion_reward = {
+			if = {
+				limit = {
+					NOT = {
+						has_completed_focus = TEX_form_liberation_army
+					}
+				}
+				hidden_effect = { country_event = { id = alamo.5 days = 25 } }
+			}
+			add_stability = -0.15
+			add_popularity = {
+			    ideology = authoritarian_left
+			    popularity = 1.0
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_form_liberation_army
+		icon = GFX_goal_Military_Unity
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_a_true_neutral_texas
+		}
+		x = 13
+		y = 8
+		completion_reward = {
+			add_ideas = TEX_left_wing_secret_police
+		}
+
+	}
+	focus = {
+		id = TEX_millers_kindergarten
+		icon = GFX_goal_millers_kindergarten
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_a_true_neutral_texas
+		}
+		x = 15
+		y = 8
+		completion_reward = {
+			add_stability = 0.20
+			if = {
+				limit = {
+					NOT = {
+						has_completed_focus = TEX_form_liberation_army
+					}
+				}
+				hidden_effect = { country_event = { id = alamo.5 days = 25 } }
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_different_direction
+		icon = GFX_focus_usa_voter_registration_act
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_question_of_government
+		}
+		mutually_exclusive = {
+			focus = TEX_constitution
+		}
+		x = 18
+		y = 2
+		completion_reward = {
+			add_ideas = TEX_different_direction
+		}
+
+	}
+	focus = {
+		id = TEX_monarchist_party_usa
+		icon = GFX_focus_tex_monarch
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_different_direction
+		}
+		x = 19
+		y = 3
+		completion_reward = {
+			swap_ideas = {
+			    remove_idea = TEX_different_direction
+			    add_idea = TEX_different_direction_2
+			}
+			hidden_effect = { country_event = { id = texas.7 days = 2 } }
+		}
+
+	}
+	focus = {
+		id = TEX_embrace_texan_monarchism
+		icon = GFX_focus_rom_royal_dictatorship
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_monarchist_party_usa
+		}
+		x = 20
+		y = 4
+		completion_reward = {
+			add_popularity = {
+			    ideology = autocratic
+			    popularity = 0.15
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_secure_papal_crown
+		icon = GFX_focus_raid_for_crown
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_embrace_texan_monarchism
+		}
+		x = 21
+		y = 5
+		completion_reward = {
+			country_event = { id = texas.6 }
+		}
+
+	}
+	focus = {
+		id = TEX_great_monarchy_referendum
+		icon = GFX_focus_TexanMonarchy
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_secure_papal_crown
+		}
+		x = 22
+		y = 6
+		completion_reward = {
+			remove_ideas = TEX_different_direction_2
+			set_politics = {
+				ruling_party = autocratic
+			}
+			hidden_effect = {
+				if = {
+					limit = {
+						autocratic < 0.5
+					}
+					country_event = { id = alamo.1 days = 15 }
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_liberal_king
+		icon = GFX_goal_liberal_king
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_great_monarchy_referendum
+		}
+		mutually_exclusive = {
+			focus = TEX_texan_king
+			focus = TEX_european_king
+		}
+		x = 17
+		y = 7
+		completion_reward = {
+			set_party_name = { 
+			    ideology = democrat
+			    long_name = TEX_windsor_party
+			    name = TEX_windsor_party
+			}
+			add_popularity = {
+				ideology = democrat
+				popularity = 0.5
+			}
+			set_politics = {
+				ruling_party = democrat
+			}
+			create_country_leader = {
+				name = "Harold I"
+				picture = "gfx/leaders/TEX/harry.dds"
+				expire = "2060.1.1"
+				ideology = establishment
+				traits = {
+		
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_texan_king
+		icon = GFX_goal_a_texan_king
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_great_monarchy_referendum
+		}
+		mutually_exclusive = {
+			focus = TEX_liberal_king
+			focus = TEX_european_king
+		}
+		x = 22
+		y = 7
+		completion_reward = {
+			hidden_effect = {
+				country_event = { id = texas.9 }
+			}
+			set_party_name = { 
+			    ideology = autocratic
+			    long_name = TEX_king_ted_party
+			    name = TEX_king_ted_party
+			}
+			add_popularity = {
+				ideology = autocratic
+				popularity = 0.20
+			}
+			create_country_leader = {
+				name = "Edward I"
+				picture = "gfx/leaders/TEX/king_ted.dds"
+				expire = "2060.1.1"
+				ideology = despotism
+				traits = {
+		
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_dreams_of_texan_empire
+		icon = GFX_goal_texan_empire
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_texan_king
+		}
+		x = 22
+		y = 8
+		completion_reward = {
+			add_ideas = TEX_royal_guard
+		}
+
+	}
+	focus = {
+		id = TEX_emperor_not_king
+		icon = GFX_focus_generic_monarchy_2
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_dreams_of_texan_empire
+		}
+		x = 22
+		y = 9
+		completion_reward = {
+			set_cosmetic_tag = TEX_american_empire
+			add_country_leader_trait = texan_emperor
+			hidden_effect = {
+				create_country_leader = {
+					name = "Edward the Great"
+					picture = "gfx/leaders/TEX/king_ted.dds"
+					expire = "2060.1.1"
+					ideology = fascism
+					traits = {
+						texan_emperor
+					}
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_Texan_Tsarism
+		icon = GFX_focus_BUL_restore_the_bulgarian_patriarchate
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_emperor_not_king
+		}
+		x = 20
+		y = 10
+		completion_reward = {
+			add_ideas = TEX_tsarism
+		}
+
+	}
+	focus = {
+		id = TEX_royal_armament_factories
+		icon = GFX_goal_royal_armament
+		cost = 20.00
+		prerequisite = {
+			focus = TEX_emperor_not_king
+		}
+		x = 22
+		y = 10
+		completion_reward = {
+			55 = {
+				add_extra_state_shared_building_slots = 8
+				add_building_construction = {
+    				type = arms_factory
+    				level = 8
+    				instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_royal_patriotism
+		icon = GFX_goal_Conservative
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_emperor_not_king
+		}
+		x = 24
+		y = 10
+		completion_reward = {
+			add_manpower = 5000
+		}
+
+	}
+	focus = {
+		id = TEX_weak_mexico
+		icon = GFX_focus_attack_mexico
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_royal_armament_factories
+		}
+		prerequisite = {
+			focus = TEX_royal_patriotism
+		}
+		prerequisite = {
+			focus = TEX_Texan_Tsarism
+		}
+		x = 22
+		y = 11
+		completion_reward = {
+			every_country = {
+				limit = {
+					owns_state = 79
+				}
+				TEX = {
+					declare_war_on = {
+						target = PREV
+						type = annex_everything
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = TEX_Emperor_of_all_americans
+		icon = GFX_focus_mex_jefe_maximo
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_weak_mexico
+		}
+		x = 22
+		y = 12
+		completion_reward = {
+			add_state_core = 79
+		}
+
+	}
+	focus = {
+		id = TEX_god_chose_us
+		icon = GFX_goal_god_chose_us
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_royal_armament_factories
+		}
+		prerequisite = {
+			focus = TEX_royal_patriotism
+		}
+		prerequisite = {
+			focus = TEX_Texan_Tsarism
+		}
+		will_lead_to_war_with = CSA
+		x = 24
+		y = 11
+		available = {
+			has_war = no
+		}
+		completion_reward = {
+			declare_war_on = {
+			    target = CSA
+			    type = annex_everything
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_knights_golden_circle
+		icon = GFX_focus_usa_honor_the_confederacy
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_god_chose_us
+		}
+		x = 24
+		y = 12
+		available = {
+			NOT = {
+				has_war_with = CSA
+			}
+		}
+		completion_reward = {
+			every_owned_state = {
+				limit = {
+					is_core_of = CSA
+				}
+				add_core_of = TEX
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_tribal_occupation_zone
+		icon = GFX_goal_texas_natives
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_kill_atomwaffen
+		}
+		x = 1
+		y = 7
+		available = {
+			NOT = {
+				has_war_with HOP
+			}
+		}
+		completion_reward = {
+			every_owned_state = {
+				limit = {
+					is_core_of = HOP
+				}
+				add_core_of = NAV
+			}
+			release_puppet = NAV
+		}
+
+	}
+	focus = {
+		id = TEX_continued_neutrality
+		icon = GFX_goal_Generic_Liberalism
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_in_bed_with_ted
+		}
+		x = 3
+		y = 6
+		completion_reward = {
+			add_ideas = TEX_armed_neutrality
+		}
+
+	}
+	focus = {
+		id = TEX_neuter_democrats
+		icon = GFX_goal_Anti_Biden
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_continued_neutrality
+		}
+		x = 3
+		y = 7
+		completion_reward = {
+			add_popularity = {
+				ideology = democrat
+				popularity = -0.20
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_finish_the_wall
+		icon = GFX_goal_generic_construct_military
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_neuter_democrats
+		}
+		x = 3
+		y = 8
+		completion_reward = {
+			50 = {
+				add_building_construction = {
+			    	type = bunker
+			    	level = 1
+			    	instant_build = yes
+			    	province = 3162
+				}
+				add_building_construction = {
+			    	type = bunker
+			    	level = 1
+			    	instant_build = yes
+			    	province = 11265
+				}
+				add_building_construction = {
+			    	type = bunker
+			    	level = 1
+			    	instant_build = yes
+			    	province = 11257
+				}
+				add_building_construction = {
+			    	type = bunker
+			    	level = 1
+			    	instant_build = yes
+			    	province = 11248
+				}
+				add_building_construction = {
+			    	type = bunker
+			    	level = 1
+			    	instant_build = yes
+			    	province = 11241
+				}
+				add_building_construction = {
+			    	type = bunker
+			    	level = 1
+			    	instant_build = yes
+			    	province = 3125
+				}
+				add_building_construction = {
+			    	type = bunker
+			    	level = 1
+			    	instant_build = yes
+			    	province = 3995
+				}
+				add_building_construction = {
+			    	type = bunker
+			    	level = 1
+			    	instant_build = yes
+			    	province = 11203
+				}
+				add_building_construction = {
+			    	type = bunker
+			    	level = 1
+			    	instant_build = yes
+			    	province = 3837
+				}
+				add_building_construction = {
+			    	type = bunker
+			    	level = 1
+			    	instant_build = yes
+			    	province = 11169
+				}
+				add_building_construction = {
+			    	type = bunker
+			    	level = 1
+			    	instant_build = yes
+			    	province = 3021
+				}
+				add_building_construction = {
+			    	type = bunker
+			    	level = 1
+			    	instant_build = yes
+			    	province = 1624
+				}
+			}
+			57 = {
+				add_building_construction = {
+			    	type = bunker
+			    	level = 1
+			    	instant_build = yes
+			    	province = 3758
+				}
+				add_building_construction = {
+			    	type = bunker
+			    	level = 1
+			    	instant_build = yes
+			    	province = 10972
+				}
+				add_building_construction = {
+			    	type = bunker
+			    	level = 1
+			    	instant_build = yes
+			    	province = 10941
+				}
+				add_building_construction = {
+			    	type = bunker
+			    	level = 1
+			    	instant_build = yes
+			    	province = 4795
+				}
+				add_building_construction = {
+			    	type = bunker
+			    	level = 1
+			    	instant_build = yes
+			    	province = 3821
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_defend_neutrality
+		icon = GFX_goal_generic_defence
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_finish_the_wall
+		}
+		x = 3
+		y = 9
+		completion_reward = {
+			create_faction = tex_neutral_bloc
+		}
+
+	}
+	focus = {
+		id = TEX_arsenal_of_neutrality
+		icon = GFX_goal_arsenal_of_neutrality
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_defend_neutrality
+		}
+		x = 3
+		y = 10
+		completion_reward = {
+			55 = {
+				add_extra_state_shared_building_slots = 6
+				add_building_construction = {
+    				type = arms_factory
+    				level = 6
+    				instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_export_neutrality
+		icon = GFX_goal_generic_positive_trade_relations
+		cost = 20.00
+		prerequisite = {
+			focus = TEX_arsenal_of_neutrality
+		}
+		x = 3
+		y = 11
+		available = {
+			has_war = no
+		}
+		completion_reward = {
+			add_political_power = -100
+			declare_war_on = {
+			    target = CSA
+			    type = puppet_wargoal_focus
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_Trumps_fuel_silo
+		icon = GFX_goal_generic_oil_refinery
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_loyalty_to_trump
+		}
+		x = 5
+		y = 6
+		completion_reward = {
+			34 = {
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+    				type = synthetic_refinery
+    				level = 4
+    				instant_build = yes
+				}
+			}
+			143 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+    				type = fuel_silo
+    				level = 3
+    				instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_whats_the_worst
+		icon = GFX_goal_pac_prep_war_free
+		cost = 5.00
+		prerequisite = {
+			focus = TEX_Trumps_fuel_silo
+		}
+		x = 5
+		y = 7
+		completion_reward = {
+			custom_effect_tooltip = TEX_anti_trump_revolt_tooltip_sadface
+			hidden_effect = { country_event = { id = alamo.3 } }
+		}
+
+	}
+	focus = {
+		id = TEX_finally_join_trump
+		icon = GFX_goal_cross_rubicon_planes
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_whats_the_worst
+		}
+		x = 5
+		y = 8
+		available = {
+			has_civil_war = no
+		}
+		completion_reward = {
+			USA = { country_event = { id = texas_foreign.1 hours = 3 } }
+		}
+
+	}
+	focus = {
+		id = TEX_dont_mess_with_texas
+		icon = GFX_goal_Texan_Coup
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_finally_join_trump
+		}
+		x = 5
+		y = 9
+		completion_reward = {
+			add_ideas = TEX_dont_mess_with_texas
+		}
+
+	}
+	focus = {
+		id = TEX_george_not_forget
+		icon = GFX_goal_jeb_florida
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_out_of_retirement
+		}
+		x = 8
+		y = 6
+		completion_reward = {
+			add_stability = 0.10
+			add_war_support = 0.10
+			add_popularity = {
+				ideology = autocratic
+				popularity = 0.10
+			}
+			create_faction = TEX_dallas_treaty
+		}
+
+	}
+	focus = {
+		id = TEX_george_not_forgive
+		icon = GFX_focus_BushTexas
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_george_not_forget
+		}
+		x = 8
+		y = 7
+		completion_reward = {
+			add_popularity = {
+				ideology = autocratic
+				popularity = 0.15
+			}
+			add_war_support = 0.15
+		}
+
+	}
+	focus = {
+		id = TEX_george_republican
+		icon = GFX_goal_TEX_angel_bush
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_george_not_forgive
+		}
+		mutually_exclusive = {
+			focus = TEX_george_not_care
+		}
+		x = 7
+		y = 8
+		completion_reward = {
+			add_popularity = {
+				ideology = autocratic
+				popularity = -1.0
+			}
+			add_popularity = {
+				ideology = republican
+				popularity = 0.25
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_george_not_care
+		icon = GFX_goal_TEX_devil_bush
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_george_not_forgive
+		}
+		mutually_exclusive = {
+			focus = TEX_george_republican
+		}
+		x = 9
+		y = 8
+		completion_reward = {
+			create_country_leader = {
+				name = "George W. Bush"
+				picture = "gfx/leaders/TEX/Evil_George_Bush.dds"
+				expire = "2060.1.1"
+				ideology = fascism
+				traits = {
+					
+				}
+			}
+			set_party_name = { 
+			    ideology = autocratic
+			    long_name = TEX_evil_bush_party_long
+			    name = TEX_evil_bush_party
+			}	
+			set_cosmetic_tag = TEX_bush_america
+			add_popularity = {
+				ideology = autocratic
+				popularity = 0.15
+			}
+			set_politics = {
+				ruling_party = autocratic
+			}		
+		}
+
+	}
+	focus = {
+		id = TEX_drums_of_war
+		icon = GFX_goal_war_drums
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_george_not_care
+			focus = TEX_george_republican
+		}
+		x = 8
+		y = 9
+		completion_reward = {
+			add_country_leader_trait = forty_three
+		}
+
+	}
+	focus = {
+		id = TEX_squash_insurgency
+		icon = GFX_goal_kill_james_mason
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_drums_of_war
+		}
+		x = 8
+		y = 10
+		will_lead_to_war_with = HOP
+		completion_reward = {
+			declare_war_on = {
+			    target = HOP
+			    type = annex_everything
+			}
+			every_state = {
+				limit = {
+					is_core_of = HOP
+				}
+				add_core_of = TEX
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_secure_the_flank
+		icon = GFX_goal_put_down_insurgency
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_squash_insurgency
+		}
+		x = 5
+		y = 11
+		will_lead_to_war_with = PRA
+		available = {
+			has_war = no
+		}
+		completion_reward = {
+			declare_war_on = {
+			    target = PRA
+			    type = annex_everything
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_befriend_kanye
+		icon = GFX_goal_confederatefriendship
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_squash_insurgency
+		}
+		mutually_exclusive = {
+			focus = TEX_eastern_blitzkrieg
+		}
+		x = 7
+		y = 11
+		available = {
+			CSA = {
+				has_country_leader = {
+				    name = "Kanye West"
+				    ruling_only = yes
+				}
+			}
+			has_government = autocratic
+		}
+		completion_reward = {
+			CSA = {
+				country_event = {
+					id = texas_foreign.6 hours = 3
+				}
+			}
+			custom_effect_tooltip = unfinished_content_warning_tooltip
+		}
+
+	}
+	focus = {
+		id = TEX_eastern_blitzkrieg
+		icon = GFX_goal_attack_csa
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_squash_insurgency
+		}
+		mutually_exclusive = {
+			focus = TEX_befriend_kanye
+		}
+		x = 9
+		y = 11
+		available = {
+			has_war = no
+		}
+		will_lead_to_war_with = CSA
+		will_lead_to_war_with = KKK
+		will_lead_to_war_with = AFR
+		will_lead_to_war_with = CSB
+		will_lead_to_war_with = ZIO
+		completion_reward = {
+			declare_war_on = {
+			    target = CSA
+			    type = annex_everything
+			}
+			if = { 
+				limit = {
+					country_exists = KKK
+				}
+				declare_war_on = {
+			   	  target = KKK
+				  type = annex_everything
+				}
+			}
+			if = { 
+				limit = {
+					country_exists = AFR
+				}
+				declare_war_on = {
+			   	  target = AFR
+				  type = annex_everything
+				}
+			}
+			if = { 
+				limit = {
+					country_exists = CSB
+				}
+				declare_war_on = {
+			   	  target = CSB
+				  type = annex_everything
+				}
+			}
+			if = { 
+				limit = {
+					country_exists = ZIO
+				}
+				declare_war_on = {
+			   	  target = ZIO
+				  type = annex_everything
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_revenge_at_last
+		icon = GFX_focus_BushVsTrump
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_befriend_kanye
+			focus = TEX_eastern_blitzkrieg
+		}
+		prerequisite = {
+			focus = TEX_secure_the_flank
+		}
+		x = 8
+		y = 12
+		available = {
+			has_war = no
+		}
+		will_lead_to_war_with = FLO
+		will_lead_to_war_with = USA
+		completion_reward = {
+			if = {
+				limit = {
+					NOT = {
+						has_cosmetic_tag = TEX_bush_america
+					}
+				}
+				set_cosmetic_tag = TEX_bush_america
+			}
+			declare_war_on = {
+			    target = FLO
+			    type = annex_everything
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_the_showdown
+		icon = GFX_focus_BushVsTrump
+		cost = 7.00
+		prerequisite = {
+			focus = TEX_revenge_at_last
+		}
+		x = 8
+		y = 13
+		available = {
+			has_government = autocratic
+			has_country_leader = { name = "George W. Bush" ruling_only = yes }
+			OR = {
+				has_war = no
+				has_war_with = USA
+			}
+		}
+		will_lead_to_war_with = USA
+		completion_reward = {
+			if = {
+				limit = {
+					NOT = {
+						has_war_with = USA
+					}
+				}
+				declare_war_on = {
+					    target = USA
+					    type = annex_everything
+				}
+			}
+			add_ideas = TEX_grand_crusade
+			news_event = { id = texas.10 }
+		}
+
+	}
+	focus = {
+		id = TEX_I_said_stay_calm
+		icon = GFX_goal_angry_beto
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_stay_calm
+		}
+		x = 10
+		y = 9
+		completion_reward = {
+			leave_faction = yes
+			add_popularity = {
+			    ideology = democrat
+			    popularity = 0.75
+			}
+			add_stability = 1.0
+			add_war_support = 1.0
+			add_political_power = -250
+			hidden_effect = {
+				country_event = { id = alamo.4 }
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_right_now_thats_over
+		icon = GFX_goal_Drain_the_Swamp
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_I_said_stay_calm
+		}
+		x = 11
+		y = 10
+		available = {
+			has_war = no
+		}
+		completion_reward = {
+			FRA = {
+				country_event = {
+					id = texas_foreign.4 days = 1
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_vanquish_bigotry
+		icon = GFX_focus_tex_bigot
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_right_now_thats_over
+		}
+		x = 11
+		y = 11
+		will_lead_to_war_with = HOP
+		completion_reward = {
+			declare_war_on = {
+			    target = HOP
+			    type = annex_everything
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_texas_forever
+		icon = GFX_goal_Military_Government
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_millers_kindergarten
+		}
+		prerequisite = {
+			focus = TEX_form_liberation_army
+		}
+		prerequisite = {
+			focus = TEX_one_party_state
+		}
+		x = 13
+		y = 9
+		completion_reward = {
+			add_war_support = 0.90
+		}
+
+	}
+	focus = {
+		id = TEX_peoples_industry
+		icon = GFX_goal_Military_Industrial_Complex
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_texas_forever
+		}
+		x = 13
+		y = 10
+		completion_reward = {
+			55 = {
+				add_extra_state_shared_building_slots = 8
+				add_building_construction = {
+    				type = industrial_complex
+    				level = 8
+    				instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_european_king
+		icon = GFX_focus_TexanKonig
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_great_monarchy_referendum
+		}
+		mutually_exclusive = {
+			focus = TEX_texan_king
+			focus = TEX_liberal_king
+		}
+		x = 27
+		y = 7
+		completion_reward = {
+			create_country_leader = {
+				name = "George I"
+				picture = "gfx/leaders/TEX/feeeeeeeeeeeeeeeeeeee.dds"
+				expire = "2060.1.1"
+				ideology = populist_conservatism
+				traits = {
+					
+				}
+			}
+			add_popularity = {
+			    ideology = libertarian_right
+			    popularity = 0.5
+			}
+			set_politics = {
+				ruling_party = libertarian_right
+			}
+			set_party_name = { 
+			    ideology = libertarian_right
+			    long_name = TEX_hohenzollern_party
+			    name = TEX_hohenzollern_party
+			}
+			hidden_effect = { set_cosmetic_tag = TEX_german }
+		}
+
+	}
+	focus = {
+		id = TEX_westminster
+		icon = GFX_goal_texas_westminsteer
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_liberal_king
+		}
+		x = 17
+		y = 8
+		completion_reward = {
+			add_political_power = -500
+			add_stability = 0.05
+		}
+
+	}
+	focus = {
+		id = TEX_meet_beto
+		icon = GFX_goal_texas_prince_harry_1
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_westminster
+		}
+		x = 17
+		y = 9
+		completion_reward = {
+			add_political_power = 80
+		}
+
+	}
+	focus = {
+		id = TEX_meet_bush
+		icon = GFX_goal_George_Bush_Victory
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_meet_beto
+		}
+		x = 17
+		y = 10
+		completion_reward = {
+			set_party_name = { 
+			    ideology = republican
+			    long_name = TEX_bush_republican_party_long 
+			    name = TEX_bush_republican_party
+			}
+			create_country_leader = {
+				name = "George W. Bush"
+				picture = "gfx/leaders/TEX/bush.dds"
+				expire = "2060.1.1"
+				ideology = neocon
+				traits = {
+		
+				}
+			}
+			add_political_power = 120
+			add_popularity = {
+			    ideology = republican
+			    popularity = 0.20
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_appoint_new_prime_minister
+		icon = GFX_focus_generic_treaty
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_meet_bush
+		}
+		x = 17
+		y = 11
+		completion_reward = {
+			add_political_power = 200
+			add_popularity = {
+			    ideology = democrat
+			    popularity = 0.15
+			}
+			add_stability = -0.20
+		}
+
+	}
+	focus = {
+		id = TEX_unique_situation
+		icon = GFX_goal_Work_with_Democrats
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_appoint_new_prime_minister
+		}
+		x = 17
+		y = 12
+		completion_reward = {
+			FRA = {
+				country_event = {
+					id = texas_foreign.5 days = 1
+				}
+			}
+			set_cosmetic_tag = TEX_harry_principality
+		}
+
+	}
+	focus = {
+		id = TEX_nazis_were_republican
+		icon = GFX_focus_For_Hitler
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_royal_armament_factories
+		}
+		prerequisite = {
+			focus = TEX_royal_patriotism
+		}
+		prerequisite = {
+			focus = TEX_Texan_Tsarism
+		}
+		x = 20
+		y = 11
+		will_lead_to_war_with = HOP
+		available = {
+			has_war = no
+		}
+		completion_reward = {
+			declare_war_on = {
+			    target = HOP
+			    type = annex_everything
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_unite_tribes
+		icon = GFX_goal_texas_natives
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_nazis_were_republican
+		}
+		x = 20
+		y = 12
+		completion_reward = {
+			every_state = {
+                limit = {
+                    is_core_of = HOP
+                }
+                add_core_of = TEX
+            }
+		}
+
+	}
+	focus = {
+		id = TEX_war_for_the_midwest
+		icon = GFX_goal_drumpf
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_unite_tribes
+		}
+		prerequisite = {
+			focus = TEX_Emperor_of_all_americans
+		}
+		prerequisite = {
+			focus = TEX_knights_golden_circle
+		}
+		x = 22
+		y = 13
+		available = {
+			has_war = no
+		}
+		will_lead_to_war_with = USA
+		completion_reward = {
+			every_state = {
+                limit = {
+                    is_core_of = USA
+                }
+                add_claim_by = TEX
+            }
+            declare_war_on = {
+			    target = USA
+			    type = annex_everything
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_deustch_connections
+		icon = GFX_focus_ger_revive_kaiserreich
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_european_king
+		}
+		x = 27
+		y = 8
+		completion_reward = {
+			add_offsite_building = { type = industrial_complex level = 4 }
+			add_offsite_building = { type = arms_factory level = 1 }
+		}
+
+	}
+	focus = {
+		id = TEX_adopt_bullpups
+		icon = GFX_focus_ger_oppose_hitler
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_deustch_connections
+		}
+		x = 27
+		y = 9
+		completion_reward = {
+			add_ideas = TEX_bullpup_rifles
+		}
+
+	}
+	focus = {
+		id = TEX_Prussian_Discipline
+		icon = GFX_focus_ger_return_of_the_kaiser
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_adopt_bullpups
+		}
+		x = 27
+		y = 10
+		completion_reward = {
+			add_ideas = TEX_Prussian_Discipline
+		}
+
+	}
+	focus = {
+		id = TEX_were_actual_germans
+		icon = GFX_focus_Rise_Of_Evil
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_Prussian_Discipline
+		}
+		x = 27
+		y = 11
+		available = {
+			has_war = no
+		}
+		will_lead_to_war_with = HOP
+		completion_reward = {
+			every_state = {
+                limit = {
+                    is_core_of = HOP
+                }
+                add_core_of = TEX
+            }
+            declare_war_on = {
+			    target = HOP
+			    type = annex_everything
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_abolish_socialism
+		icon = GFX_focus_ger_bulwark_against_bolshevism
+		cost = 10.00
+		prerequisite = {
+			focus = TEX_were_actual_germans
+		}
+		x = 27
+		y = 12
+		will_lead_to_war_with = PRA
+		available = {
+			has_war = no
+		}
+		completion_reward = {
+			declare_war_on = {
+			    target = PRA
+			    type = annex_everything
+			}
+		}
+
+	}
+	#ARMY TREE
+	focus = {
+		id = TEX_cowboy_country
+		icon = GFX_goal_Generic_Gunslinger
+		cost = 10.00
+		x = 27
+		y = 0
+		available = {
+			OR = {
+				has_completed_focus = TEX_constitution
+				has_completed_focus = TEX_different_direction
+			}
+		}
+		completion_reward = {
+			army_experience = 10
+		}
+	}
+	focus = {
+		id = TEX_tribal_integration
+		icon = GFX_goal_texas_natives
+		cost = 10.00
+		x = 25
+		y = 1
+		prerequisite = {
+			focus = TEX_cowboy_country
+		}
+		completion_reward = {
+			add_manpower = 2500
+			army_experience = 15
+		}
+	}
+	focus = {
+		id = TEX_official_bilingualism
+		icon = GFX_goal_biilingual
+		cost = 10.00
+		x = 27
+		y = 1
+		prerequisite = {
+			focus = TEX_cowboy_country
+		}
+		completion_reward = {
+			add_manpower = 5000
+		}
+	}
+	focus = {
+		id = TEX_strengthen_what_we_have
+		icon = GFX_goal_Hunters
+		cost = 12.55
+		x = 29
+		y = 1
+		prerequisite = {
+			focus = TEX_cowboy_country
+		}
+		completion_reward = {
+			army_experience = 30
+			add_tech_bonus = {
+			    bonus = 3.0
+			    uses = 1
+			    category = land_doctrine
+			}
+		}
+	}
+	#GREAT FROST TREE
+	focus = {
+		id = TEX_recovering_from_great_frost
+		icon = GFX_goal_Interior
+		cost = 10.00
+		x = 24
+		y = 2
+		completion_reward = {
+			swap_ideas = {
+			    remove_idea = TEX_great_frost_1
+			    add_idea = TEX_great_frost_2
+			}
+		}
+	}
+	focus = {
+		id = TEX_bring_back_coal
+		icon = GFX_goal_ReopenMills
+		cost = 10.00
+		x = 24
+		y = 3
+		prerequisite = {
+			focus = TEX_recovering_from_great_frost
+		}
+		completion_reward = {
+			swap_ideas = {
+			    remove_idea = TEX_great_frost_2
+			    add_idea = TEX_great_frost_3
+			}
+		}
+	}
+	focus = {
+		id = TEX_nuclear_power
+		icon = GFX_goal_Alt_Energy
+		cost = 10.00
+		x = 22
+		y = 4
+		prerequisite = {
+			focus = TEX_bring_back_coal
+		}
+		completion_reward = {
+			286 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = industrial_complex
+    				level = 1
+    				instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = TEX_knock_down_wind_turbines
+		icon = GFX_goal_generic_construction2
+		cost = 10.00
+		x = 24
+		y = 4
+		prerequisite = {
+			focus = TEX_bring_back_coal
+		}
+		completion_reward = {
+			swap_ideas = {
+			    remove_idea = TEX_great_frost_3
+			    add_idea = TEX_great_frost_4
+			}
+			if = {
+				limit = {
+					has_government = democrat
+				}
+				add_stability = -0.10
+				else = {
+					add_popularity = {
+					    ideology = democrat
+					    popularity = -0.10
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = TEX_complete_recovery
+		icon = GFX_goal_Celebration_of_Anarchism
+		cost = 10.00
+		x = 24
+		y = 5
+		prerequisite = {
+			focus = TEX_knock_down_wind_turbines
+		}
+		available = {
+			OR = {
+				has_completed_focus = TEX_results
+				has_completed_focus = TEX_great_monarchy_referendum
+			}
+		}
+		completion_reward = {
+			remove_ideas = TEX_great_frost_4
+		}
+	}
+}
