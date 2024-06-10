@@ -479,6 +479,38 @@ country_event = {
 				transfer_state = 312
 				transfer_state = 610
 				transfer_state = 28
+				IF = {
+					limit = { 611 = { is_owned_by = TEX } }
+					LOU = { transfer_state = 611 }
+				}
+				IF = {
+					limit = { 612 = { is_owned_by = TEX } }
+					LOU = { transfer_state = 612 }
+				}
+				IF = {
+					limit = { 316 = { is_owned_by = TEX } }
+					LOU = { transfer_state = 316 }
+				}
+				IF = {
+					limit = { 315 = { is_owned_by = TEX } }
+					LOU = { transfer_state = 315 }
+				}
+				IF = {
+					limit = { 307 = { is_owned_by = TEX } }
+					LOU = { transfer_state = 307 }
+				}
+				IF = {
+					limit = { 604 = { is_owned_by = TEX } }
+					LOU = { transfer_state = 604 }
+				}
+				IF = {
+					limit = { 609 = { is_owned_by = TEX } }
+					LOU = { transfer_state = 609 }
+				}
+				IF = {
+					limit = { = { is_owned_by = TEX } }
+					LOU = { transfer_state = 317 }
+				}
 				every_owned_state = {
 					add_core_of = LOU
 				}
@@ -2449,7 +2481,6 @@ country_event = {
 		complete_national_focus = TEX_different_direction
 	}
 }
-
 #The Assasination of the British Crown Prince
 news_event = {
 	id = texas.90
@@ -2462,6 +2493,79 @@ news_event = {
 		name = texas.90.a
 	}
 }
+#purchase new orleans, csa rejection and tex pov
+country_event = {
+	id = texas.91
+	title = texas.91.t
+	desc = texas.91.d
+	#picture = .
+	is_triggered_only = yes
+	fire_only_once = no
+	option = { #
+		name = texas.91.a
+		
+	}
+}
+#purchase new orleans, csa pov
+country_event = {
+	id = texas.92
+	title = texas.92.t
+	desc = texas.92.d
+	#picture = .
+	is_triggered_only = yes
+	fire_only_once = no
+	option = { #Yes
+		name = texas.92.a
+		TEX = { 
+			transfer_state = 611
+			transfer_state = 612
+			transfer_state = 316
+			transfer_state = 315
+			transfer_state = 307
+			transfer_state = 604
+			transfer_state = 609
+			transfer_state = 317
+			country_event = {
+				id = texas.93
+				days = 5
+			}
+		}
+		add_timed_idea = {
+			idea = TEX_payments_received
+			days = 360
+		}
+	}
+	option = { #No
+		name = texas.92.b 
+		TEX = { 
+			country_event = {
+				id = texas.91
+				days = 5
+			}
+		}
+		ai_chance = {
+            base = 0        
+        }
+
+	}
+}
+#purchase new orleans, csa acceptance and tex pov
+country_event = {
+	id = texas.93
+	title = texas.93.t
+	desc = texas.93.d
+	#picture = .
+	is_triggered_only = yes
+	fire_only_once = no
+	option = { #
+		name = texas.93.a
+		add_timed_idea = {
+			idea = TEX_debt_payment
+			days = 360
+		}
+	}
+}
+
 
 
 
