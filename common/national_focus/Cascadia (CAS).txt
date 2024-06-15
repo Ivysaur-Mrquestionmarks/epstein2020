@@ -1304,7 +1304,7 @@ focus_tree = {
 	focus = {
 		id = CAS_the_presidential_election
 		icon = GFX_goal_Generic_Elections
-		cost = 10.00
+		cost = 5
 		prerequisite = {
 			focus = CAS_elections_await
 			focus = CAS_ready_for_elections
@@ -1326,12 +1326,13 @@ focus_tree = {
 	focus = {
 		id = CAS_liberal_victory
 		icon = GFX_goal_Liberal_Party
-		cost = 10.00
+		cost = 5
 		prerequisite = {
 			focus = CAS_the_presidential_election
 		}
-		x = 7
-		y = 7
+		relative_position_id = CAS_the_presidential_election
+		x = -4
+		y = 1
 		available = { has_government = democrat }
 		completion_reward = {
 			add_popularity = {
@@ -1342,14 +1343,62 @@ focus_tree = {
 
 	}
 	focus = {
+		id = CAS_open_more_starbucks
+		icon = 
+		cost = 5
+		prerequisite = {
+			focus = CAS_liberal_victory
+		}
+		relative_position_id = CAS_liberal_victory
+		x = 0
+		y = 2
+		available = { has_government = democrat }
+		completion_reward = {
+			random_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = industrial_complex
+				    level = 1
+				    instant_build = yes
+				}
+			}
+			random_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = industrial_complex
+				    level = 1
+				    instant_build = yes
+				}
+			}
+			random_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = industrial_complex
+				    level = 1
+				    instant_build = yes
+				}
+			}
+			random_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = industrial_complex
+				    level = 1
+				    instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
 		id = CAS_green_victory
 		icon = GFX_goal_Liberal_Party
-		cost = 10.00
+		cost = 5
 		prerequisite = {
 			focus = CAS_the_presidential_election
 		}
-		x = 5
-		y = 7
+		relative_position_id = CAS_the_presidential_election
+		x = -6
+		y = 1
 		available = { has_government = libertarian_left }
 		completion_reward = {
 			add_popularity = {
@@ -1360,14 +1409,76 @@ focus_tree = {
 
 	}
 	focus = {
+		id = CAS_climate
+		icon = 
+		cost = 5
+		prerequisite = {
+			focus = CAS_green_victory
+			focus = CAS_liberal_victory
+		}
+		relative_position_id = CAS_green_victory
+		x = 1
+		y = 1
+		completion_reward = {
+			add_stability = 0.2
+			add_war_support = -0.05
+			add_political_power = 250
+		}
+
+	}
+	focus = {
+		id = CAS_integration_authority
+		icon = GFX_goal_Happy_Bernie
+		cost = 5
+		prerequisite = {
+			focus = CAS_green_victory
+		}
+		relative_position_id = CAS_green_victory
+		x = 0
+		y = 2
+		available = { 
+			PRA = { has_country_flag = pra_did_amazing_grace }
+			has_government = libertarian_left 
+			NOT = { country_exists = LIB }
+		}
+		completion_reward = {
+			effect_tooltip = {
+				set_cosmetic_tag = CAS_integration_authority
+				if = {
+					limit = {
+						OR = {
+							has_dlc = "Together for Victory"
+							has_dlc = "Man the Guns"
+						}
+					}
+					PRA = {
+						set_autonomy = {
+							target = CAS
+							autonomous_state = autonomy_colony
+							freedom_level = 0.6
+						}
+					}
+					else = {
+						PRA = { puppet = CAS }
+					}
+				}
+			}
+			PRA = {
+				country_event = { id = cascadia.9 }
+			}
+		}
+
+	}
+	focus = {
 		id = CAS_whig_victory
 		icon = GFX_goal_Whig_Party
-		cost = 10.00
+		cost = 5
 		prerequisite = {
 			focus = CAS_the_presidential_election
 		}
-		x = 15
-		y = 7
+		relative_position_id = CAS_the_presidential_election
+		x = 0
+		y = 1
 		available = { has_government = libertarian_right }
 		completion_reward = {
 			add_popularity = {
@@ -1380,6 +1491,416 @@ focus_tree = {
 						is_ai = no
 					}
 					play_song = when_they_dropped_the_atomic_bomb
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = CAS_second_red_scare
+		icon = 
+		cost = 5
+		prerequisite = {
+			focus = CAS_whig_victory
+		}
+		relative_position_id = CAS_whig_victory
+		x = 0
+		y = 2
+		available = { has_government = libertarian_right }
+		completion_reward = {
+		}
+
+	}
+	focus = {
+		id = CAS_cascadian_tory_victory
+		icon = GFX_goal_Conservative_Party
+		cost = 5
+		prerequisite = {
+			focus = CAS_the_presidential_election
+		}
+		relative_position_id = CAS_the_presidential_election
+		x = -2
+		y = 1
+		available = { has_government = republican }
+		completion_reward = {
+			add_popularity = {
+			    ideology = republican
+			    popularity = 0.05
+			}
+		}
+
+	}
+	focus = {
+		id = CAS_decrease_tax
+		icon = 
+		cost = 5
+		prerequisite = {
+			focus = CAS_cascadian_tory_victory
+		}
+		relative_position_id = CAS_cascadian_tory_victory
+		x = 0
+		y = 2
+		available = { has_government = republican }
+		completion_reward = {
+			add_ideas = CAS_tax_cut
+		}
+
+	}
+	focus = {
+		id = CAS_support_small_business
+		icon = 
+		cost = 5
+		prerequisite = {
+			focus = CAS_cascadian_tory_victory
+			focus = CAS_liberal_victory
+		}
+		relative_position_id = CAS_liberal_victory
+		x = 1
+		y = 1
+		completion_reward = {
+			random_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = industrial_complex
+				    level = 1
+				    instant_build = yes
+				}
+			}
+			random_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = arms_factory
+				    level = 1
+				    instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = CAS_deregulate_private_sector
+		icon = 
+		cost = 5
+		prerequisite = {
+			focus = CAS_cascadian_tory_victory
+			focus = CAS_whig_victory
+		}
+		relative_position_id = CAS_cascadian_tory_victory
+		x = 1
+		y = 1
+		completion_reward = {
+			add_stability = -0.15
+			random_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+				    type = industrial_complex
+				    level = 2
+				    instant_build = yes
+				}
+			}
+			random_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+				    type = arms_factory
+				    level = 2
+				    instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = CAS_thank_god_for_army
+		icon = GFX_goal_Call_4_Help
+		cost = 5
+		prerequisite = {
+			focus = CAS_lord_protectors_armies
+			focus = CAS_the_presidential_election
+		}
+		mutually_exclusive = {
+			focus = CAS_end_the_complex
+		}
+		available = {
+			OR = {
+				has_completed_focus = CAS_whig_victory
+				has_completed_focus = CAS_cascadian_tory_victory
+				has_completed_focus = CAS_lord_protectors_armies
+			}
+		}
+		relative_position_id = CAS_the_presidential_election
+		x = 6
+		y = 1
+		completion_reward = {
+			random_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+				    type = arms_factory
+				    level = 2
+				    instant_build = yes
+				}
+			}
+			random_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+				    type = arms_factory
+				    level = 2
+				    instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = CAS_end_the_complex
+		icon = GFX_focus_generic_the_giant_wakes
+		cost = 5
+		prerequisite = {
+			focus = CAS_the_presidential_election
+		}
+		mutually_exclusive = {
+			focus = CAS_thank_god_for_army
+		}
+		available = {
+			OR = {
+				has_completed_focus = CAS_green_victory
+				has_completed_focus = CAS_cascadian_tory_victory
+				has_completed_focus = CAS_liberal_victory
+			}
+		}
+		relative_position_id = CAS_the_presidential_election
+		x = 2
+		y = 1
+		completion_reward = {
+			random_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+				    type = industrial_complex
+				    level = 2
+				    instant_build = yes
+				}
+			}
+			random_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+				    type = industrial_complex
+				    level = 2
+				    instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = CAS_end_theocracy
+		icon = GFX_goal_sad_shea
+		cost = 4.4
+		prerequisite = {
+			focus = CAS_end_the_complex
+			focus = CAS_thank_god_for_army
+		}
+		relative_position_id = CAS_end_the_complex
+		x = 1
+		y = 1
+		will_lead_to_war_with = LIB
+		completion_reward = {
+			create_wargoal = {
+			    type = annex_everything
+			    target = LIB
+			}
+		}
+
+	}
+	focus = {
+		id = CAS_invade_bc
+		icon = 
+		cost = 4.4
+		prerequisite = {
+			focus = CAS_thank_god_for_army
+		}
+		relative_position_id = CAS_end_the_complex
+		x = 3
+		y = 1
+		will_lead_to_war_with = BRC
+		will_lead_to_war_with = VAN
+		completion_reward = {
+			create_wargoal = {
+			    type = annex_everything
+			    target = VAN
+			}
+			create_wargoal = {
+			    type = annex_everything
+			    target = BRC
+			}
+		}
+
+	}
+	focus = {
+		id = CAS_greater_cas
+		icon = 
+		cost = 4.4
+		prerequisite = {
+			focus = CAS_end_theocracy
+		}
+		prerequisite = {
+			focus = CAS_invade_bc
+		}
+		relative_position_id = CAS_invade_bc
+		x = -1
+		y = 1
+		completion_reward = {
+			every_state = {
+				limit = { is_core_of = BRC }
+				add_core_of = CAS
+			}
+			every_state = {
+				limit = { is_core_of = BRC }
+				add_core_of = CAS
+			}
+			522 = { add_core_of = CAS }
+			354 = { add_core_of = CAS }
+			415 = { add_core_of = CAS }
+			568 = { add_core_of = CAS }
+			417 = { add_core_of = CAS }
+			412 = { add_core_of = CAS }
+			520 = { add_core_of = CAS }
+			521 = { add_core_of = CAS }
+			65 = { add_core_of = CAS }
+			66 = { add_core_of = CAS }
+			99 = { add_core_of = CAS }
+			119 = { add_core_of = CAS }
+			118 = { add_core_of = CAS }
+			199 = { add_core_of = CAS }
+			295 = { add_core_of = CAS }
+			51 = { add_core_of = CAS }
+			452 = { add_core_of = CAS }
+			set_cosmetic_tag = CAS_greater
+		}
+
+	}
+	focus = {
+		id = CAS_idaho_claims
+		icon = 
+		cost = 4.4
+		prerequisite = {
+			focus = CAS_greater_cas
+		}
+		relative_position_id = CAS_greater_cas
+		x = -1
+		y = 1
+		will_lead_to_war_with = IDA
+		will_lead_to_war_with = MON
+		completion_reward = {
+			create_wargoal = {
+				target = MON
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = IDA
+				type = annex_everything
+			}
+		}
+
+	}
+	focus = {
+		id = CAS_jefferson_claims
+		icon = 
+		cost = 4.4
+		prerequisite = {
+			focus = CAS_greater_cas
+		}
+		relative_position_id = CAS_greater_cas
+		x = 1
+		y = 1
+		will_lead_to_war_with = JFR
+		will_lead_to_war_with = ORO
+		will_lead_to_war_with = PRA
+		will_lead_to_war_with = HLY
+		will_lead_to_war_with = SAC
+		will_lead_to_war_with = ACF
+		will_lead_to_war_with = SIL
+		completion_reward = {
+			if = { 
+				limit = { country_exists = JFR }
+				create_wargoal = {
+					target = JFR
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = PRC }
+				create_wargoal = {
+					target = PRC
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = HLY }
+				create_wargoal = {
+					target = HLY
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = CST }
+				create_wargoal = {
+					target = CST
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = ACF }
+				create_wargoal = {
+					target = ACF
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = SAC }
+				create_wargoal = {
+					target = SAC
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = ABG }
+				create_wargoal = {
+					target = ABG
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = NVD }
+				create_wargoal = {
+					target = NVD
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = SIL }
+				create_wargoal = {
+					target = SIL
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = FIR }
+				create_wargoal = {
+					target = FIR
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = ORO }
+				create_wargoal = {
+					target = ORO
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = PRA }
+				create_wargoal = {
+					target = PRA
+					type = annex_everything
 				}
 			}
 		}
@@ -2127,105 +2648,114 @@ focus_tree = {
 
 	}
 	focus = {
-		id = CAS_cascadian_tory_victory
-		icon = GFX_goal_Conservative_Party
+		id = CAS_steal_nw_federation_idea
+		icon = GFX
 		cost = 10.00
 		prerequisite = {
-			focus = CAS_the_presidential_election
+			focus = CAS_cascadians_war_cry
 		}
-		x = 11
-		y = 7
-		available = { has_government = republican }
+		prerequisite = {
+			focus = CAS_jingoism
+		}
+		relative_position_id = CAS_cascadians_war_cry
+		x = -1
+		y = 2
 		completion_reward = {
-			add_popularity = {
-			    ideology = republican
-			    popularity = 0.05
+			set_cosmetic_tag = MON_federation
+			every_state = {
+				limit = { is_core_of = MON }
+				add_core_of = CAS
+			}
+			every_state = {
+				limit = { is_core_of = IDA }
+				add_core_of = CAS
+			}
+			every_state = {
+				limit = { is_core_of = VAN }
+				add_core_of = CAS
+			}
+			every_state = {
+				limit = { is_core_of = BRC }
+				add_core_of = CAS
+			}
+			every_state = {
+				limit = { is_core_of = WPC }
+				add_core_of = CAS
+			}
+			every_state = {
+				limit = { is_core_of = ALA }
+				add_core_of = CAS
 			}
 		}
 
 	}
 	focus = {
-		id = CAS_thank_god_for_army
-		icon = GFX_goal_Call_4_Help
+		id = CAS_invade_montana
+		icon = GFX
 		cost = 10.00
 		prerequisite = {
-			focus = CAS_whig_victory
-			focus = CAS_cascadian_tory_victory
+			focus = CAS_steal_nw_federation_idea
 		}
-		mutually_exclusive = {
-			focus = CAS_end_the_complex
-		}
-		x = 13
-		y = 8
+		relative_position_id = CAS_steal_nw_federation_idea
+		x = 2
+		y = 1
+		will_lead_to_war_with = MON
 		completion_reward = {
-			random_state = {
-				add_extra_state_shared_building_slots = 2
-				add_building_construction = {
-				    type = arms_factory
-				    level = 2
-				    instant_build = yes
-				}
-			}
-			random_state = {
-				add_extra_state_shared_building_slots = 2
-				add_building_construction = {
-				    type = arms_factory
-				    level = 2
-				    instant_build = yes
-				}
+			create_wargoal = { 
+				target = MON
+				type = annex_everything 
 			}
 		}
 
 	}
 	focus = {
-		id = CAS_end_the_complex
-		icon = GFX_focus_generic_the_giant_wakes
+		id = CAS_attack_Canada
+		icon = GFX
 		cost = 10.00
 		prerequisite = {
-			focus = CAS_cascadian_tory_victory
-			focus = CAS_liberal_victory
-			focus = CAS_green_victory
+			focus = CAS_steal_nw_federation_idea
 		}
-		mutually_exclusive = {
-			focus = CAS_thank_god_for_army
-		}
-		x = 9
-		y = 8
+		relative_position_id = CAS_steal_nw_federation_idea
+		x = -2
+		y = 1
+		will_lead_to_war_with = BRC
+		will_lead_to_war_with = VAN
+		will_lead_to_war_with = WPC
 		completion_reward = {
-			random_state = {
-				add_extra_state_shared_building_slots = 2
-				add_building_construction = {
-				    type = industrial_complex
-				    level = 2
-				    instant_build = yes
-				}
+			create_wargoal = { 
+				target = VAN
+				type = annex_everything 
 			}
-			random_state = {
-				add_extra_state_shared_building_slots = 2
-				add_building_construction = {
-				    type = industrial_complex
-				    level = 2
-				    instant_build = yes
-				}
+			create_wargoal = { 
+				target = BRC
+				type = annex_everything 
+			}
+			create_wargoal = { 
+				target = WPC
+				type = annex_everything 
+			}
+			create_wargoal = { 
+				target = ALA
+				type = annex_everything 
 			}
 		}
 
 	}
 	focus = {
-		id = CAS_end_theocracy
-		icon = GFX_goal_sad_shea
-		cost = 4.4
+		id = CAS_attack_ida
+		icon = GFX
+		cost = 10.00
 		prerequisite = {
-			focus = CAS_end_the_complex
-			focus = CAS_thank_god_for_army
+			focus = CAS_steal_nw_federation_idea
 		}
-		x = 11
-		y = 9
-		will_lead_to_war_with = LIB
+		relative_position_id = CAS_steal_nw_federation_idea
+		x = -0
+		y = 1
+		will_lead_to_war_with = IDA
 		completion_reward = {
-			create_wargoal = {
-			    type = annex_everything
-			    target = LIB
+			create_wargoal = { 
+				target = IDA
+				type = annex_everything 
 			}
 		}
 
@@ -2247,48 +2777,6 @@ focus_tree = {
 			create_wargoal = {
 			    type = annex_everything
 			    target = LIB
-			}
-		}
-
-	}
-	focus = {
-		id = CAS_integration_authority
-		icon = GFX_goal_Happy_Bernie
-		cost = 10.00
-		prerequisite = {
-			focus = CAS_green_victory
-		}
-		x = 5
-		y = 8
-		available = { 
-			PRA = { has_country_flag = pra_did_amazing_grace }
-			has_government = libertarian_left 
-			NOT = { country_exists = LIB }
-		}
-		completion_reward = {
-			effect_tooltip = {
-				set_cosmetic_tag = CAS_integration_authority
-				if = {
-					limit = {
-						OR = {
-							has_dlc = "Together for Victory"
-							has_dlc = "Man the Guns"
-						}
-					}
-					PRA = {
-						set_autonomy = {
-							target = CAS
-							autonomous_state = autonomy_colony
-							freedom_level = 0.6
-						}
-					}
-					else = {
-						PRA = { puppet = CAS }
-					}
-				}
-			}
-			PRA = {
-				country_event = { id = cascadia.9 }
 			}
 		}
 
@@ -3097,7 +3585,7 @@ focus_tree = {
 	focus = {
 		id = CAS_new_order
 		icon = GFX_focus_nazi_state
-		cost = 10.00
+		cost = 5
 		x = 37
 		y = 0
 		available = {
@@ -3152,7 +3640,7 @@ focus_tree = {
 	focus = {
 		id = CAS_the_white_swastika
 		icon = GFX_goal_Up_The_White_Swastika
-		cost = 10.00
+		cost = 5
 		prerequisite = {
 			focus = CAS_new_order
 		}
@@ -3208,7 +3696,7 @@ focus_tree = {
 	focus = {
 		id = CAS_streng_geheim
 		icon = GFX_focus_For_Himmler
-		cost = 10.00
+		cost = 5
 		prerequisite = {
 			focus = CAS_new_order
 		}
@@ -3285,7 +3773,7 @@ focus_tree = {
 	focus = {
 		id = CAS_secret_police
 		icon = GFX_goal_Generic_Execute_Dissidents02
-		cost = 10.00
+		cost = 5
 		prerequisite = {
 			focus = CAS_streng_geheim
 		}
@@ -3344,7 +3832,7 @@ focus_tree = {
 	focus = {
 		id = CAS_down_with_the_black_swastika
 		icon = GFX_goal_Down_with_the_Black_Swastika
-		cost = 10.00
+		cost = 5
 		prerequisite = {
 			focus = CAS_new_order
 		}
@@ -3400,7 +3888,7 @@ focus_tree = {
 	focus = {
 		id = CAS_night_long_knives
 		icon = GFX_goal_gamers_rise_up
-		cost = 10.00
+		cost = 5
 		prerequisite = {
 			focus = CAS_the_white_swastika
 		}
@@ -3542,7 +4030,7 @@ focus_tree = {
 	}
 	focus = {
 		id = CAS_finish_montana
-		icon = 
+		icon = GFX_goal_generic_political_pressure
 		cost = 4
 		prerequisite = {
 			focus = CAS_can_only_be_one
@@ -3554,13 +4042,18 @@ focus_tree = {
 		available = {
 			has_war = no
 		}
+		will_lead_to_war_with = MON
 		completion_reward = {
+				create_wargoal = {
+					target = MON
+					type = annex_everything
+				}
 		}
 
 	}
 	focus = {
 		id = CAS_cross_rockies
-		icon = 
+		icon = GFX_focus_generic_full_social_mobilization
 		cost = 4
 		prerequisite = {
 			focus = CAS_finish_montana
@@ -3571,7 +4064,12 @@ focus_tree = {
 		available = {
 			has_war = no
 		}
+		will_lead_to_war_with = IDA
 		completion_reward = {
+				create_wargoal = {
+					target = IDA
+					type = annex_everything
+				}
 		}
 
 	}
@@ -3657,7 +4155,7 @@ focus_tree = {
 	}
 	focus = {
 		id = CAS_integrate_the_legion
-		icon = 
+		icon = GFX_goal_reichskom_kali
 		cost = 5.00
 		prerequisite = {
 			focus = CAS_einheitspakt
@@ -3665,12 +4163,22 @@ focus_tree = {
 		relative_position_id = CAS_memories_of_murphy_ranch
 		x = 0
 		y = 1
+		available = { 
+			NOT = {
+				country_exists = PRA
+			}
+		}
 		completion_reward = {
+			annex_country = SIL
+			every_state = {
+				limit = { is_core_of = PRA }
+				add_core_of = CAS
+			}
 		}
 	}
 	focus = {
 		id = CAS_invade_utah
-		icon = 
+		icon = GFX_focus_generic_fascist_troops
 		cost = 5.00
 		prerequisite = {
 			focus = CAS_integrate_the_legion
@@ -3679,12 +4187,41 @@ focus_tree = {
 		relative_position_id = CAS_integrate_the_legion
 		x = -1
 		y = 2
+		will_lead_to_war_with = UTA
+		will_lead_to_war_with = SIN
+		will_lead_to_war_with = AFO
+		will_lead_to_war_with = HAM
+		will_lead_to_war_with = LAS
 		completion_reward = {
+				create_wargoal = {
+					target = MOL
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = AFO
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = UTA
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = SIN
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = HAM
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = LAS
+					type = annex_everything
+				}
 		}
 	}
 	focus = {
 		id = CAS_crush_false_nazis
-		icon = 
+		icon = GFX_focus_ger_oppose_hitler
 		cost = 5.00
 		prerequisite = {
 			focus = CAS_invade_utah
@@ -3692,12 +4229,17 @@ focus_tree = {
 		relative_position_id = CAS_invade_utah
 		x = 0
 		y = 1
+		will_lead_to_war_with = HOP
 		completion_reward = {
+			create_wargoal = {
+				target = HOP
+				type = annex_everything
+			}
 		}
 	}
 	focus = {
 		id = CAS_legion_of_west_america
-		icon = 
+		icon = GFX_focus_generic_spread_fascism
 		cost = 5.00
 		prerequisite = {
 			focus = CAS_crush_false_nazis
@@ -3705,7 +4247,52 @@ focus_tree = {
 		relative_position_id = CAS_crush_false_nazis
 		x = 0
 		y = 1
+		available = {
+			NOT = { 
+				country_exists = PRA
+				country_exists = SIN
+				country_exists = MON
+				country_exists = UTA
+				country_exists = HOP
+				country_exists = AFO
+				country_exists = IDA
+				country_exists = VAN
+			}
+		}
 		completion_reward = {
+			every_state = {
+				limit = { is_core_of = SIN }
+				add_core_of = CAS
+			}
+			every_state = {
+				limit = { is_core_of = MON }
+				add_core_of = CAS
+			}
+			every_state = {
+				limit = { is_core_of = UTA }
+				add_core_of = CAS
+			}
+			every_state = {
+				limit = { is_core_of = HOP }
+				add_core_of = CAS
+			}
+			every_state = {
+				limit = { is_core_of = IDA }
+				add_core_of = CAS
+			}
+			every_state = {
+				limit = { is_core_of = AFO }
+				add_core_of = CAS
+			}
+			every_state = {
+				limit = { is_core_of = MOL }
+				add_core_of = CAS
+			}
+			every_state = {
+				limit = { is_core_of = LAS }
+				add_core_of = CAS
+			}
+			set_cosmetic_tag = nazi_west
 		}
 	}
 	focus = {
@@ -3759,7 +4346,7 @@ focus_tree = {
 	focus = {
 		id = CAS_end_home_front_troubles
 		icon = GFX_goal_Execute_the_Traitor
-		cost = 10.00
+		cost = 5
 		prerequisite = {
 			focus = CAS_vancouver_war
 		}
@@ -3777,7 +4364,7 @@ focus_tree = {
 	focus = {
 		id = CAS_alliance_with_mckee
 		icon = GFX_goal_Ailliance_with_McKee
-		cost = 10.00
+		cost = 5
 		prerequisite = {
 			focus = CAS_contact_albertans
 		}
@@ -3796,7 +4383,7 @@ focus_tree = {
 	focus = {
 		id = CAS_speerism
 		icon = GFX_goal_Speerism-1
-		cost = 10.00
+		cost = 5
 		prerequisite = {
 			focus = CAS_night_long_knives
 		}
@@ -3851,7 +4438,7 @@ focus_tree = {
 	}
 	focus = {
 		id = CAS_corporationism
-		icon = 
+		icon = GFX_focus_ICE_state_corporatism
 		cost = 5.00
 		prerequisite = {
 			focus = CAS_military_industrial_complex
@@ -3860,12 +4447,28 @@ focus_tree = {
 		x = -1
 		y = 1
 		completion_reward = {
+			random_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+				    type = industrial_complex
+				    level = 2
+				    instant_build = yes
+				}
+			}
+			random_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+				    type = industrial_complex
+				    level = 2
+				    instant_build = yes
+				}
+			}
 		}
 
 	}
 	focus = {
 		id = CAS_the_program
-		icon = 
+		icon = GFX_focus_generic_limited_social_mobilization
 		cost = 5.00
 		prerequisite = {
 			focus = CAS_corporationism
@@ -3874,12 +4477,30 @@ focus_tree = {
 		x = 0
 		y = 1
 		completion_reward = {
+			random_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+				    type = industrial_complex
+				    level = 2
+				    instant_build = yes
+				}
+			}
+			random_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+				    type = industrial_complex
+				    level = 2
+				    instant_build = yes
+				}
+			}
+			add_stability = -0.25
+			add_manpower = -50000
 		}
 
 	}
 	focus = {
 		id = CAS_labor_camps
-		icon = 
+		icon = GFX_focus_generic_total_war
 		cost = 5.00
 		prerequisite = {
 			focus = CAS_the_program
@@ -3888,41 +4509,69 @@ focus_tree = {
 		x = 0
 		y = 1
 		completion_reward = {
+			random_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+				    type = industrial_complex
+				    level = 2
+				    instant_build = yes
+				}
+			}
+			random_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+				    type = industrial_complex
+				    level = 2
+				    instant_build = yes
+				}
+			}
+			add_stability = -0.15
 		}
 
 	}
 	focus = {
 		id = CAS_von_braun_legacy
-		icon = 
+		icon = GFX_goal_Generic_Fascist_Brainpower
 		cost = 5.00
 		prerequisite = {
 			focus = CAS_military_industrial_complex
 		}
 		relative_position_id = CAS_military_industrial_complex
 		x = 1
-		y = 1
+		y = 2
 		completion_reward = {
+			add_ideas = CAS_braun
 		}
 
 	}
 	focus = {
 		id = CAS_wunderwaffe
-		icon = 
+		icon = GFX_focus_wonderweapons
 		cost = 5.00
+		prerequisite = {
+			focus = CAS_vallhalla_awaits
+			focus = CAS_militaristic_christianity
+		}
 		prerequisite = {
 			focus = CAS_von_braun_legacy
 		}
 		relative_position_id = CAS_von_braun_legacy
-		x = 0
+		x = 2
 		y = 1
 		completion_reward = {
+			add_research_slot = 1
+			add_tech_bonus = {
+				bonus = 3
+				uses = 3
+				category = nuclear
+			}
 		}
 
 	}
 	focus = {
 		id = CAS_odinist_moment
 		icon = GFX_goal_Visigothic_Revival
-		cost = 10.00
+		cost = 5
 		prerequisite = {
 			focus = CAS_speerism
 		}
@@ -3963,7 +4612,7 @@ focus_tree = {
 	focus = {
 		id = CAS_anarcho_fascism #yes Jack Donnovan genuinely believes in Anarcho-Fascism
 		icon = GFX_goal_Anarcho_Fascism
-		cost = 10.00
+		cost = 5
 		prerequisite = {
 			focus = CAS_odinist_moment
 		}
@@ -3976,8 +4625,8 @@ focus_tree = {
 	}
 	focus = {
 		id = CAS_vallhalla_awaits
-		icon = 
-		cost = 10.00
+		icon = GFX_focus_FIN_national_fanatism
+		cost = 5
 		prerequisite = {
 			focus = CAS_anarcho_fascism
 		}
@@ -3985,12 +4634,13 @@ focus_tree = {
 		x = 0
 		y = 1
 		completion_reward = {
+			add_ideas = CAS_valhalla_military
 		}
 	}
 	focus = {
 		id = CAS_christian_moment
 		icon = GFX_focus_mex_restore_the_army_of_christ
-		cost = 10.00
+		cost = 5
 		prerequisite = {
 			focus = CAS_speerism
 		}
@@ -4028,7 +4678,7 @@ focus_tree = {
 	focus = {
 		id = CAS_lords_prayer
 		icon = GFX_goal_Messiah
-		cost = 10.00
+		cost = 5
 		prerequisite = {
 			focus = CAS_christian_moment
 		}
@@ -4041,8 +4691,8 @@ focus_tree = {
 	}
 	focus = {
 		id = CAS_militaristic_christianity
-		icon = 
-		cost = 10.00
+		icon = GFX_focus_up_joan_of_arc
+		cost = 5
 		prerequisite = {
 			focus = CAS_lords_prayer
 		}
@@ -4050,6 +4700,7 @@ focus_tree = {
 		x = 0
 		y = 1
 		completion_reward = {
+			add_ideas = CAS_christ_military
 		}
 	}
 	
