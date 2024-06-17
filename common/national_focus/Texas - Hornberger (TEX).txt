@@ -2,18 +2,20 @@ focus_tree = {
 	id = texas_hornberger
 	country = {
 		factor = 0
-		#modifier = {
-		#	add = 100
-		#	tag = TEX
-		#}
+		modifier = {
+			add = 100
+			tag = TEX
+		}
 	}
+	continuous_focus_position = { x = 50 y = 3000 }
 	default = no
 	focus = {
 		id = TEX_2_bright_future
 		icon = GFX_focus_tex_bigot
 		cost = 1.00
-		x = 6
+		x = 10
 		y = 0
+		#relative_position_id = 
 		completion_reward = {
 			add_stability = 0.10
 			if = {
@@ -53,10 +55,11 @@ focus_tree = {
 		id = TEX_2_shit
 		icon = GFX_goal_Texan_Coup
 		cost = 1.00
+		relative_position_id = TEX_2_bright_future
 		prerequisite = {
 			focus = TEX_2_bright_future
 		}
-		x = 6
+		x = 0
 		y = 1
 		completion_reward = {
 			add_political_power = 1
@@ -70,8 +73,9 @@ focus_tree = {
 		prerequisite = {
 			focus = TEX_2_shit
 		}
-		x = 6
-		y = 2
+		x = 0
+		y = 1
+		relative_position_id = TEX_2_shit
 		completion_reward = {
 			add_political_power = 1
 		}
@@ -84,8 +88,9 @@ focus_tree = {
 		prerequisite = {
 			focus = TEX_2_fuck_fuck_fuck
 		}
-		x = 6
-		y = 3
+		x = 0
+		y = 1
+		relative_position_id = TEX_2_fuck_fuck_fuck
 		completion_reward = {
 			add_political_power = 1
 		}
@@ -98,12 +103,1870 @@ focus_tree = {
 		prerequisite = {
 			focus = TEX_stop_it
 		}
-		x = 6
-		y = 4
+		x = 0
+		y = 1
+		relative_position_id = TEX_stop_it
 		completion_reward = {
 			add_war_support = 0.10
 			country_event = alamo.15
 		}
 
 	}
+	focus = {
+		id = TEX_central_texas_secured
+		icon = GFX
+		cost = 5.00
+		prerequisite = {
+			focus = TEX_god_fucking_dammit
+		}
+		x = 0
+		y = 1
+		relative_position_id = TEX_god_fucking_dammit
+		available = { has_war = no }
+		completion_reward = {
+			add_political_power = 50
+			add_stability = 0.1
+		}
+	}
+	focus = {
+		id = TEX_focus_west_texas
+		icon = GFX
+		cost = 5.00
+		prerequisite = {
+			focus = TEX_central_texas_secured
+		}
+		x = 2
+		y = 1
+		relative_position_id = TEX_central_texas_secured
+		available = { has_war = no }
+		will_lead_to_war_with = RED
+		will_lead_to_war_with = FTA
+		will_lead_to_war_with = FAL
+		completion_reward = {
+			declare_war_on = {
+				target = RED
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = FTA
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = FAL
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = TEX_focus_east_texas
+		icon = GFX
+		cost = 5.00
+		prerequisite = {
+			focus = TEX_central_texas_secured
+		}
+		x = -2
+		y = 1
+		relative_position_id = TEX_central_texas_secured
+		available = { has_war = no }
+		will_lead_to_war_with = CRU	
+		will_lead_to_war_with = BET
+		completion_reward = {
+			declare_war_on = {
+				target = CRU
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = BET
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = TEX_focus_north_texas
+		icon = GFX
+		cost = 5.00
+		prerequisite = {
+			focus = TEX_central_texas_secured
+		}
+		x = 0
+		y = 1
+		relative_position_id = TEX_central_texas_secured
+		available = { has_war = no }
+		will_lead_to_war_with = BLA
+		will_lead_to_war_with = CRN
+		completion_reward = {
+			declare_war_on = {
+				target = CRN
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = BLA
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = TEX_texas_restored
+		icon = GFX
+		cost = 5.00
+		x = 0
+		y = 1
+		relative_position_id = TEX_focus_north_texas
+		available = { has_war = no }
+		prerequisite = {
+			focus = TEX_focus_east_texas
+		}
+		prerequisite = {
+			focus = TEX_focus_north_texas
+		}
+		prerequisite = {
+			focus = TEX_focus_west_texas
+		}
+		completion_reward = {
+			set_cosmetic_tag = TEX
+			remove_ideas = TEX_reclaim_texas
+		}
+	}
+	
+	
+	
+	# Libertarians #
+	
+	focus = {
+		id = TEX_texas_restored_libertarian
+		icon = GFX
+		cost = 5.00
+		x = 24
+		y = 0
+		available = { has_completed_focus = TEX_texas_restored }
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = TEX_texas_is_libertarian
+		icon = GFX
+		cost = 5.00
+		x = 0
+		y = 1
+		relative_position_id = TEX_texas_restored_libertarian
+		prerequisite = {
+			focus = TEX_texas_restored_libertarian
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = TEX_a_bright_future_for_texas
+		icon = GFX
+		cost = 5.00
+		x = -3
+		y = 1
+		relative_position_id = TEX_texas_is_libertarian
+		mutually_exclusive = { focus = TEX_share_the_great_future }
+		prerequisite = {
+			focus = TEX_texas_is_libertarian
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = TEX_share_the_great_future
+		icon = GFX
+		cost = 5.00
+		x = 3
+		y = 1
+		relative_position_id = TEX_texas_is_libertarian
+		mutually_exclusive = { focus = TEX_a_bright_future_for_texas }
+		prerequisite = {
+			focus = TEX_texas_is_libertarian
+		}
+		completion_reward = {
+		}
+	}
+	
+	
+	focus = {
+		id = TEX_enshrine_the_bill_of_rights2
+		icon = GFX
+		x = 0
+		y = 1
+		relative_position_id = TEX_a_bright_future_for_texas
+		cost = 5
+		prerequisite = {
+			focus = TEX_a_bright_future_for_texas
+			focus = TEX_share_the_great_future
+		}
+		available = {
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = TEX_embrace_minarchism2
+		icon = GFX
+		x = 0
+		y = 1
+		relative_position_id = TEX_enshrine_the_bill_of_rights2
+		cost = 5
+		prerequisite = {
+			focus = TEX_enshrine_the_bill_of_rights2
+		}
+		available = {
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = TEX_dont_tread_on_me2
+		icon = GFX
+		x = 0
+		y = 1
+		relative_position_id = TEX_dont_tread_on_me2
+		cost = 5
+		prerequisite = {
+			focus = TEX_dont_tread_on_me2
+		}
+		available = {
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = TEX_partner_with_big_business2
+		icon = GFX
+		x = 2
+		y = 1
+		relative_position_id = TEX_a_bright_future_for_texas
+		cost = 5
+		prerequisite = {
+			focus = TEX_a_bright_future_for_texas
+			focus = TEX_share_the_great_future
+		}
+		available = {
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = TEX_dereg_energy
+		icon = GFX
+		x = 0
+		y = 1
+		relative_position_id = TEX_partner_with_big_business2
+		cost = 5
+		prerequisite = {
+			focus = TEX_partner_with_big_business2
+		}
+		available = {
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = TEX_deregulate_industries2
+		icon = GFX
+		x = 1
+		y = 1
+		relative_position_id = TEX_embrace_minarchism2
+		cost = 5
+		prerequisite = {
+			focus = TEX_dereg_energy
+		}
+		prerequisite = {
+			focus = TEX_embrace_minarchism2
+		}
+		available = {
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = TEX_a_free_texas2
+		icon = GFX
+		x = 0
+		y = 1
+		relative_position_id = TEX_deregulate_industries2
+		cost = 3
+		prerequisite = {
+			focus = TEX_deregulate_industries2
+		}
+		available = {
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = TEX_lower_drinking_age
+		icon = GFX
+		x = -2
+		y = 1
+		relative_position_id = TEX_enshrine_the_bill_of_rights2
+		cost = 5
+		prerequisite = {
+			focus = TEX_enshrine_the_bill_of_rights2
+		}
+		available = {
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = TEX_legalize_gambling
+		icon = GFX
+		x = -1
+		y = 1
+		relative_position_id = TEX_lower_drinking_age
+		cost = 5
+		prerequisite = {
+			focus = TEX_lower_drinking_age
+		}
+		available = {
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = TEX_lower_taxes
+		icon = GFX
+		x = 1
+		y = 1
+		relative_position_id = TEX_lower_drinking_age
+		cost = 5
+		prerequisite = {
+			focus = TEX_lower_drinking_age
+		}
+		available = {
+		}
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = TEX_annex_border_states
+		icon = GFX
+		cost = 5.00
+		x = 0
+		y = 1
+		relative_position_id = TEX_share_the_great_future
+		prerequisite = {
+			focus = TEX_share_the_great_future
+		}
+		will_lead_to_war_with = NMX
+		will_lead_to_war_with = LOU
+		will_lead_to_war_with = OKL
+		completion_reward = {
+			create_wargoal = {
+			    target = OKL
+			    type = annex_everything
+			}
+				create_wargoal = {
+					target = LOU
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = NMX
+					type = annex_everything
+				}
+		}
+	}
+	focus = {
+		id = TEX_invade_nazis2
+		icon = GFX
+		cost = 5.00
+		x = 1
+		y = 1
+		relative_position_id = TEX_annex_border_states
+		prerequisite = {
+			focus = TEX_annex_border_states
+		}
+		will_lead_to_war_with = NVD
+		will_lead_to_war_with = UNV
+		will_lead_to_war_with = UTA
+		will_lead_to_war_with = AFO
+		will_lead_to_war_with = MOL
+		will_lead_to_war_with = SIN
+		will_lead_to_war_with = LAS
+		will_lead_to_war_with = FIR
+		will_lead_to_war_with = CAS
+		will_lead_to_war_with = LIB
+		will_lead_to_war_with = HOP
+		available = {
+		}
+		completion_reward = {
+			create_wargoal = {
+			    target = HOP
+			    type = annex_everything
+			}
+				create_wargoal = {
+					target = NVD
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = UNV
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = UTA
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = AFO
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = SIN
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = LAS
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = MOL
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = FIR
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = CAS
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = LIB
+					type = annex_everything
+				}
+		}
+	}
+	focus = {
+		id = TEX_invade_rockies2
+		icon = GFX
+		cost = 5.00
+		x = 0
+		y = 1
+		relative_position_id = TEX_invade_nazis2
+		prerequisite = {
+			focus = TEX_invade_nazis2
+		}
+		will_lead_to_war_with = MON
+		will_lead_to_war_with = IDA
+		completion_reward = {
+				create_wargoal = {
+					target = MON
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = IDA
+					type = annex_everything
+				}
+		}
+	}
+	focus = {
+		id = TEX_invade_west_coast2
+		icon = GFX
+		cost = 5.00
+		x = 2
+		y = 1
+		relative_position_id = TEX_invade_nazis2
+		prerequisite = {
+			focus = TEX_invade_nazis2
+		}
+		will_lead_to_war_with = PRA
+		will_lead_to_war_with = JFR 
+		will_lead_to_war_with = PRC 
+		will_lead_to_war_with = HLY 
+		will_lead_to_war_with = CST 
+		will_lead_to_war_with = ACF 
+		will_lead_to_war_with = SAC 
+		will_lead_to_war_with = ABG 
+		will_lead_to_war_with = NVD 
+		will_lead_to_war_with = SIL 
+		will_lead_to_war_with = FIR 
+		will_lead_to_war_with = ORO
+		will_lead_to_war_with = BJC
+		completion_reward = {
+				create_wargoal = {
+					type = annex_everything
+					target = PRA
+				}
+				if = { 
+					limit = { country_exists = JFR }
+					create_wargoal = {
+						target = JFR
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = PRC }
+					create_wargoal = {
+						target = PRC
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = HLY }
+					create_wargoal = {
+						target = HLY
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = CST }
+					create_wargoal = {
+						target = CST
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = ACF }
+					create_wargoal = {
+						target = ACF
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = SAC }
+					create_wargoal = {
+						target = SAC
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = ABG }
+					create_wargoal = {
+						target = ABG
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = NVD }
+					create_wargoal = {
+						target = NVD
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = SIL }
+					create_wargoal = {
+						target = SIL
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = FIR }
+					create_wargoal = {
+						target = FIR
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = ORO }
+					create_wargoal = {
+						target = ORO
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = BJC }
+					create_wargoal = {
+						target = BJC
+						type = annex_everything
+					}
+				}
+				every_state = {
+					limit = {
+						is_core_of = PRA
+					}
+					add_core_of = TEX
+				}
+		}
+	}
+	focus = {
+		id = TEX_invade_csa2
+		icon = GFX
+		cost = 5.00
+		x = -1
+		y = 1
+		relative_position_id = TEX_annex_border_states
+		prerequisite = {
+			focus = TEX_annex_border_states
+		}
+		will_lead_to_war_with = CSA
+		will_lead_to_war_with = CSB
+		will_lead_to_war_with = KKK
+		will_lead_to_war_with = AFR
+		will_lead_to_war_with = LGB
+		will_lead_to_war_with = APA
+		will_lead_to_war_with = ARK
+		will_lead_to_war_with = ZIO
+		available = {
+		}
+		completion_reward = {
+			create_wargoal = {
+			    target = CSA
+			    type = annex_everything
+			}
+			if = { 
+				limit = {
+					country_exists = KKK
+				}
+				declare_war_on = {
+			   	  target = KKK
+				  type = annex_everything
+				}
+			}
+			if = { 
+				limit = {
+					country_exists = AFR
+				}
+				declare_war_on = {
+			   	  target = AFR
+				  type = annex_everything
+				}
+			}
+			if = { 
+				limit = {
+					country_exists = CSB
+				}
+				declare_war_on = {
+			   	  target = CSB
+				  type = annex_everything
+				}
+			}
+			if = { 
+				limit = {
+					country_exists = ZIO
+				}
+				declare_war_on = {
+			   	  target = ZIO
+				  type = annex_everything
+				}
+			}
+			if = { 
+				limit = {
+					country_exists = LGB
+				}
+				declare_war_on = {
+			   	  target = LGB
+				  type = annex_everything
+				}
+			}
+			if = { 
+				limit = {
+					country_exists = ARK
+				}
+				declare_war_on = {
+			   	  target = ARK
+				  type = annex_everything
+				}
+			}
+			if = { 
+				limit = {
+					country_exists = APA
+				}
+				declare_war_on = {
+			   	  target = APA
+				  type = annex_everything
+				}
+			}
+		}
+	}
+	focus = {
+		id = TEX_annex_virginia_and_kentuchy2
+		icon = GFX
+		cost = 5.00
+		x = -2
+		y = 1
+		relative_position_id = TEX_invade_csa2
+		prerequisite = {
+			focus = TEX_invade_csa2
+		}
+		will_lead_to_war_with = KFC
+		will_lead_to_war_with = RVR
+		will_lead_to_war_with = VIR
+		completion_reward = {
+				if = { 
+					limit = { country_exists = VIR }
+					create_wargoal = {
+						target = VIR
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = RVR }
+					create_wargoal = {
+						target = RVR
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = OBX }
+					create_wargoal = {
+						target = OBX
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = KFX }
+					create_wargoal = {
+						target = KFC
+						type = annex_everything
+					}
+				}
+		}
+	}
+	focus = {
+		id = TEX_annex_flo
+		icon = GFX
+		cost = 5.00
+		x = 0
+		y = 1
+		relative_position_id = TEX_invade_csa2
+		prerequisite = {
+			focus = TEX_invade_csa2
+		}
+		will_lead_to_war_with = FLO
+		available = {
+		}
+		completion_reward = {
+				create_wargoal = {
+					target = FLO
+					type = annex_everything
+				}
+				if = { 
+					limit = { country_exists = NSA }
+					create_wargoal = {
+						target = NSA
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = GKJ }
+					create_wargoal = {
+						target = GKJ
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = FLD }
+					create_wargoal = {
+						target = FLD
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = FLA }
+					create_wargoal = {
+						target = FLA
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = SEM }
+					create_wargoal = {
+						target = SEM
+						type = annex_everything
+					}
+				}
+		}
+	}
+	focus = {
+		id = TEX_attack_biden2
+		icon = GFX
+		cost = 5.00
+		x = -1
+		y = 1
+		relative_position_id = TEX_annex_flo
+		prerequisite = {
+			focus = TEX_annex_flo
+		}
+		prerequisite = {
+			focus = TEX_annex_virginia_and_kentuchy2
+		}
+		prerequisite = {
+			focus = TEX_invade_west_coast2
+		}
+		prerequisite = {
+			focus = TEX_invade_rockies2
+		}
+		will_lead_to_war_with = FRA
+		completion_reward = {
+			create_wargoal = {
+				target = FRA	
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = TEX_false_lolbertarians
+		icon = GFX
+		cost = 5.00
+		x = 1
+		y = 1
+		relative_position_id = TEX_annex_flo
+		prerequisite = {
+			focus = TEX_annex_flo
+		}
+		prerequisite = {
+			focus = TEX_annex_virginia_and_kentuchy2
+		}
+		prerequisite = {
+			focus = TEX_invade_west_coast2
+		}
+		prerequisite = {
+			focus = TEX_annex_flo
+		}
+		will_lead_to_war_with = MNS
+		will_lead_to_war_with = MIL
+		will_lead_to_war_with = MIN
+		will_lead_to_war_with = KMT
+		will_lead_to_war_with = DET
+		will_lead_to_war_with = ISA
+		will_lead_to_war_with = GLA
+		available = {
+			NOT = { country_exists = USA }
+		}
+		completion_reward = {
+				create_wargoal = {
+					target = GLA
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = KMT
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = MIL
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = MNS
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = MIN
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = ISA
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = DET
+					type = annex_everything
+				}
+		}
+	}
+	focus = {
+		id = TEX_attack_trump2
+		icon = GFX
+		cost = 5.00
+		x = 3
+		y = 1
+		relative_position_id = TEX_annex_flo
+		prerequisite = {
+			focus = TEX_annex_flo
+		}
+		prerequisite = {
+			focus = TEX_annex_virginia_and_kentuchy2
+		}
+		prerequisite = {
+			focus = TEX_invade_west_coast2
+		}
+		prerequisite = {
+			focus = TEX_invade_rockies2
+		}
+		will_lead_to_war_with = NPA
+		will_lead_to_war_with = USA
+		completion_reward = {
+			create_wargoal = {
+				target = USA
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = NPA
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = TEX_the_remanders2
+		icon = GFX
+		cost = 5.00
+		x = 0
+		y = 1
+		relative_position_id = TEX_false_lolbertarians
+		prerequisite = {
+			focus = TEX_false_lolbertarians
+		}
+		prerequisite = {
+			focus = TEX_attack_trump2
+		}
+		prerequisite = {
+			focus = TEX_attack_biden2
+		}
+		will_lead_to_war_with = AFS
+		will_lead_to_war_with = NRA
+		will_lead_to_war_with = TIM
+		will_lead_to_war_with = WBK
+		will_lead_to_war_with = NAB
+		will_lead_to_war_with = NEW
+		completion_reward = {
+			create_wargoal = {
+				target = AFS
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = NAB
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = WBK
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = NEW
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = NRA
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = TIM
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = TEX_lolbertarian_america
+		icon = GFX
+		cost = 5.00
+		x = 0
+		y = 1
+		relative_position_id = TEX_the_remanders2
+		prerequisite = {
+			focus = TEX_the_remanders2
+		}
+		available = {
+			NOT = {
+				country_exists = USA
+				country_exists = CAS
+				country_exists = PRA
+				country_exists = FRA
+				country_exists = CSA
+				country_exists = FLO
+				country_exists = GLA
+				country_exists = NEW
+				country_exists = AFS
+				country_exists = MON
+				country_exists = NAB
+				country_exists = WBK
+				country_exists = HOP
+				country_exists = UTA
+			}
+		}
+		completion_reward = {
+			set_cosmetic_tag = lolbertarian
+			every_owned_state = {
+				add_core_of = TEX
+			}
+		}
+		
+	}
+	
+	
+	# ECON TREE 
+	
+	
+	focus = {
+		id = TEX_economy2
+		icon = GFX_goal_focustexaneconomy
+		cost = 5
+		x = 50
+		y = 0
+		available = {
+			has_completed_focus = TEX_texas_restored_libertarian
+		}
+		completion_reward = {
+			add_tech_bonus = {
+			    bonus = 1.5
+			    uses = 1
+			    category = industry
+			}
+			add_resource = {
+			    type = oil
+			    amount = 20
+			    state = 28
+			}
+		}
+
+	}
+	
+	focus = {
+		id = TEX_black_gold2
+		icon = GFX_goal_Burn_Black_Gold
+		x = 1
+		y = 1
+		relative_position_id = TEX_economy2
+		cost = 5
+		prerequisite = {
+			focus = TEX_economy2
+		}
+		completion_reward = {
+			add_resource = {
+			    type = oil
+			    amount = 100
+			    state = 286
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_synthetic2
+		icon = GFX_goal_To_The_Moon
+		cost = 5
+		x = 3
+		y = 2
+		relative_position_id = TEX_haliburton2
+		prerequisite = {
+			focus = TEX_everything_bigger_in_tex2
+		}
+		prerequisite = {
+			focus = TEX_subsidize_smal_farms2
+		}
+		completion_reward = {
+			add_tech_bonus = {
+			    bonus = 1.5
+			    uses = 2
+			    category = synth_resources
+			}
+			add_resource = {
+			    type = oil
+			    amount = 15
+			    state = 143
+			}
+			143 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+    				type = synthetic_refinery
+    				level = 2
+    				instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_haliburton2
+		icon = GFX_focus_halliburton
+		x = 0
+		y = 1
+		relative_position_id = TEX_black_gold2
+		cost = 5
+		prerequisite = {
+			focus = TEX_black_gold2
+		}
+		available = {
+			owns_state = 259
+		}
+		bypass = {
+			NOT = {
+				owns_state = 259
+			}
+		}
+		completion_reward = {
+			259 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+    				type = synthetic_refinery
+    				level = 2
+    				instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_arming_a_state2
+		icon = GFX_focus_tex_gun
+		cost = 5
+		x = 3
+		y = 1
+		relative_position_id = TEX_economy2
+		prerequisite = {
+			focus = TEX_economy2
+		}
+		completion_reward = {
+			77 = {
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+    				type = arms_factory
+    				level = 4
+    				instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_military_industrial_complex2
+		icon = GFX_goal_Military_IC
+		x = 0
+		y = 1
+		relative_position_id = TEX_arming_a_state2
+		cost = 5
+		prerequisite = {
+			focus = TEX_arming_a_state2
+		}
+		completion_reward = {
+			34 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+    	 			type = arms_factory
+    				level = 3
+    				instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_everything_bigger_in_tex2
+		icon = GFX_goal_focuseverythingisbiggerintexas
+		x = -1
+		y = 1
+		relative_position_id = TEX_military_industrial_complex2
+		cost = 5
+		prerequisite = {
+			focus = TEX_military_industrial_complex2
+		}
+		prerequisite = {
+			focus = TEX_haliburton2
+		}
+		completion_reward = {
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+    	 			type = arms_factory
+    				level = 1
+    				instant_build = yes
+				}
+				add_building_construction = {
+    	 			type = industrial_complex
+    				level = 1
+    				instant_build = yes
+				}
+				add_building_construction = {
+    	 			type = synthetic_refinery
+    				level = 1
+    				instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_mechanised_ranches2
+		icon = GFX_goal_focusmechanizedranches
+		x = 7
+		y = 1
+		relative_position_id = TEX_economy2
+		cost = 5
+		prerequisite = {
+			focus = TEX_economy2
+		}
+		completion_reward = {
+			286 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+    				type = industrial_complex
+    				level = 3
+    				instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_subsidize_smal_farms2
+		icon = GFX_goal_focuslandowner
+		x = -1
+		y = 2
+		relative_position_id = TEX_mechanised_ranches2
+		cost = 5
+		prerequisite = {
+			focus = TEX_mechanised_ranches2
+		}
+		prerequisite = {
+			focus = TEX_military_industrial_complex2
+		}
+		completion_reward = {
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+    				type = industrial_complex
+    				level = 3
+    				instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_research_slot_one2
+		icon = GFX_goal_focusfundeducation
+		x = 1
+		y = 1
+		relative_position_id = TEX_mechanised_ranches2
+		cost = 5
+		prerequisite = {
+			focus = TEX_mechanised_ranches2
+		}
+		completion_reward = {
+			add_research_slot = 1
+		}
+
+	}
+	focus = {
+		id = TEX_research_slot_two2
+		icon = GFX_goal_focusdallasuniversitybook
+		x = 0
+		y = 1
+		relative_position_id = TEX_research_slot_one2
+		cost = 5
+		prerequisite = {
+			focus = TEX_research_slot_one2
+		}
+		available = {
+			has_completed_focus = TEX_complete_recovery
+		}
+		completion_reward = {
+			add_research_slot = 1
+		}
+
+	}
+	focus = {
+		id = TEX_uncle_sam_industry2
+		icon = GFX_goal_focustexasstrong
+		x = 0
+		y = 1
+		relative_position_id = TEX_synthetic2
+		cost = 5
+		prerequisite = {
+			focus = TEX_synthetic2
+		}
+		completion_reward = {
+			44 = {
+				add_extra_state_shared_building_slots = 6
+				add_building_construction = {
+    				type = industrial_complex
+    				level = 6
+    				instant_build = yes
+				}
+			}
+		}
+
+	}
+	
+	focus = {
+		id = TEX_naval_innovations2
+		icon = GFX_goal_focusnavyarrow
+		x = -2
+		y = 1
+		relative_position_id = TEX_economy2
+		cost = 5
+		prerequisite = {
+			focus = TEX_economy2
+		}
+		completion_reward = {
+			add_tech_bonus = {
+			    bonus = 1.0
+			    uses = 3
+			    category = ship_modules_tech
+			}
+			add_tech_bonus = {
+			    bonus = 1.0
+			    uses = 3
+			    category = dd_tech
+			}
+			add_tech_bonus = {
+			    bonus = 1.0
+			    uses = 3
+			    category = ss_tech
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_reopen_ports2
+		icon = GFX_goal_focusdockopen
+		x = -1
+		y = 1
+		relative_position_id = TEX_naval_innovations2
+		cost = 5
+		prerequisite = {
+			focus = TEX_naval_innovations2
+		}
+		completion_reward = {
+			add_building_construction = {
+				type = naval_base
+				level = 6
+				instant_build = yes
+				province = 5022
+			}
+			add_building_construction = {
+				type = naval_base
+				level = 3
+				instant_build = yes
+				province = 11062
+			}
+			add_building_construction = {
+				type = naval_base
+				level = 1
+				instant_build = yes
+				province = 10917
+			}
+			add_building_construction = {
+				type = naval_base
+				level = 1
+				instant_build = yes
+				province = 10918
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_expand_shipping_lanes2
+		icon = GFX_goal_focusdockarrow
+		x = 0
+		y = 1
+		relative_position_id = TEX_reopen_ports2
+		cost = 2
+		prerequisite = {
+			focus = TEX_reopen_ports2
+		}
+		prerequisite = {
+			focus = TEX_merchant_navy2
+		}
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = convoy
+				amount = 100
+				producer = TEX
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_let_the_black_gold_flow2
+		icon = GFX_goal_Drown_in_Black_Gold
+		x = 1
+		y = 1
+		relative_position_id = TEX_naval_innovations2
+		cost = 5
+		prerequisite = {
+			focus = TEX_naval_innovations2
+		}
+		prerequisite = {
+			focus = TEX_black_gold2
+		}
+		completion_reward = {
+			add_resource = {
+				type = oil
+				amount = 50
+				state = 143
+			}
+		}
+
+	}
+	
+	
+	####ARMY TREE
+	
+	
+	focus = {
+		id = TEX_cowboy_country2
+		icon = GFX_goal_Generic_Gunslinger
+		cost = 5
+		x = -9
+		y = 1
+		relative_position_id = TEX_economy2
+		prerequisite = {
+			focus = TEX_economy2
+		}
+		completion_reward = {
+			army_experience = 50
+			add_ideas = TEX_cowboy_army
+		}
+	}
+	focus = {
+		id = TEX_utilize_the_rangers2
+		icon = GFX_goal_focustexenarmy
+		cost = 5
+		x = -4
+		y = 1
+		relative_position_id = TEX_cowboy_country2
+		prerequisite = {
+			focus = TEX_cowboy_country2
+		}
+		completion_reward = {
+			add_manpower = 5500
+			army_experience = 55
+			swap_ideas = {
+				remove_idea = TEX_cowboy_army
+				add_idea = TEX_cowboy_army_2
+			}
+		}
+	}
+	focus = {
+		id = TEX_strengthen_what_we_have2
+		icon = GFX_goal_focusstrongarmy
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = TEX_utilize_the_rangers2
+		prerequisite = {
+			focus = TEX_utilize_the_rangers2
+		}
+		completion_reward = {
+			army_experience = 50
+			add_doctrine_cost_reduction = {
+			    cost_reduction  = 1.0
+			    uses = 3
+			    category = land_doctrine
+			}
+		}
+	}
+	focus = {
+		id = TEX_paratrooper_program2
+		icon = GFX_goal_focusparatrooper
+		cost = 2
+		x = 2
+		y = 1
+		relative_position_id = TEX_utilize_the_rangers2
+		prerequisite = {
+			focus = TEX_utilize_the_rangers2
+		}
+		prerequisite = {
+			focus = TEX_texan_airforce2
+		}
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1
+				uses = 3
+				category = para_tech
+			}
+		}
+	}
+	focus = {
+		id = TEX_expand_transport_production2
+		icon = GFX_goal_Hunters
+		cost = 2
+		x = 0
+		y = 1
+		relative_position_id = TEX_paratrooper_program2
+		prerequisite = {
+			focus = TEX_paratrooper_program2
+		}
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = transport_plane_equipment_1
+				amount = 1000
+				producer = TEX
+			}
+		}
+	}
+	focus = {
+		id = TEX_terrain_experts2
+		icon = GFX_goal_focusmountainsoldier
+		cost = 5
+		x = -2
+		y = 1
+		relative_position_id = TEX_utilize_the_rangers2
+		prerequisite = {
+			focus = TEX_utilize_the_rangers2
+		}
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1
+				uses = 2
+				category = mountaineers_tech
+			}
+		}
+	}
+	focus = {
+		id = TEX_this_land_is_our_land2
+		icon = GFX_goal_focusdefendtexas
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = TEX_terrain_experts2
+		prerequisite = {
+			focus = TEX_terrain_experts2
+		}
+		completion_reward = {
+			add_manpower = 50000
+			army_experience = 50
+		}
+	}
+	focus = {
+		id = TEX_army_innovations2
+		icon = GFX_goal_focusarmyupgrade
+		cost = 5
+		x = 1
+		y = 1
+		relative_position_id = TEX_this_land_is_our_land2
+		prerequisite = {
+			focus = TEX_this_land_is_our_land2
+		}
+		prerequisite = {
+			focus = TEX_modern_cowboys2
+		}
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1
+				uses = 2
+				category = armor
+			}
+			add_tech_bonus = {
+				bonus = 1
+				uses = 2
+				category = infantry_weapons
+			}
+			add_tech_bonus = {
+				bonus = 1
+				uses = 2
+				category = infantry_tech
+			}
+			add_tech_bonus = {
+				bonus = 1
+				uses = 2
+				category = artillery
+			}
+		}
+	}
+	focus = {
+		id = TEX_modern_cowboys2
+		icon = GFX_goal_focuscowboyhatwithguns
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = TEX_strengthen_what_we_have2
+		prerequisite = {
+			focus = TEX_strengthen_what_we_have2
+		}
+		completion_reward = {
+			army_experience = 30
+			swap_ideas = {
+				remove_idea = TEX_cowboy_army_2
+				add_idea = TEX_cowboy_army_3
+			}
+		}
+	}
+	focus = {
+		id = TEX_texan_airforce2
+		icon = GFX_goal_tex_airforce
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = TEX_cowboy_country2
+		prerequisite = {
+			focus = TEX_cowboy_country2
+		}
+		completion_reward = {
+			air_experience = 30
+			add_ideas = TEX_cowboy_airforce
+		}
+	}
+	focus = {
+		id = TEX_explosion_is_key2
+		icon = GFX_goal_focusexplosioniskey
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = TEX_texan_airforce2
+		prerequisite = {
+			focus = TEX_texan_airforce2
+		}
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+			    cost_reduction  = 1.0
+			    uses = 3
+			    category = air_doctrine
+			}
+			swap_ideas = {
+				remove_idea = TEX_cowboy_airforce
+				add_idea = TEX_cowboy_airforce_2
+			}
+		}
+	}
+	focus = {
+		id = TEX_rigid_formations2
+		icon = GFX_goal_focusairformations
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = TEX_explosion_is_key2
+		prerequisite = {
+			focus = TEX_explosion_is_key2
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = TEX_cowboy_airforce_2
+				add_idea = TEX_cowboy_airforce_3
+			}
+			air_experience = 50
+		}
+	}
+	focus = {
+		id = TEX_advancements_in_stealth_tech2
+		icon = GFX_goal_focusstealthbomberresearch
+		cost = 5
+		x = -1
+		y = 1
+		relative_position_id = TEX_rigid_formations2
+		prerequisite = {
+			focus = TEX_rigid_formations2
+		}
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 3
+				category = jet_technology
+			}
+		}
+	}
+	focus = {
+		id = TEX_more_air_fields2
+		icon = GFX_goal_focusbuildingairfield
+		cost = 5
+		x = 1
+		y = 1
+		relative_position_id = TEX_rigid_formations2
+		prerequisite = {
+			focus = TEX_rigid_formations2
+		}
+		completion_reward = {
+			random_owned_state = {
+				add_building_construction = {
+					type = air_base
+					level = 4
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_building_construction = {
+					type = air_base
+					level = 4
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_building_construction = {
+					type = air_base
+					level = 4
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_building_construction = {
+					type = air_base
+					level = 4
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_building_construction = {
+					type = air_base
+					level = 4
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = TEX_merchant_navy2
+		icon = GFX_goal_focustexencarrier
+		cost = 5
+		x = 4
+		y = 1
+		relative_position_id = TEX_cowboy_country2
+		prerequisite = {
+			focus = TEX_cowboy_country2
+		}
+		completion_reward = {
+				add_ideas = TEX_cowboy_navy
+				navy_experience = 30
+		}
+	}
+	focus = {
+		id = TEX_expand_coast_guard2
+		icon = GFX_goal_focusexpandthecoastguard
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = TEX_merchant_navy2
+		prerequisite = {
+			focus = TEX_merchant_navy2
+		}
+		completion_reward = {
+			77 = {
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+			}
+			55 = {
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = TEX_coordinate_border_patrol_and_coast_guard2
+		icon = GFX_goal_focusborderpatrolandcoastguard
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = TEX_expand_coast_guard2
+		prerequisite = {
+			focus = TEX_expand_coast_guard2
+		}
+		completion_reward = {
+			add_tech_bonus = {
+			    bonus = 1.0
+			    uses = 3
+			    category = tp_tech
+			}
+		}
+	}
+	focus = {
+		id = TEX_the_texan_carrier_project2
+		icon = GFX_goal_focusaircraftcarrierresearch
+		cost = 5
+		x = -2
+		y = 1
+		relative_position_id = TEX_merchant_navy2
+		prerequisite = {
+			focus = TEX_merchant_navy2
+		}
+		prerequisite = {
+			focus = TEX_texan_airforce2
+		}
+		completion_reward = {
+			add_tech_bonus = {
+			    bonus = 1.0
+			    uses = 3
+			    category = cv_tech
+			}
+		}
+	}
+	focus = {
+		id = TEX_carrier_fighters2
+		icon = GFX_goal_focuscarrieraircraft
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = TEX_the_texan_carrier_project2
+		prerequisite = {
+			focus = TEX_the_texan_carrier_project2
+		}
+		completion_reward = {
+			add_tech_bonus = {
+			    bonus = 1.0
+			    uses = 3
+			    category = naval_bomber
+			}
+		}
+	}
+	focus = {
+		id = TEX_protect_our_exports2
+		icon = GFX_goal_focusprotectexports
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = TEX_expand_shipping_lanes2
+		prerequisite = {
+			focus = TEX_expand_shipping_lanes2
+		}
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+			    cost_reduction  = 1
+			    uses = 3
+			    category = naval_doctrine
+			}
+			swap_ideas = {
+				remove_idea = TEX_cowboy_navy
+				add_idea = TEX_cowboy_navy_2
+			}
+		}
+	}
+	focus = {
+		id = TEX_build_more_escorts2
+		icon = GFX_goal_focusbuildmoreescorts
+		cost = 5
+		x = -1
+		y = 1
+		relative_position_id = TEX_protect_our_exports2
+		prerequisite = {
+			focus = TEX_protect_our_exports2
+		}
+		prerequisite = {
+			focus = TEX_coordinate_border_patrol_and_coast_guard2
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = TEX_cowboy_navy_2
+				add_idea = TEX_cowboy_navy_3
+			}
+			navy_experience = 50
+		}
+	}
+	
+	focus = {
+		id = TEX_nuclear_power2
+		icon = GFX_goal_Alt_Energy
+		cost = 5
+		x = 3
+		y = 1
+		relative_position_id = TEX_research_slot_one2
+		prerequisite = {
+			focus = TEX_research_slot_one2
+		}
+		completion_reward = {
+			286 = {
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+    				type = industrial_complex
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				bonus = 1.5
+				uses = 3
+				category = nuclear
+			}
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }
