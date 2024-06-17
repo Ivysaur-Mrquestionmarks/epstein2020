@@ -48,24 +48,25 @@ TEX_puppet_regime = {
 			controls_state = 79
 		}
 		available = {
-			OR = {
+			#OR = {
 				has_completed_focus = TEX_allow_the_vote
-				OR = {
-						has_completed_focus = TEX_european_king
-						has_completed_focus = TEX_liberal_king
-				}
-			}
+			#	OR = {
+			#			has_completed_focus = TEX_european_king
+			#			has_completed_focus = TEX_liberal_king
+			#	}
+			#}
 			owns_state = 79
 		}
 		complete_effect = {
 			IF = {
 				LIMIT = {
 					OR = {
-						has_completed_focus = TEX_allow_the_vote
+						has_completed_focus = TEX_elections
 						has_completed_focus = TEX_TNM
 					}
 				}
 				release_puppet = RIO
+				country_event = national_guard.14
 				RIO = {
 					set_cosmetic_tag = RIO_Provisional_Rio_Grande
 					load_focus_tree = rio_grande_national_guard
@@ -84,6 +85,12 @@ TEX_puppet_regime = {
 						traits = {
 							RIO_Military_Governor
 							retired_officer
+						}
+					}
+					hidden_effect = {
+						country_event = {
+							id = national_guard.1
+							days = 6
 						}
 					}
 				}
