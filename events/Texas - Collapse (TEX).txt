@@ -83,6 +83,7 @@ country_event = {
 	title = alamo.2.t
 	desc = alamo.2.d
 	#picture =
+	is_triggered_only = yes
 	fire_only_once = yes
 	trigger = {
 		tag = LOU
@@ -656,7 +657,7 @@ country_event = {
 				add_core_of = FTA
 			}
 			57 = {
-				add_core_of = RED
+				add_core_of = FTA
 			}
 			release = FTA
 			transfer_units_fraction= {
@@ -903,23 +904,11 @@ country_event = {
 			251 = {
 				add_core_of = OKL
 			}
+			if = {
+				limit = { NOT = { has_idea = TEX_reclaim_texas } }
+				add_ideas = TEX_reclaim_texas
+			}
 			release = OKL
-				transfer_units_fraction= {
-					target = BSH
-					size = 0.05
-					stockpile_ratio = 0.3
-					army_ratio = 0.1
-					navy_ratio = 0.0
-					air_ratio = 0.3
-					keep_unit_leaders_trigger = {
-						OR = {
-						has_trait = war_hero
-						has_trait = armor_officer
-						has_trait = old_guard
-						has_trait = infantry_officer
-						}
-					}
-				}
 		}
 	}
 	option = {
@@ -942,6 +931,7 @@ country_event = {
 	id = alamo.13
 	title = alamo.13.t
 	desc = alamo.13.d
+	is_triggered_only = yes
 	#picture = 
 	is_triggered_only = yes
 	immediate = {
@@ -963,6 +953,10 @@ country_event = {
 					has_government = democrat
 				}
 				set_country_flag = texan_democrat
+			}
+			news_event = {
+				id = alamo.17
+				days = 3
 			}
 		}
 	}
@@ -1055,6 +1049,7 @@ country_event = {
 	fire_only_once = yes
 	trigger = {
 	}
+	is_triggered_only = yes
 	option = {
 		name = alamo.15.a 
 		declare_war_on = {
@@ -1063,6 +1058,8 @@ country_event = {
 		}
 	}
 }
+
+
 #trial of traitors
 country_event = {
 	id = alamo.16
@@ -1074,5 +1071,51 @@ country_event = {
 	}
 	option = {
 		name = alamo.16.a
+		add_popularity = {
+			ideology = libertarian_right
+			popularity = 0.5
+		}
+	}
+}
+#news event for texas collapse - ADD SUPER EVENT LATER
+news_event = {
+	id = alamo.17
+	title = alamo.17.t
+	desc = alamo.17.d
+	#picture =
+	is_triggered_only = yes
+	#fire_only_once = yes
+	trigger = {
+	}
+	option = {
+		name = alamo.17.a
+		#if = {
+		#	limit = {NOT = {is_ai = yes}}
+		#	set_country_flag = {
+    	#			flag = super_event
+    	#			value = 8
+		#	}
+		#	if = { 
+		#		limit = { NOT= { any_other_country = { has_country_flag = super_event } } } 
+		#		sound_effect = 	"tucker_audio"
+		#	}
+		#}	
+	}
+}
+#lolbertarian bill of rights
+country_event = {
+	id = alamo.18
+	title = alamo.18.t
+	desc = alamo.18.d
+	#picture =
+	fire_only_once = yes
+	trigger = {
+	}
+	option = {
+		name = alamo.18.a
+		swap_ideas = {
+			remove_idea = TEX_lolbert_texas_idea
+			add_idea = TEX_lolbert_texas_idea2
+		}
 	}
 }
