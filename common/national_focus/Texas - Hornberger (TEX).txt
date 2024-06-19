@@ -48,6 +48,72 @@ focus_tree = {
 				}
 				remove_ideas = TEX_great_frost_4
 			}
+			if = {
+				limit = {
+					has_idea = TEX_New_Mexican_Terrorism
+				}
+				remove_ideas = TEX_New_Mexican_Terrorism
+			}
+			if = {
+				limit = {
+					has_idea = TEX_Oklahoma_Rebels
+				}
+				remove_ideas = TEX_Oklahoma_Rebels
+			}
+			if = {
+				limit = {
+					has_idea = TEX_powerful_oil_barons
+				}
+				remove_ideas = TEX_powerful_oil_barons
+			}
+			if = {
+				limit = {
+					has_idea = TEX_friendly_oil_barons
+				}
+				remove_ideas = TEX_friendly_oil_barons
+			}
+			if = {
+				limit = {
+					has_idea = TEX_oil_baron_influence
+				}
+				remove_ideas = TEX_oil_baron_influence
+			}
+			if = {
+				limit = {
+					has_idea = TEX_oil_barons_crushed
+				}
+				remove_ideas = TEX_oil_barons_crushed
+			}
+			if = {
+				limit = {
+					has_idea = TEX_oil_barons_controlled
+				}
+				remove_ideas = TEX_oil_barons_controlled
+			}
+			if = {
+				limit = {
+					has_idea = TEX_oil_barons_in_gov
+				}
+				remove_ideas = TEX_oil_barons_in_gov
+			}
+			if = {
+				limit = {
+					has_idea = TEX_NRA_empowered
+				}
+				remove_ideas = TEX_NRA_empowered
+			}
+			if = {
+				limit = {
+					has_idea = TEX_NRA_moderate
+				}
+				remove_ideas = TEX_NRA_moderate
+			}
+			if = {
+				limit = {
+					has_idea = TEX_NRA_finished
+				}
+				remove_ideas = TEX_NRA_finished
+			}
 		}
 
 	}
@@ -83,7 +149,7 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_stop_it
-		icon = GFX_goal_Drain_the_Swamp
+		icon = GFX_goal_Texas
 		cost = 1.00
 		prerequisite = {
 			focus = TEX_2_fuck_fuck_fuck
@@ -114,7 +180,7 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_central_texas_secured
-		icon = GFX
+		icon = GFX_goal_Force_Texas_into_the_fold_war
 		cost = 5.00
 		prerequisite = {
 			focus = TEX_god_fucking_dammit
@@ -122,15 +188,112 @@ focus_tree = {
 		x = 0
 		y = 1
 		relative_position_id = TEX_god_fucking_dammit
-		available = { has_war = no }
+		#available = { has_war = no }
 		completion_reward = {
 			add_political_power = 50
 			add_stability = 0.1
 		}
 	}
 	focus = {
+		id = TEX_fill_logistical_problems_cw
+		icon = GFX_goal_CSA_trucks
+		cost = 1.00
+		prerequisite = {
+			focus = TEX_central_texas_secured
+		}
+		x = -4
+		y = 1
+		relative_position_id = TEX_central_texas_secured
+		available = { has_global_flag = texan_collapse }
+		completion_reward = {
+			add_equipment_to_stockpile = {
+    				type = motorized_equipment
+    				amount = 750
+			}
+		}
+	}
+	focus = {
+		id = TEX_emergency_factory_construction_cw
+		icon = GFX_focus_generic_reorient_production
+		cost = 1.00
+		prerequisite = {
+			focus = TEX_central_texas_secured
+		}
+		x = 4
+		y = 1
+		relative_position_id = TEX_central_texas_secured
+		available = { has_global_flag = texan_collapse }
+		completion_reward = {
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = arms_factory
+    				level = 1
+    				instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = TEX_emergency_recruitment_cw
+		icon = GFX_goal_Mandatory_Military_Service
+		cost = 1.00
+		prerequisite = {
+			focus = TEX_central_texas_secured
+		}
+		x = 6
+		y = 1
+		relative_position_id = TEX_central_texas_secured
+		available = { has_global_flag = texan_collapse }
+		completion_reward = {
+			add_manpower = 50000
+		}
+	}
+	focus = {
+		id = TEX_scavenge_guns_cw
+		icon = GFX_goal_More_Weapons
+		cost = 1.00
+		prerequisite = {
+			focus = TEX_central_texas_secured
+		}
+		x = -6
+		y = 1
+		relative_position_id = TEX_central_texas_secured
+		available = { has_global_flag = texan_collapse }
+		completion_reward = {
+			add_equipment_to_stockpile = {
+    				type = infantry_equipment
+    				amount = 2500
+			}
+		}
+	}
+	focus = {
+		id = TEX_focus_east_texas
+		icon = GFX_goal_Beto_ORourke_Victory
+		cost = 5.00
+		prerequisite = {
+			focus = TEX_central_texas_secured
+		}
+		x = -2
+		y = 1
+		relative_position_id = TEX_central_texas_secured
+		available = { has_war = no }
+		will_lead_to_war_with = CRU	
+		will_lead_to_war_with = BET
+		completion_reward = {
+			declare_war_on = {
+				target = CRU
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = BET
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
 		id = TEX_focus_west_texas
-		icon = GFX
+		icon = GFX_goal_Free_Texan_Army_Coup
 		cost = 5.00
 		prerequisite = {
 			focus = TEX_central_texas_secured
@@ -158,32 +321,8 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = TEX_focus_east_texas
-		icon = GFX
-		cost = 5.00
-		prerequisite = {
-			focus = TEX_central_texas_secured
-		}
-		x = -2
-		y = 1
-		relative_position_id = TEX_central_texas_secured
-		available = { has_war = no }
-		will_lead_to_war_with = CRU	
-		will_lead_to_war_with = BET
-		completion_reward = {
-			declare_war_on = {
-				target = CRU
-				type = annex_everything
-			}
-			declare_war_on = {
-				target = BET
-				type = annex_everything
-			}
-		}
-	}
-	focus = {
 		id = TEX_focus_north_texas
-		icon = GFX
+		icon = GFX_focus_generic_limited_social_mobilization
 		cost = 5.00
 		prerequisite = {
 			focus = TEX_central_texas_secured
@@ -207,7 +346,7 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_texas_restored
-		icon = GFX
+		icon = GFX_goal_Offer_Texas_a_peaceful_Solutions
 		cost = 5.00
 		x = 0
 		y = 1
@@ -225,6 +364,11 @@ focus_tree = {
 		completion_reward = {
 			set_cosmetic_tag = TEX
 			remove_ideas = TEX_reclaim_texas
+			hidden_effect = {
+				delete_unit = {
+					division_template = "Militia"
+				}
+			}
 		}
 	}
 	

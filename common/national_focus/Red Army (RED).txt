@@ -9,13 +9,204 @@ focus_tree = {
 	}
 	default = no
 	
+	# CW Tree 
+	focus = {
+		id = RED_central_texas_secured
+		icon = GFX
+		cost = 5.00
+		prerequisite = {
+		}
+		x = 10
+		y = 0
+		#relative_position_id = 
+		#available = { NOT = { country_exists = TEX } }
+		completion_reward = {
+			add_political_power = 50
+			add_stability = 0.1
+		}
+	}
+	focus = {
+		id = RED_fill_logistical_problems_cw
+		icon = GFX
+		cost = 1.00
+		prerequisite = {
+			focus = RED_central_texas_secured
+		}
+		x = -4
+		y = 1
+		relative_position_id = RED_central_texas_secured
+		available = { has_global_flag = texan_collapse }
+		completion_reward = {
+			add_equipment_to_stockpile = {
+    				type = motorized_equipment
+    				amount = 750
+			}
+		}
+	}
+	focus = {
+		id = RED_emergency_factory_construction_cw
+		icon = GFX
+		cost = 1.00
+		prerequisite = {
+			focus = RED_central_texas_secured
+		}
+		x = 4
+		y = 1
+		relative_position_id = RED_central_texas_secured
+		available = { has_global_flag = texan_collapse }
+		completion_reward = {
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = arms_factory
+    				level = 1
+    				instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = RED_emergency_recruitment_cw
+		icon = GFX
+		cost = 1.00
+		prerequisite = {
+			focus = RED_central_texas_secured
+		}
+		x = 6
+		y = 1
+		relative_position_id = RED_central_texas_secured
+		available = { has_global_flag = texan_collapse }
+		completion_reward = {
+			add_manpower = 50000
+		}
+	}
+	focus = {
+		id = RED_scavenge_guns_cw
+		icon = GFX
+		cost = 1.00
+		prerequisite = {
+			focus = RED_central_texas_secured
+		}
+		x = -6
+		y = 1
+		relative_position_id = RED_central_texas_secured
+		available = { has_global_flag = texan_collapse }
+		completion_reward = {
+			add_equipment_to_stockpile = {
+    				type = infantry_equipment
+    				amount = 2500
+			}
+		}
+	}
+	focus = {
+		id = RED_focus_east_texas
+		icon = GFX
+		cost = 5.00
+		prerequisite = {
+			focus = RED_central_texas_secured
+		}
+		x = -2
+		y = 1
+		relative_position_id = RED_central_texas_secured
+		available = { has_war = no }
+		will_lead_to_war_with = CRU	
+		will_lead_to_war_with = BET
+		completion_reward = {
+			declare_war_on = {
+				target = CRU
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = BET
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = RED_focus_west_texas
+		icon = GFX
+		cost = 5.00
+		prerequisite = {
+			focus = RED_central_texas_secured
+		}
+		x = 2
+		y = 1
+		relative_position_id = RED_central_texas_secured
+		available = { has_war = no }
+		will_lead_to_war_with = TEX
+		will_lead_to_war_with = SAN
+		completion_reward = {
+			declare_war_on = {
+				target = TEX
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = SAN
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = RED_focus_north_texas
+		icon = GFX
+		cost = 5.00
+		prerequisite = {
+			focus = RED_central_texas_secured
+		}
+		x = 0
+		y = 1
+		relative_position_id = RED_central_texas_secured
+		available = { has_war = no }
+		will_lead_to_war_with = BLA
+		will_lead_to_war_with = CRN
+		completion_reward = {
+			declare_war_on = {
+				target = CRN
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = BLA
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = RED_texas_restored
+		icon = GFX
+		cost = 5.00
+		x = 0
+		y = 1
+		relative_position_id = RED_focus_north_texas
+		available = { has_war = no }
+		prerequisite = {
+			focus = RED_focus_east_texas
+		}
+		prerequisite = {
+			focus = RED_focus_north_texas
+		}
+		prerequisite = {
+			focus = RED_focus_west_texas
+		}
+		completion_reward = {
+			set_cosmetic_tag = TEX
+			remove_ideas = TEX_reclaim_texas
+			hidden_effect = {
+				delete_unit = {
+					division_template = "Militia"
+				}
+			}
+		}
+	}
 	
+	
+	#ECON TREE
 	focus = {
 		id = TEX_economy555
 		icon = GFX_goal_focustexaneconomy
 		cost = 5
 		x = 50
 		y = 0
+		available = { has_completed_focus = RED_texas_restored }
 		completion_reward = {
 			add_tech_bonus = {
 			    bonus = 1.5
