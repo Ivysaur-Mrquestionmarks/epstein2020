@@ -200,8 +200,2289 @@ focus_tree = {
 					division_template = "Militia"
 				}
 			}
+			every_state = {
+				limit = { 
+					is_core_of = BLA
+				}
+				add_core_of = ROOT
+			}
+			every_state = {
+				limit = { 
+					is_core_of = TEX
+				}
+				add_core_of = ROOT
+			}
+			every_state = {
+				limit = { 
+					is_core_of = CRU
+				}
+				add_core_of = ROOT
+			}
+			every_state = {
+				limit = { 
+					is_core_of = CRN
+				}
+				add_core_of = ROOT
+			}
+			every_state = {
+				limit = { 
+					is_core_of = RED
+				}
+				add_core_of = ROOT
+			}
+			every_state = {
+				limit = { 
+					is_core_of = FAL
+				}
+				add_core_of = ROOT
+			}
+			every_state = {
+				limit = { 
+					is_core_of = FTA
+				}
+				add_core_of = ROOT
+			}
+			every_state = {
+				limit = { 
+					is_core_of = BET
+				}
+				add_core_of = ROOT
+			}
+			every_state = {
+				limit = { 
+					is_core_of = TXL
+				}
+				add_core_of = ROOT
+			}
+			every_state = {
+				limit = { 
+					is_core_of = SAN
+				}
+				add_core_of = ROOT
+			}
 		}
 	}
+	
+	
+	
+	
+	
+	# POLITIC
+	focus = {
+		id = CRU_results
+		icon = GFX_goal_TEX_Republicans
+		x = 25
+		y = 0
+		cost = 5
+		available = { has_completed_focus = CRU_texas_restored }
+		completion_reward = {
+			country_event = alamo.19
+		}
+
+	}
+	
+	####First Cruz Tree
+	focus = {
+		id = CRU_in_bed_with_ted
+		icon = GFX_goal_Cruz_Control
+		x = -5
+		y = 1
+		relative_position_id = CRU_results
+		cost = 5
+		prerequisite = {
+			focus = CRU_results
+		}
+		mutually_exclusive = {
+			focus = CRU_loyalty_to_trump
+			focus = CRU_abbott
+		}
+		available = {
+			has_country_flag = cruz_wins_election
+		}
+		completion_reward = {
+			add_popularity = {
+			    ideology = libertarian_right
+			    popularity = 0.15
+			}
+		}
+
+	}
+	focus = {
+		id = CRU_kill_atomwaffen
+		icon = GFX_goal_Put_Down_Nazi_Threat
+		x = 0
+		y = 1
+		relative_position_id = CRU_in_bed_with_ted
+		cost = 5
+		prerequisite = {
+			focus = CRU_in_bed_with_ted
+		}
+		available = {
+			HOP = {
+				exists = yes
+				has_government = autocratic
+			}
+		}
+		will_lead_to_war_with = HOP
+		completion_reward = {
+			declare_war_on = {
+			    target = HOP
+			    type = annex_everything
+			}
+		}
+
+	}
+	focus = {
+		id = CRU_tribal_occupation_zone
+		icon = GFX_goal_Tribal_Occupation_Zone
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = CRU_kill_atomwaffen
+		prerequisite = {
+			focus = CRU_kill_atomwaffen
+		}
+		available = {
+			NOT = {
+				has_war_with = HOP
+				country_exists = HOP
+			}
+			40 = {
+        		is_owned_by = TEX
+    		}
+		}
+		completion_reward = {
+				every_state = {
+					limit = { is_core_of = HOP }
+					add_core_of = CRU
+				}
+		}
+	}
+	focus = {
+		id = CRU_restore_order_in_Hammer_city
+		icon = GFX_goal_Restore_Order_Hammer_City
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = CRU_tribal_occupation_zone
+		prerequisite = {
+			focus = CRU_tribal_occupation_zone
+		}
+		completion_reward = {
+				HAM = { country_event = texas.31 }
+				create_wargoal = {
+					target = HAM
+					type = annex_everything
+				}
+		}
+	}
+	focus = {
+		id = CRU_crush_the_mormons
+		icon = GFX_goal_Crush_Mormonism
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = CRU_restore_order_in_Hammer_city
+		prerequisite = {
+			focus = CRU_restore_order_in_Hammer_city
+		}
+		mutually_exclusive = { focus = CRU_crush_the_freedom_coalition }
+		available = {
+		}
+		completion_reward = {
+				create_wargoal = {
+					target = UTA
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = AFO
+					type = annex_everything
+				}
+		}
+	}
+	focus = {
+		id = CRU_crush_the_freedom_coalition
+		icon = GFX_goal_Crush_The_Freedom_Coalition
+		cost = 5
+		x = 2
+		y = 1
+		relative_position_id = CRU_restore_order_in_Hammer_city
+		prerequisite = {
+			focus = CRU_restore_order_in_Hammer_city
+		}
+		mutually_exclusive = { focus = CRU_crush_the_mormons }
+		available = {
+		}
+		completion_reward = {
+				create_wargoal = {
+					target = AFO
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = MOL
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = SIN
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = LAS
+					type = annex_everything
+				}
+		}
+	}
+	focus = {
+		id = CRU_A_Deal_With_Trump
+		icon = GFX_goal_A_Deal_With_Trump
+		cost = 5
+		x = 0
+		y = 1
+		bypass = { NOT = { country_exists = USA } }
+		relative_position_id = CRU_crush_the_mormons
+		prerequisite = {
+			focus = CRU_crush_the_freedom_coalition
+			focus = CRU_crush_the_mormons
+		}
+		prerequisite = {
+			focus = CRU_ties_with_texan_nra
+		}
+		available = {
+		}
+		completion_reward = {
+				IDA = { country_event = texas.30 }
+		}
+	}
+	focus = {
+		id = CRU_Finish_The_Cali_Texas_Rivalry
+		icon = GFX_goal_Finish_Tex_Cali_Rivalry
+		cost = 5
+		x = -1
+		y = 1
+		relative_position_id = CRU_A_Deal_With_Trump
+		prerequisite = {
+			focus = CRU_A_Deal_With_Trump
+		}
+		available = {
+		}
+		completion_reward = {
+				create_wargoal = {
+					target = PRA
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = JFR
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = FIR
+					type = annex_everything
+				}
+		}
+	}
+	focus = {
+		id = CRU_Invade_Montana
+		icon = GFX_goal_Invade_Montana
+		cost = 5
+		x = 1
+		y = 1
+		relative_position_id = CRU_A_Deal_With_Trump
+		prerequisite = {
+			focus = CRU_A_Deal_With_Trump
+		}
+		available = {
+				
+		}
+		completion_reward = {
+				create_wargoal = {
+					target = MON
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = IDA
+					type = annex_everything
+				}
+		}
+	}
+	focus = {
+		id = CRU_March_Into_Cascadia
+		icon = GFX_goal_March_Into_Cascadia
+		cost = 5
+		x = -1
+		y = 1
+		relative_position_id = CRU_Invade_Montana
+		prerequisite = {
+			focus = CRU_Invade_Montana
+			focus = CRU_Finish_The_Cali_Texas_Rivalry
+		}
+		available = {
+		}
+		completion_reward = {
+				create_wargoal = {
+					target = CAS
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = LIB
+					type = annex_everything
+				}
+		}
+	}
+	focus = {
+		id = CRU_Claim_all_of_Cali
+		icon = GFX_goal_Claim_California
+		cost = 5
+		x = -1
+		y = 1
+		relative_position_id = CRU_Finish_The_Cali_Texas_Rivalry
+		prerequisite = {
+			focus = CRU_Finish_The_Cali_Texas_Rivalry
+		}
+		prerequisite = {
+			focus = CRU_send_former_rebels_to_rio_grande
+		}
+		available = {
+				NOT = { country_exists = PRA }
+				has_completed_focus = CRU_Finish_The_Cali_Texas_Rivalry	
+		}
+		completion_reward = {
+				every_state = { 
+					limit = { is_core_of = PRA }
+					add_core_of = CRU
+				}
+		}
+	}
+	focus = {
+		id = CRU_Bring_49_and_50_back_into_the_fold
+		icon = GFX_goal_Bring_49_And_50_Into_The_Fold
+		cost = 5
+		x = 3
+		y = 1
+		relative_position_id = CRU_Finish_The_Cali_Texas_Rivalry
+		prerequisite = {
+			focus = CRU_Finish_The_Cali_Texas_Rivalry
+		}
+		available = {
+		}
+		completion_reward = {
+				PAC = { country_event = texas.31 }
+				ALA = { country_event = texas.31 }
+		}
+	}
+	focus = {
+		id = CRU_Western_Republic_of_America
+		icon = GFX_goal_Western_American_Republic
+		cost = 5
+		x = -0
+		y = 1
+		relative_position_id = CRU_March_Into_Cascadia
+		prerequisite = {
+			focus = CRU_March_Into_Cascadia
+		}
+		prerequisite = {
+			focus = CRU_Bring_49_and_50_back_into_the_fold
+		}
+		prerequisite = {
+			focus = CRU_Claim_all_of_Cali
+		}
+		available = {
+			NOT = {
+				country_exists = UTA
+				country_exists = SIN
+				country_exists = AFO
+				country_exists = CAS
+				country_exists = PAC
+				country_exists = MON
+				country_exists = IDA
+				country_exists = MON
+				country_exists = MOL
+			}
+		}
+		completion_reward = {
+				set_cosmetic_tag = TEX_WRA
+				every_state = {
+					limit = { is_core_of = UTA }
+					add_core_of = CRU
+				}
+				every_state = {
+					limit = { is_core_of = SIN }
+					add_core_of = CRU
+				}
+				every_state = {
+					limit = { is_core_of = AFO }
+					add_core_of = CRU
+				}
+				every_state = {
+					limit = { is_core_of = CAS }
+					add_core_of = CRU
+				}
+				every_state = {
+					limit = { is_core_of = PAC }
+					add_core_of = CRU
+				}
+				every_state = {
+					limit = { is_core_of = MON }
+					add_core_of = CRU
+				}
+				every_state = {
+					limit = { is_core_of = IDA }
+					add_core_of = CRU
+				}
+				every_state = {
+					limit = { is_core_of = MOL }
+					add_core_of = CRU
+				}
+				set_country_flag = cruise_goes_on
+				mark_focus_tree_layout_dirty = yes
+				hidden_effect = {
+						USA = {
+							transfer_state = 118
+							transfer_state = 119
+							transfer_state = 86
+							transfer_state = 565
+							transfer_state = 70
+							transfer_state = 35
+							transfer_state = 39
+							transfer_state = 567
+							transfer_state = 570
+							transfer_state = 67
+							transfer_state = 64
+							transfer_state = 63
+							transfer_state = 569
+							transfer_state = 425
+							transfer_state = 430
+							transfer_state = 400
+							transfer_state = 517
+							transfer_state = 510
+							transfer_state = 348
+							transfer_state = 486
+						}
+				}
+		}
+	}
+	focus = {
+		id = CRU_cultural_counter_revolution
+		icon = GFX_goal_Cultural_Counter_Revolution
+		x = 20
+		y = 1
+		relative_position_id = CRU_results
+		cost = 5
+		prerequisite = {
+			focus = CRU_results
+		}
+		completion_reward = {
+				add_ideas = TEX_cultural_counterrevolution
+		}
+	}
+	focus = {
+		id = CRU_retake_lou
+		icon = GFX
+		x = 1
+		y = 1
+		relative_position_id = CRU_cultural_counter_revolution
+		cost = 5
+		prerequisite = {
+			focus = CRU_cultural_counter_revolution
+		}
+		available = { NOT = { has_completed_focus = CRU_abbott } }
+		will_lead_to_war_with = LOU
+		completion_reward = {
+			declare_war_on = {
+				target = LOU
+				type = annex_everything 
+			}
+			every_state = { limit = { is_core_of = LOU }  add_core_of = CRU }
+		}
+	}
+	focus = {
+		id = CRU_retake_okl
+		icon = GFX
+		x = 0
+		y = 1
+		relative_position_id = CRU_retake_lou
+		cost = 5
+		prerequisite = {
+			focus = CRU_retake_lou
+		}
+		available = { NOT = { has_completed_focus = CRU_abbott } }
+		will_lead_to_war_with = OKL
+		completion_reward = {
+			declare_war_on = {
+				target = OKL
+				type = annex_everything 
+			}
+			every_state = { limit = { is_core_of = OKL }  add_core_of = CRU }
+		}
+	}
+	focus = {
+		id = CRU_ban_LGBTQIA2S_Thinking
+		icon = GFX_goal_Ban_LGBT_Thinking
+		x = -1
+		y = 1
+		relative_position_id = CRU_cultural_counter_revolution
+		cost = 5
+		prerequisite = {
+			focus = CRU_cultural_counter_revolution
+		}
+		completion_reward = {
+			swap_ideas = { 
+				remove_idea = TEX_cultural_counterrevolution
+				add_idea = TEX_cultural_counterrevolution2
+			}
+		}
+	}
+	focus = {
+		id = CRU_the_ten_commandments_in_school
+		icon = GFX_goal_10_Commandments_School
+		x = 0
+		y = 1
+		relative_position_id = CRU_ban_LGBTQIA2S_Thinking
+		cost = 5
+		prerequisite = {
+			focus = CRU_ban_LGBTQIA2S_Thinking
+		}
+		completion_reward = {
+			swap_ideas = { 
+				remove_idea = TEX_cultural_counterrevolution2
+				add_idea = TEX_cultural_counterrevolution3
+			}
+		}
+	}
+	focus = {
+		id = CRU_surrounded_on_all_fronts
+		icon = GFX_goal_Surrounded_On_All_Fronts
+		cost = 5
+		x = -2
+		y = 1
+		relative_position_id = CRU_in_bed_with_ted
+		prerequisite = {
+			focus = CRU_in_bed_with_ted
+		}
+		completion_reward = {
+			add_ideas = TEX_armed_neutrality
+		}
+
+	}
+	focus = {
+		id = CRU_Cozy_up_to_Oil_Barons
+		icon = GFX_goal_Cozy_Up_To_Oil_Barons
+		x = 5
+		y = 1
+		relative_position_id = CRU_cultural_counter_revolution
+		cost = 5
+		prerequisite = {
+			focus = CRU_cultural_counter_revolution
+		}
+		available = { NOT = { has_completed_focus = CRU_abbott } }
+		completion_reward = {
+			add_ideas = TEX_powerful_oil_barons
+		}
+	}
+	focus = {
+		id = CRU_expand_oil_production
+		icon = GFX_goal_Expand_Oil_Production
+		x = 0
+		y = 1
+		relative_position_id = CRU_Cozy_up_to_Oil_Barons
+		cost = 5
+		prerequisite = {
+			focus =  CRU_Cozy_up_to_Oil_Barons
+		}
+		completion_reward = {
+				swap_ideas = {
+						remove_idea = TEX_powerful_oil_barons
+						add_idea = TEX_oil_barons_in_gov
+				}
+		}
+	}
+	focus = {
+		id = CRU_deregulate_the_economy
+		icon = GFX_goal_Deregulate_The_Economy
+		x = 0
+		y = 1
+		relative_position_id = CRU_politicize_the_fed
+		cost = 5
+		prerequisite = {
+			focus = CRU_politicize_the_fed
+		}
+		completion_reward = {
+				add_ideas = TEX_econ_dergegulate
+		}
+	}
+	focus = {
+		id = CRU_send_migrants_back
+		icon = GFX_goal_Send_Migrants_Back
+		x = 0
+		y = 1
+		relative_position_id = CRU_finish_the_wall
+		cost = 5
+		prerequisite = {
+			focus = CRU_finish_the_wall
+		}
+		completion_reward = {
+			add_manpower = -50000
+			RIO = { add_manpower = 50000 }
+			add_stability  = 0.2
+		}
+	}
+	focus = {
+		id = CRU_ties_with_texan_nra
+		icon = GFX_goal_Ties_With_Texan_NRA
+		x = 0
+		y = 1
+		relative_position_id = CRU_Encourage_Gun_Owners_to_Enlist
+		cost = 3
+		prerequisite = {
+			focus = CRU_Encourage_Gun_Owners_to_Enlist
+		}
+		completion_reward = {
+			286 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = arms_factory
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			add_ideas = TEX_NRA_empowered
+		}
+	}
+	focus = {
+		id = CRU_provide_for_the_border_patrol
+		icon = GFX_goal_Provide_For_Border_Patrol
+		x = -1
+		y = 1
+		relative_position_id = CRU_ties_with_texan_nra
+		cost = 3
+		prerequisite = {
+			focus = CRU_ties_with_texan_nra
+		}
+		completion_reward = {
+			306 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+    				type = arms_factory
+    				level = 3
+    				instant_build = yes
+				}
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_1
+				amount = 5000
+			}
+
+		}
+	}
+	focus = {
+		id = CRU_send_former_rebels_to_rio_grande
+		icon = GFX_goal_Send_Former_Rebels_To_Rio_Grande
+		x = 0
+		y = 1
+		relative_position_id = CRU_provide_for_the_border_patrol
+		cost = 1
+		prerequisite = {
+			focus = CRU_provide_for_the_border_patrol
+		}
+		completion_reward = {
+			RIO = { add_manpower = 10000 }
+			57 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = industrial_complex
+    				level = 1
+    				instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = CRU_cruise_goes_on
+		icon = GFX_goal_Generic_Liberalism
+		cost = 0
+		x = 0
+		y = 3
+		relative_position_id = CRU_cultural_counter_revolution
+		prerequisite = {
+			focus = CRU_cultural_counter_revolution
+		}
+		available = {
+		}
+		#allow_branch = { has_country_flag = cruise_goes_on }
+		completion_reward = {
+				
+		}
+	}
+	focus = {
+		id = CRU_Backstab_Trump
+		icon = GFX_goal_Generic_Liberalism
+		cost = 5
+		x = 1
+		y = 1
+		relative_position_id = CRU_cruise_goes_on
+		prerequisite = {
+			focus = CRU_cruise_goes_on
+		}
+		available = {
+		}
+		completion_reward = {
+				create_wargoal = {
+					target = USA
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = NPA
+					type = annex_everything
+				}
+		}
+	}
+	focus = {
+		id = CRU_Cruz_in_Dixie
+		icon = GFX_goal_Generic_Liberalism
+		cost = 5
+		x = -1
+		y = 1
+		relative_position_id = CRU_cruise_goes_on
+		prerequisite = {
+			focus = CRU_cruise_goes_on
+		}
+		available = {
+		}
+		completion_reward = {
+				create_wargoal = {
+					target = FLO
+					type = annex_everything
+				}
+				if = { 
+					limit = { country_exists = NSA }
+					create_wargoal = {
+						target = NSA
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = GKJ }
+					create_wargoal = {
+						target = GKJ
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = FLD }
+					create_wargoal = {
+						target = FLD
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = FLA }
+					create_wargoal = {
+						target = FLA
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = SEM }
+					create_wargoal = {
+						target = SEM
+						type = annex_everything
+					}
+				}
+				create_wargoal = {
+					target = CSA
+					type = annex_everything
+				}
+				IF = { 
+					limit = { country_exists = KKK }
+					create_wargoal = {
+						target = KKK
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = LGB }
+					create_wargoal = {
+						target = LGB
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = sca }
+					create_wargoal = {
+						target = sca
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = ZIO }
+					create_wargoal = {
+						target = ZIO
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = ARK }
+					create_wargoal = {
+						target = ARK
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = AFR }
+					create_wargoal = {
+						target = AFR
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = CSB }
+					create_wargoal = {
+						target = CSB
+						type = annex_everything
+					}
+				}
+		}
+	}
+	focus = {
+		id = CRU_Just_Going_to_meet_friends_in_appalachia
+		icon = GFX_goal_Generic_Liberalism
+		cost = 5
+		x = -1
+		y = 1
+		relative_position_id = CRU_Cruz_in_Dixie
+		prerequisite = {
+			focus = CRU_Cruz_in_Dixie
+		}
+		prerequisite = {
+			focus = CRU_Backstab_Trump
+		}
+		available = {
+		}
+		completion_reward = {
+				create_wargoal = {
+					target = NRA
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = AFS
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = KFC
+					type = annex_everything
+				}
+		}
+	}
+	focus = {
+		id = CRU_visit_the_great_lakes
+		icon = GFX_goal_Generic_Liberalism
+		cost = 5
+		x = 3
+		y = 1
+		relative_position_id = CRU_Cruz_in_Dixie
+		prerequisite = {
+			focus = CRU_Cruz_in_Dixie
+		}
+		prerequisite = {
+			focus = CRU_Backstab_Trump
+		}
+		available = {
+		}
+		completion_reward = {
+				create_wargoal = {
+					target = GLA
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = KMT
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = MIL
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = MNS
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = MIN
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = ISA
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = DET
+					type = annex_everything
+				}
+		}
+	}
+	focus = {
+		id = CRU_Im_Actually_America
+		icon = GFX_goal_Generic_Liberalism
+		cost = 5
+		x = 1
+		y = 1
+		relative_position_id = CRU_Cruz_in_Dixie
+		prerequisite = {
+			focus = CRU_Cruz_in_Dixie
+		}
+		prerequisite = {
+			focus = CRU_Backstab_Trump
+		}
+		available = {
+		}
+		completion_reward = {
+				Every_state = { 
+					limit = { is_core_of = USA }
+					add_core_of = CRU
+				}
+		}
+	}
+	focus = {
+		id = CRU_I_want_to_go_back_to_DC
+		icon = GFX_goal_Generic_Liberalism
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = CRU_Im_Actually_America
+		prerequisite = {
+			focus = CRU_Im_Actually_America
+		}
+		prerequisite = {
+			focus = CRU_visit_the_great_lakes
+		}
+		prerequisite = {
+			focus = CRU_Just_Going_to_meet_friends_in_appalachia
+		}
+		available = {
+		}
+		completion_reward = {
+				create_wargoal = {
+					target = FRA
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = RVR
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = VIR
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = NEW
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = NAB
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = WBK
+					type = annex_everything
+				}
+		}
+	}
+	focus = {
+		id = CRU_neuter_democrats
+		icon = GFX_goal_Neuter_The_Democrats
+		x = 0
+		y = 1
+		relative_position_id = CRU_childrens_social_media_safety
+		cost = 5
+		prerequisite = {
+			focus = CRU_childrens_social_media_safety
+		}
+		completion_reward = {
+			add_popularity = {
+				ideology = democrat
+				popularity = -0.20
+			}
+		}
+
+	}
+	focus = {
+		id = CRU_finish_the_wall
+		icon = GFX_goal_Finish_The_Wall
+		x = -5
+		y = 1
+		relative_position_id = CRU_cultural_counter_revolution
+		cost = 5
+		prerequisite = {
+			focus = CRU_cultural_counter_revolution
+		}
+		completion_reward = {
+			50 = {
+				add_building_construction = {
+			    	type = bunker
+			    	level = 1
+			    	instant_build = yes
+			    	province = 3162
+				}
+				add_building_construction = {
+			    	type = bunker
+			    	level = 1
+			    	instant_build = yes
+			    	province = 11265
+				}
+				add_building_construction = {
+			    	type = bunker
+			    	level = 1
+			    	instant_build = yes
+			    	province = 11257
+				}
+				add_building_construction = {
+			    	type = bunker
+			    	level = 1
+			    	instant_build = yes
+			    	province = 11248
+				}
+				add_building_construction = {
+			    	type = bunker
+			    	level = 1
+			    	instant_build = yes
+			    	province = 11241
+				}
+				add_building_construction = {
+			    	type = bunker
+			    	level = 1
+			    	instant_build = yes
+			    	province = 3125
+				}
+				add_building_construction = {
+			    	type = bunker
+			    	level = 1
+			    	instant_build = yes
+			    	province = 3995
+				}
+				add_building_construction = {
+			    	type = bunker
+			    	level = 1
+			    	instant_build = yes
+			    	province = 11203
+				}
+				add_building_construction = {
+			    	type = bunker
+			    	level = 1
+			    	instant_build = yes
+			    	province = 3837
+				}
+				add_building_construction = {
+			    	type = bunker
+			    	level = 1
+			    	instant_build = yes
+			    	province = 11169
+				}
+				add_building_construction = {
+			    	type = bunker
+			    	level = 1
+			    	instant_build = yes
+			    	province = 3021
+				}
+				add_building_construction = {
+			    	type = bunker
+			    	level = 1
+			    	instant_build = yes
+			    	province = 1624
+				}
+			}
+			57 = {
+				add_building_construction = {
+			    	type = bunker
+			    	level = 1
+			    	instant_build = yes
+			    	province = 3758
+				}
+				add_building_construction = {
+			    	type = bunker
+			    	level = 1
+			    	instant_build = yes
+			    	province = 10972
+				}
+				add_building_construction = {
+			    	type = bunker
+			    	level = 1
+			    	instant_build = yes
+			    	province = 10941
+				}
+				add_building_construction = {
+			    	type = bunker
+			    	level = 1
+			    	instant_build = yes
+			    	province = 4795
+				}
+				add_building_construction = {
+			    	type = bunker
+			    	level = 1
+			    	instant_build = yes
+			    	province = 3821
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = CRU_defenders_of_Texan_Stability
+		icon = GFX_goal_Defenders_of_Texan_Stability
+		x = 0
+		y = 1
+		relative_position_id = CRU_surrounded_on_all_fronts
+		cost = 5
+		prerequisite = {
+			focus = CRU_surrounded_on_all_fronts
+		}
+		completion_reward = {
+				add_stability = 0.2
+				add_war_support = 0.3
+				add_ideas = TEX_guardians_of_stability
+
+		}
+
+	}
+	focus = {
+		id = CRU_Encourage_Gun_Owners_to_Enlist
+		icon = GFX_goal_Encourage_Gun_Owners_To_Enlist
+		x = 0
+		y = 1
+		relative_position_id = CRU_defenders_of_Texan_Stability
+		cost = 3
+		prerequisite = {
+			focus = CRU_defenders_of_Texan_Stability
+		}
+		completion_reward = {
+			55 = {
+				add_extra_state_shared_building_slots = 6
+				add_building_construction = {
+    				type = arms_factory
+    				level = 6
+    				instant_build = yes
+				}
+			}
+		}
+	}
+	
+	
+	### Trumpists
+	focus = {
+		id = CRU_loyalty_to_trump
+		icon = GFX_goal_Loyalty_To_The_Big_Man
+		x = -1
+		y = 1
+		relative_position_id = CRU_results
+		cost = 5
+		prerequisite = {
+			focus = CRU_results
+		}
+		mutually_exclusive = {
+			focus = CRU_in_bed_with_ted
+			focus = CRU_abbott
+		}
+		available = {
+			has_country_flag = patrick_is_president
+		}
+		completion_reward = {
+			add_popularity = {
+			    ideology = republican
+			    popularity = 0.5
+			}
+			set_politics = {
+				ruling_party = republican
+			}
+		}
+
+	}
+	focus = {
+		id = CRU_Trumps_fuel_silo
+		icon = GFX_goal_Trumps_Personal_Silo
+		x = 0
+		y = 1
+		relative_position_id = CRU_loyalty_to_trump
+		cost = 2
+		prerequisite = {
+			focus = CRU_loyalty_to_trump
+		}
+		completion_reward = {
+			34 = {
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+    				type = synthetic_refinery
+    				level = 4
+    				instant_build = yes
+				}
+			}
+			143 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+    				type = fuel_silo
+    				level = 3
+    				instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = CRU_Ban_Abortion
+		icon = GFX_goal_Ban_Abortion
+		x = 2
+		y = 1
+		relative_position_id = CRU_loyalty_to_trump
+		cost = 5
+		prerequisite = {
+			focus = CRU_loyalty_to_trump
+		}
+		completion_reward = {
+				add_ideas = TEX_pro_life
+		}
+	}
+	focus = {
+		id = CRU_childrens_social_media_safety
+		icon = GFX_goal_Children_Social_Media
+		x = -3
+		y = 1
+		relative_position_id = CRU_cultural_counter_revolution
+		cost = 5
+		prerequisite = {
+			focus = CRU_cultural_counter_revolution
+		}
+		completion_reward = {
+				add_ideas = TEX_restrict_social_media
+		}
+	}
+	focus = {
+		id = CRU_politicize_the_fed
+		icon = GFX_goal_Politicize_Federal_Reserve
+		x = 3
+		y = 1
+		relative_position_id = CRU_cultural_counter_revolution
+		cost = 5
+		prerequisite = {
+			focus = CRU_cultural_counter_revolution
+		}
+		completion_reward = {
+				add_ideas = TEX_political_central_bank
+		}
+	}
+	focus = {
+		id = CRU_Trumpist_Advisors
+		icon = GFX_goal_Trump_Advisors
+		x = 0
+		y = 1
+		relative_position_id = CRU_Ban_Abortion
+		cost = 5
+		prerequisite = {
+			focus = CRU_Ban_Abortion
+		}
+		completion_reward = {
+				add_ideas = TEX_trumpist_advisors
+		}
+	}
+	focus = {
+		id = CRU_Extradite_Democrats_and_RINOs
+		icon = GFX_goal_Extradite_RINOS_And_Democrats
+		x = 0
+		y = 1
+		relative_position_id = CRU_Trumpist_Advisors
+		cost = 5
+		prerequisite = {
+			focus = CRU_Trumpist_Advisors
+		}
+		completion_reward = {
+				country_event = texas.32
+		}
+	}
+	focus = {
+		id = CRU_whats_the_worst
+		icon = GFX_goal_Ban_EPA
+		x = 0
+		y = 1
+		relative_position_id = CRU_Trumps_fuel_silo
+		cost = 5.00
+		prerequisite = {
+			focus = CRU_Trumps_fuel_silo
+		}
+		completion_reward = {
+			add_ideas = TEX_epa_abolished
+		}
+
+	}
+	focus = {
+		id = CRU_finally_join_trump
+		icon = GFX_goal_Finally_Joining_Trump
+		x = 0
+		y = 1
+		relative_position_id = CRU_whats_the_worst
+		cost = 5
+		prerequisite = {
+			focus = CRU_whats_the_worst
+		}
+		available = {
+			has_civil_war = no
+		}
+		completion_reward = {
+			USA = { country_event = texas_foreign.1  }
+		}
+	}
+	focus = {
+		id = CRU_buy_oklahoma
+		icon = GFX_goal_Buy_Oklahoma
+		x = 2
+		y = 1
+		relative_position_id = CRU_finally_join_trump
+		cost = 5
+		prerequisite = {
+			focus = CRU_finally_join_trump
+		}
+		prerequisite = {
+			focus = CRU_Extradite_Democrats_and_RINOs
+		}
+		completion_reward = {
+			253 = { transfer_state_to = CRU  add_core_of = CRU }
+			252 = { transfer_state_to = CRU  add_core_of = CRU }
+			254 = { transfer_state_to = CRU  add_core_of = CRU }
+			255 = { transfer_state_to = CRU  add_core_of = CRU }
+			256 = { transfer_state_to = CRU  add_core_of = CRU }
+			257 = { transfer_state_to = CRU  add_core_of = CRU }
+			
+		}
+	}
+	focus = {
+		id = CRU_dont_mess_with_texas
+		icon = GFX_goal_Dont_Mess_With_Texas
+		x = 0
+		y = 1
+		relative_position_id = CRU_finally_join_trump
+		cost = 5
+		prerequisite = {
+			focus = CRU_finally_join_trump
+		}
+		prerequisite = {
+			focus = CRU_Extradite_Democrats_and_RINOs
+		}
+		completion_reward = {
+			add_ideas = TEX_dont_mess_with_texas
+		}
+
+	}
+	focus = {
+		id = CRU_legalize_lobbying
+		icon = GFX_goal_Legalize_Lobbying
+		x = -1
+		y = 1
+		relative_position_id = CRU_dont_mess_with_texas
+		cost = 4
+		prerequisite = {
+			focus = CRU_dont_mess_with_texas
+		}
+		completion_reward = {
+				swap_ideas = {
+					remove_idea = TEX_econ_dergegulate
+					add_idea = TEX_econ_dergegulate2
+				}
+		}
+
+	}
+	focus = {
+		id = CRU_end_new_mexican_rebels
+		icon = GFX_goal_End_New_Mexican_Rebels_Red
+		x = 0
+		y = 1
+		relative_position_id = CRU_legalize_lobbying
+		cost = 1
+		prerequisite = {
+			focus = CRU_legalize_lobbying
+		}
+		will_lead_to_war_with = NMX
+		completion_reward = {
+			declare_war_on = {
+				target = NMX
+				type = annex_everything
+			}
+			every_state = { limit = { is_core_of = NMX }  add_core_of = CRU }
+		}
+	}
+	focus = {
+		id = CRU_Texan_command_zone
+		icon = GFX_goal_Texan_Command_Zone
+		x = -1
+		y = 1
+		relative_position_id = CRU_buy_oklahoma
+		cost = 5
+		prerequisite = {
+			focus = CRU_buy_oklahoma
+		}
+		prerequisite = {
+			focus = CRU_dont_mess_with_texas
+		}
+		available = {
+			NOT = {
+				country_exists = LOU
+				country_exists = OKL
+				country_exists = NMX
+			}
+		}
+		completion_reward = {
+			set_cosmetic_tag = TEX_CMZ
+			swap_ideas = {
+				remove_idea = TEX_trumpist_advisors
+				add_idea = TEX_trumpist_advisors2
+			}
+		}
+	}
+	focus = {
+		id = CRU_Texan_claim_dixie_for_trump
+		icon = GFX_goal_Claim_Dixie_For_Trump
+		x = 1
+		y = 1
+		relative_position_id = CRU_Texan_command_zone
+		cost = 5
+		prerequisite = {
+			focus = CRU_Texan_command_zone
+		}
+		will_lead_to_war_with = CSA
+		completion_reward = {
+				create_wargoal = {
+					target = CSA
+					type = annex_everything
+				}
+				IF = { 
+					limit = { country_exists = KKK }
+					create_wargoal = {
+						target = KKK
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = LGB }
+					create_wargoal = {
+						target = LGB
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = sca }
+					create_wargoal = {
+						target = sca
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = ZIO }
+					create_wargoal = {
+						target = ZIO
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = ARK }
+					create_wargoal = {
+						target = ARK
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = AFR }
+					create_wargoal = {
+						target = AFR
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = RHO }
+					create_wargoal = {
+						target = RHO
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = SCA }
+					create_wargoal = {
+						target = SCA
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = CSB }
+					create_wargoal = {
+						target = CSB
+						type = annex_everything
+					}
+				}
+
+		}
+	}
+	focus = {
+		id = CRU_return_trumpism_to_southwest
+		icon = GFX_goal_Return_Trumpism_Southwest
+		x = -1
+		y = 2
+		relative_position_id = CRU_Texan_command_zone
+		cost = 5
+		prerequisite = {
+			focus = CRU_Texan_command_zone
+		}
+		prerequisite = {
+			focus = CRU_end_new_mexican_rebels
+		}
+		will_lead_to_war_with = HAM
+		will_lead_to_war_with = HOP
+		completion_reward = {
+				create_wargoal = {
+						target = HOP
+						type = annex_everything
+				}
+				create_wargoal = {
+						target = HAM
+						type = annex_everything
+				}
+		}
+	}
+	focus = {
+		id = CRU_panhandle_treaty
+		icon = GFX_goal_Panhandle_Treaty
+		x = 1
+		y = 1
+		relative_position_id = CRU_Texan_claim_dixie_for_trump
+		cost = 5
+		prerequisite = {
+			focus = CRU_Texan_claim_dixie_for_trump
+		}
+		completion_reward = {
+				FLO = { country_event = texas.321 } #made 2 events with the same id oops
+
+		}
+	}
+	focus = {
+		id = CRU_southern_command_center
+		icon = GFX_goal_Southern_Command_Center
+		x = -1
+		y = 2
+		relative_position_id = CRU_Texan_claim_dixie_for_trump
+		cost = 5
+		prerequisite = {
+			focus = CRU_return_trumpism_to_southwest
+		}
+		prerequisite = {
+			focus = CRU_Texan_claim_dixie_for_trump
+		}
+		completion_reward = {
+				every_state = {
+						limit = { is_core_of = CSA }
+						add_core_of = CRU
+				}
+				every_state = {
+						limit = { is_core_of = HOP }
+						add_core_of = CRU
+				}
+				every_state = {
+						limit = { is_core_of = TOH }
+						add_core_of = CRU
+				}
+				every_state = {
+						limit = { is_core_of = NAV }
+						add_core_of = CRU
+				}
+				set_cosmetic_tag = TEX_CSA_USA
+		}
+	}
+	
+	
+	
+	
+	
+	focus = {
+		id = CRU_abbott
+		icon = GFX
+		x = 7
+		y = 1
+		relative_position_id = CRU_results
+		cost = 5
+		prerequisite = {
+			focus = CRU_results
+		}
+		mutually_exclusive = {
+			focus = CRU_in_bed_with_ted
+			focus = CRU_loyalty_to_trump
+		}
+		completion_reward = {
+			promote_character  = CRU_greg_abbott
+		}
+
+	}
+	focus = {
+		id = CRU_a_christian_congress
+		icon = GFX_goal_Hand_The_Reigns_Greg
+		x = -1
+		y = 1
+		relative_position_id = CRU_abbott
+		cost = 5
+		prerequisite = {
+			focus = CRU_abbott
+		}
+		available = {
+		}
+		mutually_exclusive = { focus = CRU_a_libertarian_congress }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = TEX_ted_cruz_gov
+				add_idea = TEX_cruz_christian
+			}
+		}
+	}
+	focus = {
+		id = CRU_a_libertarian_congress
+		icon = GFX_goal_Hand_The_Reigns_Greg
+		x = 1
+		y = 1
+		relative_position_id = CRU_abbott
+		cost = 5
+		prerequisite = {
+			focus = CRU_abbott
+		}
+		available = {
+		}
+		mutually_exclusive = { focus = CRU_a_christian_congress }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = TEX_ted_cruz_gov
+				add_idea = TEX_cruz_lib_right
+			}
+		}
+	}
+	focus = {
+		id = CRU_enshrine_the_bill_of_rights
+		icon = GFX_goal_Hand_The_Reigns_Greg
+		x = 1
+		y = 1
+		relative_position_id = CRU_a_libertarian_congress
+		cost = 5
+		prerequisite = {
+			focus = CRU_a_libertarian_congress
+		}
+		available = {
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = TEX_cruz_lib_right
+				add_idea = TEX_cruz_lib_right2
+			}
+			
+		}
+	}
+	focus = {
+		id = CRU_embrace_minarchism
+		icon = GFX_goal_Hand_The_Reigns_Greg
+		x = 0
+		y = 1
+		relative_position_id = CRU_enshrine_the_bill_of_rights
+		cost = 5
+		prerequisite = {
+			focus = CRU_enshrine_the_bill_of_rights
+		}
+		available = {
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = TEX_cruz_lib_right2
+				add_idea = TEX_cruz_lib_right3
+			}
+			
+		}
+	}
+	focus = {
+		id = CRU_deregulate_industries
+		icon = GFX_goal_Hand_The_Reigns_Greg
+		x = 3
+		y = 1
+		relative_position_id = CRU_a_libertarian_congress
+		cost = 5
+		prerequisite = {
+			focus = CRU_a_libertarian_congress
+		}
+		available = {
+		}
+		completion_reward = {
+			add_ideas = TEX_econ_dergegulate
+			
+		}
+	}
+	focus = {
+		id = CRU_a_free_texas
+		icon = GFX_goal_Hand_The_Reigns_Greg
+		x = 0
+		y = 1
+		relative_position_id = CRU_deregulate_industries
+		cost = 3
+		prerequisite = {
+			focus = CRU_deregulate_industries
+		}
+		available = {
+		}
+		completion_reward = {
+			add_stability = 0.1
+			add_political_power = 50
+		}
+	}
+	focus = {
+		id = CRU_dont_tread_on_me
+		icon = GFX_goal_Hand_The_Reigns_Greg
+		x = -1
+		y = 1
+		relative_position_id = CRU_a_free_texas
+		cost = 5
+		prerequisite = {
+			focus = CRU_embrace_minarchism
+		}
+		prerequisite = {
+			focus = CRU_a_free_texas
+		}
+		available = {
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = TEX_cruz_lib_right3
+				add_idea = TEX_cruz_lib_right4
+			}
+		}
+	}
+	
+	
+	focus = {
+		id = CRU_partner_with_big_business
+		icon = GFX_goal_Hand_The_Reigns_Greg
+		x = 1
+		y = 1
+		relative_position_id = CRU_a_christian_congress
+		cost = 5
+		prerequisite = {
+			focus = CRU_a_libertarian_congress
+			focus = CRU_a_christian_congress
+		}
+		available = {
+		}
+		completion_reward = {
+			add_ideas = TEX_friendly_oil_barons
+		}
+	}
+	focus = {
+		id = CRU_utilize_nra_influence
+		icon = GFX_goal_Hand_The_Reigns_Greg
+		x = 0
+		y = 1
+		relative_position_id = CRU_partner_with_big_business
+		cost = 5
+		prerequisite = {
+			focus = CRU_partner_with_big_business
+		}
+		available = {
+		}
+		completion_reward = {
+			add_ideas = TEX_NRA_empowered
+		}
+	}
+	focus = {
+		id = CRU_a_corporate_senate
+		icon = GFX_goal_Hand_The_Reigns_Greg
+		x = 0
+		y = 1
+		relative_position_id = CRU_utilize_nra_influence
+		cost = 5
+		prerequisite = {
+			focus = CRU_utilize_nra_influence
+		}
+		available = {
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = TEX_friendly_oil_barons
+				add_idea = TEX_oil_barons_in_gov
+			}
+		}
+	}
+	focus = {
+		id = CRU_fund_disability_research
+		icon = GFX_goal_Hand_The_Reigns_Greg
+		x = 0
+		y = 1
+		relative_position_id = CRU_a_corporate_senate
+		cost = 5
+		prerequisite = {
+			focus = CRU_a_corporate_senate
+		}
+		available = {
+		}
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = electronics
+			}
+		}
+	}
+	focus = {
+		id = CRU_accomodations_for_paralysis
+		icon = GFX_goal_Hand_The_Reigns_Greg
+		x = -1
+		y = 1
+		relative_position_id = CRU_fund_disability_research
+		cost = 5
+		prerequisite = {
+			focus = CRU_fund_disability_research
+		}
+		available = {
+		}
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = electronics
+			}
+		}
+	}
+	focus = {
+		id = CRU_utilize_ai_for_treatment
+		icon = GFX_goal_Hand_The_Reigns_Greg
+		x = 1
+		y = 1
+		relative_position_id = CRU_fund_disability_research
+		cost = 5
+		prerequisite = {
+			focus = CRU_fund_disability_research
+		}
+		available = {
+		}
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = electronics
+			}
+		}
+	}
+	focus = {
+		id = CRU_a_miraculous_recovery
+		icon = GFX_goal_Hand_The_Reigns_Greg
+		x = 1
+		y = 1
+		relative_position_id = CRU_accomodations_for_paralysis
+		cost = 5
+		prerequisite = {
+			focus = CRU_accomodations_for_paralysis
+		}
+		prerequisite = {
+			focus = CRU_utilize_ai_for_treatment
+		}
+		available = {
+		}
+		completion_reward = {
+			country_event = texas.80
+		}
+	}
+	
+	
+	focus = {
+		id = CRU_christian_charity
+		icon = GFX_goal_Hand_The_Reigns_Greg
+		x = -1
+		y = 1
+		relative_position_id = CRU_a_christian_congress
+		cost = 5
+		prerequisite = {
+			focus = CRU_a_christian_congress
+		}
+		available = {
+		}
+		completion_reward = {
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = infrastructure
+					level = 3
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = infrastructure
+					level = 3
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = infrastructure
+					level = 3
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = infrastructure
+					level = 3
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = infrastructure
+					level = 3
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = infrastructure
+					level = 3
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = CRU_build_more_churches
+		icon = GFX_goal_Hand_The_Reigns_Greg
+		x = 0
+		y = 1
+		relative_position_id = CRU_christian_charity
+		cost = 5
+		prerequisite = {
+			focus = CRU_christian_charity
+		}
+		available = {
+		}
+		completion_reward = {
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = CRU_end_secularism
+		icon = GFX_goal_Hand_The_Reigns_Greg
+		x = -3
+		y = 1
+		relative_position_id = CRU_a_christian_congress
+		cost = 5
+		prerequisite = {
+			focus = CRU_a_christian_congress
+		}
+		available = {
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = TEX_cruz_christian
+				add_idea = TEX_cruz_christian2
+			}
+		}
+	}
+	focus = {
+		id = CRU_ban_abortions
+		icon = GFX_goal_Hand_The_Reigns_Greg
+		x = 0
+		y = 1
+		relative_position_id = CRU_end_secularism
+		cost = 5
+		prerequisite = {
+			focus = CRU_end_secularism
+		}
+		available = {
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = TEX_cruz_christian2
+				add_idea = TEX_cruz_christian3
+			}
+		}
+	}
+	focus = {
+		id = CRU_in_texas_god_trusts
+		icon = GFX_goal_Hand_The_Reigns_Greg
+		x = 1
+		y = 1
+		relative_position_id = CRU_ban_abortions
+		cost = 5
+		prerequisite = {
+			focus = CRU_ban_abortions
+		}
+		prerequisite = {
+			focus = CRU_build_more_churches
+		}
+		available = {
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = TEX_cruz_christian3
+				add_idea = TEX_cruz_christian4
+			}
+		}
+	}
+	focus = {
+		id = CRU_fortress_texas
+		icon = GFX_goal_Hand_The_Reigns_Greg
+		x = 6
+		y = 1
+		relative_position_id = CRU_abbott
+		cost = 5
+		prerequisite = {
+			focus = CRU_abbott
+		}
+		available = {
+		}
+		completion_reward = {
+			add_war_support = -0.1
+			add_stability = 0.2
+			add_popularity = {
+				ideology = libertarian_right
+				popularity = 0.1
+			}
+		}
+	}
+	focus = {
+		id = CRU_re_enact_conscription
+		icon = GFX_goal_Hand_The_Reigns_Greg
+		x = 0
+		y = 1
+		relative_position_id = CRU_fortress_texas
+		cost = 5
+		prerequisite = {
+			focus = CRU_fortress_texas
+		}
+		available = {
+		}
+		completion_reward = {
+			add_ideas = TEX_conscription
+		}
+	}
+	focus = {
+		id = CRU_expand_military_budget
+		icon = GFX_goal_Hand_The_Reigns_Greg
+		x = 0
+		y = 1
+		relative_position_id = CRU_re_enact_conscription
+		cost = 5
+		prerequisite = {
+			focus = CRU_re_enact_conscription
+		}
+		available = {
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = TEX_conscription
+				add_idea = TEX_conscription2
+			}
+		}
+	}
+	focus = {
+		id = CRU_enemies_everywhere
+		icon = GFX_goal_Hand_The_Reigns_Greg
+		x = 0
+		y = 1
+		relative_position_id = CRU_expand_military_budget
+		cost = 5
+		prerequisite = {
+			focus = CRU_expand_military_budget
+		}
+		available = {
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = TEX_conscription2
+				add_idea = TEX_conscription3
+			}
+		}
+	}
+	focus = {
+		id = CRU_pardons_for_military_service
+		icon = GFX_goal_Hand_The_Reigns_Greg
+		x = 0
+		y = 1
+		relative_position_id = CRU_enemies_everywhere
+		cost = 5
+		prerequisite = {
+			focus = CRU_enemies_everywhere
+		}
+		available = {
+		}
+		completion_reward = {
+			add_manpower = 50000
+			add_stability = -0.2
+			add_war_support = -0.1
+		}
+	}
+	focus = {
+		id = CRU_fortify_the_west
+		icon = GFX_goal_Hand_The_Reigns_Greg
+		x = -2
+		y = 1
+		relative_position_id = CRU_pardons_for_military_service
+		cost = 5
+		prerequisite = {
+			focus = CRU_pardons_for_military_service
+		}
+		available = {
+		}
+		completion_reward = {
+			286 = {
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border = yes
+						#limit_to_victory_point > 1
+					}
+				}
+			}
+			274 = {
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border = yes
+						#limit_to_victory_point > 1
+					}
+				}
+			}
+			270 = {
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border = yes
+						#limit_to_victory_point > 1
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = CRU_fortify_the_north
+		icon = GFX_goal_Hand_The_Reigns_Greg
+		x = 0
+		y = 1
+		relative_position_id = CRU_pardons_for_military_service
+		cost = 5
+		prerequisite = {
+			focus = CRU_pardons_for_military_service
+		}
+		available = {
+		}
+		completion_reward = {
+			84 = {
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border = yes
+						#limit_to_victory_point > 1
+					}
+				}
+			}
+			258 = {
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border = yes
+						#limit_to_victory_point > 1
+					}
+				}
+			}
+			251 = {
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border = yes
+						#limit_to_victory_point > 1
+					}
+				}
+			}
+			80 = {
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border = yes
+						#limit_to_victory_point > 1
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = CRU_fortify_the_east
+		icon = GFX_goal_Hand_The_Reigns_Greg
+		x = 2
+		y = 1
+		relative_position_id = CRU_pardons_for_military_service
+		cost = 5
+		prerequisite = {
+			focus = CRU_pardons_for_military_service
+		}
+		available = {
+		}
+		completion_reward = {
+			87 = {
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border = yes
+						#limit_to_victory_point > 1
+					}
+				}
+			}
+			55 = {
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border = yes
+						#limit_to_victory_point > 1
+					}
+				}
+			}
+		}
+	}
+	
+	
 	
 	
 	
@@ -215,7 +2496,7 @@ focus_tree = {
 		id = TEX_economy777
 		icon = GFX_goal_focustexaneconomy
 		cost = 5
-		x = 50
+		x = -7
 		y = 0
 		available = { has_completed_focus = CRU_texas_restored }
 		completion_reward = {
