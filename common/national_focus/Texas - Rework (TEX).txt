@@ -102,6 +102,12 @@ focus_tree = {
 			    popularity = 0.1
 			}
 			mark_focus_tree_layout_dirty = yes
+			hidden_effect = {
+				country_event = {
+					id = texas.101
+					days = 20
+				}
+			}
 		}
 
 	}
@@ -135,7 +141,20 @@ focus_tree = {
 			date > 2022.04.01
 		}
 		completion_reward = {
-			country_event = { id = texas.5 days = 2 }
+			IF = { 
+				limit = { has_country_flag = beto_is_candidate }
+				country_event = { id = texas.5 days = 2 }
+			}
+			IF = { 
+				limit = { has_country_flag = hinojosa }
+				country_event = { id = texas.105 days = 2 }
+			}
+			hidden_effect = {
+				country_event = {
+					id = texas.102
+					days = 4
+				}
+			}
 		}
 
 	}
@@ -195,6 +214,12 @@ focus_tree = {
 		completion_reward = {
 			add_ideas = TEX_different_direction
 			mark_focus_tree_layout_dirty = yes
+			hidden_effect = {
+				country_event = {
+					id = texas.102
+					days = 4
+				}
+			}
 		}
 
 	}
@@ -344,12 +369,6 @@ focus_tree = {
 		cost = 5
 		prerequisite = {
 			focus = TEX_results
-		}
-		mutually_exclusive = {
-			focus = TEX_loyalty_to_trump
-			focus = TEX_out_of_retirement
-			focus = TEX_underdog_no_more
-			#focus = TEX_miller_coup
 		}
 		available = {
 			has_country_flag = cruz_wins_election
@@ -1434,9 +1453,9 @@ focus_tree = {
 			focus = TEX_results
 		}
 		mutually_exclusive = {
-			focus = TEX_in_bed_with_ted
 			focus = TEX_out_of_retirement
 			focus = TEX_underdog_no_more
+			focus = TEX_establishment_dems
 			#focus = TEX_miller_coup
 		}
 		available = {
@@ -1855,7 +1874,7 @@ focus_tree = {
 	focus = {
 		id = TEX_out_of_retirement
 		icon = GFX_goal_George_W_Bush_New
-		x = 4
+		x = -1
 		y = 1
 		relative_position_id = TEX_results
 		cost = 5
@@ -1864,8 +1883,8 @@ focus_tree = {
 		}
 		mutually_exclusive = {
 			focus = TEX_loyalty_to_trump
-			focus = TEX_in_bed_with_ted
 			focus = TEX_underdog_no_more
+			focus = TEX_establishment_dems
 			#focus = TEX_miller_coup
 		}
 		available = {
@@ -1942,7 +1961,7 @@ focus_tree = {
 	focus = {
 		id = TEX_george_republican
 		icon = GFX_goal_TEX_But_I_am_True_to_Myself
-		x = -7
+		x = -3
 		y = 1
 		relative_position_id = TEX_george_not_forgive
 		cost = 5
@@ -2012,144 +2031,6 @@ focus_tree = {
 		}
 		completion_reward = {
 				add_ideas = TEX_dereged_energy
-		}
-	}
-	focus = {
-		id = TEX_george_not_care
-		icon = GFX_goal_TEX_and_I_Don't_Care_What_it_Takes
-		x = 7
-		y = 1
-		relative_position_id = TEX_george_not_forgive
-		cost = 5
-		prerequisite = {
-			focus = TEX_george_not_forgive
-		}
-		mutually_exclusive = {
-			focus = TEX_george_republican
-		}
-		completion_reward = {
-			create_country_leader = {
-				name = "George W. Bush"
-				picture = "gfx/leaders/TEX/Evil_George_Bush.dds"
-				expire = "2060.1.1"
-				ideology = fascism
-				traits = {
-					
-				}
-			}
-			set_party_name = { 
-			    ideology = autocratic
-			    long_name = TEX_evil_bush_party_long
-			    name = TEX_evil_bush_party
-			}	
-			set_cosmetic_tag = TEX_bush_america
-			add_popularity = {
-				ideology = autocratic
-				popularity = 0.15
-			}
-			set_politics = {
-				ruling_party = autocratic
-			}		
-		}
-	}
-	focus = {
-		id = TEX_power_to_the_vp
-		icon = GFX_goal_TEX_Second_Bush_Cheney_Administration
-		x = 0
-		y = 1
-		relative_position_id = TEX_george_not_care
-		cost = 5
-		prerequisite = {
-			focus = TEX_george_not_care
-		}
-		completion_reward = {		
-			add_ideas = TEX_cheney_idea
-			remove_ideas = TEX_Oklahoma_Rebels
-			258 = { add_core_of = TEX }
-		}
-	}
-	focus = {
-		id = TEX_oil_barons_under_me
-		icon = GFX_goal_TEX_Oil_Barons_Under_Me
-		x = 1
-		y = 1
-		relative_position_id = TEX_power_to_the_vp
-		cost = 5
-		prerequisite = {
-			focus = TEX_power_to_the_vp
-		}
-		completion_reward = {		
-				swap_ideas = {
-					remove_idea = TEX_oil_baron_influence
-					add_idea = TEX_oil_barons_controlled
-				}
-		}
-	}
-	focus = {
-		id = TEX_military_industrial_complex_expansion
-		icon = GFX_goal_TEX_Expanding_the_MIC
-		x = -1
-		y = 1
-		relative_position_id = TEX_a_new_patriot_bill
-		cost = 5
-		prerequisite = {
-			focus = TEX_a_new_patriot_bill
-		}
-		completion_reward = {
-			add_offsite_building = { type = arms_factory level = 4 }
-		}
-	}
-	focus = {
-		id = TEX_a_new_patriot_bill
-		icon = GFX_goal_TEX_New_Patriot_Bill
-		x = -1
-		y = 1
-		relative_position_id = TEX_power_to_the_vp
-		cost = 5
-		prerequisite = {
-			focus = TEX_power_to_the_vp
-		}
-		prerequisite = {
-			#focus = TEX_a_true_cowboy
-		}
-		completion_reward = {
-				add_ideas = TEX_new_patriot_bill
-		}
-	}
-	focus = {
-		id = TEX_put_dick_in_dictator
-		icon = GFX_goal_TEX_Put_Penis_In_The_Dictator
-		x = 1
-		y = 2
-		relative_position_id = TEX_a_new_patriot_bill
-		cost = 5
-		prerequisite = {
-			focus = TEX_a_new_patriot_bill
-		}
-		prerequisite = {
-			focus = TEX_oil_barons_under_me
-		}
-		completion_reward = {
-			add_political_power = 150
-			add_stability = 0.05
-			add_war_support = 0.2
-		}
-	}
-	focus = {
-		id = TEX_a_true_cowboy
-		icon = GFX_goal_TEX_A_True_Cowboy
-		x = 3
-		y = 1
-		relative_position_id = TEX_a_new_patriot_bill
-		cost = 5
-		prerequisite = {
-			focus = TEX_a_new_patriot_bill
-		}
-		prerequisite = {
-			focus = TEX_oil_barons_under_me
-		}
-		completion_reward = {
-				add_country_leader_trait = TEX_Cowboy
 		}
 	}
 	focus = {
@@ -2241,599 +2122,25 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = TEX_drums_of_war
-		icon = GFX_goal_TEX_Drums_of_War
-		x = 7
-		y = 1
-		relative_position_id = TEX_george_republican
-		cost = 5
-		prerequisite = {
-			focus = TEX_george_not_care
-			focus = TEX_george_republican
-		}
-		will_lead_to_war_with = HOP
-		completion_reward = {
-			add_country_leader_trait = forty_three
-			declare_war_on = {
-			    target = HOP
-			    type = annex_everything
-			}
-			every_state = {
-				limit = {
-					is_core_of = HOP
-				}
-				add_core_of = TEX
-			}
-		}
-
-	}
-	focus = {
-		id = TEX_invade_the_mormons
-		icon = GFX_goal_TEX_Invade_the_Mormons
-		x = -2
-		y = 1
-		relative_position_id = TEX_drums_of_war
-		cost = 5
-		prerequisite = {
-			focus = TEX_drums_of_war
-		}
-		mutually_exclusive = { focus = TEX_invade_the_freedom_coalition }
-		mutually_exclusive = { focus = TEX_sit_down_with_mitt }
-		available = {
-			has_war = no
-		}
-		will_lead_to_war_with = AFO
-		will_lead_to_war_with = UTA
-		completion_reward = {
-				create_wargoal = {
-					target = AFO
-					type = annex_everything
-				}
-				create_wargoal = {
-					target = UTA
-					type = annex_everything
-				}
-		}
-
-	}
-	focus = {
-		id = TEX_sit_down_with_mitt
-		icon = GFX_goal_TEX_Sit_with_Romney
-		x = 2
-		y = 1
-		relative_position_id = TEX_drums_of_war
-		cost = 5
-		prerequisite = {
-			focus = TEX_drums_of_war
-		}
-		mutually_exclusive = { focus = TEX_invade_the_freedom_coalition }
-		mutually_exclusive = { focus = TEX_invade_the_mormons }
-		available = {
-			has_war = no
-			SIN = { has_completed_focus = Remember_2012 }
-		}
-		will_lead_to_war_with = MOL
-		will_lead_to_war_with = AFO
-		will_lead_to_war_with = SIN
-		will_lead_to_war_with = LAS
-		will_lead_to_war_with = HAM
-		completion_reward = {
-				SIN = { country_event = texas.33 }
-				IF = { 
-					limit = { country_exists = MOL }
-					create_wargoal = {
-						target = MOL
-						type = annex_everything
-					}
-				}
-				IF = { 
-					limit = { country_exists = AFO }
-					create_wargoal = {
-						target = AFO
-						type = annex_everything
-					}
-				}
-				IF = { 
-					limit = { country_exists = HAM }
-					create_wargoal = {
-						target = HAM
-						type = annex_everything
-					}
-				}
-				IF = { 
-					limit = { country_exists = MOL }
-					create_wargoal = {
-						target = LAS
-						type = annex_everything
-					}
-				}
-		}
-
-	}
-	focus = {
-		id = TEX_invade_the_freedom_coalition
-		icon = GFX_goal_TEX_Invade_Freedom_Coalition
-		x = -0
-		y = 1
-		relative_position_id = TEX_drums_of_war
-		cost = 5
-		prerequisite = {
-			focus = TEX_drums_of_war
-		}
-		mutually_exclusive = { focus = TEX_invade_the_mormons }
-		mutually_exclusive = { focus = TEX_sit_down_with_mitt }
-		available = {
-			has_war = no
-		}
-		will_lead_to_war_with = MOL
-		will_lead_to_war_with = AFO
-		will_lead_to_war_with = SIN
-		will_lead_to_war_with = LAS
-		will_lead_to_war_with = HAM
-		completion_reward = {
-				create_wargoal = {
-					target = MOL
-					type = annex_everything
-				}
-				create_wargoal = {
-					target = AFO
-					type = annex_everything
-				}
-				create_wargoal = {
-					target = SIN
-					type = annex_everything
-				}
-				create_wargoal = {
-					target = HAM
-					type = annex_everything
-				}
-				create_wargoal = {
-					target = LAS
-					type = annex_everything
-				}
-		}
-
-	}
-	focus = {
-		id = TEX_secure_the_flank
-		icon = GFX_goal_TEX_Secure_Western_Flank
-		x = -4
-		y = 1
-		relative_position_id = TEX_drums_of_war
-		cost = 5
-		prerequisite = {
-			focus = TEX_drums_of_war
-		}
-		will_lead_to_war_with = PRA
-		available = {
-			has_war = no
-		}
-		completion_reward = {
-			declare_war_on = {
-			    target = PRA
-			    type = annex_everything
-			}
-			if = { 
-				limit = { country_exists = JFR }
-				create_wargoal = {
-					target = JFR
-					type = annex_everything
-				}
-			}
-			if = { 
-				limit = { country_exists = PRC }
-				create_wargoal = {
-					target = PRC
-					type = annex_everything
-				}
-			}
-			if = { 
-				limit = { country_exists = HLY }
-				create_wargoal = {
-					target = HLY
-					type = annex_everything
-				}
-			}
-			if = { 
-				limit = { country_exists = CST }
-				create_wargoal = {
-					target = CST
-					type = annex_everything
-				}
-			}
-			if = { 
-				limit = { country_exists = ACF }
-				create_wargoal = {
-					target = ACF
-					type = annex_everything
-				}
-			}
-			if = { 
-				limit = { country_exists = SAC }
-				create_wargoal = {
-					target = SAC
-					type = annex_everything
-				}
-			}
-			if = { 
-				limit = { country_exists = ABG }
-				create_wargoal = {
-					target = ABG
-					type = annex_everything
-				}
-			}
-			if = { 
-				limit = { country_exists = NVD }
-				create_wargoal = {
-					target = NVD
-					type = annex_everything
-				}
-			}
-			if = { 
-				limit = { country_exists = SIL }
-				create_wargoal = {
-					target = SIL
-					type = annex_everything
-				}
-			}
-			if = { 
-				limit = { country_exists = FIR }
-				create_wargoal = {
-					target = FIR
-					type = annex_everything
-				}
-			}
-			if = { 
-				limit = { country_exists = ORO }
-				create_wargoal = {
-					target = ORO
-					type = annex_everything
-				}
-			}
-			if = { 
-				limit = { country_exists = BJC }
-				create_wargoal = {
-					target = BJC
-					type = annex_everything
-				}
-			}			
-		}
-	}
-	
-	focus = {
-		id = TEX_end_cascadian_nazis
-		icon = GFX_goal_TEX_End_Cascadian_Nazis
-		x = 1
-		y = 1
-		relative_position_id = TEX_secure_the_flank
-		cost = 5
-		prerequisite = {
-			focus = TEX_secure_the_flank
-		}
-		will_lead_to_war_with = CAS
-		will_lead_to_war_with = LIB
-		available = {
-			has_war = no
-		}
-		completion_reward = {
-			create_wargoal = {
-					target = CAS
-					type = annex_everything
-				}
-			create_wargoal = {
-				target = LIB
-				type = annex_everything
-			}
-		}
-	}
-	focus = {
-		id = TEX_restore_the_rockies
-		icon = GFX_goal_TEX_Restore_the_Rockies
-		x = 0
-		y = 1
-		relative_position_id = TEX_invade_the_freedom_coalition
-		cost = 5
-		prerequisite = {
-			focus = TEX_invade_the_freedom_coalition
-			focus = TEX_sit_down_with_mitt
-			focus = TEX_invade_the_mormons
-		}
-		will_lead_to_war_with = MON
-		will_lead_to_war_with = IDA
-		available = {
-			has_war = no
-		}
-		completion_reward = {
-			create_wargoal = {
-				target = MON
-				type = annex_everything
-			}
-			create_wargoal = {
-				target = IDA
-				type = annex_everything
-			}
-		}
-	}
-	focus = {
-		id = TEX_restore_order_in_dixie
-		icon = GFX_goal_TEX_Restore_Order_in_Dixie
-		x = 4
-		y = 1
-		relative_position_id = TEX_drums_of_war
-		cost = 5
-		prerequisite = {
-			focus = TEX_drums_of_war
-		}
-		available = {
-			has_war = no
-		}
-		will_lead_to_war_with = CSA
-		will_lead_to_war_with = KKK
-		will_lead_to_war_with = AFR
-		will_lead_to_war_with = CSB
-		will_lead_to_war_with = ZIO
-		completion_reward = {
-			declare_war_on = {
-			    target = CSA
-			    type = annex_everything
-			}
-			if = { 
-				limit = {
-					country_exists = KKK
-				}
-				declare_war_on = {
-			   	  target = KKK
-				  type = annex_everything
-				}
-			}
-			if = { 
-				limit = {
-					country_exists = AFR
-				}
-				declare_war_on = {
-			   	  target = AFR
-				  type = annex_everything
-				}
-			}
-			if = { 
-				limit = {
-					country_exists = CSB
-				}
-				declare_war_on = {
-			   	  target = CSB
-				  type = annex_everything
-				}
-			}
-			if = { 
-				limit = {
-					country_exists = ZIO
-				}
-				declare_war_on = {
-			   	  target = ZIO
-				  type = annex_everything
-				}
-			}
-			if = { 
-				limit = {
-					country_exists = LGB
-				}
-				declare_war_on = {
-			   	  target = LGB
-				  type = annex_everything
-				}
-			}
-			if = { 
-				limit = {
-					country_exists = APA
-				}
-				declare_war_on = {
-			   	  target = APA
-				  type = annex_everything
-				}
-			}
-			if = { 
-				limit = {
-					country_exists = ARK
-				}
-				declare_war_on = {
-			   	  target = ARK
-				  type = annex_everything
-				}
-			}
-		}
-
-	}
-	focus = {
-		id = TEX_revenge_at_last
-		icon = GFX_goal_TEX_Revenge_at_Last
-		x = -1
-		y = 1
-		relative_position_id = TEX_restore_order_in_dixie
-		cost = 5
-		prerequisite = {
-			focus = TEX_restore_order_in_dixie
-		}
-		available = {
-			has_war = no
-		}
-		will_lead_to_war_with = FLO
-		will_lead_to_war_with = USA
-		completion_reward = {
-			if = {
-				limit = {
-					NOT = {
-						has_cosmetic_tag = TEX_bush_america
-					}
-				}
-				set_cosmetic_tag = TEX_bush_america
-			}
-			declare_war_on = {
-			    target = FLO
-			    type = annex_everything
-			}
-		}
-
-	}
-	focus = {
-		id = TEX_the_showdown
-		icon = GFX_goal_TEX_End_of_the_Road
-		x = -3
-		y = 1
-		relative_position_id = TEX_revenge_at_last
-		cost = 7.00
-		prerequisite = {
-			focus = TEX_revenge_at_last
-		}
-		prerequisite = {
-			focus = TEX_restore_the_rockies
-		}
-		prerequisite = {
-			focus = TEX_end_cascadian_nazis
-		}
-		available = {
-		}
-		will_lead_to_war_with = USA
-		completion_reward = {
-			if = {
-				limit = {
-					NOT = {
-						has_war_with = USA
-					}
-				}
-				declare_war_on = {
-					    target = USA
-					    type = annex_everything
-				}
-			}
-			add_ideas = TEX_grand_crusade
-			news_event = { id = texas.10 }
-		}
-	}
-	focus = {
-		id = TEX_finish_harris
-		icon = GFX_goal_TEX_Finish_Harris_Off
-		x = -1
-		y = 1
-		relative_position_id = TEX_the_showdown
-		cost = 7.00
-		prerequisite = {
-			focus = TEX_the_showdown
-		}
-		available = {
-		}
-		will_lead_to_war_with = FRA
-		completion_reward = {
-				create_wargoal = {
-					target = FRA
-					type = annex_everything
-				}
-				create_wargoal = {
-					target = NEW
-					type = annex_everything
-				}
-				create_wargoal = {
-					target = NAB
-					type = annex_everything
-				}
-				create_wargoal = {
-					target = WBK
-					type = annex_everything
-				}
-
-		}
-	}
-	focus = {
-		id = TEX_mop_up_the_remainders
-		icon = GFX_goal_TEX_Mop_the_Rest
-		x = 1
-		y = 1
-		relative_position_id = TEX_the_showdown
-		cost = 7.00
-		prerequisite = {
-			focus = TEX_the_showdown
-		}
-		available = {
-		}
-		will_lead_to_war_with = GLA
-		will_lead_to_war_with = AFS
-		completion_reward = {
-				create_wargoal = {
-					target = GLA
-					type = annex_everything
-				}
-				create_wargoal = {
-					target = KMT
-					type = annex_everything
-				}
-				create_wargoal = {
-					target = MIL
-					type = annex_everything
-				}
-				create_wargoal = {
-					target = MNS
-					type = annex_everything
-				}
-				create_wargoal = {
-					target = MIN
-					type = annex_everything
-				}
-				create_wargoal = {
-					target = ISA
-					type = annex_everything
-				}
-				create_wargoal = {
-					target = DET
-					type = annex_everything
-				}
-				create_wargoal = {
-					target = AFS
-					type = annex_everything
-				}
-				create_wargoal = {
-					target = RVR
-					type = annex_everything
-				}
-				create_wargoal = {
-					target = VIR
-					type = annex_everything
-				}
-				create_wargoal = {
-					target = OBX
-					type = annex_everything
-				}
-				create_wargoal = {
-					target = NRA
-					type = annex_everything
-				}	
-				create_wargoal = {
-					target = KFC
-					type = annex_everything
-				}
-				create_wargoal = {
-					target = NPA
-					type = annex_everything
-				}
-
-
-		}
-	}
-	focus = {
 		id = TEX_show_the_light
 		icon = GFX_goal_TEX_Show_them_the_Light
-		x = -5
+		x = -2
 		y = 1
-		relative_position_id = TEX_mop_up_the_remainders
+		relative_position_id = TEX_depolarization
 		cost = 7.00
+		#prerequisite = {
+		#	focus = TEX_mop_up_the_remainders
+		#}
+		#prerequisite = {
+		#	focus = TEX_finish_harris
+		#}
 		prerequisite = {
-			focus = TEX_mop_up_the_remainders
-		}
-		prerequisite = {
-			focus = TEX_finish_harris
+			focus = TEX_george_dereg_energy
 		}
 		prerequisite = {
 			focus = TEX_depolarization
 		}
-		mutually_exclusive = { focus = TEX_embrace_the_dark }
+		#mutually_exclusive = { focus = TEX_embrace_the_dark }
 		available = {
 			has_government = republican
 			NOT = {
@@ -3367,23 +2674,178 @@ focus_tree = {
 			}
 		}
 	}
+	
+	
+	
+	focus = {
+		id = TEX_george_not_care
+		icon = GFX_goal_TEX_and_I_Don't_Care_What_it_Takes
+		x = 3
+		y = 1
+		relative_position_id = TEX_george_not_forgive
+		cost = 5
+		prerequisite = {
+			focus = TEX_george_not_forgive
+		}
+		mutually_exclusive = {
+			focus = TEX_george_republican
+		}
+		completion_reward = {
+			create_country_leader = {
+				name = "George W. Bush"
+				picture = "gfx/leaders/TEX/Evil_George_Bush.dds"
+				expire = "2060.1.1"
+				ideology = fascism
+				traits = {
+					
+				}
+			}
+			set_party_name = { 
+			    ideology = autocratic
+			    long_name = TEX_evil_bush_party_long
+			    name = TEX_evil_bush_party
+			}	
+			set_cosmetic_tag = TEX_bush_america
+			add_popularity = {
+				ideology = autocratic
+				popularity = 0.15
+			}
+			set_politics = {
+				ruling_party = autocratic
+			}		
+		}
+	}
+	focus = {
+		id = TEX_power_to_the_vp
+		icon = GFX_goal_TEX_Second_Bush_Cheney_Administration
+		x = 0
+		y = 1
+		relative_position_id = TEX_george_not_care
+		cost = 5
+		prerequisite = {
+			focus = TEX_george_not_care
+		}
+		completion_reward = {		
+			add_ideas = TEX_cheney_idea
+			remove_ideas = TEX_Oklahoma_Rebels
+			258 = { add_core_of = TEX }
+		}
+	}
+	focus = {
+		id = TEX_a_new_patriot_bill
+		icon = GFX_goal_TEX_New_Patriot_Bill
+		x = 1
+		y = 1
+		relative_position_id = TEX_power_to_the_vp
+		cost = 5
+		prerequisite = {
+			focus = TEX_power_to_the_vp
+		}
+		prerequisite = {
+			#focus = TEX_a_true_cowboy
+		}
+		completion_reward = {
+				add_ideas = TEX_new_patriot_bill
+		}
+	}
+	focus = {
+		id = TEX_oil_barons_under_me
+		icon = GFX_goal_TEX_Oil_Barons_Under_Me
+		x = -1
+		y = 1
+		relative_position_id = TEX_power_to_the_vp
+		cost = 5
+		prerequisite = {
+			focus = TEX_power_to_the_vp
+		}
+		completion_reward = {		
+				swap_ideas = {
+					remove_idea = TEX_oil_baron_influence
+					add_idea = TEX_oil_barons_controlled
+				}
+		}
+	}
+	focus = {
+		id = TEX_military_industrial_complex_expansion
+		icon = GFX_goal_TEX_Expanding_the_MIC
+		x = -1
+		y = 1
+		relative_position_id = TEX_oil_barons_under_me
+		cost = 5
+		prerequisite = {
+			focus = TEX_oil_barons_under_me
+		}
+		completion_reward = {
+			add_offsite_building = { type = arms_factory level = 4 }
+		}
+	}
+	focus = {
+		id = TEX_execute_cruz_and_abbott_and_patrick
+		icon = GFX
+		x = -1
+		y = 1
+		relative_position_id = TEX_a_true_cowboy
+		cost = 5
+		prerequisite = {
+			focus = TEX_military_industrial_complex_expansion
+		}
+		prerequisite = {
+			focus = TEX_a_true_cowboy
+		}
+		completion_reward = {
+			country_event = texas.94
+		}
+	}
+	focus = {
+		id = TEX_a_true_cowboy
+		icon = GFX_goal_TEX_A_True_Cowboy
+		x = -1
+		y = 1
+		relative_position_id = TEX_a_new_patriot_bill
+		cost = 5
+		prerequisite = {
+			focus = TEX_oil_barons_under_me
+		}
+		completion_reward = {
+				add_country_leader_trait = TEX_Cowboy
+		}
+	}
+	focus = {
+		id = TEX_put_dick_in_dictator
+		icon = GFX_goal_TEX_Put_Penis_In_The_Dictator
+		x = 1
+		y = 1
+		relative_position_id = TEX_a_new_patriot_bill
+		cost = 5
+		prerequisite = {
+			focus = TEX_a_new_patriot_bill
+		}
+		completion_reward = {
+			add_political_power = 150
+			add_stability = 0.05
+			add_war_support = 0.2
+		}
+	}
 	focus = {
 		id = TEX_embrace_the_dark
 		icon = GFX_goal_TEX_Let_them_Embrace_the_Dark
-		x = 3
-		y = 1
-		relative_position_id = TEX_mop_up_the_remainders
+		x = -1
+		y = 2
+		relative_position_id = TEX_put_dick_in_dictator
 		cost = 7.00
+		#prerequisite = {
+		#	focus = TEX_mop_up_the_remainders
+		#}
+		#prerequisite = {
+		#	focus = TEX_finish_harris
+		#}
 		prerequisite = {
-			focus = TEX_mop_up_the_remainders
-		}
-		prerequisite = {
-			focus = TEX_finish_harris
+			focus = TEX_execute_cruz_and_abbott_and_patrick
 		}
 		prerequisite = {
 			focus = TEX_put_dick_in_dictator
 		}
-		mutually_exclusive = { focus = TEX_show_the_light }
+		#mutually_exclusive = { focus = TEX_show_the_light }
 		available = {
 			has_government = autocratic 
 			NOT = {
@@ -3410,6 +2872,913 @@ focus_tree = {
 			}
 		}
 	}
+	
+	
+	
+	focus = {
+		id = TEX_restore_order_in_dixie
+		icon = GFX_goal_TEX_Restore_Order_in_Dixie
+		x = 1
+		y = 2
+		relative_position_id = TEX_george_not_forgive
+		cost = 5
+		prerequisite = {
+			focus = TEX_george_republican
+			focus = TEX_george_not_care
+		}
+		available = {
+			OR = {
+				has_government = autocratic
+				has_global_flag = Dixie_Collapse_Global
+				NOT = {
+					country_exists = CSA 
+				}
+			}
+		}
+		will_lead_to_war_with = CSA
+		will_lead_to_war_with = KKK
+		will_lead_to_war_with = AFR
+		will_lead_to_war_with = CSB
+		will_lead_to_war_with = ZIO
+		completion_reward = {
+			declare_war_on = {
+			    target = CSA
+			    type = annex_everything
+			}
+			if = { 
+				limit = {
+					country_exists = KKK
+				}
+				declare_war_on = {
+			   	  target = KKK
+				  type = annex_everything
+				}
+			}
+			if = { 
+				limit = {
+					country_exists = AFR
+				}
+				declare_war_on = {
+			   	  target = AFR
+				  type = annex_everything
+				}
+			}
+			if = { 
+				limit = {
+					country_exists = CSB
+				}
+				declare_war_on = {
+			   	  target = CSB
+				  type = annex_everything
+				}
+			}
+			if = { 
+				limit = {
+					country_exists = ZIO
+				}
+				declare_war_on = {
+			   	  target = ZIO
+				  type = annex_everything
+				}
+			}
+			if = { 
+				limit = {
+					country_exists = LGB
+				}
+				declare_war_on = {
+			   	  target = LGB
+				  type = annex_everything
+				}
+			}
+			if = { 
+				limit = {
+					country_exists = APA
+				}
+				declare_war_on = {
+			   	  target = APA
+				  type = annex_everything
+				}
+			}
+			if = { 
+				limit = {
+					country_exists = ARK
+				}
+				declare_war_on = {
+			   	  target = ARK
+				  type = annex_everything
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_meet_with_dixie
+		icon = GFX
+		x = -1
+		y = 2
+		relative_position_id = TEX_george_not_forgive
+		cost = 5
+		prerequisite = {
+			focus = TEX_george_republican
+			focus = TEX_george_not_care
+		}
+		available = {
+			has_government = republican
+			country_exists = CSA
+			NOT = {
+				has_global_flag = Dixie_Collapse_Global
+			}
+		}
+		completion_reward = {
+			CSA = { country_event = texas_foreign.6 }
+		}
+	}
+	
+	focus = {
+		id = TEX_revenge_at_last
+		icon = GFX_goal_TEX_Revenge_at_Last
+		x = -1
+		y = 4
+		relative_position_id = TEX_restore_order_in_dixie
+		cost = 5
+		prerequisite = {
+			focus = TEX_restore_order_in_dixie
+			focus = TEX_meet_with_dixie
+		}
+		available = {
+			has_war = no
+		}
+		will_lead_to_war_with = FLO
+		will_lead_to_war_with = USA
+		completion_reward = {
+			if = {
+				limit = {
+					NOT = {
+						has_cosmetic_tag = TEX_bush_america
+					}
+				}
+				set_cosmetic_tag = TEX_bush_america
+			}
+			declare_war_on = {
+			    target = FLO
+			    type = annex_everything
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_southern_shield
+		icon = GFX
+		x = -3
+		y = 1
+		relative_position_id = TEX_revenge_at_last
+		cost = 5
+		prerequisite = {
+			focus = TEX_revenge_at_last
+		}
+		mutually_exclusive = { focus = TEX_drums_of_war }
+		available = { has_completed_focus = TEX_meet_with_dixie }
+		completion_reward = {
+			add_country_leader_trait = forty_three
+		}
+
+	}
+	focus = {
+		id = TEX_a_sense_of_stability
+		icon = GFX
+		x = -1
+		y = 1
+		relative_position_id = TEX_southern_shield
+		cost = 5
+		prerequisite = {
+			focus = TEX_southern_shield
+		}
+		completion_reward = {
+			every_owned_state = {
+				limit = { is_core_of = FLO }
+				add_core_of = TEX 
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_ally_npa
+		icon = GFX
+		x = 1
+		y = 1
+		relative_position_id = TEX_a_sense_of_stability
+		cost = 5
+		prerequisite = {
+			focus = TEX_a_sense_of_stability
+		}
+		bypass = { NOT = { country_exists = NPA } }
+		completion_reward = {
+			NPA = { country_event = texas_foreign.6 }
+		}
+
+	}
+	focus = {
+		id = TEX_ally_arnold
+		icon = GFX
+		x = 2
+		y = 2
+		relative_position_id = TEX_a_sense_of_stability
+		cost = 5
+		prerequisite = {
+			focus = TEX_a_sense_of_stability
+		}
+		bypass = { NOT = { PRA = { has_completed_focus = The_Republican_Ticket } } }
+		completion_reward = {
+			PRA = { country_event = texas_foreign.6 }
+		}
+
+	}
+	focus = {
+		id = TEX_ally_cox
+		icon = GFX
+		x = -1
+		y = 1
+		relative_position_id = TEX_a_sense_of_stability
+		cost = 5
+		prerequisite = {
+			focus = TEX_a_sense_of_stability
+		}
+		bypass = { NOT = { UTA = { has_completed_focus = UTA_Republicans } } }
+		completion_reward = {
+			UTA = { country_event = texas_foreign.6 }
+		}
+
+	}
+	focus = {
+		id = TEX_ally_mit
+		icon = GFX
+		x = -2
+		y = 2
+		relative_position_id = TEX_a_sense_of_stability
+		cost = 5
+		prerequisite = {
+			focus = TEX_a_sense_of_stability
+		}
+		bypass = { NOT = { SIN = { has_completed_focus = Remember_2012 } } }
+		completion_reward = {
+			SIN = { country_event = texas_foreign.6 }
+		}
+
+	}
+	focus = {
+		id = TEX_ally_moderate_dems
+		icon = GFX
+		x = 0
+		y = 3
+		relative_position_id = TEX_a_sense_of_stability
+		cost = 5
+		prerequisite = {
+			focus = TEX_ally_mit
+		}
+		prerequisite = {
+			focus = TEX_ally_cox
+		}
+		prerequisite = {
+			focus = TEX_ally_npa
+		}
+		prerequisite = {
+			focus = TEX_ally_arnold
+		}
+		completion_reward = {
+			IF = {
+				limit = { PRA = { has_completed_focus = The_Republican_Ticket } }
+				PRA = { country_event = texas_foreign.6 }
+			}
+			IF = {
+				limit = { UTA = { has_completed_focus = UTA_Democrats } }
+				UTA = { country_event = texas_foreign.6 }
+			}
+			IF = {
+				limit = { FRA = { has_government = democrat } }
+				FRA = { country_event = texas_foreign.6 }
+			}
+			IF = {
+				limit = { VIR = { has_government = democrat } }
+				VIR = { country_event = texas_foreign.6 }
+			}
+				
+		}
+
+	}
+	focus = {
+		id = TEX_kill_populists
+		icon = GFX
+		x = 0
+		y = 1
+		relative_position_id = TEX_ally_moderate_dems
+		cost = 5
+		prerequisite = {
+			focus = TEX_ally_moderate_dems
+		}
+		completion_reward = {
+			every_country = {
+				LIMIT = { 
+					AND = {
+						has_government = republican
+						NOT = { is_in_faction_with = TEX }
+					}
+				}
+				TEX = {
+					create_wargoal = {
+						target = PREV
+						type = annex_everything
+					}
+				}
+			}
+			every_country = {
+				LIMIT = { 
+					AND = {
+						has_government = democrat
+						NOT = { is_in_faction_with = TEX }
+					}
+				}
+				TEX = {
+					create_wargoal = {
+						target = PREV
+						type = annex_everything
+					}
+				}
+			}
+			
+		}
+
+	}
+	focus = {
+		id = TEX_kill_autocrats
+		icon = GFX
+		x = -2
+		y = 1
+		relative_position_id = TEX_ally_moderate_dems
+		cost = 5
+		prerequisite = {
+			focus = TEX_ally_moderate_dems
+		}
+		completion_reward = {
+			every_country = {
+				LIMIT = { 
+					AND = {
+						has_government = autocratic
+						NOT = { is_in_faction_with = TEX }
+					}
+				}
+				TEX = {
+					create_wargoal = {
+						target = PREV
+						type = annex_everything
+					}
+				}
+			}
+			every_country = {
+				LIMIT = { 
+					AND = {
+						has_government = authoritarian_left
+						NOT = { is_in_faction_with = TEX }
+					}
+				}
+				TEX = {
+					create_wargoal = {
+						target = PREV
+						type = annex_everything
+					}
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_kill_anarchists
+		icon = GFX
+		x = 2
+		y = 1
+		relative_position_id = TEX_ally_moderate_dems
+		cost = 5
+		prerequisite = {
+			focus = TEX_ally_moderate_dems
+		}
+		completion_reward = {
+			every_country = {
+				LIMIT = { 
+					AND = {
+						has_government = libertarian_left
+						NOT = { is_in_faction_with = TEX }
+					}
+				}
+				TEX = {
+					create_wargoal = {
+						target = PREV
+						type = annex_everything
+					}
+				}
+			}
+			every_country = {
+				LIMIT = { 
+					AND = {
+						has_government = libertarian_right
+						NOT = { is_in_faction_with = TEX }
+					}
+				}
+				TEX = {
+					create_wargoal = {
+						target = PREV
+						type = annex_everything
+					}
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_george_reunite
+		icon = GFX
+		x = 2
+		y = 1
+		relative_position_id = TEX_kill_autocrats
+		cost = 5
+		prerequisite = {
+			focus = TEX_kill_autocrats
+		}
+		prerequisite = {
+			focus = TEX_kill_populists
+		}
+		prerequisite = {
+			focus = TEX_kill_anarchists
+		}
+		completion_reward = {
+		}
+
+	}
+	
+	
+	focus = {
+		id = TEX_drums_of_war
+		icon = GFX_goal_TEX_Drums_of_War
+		x = 3
+		y = 1
+		relative_position_id = TEX_revenge_at_last
+		cost = 5
+		prerequisite = {
+			focus = TEX_revenge_at_last
+		}
+		mutually_exclusive = { focus = TEX_southern_shield }
+		available = { has_completed_focus = TEX_restore_order_in_dixie }
+		will_lead_to_war_with = HOP
+		completion_reward = {
+			add_country_leader_trait = forty_three
+			declare_war_on = {
+			    target = HOP
+			    type = annex_everything
+			}
+			every_state = {
+				limit = {
+					is_core_of = HOP
+				}
+				add_core_of = TEX
+			}
+		}
+
+	}
+	focus = {
+		id = TEX_invade_the_mormons
+		icon = GFX_goal_TEX_Invade_the_Mormons
+		x = -2
+		y = 1
+		relative_position_id = TEX_drums_of_war
+		cost = 5
+		prerequisite = {
+			focus = TEX_drums_of_war
+		}
+		mutually_exclusive = { focus = TEX_invade_the_freedom_coalition }
+		mutually_exclusive = { focus = TEX_sit_down_with_mitt }
+		available = {
+			has_war = no
+		}
+		will_lead_to_war_with = AFO
+		will_lead_to_war_with = UTA
+		completion_reward = {
+				create_wargoal = {
+					target = AFO
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = UTA
+					type = annex_everything
+				}
+		}
+
+	}
+	focus = {
+		id = TEX_sit_down_with_mitt
+		icon = GFX_goal_TEX_Sit_with_Romney
+		x = 2
+		y = 1
+		relative_position_id = TEX_drums_of_war
+		cost = 5
+		prerequisite = {
+			focus = TEX_drums_of_war
+		}
+		mutually_exclusive = { focus = TEX_invade_the_freedom_coalition }
+		mutually_exclusive = { focus = TEX_invade_the_mormons }
+		available = {
+			has_war = no
+			SIN = { has_completed_focus = Remember_2012 }
+		}
+		will_lead_to_war_with = MOL
+		will_lead_to_war_with = AFO
+		will_lead_to_war_with = SIN
+		will_lead_to_war_with = LAS
+		will_lead_to_war_with = HAM
+		completion_reward = {
+				SIN = { country_event = texas.33 }
+				IF = { 
+					limit = { country_exists = MOL }
+					create_wargoal = {
+						target = MOL
+						type = annex_everything
+					}
+				}
+				IF = { 
+					limit = { country_exists = AFO }
+					create_wargoal = {
+						target = AFO
+						type = annex_everything
+					}
+				}
+				IF = { 
+					limit = { country_exists = HAM }
+					create_wargoal = {
+						target = HAM
+						type = annex_everything
+					}
+				}
+				IF = { 
+					limit = { country_exists = MOL }
+					create_wargoal = {
+						target = LAS
+						type = annex_everything
+					}
+				}
+		}
+
+	}
+	focus = {
+		id = TEX_invade_the_freedom_coalition
+		icon = GFX_goal_TEX_Invade_Freedom_Coalition
+		x = -0
+		y = 1
+		relative_position_id = TEX_drums_of_war
+		cost = 5
+		prerequisite = {
+			focus = TEX_drums_of_war
+		}
+		mutually_exclusive = { focus = TEX_invade_the_mormons }
+		mutually_exclusive = { focus = TEX_sit_down_with_mitt }
+		available = {
+			has_war = no
+		}
+		will_lead_to_war_with = MOL
+		will_lead_to_war_with = AFO
+		will_lead_to_war_with = SIN
+		will_lead_to_war_with = LAS
+		will_lead_to_war_with = HAM
+		completion_reward = {
+				create_wargoal = {
+					target = MOL
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = AFO
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = SIN
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = HAM
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = LAS
+					type = annex_everything
+				}
+		}
+
+	}
+	focus = {
+		id = TEX_secure_the_flank
+		icon = GFX_goal_TEX_Secure_Western_Flank
+		x = -3
+		y = 2
+		relative_position_id = TEX_drums_of_war
+		cost = 5
+		prerequisite = {
+			focus = TEX_drums_of_war
+		}
+		will_lead_to_war_with = PRA
+		available = {
+			has_war = no
+		}
+		completion_reward = {
+			declare_war_on = {
+			    target = PRA
+			    type = annex_everything
+			}
+			if = { 
+				limit = { country_exists = JFR }
+				create_wargoal = {
+					target = JFR
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = PRC }
+				create_wargoal = {
+					target = PRC
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = HLY }
+				create_wargoal = {
+					target = HLY
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = CST }
+				create_wargoal = {
+					target = CST
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = ACF }
+				create_wargoal = {
+					target = ACF
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = SAC }
+				create_wargoal = {
+					target = SAC
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = ABG }
+				create_wargoal = {
+					target = ABG
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = NVD }
+				create_wargoal = {
+					target = NVD
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = SIL }
+				create_wargoal = {
+					target = SIL
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = FIR }
+				create_wargoal = {
+					target = FIR
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = ORO }
+				create_wargoal = {
+					target = ORO
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = BJC }
+				create_wargoal = {
+					target = BJC
+					type = annex_everything
+				}
+			}			
+		}
+	}
+	
+	focus = {
+		id = TEX_end_cascadian_nazis
+		icon = GFX_goal_TEX_End_Cascadian_Nazis
+		x = 1
+		y = 1
+		relative_position_id = TEX_secure_the_flank
+		cost = 5
+		prerequisite = {
+			focus = TEX_secure_the_flank
+		}
+		will_lead_to_war_with = CAS
+		will_lead_to_war_with = LIB
+		available = {
+			has_war = no
+		}
+		completion_reward = {
+			create_wargoal = {
+					target = CAS
+					type = annex_everything
+				}
+			create_wargoal = {
+				target = LIB
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = TEX_restore_the_rockies
+		icon = GFX_goal_TEX_Restore_the_Rockies
+		x = 0
+		y = 1
+		relative_position_id = TEX_invade_the_freedom_coalition
+		cost = 5
+		prerequisite = {
+			focus = TEX_invade_the_freedom_coalition
+			focus = TEX_sit_down_with_mitt
+			focus = TEX_invade_the_mormons
+		}
+		will_lead_to_war_with = MON
+		will_lead_to_war_with = IDA
+		available = {
+			has_war = no
+		}
+		completion_reward = {
+			create_wargoal = {
+				target = MON
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = IDA
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = TEX_the_showdown
+		icon = GFX_goal_TEX_End_of_the_Road
+		x = 3
+		y = 2
+		relative_position_id = TEX_drums_of_war
+		cost = 7.00
+		prerequisite = {
+			focus = TEX_drums_of_war
+		}
+		available = {
+		}
+		will_lead_to_war_with = USA
+		completion_reward = {
+			if = {
+				limit = {
+					NOT = {
+						has_war_with = USA
+					}
+				}
+				declare_war_on = {
+					    target = USA
+					    type = annex_everything
+				}
+			}
+			add_ideas = TEX_grand_crusade
+			news_event = { id = texas.10 }
+		}
+	}
+	focus = {
+		id = TEX_finish_harris
+		icon = GFX_goal_TEX_Finish_Harris_Off
+		x = -1
+		y = 1
+		relative_position_id = TEX_the_showdown
+		cost = 7.00
+		prerequisite = {
+			focus = TEX_the_showdown
+		}
+		available = {
+		}
+		will_lead_to_war_with = FRA
+		completion_reward = {
+				create_wargoal = {
+					target = FRA
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = NEW
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = NAB
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = WBK
+					type = annex_everything
+				}
+
+		}
+	}
+	focus = {
+		id = TEX_mop_up_the_remainders
+		icon = GFX_goal_TEX_Mop_the_Rest
+		x = -2
+		y = 1
+		relative_position_id = TEX_finish_harris
+		cost = 7.00
+		prerequisite = {
+			focus = TEX_finish_harris
+		}
+		prerequisite = {
+			focus = TEX_restore_the_rockies
+		}
+		prerequisite = {
+			focus = TEX_end_cascadian_nazis
+		}
+		available = {
+		}
+		will_lead_to_war_with = GLA
+		will_lead_to_war_with = AFS
+		completion_reward = {
+				create_wargoal = {
+					target = GLA
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = KMT
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = MIL
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = MNS
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = MIN
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = ISA
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = DET
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = AFS
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = RVR
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = VIR
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = OBX
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = NRA
+					type = annex_everything
+				}	
+				create_wargoal = {
+					target = KFC
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = NPA
+					type = annex_everything
+				}
+
+
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	###Liberal King 
@@ -3455,6 +3824,7 @@ focus_tree = {
 		}
 
 	}
+	
 	focus = {
 		id = TEX_westminster
 		icon = GFX_goal_Westminster_System
@@ -4000,7 +4370,7 @@ focus_tree = {
 		y = 1
 		relative_position_id = TEX_Grand_Coalition
 		cost = 5
-		allow_branch = { has_completed_focus = TEX_Dominion_of_the_Gulf_and_South_Atlantic }
+		allow_branch = { has_country_flag = american_plan_ready }
 		prerequisite = {
 			focus = TEX_Grand_Coalition
 		}
@@ -4015,7 +4385,7 @@ focus_tree = {
 		y = 1
 		relative_position_id = TEX_brit_american_plan
 		cost = 5
-		allow_branch = { has_completed_focus = TEX_Dominion_of_America }
+		allow_branch = { has_country_flag = harry_schizo }
 		prerequisite = {
 			focus = TEX_brit_american_plan
 		}
@@ -4388,7 +4758,7 @@ focus_tree = {
 		y = 2
 		relative_position_id = TEX_a_Devolved_Kingdom
 		cost = 0
-		allow_branch = { has_completed_focus = TEX_brit_american_plan }
+		allow_branch = { has_country_flag = harry_america_conquest }
 		#prerequisite = {
 		#	focus = TEX_Dominion_of_the_Gulf_and_South_Atlantic
 		#}
@@ -4769,7 +5139,7 @@ focus_tree = {
 			has_completed_focus = TEX_East_into_biden
 		}
 		#
-		allow_branch = { has_completed_focus = TEX_a_visit_to_london }
+		allow_branch = { has_country_flag = bombed_royal_family }
 		completion_reward = {
 		}
 	}
@@ -5594,7 +5964,7 @@ focus_tree = {
 	focus = {
 		id = TEX_a_greater_german_american_union
 		icon = GFX_goal_greater_german_union
-		x = -10
+		x = -6
 		y = 1
 		relative_position_id = TEX_national_diplo
 		cost = 0
@@ -7774,12 +8144,13 @@ focus_tree = {
 		}
 	}
 	
-	###### First Beto Tree
+	
+	###### Liberals
 	
 	focus = {
-		id = TEX_underdog_no_more
-		icon = GFX_goal_Beto_ORourke_Victory
-		x = 18
+		id = TEX_establishment_dems
+		icon = GFX
+		x = 9
 		y = 1
 		relative_position_id = TEX_results
 		cost = 5
@@ -7789,11 +8160,11 @@ focus_tree = {
 		mutually_exclusive = {
 			focus = TEX_out_of_retirement
 			focus = TEX_loyalty_to_trump
-			focus = TEX_in_bed_with_ted
+			focus = TEX_underdog_no_more
 			#focus = TEX_miller_coup
 		}
 		available = {
-			has_country_flag = beto_elected_president
+			has_country_flag = estbalishment_dems_elected
 		}
 		completion_reward = {
 			add_popularity = {
@@ -7804,6 +8175,15 @@ focus_tree = {
 				ruling_party = democrat
 			}
 			hidden_effect = {
+				create_country_leader = { 
+					name = "Gilberto Hinojosa"
+					picture = "gfx/leaders/TEX/gilberto_hinojosa.dds"
+					expire = "2060.1.1"
+					ideology = establishment
+					traits = {
+						TEX_hinojosa_trait
+					}
+				}
 				set_party_name = {
 					ideology = autocratic
 					long_name = TEX_oil_baron_long
@@ -7820,337 +8200,274 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = TEX_the_progressive
-		icon = GFX_goal_TEX_The_Progressive
+		id = TEX_reconcile_with_old_guard_gop
+		icon = GFX
 		x = 0
 		y = 1
-		relative_position_id = TEX_underdog_no_more
+		relative_position_id = TEX_establishment_dems
 		cost = 5
 		prerequisite = {
-			focus = TEX_underdog_no_more
+			focus = TEX_establishment_dems
 		}
 		available = {
 		}
 		completion_reward = {
-				add_ideas = TEX_progressive_texas
+			add_ideas = TEX_gop_lib_coop
 		}
 	}
+	
 	focus = {
-		id = TEX_raise_the_minimum_wage
-		icon = GFX_goal_TEX_Raise_the_Minimum_Wage
-		x = 0
+		id = TEX_progressive_issue
+		icon = GFX
+		x = -4
 		y = 1
-		relative_position_id = TEX_the_progressive
+		relative_position_id = TEX_reconcile_with_old_guard_gop
 		cost = 5
+		#allow_branch = { 
+		#		NOT = { 
+		#			has_completed_focus = TEX_different_direction 
+		#			has_completed_focus = TEX_the_reluctant_president
+		#			has_completed_focus = TEX_red_does_not_stain_the_black_gold
+		#			has_completed_focus = TEX_OH_NO
+		#		}
+		#		has_country_flag = progressive_issue
+		#}
 		prerequisite = {
-			focus = TEX_the_progressive
+			focus = TEX_reconcile_with_old_guard_gop
 		}
 		available = {
 		}
 		completion_reward = {
-				IF = {
-					limit = { 
-						NOT = { 
-							has_idea = TEX_workers_rights
-							has_idea = TEX_workers_rights2
-						}
-					}
-					add_ideas = TEX_workers_rights
-				}
-				ELSE_IF = {
-					limit = { 
-						has_idea = TEX_workers_rights
-					}
-					swap_ideas = {
-						remove_idea = TEX_workers_rights
-						add_idea = TEX_workers_rights2
-					}
-				}
 		}
 	}
 	focus = {
-		id = TEX_add_workers_rights
-		icon = GFX_goal_TEX_Add_Workers_Rights
-		x = 2
-		y = 1
-		relative_position_id = TEX_the_progressive
-		cost = 5
-		prerequisite = {
-			focus = TEX_the_progressive
-		}
-		available = {
-		}
-		completion_reward = {
-				IF = {
-					limit = { 
-						NOT = { 
-							has_idea = TEX_workers_rights
-							has_idea = TEX_workers_rights2
-						}
-					}
-					add_ideas = TEX_workers_rights
-				}
-				ELSE_IF = {
-					limit = { 
-						has_idea = TEX_workers_rights
-					}
-					swap_ideas = {
-						remove_idea = TEX_workers_rights
-						add_idea = TEX_workers_rights2
-					}
-				}
-		}
-	}
-	focus = {
-		id = TEX_medicare_for_all
-		icon = GFX_goal_TEX_Medicare_for_All
-		x = -2
-		y = 1
-		relative_position_id = TEX_the_progressive
-		cost = 5
-		prerequisite = {
-			focus = TEX_the_progressive
-		}
-		available = {
-		}
-		completion_reward = {
-				add_ideas = TEX_free_healthcare
-		}
-	}
-	focus = {
-		id = TEX_work_with_new_mexico
-		icon = GFX_goal_work_with_NM
-		x = 1
-		y = 1
-		relative_position_id = TEX_medicare_for_all
-		cost = 5
-		prerequisite = {
-			focus = TEX_medicare_for_all
-		}
-		prerequisite = {
-			focus = TEX_raise_the_minimum_wage
-		}
-		available = {
-		}
-		completion_reward = {
-				remove_ideas = TEX_New_Mexican_Terrorism
-				310 = { add_core_of = TEX }
-				249 = { add_core_of = TEX }
-				335 = { add_core_of = TEX }
-				add_stability = 0.1
-
-		}
-	}
-	focus = {
-		id = TEX_crack_down_on_trumpists
-		icon = GFX_goal_TEX_Crack_down_on_Trumpists
-		x = 1
-		y = 1
-		relative_position_id = TEX_raise_the_minimum_wage
-		cost = 5
-		prerequisite = {
-			focus = TEX_add_workers_rights
-		}
-		prerequisite = {
-			focus = TEX_raise_the_minimum_wage
-		}
-		available = {
-		}
-		completion_reward = {
-				remove_ideas = TEX_Oklahoma_Rebels
-				258 = { add_core_of = TEX }
-				add_popularity = {
-					ideology = republican
-					popularity = -0.5
-				}
-				
-		}
-	}
-	focus = {
-		id = TEX_the_oil_bill
-		icon = GFX_goal_TEX_The_Oil_Bill
+		id = TEX_gerrymander_districts
+		icon = GFX
 		x = -1
 		y = 1
-		relative_position_id = TEX_crack_down_on_trumpists
-		cost = 20
-		available = { has_completed_focus = TEX_complete_recovery } 
+		relative_position_id = TEX_progressive_issue
+		cost = 5
 		prerequisite = {
-			focus = TEX_crack_down_on_trumpists
-		}
-		prerequisite = {
-			focus = TEX_work_with_new_mexico
+			focus = TEX_progressive_issue
 		}
 		available = {
 		}
-		select_effect = { country_event = texas.34 }
 		completion_reward = {
-				custom_effect_tooltip = tex_oil_bill_tt
-				
+			IF = {
+				limit = { has_idea = TEX_progressive_outrage }
+				swap_ideas = {
+					remove_idea = TEX_progressive_outrage
+					add_idea = TEX_progressive_outrage2
+				}
+			}
+			IF = {
+				limit = { has_idea = TEX_progressive_outrage2 }
+				swap_ideas = {
+					remove_idea = TEX_progressive_outrage2
+					add_idea = TEX_progressive_outrage3
+				}
+			}
 		}
 	}
-	######### Normal Beto
-	
-	
-	
 	focus = {
-		id = TEX_Beto_holds_on
-		icon = GFX_goal_The_Fighting_Progressive_Retains_Control
-		x = 0
-		y = 4
-		relative_position_id = TEX_the_oil_bill
+		id = TEX_undermine_progressive_candidates
+		icon = GFX
+		x = 1
+		y = 1
+		relative_position_id = TEX_progressive_issue
 		cost = 5
-		allow_branch = { 
-				NOT = { 
-					has_completed_focus = TEX_different_direction 
-				}
-				has_country_flag = beto_held_on
-		}
 		prerequisite = {
-			focus = TEX_the_oil_bill
+			focus = TEX_progressive_issue
 		}
 		available = {
-				has_country_flag = beto_held_on
 		}
-		offset = {
-			x = 0
-			y = -3
-			trigger = {
-				has_completed_focus = TEX_Beto_holds_on
+		completion_reward = {
+			IF = {
+				limit = { has_idea = TEX_progressive_outrage }
+				swap_ideas = {
+					remove_idea = TEX_progressive_outrage
+					add_idea = TEX_progressive_outrage2
+				}
+			}
+			IF = {
+				limit = { has_idea = TEX_progressive_outrage2 }
+				swap_ideas = {
+					remove_idea = TEX_progressive_outrage2
+					add_idea = TEX_progressive_outrage3
+				}
+			}
+		}
+	}
+	focus = {
+		id = TEX_use_moderate_gop
+		icon = GFX
+		x = 1
+		y = 1
+		relative_position_id = TEX_gerrymander_districts
+		cost = 5
+		prerequisite = {
+			focus = TEX_undermine_progressive_candidates
+		}
+		prerequisite = {
+			focus = TEX_gerrymander_districts
+		}
+		available = {
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = TEX_progressive_outrage3
+				add_idea = TEX_progressive_outrage4
+			}
+		}
+	}
+	focus = {
+		id = TEX_end_of_the_progressive_movement
+		icon = GFX
+		x = 1
+		y = 1
+		relative_position_id = TEX_use_moderate_gop
+		cost = 5
+		prerequisite = {
+			focus = TEX_use_moderate_gop
+		}
+		available = {
+		}
+		completion_reward = {
+			remove_ideas = TEX_progressive_outrage4
+		}
+	}
+	
+	focus = {
+		id = TEX_Joining_the_Legitimists
+		icon = GFX
+		x = 0
+		y = 1
+		relative_position_id = TEX_reconcile_with_old_guard_gop
+		cost = 5
+		prerequisite = {
+			focus = TEX_reconcile_with_old_guard_gop
+		}
+		bypass = { NOT = { country_exists = FRA } }
+		available = {
+			OR = {
+				has_completed_focus = TEX_the_southern_united_states_of_america
+				has_completed_focus = TEX_The_Legitimist_Sunbelt
 			}
 		}
 		completion_reward = {
-			add_popularity = {
-				ideology = democrat
-				popularity = 0.15
+				FRA = { add_to_faction = TEX }
+		}
+	}
+	focus = {
+		id = TEX_Legitimist_economic_aid
+		icon = GFX_goal_Receive_Biden_Economic_Aid
+		x = 0
+		y = 1
+		relative_position_id = TEX_Joining_the_Legitimists
+		bypass = { NOT = { country_exists = FRA } }
+		cost = 5
+		prerequisite = {
+			focus = TEX_Joining_the_Legitimists
+		}
+		available = {
+		}
+		completion_reward = {
+			add_ideas = TEX_legitimist_aid
+		}
+	}
+	focus = {
+		id = TEX_Legitimist_army_support
+		icon = GFX
+		x = -1
+		y = 1
+		relative_position_id = TEX_Legitimist_economic_aid
+		bypass = { NOT = { country_exists = FRA } }
+		cost = 5
+		prerequisite = {
+			focus = TEX_Legitimist_economic_aid
+		}
+		available = {
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = TEX_legitimist_aid
+				add_idea = TEX_legitimist_aid2
 			}
-			mark_focus_tree_layout_dirty = yes
 		}
 	}
 	focus = {
-		id = TEX_Crush_the_Oil_Barons
-		icon = GFX_goal_Crush_the_Oil_Barons
+		id = TEX_Legitimist_trade
+		icon = GFX
 		x = 0
 		y = 1
-		relative_position_id = TEX_Beto_holds_on
+		relative_position_id = TEX_Legitimist_army_support
+		bypass = { NOT = { country_exists = FRA } }
 		cost = 5
 		prerequisite = {
-			focus = TEX_Beto_holds_on
+			focus = TEX_Legitimist_army_support
 		}
 		available = {
 		}
 		completion_reward = {
-				swap_ideas = {
-						remove_idea = TEX_oil_baron_influence
-						add_idea = TEX_oil_barons_crushed
-				}
-				add_popularity = {
-					ideology = autocratic
-					popularity = -0.5
-				}
+			swap_ideas = {
+				remove_idea = TEX_legitimist_aid2
+				add_idea = TEX_legitimist_aid3
+			}
+			
 		}
 	}
 	focus = {
-		id = TEX_Ban_the_Trumpists
-		icon = GFX_goal_Ban_the_Trumpist_GOP
-		x = 2
+		id = TEX_neoliberlism_and_establishment
+		icon = GFX
+		x = 1
 		y = 1
-		relative_position_id = TEX_Beto_holds_on
+		relative_position_id = TEX_end_of_the_progressive_movement
 		cost = 5
 		prerequisite = {
-			focus = TEX_Beto_holds_on
+			focus = TEX_end_of_the_progressive_movement
+		}
+		prerequisite = {
+			focus = TEX_Legitimist_trade
 		}
 		available = {
 		}
 		completion_reward = {
-				add_popularity = {
-					ideology = libertarian_right
-					popularity = -0.5
-				}
-				add_ideas = TEX_banned_right
-				
+			add_ideas = TEX_establishment_established
 		}
 	}
+	
 	focus = {
-		id = TEX_Work_With_Bush
-		icon = GFX_goal_Work_With_George_Bush
-		x = -2
+		id = TEX_let_the_federalists_expand
+		icon = GFX
+		x = 4
 		y = 1
-		relative_position_id = TEX_Beto_holds_on
-		cost = 5
+		relative_position_id = TEX_reconcile_with_old_guard_gop
+		cost = 1
+		mutually_exclusive = { focus = TEX_Rekindle_southern_spirit }
+		mutually_exclusive = { focus = TEX_Aiming_for_the_Sunbelt }
 		prerequisite = {
-			focus = TEX_Beto_holds_on
+			focus = TEX_reconcile_with_old_guard_gop
 		}
 		available = {
 		}
-		completion_reward = {
-				add_popularity = {
-					ideology = republican
-					popularity = 0.1
-				}
-				swap_ideas = {
-					remove_idea = TEX_progressive_texas
-					add_idea = TEX_progressive_texas2
-				}
-		}
-	}
-	focus = {
-		id = TEX_Crush_Remaining_Rebels
-		icon = GFX_goal_Beto_ORourke_Victory
-		x = 0
-		y = 2
-		relative_position_id = TEX_Beto_holds_on
-		cost = 5
-		prerequisite = {
-			focus = TEX_Work_With_Bush
-		}
-		prerequisite = {
-			focus = TEX_Ban_the_Trumpists
-		}
-		prerequisite = {
-			focus = TEX_Crush_the_Oil_Barons
-		}
-		available = {
+		ai_will_do = {
+			base = 100
 		}
 		completion_reward = {
-				every_owned_state = {
-					limit = { is_core_of = LOU }
-					add_core_of = TEX
-				}
-				every_owned_state = {
-					limit = { is_core_of = OKL }
-					add_core_of = TEX
-				}
-		}
-	}
-	focus = {
-		id = TEX_still_a_democracy
-		icon = GFX_goal_Beto_ORourke_Victory
-		x = 0
-		y = 1
-		relative_position_id = TEX_Crush_Remaining_Rebels
-		cost = 5
-		prerequisite = {
-			focus = TEX_Crush_Remaining_Rebels
-		}
-		available = {
-		}
-		completion_reward = {
-				swap_ideas = {
-						remove_idea = TEX_progressive_texas2
-						add_idea = TEX_progressive_texas3
-				}
+			add_stability = 0.5
 		}
 	}
 	focus = {
 		id = TEX_Rekindle_southern_spirit
-		icon = GFX_goal_Beto_ORourke_Victory
+		icon = GFX
 		x = 2
 		y = 1
-		relative_position_id = TEX_still_a_democracy
+		relative_position_id = TEX_reconcile_with_old_guard_gop
 		cost = 1
 		mutually_exclusive = { focus = TEX_Aiming_for_the_Sunbelt }
+		mutually_exclusive = { focus = TEX_let_the_federalists_expand }
 		prerequisite = {
-			focus = TEX_still_a_democracy
+			focus = TEX_reconcile_with_old_guard_gop
 		}
 		available = {
 		}
@@ -8160,7 +8477,7 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_end_the_second_confederacy
-		icon = GFX_goal_Beto_ORourke_Victory
+		icon = GFX
 		x = 0
 		y = 1
 		relative_position_id = TEX_Rekindle_southern_spirit
@@ -8251,7 +8568,7 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_end_the_floridian_feifdom
-		icon = GFX_goal_Beto_ORourke_Victory
+		icon = GFX
 		x = -1
 		y = 1
 		relative_position_id = TEX_end_the_second_confederacy
@@ -8307,7 +8624,7 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_unite_with_virginia
-		icon = GFX_goal_Beto_ORourke_Victory
+		icon = GFX
 		x = 1
 		y = 1
 		relative_position_id = TEX_end_the_second_confederacy
@@ -8355,7 +8672,7 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_the_southern_united_states_of_america
-		icon = GFX_goal_Beto_ORourke_Victory
+		icon = GFX
 		x = -1
 		y = 1
 		relative_position_id = TEX_unite_with_virginia
@@ -8394,7 +8711,7 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_return_kfc
-		icon = GFX_goal_Beto_ORourke_Victory
+		icon = GFX
 		x = 0
 		y = 1
 		relative_position_id = TEX_the_southern_united_states_of_america
@@ -8415,240 +8732,18 @@ focus_tree = {
 				}
 		}
 	}
-	focus = {
-		id = TEX_Continue_Progressive_Policies
-		icon = GFX_goal_Icon_Progressive_Doctrine_MAA
-		x = -7
-		y = 1
-		relative_position_id = TEX_still_a_democracy
-		cost = 5
-		prerequisite = {
-			focus = TEX_still_a_democracy
-		}
-		available = {
-		}
-		completion_reward = {
-				swap_ideas = {
-						remove_idea = TEX_progressive_texas3
-						add_idea = TEX_progressive_texas4
-				}
-		}
-	}
-	focus = {
-		id = TEX_End_Interest_On_Student_Loans
-		icon = GFX_goal_Mandate_Lower_College_Tuition
-		x = 1
-		y = 1
-		relative_position_id = TEX_Continue_Progressive_Policies
-		cost = 5
-		prerequisite = {
-			focus = TEX_Continue_Progressive_Policies
-		}
-		available = {
-		}
-		completion_reward = {
-				add_ideas = TEX_end_tuition_debt
-		}
-	}
-	focus = {
-		id = TEX_Utilize_Immigration
-		icon = GFX_goal_Neutralise_Current_Immigrants
-		x = 3
-		y = 1
-		relative_position_id = TEX_Continue_Progressive_Policies
-		cost = 5
-		prerequisite = {
-			focus = TEX_Continue_Progressive_Policies
-		}
-		available = {
-		}
-		completion_reward = {
-				add_ideas = TEX_W_immigration
-		}
-	}
-	focus = {
-		id = TEX_Legalize_but_Regulate_drugs
-		icon = GFX_goal_Legalize_and_Regulate_Drugs
-		x = -1
-		y = 1
-		relative_position_id = TEX_Utilize_Immigration
-		cost = 5
-		prerequisite = {
-			focus = TEX_Utilize_Immigration
-			focus = TEX_End_Interest_On_Student_Loans
-		}
-		available = {
-		}
-		completion_reward = {
-				add_ideas = TEX_legal_drugs
-		}
-	}
-	focus = {
-		id = TEX_ban_assault_rifles
-		icon = GFX_goal_Ban_Assult_Rifles
-		x = -1
-		y = 1
-		relative_position_id = TEX_Continue_Progressive_Policies
-		cost = 5
-		prerequisite = {
-			focus = TEX_Continue_Progressive_Policies
-		}
-		available = {
-		}
-		completion_reward = {
-				swap_ideas = {
-						remove_idea = TEX_NRA_moderate
-						add_idea = TEX_NRA_finished
-				}
-		}
-	}
-	focus = {
-		id = TEX_green_energy
-		icon = GFX_goal_Beto_Clean_Energy
-		x = 0
-		y = 1
-		relative_position_id = TEX_ban_assault_rifles
-		cost = 5
-		prerequisite = {
-			focus = TEX_ban_assault_rifles
-		}
-		available = {
-		}
-		completion_reward = {
-			add_ideas = TEX_greener_alternatives
-		}
-	}
-	focus = {
-		id = TEX_Joining_the_Legitimists
-		icon = GFX_goal_Joe_Biden_Admin
-		x = 7
-		y = 1
-		relative_position_id = TEX_still_a_democracy
-		cost = 5
-		prerequisite = {
-			focus = TEX_still_a_democracy
-		}
-		bypass = { NOT = { country_exists = FRA } }
-		available = {
-			OR = {
-				has_completed_focus = TEX_the_southern_united_states_of_america
-				has_completed_focus = TEX_The_Legitimist_Sunbelt
-			}
-		}
-		completion_reward = {
-				FRA = { add_to_faction = TEX }
-		}
-	}
-	focus = {
-		id = TEX_Legitimist_economic_aid
-		icon = GFX_goal_Receive_Biden_Economic_Aid
-		x = 1
-		y = 1
-		relative_position_id = TEX_Joining_the_Legitimists
-		bypass = { NOT = { country_exists = FRA } }
-		cost = 5
-		prerequisite = {
-			focus = TEX_Joining_the_Legitimists
-		}
-		available = {
-		}
-		completion_reward = {
-			add_ideas = TEX_legitimist_aid
-		}
-	}
-	focus = {
-		id = TEX_Legitimist_army_support
-		icon = GFX_goal_Beto_ORourke_Victory
-		x = 0
-		y = 1
-		relative_position_id = TEX_Legitimist_economic_aid
-		bypass = { NOT = { country_exists = FRA } }
-		cost = 5
-		prerequisite = {
-			focus = TEX_Legitimist_economic_aid
-		}
-		available = {
-		}
-		completion_reward = {
-				swap_ideas = {
-					remove_idea = TEX_legitimist_aid
-					add_idea = TEX_legitimist_aid2
-				}
-		}
-	}
-	focus = {
-		id = TEX_send_migrants_to_trump
-		icon = GFX_goal_Beto_ORourke_Victory
-		x = -3
-		y = 1
-		relative_position_id = TEX_Joining_the_Legitimists
-		cost = 5
-		prerequisite = {
-			focus = TEX_Joining_the_Legitimists
-		}
-		available = {
-		}
-		completion_reward = {
-			add_intel = {
-				target = USA
-				civilian_intel = 50
-				army_intel = 50
-				navy_intel = 50
-				airforce_intel = 50
-			}
-		}
-	}
-	focus = {
-		id = TEX_flood_trump
-		icon = GFX_goal_Beto_ORourke_Victory
-		x = -1
-		y = 1
-		relative_position_id = TEX_Joining_the_Legitimists
-		cost = 5
-		prerequisite = {
-			focus = TEX_Joining_the_Legitimists
-		}
-		available = {
-			has_completed_focus = TEX_send_migrants_to_trump
-		}
-		completion_reward = {
-				USA = { add_ideas = TEX_flood_trumptardia1 }
-		}
-	}
-	focus = {
-		id = TEX_release_the_hounds
-		icon = GFX_goal_Beto_ORourke_Victory
-		x = -1
-		y = 1
-		relative_position_id = TEX_flood_trump
-		cost = 5
-		prerequisite = {
-			focus = TEX_send_migrants_to_trump
-		}
-		prerequisite = {
-			focus = TEX_flood_trump
-		}
-		available = {
-		}
-		completion_reward = {
-			USA = {
-				swap_ideas = {
-					remove_idea = TEX_flood_trumptardia1
-					add_idea = TEX_flood_trumptardia2
-				}
-			}
-		}
-	}
+	
 	focus = {
 		id = TEX_Aiming_for_the_Sunbelt
-		icon = GFX_goal_Beto_ORourke_Victory
-		x = -2
+		icon = GFX
+		x = 6
 		y = 1
-		relative_position_id = TEX_still_a_democracy
+		relative_position_id = TEX_reconcile_with_old_guard_gop
 		cost = 1
 		mutually_exclusive = { focus = TEX_Rekindle_southern_spirit }
+		mutually_exclusive = { focus = TEX_let_the_federalists_expand }
 		prerequisite = {
-			focus = TEX_still_a_democracy
+			focus = TEX_reconcile_with_old_guard_gop
 		}
 		available = {
 		}
@@ -8661,7 +8756,7 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_End_the_Bigots
-		icon = GFX_goal_Beto_ORourke_Victory
+		icon = GFX
 		x = 0
 		y = 1
 		relative_position_id = TEX_Aiming_for_the_Sunbelt
@@ -8681,7 +8776,7 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_Seize_Utah_and_Nevada
-		icon = GFX_goal_Beto_ORourke_Victory
+		icon = GFX
 		x = 1
 		y = 1
 		relative_position_id = TEX_End_the_Bigots
@@ -8736,7 +8831,7 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_Unite_With_Bernie
-		icon = GFX_goal_Beto_ORourke_Victory
+		icon = GFX
 		x = -1
 		y = 1
 		relative_position_id = TEX_End_the_Bigots
@@ -8957,7 +9052,7 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_The_Legitimist_Sunbelt
-		icon = GFX_goal_Beto_ORourke_Victory
+		icon = GFX
 		x = 1
 		y = 1
 		relative_position_id = TEX_Unite_With_Bernie
@@ -9024,7 +9119,7 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_reclaim_cascadia
-		icon = GFX_goal_Beto_ORourke_Victory
+		icon = GFX
 		x = 0
 		y = 1
 		relative_position_id = TEX_The_Legitimist_Sunbelt
@@ -9055,24 +9150,1240 @@ focus_tree = {
 				}
 		}
 	}
+	
+	
+	
+	
+	###### First Beto Tree
+	
+	focus = {
+		id = TEX_underdog_no_more
+		icon = GFX_goal_Beto_ORourke_Victory
+		x = 19
+		y = 1
+		relative_position_id = TEX_results
+		cost = 5
+		prerequisite = {
+			focus = TEX_results
+		}
+		mutually_exclusive = {
+			focus = TEX_out_of_retirement
+			focus = TEX_loyalty_to_trump
+			focus = TEX_establishment_dems
+			#focus = TEX_miller_coup
+		}
+		available = {
+			has_country_flag = beto_elected_president
+		}
+		completion_reward = {
+			add_popularity = {
+			    ideology = democrat
+			    popularity = 0.1
+			}
+			set_politics = {
+				ruling_party = democrat
+			}
+			hidden_effect = {
+				set_party_name = {
+					ideology = autocratic
+					long_name = TEX_oil_baron_long
+					name = TEX_oil_baron
+				}
+				set_party_name = {
+					ideology = republican
+					long_name = TEX_bush_republican_party_long
+					name = TEX_bush_republican_party
+				}
+				#retire_ideology_leader = libertarian_right
+				promote_character = TEX_ted_cruz
+			}
+		}
+	}
+	focus = {
+		id = TEX_the_progressive
+		icon = GFX_goal_TEX_The_Progressive
+		x = 0
+		y = 1
+		relative_position_id = TEX_underdog_no_more
+		cost = 5
+		prerequisite = {
+			focus = TEX_underdog_no_more
+		}
+		available = {
+		}
+		completion_reward = {
+				add_ideas = TEX_progressive_texas
+		}
+	}
+	focus = {
+		id = TEX_raise_the_minimum_wage
+		icon = GFX_goal_TEX_Raise_the_Minimum_Wage
+		x = 0
+		y = 1
+		relative_position_id = TEX_the_progressive
+		cost = 5
+		prerequisite = {
+			focus = TEX_the_progressive
+		}
+		available = {
+		}
+		completion_reward = {
+				IF = {
+					limit = { 
+						NOT = { 
+							has_idea = TEX_workers_rights
+							has_idea = TEX_workers_rights2
+						}
+					}
+					add_ideas = TEX_workers_rights
+				}
+				ELSE_IF = {
+					limit = { 
+						has_idea = TEX_workers_rights
+					}
+					swap_ideas = {
+						remove_idea = TEX_workers_rights
+						add_idea = TEX_workers_rights2
+					}
+				}
+		}
+	}
+	focus = {
+		id = TEX_add_workers_rights
+		icon = GFX_goal_TEX_Add_Workers_Rights
+		x = 2
+		y = 1
+		relative_position_id = TEX_the_progressive
+		cost = 5
+		prerequisite = {
+			focus = TEX_the_progressive
+		}
+		available = {
+		}
+		completion_reward = {
+				IF = {
+					limit = { 
+						NOT = { 
+							has_idea = TEX_workers_rights
+							has_idea = TEX_workers_rights2
+						}
+					}
+					add_ideas = TEX_workers_rights
+				}
+				ELSE_IF = {
+					limit = { 
+						has_idea = TEX_workers_rights
+					}
+					swap_ideas = {
+						remove_idea = TEX_workers_rights
+						add_idea = TEX_workers_rights2
+					}
+				}
+		}
+	}
+	focus = {
+		id = TEX_medicare_for_all
+		icon = GFX_goal_TEX_Medicare_for_All
+		x = -2
+		y = 1
+		relative_position_id = TEX_the_progressive
+		cost = 5
+		prerequisite = {
+			focus = TEX_the_progressive
+		}
+		available = {
+		}
+		completion_reward = {
+				add_ideas = TEX_free_healthcare
+		}
+	}
+	focus = {
+		id = TEX_work_with_new_mexico
+		icon = GFX_goal_work_with_NM
+		x = 1
+		y = 1
+		relative_position_id = TEX_medicare_for_all
+		cost = 5
+		prerequisite = {
+			focus = TEX_medicare_for_all
+		}
+		prerequisite = {
+			focus = TEX_raise_the_minimum_wage
+		}
+		available = {
+		}
+		completion_reward = {
+				remove_ideas = TEX_New_Mexican_Terrorism
+				310 = { add_core_of = TEX }
+				249 = { add_core_of = TEX }
+				335 = { add_core_of = TEX }
+				add_stability = 0.1
+
+		}
+	}
+	focus = {
+		id = TEX_crack_down_on_trumpists
+		icon = GFX_goal_TEX_Crack_down_on_Trumpists
+		x = 1
+		y = 1
+		relative_position_id = TEX_raise_the_minimum_wage
+		cost = 5
+		prerequisite = {
+			focus = TEX_add_workers_rights
+		}
+		prerequisite = {
+			focus = TEX_raise_the_minimum_wage
+		}
+		available = {
+		}
+		completion_reward = {
+				remove_ideas = TEX_Oklahoma_Rebels
+				258 = { add_core_of = TEX }
+				add_popularity = {
+					ideology = republican
+					popularity = -0.5
+				}
+				
+		}
+	}
+	focus = {
+		id = TEX_the_oil_bill
+		icon = GFX_goal_TEX_The_Oil_Bill
+		x = -1
+		y = 1
+		relative_position_id = TEX_crack_down_on_trumpists
+		cost = 20
+		available = { has_completed_focus = TEX_complete_recovery } 
+		prerequisite = {
+			focus = TEX_crack_down_on_trumpists
+		}
+		prerequisite = {
+			focus = TEX_work_with_new_mexico
+		}
+		available = {
+		}
+		select_effect = { country_event = texas.34 }
+		completion_reward = {
+				custom_effect_tooltip = tex_oil_bill_tt
+				
+		}
+	}
+	######### Normal Beto
+	
+	
+	
+	focus = {
+		id = TEX_Beto_holds_on
+		icon = GFX_goal_The_Fighting_Progressive_Retains_Control
+		x = 0
+		y = 1
+		relative_position_id = TEX_the_oil_bill
+		cost = 5
+		allow_branch = { 
+				NOT = { 
+					has_completed_focus = TEX_different_direction 
+					has_completed_focus = TEX_Cruz_Coup 
+					has_completed_focus = TEX_the_reluctant_president 
+					has_completed_focus = TEX_red_does_not_stain_the_black_gold 
+					has_completed_focus = TEX_OH_NO 
+				}
+				#has_country_flag = beto_held_on
+		}
+		prerequisite = {
+			focus = TEX_the_oil_bill
+		}
+		completion_reward = {
+			add_popularity = {
+				ideology = democrat
+				popularity = 0.15
+			}
+			mark_focus_tree_layout_dirty = yes
+		}
+	}
+	focus = {
+		id = TEX_Crush_the_Oil_Barons
+		icon = GFX_goal_Crush_the_Oil_Barons
+		x = 0
+		y = 1
+		relative_position_id = TEX_Beto_holds_on
+		cost = 5
+		prerequisite = {
+			focus = TEX_Beto_holds_on
+		}
+		available = {
+		}
+		completion_reward = {
+				swap_ideas = {
+						remove_idea = TEX_oil_baron_influence
+						add_idea = TEX_oil_barons_crushed
+				}
+				add_popularity = {
+					ideology = autocratic
+					popularity = -0.5
+				}
+		}
+	}
+	focus = {
+		id = TEX_Ban_the_Trumpists
+		icon = GFX_goal_Ban_the_Trumpist_GOP
+		x = 2
+		y = 1
+		relative_position_id = TEX_Beto_holds_on
+		cost = 5
+		prerequisite = {
+			focus = TEX_Beto_holds_on
+		}
+		available = {
+		}
+		completion_reward = {
+				add_popularity = {
+					ideology = libertarian_right
+					popularity = -0.5
+				}
+				add_ideas = TEX_banned_right
+				
+		}
+	}
+	focus = {
+		id = TEX_Work_With_Bush
+		icon = GFX_goal_Work_With_George_Bush
+		x = -2
+		y = 1
+		relative_position_id = TEX_Beto_holds_on
+		cost = 5
+		prerequisite = {
+			focus = TEX_Beto_holds_on
+		}
+		available = {
+		}
+		completion_reward = {
+				add_popularity = {
+					ideology = republican
+					popularity = 0.1
+				}
+				swap_ideas = {
+					remove_idea = TEX_progressive_texas
+					add_idea = TEX_progressive_texas2
+				}
+		}
+	}
+	focus = {
+		id = TEX_still_a_democracy
+		icon = GFX_goal_Beto_ORourke_Victory
+		icon = GFX_goal_Beto_ORourke_Victory
+		x = 0
+		y = 2
+		relative_position_id = TEX_Beto_holds_on
+		cost = 5
+		prerequisite = {
+			focus = TEX_Work_With_Bush
+		}
+		prerequisite = {
+			focus = TEX_Ban_the_Trumpists
+		}
+		prerequisite = {
+			focus = TEX_Crush_the_Oil_Barons
+		}
+		available = {
+		}
+		completion_reward = {
+			swap_ideas = {
+					remove_idea = TEX_progressive_texas2
+					add_idea = TEX_progressive_texas3
+			}
+			every_owned_state = {
+				limit = { is_core_of = LOU }
+				add_core_of = TEX
+			}
+			every_owned_state = {
+				limit = { is_core_of = OKL }
+				add_core_of = TEX
+			}
+		}
+	}
+	
+	
+	focus = {
+		id = TEX_Continue_Progressive_Policies
+		icon = GFX
+		x = -4
+		y = 1
+		relative_position_id = TEX_still_a_democracy
+		cost = 5
+		prerequisite = {
+			focus = TEX_still_a_democracy
+		}
+		available = {
+		}
+		completion_reward = {
+				swap_ideas = {
+						remove_idea = TEX_progressive_texas3
+						add_idea = TEX_progressive_texas4
+				}
+		}
+	}
+	focus = {
+		id = TEX_progressive_taxation
+		icon = GFX
+		x = -2
+		y = 1
+		relative_position_id = TEX_Continue_Progressive_Policies
+		cost = 5
+		prerequisite = {
+			focus = TEX_Continue_Progressive_Policies
+		}
+		available = {
+		}
+		completion_reward = {
+			add_ideas = TEX_beto_taxation
+		}
+	}
+	focus = {
+		id = TEX_more_veteran_benefits
+		icon = GFX
+		x = -2
+		y = 1
+		relative_position_id = TEX_progressive_taxation
+		cost = 5
+		prerequisite = {
+			focus = TEX_progressive_taxation
+		}
+		available = {
+		}
+		completion_reward = {
+			add_manpower = 50000
+		}
+	}
+	focus = {
+		id = TEX_End_Interest_On_Student_Loans
+		icon = GFX
+		x = 1
+		y = 1
+		relative_position_id = TEX_progressive_taxation
+		cost = 5
+		prerequisite = {
+			focus = TEX_progressive_taxation
+		}
+		available = {
+		}
+		completion_reward = {
+				add_ideas = TEX_end_tuition_debt
+		}
+	}
+	focus = {
+		id = TEX_Legalize_but_Regulate_drugs
+		icon = GFX_goal_Legalize_and_Regulate_Drugs
+		x = 0
+		y = 1
+		relative_position_id = TEX_End_Interest_On_Student_Loans
+		cost = 5
+		prerequisite = {
+			focus = TEX_End_Interest_On_Student_Loans
+		}
+		available = {
+		}
+		completion_reward = {
+				add_ideas = TEX_legal_drugs
+		}
+	}
+	focus = {
+		id = TEX_ban_assault_rifles
+		icon = GFX_goal_Ban_Assult_Rifles
+		x = -1
+		y = 2
+		relative_position_id = TEX_progressive_taxation
+		cost = 5
+		prerequisite = {
+			focus = TEX_progressive_taxation
+		}
+		available = {
+		}
+		completion_reward = {
+				swap_ideas = {
+						remove_idea = TEX_NRA_moderate
+						add_idea = TEX_NRA_finished
+				}
+		}
+	}
+	focus = {
+		id = TEX_green_energy
+		icon = GFX_goal_Beto_Clean_Energy
+		x = 1
+		y = 1
+		relative_position_id = TEX_ban_assault_rifles
+		cost = 5
+		prerequisite = {
+			focus = TEX_ban_assault_rifles
+		}
+		available = {
+		}
+		completion_reward = {
+			add_ideas = TEX_greener_alternatives
+		}
+	}
+	focus = {
+		id = TEX_beto_protect_abortion
+		icon = GFX
+		x = 1
+		y = 2
+		relative_position_id = TEX_Legalize_but_Regulate_drugs
+		cost = 5
+		prerequisite = {
+			focus = TEX_green_energy
+		}
+		prerequisite = {
+			focus = TEX_Legalize_but_Regulate_drugs
+		}
+		available = {
+		}
+		completion_reward = {
+			add_ideas = TEX_beto_pro_choice
+		}
+	}
+	focus = {
+		id = TEX_the_second_johnson
+		icon = GFX
+		x = 1
+		y = 1
+		relative_position_id = TEX_beto_protect_abortion
+		cost = 5
+		prerequisite = {
+			focus = TEX_beto_protect_abortion
+		}
+		available = {
+		}
+		completion_reward = {
+			add_country_leader_trait = TEX_johnson_beto_trait
+		}
+	}
+	
+	
+	focus = {
+		id = TEX_Utilize_Immigration
+		icon = GFX
+		x = 2
+		y = 1
+		relative_position_id = TEX_Continue_Progressive_Policies
+		cost = 5
+		prerequisite = {
+			focus = TEX_Continue_Progressive_Policies
+		}
+		available = {
+		}
+		completion_reward = {
+				add_ideas = TEX_W_immigration
+		}
+	}
+	focus = {
+		id = TEX_send_migrants_to_trump
+		icon = GFX_goal_Beto_ORourke_Victory
+		x = -1
+		y = 1
+		relative_position_id = TEX_Utilize_Immigration
+		cost = 5
+		prerequisite = {
+			focus = TEX_Utilize_Immigration
+		}
+		available = {
+		}
+		completion_reward = {
+			add_intel = {
+				target = USA
+				civilian_intel = 50
+				army_intel = 50
+				navy_intel = 50
+				airforce_intel = 50
+			}
+		}
+	}
+	focus = {
+		id = TEX_flood_trump
+		icon = GFX_goal_Beto_ORourke_Victory
+		x = 1
+		y = 1
+		relative_position_id = TEX_Utilize_Immigration
+		cost = 5
+		prerequisite = {
+			focus = TEX_Utilize_Immigration
+		}
+		available = {
+			has_completed_focus = TEX_send_migrants_to_trump
+		}
+		completion_reward = {
+				USA = { add_ideas = TEX_flood_trumptardia1 }
+		}
+	}
+	focus = {
+		id = TEX_release_the_hounds
+		icon = GFX_goal_Beto_ORourke_Victory
+		x = -1
+		y = 1
+		relative_position_id = TEX_flood_trump
+		cost = 5
+		prerequisite = {
+			focus = TEX_send_migrants_to_trump
+		}
+		prerequisite = {
+			focus = TEX_flood_trump
+		}
+		available = {
+		}
+		completion_reward = {
+			USA = {
+				swap_ideas = {
+					remove_idea = TEX_flood_trumptardia1
+					add_idea = TEX_flood_trumptardia2
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TEX_end_bigotryeee
+		icon = GFX
+		x = 4
+		y = 1
+		relative_position_id = TEX_still_a_democracy
+		cost = 5
+		prerequisite = {
+			focus = TEX_still_a_democracy
+		}
+		available = {
+		}
+		completion_reward = {
+			create_faction = "Progressive Front"
+		}
+	}
+	focus = {
+		id = TEX_fuck_kanye
+		icon = GFX
+		x = -2
+		y = 1
+		relative_position_id = TEX_end_bigotryeee
+		cost = 5
+		prerequisite = {
+			focus = TEX_end_bigotryeee
+		}
+		available = {
+		}
+		will_lead_to_war_with = CSA
+		will_lead_to_war_with = KKK
+		will_lead_to_war_with = AFR
+		will_lead_to_war_with = CSB
+		will_lead_to_war_with = ZIO
+		completion_reward = {
+				create_wargoal = {
+					target = CSA
+					type = annex_everything
+				}
+				IF = { 
+					limit = { country_exists = KKK }
+					create_wargoal = {
+						target = KKK
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = LGB }
+					create_wargoal = {
+						target = LGB
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = sca }
+					create_wargoal = {
+						target = sca
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = ZIO }
+					create_wargoal = {
+						target = ZIO
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = ARK }
+					create_wargoal = {
+						target = ARK
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = AFR }
+					create_wargoal = {
+						target = AFR
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = CSB }
+					create_wargoal = {
+						target = CSB
+						type = annex_everything
+					}
+				}
+		}
+	}
+	focus = {
+		id = TEX_fuck_flo
+		icon = GFX
+		x = -1
+		y = 2
+		relative_position_id = TEX_fuck_kanye
+		cost = 5
+		prerequisite = {
+			focus = TEX_fuck_kanye
+		}
+		available = {
+		}
+		will_lead_to_war_with = FLO
+		completion_reward = {
+				create_wargoal = {
+					target = FLO
+					type = annex_everything
+				}
+				if = { 
+					limit = { country_exists = NSA }
+					create_wargoal = {
+						target = NSA
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = GKJ }
+					create_wargoal = {
+						target = GKJ
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = FLD }
+					create_wargoal = {
+						target = FLD
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = FLA }
+					create_wargoal = {
+						target = FLA
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = SEM }
+					create_wargoal = {
+						target = SEM
+						type = annex_everything
+					}
+				}
+		}
+	}
+	focus = {
+		id = TEX_fuck_virginia_kentuchy
+		icon = GFX
+		x = 1
+		y = 1
+		relative_position_id = TEX_fuck_kanye
+		cost = 5
+		prerequisite = {
+			focus = TEX_fuck_kanye
+		}
+		available = {
+		}
+		will_lead_to_war_with = KFC
+		will_lead_to_war_with = RVR
+		will_lead_to_war_with = VIR
+		completion_reward = {
+				if = { 
+					limit = { country_exists = VIR }
+					create_wargoal = {
+						target = VIR
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = RVR }
+					create_wargoal = {
+						target = RVR
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = OBX }
+					create_wargoal = {
+						target = OBX
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = KFC }
+					create_wargoal = {
+						target = KFC
+						type = annex_everything
+					}
+				}
+		}
+	}
+	focus = {
+		id = TEX_end_bigotrys
+		icon = GFX
+		x = 2
+		y = 1
+		relative_position_id = TEX_end_bigotryeee
+		cost = 5
+		prerequisite = {
+			focus = TEX_end_bigotryeee
+		}
+		available = {
+		}
+		will_lead_to_war_with = NVD
+		will_lead_to_war_with = UNV
+		will_lead_to_war_with = UTA
+		will_lead_to_war_with = AFO
+		will_lead_to_war_with = MOL
+		will_lead_to_war_with = SIN
+		will_lead_to_war_with = LAS
+		will_lead_to_war_with = FIR
+		will_lead_to_war_with = CAS
+		will_lead_to_war_with = LIB
+		will_lead_to_war_with = HOP
+		available = {
+		}
+		completion_reward = {
+			create_wargoal = {
+			    target = HOP
+			    type = annex_everything
+			}
+				create_wargoal = {
+					target = NVD
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = UNV
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = UTA
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = AFO
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = SIN
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = LAS
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = MOL
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = FIR
+					type = annex_everything
+				}
+		}
+	}
+	focus = {
+		id = TEX_younger_leadership_on_west_coast
+		icon = GFX
+		x = 1
+		y = 2
+		relative_position_id = TEX_end_bigotrys
+		cost = 5
+		prerequisite = {
+			focus = TEX_end_bigotrys
+		}
+		available = {
+		}
+		will_lead_to_war_with = PRA
+		will_lead_to_war_with = JFR 
+		will_lead_to_war_with = PRC 
+		will_lead_to_war_with = HLY 
+		will_lead_to_war_with = CST 
+		will_lead_to_war_with = ACF 
+		will_lead_to_war_with = SAC 
+		will_lead_to_war_with = ABG 
+		will_lead_to_war_with = NVD 
+		will_lead_to_war_with = SIL 
+		will_lead_to_war_with = FIR 
+		will_lead_to_war_with = ORO
+		will_lead_to_war_with = BJC
+		will_lead_to_war_with = CAS
+		will_lead_to_war_with = LIB
+		completion_reward = {
+				create_wargoal = {
+					type = annex_everything
+					target = PRA
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = CAS
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = LIB
+				}
+				if = { 
+					limit = { country_exists = JFR }
+					create_wargoal = {
+						target = JFR
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = PRC }
+					create_wargoal = {
+						target = PRC
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = HLY }
+					create_wargoal = {
+						target = HLY
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = CST }
+					create_wargoal = {
+						target = CST
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = ACF }
+					create_wargoal = {
+						target = ACF
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = SAC }
+					create_wargoal = {
+						target = SAC
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = ABG }
+					create_wargoal = {
+						target = ABG
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = NVD }
+					create_wargoal = {
+						target = NVD
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = SIL }
+					create_wargoal = {
+						target = SIL
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = FIR }
+					create_wargoal = {
+						target = FIR
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = ORO }
+					create_wargoal = {
+						target = ORO
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = BJC }
+					create_wargoal = {
+						target = BJC
+						type = annex_everything
+					}
+				}
+				every_state = {
+					limit = {
+						is_core_of = PRA
+					}
+					add_core_of = TEX
+				}
+		}
+	}
+	focus = {
+		id = TEX_secure_rockies
+		icon = GFX
+		x = -1
+		y = 1
+		relative_position_id = TEX_end_bigotrys
+		cost = 5
+		prerequisite = {
+			focus = TEX_end_bigotrys
+		}
+		available = {
+		}
+		will_lead_to_war_with = MON
+		will_lead_to_war_with = IDA
+		completion_reward = {
+				create_wargoal = {
+					target = MON
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = IDA
+					type = annex_everything
+				}
+		}
+	}
+	focus = {
+		id = TEX_fuck_trump
+		icon = GFX
+		x = -1
+		y = 4
+		relative_position_id = TEX_end_bigotryeee
+		cost = 5
+		prerequisite = {
+			focus = TEX_release_the_hounds
+		}
+		prerequisite = {
+			focus = TEX_secure_rockies
+		}
+		prerequisite = {
+			focus = TEX_younger_leadership_on_west_coast
+		}
+		prerequisite = {
+			focus = TEX_fuck_virginia_kentuchy
+		}
+		prerequisite = {
+			focus = TEX_fuck_flo
+		}
+		available = {
+			NOT = {
+				country_exists = PRA
+				country_exists = MON
+				country_exists = LIB
+				country_exists = CAS
+				country_exists = UTA
+				country_exists = IDA
+				country_exists = HOP
+				country_exists = CSA
+				country_exists = FLO
+				country_exists = VIR
+				country_exists = KFC
+			}
+		}
+		will_lead_to_war_with = NPA
+		will_lead_to_war_with = USA
+		completion_reward = {
+			create_wargoal = {
+				target = USA
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = NPA
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = TEX_fuck_gla
+		icon = GFX
+		x = 1
+		y = 1
+		relative_position_id = TEX_fuck_trump
+		cost = 5
+		prerequisite = {
+			focus = TEX_fuck_trump
+		}
+		available = {
+		}
+		will_lead_to_war_with = MNS
+		will_lead_to_war_with = MIL
+		will_lead_to_war_with = MIN
+		will_lead_to_war_with = KMT
+		will_lead_to_war_with = DET
+		will_lead_to_war_with = ISA
+		will_lead_to_war_with = GLA
+		available = {
+			NOT = { 
+				country_exists = NPA
+				country_exists = USA
+			}
+		}
+		completion_reward = {
+				create_wargoal = {
+					target = GLA
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = KMT
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = MIL
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = MNS
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = MIN
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = ISA
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = DET
+					type = annex_everything
+				}
+		}
+	}
+	focus = {
+		id = TEX_fuck_appalachia
+		icon = GFX
+		x = -1
+		y = 1
+		relative_position_id = TEX_fuck_trump
+		cost = 5
+		prerequisite = {
+			focus = TEX_fuck_trump
+		}
+		available = {
+			NOT = { 
+				country_exists = NPA
+				country_exists = USA
+			}
+		}
+		will_lead_to_war_with = AFS
+		will_lead_to_war_with = NRA
+		will_lead_to_war_with = TIM
+		completion_reward = {
+			create_wargoal = {
+				target = AFS
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = NRA
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = TIM
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = TEX_younger_leadership_needed
+		icon = GFX
+		x = -1
+		y = 1
+		relative_position_id = TEX_fuck_gla
+		cost = 5
+		prerequisite = {
+			focus = TEX_fuck_appalachia
+		}
+		prerequisite = {
+			focus = TEX_fuck_gla
+		}
+		available = {
+			NOT = { 
+				country_exists = NPA
+				country_exists = NRA
+				country_exists = GLA
+				country_exists = AFS
+				country_exists = USA
+			}
+		}
+		will_lead_to_war_with = WBK
+		will_lead_to_war_with = NAB
+		will_lead_to_war_with = NEW
+		will_lead_to_war_with = FRA
+		completion_reward = {
+			create_wargoal = {
+				target = FRA	
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = NAB
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = WBK
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = NEW
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = TEX_age_of_progress
+		icon = GFX_goal_texas_forever
+		x = -3
+		y = 1
+		relative_position_id = TEX_younger_leadership_needed
+		cost = 5
+		prerequisite = {
+			focus = TEX_younger_leadership_needed
+		}
+		prerequisite = {
+			focus = TEX_the_second_johnson
+		}
+		available = {
+			NOT = { 
+				country_exists = FRA
+				country_exists = WBK
+				country_exists = NAB
+				country_exists = NEW
+			}
+		}
+		completion_reward = {
+			set_cosmetic_tag = beto
+			news_event = alamo.21
+		}
+	}
+	
+	
+	
+	
+	
 	##### Coup Cruz
 	
 	
 	focus = {
 		id = TEX_Cruz_Coup
 		icon = GFX_goal_Cruz_Coup
-		x = 3
+		x = -10
 		y = 0
-		relative_position_id = TEX_the_oil_bill
+		relative_position_id = TEX_allow_the_vote
 		cost = 5
 		prerequisite = {
 		}
 		allow_branch = { 
 				NOT = { 
 					has_completed_focus = TEX_different_direction 
-					has_completed_focus = TEX_Beto_holds_on 
+					#has_completed_focus = TEX_Beto_holds_on 
 					has_completed_focus = TEX_the_reluctant_president
 					has_completed_focus = TEX_red_does_not_stain_the_black_gold
+					has_completed_focus = TEX_OH_NO
 				}
 				has_country_flag = cruz_coup
 		}
@@ -12262,13 +13573,13 @@ focus_tree = {
 	focus = {
 		id = TEX_a_catastrophic_defeat
 		icon = GFX_goal_Hand_The_Reigns_Greg
-		x = -2
-		y = 1
-		relative_position_id = TEX_meet_with_brian_kemp
+		x = 35
+		y = 0
+		relative_position_id = TEX_the_reluctant_president
 		cost = 5
-		prerequisite = {
-			focus = TEX_meet_with_brian_kemp
-		}
+		#prerequisite = {
+		#	focus = TEX_meet_with_brian_kemp
+		#}
 		allow_branch = { has_country_flag = dixie_in_exile }
 		bypass = { has_country_flag = dixie_in_exile }
 		available = {
@@ -12563,6 +13874,9 @@ focus_tree = {
 						long_name = TEX_dixiecrat_long
 						name = TEX_dixiecrat
 					}
+					set_politics = {
+						ruling_party = republican
+					}
 					remove_ideas = {
 						TEX_cruz_lib_right4
 						TEX_cruz_christian4
@@ -12582,9 +13896,25 @@ focus_tree = {
 		}
 	}
 	focus = {
+		id = TEX_elections_dixie
+		icon = GFX_goal_Hand_The_Reigns_Greg
+		x = -5
+		y = 1
+		relative_position_id = TEX_a_better_south
+		cost = 0
+		prerequisite = {
+			focus = TEX_a_better_south
+		}
+		available = {
+		}
+		allow_branch = { has_country_flag = CSA_dixie }
+		completion_reward = {
+		}
+	}
+	focus = {
 		id = TEX_grander_ambitions
 		icon = GFX_goal_Hand_The_Reigns_Greg
-		x = 0
+		x = 5
 		y = 1
 		relative_position_id = TEX_a_better_south
 		cost = 0
