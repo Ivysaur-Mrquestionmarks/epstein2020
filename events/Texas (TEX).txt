@@ -2810,7 +2810,7 @@ country_event = {
 	#picture =
 	is_triggered_only = yes
 	fire_only_once = yes
-	option = { #No
+	option = { #whats gonna happen now?
 		name = texas.45.a
 		complete_national_focus = TEX_the_oil_bill
 		hidden_effect = {
@@ -2818,10 +2818,19 @@ country_event = {
 				limit = { 
 					has_country_flag = {
 						flag = oil_bill
-						value < 2
+						value = 0
 					}
 				}
-				country_event = { id = texas.41 days = 5 }
+				country_event = { id = texas.41 days = 5 } #progressive anger - leads to new progressive path - NOT IMPLEMENTED YET
+			}
+			IF = {
+				limit = { 
+					has_country_flag = {
+						flag = oil_bill
+						value = 1
+					}
+				}
+				country_event = { id = texas.41 days = 5 } #progressives maintain control
 			}
 			IF = {
 				limit = { 
@@ -2830,7 +2839,7 @@ country_event = {
 							value = 2
 					}
 				}
-				country_event = { id = texas.41 days = 5 }
+				country_event = { id = texas.42 days = 5 } #cruz coup
 			}
 			IF = {
 				limit = { 
@@ -2839,7 +2848,7 @@ country_event = {
 							value = 3
 					}
 				}
-				country_event = { id = texas.42 days = 5 }
+				country_event = { id = texas.42 days = 5 } #cruz coup - may change
 			}
 			IF = {
 				limit = { 
@@ -2848,7 +2857,7 @@ country_event = {
 							value = 4
 					}
 				}
-				country_event = { id = texas.42 days = 5 }
+				country_event = { id = texas.43 days = 5 } #moderate oil barons
 			}
 			IF = {
 				limit = { 
@@ -2857,7 +2866,7 @@ country_event = {
 							value = 5
 					}
 				}
-				country_event = { id = texas.43 days = 5 }
+				country_event = { id = texas.44 days = 5 } #dick cheney
 			}
 			IF = {
 				limit = { 
@@ -2866,7 +2875,7 @@ country_event = {
 						value = 6
 					}
 				}
-				country_event = { id = texas.44 days = 5 }
+				country_event = { id = texas.108 days = 5 } #military junta
 			}
 		}
 	}
@@ -4043,6 +4052,22 @@ country_event = {
 	}
 }
 
+#military junta (get trolled libtard)
+country_event = {
+	id = texas.108
+	title = texas.108.t
+	desc = texas.108.d
+	#picture = .
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #yes
+		name = texas.107.a
+		set_country_flag = military_junta
+		mark_focus_tree_layout_dirty = yes
+		complete_national_focus = TEX_military_junta
+	}
+}
+
 
 
 ###Rio Grande Cheat Event
@@ -4116,6 +4141,7 @@ country_event = {
 	option = { #oil barons
 		name = texas.999.a
 		set_country_flag = oil_barons_radicals
+		set_country_flag = military_junta
 		set_country_flag = american_plan_ready
 		set_country_flag = harry_schizo
 		set_country_flag = oil_barons_moderates

@@ -1,0 +1,2035 @@
+focus_tree = {
+	#id = indiana
+	#continuous_focus_position = { x = 0 y = 2000 } 
+	#country = {
+		factor = 0
+		# Screw the former dev, this tree is a mess
+		#modifier = {
+		#	add = 10
+		#	tag = NPA
+		#}
+	}
+	
+	
+	# Great Return
+	
+	focus = {
+		id = NPA_great_return_programs
+		cost = 2
+		icon = GFX_focus_NPA_Great_Return_Programs
+		x = 2
+		y = 0
+		search_filters = {
+			FOCUS_FILTER_MANPOWER
+		}
+		completion_reward = {
+			country_event = { id = npa.4 }
+		}
+	}
+
+
+	focus = {
+		id = NPA_the_first_wave
+		cost = 2
+		icon = GFX_focus_NPA_The_First_Wave
+		x = 0
+		y = 1
+		relative_position_id = NPA_great_return_programs
+		bypass = {
+			has_war = no
+		}
+		available = {
+		USA = { surrender_progress > 0.05 }
+		}
+		search_filters = {
+			FOCUS_FILTER_MANPOWER
+		}
+		prerequisite = { focus = NPA_great_return_programs  }
+		completion_reward = {
+		add_manpower = 6000
+			random_state = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+
+	focus = {
+		id = NPA_the_second_wave
+		cost = 4
+		icon = GFX_focus_NPA_The_Second_Wave
+		x = 0
+		y = 1
+		relative_position_id = NPA_the_first_wave
+		bypass = {
+			has_war = no
+		}
+		available = {
+		USA = { surrender_progress > 0.1 }
+		}
+		search_filters = {
+			FOCUS_FILTER_MANPOWER
+		}
+		prerequisite = { focus = NPA_the_first_wave  }
+		completion_reward = {
+			add_manpower = 10000
+		}
+	}
+
+
+	focus = {
+		id = NPA_the_final_wave
+		cost = 6
+		icon = GFX_focus_NPA_The_Final_Wave
+		x = 0
+		y = 1
+		relative_position_id = NPA_the_second_wave
+		bypass = {
+			has_war = no
+		}
+		available = {
+		USA = { surrender_progress > 0.25 }
+		}
+		
+		search_filters = {
+			FOCUS_FILTER_MANPOWER
+		}
+		prerequisite = { focus = NPA_the_second_wave  }
+		completion_reward = {
+			add_manpower = 14000
+		}
+	}
+	focus = {
+		id = NPA_patriotic_propaganda
+		cost = 4
+		icon = GFX_focus_NPA_Patriotic_Propaganda
+		x = 2
+		y = 1
+		relative_position_id = NPA_the_second_wave
+		bypass = {
+			has_war = no
+		}
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { 
+			focus = NPA_the_second_wave  
+			focus = NPA_medial_counterrevolution
+		}
+		completion_reward = {
+			country_event = { id = npa.5 }
+		}
+	}
+	
+	
+	
+	
+	
+
+	
+	focus = {
+		id = NPA_path_of_the_lone_wolf
+		cost = 5
+		icon = GFX_focus_NPA_Path_Of_The_Lone_Wolf
+		x = 6
+		y = 3
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		ai_will_do = { factor = 4 }
+		available = {
+			NOT = { is_puppet_of = USA }
+		}
+		completion_reward = {
+			add_political_power = 200
+		}
+		mutually_exclusive = { focus = NPA_forge_new_alliances  }
+	}
+	focus = {
+		id = NPA_inside_job
+		cost = 2
+		icon = GFX_focus_NPA_Inside_Job
+		x = 0
+		y = 2
+		relative_position_id = NPA_path_of_the_lone_wolf
+		available = {
+		has_war_with = USA
+		}
+		search_filters = {
+			FOCUS_FILTER_STABILITY
+		}
+		prerequisite = { focus = NPA_path_of_the_lone_wolf  }
+		completion_reward = {
+			custom_effect_tooltip = NPA_Inside_Job_tt
+		}
+	}
+	focus = {
+		id = NPA_war_patronage
+		cost = 5
+		icon = GFX_focus_NPA_War_Patronage
+		x = 0
+		y = 1
+		relative_position_id = NPA_inside_job
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = NPA_inside_job  }
+		completion_reward = {
+			custom_effect_tooltip = NPA_war_patronage_tt
+			hidden_effect = {
+				if = {
+					limit = {
+						has_idea = Wagner
+					}
+					remove_ideas = Wagner
+				}
+				if = {
+					limit = {
+						has_idea = Defion
+					}
+					remove_ideas = Defion
+				}
+				if = {
+					limit = {
+						has_idea = Academi
+					}
+					remove_ideas = Academi
+				}
+				if = {
+					limit = {
+						has_idea = Aegis
+					}
+					remove_ideas = Aegis
+				}
+				if = {
+					limit = {
+						has_idea = Canopy
+					}
+					remove_ideas = Canopy
+				}
+				if = {
+					limit = {
+						has_idea = G4S
+					}
+					remove_ideas = G4S
+				}
+				if = {
+					limit = {
+						has_idea = mercenary_contract_extension
+					}
+					remove_ideas = mercenary_contract_extension
+				}
+			}
+		}
+	}
+
+
+	
+###################################
+### SEIZE ABSOLUTE POWER BRANCH ###
+###################################
+	focus = {
+		id = NPA_necessary_measures
+		cost = 10
+		icon = GFX_focus_NPA_Seize_Absolute_Power
+		x = -5
+		y = 1
+		relative_position_id = NPA_inside_job
+		available = {
+			NOT = { has_war_with = USA }
+			NOT = { 
+				has_country_leader = {
+					name = "Ben Shapiro"
+					ruling_only = yes
+				}
+			 }
+			is_puppet = no
+		}
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = NPA_patriotic_propaganda  focus = NPA_inside_job  }
+		mutually_exclusive = { focus = NPA_old_republican_party_reshuffle  }
+		completion_reward = {
+			custom_effect_tooltip = NPA_NM_tt
+			
+			hidden_effect = {
+			set_cosmetic_tag = NPA_fascist
+			if = {
+				limit = { has_country_leader = { name = "Mike Pence" ruling_only = yes } }
+				set_politics = {
+					ruling_party = autocratic
+					elections_allowed = no
+					last_election = "1935.12.17"
+					election_frequency = 48
+				}
+				set_popularities = {
+					democrat = 0
+					republican = 5
+					libertarian_left = 0
+					libertarian_right  = 5
+					authoritarian_left = 0
+					autocratic = 90
+				}
+			}
+			if = {
+				limit = { has_country_leader = { name = "Liz Cheney" ruling_only = yes } }
+				set_party_name = { 
+					ideology = autocratic
+					long_name = NPA_Cheney_Party_Long 
+					name = NPA_Cheney_Party 
+				}
+				set_politics = {
+					ruling_party = autocratic
+					elections_allowed = no
+					last_election = "1935.12.17"
+					election_frequency = 48
+				}
+				set_popularities = {
+					democrat = 0
+					republican = 5
+					libertarian_left = 0
+					libertarian_right  = 5
+					authoritarian_left = 0
+					autocratic = 90
+				}
+				create_country_leader = {
+					name = "Liz Cheney"
+					picture = "gfx/leaders/NPA/liz_cheney.dds"
+					expire = "2060.1.1"
+					ideology = fascism
+					female = yes
+					traits = {
+						hawk
+						}
+					}
+				}
+			if = {
+				limit = { has_country_leader = { name = "John Bolton" ruling_only = yes } }
+				set_politics = {
+					ruling_party = autocratic
+					elections_allowed = no
+					last_election = "1935.12.17"
+					election_frequency = 48
+				}
+				set_party_name = { 
+					ideology = autocratic
+					long_name = NPA_Bolton_Party_Long 
+					name = NPA_Bolton_Party 
+				}
+				set_popularities = {
+					democrat = 0
+					republican = 5
+					libertarian_left = 0
+					libertarian_right  = 5
+					authoritarian_left = 0
+					autocratic = 90
+				}
+				create_country_leader = {
+					name = "John Bolton"
+					picture = "gfx/leaders/NPA/bolton.dds"
+					expire = "2060.1.1"
+					ideology = fascism
+					traits = {
+						hawk
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = NPA_in_god_we_trust
+		cost = 10
+		icon = GFX_focus_NPA_In_God_We_Trust
+		x = 0
+		y = 1
+		relative_position_id = NPA_necessary_measures
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = NPA_necessary_measures  }
+		completion_reward = {
+			custom_effect_tooltip = NPA_IGWT_tt
+			hidden_effect = {
+				if = {
+					limit = {
+						has_country_flag = NPA_WaveR1
+					}
+					country_event = { id = npa.26 }
+				}
+				if = {
+					limit = {
+						has_country_flag = NPA_WaveR2
+					}
+					country_event = { id = npa.27 }
+				}
+				if = {
+					limit = {
+						has_country_flag = NPA_WaveR3
+					}
+					country_event = { id = npa.28 }
+				}
+				if = {
+					limit = {
+						has_country_flag = NPA_WaveR4
+					}
+					country_event = { id = npa.29 }
+				}
+			}
+		}
+	}
+	focus = {
+		id = NPA_make_america_greatest_again
+		cost = 10
+		icon = GFX_focus_NPA_Make_America_Greatest_Again
+		x = 0
+		y = 2
+		relative_position_id = NPA_in_god_we_trust
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = NPA_in_god_we_trust  }
+		completion_reward = {
+			add_ideas = NPA_Bad_Maga
+		}
+	}
+	focus = {
+		id = NPA_retire_in_glory
+		cost = 10
+		icon = GFX_focus_NPA_Retire_in_Glory
+		x = -1
+		y = 1
+		relative_position_id = NPA_make_america_greatest_again
+		bypass = {
+			has_country_flag = NPA_pence_not_dead_yet
+		}
+		available = {
+			 NOT = { has_country_leader = {
+				name = "Mike Pence"
+				ruling_only = yes
+				}
+			 }
+		}
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = NPA_make_america_greatest_again  }
+		mutually_exclusive = { focus = NPA_the_new_caesar  }
+		completion_reward = {
+			country_event = { id = npa.30 }
+		}
+	}
+	focus = {
+		id = NPA_revive_pnac
+		cost = 10
+		icon = GFX_focus_NPA_Revive_the_PNAC
+		x = 0
+		y = 2
+		relative_position_id = NPA_retire_in_glory
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = NPA_retire_in_glory  }
+		completion_reward = {
+		custom_effect_tooltip = NPA_Revive_PNAC_tt
+		}
+	}
+	focus = {
+		id = NPA_its_better_to_be_hammer_than_anvil
+		cost = 10
+		icon = GFX_focus_NPA_It_is_better_to_be_hammer_than_anvil
+		x = 0
+		y = 1
+		relative_position_id = NPA_revive_pnac
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = NPA_revive_pnac  }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = NPA_Bad_Maga
+				add_idea = NPA_Cursed_Maga
+			}
+		}
+	}
+	focus = {
+		id = NPA_alliance_with_the_devil
+		cost = 10
+		icon = GFX_focus_generic_strike_at_democracy1
+		x = 1
+		y = 1
+		relative_position_id = NPA_its_better_to_be_hammer_than_anvil
+		available = {
+			HOP = { has_government = autocratic }
+			NOT = { NPA = { has_war_with = HOP } }
+		}
+		bypass = {
+			NOT = { country_exists = HOP }
+		}
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = NPA_its_better_to_be_hammer_than_anvil  }
+		prerequisite = { focus = NPA_american_crusaders  }
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = NPA_the_new_caesar
+		cost = 10
+		icon = GFX_focus_NPA_The_New_Caesar
+		x = 1
+		y = 1
+		relative_position_id = NPA_make_america_greatest_again
+		available = {
+			NOT = { has_country_flag = NPA_pence_not_dead_yet }
+		}
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = NPA_make_america_greatest_again  }
+		mutually_exclusive = { focus = NPA_retire_in_glory  }
+		completion_reward = {
+			country_event = { id = npa.31 }
+		}
+	}
+	focus = {
+		id = NPA_new_ranks_and_hierarchy
+		cost = 10
+		icon = GFX_focus_NPA_New_Ranks_And_Hierarchy
+		x = 0
+		y = 2
+		relative_position_id = NPA_the_new_caesar
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = NPA_the_new_caesar  }
+		completion_reward = {
+		custom_effect_tooltip = NPA_New_Ranks_And_Hierarchy_tt
+			hidden_effect = {
+				add_ideas = NPA_NRAH
+			}
+		}
+	}
+	focus = {
+		id = NPA_american_crusaders
+		cost = 10
+		icon = GFX_focus_NPA_We_the_American_Crusade
+		x = 0
+		y = 1
+		relative_position_id = NPA_new_ranks_and_hierarchy
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { 
+			focus = NPA_new_ranks_and_hierarchy 
+			focus = NPA_revive_pnac 
+		}
+		completion_reward = {
+			add_ideas = NPA_American_Crusade
+		}
+	}
+	focus = {
+		id = NPA_glory_to_nation_of_america
+		cost = 10
+		icon = GFX_focus_generic_strike_at_democracy1
+		x = 1
+		y = 1
+		relative_position_id = NPA_american_crusaders
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { 
+			focus = NPA_american_crusaders 
+			focus = NPA_cult_of_history
+		}
+		completion_reward = {
+		}
+	}
+	
+
+
+
+	# REPUBLICANS #
+	
+	focus = {
+		id = NPA_old_republican_party_reshuffle
+		cost = 10
+		icon = GFX_focus_NPA_Old_Republican_Party_Reshuffle
+		available = { NOT = { has_war_with = USA } }
+		x = -2
+		y = 1
+		relative_position_id = NPA_inside_job
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = NPA_inside_job  }
+		mutually_exclusive = { focus = NPA_necessary_measures  }
+		completion_reward = {
+			add_political_power = 120
+			custom_effect_tooltip = NPA_Old_Republican_Party_Reshuffle_tt
+		}
+	}
+	focus = {
+		id = NPA_turning_point
+		cost = 10
+		icon = GFX_focus_NPA_Turning_Point
+		x = -1
+		y = 1
+		relative_position_id = NPA_old_republican_party_reshuffle
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { 
+			focus = NPA_necessary_measures
+			focus = NPA_old_republican_party_reshuffle
+		}
+		completion_reward = {
+			add_timed_idea = {
+				idea = NPA_turning_point
+				days = 160
+			}
+		}
+	}
+	focus = {
+		id = NPA_liberate_and_protect
+		cost = 10
+		icon = GFX_focus_NPA_To_Liberate_and_Protect
+		x = 0
+		y = 3
+		relative_position_id = NPA_old_republican_party_reshuffle
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = NPA_old_republican_party_reshuffle }
+		completion_reward = {
+			add_ideas = NPA_We_The_Liberators
+		}
+	}
+	focus = {
+		id = NPA_help_dixie_republicans
+		cost = 10
+		icon = GFX_focus_NPA_Help_Dixie_Republicans
+		x = 0
+		y = 1
+		relative_position_id = NPA_liberate_and_protect
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = NPA_liberate_and_protect  }
+		completion_reward = {
+			transfer_state = 505
+			add_state_core = 505
+			ARK = {
+				transfer_state = 267
+				add_state_core = 267
+				transfer_state = 535
+				add_state_core = 535
+				transfer_state = 536
+				add_state_core = 536
+				set_capital = 536
+				declare_war_on = {
+					target = CSA
+					type = annex_everything
+				}
+				declare_war_on = {
+					target = KKK
+					type = annex_everything
+				}
+				declare_war_on = {
+					target = CSB
+					type = annex_everything
+				}
+				declare_war_on = {
+					target = ZIO
+					type = annex_everything
+				}
+				declare_war_on = {
+					target = LGB
+					type = annex_everything
+				}
+				declare_war_on = {
+					target = AFR
+					type = annex_everything
+				}
+				hidden_effect = {
+					load_oob = "ARK_DCW"
+					load_focus_tree = csa_collapse
+					set_cosmetic_tag = ARK_npa
+					create_country_leader = {
+						name = "Asa Hutchinson"
+						picture = "gfx/leaders/ARK/Hutchinson.dds"
+						expire = "2060.1.1"
+						ideology = conservative
+						traits = {
+						}
+					}
+				}
+			}			
+		}
+	}
+	focus = {
+		id = NPA_cult_of_history
+		cost = 10
+		icon = GFX_focus_NPA_Cult_of_the_Confederacy
+		x = 0
+		y = 3
+		relative_position_id = NPA_help_dixie_republicans
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { 
+			focus = NPA_new_ranks_and_hierarchy 
+			focus = NPA_help_dixie_republicans
+		}
+		completion_reward = {
+		}
+	}
+	
+	# STOPPED HERE, GL WITH THE REST - BabaEfe
+	
+	
+	
+#######################
+### INDUSTRIAL PATH ###
+#######################
+
+	focus = {
+		id = NPA_legacy_of_the_united_states
+		cost = 10
+		icon = GFX_focus_NPA_Legacy_Of_The_United_States
+		x = 20
+		y = 0
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		completion_reward = {
+			add_political_power = 80
+			every_state = {
+				limit = {
+					is_owned_by = USA
+				}
+				add_claim_by = NPA
+			}
+		}
+	}
+	focus = {
+		id = NPA_focus_on_illinois
+		cost = 4
+		icon = GFX_focus_NPA_Focus_On_Illinois
+		x = 17
+		y = 1
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		available = {
+		controls_state = 215
+		controls_state = 196
+        controls_state = 194
+		}
+		prerequisite = { focus = NPA_legacy_of_the_united_states }
+		completion_reward = {
+		    215 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			294 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = NPA_focus_on_kansas
+		cost = 4
+		icon = GFX_focus_NPA_Focus_On_Kansas
+		x = 20
+		y = 1
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		available = {
+		controls_state = 426
+		controls_state = 233
+        controls_state = 240
+		controls_state = 235
+        controls_state = 243
+		}
+		prerequisite = { focus = NPA_legacy_of_the_united_states }
+		completion_reward = {
+		    243 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = arms_factory
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			426 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = NPA_agricultural_machinery_monopoly
+		cost = 10
+		icon = GFX_focus_NPA_Agricultural_Machinery_Monopoly
+		x = 18
+		y = 2
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = NPA_focus_on_illinois  }
+		prerequisite = { focus = NPA_focus_on_kansas  }
+		completion_reward = {
+		add_ideas = NPA_agricultural_machinery_monopoly
+		}
+		
+	}
+	focus = {
+		id = NPA_steel_and_wheels
+		cost = 10
+		icon = GFX_focus_NPA_Steel_And_Wheels
+		x = 22
+		y = 2
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = NPA_focus_on_kansas  }
+		prerequisite = { focus = NPA_focus_on_missouri  }
+		completion_reward = {
+			add_tech_bonus = {
+				name = NPA_tech_SaW_1
+				bonus = 3.0
+				uses = 1
+				category = motorized_equipment
+			}
+			add_tech_bonus = {
+				name = NPA_tech_SaW_2
+				bonus = 1.0
+				uses = 2
+				category = armor
+			}
+			add_tech_bonus = {
+				name = NPA_tech_SaW_3
+				bonus = 1.0
+				uses = 2
+				category = artillery
+			}
+			add_tech_bonus = {
+				name = NPA_tech_SaW_4
+				bonus = 1.0
+				uses = 2
+				category = light_fighter
+			}
+		}
+	}
+	focus = {
+		id = NPA_turn_extremists_into_mules
+		cost = 10
+		icon = GFX_focus_NPA_Turn_Extremists_Into_Mules
+		x = 17
+		y = 3
+		available = {
+		NOT = { has_war_with = USA }
+		}
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = NPA_focus_on_illinois focus = NPA_focus_on_kansas }
+		completion_reward = {
+		custom_effect_tooltip = NPA_TRIM_tt
+		}
+	}
+	focus = {
+		id = NPA_dollar_above_all
+		cost = 10
+		icon = GFX_focus_NPA_Dollar_Above_All
+		x = 18
+		y = 4
+		available = {
+		NOT = { has_war_with = USA }
+		}
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = NPA_turn_extremists_into_mules }
+		prerequisite = { focus = NPA_focus_on_kansas }
+		mutually_exclusive = { focus = NPA_strike_the_right_balance }
+		completion_reward = {
+		add_ideas = NPA_dollar_above_all
+		}
+	}
+	focus = {
+		id = NPA_war_spoils_for_enlisting
+		cost = 10
+		icon = GFX_focus_NPA_War_Spoils
+		x = 18
+		y = 5
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = NPA_dollar_above_all }
+		completion_reward = {
+		add_ideas = NPA_war_spoils_economy
+		}
+	}
+	focus = {
+		id = NPA_host_small_companies
+		cost = 10
+		icon = GFX_focus_NPA_Host_Small_Companies
+		x = 17
+		y = 6
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = NPA_corporationist_paradise }
+		prerequisite = { focus = NPA_war_spoils_for_enlisting }
+		
+	}
+	focus = {
+		id = NPA_strike_the_right_balance
+		cost = 10
+		icon = GFX_focus_NPA_Strike_The_Right_Balance
+		x = 22
+		y = 4
+		available = {
+		NOT = { has_war_with = USA }
+		}
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = NPA_focus_on_kansas }
+		prerequisite = { focus = NPA_back_to_paper_books }
+		mutually_exclusive = { focus = NPA_dollar_above_all }
+		completion_reward = {
+		
+			custom_effect_tooltip = NPA_Strike_The_Right_Balance_tt
+			hidden_effect = {
+		    268 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			246 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			218 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			215 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			207 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			41 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			83 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			184 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			185 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			186 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			187 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			194 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			196 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			229 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			230 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			231 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			232 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			233 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			234 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			235 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			236 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			238 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			239 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			240 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			243 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			252 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			253 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			254 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			255 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			256 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			257 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			413 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			416 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			421 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			422 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			423 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			424 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			426 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			431 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			434 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			442 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			443 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			446 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			447 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			453 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			484 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+		}
+		}
+	}
+	focus = {
+		id = NPA_seize_civil_reserves_of_guns
+		cost = 10
+		icon = GFX_goal_generic_demand_territory
+		x = 22
+		y = 6
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = NPA_strike_the_right_balance }
+		completion_reward = {
+		add_ideas = NPA_public_arsenal
+		}
+	}
+	focus = {
+		id = NPA_gain_the_polices_trust
+		cost = 10
+		icon = GFX_focus_NPA_Earn_the_Polices_Trust
+		x = 20
+		y = 7
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = NPA_war_spoils_for_enlisting focus = NPA_seize_civil_reserves_of_guns }
+		completion_reward = {
+		FRA = { add_timed_idea = { idea = NPA_rogue_police days = 200 } }
+		TEX = { add_timed_idea = { idea = NPA_rogue_police days = 200 } }
+		PRA = { add_timed_idea = { idea = NPA_rogue_police days = 200 } }
+		HOP = { add_timed_idea = { idea = NPA_rogue_police days = 200 } }
+		}
+	}
+	focus = {
+		id = NPA_once_brutus_always_brutus
+		cost = 10
+		icon = GFX_goal_generic_demand_territory
+		x = 20
+		y = 8
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = NPA_gain_the_polices_trust }
+	}
+	focus = {
+		id = NPA_save_people_from_nazis
+		cost = 10
+		icon = GFX_focus_NPA_Save_People_From_Nazis
+		x = 22
+		y = 8
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = NPA_gain_the_polices_trust }
+	}
+	focus = {
+		id = NPA_we_are_nice_and_gentle
+		cost = 10
+		icon = GFX_focus_NPA_We_Are_Nice_And_Gentle
+		x = 21
+		y = 9
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = NPA_save_people_from_nazis }
+		mutually_exclusive = { focus = NPA_we_are_who_we_are }
+	}
+	focus = {
+		id = NPA_we_are_who_we_are
+		cost = 10
+		icon = GFX_focus_NPA_We_Are_Who_We_Are
+		x = 23
+		y = 9
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = NPA_save_people_from_nazis }
+		mutually_exclusive = { focus = NPA_we_are_nice_and_gentle }
+	}
+	focus = {
+		id = NPA_bring_back_good_old_peace
+		cost = 10
+		icon = GFX_goal_generic_demand_territory
+		x = 22
+		y = 10
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = NPA_intervention_in_texas }
+		prerequisite = { focus = NPA_we_are_nice_and_gentle focus = NPA_we_are_who_we_are }
+	}
+	focus = {
+		id = NPA_and_dont_ask_how
+		cost = 10
+		icon = GFX_focus_NPA_And_Dont_Ask_How
+		x = 22
+		y = 11
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = NPA_bring_back_good_old_peace }
+	}
+	focus = {
+		id = NPA_uprising_in_california
+		cost = 10
+		icon = GFX_focus_NPA_Restore_Order_In_California
+		x = 18
+		y = 8
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = NPA_gain_the_polices_trust }
+	}
+	focus = {
+		id = NPA_intervention_in_texas
+		cost = 10
+		icon = GFX_focus_NPA_Intervene_in_Texas
+		x = 18
+		y = 9
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = NPA_uprising_in_california }
+	}
+	focus = {
+		id = NPA_operation_blue_hour
+		cost = 10
+		icon = GFX_focus_NPA_Operation_Blue_Hour
+		x = 20
+		y = 8
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = NPA_gain_the_polices_trust }
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = NPA_back_to_paper_books
+		cost = 10
+		icon = GFX_focus_NPA_Back_To_Paper_Books
+		x = 23
+		y = 3
+		available = {
+		NOT = { has_war_with = USA }
+		}
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = NPA_focus_on_kansas focus = NPA_focus_on_missouri  }
+		completion_reward = {
+		add_research_slot = 1
+		}
+	}
+
+
+	focus = {
+		id = NPA_focus_on_missouri
+		cost = 4
+		icon = GFX_focus_NPA_Focus_On_Missouri
+		x = 23
+		y = 1
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		available = {
+		controls_state = 230
+		controls_state = 236
+        controls_state = 239
+        controls_state = 231
+		controls_state = 232
+		controls_state = 238
+		}
+		prerequisite = { focus = NPA_legacy_of_the_united_states  }
+		completion_reward = {
+		    231 = {
+		        add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = arms_factory
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			230 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = arms_factory
+    					level = 1
+    					instant_build = yes
+				}
+			}
+		}
+	}
+
+
+	focus = {
+		id = NPA_medial_counterrevolution
+		cost = 10
+		icon = GFX_focus_NPA_Medial_Counterrevolution
+		x = 4
+		y = 1
+		search_filters = {
+			FOCUS_FILTER_STABILITY
+		}
+		prerequisite = { focus = NPA_on_the_crossroad_of_america  }
+		completion_reward = {
+		country_event = { id = npa.32 }
+		}
+	}
+
+
+	focus = {
+		id = NPA_upgrade_of_the_agricultural_sector
+		cost = 10
+		icon = GFX_focus_NPA_Upgrade_Of_The_Agricultural_Sector
+		x = 6
+		y = 1
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = NPA_on_the_crossroad_of_america  }
+		completion_reward = {
+			add_tech_bonus = {
+				name = NPA_tech_industry
+				bonus = 1.0
+				uses = 2
+				category = industry
+			}
+		}
+	}
+
+
+	focus = {
+		id = NPA_nationalize_university_of_notre_dame
+		cost = 10
+		icon = GFX_focus_NPA_Nationalize_University_Of_Notre_Dame
+		x = 8
+		y = 1
+		search_filters = {
+			FOCUS_FILTER_RESEARCH
+		}
+		prerequisite = { focus = NPA_on_the_crossroad_of_america  }
+		completion_reward = {
+		add_research_slot = 1
+		}
+	}
+
+
+	focus = {
+		id = NPA_forge_new_alliances
+		cost = 5
+		icon = GFX_focus_NPA_Forge_New_Alliances
+		x = 12
+		y = 3
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		mutually_exclusive = { focus = NPA_path_of_the_lone_wolf  }
+		completion_reward = {
+		custom_effect_tooltip = unfinished_content_warning_tooltip
+		add_stability = 0.15
+		}
+	}
+	focus = {
+		id = NPA_rebel_brothers
+		cost = 5
+		icon = GFX_focus_NPA_Rebel_Brothers
+		x = 0
+		y = 1
+		relative_position_id = NPA_forge_new_alliances
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = NPA_forge_new_alliances  }
+		mutually_exclusive = { focus = NPA_a_good_cause  focus = NPA_concessions_to_libertarians  }
+		completion_reward = {
+			add_timed_idea = {
+				idea = NPA_siding_with_anarchists
+				days = 100
+			}
+		}
+	}
+	focus = {
+		id = NPA_a_good_cause
+		cost = 5
+		icon = GFX_focus_NPA_A_Good_Cause
+		x = -4
+		y = 1
+		relative_position_id = NPA_forge_new_alliances
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = NPA_forge_new_alliances  }
+		mutually_exclusive = { focus = NPA_rebel_brothers  focus = NPA_concessions_to_libertarians  }
+		completion_reward = {
+			add_timed_idea = {
+				idea = NPA_siding_with_democrats
+				days = 100
+			}
+		}
+	}
+	focus = {
+		id = NPA_concessions_to_libertarians
+		cost = 2
+		icon = GFX_focus_NPA_Agree_To_Disagree
+		x = 3
+		y = 1
+		relative_position_id = NPA_forge_new_alliances
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = NPA_forge_new_alliances  }
+		mutually_exclusive = { focus = NPA_a_good_cause  focus = NPA_rebel_brothers  }
+		completion_reward = {
+			add_timed_idea = {
+				idea = NPA_siding_with_libertarians
+				days = 100
+			}
+		}
+	}
+	
+	
+#############################################################
+### WE ARE THE TRUE REPUBLICANS AND DEFENDERS OF THE USA! ###
+#############################################################
+	
+	focus = {
+		id = NPA_gain_respect_of_democrats
+		cost = 10
+		icon = GFX_focus_NPA_Earn_The_Respect_Of_Democrats
+		x = 6
+		y = 8
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = NPA_old_republican_party_reshuffle focus = NPA_gop_debate_in_washington_dc  }
+		completion_reward = {
+		add_political_power = 150
+		custom_effect_tooltip = NPA_Gain_Respect_Of_Democrats_tt
+		}
+	}
+
+	focus = {
+		id = NPA_one_nation_one_goal
+		cost = 10
+		icon = GFX_focus_NPA_One_Nation_One_Goal
+		x = 9
+		y = 9
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = NPA_gain_respect_of_democrats  }
+		prerequisite = { focus = NPA_exchange_party_members  }
+		mutually_exclusive = { focus = NPA_conditional_cooperation focus = NPA_dissolve_gop }
+	}
+	focus = {
+		id = NPA_dissolve_gop
+		cost = 10
+		icon = GFX_focus_NPA_Dissolve_GOP
+		x = 14
+		y = 9
+		available = {
+		republican < 0.5
+		}
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = NPA_get_rid_of_malcontents  }
+		mutually_exclusive = { focus = NPA_conditional_cooperation focus = NPA_one_nation_one_goal }
+	}
+	focus = {
+		id = NPA_pride_in_freedom
+		cost = 10
+		icon = GFX_focus_NPA_Pride_In_Freedom
+		x = 13
+		y = 10
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = NPA_dissolve_gop  }
+	}
+	focus = {
+		id = NPA_pride_in_liberty
+		cost = 10
+		icon = GFX_focus_NPA_Pride_In_Liberty
+		x = 15
+		y = 10
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = NPA_dissolve_gop  }
+	}
+	focus = {
+		id = NPA_through_freedom_we_unite
+		cost = 10
+		icon = GFX_focus_NPA_Through_Freedom_We_Unite
+		x = 14
+		y = 11
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = NPA_pride_in_freedom focus = NPA_pride_in_liberty }
+		mutually_exclusive = { focus = NPA_we_were_democrats_all_the_time }
+	}
+	focus = {
+		id = NPA_we_were_democrats_all_the_time
+		cost = 10
+		icon = GFX_focus_NPA_We_Were_Democrats_All_The_Time
+		x = 12
+		y = 11
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = NPA_pride_in_freedom focus = NPA_pride_in_liberty }
+		mutually_exclusive = { focus = NPA_through_freedom_we_unite }
+	}
+	focus = {
+		id = NPA_appeal_to_eastern_libertarians
+		cost = 10
+		icon = GFX_focus_NPA_Appeal_To_Eastern_Libertarians
+		x = 14
+		y = 12
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = NPA_through_freedom_we_unite  }
+	}
+	focus = {
+		id = NPA_adapt_anarchist_values
+		cost = 10
+		icon = GFX_focus_NPA_Adapt_Anarchist_Values
+		x = 13
+		y = 14
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = NPA_through_freedom_we_unite }
+		mutually_exclusive = { focus = NPA_appease_right_wing_libertarians }
+	}
+	focus = {
+		id = NPA_we_are_many
+		cost = 10
+		icon = GFX_goal_generic_neutrality_focus
+		x = 10
+		y = 16
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = NPA_adapt_anarchist_values }
+	}
+	focus = {
+		id = NPA_we_are_not_alone
+		cost = 10
+		icon = GFX_goal_generic_neutrality_focus
+		x = 19
+		y = 16
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = NPA_appease_right_wing_libertarians }
+	}
+	focus = {
+		id = NPA_appease_right_wing_libertarians
+		cost = 10
+		icon = GFX_focus_NPA_Appease_Right_Wing_Libertarians
+		x = 15
+		y = 14
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = NPA_through_freedom_we_unite }
+		mutually_exclusive = { focus = NPA_adapt_anarchist_values }
+	}
+	focus = {
+		id = NPA_restore_the_united_states
+		cost = 10
+		icon = GFX_focus_NPA_Restore_The_United_States
+		x = 9
+		y = 11
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = NPA_one_nation_one_goal  }
+	}
+	focus = {
+		id = NPA_send_ultimatum_to_warlords
+		cost = 10
+		icon = GFX_focus_NPA_Unity_In_Freedom
+		x = 7
+		y = 12
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = NPA_restore_the_united_states  }
+	}
+	focus = {
+		id = NPA_emergency_elections
+		cost = 10
+		icon = GFX_focus_NPA_Emergency_Elections
+		x = 9
+		y = 12
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = NPA_restore_the_united_states  }
+	}
+	focus = {
+		id = NPA_proclaim_good_old_usa
+		cost = 10
+		icon = GFX_focus_NPA_Proclaim_Good_Old_USA
+		x = 9
+		y = 13
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = NPA_emergency_elections }
+	}
+	focus = {
+		id = NPA_we_are_not_done_yet
+		cost = 10
+		icon = GFX_goal_generic_neutrality_focus
+		x = 9
+		y = 14
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = NPA_proclaim_good_old_usa  }
+	}
+	focus = {
+		id = NPA_unite_republicans
+		cost = 10
+		icon = GFX_focus_NPA_Unite_Republicans
+		x = 11
+		y = 12
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = NPA_restore_the_united_states  focus = NPA_we_were_democrats_all_the_time }
+	}
+	focus = {
+		id = NPA_unite_democrats
+		cost = 10
+		icon = GFX_focus_NPA_Unite_Democrats
+		x = 11
+		y = 13
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = NPA_unite_republicans  }
+	}
+	focus = {
+		id = NPA_conditional_cooperation
+		cost = 10
+		icon = GFX_focus_NPA_Conditional_Cooperation
+		x = 7
+		y = 9
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = NPA_gain_respect_of_democrats }
+		mutually_exclusive = { focus = NPA_one_nation_one_goal focus = NPA_dissolve_gop }
+	}
+	focus = {
+		id = NPA_deal_is_a_deal
+		cost = 10
+		icon = GFX_focus_NPA_Solve_The_Anarkiddies_Problem
+		x = 7
+		y = 10
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = NPA_conditional_cooperation }
+
+	}
+
+
+
+
+	focus = {
+		id = NPA_politically_questionable_volunteers
+		cost = 4
+		icon = GFX_focus_NPA_Politically_Questionable_Volunteers
+		x = 10
+		y = 6
+		search_filters = {
+			FOCUS_FILTER_MANPOWER
+		}
+		prerequisite = { focus = NPA_join_legalists  focus = NPA_the_republican_thaw  }
+		completion_reward = {
+		custom_effect_tooltip = NPA_PCV_tt
+		}
+	}
+
+
+	focus = {
+		id = NPA_gop_debate_in_washington_dc
+		cost = 10
+		icon = GFX_focus_NPA_GOP_Debate_in_Washington_DC
+		x = 8
+		y = 7
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = NPA_join_legalists  }
+		completion_reward = {
+		country_event = { id = npa.15 }
+		hidden_effect = {
+		FRA = {
+		add_opinion_modifier = {
+			target = NPA
+			modifier = fra_gop_debate
+		}
+		}
+		}
+		}
+
+	}
+	focus = {
+		id = NPA_get_rid_of_malcontents
+		cost = 10
+		icon = GFX_focus_NPA_Get_Rid_Of_Malcontents
+		x = 12
+		y = 7
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = NPA_join_legalists focus = NPA_the_republican_thaw focus = NPA_corporationist_paradise }
+		completion_reward = {
+		remove_ideas = NPA_hardliners_disapproval
+		}
+	}
+	
+	focus = {
+		id = NPA_exchange_party_members
+		cost = 10
+		icon = GFX_focus_NPA_Open_Borders_for_Democrats
+		x = 10
+		y = 8
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = NPA_gop_debate_in_washington_dc focus = NPA_get_rid_of_malcontents }
+		completion_reward = {
+		add_popularity = {
+			ideology = democrat
+			popularity = 0.1
+		}
+		add_opinion_modifier = {
+			target = FRA
+			modifier = npa_democratizing
+		}
+		}
+	}
+
+
+	focus = {
+		id = NPA_join_legalists
+		cost = 2
+		icon = GFX_focus_NPA_Join_The_Legitimists
+		available = { NOT = { has_war_with = USA } }
+		x = 8
+		y = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = NPA_a_good_cause  }
+		completion_reward = {
+		FRA = { country_event = { id = npa.1 } }
+		}
+	}
+
+
+	focus = {
+		id = NPA_unity_in_freedom
+		cost = 4
+		icon = GFX_focus_NPA_Freedom_Bird
+		x = 14
+		y = 6
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = NPA_the_republican_thaw  focus = NPA_corporationist_paradise  }
+		completion_reward = {
+		AFS = { country_event = { id = npa.7 } }
+		GLA = { country_event = { id = npa.8 } }
+		}
+	}
+
+
+	focus = {
+		id = NPA_the_republican_thaw
+		cost = 5
+		icon = GFX_focus_NPA_The_Republican_Thaw
+		available = { NOT = { has_war_with = USA } }
+		x = 12
+		y = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = NPA_rebel_brothers  }
+		completion_reward = {
+		country_event = { id = npa.13 }
+		}
+	}
+
+	focus = {
+		id = NPA_corporationist_paradise
+		cost = 5
+		icon = GFX_focus_NPA_Corporatist_Paradise
+		available = { NOT = { has_war_with = USA } }
+		x = 16
+		y = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = NPA_concessions_to_libertarians  }
+		completion_reward = {
+		country_event = { id = npa.14 }
+		}
+	}
+	
+
+	focus = {
+		id = NPA_on_the_crossroad_of_america
+		cost = 3
+		icon = GFX_focus_NPA_On_The_Crossroad_Of_America
+		x = 6
+		y = 0
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		completion_reward = {
+		add_political_power = 80
+		}
+	}
+	
+
+}
