@@ -2852,12 +2852,27 @@ country_event = {
 			}
 			IF = {
 				limit = { 
-					has_country_flag = {
-						flag = oil_bill
+					AND = {
+						has_country_flag = {
+							flag = oil_bill
 							value = 4
+						}
+						has_country_flag = heard_promoted
 					}
 				}
-				country_event = { id = texas.43 days = 5 } #moderate oil barons
+				country_event = { id = texas.108 days = 5 } #military junta
+			}
+			IF = {
+				limit = { 
+					AND = {
+						has_country_flag = {
+							flag = oil_bill
+							value = 4
+						}
+						NOT = { has_country_flag = heard_promoted }
+					}
+				}
+				country_event = { id = texas.42 days = 5 } #cruz coup
 			}
 			IF = {
 				limit = { 
@@ -2866,16 +2881,16 @@ country_event = {
 							value = 5
 					}
 				}
-				country_event = { id = texas.44 days = 5 } #dick cheney
+				country_event = { id = texas.43 days = 5 } #moderate oil barons
 			}
 			IF = {
 				limit = { 
 					has_country_flag = {
 						flag = oil_bill
-						value = 6
+							value = 6
 					}
 				}
-				country_event = { id = texas.108 days = 5 } #military junta
+				country_event = { id = texas.44 days = 5 } #dick cheney
 			}
 		}
 	}
@@ -4065,6 +4080,23 @@ country_event = {
 		set_country_flag = military_junta
 		mark_focus_tree_layout_dirty = yes
 		complete_national_focus = TEX_military_junta
+	}
+}
+
+#promote heard?
+country_event = {
+	id = texas.109
+	title = texas.109.t
+	desc = texas.109.d
+	#picture = .
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #yes
+		name = texas.109.a
+		set_country_flag = heard_promoted
+	}
+	option = { #no
+		name = texas.109.b
 	}
 }
 
