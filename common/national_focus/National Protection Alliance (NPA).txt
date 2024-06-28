@@ -17,7 +17,7 @@ focus_tree = {
 
 	focus = {
 		id = NPA_legacy_of_the_united_states
-		cost = 10
+		cost = 5
 		icon = GFX_focus_NPA_Legacy_Of_The_United_States
 		x = -5
 		y = 0
@@ -29,6 +29,11 @@ focus_tree = {
 				}
 				add_claim_by = NPA
 			}
+			set_country_flag = {
+				flag = reunification_start
+				value = 2
+			}
+			set_country_flag = reunification_wars
 		}
 	}
 	focus = {
@@ -264,7 +269,7 @@ focus_tree = {
 	
 	focus = {
 		id = NPA_on_the_crossroad_of_america
-		cost = 3
+		cost = 2
 		icon = GFX_focus_NPA_On_The_Crossroad_Of_America
 		x = 8
 		y = 1
@@ -278,14 +283,14 @@ focus_tree = {
 	}
 	focus = {
 		id = NPA_medial_counterrevolution
-		cost = 10
+		cost = 5
 		icon = GFX_focus_NPA_Medial_Counterrevolution
 		x = 2
 		y = 1
 		relative_position_id = NPA_on_the_crossroad_of_america
 		prerequisite = { focus = NPA_on_the_crossroad_of_america  }
 		completion_reward = {
-		country_event = { id = npa.32 }
+			country_event = { id = npa.32 }
 		}
 	}
 
@@ -316,7 +321,7 @@ focus_tree = {
 		relative_position_id = NPA_on_the_crossroad_of_america
 		prerequisite = { focus = NPA_on_the_crossroad_of_america  }
 		completion_reward = {
-		add_research_slot = 1
+			add_research_slot = 1
 		}
 	}
 	
@@ -376,7 +381,7 @@ focus_tree = {
 
 	focus = {
 		id = NPA_the_second_wave
-		cost = 4
+		cost = 2
 		icon = GFX_focus_NPA_The_Second_Wave
 		x = 0
 		y = 1
@@ -399,7 +404,7 @@ focus_tree = {
 
 	focus = {
 		id = NPA_the_final_wave
-		cost = 6
+		cost = 2
 		icon = GFX_focus_NPA_The_Final_Wave
 		x = 0
 		y = 1
@@ -421,7 +426,7 @@ focus_tree = {
 	}
 	focus = {
 		id = NPA_patriotic_propaganda
-		cost = 4
+		cost = 2
 		icon = GFX_focus_NPA_Patriotic_Propaganda
 		x = 0
 		y = 1
@@ -439,7 +444,9 @@ focus_tree = {
 	}
 	
 	
-	
+	###################################################
+	#################### LONE WOLF ####################
+	###################################################
 	
 	
 
@@ -448,7 +455,7 @@ focus_tree = {
 		id = NPA_path_of_the_lone_wolf
 		cost = 5
 		icon = GFX_focus_NPA_Path_Of_The_Lone_Wolf
-		x = 13
+		x = 17
 		y = 0
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
@@ -466,7 +473,7 @@ focus_tree = {
 		id = NPA_inside_job
 		cost = 2
 		icon = GFX_focus_NPA_Inside_Job
-		x = 0
+		x = 10
 		y = 1
 		relative_position_id = NPA_path_of_the_lone_wolf
 		available = {
@@ -475,7 +482,10 @@ focus_tree = {
 		search_filters = {
 			FOCUS_FILTER_STABILITY
 		}
-		prerequisite = { focus = NPA_path_of_the_lone_wolf  }
+		prerequisite = { 
+			focus = NPA_path_of_the_lone_wolf  
+			focus = NPA_forge_new_alliances  
+		}
 		completion_reward = {
 			custom_effect_tooltip = NPA_Inside_Job_tt
 		}
@@ -484,7 +494,7 @@ focus_tree = {
 		id = NPA_war_patronage
 		cost = 5
 		icon = GFX_focus_NPA_War_Patronage
-		x = 2
+		x = 0
 		y = 1
 		relative_position_id = NPA_inside_job
 		search_filters = {
@@ -492,6 +502,12 @@ focus_tree = {
 		}
 		prerequisite = { focus = NPA_inside_job  }
 		completion_reward = {
+			add_equipment_to_stockpile = {
+    				type = infantry_equipment
+    				amount = 2500
+			}
+			add_political_power = 50
+			add_war_support = 0.5
 		}
 	}
 
@@ -506,21 +522,21 @@ focus_tree = {
 		icon = GFX_focus_NPA_Seize_Absolute_Power
 		x = -4
 		y = 1
-		relative_position_id = NPA_inside_job
+		relative_position_id = NPA_path_of_the_lone_wolf
 		available = {
 			NOT = { has_war_with = USA }
-			NOT = { 
-				has_country_leader = {
-					name = "Ben Shapiro"
-					ruling_only = yes
-				}
-			 }
+			#NOT = { 
+			#	has_country_leader = {
+			#		name = "Ben Shapiro"
+			#		ruling_only = yes
+			#	}
+			# }
 			is_puppet = no
 		}
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
-		prerequisite = {  focus = NPA_inside_job  }
+		prerequisite = {  focus = NPA_path_of_the_lone_wolf  }
 		mutually_exclusive = { focus = NPA_old_republican_party_reshuffle  }
 		completion_reward = {
 			custom_effect_tooltip = NPA_NM_tt
@@ -667,11 +683,13 @@ focus_tree = {
 			add_ideas = NPA_Bad_Maga
 		}
 	}
+	
+	
 	focus = {
 		id = NPA_retire_in_glory
 		cost = 10
 		icon = GFX_focus_NPA_Retire_in_Glory
-		x = -1
+		x = -4
 		y = 1
 		relative_position_id = NPA_make_america_greatest_again
 		bypass = {
@@ -708,7 +726,7 @@ focus_tree = {
 		}
 		prerequisite = { focus = NPA_retire_in_glory  }
 		completion_reward = {
-		custom_effect_tooltip = NPA_Revive_PNAC_tt
+			custom_effect_tooltip = NPA_Revive_PNAC_tt
 		}
 	}
 	focus = {
@@ -729,11 +747,13 @@ focus_tree = {
 			}
 		}
 	}
+	
+	
 	focus = {
 		id = NPA_the_new_caesar
 		cost = 10
 		icon = GFX_focus_NPA_The_New_Caesar
-		x = 1
+		x = 4
 		y = 1
 		relative_position_id = NPA_make_america_greatest_again
 		available = {
@@ -773,7 +793,7 @@ focus_tree = {
 		id = NPA_american_crusaders
 		cost = 10
 		icon = GFX_focus_NPA_We_the_American_Crusade
-		x = 0
+		x = -4
 		y = 1
 		relative_position_id = NPA_new_ranks_and_hierarchy
 		search_filters = {
@@ -801,9 +821,153 @@ focus_tree = {
 			focus = NPA_american_crusaders 
 		}
 		completion_reward = {
+			add_ideas = NPA_American_Crusade2
 		}
 	}
 	
+
+
+	# Police
+	focus = {
+		id = NPA_gain_the_polices_trust
+		cost = 10
+		icon = GFX_focus_NPA_Earn_the_Polices_Trust
+		x = -13
+		y = 1
+		relative_position_id = NPA_make_america_greatest_again
+		prerequisite = {
+			focus = NPA_make_america_greatest_again
+		}
+		mutually_exclusive = { 
+			focus = NPA_retire_in_glory 
+			focus = NPA_the_new_caesar  
+		}
+		completion_reward = {
+			FRA = { add_timed_idea = { idea = NPA_rogue_police days = 200 } }
+			TEX = { add_timed_idea = { idea = NPA_rogue_police days = 200 } }
+			PRA = { add_timed_idea = { idea = NPA_rogue_police days = 200 } }
+			HOP = { add_timed_idea = { idea = NPA_rogue_police days = 200 } }
+		}
+	}
+	focus = {
+		id = NPA_operation_blue_hour
+		cost = 10
+		icon = GFX_focus_NPA_Operation_Blue_Hour
+		x = 0
+		y = 1
+		relative_position_id = NPA_gain_the_polices_trust
+		prerequisite = {
+			focus = NPA_gain_the_polices_trust
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = NPA_save_people_from_nazis
+		cost = 10
+		icon = GFX_focus_NPA_Save_People_From_Nazis
+		x = 2
+		y = 1
+		relative_position_id = NPA_operation_blue_hour
+		prerequisite = {
+			focus = NPA_operation_blue_hour
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = NPA_we_are_nice_and_gentle
+		cost = 10
+		icon = GFX_focus_NPA_We_Are_Nice_And_Gentle
+		x = -1
+		y = 1
+		relative_position_id = NPA_save_people_from_nazis
+		prerequisite = {
+			focus = NPA_save_people_from_nazis
+		}
+		mutually_exclusive = { focus = NPA_we_are_who_we_are }
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = NPA_we_are_who_we_are
+		cost = 10
+		icon = GFX_focus_NPA_We_Are_Who_We_Are
+		x = 1
+		y = 1
+		relative_position_id = NPA_save_people_from_nazis
+		prerequisite = {
+			focus = NPA_save_people_from_nazis
+		}
+		mutually_exclusive = { focus = NPA_we_are_nice_and_gentle }
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = NPA_uprising_in_california
+		cost = 10
+		icon = GFX_focus_NPA_Restore_Order_In_California
+		x = -2
+		y = 1
+		relative_position_id = NPA_operation_blue_hour
+		prerequisite = {
+			focus = NPA_operation_blue_hour
+		}
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = NPA_intervention_in_texas
+		cost = 10
+		icon = GFX_focus_NPA_Intervene_in_Texas
+		x = 0
+		y = 1
+		relative_position_id = NPA_uprising_in_california
+		prerequisite = {
+			focus = NPA_uprising_in_california
+		}
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = NPA_bring_back_good_old_peace
+		cost = 10
+		icon = GFX_goal_generic_demand_territory
+		x = 2
+		y = 1
+		relative_position_id = NPA_intervention_in_texas
+		prerequisite = {
+			focus = NPA_intervention_in_texas
+		}
+		prerequisite = {
+			focus = NPA_we_are_who_we_are
+			focus = NPA_we_are_nice_and_gentle
+		}
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = NPA_and_dont_ask_how
+		cost = 10
+		icon = GFX_focus_NPA_And_Dont_Ask_How
+		x = 0
+		y = 1
+		relative_position_id = NPA_bring_back_good_old_peace
+		prerequisite = {
+			focus = NPA_bring_back_good_old_peace
+		}
+		completion_reward = {
+		}
+	}
 
 
 
@@ -814,13 +978,13 @@ focus_tree = {
 		cost = 10
 		icon = GFX_focus_NPA_Old_Republican_Party_Reshuffle
 		available = { NOT = { has_war_with = USA } }
-		x = 0
+		x = 6
 		y = 1
-		relative_position_id = NPA_inside_job
+		relative_position_id = NPA_path_of_the_lone_wolf
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
-		prerequisite = { focus = NPA_inside_job  }
+		prerequisite = { focus = NPA_path_of_the_lone_wolf  }
 		mutually_exclusive = { focus = NPA_necessary_measures  }
 		completion_reward = {
 			add_political_power = 120
@@ -960,7 +1124,7 @@ focus_tree = {
 		id = NPA_forge_new_alliances
 		cost = 5
 		icon = GFX_focus_NPA_Forge_New_Alliances
-		x = 17
+		x = 35
 		y = 0
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
@@ -1025,7 +1189,7 @@ focus_tree = {
 		id = NPA_exchange_party_members
 		cost = 10
 		icon = GFX_focus_NPA_Open_Borders_for_Democrats
-		x = 2
+		x = 1
 		y = 1
 		relative_position_id = NPA_gop_debate_in_washington_dc
 		prerequisite = { focus = NPA_gop_debate_in_washington_dc }
@@ -1044,7 +1208,7 @@ focus_tree = {
 		id = NPA_gain_respect_of_democrats
 		cost = 10
 		icon = GFX_focus_NPA_Earn_The_Respect_Of_Democrats
-		x = -2
+		x = -1
 		y = 1
 		relative_position_id = NPA_gop_debate_in_washington_dc
 		prerequisite = { focus = NPA_gop_debate_in_washington_dc  }
@@ -1061,9 +1225,9 @@ focus_tree = {
 		x = -1
 		y = 1
 		relative_position_id = NPA_exchange_party_members
-		prerequisite = { focus = NPA_gain_respect_of_democrats  }
+		prerequisite = { focus = NPA_gain_respect_of_democrats }
 		prerequisite = { focus = NPA_exchange_party_members  }
-		mutually_exclusive = { focus = NPA_conditional_cooperation }
+		#mutually_exclusive = { focus = NPA_conditional_cooperation }
 	}
 	focus = {
 		id = NPA_restore_the_united_states
@@ -1123,187 +1287,31 @@ focus_tree = {
 		id = NPA_unite_democrats
 		cost = 10
 		icon = GFX_focus_NPA_Unite_Democrats
-		x = 2
-		y = 1
-		relative_position_id = NPA_restore_the_united_states
-		prerequisite = { focus = NPA_restore_the_united_state  }
-	}
-	focus = {
-		id = NPA_conditional_cooperation
-		cost = 10
-		icon = GFX_focus_NPA_Conditional_Cooperation
-		x = 1
-		y = 1
-		relative_position_id = NPA_gain_respect_of_democrats
-		prerequisite = { focus = NPA_gain_respect_of_democrats }
-		mutually_exclusive = { focus = NPA_one_nation_one_goal }
-	}
-	focus = {
-		id = NPA_deal_is_a_deal
-		cost = 10
-		icon = GFX_focus_NPA_Solve_The_Anarkiddies_Problem
 		x = 0
 		y = 1
-		relative_position_id = NPA_conditional_cooperation
-		prerequisite = { focus = NPA_conditional_cooperation }
+		relative_position_id = NPA_unite_republicans
+		prerequisite = { focus = NPA_unite_republicans  }
+	}
+	#focus = {
+	#	id = NPA_conditional_cooperation
+	#	cost = 10
+	#	icon = GFX_focus_NPA_Conditional_Cooperation
+	#	x = 1
+	#	y = 1
+	#	relative_position_id = NPA_gain_respect_of_democrats
+	#	prerequisite = { focus = NPA_gain_respect_of_democrats }
+	#	mutually_exclusive = { focus = NPA_one_nation_one_goal }
+	#}
+	#focus = {
+	#	id = NPA_deal_is_a_deal
+	#	cost = 10
+	#	icon = GFX_focus_NPA_Solve_The_Anarkiddies_Problem
+	#	x = 0
+	#	y = 1
+	#	relative_position_id = NPA_conditional_cooperation
+	#	prerequisite = { focus = NPA_conditional_cooperation }
+	#
+	#}
 
-	}
-
-
-
-	# Police
-	focus = {
-		id = NPA_gain_the_polices_trust
-		cost = 10
-		icon = GFX_focus_NPA_Earn_the_Polices_Trust
-		x = -7
-		y = 1
-		relative_position_id = NPA_make_america_greatest_again
-		prerequisite = {
-			focus = NPA_make_america_greatest_again
-		}
-		mutually_exclusive = { 
-			focus = NPA_retire_in_glory 
-			focus = NPA_the_new_caesar  
-		}
-		completion_reward = {
-			FRA = { add_timed_idea = { idea = NPA_rogue_police days = 200 } }
-			TEX = { add_timed_idea = { idea = NPA_rogue_police days = 200 } }
-			PRA = { add_timed_idea = { idea = NPA_rogue_police days = 200 } }
-			HOP = { add_timed_idea = { idea = NPA_rogue_police days = 200 } }
-		}
-	}
-	focus = {
-		id = NPA_operation_blue_hour
-		cost = 10
-		icon = GFX_focus_NPA_Operation_Blue_Hour
-		x = 0
-		y = 1
-		relative_position_id = NPA_gain_the_polices_trust
-		prerequisite = {
-			focus = NPA_gain_the_polices_trust
-		}
-		completion_reward = {
-		}
-	}
-	focus = {
-		id = NPA_once_brutus_always_brutus
-		cost = 10
-		icon = GFX_goal_generic_demand_territory
-		x = 4
-		y = 1
-		relative_position_id = NPA_gain_the_polices_trust
-		prerequisite = {
-			focus = NPA_gain_the_polices_trust
-		}
-		completion_reward = {
-		}
-	}
-	focus = {
-		id = NPA_save_people_from_nazis
-		cost = 10
-		icon = GFX_focus_NPA_Save_People_From_Nazis
-		x = 2
-		y = 1
-		relative_position_id = NPA_gain_the_polices_trust
-		prerequisite = {
-			focus = NPA_gain_the_polices_trust
-		}
-		completion_reward = {
-		}
-	}
-	focus = {
-		id = NPA_we_are_nice_and_gentle
-		cost = 10
-		icon = GFX_focus_NPA_We_Are_Nice_And_Gentle
-		x = -1
-		y = 1
-		relative_position_id = NPA_save_people_from_nazis
-		prerequisite = {
-			focus = NPA_save_people_from_nazis
-		}
-		mutually_exclusive = { focus = NPA_we_are_who_we_are }
-		completion_reward = {
-		}
-	}
-	focus = {
-		id = NPA_we_are_who_we_are
-		cost = 10
-		icon = GFX_focus_NPA_We_Are_Who_We_Are
-		x = 1
-		y = 1
-		relative_position_id = NPA_save_people_from_nazis
-		prerequisite = {
-			focus = NPA_save_people_from_nazis
-		}
-		mutually_exclusive = { focus = NPA_we_are_nice_and_gentle }
-		completion_reward = {
-		}
-	}
-	focus = {
-		id = NPA_uprising_in_california
-		cost = 10
-		icon = GFX_focus_NPA_Restore_Order_In_California
-		x = -2
-		y = 1
-		relative_position_id = NPA_gain_the_polices_trust
-		prerequisite = {
-			focus = NPA_gain_the_polices_trust
-		}
-		search_filters = {
-			FOCUS_FILTER_INDUSTRY
-		}
-		completion_reward = {
-		}
-	}
-	focus = {
-		id = NPA_intervention_in_texas
-		cost = 10
-		icon = GFX_focus_NPA_Intervene_in_Texas
-		x = 0
-		y = 1
-		relative_position_id = NPA_uprising_in_california
-		prerequisite = {
-			focus = NPA_uprising_in_california
-		}
-		search_filters = {
-			FOCUS_FILTER_INDUSTRY
-		}
-		completion_reward = {
-		}
-	}
-	focus = {
-		id = NPA_bring_back_good_old_peace
-		cost = 10
-		icon = GFX_goal_generic_demand_territory
-		x = 2
-		y = 1
-		relative_position_id = NPA_intervention_in_texas
-		prerequisite = {
-			focus = NPA_intervention_in_texas
-		}
-		prerequisite = {
-			focus = NPA_we_are_who_we_are
-			focus = NPA_we_are_nice_and_gentle
-		}
-		search_filters = {
-			FOCUS_FILTER_INDUSTRY
-		}
-		completion_reward = {
-		}
-	}
-	focus = {
-		id = NPA_and_dont_ask_how
-		cost = 10
-		icon = GFX_focus_NPA_And_Dont_Ask_How
-		x = 0
-		y = 1
-		relative_position_id = NPA_bring_back_good_old_peace
-		prerequisite = {
-			focus = NPA_bring_back_good_old_peace
-		}
-		completion_reward = {
-		}
-	}
 
 }
