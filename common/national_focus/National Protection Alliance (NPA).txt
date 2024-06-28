@@ -154,11 +154,31 @@ focus_tree = {
 		
 	}
 	focus = {
+		id = NPA_university_of_chicago
+		cost = 10
+		icon = gfx
+		x = -1
+		y = 1
+		relative_position_id = NPA_focus_on_illinois
+		available = {
+			NOT = { has_war_with = USA }
+		}
+		prerequisite = { 
+			focus = NPA_focus_on_illinois 
+			controls_state = 198
+			controls_state = 197
+			controls_state = 209
+		}
+		completion_reward = {
+			add_research_slot = 1
+		}
+	}
+	focus = {
 		id = NPA_turn_extremists_into_mules
 		cost = 10
 		icon = GFX_focus_NPA_Turn_Extremists_Into_Mules
-		x = -1
-		y = 1
+		x = 0
+		y = 2
 		relative_position_id = NPA_focus_on_illinois
 		available = {
 			NOT = { has_war_with = USA }
@@ -172,12 +192,43 @@ focus_tree = {
 		}
 	}
 	focus = {
+		id = NPA_central_capital
+		cost = 10
+		icon = GFX
+		x = 1
+		y = 1
+		relative_position_id = NPA_focus_on_missouri
+		available = {
+			NOT = { has_war_with = USA }			
+			controls_state = 238
+		}
+		prerequisite = { 
+			focus = NPA_focus_on_missouri  
+		}
+		completion_reward = {
+			238 = {
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 4
+    					instant_build = yes
+				}
+				add_building_construction = {
+    					type = infrastructure
+    					level = 4
+    					instant_build = yes
+				}
+			}
+			set_capital = { state = 238 }
+		}
+	}
+	focus = {
 		id = NPA_steel_and_wheels
 		cost = 10
 		icon = GFX_focus_NPA_Steel_And_Wheels
-		x = 4
-		y = 1
-		relative_position_id = NPA_focus_on_kansas
+		x = 0
+		y = 2
+		relative_position_id = NPA_focus_on_missouri
 		prerequisite = { 
 			focus = NPA_focus_on_kansas
 			focus = NPA_focus_on_missouri  
@@ -219,8 +270,15 @@ focus_tree = {
 		available = {
 			NOT = { has_war_with = USA }
 		}
-		prerequisite = { focus = NPA_focus_on_kansas }
-		prerequisite = { focus = NPA_back_to_paper_books }
+		prerequisite = { 
+			focus = NPA_focus_on_kansas 
+		}
+		prerequisite = { 
+			focus = NPA_back_to_paper_books 
+		}
+		prerequisite = { 
+			focus = NPA_agricultural_machinery_monopoly 
+		}
 		completion_reward = {
 			random_owned_state = {
 		        add_extra_state_shared_building_slots = 2
@@ -465,7 +523,7 @@ focus_tree = {
 			NOT = { is_puppet_of = USA }
 		}
 		completion_reward = {
-			add_political_power = 200
+			add_political_power = 300
 		}
 		mutually_exclusive = { focus = NPA_forge_new_alliances  }
 	}
@@ -715,6 +773,23 @@ focus_tree = {
 		}
 	}
 	focus = {
+		id = NPA_american_mossad
+		cost = 10
+		icon = GFX
+		x = -4
+		y = 1
+		relative_position_id = NPA_retire_in_glory
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { 
+			focus = NPA_retire_in_glory 
+		}
+		mutually_exclusive = { focus = NPA_revive_pnac }
+		completion_reward = {
+		}
+	}
+	focus = {
 		id = NPA_revive_pnac
 		cost = 10
 		icon = GFX_focus_NPA_Revive_the_PNAC
@@ -724,7 +799,10 @@ focus_tree = {
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
-		prerequisite = { focus = NPA_retire_in_glory  }
+		prerequisite = { 
+			focus = NPA_retire_in_glory 
+		}
+		mutually_exclusive = { focus = NPA_american_mossad }
 		completion_reward = {
 			custom_effect_tooltip = NPA_Revive_PNAC_tt
 		}
@@ -790,6 +868,21 @@ focus_tree = {
 		}
 	}
 	focus = {
+		id = NPA_american_empire
+		cost = 10
+		icon = GFX
+		x = 0
+		y = 1
+		relative_position_id = NPA_new_ranks_and_hierarchy
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = NPA_new_ranks_and_hierarchy  }
+		completion_reward = {
+		
+		}
+	}
+	focus = {
 		id = NPA_american_crusaders
 		cost = 10
 		icon = GFX_focus_NPA_We_the_American_Crusade
@@ -821,7 +914,10 @@ focus_tree = {
 			focus = NPA_american_crusaders 
 		}
 		completion_reward = {
-			add_ideas = NPA_American_Crusade2
+			swap_ideas = {
+				remove_idea = NPA_American_Crusade
+				add_idea = NPA_American_Crusade2
+			}
 		}
 	}
 	
@@ -832,7 +928,7 @@ focus_tree = {
 		id = NPA_gain_the_polices_trust
 		cost = 10
 		icon = GFX_focus_NPA_Earn_the_Polices_Trust
-		x = -13
+		x = -15
 		y = 1
 		relative_position_id = NPA_make_america_greatest_again
 		prerequisite = {
