@@ -1246,14 +1246,16 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = NPA_join_legalists
+		id = NPA_join_legalists #supposed to be legitimists, but im not silv
 		cost = 2
 		icon = GFX_focus_NPA_Join_The_Legitimists
 		available = { NOT = { has_war_with = USA } }
 		x = 0
 		y = 1
 		relative_position_id = NPA_a_good_cause
-		prerequisite = { focus = NPA_a_good_cause  }
+		prerequisite = { 
+			focus = NPA_a_good_cause  
+		}
 		completion_reward = {
 			FRA = { country_event = { id = npa.1 } }
 		}
@@ -1265,7 +1267,9 @@ focus_tree = {
 		x = 0
 		y = 1
 		relative_position_id = NPA_join_legalists
-		prerequisite = { focus = NPA_join_legalists  }
+		prerequisite = { 
+			focus = NPA_join_legalists  
+		}
 		completion_reward = {
 		country_event = { id = npa.15 }
 			hidden_effect = {
@@ -1284,10 +1288,12 @@ focus_tree = {
 		id = NPA_exchange_party_members
 		cost = 10
 		icon = GFX_focus_NPA_Open_Borders_for_Democrats
-		x = 1
+		x = 2
 		y = 1
-		relative_position_id = NPA_gop_debate_in_washington_dc
-		prerequisite = { focus = NPA_gop_debate_in_washington_dc }
+		relative_position_id = NPA_join_legalists
+		prerequisite = { 
+			focus = NPA_join_legalists 
+		}
 		completion_reward = {
 			add_popularity = {
 				ideology = democrat
@@ -1303,10 +1309,12 @@ focus_tree = {
 		id = NPA_gain_respect_of_democrats
 		cost = 10
 		icon = GFX_focus_NPA_Earn_The_Respect_Of_Democrats
-		x = -1
+		x = -2
 		y = 1
-		relative_position_id = NPA_gop_debate_in_washington_dc
-		prerequisite = { focus = NPA_gop_debate_in_washington_dc  }
+		relative_position_id = NPA_join_legalists
+		prerequisite = {
+			focus = NPA_join_legalists  
+		}
 		completion_reward = {
 			add_political_power = 150
 			custom_effect_tooltip = NPA_Gain_Respect_Of_Democrats_tt
@@ -1317,13 +1325,25 @@ focus_tree = {
 		id = NPA_one_nation_one_goal
 		cost = 10
 		icon = GFX_focus_NPA_One_Nation_One_Goal
-		x = -1
+		x = 0
 		y = 1
-		relative_position_id = NPA_exchange_party_members
-		prerequisite = { focus = NPA_gain_respect_of_democrats }
-		prerequisite = { focus = NPA_exchange_party_members  }
-		#mutually_exclusive = { focus = NPA_conditional_cooperation }
+		relative_position_id = NPA_gop_debate_in_washington_dc
+		prerequisite = { 
+			focus = NPA_gop_debate_in_washington_dc   
+		}
+		prerequisite = { 
+			focus = NPA_gain_respect_of_democrats   
+		}
+		prerequisite = { 
+			focus = NPA_exchange_party_members   
+		}
 		completion_reward = {
+			FRA = {
+				country_event = { 
+					id = npa.21
+					days = 3
+				}
+			}
 		}
 	}
 	focus = {
@@ -1333,18 +1353,9 @@ focus_tree = {
 		x = 0
 		y = 1
 		relative_position_id = NPA_one_nation_one_goal
-		prerequisite = { focus = NPA_one_nation_one_goal  }
-		completion_reward = {
+		prerequisite = { 
+			focus = NPA_one_nation_one_goal  
 		}
-	}
-	focus = {
-		id = NPA_send_ultimatum_to_warlords
-		cost = 10
-		icon = GFX_focus_NPA_Unity_In_Freedom
-		x = -2
-		y = 1
-		relative_position_id = NPA_restore_the_united_states
-		prerequisite = { focus = NPA_restore_the_united_states  }
 		completion_reward = {
 		}
 	}
@@ -1352,10 +1363,80 @@ focus_tree = {
 		id = NPA_emergency_elections
 		cost = 10
 		icon = GFX_focus_NPA_Emergency_Elections
-		x = 0
+		x = -2
 		y = 1
 		relative_position_id = NPA_restore_the_united_states
-		prerequisite = { focus = NPA_restore_the_united_states  }
+		prerequisite = { 
+			focus = NPA_restore_the_united_states  
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = NPA_end_of_the_populists
+		cost = 10
+		icon = GFX
+		x = -1
+		y = 1
+		relative_position_id = NPA_emergency_elections
+		prerequisite = { 
+			focus = NPA_emergency_elections  
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = NPA_a_new_establishment
+		cost = 10
+		icon = GFX
+		x = 1
+		y = 1
+		relative_position_id = NPA_emergency_elections
+		prerequisite = { 
+			focus = NPA_emergency_elections  
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = NPA_unite_republicans
+		cost = 10
+		icon = GFX_focus_NPA_Unite_Republicans
+		x = 1
+		y = 1
+		relative_position_id = NPA_restore_the_united_states
+		prerequisite = { 
+			focus = NPA_restore_the_united_states 
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = NPA_unite_democrats
+		cost = 10
+		icon = GFX_focus_NPA_Unite_Democrats
+		x = 3
+		y = 1
+		relative_position_id = NPA_restore_the_united_states
+		prerequisite = { 
+			focus = NPA_restore_the_united_states  
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = NPA_send_ultimatum_to_warlords
+		cost = 10
+		icon = GFX_focus_NPA_Unity_In_Freedom
+		x = -1
+		y = 1
+		relative_position_id = NPA_unite_democrats
+		prerequisite = { 
+			focus = NPA_unite_republicans  
+		}
+		prerequisite = { 
+			focus = NPA_unite_democrats  
+		}
 		completion_reward = {
 		}
 	}
@@ -1363,10 +1444,18 @@ focus_tree = {
 		id = NPA_proclaim_good_old_usa
 		cost = 10
 		icon = GFX_focus_NPA_Proclaim_Good_Old_USA
-		x = 0
+		x = -2
 		y = 1
-		relative_position_id = NPA_emergency_elections
-		prerequisite = { focus = NPA_emergency_elections }
+		relative_position_id = NPA_send_ultimatum_to_warlords
+		prerequisite = { 
+			focus = NPA_send_ultimatum_to_warlords 
+		}
+		prerequisite = { 
+			focus = NPA_a_new_establishment 
+		}
+		prerequisite = { 
+			focus = NPA_end_of_the_populists 
+		}
 		completion_reward = {
 		}
 	}
@@ -1377,32 +1466,79 @@ focus_tree = {
 		x = 0
 		y = 1
 		relative_position_id = NPA_proclaim_good_old_usa
-		prerequisite = { focus = NPA_proclaim_good_old_usa  }
+		prerequisite = { 
+			focus = NPA_proclaim_good_old_usa  
+		}
 		completion_reward = {
 		}
 	}
 	focus = {
-		id = NPA_unite_republicans
+		id = NPA_order_in_canada
 		cost = 10
-		icon = GFX_focus_NPA_Unite_Republicans
+		icon = GFX_goal_generic_neutrality_focus
 		x = 2
 		y = 1
-		relative_position_id = NPA_restore_the_united_states
-		prerequisite = { focus = NPA_restore_the_united_states }
+		relative_position_id = NPA_we_are_not_done_yet
+		prerequisite = { 
+			focus = NPA_we_are_not_done_yet  
+		}
 		completion_reward = {
 		}
 	}
 	focus = {
-		id = NPA_unite_democrats
+		id = NPA_rejoin_international_systems
 		cost = 10
-		icon = GFX_focus_NPA_Unite_Democrats
-		x = 0
+		icon = GFX_goal_generic_neutrality_focus
+		x = -2
 		y = 1
-		relative_position_id = NPA_unite_republicans
-		prerequisite = { focus = NPA_unite_republicans  }
+		relative_position_id = NPA_we_are_not_done_yet
+		prerequisite = {
+			focus = NPA_we_are_not_done_yet
+		}
 		completion_reward = {
 		}
 	}
+	focus = {
+		id = NPA_order_in_mexico
+		cost = 10
+		icon = GFX_goal_generic_neutrality_focus
+		x = 0
+		y = 1
+		relative_position_id = NPA_we_are_not_done_yet
+		prerequisite = { 
+			focus = NPA_we_are_not_done_yet
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = NPA_order_in_central_america
+		cost = 10
+		icon = GFX_goal_generic_neutrality_focus
+		x = 1
+		y = 1
+		relative_position_id = NPA_order_in_mexico
+		prerequisite = { 
+			focus = NPA_order_in_mexico 
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = NPA_order_in_carribean
+		cost = 10
+		icon = GFX_goal_generic_neutrality_focus
+		x = -1
+		y = 1
+		relative_position_id = NPA_order_in_mexico
+		prerequisite = { 
+			focus = NPA_order_in_mexico 
+		}
+		completion_reward = {
+		}
+	}
+	
+	
 	#focus = {
 	#	id = NPA_conditional_cooperation
 	#	cost = 10
