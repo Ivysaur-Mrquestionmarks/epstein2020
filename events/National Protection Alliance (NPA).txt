@@ -110,19 +110,19 @@ country_event = { #Propaganda
 		}
 		NPA = { add_ideas = NPA_Motivation_Soldified }
 		hidden_effect = {
-		if = {
-			limit = { has_idea = NPA_Motivation_High }
-				remove_ideas = NPA_Motivation_High
-			}
-		if = {
-			limit = { has_idea = NPA_Motivation_Medium }
-				remove_ideas = NPA_Motivation_Medium
-			}
-		if = {
-			limit = { has_idea = NPA_Motivation_Low }
-			remove_ideas = NPA_Motivation_Low
-			}
-		set_country_flag = NPA_Motivation_Propaganda
+			if = {
+				limit = { has_idea = NPA_Motivation_High }
+					remove_ideas = NPA_Motivation_High
+				}
+			if = {
+				limit = { has_idea = NPA_Motivation_Medium }
+					remove_ideas = NPA_Motivation_Medium
+				}
+			if = {
+				limit = { has_idea = NPA_Motivation_Low }
+				remove_ideas = NPA_Motivation_Low
+				}
+			set_country_flag = NPA_Motivation_Propaganda
 		}
 	}
 	option = {
@@ -171,7 +171,7 @@ country_event = { #Trump Declares War on Minnesota
 	}
 }
 
-country_event = { #Biden declares war on RR after trump defeated
+country_event = { #NPA white peace with resistance radio
 	id = npa.7
 	title = npa.7.t
 	desc = npa.7.d
@@ -179,19 +179,13 @@ country_event = { #Biden declares war on RR after trump defeated
 	is_triggered_only = yes
 	fire_only_once = yes
 	trigger = {
-		tag = FRA
-		NPA = { owns_state = 215 }
+		tag = NPA
+		owns_state = 215
 		NOT = { country_exists = USA }
 	}
 	option = {
 		name = npa.7.a
-		if = {
-			limit = { country_exists = NEW }
-			declare_war_on = {
-				target = NEW
-				type = annex_everything
-			}
-		}
+		white_peace = NEW
 	}
 }
 
@@ -205,14 +199,14 @@ country_event = { #Medial Counter Revolution Event
 	
 	option = {
 		name = npa.8.a	
-		ai_will_do = {
+		ai_chance = {
 			factor = 50
 		}
 		complete_national_focus = NPA_patriotic_propaganda
 	}
 	option = {
 		name = npa.8.b
-		ai_will_do = {
+		ai_chance = {
 			factor = 50
 		}
 		add_war_support = 0.2
@@ -224,7 +218,7 @@ country_event = { #Medial Counter Revolution Event
 	}
 	option = { 
 		name = npa.8.c
-		ai_will_do = {
+		ai_chance = {
 			factor = 0
 		}
 		custom_effect_tooltip = NPA_wtf_tt
@@ -239,7 +233,7 @@ country_event = { #Medial Counter Revolution Event
 	}
 }
 
-news_event = {
+news_event = { #Garfield Worked! - news event (why is it before the country event)
 	id = npa.9
 	title = npa.9.t
 	desc = npa.9.d
@@ -251,7 +245,7 @@ news_event = {
 		name = npa.9.a	
 	}
 }
-country_event = {
+country_event = { #Garfield Worked! - country event (why is it after the news event)
 	id = npa.10
 	title = npa.10.t
 	desc = npa.10.d
@@ -301,6 +295,20 @@ country_event = { #GOP Debate Result
 
 }
 
+country_event = { #ICE LEGION POV - NPA demands unification
+	id = npa.16
+	title = npa.16.t
+	desc = npa.16.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = npa.16.a
+	}
+
+}
+
 
 
 country_event = { #AFS pov - we are going to be partitioned
@@ -328,8 +336,8 @@ country_event = { #AFS pov - we are going to be partitioned
 		hidden_effect = {
 			NPA = { country_event = { id = npa.19 } }
 		}
-		ai_will_do = {
-			factor = 100
+		ai_chance = {
+			factor = 1
 		}
 	}
 	option = {
@@ -376,8 +384,8 @@ country_event = { #Proposal for Unification
 	
 	option = {
 		name = npa.21.a
-		ai_will_do = {
-			factor = 100
+		ai_chance = {
+			factor = 1
 		}
 		NPA = { 
 			country_event = {
