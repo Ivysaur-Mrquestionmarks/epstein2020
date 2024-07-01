@@ -1,6 +1,13 @@
 add_namespace = npa
 
-country_event = {
+# IDS FOR 11-14, 16-17 ARE FREE TO USE
+
+
+
+########## Biden Faction Joining ##########
+
+
+country_event = { #FRA POV - PENCE WANTS TO JOIN
 	id = npa.1
 	title = npa.1.t
 	desc = npa.1.d
@@ -21,7 +28,8 @@ country_event = {
 		}
 	}
 }
-country_event = {
+
+country_event = { #BIDEN SAYS YES
 	id = npa.2
 	title = npa.2.t
 	desc = npa.2.d
@@ -32,7 +40,8 @@ country_event = {
 		name = npa.2.a
 	}
 }
-country_event = {
+
+country_event = { #BIDEN SAYS NO
 	id = npa.3
 	title = npa.3.t
 	desc = npa.3.d
@@ -43,7 +52,10 @@ country_event = {
 		name = npa.3.a
 	}
 }
-country_event = {
+
+########## NPA War Events Part 1 ########## 
+
+country_event = { #GRP
 	id = npa.4
 	title = npa.4.t
 	desc = npa.4.d
@@ -79,7 +91,8 @@ country_event = {
 		}
 	}
 }
-country_event = {
+
+country_event = { #Propaganda
 	id = npa.5
 	title = npa.5.t
 	desc = npa.5.d
@@ -124,7 +137,8 @@ country_event = {
 		add_war_support = -0.1
 	}
 }
-country_event = {
+
+country_event = { #Trump Declares War on Minnesota
 	id = npa.6
 	title = npa.6.t
 	desc = npa.6.d
@@ -135,171 +149,145 @@ country_event = {
 		name = npa.6.a
 		if = {
 			limit = { country_exists = MIN }
-				declare_war_on = {
+			declare_war_on = {
 				target = MIN
 				type = annex_everything
-				}
-			}
-		if = {
-			limit = { country_exists = MNS }
-				declare_war_on = {
-				target = MNS
-				type = annex_everything
-				}
-			}
-		if = {
-			limit = { country_exists = MIL }
-				declare_war_on = {
-				target = MIL
-				type = annex_everything
-				}
 			}
 		}
+		if = {
+			limit = { country_exists = MNS }
+			declare_war_on = {
+				target = MNS
+				type = annex_everything
+			}
+		}
+		if = {
+			limit = { country_exists = MIL }
+			declare_war_on = {
+				target = MIL
+				type = annex_everything
+			}
+		}
+	}
 }
-country_event = {
+
+country_event = { #Biden declares war on RR after trump defeated
 	id = npa.7
 	title = npa.7.t
 	desc = npa.7.d
-	picture = event_NPA_Hope
+	picture = event_MON_Secessionists_Bad
 	is_triggered_only = yes
 	fire_only_once = yes
-	
-	option = {
-		name = npa.7.a
-		NPA = { add_to_faction = AFS }
-		hidden_effect = {
-		NPA = { country_event = { id = npa.9 } }
-		}
+	trigger = {
+		tag = FRA
+		NPA = { owns_state = 215 }
+		NOT = { country_exists = USA }
 	}
 	option = {
-		name = npa.7.b
-		hidden_effect = {
-		NPA = { country_event = { id = npa.10 } }
+		name = npa.7.a
+		if = {
+			limit = { country_exists = NEW }
+			declare_war_on = {
+				target = NEW
+				type = annex_everything
+			}
 		}
 	}
 }
-country_event = {
+
+country_event = { #Medial Counter Revolution Event
 	id = npa.8
 	title = npa.8.t
 	desc = npa.8.d
-	picture = event_NPA_Hope
+	picture = event_NPA_Broadcast_Choice
 	is_triggered_only = yes
 	fire_only_once = yes
 	
 	option = {
-		name = npa.8.a
-		dismantle_faction = yes
-		NPA = { add_to_faction = GLA }
-		hidden_effect = {
-		NPA = { country_event = { id = npa.11 } }
+		name = npa.8.a	
+		ai_will_do = {
+			factor = 50
 		}
+		complete_national_focus = NPA_patriotic_propaganda
 	}
 	option = {
 		name = npa.8.b
+		ai_will_do = {
+			factor = 50
+		}
+		add_war_support = 0.2
+		add_equipment_to_stockpile = {
+    		type = infantry_equipment
+    		amount = 2500
+		}
+		add_manpower = 25000
+	}
+	option = { 
+		name = npa.8.c
+		ai_will_do = {
+			factor = 0
+		}
+		custom_effect_tooltip = NPA_wtf_tt
 		hidden_effect = {
-		NPA = { country_event = { id = npa.12 } }
+			NPA = {
+				country_event = { 
+					id = npa.10
+					days = 32
+				} 
+			}
 		}
 	}
 }
-country_event = {
+
+news_event = {
 	id = npa.9
 	title = npa.9.t
 	desc = npa.9.d
-	#picture =
+	picture = event_NPA_garfield_success
 	is_triggered_only = yes
-	fire_only_once = yes
+	#fire_only_once = yes
 	
 	option = {
-		name = npa.9.a
+		name = npa.9.a	
 	}
 }
 country_event = {
 	id = npa.10
 	title = npa.10.t
 	desc = npa.10.d
-	#picture =
+	picture = event_NPA_Pence_Talks
 	is_triggered_only = yes
 	fire_only_once = yes
 	
 	option = {
-		name = npa.10.a
-	}
-}
-country_event = {
-	id = npa.11
-	title = npa.11.t
-	desc = npa.11.d
-	#picture =
-	is_triggered_only = yes
-	fire_only_once = yes
-	
-	option = {
-		name = npa.11.a
-	}
-}
-country_event = {
-	id = npa.12
-	title = npa.12.t
-	desc = npa.12.d
-	#picture =
-	is_triggered_only = yes
-	fire_only_once = yes
-	
-	option = {
-		name = npa.12.a
-	}
-}
-country_event = {
-	id = npa.13
-	title = npa.13.t
-	desc = npa.13.d
-	picture = event_NPA_Parliament_Trouble
-	is_triggered_only = yes
-	fire_only_once = yes
-	
-	option = {
-		name = npa.13.a
-		retire_country_leader = yes
-		create_country_leader = {
-			name = "Fallen Government"
-			picture = "gfx/leaders/NPA/fallen_government.dds"
-			expire = "2060.1.1"
-			ideology = neocon
-			traits = {
-				NPA_Fallen_Gov
+		name = npa.10.a	
+		207 = {
+		    add_extra_state_shared_building_slots = 6
+			add_building_construction = {
+    			type = industrial_complex
+    			level = 6
+    			instant_build = yes
 			}
 		}
-	}
-	option = {
-		name = npa.13.b
-	}
-}
-country_event = {
-	id = npa.14
-	title = npa.14.t
-	desc = npa.14.d
-	picture = event_NPA_Freedom_Front
-	is_triggered_only = yes
-	fire_only_once = yes
-	
-	option = {
-		name = npa.14.a
-		retire_country_leader = yes
-		create_country_leader = {
-			name = "Fallen Government"
-			picture = "gfx/leaders/NPA/fallen_government.dds"
-			expire = "2060.1.1"
-			ideology = neocon
-			traits = {
-				NPA_Fallen_Gov
+		add_political_power = 100
+		hidden_effect = {
+			news_event = {
+				id = npa.9
+				days = 2
 			}
+			set_country_flag = garfield_success
 		}
 	}
-	option = {
-		name = npa.14.b
-	}
 }
-country_event = {
+
+
+
+############################################
+########## Ally with Biden Events ##########
+############################################
+
+
+country_event = { #GOP Debate Result
 	id = npa.15
 	title = npa.15.t
 	desc = npa.15.d
@@ -312,36 +300,10 @@ country_event = {
 	}
 
 }
-country_event = {
-	id = npa.16
-	title = npa.16.t
-	desc = npa.16.d
-	#picture =
-	is_triggered_only = yes
-	fire_only_once = yes
-	
-	option = {
-		name = npa.16.a
-		AFS = { country_event = { id = npa.18 } }
-	}
-	option = {
-		name = npa.16.b
-		NPA = { country_event = { id = npa.17 } }
-	}
-}
-country_event = {
-	id = npa.17
-	title = npa.17.t
-	desc = npa.17.d
-	#picture =
-	is_triggered_only = yes
-	fire_only_once = yes
-	
-	option = {
-		name = npa.17.a
-	}
-}
-country_event = {
+
+
+
+country_event = { #AFS pov - we are going to be partitioned
 	id = npa.18
 	title = npa.18.t
 	desc = npa.18.d
@@ -366,6 +328,9 @@ country_event = {
 		hidden_effect = {
 			NPA = { country_event = { id = npa.19 } }
 		}
+		ai_will_do = {
+			factor = 100
+		}
 	}
 	option = {
 		name = npa.18.b
@@ -374,7 +339,8 @@ country_event = {
 		}
 	}
 }
-country_event = {
+
+country_event = { #AFS Surrenders
 	id = npa.19
 	title = npa.19.t
 	desc = npa.19.d
@@ -386,7 +352,8 @@ country_event = {
 		name = npa.18.a
 	}
 }
-country_event = {
+
+country_event = { #AFS continues to fight
 	id = npa.20
 	title = npa.20.t
 	desc = npa.20.d
@@ -398,6 +365,7 @@ country_event = {
 		name = npa.20.a
 	}
 }
+
 country_event = { #Proposal for Unification
 	id = npa.21
 	title = npa.21.t
@@ -428,7 +396,8 @@ country_event = { #Proposal for Unification
 		}
 	}
 }
-country_event = {
+
+country_event = { #REUNITE ACCEPTED
 	id = npa.22
 	title = npa.22.t
 	desc = npa.22.d
@@ -462,7 +431,8 @@ country_event = {
 		}
 	}
 }
-country_event = {
+
+country_event = { #REUNITE REJECTED
 	id = npa.23
 	title = npa.23.t
 	desc = npa.23.d
@@ -482,7 +452,8 @@ country_event = {
 		}
 	}
 }
-news_event = {
+
+news_event = { #REUNIFICATION NEWS
 	id = npa.24
 	title = npa.24.t
 	desc = npa.24.d
@@ -493,7 +464,7 @@ news_event = {
 		name = npa.24.a
 	}
 }
-news_event = {
+news_event = { #REUNIFICATION FAILED NEWS
 	id = npa.25
 	title = npa.25.t
 	desc = npa.25.d
@@ -504,6 +475,11 @@ news_event = {
 		name = npa.25.a
 	}
 }
+
+#######################################
+########## Autocratic Purges ##########
+#######################################
+
 country_event = {
 	id = npa.26
 	title = npa.26.t
@@ -518,6 +494,8 @@ country_event = {
 		add_manpower = -3000
 	}
 }
+
+
 country_event = {
 	id = npa.27
 	title = npa.27.t
@@ -529,10 +507,11 @@ country_event = {
 	option = {
 		name = npa.27.a
 		add_stability = -0.15
-		add_research_slot = -1
 		add_manpower = -16000
 	}
 }
+
+
 country_event = {
 	id = npa.28
 	title = npa.28.t
@@ -544,10 +523,11 @@ country_event = {
 	option = {
 		name = npa.28.a
 		add_stability = -0.2
-		add_research_slot = -1
 		add_manpower = -50000
 	}
 }
+
+
 country_event = {
 	id = npa.29
 	title = npa.29.t
@@ -556,17 +536,22 @@ country_event = {
 	is_triggered_only = yes
 	fire_only_once = yes
 	
-	option = { #CIVIL WAR - FASCIST CHOICE
+	option = { #
 		name = npa.29.a
 		add_stability = -0.3
-		add_research_slot = -1
 		
 	}
-	option = { #CIVIL WAR - COMMIE CHOICE
+	option = { #Rumuours of discontent
 		name = npa.29.b
 	}
 }
-country_event = {
+
+
+
+########## Post Autocratic Purge ##########
+
+
+country_event = { #Cursed PNAC event
 	id = npa.30
 	title = npa.30.t
 	desc = npa.30.d
@@ -583,7 +568,8 @@ country_event = {
 		set_country_flag = NPA_pence_not_dead_yet
 	}
 }
-country_event = {
+
+country_event = { #Caesar Pence??
 	id = npa.31
 	title = npa.31.t
 	desc = npa.31.d
@@ -616,118 +602,5 @@ country_event = {
 				NPA_novus_imperator
 				}
 		}
-	}
-}
-country_event = {
-	id = npa.32
-	title = npa.32.t
-	desc = npa.32.d
-	picture = event_NPA_Broadcast_Choice
-	is_triggered_only = yes
-	fire_only_once = yes
-	
-	option = {
-		name = npa.32.a	
-		ai_will_do = {
-			factor = 50
-		}
-		complete_national_focus = NPA_patriotic_propaganda
-	}
-	option = {
-		name = npa.32.b
-		ai_will_do = {
-			factor = 50
-		}
-		add_war_support = 0.2
-	}
-	option = { 
-		name = npa.32.c
-		ai_will_do = {
-			factor = 0
-		}
-		custom_effect_tooltip = NPA_wtf_tt
-		hidden_effect = {
-		NPA = { news_event = { id = npa.35 days = 32 } }
-		}
-	}
-}
-
-#country_event = { #NPA Annexes Minnesota tags after beating Trump (Removed for obvious reasons)
-#	id = npa.33
-#	title = npa.33.t
-#	desc = npa.33.d
-#	picture = event_NPA_Pence_Talks
-#	is_triggered_only = yes
-#	fire_only_once = yes
-#	
-#	option = {
-#		name = npa.33.a	
-#		ai_will_do = {
-#			factor = 100
-#		}
-#		NPA = { annex_country = { target = ROOT transfer_troops = yes } }
-#		NPA = { add_state_core = 23 add_state_core = 25 add_state_core = 104 add_state_core = 111 }
-#		hidden_effect = {
-#		NPA = { country_event = { id = npa.34 } }
-#		every_owned_state = { 
-#			limit = { is_controlled_by = ROOT }
-#			add_core_of = NPA
-#		}
-#		}
-#	}
-#	
-#	option = { 
-#		name = npa.33.b
-#		ai_will_do = {
-#			factor = 0
-#		}
-#		add_stability = -0.1
-#	}
-#}
-country_event = {
-	id = npa.34
-	title = npa.34.t
-	desc = npa.34.d
-	picture = event_NPA_Pence_Talks
-	is_triggered_only = yes
-	fire_only_once = yes
-	
-	option = {
-		name = npa.34.a	
-	}
-
-}
-
-news_event = {
-	id = npa.35
-	title = npa.35.t
-	desc = npa.35.d
-	picture = event_NPA_garfield_success
-	is_triggered_only = yes
-	#fire_only_once = yes
-	
-	option = {
-		name = npa.35.a	
-	}
-}
-country_event = {
-	id = npa.36
-	title = npa.36.t
-	desc = npa.36.d
-	picture = event_NPA_Pence_Talks
-	is_triggered_only = yes
-	fire_only_once = yes
-	
-	option = {
-		name = npa.36.a	
-		207 = {
-		    add_extra_state_shared_building_slots = 6
-			add_building_construction = {
-    			type = industrial_complex
-    			level = 6
-    			instant_build = yes
-			}
-		}
-		add_political_power = 100
 	}
 }
