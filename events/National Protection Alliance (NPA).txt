@@ -1,6 +1,6 @@
 add_namespace = npa
 
-# IDS FOR 11-14, 16-17 ARE FREE TO USE
+# IDS FOR 11-14 ARE FREE TO USE
 
 
 
@@ -200,14 +200,14 @@ country_event = { #Medial Counter Revolution Event
 	option = {
 		name = npa.8.a	
 		ai_chance = {
-			factor = 50
+			base = 50
 		}
 		complete_national_focus = NPA_patriotic_propaganda
 	}
 	option = {
 		name = npa.8.b
 		ai_chance = {
-			factor = 50
+			base = 50
 		}
 		add_war_support = 0.2
 		add_equipment_to_stockpile = {
@@ -219,7 +219,7 @@ country_event = { #Medial Counter Revolution Event
 	option = { 
 		name = npa.8.c
 		ai_chance = {
-			factor = 0
+			base = 0
 		}
 		custom_effect_tooltip = NPA_wtf_tt
 		hidden_effect = {
@@ -305,6 +305,51 @@ country_event = { #ICE LEGION POV - NPA demands unification
 	
 	option = {
 		name = npa.16.a
+		ai_chance = {
+			base = 100
+		}
+		NPA = {
+			annex_country = { 
+				target = MIL
+				transfer_troops = yes
+			}
+		}
+		every_state = {
+			limit = { is_core_of = MIL }
+			add_core_of = NPA
+		}
+	}
+	option = {
+		name = npa.16.b
+	}
+
+}
+country_event = { #npa demands we give in
+	id = npa.17
+	title = npa.17.t
+	desc = npa.17.d
+	#picture =
+	is_triggered_only = yes
+	#fire_only_once = yes
+	
+	option = {
+		name = npa.17.a
+		ai_chance = {
+			base = 75
+		}
+		NPA = {
+			annex_country = { 
+				target = ROOT
+				transfer_troops = yes
+			}
+		}
+		every_state = {
+			limit = { is_core_of = ROOT }
+			add_core_of = NPA
+		}
+	}
+	option = {
+		name = npa.17.b
 	}
 
 }
@@ -337,7 +382,7 @@ country_event = { #AFS pov - we are going to be partitioned
 			NPA = { country_event = { id = npa.19 } }
 		}
 		ai_chance = {
-			factor = 1
+			base = 1
 		}
 	}
 	option = {
@@ -385,7 +430,7 @@ country_event = { #Proposal for Unification
 	option = {
 		name = npa.21.a
 		ai_chance = {
-			factor = 1
+			base = 1
 		}
 		NPA = { 
 			country_event = {
@@ -611,4 +656,126 @@ country_event = { #Caesar Pence??
 				}
 		}
 	}
+}
+
+
+
+
+
+
+
+
+
+########### Misc. Events #############
+
+country_event = { #elections in reunited states - dem primary
+	id = npa.100
+	title = npa.100.t
+	desc = npa.100.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # Kamala Harris
+		name = npa.100.a
+		create_country_leader = {
+			name = "Kamala Harris"
+			picture = "gfx/leaders/FRA/kamala.dds"
+			expire = "2060.1.1"
+			ideology = establishment
+			traits = {
+			}
+		}
+		set_country_flag = kamala
+		country_event = {
+			id = npa.101
+			days = 7
+		}
+	}
+	option = { # Progressive - Elizabeth Warren
+		name = npa.100.b
+		create_country_leader = {
+			name = "Elizabeth Warren"
+			picture = "gfx/leaders/FRA/elizabeth_warren.dds"
+			expire = "2060.1.1"
+			ideology = progressive
+			traits = {
+			}
+		}
+		set_country_flag = warren
+		country_event = {
+			id = npa.101
+			days = 7
+		}
+	}
+
+}
+country_event = { #elections in reunited states - GOP primary
+	id = npa.101
+	title = npa.101.t
+	desc = npa.101.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # Liz Cheney duh
+		name = npa.101.a
+		IF = {
+			limit = { has_country_flag = kamala }
+			country_event = {
+				id = npa.102
+				days = 14
+			}
+		}
+		IF = {
+			limit = { has_country_flag = warren }
+			country_event = {
+				id = npa.103
+				days = 14
+			}
+		}
+	}
+
+}
+country_event = { #elections in reunited states - kamala
+	id = npa.102
+	title = npa.102.t
+	desc = npa.102.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # Liz Cheney
+		name = npa.102.a
+	}
+	option = { # Kamala
+		name = npa.102.b
+		set_politics = {
+			ruling_party = democrat
+		}
+		add_popularity = {
+			ideology = democrat
+			popularity = 0.5
+		}
+	}
+
+}
+country_event = { #elections in reunited states - progressive - intentional loc codes btw
+	id = npa.103
+	title = npa.102.t
+	desc = npa.103.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # Liz Cheney
+		name = npa.102.a
+	}
+	option = { # progressive - warren 
+		name = npa.103.b
+		set_politics = {
+			ruling_party = democrat
+		}
+		add_popularity = {
+			ideology = democrat
+			popularity = 0.5
+		}
+	}
+
 }

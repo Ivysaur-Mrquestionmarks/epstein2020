@@ -301,18 +301,28 @@ country_event = {
 
 # the night before, post american unification 
 
-country_event = {
+news_event = {
 	id = tucker.18
 	title = tucker.18.t
 	desc = tucker.18.d
 	#picture =
 	is_triggered_only = yes
-	fire_only_once = yes
+	#fire_only_once = yes
 	option = {
 		name = tucker.18.a
 		ai_chance = {
 			factor = 100
 		}
+		if = {
+			limit = {NOT = {is_ai = yes}}
+			set_country_flag = {
+    				flag = super_event
+    				value = 22
+			}
+			if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
+				sound_effect = 	"tucker_audio"
+			}
+		}	
 	}		
 }
 
