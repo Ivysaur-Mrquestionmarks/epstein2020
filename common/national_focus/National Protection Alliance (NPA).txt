@@ -1351,6 +1351,9 @@ focus_tree = {
 		prerequisite = { 
 			focus = NPA_split_the_afs   
 		}
+		available = {
+			NOT = { country_exists = AFS }
+		}
 		completion_reward = {
 			FRA = {
 				country_event = { 
@@ -1369,6 +1372,9 @@ focus_tree = {
 		relative_position_id = NPA_split_the_afs
 		prerequisite = { 
 			focus = NPA_split_the_afs   
+		}
+		available = {
+			NOT = { country_exists = AFS }
 		}
 		will_lead_to_war_with = KFC
 		will_lead_to_war_with = NRA
@@ -1486,6 +1492,9 @@ focus_tree = {
 		prerequisite = { 
 			focus = NPA_split_the_afs   
 		}
+		available = {
+			NOT = { country_exists = AFS }
+		}
 		completion_reward = {
 			MIL = { country_event = npa.16 }
 		}
@@ -1497,14 +1506,18 @@ focus_tree = {
 		x = 0
 		y = 1
 		relative_position_id = NPA_one_nation_one_goal
-		prerequisite = { 
+		prerequisite = {
 			focus = NPA_one_nation_one_goal  
 		}
 		prerequisite = { 
 			focus = NPA_unite_with_ice_legion  
 		}
-		prerequisite = { 
+		prerequisite = {
 			focus = NPA_crush_bordering_warlords  
+		}
+		available = {
+			owns_state = 195
+			owns_state = 242
 		}
 		completion_reward = {
 			every_state = {
@@ -1702,11 +1715,40 @@ focus_tree = {
 		prerequisite = { 
 			focus = NPA_end_of_the_populists 
 		}
+		available = {
+			all_state = {	
+				OR = {
+					NOT = {has_state_flag = part_of_america}
+					is_owned_by = ROOT
+					owner = { is_ally_with = ROOT } #Checks for territory controlled by indpendent faction members/puppets
+				}		
+			}
+			ROOT = {
+				if = {
+					limit = {
+						is_in_faction = yes
+					}
+					is_faction_leader = yes
+				}
+				is_subject = no
+			}
+		}
 		completion_reward = {
 			news_event = npa.13 #add super event later
 		}
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
 	focus = {
 		id = NPA_reunite_infra
 		cost = 10
