@@ -280,6 +280,44 @@ country_event = { #Garfield Worked! - country event (why is it after the news ev
 ########## Ally with Biden Events ##########
 ############################################
 
+country_event = { #npa demands we give in
+	id = npa.14
+	title = npa.17.t #Intentional
+	desc = npa.17.d
+	#picture =
+	is_triggered_only = yes
+	#fire_only_once = yes
+	
+	option = {
+		name = npa.17.a
+		ai_chance = {
+			base = 10
+		}
+		NPA = {
+			annex_country = { 
+				target = ROOT
+				transfer_troops = yes
+			}
+		}
+		every_state = {
+			limit = { is_core_of = ROOT }
+			add_core_of = NPA
+		}
+	}
+	option = {
+		name = npa.17.b
+		ai_chance = {
+			base = 90
+		}
+		NPA = {
+			create_wargoal = {
+				type = annex_everything
+				target = ROOT
+			}
+		}
+	}
+
+}
 
 country_event = { #GOP Debate Result
 	id = npa.15
@@ -350,6 +388,9 @@ country_event = { #npa demands we give in
 	}
 	option = {
 		name = npa.17.b
+		ai_chance = {
+			base = 25
+		}
 	}
 
 }
