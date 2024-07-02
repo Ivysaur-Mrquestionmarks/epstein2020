@@ -914,6 +914,48 @@ focus_tree = {
 			}
 		}
 	}
+	focus = {
+		id = NPA_bring_america_under_our_grip
+		cost = 10
+		icon = GFX_focus_generic_strike_at_democracy1
+		x = 0
+		y = 1
+		relative_position_id = NPA_glory_to_nation_of_america
+		prerequisite = { 
+			focus = NPA_glory_to_nation_of_america 
+		}
+		completion_reward = {
+			hidden_effect = {				
+				every_state  = {
+					limit = { has_state_flag = part_of_america }
+					every_country = {
+						limit = { controls_state = PREV }
+						set_country_flag = controls_american_state
+					}
+				}
+			}
+			every_country = {
+				limit = {
+					AND = {
+						has_country_flag = controls_american_state
+						NOT = { 
+							TAG = NPA
+						}
+					}
+				}
+				NPA = {
+					create_wargoal = {
+						target = PREV
+						type = annex_everything
+					}
+				}
+			}
+			every_country = {
+				limit = { has_country_flag = controls_american_state }
+				clr_country_flag = controls_american_state
+			}
+		}
+	}
 	
 
 
