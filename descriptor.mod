@@ -4,6 +4,7 @@ tags={
 }
 replace_path="gfx/loadingscreens"
 replace_path="common/abilities"
+replace_path="common/ai_areas"
 replace_path="common/ai_focuses"
 replace_path="common/ai_strategy"
 replace_path="common/ai_strategy_plans"
@@ -44,4 +45,4 @@ replace_path="common/units/names_railway_guns"
 replace_path="common/military_industrial_organization/organizations"
 replace_path="portraits"
 name="MakeAmericaAgain"
-supported_version="1.13.*"
+supported_version="1.14.*"
