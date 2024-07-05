@@ -315,9 +315,21 @@ news_event = {
 		}
 		if = {
 			limit = {NOT = {is_ai = yes}}
-			set_country_flag = {
-    				flag = super_event
-    				value = 22
+			if = {
+				limit = { has_country_flag = winner_of_the_2ACW }
+				clr_country_flag = winner_of_the_2ACW
+				clr_country_flag = super_event
+				set_country_flag = {
+						flag = super_event
+						value = 22
+				}
+			}
+			if = {
+				limit = { NOT = { has_country_flag = super_event } }
+				set_country_flag = {
+						flag = super_event
+						value = 22
+				}
 			}
 			if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
 				sound_effect = 	"tucker_audio"
