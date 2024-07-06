@@ -47,7 +47,14 @@ country_event = {
 			popularity = 0.2
 		}
 		hidden_effect = {
-			country_event = { id = maga.8 days = 14 }
+			if = {
+				limit = { has_completed_focus = NPA_forge_new_alliances }
+				country_event = { id = maga.88 days = 14 }
+			}
+			if = {
+				limit = { has_completed_focus = NPA_path_of_the_lone_wolf }
+				country_event = { id = maga.8 days = 14 }
+			}
 			IDA = {
 				country_event = {
 					id = idaho_rework.261
@@ -303,6 +310,51 @@ country_event = {
 	option = {
 		name = maga.8.e
 		swap_ruler_traits = { remove = NPA_insane add = NPA_greybeard }
+	}
+}
+#Pence is trying to resign after winning National Protection War
+country_event = {
+	id = maga.88
+	title = maga.8.t
+	desc = maga.8.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			USA = {
+				every_unit_leader = {
+            			set_nationality = NPA
+        		}
+			}	
+			remove_unit_leader = 21	
+			remove_unit_leader = 22
+			remove_unit_leader = 24
+			remove_unit_leader = 25
+			remove_unit_leader = 26
+			remove_unit_leader = 27
+			remove_unit_leader = 28
+			#retire_character = USA_donald_trump 
+			set_character_name = {
+				character = USA_donald_trump
+				name = NPA_donald_trump
+			}
+		}
+	}
+	#Liz Cheney
+	option = {
+		name = maga.8.b
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Liz Cheney"
+			picture = "gfx/leaders/NPA/liz_cheney.dds"
+			expire = "2060.1.1"
+			ideology = neocon
+			female = yes
+			traits = {
+				hawk
+			}
+		}
 	}
 }
 #Trump chooses a VP (provisional event until focus tree)
