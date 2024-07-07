@@ -1,0 +1,463 @@
+FRA_the_wall_street_block_decision = {
+
+	FRA_break_the_block = {
+	
+		icon = generic_civil_support
+
+		available = {
+			has_country_flag = FRA_wall_street_block
+			hidden_trigger = {
+				NOT = { 
+					OR = {
+						has_country_flag = negotiating_with_wall_street_block
+						has_country_flag = dostum_is_invading_nyc
+					}
+				}
+			}
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		cost = 75
+
+		complete_effect = {
+			add_manpower = -2000
+			add_stability = -0.15
+			annex_country = {
+			    target = NYC
+			    transfer_troops = no
+			}
+			remove_ideas = FRA_wall_street_block
+			clr_country_flag = FRA_wall_street_block
+		}
+
+	}
+
+	FRA_negotiate_with_the_block = {
+
+		icon = generic_civil_support
+
+		available = {
+			has_country_flag = FRA_wall_street_block
+			hidden_trigger = {
+				NOT = { 
+					has_country_flag = dostum_is_invading_nyc
+				}
+			}
+		}
+
+		fire_only_once = yes
+
+		cost = 125
+
+		ai_will_do = {
+			factor = 0
+		}
+
+		days_remove = 30
+
+		complete_effect = {
+			add_stability = -0.05
+			hidden_effect = {
+				set_country_flag = negotiating_with_wall_street_block
+			}
+		}
+
+		remove_effect = {
+			add_stability = 0.05
+			annex_country = {
+			    target = NYC
+			    transfer_troops = no
+			}
+			remove_ideas = FRA_wall_street_block
+			clr_country_flag = FRA_wall_street_block
+		}
+
+
+	}
+
+	FRA_dostum_plan = {
+
+		icon = generic_civil_support
+
+		available = {
+			has_country_flag = FRA_wall_street_block
+			hidden_trigger = {
+				NOT = { 
+					has_country_flag = negotiating_with_wall_street_block
+				}
+			}
+		}
+		visible = {
+			has_country_flag = fra_dostum_is_general
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 0
+		}
+
+		cost = 10
+
+		days_remove = 30
+
+		complete_effect = {
+			add_war_support = 0.05
+			set_country_flag = dostum_is_invading_nyc
+		}
+
+		remove_effect = {
+			add_war_support = -0.05
+			            XXX = {
+             	   if = {
+	                    limit = {
+	                        OR = {
+	                            has_dlc = "Together for Victory"
+	                            has_dlc = "Man the Guns"
+	                        }
+	                    }
+	                    set_autonomy = {
+	                        target = NYC
+	                        autonomous_state = autonomy_puppet
+	                        freedom_level = 0.25
+	                    }
+	                    else = {
+	                        puppet = NYC
+	                    }
+	                }
+	            }
+			NYC = {
+				hidden_effect = {
+					every_unit_leader = { demote_leader = yes }
+				}
+				create_country_leader = {
+					name = "Abdul Dostum"
+					picture = "gfx/leaders/FRA/dostum.dds"
+					expire = "2060.1.1"
+					ideology = liberal
+					traits = {
+						###
+					}
+				}
+				set_cosmetic_tag = NYC_new_kabul
+			}
+			every_unit_leader = {
+				limit = {
+					has_id = 36
+				}
+				set_nationality = NYC
+				promote_leader = yes
+			}
+			remove_ideas = FRA_wall_street_block
+			clr_country_flag = FRA_wall_street_block
+		}
+
+
+	}
+
+	FRA_clinton_coup_mission = {
+
+		icon = generic_civil_support
+
+		allowed = {
+			always = no
+		}
+		available = {
+			NOT = {
+				has_country_flag = FRA_wall_street_block
+			}
+		}
+		visible = {
+			has_country_flag = FRA_wall_street_block
+		}
+
+
+		is_good = no
+
+		days_mission_timeout = 370
+
+		timeout_effect = {
+			country_event = { id = federal_republic.15 hours = 2 }
+		}
+
+		complete_effect = {
+			###
+		}
+
+
+	}	
+
+
+}
+FRA_border_conflict = {
+	FRA_boder_conflict = {
+		state_target = yes
+		target_trigger = {
+		 	FROM = {
+			OR = {
+				is_owned_by = NEW
+			}}
+		}
+		visible = {
+			NOT = { 
+				has_country_flag = planing_border_conflict
+				FROM = {
+					is_owned_by = ROOT
+				}
+			}
+		}
+		cost = 75
+		days_remove = 30
+		days_re_enable = 60
+		ai_will_do = {
+			base = 25
+		}
+		complete_effect = {
+			set_country_flag = planing_border_conflict
+		}
+		remove_effect = {
+			FROM = { every_neighbor_state = { limit = {is_owned_by = FRA} ROOT = {
+				start_border_war = {
+					change_state_after_war =  no
+    					attacker = {
+        					state = PREV
+        					num_provinces = 5
+        					on_win = conflict_results.1
+        					on_lose = conflict_results.1
+       						on_cancel = conflict_results.1
+    					}
+				
+    					defender = {
+        					state = FROM
+        					num_provinces = 5
+        					on_win = conflict_results.2
+        					on_lose = conflict_results.2
+        					on_cancel = conflict_results.2
+    					}
+				}
+			}}}
+		}
+	}
+}
+FRA_biden_sickness_category = { 
+	FRA_biden_health_worsening_crisis = {
+	
+		icon = TUR_the_constitutional_arrows
+
+		priority = 10
+
+		allowed = { 
+			original_tag = FRA
+		}
+
+		available = {
+			NOT = {
+				has_country_leader = {
+					name = "Joe Biden"
+					ruling_only = yes
+				}
+			}
+		}
+
+		days_mission_timeout = 365
+
+		fire_only_once = no
+
+		activation = {
+			has_country_flag = FRA_biden_getting_sickly
+		}
+
+		is_good = no
+
+		complete_effect = {
+			#if = {
+			#	limit = {
+			#		NOT = { has_completed_focus = FRA_fully_integrate_the_is_bank }
+			#	}
+			#	country_event = { id = biden.1 }
+			#}
+			hidden_effect = {
+				clear_variable = FRA_biden_sickness_factor_var
+				clr_country_flag = FRA_biden_getting_sickly
+			}
+		}
+
+		timeout_effect = {
+				country_event = { id = biden.1 hours = 6 }
+		}
+
+		cancel_effect = {
+
+		}
+	}
+
+	FRA_seek_treatment_for_biden = {
+	
+		icon = generic_research
+
+		allowed = { 
+			original_tag = FRA
+		}
+
+		available = {
+			has_country_leader = {
+				name = "Joe Biden"
+				ruling_only = yes
+			}
+		}
+
+		cost = FRA_biden_treatment_cost_var?125
+
+		days_remove = 60
+
+		visible = {
+			has_active_mission = FRA_biden_health_worsening_crisis
+		}
+
+		fire_only_once = no
+
+		cancel_trigger = {
+			NOT = {
+				has_country_leader = {
+					name = "Joe Biden"
+					ruling_only = yes
+				}
+			}
+		}
+		complete_effect = {
+			add_country_leader_trait = the_absentee_president
+		}
+
+		remove_effect = {
+			remove_country_leader_trait = the_absentee_president
+			add_days_mission_timeout = {
+				mission = FRA_biden_health_worsening_crisis
+				days = 60
+			}
+			if = {
+				limit = {
+					NOT = { has_variable = FRA_biden_treatment_cost_var }
+				}
+				set_variable = { var = FRA_biden_treatment_cost_var value = 200 }
+			}
+			else = {
+				add_to_variable = { var = FRA_biden_treatment_cost_var value = 75 }
+			}
+		}
+	}
+
+	FRA_retire_biden = {
+	
+		icon = eng_trade_unions_demand
+
+		allowed = { 
+			original_tag = FRA
+		}
+
+		available = {
+			has_country_leader = {
+				name = "Joe Biden"
+				ruling_only = yes
+			}
+		}
+
+		visible = {
+			has_active_mission = FRA_biden_health_worsening_crisis
+		}
+
+		fire_only_once = yes
+
+
+		complete_effect = {
+			add_stability = -0.1
+			country_event = { id = biden.1 }
+			add_ideas = FRA_biden_figurehead
+			hidden_effect = { 
+				clr_country_flag = FRA_biden_getting_sickly 
+				country_event = { id = biden.3 days = 90 random = 60 }
+			}
+		}
+	}
+}
+FRA_green_mountain_boys_decision = {
+
+	FRA_mcconnell_plan = {
+	
+		icon = generic_civil_support
+
+		available = {
+			has_country_flag = FRA_gmb_vermont
+			OR = {
+				NOT = {
+					has_country_flag = FRA_pelosi_plan
+				}
+				AND = {
+					has_country_flag = FRA_pelosi_plan
+					has_country_flag = FRA_pelosi_snubbed_by_greens
+				}
+			}
+			country_exists = VER
+		}
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		cost = 80
+
+		complete_effect = {
+			add_war_support = 0.05
+			create_wargoal = {
+			    type = annex_everything
+			    target = VER
+			}
+			set_country_flag = FRA_mcconnell_plan
+		}
+
+	}
+
+	FRA_pelosi_plan = {
+
+		icon = generic_civil_support
+
+		available = {
+			has_country_flag = FRA_gmb_vermont
+			NOT = { 
+				has_country_flag = FRA_mcconnell_plan
+			}
+			country_exists = VER
+		}
+
+		fire_only_once = yes
+
+		cost = 75
+
+		ai_will_do = {
+			factor = 0
+		}
+
+
+		complete_effect = {
+			add_stability = -0.05
+			add_war_support = -0.05
+			hidden_effect = {
+				set_country_flag = FRA_pelosi_plan
+			}
+			VER = {
+				country_event = { id = federal_republic.13 }
+			}
+		}
+
+
+	}
+
+
+
+}

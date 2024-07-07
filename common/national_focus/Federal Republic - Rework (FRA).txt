@@ -1,457 +1,31 @@
-focus_tree = {}
-	id = biden
-	#country = {
-	#	factor = 0
-	#	modifier = {
-	#		add = 10
-	#		tag = FRA
-	#	}
-	#}
+focus_tree = {
+	id = biden_rework
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = FRA
+		}
+	}
 	default = no
+	
+	
+	
+	####### Biden Administration ######
+	
+	
 	focus = {
 		id = FRA_biden_admin
 		icon = GFX_goal_Joe_Biden_Admin
 		cost = 4.40
 		x = 14
 		y = 0
+		#relative_position_id =
 		available = {
 			has_country_leader = { name = "Joe Biden" ruling_only = yes }
 		}
 		completion_reward = {
 			add_political_power = 15
-		}
-
-	}
-	focus = {
-		id = FRA_harris_admin
-		icon = GFX_goal_The_Harris_Administration
-		cost = 4.40
-		x = 9
-		y = 0
-		available = {
-			has_country_leader = { name = "Kamala Harris" ruling_only = yes }
-		}
-		completion_reward = {
-			add_country_leader_trait = FRA_kamala_harris_trait
-		}
-
-	}
-	focus = {
-		id = FRA_mcconnell_admin
-		icon = GFX_goal_The_McConnell_administration
-		cost = 4.40
-		x = 5
-		y = 0
-		available = {
-			has_country_leader = { name = "Mitch McConnell" ruling_only = yes }
-		}
-		completion_reward = {
-			add_popularity = { ideology = republican popularity = 0.05 }
-			add_stability = 0.05
-			add_war_support = -0.05
-			add_political_power = 50
-		}
-
-	}
-	focus = {
-		id = FRA_roosevelt_admin
-		icon = GFX_goal_Icon_The_Third_Roosevelt_Presidency_MAA
-		cost = 4.40
-		x = 2
-		y = 0
-		available = {
-			OR = {
-				has_country_leader = { name = "Theodore Roosevelt IV" ruling_only = yes }
-				has_country_leader = { name = "J. D. Vance" ruling_only = yes }
-			}
-		}
-		completion_reward = {
-			add_political_power = 50
-			add_war_support = 0.05
-		}
-
-	}
-	focus = {
-		id = FRA_marshal_milleys_war
-		icon = GFX_goal_icon_marshal_milleys_war
-		cost = 3.00
-		x = 19
-		y = 0
-		available = {
-			country_exists = MIL
-		}
-		bypass = {
-			NOT = { country_exists = MIL }
-		}
-		completion_reward = {
-			add_political_power = 10
-			MIL = { add_political_power = 10 }
-		}
-
-	}
-	focus = {
-		id = FRA_the_great_crisis_of_our_time
-		icon = GFX_goal_icon_the_great_crisis_of_our_time
-		cost = 4.40
-		x = 24
-		y = 0
-		completion_reward = {
-			add_political_power = 50
-		}
-
-	}
-	focus = {
-		id = FRA_federal_republic_at_war
-		icon = GFX_goal_unknown
-		cost = 5.00
-		x = 46
-		y = 0
-		completion_reward = {
-			random_owned_state = {
-				limit = {
-					is_controlled_by = ROOT
-				}
-				add_extra_state_shared_building_slots = 2
-				add_building_construction = {
-				    type = arms_factory
-				    level = 2
-				    instant_build = yes
-				}
-			}
-			army_experience = 15
-		}
-
-	}
-	focus = {
-		id = FRA_bolster_navy
-		icon = GFX_goal_unknown
-		cost = 10.00
-		x = 48
-		y = 0
-		completion_reward = {
-			random_owned_state = {
-				limit = {
-					is_coastal = yes
-				}
-				add_extra_state_shared_building_slots = 4
-				add_building_construction = {
-				    type = dockyard
-				    level = 3
-				    instant_build = yes
-				}
-			}
-		}
-
-	}
-	focus = {
-		id = FRA_progressive_conservatist_doctrine
-		icon = GFX_goal_Icon_Progressive_Doctrine_MAA
-		cost = 4.40
-		prerequisite = {
-			focus = FRA_roosevelt_admin
-		}
-		x = 2
-		y = 1
-		available = {
-			OR = {
-				has_country_leader = { name = "Theodore Roosevelt IV" ruling_only = yes }
-				has_country_leader = { name = "J. D. Vance" ruling_only = yes }
-			}
-		}
-		completion_reward = {
-			add_stability = 0.10
-		}
-
-	}
-	focus = {
-		id = FRA_anti_corruption
-		icon = GFX_goal_Icon_Anti-Corruption_Programmes_MAA
-		cost = 5.00
-		prerequisite = {
-			focus = FRA_progressive_conservatist_doctrine
-		}
-		x = 1
-		y = 2
-		available = {
-			OR = {
-				has_country_leader = { name = "Theodore Roosevelt IV" ruling_only = yes }
-				has_country_leader = { name = "J. D. Vance" ruling_only = yes }
-			}
-		}
-		completion_reward = {
-			add_political_power = 75
-			add_war_support = -0.05
-		}
-
-	}
-	focus = {
-		id = FRA_economic_club_new_york
-		icon = GFX_goal_Icon_Ties_with_the_Economic_Club_of_New_York_MAA
-		cost = 10.00
-		prerequisite = {
-			focus = FRA_progressive_conservatist_doctrine
-		}
-		x = 3
-		y = 2
-		available = {
-			OR = {
-				has_country_leader = { name = "Theodore Roosevelt IV" ruling_only = yes }
-				has_country_leader = { name = "J. D. Vance" ruling_only = yes }
-			}
-		}
-		completion_reward = {
-			swap_ruler_traits = { 
-				remove = FRA_progressive_conservative_1
-				add = FRA_progressive_conservative_2
-			}
-		}
-
-	}
-	focus = {
-		id = FRA_we_have_a_war_to_win
-		icon = GFX_goal_Icon_We_Have_a_War_to_Win_MAA
-		cost = 5.00
-		prerequisite = {
-			focus = FRA_economic_club_new_york
-			focus = FRA_anti_corruption
-		}
-		x = 2
-		y = 3
-		available = {
-			OR = {
-				has_country_leader = { name = "Theodore Roosevelt IV" ruling_only = yes }
-				has_country_leader = { name = "J. D. Vance" ruling_only = yes }
-			}
-		}
-		completion_reward = {
-			army_experience = 15
-			air_experience = 5
-			add_war_support = 0.15
-		}
-
-	}
-	focus = {
-		id = FRA_rough_riders
-		icon = GFX_goal_Icon_The_Rough_Riders_MAA
-		cost = 4.40
-		prerequisite = {
-			focus = FRA_we_have_a_war_to_win
-		}
-		x = 2
-		y = 4
-		available = {
-			OR = {
-				has_country_leader = { name = "Theodore Roosevelt IV" ruling_only = yes }
-				has_country_leader = { name = "J. D. Vance" ruling_only = yes }
-			}
-		}
-		completion_reward = {
-			add_ideas = FRA_rough_riders
-		}
-
-	}
-	focus = {
-		id = FRA_controlling_senate
-		icon = GFX_goal_Controlling_the_Senate
-		cost = 4.40
-		prerequisite = {
-			focus = FRA_mcconnell_admin
-		}
-		x = 4
-		y = 1
-		available = {
-			has_country_leader = { name = "Mitch McConnell" ruling_only = yes }
-		}
-		completion_reward = {
-			add_ideas = FRA_puppet_senate
-		}
-
-	}
-	focus = {
-		id = FRA_troublesome_vp
-		icon = GFX_goal_Troublesome_VP
-		cost = 4.40
-		prerequisite = {
-			focus = FRA_mcconnell_admin
-		}
-		x = 6
-		y = 1
-		available = {
-			has_country_leader = { name = "Mitch McConnell" ruling_only = yes }
-		}
-		completion_reward = {
-			add_political_power = 30
-			add_stability = -0.05
-		}
-
-	}
-	focus = {
-		id = FRA_one_stormy_night
-		icon = GFX_goal_Stormy_night
-		cost = 3.00
-		prerequisite = {
-			focus = FRA_troublesome_vp
-		}
-		prerequisite = {
-			focus = FRA_controlling_senate
-		}
-		x = 5
-		y = 2
-		available = {
-			has_country_leader = { name = "Mitch McConnell" ruling_only = yes }
-		}
-		completion_reward = {
-			country_event = { id = federal_republic.1 }
-		}
-
-	}
-	focus = {
-		id = FRA_american_crassus
-		icon = GFX_goal_The_American_Crassus
-		cost = 5.00
-		prerequisite = {
-			focus = FRA_one_stormy_night
-		}
-		x = 4
-		y = 3
-		available = {
-			has_country_leader = { name = "Mitch McConnell" ruling_only = yes }
-		}
-		completion_reward = {
-			add_country_leader_trait = FRA_american_crassus
-		}
-
-	}
-	focus = {
-		id = FRA_facade
-		icon = GFX_goal_icon_keep_up_the_facade
-		cost = 4.40
-		prerequisite = {
-			focus = FRA_one_stormy_night
-		}
-		mutually_exclusive = {
-			focus = FRA_declare_the_empire
-		}
-		x = 5
-		y = 4
-		available = {
-			has_country_leader = { name = "Mitch McConnell" ruling_only = yes }
-		}
-		completion_reward = {
-			add_stability = 0.10
-		}
-
-	}
-	focus = {
-		id = FRA_declare_the_empire
-		icon = GFX_goal_icon_declare_federal_empire
-		cost = 5.00
-		prerequisite = {
-			focus = FRA_one_stormy_night
-		}
-		mutually_exclusive = {
-			focus = FRA_facade
-		}
-		x = 7
-		y = 4
-		available = {
-			has_country_leader = { name = "Mitch McConnell" ruling_only = yes }
-		}
-		completion_reward = {
-			set_cosmetic_tag = FRA_federal_empire
-			add_country_leader_trait = FRA_the_emperor
-			set_country_leader_ideology = establishment
-			hidden_effect = { news_event = { id = federal_republic.6 } }
-		}
-
-	}
-	focus = {
-		id = FRA_district_attourney
-		icon = GFX_goal_The_District_Attorney
-		cost = 4.40
-		prerequisite = {
-			focus = FRA_harris_admin
-		}
-		x = 8
-		y = 1
-		available = {
-			has_country_leader = { name = "Kamala Harris" ruling_only = yes }
-		}
-		completion_reward = {
-			add_stability = 0.10
-		}
-
-	}
-	focus = {
-		id = FRA_rule_of_law
-		icon = GFX_goal_unknown
-		cost = 5.00
-		prerequisite = {
-			focus = FRA_district_attourney
-		}
-		x = 8
-		y = 2
-		available = {
-			has_country_leader = { name = "Kamala Harris" ruling_only = yes }
-		}
-		completion_reward = {
-			add_ideas = FRA_increase_police_funding
-		}
-
-	}
-	focus = {
-		id = FRA_remove_term_limits
-		icon = GFX_goal_Consolidate_the_Establishment
-		cost = 5.00
-		prerequisite = {
-			focus = FRA_harris_admin
-		}
-		x = 10
-		y = 1
-		available = {
-			has_country_leader = { name = "Kamala Harris" ruling_only = yes }
-		}
-		completion_reward = {
-			add_stability = 0.07
-			add_war_support = -0.05
-		}
-
-	}
-	focus = {
-		id = FRA_entrench_party
-		icon = GFX_goal_Democrats
-		cost = 5.00
-		prerequisite = {
-			focus = FRA_remove_term_limits
-		}
-		x = 10
-		y = 2
-		available = {
-			has_country_leader = { name = "Kamala Harris" ruling_only = yes }
-		}
-		completion_reward = {
-			add_stability = -0.05
-			add_war_support = 0.07
-		}
-
-	}
-	focus = {
-		id = FRA_kamala_in_perpeteum
-		icon = GFX_goal_unknown
-		cost = 5.00
-		prerequisite = {
-			focus = FRA_entrench_party
-		}
-		prerequisite = {
-			focus = FRA_rule_of_law
-		}
-		x = 9
-		y = 3
-		available = {
-			has_country_leader = { name = "Kamala Harris" ruling_only = yes }
-		}
-		completion_reward = {
-			add_country_leader_trait = FRA_kamala_golden_age
 		}
 
 	}
@@ -584,6 +158,396 @@ focus_tree = {}
 		}
 
 	}
+	
+	####### Harris Administration #######
+	focus = {
+		id = FRA_harris_admin
+		icon = GFX_goal_The_Harris_Administration
+		cost = 4.40
+		x = 9
+		y = 0
+		available = {
+			has_country_leader = { name = "Kamala Harris" ruling_only = yes }
+		}
+		completion_reward = {
+			add_country_leader_trait = FRA_kamala_harris_trait
+		}
+
+	}
+	focus = {
+		id = FRA_district_attourney
+		icon = GFX_goal_The_District_Attorney
+		cost = 4.40
+		prerequisite = {
+			focus = FRA_harris_admin
+		}
+		x = 8
+		y = 1
+		available = {
+			has_country_leader = { name = "Kamala Harris" ruling_only = yes }
+		}
+		completion_reward = {
+			add_stability = 0.10
+		}
+
+	}
+	focus = {
+		id = FRA_rule_of_law
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = FRA_district_attourney
+		}
+		x = 8
+		y = 2
+		available = {
+			has_country_leader = { name = "Kamala Harris" ruling_only = yes }
+		}
+		completion_reward = {
+			add_ideas = FRA_increase_police_funding
+		}
+
+	}
+	focus = {
+		id = FRA_remove_term_limits
+		icon = GFX_goal_Consolidate_the_Establishment
+		cost = 5.00
+		prerequisite = {
+			focus = FRA_harris_admin
+		}
+		x = 10
+		y = 1
+		available = {
+			has_country_leader = { name = "Kamala Harris" ruling_only = yes }
+		}
+		completion_reward = {
+			add_stability = 0.07
+			add_war_support = -0.05
+		}
+
+	}
+	focus = {
+		id = FRA_entrench_party
+		icon = GFX_goal_Democrats
+		cost = 5.00
+		prerequisite = {
+			focus = FRA_remove_term_limits
+		}
+		x = 10
+		y = 2
+		available = {
+			has_country_leader = { name = "Kamala Harris" ruling_only = yes }
+		}
+		completion_reward = {
+			add_stability = -0.05
+			add_war_support = 0.07
+		}
+
+	}
+	focus = {
+		id = FRA_kamala_in_perpeteum
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = FRA_entrench_party
+		}
+		prerequisite = {
+			focus = FRA_rule_of_law
+		}
+		x = 9
+		y = 3
+		available = {
+			has_country_leader = { name = "Kamala Harris" ruling_only = yes }
+		}
+		completion_reward = {
+			add_country_leader_trait = FRA_kamala_golden_age
+		}
+
+	}
+	
+	####### McConnell Administration ########
+	
+	focus = {
+		id = FRA_mcconnell_admin
+		icon = GFX_goal_The_McConnell_administration
+		cost = 4.40
+		x = 5
+		y = 0
+		available = {
+			has_country_leader = { name = "Mitch McConnell" ruling_only = yes }
+		}
+		completion_reward = {
+			add_popularity = { ideology = republican popularity = 0.05 }
+			add_stability = 0.05
+			add_war_support = -0.05
+			add_political_power = 50
+		}
+
+	}
+	focus = {
+		id = FRA_controlling_senate
+		icon = GFX_goal_Controlling_the_Senate
+		cost = 4.40
+		prerequisite = {
+			focus = FRA_mcconnell_admin
+		}
+		x = 4
+		y = 1
+		available = {
+			has_country_leader = { name = "Mitch McConnell" ruling_only = yes }
+		}
+		completion_reward = {
+			add_ideas = FRA_puppet_senate
+		}
+
+	}
+	focus = {
+		id = FRA_troublesome_vp
+		icon = GFX_goal_Troublesome_VP
+		cost = 4.40
+		prerequisite = {
+			focus = FRA_mcconnell_admin
+		}
+		x = 6
+		y = 1
+		available = {
+			has_country_leader = { name = "Mitch McConnell" ruling_only = yes }
+		}
+		completion_reward = {
+			add_political_power = 30
+			add_stability = -0.05
+		}
+
+	}
+	focus = {
+		id = FRA_one_stormy_night
+		icon = GFX_goal_Stormy_night
+		cost = 3.00
+		prerequisite = {
+			focus = FRA_troublesome_vp
+		}
+		prerequisite = {
+			focus = FRA_controlling_senate
+		}
+		x = 5
+		y = 2
+		available = {
+			has_country_leader = { name = "Mitch McConnell" ruling_only = yes }
+		}
+		completion_reward = {
+			country_event = { id = federal_republic.1 }
+		}
+
+	}
+	focus = {
+		id = FRA_american_crassus
+		icon = GFX_goal_The_American_Crassus
+		cost = 5.00
+		prerequisite = {
+			focus = FRA_one_stormy_night
+		}
+		x = 4
+		y = 3
+		available = {
+			has_country_leader = { name = "Mitch McConnell" ruling_only = yes }
+		}
+		completion_reward = {
+			add_country_leader_trait = FRA_american_crassus
+		}
+
+	}
+	focus = {
+		id = FRA_facade
+		icon = GFX_goal_icon_keep_up_the_facade
+		cost = 4.40
+		prerequisite = {
+			focus = FRA_one_stormy_night
+		}
+		mutually_exclusive = {
+			focus = FRA_declare_the_empire
+		}
+		x = 5
+		y = 4
+		available = {
+			has_country_leader = { name = "Mitch McConnell" ruling_only = yes }
+		}
+		completion_reward = {
+			add_stability = 0.10
+		}
+
+	}
+	focus = {
+		id = FRA_declare_the_empire
+		icon = GFX_goal_icon_declare_federal_empire
+		cost = 5.00
+		prerequisite = {
+			focus = FRA_one_stormy_night
+		}
+		mutually_exclusive = {
+			focus = FRA_facade
+		}
+		x = 7
+		y = 4
+		available = {
+			has_country_leader = { name = "Mitch McConnell" ruling_only = yes }
+		}
+		completion_reward = {
+			set_cosmetic_tag = FRA_federal_empire
+			add_country_leader_trait = FRA_the_emperor
+			set_country_leader_ideology = establishment
+			hidden_effect = { news_event = { id = federal_republic.6 } }
+		}
+
+	}
+	
+	######## Roosevelt Administration ########
+	
+	focus = {
+		id = FRA_roosevelt_admin
+		icon = GFX_goal_Icon_The_Third_Roosevelt_Presidency_MAA
+		cost = 4.40
+		x = 2
+		y = 0
+		available = {
+			OR = {
+				has_country_leader = { name = "Theodore Roosevelt IV" ruling_only = yes }
+				has_country_leader = { name = "J. D. Vance" ruling_only = yes }
+			}
+		}
+		completion_reward = {
+			add_political_power = 50
+			add_war_support = 0.05
+		}
+
+	}
+	focus = {
+		id = FRA_progressive_conservatist_doctrine
+		icon = GFX_goal_Icon_Progressive_Doctrine_MAA
+		cost = 4.40
+		prerequisite = {
+			focus = FRA_roosevelt_admin
+		}
+		x = 2
+		y = 1
+		available = {
+			OR = {
+				has_country_leader = { name = "Theodore Roosevelt IV" ruling_only = yes }
+				has_country_leader = { name = "J. D. Vance" ruling_only = yes }
+			}
+		}
+		completion_reward = {
+			add_stability = 0.10
+		}
+
+	}
+	focus = {
+		id = FRA_anti_corruption
+		icon = GFX_goal_Icon_Anti-Corruption_Programmes_MAA
+		cost = 5.00
+		prerequisite = {
+			focus = FRA_progressive_conservatist_doctrine
+		}
+		x = 1
+		y = 2
+		available = {
+			OR = {
+				has_country_leader = { name = "Theodore Roosevelt IV" ruling_only = yes }
+				has_country_leader = { name = "J. D. Vance" ruling_only = yes }
+			}
+		}
+		completion_reward = {
+			add_political_power = 75
+			add_war_support = -0.05
+		}
+
+	}
+	focus = {
+		id = FRA_economic_club_new_york
+		icon = GFX_goal_Icon_Ties_with_the_Economic_Club_of_New_York_MAA
+		cost = 10.00
+		prerequisite = {
+			focus = FRA_progressive_conservatist_doctrine
+		}
+		x = 3
+		y = 2
+		available = {
+			OR = {
+				has_country_leader = { name = "Theodore Roosevelt IV" ruling_only = yes }
+				has_country_leader = { name = "J. D. Vance" ruling_only = yes }
+			}
+		}
+		completion_reward = {
+			swap_ruler_traits = { 
+				remove = FRA_progressive_conservative_1
+				add = FRA_progressive_conservative_2
+			}
+		}
+
+	}
+	focus = {
+		id = FRA_we_have_a_war_to_win
+		icon = GFX_goal_Icon_We_Have_a_War_to_Win_MAA
+		cost = 5.00
+		prerequisite = {
+			focus = FRA_economic_club_new_york
+			focus = FRA_anti_corruption
+		}
+		x = 2
+		y = 3
+		available = {
+			OR = {
+				has_country_leader = { name = "Theodore Roosevelt IV" ruling_only = yes }
+				has_country_leader = { name = "J. D. Vance" ruling_only = yes }
+			}
+		}
+		completion_reward = {
+			army_experience = 15
+			air_experience = 5
+			add_war_support = 0.15
+		}
+
+	}
+	focus = {
+		id = FRA_rough_riders
+		icon = GFX_goal_Icon_The_Rough_Riders_MAA
+		cost = 4.40
+		prerequisite = {
+			focus = FRA_we_have_a_war_to_win
+		}
+		x = 2
+		y = 4
+		available = {
+			OR = {
+				has_country_leader = { name = "Theodore Roosevelt IV" ruling_only = yes }
+				has_country_leader = { name = "J. D. Vance" ruling_only = yes }
+			}
+		}
+		completion_reward = {
+			add_ideas = FRA_rough_riders
+		}
+
+	}
+	
+	######## Marshal Milley's War ########
+	
+	focus = {
+		id = FRA_marshal_milleys_war
+		icon = GFX_goal_icon_marshal_milleys_war
+		cost = 3.00
+		x = 19
+		y = 0
+		available = {
+			country_exists = MIL
+		}
+		bypass = {
+			NOT = { country_exists = MIL }
+		}
+		completion_reward = {
+			add_political_power = 10
+			MIL = { add_political_power = 10 }
+		}
+
+	}
 	focus = {
 		id = FRA_great_lake_blockade_runners
 		icon = GFX_goal_unknown
@@ -666,6 +630,20 @@ focus_tree = {}
 		y = 2
 		completion_reward = {
 			add_political_power = 100
+		}
+
+	}
+	
+	####### Great Crisis Focuses #######
+	
+	focus = {
+		id = FRA_the_great_crisis_of_our_time
+		icon = GFX_goal_icon_the_great_crisis_of_our_time
+		cost = 4.40
+		x = 24
+		y = 0
+		completion_reward = {
+			add_political_power = 50
 		}
 
 	}
@@ -862,6 +840,30 @@ focus_tree = {}
 
 	}
 	focus = {
+		id = FRA_kill_tucker
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = FRA_consolidate_realm
+		}
+		x = 25
+		y = 3
+		will_lead_to_war_with = NRA
+		available = {
+			NRA = {
+				has_war = no
+				has_government = authoritarian_left
+			}
+		}
+		completion_reward = {
+			create_wargoal = {
+			    type = annex_everything
+			    target = NRA
+			}
+		}
+
+	}
+	focus = {
 		id = FRA_puppetmaster
 		icon = GFX_goal_unknown
 		cost = 5.00
@@ -918,6 +920,339 @@ focus_tree = {}
 		}
 
 	}
+	
+	######## Industry ########
+	
+	focus = {
+		id = FRA_federal_republic_at_war
+		icon = GFX_goal_unknown
+		cost = 5.00
+		x = 46
+		y = 0
+		completion_reward = {
+			random_owned_state = {
+				limit = {
+					is_controlled_by = ROOT
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+				    type = arms_factory
+				    level = 2
+				    instant_build = yes
+				}
+			}
+			army_experience = 15
+		}
+
+	}
+	focus = {
+		id = FRA_bolster_navy
+		icon = GFX_goal_unknown
+		cost = 10.00
+		x = 48
+		y = 0
+		completion_reward = {
+			random_owned_state = {
+				limit = {
+					is_coastal = yes
+				}
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+				    type = dockyard
+				    level = 3
+				    instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = FRA_boston_dynamics
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = FRA_federal_republic_at_war
+		}
+		x = 41
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+			    bonus = 1.5
+			    uses = 3
+			    category = motorized_equipment
+			}
+			add_tech_bonus = {
+			    bonus = 1.0
+			    uses = 4
+			    category = support_tech
+			}
+		}
+
+	}
+	focus = {
+		id = FRA_boston_dynamics_funding
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = FRA_boston_dynamics
+		}
+		x = 41
+		y = 2
+		completion_reward = {
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = arms_factory
+				    level = 1
+				    instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = industrial_complex
+				    level = 1
+				    instant_build = yes
+				}
+			}
+			add_research_slot = 1
+		}
+
+	}
+	focus = {
+		id = FRA_military_industrial_complex
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = FRA_federal_republic_at_war
+		}
+		x = 43
+		y = 1
+		completion_reward = {
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+				    type = arms_factory
+				    level = 2
+				    instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = FRA_expand_militarism
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = FRA_military_industrial_complex
+		}
+		x = 43
+		y = 2
+		completion_reward = {
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+				    type = arms_factory
+				    level = 3
+				    instant_build = yes
+				}
+			}
+		}
+
+	}
+	#focus = {
+	#	id = FRA_unleash_the_beast
+	#	icon = GFX_goal_unknown
+	#	cost = 8.54
+	#	prerequisite = {
+	#		focus = FRA_expand_militarism
+	#	}
+	#	prerequisite = {
+	#		focus = FRA_boston_dynamics_funding
+	#	}
+	#	prerequisite = {
+	#		focus = FRA_doctrine_effort
+	#	}
+	#	prerequisite = {
+	#		focus = FRA_civilian_industry
+	#	}
+	#	x = 44
+	#	y = 3
+	#	available = {
+	#		OR = {
+	#			has_war_with = USA
+	#			NOT = {
+	#				country_exists = USA
+	#			}
+	#		}
+	#	}
+	#	continue_if_invalid = yes
+	#	completion_reward = {
+	#		remove_ideas = FRA_gridlocked_economy
+	#		add_research_slot = 1
+	#	}
+	#
+	#}
+	focus = {
+		id = FRA_americas_industrial_heartland
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = FRA_federal_republic_at_war
+		}
+		x = 45
+		y = 1
+		completion_reward = {
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+				    type = industrial_complex
+				    level = 2
+				    instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = FRA_civilian_industry
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = FRA_americas_industrial_heartland
+		}
+		x = 45
+		y = 2
+		completion_reward = {
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+				    type = industrial_complex
+				    level = 3
+				    instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = FRA_our_doctrine
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = FRA_federal_republic_at_war
+		}
+		x = 47
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+			    bonus = 3.0
+			    uses = 1
+			    category = land_doctrine
+			}
+		}
+
+	}
+	focus = {
+		id = FRA_doctine_effort
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = FRA_our_doctrine
+		}
+		x = 47
+		y = 2
+		completion_reward = {
+			add_tech_bonus = {
+			    bonus = 1.0
+			    uses = 4
+			    category = land_doctrine
+			}
+			add_tech_bonus = {
+			    bonus = 1.0
+			    uses = 4
+			    category = air_doctrine
+			}
+			add_tech_bonus = {
+			    bonus = 1.0
+			    uses = 4
+			    category = naval_doctrine
+			}
+		}
+
+	}
+	focus = {
+		id = FRA_special_forces
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = FRA_federal_republic_at_war
+		}
+		x = 49
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+			    bonus = 1.0
+			    uses = 1
+			    category = marine_tech
+			}
+			add_tech_bonus = {
+			    bonus = 1.0
+			    uses = 1
+			    category = mountaineers_tech
+			}
+			add_tech_bonus = {
+			    bonus = 1.0
+			    uses = 1
+			    category = para_tech
+			}
+		}
+
+	}
+	focus = {
+		id = FRA_federal_air_force
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = FRA_federal_republic_at_war
+		}
+		x = 51
+		y = 1
+		completion_reward = {
+			air_experience = 100
+		}
+
+	}
+	focus = {
+		id = FRA_european_plane_designs
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = FRA_federal_air_force
+		}
+		x = 51
+		y = 2
+		completion_reward = {
+			add_tech_bonus = {
+			    bonus = 2.0
+			    uses = 4
+			    category = light_air
+			}
+			add_tech_bonus = {
+			    bonus = 2.0
+			    uses = 2
+			    category = medium_air
+			}
+		}
+
+	}
+	
+	
+	
+	
+	####### Reform #######
+	
 	focus = {
 		id = FRA_reform
 		icon = GFX_goal_unknown
@@ -1159,6 +1494,11 @@ focus_tree = {}
 		}
 
 	}
+	
+	
+	
+	####### Reconciliation #######
+	
 	focus = {
 		id = FRA_reconciliation
 		icon = GFX_goal_unknown
@@ -1403,59 +1743,6 @@ focus_tree = {}
 
 	}
 	focus = {
-		id = FRA_boston_dynamics
-		icon = GFX_goal_unknown
-		cost = 5.00
-		prerequisite = {
-			focus = FRA_federal_republic_at_war
-		}
-		x = 41
-		y = 1
-		completion_reward = {
-			add_tech_bonus = {
-			    bonus = 1.5
-			    uses = 3
-			    category = motorized_equipment
-			}
-			add_tech_bonus = {
-			    bonus = 1.0
-			    uses = 4
-			    category = support_tech
-			}
-		}
-
-	}
-	focus = {
-		id = FRA_boston_dynamics_funding
-		icon = GFX_goal_unknown
-		cost = 5.00
-		prerequisite = {
-			focus = FRA_boston_dynamics
-		}
-		x = 41
-		y = 2
-		completion_reward = {
-			random_owned_state = {
-				add_extra_state_shared_building_slots = 1
-				add_building_construction = {
-				    type = arms_factory
-				    level = 1
-				    instant_build = yes
-				}
-			}
-			random_owned_state = {
-				add_extra_state_shared_building_slots = 1
-				add_building_construction = {
-				    type = industrial_complex
-				    level = 1
-				    instant_build = yes
-				}
-			}
-			add_research_slot = 1
-		}
-
-	}
-	focus = {
 		id = FRA_unapologetic_imperialism
 		icon = GFX_goal_icon_FRA_imperialism
 		cost = 5.00
@@ -1469,81 +1756,6 @@ focus_tree = {}
 		}
 
 	}
-	focus = {
-		id = FRA_military_industrial_complex
-		icon = GFX_goal_unknown
-		cost = 10.00
-		prerequisite = {
-			focus = FRA_federal_republic_at_war
-		}
-		x = 43
-		y = 1
-		completion_reward = {
-			random_owned_state = {
-				add_extra_state_shared_building_slots = 2
-				add_building_construction = {
-				    type = arms_factory
-				    level = 2
-				    instant_build = yes
-				}
-			}
-		}
-
-	}
-	focus = {
-		id = FRA_expand_militarism
-		icon = GFX_goal_unknown
-		cost = 10.00
-		prerequisite = {
-			focus = FRA_military_industrial_complex
-		}
-		x = 43
-		y = 2
-		completion_reward = {
-			random_owned_state = {
-				add_extra_state_shared_building_slots = 3
-				add_building_construction = {
-				    type = arms_factory
-				    level = 3
-				    instant_build = yes
-				}
-			}
-		}
-
-	}
-	#focus = {
-	#	id = FRA_unleash_the_beast
-	#	icon = GFX_goal_unknown
-	#	cost = 8.54
-	#	prerequisite = {
-	#		focus = FRA_expand_militarism
-	#	}
-	#	prerequisite = {
-	#		focus = FRA_boston_dynamics_funding
-	#	}
-	#	prerequisite = {
-	#		focus = FRA_doctrine_effort
-	#	}
-	#	prerequisite = {
-	#		focus = FRA_civilian_industry
-	#	}
-	#	x = 44
-	#	y = 3
-	#	available = {
-	#		OR = {
-	#			has_war_with = USA
-	#			NOT = {
-	#				country_exists = USA
-	#			}
-	#		}
-	#	}
-	#	continue_if_invalid = yes
-	#	completion_reward = {
-	#		remove_ideas = FRA_gridlocked_economy
-	#		add_research_slot = 1
-	#	}
-	#
-	#}
 	focus = {
 		id = FRA_Progressive_Conservatism
 		icon = GFX_goal_unknown
@@ -1580,48 +1792,6 @@ focus_tree = {}
 
 	}
 	focus = {
-		id = FRA_americas_industrial_heartland
-		icon = GFX_goal_unknown
-		cost = 10.00
-		prerequisite = {
-			focus = FRA_federal_republic_at_war
-		}
-		x = 45
-		y = 1
-		completion_reward = {
-			random_owned_state = {
-				add_extra_state_shared_building_slots = 2
-				add_building_construction = {
-				    type = industrial_complex
-				    level = 2
-				    instant_build = yes
-				}
-			}
-		}
-
-	}
-	focus = {
-		id = FRA_civilian_industry
-		icon = GFX_goal_unknown
-		cost = 10.00
-		prerequisite = {
-			focus = FRA_americas_industrial_heartland
-		}
-		x = 45
-		y = 2
-		completion_reward = {
-			random_owned_state = {
-				add_extra_state_shared_building_slots = 3
-				add_building_construction = {
-				    type = industrial_complex
-				    level = 3
-				    instant_build = yes
-				}
-			}
-		}
-
-	}
-	focus = {
 		id = FRA_destroy_NRA_lobby
 		icon = GFX_goal_unknown
 		cost = 5.00
@@ -1642,52 +1812,6 @@ focus_tree = {}
 
 	}
 	focus = {
-		id = FRA_our_doctrine
-		icon = GFX_goal_unknown
-		cost = 10.00
-		prerequisite = {
-			focus = FRA_federal_republic_at_war
-		}
-		x = 47
-		y = 1
-		completion_reward = {
-			add_tech_bonus = {
-			    bonus = 3.0
-			    uses = 1
-			    category = land_doctrine
-			}
-		}
-
-	}
-	focus = {
-		id = FRA_doctine_effort
-		icon = GFX_goal_unknown
-		cost = 10.00
-		prerequisite = {
-			focus = FRA_our_doctrine
-		}
-		x = 47
-		y = 2
-		completion_reward = {
-			add_tech_bonus = {
-			    bonus = 1.0
-			    uses = 4
-			    category = land_doctrine
-			}
-			add_tech_bonus = {
-			    bonus = 1.0
-			    uses = 4
-			    category = air_doctrine
-			}
-			add_tech_bonus = {
-			    bonus = 1.0
-			    uses = 4
-			    category = naval_doctrine
-			}
-		}
-
-	}
-	focus = {
 		id = FRA_honouring_forty_six
 		icon = GFX_goal_unknown
 		cost = 5.00
@@ -1700,34 +1824,6 @@ focus_tree = {}
 			add_political_power = 100
 			add_stability = 0.05
 			add_war_support = -0.05
-		}
-
-	}
-	focus = {
-		id = FRA_special_forces
-		icon = GFX_goal_unknown
-		cost = 10.00
-		prerequisite = {
-			focus = FRA_federal_republic_at_war
-		}
-		x = 49
-		y = 1
-		completion_reward = {
-			add_tech_bonus = {
-			    bonus = 1.0
-			    uses = 1
-			    category = marine_tech
-			}
-			add_tech_bonus = {
-			    bonus = 1.0
-			    uses = 1
-			    category = mountaineers_tech
-			}
-			add_tech_bonus = {
-			    bonus = 1.0
-			    uses = 1
-			    category = para_tech
-			}
 		}
 
 	}
@@ -2115,68 +2211,12 @@ focus_tree = {}
 			add_ideas = FRA_daniel_mckee_vp
 		}
 	}
-	focus = {
-		id = FRA_federal_air_force
-		icon = GFX_goal_unknown
-		cost = 10.00
-		prerequisite = {
-			focus = FRA_federal_republic_at_war
-		}
-		x = 51
-		y = 1
-		completion_reward = {
-			air_experience = 100
-		}
-
-	}
-	focus = {
-		id = FRA_european_plane_designs
-		icon = GFX_goal_unknown
-		cost = 10.00
-		prerequisite = {
-			focus = FRA_federal_air_force
-		}
-		x = 51
-		y = 2
-		completion_reward = {
-			add_tech_bonus = {
-			    bonus = 2.0
-			    uses = 4
-			    category = light_air
-			}
-			add_tech_bonus = {
-			    bonus = 2.0
-			    uses = 2
-			    category = medium_air
-			}
-		}
-
-	}
-	focus = {
-		id = FRA_kill_tucker
-		icon = GFX_goal_unknown
-		cost = 10.00
-		prerequisite = {
-			focus = FRA_consolidate_realm
-		}
-		x = 25
-		y = 3
-		will_lead_to_war_with = NRA
-		available = {
-			NRA = {
-				has_war = no
-				has_government = authoritarian_left
-			}
-		}
-		completion_reward = {
-			create_wargoal = {
-			    type = annex_everything
-			    target = NRA
-			}
-		}
-
-	}
-	#secret Hilldog tree
+	
+	
+	
+	
+	
+	####### Hillary #######
 	focus = {
 		id = FRA_2_clinton_admin
 		icon = GFX_goal_Icon_the_Clinton_Administration_MAA
