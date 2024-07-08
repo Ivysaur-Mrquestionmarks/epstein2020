@@ -63,8 +63,8 @@ focus_tree = {
 			country_event = texas.88
 			hidden_effect = {
 				country_event = {
-					id = texas.102
-					days = 4
+					#id = texas.102
+					#days = 4
 				}
 			}
 		}
@@ -1882,6 +1882,12 @@ focus_tree = {
 			focus = TEX_southern_command_center
 		}
 		completion_reward = {
+			USA = {
+				annex_country = {
+					target = TEX 
+					transfer_troops = yes
+				}
+			}
 		}
 	}
 	focus = {
@@ -1891,11 +1897,25 @@ focus_tree = {
 		y = 1
 		relative_position_id = TEX_southern_command_center
 		mutually_exclusive = { focus = TEX_join_the_big_boss }
-		cost = 5
+		cost = 0
 		prerequisite = {
 			focus = TEX_southern_command_center
 		}
+		available = { 
+			NOT = { country_exists = USA }
+		}
 		completion_reward = {
+			hidden_effect = {
+				create_country_leader = {
+					name = "Donald Trump Jr."
+					picture = "gfx/leaders/USA/Donald_Trump_Jr.png"
+					ideology = trumpist
+					expire = "2060.1.1"
+					traits = {
+						sins_of_the_father 
+					}
+				}
+			}
 		}
 	}
 	focus = {
@@ -1909,6 +1929,11 @@ focus_tree = {
 			focus = TEX_trump_failure
 		}
 		completion_reward = {
+			TEX = {
+				add_offsite_building = { type = arms_factory  level = 3 }
+				add_offsite_building = { type = arms_factory  level = 3 }
+				add_offsite_building = { type = industrial_complex  level = 3 }
+			}
 		}
 	}
 	focus = {
@@ -1934,7 +1959,21 @@ focus_tree = {
 		prerequisite = {
 			focus = TEX_divided_exiles
 		}
+		available = { 
+			is_ai = no
+			NRA = { has_government = republican } 
+		}
 		completion_reward = {
+			TEX = {
+				annex_country = {
+					target = NRA 
+					transfer_troops = yes
+				}
+			}
+			every_state = {
+				limit = { is_core_of = NRA }
+				add_core_of = TEX
+			}
 		}
 	}
 	focus = {
@@ -1947,7 +1986,21 @@ focus_tree = {
 		prerequisite = {
 			focus = TEX_divided_exiles
 		}
+		available = { 
+			is_ai = no
+			IDA = { has_government = republican } 
+		}
 		completion_reward = {
+			TEX = {
+				annex_country = {
+					target = IDA 
+					transfer_troops = yes
+				}
+			}
+			every_state = {
+				limit = { is_core_of = IDA }
+				add_core_of = TEX
+			}
 		}
 	}
 	focus = {
@@ -1986,7 +2039,28 @@ focus_tree = {
 		prerequisite = {
 			focus = TEX_one_defeat
 		}
+		available = {
+			all_state = {	
+				OR = {
+					NOT = {has_state_flag = part_of_america}
+					is_owned_by = ROOT
+					owner = { is_ally_with = ROOT } #Checks for territory controlled by indpendent faction members/puppets
+				}		
+			}
+			ROOT = {
+				if = {
+					limit = {
+						is_in_faction = yes
+					}
+					is_faction_leader = yes
+				}
+				is_subject = no
+			}
+		}
 		completion_reward = {
+			country_event = {
+    			id = News_events.98
+			}
 		}
 	}
 	
@@ -8899,7 +8973,7 @@ focus_tree = {
 		x = 2
 		y = 1
 		relative_position_id = TEX_neoliberlism_and_establishment
-		cost = 5
+		cost = 0
 		mutually_exclusive = { focus = TEX_reintigration_to_biden }
 		prerequisite = {
 			focus = TEX_neoliberlism_and_establishment
@@ -8910,6 +8984,7 @@ focus_tree = {
 			focus = TEX_return_kfc
 		}
 		available = {
+			NOT = { country_Exists = FRA }
 		}
 		completion_reward = {
 		}
@@ -12233,7 +12308,7 @@ focus_tree = {
 	
 	focus = {
 		id = TEX_fund_disability_research
-		icon = GFX_goal_Hand_The_Reigns_Greg
+		icon = GFX_goal_Fund_Disability_Research
 		x = -1
 		y = 1
 		relative_position_id = TEX_appoint_cruz_as_prime_minister
@@ -12273,7 +12348,7 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_utilize_ai_for_treatment
-		icon = GFX_goal_Hand_The_Reigns_Greg
+		icon = GFX_goal_Utilize_AI_Treatments
 		x = 1
 		y = 1
 		relative_position_id = TEX_fund_disability_research
@@ -12314,7 +12389,7 @@ focus_tree = {
 	focus = {
 		id = TEX_a_libertarian_congress
 		icon = GFX_goal_Libertarian_Dominated_Parliament
-		x = -7
+		x = -5
 		y = 1
 		relative_position_id = TEX_appoint_cruz_as_prime_minister
 		cost = 5
@@ -12333,8 +12408,8 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_enshrine_the_bill_of_rights
-		icon = GFX_goal_Hand_The_Reigns_Greg
-		x = 1
+		icon = GFX_goal_Bill_of_Rights
+		x = -1
 		y = 1
 		relative_position_id = TEX_a_libertarian_congress
 		cost = 5
@@ -12353,7 +12428,7 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_embrace_minarchism
-		icon = GFX_goal_Hand_The_Reigns_Greg
+		icon = GFX_goal_Embrace_Minarchism
 		x = 0
 		y = 1
 		relative_position_id = TEX_enshrine_the_bill_of_rights
@@ -12373,8 +12448,8 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_deregulate_industries
-		icon = GFX_goal_Hand_The_Reigns_Greg
-		x = 3
+		icon = GFX_goal_Deregulate_Industry_Abbott
+		x = 1
 		y = 1
 		relative_position_id = TEX_a_libertarian_congress
 		cost = 5
@@ -12390,7 +12465,7 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_a_free_texas
-		icon = GFX_goal_Hand_The_Reigns_Greg
+		icon = GFX_goal_A_Free_Texas
 		x = 0
 		y = 1
 		relative_position_id = TEX_deregulate_industries
@@ -12407,7 +12482,7 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_dont_tread_on_me
-		icon = GFX_goal_Hand_The_Reigns_Greg
+		icon = GFX_goal_Dont_Tread_on_Texas
 		x = -1
 		y = 1
 		relative_position_id = TEX_a_free_texas
@@ -12431,10 +12506,10 @@ focus_tree = {
 	
 	focus = {
 		id = TEX_partner_with_big_business
-		icon = GFX_goal_Hand_The_Reigns_Greg
-		x = 3
+		icon = GFX_goal_Partner_Big_Business
+		x = -3
 		y = 1
-		relative_position_id = TEX_a_christian_congress
+		relative_position_id = TEX_a_libertarian_congress
 		cost = 5
 		prerequisite = {
 			focus = TEX_a_libertarian_congress
@@ -12451,7 +12526,7 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_utilize_nra_influence
-		icon = GFX_goal_Hand_The_Reigns_Greg
+		icon = GFX_goal_NRA_Influence
 		x = 0
 		y = 1
 		relative_position_id = TEX_partner_with_big_business
@@ -12470,7 +12545,7 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_a_corporate_senate
-		icon = GFX_goal_Hand_The_Reigns_Greg
+		icon = GFX_goal_Corporate_Congress
 		x = 0
 		y = 1
 		relative_position_id = TEX_utilize_nra_influence
@@ -13766,25 +13841,9 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = TEX_elections_dixie
-		icon = GFX_goal_Hand_The_Reigns_Greg
-		x = -5
-		y = 1
-		relative_position_id = TEX_a_better_south
-		cost = 0
-		prerequisite = {
-			focus = TEX_a_better_south
-		}
-		available = {
-		}
-		allow_branch = { has_country_flag = CSA_dixie }
-		completion_reward = {
-		}
-	}
-	focus = {
 		id = TEX_grander_ambitions
 		icon = GFX_goal_Hand_The_Reigns_Greg
-		x = 5
+		x = 0
 		y = 1
 		relative_position_id = TEX_a_better_south
 		cost = 0
@@ -19445,7 +19504,7 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_invite_radicals
-		icon = GFX_goal_democratic_socialism
+		icon = GFX_goal_Amogus
 		cost = 5
 		x = 1
 		y = 1
@@ -19461,7 +19520,7 @@ focus_tree = {
 	}
 	focus = {
 		id = TEX_spread_them_among_rebels
-		icon = GFX_goal_democratic_socialism
+		icon = GFX_goal_Amongoose2
 		cost = 5
 		x = 1
 		y = 1
