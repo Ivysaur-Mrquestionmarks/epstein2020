@@ -5,7 +5,8 @@ GEN_Militaristic_Experience = {
 		icon = military_operation
 	
 		allowed = {
-			original_tag = USA
+			#original_tag = USA #for the non tree release
+			always = no
 		}
 		available = {
 			has_idea = USA_military_overconfidence
@@ -42,7 +43,8 @@ GEN_Political_Allignment = {
 		icon = GFX_decision_politics_republican
 
 		allowed = {
-			original_tag = USA
+			#original_tag = USA #for the non tree release
+			always = no
 		}
 		available = {
 			has_idea = USA_poor_development
@@ -357,6 +359,522 @@ USA_FRA_war_desicions = {
 		
 		ai_will_do = {
 			factor = 10
+		}
+	}
+}
+
+USA_TRUMP = {
+	USA_economic_recovery = {
+		icon = military_operation
+	
+
+		available = {
+			num_of_factories > econ_req
+		}
+
+		visible = {
+			check_variable = {
+			    var = econ_req
+			    value = 221
+			    compare = less_than
+			}
+		}
+
+		cost = 40
+
+		days_remove = 7
+		#fire_only_once = yes
+
+		remove_effect = {
+			if = {
+				limit = {
+					check_variable = {
+    						var = econ_req
+    						value = 120
+    						compare = equals
+					}
+				}
+				swap_ideas = {
+    					remove_idea = USA_poor_development
+    					add_idea = USA_poor_development_1
+				}
+			}
+			else_if = {
+				limit = {
+					check_variable = {
+    						var = econ_req
+    						value = 140
+    						compare = equals
+					}
+				}
+				add_research_slot = 1
+			}
+			else_if = {
+				limit = {
+					check_variable = {
+    						var = econ_req
+    						value = 160
+    						compare = equals
+					}
+				}
+				swap_ideas = {
+    					remove_idea = USA_poor_development_1
+    					add_idea = USA_poor_development_2
+				}
+			}
+			else_if = {
+				limit = {
+					check_variable = {
+    						var = econ_req
+    						value = 180
+    						compare = equals
+					}
+				}
+				swap_ideas = {
+    					remove_idea = USA_poor_development_2
+    					add_idea = USA_poor_development_3
+				}
+			}
+			else_if = {
+				limit = {
+					check_variable = {
+    						var = econ_req
+    						value = 200
+    						compare = equals
+					}
+				}
+				remove_ideas = USA_poor_development_3
+				
+			}
+			else = {
+				add_research_slot = 1
+			}
+			add_to_variable = {
+    				var = econ_req
+    				value = 20			
+			}
+
+		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	USA_strategic_bombing_program = {
+		icon = military_operation
+	
+
+		available = {
+			OR = {
+				has_war_with_major = yes
+				has_completed_focus = USA_military_reform
+				has_completed_focus = USA_guerrilla_warfare
+			}
+		}
+
+
+		cost = 50
+
+		days_remove = 200
+		fire_only_once = yes
+
+		complete_effect = {
+			country_event = {
+    				id = maga.19
+    				days = 20
+    				#random_hours = 3
+			}			
+		}
+		remove_effect = {
+			set_country_flag = strat_program
+			add_war_support = -0.05
+			custom_effect_tooltip = USA_unlock_strat_bombing
+			add_tech_bonus = {
+    				bonus = 2
+    				uses = 1.0
+    				category = heavy_air
+			}
+		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	USA_increase_resistance = {
+		state_target = any_owned_state
+		on_map_mode = map_and_decisions_view
+		target_array = ROOT.core_states
+		target_trigger = {
+		 	FROM = {
+				controller = {
+					NOT = {
+						OR = {
+							tag = USA
+							FROM = {
+								is_core_of = PREV
+							}
+						}
+					}
+				}
+			}
+		}
+		visible = {
+			has_completed_focus = USA_fund_guerrillas
+		 	FROM = {
+				controller = {
+					NOT = {
+						tag = ROOT
+					}
+				}
+			}	
+					
+		}
+		available = {
+			has_equipment = {
+    				infantry_equipment > 1000
+			}
+		}
+		cost = 35
+		days_remove = 31
+		days_re_enable = 10
+		ai_will_do = {
+			base = 50
+		}
+		remove_effect = {
+			add_equipment_to_stockpile = {
+    				type = infantry_equipment
+    				amount = -1000
+			}
+			FROM = {
+				add_resistance_target = 5
+			}
+		}
+		
+	}
+
+	USA_uprising = {
+		state_target = any_owned_state
+		on_map_mode = map_and_decisions_view
+		target_array = ROOT.core_states
+		target_trigger = {
+			FROM = {
+				controller = {
+					NOT = {
+						OR = {
+							tag = USA
+							FROM = {
+								is_core_of = PREV
+							}
+						}
+					}
+				}
+			}
+		}
+		visible = {
+			has_completed_focus = USA_rise_up
+		 	FROM = {
+				controller = {
+					NOT = {
+						tag = ROOT
+					}
+				}
+			}	
+					
+		}
+		available = {
+			has_equipment = {
+    				infantry_equipment > 2500
+			}
+			FROM = {
+				resistance > 80
+				controller = {
+					has_war_with = USA
+				}
+			}
+		}
+		cost = 35
+		days_remove = 55
+		days_re_enable = 100
+		ai_will_do = {
+			base = 50
+		}
+		remove_effect = {
+			add_equipment_to_stockpile = {
+    				type = infantry_equipment
+    				amount = -2500
+			}
+			FROM = {
+				create_unit = {
+					division = "name = \"Uprising Militias'\" division_template = \"guerrillas\" start_experience_factor = 0.6" 
+					owner = USA
+					count = 3
+					allow_spawning_on_enemy_provs = yes
+				}
+			}
+		}
+		
+	}
+
+	USA_rep_investments = {
+
+		target_trigger = {
+			FROM = {
+				has_government = republican
+			}
+		}
+		visible = {
+			has_completed_focus = USA_align_republicans
+		 	FROM = {
+				has_government = republican
+			}		
+		}
+		available = {
+			not = {
+				has_idea = USA_republican_investments
+			}
+		}
+		cost = 50
+		days_remove = 30
+		days_re_enable = 120
+		ai_will_do = {
+			base = 10
+		}
+		remove_effect = {
+			#add_timed_idea = {
+    			#	idea = USA_republican_investments
+    			#	days = 60
+			#}
+			FROM = {
+				country_event = {
+    					id = maga.40
+    					days = 5
+    					random_hours = 36
+				}				
+			}
+		}
+		
+	}
+
+}
+USA_PB = {
+
+	USA_PB_propaganda = {
+		cost = 30
+		days_remove = 50
+		days_re_enable = 50
+		ai_will_do = {
+			base = 0
+		}
+
+		modifier = {
+			autocratic_drift = 0.03
+		}
+
+		remove_effect = {
+			add_war_support = 0.1
+			add_power_balance_value = {
+    				id = PB_trump_bop
+    				value = 0.05
+    				tooltip_side = PB_control
+			}		
+		}
+	}
+	USA_PB_units = {
+		cost = 65
+		days_remove = 30
+		days_re_enable = 30
+		ai_will_do = {
+			base = 10
+		}
+		visible = {
+			has_completed_focus = USA_Expand_PB_militias
+		}
+		remove_effect = {
+			capital_scope = {
+				create_unit = {	division = "name = \"The American legions'\" division_template = \"PB paramilitary\" start_experience_factor = 0.2" 
+					owner = USA
+					count = 5
+				}	
+			}	
+			add_power_balance_value = {
+    				id = PB_trump_bop
+    				value = 0.05
+    				tooltip_side = PB_control
+			}		
+		}
+	}
+
+	USA_PB_expand_units = {
+		cost = 100
+		days_remove = 30
+		days_re_enable = 30
+		ai_will_do = {
+			base = 10
+		}
+		visible = {
+			has_completed_focus = USA_train_PB
+
+			has_country_flag = {
+    				flag = USA_unit_cap
+    				value < 5
+			}
+			
+		}
+		remove_effect = {
+			add_units_to_division_template = {
+    				template_name = "PB paramilitary"
+    				regiments = {
+        				infantry = 1
+    				}
+			}	
+			add_power_balance_value = {
+    				id = PB_trump_bop
+    				value = 0.1
+    				tooltip_side = PB_control
+			}
+			modify_country_flag = {
+    				flag = USA_unit_cap
+    				value = 1
+			}		
+		}
+	}
+
+	USA_PB_heavy_units = {
+		cost = 150
+		days_remove = 30
+		days_re_enable = 30
+		ai_will_do = {
+			base = 10
+		}
+		visible = {
+			has_completed_focus = USA_train_PB
+
+			has_country_flag = {
+    				flag = USA_art_unit_cap
+    				value < 6
+			}
+			
+		}
+		remove_effect = {
+			add_units_to_division_template = {
+    				template_name = "PB paramilitary"
+    				regiments = {
+        				artillery_brigade = 2
+    				}
+			}	
+			add_power_balance_value = {
+    				id = PB_trump_bop
+    				value = 0.1
+    				tooltip_side = PB_control
+			}
+			modify_country_flag = {
+    				flag = USA_art_unit_cap
+    				value = 1
+			}		
+		}
+	}
+
+	USA_PB_limits = {
+		cost = 200
+		days_remove = 60
+		days_re_enable = 30
+		ai_will_do = {
+			base = 30
+		}
+		modifier = {
+			stability_factor = -0.1
+			war_support_factor = -0.3
+		}
+		visible = {
+			has_completed_focus = USA_retake_control_from_PB
+		}
+		remove_effect = {
+			add_power_balance_value = {
+    				id = PB_trump_bop
+    				value = -0.10
+    				tooltip_side = under_control
+			}
+		}
+	}
+
+	USA_PB_pardon_woke = {
+		cost = 100
+		days_remove = 30
+		ai_will_do = {
+			base = 30
+		}
+		fire_only_once = yes
+		modifier = {
+			stability_factor = -0.15
+		}
+		visible = {
+			has_completed_focus = USA_work_with_the_opposition
+		}
+		remove_effect = {
+			add_power_balance_value = {
+    				id = PB_trump_bop
+    				value = -0.15
+    				tooltip_side = under_control
+			}
+			add_popularity = {
+    				ideology = libertarian_left
+    				popularity = 0.2
+			}
+		}
+	}
+
+	USA_PB_pardon_democrats = {
+		cost = 100
+		days_remove = 30
+		ai_will_do = {
+			base = 30
+		}
+		fire_only_once = yes
+		modifier = {
+			stability_factor = -0.1
+		}
+		visible = {
+			has_completed_focus = USA_work_with_the_opposition
+		}
+		remove_effect = {
+			add_power_balance_value = {
+    				id = PB_trump_bop
+    				value = -0.15
+    				tooltip_side = under_control
+			}
+			add_popularity = {
+    				ideology = democrat
+    				popularity = 0.2
+			}
+		}
+	}
+
+
+	USA_PB_endorse_libertarians = {
+		cost = 75
+		days_remove = 30
+		ai_will_do = {
+			base = 30
+		}
+		fire_only_once = yes
+		modifier = {
+			stability_factor = -0.05
+		}
+		visible = {
+			has_completed_focus = USA_work_with_the_opposition
+		}
+		remove_effect = {
+			add_power_balance_value = {
+    				id = PB_trump_bop
+    				value = -0.15
+    				tooltip_side = under_control
+			}
+			add_popularity = {
+    				ideology = libertarian_right
+    				popularity = 0.2
+			}
 		}
 	}
 }

@@ -1,0 +1,3499 @@
+focus_tree = {
+	id = Truwump
+	country = {
+		factor = 0
+		modifier = {
+			tag =USA
+			add = 100
+		}
+	}
+	continuous_focus_position = { x = 1200 y = 1000 }
+	default = no
+	focus = {
+		id = USA_reasses_army
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		x = 13
+		y = 0
+		cost = 3
+		#search_filters = { FOCUS_FILTER_POLITICAL } 
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			swap_ideas = {
+    				remove_idea = USA_military_overconfidence
+    				add_idea = USA_military_overconfidence_0
+			}
+			country_event = {
+    				id = maga.12
+    				days = 0
+    				#random_hours = 3
+			}
+		}
+	}
+
+	focus = {
+		id = USA_recomision_planes
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 7
+		prerequisite = {
+			focus = USA_reasses_army
+		}
+		x = 4
+		y = 1
+		#mutually_exclusive = {
+		#	focus = CAS_expand_the_olympia_port
+		#}
+		
+		#available = {
+		#	controls_state = 125
+		#}
+		completion_reward = {
+
+			if = {
+				limit = {
+					has_dlc = "By Blood Alone"
+				}
+				create_equipment_variant = {
+					name = "F16" 
+					type = medium_plane_fighter_airframe_1
+					modules = {
+						fixed_main_weapon_slot = aircraft_cannon_1_1x
+						engine_type_slot = engine_1_3x
+						fixed_auxiliary_weapon_slot_1 = light_mg_4x
+						fixed_auxiliary_weapon_slot_2 = bomb_locks
+					}
+				}
+
+			}	
+			add_equipment_to_stockpile = {
+    				type = medium_plane_fighter_airframe
+    				amount = 200
+    				producer = USA
+			}
+			country_event = {
+    				id = maga.13
+    				days = 0
+    				#random_hours = 3
+			}		
+		}
+
+	}
+
+	focus = {
+		id = USA_retore_helis
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 5
+		prerequisite = {
+			focus = USA_recomision_planes
+		}
+		x = 2
+		y = 2
+		#mutually_exclusive = {
+		#	focus = CAS_expand_the_olympia_port
+		#}
+		
+		#available = {
+		#	controls_state = 125
+		#}
+		completion_reward = {			
+			add_equipment_to_stockpile = {
+    				type = army_attack_helicopter_equipment_1
+    				amount = 250
+    				producer = USA
+			}	
+			country_event = {
+    				id = maga.14
+    				days = 0
+    				#random_hours = 3
+			}		
+		}
+
+	}
+
+	focus = {
+		id = USA_helis_research
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 5
+		prerequisite = {
+			focus = USA_retore_helis
+		}
+		x = 2
+		y = 3
+		#mutually_exclusive = {
+		#	focus = CAS_expand_the_olympia_port
+		#}
+		
+		#available = {
+		#	controls_state = 125
+		#}
+		completion_reward = {			
+			add_tech_bonus = {
+			    bonus = 1
+			    uses = 2
+			    category = helicopters
+			}			
+		}
+
+	}
+
+	focus = {
+		id = USA_figther_research
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 6
+		prerequisite = {
+			focus = USA_recomision_planes
+		}
+		x = 4
+		y = 2
+		#mutually_exclusive = {
+		#	focus = CAS_expand_the_olympia_port
+		#}
+		
+		#available = {
+		#	controls_state = 125
+		#}
+		completion_reward = {			
+			add_tech_bonus = {
+			    bonus = 1
+			    uses = 2
+			    category = medium_air
+			}			
+		}
+
+	}
+
+
+	focus = {
+		id = USA_strat_research
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 4
+		prerequisite = {
+			focus = USA_figther_research
+		}
+		x = 4
+		y = 3
+		#mutually_exclusive = {
+		#	focus = CAS_expand_the_olympia_port
+		#}
+		
+		available = {
+			has_country_flag = strat_program
+		}
+		completion_reward = {			
+			add_tech_bonus = {
+			    bonus = 2.0
+			    uses = 1
+			    category = heavy_air
+			}
+			clr_country_flag = strat_program
+			country_event = {
+    				id = maga.24
+    				days = 0
+    				random_hours = 6
+			}	
+		}
+
+	}
+
+	focus = {
+		id = USA_strats
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 5
+		prerequisite = {
+			focus = USA_strat_research
+		}
+		x = 4
+		y = 4
+		#mutually_exclusive = {
+		#	focus = CAS_expand_the_olympia_port
+		#}
+		
+		#available = {
+			
+		#}
+		completion_reward = {			
+			add_ideas = USA_strat_bombing		
+		}
+
+	}
+
+
+	focus = {
+		id = USA_missiles
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 4
+		prerequisite = {
+			focus = USA_strat_research
+		}
+		x = 2
+		y = 4
+		#mutually_exclusive = {
+		#	focus = CAS_expand_the_olympia_port
+		#}
+		
+		#available = {
+			
+		#}
+		completion_reward = {			
+			add_tech_bonus = {
+			    bonus = 0.75
+			    uses = 3
+			    category = rocketry
+			}	
+		}
+
+	}
+
+	focus = {
+		id = USA_silos
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 4
+		prerequisite = {
+			focus = USA_missiles
+		}
+		x = 2
+		y = 5
+		#mutually_exclusive = {
+		#	focus = CAS_expand_the_olympia_port
+		#}
+		
+		#available = {
+			
+		#}
+		completion_reward = {			
+			add_ideas = USA_rockets	
+		}
+
+	}
+
+	focus = {
+		id = USA_military_reform
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 8
+		prerequisite = {
+			focus = USA_reasses_army
+		}
+		x = 10
+		y = 1
+		mutually_exclusive = {
+			focus = USA_what_over_confidence
+			focus = USA_guerrilla_warfare
+		}
+		
+		available = {
+			OR = {
+				surrender_progress > 0.05
+				has_war_with = NPA
+			}
+		}
+		completion_reward = {
+			swap_ideas = {
+    				remove_idea = USA_military_overconfidence_0
+    				add_idea = USA_military_overconfidence_a1
+			}
+			country_event = {
+    				id = maga.15
+    				days = 0
+    				#random_hours = 3
+			}			
+		}
+
+	}
+
+	focus = {
+		id = USA_doctrinal_reform
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 5
+		prerequisite = {
+			focus = USA_military_reform
+		}
+		x = 10
+		y = 2
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+#		available = {
+
+#		}
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.5
+				uses = 2
+				category = land_doctrine
+			}			
+		}
+
+	}
+
+
+	focus = {
+		id = USA_support_our_troops
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 5
+		prerequisite = {
+			focus = USA_doctrinal_reform
+		}
+		x = 8
+		y = 3
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+#		available = {
+
+#		}
+		completion_reward = {
+			add_tech_bonus = {
+			    bonus = 1.5
+			    uses = 2
+			    category = hospital_tech
+			}	
+			add_tech_bonus = {
+			    bonus = 1
+			    uses = 1
+			    category = support_tech
+			}	
+			swap_ideas = {
+    				remove_idea = USA_military_overconfidence_a1
+    				add_idea = USA_military_overconfidence_a2
+			}	
+		}
+
+	}
+
+
+	focus = {
+		id = USA_promote_caution
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 5
+		prerequisite = {
+			focus = USA_support_our_troops
+		}
+		x = 8
+		y = 4
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+#		available = {
+
+#		}
+		completion_reward = {
+	
+			swap_ideas = {
+    				remove_idea = USA_military_overconfidence_a2
+    				add_idea = USA_military_overconfidence_a3
+			}	
+		}
+
+	}
+
+	focus = {
+		id = USA_expand_enlistment
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 6
+		prerequisite = {
+			focus = USA_doctrinal_reform
+		}
+		x = 10
+		y = 3
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+#		available = {
+
+#		}
+		completion_reward = {
+			add_ideas = USA_expand_enlistment	
+		}
+
+	}
+
+	focus = {
+		id = USA_trench_building_classes
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 5
+		prerequisite = {
+			focus = USA_expand_enlistment
+		}
+		x = 10
+		y = 4
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+#		available = {
+
+#		}
+		completion_reward = {
+			add_ideas = USA_trenches	
+			country_event = {
+    				id = maga.25
+    				days = 1
+    				random_hours = 8
+			}
+		}
+
+	}
+
+	focus = {
+		id = USA_deeper_trenches
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 5
+		prerequisite = {
+			focus = USA_trench_building_classes
+		}
+		prerequisite = {
+			focus = USA_promote_caution
+		}
+		x = 10
+		y = 5
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+#		available = {
+
+#		}
+		completion_reward = {
+	
+			swap_ideas = {
+    				remove_idea = USA_military_overconfidence_a3
+    				add_idea = USA_military_overconfidence_a4
+			}	
+		}
+
+	}
+
+	focus = {
+		id = USA_the_new_army
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 6
+		prerequisite = {
+
+			focus = USA_deeper_trenches
+		}
+		x = 10
+		y = 6
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+#		available = {
+
+#		}
+		completion_reward = {
+	
+			swap_ideas = {
+    				remove_idea = USA_military_overconfidence_a4
+    				add_idea = USA_military_overconfidence_a5
+			}	
+			country_event = {
+    				id = maga.26
+    				days = 0
+    				random_hours = 12
+			}
+		}
+
+	}
+
+	focus = {
+		id = USA_the_king_of_the_battle_field
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 4
+		prerequisite = {
+			focus = USA_doctrinal_reform
+		}
+		x = 12
+		y = 3
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+#		available = {
+
+#		}
+		completion_reward = {
+			add_tech_bonus = {
+			    bonus = 0.5
+			    uses = 4
+			    category = artillery
+			}	
+
+		}
+	}
+
+	focus = {
+		id = USA_prepare_for_their_armour
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 4
+		prerequisite = {
+			focus = USA_the_king_of_the_battle_field
+		}
+		x = 12
+		y = 4
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+#		available = {
+
+#		}
+		completion_reward = {
+			add_tech_bonus = {
+			    bonus = 0.5
+			    uses = 2
+			    category = cat_anti_tank
+			}	
+
+		}
+	}
+
+	focus = {
+		id = USA_prepare_for_their_planes
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 4
+		prerequisite = {
+			focus = USA_prepare_for_their_armour
+		}
+		x = 12
+		y = 5
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+#		available = {
+
+#		}
+		completion_reward = {
+			add_tech_bonus = {
+			    bonus = 0.5
+			    uses = 2
+			    category = cat_anti_air
+			}	
+
+		}
+	}
+
+
+	focus = {
+		id = USA_what_over_confidence#?
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 8
+		prerequisite = {
+			focus = USA_reasses_army
+		}
+		x = 16
+		y = 1
+		mutually_exclusive = {
+			focus = USA_military_reform
+			focus = USA_guerrilla_warfare
+		}
+		
+		#available = {
+		#	OR = {
+
+		#	}
+		#}
+		completion_reward = {
+			swap_ideas = {
+    				remove_idea = USA_military_overconfidence_0
+    				add_idea = USA_military_overconfidence_b1
+			}
+			country_event = {
+    				id = maga.16
+    				days = 0
+    				#random_hours = 3
+			}			
+		}
+
+	}
+
+	focus = {
+		id = USA_focus_on_speed
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 6
+		prerequisite = {
+			focus = USA_what_over_confidence#?
+		}
+		x = 16
+		y = 2
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#	OR = {
+
+		#	}
+		#}
+		completion_reward = {
+			swap_ideas = {
+    				remove_idea = USA_military_overconfidence_b1
+    				add_idea = USA_military_overconfidence_b2
+			}
+			country_event = {
+    				id = maga.27
+    				days = 0
+    				#random_hours = 3
+			}			
+		}
+
+	}
+
+	focus = {
+		id = USA_mechs
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 4
+		prerequisite = {
+			focus = USA_focus_on_speed
+		}
+		x = 14
+		y = 3
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+#		available = {
+
+#		}
+		completion_reward = {
+			add_tech_bonus = {
+			    bonus = 1.2
+			    uses = 1
+			    category = cat_mechanized_equipment
+			}	
+
+		}
+	}
+
+	focus = {
+		id = USA_ifv_focus
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 4
+		prerequisite = {
+			focus = USA_mechs
+		}
+		x = 14
+		y = 4
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+#		available = {
+
+#		}
+		completion_reward = {
+			add_tech_bonus = {
+			    bonus = 0.8
+			    uses = 2
+			    category = IFV
+			}	
+
+		}
+	}
+
+	focus = {
+		id = USA_armour
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 4
+		prerequisite = {
+			focus = USA_ifv_focus
+		}
+		x = 14
+		y = 5
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+#		available = {
+
+#		}
+		completion_reward = {
+			add_tech_bonus = {
+			    bonus = 0.8
+			    uses = 3
+			    category = armor
+			}	
+
+		}
+	}
+
+	focus = {
+		id = USA_elite_army
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 6
+		prerequisite = {
+			focus =  USA_focus_on_speed
+		}
+		x = 16
+		y = 3
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#	OR = {
+
+		#	}
+		#}
+		completion_reward = {
+			swap_ideas = {
+    				remove_idea = USA_military_overconfidence_b2
+    				add_idea = USA_military_overconfidence_b3
+			}
+			
+		}
+
+	}
+
+	focus = {
+		id = USA_focus_on_the_offense
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 6
+		prerequisite = {
+			focus =  USA_elite_army
+		}
+		x = 16
+		y = 5
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#	OR = {
+
+		#	}
+		#}
+		completion_reward = {
+			swap_ideas = {
+    				remove_idea = USA_military_overconfidence_b3
+    				add_idea = USA_military_overconfidence_b4
+			}
+			
+		}
+
+	}
+
+	focus = {
+		id = USA_transport_helis
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 4
+		prerequisite = {
+			focus = USA_focus_on_speed
+		}
+		x = 18
+		y = 3
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+#		available = {
+
+#		}
+		completion_reward = {
+			add_tech_bonus = {
+			    bonus = 1.0
+			    uses = 1
+			    category = helicopters
+			}	
+
+		}
+	}
+
+	focus = {
+		id = USA_behind_frontlines
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 5
+		prerequisite = {
+			focus = USA_focus_on_speed
+		}
+		x = 18
+		y = 4
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+#		available = {
+
+#		}
+		completion_reward = {
+			add_ideas = USA_deep_penetration
+			country_event = {
+    				id = maga.28
+    				days = 0
+    				#random_hours = 6
+			}
+		}
+	}
+
+	focus = {
+		id = USA_air_dominance
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 5
+		prerequisite = {
+			focus = USA_behind_frontlines
+		}
+		x = 18
+		y = 5
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+#		available = {
+
+#		}
+		completion_reward = {
+			add_ideas = USA_air_support
+
+		}
+	}
+
+	focus = {
+		id = USA_the_american_army
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 7
+		prerequisite = {
+			focus =  USA_focus_on_the_offense
+		}
+		prerequisite = {
+			focus =  USA_air_dominance
+		}
+		x = 16
+		y = 6
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#	OR = {
+
+		#	}
+		#}
+		completion_reward = {
+			swap_ideas = {
+    				remove_idea = USA_military_overconfidence_b4
+    				add_idea = USA_military_overconfidence_b5
+			}
+			
+		}
+
+	}
+
+	focus = {
+		id = USA_guerrilla_warfare
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 1
+		prerequisite = {
+			focus = USA_reasses_army
+		}
+		x = 22
+		y = 1
+		mutually_exclusive = {
+			focus = USA_what_over_confidence
+			focus = USA_military_reform
+		}
+		
+		available = {
+			surrender_progress > 0.25
+
+		}
+		completion_reward = {
+			remove_ideas = USA_military_overconfidence_0
+
+			country_event = {
+    				id = maga.17
+    				days = 0
+    				#random_hours = 3
+			}			
+		}
+
+	}
+
+	focus = {
+		id = USA_form_cells
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 8
+		prerequisite = {
+			focus = USA_guerrilla_warfare
+		}
+		x = 22
+		y = 2
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+
+
+		#}
+		completion_reward = {
+			add_ideas = USA_resistance_0	
+			country_event = {
+    				id = maga.29
+    				days = 0
+    				#random_hours = 3
+			}	
+		}
+	}
+
+
+	focus = {
+		id = USA_defend_our_land
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 8
+		prerequisite = {
+			focus = USA_form_cells
+		}
+		x = 20
+		y = 3
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+
+
+		#}
+		completion_reward = {
+			add_ideas = USA_never_surrender_0	
+		}
+	}
+
+	focus = {
+		id = USA_mobilise_the_people
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 8
+		prerequisite = {
+			focus = USA_defend_our_land
+		}
+		x = 20
+		y = 5
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+
+
+		#}
+		completion_reward = {
+			swap_ideas = {
+    				remove_idea = USA_never_surrender_0
+    				add_idea = USA_never_surrender_1
+			}
+		}
+	}
+
+	focus = {
+		id = USA_to_the_last_man
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 7
+		prerequisite = {
+			focus = USA_mobilise_the_people
+		}
+		x = 20
+		y = 7
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+
+
+		#}
+		completion_reward = {
+			swap_ideas = {
+    				remove_idea = USA_never_surrender_1
+    				add_idea = USA_never_surrender_2
+			}
+		}
+	}
+
+	focus = {
+		id = USA_expand_the_cells
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 7
+		prerequisite = {
+			focus = USA_form_cells
+		}
+		x = 22
+		y = 4
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+
+
+		#}
+		completion_reward = {
+			swap_ideas = {
+    				remove_idea = USA_resistance_0
+    				add_idea = USA_resistance_1
+			}
+		}
+	}
+
+	focus = {
+		id = USA_arm_the_cells
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 7
+		prerequisite = {
+			focus = USA_expand_the_cells
+		}
+		x = 22
+		y = 6
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+
+
+		#}
+		completion_reward = {
+			add_equipment_to_stockpile = {
+   				type = infantry_equipment
+    				amount = -5000
+    				producer = ROOT
+			}
+			swap_ideas = {
+    				remove_idea = USA_resistance_1
+    				add_idea = USA_resistance_2
+			}
+			country_event = {
+    				id = maga.30
+    				days = 2
+    				random_hours = 18
+			}
+		}
+	}
+
+	focus = {
+		id = USA_guns_for_our_people
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 4
+		prerequisite = {
+			focus = USA_form_cells
+		}
+		x = 24
+		y = 3
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+#		available = {
+
+#		}
+		completion_reward = {
+			add_tech_bonus = {
+			    bonus = 1.2
+			    uses = 1
+			    category = infantry_weapons
+			}	
+
+		}
+	}
+
+	focus = {
+		id = USA_simplify_guns
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 4
+		prerequisite = {
+			focus = USA_guns_for_our_people
+		}
+		x = 24
+		y = 5
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+#		available = {
+
+#		}
+		completion_reward = {
+			add_ideas = USA_gun_mass_production
+
+		}
+	}
+
+
+
+	focus = {
+		id = USA_underground_workshops
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 4
+		prerequisite = {
+			focus = USA_simplify_guns
+		}
+		x = 24
+		y = 7
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+#		available = {
+
+#		}
+		completion_reward = {
+			add_offsite_building = { type = arms_factory level = 3 }
+		}
+	}
+
+	focus = {
+		id = USA_fund_guerrillas
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 8
+		prerequisite = {
+			focus = USA_underground_workshops
+		}
+		prerequisite = {
+			focus = USA_arm_the_cells
+		}
+		prerequisite = {
+			focus = USA_to_the_last_man
+		}
+		x = 22
+		y = 8
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+#		available = {
+
+#		}
+		completion_reward = {
+			unlock_decision_tooltip = USA_increase_resistance
+		}
+	}
+
+	focus = {
+		id = USA_rise_up
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 9
+		prerequisite = {
+			focus = USA_fund_guerrillas
+		}
+		prerequisite = {
+			focus = USA_arm_the_cells
+		}
+		prerequisite = {
+			focus = USA_to_the_last_man
+		}
+		x = 22
+		y = 9
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+#		available = {
+
+#		}
+		completion_reward = {
+			unlock_decision_tooltip = USA_uprising
+			division_template = {
+    				name = "guerrillas"
+    				is_locked = yes
+    				division_names_group = USA_INF_01
+    				regiments = {
+        				infantry = { x = 0 y = 0 }
+        				infantry = { x = 0 y = 1 }
+        				infantry = { x = 0 y = 2 }
+        				infantry = { x = 0 y = 3 }
+					infantry = { x = 0 y = 4 }
+    				}
+			}			
+		}
+	}
+
+
+	focus = {
+		id = USA_make_america_great_again
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 3
+		#prerequisite = {
+		#	focus = 
+		#}
+		x = 51
+		y = 0
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		available = {
+			NOT = {
+				has_war_with = NPA
+			}
+		}
+		completion_reward = {
+			add_war_support = 0.1
+			add_political_power = 50
+			country_event = {
+    				id = maga.31
+    				days = 2
+    				random_hours = 10
+			}
+			hidden_effect = { 
+				country_event = {
+    					id = maga.93
+    					days = 36
+    					random_hours = 45
+				}
+				country_event = {
+    					id = maga.94
+    					days = 120
+    					random_hours = 50
+				}
+			}			
+		}
+	}
+
+	focus = {
+		id = USA_choose_a_vp
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 3
+		prerequisite = {
+			focus = USA_make_america_great_again
+		}
+		x = 40
+		y = 1
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+			
+		#}
+		completion_reward = {
+			add_stability = 0.1
+			country_event = {
+    				id = maga.32
+    				days = 5
+    				random_hours = 24
+			}
+			country_event = {
+    				id = maga.7
+    				days = 0
+    				random_hours = 6
+			}
+		}
+	}
+
+	focus = {
+		id = USA_rino_path
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 3
+		prerequisite = {
+			focus = USA_choose_a_vp
+		}
+		x = 32
+		y = 2
+		mutually_exclusive = {
+			focus = USA_MAGA_path
+			focus = USA_PB_path
+		}
+		
+		available = {
+			has_country_flag = pardoned_npa
+		}
+		completion_reward = {
+			add_ideas = USA_ron_desantis_advisor
+			country_event = {
+    				id = maga.35
+    				days = 5
+    				random_hours = 24
+			}
+			country_event = {
+    				id = maga.44
+    				days = 15
+    				random_hours = 20
+			}			
+		}
+	}
+
+	focus = {
+		id = USA_private_investments
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 7
+		prerequisite = {
+			focus = USA_rino_path
+		}
+		x = 30
+		y = 3
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#
+		#}
+		completion_reward = {
+			
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2			
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 2
+    					instant_build = yes
+				}
+			}			
+		}
+	}
+
+	focus = {
+		id = USA_negotiate_with_corpos
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 6
+		prerequisite = {
+			focus = USA_private_investments
+		}
+		x = 30
+		y = 4
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#
+		#}
+		completion_reward = {
+			add_ideas = USA_bussiness_support
+			country_event = {
+    				id = maga.36
+    				days = 3
+    				random_hours = 6
+			}
+			
+		}
+	}
+
+	focus = {
+		id = USA_integrate_ohio
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 6
+		prerequisite = {
+			focus = USA_negotiate_with_corpos
+		}
+		x = 30
+		y = 5
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		available = {
+			AFS = {
+				exists = no
+			}
+			owns_state = 399
+		}
+		completion_reward = {
+			AFS = {
+				every_core_state = {
+					add_core_of = USA
+				}
+			}
+			country_event = {
+    				id = maga.37
+    				days = 3
+    				random_hours = 6
+			}
+			
+		}
+	}
+
+	focus = {
+		id = USA_free_trade
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 4
+		prerequisite = {
+			focus = USA_rino_path
+		}
+		x = 32
+		y = 3
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#
+		#}
+		completion_reward = {
+			add_ideas = export_focus
+			country_event = {
+    				id = maga.38
+    				days = 5
+    				random_hours = 6
+			}
+			
+		}
+	}
+
+	focus = {
+		id = USA_fruits_of_trade
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 6
+		prerequisite = {
+			focus = USA_free_trade
+		}
+		x = 32
+		y = 4
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#
+		#}
+		completion_reward = {
+			add_offsite_building = { type = industrial_complex level = 3 }
+		}
+	}
+
+	focus = {
+		id = USA_align_republicans
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 5
+		prerequisite = {
+			focus = USA_fruits_of_trade
+		}
+		x = 32
+		y = 6
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#
+		#}
+		completion_reward = {
+			unlock_decision_tooltip = USA_rep_investments
+			country_event = {
+    				id = maga.39
+    				days = 6
+    				random_hours = 12
+			}
+		}
+	}
+
+	focus = {
+		id = USA_new_trade_routes
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 8
+		prerequisite = {
+			focus =  USA_align_republicans
+		}
+		x = 32
+		y = 8
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#
+		#}
+		completion_reward = {
+			add_ideas = USA_export_policy
+			country_event = {
+    				id = maga.41
+
+    				days = 6
+    				random_hours = 12
+			}
+			add_offsite_building = { type = industrial_complex level = 2 }
+		}
+	}
+
+	focus = {
+		id = USA_deradicalisation
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 7
+		prerequisite = {
+			focus =  USA_align_republicans
+		}
+		x = 30
+		y = 7
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#
+		#}
+		completion_reward = {
+			add_ideas = USA_deradicalisation
+			country_event = {
+    				id = maga.42
+    				days = 6
+    				random_hours = 12
+			}
+		}
+	}
+
+	focus = {
+		id = USA_expell_deradicals
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 5
+		prerequisite = {
+			focus =  USA_deradicalisation
+		}
+		x = 30
+		y = 9
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#
+		#}
+		completion_reward = {
+			country_event = {
+    				id = maga.43
+    				days = 12
+    				random_hours = 55
+			}
+			add_stability = 0.1
+			add_political_power = 100
+			if = {
+				limit = {
+					autocratic > 0.01
+				}
+				custom_effect_tooltip = USA_aut_uprising
+			}
+		}
+	}
+
+
+	focus = {
+		id = USA_research_group
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 8
+		prerequisite = {
+			focus = USA_rino_path
+			focus = USA_MAGA_path
+		}
+		x = 36
+		y = 3
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#
+		#}
+		completion_reward = {
+			every_country = {
+				limit = {
+					is_in_faction_with = USA
+				}
+				add_to_tech_sharing_group = republican_research
+				country_event = {
+    					id = maga.47
+    					days = 3
+    					random_hours = 30
+				}
+			}
+			country_event = {
+    				id = maga.48
+    				days = 0
+    				#random_hours = 6
+			}
+			
+		}
+	}
+
+	focus = {
+		id = USA_mil_industrial_complex
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 8
+		prerequisite = {
+			focus = USA_research_group
+		}
+		x = 34
+		y = 4
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#
+		#}
+		completion_reward = {	
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 3			
+				add_building_construction = {
+    					type = arms_factory
+    					level = 3
+    					instant_build = yes
+				}
+			}		
+			
+		}
+	}
+
+	focus = {
+		id = USA_embargo_FRA
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 2
+		prerequisite = {
+			focus = USA_mil_industrial_complex
+		}
+		x = 34
+		y = 6
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#
+		#}
+		completion_reward = {			
+			country_event = {
+    				id = maga.55
+    				days = 8
+    				#random_hours = 6
+			}
+			send_embargo = FRA			
+		}
+	}
+
+	focus = {
+		id = USA_bring_new
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 2
+		prerequisite = {
+			focus = USA_embargo_FRA	
+		}
+		prerequisite = {
+			focus = USA_align_republicans
+		}
+		x = 34
+		y = 7
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		available = {
+			NEW = {
+				has_capitulated = yes
+			}
+		}
+		completion_reward = {			
+			country_event = {
+    				id = maga.56
+    				days = 2
+    				#random_hours = 6
+			}
+			NEW = {
+				become_exiled_in = { 
+					target = USA
+					legitimacy = 25
+				}
+			}		
+		}
+	}
+
+	focus = {
+		id = USA_expand_minning
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 6
+		prerequisite = {
+			focus = USA_research_group
+		}
+		x = 38
+		y = 4
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#
+		#}
+		completion_reward = {			
+			564 = {
+				add_resource = {
+    					type = tungsten
+    					amount = 12
+				}
+			}			
+		}
+	}
+
+	focus = {
+		id = USA_expand_minning2
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 6
+		prerequisite = {
+			focus = USA_research_group
+		}
+		x = 38
+		y = 6
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#
+		#}
+		completion_reward = {			
+			421 = {
+				add_resource = {
+    					type = aluminium
+    					amount = 14
+				}
+			}			
+		}
+	}
+
+	focus = {
+		id = USA_NEW_forts
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 7
+		prerequisite = {
+			focus = USA_research_group
+		}
+		x = 36
+		y = 5
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		bypass = {
+			NOT = {NEW = {
+				is_in_faction_with = USA
+			}}
+		}
+		#available = {
+		#
+		#}
+		completion_reward = {	
+			country_event = {
+    				id = maga.49
+    				days = 5
+    				random_hours = 6
+			}		
+			NEW = {
+				country_event = {
+    					id = maga.50
+    					days = 0
+    					#random_hours = 6
+				}
+				every_controlled_state = {
+					add_building_construction = {
+    						type = bunker
+    						level = 3
+    						instant_build = yes
+    						province = {
+        						all_provinces = yes
+							limit_to_border_country = FRA
+					    	}
+					}
+				}
+			}		
+		}
+	}
+
+	focus = {
+		id = USA_loyalist_economic_coperation
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 9
+		prerequisite = {
+			focus = USA_NEW_forts
+		}
+		x = 36
+		y = 7
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#
+		#}
+		completion_reward = {
+			every_country = {
+				limit = {
+					is_in_faction_with = USA
+				}
+				country_event = {
+    					id = maga.51
+    					days = 8
+    					random_hours = 30
+				}
+			}
+
+			
+		}
+	}
+
+	focus = {
+		id = USA_MAGA_path
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 3
+		prerequisite = {
+			focus = USA_choose_a_vp
+		}
+		x = 40
+		y = 2
+		mutually_exclusive = {
+			focus = USA_rino_path
+			focus = USA_PB_path
+		}
+		
+		#available = {
+			
+		#}
+		completion_reward = {
+			add_ideas = USA_ben_carson_advisor
+			country_event = {
+    				id = maga.33
+    				days = 5
+    				random_hours = 24
+			}
+			
+		}
+	}
+
+	focus = {
+		id = USA_midwest_industrialisation
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 7
+		prerequisite = {
+			focus = USA_MAGA_path
+		}
+		x = 40
+		y = 3
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#
+		#}
+		completion_reward = {	
+			add_ideas = USA_industrialisation_policy_0		
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1		
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}	
+			country_event = {
+    				id = maga.52
+    				days = 7
+    				random_hours = 24
+			}		
+		}
+	}
+
+	focus = {
+		id = USA_midwest_industrialisation2
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 7
+		prerequisite = {
+			focus = USA_midwest_industrialisation
+		}
+		x = 40
+		y = 5
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#
+		#}
+		completion_reward = {		
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 4		
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 4
+    					instant_build = yes
+				}
+			}	
+					
+		}
+	}
+
+	focus = {
+		id = USA_the_arms_industry
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 4
+		prerequisite = {
+			focus = USA_midwest_industrialisation2
+		}
+		x = 40
+		y = 6
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#
+		#}
+		completion_reward = {		
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2		
+				add_building_construction = {
+    					type = arms_factory
+    					level = 2
+    					instant_build = yes
+				}
+			}	
+			country_event = {
+    				id = maga.52
+    				days = 7
+    				random_hours = 24
+			}
+					
+		}
+	}
+
+	focus = {
+		id = USA_industrial_subsedies
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 7
+		prerequisite = {
+			focus = USA_midwest_industrialisation2
+		}
+		x = 42
+		y = 6
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#
+		#}
+		completion_reward = {		
+			swap_ideas = {
+    				remove_idea = USA_industrialisation_policy_0
+    				add_idea = USA_industrialisation_policy_1
+			}	
+			country_event = {
+    				id = maga.54
+    				days = 7
+    				random_hours = 24
+			}
+					
+		}
+	}
+
+	focus = {
+		id = USA_celebrate_our_achivement
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 2
+		prerequisite = {
+			focus = USA_industrial_subsedies
+		}
+		prerequisite = {
+			focus = USA_the_arms_industry
+		}
+		prerequisite = {
+			focus = USA_expand_minning2
+		}
+		x = 40
+		y = 7
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#
+		#}
+		completion_reward = {		
+
+			country_event = {
+    				id = maga.57
+    				days = 3
+    				random_hours = 24
+			}
+					
+		}
+	}
+
+	focus = {
+		id = USA_continue_the_plan
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 2
+		prerequisite = {
+			focus = USA_celebrate_our_achivement
+		}
+
+		x = 39
+		y = 8
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#
+		#}
+		completion_reward = {		
+
+			country_event = {
+    				id = maga.58
+    				days = 0
+    				random_hours = 24
+			}
+					
+		}
+	}
+
+	focus = {
+		id = USA_the_critic
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 2
+		prerequisite = {
+			focus = USA_celebrate_our_achivement
+		}
+
+		x = 41
+		y = 8
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#
+		#}
+		completion_reward = {		
+
+			country_event = {
+    				id = maga.64
+    				days = 0
+    				random_hours = 24
+			}
+					
+		}
+	}
+
+	focus = {
+		id = USA_the_counter_proposal
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 1
+		prerequisite = {
+			focus = USA_the_critic
+		}
+
+		x = 43
+		y = 9
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#
+		#}
+		completion_reward = {		
+
+			country_event = {
+    				id = maga.65
+    				days = 0
+    				random_hours = 24
+			}
+					
+		}
+	}
+
+	focus = {
+		id = USA_his_project
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 6
+		prerequisite = {
+			focus = USA_the_counter_proposal
+		}
+
+		x = 43
+		y = 11
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#
+		#}
+		completion_reward = {		
+
+			modify_country_flag = {
+    				flag = TrumpJr_influence
+    				value = 1
+			}
+			custom_effect_tooltip = TrumpJrUp			
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2		
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 2
+    					instant_build = yes
+				}
+				add_building_construction = {
+    					type = infrastructure
+    					level = 2
+    					instant_build = yes
+				}
+			}
+					
+		}
+	}
+
+
+	focus = {
+		id = USA_another_disputed_project
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 7
+		prerequisite = {
+			focus = USA_his_project
+		}
+
+		x = 43
+		y = 13
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#
+		#}
+		completion_reward = {		
+
+			country_event = {
+    				id = maga.66
+    				days = 0
+    				random_hours = 24
+			}
+					
+		}
+	}
+
+	focus = {
+		id = USA_infrastructure_plan
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 1
+		prerequisite = {
+			focus = USA_continue_the_plan
+		}
+
+		x = 37
+		y = 9
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#
+		#}
+		completion_reward = {		
+
+			country_event = {
+    				id = maga.59
+    				days = 0
+    				random_hours = 24
+			}
+					
+		}
+	}
+
+	focus = {
+		id = USA_drill_baby_drill
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 5
+		prerequisite = {
+			focus = USA_continue_the_plan
+		}
+
+		x = 39
+		y = 9
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#
+		#}
+		completion_reward = {		
+			add_resource = {
+    				type = oil
+    				amount = 32
+    				state = 431
+			}
+			country_event = {
+    				id = maga.61
+    				days = 7
+    				random_hours = 24
+			}
+					
+		}
+	}
+
+	focus = {
+		id = USA_fuel_storage
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 4
+		prerequisite = {
+			focus = USA_drill_baby_drill
+		}
+
+		x = 39
+		y = 10
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#
+		#}
+		completion_reward = {
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 3		
+				add_building_construction = {
+    					type = fuel_silo
+    					level = 3
+    					instant_build = yes
+				}
+			}
+
+				
+		}
+	}
+
+	focus = {
+		id = USA_reivest_the_profits
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 6
+		prerequisite = {
+			focus = USA_fuel_storage
+		}
+
+		x = 39
+		y = 12
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#
+		#}
+		completion_reward = {
+			modify_country_flag = {
+    				flag = TrumpJr_influence
+    				value = -1
+			}
+			custom_effect_tooltip = TrumpJrDown			
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2		
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 2
+    					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2		
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 2
+    					instant_build = yes
+				}
+			}
+			country_event = {
+    				id = maga.62
+    				days = 10
+    				random_hours = 30
+			}
+				
+		}
+	}
+
+	focus = {
+		id = USA_infrastructure_carson
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 4
+		prerequisite = {
+			focus = USA_infrastructure_plan
+		}
+
+		x = 37
+		y = 11
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#
+		#}
+		completion_reward = {		
+			custom_effect_tooltip = TrumpJrDown
+			modify_country_flag = {
+    				flag = TrumpJr_influence
+    				value = -1
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1		
+				add_building_construction = {
+    					type = infrastructure
+    					level = 2
+    					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1		
+				add_building_construction = {
+    					type = infrastructure
+    					level = 2
+    					instant_build = yes
+				}
+			}
+				
+		}
+	}
+
+
+	focus = {
+		id = USA_the_request
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 1
+		prerequisite = {
+			focus = USA_infrastructure_carson
+		}
+
+		x = 37
+		y = 13
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#
+		#}
+		completion_reward = {		
+
+			country_event = {
+    				id = maga.60
+    				days = 0
+    				random_hours = 24
+			}
+					
+		}
+	}
+
+	focus = {
+		id = USA_the_plot
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 3
+		prerequisite = {
+			focus = USA_the_critic
+		}
+
+		x = 41
+		y = 9
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#
+		#}
+		completion_reward = {		
+
+			country_event = {
+    				id = maga.67
+    				days = 0
+    				random_hours = 24
+			}
+					
+		}
+	}
+
+	focus = {
+		id = USA_the_scandal
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 3
+		prerequisite = {
+			focus = USA_the_plot
+		}
+
+		x = 41
+		y = 10
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#
+		#}
+		completion_reward = {		
+
+			country_event = {
+    				id = maga.68
+    				days = 0
+    				random_hours = 24
+			}
+					
+		}
+	}
+
+	focus = {
+		id = USA_the_after_math
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 1
+		prerequisite = {
+			focus = USA_the_scandal
+		}
+
+		x = 41
+		y = 12
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#
+		#}
+		completion_reward = {		
+
+			country_event = {
+    				id = maga.69
+    				days = 0
+    				random_hours = 24
+			}
+					
+		}
+	}
+
+	focus = {
+		id = USA_prevent_another_fuck_up
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 3
+		prerequisite = {
+			focus = USA_reivest_the_profits
+		}
+
+		x = 39
+		y = 14
+		mutually_exclusive = {
+			focus = USA_a_new_VP
+		}
+		
+		available = {
+		has_country_flag = {
+    				flag = TrumpJr_influence
+    				value < 3
+			}
+		}
+		completion_reward = {		
+
+			country_event = {
+    				id = maga.63
+    				days = 8
+    				random_hours = 24
+			}
+					
+		}
+	}
+
+	focus = {
+		id = USA_increase_oversight
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 6
+		prerequisite = {
+			focus = USA_prevent_another_fuck_up
+		}
+
+		x = 39
+		y = 15
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {	
+	
+		#}
+		completion_reward = {		
+			add_trait = {
+     				character = USA_donald_trump
+     				ideology = trumpist
+     				trait = controling_figure_0
+			}
+			country_event = {
+    				id = maga.71
+    				days = 8
+    				random_hours = 24
+			}
+					
+		}
+	}
+
+
+	focus = {
+		id = USA_Continue_the_plan
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 7
+		prerequisite = {
+			focus = USA_increase_oversight
+		}
+
+		x = 37
+		y = 17
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {	
+	
+		#}
+		completion_reward = {		
+			add_tech_bonus = {
+			    bonus = 1
+			    uses = 2
+			    category = industry
+			}			
+			country_event = {
+    				id = maga.72
+    				days = 8
+    				random_hours = 24
+			}
+					
+		}
+	}
+
+	focus = {
+		id = USA_invest_in_electronics
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 5
+		prerequisite = {
+			focus = USA_Continue_the_plan
+		}
+
+		x = 37
+		y = 19
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {	
+	
+		#}
+		completion_reward = {		
+			add_tech_bonus = {
+			    bonus = 1.2
+			    uses = 1
+			    category = electronics
+			}			
+			
+					
+		}
+	}
+
+	focus = {
+		id = USA_fire_unloyal_party_members
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 6
+		prerequisite = {
+			focus = USA_increase_oversight
+		}
+
+		x = 39
+		y = 16
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {	
+	
+		#}
+		completion_reward = {		
+			swap_ruler_traits = { remove = controling_figure_0 add = controling_figure_1 }
+			country_event = {
+    				id = maga.73
+    				days = 8
+    				random_hours = 24
+			}
+					
+		}
+	}
+
+	focus = {
+		id = USA_sideline_rinos
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 7
+		prerequisite = {
+			focus = USA_fire_unloyal_party_members
+		}
+
+		x = 39
+		y = 18
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {	
+	
+		#}
+		completion_reward = {		
+			add_political_power = 100
+			country_event = {
+    				id = maga.74
+    				days = 0
+    				random_hours = 24
+			}
+					
+		}
+	}
+
+	focus = {
+		id = USA_Patriots_in_control
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 4
+		prerequisite = {
+			focus = USA_sideline_rinos
+		}
+
+		x = 39
+		y = 20
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {	
+	
+		#}
+		completion_reward = {		
+			add_popularity = {
+    				ideology = republican
+    				popularity = 0.1
+			}
+			add_popularity = {
+    				ideology = autocratic
+    				popularity = 0.1
+			}
+			add_political_power = 60
+			country_event = {
+    				id = maga.75
+    				days = 8
+    				random_hours = 24
+			}
+					
+		}
+	}
+
+	focus = {
+		id = USA_a_new_VP
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 3
+		prerequisite = {
+			focus = USA_the_after_math
+		}
+
+		x = 41
+		y = 14
+		mutually_exclusive = {
+			focus = USA_prevent_another_fuck_up
+		}
+		
+		available = {
+		has_country_flag = {
+    				flag = TrumpJr_influence
+    				value > 2
+			}
+		}
+		completion_reward = {		
+			
+    				remove_ideas = USA_ben_carson_advisor
+    				add_ideas = USA_don_jr_advisor
+			
+			country_event = {
+    				id = maga.70
+    				days = 8
+    				random_hours = 24
+			}
+					
+		}
+	}
+
+	focus = {
+		id = USA_empower_the_trump_family
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 4
+		prerequisite = {
+			focus = USA_a_new_VP
+		}
+
+		x = 41
+		y = 15
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {	
+	
+		#}
+		completion_reward = {		
+
+			country_event = {
+    				id = maga.76
+    				days = 0
+    				random_hours = 24
+			}
+					
+		}
+	}
+
+	focus = {
+		id = USA_trump_jr_and_his_projects
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 8
+		prerequisite = {
+			focus = USA_empower_the_trump_family
+		}
+
+		x = 43
+		y = 17
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {	
+	
+		#}
+		completion_reward = {		
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1	
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			country_event = {
+    				id = maga.77
+    				days = 10
+    				random_hours = 24
+			}
+			add_political_power = 30		
+		}
+	}
+
+	focus = {
+		id = USA_family_and_goberment
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 6
+		prerequisite = {
+			focus = USA_empower_the_trump_family
+		}
+
+		x = 41
+		y = 16
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {	
+	
+		#}
+		completion_reward = {		
+			
+			add_trait = {
+     				character = USA_donald_trump
+     				ideology = trumpist
+     				trait = authoritarian_figure
+			}	
+					
+		}
+	}
+
+	focus = {
+		id = USA_cult_of_personality
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 7
+		prerequisite = {
+			focus = USA_family_and_goberment
+		}
+
+		x = 41
+		y = 18
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {	
+	
+		#}
+		completion_reward = {		
+
+			country_event = {
+    				id = maga.78
+    				days = 5
+    				random_hours = 24
+			}			
+			
+			add_trait = {
+     				character = USA_donald_trump
+     				ideology = trumpist
+     				trait = USA_cult_of_personality
+			}	
+					
+		}
+	}
+
+	focus = {
+		id = USA_the_true_struggle
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 1
+		prerequisite = {
+			focus = USA_cult_of_personality
+		}
+
+		x = 41
+		y = 20
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {	
+	
+		#}
+		completion_reward = {		
+
+			set_faction_name = Trumpist	
+					
+		}
+	}
+
+	focus = {
+		id = USA_the_trump_legion
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 6
+		prerequisite = {
+			focus = USA_cult_of_personality
+		}
+
+		x = 43
+		y = 19
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {	
+	
+		#}
+		completion_reward = {		
+			add_manpower = 50000
+			country_event = {
+    				id = maga.79
+    				days = 5
+    				random_hours = 24
+			}	
+					
+		}
+	}
+	focus = {
+		id = USA_PB_path
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 3
+		prerequisite = {
+			focus = USA_choose_a_vp
+		}
+		x = 48
+		y = 2
+		mutually_exclusive = {
+			focus = USA_rino_path
+			focus = USA_MAGA_path
+		}
+		
+		#available = {
+			
+		#}
+		completion_reward = {
+			add_ideas = USA_gavin_mcinnes_advisor
+			country_event = {
+    				id = maga.34
+    				days = 5
+    				random_hours = 24
+			}
+			country_event = {
+    				id = maga.1
+    				days = 10
+    				random_hours = 30
+			}			
+		}
+	}
+
+	focus = {
+		id = USA_railroads
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 7
+		prerequisite = {
+			focus = USA_PB_path
+			focus = USA_MAGA_path
+		}
+		x = 44
+		y = 3
+
+		
+		#available = {
+			
+		#}
+		completion_reward = {
+			add_ideas = USA_infrastructure_policy_0
+						
+		}
+	}
+
+	focus = {
+		id = USA_mix_development
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 7
+		prerequisite = {
+			focus = USA_railroads
+		}
+		x = 44
+		y = 5
+
+		
+		#available = {
+			
+		#}
+		completion_reward = {		
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2		
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+				add_building_construction = {
+    					type = arms_factory
+    					level = 1
+    					instant_build = yes
+				}
+			}							
+		}
+	}
+
+
+	focus = {
+		id = USA_build_up_arms
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 8
+		prerequisite = {
+			focus = USA_mix_development
+		}
+		x = 44
+		y = 7
+
+		
+		#available = {
+			
+		#}
+		completion_reward = {
+			swap_ideas = {
+    				remove_idea = USA_infrastructure_policy_0
+			    add_idea = USA_infrastructure_policy_1
+			}
+
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = arms_factory
+    					level = 1
+    					instant_build = yes
+				}
+			}							
+		}
+	}
+
+	focus = {
+		id = USA_war_policy
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 7
+		prerequisite = {
+			focus = USA_PB_path
+		}
+		x = 48
+		y = 3
+
+		
+		#available = {
+			
+		#}
+		completion_reward = {
+			add_ideas = war_economy
+			country_event = {
+    				id = maga.80
+    				days = 4
+    				random_hours = 24
+			}						
+		}
+	}
+	focus = {
+		id = USA_closed_economy
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 4
+		prerequisite = {
+			focus = USA_war_policy
+		}
+		x = 46
+		y = 4
+
+		
+		#available = {
+			
+		#}
+		completion_reward = {
+			add_ideas = closed_economy						
+		}
+	}
+
+	focus = {
+		id = USA_underground_factories
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 4
+		prerequisite = {
+			focus = USA_closed_economy
+		}
+		x = 46
+		y = 6
+
+		
+		#available = {
+			
+		#}
+		completion_reward = {
+			add_offsite_building = { type = arms_factory level = 4 }
+			country_event = {
+    				id = maga.81
+    				days = 10
+    				random_hours = 36
+			}						
+		}
+	}
+
+	focus = {
+		id = USA_bomb_proof_factories
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 4
+		prerequisite = {
+			focus = USA_underground_factories
+		}
+		x = 46
+		y = 8
+
+		
+		#available = {
+			
+		#}
+		completion_reward = {
+			add_ideas = USA_bomb_proved				
+		}
+	}
+
+	focus = {
+		id = USA_mil_readiness1
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 4
+		prerequisite = {
+			focus = USA_war_policy
+		}
+		x = 50
+		y = 4
+
+		
+		#available = {
+			
+		#}
+		completion_reward = {
+			add_ideas = USA_military_readiness_0
+			country_event = {
+    				id = maga.82
+    				days = 5
+    				random_hours = 20
+			}						
+		}
+	}
+
+	focus = {
+		id = USA_mil_readiness2
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 4
+		prerequisite = {
+			focus = USA_mil_readiness1
+		}
+		x = 50
+		y = 6
+
+		
+		#available = {
+			
+		#}
+		completion_reward = {
+
+			swap_ideas = {
+    				remove_idea = USA_military_readiness_0
+			    add_idea = USA_military_readiness_1
+			}									
+		}
+	}
+
+	focus = {
+		id = USA_mil_readiness3
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 7
+		prerequisite = {
+			focus = USA_mil_readiness2
+		}
+		x = 50
+		y = 8
+
+		
+		#available = {
+			
+		#}
+		completion_reward = {
+
+			swap_ideas = {
+    				remove_idea = USA_military_readiness_1
+			    add_idea = USA_military_readiness_2
+			}									
+		}
+	}
+
+	focus = {
+		id = USA_the_PB_paramilitary
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 8
+		prerequisite = {
+			focus = USA_war_policy
+		}
+		x = 48
+		y = 5
+
+		
+		#available = {
+			
+		#}
+		completion_reward = {
+			add_popularity = {
+    				ideology = autocratic
+    				popularity = 0.05
+			}			
+			division_template = {
+    				name = "PB paramilitary"
+    				is_locked = yes
+    				division_names_group = USA_INF_01
+    				regiments = {
+        				infantry = { x = 0 y = 0 }
+        				infantry = { x = 0 y = 1 }
+        				infantry = { x = 0 y = 2 }
+        				infantry = { x = 0 y = 3 }
+					infantry = { x = 0 y = 4 }
+    				}
+			}
+			capital_scope = {
+				create_unit = {					division = "name = \"The first legions'\" division_template = \"PB paramilitary\" start_experience_factor = 0.2" 
+					owner = USA
+					count = 5
+				}	
+			}
+			country_event = {
+    				id = maga.83
+    				days = 5
+    				random_hours = 20
+			}		
+		}
+	}
+
+	focus = {
+		id = USA_iron_fist
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 6
+		prerequisite = {
+			focus = USA_the_PB_paramilitary
+		}
+		x = 48
+		y = 7
+
+		
+		#available = {
+			
+		#}
+		completion_reward = {
+			add_popularity = {
+    				ideology = autocratic
+    				popularity = 0.1
+			}			
+			
+			country_event = {
+    				id = maga.84
+    				days = 8
+    				random_hours = 20
+			}	
+			add_trait = {
+     				character = USA_donald_trump
+     				ideology = trumpist
+     				trait = leader_of_thugs
+			}	
+		}
+	}
+
+	focus = {
+		id = USA_Expand_PB_influence
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 8
+		prerequisite = {
+			focus = USA_iron_fist
+		}
+		x = 48
+		y = 9
+
+		
+		#available = {
+			
+		#}
+		completion_reward = {
+			country_event = {
+    				id = maga.86
+    				days = 8
+    				random_hours = 20
+			}	
+
+		}
+	}
+
+	focus = {
+		id = USA_Expand_PB_militias
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 8
+		prerequisite = {
+			focus = USA_Expand_PB_influence
+		}
+		x = 49
+		y = 10
+
+		
+		#available = {
+			
+		#}
+		completion_reward = {
+			unlock_decision_tooltip = USA_Expand_PB_militias
+			add_power_balance_value = {
+    				id = PB_trump_bop
+    				value = 0.05
+    				tooltip_side = PB_control
+			}
+			country_event = {
+    				id = maga.87
+    				days = 8
+    				random_hours = 20
+			}	
+			
+		}
+	}
+
+
+	focus = {
+		id = USA_train_PB
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 8
+		prerequisite = {
+			focus = USA_Expand_PB_militias
+		}
+		x = 49
+		y = 12
+
+		
+		#available = {
+			
+		#}
+		completion_reward = {
+			unlock_decision_tooltip = USA_PB_expand_units
+			add_power_balance_value = {
+    				id = PB_trump_bop
+    				value = 0.05
+    				tooltip_side = PB_control
+			}
+			set_country_flag = {
+    				flag = USA_unit_cap
+    				value = 1
+			}			
+		}
+	}
+
+
+	focus = {
+		id = USA_heavy_weapons_PB
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 8
+		prerequisite = {
+			focus = USA_train_PB
+		}
+		x = 49
+		y = 14
+
+		
+		#available = {
+			
+		#}
+		completion_reward = {
+			country_event = {
+    				id = maga.89
+    				days = 12
+    				random_hours = 35
+			}
+			unlock_decision_tooltip = USA_PB_heavy_units
+			add_power_balance_value = {
+    				id = PB_trump_bop
+    				value = 0.15
+    				tooltip_side = PB_control
+			}
+			set_country_flag = {
+    				flag = USA_art_unit_cap
+    				value = 1
+			}	
+			add_units_to_division_template = {
+    				template_name = "PB paramilitary"
+    				regiments = {
+        				infantry = 1
+    				}
+				support = {
+        				artillery = 0
+    				}
+			}		
+		}
+	}
+
+
+	focus = {
+		id = USA_limit_PB
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 6
+		prerequisite = {
+			focus = USA_Expand_PB_influence
+		}
+		x = 47
+		y = 10
+
+		
+		#available = {
+			
+		#}
+		completion_reward = {
+			add_power_balance_value = {
+    				id = PB_trump_bop
+    				value = -0.2
+    				tooltip_side = under_control
+			}
+			country_event = {
+    				id = maga.90
+    				days = 8
+    				random_hours = 20
+			}	
+			
+		}
+	}
+
+	focus = {
+		id = USA_retake_control_from_PB
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 6
+		prerequisite = {
+			focus = USA_limit_PB
+		}
+		x = 47
+		y = 12
+
+		
+		#available = {
+			
+		#}
+		completion_reward = {
+			unlock_decision_tooltip = USA_PB_limits
+			add_power_balance_value = {
+    				id = PB_trump_bop
+    				value = -0.15
+    				tooltip_side = under_control
+			}
+			country_event = {
+    				id = maga.91
+    				days = 8
+    				random_hours = 20
+			}	
+			
+		}
+	}
+
+	focus = {
+		id = USA_work_with_the_opposition
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 6
+		prerequisite = {
+			focus = USA_retake_control_from_PB
+		}
+		x = 47
+		y = 14
+
+		
+		#available = {
+			
+		#}
+		completion_reward = {
+			unlock_decision_tooltip = USA_PB_pardon_woke
+			unlock_decision_tooltip = USA_PB_pardon_democrats
+			unlock_decision_tooltip = USA_PB_endorse_libertarians
+			add_power_balance_value = {
+    				id = PB_trump_bop
+    				value = -0.10
+    				tooltip_side = under_control
+			}
+			country_event = {
+    				id = maga.92
+    				days = 8
+    				random_hours = 20
+			}	
+			
+		}
+	}
+
+	focus = {
+		id = USA_make_america_again #OMG the mod name!!!
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 5
+		prerequisite = {
+			focus = USA_make_america_great_again
+		}
+		x = 64
+		y = 1
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+			
+		#}
+		completion_reward = {
+			add_war_support = 0.05
+			create_wargoal = {
+    				type = annex_everything
+    				target = HAM
+			}
+		}
+	}
+
+}

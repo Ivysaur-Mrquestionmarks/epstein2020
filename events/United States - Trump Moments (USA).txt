@@ -6,13 +6,8 @@ country_event = {
 	title = maga.1.t
 	desc = maga.1.d
 	#picture =
-	trigger = {
-		tag = USA
-		has_idea_with_trait = USA_fascist_vice_president
-		date > 2021.8.1
-	}
+	is_triggered_only = yes
 	fire_only_once = yes
-	mean_time_to_happen = { days = 10 }
 	option = {
 		name = maga.1.a
 		set_party_name = { 
@@ -123,20 +118,20 @@ country_event = {
 	title = maga.4.t
 	desc = maga.4.d
 	picture = event_NPA_motivation_lowered
-	trigger = {
-		tag = NPA
-		date > 2021.5.20
-		NPA = { NOT = { has_country_flag = NPA_Motivation_Propaganda } } 
-	}
-	mean_time_to_happen = {
-		days = 1
-	}
+	is_triggered_only = yes
+
+
 	fire_only_once = yes
 	option = {
 		name = maga.4.a
 		swap_ideas = {
 			remove_idea = NPA_Motivation_High
 			add_idea = NPA_Motivation_Medium
+		}
+		country_event = {
+		    id = maga.5
+		    days = 105
+		    random_hours = 12
 		}
 	}
 }
@@ -147,20 +142,18 @@ country_event = {
 	title = maga.5.t
 	desc = maga.5.d
 	picture = event_NPA_motivation_lowered
-	trigger = {
-		tag = NPA
-		date > 2021.9.5
-		NPA = { NOT = { has_country_flag = NPA_Motivation_Propaganda } } 
-	}
-	mean_time_to_happen = {
-		days = 1
-	}
+	is_triggered_only = yes
 	fire_only_once = yes
 	option = {
 		name = maga.5.a
 		swap_ideas = {
 			remove_idea = NPA_Motivation_Medium
 			add_idea = NPA_Motivation_Low
+		}
+		country_event = {
+		    id = maga.6
+		    days = 105
+		    random_hours = 12
 		}
 	}
 }
@@ -170,14 +163,7 @@ country_event = {
 	title = maga.6.t
 	desc = maga.6.d
 	picture = event_NPA_motivation_lowered
-	trigger = {
-		tag = NPA
-		date > 2022.1.1
-		NPA = { NOT = { has_country_flag = NPA_Motivation_Propaganda } } 
-	}
-	mean_time_to_happen = {
-		days = 1
-	}
+	is_triggered_only = yes
 	fire_only_once = yes
 	option = {
 		name = maga.6.a
@@ -357,18 +343,16 @@ country_event = {
 		}
 	}
 }
+#Debug event now!!!
 #Trump chooses a VP (provisional event until focus tree)
 country_event = {
 	id = maga.9
 	title = maga.9.t
 	desc = maga.9.d
 	#picture =
-	trigger = {
-		original_tag = USA
-		NOT = { country_exists = NPA }
-	}
+	is_triggered_only = yes #Now a debug event
 	fire_only_once = yes
-	#Based DeSantis
+	#Not longer dsantis DeSantis, mike dewine instead. Rino path.
 	option = {
 		name = maga.9.a
 		ai_chance = {
@@ -376,28 +360,31 @@ country_event = {
 		}
 		set_country_flag = vice_president_desantis
 		remove_ideas = Generic_Vacant_Vice_President
-		add_ideas = USA_ron_desantis_advisor
-		if = {
-			limit = {
-				FLO = {
-					has_completed_focus = FLO_desantis
-				}
-			}
-			FLO = { country_event = { id = maga.10 } }
+		add_ideas = USA_ron_desantis_advisor 
+		trigger = {
+			has_country_flag = pardoned_npa
 		}
-		else = {
-			FLO = { country_event = { id = maga.11 } }
-		}
+		#When he was meant to be desantis
+		#if = { 
+		#	limit = {
+		#		FLO = {
+		#			has_completed_focus = FLO_desantis
+		#		}
+		#	}
+		#	FLO = { country_event = { id = maga.10 } }
+		#}
+		#else = {
+		#	FLO = { country_event = { id = maga.11 } }
+		#}
 	}
-	#Nepotism moment
+	#MAGA path (can be replaced with Trump JR later on)
 	option = {
 		name = maga.9.b
 		ai_chance = {
 			factor = 30
 		}
 		set_country_flag = vice_president_trump
-		remove_ideas = Generic_Vacant_Vice_President
-		add_ideas = USA_don_jr_advisor
+		add_ideas = USA_ben_carson_advisor
 	}
 	#Fascist Trump?!
 	option = {
@@ -409,8 +396,16 @@ country_event = {
 		remove_ideas = Generic_Vacant_Vice_President
 		add_ideas = USA_gavin_mcinnes_advisor
 		add_popularity = { ideology = autocratic popularity = 0.10 }
+		country_event = {
+    			id = maga.1
+    			days = 3
+    			random_days = 1
+		}
 	}
 }
+
+#This 2 may have to be redone
+
 #DeSantis leaves for Denver (he is leader of FLO)
 country_event = {
 	id = maga.10
@@ -438,5 +433,1527 @@ country_event = {
 		name = maga.11.a
 		add_political_power = 10
 		add_stability = 0.01
+	}
+}
+
+#Trump is being adressed by his generals who are telling him about the need to reform their military
+country_event = {
+	id = maga.12
+	title = maga.12.t
+	desc = maga.12.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #Undesicive answer (it is answered by a focus)
+		name = maga.12.a
+
+	}
+}
+
+#Event about mechanics trying to put old F16s back into service
+country_event = {
+	id = maga.13
+	title = maga.13.t
+	desc = maga.13.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.13.a
+
+	}
+}
+
+#Event about mechanics trying to put old Bell UH-1H back into service
+country_event = {
+	id = maga.14
+	title = maga.14.t
+	desc = maga.14.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.14.a
+
+	}
+}
+
+#Responding to maga.12, he chose to reform the military. They will now remodel their army to be ready for an artillery heavy atrittion war
+country_event = {
+	id = maga.15
+	title = maga.15.t
+	desc = maga.15.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.15.a
+
+	}
+}
+
+#Responding to maga.12, he chose to not reform the military. There is no overconfidence and they will totaly win :)
+country_event = {
+	id = maga.16
+	title = maga.16.t
+	desc = maga.16.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.16.a
+
+	}
+}
+
+#Responding to maga.12, the situation is desesperated (can only be chosen when badly losing a war), asymetric warfare is the only solution. We must start a guerrilla campaign
+country_event = {
+	id = maga.17
+	title = maga.17.t
+	desc = maga.17.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.17.a
+
+	}
+}
+
+#News from Tario, he just became interior minister on Kanye's confederacy. The plan to bring the CSA back into the fold continues.
+country_event = {
+	id = maga.18
+	title = maga.18.t
+	desc = maga.18.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.18.a
+
+	}
+}
+
+#Officers protest to high command starting a new strategic bombing program as it would be used against americans
+country_event = {
+	id = maga.19
+	title = maga.19.t
+	desc = maga.19.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.19.a
+		country_event = {
+    			id = maga.20
+    			days = 20
+    			random_hours = 12
+		}
+	}
+}
+
+#The officers aproach trump directly to urge him to stop the bomiing program
+country_event = {
+	id = maga.20
+	title = maga.20.t
+	desc = maga.20.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #No, lol.
+		name = maga.20.a
+		country_event = {
+    			id = maga.21
+    			days = 20
+    			random_hours = 12
+		}
+	}
+}
+
+#Someone leaks the development of the program to the public
+country_event = {
+	id = maga.21
+	title = maga.21.t
+	desc = maga.21.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.21.a
+		add_political_power = -30
+
+		news_event = {
+    			id = maga.22
+    			days = 0
+    			random_hours = 6 
+		}
+
+		country_event = {
+    			id = maga.23
+    			days = 10
+    			random_hours = 6
+		}
+	}
+}
+
+#(news event) Trump's program to stablish a strategic bomber force has been leaked
+news_event = {
+	id = maga.22
+	title = maga.22.t
+	desc = maga.22.d
+	picture = event_news_pence_win
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = maga.22.a
+
+	}
+
+}
+
+#Airforce officers get fired for leaking documents
+country_event = {
+	id = maga.23
+	title = maga.23.t
+	desc = maga.23.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.23.a
+		air_experience = -5
+	}
+}
+
+#event from thefired officers being defeated over failling to stop the bomber program
+country_event = {
+	id = maga.24
+	title = maga.24.t
+	desc = maga.24.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.24.a
+
+	}
+}
+
+#event about troops learning to build trenches as fast as posible
+country_event = {
+	id = maga.25
+	title = maga.25.t
+	desc = maga.25.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.25.a
+
+	}
+}
+
+#An event describing the new army, and how it was designed to metodicly and slowly defeat their enemies
+country_event = {
+	id = maga.26
+	title = maga.26.t
+	desc = maga.26.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.26.a
+
+	}
+}
+
+#Event showcasing an army drill, were the army practises to be as fast as posible
+country_event = {
+	id = maga.27
+	title = maga.27.t
+	desc = maga.27.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.27.a
+
+	}
+}
+
+
+#Event showcasing the army training to fight behind the enemy front line with low supplies
+country_event = {
+	id = maga.28
+	title = maga.28.t
+	desc = maga.28.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.28.a
+
+	}
+}
+
+#Event about resistance cells being form on occupied territory
+country_event = {
+	id = maga.29
+	title = maga.29.t
+	desc = maga.29.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.29.a
+
+	}
+}
+
+#Event about resitance cells becoming guerrillas
+country_event = {
+	id = maga.30
+	title = maga.30.t
+	desc = maga.30.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.30.a
+
+	}
+}
+
+#(For merf to do)Trump reveals he is Q as part of his victory speech over the NPA 
+country_event = {
+	id = maga.31
+	title = maga.31.t
+	desc = maga.31.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.31.a
+
+	}
+}
+
+#Trump prepares to choose a vp
+country_event = {
+	id = maga.32
+	title = maga.32.t
+	desc = maga.32.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.32.a
+
+	}
+}
+
+#Ben Carson gets chosen vp, the event gives an introduction to him. He is the MAGA path
+country_event = {
+	id = maga.33
+	title = maga.33.t
+	desc = maga.33.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.33.a
+
+	}
+}
+
+#Gavin mcinnes gets chosen vp, the event gives an introduction to him. The PB path.
+country_event = {
+	id = maga.34
+	title = maga.34.t
+	desc = maga.34.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.34.a
+
+	}
+}
+
+#Mike Dewine gets chosen vp, the event gives an introduction to him. The moderate/rino path.
+country_event = {
+	id = maga.35
+	title = maga.35.t
+	desc = maga.35.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.35.a
+
+	}
+}
+
+#Mike Dewine negotiates with private companies to get them to support trump
+country_event = {
+	id = maga.36
+	title = maga.36.t
+	desc = maga.36.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.36.a
+
+	}
+}
+
+#Mike Dewine uses his conections in Ohio (he was gobernor there) to ease up the transition to rule under Trump
+country_event = {
+	id = maga.37
+	title = maga.37.t
+	desc = maga.37.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.37.a
+
+	}
+}
+
+#Mike Dewine and trump come up with a plan to realign republican factions to them. Trading with em is the first step
+country_event = {
+	id = maga.38
+	title = maga.38.t
+	desc = maga.38.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.38.a
+
+	}
+}
+
+#Mike Dewine and trump talk about starting the second phase of their plan, exchanging investments for military support
+country_event = {
+	id = maga.39
+	title = maga.39.t
+	desc = maga.39.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.39.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#Trump offerss investments in exchange for joining him
+country_event = {
+	id = maga.40
+	title = maga.40.t
+	desc = maga.40.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {  #Yes
+		name = maga.40.a
+		ai_chance = {
+			factor = 2
+		}
+		USA = {
+			add_timed_idea = {
+    				idea = USA_republican_investments
+    				days = 60
+			}
+			add_to_faction = ROOT
+		}
+		random_controlled_state = {
+			limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+			add_extra_state_shared_building_slots = 2			
+			add_building_construction = {
+				type = industrial_complex
+   				level = 2
+ 				instant_build = yes
+			}
+		}		
+	}
+	option = {  #No
+		name = maga.40.a
+		ai_chance = {
+			factor = 2
+		}
+	}
+}
+
+#Mike Dewine tells Trump that the companies have been demanding some trade restrictions be lifted
+country_event = {
+	id = maga.41
+	title = maga.41.t
+	desc = maga.41.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.41.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#Now that they have the support from more republicans, Mike Dewine starts sidelining the more extreme people on goberment
+country_event = {
+	id = maga.42
+	title = maga.42.t
+	desc = maga.42.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.42.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#Event about the remaining radicals trying to start an uprising before the gob fully gets rid of em
+country_event = {
+	id = maga.43
+	title = maga.43.t
+	desc = maga.43.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.43.a
+		ai_chance = {
+			factor = 1
+		}
+		
+		if = {
+			limit = {
+				autocratic > 0.01
+			}
+			set_temp_variable = { 
+				var = uprising
+				value = party_popularity@autocratic
+			}
+			if = {
+				limit = {NOT = {
+					has_completed_focus = USA_expell_deradicals
+				}}
+				multiply_temp_variable = {
+					var = uprising
+					value = 1.5
+				}
+			}
+			start_civil_war = {
+    				ideology = autocratic
+    				army_ratio = uprising
+    				capital = 234
+    				keep_political_leader = yes
+    				keep_political_party_members = yes
+			}
+		}
+		else = {
+			add_manpower = -350
+		}
+		add_popularity = {
+    			ideology = autocratic
+    			popularity = -1
+		}
+	}
+}
+
+#Radicals protest agains Mike Dewine becoming vice president
+country_event = {
+	id = maga.44
+	title = maga.44.t
+	desc = maga.44.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		NOT = {
+			has_completed_focus = USA_expell_deradicals
+		}
+	}
+	option = { 
+		name = maga.44.a
+		ai_chance = {
+			factor = 1
+		}
+		custom_effect_tooltip = USA_aut_uprising_eventual
+		country_event = {
+    			id = maga.45
+    			days = 50
+    			random_hours = 20
+		}	
+	}
+}
+
+#Opposition to the current vp grows amongst radicals
+country_event = {
+	id = maga.45
+	title = maga.45.t
+	desc = maga.45.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		NOT = {
+			has_completed_focus = USA_expell_deradicals
+		}
+	}
+	option = { 
+		name = maga.45.a
+		ai_chance = {
+			factor = 1
+		}
+		custom_effect_tooltip = USA_aut_uprising_eventual
+		country_event = {
+    			id = maga.46
+    			days = 105
+    			random_hours = 20
+		}	
+		add_political_power = -60
+	}
+}
+
+
+#Radicals start stealing from our weapon stockpiles
+country_event = {
+	id = maga.46
+	title = maga.46.t
+	desc = maga.46.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		NOT = {
+			has_completed_focus = USA_expell_deradicals
+		}
+	}
+	option = { 
+		name = maga.46.a
+		ai_chance = {
+			factor = 1
+		}
+		custom_effect_tooltip = USA_aut_uprising_eventual
+		country_event = {
+    			id = maga.43
+    			days = 125
+    			random_hours = 20
+		}	
+		add_equipment_to_stockpile = {
+    			type = infantry_equipment
+    			amount = -2500
+		}
+	}
+}
+
+#We have been invited to the loyalist research group!! :3c
+country_event = {
+	id = maga.47
+	title = maga.47.t
+	desc = maga.47.d
+	#picture =
+	is_triggered_only = yes
+	option = { 
+		name = maga.47.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#An event of trump meeting with other loyalist faction members to discuss the creation of the research group
+country_event = {
+	id = maga.48
+	title = maga.48.t
+	desc = maga.48.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.48.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#Trump has a meating with the leader of resitance radio (use loc keys) about fortifying their border with Biden
+country_event = {
+	id = maga.49
+	title = maga.49.t
+	desc = maga.49.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.49.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#(Resitance Radio pov) Trump is offering to build forts on our territory
+country_event = {
+	id = maga.50
+	title = maga.50.t
+	desc = maga.50.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.50.a
+		ai_chance = {
+			factor = 1
+		}
+		every_controlled_state = {
+			add_building_construction = {
+    				type = bunker
+    				level = 3
+    				instant_build = yes
+    				province = {
+        				all_provinces = yes
+					limit_to_border_country = FRA
+			    	}
+			}
+		}
+	}
+}
+
+#Investments from the loyalist faction (every loyalist faction member will get this event
+country_event = {
+	id = maga.51
+	title = maga.51.t
+	desc = maga.51.d
+	#picture =
+	is_triggered_only = yes
+	option = { 
+		name = maga.51.a
+		ai_chance = {
+			factor = 1
+		}
+			
+		random_controlled_state = {
+				limit = {is_core_of = ROOT}
+			add_extra_state_shared_building_slots = 2			
+			add_building_construction = {
+    					type = arms_factory
+    					level = 1
+    					instant_build = yes
+			}
+			add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+			}
+		}
+	}
+}
+
+#Event about Carson's and trump's plan to develop the midwest
+country_event = {
+	id = maga.52
+	title = maga.52.t
+	desc = maga.52.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.52.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#Event about trump visiting a newly build arms factory
+country_event = {
+	id = maga.53
+	title = maga.53.t
+	desc = maga.53.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.53.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#Trump negotiates subsedies with industrial magnates
+country_event = {
+	id = maga.54
+	title = maga.54.t
+	desc = maga.54.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.54.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#A speech Trump gives against Biden and his supporters (done after he embargos them).
+country_event = {
+	id = maga.55
+	title = maga.55.t
+	desc = maga.55.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.55.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#Trump welcomes thegoberment of resistance radio after it fled from Biden's invasion (use loc keys).
+country_event = {
+	id = maga.56
+	title = maga.56.t
+	desc = maga.56.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.56.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#Ben Carson (Trump's vp) is showing off the success of his industrial policy to a group of high ranking party members, including trump. When Trump JR breaks into the room critisicing the project, saying he can make it better
+country_event = {
+	id = maga.57
+	title = maga.57.t
+	desc = maga.57.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.57.a #Get him out of here, he is drunk
+		ai_chance = {
+			factor = 1
+		}
+		set_country_flag = {
+    			flag = TrumpJr_influence
+    			value = 1
+		}
+		custom_effect_tooltip = TrumpJrDown
+	}
+	option = { 
+		name = maga.57.b #He has a point, he is my son after all.
+		ai_chance = {
+			factor = 1
+		}
+		set_country_flag = {
+    			flag = TrumpJr_influence
+    			value = 2
+		}
+		custom_effect_tooltip = TrumpJrUp
+	}
+}
+
+#Carson urges trump to continue with his industrial plan, instead of listening to his son
+country_event = {
+	id = maga.58
+	title = maga.58.t
+	desc = maga.58.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.58.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+
+#Carson hands Trump his infrastructure bill waiting for aproval (it  is aprove by doing a focus)
+country_event = {
+	id = maga.59
+	title = maga.59.t
+	desc = maga.59.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.58.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#Ben Carson request of trump to limit his son's acces to the media to stop him from critisicing his projects
+country_event = {
+	id = maga.60
+	title = maga.60.t
+	desc = maga.60.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.60.a #We will see what we can do
+		ai_chance = {
+			factor = 1
+		}
+		modify_country_flag = {
+    			flag = TrumpJr_influence
+    			value = -1
+		}
+		custom_effect_tooltip = TrumpJrDown
+	}
+	option = { 
+		name = maga.60.b #How dare u talk like that about my son
+		ai_chance = {
+			factor = 1
+		}
+		
+	}
+}
+
+#Carson hands Trump his plans for the recently found oil, and is waiting for his aproval (reinvest the profits into heavy industry)
+country_event = {
+	id = maga.61
+	title = maga.61.t
+	desc = maga.61.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.61.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+
+#An event of Carson happy as he sees he sees that his project was passed
+country_event = {
+	id = maga.62
+	title = maga.62.t
+	desc = maga.62.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.62.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+
+#An event about Trump JR being sent to study abroad to "keep him safe from the civil war", after he found out about his plots to remove Carson (carson victory)
+country_event = {
+	id = maga.63
+	title = maga.63.t
+	desc = maga.63.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.63.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#Trump junior aproaches his dad begging him for a chance at handleing the project. He talks about how things would be better if the family ran them
+country_event = {
+	id = maga.64
+	title = maga.64.t
+	desc = maga.64.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.64.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#Trump jr proposes a mediocre plan, and tries to convince his dad by saying he is more reliable and loyal to him
+country_event = {
+	id = maga.65
+	title = maga.65.t
+	desc = maga.65.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.65.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+
+#Trump jr is asking his dad to give him control over yet another industrial project
+country_event = {
+	id = maga.66
+	title = maga.66.t
+	desc = maga.66.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #Sure, son
+		name = maga.66.a
+		ai_chance = {
+			factor = 1
+		}
+		modify_country_flag = {
+    			flag = TrumpJr_influence
+    			value = 1
+		}
+		custom_effect_tooltip = TrumpJrUp
+		random_controlled_state = {
+			limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+			add_extra_state_shared_building_slots = 2		
+			add_building_construction = {
+    				type = industrial_complex
+    				level = 2
+    				instant_build = yes
+			}
+		}	
+		add_political_power = 70
+	}
+
+	option = { #Stick to the family company, son
+		name = maga.66.b
+		ai_chance = {
+			factor = 1
+		}
+
+		random_controlled_state = {
+			limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+			add_extra_state_shared_building_slots = 3	
+			add_building_construction = {
+    				type = industrial_complex
+    				level = 3
+    				instant_build = yes
+			}
+			add_building_construction = {
+    				type = infrastructure
+    				level = 1
+    				instant_build = yes
+			}
+		}	
+
+	}
+}
+
+#Trump junior plans a plot to fabricate a scandal to get Carson removed as VP
+country_event = {
+	id = maga.67
+	title = maga.67.t
+	desc = maga.67.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.67.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+
+#The scandal has gone public (Trump doesn't knows his son fabricated it).
+country_event = {
+	id = maga.68
+	title = maga.68.t
+	desc = maga.68.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #Defend carson
+		name = maga.68.a
+		ai_chance = {
+			factor = 1
+		}
+		add_political_power = -40
+		custom_effect_tooltip = TrumpJrDown
+		modify_country_flag = {
+    			flag = TrumpJr_influence
+    			value = -1
+		}
+	}
+
+	option = { #He is alone
+		name = maga.68.b
+		ai_chance = {
+			factor = 1
+		}
+		custom_effect_tooltip = TrumpJrUp
+		modify_country_flag = {
+    			flag = TrumpJr_influence
+    			value = 1
+		}
+	}
+}
+
+
+#Trump Jr aproaches his father and offers himself as a potential replacement VP, due to the scandal Carson is in.
+country_event = {
+	id = maga.69
+	title = maga.69.t
+	desc = maga.69.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.69.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#Trump jr's inaguration as VP (JR won)
+country_event = {
+	id = maga.70
+	title = maga.70.t
+	desc = maga.70.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.70.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#An event about Trump becoming more controling after the Carson scandal
+country_event = {
+	id = maga.71
+	title = maga.71.t
+	desc = maga.71.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.71.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+
+#An event about Carson continuing his programs (This is in the branch werehe won).
+country_event = {
+	id = maga.72
+	title = maga.72.t
+	desc = maga.72.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.72.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#Trump fires everyone who may cause trouble again, or who helped his son's plot (This is in the branch werehe won).
+country_event = {
+	id = maga.73
+	title = maga.73.t
+	desc = maga.73.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.73.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#Trump starts preventing non MAGA republicans from getting assencions
+country_event = {
+	id = maga.74
+	title = maga.74.t
+	desc = maga.74.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.74.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#Trump and Carson give a speech to their new cabinet about the importance of loyalty and focusing on winning the civil war above personal gain.
+country_event = {
+	id = maga.75
+	title = maga.75.t
+	desc = maga.75.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.75.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+(Branch where trump jr won) Trump jr proposes to trump to start filling up goberment positions with fellow family members
+country_event = {
+	id = maga.76
+	title = maga.76.t
+	desc = maga.76.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.76.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#An that shows the nepotism that has infected industrial programs since Trump jr became VP
+country_event = {
+	id = maga.77
+	title = maga.77.t
+	desc = maga.77.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.77.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#Describes the cult of personality Trump builds around him and his family
+country_event = {
+	id = maga.78
+	title = maga.78.t
+	desc = maga.78.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.78.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#Describes military units formed to serve Trump personaly
+country_event = {
+	id = maga.79
+	title = maga.79.t
+	desc = maga.79.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.79.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#The proud boys brief Trump on their plan to prepare a total war economy
+country_event = {
+	id = maga.80
+	title = maga.80.t
+	desc = maga.80.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.80.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#An event of the proud boys supervicing the construction of an underground arms factory
+country_event = {
+	id = maga.81
+	title = maga.81.t
+	desc = maga.81.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.81.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#The Proud boys hand trump a list of things they need to get good at building fast to be ready for the war.
+country_event = {
+	id = maga.82
+	title = maga.82.t
+	desc = maga.82.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.82.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#The PB start a paramilitary, in case the army isn't "loyal enough"
+country_event = {
+	id = maga.83
+	title = maga.83.t
+	desc = maga.82.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.83.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#The paramilitaries start beating up and persecuting political opposition
+country_event = {
+	id = maga.84
+	title = maga.84.t
+	desc = maga.84.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.84.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#Will be collapse chain when I get around to makeing it
+country_event = {
+	id = maga.85
+	title = maga.85.t
+	desc = maga.85.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.85.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+
+#BOP starts
+country_event = {
+	id = maga.86
+	title = maga.86.t
+	desc = maga.86.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.86.a
+		ai_chance = {
+			factor = 1
+		}
+		set_power_balance = {
+    			id = PB_trump_bop
+			left_side = under_control
+    			right_side = PB_control
+		}
+	}
+}
+
+#Event about the Proud boys training more people for their paramilitary
+country_event = {
+	id = maga.87
+	title = maga.87.t
+	desc = maga.87.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.87.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+#Merf used 88 for some bs
+#Event about the PB getting artillery and other heavy equipment from the state.
+country_event = {
+	id = maga.89
+	title = maga.89.t
+	desc = maga.89.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.89.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#The goberment putting limits on what the proud boys can do politicly, trying to delegate them to an exclusively military group.
+country_event = {
+	id = maga.90
+	title = maga.90.t
+	desc = maga.90.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.90.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+
+#Event about teh goberment increasing resitrictions on what the PB paramilitaries can do.
+country_event = {
+	id = maga.91
+	title = maga.91.t
+	desc = maga.91.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.91.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#Event about trump contacting some of the remaianing democrats, libertarians and progresives to get help against the proud boys.
+country_event = {
+	id = maga.92
+	title = maga.92.t
+	desc = maga.92.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.92.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#Protest on indiana from democrats and npa sympathizers
+country_event = {
+	id = maga.93
+	title = maga.93.t
+	desc = maga.32.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.93.a #Crush them
+		ai_chance = {
+			factor = 1
+		}
+		207 = {
+			add_compliance = -35
+		}
+	}
+
+	option = { 
+		name = maga.93.b #Let them be
+		ai_chance = {
+			factor = 1
+		}
+		207 = {
+			add_resistance_target = 15
+		}
+	}
+}
+
+#Protest agaiunst trump on Denver (remember it is his most progresive city)
+country_event = {
+	id = maga.94
+	title = maga.94.t
+	desc = maga.94.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.94.a #Crush them
+		ai_chance = {
+			factor = 1
+		}
+		add_political_power = -50
+	}
+
+	option = { 
+		name = maga.94.b #Let them be
+		ai_chance = {
+			factor = 1
+		}
+		add_popularity = {
+    			ideology = democrat
+    			popularity = 0.15
+		}		
 	}
 }
