@@ -3478,7 +3478,7 @@ focus_tree = {
 		prerequisite = {
 			focus = USA_make_america_great_again
 		}
-		x = 64
+		x = 65
 		y = 1
 		#mutually_exclusive = {
 		#	focus = 
@@ -3493,7 +3493,378 @@ focus_tree = {
     				type = annex_everything
     				target = HAM
 			}
+			country_event = {
+    				id = maga.95
+    				days = 7
+    				random_hours = 8
+			}
+			add_threat = 15
 		}
+
+	}
+
+	focus = {
+		id = USA_western_direction
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 5
+		prerequisite = {
+			focus = USA_make_america_again #OMG the mod name!!!
+		}
+		x = 61
+		y = 2
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+			
+		#}
+		completion_reward = {
+			every_controlled_state = {
+				add_building_construction = {
+    					type = bunker
+    					level = 3
+    					instant_build = yes
+    					province = {
+        					all_provinces = yes
+						limit_to_border_country = SIN
+				    	}
+				}
+			}
+			country_event = {
+    				id = maga.97
+    				days = 10
+    				random_hours = 8
+			}
+			
+		}
+
+	}
+
+	focus = {
+		id = USA_deal_with_devil
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 5
+		prerequisite = {
+			focus = USA_western_direction
+		}
+		x = 57
+		y = 3
+		mutually_exclusive = {
+			focus = USA_end_socialism
+		}
+		
+		#available = {
+			
+		#}
+		completion_reward = {	
+			add_state_claim = 348
+			add_state_claim = 486		
+			country_event = {
+    				id = maga.98
+    				days = 10
+    				random_hours = 8
+			}
+			PRA = {
+				country_event = {
+    					id = maga.99
+    					days = 1
+    					random_hours = 28
+				}
+			}
+
+		}
+
+	}
+
+	focus = {
+		id = USA_IDA_PRA_deal
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 2
+		prerequisite = {
+			focus = USA_deal_with_devil
+		}
+		x = 55
+		y = 4
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+			
+		#}
+		completion_reward = {	
+			IDA = {
+				country_event = {
+    					id = maga.100
+    					days = 0
+    					#random_hours = 28
+				}
+			}
+
+		}
+
+	}
+
+	focus = {
+		id = USA_SIN_conflict
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 5
+		prerequisite = {
+			focus = USA_deal_with_devil
+		}
+		x = 57
+		y = 5
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+			
+		#}
+		completion_reward = {	
+
+			country_event = {
+    				id = maga.103
+    				days = 5
+    				random_hours = 28
+			}
+			348 = {
+				set_state_flag = USA_conflcit
+			}
+			486 = {
+				set_state_flag = USA_conflcit
+			}
+		}
+
+	}
+
+	focus = {
+		id = USA_cut_off_the_middle_states
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 5
+		prerequisite = {
+			focus = USA_deal_with_devil
+		}
+		x = 59
+		y = 5
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+			
+		#}
+		completion_reward = {	
+			send_embargo = SIN
+			send_embargo = HOP
+			send_embargo = MOL
+			send_embargo = LAS
+			send_embargo = UTA
+			country_event = {
+    				id = maga.104
+    				days = 7
+    				random_hours = 28
+			}
+			PRA = {
+				country_event = {
+    					id = maga.105
+    					days = 7
+    					random_hours = 28
+				}
+			}
+		}
+
+	}
+
+	focus = {
+		id = USA_end_socialism
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 7
+		prerequisite = {
+			focus = USA_western_direction
+		}
+		x = 61
+		y = 3
+		mutually_exclusive = {
+			focus = USA_deal_with_devil
+		}
+		
+		available = {
+			IDA = {
+				NOT = {
+					OR = {
+						is_in_faction_with = USA
+						has_completed_focus = IDA_The_New_Kings_Of_The_Mountain
+					}
+				}
+			}	
+		}
+		completion_reward = {	
+	
+			country_event = {
+    				id = maga.106
+    				days = 0
+    				random_hours = 8
+			}
+			IDA = {
+				country_event = {
+    					id = maga.107
+    					days = 0
+    					random_hours = 8
+				}
+			}
+
+		}
+
+	}
+
+	focus = {
+		id = USA_arm_the_coalition
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 3
+		prerequisite = {
+			focus = USA_end_socialism
+		}
+		x = 61
+		y = 5
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		available = {
+			IDA = {
+				is_faction_leader = yes
+			}	
+		}
+		completion_reward = {	
+	
+			every_country = {
+				limit = {
+					is_in_faction_with = IDA
+				}
+				add_equipment_to_stockpile = {
+    					type = infantry_equipment
+    					amount = 5000
+    					producer = USA
+				}
+				add_equipment_to_stockpile = {
+    					type = artillery_equipment
+    					amount = 2000
+    					producer = USA
+				}
+			}			
+
+		}
+
+	}
+
+
+	focus = {
+		id = USA_red_war
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 8
+		prerequisite = {
+			focus = USA_arm_the_coalition
+		}
+		x = 61
+		y = 7
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		available = {
+			IDA = {
+				is_faction_leader = yes
+			}	
+		}
+		completion_reward = {	
+			country_event = {
+    				id = maga.109
+    				days = 0
+    				random_hours = 8
+			}	
+			every_country = {
+				limit = {
+					is_in_faction_with = IDA
+				}
+				country_event = {
+    					id = maga.110
+    					days = 7
+    					random_hours = 35
+				}				
+			}			
+
+		}
+
+	}
+
+	focus = {
+		id = USA_MON_conflict
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 7
+		prerequisite = {
+			focus = USA_western_direction
+		}
+		x = 63
+		y = 3
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+			
+		#}
+		completion_reward = {	
+
+			country_event = {
+    				id = maga.111
+    				days = 5
+    				random_hours = 28
+			}
+			348 = {
+				set_state_flag = USA_conflcit
+			}
+			567= {
+				set_state_flag = USA_conflcit
+			}
+			565 = {
+				set_state_flag = USA_conflcit
+			}
+			35 = {
+				set_state_flag = USA_conflcit
+			}
+		}
+
+	}
+
+	focus = {
+		id = USA_MON_conflict
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 5
+		prerequisite = {
+			focus =USA_MON_conflict
+		}
+		x = 63
+		y = 4
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		available = {
+			has_war = no
+			has_army_manpower = {
+   	 			size > 300000
+			}
+		}
+		completion_reward = {	
+
+			create_wargoal = {
+    				type = annex_everything
+    				target = MON
+			}
+		}
+
 	}
 
 }

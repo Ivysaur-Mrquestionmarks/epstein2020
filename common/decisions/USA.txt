@@ -657,6 +657,93 @@ USA_TRUMP = {
 		
 	}
 
+	USA_trial_black_hammer = {
+		cost = 50
+		days_remove = 45
+		ai_will_do = {
+			base = 30
+		}
+		fire_only_once = yes
+
+		visible = {
+			OR = {
+				has_completed_focus = USA_make_america_again
+				owns_state = 510
+			}
+		}
+		available = {
+			owns_state = 510
+		}
+		remove_effect = {
+			country_event = {
+    				id = maga.96
+    				days = 0
+    				random_hours = 8
+			}		
+		}
+	}
+
+	USA_border_conflict = {
+		state_target = yes
+		on_map_mode = map_and_decisions_view
+		target_trigger = {
+			FROM = {
+				has_state_flag = USA_conflcit
+			}
+		}
+		visible = {		
+		 	FROM = {
+				any_neighbor_state = {
+					is_controlled_by = USA
+				}
+				NOT= {
+					OR = {
+						is_owned_by = USA
+						is_controlled_by = USA
+					}
+				}
+			}	
+					
+		}
+
+		cost = 100
+		days_remove = 30
+		days_re_enable = 120
+		ai_will_do = {
+			base = 75
+		}
+		complete_effect = {
+			set_country_flag = planing_border_conflict
+		}
+		remove_effect = {
+			FROM = { random_neighbor_state = { 
+				limit = {is_owned_by = ROOT} 
+					ROOT = {
+						start_border_war = {
+							change_state_after_war =  yes
+							attacker = {
+								state = PREV
+								num_provinces = 5
+								on_win = conflict_results.1
+								on_lose = conflict_results.1
+								on_cancel = conflict_results.1
+							}
+					
+							defender = {
+								state = FROM
+								num_provinces = 5
+								on_win = conflict_results.2
+								on_lose = conflict_results.2
+								on_cancel = conflict_results.2
+							}
+						}
+					}
+				}
+			}			
+		}
+		
+	}
+
 }
 USA_PB = {
 
@@ -877,4 +964,6 @@ USA_PB = {
 			}
 		}
 	}
+
+
 }
