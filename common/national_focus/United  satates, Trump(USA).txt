@@ -3487,6 +3487,7 @@ focus_tree = {
 		#available = {
 			
 		#}
+		will_lead_to_war_with = HAM
 		completion_reward = {
 			add_war_support = 0.05
 			create_wargoal = {
@@ -3793,7 +3794,12 @@ focus_tree = {
     					days = 7
     					random_hours = 35
 				}				
-			}			
+			}	
+			news_event = {
+    				id = News_events.24
+    				days = 9
+    				#random_hours = 8
+			}		
 
 		}
 
@@ -3839,14 +3845,14 @@ focus_tree = {
 	}
 
 	focus = {
-		id = USA_MON_conflict
+		id = USA_MON_invade
 		icon = GFX_goal_CAS_Rebuild_Seattle
 		cost = 5
 		prerequisite = {
 			focus =USA_MON_conflict
 		}
 		x = 63
-		y = 4
+		y = 5
 		#mutually_exclusive = {
 		#	focus = 
 		#}
@@ -3857,12 +3863,135 @@ focus_tree = {
    	 			size > 300000
 			}
 		}
+		will_lead_to_war_with = MON
 		completion_reward = {	
 
 			create_wargoal = {
     				type = annex_everything
     				target = MON
 			}
+		}
+
+	}
+
+	focus = {
+		id = USA_CAS_inavde
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 5
+		prerequisite = {
+			focus = USA_MON_invade
+		}
+		x = 63
+		y = 7
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		available = {
+			has_war = no
+		}
+		will_lead_to_war_with = CAS
+		will_lead_to_war_with = LIB
+		completion_reward = {	
+
+			create_wargoal = {
+    				type = annex_everything
+    				target = LIB
+			}
+			if = {
+				limit = {
+					CAS = {
+						exists = yes
+						NOT = {has_country_flag = temp_alliance}
+					}
+				}
+				create_wargoal = {
+    					type = annex_everything
+    					target = CAS
+				}
+			}
+		}
+
+	}
+
+	focus = {
+		id = USA_PRA_inavde
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 5
+		prerequisite = {
+			focus = USA_CAS_inavde
+		}
+		x = 63
+		y = 8
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		available = {
+			has_war = no
+			owns_state = 242
+		}
+		will_lead_to_war_with = PRA
+		completion_reward = {	
+
+			create_wargoal = {
+    				type = annex_everything
+    				target = PRA
+			}
+
+		}
+
+	}
+
+	focus = {
+		id = USA_mormon_victor
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 8
+		prerequisite = {
+			focus = USA_CAS_inavde
+		}
+		prerequisite = {
+			focus = USA_cut_off_the_middle_states
+			focus = USA_red_war
+			focus = USA_SIN_conflict
+		}		
+		x = 59
+		y = 8
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		available = {
+			has_war = no
+			owns_state = 242
+		}
+		will_lead_to_war_with = SIN
+		will_lead_to_war_with = MOL
+		will_lead_to_war_with = UTA
+		will_lead_to_war_with = LAS
+		will_lead_to_war_with = HOP
+		completion_reward = {	
+
+			create_wargoal = {
+    				type = annex_everything
+    				target = SIN
+			}
+			create_wargoal = {
+    				type = annex_everything
+    				target = MOL
+			}
+			create_wargoal = {
+    				type = annex_everything
+    				target = UTA
+			}
+			create_wargoal = {
+    				type = annex_everything
+    				target = LAS
+			}
+			create_wargoal = {
+    				type = annex_everything
+    				target = HOP
+			}			
 		}
 
 	}
