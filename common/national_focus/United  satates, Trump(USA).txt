@@ -3624,7 +3624,7 @@ focus_tree = {
 			
 		#}
 		completion_reward = {	
-
+			unlock_decision_tooltip = USA_border_conflict
 			country_event = {
     				id = maga.103
     				days = 5
@@ -3822,7 +3822,7 @@ focus_tree = {
 			
 		#}
 		completion_reward = {	
-
+			unlock_decision_tooltip = USA_border_conflict
 			country_event = {
     				id = maga.111
     				days = 5
@@ -3996,4 +3996,2529 @@ focus_tree = {
 
 	}
 
+	focus = {
+		id = USA_southern_direction
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 4
+		prerequisite = {
+			focus = USA_make_america_again #OMG the mod name!!!
+		}
+		x = 68
+		y = 2
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+			
+		#}
+		completion_reward = {
+			country_event = {
+    				id = maga.112
+    				days = 6
+    				random_hours = 28
+			}			
+			add_political_power = 80
+		}
+
+	}
+
+	focus = {
+		id = USA_southern_border_adjustment
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 5
+		prerequisite = {
+			focus = USA_southern_direction
+		}
+		x = 66
+		y = 3
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+			
+		#}
+		completion_reward = {
+			country_event = {
+    				id = maga.114
+    				days = 6
+    				random_hours = 28
+			}			
+			OKL = {
+				every_core_state = {
+					add_claim_by = USA
+				}	
+			}
+			add_state_claim = 249
+		}
+
+	}
+
+	focus = {
+		id = USA_deal_with_CSA
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 5
+		prerequisite = {
+			focus = USA_southern_direction
+		}
+		x = 66
+		y = 5
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+			
+		#}
+		will_lead_to_war_with = TEX
+		completion_reward = {
+			country_event = {
+    				id = maga.115
+    				days = 0
+    				random_hours = 6
+			}	
+			CSA = {		
+				country_event = {
+    					id = maga.116
+    					days = 5
+    					random_hours = 28
+				}
+			}
+		}
+
+	}
+
+	focus = {
+		id = USA_southern_forts
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 7
+		prerequisite = {
+			focus = USA_southern_direction
+		}
+		x = 70
+		y = 3
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+			
+		#}
+		completion_reward = {
+			country_event = {
+    				id = maga.113
+    				days = 6
+    				random_hours = 28
+			}			
+			custom_effect_tooltip = anger_CSA
+			every_controlled_state = {
+				add_building_construction = {
+    					type = bunker
+    					level = 3
+    					instant_build = yes
+    					province = {
+        					all_provinces = yes
+						limit_to_border_country = CSA
+				    	}
+				}
+			}
+		}
+
+	}
+
+	focus = {
+		id = USA_aid_FLO
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 7
+		prerequisite = {
+			focus = USA_southern_forts
+		}
+		x = 70
+		y = 5
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+			
+		#}
+
+		completion_reward = {
+			country_event = {
+    				id = maga.119
+    				days = 6
+    				random_hours = 28
+			}			
+			FLO = {
+				country_event = {
+    					id = maga.120
+    					days = 6
+    					random_hours = 28
+				}
+				effect_tooltip = {
+					add_offsite_building = { type = arms_factory level = 3 }
+					diplomatic_relation = {
+    						country = USA
+    						relation = non_aggression_pact
+    						active = yes
+					}
+					diplomatic_relation = {
+    						country = USA
+    						relation = military_access
+    						active = yes
+					} 
+				}
+			}
+		}
+
+	}
+
+	focus = {
+		id = USA_intervine_FLO
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 5
+		prerequisite = {
+			focus = USA_aid_FLO
+		}
+		x = 72
+		y = 6
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		available = {
+			FLO = {
+				has_war_with = CSA
+			}	
+		}
+
+		completion_reward = {
+			add_ideas = USA_support_FLO
+			add_ai_strategy = {
+				type = send_volunteers_desire
+				id = "FLO"
+				value = 500
+			}
+		}
+
+	}
+
+	focus = {
+		id = USA_ultimatum_CSA
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 3
+		prerequisite = {
+			focus = USA_intervine_FLO
+		}
+		x = 72
+		y = 8
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		available = {
+			CSA = {
+				all_owned_state = {
+					OR = {
+						NOT = {is_core_of = FLO}
+						is_controlled_by = FLO
+					}
+				}
+			}	
+		}
+		will_lead_to_war_with = CSA
+		completion_reward = {
+			custom_effect_tooltip = USA_CSA_ultimatum
+			custom_effect_tooltip = anger_CSA
+			CSA = {
+				country_event = {
+    					id = maga.121
+    					days = 10
+    					random_hours = 35
+				}
+			}
+		}
+
+	}
+
+	focus = {
+		id = USA_invite_FLO
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 3
+		prerequisite = {
+			focus = USA_aid_FLO
+		}
+		x = 70
+		y = 7
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		available = {
+			FLO = {
+				all_core_state = {
+					NOT = {
+						is_owned_by = CSA
+					}
+				}
+			}	
+		}
+
+		completion_reward = {
+			FLO = {
+				country_event = {
+    					id = _zzz.3
+    					days = 3
+    					random_hours = 35
+				}
+			}
+		}
+
+	}
+
+	focus = {
+		id = USA_TEX_invade
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 5
+		prerequisite = {
+			focus = USA_aid_FLO
+			focus = USA_deal_with_CSA
+		}
+		x = 68
+		y = 6
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		available = {
+			has_war = no
+			has_army_manpower = {
+   	 			size > 500000
+			}
+		}
+		will_lead_to_war_with = TEX
+		completion_reward = {	
+
+			create_wargoal = {
+    				type = annex_everything
+    				target = TEX
+			}
+		}
+
+	}
+
+	focus = {
+		id = USA_CSA_invade
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 5
+		prerequisite = {
+			focus = USA_TEX_invade
+		}
+		x = 68
+		y = 8
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		available = {
+			has_war = no
+			owns_state = 242
+		}
+		will_lead_to_war_with = CSA
+		will_lead_to_war_with = KKK
+		will_lead_to_war_with = AFR
+		completion_reward = {	
+
+			create_wargoal = {
+    				type = annex_everything
+    				target = CSA
+			}
+			create_wargoal = {
+    				type = annex_everything
+    				target = KKK
+			}
+			create_wargoal = {
+    				type = annex_everything
+    				target = AFR
+			}			
+		}
+
+	}
+
+	focus = {
+		id = USA_eastern_direction
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 6
+		prerequisite = {
+			focus = USA_make_america_again #OMG the mod name!!!
+		}
+		x = 77
+		y = 2
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+			
+		#}
+		completion_reward = {
+			country_event = {
+    				id = maga.122
+    				days = 6
+    				random_hours = 28
+			}			
+			add_war_support = 0.1
+		}
+
+	}
+
+	focus = {
+		id = USA_aid_NRA
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 5
+		prerequisite = {
+			focus = USA_eastern_direction
+		}
+		x = 79
+		y = 3
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		available = {
+			NRA = {
+				has_war_with = FRA
+			}	
+		}
+		completion_reward = {
+			country_event = {
+    				id = maga.124
+    				days = 6
+    				random_hours = 28
+			}			
+			NRA = {
+				country_event = {
+    					id = maga.124
+    					days = 3
+    					random_hours = 28
+				}
+				effect_tooltip = {
+					add_equipment_to_stockpile = {
+    						type = infantry_equipment
+    						amount = 7000
+    						producer = USA
+					}
+				}
+			}
+		}
+
+	}
+
+
+	focus = {
+		id = USA_aid_KFC
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 5
+		prerequisite = {
+			focus = USA_eastern_direction
+		}
+		x = 75
+		y = 3
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		available = {
+			KFC = {
+				has_civil_war = yes
+			}	
+		}
+		completion_reward = {
+			
+			every_country_with_original_tag = {
+    				original_tag_to_check = KFC
+				limit = {has_government =libertarian_right}
+				country_event = {
+    					id = maga.125
+    					days = 3
+    					random_hours = 28
+				}
+				effect_tooltip = {
+					add_equipment_to_stockpile = {
+    						type = infantry_equipment
+    						amount = 3500
+    						producer = USA
+					}
+				}
+			}
+		}
+
+	}
+
+	focus = {
+		id = USA_bomb_KFC
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 5
+		prerequisite = {
+			focus = USA_aid_KFC
+		}
+		x = 75
+		y = 5
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		available = {
+			KFC = {
+				has_civil_war = yes
+			}
+			any_country_with_original_tag = {
+    				original_tag_to_check = KFC
+				has_government =libertarian_right
+				has_volunteers_amount_from = {
+				    	tag = USA
+    					count > 1
+				}
+			}	
+		}
+		completion_reward = {
+			country_event = {
+    				id = maga.126
+    				days = 0
+    				#random_hours = 28
+			}			
+			every_country_with_original_tag = {
+    				original_tag_to_check = KFC
+				limit = {has_government =libertarian_right}
+				country_event = {
+    					id = maga.127
+    					days = 0
+    					#random_hours = 28
+				}
+			}
+			every_country_with_original_tag = {
+    				original_tag_to_check = KFC
+				limit = {has_government =autocratic}
+				country_event = {
+    					id = maga.128
+    					days = 0
+    					#random_hours = 28
+				}
+			}
+			damage_units = {
+    				#province = 42
+    				#state = 5
+    				region = 108
+    				limit = { has_government = autocratic }
+    				#damage = 0.3
+    				org_damage = 0.3
+    				str_damage = 0.1
+    				ratio = yes
+    				army = yes
+    				navy = no
+			}
+			damage_units = {
+    				#province = 42
+    				state = 375
+    				#region = 108
+    				limit = { has_government = autocratic }
+    				#damage = 0.3
+    				org_damage = 0.3
+    				str_damage = 0.1
+    				ratio = yes
+    				army = yes
+    				navy = no
+			}
+		}
+
+	}
+
+	focus = {
+		id = USA_puppet_KFC
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 4
+		prerequisite = {
+			focus = USA_bomb_KFC
+		}
+		x = 75
+		y = 7
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		available = {
+			KFC = {
+				NOT = {
+					OR = {
+						has_civil_war = yes
+						has_government =autocratic
+					}
+				}
+			
+			}	
+		}
+		will_lead_to_war_with = KFC
+		completion_reward = {
+			country_event = {
+    				id = maga.129
+    				days = 0
+    				#random_hours = 28
+			}			
+			KFC = {
+				country_event = {
+    					id = maga.130
+    					days = 7
+    					random_hours = 28
+				}	
+			}
+		}
+
+	}
+
+	focus = {
+		id = USA_AFS_invade
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 5
+		prerequisite = {
+			focus = USA_eastern_direction
+		}
+		x = 77
+		y = 4
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		available = {
+			has_war = no
+			has_army_manpower = {
+   	 			size > 400000
+			}
+		}
+		will_lead_to_war_with = AFS
+		completion_reward = {	
+			country_event = {
+    				id = maga.132
+    				days = 14
+    				random_hours = 28
+			}
+			create_wargoal = {
+    				type = annex_everything
+    				target = AFS
+			}
+		}
+
+	}
+
+	focus = {
+		id = USA_VIR_invade
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 5
+		prerequisite = {
+			focus = USA_AFS_invade
+		}
+		x = 79
+		y = 5
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		available = {
+			has_war = no
+		}
+		will_lead_to_war_with = VIR
+		completion_reward = {	
+			create_wargoal = {
+    				type = annex_everything
+    				target = VIR
+			}
+		}
+
+	}
+
+	focus = {
+		id = USA_strike_first
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 2
+		prerequisite = {
+			focus = USA_AFS_invade
+		}
+		x = 77
+		y = 6
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		bypass = {
+			FRA = {
+				exists = no
+			}
+		}
+		available = {
+			has_war = no
+			is_neighbor_of = FRA
+		}
+		will_lead_to_war_with = FRA
+		completion_reward = {	
+			declare_war_on = {
+    				target = FRA
+    				type = annex_everything
+			}
+			add_timed_idea = {
+    				idea = USA_strook_first
+    				days = 250
+			}
+		}
+
+	}#
+
+
+	focus = {
+		id = USA_victory
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 1
+		prerequisite = {
+			focus = USA_strike_first
+		}
+		x = 77
+		y = 8
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		available = {
+			owns_state = 242
+			FRA = {
+				exists = no
+			}
+		}
+
+		completion_reward = {	
+			set_country_flag = reunification_wars
+			unlock_decision_tooltip = reunification_wars
+			set_capital = {
+				state = 242
+			}
+			add_stability = 0.1
+			country_event = {
+    				id = maga.133
+    				days = 0
+    				#random_hours = 28
+			}
+			hidden_effect = {
+				country_event = {
+    					id = maga.134
+    					days = 14
+    					random_hours = 28
+				}
+			}
+		}
+
+	}
+
+
+	focus = {
+		id = USA_guantanamo
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 5
+		prerequisite = {
+			focus = USA_victory
+		}
+		x = 74
+		y = 9
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+
+		#}
+
+		completion_reward = {	
+			add_state_claim = 490
+			490 ={
+				owner = {
+					country_event = {
+    						id = maga.135
+    						days = 7
+    						#random_hours = 28
+					}
+				}
+			}
+		}
+
+	}
+
+	focus = {
+		id = USA_purto_rico
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 5
+		prerequisite = {
+			focus = USA_victory
+		}
+		x = 76
+		y = 9
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+
+		#}
+		will_lead_to_war_with = PUE
+		completion_reward = {	
+			PUE ={
+				country_event = {
+    					id = maga.130
+    					days = 7
+    					random_hours = 28			
+				}
+				every_core_state = {
+					add_claim_by = USA
+				}
+			}
+		}
+
+	}
+
+	focus = {
+		id = USA_maine
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 3
+		prerequisite = {
+			focus = USA_victory
+		}
+		x = 78
+		y = 9
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		available = {
+			NOT = {
+				is_in_faction_with = NEW
+			}
+		}
+		will_lead_to_war_with = NEW
+		completion_reward = {	
+			create_wargoal = {
+    				type = annex_everything
+    				target = NEW
+			}			
+		}
+
+	}
+
+	focus = {
+		id = USA_invade_NRA
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 3
+		prerequisite = {
+			focus = USA_victory
+		}
+		x = 80
+		y = 9
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		available = {
+			NOT = {
+				is_in_faction_with = NRA
+			}
+		}
+		will_lead_to_war_with = NRA
+		completion_reward = {	
+			create_wargoal = {
+    				type = annex_everything
+    				target = NRA
+			}			
+		}
+
+	}
+
+	focus = {
+		id = USA_northen_direction
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 4
+		prerequisite = {
+			focus = USA_make_america_again #OMG the mod name!!!
+		}
+		x = 92
+		y = 2
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+			
+		#}
+		completion_reward = {
+			country_event = {
+    				id = maga.136
+    				days = 1
+    				random_hours = 28
+			}			
+			add_political_power = 80
+		}
+
+	}
+
+	focus = {
+		id = USA_minnesota
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 5
+		prerequisite = {
+			focus = USA_northen_direction
+		}
+		x = 92
+		y = 3
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		available = {
+			has_war = no
+			NOT = {
+				MIL = {
+					exists = yes
+				}
+			}
+		}
+		will_lead_to_war_with = MNS
+		will_lead_to_war_with = MIN
+		completion_reward = {	
+			create_wargoal = {
+    				type = annex_everything
+    				target = MNS
+			}
+			create_wargoal = {
+    				type = annex_everything
+    				target = MIN
+			}
+		}
+
+	}
+
+	focus = {
+		id = USA_docks
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 5
+		prerequisite = {
+			focus = USA_northen_direction
+		}
+		x = 86
+		y = 3
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		available = {
+			any_controlled_state = { 
+				is_coastal = yes
+			}
+		}
+
+		completion_reward = {	
+			random_owned_controlled_state = {
+				limit = {is_coastal = yes}			
+				add_extra_state_shared_building_slots = 5			
+				add_building_construction = {
+    					type = dockyard
+    					level = 5
+    					instant_build = yes
+				}			
+			}
+		}
+
+	}
+	focus = {
+		id = USA_ship_modules
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 4
+		prerequisite = {
+			focus = USA_docks
+		}
+		x = 82
+		y = 4
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+#		available = {
+
+#		}
+		completion_reward = {
+			add_tech_bonus = {
+			    bonus = 0.4
+			    uses = 7
+			    category = ship_modules_tech
+			}	
+
+		}
+	}
+
+	focus = {
+		id = USA_naval_air
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 4
+		prerequisite = {
+			focus = USA_ship_modules
+		}
+		x = 82
+		y = 6
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+#		available = {
+
+#		}
+		completion_reward = {
+			add_tech_bonus = {
+			    bonus = 0.9
+			    uses = 3
+			    category = naval_air
+			}	
+
+		}
+	}
+
+	focus = {
+		id = USA_ships
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 4
+		prerequisite = {
+			focus = USA_docks
+		}
+		x = 86
+		y = 4
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+#		available = {
+
+#		}
+		completion_reward = {
+			add_tech_bonus = {
+			    bonus = 1
+			    uses = 3
+			    category = naval_equipment
+			}	
+
+		}
+	}
+
+	focus = {
+		id = USA_docks2
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 5
+		prerequisite = {
+			focus = USA_ships
+		}
+		prerequisite = {
+			focus = USA_naval_air
+		}
+		prerequisite = {
+			focus = USA_crusiers
+		}
+		x = 86
+		y = 7
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		available = {
+			any_controlled_state = { 
+				is_coastal = yes
+			}
+		}
+
+		completion_reward = {	
+			random_owned_controlled_state = {
+				limit = {is_coastal = yes}			
+				add_extra_state_shared_building_slots = 7			
+				add_building_construction = {
+    					type = dockyard
+    					level = 7
+    					instant_build = yes
+				}			
+			}
+		}
+
+	}
+
+	focus = {
+		id = USA_great_lakes_warfare
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 5
+		prerequisite = {
+			focus = USA_ships
+		}
+		x = 84
+		y = 5
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+#		available = {
+
+#		}
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.5
+				uses = 4
+				category = naval_doctrine
+			}			
+		}
+
+	}
+
+	focus = {
+		id = USA_subs
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 4
+		prerequisite = {
+			focus = USA_ships
+		}
+		x = 88
+		y = 5
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+#		available = {
+
+#		}
+		completion_reward = {
+			add_tech_bonus = {
+			    bonus = 1
+			    uses = 2
+			    category = ss_tech
+			}	
+
+		}
+	}
+
+	focus = {
+		id = USA_destroyers
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 8
+		prerequisite = {
+			focus = USA_docks
+		}
+		x = 90
+		y = 4
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+#		available = {
+
+#		}
+		completion_reward = {
+
+			hidden_effect = {
+				set_technology = {
+					basic_destroyer = 1
+					early_destroyer = 1
+				}
+			}
+			create_equipment_variant = {
+				name = "Arleigh Burke"
+				type = destroyer_2
+				parent_version = 0
+				upgrades = {
+					ship_torpedo_upgrade = 1
+					destroyer_engine_upgrade = 3
+					ship_ASW_upgrade = 2
+					ship_anti_air_upgrade = 1
+				}
+			}
+    			create_ship = {
+        			type = destroyer_2
+        			equipment_variant = "Arleigh Burke"
+        			creator = USA
+        			name = "USS Liberty"
+    			}
+    			create_ship = {
+        			type = destroyer_2
+        			equipment_variant = "Arleigh Burke"
+        			creator = USA
+        			name = "USS Freedom"
+    			}
+    			create_ship = {
+        			type = destroyer_2
+        			equipment_variant = "Arleigh Burke"
+        			creator = USA
+        			name = "USS Triumph"
+    			}
+    			create_ship = {
+        			type = destroyer_2
+        			equipment_variant = "Arleigh Burke"
+        			creator = USA
+        			name = "USS Unification"
+    			}
+    			create_ship = {
+        			type = destroyer_2
+        			equipment_variant = "Arleigh Burke"
+        			creator = USA
+        			name = "USS Peace"
+    			}
+			country_event = {
+    				id = maga.137
+    				days = 3
+    				random_hours = 28
+			}
+		}
+	}
+
+	focus = {
+		id = USA_crusiers
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 8
+		prerequisite = {
+			focus = USA_destroyers
+		}
+		x = 90
+		y = 6
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+#		available = {
+
+#		}
+		completion_reward = {	
+			hidden_effect = {
+				set_technology = {
+					early_light_cruiser = 1
+					basic_light_cruiser = 1
+				}
+			}
+			create_equipment_variant = {
+				name = "Ticonderoga class Cruiser"
+				type = light_cruiser_2
+				parent_version = 0
+				upgrades = {
+					ship_reliability_upgrade = 3
+					ship_engine_upgrade = 3
+					ship_gun_upgrade = 2
+					ship_anti_air_upgrade = 3
+				}
+			}	
+    			create_ship = {
+        			type = light_cruiser_2
+        			equipment_variant = "Ticonderoga class Cruiser"
+        			creator = USA
+        			name = "USS Trump"
+    			}
+    			create_ship = {
+        			type = light_cruiser_2
+        			equipment_variant = "Ticonderoga class Cruiser"
+        			creator = USA
+        			name = "USS MAGA"
+    			}
+
+			country_event = {
+    				id = maga.138
+    				days = 3
+    				random_hours = 28
+			}
+		}
+	}
+
+	focus = {
+		id = USA_embargo_GLA
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 4
+		prerequisite = {
+			focus = USA_northen_direction
+		}
+		x = 96
+		y = 3
+		mutually_exclusive = {
+			focus = USA_GLA_art_of_the_deal
+		}
+		
+		#available = {
+
+		#}
+
+		completion_reward = {	
+			send_embargo = GLA
+			country_event = {
+    				id = maga.138
+    				days = 3
+    				random_hours = 28
+			}			
+		}
+
+	}
+
+	focus = {
+		id = USA_GLA_invade
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 5
+		prerequisite = {
+			focus = USA_embargo_GLA
+		}
+		x = 96
+		y = 5
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		available = {
+			has_war = no
+			has_army_manpower = {
+   	 			size > 400000
+			}
+		}
+		will_lead_to_war_with = GLA
+		completion_reward = {	
+			create_wargoal = {
+    				type = annex_everything
+    				target = GLA
+			}
+		}
+
+	}
+
+	focus = {
+		id = USA_KMT_arm
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 5
+		prerequisite = {
+			focus = USA_embargo_GLA
+		}
+		x = 94
+		y = 4
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+
+		#}
+
+		bypass = {
+			KMT = {
+				has_war_with = GLA
+			}
+		}
+
+		completion_reward = {
+			diplomatic_relation = {
+    				country = KMT
+    				relation = guarantee
+    				active = yes
+			}	
+			KMT = {
+				country_event = {
+    					id = maga.139
+    					days = 3
+    					random_hours = 28
+				}
+				effect_tooltip = {
+					add_equipment_to_stockpile = {
+    						type = infantry_equipment
+    						amount = 4500
+    						producer = USA
+					}
+				}	
+			}
+		
+		}
+
+	}
+
+	focus = {
+		id = USA_KMT_puppet
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 8
+		prerequisite = {
+			focus = USA_KMT_arm
+		}
+		x = 94
+		y = 6
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		available = {
+			KMT = {
+				has_war_with = GLA
+			}
+		}
+		will_lead_to_war_with = GLA
+		completion_reward = {
+			country_event = {
+    				id = maga.140
+    				days = 0
+    				#random_hours = 28
+			}
+			custom_effect_tooltip = USA_KMT_deal
+			KMT = {
+				country_event = {
+    					id = maga.141
+    					days = 7
+    					random_hours = 28
+				}
+	
+			}
+		
+		}
+
+	}
+
+	focus = {
+		id = USA_GLA_art_of_the_deal
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 4
+		prerequisite = {
+			focus = USA_northen_direction
+		}
+		x = 100
+		y = 3
+		mutually_exclusive = {
+			focus = USA_embargo_GLA
+		}
+		
+		#available = {
+
+		#}
+
+		completion_reward = {
+			custom_effect_tooltip = USA_GLA_deal 	
+			country_event = {
+    				id = maga.143
+    				days = 0
+    				#random_hours = 28
+			}
+			GLA = {
+				country_event = {
+    					id = maga.144
+    					days = 5
+    					random_hours = 28
+				}
+			}			
+		}
+
+	}
+
+	focus = {
+		id = USA_GLA_call
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 4
+		prerequisite = {
+			focus = USA_GLA_art_of_the_deal
+		}
+		x = 100
+		y = 5
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		available = {
+			has_war_with = FRA
+		}
+
+		completion_reward = {
+			effect_tooltip = {
+				GLA = {
+					add_to_war = {
+    						targeted_alliance = USA
+    						enemy = FRA
+    						hostility_reason = asked_to_join
+					}
+				}
+			}	
+			country_event = {
+    				id = maga.146
+    				days = 0
+    				#random_hours = 28
+			}
+			GLA = {
+				country_event = {
+    					id = maga.147
+    					days = 5
+    					random_hours = 28
+				}
+			}			
+		}
+
+	}
+
+	focus = {
+		id = USA_purge_dems
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 3
+		#prerequisite = {
+		#	focus = 
+		#}
+		x = 106
+		y = 0
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+
+		#}
+
+		completion_reward = {
+				
+			country_event = {
+    				id = maga.148
+    				days = 0
+    				#random_hours = 28
+			}
+			add_popularity = {
+    				ideology = democrat
+    				popularity = -0.15
+			}			
+		}
+
+	}
+
+	focus = {
+		id = USA_discredit_Biden
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 2
+		prerequisite = {
+			focus = USA_purge_dems
+		}
+		x = 106
+		y = 1
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+
+		#}
+
+		completion_reward = {
+				
+			country_event = {
+    				id = maga.148
+    				days = 0
+    				#random_hours = 28
+			}
+		
+		}
+
+	}
+
+	focus = {
+		id = USA_trial_for_degeneracy
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 1
+		prerequisite = {
+			focus = USA_discredit_Biden
+		}
+		x = 104
+		y = 2
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+
+		#}
+
+		completion_reward = {
+				
+			country_event = {
+    				id = maga.149
+    				days = 0
+    				#random_hours = 28
+			}
+		
+		}
+
+	}
+
+	focus = {
+		id = USA_trial_for_treason
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 1
+		prerequisite = {
+			focus = USA_discredit_Biden
+		}
+		x = 106
+		y = 2
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+
+		#}
+
+		completion_reward = {
+				
+			country_event = {
+    				id = maga.150
+    				days = 0
+    				#random_hours = 28
+			}
+		
+		}
+
+	}
+
+	focus = {
+		id = USA_trial_for_cheating
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 1
+		prerequisite = {
+			focus = USA_discredit_Biden
+		}
+		x = 108
+		y = 2
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+
+		#}
+
+		completion_reward = {
+				
+			country_event = {
+    				id = maga.151
+    				days = 0
+    				#random_hours = 28
+			}
+		
+		}
+
+	}
+
+
+	focus = {
+		id = USA_send_agents
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 4
+		prerequisite = {
+			focus = USA_trial_for_cheating
+		}
+		prerequisite = {
+			focus = USA_trial_for_treason
+		}
+		prerequisite = {
+			focus = USA_trial_for_degeneracy
+		}
+		x = 106
+		y = 3
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+
+		#}
+
+		completion_reward = {
+				
+			country_event = {
+    				id = maga.152
+    				days = 0
+    				#random_hours = 28
+			}
+			FRA = {
+				country_event = {
+    					id = maga.153
+    					days = 8
+    					random_hours = 28
+				}
+			}
+		}
+
+	}
+
+
+	focus = {
+		id = USA_send_agents_
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 4
+		prerequisite = {
+			focus = USA_trial_for_cheating
+		}
+		prerequisite = {
+			focus = USA_trial_for_treason
+		}
+		prerequisite = {
+			focus = USA_trial_for_degeneracy
+		}
+		x = 106
+		y = 3
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+
+		#}
+
+		completion_reward = {
+				
+			country_event = {
+    				id = maga.152
+    				days = 0
+    				#random_hours = 28
+			}
+			FRA = {
+				country_event = {
+    					id = maga.153
+    					days = 8
+    					random_hours = 28
+				}
+			}
+		}
+
+	}
+
+
+	focus = {
+		id = USA_actual_trial
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 3
+		prerequisite = {
+			focus = USA_send_agents_
+		}
+		x = 106
+		y = 5
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		available = {
+			owns_state = 242
+		}
+
+		completion_reward = {
+				
+			country_event = {
+    				id = maga.155
+    				days = 0
+    				#random_hours = 28
+			}
+
+		}
+
+	}
+
+	focus = {
+		id = USA_actual_trial_degeneracy
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 3
+		prerequisite = {
+			focus =USA_actual_trial
+		}
+		x = 104
+		y = 6
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#	owns_state = 242
+		#}
+
+		completion_reward = {
+				
+			country_event = {
+    				id = maga.156
+    				days = 0
+    				#random_hours = 28
+			}
+
+		}
+
+	}
+
+	focus = {
+		id = USA_actual_trial_treason
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 3
+		prerequisite = {
+			focus =USA_actual_trial
+		}
+		x = 106
+		y = 6
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#	owns_state = 242
+		#}
+
+		completion_reward = {
+				
+			country_event = {
+    				id = maga.157
+    				days = 0
+    				#random_hours = 28
+			}
+
+		}
+
+	}
+
+	focus = {
+		id = USA_actual_trial_cheating
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 3
+		prerequisite = {
+			focus =USA_actual_trial
+		}
+		x = 108
+		y = 6
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#	owns_state = 242
+		#}
+
+		completion_reward = {
+				
+			country_event = {
+    				id = maga.158
+    				days = 0
+    				#random_hours = 28
+			}
+
+		}
+
+	}
+
+	focus = {
+		id = USA_final_veredict
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 5
+		prerequisite = {
+			focus = USA_actual_trial_cheating
+		}
+		prerequisite = {
+			focus = USA_actual_trial_treason
+		}
+		prerequisite = {
+			focus = USA_actual_trial_degeneracy
+		}
+		x = 106
+		y = 7
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#	owns_state = 242
+		#}
+
+		completion_reward = {
+				
+			country_event = {
+    				id = maga.159
+    				days = 0
+    				#random_hours = 28
+			}
+
+		}
+
+	}
+
+	focus = {
+		id = USA_democrat_question
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 2
+		prerequisite = {
+			focus = USA_final_veredict
+		}
+		x = 106
+		y = 8
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#	owns_state = 242
+		#}
+
+		completion_reward = {
+				
+			country_event = {
+    				id = maga.160
+    				days = 0
+    				#random_hours = 28
+			}
+
+		}
+
+	}
+
+	focus = {
+		id = USA_reform_democrats
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 2
+		prerequisite = {
+			focus = USA_democrat_question
+		}
+		x = 105
+		y = 9
+		mutually_exclusive = {
+			focus = USA_ban_democrats
+		}
+		
+		#available = {
+		#	owns_state = 242
+		#}
+
+		completion_reward = {
+				
+			add_popularity = {
+    				ideology = democrat
+    				popularity = 0.2
+			}
+
+		}
+
+	}
+
+	focus = {
+		id = USA_bring_southern_democrats
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 4
+		prerequisite = {
+			focus = USA_reform_democrats
+		}
+		x = 105
+		y = 10
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#	owns_state = 242
+		#}
+
+		completion_reward = {
+				
+			country_event = {
+    				id = maga.161
+    				days = 0
+    				#random_hours = 28
+			}
+			add_popularity = {
+    				ideology = democrat
+    				popularity = 0.05
+			}
+			add_stability = 0.05
+		}
+
+	}
+
+	focus = {
+		id = USA_choose_a_new_democratic_candidate
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 4
+		prerequisite = {
+			focus = USA_bring_southern_democrats
+		}
+		x = 105
+		y = 12
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#	owns_state = 242
+		#}
+
+		completion_reward = {	
+			country_event = {
+    				id = maga.162
+    				days = 0
+    				#random_hours = 28
+			}
+
+		}
+
+	}
+
+	focus = {
+		id = USA_pardon_some_democrats
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 4
+		prerequisite = {
+			focus = USA_reform_democrats
+		}
+		x = 103
+		y = 10
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#	owns_state = 242
+		#}
+
+		completion_reward = {
+				
+			country_event = {
+    				id = maga.162
+    				days = 5
+    				random_hours = 28
+			}
+			every_owned_state = {
+				limit = {is_core_of = FRA}
+				add_compliance = 5
+			}			
+
+		}
+
+	}
+
+
+	focus = {
+		id = USA_let_them_campaign
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 4
+		prerequisite = {
+			focus = USA_pardon_some_democrats
+		}
+		x = 103
+		y = 11
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#	owns_state = 242
+		#}
+
+		completion_reward = {
+				
+			country_event = {
+    				id = maga.163
+    				days = 5
+    				random_hours = 28
+			}
+			add_popularity = {
+    				ideology = democrat
+    				popularity = 0.1
+			}						
+
+		}
+
+	}
+
+	focus = {
+		id = USA_our_campaign
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 4
+		prerequisite = {
+			focus = USA_let_them_campaign
+		}
+		x = 103
+		y = 12
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#	owns_state = 242
+		#}
+
+		completion_reward = {
+				
+			country_event = {
+    				id = maga.164
+    				days = 5
+    				random_hours = 28
+			}
+			add_popularity = {
+    				ideology = republican
+    				popularity = 0.15
+			}						
+
+		}
+
+	}
+
+	focus = {
+		id = USA_new_election
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 8
+		prerequisite = {
+			focus = USA_our_campaign
+		}
+		prerequisite = {
+			focus = USA_choose_a_new_democratic_candidate
+		}
+		x = 104
+		y = 13
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		#available = {
+		#	owns_state = 242
+		#}
+
+		select_effect = {
+			country_event = {
+    				id = maga.165
+    				days = 14
+    				random_hours = 28
+			}
+			country_event = {
+    				id = maga.166
+    				days = 28
+    				random_hours = 28
+			}
+			country_event = {
+    				id = maga.167
+    				days = 42
+    				random_hours = 28
+			}
+		}
+
+		completion_reward = {
+				
+			country_event = {
+    				id = maga.168
+    				days = 0
+    				random_hours = 28
+			}
+						
+
+		}
+
+	}
+
+	focus = {
+		id = USA_keep_them_under_watch
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 3
+		prerequisite = {
+			focus = USA_new_election
+		}
+		x = 102
+		y = 14
+		mutually_exclusive = {
+			focus = USA_trump_forever
+		}
+		
+		available = {
+			has_government = democrat
+		}
+
+
+		completion_reward = {
+			add_country_leader_trait = underwatch
+			#swap_ruler_traits = { remove = underwatch add = underwatch }
+			country_event = {
+    				id = maga.169
+    				days = 2
+    				random_hours = 28
+			}
+						
+			
+		}
+
+	}
+
+	focus = {
+		id = USA_trump_forever
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 3
+		prerequisite = {
+			focus = USA_new_election
+		}
+		x = 104
+		y = 14
+		mutually_exclusive = {
+			focus = USA_keep_them_under_watch
+			focus = USA_a_new_face
+		}
+		
+		available = {
+			has_government = democrat
+		}
+
+
+		completion_reward = {
+			add_country_leader_trait = forever_president
+			country_event = {
+    				id = maga.170
+    				days = 2
+    				random_hours = 28
+			}
+						
+			
+		}
+
+	}
+
+	focus = {
+		id = USA_trump_forever
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 3
+		prerequisite = {
+			focus = USA_new_election
+		}
+		x = 104
+		y = 14
+		mutually_exclusive = {
+			focus = USA_keep_them_under_watch
+			focus = USA_a_new_face
+		}
+		
+		available = {
+			has_government = republican
+		}
+
+
+		completion_reward = {
+			add_country_leader_trait = forever_president
+			country_event = {
+    				id = maga.170
+    				days = 2
+    				random_hours = 28
+			}
+						
+			
+		}
+
+	}
+
+	focus = {
+		id = USA_a_new_face
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 3
+		prerequisite = {
+			focus = USA_new_election
+		}
+		x = 106
+		y = 14
+		mutually_exclusive = {
+			focus = USA_keep_them_under_watch
+			focus = USA_trump_forever
+		}
+		
+		available = {
+			has_government = republican
+		}
+
+
+		completion_reward = {
+			if = {
+				limit = {has_idea = USA_gavin_mcinnes_advisor }
+				set_politics = {
+	    				ruling_party = autocratic
+    					elections_allowed = no
+				}				
+				country_event = {
+    					id = maga.171
+    					days = 2
+    					random_hours = 28
+				}
+			}
+			else_if = {
+				limit = {has_idea = USA_don_jr_advisor }
+				add_country_leader_role = {
+    					character = USA_donald_trump_jr
+    					promote_leader = yes
+    					country_leader = {
+        					ideology = trumpist
+        					traits = { the_future_of_republicanism }
+    					}
+				}				
+				country_event = {
+    					id = maga.172
+    					days = 2
+    					random_hours = 28
+				}
+			}			
+			else_if = {
+				limit = {has_idea = USA_ron_desantis_advisor }
+				add_country_leader_role = {
+    					character = USA_ron_desantis
+    					promote_leader = yes
+    					country_leader = {
+        					ideology = neocon
+        					traits = { the_future_of_republicanism }
+    					}
+				}				
+				country_event = {
+    					id = maga.173
+    					days = 2
+    					random_hours = 28
+				}
+			}
+			else = {
+				add_country_leader_role = {
+    					character = USA_ben_carson
+    					promote_leader = yes
+    					country_leader = {
+        					ideology = trumpist
+        					traits = { the_future_of_republicanism }
+    					}
+				}				
+				country_event = {
+    					id = maga.174
+    					days = 2
+    					random_hours = 28
+				}
+			}			
+		}
+
+	}
+
+	focus = {
+		id = USA_ban_democrats
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 2
+		prerequisite = {
+			focus = USA_democrat_question
+		}
+		x = 107
+		y = 9
+		mutually_exclusive = {
+			focus = USA_reform_democrats
+		}
+		
+		#available = {
+		#	owns_state = 242
+		#}
+
+		completion_reward = {
+				
+			add_popularity = {
+    				ideology = democrat
+    				popularity = -1
+			}
+
+		}
+
+	}
+
+	focus = {
+		id = USA_end_wokeness
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 2
+		prerequisite = {
+			focus = USA_ban_democrats
+			focus = USA_reform_democrats
+		}
+		x = 106
+		y = 11
+
+		completion_reward = {
+				
+			add_popularity = {
+    				ideology = libertarian_left
+    				popularity = -1
+			}
+			every_owned_state = {
+				limit = {is_core_of = FRA}
+				add_resistance_target = 5
+			}
+		}
+
+	}
+
+	focus = {
+		id = USA_republican_education
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 2
+		prerequisite = {
+			focus = USA_end_wokeness
+		}
+		x = 106
+		y = 13
+
+		completion_reward = {
+				
+			add_ideas = USA_conservative_education
+		}
+
+	}
+
+	focus = {
+		id = USA_new_2_party
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 4
+		prerequisite = {
+			focus = USA_ban_democrats
+		}
+		x = 107
+		y = 10
+
+		completion_reward = {
+				
+			add_popularity = {
+    				ideology = libertarian_right
+    				popularity = 0.2
+			}
+			country_event = {
+    				id = maga.175
+    				days = 2
+    				random_hours = 28
+			}			
+		}
+
+	}
+
+	focus = {
+		id = USA_let_them_campaign_
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 4
+		prerequisite = {
+			focus = USA_new_2_party
+		}
+		x = 107
+		y = 12
+
+		completion_reward = {
+				
+			add_popularity = {
+    				ideology = libertarian_right
+    				popularity = 0.1
+			}
+			country_event = {
+    				id = maga.176
+    				days = 4
+    				random_hours = 28
+			}			
+		}
+
+	}
+
+	focus = {
+		id = USA_GLA_reunification
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 4
+		prerequisite = {
+			focus = USA_let_them_campaign_
+		}
+		x = 107
+		y = 15
+		available = {
+			GLA = {exists = yes}
+		}
+		completion_reward = {
+				
+
+			country_event = {
+    				id = maga.177
+    				days = 4
+    				random_hours = 28
+			}
+
+			GLA = {
+		
+				country_event = {
+    					id = maga.178
+    					days = 4
+    					random_hours = 28
+				}
+			}			
+		}
+
+	}
+
+	focus = {
+		id = USA_extend_period_of_exeption
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 3
+		prerequisite = {
+			focus = USA_ban_democrats
+		}
+		x = 109
+		y = 10
+
+		completion_reward = {
+			add_stability = -0.1
+			add_political_power = 350
+			country_event = {
+    				id = maga.179
+    				days = 2
+    				random_hours = 28
+			}
+					
+		}
+
+	}
+
+	focus = {
+		id = USA_end_leftist_remains
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 3
+		prerequisite = {
+			focus = USA_extend_period_of_exeption
+		}
+		x = 109
+		y = 11
+
+		completion_reward = {
+			add_popularity = {
+    				ideology = authoritarian_left
+    				popularity = -1
+			}
+					
+		}
+
+	}
+
+	focus = {
+		id = USA_america_first
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 3
+		prerequisite = {
+			focus = USA_extend_period_of_exeption
+		}
+		x = 111
+		y = 11
+
+		completion_reward = {
+			add_manpower = 100000
+			country_event = {
+    				id = maga.180
+    				days = 4
+    				random_hours = 28
+			}					
+		}
+
+	}
+
+	focus = {
+		id = USA_the_future_of_democracy
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 3
+		prerequisite = {
+			focus =  USA_america_first
+		}
+		prerequisite = {
+			focus =  USA_end_leftist_remains
+		}
+		x = 109
+		y = 13
+
+		completion_reward = {
+			country_event = {
+    				id = maga.181
+    				days = 0
+    				random_hours = 0
+			}		
+		}
+
+	}
 }

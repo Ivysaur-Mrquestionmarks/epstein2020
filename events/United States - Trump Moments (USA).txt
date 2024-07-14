@@ -1638,7 +1638,7 @@ country_event = {
 	}
 }
 
-(Branch where trump jr won) Trump jr proposes to trump to start filling up goberment positions with fellow family members
+#(Branch where trump jr won) Trump jr proposes to trump to start filling up goberment positions with fellow family members
 country_event = {
 	id = maga.76
 	title = maga.76.t
@@ -2296,11 +2296,11 @@ country_event = {
 		IDA = {
 			add_to_faction = ROOT
 		}
-		add_ai_strategy = { #Will make it a proper ai strategy later
-    			type = alliance
-    			id = IDA
-    			value = 200
-		}
+		#add_ai_strategy = { 
+    		#	type = alliance
+    		#	id = IDA
+    		#	value = 200
+		#}
 	}
 	option = { #no
 		name = maga.108.b
@@ -2362,3 +2362,1696 @@ country_event = {
 		}
 	}
 }
+
+#Event about trump and his high command planning how to deal with the CSA
+country_event = {
+	id = maga.112
+	title = maga.112.t
+	desc = maga.112.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.112.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#Trump visits the line of forts made on the border with the CSA, on the news.
+country_event = {
+	id = maga.113
+	title = maga.113.t
+	desc = maga.113.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.113.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+
+#Trump gives a speech against Texas and their separationist policies
+country_event = {
+	id = maga.114
+	title = maga.114.t
+	desc = maga.114.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.114.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+
+#Trump discusses with his generals the implications of trying to do a deal with the CSA to take parts of texas from them
+country_event = {
+	id = maga.115
+	title = maga.115.t
+	desc = maga.115.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.115.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+
+#(CSA pov) Trump just sent us an offer to force Texas to give both of us border regions
+country_event = {
+	id = maga.116
+	title = maga.116.t
+	desc = maga.116.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #Brilliant idea
+		name = maga.116.a
+		ai_chance = {
+			factor = 1
+		}
+		add_state_core = 610
+		TEX = {
+			country_event = {
+    				id = maga.117
+    				days = 7
+    				random_hours = 28
+			}
+		}
+	}
+
+	option = { #Nah.
+		name = maga.116.b
+		ai_chance = {
+			base = 0
+			modifier = {
+				add = 10
+				USA = {
+					has_completed_focus = USA_southern_forts
+				}
+			}
+		}
+		USA = {
+			country_event = {
+    				id = maga.118
+    				days = 7
+    				random_hours = 28
+			}
+		}
+	}
+}
+
+#(TEX pov)Trump and the USA have teamed up and are now jointly demanding land from us
+country_event = {
+	id = maga.117
+	title = maga.117.t
+	desc = maga.117.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #There is no other choice
+		name = maga.117.a
+		ai_chance = {
+			factor = 5
+		}
+		every_owned_state = {
+			limit = {OR = {
+				is_claimed_by = USA
+				is_core_of = CSA
+			}}
+			if = {
+				limit = {is_claimed_by = USA}
+				transfer_state_to = USA
+			}
+			else_if = {
+				limit = {is_core_of = CSA}
+				transfer_state_to = CSA
+			}
+		}
+	}
+
+	option = { #Fuck it, we ball
+		name = maga.117.b
+		ai_chance = {
+			factor = 1
+		}
+		USA = {
+			create_wargoal = {
+    				type = annex_everything
+    				target = TEX
+			}
+		}
+		CSA = {
+			create_wargoal = {
+    				type = annex_everything
+    				target = TEX
+			}
+		}
+	}
+}
+
+#The south was out ragged at our offer and denied it :(
+country_event = {
+	id = maga.118
+	title = maga.118.t
+	desc = maga.118.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.118.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#Trump's plan to aid Florida agianst the CSA
+country_event = {
+	id = maga.119
+	title = maga.119.t
+	desc = maga.119.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.119.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+
+#Trump offers aid against the CSA
+country_event = {
+	id = maga.120
+	title = maga.120.t
+	desc = maga.120.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #Thx!!!
+		name = maga.120.a
+		ai_chance = {
+			factor = 1
+		}
+		add_offsite_building = { type = arms_factory level = 3 }
+		diplomatic_relation = {
+    			country = USA
+    			relation = non_aggression_pact
+    			active = yes
+		}
+		diplomatic_relation = {
+    			country = USA
+    			relation = military_access
+    			active = yes
+		}
+	}
+	option = { #Better no.
+		name = maga.120.b
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+#(CSA pov) The USA is treatening direct intervention if we don't let FLO keep their land
+country_event = {
+	id = maga.121
+	title = maga.121.t
+	desc = maga.121.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #Fuck.
+		name = maga.121.a
+		ai_chance = {
+			factor = 1
+		}
+		
+		white_peace = {
+    			tag = FLO
+    			message = Panhandle
+		}
+		release = FLO
+	}
+	option = { #What are you going to do (this one won't end well).
+		name = maga.121.b
+		ai_chance = {
+			factor = 0
+		}
+		USA = {
+			create_wargoal = {
+    				type = annex_everything
+    				target = CSA
+			}
+		}
+	}
+}
+
+#Trump's plans and aspirations to push east and finaly defeat Biden
+country_event = {
+	id = maga.122
+	title = maga.122.t
+	desc = maga.122.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.122.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#An event about trump talking with Nra leadership to get them weapons to fight Biden.
+country_event = {
+	id = maga.123
+	title = maga.123.t
+	desc = maga.123.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.122.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#(NRA's pov) Trump just sent us guns to fight Biden with
+country_event = {
+	id = maga.124
+	title = maga.124.t
+	desc = maga.124.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {  
+		name = maga.124.a
+		ai_chance = {
+			factor = 1
+		}
+		add_equipment_to_stockpile = {
+    			type = infantry_equipment
+    			amount = 7000
+    			producer = USA
+		}
+	}
+}
+
+
+
+#(KFC rebel's pov) Trump just sent us guns to fight the cornel
+country_event = {
+	id = maga.125
+	title = maga.125.t
+	desc = maga.125.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {  
+		name = maga.125.a
+		ai_chance = {
+			factor = 1
+		}
+		add_equipment_to_stockpile = {
+    			type = infantry_equipment
+    			amount = 3500
+    			producer = USA
+		}
+	}
+}
+
+#After action report from a succesfull bombing of eastern Kentucky.
+country_event = {
+	id = maga.126
+	title = maga.126.t
+	desc = maga.126.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.126.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#(KFC resitance POV) Trump bombs the cornel troops.
+country_event = {
+	id = maga.127
+	title = maga.127.t
+	desc = maga.127.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.127.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#(KFC cornel pov) Trump bombs our troops
+country_event = {
+	id = maga.128
+	title = maga.128.t
+	desc = maga.128.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.128.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#Trump in a meeting with the leaders of the victorious kfc resistance giving them an ultimatum to subgegate themselves to him, or else...
+country_event = {
+	id = maga.129
+	title = maga.129.t
+	desc = maga.129.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.129.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#(KFC's resistance or puerto rico pov), how do we answer (to the evetn above)?
+country_event = {
+	id = maga.130
+	title = maga.130.t
+	desc = maga.130.d
+	#picture =
+	is_triggered_only = yes
+	#fire_only_once = yes
+	option = { #At least this way we won't be dead
+		name = maga.130.a
+		ai_chance = {
+			factor = 1
+		}
+		USA = {
+			puppet = ROOT
+		}
+	}
+
+	option = { #We fought for freedom, not for new masters
+		name = maga.130.b
+		ai_chance = {
+			factor = 1
+		}
+		USA = {
+			create_wargoal = {
+    				type = annex_everything
+    				target = ROOT
+			}
+			country_event = {
+    				id = maga.131
+    				days = 7
+    				random_hours = 28
+			}			
+		}
+	}
+}
+
+#Kentucky/Puerto Rico denied our ultimatum. War it is then
+country_event = {
+	id = maga.131
+	title = maga.131.t
+	desc = maga.131.d
+	#picture =
+	is_triggered_only = yes
+	#fire_only_once = yes
+	option = { 
+		name = maga.131.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#Trump gives a speech against the AFS calling them ilegitimate and undemocratic
+country_event = {
+	id = maga.132
+	title = maga.132.t
+	desc = maga.132.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.132.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#Trump giving a victory speech after finaly defeating Biden
+country_event = {
+	id = maga.133
+	title = maga.133.t
+	desc = maga.133.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.133.a
+		ai_chance = {
+			factor = 1
+		}
+		add_war_support = 0.3
+	}
+}
+
+
+#People on Biden's former territory protest on mass against Trump
+country_event = {
+	id = maga.134
+	title = maga.134.t
+	desc = maga.134.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.134.a
+		ai_chance = {
+			factor = 1
+		}
+		every_owned_state = {
+			limit = {is_core_of = FRA}
+			add_resistance_target = 30
+			add_compliance = -100
+		}
+	}
+}
+
+#(Who ever owns guantanamo POV) Trump demands Guantanamo from us
+country_event = {
+	id = maga.135
+	title = maga.135.t
+	desc = maga.135.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.135.a
+		ai_chance = {
+			factor = 5
+		}
+		USA = {
+			transfer_state = 490
+		}
+	}
+
+	option = { 
+		name = maga.135.b
+		ai_chance = {
+			factor = 1
+		}
+		USA = {
+			create_wargoal = {
+    				type = take_state_focus
+    				target = ROOT
+    				generator = { 490 }
+			}			
+		}
+	}
+}
+
+#(Evrything below this point happens before winning, until the true trials)
+#Trump discusses with his generals their plan to push to the great lakes to build a navy there.
+country_event = {
+	id = maga.136
+	title = maga.136.t
+	desc = maga.136.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.136.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#Event about old destroyers being put back into service
+country_event = {
+	id = maga.137
+	title = maga.137.t
+	desc = maga.137.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.137.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#Event about old crusiers being put back into service
+country_event = {
+	id = maga.137
+	title = maga.137.t
+	desc = maga.137.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.137.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#Trump's plan to weaken the GLA through embargos and support for winsconsin.
+country_event = {
+	id = maga.138
+	title = maga.138.t
+	desc = maga.138.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.138.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#(Winsconsin's POV) Trump offers us help and protection against the GLA
+country_event = {
+	id = maga.139
+	title = maga.139.t
+	desc = maga.139.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.139.a
+		ai_chance = {
+			factor = 1
+		}
+		add_equipment_to_stockpile = {
+    			type = infantry_equipment
+    			amount = 4500
+    			producer = USA
+		}
+	}
+}
+
+#Trump's plan to utilize the situation Winsconsin is in to gain influence
+country_event = {
+	id = maga.140
+	title = maga.140.t
+	desc = maga.140.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.140.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#(Winconsin POV) Trump offers us support... at a cost (becoming a puppet).
+country_event = {
+	id = maga.141
+	title = maga.141.t
+	desc = maga.141.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #Sure....
+		name = maga.141.a
+		ai_chance = {
+			factor = 3
+		}	
+		USA = {
+			add_to_war = {
+    				targeted_alliance = KMT
+    				enemy = GLA
+    				hostility_reason = asked_to_join
+			}
+			puppet = KMT
+		}
+		add_equipment_to_stockpile = {
+    			type = infantry_equipment
+    			amount = 8000
+    			producer = USA
+		}
+		add_equipment_to_stockpile = {
+    			type = artillery_equipment
+    			amount = 3000
+    			producer = USA
+		}
+		add_equipment_to_stockpile = {
+    			type = support_equipment
+    			amount = 2000
+    			producer = USA
+		}
+	}
+
+	option = { #We'll better pass on this
+		name = maga.141.b 
+		ai_chance = {
+			factor = 1
+		}	
+		USA = {
+			country_event = {
+    				id = maga.142
+    				days = 3
+    				random_hours = 28
+			}
+		}		
+	}
+}
+
+
+#Winsconsin said no to our generous offer :(
+country_event = {
+	id = maga.142
+	title = maga.142.t
+	desc = maga.142.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.142.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#Trump's plan to negotiate a deal where we protect the GLA in exchange of they helping us against Biden.
+country_event = {
+	id = maga.143
+	title = maga.143.t
+	desc = maga.143.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.143.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#Trump Offers protection in exchange of support against Biden
+country_event = {
+	id = maga.144
+	title = maga.144.t
+	desc = maga.144.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #Yes
+		name = maga.144.a
+		ai_chance = {
+			factor = 2
+		}
+		custom_effect_tooltip = USA_GLA_deal2
+		diplomatic_relation = {
+    			country = USA
+    			relation = non_aggression_pact
+    			active = yes
+		}
+
+		USA = {
+			diplomatic_relation = {
+    				country = GLA
+    				relation = guarantee
+    				active = yes
+			}
+			diplomatic_relation = {
+    				country = GLA
+    				relation = military_access
+    				active = yes
+			}
+		}
+	}
+
+	option = { #We'll better pass on this.
+		name = maga.144.b 
+		ai_chance = {
+			factor = 1
+		}	
+		custom_effect_tooltip = anger_trump
+		USA = {
+			country_event = {
+    				id = maga.145
+    				days = 3
+    				random_hours = 28
+			}
+		}		
+	}
+}
+
+#The GLA didn't follow through the deal, and they will regret it.
+country_event = {
+	id = maga.145
+	title = maga.145.t
+	desc = maga.145.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.145.a
+		ai_chance = {
+			factor = 1
+		}
+		uncomplete_national_focus = {
+  			focus = USA_GLA_deal
+  			uncomplete_children = yes
+  			refund_political_power = no
+		}
+		complete_national_focus = USA_embargo_GLA
+	}
+}
+
+#Trump goes to a meeting with the GLA "leadership" speacting for them to join the war against the feds
+country_event = {
+	id = maga.146
+	title = maga.146.t
+	desc = maga.146.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.146.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#(GLA POV) Trump is speacting us to act upon our promise.
+country_event = {
+	id = maga.147
+	title = maga.147.t
+	desc = maga.147.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #A Promise is a promise
+		name = maga.147.a
+		ai_chance = {
+			factor = 7
+		}
+		add_to_war = {
+    			targeted_alliance = USA
+    			enemy = FRA
+   			hostility_reason = asked_to_join
+		}
+	}
+
+	option = { #Now that we think about it...
+		name = maga.147.b 
+		ai_chance = {
+			factor = 1
+		}	
+		custom_effect_tooltip = anger_trump
+		USA = {
+			country_event = {
+    				id = maga.145
+    				days = 3
+    				random_hours = 28
+			}
+		}		
+	}
+}
+
+#Trump gives a speech calling Biden a cheater and the most ilegal president in american history, and anounces he is going to be trialed in absentia.
+country_event = {
+	id = maga.148
+	title = maga.148.t
+	desc = maga.148.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.148.a
+		ai_chance = {
+			factor = 1
+		}
+		add_war_support = 0.05
+	}
+}
+
+#Biden's absentia trial for degeneracy
+country_event = {
+	id = maga.149
+	title = maga.149.t
+	desc = maga.149.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #Guilty.
+		name = maga.149.a
+		ai_chance = {
+			factor = 1
+		}
+		add_political_power = 35
+	}
+	option = { #Very guilty.
+		name = maga.149.b
+		ai_chance = {
+			factor = 1
+		}
+		add_war_support = 0.01
+		add_political_power = -20
+	}
+
+}
+
+#Biden's absentia trial for treason
+country_event = {
+	id = maga.150
+	title = maga.150.t
+	desc = maga.150.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #Guilty.
+		name = maga.150.a
+		ai_chance = {
+			factor = 1
+		}
+		add_political_power = 35
+	}
+	option = { #Very guilty.
+		name = maga.150.b
+		ai_chance = {
+			factor = 1
+		}
+		add_war_support = 0.01
+		add_political_power = -20
+	}
+
+}
+
+#Biden's absentia trial for Cheating
+country_event = {
+	id = maga.151
+	title = maga.151.t
+	desc = maga.151.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #Guilty.
+		name = maga.151.a
+		ai_chance = {
+			factor = 1
+		}
+		add_political_power = 35
+	}
+	option = { #Very guilty.
+		name = maga.151.b
+		ai_chance = {
+			factor = 1
+		}
+		add_war_support = 0.01
+		add_political_power = -20
+	}
+
+}
+
+#A hitman is hired to kinapt Biden
+country_event = {
+	id = maga.152
+	title = maga.152.t
+	desc = maga.152.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.152.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+
+#(FRA POV) A hitman tried to capture the president but he failed, and the president was just injured
+country_event = {
+	id = maga.153
+	title = maga.153.t
+	desc = maga.153.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.153.a
+		ai_chance = {
+			factor = 1
+		}
+		add_political_power = -30
+		USA = {
+			country_event = {
+    				id = maga.154
+    				days = 1
+    				random_hours = 20
+			}
+		}
+		news_event = {
+    			id = maga.155
+    			days = 3
+    			random_hours = 28
+		}	
+		
+	}
+}
+
+#Our attemp to kinapt Biden failed
+country_event = {
+	id = maga.154
+	title = maga.154.t
+	desc = maga.154.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.154.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#News event, Biden was attacked by a hitman
+news_event = {
+	id = maga.154
+	title = maga.154.t
+	desc = maga.154.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.154.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#After their defeat, the remaining FRA leadership is getting trialed.
+country_event = {
+	id = maga.155
+	title = maga.155.t
+	desc = maga.155.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.155.a
+		ai_chance = {
+			factor = 1
+		}
+		add_political_power = 100
+	}
+}
+
+
+#Actual trial for degeneracy
+country_event = {
+	id = maga.156
+	title = maga.156.t
+	desc = maga.156.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #Guilty
+		name = maga.156.a
+		ai_chance = {
+			factor = 1
+		}
+		add_political_power = 25
+		add_war_support = 0.05
+		every_owned_state = {
+			limit = {is_core_of = FRA}
+			add_resistance_target = 4
+			add_compliance = -1
+		}
+	}
+	option = { #innocent
+		name = maga.156.b
+		ai_chance = {
+			factor = 1
+		}
+		add_political_power = -20
+		add_war_support = -0.15
+		every_owned_state = {
+			limit = {is_core_of = FRA}
+			add_resistance_target = -5
+			add_compliance = 2
+		}
+	}
+}
+
+#Actual trial for treason
+country_event = {
+	id = maga.157
+	title = maga.157.t
+	desc = maga.157.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #Guilty
+		name = maga.157.a
+		ai_chance = {
+			factor = 1
+		}
+		add_political_power = 25
+		add_war_support = 0.05
+		every_owned_state = {
+			limit = {is_core_of = FRA}
+			add_resistance_target = 4
+			add_compliance = -1
+		}
+	}
+	option = { #innocent
+		name = maga.157.b
+		ai_chance = {
+			factor = 1
+		}
+		add_political_power = -20
+		add_war_support = -0.15
+		every_owned_state = {
+			limit = {is_core_of = FRA}
+			add_resistance_target = -5
+			add_compliance = 2
+		}
+	}
+}
+
+#Actual trial for cheating
+country_event = {
+	id = maga.158
+	title = maga.158.t
+	desc = maga.158.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #Guilty
+		name = maga.158.a
+		ai_chance = {
+			factor = 1
+		}
+		add_political_power = 25
+		add_war_support = 0.05
+		every_owned_state = {
+			limit = {is_core_of = FRA}
+			add_resistance_target = 4
+			add_compliance = -1
+		}
+	}
+	option = { #innocent
+		name = maga.158.b
+		ai_chance = {
+			factor = 1
+		}
+		add_political_power = -20
+		add_war_support = -0.15
+		every_owned_state = {
+			limit = {is_core_of = FRA}
+			add_resistance_target = -5
+			add_compliance = 2
+		}
+	}
+}
+
+#the final veredict of all the trials
+country_event = {
+	id = maga.159
+	title = maga.159.t
+	desc = maga.159.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #Execution
+		name = maga.159.a
+		ai_chance = {
+			factor = 0
+		}
+		add_political_power = 250
+		add_stability = -0.1
+		every_owned_state = {
+			limit = {is_core_of = FRA}
+			add_resistance_target = 10
+			add_compliance = -5
+		}		
+	}
+
+	option = { #Jail
+		name = maga.159.b
+		ai_chance = {
+			factor = 1
+		}
+		add_stability = 0.2		
+	}
+
+	option = { #Free
+		name = maga.159.b
+		ai_chance = {
+			factor = 0
+		}
+		add_war_support = -0.5
+		add_popularity = {
+    			ideology = democrat
+    			popularity = 0.2
+		}
+	}
+}
+
+
+#An event about what the future of the democrats should be (the desicion is taken on a focus)
+country_event = {
+	id = maga.160
+	title = maga.160.t
+	desc = maga.160.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.160.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#Conservative democrats from the south are being brought in to shift the democartic party to the right
+country_event = {
+	id = maga.161
+	title = maga.161.t
+	desc = maga.161.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.161.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#One of the brought in democrats is chosen to lead the party in the upcoming elections
+country_event = {
+	id = maga.162
+	title = maga.162.t
+	desc = maga.162.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.161.a
+		ai_chance = {
+			factor = 1
+		}
+		create_country_leader = {
+			name = "Doug Jones"
+			desc = " "
+			picture = "gfx/leaders/USA/doug-jones.dds"
+			ideology = Bourbon_Democrat
+			traits = {
+			}
+			retire_character = USA_tod_wolters
+		}
+	}
+
+	option = { 
+		name = maga.161.b
+		ai_chance = {
+			factor = 1
+		}
+		create_country_leader = {
+			name = "tulsi gabbard"
+			desc = " "
+			picture = "gfx/leaders/USA/tulsi-gabbard.dds"
+			ideology = Bourbon_Democrat
+			traits = {
+			}
+			retire_character = USA_tod_wolters
+		}
+	}
+}
+
+#Trump giving a speech about how not all democrats are bad and pardoning some.
+country_event = {
+	id = maga.162
+	title = maga.162.t
+	desc = maga.162.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.162.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#Trump lifts some campaign restrictions he had put on the democrats
+country_event = {
+	id = maga.163
+	title = maga.163.t
+	desc = maga.163.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.163.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#Trump campaigns for another reelection.
+country_event = {
+	id = maga.164
+	title = maga.164.t
+	desc = maga.164.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.164.a
+		ai_chance = {
+			factor = 1
+		}
+
+	}
+}
+
+#How does the campaign goes for the republicans in the mid west?
+country_event = {
+	id = maga.165
+	title = maga.165.t
+	desc = maga.165.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #Well
+		name = maga.165.a
+		ai_chance = {
+			factor = 1
+		}
+		add_popularity = {
+    			ideology = republican
+    			popularity = 0.05
+		}	
+	}
+	option = { #Very well
+		name = maga.165.b
+		ai_chance = {
+			factor = 1
+		}
+		add_popularity = {
+    			ideology = republican
+    			popularity = 0.15
+		}	
+	}
+}
+
+#How does the campaign goes for the democrats in the east coast?
+country_event = {
+	id = maga.166
+	title = maga.166.t
+	desc = maga.166.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #Well
+		name = maga.166.a
+		ai_chance = {
+			factor = 1
+		}
+		add_popularity = {
+    			ideology = democrat
+    			popularity = 0.05
+		}	
+	}
+	option = { #Very well
+		name = maga.166.b
+		ai_chance = {
+			factor = 1
+		}
+		add_popularity = {
+    			ideology = democrat
+    			popularity = 0.15
+		}	
+	}
+}
+
+#Who wins on swing states?
+country_event = {
+	id = maga.167
+	title = maga.167.t
+	desc = maga.167.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #Republicans
+		name = maga.167.a
+		ai_chance = {
+			factor = 1
+		}
+		add_popularity = {
+    			ideology = republican
+    			popularity = 0.15
+		}	
+	}
+	option = { #Democrats
+		name = maga.167.b
+		ai_chance = {
+			factor = 1
+		}
+		add_popularity = {
+    			ideology = democrat
+    			popularity = 0.15
+		}	
+	}
+}
+
+#And teh winner is...
+country_event = {
+	id = maga.168
+	title = maga.168.t
+	desc = maga.168.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #Republicans
+		name = maga.168.a
+		ai_chance = {
+			factor = 1
+		}
+		trigger = {
+			NOT = {
+				democrat > 0.5
+			}
+		}
+	}
+	option = { #Democrats
+		name = maga.168.b
+		ai_chance = { 
+			factor = 1
+		}
+		trigger = {
+			democrat > 0.5
+		}
+		
+		set_politics = {
+	    		ruling_party = democrat
+    			elections_allowed = no
+		}
+		set_cosmetic_tag = PRA_United_States_of_America
+
+	}
+}
+
+#Event about trump talking to the victarious democrat cadidate (use loc keys), and telling them that he will keep an eye on them.
+country_event = {
+	id = maga.169
+	title = maga.169.t
+	desc = maga.169.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.169.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#Trump wins the election and starts passing bills to expand presidental terms
+country_event = {
+	id = maga.170
+	title = maga.170.t
+	desc = maga.170.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.170.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#Gavin mc goes from vp to president, leading to an era of uncertainty
+country_event = {
+	id = maga.171
+	title = maga.171.t
+	desc = maga.171.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.171.a
+		ai_chance = {
+			factor = 1
+		}
+
+	}
+}
+
+#Donald trump jr becomes president, formalising the trump's family hold over the country
+country_event = {
+	id = maga.172
+	title = maga.172.t
+	desc = maga.172.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.171.a
+		ai_chance = {
+			factor = 1
+		}
+
+	}
+}
+
+#Mike Dewine becomes president, in what many hope will be a return to normalsy
+country_event = {
+	id = maga.173
+	title = maga.173.t
+	desc = maga.173.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.173.a
+		ai_chance = {
+			factor = 1
+		}
+
+	}
+}
+
+#Ben Carson becomes president, promising to continue trump's work.
+country_event = {
+	id = maga.174
+	title = maga.174.t
+	desc = maga.174.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.174.a
+		ai_chance = {
+			factor = 1
+		}
+
+	}
+}
+
+#Trump aproaches libertarians hoping they will compete on the new USA politics to replace the democrats
+country_event = {
+	id = maga.175
+	title = maga.175.t
+	desc = maga.175.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.175.a
+		ai_chance = {
+			factor = 1
+		}
+
+	}
+}
+
+#Describes a shoppy campaign on part of the libertarians, and trump desicding to delay the elections cuz of this.
+country_event = {
+	id = maga.176
+	title = maga.176.t
+	desc = maga.176.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.176.a
+		ai_chance = {
+			factor = 1
+		}
+
+	}
+}
+
+#Trump aproaches the GLA to ask them to reunify to increase support for the libertarian party
+country_event = {
+	id = maga.177
+	title = maga.177.t
+	desc = maga.177.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.177.a
+		ai_chance = {
+			factor = 1
+		}
+
+	}
+}
+
+#(GLA POV) Trump aks us to reunify with him
+country_event = {
+	id = maga.178
+	title = maga.178.t
+	desc = maga.178.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #For america
+		name = maga.178.a
+		ai_chance = {
+			factor = USA.party_popularity_100@libertarian_right
+		}
+		USA = {
+			annex_country = {
+    				target = GLA
+    				transfer_troops = yes
+			}
+			add_popularity = {
+    				ideology = libertarian_right
+    				popularity = 0.3
+			}
+		}
+	}
+
+	option = { #No deals with statist
+		name = maga.178.b
+		ai_chance = {
+			factor = 50
+		}
+		USA = {
+			add_popularity = {
+    				ideology = libertarian_right
+    				popularity = -1
+			}
+			create_wargoal = {
+    				type = annex_everything
+    				target = GLA
+			}
+		}
+	}
+}
+
+#Trump extends the civil war's period of expetion indefinitebely
+country_event = {
+	id = maga.179
+	title = maga.179.t
+	desc = maga.179.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.179.a
+		ai_chance = {
+			factor = 1
+		}
+
+	}
+}
+
+#Trump gives his america first speech where he talks about what will be america's new foreign policy
+country_event = {
+	id = maga.180
+	title = maga.180.t
+	desc = maga.180.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.180.a
+		ai_chance = {
+			factor = 1
+		}
+
+	}
+}
+
+#An ending event where trump is left wondering what should the future of the country be (should be bague and up to the player to insert their believes into what the answer is)
+country_event = {
+	id = maga.181
+	title = maga.181.t
+	desc = maga.181.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.181.a
+		ai_chance = {
+			factor = 1
+		}
+
+	}
+}
+
+#Note, events 181 and event 169 through 174 are all endings, and should have a "thanks for playing" message
