@@ -1967,6 +1967,8 @@ focus_tree = {
 			focus = TEX_trump_failure
 		}
 		completion_reward = {
+			add_political_power = 150
+			add_stability = 0.05
 		}
 	}
 	focus = {
@@ -2034,6 +2036,10 @@ focus_tree = {
 			focus = TEX_divided_exiles
 		}
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = TEX_trumpist_advisors2
+				add_idea = TEX_trumpist_advisors3
+			}
 		}
 	}
 	focus = {
@@ -2047,6 +2053,50 @@ focus_tree = {
 			focus = TEX_divided_exiles
 		}
 		completion_reward = {
+			custom_effect_tooltip = bring_america_under_grip_tt
+			hidden_effect = {				
+				every_state  = {
+					limit = { has_state_flag = part_of_america }
+					every_country = {
+						limit = { controls_state = PREV }
+						set_country_flag = controls_american_state
+					}
+				}
+				every_country = {
+					limit = {
+						AND = {
+							has_country_flag = controls_american_state
+							has_government = democrat
+							NOT = { 
+								is_in_faction_with = TEX
+							}
+						}
+					}
+					TEX = {
+						create_wargoal = {
+							target = PREV
+							type = annex_everything
+						}
+					}
+				}
+				every_country = {
+					limit = {
+						AND = {
+							has_country_flag = controls_american_state
+							has_government = republican
+							NOT = { 
+								is_in_faction_with = TEX
+							}
+						}
+					}
+					TEX = {
+						create_wargoal = {
+							target = PREV
+							type = annex_everything
+						}
+					}
+				}
+			}
 		}
 	}
 	focus = {
@@ -2078,6 +2128,16 @@ focus_tree = {
 			}
 		}
 		completion_reward = {
+			hidden_effect = {
+				add_stability = 0.10
+				every_state = {
+					limit = { 
+						is_owned_by = ROOT
+						has_state_flag = part_of_america
+					}
+					add_core_of = ROOT
+				}
+			}
 			country_event = {
     			id = News_events.98
 			}
@@ -9074,6 +9134,7 @@ focus_tree = {
 			NOT = { country_Exists = FRA }
 		}
 		completion_reward = {
+			add_political_power = 50
 		}
 	}
 	focus = {
@@ -9089,6 +9150,8 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
+			add_manpower = 50000
+			add_offsite_building = { type = arms_factory  level = 2 }
 		}
 	}
 	focus = {
@@ -9104,6 +9167,7 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
+			add_offsite_building = { type = industrial_complex  level = 8 }
 		}
 	}
 	focus = {
@@ -9134,6 +9198,7 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
+			add_ideas = TEX_progressive_texas2
 		}
 	}
 	focus = {
@@ -9149,6 +9214,10 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = TEX_legitimist_aid3
+				add_idea = TEX_legitimist_aid4
+			}
 		}
 	}
 	focus = {
@@ -9164,6 +9233,50 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
+			custom_effect_tooltip = bring_america_under_grip_tt
+			hidden_effect = {				
+				every_state  = {
+					limit = { has_state_flag = part_of_america }
+					every_country = {
+						limit = { controls_state = PREV }
+						set_country_flag = controls_american_state
+					}
+				}
+				every_country = {
+					limit = {
+						AND = {
+							has_country_flag = controls_american_state
+							has_government = democrat
+							NOT = { 
+								is_in_faction_with = TEX
+							}
+						}
+					}
+					TEX = {
+						create_wargoal = {
+							target = PREV
+							type = annex_everything
+						}
+					}
+				}
+				every_country = {
+					limit = {
+						AND = {
+							has_country_flag = controls_american_state
+							has_government = republican
+							NOT = { 
+								is_in_faction_with = TEX
+							}
+						}
+					}
+					TEX = {
+						create_wargoal = {
+							target = PREV
+							type = annex_everything
+						}
+					}
+				}
+			}
 		}
 	}
 	focus = {
@@ -9179,9 +9292,36 @@ focus_tree = {
 		prerequisite = {
 			focus = TEX_industrial_expansions
 		}
-		available = {
+		available = { 
+			all_state = {	
+				OR = {
+					NOT = {has_state_flag = part_of_america}
+					is_owned_by = ROOT
+					owner = { is_ally_with = ROOT } #Checks for territory controlled by indpendent faction members/puppets
+				}		
+			}
+			ROOT = {
+				if = {
+					limit = {
+						is_in_faction = yes
+					}
+					is_faction_leader = yes
+				}
+				is_subject = no
+			}
 		}
 		completion_reward = {
+			hidden_effect = {
+				add_stability = 0.10
+				every_state = {
+					limit = { 
+						is_owned_by = ROOT
+						has_state_flag = part_of_america
+					}
+					add_core_of = ROOT
+				}
+			}
+			news_event = texas.92
 		}
 	}
 	
@@ -14445,213 +14585,208 @@ focus_tree = {
 				limit = { is_core_of = FRA }
 				remove_core_of = FRA
 			}
-			298 = { add_core_of = FRA }
-			366 = { add_core_of = FRA }
-			635 = { add_core_of = FRA }
-			296 = { add_core_of = FRA }
-			364 = { add_core_of = FRA }
-			51 = { add_core_of = FRA }
-			295 = { add_core_of = FRA }
-			199 = { add_core_of = FRA }
-			394 = { add_core_of = FRA }
-			452 = { add_core_of = FRA }
-			85 = { add_core_of = FRA }
-			150 = { add_core_of = FRA }
-			562 = { add_core_of = FRA }
-			88 = { add_core_of = FRA }
-			95 = { add_core_of = FRA }
-			74 = { add_core_of = FRA }
-			94 = { add_core_of = FRA }
-			496 = { add_core_of = FRA }
-			62 = { add_core_of = FRA }
-			141 = { add_core_of = FRA }
-			122 = { add_core_of = FRA }
-			29 = { add_core_of = FRA }
-			122 = { add_core_of = FRA }
-			89 = { add_core_of = FRA }
-			109 = { add_core_of = FRA }
-			112 = { add_core_of = FRA }
-			60 = { add_core_of = FRA }
-			115 = { add_core_of = FRA }
-			113 = { add_core_of = FRA }
-			101 = { add_core_of = FRA }
-			492 = { add_core_of = FRA }
-			497 = { add_core_of = FRA }
-			121 = { add_core_of = FRA }
-			60 = { add_core_of = FRA }
-			114 = { add_core_of = FRA }
-			115 = { add_core_of = FRA }
-			101 = { add_core_of = FRA }
-			116 = { add_core_of = FRA }
-			561 = { add_core_of = FRA }
-			107 = { add_core_of = FRA }
-			123 = { add_core_of = FRA }
-			117 = { add_core_of = FRA }
-			411 = { add_core_of = FRA }
-			521 = { add_core_of = FRA }
-			520 = { add_core_of = FRA }
-			414 = { add_core_of = FRA }
-			415 = { add_core_of = FRA }
-			568 = { add_core_of = FRA }
-			412 = { add_core_of = FRA }
-			400 = { add_core_of = FRA }
-			517 = { add_core_of = FRA }
-			518 = { add_core_of = FRA }
-			417 = { add_core_of = FRA }
-			354 = { add_core_of = FRA }
-			522 = { add_core_of = FRA }
-			430 = { add_core_of = FRA }
-			425 = { add_core_of = FRA }
-			63 = { add_core_of = FRA }
-			569 = { add_core_of = FRA }
-			65 = { add_core_of = FRA }
-			66 = { add_core_of = FRA }
-			99 = { add_core_of = FRA }
-			119 = { add_core_of = FRA }
-			118 = { add_core_of = FRA }
-			86 = { add_core_of = FRA }
-			39 = { add_core_of = FRA }
-			70 = { add_core_of = FRA }
-			67 = { add_core_of = FRA }
-			570 = { add_core_of = FRA }
-			64 = { add_core_of = FRA }
-			35 = { add_core_of = FRA }
-			567 = { add_core_of = FRA }
-			422 = { add_core_of = FRA }
-			483 = { add_core_of = FRA }
-			446 = { add_core_of = FRA }
-			447 = { add_core_of = FRA }
-			566 = { add_core_of = FRA }
-			423 = { add_core_of = FRA }
-			83 = { add_core_of = FRA }
-			234 = { add_core_of = FRA }
-			484 = { add_core_of = FRA }
-			443 = { add_core_of = FRA }
-			453 = { add_core_of = FRA }
-			431 = { add_core_of = FRA }
-			565 = { add_core_of = FRA }
-			41 = { add_core_of = FRA }
-			421 = { add_core_of = FRA }
-			564 = { add_core_of = FRA }
-			442 = { add_core_of = FRA }
-			434 = { add_core_of = FRA }
-			230 = { add_core_of = FRA }
-			125 = { add_core_of = FRA }
-			138 = { add_core_of = FRA }
-			131 = { add_core_of = FRA }
-			231 = { add_core_of = FRA }
-			232 = { add_core_of = FRA }
-			215 = { add_core_of = FRA }
-			196 = { add_core_of = FRA }
-			563 = { add_core_of = FRA }
-			73 = { add_core_of = FRA }
-			187 = { add_core_of = FRA }
-			186 = { add_core_of = FRA }
-			185 = { add_core_of = FRA }
-			184 = { add_core_of = FRA }
-			23 = { add_core_of = FRA }
-			25 = { add_core_of = FRA }
-			111 = { add_core_of = FRA }
-			104 = { add_core_of = FRA }
-			106 = { add_core_of = FRA }
-			155 = { add_core_of = FRA }
-			195 = { add_core_of = FRA }
-			197 = { add_core_of = FRA }
-			198 = { add_core_of = FRA }
-			209 = { add_core_of = FRA }
-			124 = { add_core_of = FRA }
-			152 = { add_core_of = FRA }
-			160 = { add_core_of = FRA }
-			161 = { add_core_of = FRA }
-			162 = { add_core_of = FRA }
-			190 = { add_core_of = FRA }
-			157 = { add_core_of = FRA }
-			165 = { add_core_of = FRA }
-			153 = { add_core_of = FRA }
-			130 = { add_core_of = FRA }
-			204 = { add_core_of = FRA }
-			206 = { add_core_of = FRA }
-			559 = { add_core_of = FRA }
-			208 = { add_core_of = FRA }
-			560 = { add_core_of = FRA }
-			205 = { add_core_of = FRA }
-			396 = { add_core_of = FRA }
-			356 = { add_core_of = FRA }
-			399 = { add_core_of = FRA }
-			273 = { add_core_of = FRA }
-			503 = { add_core_of = FRA }
-			358 = { add_core_of = FRA }
-			194 = { add_core_of = FRA }
-			590 = { add_core_of = FRA }
-			219 = { add_core_of = FRA }
-			227 = { add_core_of = FRA }
-			228 = { add_core_of = FRA }
-			222 = { add_core_of = FRA }
-			225 = { add_core_of = FRA }
-			217 = { add_core_of = FRA }
-			223 = { add_core_of = FRA }
-			220 = { add_core_of = FRA }
-			624 = { add_core_of = FRA }
-			191 = { add_core_of = FRA }
-			281 = { add_core_of = FRA }
-			553 = { add_core_of = FRA }
-			554 = { add_core_of = FRA }
-			556 = { add_core_of = FRA }
-			170 = { add_core_of = FRA }
-			557 = { add_core_of = FRA }
-			201 = { add_core_of = FRA }
-			200 = { add_core_of = FRA }
-			202 = { add_core_of = FRA }
-			595 = { add_core_of = FRA }
-			594 = { add_core_of = FRA }
+			142 = { add_core_of = FRA }
+			132 = { add_core_of = FRA }
+			628 = { add_core_of = FRA }
+			622 = { add_core_of = FRA }
+			621 = { add_core_of = FRA }
+			620 = { add_core_of = FRA }
+			619 = { add_core_of = FRA }
+			179 = { add_core_of = FRA }
+			174 = { add_core_of = FRA }
+			172 = { add_core_of = FRA }
+			616 = { add_core_of = FRA }
+			617 = { add_core_of = FRA }
+			618 = { add_core_of = FRA }
+			178 = { add_core_of = FRA }
+			168 = { add_core_of = FRA }
+			180 = { add_core_of = FRA }
+			613 = { add_core_of = FRA }
+			614 = { add_core_of = FRA }
+			615 = { add_core_of = FRA }
+			171 = { add_core_of = FRA }
+			192 = { add_core_of = FRA }
+			193 = { add_core_of = FRA }
+			181 = { add_core_of = FRA }
+			221 = { add_core_of = FRA }
+			212 = { add_core_of = FRA }
+			210 = { add_core_of = FRA }
+			216 = { add_core_of = FRA }
+			214 = { add_core_of = FRA }
+			211 = { add_core_of = FRA }
+			599 = { add_core_of = FRA }
+			600 = { add_core_of = FRA }
+			601 = { add_core_of = FRA }
 			598 = { add_core_of = FRA }
 			597 = { add_core_of = FRA }
 			203 = { add_core_of = FRA }
-			211 = { add_core_of = FRA }
-			601 = { add_core_of = FRA }
-			210 = { add_core_of = FRA }
-			214 = { add_core_of = FRA }
-			216 = { add_core_of = FRA }
-			212 = { add_core_of = FRA }
-			221 = { add_core_of = FRA }
-			181 = { add_core_of = FRA }
-			192 = { add_core_of = FRA }
-			600 = { add_core_of = FRA }
-			193 = { add_core_of = FRA }
-			599 = { add_core_of = FRA }
-			171 = { add_core_of = FRA }
-			614 = { add_core_of = FRA }
-			613 = { add_core_of = FRA }
-			615 = { add_core_of = FRA }
-			618 = { add_core_of = FRA }
-			180 = { add_core_of = FRA }
-			168 = { add_core_of = FRA }
-			178 = { add_core_of = FRA }
-			616 = { add_core_of = FRA }
-			174 = { add_core_of = FRA }
-			620 = { add_core_of = FRA }
-			621 = { add_core_of = FRA }
-			622 = { add_core_of = FRA }
-			623 = { add_core_of = FRA }
-			179 = { add_core_of = FRA }
-			628 = { add_core_of = FRA }
-			142 = { add_core_of = FRA }
-			619 = { add_core_of = FRA }
-			617 = { add_core_of = FRA }
-			172 = { add_core_of = FRA }
-			132 = { add_core_of = FRA }
-			292 = { add_core_of = FRA }
-			285 = { add_core_of = FRA }
-			627 = { add_core_of = FRA }
-			625 = { add_core_of = FRA }
-			245 = { add_core_of = FRA }
-			361 = { add_core_of = FRA }
-			360 = { add_core_of = FRA }
-			277 = { add_core_of = FRA }
-			276 = { add_core_of = FRA }
+			217 = { add_core_of = FRA }
+			200 = { add_core_of = FRA }
+			201 = { add_core_of = FRA }
+			202 = { add_core_of = FRA }
+			594 = { add_core_of = FRA }
+			595 = { add_core_of = FRA }
+			590 = { add_core_of = FRA }
+			219 = { add_core_of = FRA }
+			220 = { add_core_of = FRA }
+			222 = { add_core_of = FRA }
+			225 = { add_core_of = FRA }
+			227 = { add_core_of = FRA }
+			228 = { add_core_of = FRA }
+			191 = { add_core_of = FRA }
 			183 = { add_core_of = FRA }
+			170 = { add_core_of = FRA }
+			553 = { add_core_of = FRA }
+			554 = { add_core_of = FRA }
 			555 = { add_core_of = FRA }
+			556 = { add_core_of = FRA }
+			557 = { add_core_of = FRA }
+			281 = { add_core_of = FRA }
+			276 = { add_core_of = FRA }
 			357 = { add_core_of = FRA }
+			213 = { add_core_of = FRA }
+			670 = { add_core_of = FRA }
+			189 = { add_core_of = FRA }
+			624 = { add_core_of = FRA }
+			625 = { add_core_of = FRA }
+			626 = { add_core_of = FRA }
+			627 = { add_core_of = FRA }
+			245 = { add_core_of = FRA }
+			247 = { add_core_of = FRA }
+			273 = { add_core_of = FRA }
+			277 = { add_core_of = FRA }
+			358 = { add_core_of = FRA }
+			360 = { add_core_of = FRA }
+			361 = { add_core_of = FRA }
+			285 = { add_core_of = FRA }
+			292 = { add_core_of = FRA }
+			504 = { add_core_of = FRA }
+			671 = { add_core_of = FRA }
+			672 = { add_core_of = FRA }
+			396 = { add_core_of = FRA }
+			399 = { add_core_of = FRA }
+			205 = { add_core_of = FRA }
+			208 = { add_core_of = FRA }
+			226 = { add_core_of = FRA }
+			560 = { add_core_of = FRA }
+			204 = { add_core_of = FRA }
+			206 = { add_core_of = FRA }
+			207 = { add_core_of = FRA }
+			218 = { add_core_of = FRA }
+			224 = { add_core_of = FRA }
+			559 = { add_core_of = FRA }
+			153 = { add_core_of = FRA }
+			152 = { add_core_of = FRA }
+			157 = { add_core_of = FRA }
+			160 = { add_core_of = FRA }
+			161 = { add_core_of = FRA }
+			165 = { add_core_of = FRA }
+			130 = { add_core_of = FRA }
+			190 = { add_core_of = FRA }
+			268 = { add_core_of = FRA }
+			215 = { add_core_of = FRA }
+			209 = { add_core_of = FRA }
+			194 = { add_core_of = FRA }
+			196 = { add_core_of = FRA }
+			197 = { add_core_of = FRA }
+			198 = { add_core_of = FRA }
+			104 = { add_core_of = FRA }
+			106 = { add_core_of = FRA }
+			124 = { add_core_of = FRA }
+			155 = { add_core_of = FRA }
+			195 = { add_core_of = FRA }
+			185 = { add_core_of = FRA }
+			186 = { add_core_of = FRA }
+			187= { add_core_of = FRA }
+			23 = { add_core_of = FRA }
+			25 = { add_core_of = FRA }
+			111 = { add_core_of = FRA }
+			184 = { add_core_of = FRA }
+			83 = { add_core_of = FRA }
+			234 = { add_core_of = FRA }
+			423 = { add_core_of = FRA }
+			566 = { add_core_of = FRA }
+			434 = { add_core_of = FRA }
+			442 = { add_core_of = FRA }
+			443 = { add_core_of = FRA }
+			484 = { add_core_of = FRA }
+			41 = { add_core_of = FRA }
+			421 = { add_core_of = FRA }
+			431 = { add_core_of = FRA }
+			564 = { add_core_of = FRA }
+			565 = { add_core_of = FRA }
+			63 = { add_core_of = FRA }
+			400 = { add_core_of = FRA }
+			412 = { add_core_of = FRA }
+			422 = { add_core_of = FRA }
+			425 = { add_core_of = FRA }
+			430 = { add_core_of = FRA }
+			446 = { add_core_of = FRA }
+			447 = { add_core_of = FRA }
+			483 = { add_core_of = FRA }
+			35 = { add_core_of = FRA }
+			39 = { add_core_of = FRA }
+			64 = { add_core_of = FRA }
+			67 = { add_core_of = FRA }
+			70 = { add_core_of = FRA }
+			86 = { add_core_of = FRA }
+			118 = { add_core_of = FRA }
+			119 = { add_core_of = FRA }
+			463 = { add_core_of = FRA }
+			567 = { add_core_of = FRA }
+			570 = { add_core_of = FRA }
+			65 = { add_core_of = FRA }
+			66 = { add_core_of = FRA }
+			99 = { add_core_of = FRA }
+			354 = { add_core_of = FRA }
+			415 = { add_core_of = FRA }
+			417 = { add_core_of = FRA }
+			522 = { add_core_of = FRA }
+			563 = { add_core_of = FRA }
+			568 = { add_core_of = FRA }
+			569 = { add_core_of = FRA }
+			73 = { add_core_of = FRA }
+			74 = { add_core_of = FRA }
+			85 = { add_core_of = FRA }
+			88 = { add_core_of = FRA }
+			89 = { add_core_of = FRA }
+			94 = { add_core_of = FRA }
+			95 = { add_core_of = FRA }
+			150 = { add_core_of = FRA }
+			496 = { add_core_of = FRA }
+			562 = { add_core_of = FRA }
+			29 = { add_core_of = FRA }
+			60 = { add_core_of = FRA }
+			62 = { add_core_of = FRA }
+			97 = { add_core_of = FRA }
+			101 = { add_core_of = FRA }
+			107 = { add_core_of = FRA }
+			108 = { add_core_of = FRA }
+			109 = { add_core_of = FRA }
+			112 = { add_core_of = FRA }
+			113 = { add_core_of = FRA }
+			114 = { add_core_of = FRA }
+			115 = { add_core_of = FRA }
+			116 = { add_core_of = FRA }
+			121 = { add_core_of = FRA }
+			122 = { add_core_of = FRA }
+			123 = { add_core_of = FRA }
+			124 = { add_core_of = FRA }
+			125 = { add_core_of = FRA }
+			136 = { add_core_of = FRA }
+			138 = { add_core_of = FRA }
+			141 = { add_core_of = FRA }
+			492 = { add_core_of = FRA }
+			497 = { add_core_of = FRA }
+			561 = { add_core_of = FRA }
+			2 = { add_core_of = FRA }
+			11 = { add_core_of = FRA }
+			14 = { add_core_of = FRA }
+			16 = { add_core_of = FRA }
+			19 = { add_core_of = FRA }
+			96 = { add_core_of = FRA }
+			404 = { add_core_of = FRA }
+
 			release_puppet = FRA
 			every_owned_state = {
 				add_core_of = TEX
