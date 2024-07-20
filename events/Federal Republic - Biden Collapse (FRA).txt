@@ -662,7 +662,7 @@ country_event = {
 				change_tag_from = ROOT
 				country_event = {
 					id = biden_collapse.8
-					hours = 6
+					days = 2
 				}
 				news_event = {
 					id = biden_collapse.9
@@ -731,6 +731,7 @@ country_event = {
 	#picture = 
 	is_triggered_only = yes
 	fire_only_once = yes
+	immediate = {
 		hidden_effect = {
 			WMS = {
 				declare_war_on = {
@@ -1086,5 +1087,610 @@ country_event = {
 		   promote_character = yes
 		}
 		news_event = { id = biden.4 hours = 2 }
+		set_country_flag = no_appointed_successor
+	}
+}
+
+#dem nomination
+country_event = {
+	id = bidone.15
+	title = bidone.15.t
+	desc = bidone.15.d
+	#picture =
+	trigger = {
+		original_tag = FRA
+		has_government = democrat
+		is_subject = no
+		date > 2024.5.01
+	}
+	fire_only_once = yes
+	option = { #kamala
+		name = bidone.15.a
+		set_country_flag = kamala_is_nominated_for_twenty_twenty_four
+		hidden_effect = { 
+			country_event = { 
+				id = bidone.16
+				days = 7
+			}
+		}
+	}
+	option = { # Michelle
+		name = bidone.15.b
+		set_country_flag = michelle_is_nominated_for_twenty_twenty_four
+	}
+}
+
+#progressives leave the democratic party
+country_event = {
+	id = bidone.16
+	title = bidone.16.t
+	desc = bidone.16.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #womp womp
+		name = bidone.16.a
+		hidden_effect = { 
+			country_event = { 
+				id = bidone.17
+				days = 7
+			}
+		}
+	}
+}
+
+#progressive nomination
+country_event = {
+	id = bidone.17
+	title = bidone.17.t
+	desc = bidone.17.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #aoc
+		name = bidone.17.a
+		set_country_flag = aoc_is_nominated_for_twenty_twenty_four
+	}
+}
+
+#republican nomination
+country_event = {
+	id = bidone.18
+	title = bidone.18.t
+	desc = bidone.18.d
+	#picture =
+	trigger = {
+		original_tag = FRA
+		has_government = democrat
+		is_subject = no
+		date > 2024.6.01
+	}
+	fire_only_once = yes
+	option = { #mcconnell
+		name = bidone.18.a
+	}
+}
+
+#2024 election
+country_event = {
+	id = bidone.19
+	title = bidone.19.t
+	desc = bidone.19.d
+	#picture =
+	fire_only_once = yes
+	trigger = {
+		original_tag = FRA
+		has_government = democrat
+		is_subject = no
+		date > 2024.11.04
+	}
+	immediate = {
+		hidden_effect = {
+			set_country_flag = FRA_2024_election
+			complete_national_focus = FRA_2024_election
+		}
+	}
+	#Kamala is elected
+	option = {
+		name = bidone.19.a
+		trigger = {
+			has_country_flag = kamala_is_nominated_for_twenty_twenty_four
+		}
+		set_country_flag = president_kamala
+		complete_national_focus = FRA_harris_2024
+		if = {
+			limit = {
+				NOT = {
+					has_country_leader = { name = "Kamala Harris" ruling_only = yes }
+				}
+			}
+			FRA_kamala_harris = {
+				promote_character = yes
+			}
+		}
+		if = {
+			limit = {
+				has_country_flag = vice_president_kamala
+			}
+			hidden_effect = {
+				remove_ideas = FRA_kamala_harris_vp
+				clr_country_flag = vice_president_kamala
+				add_ideas = FRA_nancy_pelosi_vp
+				set_country_flag = vice_president_nancy
+			}
+		}
+	}
+	#McConnell is elected
+	option = {
+		name = bidone.19.b
+		trigger = {
+			has_country_flag = aoc_is_nominated_for_twenty_twenty_four
+		}
+		set_country_flag = president_mcconnell
+		complete_national_focus = FRA_mcconnell_admin
+		#FRA_mitch_mcconnell = {
+		#	promote_character = {
+		#		 ideology = rino
+		#	}
+		#}
+		
+		hidden_effect = {
+			if = {
+				limit = {
+					has_idea = FRA_kamala_harris_vp
+				}
+				remove_ideas = FRA_kamala_harris_vp
+				clr_country_flag = vice_president_kamala
+			}
+			else_if = {
+				limit = {
+					has_idea = FRA_nancy_pelosi_vp
+				}
+				remove_ideas = FRA_nancy_pelosi_vp
+				clr_country_flag = vice_president_nancy
+			}
+			add_ideas = FRA_theodore_roosevelt_vp
+			set_country_flag = vice_president_teddy
+			news_event = { id = federal_republic.4 }
+			set_politics = {
+				ruling_party = republican
+			}
+			add_popularity = {
+				ideology = republican
+				popularity = 0.5
+			}
+		}
+	}
+	#Michelle is elected
+	option = {
+		name = bidone.19.c
+		trigger = {
+			has_country_flag = michelle_is_nominated_for_twenty_twenty_four
+		}
+		set_country_flag = president_obama
+		complete_national_focus = FRA_third_obama_admin
+		FRA_michelle_obama = {
+			promote_character = {
+				 ideology = liberal
+			}
+		}
+		
+		hidden_effect = {
+			if = {
+				limit = {
+					has_idea = FRA_kamala_harris_vp
+				}
+				remove_ideas = FRA_kamala_harris_vp
+				clr_country_flag = vice_president_kamala
+			}
+			news_event = {
+				id = bidone.20
+				days = 1
+			}
+		}
+	}
+	#aoc is elected
+	option = {
+		name = bidone.19.e
+		trigger = {
+			has_country_flag = aoc_is_nominated_for_twenty_twenty_four
+		}
+		set_country_flag = progressive_president
+		complete_national_focus = FRA_first_progressive_admin
+		FRA_alexandria_ocasio_cortez = {
+			promote_character = {
+				 ideology = progressive
+			}
+		}
+		
+		hidden_effect = {
+			if = {
+				limit = {
+					has_idea = FRA_kamala_harris_vp
+				}
+				remove_ideas = FRA_kamala_harris_vp
+				clr_country_flag = vice_president_kamala
+			}
+			else_if = {
+				limit = {
+					has_idea = FRA_nancy_pelosi_vp
+				}
+				remove_ideas = FRA_nancy_pelosi_vp
+				clr_country_flag = vice_president_nancy
+			}
+			add_ideas = FRA_elizabeth_warren_vp
+			FRA_alexandria_ocasio_cortez = {
+				promote_character = {
+					ideology = eco_fascism
+				}
+			}
+			FRA_alexandria_ocasio_cortez = {
+				promote_character = {
+					ideology = democratic_socialism
+				}
+			}
+			set_party_name = {
+				ideology = democrat
+				long_name = FRA_aoc_democrat_party_long
+				name = FRA_aoc_democrat_party
+			}
+			set_party_name = {
+				ideology = authoritarian_left
+				long_name = FRA_aoc_authoritarian_left_party_long
+				name = FRA_aoc_authoritarian_left_party
+			}
+			set_party_name = {
+				ideology = libertarian_left
+				long_name = FRA_aoc_libertarian_left_party_long
+				name = FRA_aoc_libertarian_left_party
+			}
+			news_event = {
+				id = bidone.21
+				days = 1
+			}
+		}
+	}
+	#deadlock
+	option = {
+		name = bidone.19.f
+		trigger = {
+			has_country_flag = no_appointed_successor
+			has_country_flag = aoc_is_nominated_for_twenty_twenty_four
+		}
+		hidden_effect = {
+			news_event = {
+				id = bidone.22
+				days = 1
+			}
+			country_event = {
+				id = bidone.23
+				days = 7
+			}
+			country_event = {
+				id = bidone.24
+				days = 70
+			}
+		}
+	}
+}
+
+#michelle elected
+news_event = {
+	id = bidone.20
+	title = bidone.20.t
+	desc = bidone.20.d
+	#picture =
+	is_triggered_only = yes
+	#fire_only_once = yes
+	option = { #
+		name = bidone.20.a
+	}
+}
+
+#aoc elected
+news_event = {
+	id = bidone.21
+	title = bidone.21.t
+	desc = bidone.21.d
+	#picture =
+	is_triggered_only = yes
+	#fire_only_once = yes
+	option = { #
+		name = bidone.21.a
+	}
+}
+
+#deadlock
+news_event = {
+	id = bidone.22
+	title = bidone.22.t
+	desc = bidone.22.d
+	#picture =
+	is_triggered_only = yes
+	#fire_only_once = yes
+	option = { #
+		name = bidone.22.a
+	}
+}
+
+#riots after election deadlock
+country_event = {
+	id = bidone.23
+	title = bidone.23.t
+	desc = bidone.23.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #
+		name = bidone.23.a
+		add_stability = -0.5
+	}
+}
+
+#house can or cant pick president
+country_event = {
+	id = bidone.24
+	title = bidone.24.t
+	desc = bidone.24.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #kamala wins support of republicans
+		name = bidone.24.a
+		set_country_flag = president_kamala
+		complete_national_focus = FRA_harris_2024
+		if = {
+			limit = {
+				NOT = {
+					has_country_leader = { name = "Kamala Harris" ruling_only = yes }
+				}
+			}
+			FRA_kamala_harris = {
+				promote_character = yes
+			}
+		}
+		if = {
+			limit = {
+				has_country_flag = vice_president_kamala
+			}
+			hidden_effect = {
+				remove_ideas = FRA_kamala_harris_vp
+				clr_country_flag = vice_president_kamala
+				add_ideas = FRA_nancy_pelosi_vp
+				set_country_flag = vice_president_nancy
+			}
+		}
+	}
+	option = { #fail
+		name = bidone.24.b
+		hidden_effect = {
+			country_event = {
+				id = bidone.25
+				days = 7
+			}
+		}
+	}
+}
+
+#hillary march on washington
+country_event = {
+	id = bidone.25
+	title = bidone.25.t
+	desc = bidone.25.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #she succeeds
+		name = bidone.25.a
+		add_popularity = {
+		    ideology = authoritarian_left
+		    popularity = 0.10
+		}
+		set_politics = {
+			ruling_party = authoritarian_left
+		}
+		hidden_effect = { news_event = { id = federal_republic.16 } }
+		mark_focus_tree_layout_dirty = yes
+		set_focus_dirty = yes
+		clr_country_flag = vice_president_kamala
+		clr_country_flag = vice_president_nancy
+		if = {
+			limit = {
+				has_idea = FRA_kamala_harris_vp
+			}
+			remove_ideas = FRA_kamala_harris_vp
+			add_ideas = FRA_Generic_Vacant_Vice_President
+		}
+		if = {
+			limit = {
+				has_idea = FRA_nancy_pelosi_vp
+			}
+			remove_ideas = FRA_nancy_pelosi_vp
+			add_ideas = FRA_Generic_Vacant_Vice_President
+		}
+	}
+	option = { #she fails
+		name = bidone.25.b
+		hidden_effect = {
+			country_event = {
+				id = biden_collapse.1
+				days = 14
+			}
+		}
+	}
+}
+
+# lets move
+country_event = {
+	id = bidone.26
+	title = bidone.26.t
+	desc = bidone.26.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #
+		name = bidone.26.a
+		add_political_power = 50
+	}
+}
+
+# better school lunch
+country_event = {
+	id = bidone.27
+	title = bidone.27.t
+	desc = bidone.27.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #
+		name = bidone.27.a
+		add_political_power = 50
+		add_stability = -0.05
+		custom_effect_tooltip = bad_lunch_tt
+		add_stability = 0.05
+		custom_effect_tooltip = healthy_lunch_tt
+	}
+}
+
+# barrack michelle jill and joe meet
+country_event = {
+	id = bidone.28
+	title = bidone.28.t
+	desc = bidone.28.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #
+		name = bidone.28.a
+		add_war_support = 0.5
+	}
+}
+
+# feminist nightmare
+country_event = {
+	id = bidone.29
+	title = bidone.29.t
+	desc = bidone.29.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #
+		name = bidone.29.a
+		add_popularity = {
+			ideology = democrat
+			popularity = 1
+		}
+	}
+}
+
+# new age of radicalism
+country_event = {
+	id = bidone.30
+	title = bidone.30.t
+	desc = bidone.30.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # we have work to do
+		name = bidone.30.a
+		complete_national_focus = FRA_restructure_society
+		complete_national_focus = FRA_restructure_government
+		complete_national_focus = FRA_restructure_economy
+	}
+}
+
+# meet with workers
+country_event = {
+	id = bidone.31
+	title = bidone.31.t
+	desc = bidone.31.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # we have work to do
+		name = bidone.31.a
+	}
+}
+
+# meet with unions
+country_event = {
+	id = bidone.32
+	title = bidone.32.t
+	desc = bidone.32.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # we have work to do
+		name = bidone.32.a
+	}
+}
+
+# meet with small bussinesses
+country_event = {
+	id = bidone.33
+	title = bidone.33.t
+	desc = bidone.33.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # we have work to do
+		name = bidone.33.a
+	}
+}
+
+# meet with lgbt
+country_event = {
+	id = bidone.34
+	title = bidone.34.t
+	desc = bidone.34.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # we have work to do
+		name = bidone.34.a
+	}
+}
+
+# meet with minorities
+country_event = {
+	id = bidone.35
+	title = bidone.35.t
+	desc = bidone.35.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # we have work to do
+		name = bidone.35.a
+	}
+}
+
+# meet with elderly
+country_event = {
+	id = bidone.36
+	title = bidone.36.t
+	desc = bidone.36.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # we have work to do
+		name = bidone.36.a
+	}
+}
+
+# new constitution
+country_event = {
+	id = bidone.37
+	title = bidone.37.t
+	desc = bidone.37.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # favor socialists
+		name = bidone.37.a
+		set_country_flag = socialist_constitution
+	}
+	option = { # favor green-progressives
+		name = bidone.37.b
+		set_country_flag = green_progressive_constitution
 	}
 }
