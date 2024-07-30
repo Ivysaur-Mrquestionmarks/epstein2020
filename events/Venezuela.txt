@@ -1,0 +1,149 @@
+add_namespace = poor_people
+
+
+#2024 election
+country_event = {
+	id = poor_people.1
+	title = poor_people.1.t
+	desc = poor_people.1.d
+	#picture =
+	trigger = {
+		original_tag = VEN
+		has_war = no
+		is_subject = no
+		date > 12.07.2024 #I always forget if it uses PROPER date format or american style so day = 12 just to be safe
+	}
+	fire_only_once = yes
+	option = {
+		name = poor_people.1.a
+		add_popularity = {
+			ideology = democrat
+			popularity = 0.15
+		}
+		add_stability = -0.10
+		hidden_effect = {
+			news_event = { id = poor_people.2 hours = 12 }
+		}
+		country_event = { id = poor_people.3 days = 7 }
+	}
+}
+#2024 election news event- RIOTS IN VENEZEULA!
+news_event = {
+	id = poor_people.2
+	title = poor_people.2.t
+	desc = poor_people.2.d
+	#picture =
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = poor_people.2.a
+		trigger = { has_government = authoritarian_left }
+	}
+	option = {
+		name = poor_people.2.b
+		trigger = { has_government = democrat }
+	}
+	option = {
+		name = poor_people.2.c
+		trigger = {
+			NOT = {
+				has_government = authoritarian_left
+				has_government = democrat
+			}
+		}
+	}
+}
+
+country_event = {
+	id = poor_people.3
+	title = poor_people.3.t #Revolution against the Revolution
+	desc = poor_people.3.d
+	#picture = #if we use a picture I think a photo of Remigio Ceballos could be good cus he's nutty and goes on a cheeky massacre here
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		set_cosmetic_tag = VEN_civil_war_communist
+	}
+	option = {
+		name = poor_people.3.a #Ceballos, take care of this trash
+		add_political_power = -500
+		add_stability = -0.15
+		add_manpower = -15000
+		add_popularity = {
+			ideology = democrat
+			popularity = 0.05
+		}
+		add_popularity = {
+			ideology = republican
+			popularity = 0.025
+		}
+		450 = { set_demilitarized_zone = yes }
+		461 = { set_demilitarized_zone = yes }
+		country_event = {
+			id = poor_people.4
+			days = 3
+		}
+	}
+}
+
+#Venezuelan Civil War begins
+country_event = {
+	id = poor_people.4
+	title = poor_people.4.t
+	desc = poor_people.4.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		450 = { set_demilitarized_zone = no }
+		461 = { set_demilitarized_zone = no }
+
+		start_civil_war = {  #FOR NOW JUST HAVING IT LIKE THIS AS I DOUBT ANYONE WILL WANT TO PLAY AS VENEZUELA FOR NOW, REWORK THIS L8R
+		    ideology = democrat
+		    size = 0.4
+		    states = {
+			450 461
+		    }
+		    keep_unit_leaders_trigger = { always = yes }
+		    set_global_flag = venezuelan_civil_war
+		}
+
+	}
+	option = {
+		name = poor_people.4.a
+		if = {
+			limit = {
+				PRA = {
+					has_government = authoritarian_left
+				}
+			}
+			add_equipment_to_stockpile = {
+			    type = infantry_equipment
+			    amount = 1000
+			    producer = PRA
+			}
+		}
+		every_country = {
+			limit = {
+				original_tag = VEN
+				has_government = democrat
+			}
+			set_country_flag = venezuelan_liberal_rebels
+			VEN_edmundo_gonzalez = {
+				add_field_marshal_role = {
+				  skill = 1
+				  attack_skill = 1
+				  defense_skill = 1
+				  planning_skill = 2
+				  logistics_skill = 3
+				}
+				add_unit_leader_trait = politically_connected
+				add_unit_leader_trait = trickster
+				add_unit_leader_trait = guerilla_fighter
+			}
+		}
+		VEN_richard_vargas = {
+			set_nationality = PREV
+		}
+	}
+}
