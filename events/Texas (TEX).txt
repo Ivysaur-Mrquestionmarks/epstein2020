@@ -55,26 +55,26 @@ country_event = {
 #	}
 }
 #Texan Army coup
-country_event = {
-	id = texas.4
-	title = texas.4.t
-	desc = texas.4.d
-	#picture =
-	is_triggered_only = yes
-	fire_only_once = yes
-	option = {
-		name = texas.4.a
-		add_popularity = { ideology = authoritarian_left popularity = 0.15 }
-		set_politics = {
-			ruling_party = authoritarian_left
-		}
-		complete_national_focus = TEX_elections
-		complete_national_focus = TEX_results
-		hidden_effect = {
-			set_country_flag = miller_coup
-		}
-	}
-}
+#country_event = {
+#	id = texas.4
+#	title = texas.4.t
+#	desc = texas.4.d
+#	#picture =
+#	is_triggered_only = yes
+#	fire_only_once = yes
+#	option = {
+#		name = texas.4.a
+#		add_popularity = { ideology = authoritarian_left popularity = 0.15 }
+#		set_politics = {
+#			ruling_party = authoritarian_left
+#		}
+#		complete_national_focus = TEX_elections
+#		complete_national_focus = TEX_results
+#		hidden_effect = {
+#			set_country_flag = miller_coup
+#		}
+#	}
+#}
 #Texan elections
 country_event = {
 	id = texas.5
@@ -115,7 +115,7 @@ country_event = {
 		complete_national_focus = TEX_out_of_retirement
 	}
 }
-#Papal Tiara heist
+#Monarchist party rally
 country_event = {
 	id = texas.6
 	title = texas.6.t
@@ -125,16 +125,10 @@ country_event = {
 	fire_only_once = yes
 	option = {
 		name = texas.6.a
-		if = {
-			limit = {
-				is_ai = yes
-			}
-			add_popularity = { ideology = autocratic popularity = 0.10 }
-		}
 		add_popularity = { ideology = autocratic popularity = 0.15 }
 	}
 }
-#ted looks into MPUSA
+#Greg looks into MPUSA
 country_event = {
 	id = texas.7
 	title = texas.7.t
@@ -148,29 +142,29 @@ country_event = {
 	}
 }
 #Miller is sad
-country_event = {
-	id = texas.8
-	title = texas.8.t
-	desc = texas.8.d
-	#picture =
-	is_triggered_only = yes
-	fire_only_once = yes
-	option = {
-		name = texas.8.a
-	}
-}
+#country_event = {
+#	id = texas.8
+#	title = texas.8.t
+#	desc = texas.8.d
+#	#picture =
+#	is_triggered_only = yes
+#	fire_only_once = yes
+#	option = {
+#		name = texas.8.a
+#	}
+#}
 #Ted Cruz crowned as King
-country_event = {
-	id = texas.9
-	title = texas.9.t
-	desc = texas.9.d
-	#picture =
-	is_triggered_only = yes
-	fire_only_once = yes
-	option = {
-		name = texas.9.a
-	}
-}
+#country_event = {
+#	id = texas.9
+#	title = texas.9.t
+#	desc = texas.9.d
+#	#picture =
+#	is_triggered_only = yes
+#	fire_only_once = yes
+#	option = {
+#		name = texas.9.a
+#	}
+#}
 #the great crusade
 news_event = {
 	id = texas.10
@@ -434,7 +428,7 @@ country_event = {
 		}
 		ai_chance = { factor = 60 }
 	}
-	#option = { #Civil War!
+	#option = { #Civil War! - saved for later :3
 	#	name = texas.25.b
 	#	hidden_effect = { 
 	#		country_event = {
@@ -482,76 +476,29 @@ country_event = {
 			release = OKL
 			release = LOU
 			release = NMX
-			LOU = {
-				transfer_state = 312
-				transfer_state = 610
-				transfer_state = 28
-				IF = {
-					limit = { 611 = { is_owned_by = TEX } }
-					LOU = { transfer_state = 611 }
-				}
-				IF = {
-					limit = { 612 = { is_owned_by = TEX } }
-					LOU = { transfer_state = 612 }
-				}
-				IF = {
-					limit = { 316 = { is_owned_by = TEX } }
-					LOU = { transfer_state = 316 }
-				}
-				IF = {
-					limit = { 315 = { is_owned_by = TEX } }
-					LOU = { transfer_state = 315 }
-				}
-				IF = {
-					limit = { 307 = { is_owned_by = TEX } }
-					LOU = { transfer_state = 307 }
-				}
-				IF = {
-					limit = { 604 = { is_owned_by = TEX } }
-					LOU = { transfer_state = 604 }
-				}
-				IF = {
-					limit = { 609 = { is_owned_by = TEX } }
-					LOU = { transfer_state = 609 }
-				}
-				IF = {
-					limit = { 317 = { is_owned_by = TEX } }
-					LOU = { transfer_state = 317 }
-				}
-				every_owned_state = {
-					add_core_of = LOU
-				}
-				
+			every_owned_state = {
+				limit = { OR = { state = 312  state = 610  state = 28  state = 611  state = 612  state = 316  state = 315  state = 307  state = 317  state = 604  state = 609 } }
+				transfer_state_to = LOU
+				add_core_of = LOU
 			}
-			OKL = {
-				transfer_state = 272
-				transfer_state = 259
-				transfer_state = 278
-				transfer_state = 251
-				transfer_state = 270
-				every_owned_state = {
-					add_core_of = OKL
-				}
+			every_owned_state = {
+				limit = { OR = { state = 272  state = 259  state = 278  state = 251  state = 270 } }
+				transfer_state_to = OKL
+				add_core_of = OKL
 			}
-			NMX = {
-				transfer_state = 249
-				transfer_state = 310
-				transfer_state = 301
-				transfer_state = 335
-				every_owned_state = {
-					add_core_of = NMX
-				}
+			every_owned_state = {
+				limit = { OR = { state = 249  state = 310  state = 301  state = 335 } }
+				transfer_state_to = NMX
+				add_core_of = NMX
 			}
-			BSH = {
-				transfer_state = 286
-				transfer_state = 274
-				transfer_state = 84
-				transfer_state = 80
-				transfer_state = 306
-				every_state = {
-					limit = { is_core_of = TEX }
-					add_core_of = BSH
-				}
+			every_owned_state = {
+				limit = { OR = { state = 286  state = 274  state = 84  state = 80  state = 306 } }
+				transfer_state_to = BSH
+				add_core_of = BSH
+			}
+			every_state = {
+				limit = { is_core_of = TEX }
+				add_core_of = BSH
 			}
 			transfer_units_fraction= {
 			    target = OKL
@@ -1034,10 +981,7 @@ country_event = {
 	fire_only_once = yes
 	option = { #for freedom! (louisiana)
 		name = texas.59.a  
-		LOU = { 
-			change_tag_from = TEX
-			inherit_technology = TEX
-		}
+		LOU = { change_tag_from = TEX }
 	}
 	option = { #for freedom! (oklahoma)
 		name = texas.59.b 
@@ -1084,6 +1028,13 @@ country_event = {
 			annex_country = {
 				target = IDA
 				transfer_troops = yes
+			}
+		}
+		ai_chance = {
+			base = 100
+			modifier = {
+				IDA = { is_ai = no }
+				factor = 0
 			}
 		}
 	}
@@ -1176,8 +1127,8 @@ country_event = {
 		name = texas.33.b
 		TEX = {
 			create_wargoal = {
-					target = SIN
-					type = annex_everything
+				target = SIN
+				type = annex_everything
 			}
 		}
 	}
@@ -1431,20 +1382,15 @@ country_event = {
  			    	}
 			   }
 			}
-			LOU = {
-				transfer_state = 312
-				transfer_state = 610
-				
+			every_owned_state = {
+				limit = { OR = { state = 312  state = 610 } }
+				transfer_state_to = LOU
+				add_core_of = LOU
 			}
-			OKL = {
-				transfer_state = 272
-				transfer_state = 259
-				transfer_state = 278
-				transfer_state = 251
-				transfer_state = 270
-				transfer_state = 249
-				
-				
+			every_owned_state = {
+				limit = { OR = { state = 272  state = 259  state = 278  state = 251  state = 270 } }
+				transfer_state_to = OKL
+				add_core_of = OKL
 			}
 			LOU = {
 				division_template = {
@@ -1661,19 +1607,17 @@ country_event = {
 						OR = {
 							has_trait = war_hero
 							has_trait = armor_officer
-						has_trait = old_guard
-						has_trait = infantry_officer
+							has_trait = old_guard
+							has_trait = infantry_officer
 						}
-				   }
+				   	}
 				}
+			every_owned_state = {
+				limit = { OR = { state = 55  state = 249  state = 310  state = 301  state = 335  state = 274  state = 314  state = 286 } }
+				transfer_state_to = NMX
+				add_core_of = NMX
+			}
 				NMX = {
-					transfer_state = 249
-					transfer_state = 274
-					transfer_state = 310
-					transfer_state = 335
-					transfer_state = 301
-					transfer_state = 314
-					transfer_state = 286
 					set_cosmetic_tag = TEX_DNMX
 					Every_state = {
 						limit = { is_core_of = TEX }
@@ -1833,14 +1777,6 @@ country_event = {
 			limit = { is_core_of = NMX }
 			add_core_of = TEX
 		}
-		every_state = {
-			limit = { is_core_of = LOU }
-			add_core_of = TEX
-		}
-		every_state = {
-			limit = { is_core_of = OKL }
-			add_core_of = TEX
-		}
 	}
 }
 #Moderate oil barons coup
@@ -1893,19 +1829,17 @@ country_event = {
 					end_wars = yes
 					end_civil_wars = yes
 				}
-				LOU = {
-					transfer_state = 312
-					transfer_state = 610				
-				}
+			every_owned_state = {
+				limit = { OR = { state = 55  state = 249  state = 310  state = 301  state = 335  state = 274  state = 314  state = 286 } }
+				transfer_state_to = NMX
+				add_core_of = NMX
+			}
+			every_owned_state = {
+				limit = { OR = { state = 312  state = 610 } }
+				transfer_state_to = LOU
+				add_core_of = LOU
+			}
 				NMX = {
-					transfer_state = 55
-					transfer_state = 249
-					transfer_state = 274
-					transfer_state = 310
-					transfer_state = 335
-					transfer_state = 301
-					transfer_state = 314
-					transfer_state = 286
 					set_cosmetic_tag = TEX_DNMX
 					Every_state = {
 						limit = { is_core_of = TEX }
@@ -2309,10 +2243,22 @@ country_event = {
  			    	}
 			   }
 			}
+			every_owned_state = {
+				limit = { OR = { state = 55  state = 249  state = 310  state = 301  state = 335  state = 274  state = 314  state = 286 } }
+				transfer_state_to = NMX
+				add_core_of = NMX
+			}
+			every_owned_state = {
+				limit = { OR = { state = 312  state = 610  state = 28 } }
+				transfer_state_to = LOU
+				add_core_of = LOU
+			}
+			every_owned_state = {
+				limit = { OR = { state = 272  state = 259  state = 278  state = 251  state = 270 } }
+				transfer_state_to = OKL
+				add_core_of = OKL
+			}
 			LOU = {
-				transfer_state = 312
-				transfer_state = 610
-				transfer_state = 28
 				set_party_name = {
 					ideology = autocratic
 					long_name = LOU_kanye_party_long
@@ -2320,25 +2266,7 @@ country_event = {
 				}
 				promote_character = LOU_auth_mike_johnson
 			}
-			OKL = {
-				transfer_state = 272
-				transfer_state = 259
-				transfer_state = 278
-				transfer_state = 251
-				transfer_state = 270
-				
-				
-			}
 			NMX = {
-				transfer_state = 55
-				transfer_state = 249
-				transfer_state = 274
-				transfer_state = 306
-				transfer_state = 310
-				transfer_state = 335
-				transfer_state = 301
-				transfer_state = 314
-				transfer_state = 286
 				set_cosmetic_tag = TEX_DNMX
 				Every_state = {
 					limit = { is_core_of = TEX }
@@ -3110,7 +3038,7 @@ country_event = {
 	#picture =
 	is_triggered_only = yes
 	fire_only_once = yes
-	option = { #FIND HIM!
+	option = { 
 		name = texas.55.a
 		clr_country_flag = oil_barons_radicals
 		clr_country_flag = oil_barons_moderates
@@ -3496,6 +3424,9 @@ country_event = {
 		give_resource_rights = { receiver = USA state = 53 }
 		give_resource_rights = { receiver = USA state = 314 }
 		give_resource_rights = { receiver = USA state = 335 }
+		ai_chance = {
+			base = 100
+		}
 	}
 	option = { #no
 		name = texas.76.b
