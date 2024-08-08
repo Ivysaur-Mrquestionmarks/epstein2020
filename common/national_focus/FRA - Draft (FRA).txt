@@ -655,6 +655,7 @@ focus_tree = {}
 				value = -0.1
 				tooltip_side = leftist_favored
 			}
+			add_political_power = 15
 			country_event = {
 				id = bidone.8
 				days = 3
@@ -2718,6 +2719,12 @@ focus_tree = {}
 		}
 		completion_reward = {
 			add_stability = 0.10
+			hidden_effect = {
+				country_event = {
+					id = bidone.40
+					days = 40
+				}
+			}
 		}
 
 	}
@@ -2743,6 +2750,12 @@ focus_tree = {}
 			add_country_leader_trait = FRA_the_emperor
 			set_country_leader_ideology = establishment
 			hidden_effect = { news_event = { id = federal_republic.6 } }
+			hidden_effect = {
+				country_event = {
+					id = bidone.40
+					days = 40
+				}
+			}
 		}
 
 	}
@@ -2775,6 +2788,11 @@ focus_tree = {}
 		x = 1
 		y = 1
 		relative_position_id = FRA_I_am_the_senate
+		available = {
+			NOT = {
+				has_country_flag = rioters_are_looting_mcconnell
+			}
+		}
 		completion_reward = {
 			add_ideas = FRA_praetorians
 		}
@@ -2790,6 +2808,11 @@ focus_tree = {}
 		x = -1
 		y = 1
 		relative_position_id = FRA_I_am_the_senate
+		available = {
+			NOT = {
+				has_country_flag = rioters_are_looting_mcconnell
+			}
+		}
 		completion_reward = {
 			add_stability = 0.40
 			add_war_support = 0.40
@@ -2810,7 +2833,13 @@ focus_tree = {}
 		x = -1
 		y = 1
 		relative_position_id = FRA_praetorian_guard
+		available = {
+			NOT = {
+				has_country_flag = rioters_are_looting_mcconnell
+			}
+		}
 		completion_reward = {
+			add_political_power = 150
 		}
 
 	}
@@ -2824,7 +2853,18 @@ focus_tree = {}
 		x = 0
 		y = 1
 		relative_position_id = FRA_stack_the_courts
+		available = {
+			NOT = {
+				has_country_flag = rioters_are_looting_mcconnell
+			}
+		}
 		completion_reward = {
+			add_popularity = {
+				ideology = republican
+				popularity = 1
+			}
+			add_stability = 0.2
+			add_war_support = 0.3
 		}
 
 	}
@@ -2857,9 +2897,11 @@ focus_tree = {}
 		x = 0
 		y = 1
 		relative_position_id = FRA_american_crassus
-		available = {
-		}
 		completion_reward = {
+			country_event = {
+				id = bidone.38
+				days = 4
+			}
 		}
 
 	}
@@ -2875,8 +2917,36 @@ focus_tree = {}
 		y = 1
 		relative_position_id = FRA_facade
 		available = {
+			NOT = {
+				has_country_flag = rioters_are_looting_mcconnell
+			}
 		}
 		completion_reward = {
+			if = {
+				limit = { has_idea = FRA_bidenomics }
+				remove_ideas = FRA_bidenomics
+			}
+			if = {
+				limit = { has_idea = FRA_bidenomics2 }
+				remove_ideas = FRA_bidenomics2
+			}
+			if = {
+				limit = { has_idea = FRA_progressive_econ }
+				remove_ideas = FRA_progressive_econ
+			}
+			if = {
+				limit = { has_idea = FRA_progressive_econ2 }
+				remove_ideas = FRA_progressive_econ2
+			}
+			if = {
+				limit = { has_idea = FRA_progressive_econ3 }
+				remove_ideas = FRA_progressive_econ3
+			}
+			if = {
+				limit = { has_idea = FRA_bidenomics }
+				remove_ideas = FRA_bidenomics
+			}
+			add_ideas = FRA_unions_banned
 		}
 
 	}
@@ -2893,6 +2963,7 @@ focus_tree = {}
 		available = {
 		}
 		completion_reward = {
+			add_ideas = FRA_obamacare_gutted
 		}
 
 	}
@@ -2909,6 +2980,7 @@ focus_tree = {}
 		available = {
 		}
 		completion_reward = {
+			add_ideas = FRA_dereg_climate
 		}
 
 	}
@@ -2928,6 +3000,7 @@ focus_tree = {}
 		available = {
 		}
 		completion_reward = {
+			country_event = bidone.39
 		}
 
 	}
@@ -2944,6 +3017,8 @@ focus_tree = {}
 		available = {
 		}
 		completion_reward = {
+			remove_ideas = FRA_stimulus
+			add_political_power = 20
 		}
 
 	}
@@ -2961,6 +3036,7 @@ focus_tree = {}
 		available = {
 		}
 		completion_reward = {
+			add_ideas = FRA_trad_family
 		}
 
 	}
@@ -2975,8 +3051,11 @@ focus_tree = {}
 		y = 1
 		relative_position_id = FRA_reppeal_same_sex_marriage
 		available = {
+			has_country_flag = rioters_are_looting_mcconnell
 		}
 		completion_reward = {
+			add_political_power = 50
+			custom_effect_tooltip = mcconnell_unlock_decision_revolts_tt
 		}
 
 	}
@@ -2991,8 +3070,11 @@ focus_tree = {}
 		y = 1
 		relative_position_id = FRA_reppeal_same_sex_marriage
 		available = {
+			has_country_flag = rioters_are_looting_mcconnell
 		}
 		completion_reward = {
+			country_event = bidone.41
+			custom_effect_tooltip = mcconnell_unlock_decision_revolts_tt
 		}
 
 	}
@@ -3012,6 +3094,8 @@ focus_tree = {}
 		available = {
 		}
 		completion_reward = {
+			add_political_power = 50
+			custom_effect_tooltip = mcconnell_unlock_decision_revolts_tt
 		}
 
 	}
@@ -3026,8 +3110,16 @@ focus_tree = {}
 		y = 1
 		relative_position_id = FRA_refund_the_police
 		available = {
+			NOT = {
+				has_country_flag = rioters_are_looting_mcconnell
+			}
 		}
 		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 15000
+			}
+			country_event = bidone.43
 		}
 
 	}
@@ -3048,8 +3140,12 @@ focus_tree = {}
 		y = 1
 		relative_position_id = FRA_expand_senate
 		available = {
+			NOT = {
+				has_country_flag = rioters_are_looting_mcconnell
+			}
 		}
 		completion_reward = {
+			add_ideas = FRA_wealth
 		}
 
 	}
@@ -3066,6 +3162,10 @@ focus_tree = {}
 		available = {
 		}
 		completion_reward = {
+			swap_ideas = { 
+				remove_idea = FRA_wealth
+				add_idea = FRA_elitism
+			}
 		}
 
 	}
@@ -3081,8 +3181,12 @@ focus_tree = {}
 		y = 1
 		relative_position_id = FRA_facade
 		available = {
+			NOT = {
+				has_country_flag = rioters_are_looting_mcconnell
+			}
 		}
 		completion_reward = {
+			add_ideas = FRA_reducing_spending
 		}
 
 	}
@@ -3099,6 +3203,7 @@ focus_tree = {}
 		available = {
 		}
 		completion_reward = {
+			add_ideas = FRA_expanded_patriot_act
 		}
 
 	}
@@ -3203,8 +3308,8 @@ focus_tree = {}
 			has_country_leader = { name = "Theodore Roosevelt IV" ruling_only = yes }
 		}
 		completion_reward = {
-			army_experience = 15
-			air_experience = 5
+			army_experience = 50
+			air_experience = 50
 			add_war_support = 0.15
 		}
 
@@ -3260,9 +3365,9 @@ focus_tree = {}
 			add_stability = 0.05
 			add_political_power = 100
 			add_equipment_to_stockpile = {
-			    type = infantry_equipment
-			    amount = 5000
-			    producer = FRA
+				type = infantry_equipment
+				amount = 5000
+				producer = FRA
 			}
 		}
 
@@ -3292,6 +3397,15 @@ focus_tree = {}
 		y = 2
 		relative_position_id = FRA_Progressive_Conservatism
 		completion_reward = {
+			random_owned_state = {
+				add_building_construction = {
+					type = arms_factory
+					level = 3
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 3
+			}
+			add_stability = 0.2
 		}
 
 	}
@@ -3308,7 +3422,8 @@ focus_tree = {}
 		completion_reward = {
 			add_political_power = 100
 			add_stability = 0.05
-			add_war_support = -0.05
+			add_war_support = 0.05
+			country_event = bidone.44
 		}
 
 	}
@@ -3359,7 +3474,6 @@ focus_tree = {}
 		prerequisite = {
 			focus = FRA_roosevelt_admin
 			focus = FRA_facade
-			focus = FRA_declare_the_empire
 		}
 		x = 2
 		y = 1
@@ -3367,6 +3481,7 @@ focus_tree = {}
 		available = {
 		}
 		completion_reward = {
+			add_ideas = FRA_new_imperialism
 		}
 
 	}
@@ -3384,6 +3499,22 @@ focus_tree = {}
 		available = {
 		}
 		completion_reward = {
+			random_owned_state = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 3
+			}
+			random_owned_state = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 3
+			}
 		}
 
 	}
@@ -3400,6 +3531,15 @@ focus_tree = {}
 		available = {
 		}
 		completion_reward = {
+			add_stability = 0.1
+			random_owned_state = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 3
+			}
 		}
 
 	}
@@ -3414,8 +3554,33 @@ focus_tree = {}
 		y = 2
 		relative_position_id = FRA_freer_the_people
 		available = {
+			has_completed_focus = FRA_facade
 		}
 		completion_reward = {
+			random_owned_state = {
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 3
+			}
+			random_owned_state = {
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 3
+			}
+			random_owned_state = {
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 3
+			}
 		}
 
 	}
@@ -3430,8 +3595,33 @@ focus_tree = {}
 		y = 2
 		relative_position_id = FRA_freer_the_people
 		available = {
+			has_completed_focus = FRA_roosevelt_admin
 		}
 		completion_reward = {
+			random_owned_state = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 3
+			}
+			random_owned_state = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 3
+			}
+			random_owned_state = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 3
+			}
 		}
 
 	}
@@ -3448,6 +3638,7 @@ focus_tree = {}
 		available = {
 		}
 		completion_reward = {
+			add_ideas = FRA_fuck_the_trumpists
 		}
 
 	}
