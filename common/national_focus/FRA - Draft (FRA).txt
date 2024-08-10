@@ -3918,6 +3918,7 @@ focus_tree = {}
 		relative_position_id = FRA_the_great_crisis_of_our_time
 		available = {
 		}
+		bypass = { always = yes }
 		completion_reward = {
 		}
 
@@ -3933,6 +3934,14 @@ focus_tree = {}
 		y = 1
 		relative_position_id = FRA_indirect_intervention
 		available = {
+			KFC = { 
+				has_war = yes
+			}
+		}
+		bypass = {
+			KFC = { 
+				has_war = yes
+			}
 		}
 		completion_reward = {
 		}
@@ -3949,8 +3958,41 @@ focus_tree = {}
 		y = 1
 		relative_position_id = FRA_support_kentucky
 		available = {
+			has_equipment = {
+			    infantry_equipment > 10000
+			}
+			KFC = { 
+				has_war = yes
+			}
 		}
 		completion_reward = {
+			every_country = {
+				limit = { original_tag = KFC }
+				if = {
+					limit = { has_government = democrat }
+					send_equipment = {
+						equipment = infantry_equipment
+						amount = 10000
+						target = PREV
+					}
+				}
+				else_if = {
+					limit = { has_government = libertarian_left }
+					send_equipment = {
+						equipment = infantry_equipment
+						amount = 10000
+						target = PREV
+					}
+				}
+				else_if = {
+					limit = { has_government = libertarian_right }
+					send_equipment = {
+						equipment = infantry_equipment
+						amount = 10000
+						target = PREV
+					}
+				}
+			}
 		}
 
 	}
@@ -3965,13 +4007,34 @@ focus_tree = {}
 		y = 1
 		relative_position_id = FRA_support_kentucky
 		available = {
+			KFC = { 
+				has_war = yes
+			}
 		}
 		completion_reward = {
+			every_country = {
+				limit = { original_tag = KFC }
+				if = {
+					limit = { has_government = democrat }
+					add_manpower = 25000
+					FRA = { add_manpower = -25000 }
+				}
+				else_if = {
+					limit = { has_government = libertarian_left }
+					add_manpower = 25000
+					FRA = { add_manpower = -25000 }
+				}
+				else_if = {
+					limit = { has_government = libertarian_right }
+					add_manpower = 25000
+					FRA = { add_manpower = -25000 }
+				}
+			}
 		}
 
 	}
 	focus = {
-		id = FRA_support_kentucky_volunteers
+		id = FRA_support_kentucky_exiles
 		icon = GFX
 		cost = 10.00
 		prerequisite = {
@@ -3983,6 +4046,8 @@ focus_tree = {}
 		available = {
 		}
 		completion_reward = {
+			add_manpower = 50000
+			army_experience = 75
 		}
 
 	}
@@ -3997,6 +4062,7 @@ focus_tree = {}
 		y = 1
 		relative_position_id = FRA_indirect_intervention
 		available = {
+			has_global_flag = Confederate_Collapse
 		}
 		completion_reward = {
 		}
@@ -4012,7 +4078,8 @@ focus_tree = {}
 		x = 1
 		y = 1
 		relative_position_id = FRA_support_south_carolina
-		available = {
+		available = { 
+			has_global_flag = Confederate_Collapse
 		}
 		completion_reward = {
 		}
@@ -4029,6 +4096,7 @@ focus_tree = {}
 		y = 1
 		relative_position_id = FRA_support_south_carolina
 		available = {
+			has_global_flag = Confederate_Collapse
 		}
 		completion_reward = {
 		}
@@ -4045,6 +4113,7 @@ focus_tree = {}
 		y = 2
 		relative_position_id = FRA_support_south_carolina
 		available = {
+			has_global_flag = Confederate_Collapse
 		}
 		completion_reward = {
 		}
