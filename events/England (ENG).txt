@@ -406,3 +406,71 @@ country_event = {
 		add_ideas = ENG_refugee_pm
 	}
 }
+
+#2024 election
+country_event = {
+	id = english_colonies.19
+	title = english_colonies.19.t
+	desc = english_colonies.19.d
+	#picture =
+	trigger = {
+		original_tag = ENG
+		date > 2024.07.01
+		is_subject = no
+	}
+	fire_only_once = yes
+	#Bambos Charalmabous is sworn in as Minister for Colonies
+	option = {
+		name = english_colonies.19.a
+		add_popularity = {
+			ideology = libertarian_left
+			popularity = 0.15
+		}
+		set_politics = {
+		    ruling_party = libertarian_left
+		    elections_allowed = yes
+		}
+		ENG_bambos_charalmabous = {
+			promote_character = yes
+		}
+		if = {
+			limit = {
+				has_idea = ENG_refugee_pm
+			}
+			swap_ideas = {
+				remove_idea = ENG_refugee_pm
+				add_idea = ENG_labour_pm
+			}
+			else_if = {
+				limit = {
+					has_idea = ENG_young_guard_pm
+				}
+				swap_ideas = {
+					remove_idea = ENG_young_guard_pm
+					add_idea = ENG_labour_pm
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = ENG_thatcherite_pm
+				}
+				swap_ideas = {
+					remove_idea = ENG_thatcherite_pm
+					add_idea = ENG_labour_pm
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = ENG_hawkish_pm
+				}
+				swap_ideas = {
+					remove_idea = ENG_hawkish_pm
+					add_idea = ENG_labour_pm
+				}
+			}
+		}
+		add_political_power = 75
+		add_stability = 0.10
+		add_war_support = -0.15
+	}
+}
