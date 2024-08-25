@@ -174,6 +174,25 @@ CSA_war = { #using global.south_collapse
 		}
 	}	
 }
+War_on_texas_collapse_tags = { #using global.texas_collapse
+	for_each_scope_loop = { #This loops declare the wars
+    	array = global.texas_collapse
+		ROOT = {
+			if = { 
+				limit = {
+					NOT = { 
+						has_war_with = PREV 
+					}
+				}
+				create_wargoal = {
+    				target = PREV
+    				type = annex_everything
+				}
+			}
+		}
+	}
+	custom_effect_tooltip = texas_war_tt
+}
 fuel_clamp = {
 			clamp_variable = {
 				var = expense_civs
