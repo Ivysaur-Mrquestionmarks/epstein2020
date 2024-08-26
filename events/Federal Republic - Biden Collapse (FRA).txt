@@ -1489,6 +1489,7 @@ country_event = {
 		set_politics = {
 			ruling_party = authoritarian_left
 		}
+		set_country_flag = president_clinton
 		hidden_effect = { news_event = { id = federal_republic.16 } }
 		mark_focus_tree_layout_dirty = yes
 		set_focus_dirty = yes
@@ -1791,5 +1792,664 @@ country_event = {
 	fire_only_once = yes
 	option = { # 
 		name = bidone.44.a
+	}
+}
+
+# bidone beats trump
+news_event = {
+	id = bidone.45
+	title = bidone.45.t
+	desc = bidone.45.d
+	#picture =
+	is_triggered_only = yes
+	#fire_only_once = yes
+	option = { # 
+		name = bidone.45.a
+	}
+}
+
+# victorious against trump
+country_event = {
+	id = bidone.46
+	title = bidone.46.t
+	desc = bidone.46.d
+	#picture =
+	#is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = FRA
+		controls_state = 416
+		NOT = { country_exists = USA }
+	}
+	option = { # 
+		name = bidone.46.a
+		complete_national_focus = FRA_federalist_victory
+	}
+}
+
+# trials: trumpist admin
+country_event = {
+	id = bidone.47
+	title = bidone.47.t
+	desc = bidone.47.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # 
+		name = bidone.47.a
+	}
+}
+
+# trials: pardon the conscripted
+country_event = {
+	id = bidone.48
+	title = bidone.48.t
+	desc = bidone.48.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # 
+		name = bidone.48.a
+	}
+}
+
+# trials: honor the NPA
+country_event = {
+	id = bidone.49
+	title = bidone.49.t
+	desc = bidone.49.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # 
+		name = bidone.49.a
+	}
+}
+
+# trials: fate of the old gop
+country_event = {
+	id = bidone.50
+	title = bidone.50.t
+	desc = bidone.50.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # ban the gop
+		name = bidone.50.a
+		trigger = {
+			OR = {
+				has_country_flag = progressive_president
+				has_country_flag = president_clinton
+			}
+		}
+		hidden_effect = {
+			if = {
+				limit = { has_country_flag = progressive_president }
+				country_event = {
+					id = bidone.51
+					days = 14
+				}
+			}
+		}
+	}
+	option = { # cripple the gop
+		name = bidone.50.b
+		trigger = {
+			has_country_flag = president_obama
+		}
+		hidden_effect = {
+			country_event = {
+				id = bidone.51
+				days = 14
+			}
+		}
+	}
+	option = { # absorb the gop
+		name = bidone.50.c
+		trigger = {
+			has_country_flag = president_kamala
+		}
+	}
+	option = { # pardon the gop
+		name = bidone.50.e
+		trigger = {
+			has_country_flag = president_mcconnell
+		}
+	}
+}
+
+# rise of the liberal-conservative party (moderate replacement for GOP led by larry hogan)
+country_event = {
+	id = bidone.51
+	title = bidone.51.t
+	desc = bidone.51.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # 
+		name = bidone.51.a
+	}
+}
+
+# trials: fate of the warlords - imply it may be absentee trials
+country_event = {
+	id = bidone.52
+	title = bidone.52.t
+	desc = bidone.52.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # 
+		name = bidone.52.a
+	}
+}
+
+# trials: fate of the populists - imply it may be absentee trials
+country_event = {
+	id = bidone.53
+	title = bidone.53.t
+	desc = bidone.53.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # 
+		name = bidone.53.a
+	}
+}
+
+# trials: fate of the autocrats - imply it may be absentee trials
+country_event = {
+	id = bidone.54
+	title = bidone.54.t
+	desc = bidone.54.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # 
+		name = bidone.54.a
+	}
+}
+
+# trials: fate of the annarkidies - imply it may be absentee trials
+country_event = {
+	id = bidone.55
+	title = bidone.55.t
+	desc = bidone.55.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # 
+		name = bidone.55.a
+	}
+}
+
+# america built back better
+country_event = {
+	id = bidone.56
+	title = bidone.56.t
+	desc = bidone.56.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # 
+		name = bidone.56.a
+	}
+}
+
+# america restored
+country_event = {
+	id = bidone.57
+	title = bidone.57.t
+	desc = bidone.57.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # 
+		name = bidone.57.a
+		if = {
+			limit = { has_completed_focus = FRA_declare_the_empire }
+			news_event = bidone.59
+		}
+		else = { 
+			news_event = bidone.58
+		}
+	}
+}
+
+# america restored - news - republic - add super event
+news_event = {
+	id = bidone.58
+	title = bidone.58.t
+	desc = bidone.58.d
+	#picture =
+	is_triggered_only = yes
+	#fire_only_once = yes
+	option = { # 
+		name = bidone.58.a
+	}
+}
+
+# america restored - news - empire - add super event
+news_event = {
+	id = bidone.59
+	title = bidone.59.t
+	desc = bidone.59.d
+	#picture =
+	is_triggered_only = yes
+	#fire_only_once = yes
+	option = { # 
+		name = bidone.59.a
+	}
+}
+
+# utah pov: fra demands unification
+country_event = {
+	id = bidone.60
+	title = bidone.60.t
+	desc = bidone.60.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # yes
+		name = bidone.60.a
+		FRA = { 
+			annex_country = { 
+				target = ROOT 
+				transfer_troops = yes
+			}
+		}
+		ai_chance = { base = 100}
+	}
+	option = { # no
+		name = bidone.60.b
+		FRA = { country_event = { id = bidone.61 days = 5 } }
+	}
+}
+
+# fra pov: utah refuses
+country_event = {
+	id = bidone.61
+	title = bidone.61.t
+	desc = bidone.61.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # 
+		name = bidone.61.a
+	}
+}
+
+# montana pov: fra demands unification
+country_event = {
+	id = bidone.62
+	title = bidone.62.t
+	desc = bidone.62.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # yes
+		name = bidone.60.a
+		FRA = { 
+			annex_country = { 
+				target = ROOT 
+				transfer_troops = yes
+			}
+		}
+		ai_chance = { base = 100}
+	}
+	option = { # no
+		name = bidone.60.b
+		FRA = { country_event = { id = bidone.63  days = 5 } }
+	}
+}
+
+# fra pov: montana refuses
+country_event = {
+	id = bidone.63
+	title = bidone.63.t
+	desc = bidone.63.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # 
+		name = bidone.61.a
+	}
+}
+
+# pra pov: fra demands unification
+country_event = {
+	id = bidone.64
+	title = bidone.64.t
+	desc = bidone.64.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # yes
+		name = bidone.60.a
+		FRA = { 
+			annex_country = { 
+				target = ROOT 
+				transfer_troops = yes
+			}
+		}
+	}
+	option = { # no
+		name = bidone.60.b
+		FRA = { country_event = { id = bidone.65  days = 5 } }
+		ai_chance = { 
+			base = 100
+			modifier = {
+				factor = 0
+				OR = {
+					has_government = democrat
+					has_government = republican
+				}
+			}
+		}
+	}
+}
+
+# fra pov: pra refuses
+country_event = {
+	id = bidone.65
+	title = bidone.65.t
+	desc = bidone.65.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # 
+		name = bidone.61.a
+			declare_war_on = {
+			    target = PRA
+			    type = annex_everything
+			}
+			if = { 
+				limit = { country_exists = JFR }
+				create_wargoal = {
+					target = JFR
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = PRC }
+				create_wargoal = {
+					target = PRC
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = HLY }
+				create_wargoal = {
+					target = HLY
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = CST }
+				create_wargoal = {
+					target = CST
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = ACF }
+				create_wargoal = {
+					target = ACF
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = SAC }
+				create_wargoal = {
+					target = SAC
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = ABG }
+				create_wargoal = {
+					target = ABG
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = NVD }
+				create_wargoal = {
+					target = NVD
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = SIL }
+				create_wargoal = {
+					target = SIL
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = FIR }
+				create_wargoal = {
+					target = FIR
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = ORO }
+				create_wargoal = {
+					target = ORO
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = BJC }
+				create_wargoal = {
+					target = BJC
+					type = annex_everything
+				}
+			}
+	}
+}
+
+# hawaii and alaska pov: fra demands unification
+country_event = {
+	id = bidone.66
+	title = bidone.66.t
+	desc = bidone.66.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # yes
+		name = bidone.60.a
+		FRA = { 
+			annex_country = { 
+				target = ROOT 
+				transfer_troops = yes
+			}
+		}
+		ai_chance = { base = 100}
+	}
+	option = { # no
+		name = bidone.60.b
+		FRA = { country_event = { id = bidone.67  days = 5 } }
+	}
+}
+
+# fra pov: hawaii and alaska refuses
+country_event = {
+	id = bidone.67
+	title = bidone.67.t
+	desc = bidone.67.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # 
+		name = bidone.61.a
+		create_wargoal = {
+			target = FROM
+			type = annex_everything
+		}
+	}
+}
+
+# texas pov: fra demands unification
+country_event = {
+	id = bidone.68
+	title = bidone.68.t
+	desc = bidone.68.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # yes
+		name = bidone.60.a
+		FRA = { 
+			annex_country = { 
+				target = ROOT 
+				transfer_troops = yes
+			}
+		}
+		ai_chance = { base = 100}
+	}
+	option = { # no
+		name = bidone.60.b
+		FRA = { country_event = { id = bidone.69  days = 5 } }
+	}
+}
+
+# fra pov: texas refuses
+country_event = {
+	id = bidone.69
+	title = bidone.69.t
+	desc = bidone.69.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # 
+		name = bidone.61.a
+	}
+}
+
+# CSA pov: fra demands unification
+country_event = {
+	id = bidone.70
+	title = bidone.70.t
+	desc = bidone.70.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # yes
+		name = bidone.60.a
+		FRA = { 
+			annex_country = { 
+				target = ROOT 
+				transfer_troops = yes
+			}
+		}
+		ai_chance = { base = 100}
+	}
+	option = { # no
+		name = bidone.60.b
+		FRA = { country_event = { id = bidone.71  days = 5 } }
+	}
+}
+
+# fra pov: CSA refuses
+country_event = {
+	id = bidone.71
+	title = bidone.71.t
+	desc = bidone.71.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # 
+		name = bidone.61.a
+		create_wargoal = {
+			target = FROM
+			type = annex_everything
+		}
+	}
+}
+
+# soda pov: fra demands unification
+country_event = {
+	id = bidone.72
+	title = bidone.72.t
+	desc = bidone.72.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # yes
+		name = bidone.60.a
+		FRA = { 
+			annex_country = { 
+				target = ROOT 
+				transfer_troops = yes
+			}
+		}
+		ai_chance = { base = 100}
+	}
+	option = { # no
+		name = bidone.60.b
+		FRA = { country_event = { id = bidone.73  days = 5 } }
+	}
+}
+
+# fra pov: soda refuses
+country_event = {
+	id = bidone.73
+	title = bidone.73.t
+	desc = bidone.73.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # 
+		name = bidone.61.a
+	}
+}
+
+# post unification elections - kamala
+country_event = {
+	id = bidone.74
+	title = bidone.74.t
+	desc = bidone.74.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # kamala
+		name = bidone.74.a
+	}
+	option = { # hogan
+		name = bidone.74.a
+	}
+}
+
+# post unification elections - michelle
+country_event = {
+	id = bidone.75
+	title = bidone.75.t
+	desc = bidone.75.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # michelle
+		name = bidone.75.a
+	}
+	option = { # hogan
+		name = bidone.74.a
+	}
+}
+
+# post unification elections - roosevelt
+country_event = {
+	id = bidone.76
+	title = bidone.76.t
+	desc = bidone.76.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # shapiro
+		name = bidone.76.a
+	}
+	option = { # roosevelt
+		name = bidone.76.a
 	}
 }
