@@ -499,7 +499,7 @@ focus_tree = {
 	###########John McAfee
 	focus = {
 		id = GLA_decentralize_the_government
-		icon = GFX_goal_GLA_the_elections
+		icon = GFX_goal_GLA_decentralize_the_government
 		x = 1
 		y = 1
 		relative_position_id = GLA_the_ancapistan_way
@@ -514,7 +514,7 @@ focus_tree = {
 	}
 	focus = {
 		id = GLA_appease_moderate_libertarians
-		icon = GFX_goal_GLA_the_elections
+		icon = GFX_goal_GLA_appease_moderate_libertarians
 		x = -1
 		y = 1
 		relative_position_id = GLA_the_ancapistan_way
@@ -532,7 +532,7 @@ focus_tree = {
 	}
 	focus = {
 		id = GLA_freedom_to_the_corporations
-		icon = GFX_goal_GLA_the_elections
+		icon = GFX_goal_GLA_freedom_to_the_corporations
 		x = 1
 		y = 1
 		relative_position_id = GLA_decentralize_the_government
@@ -554,7 +554,7 @@ focus_tree = {
 	}
 	focus = {
 		id = GLA_appel_to_democrats_and_republicans
-		icon = GFX_goal_GLA_the_elections
+		icon = GFX_goal_GLA_appel_to_democrats_and_republicans
 		x = -1
 		y = 1
 		relative_position_id = GLA_appease_moderate_libertarians
@@ -572,7 +572,7 @@ focus_tree = {
 	}
 	focus = {
 		id = GLA_true_freedom
-		icon = GFX_goal_GLA_the_elections
+		icon = GFX_goal_GLA_true_freedom
 		x = -1
 		y = 1
 		relative_position_id = GLA_freedom_to_the_corporations
@@ -587,7 +587,7 @@ focus_tree = {
 	}
 	focus = {
 		id = GLA_everyone_is_an_ancap
-		icon = GFX_goal_GLA_the_elections
+		icon = GFX_goal_GLA_everyone_is_an_ancap
 		x = 1
 		y = 1
 		relative_position_id = GLA_appel_to_democrats_and_republicans
@@ -605,7 +605,7 @@ focus_tree = {
 	}
 	focus = {
 		id = GLA_mcafees_tech
-		icon = GFX_goal_GLA_the_elections
+		icon = GFX_goal_GLA_mcafees_tech
 		x = 0
 		y = 2
 		relative_position_id = GLA_the_ancapistan_way
@@ -624,7 +624,7 @@ focus_tree = {
 	}
 	focus = {
 		id = GLA_welcome_to_ancapistan
-		icon = GFX_goal_GLA_the_elections
+		icon = GFX_goal_GLA_welcome_to_ancapistan
 		x = 0
 		y = 2
 		allow_branch = {
@@ -654,7 +654,7 @@ focus_tree = {
 	###########Libertarian Economy
 	focus = {
 		id = GLA_our_broken_economy
-		icon = GFX_goal_GLA_the_elections
+		icon = GFX_goal_GLA_our_broken_economy
 		x = 3
 		y = 2
 		allow_branch = {
@@ -2283,7 +2283,7 @@ focus_tree = {
 		allow_branch = {
 		}
 		available = {
-		has_army_manpower = { size > 70000 }
+		has_army_manpower = { size > 75000 }
 		}
 		completion_reward = {
 		add_war_support = 0.05
@@ -3303,7 +3303,56 @@ focus_tree = {
 			}
 		}
 		completion_reward = {
-		
+		delete_unit_template_and_units = {
+        division_template = "National Guard"
+        disband = no
+        }
+
+		division_template = {
+        name = "Boogaloo Militias"
+        is_locked = no
+        priority = 1
+        regiments = {
+            infantry = { x = 0 y = 0 }
+            infantry = { x = 0 y = 1 }
+            infantry = { x = 0 y = 2 }
+			infantry = { x = 1 y = 0 }
+			infantry = { x = 1 y = 1 }
+			infantry = { x = 1 y = 2 }
+			motorized = { x = 2 y = 0 }
+			motorized = { x = 2 y = 1 }
+			motorized = { x = 2 y = 2 }
+        }
+        support = {
+        }
+		}
+		195 = {
+				limit = { ROOT = { has_full_control_of_state = PREV } }
+				create_unit = {
+					division = "name = \"1st ''Gadsden'' Division\" division_template = \"Boogaloo Militias\" start_experience_factor = 0.1" 
+					owner = GLA
+				}
+				create_unit = {
+					division = "name = \"2rd ''Washington'' Division\" division_template = \"Boogaloo Militias\" start_experience_factor = 0.1" 
+					owner = GLA
+				}
+				create_unit = {
+					division = "name = \"3nd ''Jackson'' Division\" division_template = \"Boogaloo Militias\" start_experience_factor = 0.1" 
+					owner = GLA
+				}
+				create_unit = {
+					division = "name = \"4nd ''1776'' Division\" division_template = \"Boogaloo Militias\" start_experience_factor = 0.1" 
+					owner = GLA
+				}
+				create_unit = {
+					division = "name = \"5nd ''Killer Queen'' Division\" division_template = \"Boogaloo Militias\" start_experience_factor = 0.1" 
+					owner = GLA
+				}
+				create_unit = {
+					division = "name = \"6nd ''Thunderstruck'' Division\" division_template = \"Boogaloo Militias\" start_experience_factor = 0.1" 
+					owner = GLA
+				}
+			}
 		}
 	}
 	focus = {
@@ -3320,7 +3369,7 @@ focus_tree = {
 			focus = GLA_the_boogaloo_coup
 		}
 		completion_reward = {
-	    
+	    add_political_power = 25
 		}
 
 	}
@@ -3334,11 +3383,17 @@ focus_tree = {
 		select_effect = {  }
 		allow_branch = {
 		}
+		available = {
+			has_idea = GLA_rising_tensions
+		}
 		prerequisite = {
 			focus = GLA_the_boogaloo_coup
 		}
 		completion_reward = {
-	    
+	    add_popularity = {
+        ideology = libertarian_left
+        popularity = -0.05
+        }
 		}
 
 	}
@@ -3352,11 +3407,17 @@ focus_tree = {
 		select_effect = {  }
 		allow_branch = {
 		}
+		available = {
+			has_idea = GLA_rising_tensions
+		}
 		prerequisite = {
 			focus = GLA_the_boogaloo_coup
 		}
 		completion_reward = {
-	    
+	    swap_ideas = {
+			    remove_idea = GLA_rising_tensions
+			    add_idea = GLA_rising_tensions_2
+			}
 		}
 
 	}
@@ -3375,6 +3436,12 @@ focus_tree = {
 		}
 		completion_reward = {
 	    unlock_decision_category_tooltip = GLA_control_over_the_great_lakes
+		hidden_effect = {
+			country_event = {
+				id = greatlake.18
+				days = 1
+			}
+		}
 		}
 
 	}
@@ -3392,7 +3459,8 @@ focus_tree = {
 			focus = GLA_secure_our_control
 		}
 		completion_reward = {
-	    
+	    add_political_power = 35
+		add_stability = 0.05
 		}
 
 	}
@@ -3413,7 +3481,8 @@ focus_tree = {
 			focus = GLA_bring_order_to_these_lands
 		}
 		completion_reward = {
-	    
+	    add_political_power = 30
+		add_stability = 0.05
 		}
 
 	}
@@ -3431,7 +3500,11 @@ focus_tree = {
 			focus = GLA_anti_leftist_propaganda
 		}
 		completion_reward = {
-	    
+	    add_popularity = {
+        ideology = libertarian_left
+        popularity = -0.05
+        }
+        add_political_power = -15
 		}
 
 	}
@@ -3449,14 +3522,17 @@ focus_tree = {
 			focus = GLA_hunt_down_leftists
 		}
 		completion_reward = {
-	    
+	    add_popularity = {
+        ideology = libertarian_left
+        popularity = -0.05
+        }
 		}
 
 	}
 	focus = {
 		id = GLA_protect_the_people
 		icon = GFX_goal_GLA_the_elections
-		cost = 5
+		cost = 8
 		x = -1
 		y = 1
 		relative_position_id = GLA_stop_the_riots
@@ -3467,7 +3543,7 @@ focus_tree = {
 			focus = GLA_stop_the_riots
 		}
 		completion_reward = {
-	    
+	    remove_ideas = GLA_rising_tensions_2
 		}
 
 	}
@@ -3485,7 +3561,11 @@ focus_tree = {
 			focus = GLA_protect_the_people
 		}
 		completion_reward = {
-	    
+	    add_equipment_to_stockpile = {
+        type = infantry_equipment
+        amount = 1000
+        producer = GLA
+        }
 		}
 
 	}
@@ -3501,7 +3581,7 @@ focus_tree = {
 		}
 		available = {
 			NOT = {
-				has_decision_category = GLA_control_over_the_great_lakes		
+				has_decision_category_tooltip = GLA_control_over_the_great_lakes		
 			}
 		}
 		prerequisite = {
@@ -3514,7 +3594,12 @@ focus_tree = {
 			focus = GLA_seize_military_equipment
 		}
 		completion_reward = {
-	    
+	    hidden_effect = {
+			country_event = {
+				id = greatlake.19
+				days = 30
+			}
+		}
 		}
 
 	}
@@ -3535,7 +3620,11 @@ focus_tree = {
 			focus = GLA_boogaloo_control
 		}
 		completion_reward = {
-	    
+	    add_popularity = {
+        ideology = autocratic
+        popularity = 0.05
+        }
+		add_stability = 0.05
 		}
 
 	}
@@ -3556,7 +3645,11 @@ focus_tree = {
 			focus = GLA_boogaloo_control
 		}
 		completion_reward = {
-	    
+		GLA = {
+	    set_country_leader_ideology = military_dictatorship
+		}
+		add_political_power = 45
+		add_stability = -0.05
 		}
 
 	}
@@ -3574,7 +3667,7 @@ focus_tree = {
 			focus = GLA_boogaloo_control
 		}
 		completion_reward = {
-	    
+	    army_experience = 15
 		}
 
 	}
@@ -3592,7 +3685,7 @@ focus_tree = {
 			focus = GLA_keep_our_promises
 		}
 		completion_reward = {
-	    
+	    add_stability = 0.05
 		}
 
 	}
@@ -3610,7 +3703,10 @@ focus_tree = {
 			focus = GLA_everyone_deserves_freedom
 		}
 		completion_reward = {
-	    
+	    add_popularity = {
+        ideology = libertarian_left
+        popularity = -0.05
+        }
 		}
 
 	}
@@ -3628,7 +3724,10 @@ focus_tree = {
 			focus = GLA_but_not_leftists
 		}
 		completion_reward = {
-	    
+	    add_popularity = {
+        ideology = autocratic
+        popularity = 0.05
+        }
 		}
 
 	}
@@ -3646,7 +3745,7 @@ focus_tree = {
 			focus = GLA_keep_our_promises
 		}
 		completion_reward = {
-	    
+	    add_political_power = -50
 		}
 
 	}
@@ -3664,7 +3763,9 @@ focus_tree = {
 			focus = GLA_weaken_our_goverment
 		}
 		completion_reward = {
-	    
+	    add_political_power = -35
+		add_stability = 0.05
+		add_ideas = GLA_patriotic_anarchy
 		}
 
 	}
@@ -3682,7 +3783,10 @@ focus_tree = {
 			focus = GLA_deconstruct_our_government
 		}
 		completion_reward = {
-	    
+	    add_popularity = {
+        ideology = autocratic
+        popularity = 0.05
+        }
 		}
 
 	}
@@ -3706,7 +3810,15 @@ focus_tree = {
 			focus = GLA_get_in_touch_with_the_people
 		}
 		completion_reward = {
-	    
+	    add_popularity = {
+        ideology = autocratic
+        popularity = 0.05
+        }
+		add_stability 0.05
+		swap_ideas = {
+			    remove_idea = GLA_patriotic_anarchy
+			    add_idea = GLA_patriotic_anarchy_2
+			}
 		}
 
 	}
@@ -3724,7 +3836,10 @@ focus_tree = {
 			focus = GLA_keep_our_promises
 		}
 		completion_reward = {
-	    
+	    add_popularity = {
+        ideology = autocratic
+        popularity = 0.05
+        }
 		}
 
 	}
@@ -3742,7 +3857,7 @@ focus_tree = {
 			focus = GLA_who_cares_about_the_people
 		}
 		completion_reward = {
-	    
+	    add_political_power = 30
 		}
 
 	}
@@ -3760,7 +3875,12 @@ focus_tree = {
 			focus = GLA_who_cares_about_the_people
 		}
 		completion_reward = {
-	    
+	    add_popularity = {
+        ideology = autocratic
+        popularity = 0.05
+        }
+		add_political_power = 35
+		add_stability = -0.05
 		}
 
 	}
@@ -3778,7 +3898,9 @@ focus_tree = {
 			focus = GLA_empower_the_militias
 		}
 		completion_reward = {
-	    
+	    add_stability = 0.05
+		add_political_power = -50
+		add_ideas = GLA_a_boogaloo_dictatorship
 		}
 
 	}
@@ -3796,7 +3918,11 @@ focus_tree = {
 			focus = GLA_a_new_government
 		}
 		completion_reward = {
-	    
+	    add_popularity = {
+        ideology = autocratic
+        popularity = 0.05
+        }
+		add_war_support = 0.1
 		}
 
 	}
@@ -3814,7 +3940,11 @@ focus_tree = {
 			focus = GLA_who_needs_freedom_of_speech_anyways
 		}
 		completion_reward = {
-	    
+	    add_stability_factor = -0.05
+		add_popularity = {
+        ideology = libertarian_left
+        popularity = -0.05
+        }
 		}
 
 	}
@@ -3832,7 +3962,10 @@ focus_tree = {
 			focus = GLA_execute_leftists
 		}
 		completion_reward = {
-	    
+	    add_popularity = {
+        ideology = autocratic
+        popularity = 0.05
+        }
 		}
 
 	}
@@ -3856,7 +3989,16 @@ focus_tree = {
 			focus = GLA_establish_a_patriotic_sercet_police
 		}
 		completion_reward = {
-	    
+	    add_war_support = 0.05
+		add_political_power = 35
+		add_popularity = {
+        ideology = autocratic
+        popularity = 0.05
+        }
+		swap_ideas = {
+			    remove_idea = GLA_a_boogaloo_dictatorship
+			    add_idea = GLA_a_boogaloo_dictatorship_2
+			}
 		}
 
 	}
@@ -3874,7 +4016,7 @@ focus_tree = {
 			focus = GLA_who_cares_about_the_people
 		}
 		completion_reward = {
-	    
+	    add_ideas = GLA_boogaloo_secret_police
 		}
 
 	}
@@ -3892,7 +4034,11 @@ focus_tree = {
 			focus = GLA_fix_up_the_militias
 		}
 		completion_reward = {
-	    
+	    add_tech_bonus = {
+        bonus = 0.1
+        uses = 1
+        category = infantry_tech
+        }
 		}
 
 	}
@@ -3910,7 +4056,7 @@ focus_tree = {
 			focus = GLA_fix_up_the_militias
 		}
 		completion_reward = {
-	    
+	    army_experience = 15
 		}
 
 	}
@@ -3928,7 +4074,11 @@ focus_tree = {
 			focus = GLA_get_better_equipment
 		}
 		completion_reward = {
-	    
+	    add_tech_bonus = {
+        bonus = 0.3
+        uses = 4
+        category = infantry_tech
+        }
 		}
 
 	}
@@ -3946,7 +4096,11 @@ focus_tree = {
 			focus = GLA_get_better_equipment
 		}
 		completion_reward = {
-	    
+	    add_tech_bonus = {
+        bonus = 0.3
+        uses = 5
+        category = support_tech
+        }
 		}
 
 	}
@@ -3964,7 +4118,11 @@ focus_tree = {
 			focus = GLA_our_guns
 		}
 		completion_reward = {
-	    
+	    add_tech_bonus = {
+        bonus = 0.3
+        uses = 2
+        category = drones
+        }
 		}
 
 	}
@@ -3982,7 +4140,21 @@ focus_tree = {
 			focus = GLA_our_support_equipment
 		}
 		completion_reward = {
-	    
+	    add_tech_bonus = {
+        bonus = 0.3
+        uses = 2
+        category = light_air
+        }
+		add_tech_bonus = {
+        bonus = 0.3
+        uses = 2
+        category = medium_air
+        }
+		add_tech_bonus = {
+        bonus = 0.3
+        uses = 2
+        category = heavy_air
+        }
 		}
 
 	}
@@ -4000,7 +4172,11 @@ focus_tree = {
 			focus = GLA_get_better_equipment
 		}
 		completion_reward = {
-	    
+	    add_tech_bonus = {
+        bonus = 0.3
+        uses = 3
+        category = artillery
+        }
 		}
 
 	}
@@ -4024,7 +4200,11 @@ focus_tree = {
 			focus = GLA_makeshift_drones
 		}
 		completion_reward = {
-	    
+	    add_tech_bonus = {
+        bonus = 0.3
+        uses = 3
+        category = armor
+        }
 		}
 
 	}
@@ -4042,7 +4222,7 @@ focus_tree = {
 			focus = GLA_boogaloo_warfare
 		}
 		completion_reward = {
-	    
+	    add_ideas = GLA_just_like_1776
 		}
 
 	}
@@ -4060,14 +4240,14 @@ focus_tree = {
 			focus = GLA_boogaloo_warfare
 		}
 		completion_reward = {
-	    
+	    army_experience = 25
 		}
 
 	}
 	focus = {
 		id = GLA_american_guerrilla_warfare
 		icon = GFX_goal_GLA_the_elections
-		cost = 5
+		cost = 8
 		x = 0
 		y = 2
 		relative_position_id = GLA_look_back_to_1776
@@ -4078,7 +4258,11 @@ focus_tree = {
 			focus = GLA_look_back_to_1776
 		}
 		completion_reward = {
-	    
+		add_tech_bonus = {
+        bonus = 0.3
+        uses = 3
+        category = land_doctrine
+        }
 		}
 
 	}
@@ -4096,7 +4280,11 @@ focus_tree = {
 			focus = GLA_establish_a_military_staff
 		}
 		completion_reward = {
-	    
+		add_tech_bonus = {
+        bonus = 0.3
+        uses = 3
+        category = land_doctrine
+        }
 		}
 
 	}
@@ -4120,7 +4308,10 @@ focus_tree = {
 			focus = GLA_invite_american_militias_to_the_great_lakes
 		}
 		completion_reward = {
-	    
+		swap_ideas = {
+			    remove_idea = GLA_just_like_1776
+			    add_idea = GLA_just_like_1776_2
+			}
 		}
 
 	}
@@ -4138,9 +4329,67 @@ focus_tree = {
 			focus = GLA_boogaloo_warfare
 		}
 		completion_reward = {
-	    
+		division_template = {
+        name = "American Militias"
+        is_locked = yes
+        priority = 8
+        regiments = {
+            infantry = { x = 0 y = 0 }
+            infantry = { x = 0 y = 1 }
+            infantry = { x = 0 y = 2 }
+			infantry = { x = 0 y = 3 }
+			infantry = { x = 1 y = 0 }
+			infantry = { x = 1 y = 1 }
+			infantry = { x = 1 y = 2 }
+			artillery_brigade = { x = 2 y = 0 }
+			artillery_brigade = { x = 2 y = 1 }
+			artillery_brigade = { x = 2 y = 2 }
+			motorized = { x = 3 y = 0 }
+			motorized = { x = 3 y = 1 }
+        }
+        support = {
+        }
 		}
-
+	    195 = {
+				limit = { ROOT = { has_full_control_of_state = PREV } }
+				create_unit = {
+					division = "name = \"1st ''We The People'' Division\" division_template = \"American Militias\" start_experience_factor = 0.8" 
+					owner = GLA
+				}
+				create_unit = {
+					division = "name = \"2rd ''We The People'' Division\" division_template = \"American Militias\" start_experience_factor = 0.8" 
+					owner = GLA
+				}
+				create_unit = {
+					division = "name = \"3nd ''We The People'' Division\" division_template = \"American Militias\" start_experience_factor = 0.8" 
+					owner = GLA
+				}
+				create_unit = {
+					division = "name = \"4nd ''We The People'' Division\" division_template = \"American Militias\" start_experience_factor = 0.8" 
+					owner = GLA
+				}
+				create_unit = {
+					division = "name = \"5nd ''We The People'' Division\" division_template = \"American Militias\" start_experience_factor = 0.8" 
+					owner = GLA
+				}
+				create_unit = {
+					division = "name = \"6nd ''We The People'' Division\" division_template = \"American Militias\" start_experience_factor = 0.8" 
+					owner = GLA
+				}
+				create_unit = {
+					division = "name = \"7nd ''We The People'' Division\" division_template = \"American Militias\" start_experience_factor = 0.8" 
+					owner = GLA
+				}
+				create_unit = {
+					division = "name = \"8nd ''We The People'' Division\" division_template = \"American Militias\" start_experience_factor = 0.8" 
+					owner = GLA
+				}
+				create_unit = {
+					division = "name = \"9nd ''We The People'' Division\" division_template = \"American Militias\" start_experience_factor = 0.8" 
+					owner = GLA
+				}
+			}
+		}
 	}
 
 
