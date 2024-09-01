@@ -149,7 +149,7 @@ focus_tree = {
 	focus = {
 		id = FAL_crush_the_rojos
 		icon = GFX
-		cost = 5.00
+		cost = 2.00
 		prerequisite = {
 		}
 		x = -1
@@ -169,7 +169,7 @@ focus_tree = {
 	focus = {
 		id = FAL_smash_the_white_imperialists
 		icon = GFX
-		cost = 5.00
+		cost = 2.00
 		prerequisite = {
 		}
 		x = 1
@@ -189,7 +189,7 @@ focus_tree = {
 	focus = {
 		id = FAL_second_battle_of_the_alamo
 		icon = GFX
-		cost = 5.00
+		cost = 2.00
 		prerequisite = {
 		}
 		x = 0
@@ -212,7 +212,7 @@ focus_tree = {
 	focus = {
 		id = FAL_reclaim_the_shore
 		icon = GFX
-		cost = 5.00
+		cost = 2.00
 		prerequisite = {
 		}
 		x = 0
@@ -270,7 +270,7 @@ focus_tree = {
 	focus = {
 		id = FAL_our_galicia
 		icon = GFX
-		cost = 5.00
+		cost = 2.00
 		prerequisite = {
 		}
 		x = -2
@@ -290,7 +290,7 @@ focus_tree = {
 	focus = {
 		id = FAL_our_basque
 		icon = GFX
-		cost = 5.00
+		cost = 2.00
 		prerequisite = {
 		}
 		x = 0
@@ -310,7 +310,7 @@ focus_tree = {
 	focus = {
 		id = FAL_our_catalonia
 		icon = GFX
-		cost = 5.00
+		cost = 2.00
 		prerequisite = {
 		}
 		x = 2
@@ -330,7 +330,7 @@ focus_tree = {
 	focus = {
 		id = FAL_our_unification_decree
 		icon = GFX
-		cost = 5.00
+		cost = 1.00
 		x = 0
 		y = 1
 		relative_position_id = FAL_our_basque
@@ -429,7 +429,7 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			country_event = stonetoss.2
 		}
 	}
 	#RAMIRO LEDESMA PATH
@@ -437,9 +437,7 @@ focus_tree = {
 		id = FAL_modern_ramiro_ledesma
 		icon = GFX
 		cost = 5.00
-		prerequisite = {
-		}
-		x = -8
+		x = -17
 		y = 1
 		relative_position_id = FAL_cara_al_sol
 		prerequisite = {
@@ -450,16 +448,15 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			add_ideas = FAL_the_forgotten_one
+			custom_effect_tooltip = tt_ledesma
 		}
 	}
 	focus = {
 		id = FAL_industrial_modernism
 		icon = GFX
 		cost = 5.00
-		prerequisite = {
-		}
-		x = -18
+		x = -9
 		y = 1
 		relative_position_id = FAL_modern_ramiro_ledesma
 		prerequisite = {
@@ -467,15 +464,33 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			random_owned_controlled_state = {
+				add_building_construction = {
+				    type = industrial_complex
+				    level = 2
+				    instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+				    type = industrial_complex
+				    level = 2
+				    instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+			add_tech_bonus = {
+			    bonus = 0.5
+			    uses = 3
+			    category = industry
+			}
 		}
 	}
 	focus = {
 		id = FAL_centrally_planned_economics
 		icon = GFX
 		cost = 5.00
-		prerequisite = {
-		}
 		x = 0
 		y = 1
 		relative_position_id = FAL_industrial_modernism
@@ -484,15 +499,15 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			add_ideas = { 
+				FAL_corporatism
+			}
 		}
 	}
 	focus = {
 		id = FAL_nationalize_our_resources
 		icon = GFX
 		cost = 5.00
-		prerequisite = {
-		}
 		x = 2
 		y = 1
 		relative_position_id = FAL_industrial_modernism
@@ -501,15 +516,33 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			add_ideas = {
+				FAL_nationalise_resources
+			}
+			286 = {
+				add_resource = {
+				    type = oil
+				    amount = 75
+				}
+			}
+			274 = {
+				add_resource = {
+				    type = oil
+				    amount = 45
+				}
+			}
+			53 = {
+				add_resource = {
+				    type = oil
+				    amount = 54
+				}
+			}
 		}
 	}
 	focus = {
 		id = FAL_state_capitalist_model
 		icon = GFX
 		cost = 5.00
-		prerequisite = {
-		}
 		x = -2
 		y = 1
 		relative_position_id = FAL_industrial_modernism
@@ -518,15 +551,15 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			add_ideas = {
+				FAL_state_capitalism
+			}
 		}
 	}
 	focus = {
 		id = FAL_sindicato_vertical
 		icon = GFX
 		cost = 5.00
-		prerequisite = {
-		}
 		x = 0
 		y = 1
 		relative_position_id = FAL_centrally_planned_economics
@@ -541,15 +574,32 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			swap_ideas = {
+				remove_idea = FAL_corporatism
+				add_idea = FAL_corporatism_1
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+				    type = industrial_complex
+				    level = 1
+				    instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+				    type = arms_factory
+				    level = 2
+				    instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
 		}
 	}
 	focus = {
 		id = FAL_work_the_foreigner
 		icon = GFX
 		cost = 5.00
-		prerequisite = {
-		}
 		x = 3
 		y = 1
 		relative_position_id = FAL_sindicato_vertical
@@ -561,16 +611,28 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			add_ideas = FAL_gringo_camps
+			random_owned_controlled_state = {
+				add_building_construction = {
+				    type = industrial_complex
+				    level = 1
+				    instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
 		}
 	}
 	focus = {
 		id = FAL_hitlerism
 		icon = GFX
 		cost = 5.00
-		prerequisite = {
-		}
-		x = -12
+		x = -3
 		y = 1
 		relative_position_id = FAL_modern_ramiro_ledesma
 		prerequisite = {
@@ -578,15 +640,17 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			add_trait = {
+			    character = FAL_jose_angel_gutierrez
+			    ideology = fascism
+			    trait = FAL_el_jefe
+			}
 		}
 	}
 	focus = {
 		id = FAL_jus_sanguinis
 		icon = GFX
 		cost = 5.00
-		prerequisite = {
-		}
 		x = -2
 		y = 1
 		relative_position_id = FAL_hitlerism
@@ -595,15 +659,22 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			add_ideas = FAL_right_of_blood
+			306 = {
+				add_manpower = -249237
+			}
+			143 = {
+				add_manpower = -382142
+			}
+			34 = {
+				add_manpower = -230946
+			}
 		}
 	}
 	focus = {
 		id = FAL_cleanse_the_academia
 		icon = GFX
 		cost = 5.00
-		prerequisite = {
-		}
 		x = 0
 		y = 1
 		relative_position_id = FAL_hitlerism
@@ -612,15 +683,18 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			add_political_power = -50
+			add_timed_idea = {
+				idea = FAL_academic_reset
+				days = 365
+			}
+			add_research_slot = -1
 		}
 	}
 	focus = {
 		id = FAL_the_judeo_bolshevik_threat
 		icon = GFX
 		cost = 5.00
-		prerequisite = {
-		}
 		x = 2
 		y = 1
 		relative_position_id = FAL_hitlerism
@@ -629,15 +703,30 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			add_timed_idea = {
+				idea = FAL_pogroms
+				days = 35
+			}
+			306 = {
+				add_building_construction = {
+				    type = industrial_complex
+				    level = -1
+				    instant_build = yes
+				}
+			}
+			55 = {
+				add_building_construction = {
+				    type = industrial_complex
+				    level = -1
+				    instant_build = yes
+				}
+			}
 		}
 	}
 	focus = {
 		id = FAL_embrace_visigothic_heritage
 		icon = GFX
 		cost = 5.00
-		prerequisite = {
-		}
 		x = 0
 		y = 1
 		relative_position_id = FAL_cleanse_the_academia
@@ -652,16 +741,16 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			add_ideas = {
+				FAL_visigoths
+			}
 		}
 	}
 	focus = {
 		id = FAL_proletarianism
 		icon = GFX
 		cost = 5.00
-		prerequisite = {
-		}
-		x = -6
+		x = 3
 		y = 1
 		relative_position_id = FAL_modern_ramiro_ledesma
 		prerequisite = {
@@ -669,49 +758,16 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			add_political_power = 100
+			add_ideas = {
+				FAL_proletarian_appeal
+			}
 		}
 	}
 	focus = {
 		id = FAL_court_the_red_mexicans
 		icon = GFX
 		cost = 5.00
-		prerequisite = {
-		}
-		x = 0
-		y = 1
-		relative_position_id = FAL_proletarianism
-		prerequisite = {
-			focus = FAL_proletarianism
-		}
-		#available = { NOT = { country_exists = TEX } }
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = FAL_crush_conservative_elites
-		icon = GFX
-		cost = 5.00
-		prerequisite = {
-		}
-		x = 2
-		y = 1
-		relative_position_id = FAL_proletarianism
-		prerequisite = {
-			focus = FAL_proletarianism
-		}
-		#available = { NOT = { country_exists = TEX } }
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = FAL_mexican_cultural_dominance
-		icon = GFX
-		cost = 5.00
-		prerequisite = {
-		}
 		x = -2
 		y = 1
 		relative_position_id = FAL_proletarianism
@@ -720,18 +776,71 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			add_ideas = {
+				FAL_ideological_transcendence
+			}
+			add_popularity = {
+			    ideology = authoritarian_left
+			    popularity = 0.25
+			}
+		}
+	}
+	focus = {
+		id = FAL_crush_conservative_elites
+		icon = GFX
+		cost = 5.00
+		x = 2
+		y = 1
+		relative_position_id = FAL_proletarianism
+		prerequisite = {
+			focus = FAL_proletarianism
+		}
+		#available = { NOT = { country_exists = TEX } }
+		completion_reward = {
+			add_popularity = {
+			    ideology = republican
+			    popularity = -0.5
+			}
+			add_popularity = {
+			    ideology = libertarian_right
+			    popularity = -0.25
+			}
+			remove_ideas = FAL_conservative_uneasiness
+		}
+	}
+	focus = {
+		id = FAL_mexican_cultural_dominance
+		icon = GFX
+		cost = 5.00
+		x = 0
+		y = 1
+		relative_position_id = FAL_proletarianism
+		prerequisite = {
+			focus = FAL_proletarianism
+		}
+		#available = { NOT = { country_exists = TEX } }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = FAL_proletarian_appeal
+				add_idea = FAL_proletarian_appeal_1
+			}
+			314 = {
+				add_building_construction = {
+				    type = industrial_complex
+				    level = 1
+				    instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
 		}
 	}
 	focus = {
 		id = FAL_violence_as_policy
 		icon = GFX
 		cost = 5.00
-		prerequisite = {
-		}
 		x = 0
 		y = 1
-		relative_position_id = FAL_court_the_red_mexicans
+		relative_position_id = FAL_mexican_cultural_dominance
 		prerequisite = {
 			focus = FAL_mexican_cultural_dominance
 		}
@@ -743,15 +852,15 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			add_ideas = {
+				FAL_doctrine_of_violence
+			}
 		}
 	}
 	focus = {
 		id = FAL_true_fascism
 		icon = GFX
 		cost = 5.00
-		prerequisite = {
-		}
 		x = -3
 		y = 1
 		relative_position_id = FAL_violence_as_policy
@@ -763,16 +872,18 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			add_political_power = 100
+			add_popularity = {
+			    ideology = autocratic
+			    popularity = 0.1
+			}
 		}
 	}
 	focus = {
 		id = FAL_revolutionary_falangism
 		icon = GFX
 		cost = 5.00
-		prerequisite = {
-		}
-		x = 0
+		x = 9
 		y = 1
 		relative_position_id = FAL_modern_ramiro_ledesma
 		prerequisite = {
@@ -780,15 +891,15 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			add_ideas = {
+				FAL_national_revolution
+			}
 		}
 	}
 	focus = {
 		id = FAL_hegelian_state
 		icon = GFX
 		cost = 5.00
-		prerequisite = {
-		}
 		x = 0
 		y = 1
 		relative_position_id = FAL_revolutionary_falangism
@@ -797,15 +908,16 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			add_political_power = 75
+			add_ideas = {
+				FAL_ethical_state
+			}
 		}
 	}
 	focus = {
 		id = FAL_centralized_unitarianism
 		icon = GFX
 		cost = 5.00
-		prerequisite = {
-		}
 		x = 2
 		y = 1
 		relative_position_id = FAL_revolutionary_falangism
@@ -814,15 +926,16 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			add_stability = 0.1
+			add_ideas = {
+				FAL_powerful_statism
+			}
 		}
 	}
 	focus = {
 		id = FAL_the_collective_ascendant
 		icon = GFX
 		cost = 5.00
-		prerequisite = {
-		}
 		x = -2
 		y = 1
 		relative_position_id = FAL_revolutionary_falangism
@@ -831,15 +944,16 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			add_war_support = 0.1
+			add_ideas = {
+				FAL_collectivist_ethos
+			}
 		}
 	}
 	focus = {
 		id = FAL_syndical_republic
 		icon = GFX
 		cost = 5.00
-		prerequisite = {
-		}
 		x = 0
 		y = 1
 		relative_position_id = FAL_hegelian_state
@@ -854,7 +968,9 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			add_ideas = {
+				FAL_republic_without_representation 
+			}
 		}
 	}
 	focus = {
@@ -875,7 +991,7 @@ focus_tree = {
 
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			add_war_support = 0.25
 		}
 	}
 	focus = {
@@ -898,7 +1014,11 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			add_stability = 0.5
+			swap_ideas = {
+				remove_idea = FAL_the_forgotten_one
+				add_idea = FAL_ledesma_immortalised
+			}
 		}
 	}
 	#JOSE ANTONIO PATH
@@ -917,7 +1037,7 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			custom_effect_tooltip = tt_antonio
 		}
 	}
 	focus = {
@@ -1443,10 +1563,55 @@ focus_tree = {
 		}
 	}
 	focus = {
+		id = FAL_seize_control_of_tv
+		icon = GFX
+		cost = 5.00
+		x = 0
+		y = 1
+		relative_position_id = FAL_tejas_torn_apart
+		prerequisite = {
+			focus = FAL_tejas_torn_apart
+		}
+		#available = { NOT = { country_exists = TEX } }
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = FAL_propaganda_through_twitter
+		icon = GFX
+		cost = 5.00
+		x = 0
+		y = 1
+		relative_position_id = FAL_seize_control_of_tv
+		prerequisite = {
+			focus = FAL_seize_control_of_tv
+		}
+		#available = { NOT = { country_exists = TEX } }
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = FAL_hispanidad
+		icon = GFX
+		cost = 5.00
+		x = 0
+		y = 1
+		relative_position_id = FAL_propaganda_through_twitter
+		prerequisite = {
+			focus = FAL_propaganda_through_twitter
+		}
+		#available = { NOT = { country_exists = TEX } }
+		completion_reward = {
+			
+		}
+	}
+	focus = {
 		id = FAL_falangist_economic_aid
 		icon = GFX
 		cost = 5.00
-		x = -2
+		x = -3
 		y = 1
 		relative_position_id = FAL_tejas_torn_apart
 		prerequisite = {
@@ -1509,7 +1674,7 @@ focus_tree = {
 		id = FAL_lapienza
 		icon = GFX
 		cost = 5.00
-		x = 2
+		x = 3
 		y = 1
 		relative_position_id = FAL_tejas_torn_apart
 		prerequisite = {
@@ -1572,14 +1737,17 @@ focus_tree = {
 		id = FAL_the_phalanx_triumphant
 		icon = GFX
 		cost = 5.00
-		x = 2
+		x = 0
 		y = 1
-		relative_position_id = FAL_end_economic_exploitation
+		relative_position_id = FAL_hispanidad
 		prerequisite = {
 			focus = FAL_end_economic_exploitation
 		}
 		prerequisite = {
 			focus = FAL_separatist_show_trials
+		}
+		prerequisite = {
+			focus = FAL_hispanidad
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
