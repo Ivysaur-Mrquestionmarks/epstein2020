@@ -355,7 +355,7 @@ focus_tree = {
 	}
 	focus = {
 		id = FRA_fed_union_protections
-		icon = GFX
+		icon = GFX_goal_TEX_industrial_expansions
 		cost = 5.00
 		prerequisite = {
 			focus = FRA_bidenomics
@@ -409,7 +409,7 @@ focus_tree = {
 	}
 	focus = {
 		id = FRA_raise_minimum_wage_to_15
-		icon = GFX
+		icon = GFX_goal_TEX_Raise_the_Minimum_Wage
 		cost = 5.00
 		prerequisite = {
 			focus = FRA_chips_act
@@ -638,7 +638,7 @@ focus_tree = {
 	}
 	focus = {
 		id = FRA_american_climate_corps
-		icon = GFX
+		icon = GFX_goal_Beto_Clean_Energy
 		cost = 5.00
 		prerequisite = {
 			focus = FRA_reform
@@ -682,7 +682,7 @@ focus_tree = {
 	}
 	focus = {
 		id = FRA_gun_owners_are_malarkey
-		icon = GFX
+		icon = GFX_goal_Ban_Assult_Rifles
 		cost = 5.00
 		prerequisite = {
 			focus = FRA_reform
@@ -709,7 +709,7 @@ focus_tree = {
 	}
 	focus = {
 		id = FRA_maga_is_malarkey
-		icon = GFX
+		icon = GFX_goal_Ban_the_Trumpist_GOP
 		cost = 5.00
 		prerequisite = {
 			focus = FRA_gun_owners_are_malarkey
@@ -827,7 +827,7 @@ focus_tree = {
 	}
 	focus = {
 		id = FRA_passing_the_torch
-		icon = GFX_goal_Icon_Four_More_Years_Biden
+		icon = GFX_goal_icon_harris_2024 #GFX_goal_Icon_Four_More_Years_Biden
 		cost = 5.00
 		prerequisite = {
 			focus = FRA_lets_finish_the_job
@@ -2043,34 +2043,359 @@ focus_tree = {
 	
 	####### Harris Administration #######
 	
+	#focus = {
+	#	id = FRA_harris_2024
+	#	icon = GFX_goal_icon_harris_2024
+	#	cost = 2.00
+	#	prerequisite = {
+	#		focus = FRA_2024_election
+	#	}
+	#	x = 10
+	#	y = 1
+	#	relative_position_id = FRA_2024_election
+	#	available = {
+	#		has_country_flag = president_kamala
+	#	}
+	#
+	#}
+	
+	
 	focus = {
-		id = FRA_harris_2024
-		icon = GFX_goal_icon_harris_2024
-		cost = 2.00
+		id = FRA_harris_admin
+		icon = GFX_goal_The_Harris_Administration
+		cost = 4.40
 		prerequisite = {
 			focus = FRA_2024_election
 		}
-		x = 10
+		x = 8
 		y = 1
 		relative_position_id = FRA_2024_election
 		available = {
-			has_country_flag = president_kamala
+			has_country_leader = { name = "Kamala Harris" ruling_only = yes }
+		}
+		completion_reward = {
+			add_country_leader_trait = FRA_kamala_harris_trait
+			set_country_flag = kamala_progressive_question
 		}
 
 	}
+	focus = {
+		id = FRA_district_attourney
+		icon = GFX_goal_The_District_Attorney
+		cost = 4.40
+		prerequisite = {
+			focus = FRA_harris_admin
+		}
+		x = 0
+		y = 1
+		relative_position_id = FRA_harris_admin
+		available = {
+			has_country_leader = { name = "Kamala Harris" ruling_only = yes }
+		}
+		completion_reward = {
+			add_stability = 0.10
+		}
+
+	}
+	focus = {
+		id = FRA_rule_of_law
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = FRA_district_attourney
+		}
+		x = -3
+		y = 1
+		relative_position_id = FRA_district_attourney
+		mutually_exclusive = { focus = FRA_reassure_elites }
+		available = {
+			has_country_leader = { name = "Kamala Harris" ruling_only = yes }
+		}
+		completion_reward = {
+			add_ideas = FRA_increase_police_funding
+			custom_effect_tooltip = kamala_more_progressive_tt
+			hidden_effect = {
+				modify_country_flag = {
+					flag = kamala_progressive_question
+					value = 1
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = FRA_reassure_elites
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = FRA_district_attourney
+		}
+		x = -1
+		y = 1
+		relative_position_id = FRA_district_attourney
+		mutually_exclusive = { focus = FRA_rule_of_law }
+		available = {
+			has_country_leader = { name = "Kamala Harris" ruling_only = yes }
+		}
+		completion_reward = {
+			add_political_power = 150
+			add_stability = -0.1
+			custom_effect_tooltip = kamala_less_progressive_tt
+			hidden_effect = {
+				modify_country_flag = {
+					flag = kamala_progressive_question
+					value = -1
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = FRA_expand_executive_powers
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = FRA_reassure_elites
+			focus = FRA_rule_of_law
+		}
+		x = -1
+		y = 1
+		relative_position_id = FRA_reassure_elites
+		mutually_exclusive = { focus = FRA_maintain_bop }
+		available = {
+			has_country_leader = { name = "Kamala Harris" ruling_only = yes }
+		}
+		completion_reward = {
+			custom_effect_tooltip = kamala_more_progressive_tt
+			hidden_effect = {
+				modify_country_flag = {
+					flag = kamala_progressive_question
+					value = 1
+				}
+			}
+		}
+
+	}
+	
+	focus = {
+		id = FRA_remove_term_limits
+		icon = GFX_goal_Consolidate_the_Establishment
+		cost = 5.00
+		prerequisite = {
+			focus = FRA_district_attourney
+		}
+		x = 1
+		y = 1
+		relative_position_id = FRA_district_attourney
+		mutually_exclusive = { focus = FRA_expand_term_limits }
+		available = {
+			has_country_leader = { name = "Kamala Harris" ruling_only = yes }
+		}
+		completion_reward = {
+			add_stability = -0.07
+			add_political_power = 50
+			custom_effect_tooltip = kamala_less_progressive_tt
+			hidden_effect = {
+				modify_country_flag = {
+					flag = kamala_progressive_question
+					value = -1
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = FRA_expand_term_limits
+		icon = GFX_goal_Consolidate_the_Establishment
+		cost = 5.00
+		prerequisite = {
+			focus = FRA_district_attourney
+		}
+		x = 3
+		y = 1
+		relative_position_id = FRA_district_attourney
+		mutually_exclusive = { focus = FRA_remove_term_limits }
+		available = {
+			has_country_leader = { name = "Kamala Harris" ruling_only = yes }
+		}
+		completion_reward = {
+			add_stability = 0.07
+			add_political_power = -50
+			custom_effect_tooltip = kamala_more_progressive_tt
+			hidden_effect = {
+				modify_country_flag = {
+					flag = kamala_progressive_question
+					value = 1
+				}
+			}
+		}
+
+	}
+	
+	focus = {
+		id = FRA_maintain_bop
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = FRA_reassure_elites
+			focus = FRA_remove_term_limits
+		}
+		x = 1
+		y = 1
+		relative_position_id = FRA_reassure_elites
+		mutually_exclusive = { focus = FRA_entrench_party }
+		mutually_exclusive = { focus = FRA_expand_executive_powers }
+		available = {
+			has_country_leader = { name = "Kamala Harris" ruling_only = yes }
+		}
+		completion_reward = {
+			custom_effect_tooltip = kamala_less_progressive_tt
+			hidden_effect = {
+				modify_country_flag = {
+					flag = kamala_progressive_question
+					value = -1
+				}
+			}
+		}
+
+	}
+	
+	focus = {
+		id = FRA_entrench_party
+		icon = GFX_goal_Democrats
+		cost = 5.00
+		prerequisite = {
+			focus = FRA_remove_term_limits
+			focus = FRA_expand_term_limits
+		}
+		x = 1
+		y = 1
+		relative_position_id = FRA_remove_term_limits
+		mutually_exclusive = { focus = FRA_maintain_bop }
+		available = {
+			has_country_leader = { name = "Kamala Harris" ruling_only = yes }
+		}
+		completion_reward = {
+			add_stability = -0.05
+			add_war_support = 0.07
+		}
+
+	}
+	focus = {
+		id = FRA_kamala_in_perpeteum
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = FRA_entrench_party
+			focus = FRA_maintain_bop
+		}
+		prerequisite = {
+			focus = FRA_expand_executive_powers
+			focus = FRA_maintain_bop
+		}
+		x = -2
+		y = 1
+		relative_position_id = FRA_entrench_party
+		available = {
+			has_country_leader = { name = "Kamala Harris" ruling_only = yes }
+		}
+		completion_reward = {
+			add_country_leader_trait = FRA_kamala_golden_age
+			hidden_effect = {
+				IF = {
+					limit = { 
+						OR = {
+							has_country_flag = {
+								flag = kamala_progressive_question
+								value = 0
+							}
+							has_country_flag = {
+								flag = kamala_progressive_question
+								value = 1
+							}
+							has_country_flag = {
+								flag = kamala_progressive_question
+								value = 2
+							}
+							has_country_flag = {
+								flag = kamala_progressive_question
+								value = 3
+							}
+						}
+					}
+					country_event = { id = bidone.77 days = 5 }
+				}
+				IF = {
+					limit = { 
+						OR = {
+							has_country_flag = {
+								flag = kamala_progressive_question
+								value = -1
+							}
+							has_country_flag = {
+								flag = kamala_progressive_question
+								value = -2
+							}
+							has_country_flag = {
+								flag = kamala_progressive_question
+								value = -3
+							}
+						}
+					}
+					country_event = { id = bidone.78 days = 5 } 
+				}
+			}
+		}
+
+	}
+	
 	focus = {
 		id = FRA_great_retreat
 		icon = GFX_goal_icon_The_great_retreat
 		cost = 4.40
 		prerequisite = {
-			focus = FRA_harris_2024
+			focus = FRA_kamala_in_perpeteum
 		}
-		x = -6
+		x = 3
 		y = 1
-		relative_position_id = FRA_harris_2024
+		available = {
+			always = no
+		}
+		relative_position_id = FRA_kamala_in_perpeteum
 		completion_reward = {
 			add_stability = 0.10
 			add_war_support = -0.05
+		}
+
+	}
+	focus = {
+		id = FRA_absorb_bourbons
+		icon = GFX_goal_icon_Absorbing_the_bourbon_democrats
+		cost = 10.00
+		prerequisite = {
+			focus = FRA_great_retreat
+		}
+		x = 0
+		y = 1
+		relative_position_id = FRA_great_retreat
+		completion_reward = {
+			add_stability = 0.10
+			add_war_support = -0.01
+		}
+
+	}
+	focus = {
+		id = FRA_alienate_progressives
+		icon = GFX_goal_icon_Alienate_the_progressive_democrat
+		cost = 5.00
+		prerequisite = {
+			focus = FRA_absorb_bourbons
+		}
+		x = -1
+		y = 1
+		relative_position_id = FRA_absorb_bourbons
+		completion_reward = {
+			add_war_support = 0.10
 		}
 
 	}
@@ -2079,11 +2404,11 @@ focus_tree = {
 		icon = GFX_goal_icon_listen_to_republicans
 		cost = 4.40
 		prerequisite = {
-			focus = FRA_great_retreat
+			focus = FRA_absorb_bourbons
 		}
-		x = 0
+		x = 1
 		y = 1
-		relative_position_id = FRA_great_retreat
+		relative_position_id = FRA_absorb_bourbons
 		completion_reward = {
 			add_stability = 0.10
 			add_popularity = {
@@ -2100,7 +2425,10 @@ focus_tree = {
 		prerequisite = {
 			focus = FRA_listen_to_republicans
 		}
-		x = 0
+		prerequisite = {
+			focus = FRA_alienate_progressives
+		}
+		x = -1
 		y = 1
 		relative_position_id = FRA_listen_to_republicans
 		completion_reward = {
@@ -2131,7 +2459,7 @@ focus_tree = {
 		prerequisite = {
 			focus = FRA_great_retreat
 		}
-		x = -2
+		x = 2
 		y = 1
 		relative_position_id = FRA_great_retreat
 		completion_reward = {
@@ -2140,180 +2468,35 @@ focus_tree = {
 
 	}
 	focus = {
-		id = FRA_absorb_bourbons
-		icon = GFX_goal_icon_Absorbing_the_bourbon_democrats
-		cost = 10.00
+		id = FRA_further_immigration_restrictions
+		icon = GFX
+		cost = 4.40
 		prerequisite = {
 			focus = FRA_great_retreat
 		}
-		x = 2
+		x = -2
 		y = 1
 		relative_position_id = FRA_great_retreat
 		completion_reward = {
-			add_stability = 0.10
-			add_war_support = -0.01
 		}
 
 	}
-	focus = {
-		id = FRA_alienate_progressives
-		icon = GFX_goal_icon_Alienate_the_progressive_democrat
-		cost = 5.00
-		prerequisite = {
-			focus = FRA_absorb_bourbons
-		}
-		x = 0
-		y = 1
-		relative_position_id = FRA_absorb_bourbons
-		completion_reward = {
-			add_war_support = 0.10
-		}
-
-	}
-	
-	
-	focus = {
-		id = FRA_harris_admin
-		icon = GFX_goal_The_Harris_Administration
-		cost = 4.40
-		prerequisite = {
-			focus = FRA_harris_2024 
-		}
-		x = 0
-		y = 1
-		relative_position_id = FRA_harris_2024
-		available = {
-			has_country_leader = { name = "Kamala Harris" ruling_only = yes }
-		}
-		completion_reward = {
-			add_country_leader_trait = FRA_kamala_harris_trait
-		}
-
-	}
-	focus = {
-		id = FRA_district_attourney
-		icon = GFX_goal_The_District_Attorney
-		cost = 4.40
-		prerequisite = {
-			focus = FRA_harris_admin
-		}
-		x = -1
-		y = 1
-		relative_position_id = FRA_harris_admin
-		available = {
-			has_country_leader = { name = "Kamala Harris" ruling_only = yes }
-		}
-		completion_reward = {
-			add_stability = 0.10
-		}
-
-	}
-	focus = {
-		id = FRA_rule_of_law
-		icon = GFX_goal_unknown
-		cost = 5.00
-		prerequisite = {
-			focus = FRA_district_attourney
-		}
-		x = 0
-		y = 1
-		relative_position_id = FRA_district_attourney
-		available = {
-			has_country_leader = { name = "Kamala Harris" ruling_only = yes }
-		}
-		completion_reward = {
-			add_ideas = FRA_increase_police_funding
-		}
-
-	}
-	focus = {
-		id = FRA_remove_term_limits
-		icon = GFX_goal_Consolidate_the_Establishment
-		cost = 5.00
-		prerequisite = {
-			focus = FRA_harris_admin
-		}
-		x = 1
-		y = 1
-		relative_position_id = FRA_harris_admin
-		available = {
-			has_country_leader = { name = "Kamala Harris" ruling_only = yes }
-		}
-		completion_reward = {
-			add_stability = 0.07
-			add_war_support = -0.05
-		}
-
-	}
-	focus = {
-		id = FRA_entrench_party
-		icon = GFX_goal_Democrats
-		cost = 5.00
-		prerequisite = {
-			focus = FRA_remove_term_limits
-		}
-		x = 0
-		y = 1
-		relative_position_id = FRA_remove_term_limits
-		available = {
-			has_country_leader = { name = "Kamala Harris" ruling_only = yes }
-		}
-		completion_reward = {
-			add_stability = -0.05
-			add_war_support = 0.07
-		}
-
-	}
-	focus = {
-		id = FRA_kamala_in_perpeteum
-		icon = GFX_goal_unknown
-		cost = 5.00
-		prerequisite = {
-			focus = FRA_entrench_party
-		}
-		prerequisite = {
-			focus = FRA_rule_of_law
-		}
-		x = -1
-		y = 1
-		relative_position_id = FRA_entrench_party
-		available = {
-			has_country_leader = { name = "Kamala Harris" ruling_only = yes }
-		}
-		completion_reward = {
-			add_country_leader_trait = FRA_kamala_golden_age
-		}
-
-	}
-	
 	
 	focus = {
 		id = FRA_might_makes_right
 		icon = GFX_goal_Doctrine_of_true_americanism
 		cost = 5.00
 		prerequisite = {
-			focus = FRA_harris_2024
+			focus = FRA_kamala_in_perpeteum
 		}
-		x = 6
+		x = -3
 		y = 1
-		relative_position_id = FRA_harris_2024
+		available = {
+			always = no
+		}
+		relative_position_id = FRA_kamala_in_perpeteum
 		completion_reward = {
 			add_war_support = 0.05
-		}
-
-	}
-	focus = {
-		id = FRA_the_great_court_reshuffle
-		icon = GFX_goal_unknown
-		cost = 4.40
-		prerequisite = {
-			focus = FRA_might_makes_right
-		}
-		x = 2
-		y = 1
-		relative_position_id = FRA_might_makes_right
-		completion_reward = {
-			add_stability = 0.05
 		}
 
 	}
@@ -2336,9 +2519,9 @@ focus_tree = {
 
 	}
 	focus = {
-		id = FRA_give_us_your_guns
-		icon = GFX_goal_We_Need_Guns
-		cost = 5.00
+		id = FRA_ban_fox
+		icon = GFX
+		cost = 7.00
 		prerequisite = {
 			focus = FRA_might_makes_right
 		}
@@ -2346,13 +2529,113 @@ focus_tree = {
 		y = 1
 		relative_position_id = FRA_might_makes_right
 		completion_reward = {
-			add_equipment_to_stockpile = {
-			    type = infantry_equipment
-			    amount = 10000
-			    producer = FRA
-			}
-			add_stability = -0.10
-			add_war_support = 0.10
+		}
+
+	}
+	focus = {
+		id = FRA_kamunism
+		icon = GFX
+		cost = 7.00
+		prerequisite = {
+			focus = FRA_might_makes_right
+		}
+		x = 2
+		y = 1
+		relative_position_id = FRA_might_makes_right
+		completion_reward = {
+		}
+
+	}
+	focus = {
+		id = FRA_the_great_court_reshuffle
+		icon = GFX_goal_unknown
+		cost = 4.40
+		prerequisite = {
+			focus = FRA_disregard_the_constitution
+		}
+		x = -1
+		y = 1
+		relative_position_id = FRA_disregard_the_constitution
+		completion_reward = {
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = FRA_temp_suspend_senate_and_house
+		icon = GFX_goal_unknown
+		cost = 4.40
+		prerequisite = {
+			focus = FRA_disregard_the_constitution
+		}
+		x = 1
+		y = 1
+		relative_position_id = FRA_disregard_the_constitution
+		completion_reward = {
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = FRA_appoint_progressives
+		icon = GFX_goal_unknown
+		cost = 4.40
+		prerequisite = {
+			focus = FRA_temp_suspend_senate_and_house
+		}
+		prerequisite = {
+			focus = FRA_the_great_court_reshuffle
+		}
+		x = 1
+		y = 1
+		relative_position_id = FRA_the_great_court_reshuffle
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = FRA_kamala_constitution
+		icon = GFX_goal_unknown
+		cost = 4.40
+		prerequisite = {
+			focus = FRA_appoint_progressives
+		}
+		x = 0
+		y = 1
+		relative_position_id = FRA_appoint_progressives
+		completion_reward = {
+		}
+	}
+	
+	
+	
+	focus = {
+		id = FRA_americas_attorney
+		icon = GFX_goal_unknown
+		cost = 4.40
+		prerequisite = {
+			focus = FRA_establishment_entrenched
+			focus = FRA_kamala_constitution
+		}
+		x = 3
+		y = 1
+		relative_position_id = FRA_kamala_constitution
+		completion_reward = {
+		}
+	}
+	
+	
+	
+	focus = {
+		id = FRA_justice_shall_be_served
+		icon = GFX
+		cost = 5.00
+		prerequisite = {
+			focus = FRA_kamala_in_perpeteum
+		}
+		x = 0
+		y = 3
+		available = {
+		}
+		relative_position_id = FRA_kamala_in_perpeteum
+		completion_reward = {
 		}
 
 	}
@@ -2361,11 +2644,11 @@ focus_tree = {
 		icon = GFX_goal_Focus_Generic_Press_Censorship
 		cost = 5.00
 		prerequisite = {
-			focus = FRA_disregard_the_constitution
+			focus = FRA_justice_shall_be_served
 		}
-		x = 0
+		x = 1
 		y = 1
-		relative_position_id = FRA_disregard_the_constitution
+		relative_position_id = FRA_justice_shall_be_served
 		completion_reward = {
 			add_stability = 0.05
 			add_war_support = -0.10
@@ -2393,6 +2676,27 @@ focus_tree = {
 			USA = {
 				add_manpower = 8000
 			}
+		}
+
+	}
+	focus = {
+		id = FRA_give_us_your_guns
+		icon = GFX_goal_We_Need_Guns
+		cost = 5.00
+		prerequisite = {
+			focus = FRA_justice_shall_be_served
+		}
+		x = -1
+		y = 1
+		relative_position_id = FRA_justice_shall_be_served
+		completion_reward = {
+			add_equipment_to_stockpile = {
+			    type = infantry_equipment
+			    amount = 10000
+			    producer = FRA
+			}
+			add_stability = -0.10
+			add_war_support = 0.10
 		}
 
 	}
@@ -2472,7 +2776,7 @@ focus_tree = {
 	}
 	focus = {
 		id = FRA_troublesome_vp
-		icon = GFX_goal_Troublesome_VP
+		icon = GFX
 		cost = 4.40
 		prerequisite = {
 			focus = FRA_mcconnell_admin
@@ -3024,7 +3328,7 @@ focus_tree = {
 	
 	focus = {
 		id = FRA_roosevelt_admin
-		icon = GFX_goal_Icon_The_Third_Roosevelt_Presidency_MAA
+		icon = GFX
 		cost = 4.40
 		prerequisite = {
 			focus = FRA_one_stormy_night
@@ -3037,7 +3341,7 @@ focus_tree = {
 		y = 1
 		relative_position_id = FRA_one_stormy_night
 		available = {
-			has_country_leader = { name = "Theodore Roosevelt IV" ruling_only = yes }
+			has_country_leader = { name = "Robert F. Kennedy Jr." ruling_only = yes }
 		}
 		completion_reward = {
 			add_political_power = 50
@@ -3056,7 +3360,7 @@ focus_tree = {
 		y = 1
 		relative_position_id = FRA_roosevelt_admin
 		available = {
-			has_country_leader = { name = "Theodore Roosevelt IV" ruling_only = yes }
+			has_country_leader = { name = "Robert F. Kennedy Jr." ruling_only = yes }
 		}
 		completion_reward = {
 			add_stability = 0.10
@@ -3074,7 +3378,7 @@ focus_tree = {
 		y = 1
 		relative_position_id = FRA_progressive_conservatist_doctrine
 		available = {
-			has_country_leader = { name = "Theodore Roosevelt IV" ruling_only = yes }
+			has_country_leader = { name = "Robert F. Kennedy Jr." ruling_only = yes }
 		}
 		completion_reward = {
 			add_political_power = 75
@@ -3083,8 +3387,8 @@ focus_tree = {
 
 	}
 	focus = {
-		id = FRA_economic_club_new_york
-		icon = GFX_goal_Icon_Ties_with_the_Economic_Club_of_New_York_MAA
+		id = FRA_economic_club_new_york - purify the fda
+		icon = GFX
 		cost = 10.00
 		prerequisite = {
 			focus = FRA_progressive_conservatist_doctrine
@@ -3093,7 +3397,7 @@ focus_tree = {
 		y = 1
 		relative_position_id = FRA_progressive_conservatist_doctrine
 		available = {
-			has_country_leader = { name = "Theodore Roosevelt IV" ruling_only = yes }
+			has_country_leader = { name = "Robert F. Kennedy Jr." ruling_only = yes }
 		}
 		completion_reward = {
 			swap_ruler_traits = { 
@@ -3115,7 +3419,7 @@ focus_tree = {
 		y = 1
 		relative_position_id = FRA_economic_club_new_york
 		available = {
-			has_country_leader = { name = "Theodore Roosevelt IV" ruling_only = yes }
+			has_country_leader = { name = "Robert F. Kennedy Jr." ruling_only = yes }
 		}
 		completion_reward = {
 			army_experience = 50
@@ -3135,7 +3439,7 @@ focus_tree = {
 		y = 1
 		relative_position_id = FRA_we_have_a_war_to_win
 		available = {
-			has_country_leader = { name = "Theodore Roosevelt IV" ruling_only = yes }
+			has_country_leader = { name = "Robert F. Kennedy Jr." ruling_only = yes }
 		}
 		completion_reward = {
 			add_ideas = FRA_rough_riders
@@ -3153,7 +3457,7 @@ focus_tree = {
 		y = 1
 		relative_position_id = FRA_roosevelt_admin
 		available = {
-			has_country_leader = { name = "Theodore Roosevelt IV" ruling_only = yes }
+			has_country_leader = { name = "Robert F. Kennedy Jr." ruling_only = yes }
 		}
 		completion_reward = {
 			add_stability = 0.15
@@ -3643,7 +3947,7 @@ focus_tree = {
 		available = {
 			OR = {
 				has_completed_focus = FRA_harris_2024
-				has_country_leader = { name = "Theodore Roosevelt IV" ruling_only = yes }
+				has_country_leader = { name = "Robert F. Kennedy Jr." ruling_only = yes }
 			}
 		}
 		completion_reward = {
