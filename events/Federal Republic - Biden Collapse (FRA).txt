@@ -2468,6 +2468,8 @@ country_event = {
 	}
 	option = { # rfk
 		name = bidone.76.b
+		set_country_flag = rfk_pres_after_unification
+		mark_focus_tree_layout_dirty = yes
 	}
 }
 
@@ -2559,7 +2561,7 @@ country_event = {
 		}
 	}
 }
-# vir pov: reunification demanded
+# FRA pov: reunification rejected
 country_event = {
 	id = bidone.82
 	title = bidone.82.t
@@ -2573,5 +2575,62 @@ country_event = {
 			target = FROM
 			type = annex_everything
 		}
+	}
+}
+
+# rfk dies
+country_event = {
+	id = bidone.83
+	title = bidone.83.t
+	desc = bidone.83.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # 
+		name = bidone.83.a
+		hidden_effect = {
+			if = {
+				limit = { 
+					has_completed_focus = FRA_international_diplomacy
+				}
+				uncomplete_national_focus = {
+					focus = FRA_international_diplomacy
+					uncomplete_children = yes
+					refund_political_power = no
+				}
+			}
+			complete_national_focus = FRA_end_isolation
+			complete_national_focus = FRA_unapologetic_imperialism
+			set_politics = {
+				ruling_party = autocratic
+			}
+			promote_character = FRA_cia
+		}
+	}
+}
+
+# american hegemony
+news_event = {
+	id = bidone.84
+	title = bidone.84.t
+	desc = bidone.84.d
+	#picture =
+	is_triggered_only = yes
+	#fire_only_once = yes
+	option = { # 
+		name = bidone.84.a
+	}
+}
+
+# worldwide revolution
+news_event = {
+	id = bidone.85
+	title = bidone.85.t
+	desc = bidone.85.d
+	#picture =
+	is_triggered_only = yes
+	#fire_only_once = yes
+	option = { # 
+		name = bidone.85.a
 	}
 }
