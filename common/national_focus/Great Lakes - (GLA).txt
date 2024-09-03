@@ -1338,7 +1338,25 @@ focus_tree = {
 			focus = GLA_promote_our_nation_to_international_companies
 		}
 		completion_reward = {
-		add_stability = 0.05
+		random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2	
+				add_building_construction = {
+    					type = arms_factory
+    					level = 2
+    					instant_build = yes
+				}
+			}
+		add_tech_bonus = {
+        bonus = 0.2
+        uses = 2
+        category = armor
+        }
+		add_tech_bonus = {
+        bonus = 0.2
+        uses = 2
+        category = infantry_weapons
+        }
 		}
 
 	}
@@ -1692,7 +1710,7 @@ focus_tree = {
 		add_political_power = -45
 		add_equipment_to_stockpile = {
         type = fighter_equipment_1
-        amount = 1150
+        amount = 500
         producer = GLA
         }
 		}
@@ -2294,7 +2312,7 @@ focus_tree = {
 		allow_branch = {
 		}
 		available = {
-		has_army_manpower = { size > 75000 }
+		has_army_manpower = { size > 85000 }
 		}
 		completion_reward = {
 		add_war_support = 0.05
@@ -2343,9 +2361,14 @@ focus_tree = {
 		prerequisite = {
 			focus = GLA_invade_detroit_and_wisconsin
 		}
+		available = {
+		    NOT = {
+		        country_exists = DET
+		        country_exists = KMT
+		    }
+		}
 		completion_reward = {
 	    add_war_support = 0.05
-
 		}
 
 	}
@@ -2681,12 +2704,16 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = GLA_round_two
-		}
-		prerequisite = {
 			focus = GLA_marching_to_dc
 		}
 		available = {
 		has_war = no
+		    NOT = {
+				OR = {
+		        country_exists = FRA
+		        country_exists = USA
+				}
+		    }
 		}
 		completion_reward = {
 	    if = { 
