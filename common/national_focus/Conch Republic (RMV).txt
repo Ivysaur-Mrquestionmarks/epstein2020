@@ -9,26 +9,44 @@ focus_tree = {
 	}
 	default = no
 	focus = {
+		id = RMV_stabalize_the_country
+		icon = RMV_stability
+		x = 25
+		y = 1
+		cost = 1
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
 		id = RMV_the_russian_offer
 		icon = GFX_russian_offer
 		x = 25
-		y = 1
+		y = 2
 		cost = 10
 		search_filters = { FOCUS_FILTER_POLITICAL } 
 		ai_will_do = {
 			factor = 1
 		}
 		completion_reward = {
+			# TRIGGER EVENT HERE !!!
 			add_political_power = 100
-			add_stability = 0.15
+			add_stability = 0.05
 		}
 	}
+
+### BAKOV PATH
 
 	focus = {
 		id = RMV_prime_minister_bakov
 		icon = GFX_gittelmangfx/leaders/RMV/Anton.tga
-		x = 24
-		y = 2
+		x = 20
+		y = 3
 		cost = 10
 		search_filters = { FOCUS_FILTER_POLITICAL } 
 		ai_will_do = {
@@ -46,13 +64,109 @@ focus_tree = {
                 ruling_party = autocratic               
                 elections_allowed = no                  
 		}
+		# FIGURE OUT SET LEADER
 	}
     }
+
+	focus =  {
+		id = RMV_invite_white_russians	
+		icon = gfx/icons/RMV/whiterussia.tga
+		x = 21
+		y = 4
+		cost = 2
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = {
+			focus = RMV_prime_minister_bakov
+		}
+		completion_reward = {
+			add_manpower = 15000
+			#ADD WHITE RUSSIA GENERALS AND ADVISORS
+		}
+	}
+	
+	focus = {
+		id = RMV_gazprom
+		icon = gfx/icons/RMV/gazprom.tga
+		x = 19
+		y = 4
+		cost = 5
+		search_filters = { FOCUS_FILTER_INDUSTRY } 
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = {
+			focus = RMV_prime_minister_bakov
+		}
+		completion_reward = {
+			random_owned_state = {
+				limit = {
+					is_controlled_by = RMV
+				}
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+				    type = industrial_complex
+				    level = 1
+				    instant_build = yes
+				}
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = fuel_silo
+					level = 1
+					instant_build = yes
+				}
+			}   
+		}
+	}
+
+	focus = {
+		id = RMV_begin_royal_prep
+		icon = gfx/icons/RMV/crown.tga
+		x = 20
+		y = 4
+		cost = 2
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = {
+			focus = RMV_prime_minister_bakov
+		}
+		completion_reward = {
+			add_political_power = 15
+		}
+	}
+
+	focus = {
+		id = RMV_crown
+		icon = gfx/icons/RMV/crown.tga
+		x = 20
+		y = 5
+		cost = 5
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = {
+			focus = RMV_begin_royal_prep
+		}
+		completion_reward = {#CONSUMER GOODS -15
+		}
+	}
+
+
+### GITTELMAN PATH 
 	focus = {
 		id = RMV_prime_minister_gittelman
 		icon = gfx/leaders/RMV/gittelman.tga
-		x = 26
-		y = 2
+		x = 30
+		y = 3
 		cost = 10
 		search_filters = { FOCUS_FILTER_POLITICAL } 
 		ai_will_do = {
@@ -67,16 +181,19 @@ focus_tree = {
 		completion_reward = {
 			recruit_character = RMV_finbar_gittelman
             set_politics = {                           
-                ruling_party = autocratic               
+                ruling_party = libertarian_right               
                 elections_allowed = no                  
 		}
-	}
+		# FIGURE OUT HOW TO SET LEADER NOT JUST RECRUIT
+		}
     }
+
+# COMBINED GITTELMAN AND BAKOV
 	focus = {
 		id = RMV_what_now
 		icon = gfx/icons/RMV/whatnow.tga
 		x = 25
-		y = 3
+		y = 4
 		cost = 10
 		search_filters = { FOCUS_FILTER_POLITICAL } 
 		ai_will_do = {
@@ -93,114 +210,11 @@ focus_tree = {
 			add_stability = 0.15             
 		}
 	}
-
-
-	focus = {
-		id = RMV_maybe_we_should_do_something
-		icon = gfx/icons/RMV/maybeweshoulddosomething.tga
-		x = 25
-		y = 4
-		cost = 10
-		search_filters = { FOCUS_FILTER_POLITICAL } 
-		ai_will_do = {
-			factor = 1
-		}
-		prerequisite = {
-			focus = RMV_what_now
-		}
-		completion_reward = {
-			add_political_power = 100
-			add_stability = 0.15             
-		}
-	}
-
-	focus = {
-		id = RMV_leagacyof1995
-		icon = gfx/icons/RMV/legacyof1995.tga
-		x = 25
-		y = 5
-		cost = 2
-		search_filters = { FOCUS_FILTER_POLITICAL } 
-		ai_will_do = {
-			factor = 1
-		}
-		prerequisite = {
-			focus = RMV_maybe_we_should_do_something
-		}
-		completion_reward = {
-			add_offsite_building = { type = industrial_complex level = 1 }
-		}
-		}
-	
-	focus = {
-		id = RMV_looking_inward
-		icon = gfx/icons/RMV/lookinginward.tga
-		x = 22
-		y = 6
-		cost = 5
-		search_filters = { FOCUS_FILTER_POLITICAL } 
-		ai_will_do = {
-			factor = 1
-		}
-		prerequisite = {
-			focus = RMV_leagacyof1995
-		}
-		completion_reward = {
-			add_research_slot = 1           
-		}
-	}
-
-	focus = {
-		id = RMV_looking_outward
-		icon = gfx/icons/RMV/lookingoutward.tga
-		x = 28
-		y = 6
-		cost = 5
-		search_filters = { FOCUS_FILTER_POLITICAL } 
-		ai_will_do = {
-			factor = 1
-		}
-		prerequisite = {
-			focus = RMV_leagacyof1995
-		}
-		completion_reward = {
-			add_offsite_building = { type = industrial_complex level = 1 }
-		}
-		}
-
-	focus = {
-		id = RMV_repurpose_tourist_shops
-		icon = gfx/icons/RMV/tourist.tga
-		x = 23
-		y = 7
-		cost = 10
-		search_filters = { FOCUS_FILTER_POLITICAL } 
-		ai_will_do = {
-			factor = 1
-		}
-		prerequisite = {
-			focus = RMV_looking_inward
-		}
-		completion_reward = {
-			random_owned_state = {
-				limit = {
-					is_controlled_by = RMV
-				}
-				add_extra_state_shared_building_slots = 3
-				add_building_construction = {
-				    type = industrial_complex
-				    level = 2
-				    instant_build = yes
-				}
-			}           
-		}
-	}
-
 	focus = {
 		id = RMV_disarm_the_boats
 		icon = gfx/icons/RMV/lookingoutward.tga
-		x = 21
-		y = 7
+		x = 25
+		y = 5
 		cost = 10
 		search_filters = { FOCUS_FILTER_POLITICAL } 
 		ai_will_do = {
@@ -222,20 +236,47 @@ focus_tree = {
 				}
 			}   
 		}
-		}
-
+	}
 	focus = {
-		id = RMV_import_gun_industry
-		icon = gfx/icons/RMV/gun.tga
-		x = 21
-		y = 8
+		id = RMV_repurpose_tourist_shops
+		icon = gfx/icons/RMV/tourist.tga
+		x = 24
+		y = 6
 		cost = 10
 		search_filters = { FOCUS_FILTER_POLITICAL } 
 		ai_will_do = {
 			factor = 1
 		}
 		prerequisite = {
-			focus = RMV_disarm_the_boats
+			focus = RMV_import_gun_industry
+		}
+		completion_reward = {
+			random_owned_state = {
+				limit = {
+					is_controlled_by = RMV
+				}
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+				    type = industrial_complex
+				    level = 2
+				    instant_build = yes
+				}
+			}           
+		}
+	}
+
+	focus = {
+		id = RMV_import_gun_industry
+		icon = gfx/icons/RMV/gun.tga
+		x = 24
+		y = 5
+		cost = 10
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = {
+			focus = RMV_what_now
 		}
 		completion_reward = {
 			random_owned_state = {
@@ -256,15 +297,15 @@ focus_tree = {
 	focus = {
 		id = RMV_revitalize_tourism
 		icon = gfx/icons/RMV/sandals.tga
-		x = 23
-		y = 8
+		x = 26
+		y = 6
 		cost = 10
 		search_filters = { FOCUS_FILTER_POLITICAL } 
 		ai_will_do = {
 			factor = 1
 		}
 		prerequisite = {
-			focus = RMV_repurpose_tourist_shops
+			focus = RMV_leagacyof1995
 		}
 		completion_reward = {
 			random_owned_state = {
@@ -280,20 +321,39 @@ focus_tree = {
 			}   
 		}
 		}
+	focus = {
+		id = RMV_leagacyof1995
+		icon = gfx/icons/RMV/legacyof1995.tga
+		x = 26
+		y = 5
+		cost = 2
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = {
+			focus = RMV_what_now
+		}
+		completion_reward = {
+			add_offsite_building = { type = industrial_complex level = 1 }
+		}
+		}
 	
 	focus = {
 		id = RMV_montevideo_convention
 		icon = gfx/icons/RMV/treaty.tga
 		x = 25
-		y = 7
+		y = 8
 		cost = 2
 		search_filters = { FOCUS_FILTER_POLITICAL}
 		ai_will_do = {
 			factor = 1
 		}
 		prerequisite = {
-			focus = RMV_looking_outward
-			focus = RMV_looking_inward
+			focus = RMV_repurpose_tourist_shops
+		}
+		prerequisite = {
+			focus = RMV_revitalize_tourism
 		}
 		completion_reward = {
 			country_event = {
@@ -302,11 +362,11 @@ focus_tree = {
 		}
 	}
 
-		focus = {
+	focus = {
 		id = RMV_permanent_population
 		icon = gfx/icons/RMV/treaty.tga
 		x = 25
-		y = 8
+		y = 9
 		cost = 2
 		search_filters = { FOCUS_FILTER_POLITICAL}
 		ai_will_do = {
@@ -325,11 +385,11 @@ focus_tree = {
 		}
 	}
 
-		focus = {
+	focus = {
 		id = RMV_defined_territory
 		icon = gfx/icons/RMV/treaty.tga
 		x = 25
-		y = 9
+		y = 10
 		cost = 2
 		search_filters = { FOCUS_FILTER_POLITICAL}
 		ai_will_do = {
@@ -349,11 +409,11 @@ focus_tree = {
 		}
 	}
 
-		focus = {
+	focus = {
 		id = RMV_government
 		icon = gfx/icons/RMV/treaty.tga
 		x = 25
-		y = 10
+		y = 11
 		cost = 2
 		search_filters = { FOCUS_FILTER_POLITICAL}
 		ai_will_do = {
@@ -370,7 +430,7 @@ focus_tree = {
 		}
 	}
 
-		focus = {
+	focus = {
 		id = RMV_relations
 		icon = gfx/icons/RMV/treaty.tga
 		x = 25
@@ -390,4 +450,6 @@ focus_tree = {
 			# ADD SOME DIPLO STUFF HERE LIKE POS OPINION FACTOR
 		}
 	}
+
+	
 }
