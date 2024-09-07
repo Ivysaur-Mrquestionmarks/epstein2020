@@ -21,3 +21,53 @@ peace_ai_desires = {
         	ai_desire = -2000
 	}
 }
+
+peace_ai_desires = {  # some vanilla ones
+    doesnt_control_no_claim = {
+        peace_action_type = { take_states }
+        enable = {
+            ROOT = { tag = ROOT.FROM } #We are negotiating for ourselves
+            ROOT.FROM.FROM.FROM = {
+                NOT = { is_core_of = ROOT.FROM }
+                NOT = { is_claimed_by = ROOT.FROM }
+                NOT = { is_controlled_by = ROOT.FROM }
+            }
+        }
+        ai_desire = -20
+    }
+    generic_occupies_state = {
+        peace_action_type = { take_states puppet liberate force_government }
+
+        enable = {
+            FROM.FROM.FROM = { NOT = { is_controlled_by = ROOT } }
+        }
+        ai_desire = -10
+    }
+
+    generic_occupies_player_state = {
+        peace_action_type = { take_states puppet liberate force_government }
+
+        enable = {
+            FROM.FROM.FROM = { 
+                NOT = { is_controlled_by = ROOT }
+                controller = {
+                    pc_is_loser = no
+                    is_ai = no
+                }
+            }
+        }
+        ai_desire = -20
+    }
+
+    leave_player_controlled_land_until_later_in_the_process = {
+        peace_action_type = { take_states puppet force_government liberate }
+        enable = {
+            ROOT.FROM.FROM.FROM = {
+                controller = {
+                    is_ai = no
+                }
+            }
+        }
+        ai_desire = -10
+    }
+}
