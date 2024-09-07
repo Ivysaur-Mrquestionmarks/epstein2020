@@ -871,6 +871,12 @@ focus_tree = {
 			focus = GLA_the_great_lakes_market
 		}
 		completion_reward = {
+			if = {
+                limit = {
+                has_idea = isolation
+                }
+            add_ideas = civilian_economy
+            }
 			swap_ideas = {
 			    remove_idea = GLA_the_great_lakes_economy
 			    add_idea = GLA_the_great_lakes_economy_2
@@ -1194,6 +1200,12 @@ focus_tree = {
 			focus = GLA_welcome_to_ancapistan
 		}
 		completion_reward = {
+		if = {
+            limit = {
+                has_idea = isolation
+            }
+            add_ideas = civilian_economy
+            }
 		swap_ideas = {
 			    remove_idea = GLA_ancapistan
 			    add_idea = GLA_ancapistan_2
@@ -1237,7 +1249,7 @@ focus_tree = {
 			}
 		}
 		relative_position_id = GLA_welcome_to_ancapistan
-		cost = 5
+		cost = 8
 		prerequisite = {
 			focus = GLA_welcome_to_ancapistan
 		}
@@ -1385,7 +1397,7 @@ focus_tree = {
 		x = -1
 		y = 1
 		relative_position_id = GLA_promote_our_nation_to_international_companies
-		cost = 5
+		cost = 8
 		prerequisite = {
 			focus = GLA_promote_our_nation_to_international_companies
 		}
@@ -1453,7 +1465,7 @@ focus_tree = {
 		x = 0
 		y = 2
 		relative_position_id = GLA_legalize_nuclear_weapons
-		cost = 5
+		cost = 6
 		prerequisite = {
 			focus = GLA_legalize_nuclear_weapons
 		}
@@ -1535,7 +1547,7 @@ focus_tree = {
 		id = GLA_the_boogaloo_question
 		icon = GFX_goal_GLA_the_elections
 		cost = 1
-		x = 35
+		x = 36
 		y = 0
 		select_effect = {  }
 		allow_branch = {
@@ -1674,7 +1686,7 @@ focus_tree = {
 		id = GLA_purchase_military_equipment
 		icon = GFX_goal_GLA_the_elections
 		cost = 2
-		x = -1
+		x = -2
 		y = 1
 		relative_position_id = GLA_get_mercenaries
 		select_effect = {  }
@@ -1697,7 +1709,7 @@ focus_tree = {
 		id = GLA_purchase_military_jets
 		icon = GFX_goal_GLA_the_elections
 		cost = 3
-		x = 1
+		x = 0
 		y = 1
 		relative_position_id = GLA_get_mercenaries
 		select_effect = {  }
@@ -1821,8 +1833,8 @@ focus_tree = {
 		id = GLA_military_equipment
 		icon = GFX_goal_GLA_the_elections
 		cost = 1
-		x = 6
-		y = 1
+		x = 0
+		y = 2
 		allow_branch = {
 			NOT = {
 				has_completed_focus = GLA_the_boogaloo_coup			
@@ -1833,7 +1845,8 @@ focus_tree = {
 		allow_branch = {
 		}
 		prerequisite = {
-			focus = GLA_the_boogaloo_question
+			focus = GLA_get_mercenaries
+			focus = GLA_dissolve_the_boogaloo_army
 		}
 		completion_reward = {
 		
@@ -2073,35 +2086,6 @@ focus_tree = {
 
 	}
 	focus = {
-		id = GLA_military_training
-		icon = GFX_goal_GLA_the_elections
-		cost = 5
-		x = 4
-		y = 1
-		allow_branch = {
-			NOT = {
-				has_completed_focus = GLA_the_boogaloo_coup			
-			}
-		}
-		relative_position_id = GLA_the_boogaloo_question
-		select_effect = {  }
-		allow_branch = {
-		}
-		available = {
-			OR = {
-			has_completed_focus = GLA_the_jorgensen_way
-			has_completed_focus = GLA_the_moderate_way
-			}
-		}
-		prerequisite = {
-			focus = GLA_the_boogaloo_question
-		}
-		completion_reward = {
-        add_ideas = GLA_libertarian_military_training
-		}
-
-	}
-	focus = {
 		id = GLA_dissolve_the_boogaloo_army
 		icon = GFX_goal_GLA_the_elections
 		cost = 5
@@ -2149,7 +2133,7 @@ focus_tree = {
 		id = GLA_recruitment_ads
 		icon = GFX_goal_GLA_the_elections
 		cost = 5
-		x = 1
+		x = 2
 		y = 1
 		relative_position_id = GLA_dissolve_the_boogaloo_army
 		select_effect = {  }
@@ -2170,7 +2154,7 @@ focus_tree = {
 		id = GLA_a_real_military
 		icon = GFX_goal_GLA_the_elections
 		cost = 5
-		x = -1
+		x = 0
 		y = 1
 		relative_position_id = GLA_dissolve_the_boogaloo_army
 		select_effect = {  }
@@ -2280,30 +2264,12 @@ focus_tree = {
 		}
 
 	}
-	focus = {
-		id = GLA_harsh_training
-		icon = GFX_goal_GLA_the_elections
-		cost = 5
-		x = 0
-		y = 2
-		relative_position_id = GLA_military_training
-		select_effect = {  }
-		allow_branch = {
-		}
-		prerequisite = {
-			focus = GLA_military_training
-		}
-		completion_reward = {
-		army_experience = 35
-		}
-
-	}
 	###########War Time
 	focus = {
 		id = GLA_its_time_to_liberate_america
 		icon = GFX_goal_GLA_the_elections
 		cost = 1
-		x = 2
+		x = 3
 		y = 0
 		allow_branch = {
 		
@@ -2708,12 +2674,12 @@ focus_tree = {
 		}
 		available = {
 		has_war = no
+		OR = {
 		    NOT = {
-				OR = {
 		        country_exists = FRA
 		        country_exists = USA
-				}
 		    }
+		}
 		}
 		completion_reward = {
 	    if = { 
@@ -3335,6 +3301,7 @@ focus_tree = {
 			}
 		}
 		completion_reward = {
+		mark_focus_tree_layout_dirty = yes
 		delete_unit_template_and_units = {
         division_template = "National Guard"
         disband = no
@@ -3571,6 +3538,9 @@ focus_tree = {
 		select_effect = {  }
 		allow_branch = {
 		}
+		available = {
+			has_completed_focus = GLA_anti_leftist_propaganda
+		}
 		prerequisite = {
 			focus = GLA_stop_the_riots
 		}
@@ -3681,9 +3651,19 @@ focus_tree = {
 			focus = GLA_boogaloo_control
 		}
 		completion_reward = {
-		GLA = {
-	    set_country_leader_ideology = military_dictatorship
+		hidden_effect = {
+			country_event = {
+				id = greatlake.21
+				days = 10
+			}
 		}
+		create_country_leader = {
+				name = "The Boogaloo Council"
+				picture = "gfx/leaders/GLA/GLA_the_boogaloo_council.dds"
+				expire = "2500.1.1"
+				ideology = military_dictatorship
+				traits = {}
+			}
 		add_political_power = 45
 		add_stability = -0.05
 		}
@@ -4053,6 +4033,12 @@ focus_tree = {
 			focus = GLA_rebuild_our_roads
 		}
 		completion_reward = {
+		if = {
+            limit = {
+                has_idea = isolation
+            }
+            add_ideas = civilian_economy
+            }
 		remove_ideas = GLA_the_economy_in_shambles_3
 		swap_ideas = {
 			    remove_idea = GLA_national_communalism
@@ -4415,6 +4401,12 @@ focus_tree = {
 			focus = GLA_boogaloo_manufacturing
 		}
 		completion_reward = {
+		if = {
+            limit = {
+                has_idea = isolation
+            }
+            add_ideas = civilian_economy
+            }
 		remove_ideas = GLA_the_economy_in_shambles_3
         swap_ideas = {
 			    remove_idea = GLA_american_corporatism
