@@ -31,6 +31,7 @@ focus_tree = {
 			army_experience = 50
 			air_experience = 50
 			navy_experience = 50
+			add_manpower = 10000
 			division_template = {
 				name = "Strawhats"
 				regiments = {
@@ -503,6 +504,31 @@ focus_tree = {
 		}
 		completion_reward = {
 			set_cosmetic_tag = BAH_pirate_kingdom_cosmetic
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = dockyard
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = dockyard
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = dockyard
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			add_ideas = BAH_hoist_the_black_flag
 		}
 
 	}
@@ -518,6 +544,15 @@ focus_tree = {
 		}
 		x = 8
 		y = 4
+		completion_reward = {
+			BAH_jamie_dingham = {
+				add_trait = {
+    				ideology = Oligarchy
+    				trait = BAH_lord_protector
+				}
+			}
+
+		}
 
 	}
 	focus = {
@@ -532,6 +567,23 @@ focus_tree = {
 		}
 		x = 10
 		y = 4
+		completion_reward = {
+			add_stability = 0.15
+			set_politics = {
+    			ruling_party = libertarian_right
+    			elections_allowed = yes
+			}
+			hidden_effect = {
+				add_popularity = {
+					ideology = libertarian_right
+					popularity = 0.15
+				}
+				add_popularity = {
+					ideology = republican
+					popularity = 0.075
+				}
+			}
+		}
 
 	}
 	focus = {
@@ -546,6 +598,46 @@ focus_tree = {
 		}
 		x = 13
 		y = 3
+		available = {
+			OR = {
+				has_government = democrat
+				is_subject = no
+			}
+		}
+		bypass = {
+			has_government = democrat
+		}
+		completion_reward = {
+			add_stability = 0.15
+			add_popularity = {
+				ideology = democrat
+				popularity = 0.20
+			}
+			add_popularity = {
+				ideology = republican
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = libertarian_right
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = libertarian_left
+				popularity = 0.02
+			}
+			add_popularity = {
+				ideology = authoritarian_left
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = autocratic
+				popularity = -0.10
+			}
+			set_politics = {
+    			ruling_party = democrat
+    			elections_allowed = yes
+			}
+		}
 
 	}
 	focus = {
@@ -561,6 +653,29 @@ focus_tree = {
 		}
 		x = 12
 		y = 4
+		available = {
+			country_exists = CUC
+			CUC = {
+				is_faction_leader = yes
+			}
+		}
+		completion_reward = {
+			if = {
+				limit = {
+					has_war_with = CUC
+				}
+				white_peace = CUC
+				every_country = {
+					limit = {
+						is_in_faction_with = CUC
+					}
+					white_peace = ROOT
+				}
+			}
+			CUC = {
+				add_to_faction = ROOT
+			}
+		}
 
 	}
 	focus = {
@@ -576,6 +691,68 @@ focus_tree = {
 		}
 		x = 9
 		y = 5
+		available = {
+			is_in_faction = no
+		}
+		completion_reward = {
+			if = {
+				limit = {
+					has_government = autocratic
+				}
+				BAH_jamie_dingham = {
+					swap_country_leader_traits = {
+    					remove = BAH_lord_protector
+    					add = BAH_lord_protector_1
+    					ideology = Oligarchy
+					}
+				}
+			}
+			if = { 
+				limit = {
+					NOT = {
+						has_government = libertarian_right
+					}
+				}
+				create_faction = order_of_blackbeard_alliance
+				else = {
+					create_faction = strawhat_alliance
+					JAM = { country_event = _zzz.3 }
+					SKN = { country_event = _zzz.3 }
+					SVG = { country_event = _zzz.3 }
+				}
+			}
+			every_state = {
+				limit = {
+					state = 390
+					state = 362
+					state = 391
+					state = 378
+					state = 349
+					state = 490
+					state = 159
+					state = 545
+					state = 588
+					state = 585
+					state = 586
+					state = 589
+					state = 408
+					state = 587
+					state = 499
+					state = 498
+					state = 405
+					state = 401
+					state = 313
+					state = 458
+					state = 345
+					state = 369
+					state = 462
+					state = 52
+					state = 455
+					state = 474
+				}
+				add_claim_by = ROOT
+			}
+		}
 
 	}
 	focus = {
@@ -592,6 +769,70 @@ focus_tree = {
 		}
 		x = 16
 		y = 4
+		available = {
+			OR = {
+				has_government = authoritarian_left
+				is_subject = no
+			}
+		}
+		completion_reward = {
+			add_country_leader_role = {
+    			character = BAH_philip_davis
+    			promote_leader = yes
+    			country_leader = {
+			        ideology = Authoritarian_Liberalism
+			        traits = { war_industrialist }
+			    }
+			}
+			add_popularity = {
+				ideology = authoritarian_left
+				popularity = 0.44
+			}
+			set_politics = {
+    			ruling_party = authoritarian_left
+    			elections_allowed = yes
+			}
+			if = {
+				limit = {
+					OR = {
+						is_in_faction = no
+						is_subject = no
+					}
+				}
+				create_faction = red_roger_alliance
+			}
+			every_state = {
+				limit = {
+					state = 390
+					state = 362
+					state = 391
+					state = 378
+					state = 349
+					state = 490
+					state = 159
+					state = 545
+					state = 588
+					state = 585
+					state = 586
+					state = 589
+					state = 408
+					state = 587
+					state = 499
+					state = 498
+					state = 405
+					state = 401
+					state = 313
+					state = 458
+					state = 345
+					state = 369
+					state = 462
+					state = 52
+					state = 455
+					state = 474
+				}
+				add_claim_by = ROOT
+			}
+		}
 
 	}
 	focus = {
@@ -604,6 +845,93 @@ focus_tree = {
 		}
 		x = 13
 		y = 6
+		available = {
+			is_subject = no
+		}
+		will_lead_to_war_with = CUB
+		will_lead_to_war_with = HAI
+		will_lead_to_war_with = HBI
+		will_lead_to_war_with = GTB
+		will_lead_to_war_with = DOM
+		will_lead_to_war_with = CUC
+		will_lead_to_war_with = JAM
+		will_lead_to_war_with = CAY
+		will_lead_to_war_with = BLZ
+		will_lead_to_war_with = TAT
+		completion_reward = {
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = dockyard
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = dockyard
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = arms_factory
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = arms_factory
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			create_wargoal = {
+    			type = annex_everything
+    			target = CUB
+			}
+			create_wargoal = {
+    			type = annex_everything
+    			target = HAI
+			}
+			create_wargoal = {
+    			type = annex_everything
+    			target = HBI
+			}
+			create_wargoal = {
+    			type = annex_everything
+    			target = DOM
+			}
+			create_wargoal = {
+    			type = annex_everything
+    			target = CUC
+			}
+			create_wargoal = {
+    			type = annex_everything
+    			target = GTB
+			}
+			create_wargoal = {
+    			type = annex_everything
+    			target = JAM
+			}
+			create_wargoal = {
+    			type = annex_everything
+    			target = CAY
+			}
+			create_wargoal = {
+    			type = annex_everything
+    			target = BLZ
+			}
+			create_wargoal = {
+    			type = annex_everything
+    			target = TAT
+			}
+		}
 
 	}
 	focus = {
@@ -619,6 +947,16 @@ focus_tree = {
 		}
 		x = 14
 		y = 4
+		completion_reward = {
+			create_faction = BAH_equatorial_shield
+			JAM = { country_event = _zzz.3 }
+			SKN = { country_event = _zzz.3 }
+			SVG = { country_event = _zzz.3 }
+			BLZ = { country_event = _zzz.3 }
+			HON = { country_event = _zzz.3 }
+			NIC = { country_event = _zzz.3 }
+			TAT = { country_event = _zzz.3 }
+		}
 
 	}
 	focus = {
@@ -630,6 +968,15 @@ focus_tree = {
 		}
 		x = 15
 		y = 2
+		completion_reward = {
+			army_experience = 50
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 1.0
+				uses = 2
+				category = land_doctrine
+			}
+		}
 
 	}
 	focus = {
@@ -641,6 +988,17 @@ focus_tree = {
 		}
 		x = 15
 		y = 3
+		completion_reward = {
+			army_experience = 100
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = arms_factory
+    				level = 1
+    				instant_build = yes
+				}
+			}
+		}
 
 	}
 	focus = {
@@ -656,6 +1014,25 @@ focus_tree = {
 		}
 		x = 15
 		y = 5
+		completion_reward = {
+			every_country = {
+				limit = {
+					NOT = { is_in_faction_with = ROOT }
+					original_tag = CUB
+					original_tag = HAI
+					original_tag = HBI
+					original_tag = DOM
+					original_tag = CUC
+					original_tag = GTB
+					original_tag = JAM
+					original_tag = CAY
+					original_tag = BLZ
+					original_tag = TAT
+					original_tag = VEN
+				}
+				add_stability = -0.10
+			}
+		}
 
 	}
 	focus = {
@@ -667,6 +1044,17 @@ focus_tree = {
 		}
 		x = 17
 		y = 2
+		completion_reward = {
+			air_experience = 50
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = arms_factory
+    				level = 1
+    				instant_build = yes
+				}
+			}
+		}
 
 	}
 	focus = {
@@ -678,6 +1066,14 @@ focus_tree = {
 		}
 		x = 17
 		y = 3
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.7
+				uses = 3
+				category = air_doctrine
+			}
+		}
 
 	}
 	focus = {
@@ -692,6 +1088,18 @@ focus_tree = {
 		}
 		x = 18
 		y = 4
+		completion_reward = {
+			add_stability = 0.05
+			if = {
+				limit = {
+					has_government = democrat
+				}
+				add_popularity = {
+					ideology = democrat
+					popularity = 0.33
+				}
+			}
+		}
 
 	}
 	focus = {
@@ -703,6 +1111,53 @@ focus_tree = {
 		}
 		x = 4
 		y = 4
+		available = {
+			OR = {
+				NOT = {
+					has_war_with = TEX
+				}
+				NOT = {
+					has_war_with = FLO
+				}
+			}
+		}
+		bypass = {
+			OR = {
+				AND = {
+					has_war_with = TEX
+					has_war_with = FLO
+				}
+				AND = {
+					NOT = {
+						country_exists = TEX
+					}
+					NOT = {
+						country_exists = FLO
+					}
+				}
+			}
+		}
+		completion_reward = {
+			if = {
+				limit = {
+					country_exists = TEX
+					NOT = {
+						has_war_with = TEX
+					}
+				}
+				TEX = { country_event = maa.bahamas.1 }
+			}
+			if = {
+				limit = {
+					country_exists = FLO
+					NOT = {
+						has_war_with = FLO
+					}
+				}
+				FLO = { country_event = maa.bahamas.1 }
+			}
+
+		}
 
 	}
 	focus = {
@@ -714,6 +1169,44 @@ focus_tree = {
 		}
 		x = 13
 		y = 7
+		available = {
+			is_subject = no
+			owns_state = 408
+		}
+		completion_reward = {
+			every_state = {
+				limit = {
+					state = 390
+					state = 362
+					state = 391
+					state = 378
+					state = 349
+					state = 490
+					state = 159
+					state = 545
+					state = 588
+					state = 585
+					state = 586
+					state = 589
+					state = 408
+					state = 587
+					state = 499
+					state = 498
+					state = 405
+					state = 401
+					state = 313
+					state = 458
+					state = 345
+					state = 369
+					state = 462
+					state = 52
+					state = 455
+					state = 474
+				}
+				add_core_of = ROOT
+			}
+			#set_cosmetic_tag = #will add a west indies cosmetic tag at some point. "Pirate Empire" or smth for autocratic??? Could be neat.
+		}
 
 	}
 	focus = {
@@ -728,6 +1221,49 @@ focus_tree = {
 		}
 		x = 4
 		y = 7
+		available = {
+			is_subject = no
+		}
+		completion_reward = {
+			every_state = {
+				limit = {
+					state = 580
+					state = 318
+					state = 355
+					state = 630
+				}
+				add_core_of = ROOT
+			}
+			every_state = {
+				limit = {
+					state = 482
+					state = 661
+					state = 379
+					state = 382
+					state = 392
+					state = 389
+					state = 660
+					state = 50
+					state = 44
+					state = 77
+					state = 55
+					state = 28
+					state = 610
+					state = 312
+				}
+				add_claim_by = ROOT
+			}
+			every_state = {
+				limit = {
+					OR = {
+						is_core_of = FLO
+						is_core_of = CSA
+					}
+					is_coastal = yes
+				}
+				add_claim_by = ROOT
+			}
+		}
 
 	}
 	focus = {
@@ -739,6 +1275,33 @@ focus_tree = {
 		}
 		x = 19
 		y = 2
+		completion_reward = {
+			navy_experience = 75
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = dockyard
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = dockyard
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = dockyard
+    				level = 1
+    				instant_build = yes
+				}
+			}
+		}
 
 	}
 	focus = {
@@ -750,6 +1313,31 @@ focus_tree = {
 		}
 		x = 19
 		y = 3
+		completion_reward = {
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = dockyard
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			add_resource = {
+			    type = oil
+			    amount = 50
+			    state = 363
+			}
+			add_resource = {
+			    type = steel
+			    amount = 70
+			    state = 363
+			}
+			add_resource = {
+			    type = steel
+			    amount = 120
+			    state = 350
+			}
+		}
 
 	}
 }
