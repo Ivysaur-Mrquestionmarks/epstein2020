@@ -1564,6 +1564,9 @@ focus_tree = {
 			has_war = no
 		}
 		completion_reward = {
+		set_power_balance = {
+				id = boogaloo_bop
+			}
 		army_experience = 15
 		navy_experience = 15
 		air_experience = 15
@@ -1590,6 +1593,7 @@ focus_tree = {
 			focus = GLA_the_boogaloo_question
 		}
 		available = {
+		always = no
 			has_completed_focus = GLA_the_ancapistan_way
 		}
 		completion_reward = {
@@ -2102,6 +2106,7 @@ focus_tree = {
 		allow_branch = {
 		}
 		available = {
+		always = no
 			OR = {
 			has_completed_focus = GLA_the_jorgensen_way
 			has_completed_focus = GLA_the_moderate_way
@@ -2111,6 +2116,9 @@ focus_tree = {
 			focus = GLA_the_boogaloo_question
 		}
 		completion_reward = {
+		remove_power_balance = {
+            id = boogaloo_bop
+        }
 		hidden_effect = {
 			country_event = {
 				id = greatlake.2
@@ -2125,7 +2133,6 @@ focus_tree = {
         division_template = "KillDozer Division"
         disband = no
         }
-		remove_ideas = Unorganized_Boogaloo
 		}
 
 	}
@@ -2658,7 +2665,7 @@ focus_tree = {
 	focus = {
 		id = GLA_america_shall_be_ours
 		icon = GFX_goal_GLA_the_elections
-		cost = 2
+		cost = 1
 		x = 3
 		y = 1
 		allow_branch = {
@@ -2674,28 +2681,9 @@ focus_tree = {
 		}
 		available = {
 		has_war = no
-		OR = {
-		    NOT = {
-		        country_exists = FRA
-		        country_exists = USA
-		    }
-		}
 		}
 		completion_reward = {
-	    if = { 
-			limit = { country_exists = FRA }
-			create_wargoal = {
-			target = FRA
-			type = annex_everything
-			}
-			}
-		if = { 
-			limit = { country_exists = USA }
-			create_wargoal = {
-			target = USA
-			type = annex_everything
-			}
-		    }
+	    
 		}
 
 	}
@@ -2703,14 +2691,17 @@ focus_tree = {
 		id = GLA_invade_texas
 		icon = GFX_goal_GLA_the_elections
 		cost = 2
-		x = 1
+		x = -1
 		y = 1
-		relative_position_id = GLA_america_shall_be_ours
+		relative_position_id = GLA_invade_the_anarchists
 		select_effect = {  }
 		allow_branch = {
 		}
 		prerequisite = {
-			focus = GLA_america_shall_be_ours
+			focus = GLA_invade_the_anarchists
+		}
+		prerequisite = {
+			focus = GLA_invade_west_virginia
 		}
 		will_lead_to_war_with = TEX
 		completion_reward = {
@@ -2747,7 +2738,7 @@ focus_tree = {
 		id = GLA_invade_dixieland
 		icon = GFX_goal_GLA_the_elections
 		cost = 2
-		x = 1
+		x = 3
 		y = 1
 		relative_position_id = GLA_invade_the_anarchists
 		select_effect = {  }
@@ -2757,7 +2748,7 @@ focus_tree = {
 			focus = GLA_invade_the_anarchists
 		}
 		prerequisite = {
-			focus = GLA_invade_texas
+			focus = GLA_invade_west_virginia
 		}
 		will_lead_to_war_with = CSA
 		completion_reward = {
@@ -2772,9 +2763,9 @@ focus_tree = {
 		id = GLA_invade_kentucky
 		icon = GFX_goal_GLA_the_elections
 		cost = 2
-		x = 2
-		y = 0
-		relative_position_id = GLA_invade_dixieland
+		x = 1
+		y = 1
+		relative_position_id = GLA_invade_the_anarchists
 		select_effect = {  }
 		allow_branch = {
 		}
@@ -2782,7 +2773,7 @@ focus_tree = {
 			focus = GLA_invade_the_anarchists
 		}
 		prerequisite = {
-			focus = GLA_invade_texas
+			focus = GLA_invade_west_virginia
 		}
 		will_lead_to_war_with = KFC
 		completion_reward = {
@@ -2797,17 +2788,14 @@ focus_tree = {
 		id = GLA_invade_west_virginia
 		icon = GFX_goal_GLA_the_elections
 		cost = 2
-		x = -2
-		y = 0
-		relative_position_id = GLA_invade_dixieland
+		x = 1
+		y = 1
+		relative_position_id = GLA_america_shall_be_ours
 		select_effect = {  }
 		allow_branch = {
 		}
 		prerequisite = {
-			focus = GLA_invade_the_anarchists
-		}
-		prerequisite = {
-			focus = GLA_invade_texas
+			focus = GLA_america_shall_be_ours
 		}
 		will_lead_to_war_with = NRA
 		completion_reward = {
@@ -2824,12 +2812,12 @@ focus_tree = {
 		cost = 2
 		x = 0
 		y = 1
-		relative_position_id = GLA_invade_dixieland
+		relative_position_id = GLA_invade_kentucky
 		select_effect = {  }
 		allow_branch = {
 		}
 		prerequisite = {
-			focus = GLA_invade_west_virginia
+			focus = GLA_invade_texas
 		}
 		prerequisite = {
 			focus = GLA_invade_kentucky
@@ -2873,12 +2861,12 @@ focus_tree = {
 		cost = 2
 		x = 2
 		y = 1
-		relative_position_id = GLA_invade_dixieland
+		relative_position_id = GLA_invade_kentucky
 		select_effect = {  }
 		allow_branch = {
 		}
 		prerequisite = {
-			focus = GLA_invade_west_virginia
+			focus = GLA_invade_texas
 		}
 		prerequisite = {
 			focus = GLA_invade_kentucky
@@ -2901,12 +2889,12 @@ focus_tree = {
 		cost = 2
 		x = -2
 		y = 1
-		relative_position_id = GLA_invade_dixieland
+		relative_position_id = GLA_invade_kentucky
 		select_effect = {  }
 		allow_branch = {
 		}
 		prerequisite = {
-			focus = GLA_invade_west_virginia
+			focus = GLA_invade_texas
 		}
 		prerequisite = {
 			focus = GLA_invade_kentucky
