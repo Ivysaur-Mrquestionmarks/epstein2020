@@ -828,6 +828,7 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
+			country_event = stonetoss.10
 			add_popularity = {
 			    ideology = republican
 			    popularity = -0.5
@@ -836,7 +837,7 @@ focus_tree = {
 			    ideology = libertarian_right
 			    popularity = -0.25
 			}
-			remove_ideas = FAL_conservative_uneasiness
+			remove_ideas = FAL_conservative_uneasiness		
 		}
 	}
 	focus = {
@@ -2446,7 +2447,7 @@ focus_tree = {
 	focus = {
 		id = FAL_tejas_first
 		icon = GFX
-		cost = 5.00
+		cost = 2.00
 		x = 14
 		y = 1
 		relative_position_id = FAL_the_phalanx_triumphant
@@ -2458,13 +2459,13 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			add_stability = 0.1
 		}
 	}
 	focus = {
 		id = FAL_fortify_tejas
 		icon = GFX
-		cost = 5.00
+		cost = 2.00
 		x = 1
 		y = 1
 		relative_position_id = FAL_tejas_first
@@ -2474,19 +2475,24 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			add_ideas = {
+				FAL_fortress_tejas_0
+			}
 		}
 	}
 	focus = {
 		id = FAL_sell_off_louisiana
 		icon = GFX
-		cost = 5.00
+		cost = 2.00
 		x = -5
 		y = 1
 		relative_position_id = FAL_fortify_tejas
 		available = {
 			CSA = {
 				exists = yes
+			}
+			NOT = {
+				has_global_flag = Dixie_Collapse_Global
 			}
 		}
 		mutually_exclusive = {
@@ -2497,13 +2503,22 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			CSA = {
+				country_event = stonetoss.11
+			}
+			custom_effect_tooltip = FAL_csa_event_tt
+			effect_tooltip = {
+				add_timed_idea = {
+					idea = FAL_lousiana_sold
+					days = 365
+				}
+			}
 		}
 	}
 	focus = {
 		id = FAL_detente_with_the_grays
 		icon = GFX
-		cost = 5.00
+		cost = 2.00
 		x = 0
 		y = 2
 		relative_position_id = FAL_sell_off_louisiana
@@ -2513,13 +2528,16 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			diplomatic_relation = { 
+				country = CSA
+				relation = non_aggression_pact 
+			}
 		}
 	}
 	focus = {
 		id = FAL_to_the_east
 		icon = GFX
-		cost = 5.00
+		cost = 2.00
 		x = -2
 		y = 1
 		relative_position_id = FAL_fortify_tejas
@@ -2531,13 +2549,13 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			add_political_power = 50
 		}
 	}
 	focus = {
 		id = FAL_lafayette_frontline
 		icon = GFX
-		cost = 5.00
+		cost = 2.00
 		x = -1
 		y = 1
 		relative_position_id = FAL_to_the_east
@@ -2547,13 +2565,89 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			312 = {
+				add_building_construction = {
+				    type = bunker
+				    level = 3
+				    instant_build = yes
+				    province = 3001
+				}
+				add_building_construction = {
+				    type = bunker
+				    level = 3
+				    instant_build = yes
+				    province = 5432
+				}
+				add_building_construction = {
+				    type = bunker
+				    level = 3
+				    instant_build = yes
+				    province = 10917
+				}
+				add_building_construction = {
+				    type = bunker
+				    level = 3
+				    instant_build = yes
+				    province = 1647
+				}
+				add_building_construction = {
+				    type = bunker
+				    level = 3
+				    instant_build = yes
+				    province = 10746
+				}
+			}
+			IF = {
+				limit = {
+					has_idea = FAL_fortress_tejas_0
+				}
+				swap_ideas = {
+					remove_idea = FAL_fortress_tejas_0
+					add_idea = FAL_fortress_tejas_1
+				}
+			}
+			IF = {
+				limit = {
+					has_idea = FAL_fortress_tejas_1
+				}
+				swap_ideas = {
+					remove_idea = FAL_fortress_tejas_1
+					add_idea = FAL_fortress_tejas_2
+				}
+			}
+			IF = {
+				limit = {
+					has_idea = FAL_fortress_tejas_2
+				}
+				swap_ideas = {
+					remove_idea = FAL_fortress_tejas_2
+					add_idea = FAL_fortress_tejas_3
+				}
+			}
+			IF = {
+				limit = {
+					has_idea = FAL_fortress_tejas_3
+				}
+				swap_ideas = {
+					remove_idea = FAL_fortress_tejas_3
+					add_idea = FAL_fortress_tejas_4
+				}
+			}
+			IF = {
+				limit = {
+					has_idea = FAL_fortress_tejas_4
+				}
+				swap_ideas = {
+					remove_idea = FAL_fortress_tejas_4
+					add_idea = FAL_fortress_tejas_5
+				}
+			}
 		}
 	}
 	focus = {
 		id = FAL_beaumont_fallback
 		icon = GFX
-		cost = 5.00
+		cost = 2.00
 		x = 1
 		y = 1
 		relative_position_id = FAL_to_the_east
@@ -2563,13 +2657,113 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			28 = {
+				add_building_construction = {
+				    type = bunker
+				    level = 3
+				    instant_build = yes
+				    province = 10929
+				}
+				add_building_construction = {
+				    type = bunker
+				    level = 3
+				    instant_build = yes
+				    province = 10900
+				}
+				add_building_construction = {
+				    type = bunker
+				    level = 3
+				    instant_build = yes
+				    province = 4491
+				}
+				add_building_construction = {
+				    type = bunker
+				    level = 3
+				    instant_build = yes
+				    province = 4211
+				}
+				add_building_construction = {
+				    type = bunker
+				    level = 3
+				    instant_build = yes
+				    province = 10843
+				}
+				add_building_construction = {
+				    type = bunker
+				    level = 3
+				    instant_build = yes
+				    province = 5479
+				}
+				add_building_construction = {
+				    type = bunker
+				    level = 3
+				    instant_build = yes
+				    province = 10767
+				}
+				add_building_construction = {
+				    type = bunker
+				    level = 3
+				    instant_build = yes
+				    province = 2690
+				}
+				add_building_construction = {
+				    type = bunker
+				    level = 3
+				    instant_build = yes
+				    province = 5320
+				}
+			}
+			IF = {
+				limit = {
+					has_idea = FAL_fortress_tejas_0
+				}
+				swap_ideas = {
+					remove_idea = FAL_fortress_tejas_0
+					add_idea = FAL_fortress_tejas_1
+				}
+			}
+			IF = {
+				limit = {
+					has_idea = FAL_fortress_tejas_1
+				}
+				swap_ideas = {
+					remove_idea = FAL_fortress_tejas_1
+					add_idea = FAL_fortress_tejas_2
+				}
+			}
+			IF = {
+				limit = {
+					has_idea = FAL_fortress_tejas_2
+				}
+				swap_ideas = {
+					remove_idea = FAL_fortress_tejas_2
+					add_idea = FAL_fortress_tejas_3
+				}
+			}
+			IF = {
+				limit = {
+					has_idea = FAL_fortress_tejas_3
+				}
+				swap_ideas = {
+					remove_idea = FAL_fortress_tejas_3
+					add_idea = FAL_fortress_tejas_4
+				}
+			}
+			IF = {
+				limit = {
+					has_idea = FAL_fortress_tejas_4
+				}
+				swap_ideas = {
+					remove_idea = FAL_fortress_tejas_4
+					add_idea = FAL_fortress_tejas_5
+				}
+			}
 		}
 	}
 	focus = {
 		id = FAL_never_confederate
 		icon = GFX
-		cost = 5.00
+		cost = 2.00
 		x = 0
 		y = 2
 		relative_position_id = FAL_to_the_east
@@ -2582,13 +2776,15 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			add_ideas = {
+				FAL_anti_confederate
+			}
 		}
 	}
 	focus = {
 		id = FAL_to_the_north
 		icon = GFX
-		cost = 5.00
+		cost = 2.00
 		x = 1
 		y = 1
 		relative_position_id = FAL_fortify_tejas
@@ -2598,13 +2794,13 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			add_political_power = 50
 		}
 	}
 	focus = {
 		id = FAL_arbuckle_line
 		icon = GFX
-		cost = 5.00
+		cost = 2.00
 		x = 0
 		y = 1
 		relative_position_id = FAL_to_the_north
@@ -2614,13 +2810,83 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			259 = {
+				add_building_construction = {
+				    type = bunker
+				    level = 3
+				    instant_build = yes
+				    province = 2730
+				}
+				add_building_construction = {
+				    type = bunker
+				    level = 3
+				    instant_build = yes
+				    province = 5193
+				}
+				add_building_construction = {
+				    type = bunker
+				    level = 3
+				    instant_build = yes
+				    province = 5000
+				}
+				add_building_construction = {
+				    type = bunker
+				    level = 3
+				    instant_build = yes
+				    province = 3409
+				}
+			}
+			IF = {
+				limit = {
+					has_idea = FAL_fortress_tejas_0
+				}
+				swap_ideas = {
+					remove_idea = FAL_fortress_tejas_0
+					add_idea = FAL_fortress_tejas_1
+				}
+			}
+			IF = {
+				limit = {
+					has_idea = FAL_fortress_tejas_1
+				}
+				swap_ideas = {
+					remove_idea = FAL_fortress_tejas_1
+					add_idea = FAL_fortress_tejas_2
+				}
+			}
+			IF = {
+				limit = {
+					has_idea = FAL_fortress_tejas_2
+				}
+				swap_ideas = {
+					remove_idea = FAL_fortress_tejas_2
+					add_idea = FAL_fortress_tejas_3
+				}
+			}
+			IF = {
+				limit = {
+					has_idea = FAL_fortress_tejas_3
+				}
+				swap_ideas = {
+					remove_idea = FAL_fortress_tejas_3
+					add_idea = FAL_fortress_tejas_4
+				}
+			}
+			IF = {
+				limit = {
+					has_idea = FAL_fortress_tejas_4
+				}
+				swap_ideas = {
+					remove_idea = FAL_fortress_tejas_4
+					add_idea = FAL_fortress_tejas_5
+				}
+			}
 		}
 	}
 	focus = {
 		id = FAL_against_giants
 		icon = GFX
-		cost = 5.00
+		cost = 2.00
 		x = 0
 		y = 1
 		relative_position_id = FAL_arbuckle_line
@@ -2630,13 +2896,15 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			add_ideas = {
+				FAL_giants
+			}
 		}
 	}
 	focus = {
 		id = FAL_to_the_west
 		icon = GFX
-		cost = 5.00
+		cost = 2.00
 		x = 4
 		y = 1
 		relative_position_id = FAL_fortify_tejas
@@ -2646,13 +2914,13 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			add_political_power = 50
 		}
 	}
 	focus = {
 		id = FAL_strengthen_albuquerque
 		icon = GFX
-		cost = 5.00
+		cost = 2.00
 		x = 1
 		y = 1
 		relative_position_id = FAL_to_the_west
@@ -2662,13 +2930,77 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			310 = {
+				add_building_construction = {
+				    type = bunker
+				    level = 3
+				    instant_build = yes
+				    province = 1276
+				}
+				add_building_construction = {
+				    type = bunker
+				    level = 3
+				    instant_build = yes
+				    province = 6322
+				}
+				add_building_construction = {
+				    type = bunker
+				    level = 3
+				    instant_build = yes
+				    province = 10127
+				}
+			}
+			IF = {
+				limit = {
+					has_idea = FAL_fortress_tejas_0
+				}
+				swap_ideas = {
+					remove_idea = FAL_fortress_tejas_0
+					add_idea = FAL_fortress_tejas_1
+				}
+			}
+			IF = {
+				limit = {
+					has_idea = FAL_fortress_tejas_1
+				}
+				swap_ideas = {
+					remove_idea = FAL_fortress_tejas_1
+					add_idea = FAL_fortress_tejas_2
+				}
+			}
+			IF = {
+				limit = {
+					has_idea = FAL_fortress_tejas_2
+				}
+				swap_ideas = {
+					remove_idea = FAL_fortress_tejas_2
+					add_idea = FAL_fortress_tejas_3
+				}
+			}
+			IF = {
+				limit = {
+					has_idea = FAL_fortress_tejas_3
+				}
+				swap_ideas = {
+					remove_idea = FAL_fortress_tejas_3
+					add_idea = FAL_fortress_tejas_4
+				}
+			}
+			IF = {
+				limit = {
+					has_idea = FAL_fortress_tejas_4
+				}
+				swap_ideas = {
+					remove_idea = FAL_fortress_tejas_4
+					add_idea = FAL_fortress_tejas_5
+				}
+			}
 		}
 	}
 	focus = {
 		id = FAL_secure_el_paso
 		icon = GFX
-		cost = 5.00
+		cost = 2.00
 		x = -1
 		y = 1
 		relative_position_id = FAL_to_the_west
@@ -2678,13 +3010,85 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			301 = {
+				add_building_construction = {
+				    type = bunker
+				    level = 3
+				    instant_build = yes
+				    province = 4519
+				}
+			}
+			310 = {
+				add_building_construction = {
+				    type = bunker
+				    level = 3
+				    instant_build = yes
+				    province = 10504
+				}
+				add_building_construction = {
+				    type = bunker
+				    level = 3
+				    instant_build = yes
+				    province = 521
+				}
+				add_building_construction = {
+				    type = bunker
+				    level = 3
+				    instant_build = yes
+				    province = 3165
+				}
+			}
+			IF = {
+				limit = {
+					has_idea = FAL_fortress_tejas_0
+				}
+				swap_ideas = {
+					remove_idea = FAL_fortress_tejas_0
+					add_idea = FAL_fortress_tejas_1
+				}
+			}
+			IF = {
+				limit = {
+					has_idea = FAL_fortress_tejas_1
+				}
+				swap_ideas = {
+					remove_idea = FAL_fortress_tejas_1
+					add_idea = FAL_fortress_tejas_2
+				}
+			}
+			IF = {
+				limit = {
+					has_idea = FAL_fortress_tejas_2
+				}
+				swap_ideas = {
+					remove_idea = FAL_fortress_tejas_2
+					add_idea = FAL_fortress_tejas_3
+				}
+			}
+			IF = {
+				limit = {
+					has_idea = FAL_fortress_tejas_3
+				}
+				swap_ideas = {
+					remove_idea = FAL_fortress_tejas_3
+					add_idea = FAL_fortress_tejas_4
+				}
+			}
+			IF = {
+				limit = {
+					has_idea = FAL_fortress_tejas_4
+				}
+				swap_ideas = {
+					remove_idea = FAL_fortress_tejas_4
+					add_idea = FAL_fortress_tejas_5
+				}
+			}
 		}
 	}
 	focus = {
 		id = FAL_stop_the_west
 		icon = GFX
-		cost = 5.00
+		cost = 2.00
 		x = 0
 		y = 2
 		relative_position_id = FAL_to_the_west
@@ -2697,13 +3101,15 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			add_ideas = {
+				FAL_western_horde
+			}
 		}
 	}
 	focus = {
 		id = FAL_viva_tejas
 		icon = GFX
-		cost = 5.00
+		cost = 3.00
 		x = 0
 		y = 4
 		relative_position_id = FAL_fortify_tejas
@@ -2720,7 +3126,7 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			add_war_support = 0.25
 		}
 	}
 	focus = {
@@ -2730,25 +3136,35 @@ focus_tree = {
 		x = -8
 		y = 1
 		relative_position_id = FAL_tejas_first
-
+		available = {
+			OR = {
+				has_completed_focus = FAL_join_the_catholic_front
+				has_completed_focus = FAL_stay_out_of_it
+			}
+		}
 		prerequisite = {
 			focus = FAL_tejas_first
 			focus = FAL_continue_reconquista
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			add_ideas = {
+				FAL_hispanic_politics
+			}
 		}
 	}
 	focus = {
 		id = FAL_reach_out_to_the_homeland
 		icon = GFX
-		cost = 1.00
+		cost = 5.00
 		x = 0
 		y = 1
 		relative_position_id = FAL_hispanic_politics
 		available = {
-			has_completed_focus = FAL_a_grateful_ally
+			OR = { 
+				has_completed_focus = FAL_a_grateful_ally
+				has_completed_focus = FAL_a_loyal_puppet
+			}
 			NOT = {
 				has_completed_focus = FAL_economic_council_of_hispanidad
 			}
@@ -2758,13 +3174,35 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			WMX = {
+				add_opinion_modifier = {
+				    target = FAL
+				    modifier = fal_diplomacy
+				}
+			}
+			IF = {
+				limit = {
+					has_country_flag = ECH_0
+				}
+				clr_country_flag = ECH_0
+				set_country_flag = ECH_1
+			}
+			ELSE_IF = {
+				limit = {
+					has_country_flag = ECH_1
+				}
+				clr_country_flag = ECH_1
+				set_country_flag = ECH_2
+			}
+			ELSE = {
+				set_country_flag = ECH_0
+			}
 		}
 	}
 	focus = {
 		id = FAL_envoys_to_central_america
 		icon = GFX
-		cost = 1.00
+		cost = 5.00
 		x = 2
 		y = 1
 		relative_position_id =FAL_hispanic_politics
@@ -2778,13 +3216,65 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			GUA = {
+				add_opinion_modifier = {
+				    target = FAL
+				    modifier = fal_diplomacy
+				}
+			}
+			HON = {
+				add_opinion_modifier = {
+				    target = FAL
+				    modifier = fal_diplomacy
+				}
+			}
+			ELS = {
+				add_opinion_modifier = {
+				    target = FAL
+				    modifier = fal_diplomacy
+				}
+			}
+			NIC = {
+				add_opinion_modifier = {
+				    target = FAL
+				    modifier = fal_diplomacy
+				}
+			}
+			COS = {
+				add_opinion_modifier = {
+				    target = FAL
+				    modifier = fal_diplomacy
+				}
+			}
+			PAN = {
+				add_opinion_modifier = {
+				    target = FAL
+				    modifier = fal_diplomacy
+				}
+			}
+			IF = {
+				limit = {
+					has_country_flag = ECH_0
+				}
+				clr_country_flag = ECH_0
+				set_country_flag = ECH_1
+			}
+			ELSE_IF = {
+				limit = {
+					has_country_flag = ECH_1
+				}
+				clr_country_flag = ECH_1
+				set_country_flag = ECH_2
+			}
+			ELSE = {
+				set_country_flag = ECH_0
+			}
 		}
 	}
 	focus = {
 		id = FAL_shake_hands_in_south_america
 		icon = GFX
-		cost = 1.00
+		cost = 5.00
 		x = -2
 		y = 1
 		relative_position_id =FAL_hispanic_politics
@@ -2798,7 +3288,35 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			VEN = {
+				add_opinion_modifier = {
+				    target = FAL
+				    modifier = fal_diplomacy
+				}
+			}
+			COL = {
+				 add_opinion_modifier = {
+				    target = FAL
+				    modifier = fal_diplomacy
+				}
+			}
+			IF = {
+				limit = {
+					has_country_flag = ECH_0
+				}
+				clr_country_flag = ECH_0
+				set_country_flag = ECH_1
+			}
+			ELSE_IF = {
+				limit = {
+					has_country_flag = ECH_1
+				}
+				clr_country_flag = ECH_1
+				set_country_flag = ECH_2
+			}
+			ELSE = {
+				set_country_flag = ECH_0
+			}
 		}
 	}
 	focus = {
@@ -2815,7 +3333,33 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			custom_effect_tooltip = FAL_ECH_tt
+			IF = {
+				limit = {
+					has_country_flag = ECH_0
+				}
+				add_ideas = FAL_ECH_0
+			}
+			ELSE_IF = {
+				limit = {
+					has_country_flag = ECH_1
+				}
+				add_ideas = FAL_ECH_1
+			}
+			ELSE_IF = {
+				limit = {
+					has_country_flag = ECH_2
+				}
+				add_ideas = FAL_ECH_2
+			}
+			every_country = {
+				limit = {
+					FAL = { has_country_flag = ECH_0 }
+					has_opinion_modifier = fal_diplomacy
+					
+				}
+				add_ideas = FAL_ECH_0 
+			}
 		}
 	}
 	focus = {
@@ -2831,7 +3375,9 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			add_ideas = {
+				FAL_open_borders_hispanic
+			}
 		}
 	}
 	focus = {
@@ -3224,66 +3770,34 @@ focus_tree = {
 		}
 		completion_reward = {
 			set_cosmetic_tag = FAL_aztlan
-			every_state = {
-				limit = { 
-					is_core_of = PRA
+			IF = {
+				limit = {
+					OKL = {
+						exists = yes
+						is_puppet_of = FAL
+					}
 				}
-				add_core_of = ROOT
+				OKL = {
+					set_cosmetic_tag = OKL_aztlan_autonomy
+				}
 			}
 			every_state = {
 				limit = { 
-					is_core_of = UTA
+					OR = {
+						is_core_of = PRA
+						is_core_of = SIN
+						is_core_of = HOP
+						is_core_of = UTA
+						is_core_of = NAV
+						is_core_of = TOH
+						is_core_of = MOL
+						is_core_of = LAS
+					}
+					is_owned_by = FAL
 				}
-				add_core_of = ROOT
+				add_core_of = FAL
 			}
-			every_state = {
-				limit = { 
-					is_core_of = MOL
-				}
-				add_core_of = ROOT
-			}
-			every_state = {
-				limit = { 
-					is_core_of = SIN
-				}
-				add_core_of = ROOT
-			}
-			every_state = {
-				limit = { 
-					is_core_of = HOP
-				}
-				add_core_of = ROOT
-			}
-			every_state = {
-				limit = { 
-					is_core_of = NAV
-				}
-				add_core_of = ROOT
-			}
-			every_state = {
-				limit = { 
-					is_core_of = TOH
-				}
-				add_core_of = ROOT
-			}
-			every_state = {
-				limit = { 
-					is_core_of = AFO
-				}
-				add_core_of = ROOT
-			}
-			every_state = {
-				limit = { 
-					is_core_of = LAS
-				}
-				add_core_of = ROOT
-			}
-			every_state = {
-				limit = { 
-					is_core_of = FIR
-				}
-				add_core_of = ROOT
-			}
+
 		}
 	}
 	#GREATER AZTLAN
@@ -3303,10 +3817,272 @@ focus_tree = {
 		prerequisite = {
 			focus = FAL_a_loyal_puppet
 			focus = FAL_mexico_saved_from_itself
+			focus = FAL_a_grateful_ally
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
 			
+		}
+	}
+	focus = {
+		id = FAL_gut_the_south
+		icon = GFX
+		cost = 5.00
+		x = 2
+		y = 1
+		relative_position_id = FAL_towards_greater_aztlan
+		prerequisite = {
+			focus = FAL_towards_greater_aztlan
+		}
+		#available = { NOT = { country_exists = TEX } }
+		completion_reward = {
+			IF = {
+				limit = {
+					has_global_flag = Dixie_Collapse_Global
+				}
+				create_wargoal = {
+				    type = annex_everything
+				    target = KKK
+				}
+				create_wargoal = {
+				    type = annex_everything
+				    target = CSA
+				}
+				create_wargoal = {
+				    type = annex_everything
+				    target = ZIO
+				}
+				create_wargoal = {
+				    type = annex_everything
+				    target = AFR
+				}
+				create_wargoal = {
+				    type = annex_everything
+				    target = CSB
+				}
+				create_wargoal = {
+				    type = annex_everything
+				    target = LGB
+				}
+				create_wargoal = {
+				    type = annex_everything
+				    target = APA
+				}
+				create_wargoal = {
+				    type = annex_everything
+				    target = FLO
+				}
+			}
+			ELSE = {
+				create_wargoal = {
+				    type = annex_everything
+				    target = CSA
+				}
+				create_wargoal = {
+				    type = annex_everything
+				    target = FLO
+				}
+			}
+		}
+	}
+	focus = {
+		id = FAL_carve_the_south
+		icon = GFX
+		cost = 5.00
+		x = 0
+		y = 1
+		relative_position_id = FAL_gut_the_south
+		available = {
+			owns_state = 506
+			owns_state = 580
+			CSA = {
+				exists = no
+			}
+			FLO = {
+				exists = no
+			}
+		}
+		prerequisite = {
+			focus = FAL_gut_the_south
+		}
+		#available = { NOT = { country_exists = TEX } }
+		completion_reward = {
+			312 = {
+				remove_core_of = CSA
+			}
+			release_puppet = CSA
+			CSA = {
+				set_cosmetic_tag = CSA_aztlan
+			}
+			every_state = {
+				limit = {
+					OR = {
+						state = 611
+						state = 505
+						state = 315
+						state = 316
+						state = 307
+						state = 612
+						state = 609
+						state = 279
+						state = 536
+						state = 535
+						state = 267
+						state = 269
+						state = 269
+						state = 317
+						state = 407
+						state = 320
+						state = 420
+						state = 322
+						state = 323
+						state = 327
+						state = 603
+						state = 324
+						state = 602
+						state = 579
+						state = 346
+						state = 353
+						state = 583
+						state = 339
+						state = 584
+						state = 582
+						state = 580
+						state = 581
+						state = 345
+						state = 578
+					}
+				}
+				add_core_of = FAL
+				transfer_state_to = FAL
+			}
+		}
+	}
+	focus = {
+		id = FAL_eliminate_the_racist
+		icon = GFX
+		cost = 5.00
+		x = 0
+		y = 1
+		relative_position_id = FAL_towards_greater_aztlan
+		prerequisite = {
+			focus = FAL_towards_greater_aztlan
+		}
+		#available = { NOT = { country_exists = TEX } }
+		completion_reward = {
+			create_wargoal = {
+			    type = annex_everything
+			    target = USA
+			}
+			create_wargoal = {
+			    type = annex_everything
+			    target = IDA
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = MON
+			}
+		}
+	}
+	focus = {
+		id = FAL_wipe_the_slate_clean
+		icon = GFX
+		cost = 5.00
+		x = 0
+		y = 1
+		relative_position_id = FAL_eliminate_the_racist
+		available = {
+			USA = {
+				exists = no
+			}
+			IDA = {
+				exists = no
+			}
+			MON = {
+				exists = no
+			}
+			NPA = {
+				exists = no
+			}
+			owns_state = 416
+			owns_state = 568
+			owns_state = 86
+			owns_state = 207
+		}
+		prerequisite = {
+			focus = FAL_eliminate_the_racist
+		}
+		#available = { NOT = { country_exists = TEX } }
+		completion_reward = {
+			
+			every_state = {
+				limit = {
+					OR = {
+						is_core_of = USA
+						is_core_of = IDA
+						is_core_of = MON
+						is_core_of = NPA	
+					}
+					is_owned_by = FAL	
+					NOT = {
+						OR = { 
+							state = 194
+							state = 196
+							state = 215
+							state = 268
+							state = 246
+							state = 218
+							state = 207
+							state = 269
+							state = 268
+							state = 417
+							state = 354
+							state = 415
+							state = 562
+							state = 563
+							state = 522
+							state = 568
+							state = 569
+							state = 65
+							state = 66
+							state = 99
+						}
+					}
+				}
+				add_core_of = FAL
+				transfer_state_to = FAL
+				remove_core_of = IDA
+				remove_core_of = MON
+				remove_core_of = NPA
+			}
+			release_puppet = NPA
+			release_puppet = IDA
+		}
+	}
+	focus = {
+		id = FAL_dissolve_minnesota
+		icon = GFX
+		cost = 5.00
+		x = -2
+		y = 1
+		relative_position_id = FAL_towards_greater_aztlan
+		prerequisite = {
+			focus = FAL_towards_greater_aztlan
+		}
+		#available = { NOT = { country_exists = TEX } }
+		completion_reward = {
+			create_wargoal = {
+			    type = annex_everything
+			    target = MIN
+			}
+			create_wargoal = {
+			    type = annex_everything
+			    target = MNS
+			}
+			create_wargoal = {
+			    type = annex_everything
+			    target = MIL
+			}
 		}
 	}
 	#ECON TREE
@@ -3316,7 +4092,7 @@ focus_tree = {
 		cost = 5
 		x = 50
 		y = 0
-		available = { has_completed_focus = FAL_texas_restored }
+		available = { has_completed_focus = FAL_our_unification_decree }
 		completion_reward = {
 			add_tech_bonus = {
 			    bonus = 1.5
