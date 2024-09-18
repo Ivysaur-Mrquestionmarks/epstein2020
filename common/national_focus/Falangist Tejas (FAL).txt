@@ -345,7 +345,6 @@ focus_tree = {
 			focus = FAL_our_catalonia
 		}
 		completion_reward = {
-			set_cosmetic_tag = TEX
 			country_event = stonetoss.2
 			remove_ideas = TEX_reclaim_texas
 			hidden_effect = {
@@ -1612,9 +1611,20 @@ focus_tree = {
 				FAL_regionalism
 			}
 			release_puppet = OKL
-			OKL = {
-				set_cosmetic_tag = OKL_tejan_autonomy
+			IF = {
+				limit = {
+					has_cosmetic_tag = FAL_aztlan
+				}
+				OKL = {
+					set_cosmetic_tag = OKL_aztlan_autonomy
+				}
 			}
+			ELSE = {
+				OKL = {
+					set_cosmetic_tag = OKL_tejan_autonomy
+				}
+			}
+			
 			hidden_effect = {
 				251 = {
 					transfer_state_to = FAL
@@ -1943,7 +1953,6 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			add_stability = 0.1
 			add_ideas = {
 				FAL_cleanse
 			}
@@ -1968,21 +1977,6 @@ focus_tree = {
 			}
 			43 = {
 				add_manpower = -13930
-			}
-			if = {
-				limit = {
-					has_idea = FAL_cleanse
-				}
-				swap_ideas = {
-					remove_idea = FAL_cleanse
-					add_idea = FAL_cleanse_1
-				}
-			}
-			else = {
-				swap_ideas = {
-					remove_idea = FAL_cleanse_1
-					add_idea = FAL_cleanse_2
-				}
 			}
 		}
 	}
@@ -2009,21 +2003,6 @@ focus_tree = {
 			}
 			306 = {
 				add_manpower = -34520
-			}
-			if = {
-				limit = {
-					has_idea = FAL_cleanse
-				}
-				swap_ideas = {
-					remove_idea = FAL_cleanse
-					add_idea = FAL_cleanse_1
-				}
-			}
-			else = {
-				swap_ideas = {
-					remove_idea = FAL_cleanse_1
-					add_idea = FAL_cleanse_2
-				}
 			}
 		}
 	}	
@@ -2065,7 +2044,7 @@ focus_tree = {
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
 			remove_ideas = {
-				FAL_cleanse_2
+				FAL_cleanse
 			}
 			remove_ideas = {
 				FAL_tattered_industry_4
@@ -2161,6 +2140,11 @@ focus_tree = {
 		x = 0
 		y = 2
 		relative_position_id = FAL_stay_out_of_it
+		bypass = {
+			WMX = {
+				exists = no
+			}
+		}
 		prerequisite = {
 			focus = FAL_condemn_silicon
 			focus = FAL_take_in_refugees
@@ -2177,6 +2161,11 @@ focus_tree = {
 		x = 0
 		y = 1
 		relative_position_id = FAL_organize_volunteers
+		bypass = {
+			WMX = {
+				exists = no
+			}
+		}
 		prerequisite = {
 			focus = FAL_organize_volunteers
 		}
@@ -2198,6 +2187,11 @@ focus_tree = {
 		x = -3
 		y = 1
 		relative_position_id = FAL_intervention_in_mexico
+		available = {
+			WMX = {
+				exists = yes
+			}
+		}
 		mutually_exclusive = {
 			focus = FAL_mop_up_the_mess
 		}
@@ -2318,6 +2312,11 @@ focus_tree = {
 			FAL = {
 				set_faction_leader = yes
 			}
+			WMX = {
+				transfer_state = 79
+				transfer_state = 641
+				transfer_state = 659
+			}
 			add_political_power = 100
 		}
 	}
@@ -2415,6 +2414,10 @@ focus_tree = {
 			    type = annex_everything
 			    target = ADF
 			}
+			create_wargoal = {
+			    type = annex_everything
+			    target = PVB
+			}
 		}
 	}
 	focus = {
@@ -2424,6 +2427,9 @@ focus_tree = {
 		x = 0
 		y = 3
 		relative_position_id =  FAL_mop_up_the_mess
+		available = {
+			owns_state = 652
+		}
 		mutually_exclusive = {
 			focus = FAL_join_the_catholic_front
 		}
@@ -3356,9 +3362,22 @@ focus_tree = {
 				limit = {
 					FAL = { has_country_flag = ECH_0 }
 					has_opinion_modifier = fal_diplomacy
-					
 				}
 				add_ideas = FAL_ECH_0 
+			}
+			every_country = {
+				limit = {
+					FAL = { has_country_flag = ECH_1 }
+					has_opinion_modifier = fal_diplomacy
+				}
+				add_ideas = FAL_ECH_1 
+			}
+			every_country = {
+				limit = {
+					FAL = { has_country_flag = ECH_2 }
+					has_opinion_modifier = fal_diplomacy
+				}
+				add_ideas = FAL_ECH_2
 			}
 		}
 	}
@@ -3453,6 +3472,10 @@ focus_tree = {
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
 			add_war_support = 0.1
+			swap_ideas = {
+				remove_idea = FAL_glorify_hispanidad
+				add_idea = FAL_hispanidad_close_0
+			}
 		}
 	}
 	focus = {
@@ -3821,7 +3844,10 @@ focus_tree = {
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
-			
+			swap_ideas = {
+				remove_idea = FAL_hispanidad_close_0
+				add_idea = FAL_hispanidad_close_1
+			}
 		}
 	}
 	focus = {
@@ -3913,6 +3939,16 @@ focus_tree = {
 			release_puppet = CSA
 			CSA = {
 				set_cosmetic_tag = CSA_aztlan
+				create_country_leader = {
+					name = "Antonio Molina"
+					desc = ""
+					picture = "gfx/leaders/TEX/antonio_molina.dds"
+					expire = "2060.1.1.1"
+					ideology = fascism
+					traits = {
+						local_lawyer
+					}
+				}
 			}
 			every_state = {
 				limit = {
@@ -3962,7 +3998,7 @@ focus_tree = {
 		id = FAL_eliminate_the_racist
 		icon = GFX
 		cost = 5.00
-		x = 0
+		x = -1
 		y = 1
 		relative_position_id = FAL_towards_greater_aztlan
 		prerequisite = {
@@ -3988,7 +4024,7 @@ focus_tree = {
 		id = FAL_wipe_the_slate_clean
 		icon = GFX
 		cost = 5.00
-		x = 0
+		x = 1
 		y = 1
 		relative_position_id = FAL_eliminate_the_racist
 		available = {
@@ -4057,17 +4093,35 @@ focus_tree = {
 			}
 			release_puppet = NPA
 			release_puppet = IDA
+			IF = {
+				limit = {
+					OKL = {
+						exists = yes
+					}
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 253
+							state = 254
+							state = 255
+							state = 257
+						}
+					}
+					transfer_state_to = OKL
+				}
+			}
 		}
 	}
 	focus = {
 		id = FAL_dissolve_minnesota
 		icon = GFX
 		cost = 5.00
-		x = -2
+		x = -1
 		y = 1
-		relative_position_id = FAL_towards_greater_aztlan
+		relative_position_id = FAL_eliminate_the_racist
 		prerequisite = {
-			focus = FAL_towards_greater_aztlan
+			focus = FAL_eliminate_the_racist
 		}
 		#available = { NOT = { country_exists = TEX } }
 		completion_reward = {
@@ -4082,6 +4136,339 @@ focus_tree = {
 			create_wargoal = {
 			    type = annex_everything
 			    target = MIL
+			}
+			every_state = {
+				limit = {
+					is_core_of = MIN
+				}
+				add_core_of = FAL
+			}
+		}
+	}
+	focus = {
+		id = FAL_dominate_economics
+		icon = GFX
+		cost = 5.00
+		x = 0
+		y = 2
+		relative_position_id = FAL_eliminate_the_racist
+		available = {
+			has_completed_focus = FAL_economic_council_of_hispanidad
+		}
+		prerequisite = {
+			focus = FAL_dissolve_minnesota
+		}
+		prerequisite = {
+			focus = FAL_wipe_the_slate_clean
+		}
+		prerequisite = {
+			focus = FAL_carve_the_south
+		}
+		mutually_exclusive = {
+			focus = FAL_bring_into_fold
+		}
+		#available = { NOT = { country_exists = TEX } }
+		completion_reward = {
+			custom_effect_tooltip = FAL_ECH_puppet_tt
+			hidden_effect = {
+				IF = {
+					limit = {
+						WMX = {
+							OR = {
+								has_idea = FAL_ECH_0
+								has_idea = FAL_ECH_1
+								has_idea = FAL_ECH_2
+							}
+						}
+					}
+					puppet = WMX
+				}
+				IF = {
+					limit = {
+						GUA = {
+							OR = {
+								has_idea = FAL_ECH_0
+								has_idea = FAL_ECH_1
+								has_idea = FAL_ECH_2
+							}
+						}
+					}
+					puppet = GUA
+				}
+				IF = {
+					limit = {
+						HON = {
+							OR = {
+								has_idea = FAL_ECH_0
+								has_idea = FAL_ECH_1
+								has_idea = FAL_ECH_2
+							}
+						}
+					}
+					puppet = HON
+				}
+				IF = {
+					limit = {
+						ELS = {
+							OR = {
+								has_idea = FAL_ECH_0
+								has_idea = FAL_ECH_1
+								has_idea = FAL_ECH_2
+							}
+						}
+					}
+					puppet = ELS
+				}
+				IF = {
+					limit = {
+						NIC = {
+							OR = {
+								has_idea = FAL_ECH_0
+								has_idea = FAL_ECH_1
+								has_idea = FAL_ECH_2
+							}
+						}
+					}
+					puppet = NIC
+				}
+				IF = {
+					limit = {
+						COS = {
+							OR = {
+								has_idea = FAL_ECH_0
+								has_idea = FAL_ECH_1
+								has_idea = FAL_ECH_2
+							}
+						}
+					}
+					puppet = COS
+				}
+				IF = {
+					limit = {
+						PAN = {
+							OR = {
+								has_idea = FAL_ECH_0
+								has_idea = FAL_ECH_1
+								has_idea = FAL_ECH_2
+							}
+						}
+					}
+					puppet = PAN
+				}
+				IF = {
+					limit = {
+						COL = {
+							OR = {
+								has_idea = FAL_ECH_0
+								has_idea = FAL_ECH_1
+								has_idea = FAL_ECH_2
+							}
+						}
+					}
+					puppet = COL
+				}
+				IF = {
+					limit = {
+						VEN = {
+							OR = {
+								has_idea = FAL_ECH_0
+								has_idea = FAL_ECH_1
+								has_idea = FAL_ECH_2
+							}
+						}
+					}
+					puppet = VEN
+				}
+				IF = {
+					limit = {
+						CUB = {
+							OR = {
+								has_idea = FAL_ECH_0
+								has_idea = FAL_ECH_1
+								has_idea = FAL_ECH_2
+							}
+						}
+					}
+					puppet = CUB
+				}
+				IF = {
+					limit = {
+						DOM = {
+							OR = {
+								has_idea = FAL_ECH_0
+								has_idea = FAL_ECH_1
+								has_idea = FAL_ECH_2
+							}
+						}
+					}
+					puppet = DOM
+				}
+			}
+		}
+	}
+	focus = {
+		id = FAL_bring_into_fold
+		icon = GFX
+		cost = 5.00
+		x = 2
+		y = 2
+		relative_position_id = FAL_eliminate_the_racist
+		prerequisite = {
+			focus = FAL_dissolve_minnesota
+		}
+		prerequisite = {
+			focus = FAL_wipe_the_slate_clean
+		}
+		prerequisite = {
+			focus = FAL_carve_the_south
+		}
+		mutually_exclusive = {
+			focus = FAL_dominate_economics
+		}
+		#available = { NOT = { country_exists = TEX } }
+		completion_reward = {
+			create_wargoal = {
+			    type = annex_everything
+			    target = GUA
+			}
+			create_wargoal = {
+			    type = annex_everything
+			    target = HON
+			}
+			create_wargoal = {
+			    type = annex_everything
+			    target = ELS
+			}
+			create_wargoal = {
+			    type = annex_everything
+			    target = NIC
+			}
+			create_wargoal = {
+			    type = annex_everything
+			    target = COS
+			}
+			create_wargoal = {
+			    type = annex_everything
+			    target = CHI
+			}
+			create_wargoal = {
+			    type = annex_everything
+			    target = PAN
+			}
+			create_wargoal = {
+			    type = annex_everything
+			    target = COL
+			}
+			create_wargoal = {
+			    type = annex_everything
+			    target = VEN
+			}
+			create_wargoal = {
+			    type = annex_everything
+			    target = CUB
+			}
+			create_wargoal = {
+			    type = annex_everything
+			    target = DOM
+			}
+		}
+	}
+	focus = {
+		id = FAL_hispanidad_realized
+		icon = GFX
+		cost = 5.00
+		x = 0
+		y = 1
+		relative_position_id = FAL_bring_into_fold
+		available = {
+			IF = {
+				limit = {
+					#has_completed_focus = FAL_bring_into_fold
+				}
+				GUA = {
+					all_core_state = {
+						is_owned_by = FAL
+					}
+				}
+				HON = {
+					all_core_state = {
+						is_owned_by = FAL
+					}
+				}
+				ELS = {
+					all_core_state = {
+						is_owned_by = FAL
+					}
+				}
+				NIC = {
+					all_core_state = {
+						is_owned_by = FAL
+					}
+				}
+				COS = {
+					all_core_state = {
+						is_owned_by = FAL
+					}
+				}
+				CHI = {
+					all_core_state = {
+						is_owned_by = FAL
+					}
+				}
+				PAN = {
+					all_core_state = {
+						is_owned_by = FAL
+					}
+				}
+				COL = {
+					all_core_state = {
+						is_owned_by = FAL
+					}
+				}
+				VEN = {
+					all_core_state = {
+						is_owned_by = FAL
+					}
+				}
+				CUB = {
+					all_core_state = {
+						is_owned_by = FAL
+					}
+				}
+				DOM = {
+					all_core_state = {
+						is_owned_by = FAL
+					}
+				}
+			}	
+		}
+		prerequisite = {
+			focus = FAL_bring_into_fold
+		}
+		#available = { NOT = { country_exists = TEX } }
+		completion_reward = {
+			IF = {
+				limit = {
+					#has_completed_focus = FAL_bring_into_fold
+				}
+				every_state = {
+					limit = {
+					 	OR = {
+					 		is_core_of = GUA
+					 		is_core_of = HON
+					 		is_core_of = ELS
+					 		is_core_of = NIC
+					 		is_core_of = COS
+					 		is_core_of = CHI
+					 		is_core_of = PAN
+					 		is_core_of = COL
+					 		is_core_of = VEN
+					 		is_core_of = CUB
+					 		is_core_of = DOM
+					 	}
+					}
+					add_core_of = FAL
+				}
 			}
 		}
 	}
