@@ -255,3 +255,84 @@ country_event = {
 		}
 	}
 }
+#Join ECH?
+country_event = {
+	id = stonetoss.12
+	title = stonetoss.12.t
+	desc = stonetoss.12.d
+	#picture =
+	is_triggered_only = yes
+
+	option = { #Si
+		name = stonetoss.12.a
+		add_dynamic_modifier = { modifier = FAL_ech }
+		every_country = {
+			limit = {
+				OR = {
+					TAG = XMC
+					TAG = GUA
+					TAG = HON
+					TAG = ELS
+					TAG = NIC
+					TAG = COS
+					TAG = CHI
+					TAG = PAN
+					TAG = COL
+					TAG = VEN
+					TAG = CUB
+					TAG = DOM
+					TAG = FAL
+				}	
+			}
+			add_to_variable = {
+				var = ech_strength
+				value = 1
+				tooltip = strength_ech_1_tt
+			}
+			subtract_from_variable = {
+				var = ech_consumer
+				value = 0.02
+			}
+			add_to_variable = {
+				var = ech_factory
+				value = 0.05
+			}
+			add_to_variable = {
+				var = ech_construction
+				value = 0.03
+			}
+		}
+		ai_chance = {
+			base = 50
+
+			modifier = {
+				has_opinion = {
+				    target = FAL
+				    value > 50
+				}
+				add = 10
+			}
+			modifier = {
+				has_opinion = {
+				    target = FAL
+				    value > 70
+				}
+				add = 10
+			}
+			modifier = {
+				has_opinion = {
+				    target = FAL
+				    value > 90
+				}
+				add = 10
+			}
+		}
+	}
+	option = { #NO
+		name = stonetoss.12.b
+
+		ai_chance = {
+			base = 50
+		}
+	}
+}
