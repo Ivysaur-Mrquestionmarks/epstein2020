@@ -38,7 +38,7 @@ focus_tree = {
 		id = GLA_the_ancapistan_way
 		icon = GFX_goal_GLA_the_ancapistan_way
 		cost = 1
-		x = 7
+		x = 6
 		y = 1
 		allow_branch = {
 			NOT = {
@@ -58,13 +58,14 @@ focus_tree = {
 		}
 		completion_reward = {
 			add_political_power = 15
+			mark_focus_tree_layout_dirty = yes
 		}
 	}
 	focus = {
 		id = GLA_the_jorgensen_way
 		icon = GFX_goal_GLA_the_jorgensen_way
 		cost = 1
-		x = -7
+		x = -6
 		y = 1
 		allow_branch = {
 			NOT = {
@@ -84,6 +85,7 @@ focus_tree = {
 		}
 		completion_reward = {
 			add_political_power = 15
+			mark_focus_tree_layout_dirty = yes
 		}
 	}
 	focus = {
@@ -113,6 +115,7 @@ focus_tree = {
 		}
 		completion_reward = {
 			add_political_power = 15
+			mark_focus_tree_layout_dirty = yes
 		}
 	}
     ###########Jo Jorgensen
@@ -128,9 +131,9 @@ focus_tree = {
 		}
 		completion_reward = {
 			add_popularity = {
-       				ideology = libertarian_right
-        			popularity = 0.05
-       			}
+       			ideology = libertarian_right
+        		popularity = 0.05
+       		}
         		swap_ideas = {
 			    remove_idea = Unpopolar_Libertarian_Administration
 			    add_idea = Unpopolar_Libertarian_Administration_2
@@ -149,6 +152,10 @@ focus_tree = {
 		}
 		completion_reward = {
 			add_political_power = 25
+			add_popularity = {
+       			ideology = libertarian_right
+        		popularity = 0.05
+       		}
 		}
 	}
 	focus = {
@@ -166,7 +173,7 @@ focus_tree = {
        				ideology = libertarian_right
         			popularity = 0.05
         		}
-        		swap_ideas = {
+        	swap_ideas = {
 				remove_idea = Unpopolar_Libertarian_Administration_2
 				add_idea = Unpopolar_Libertarian_Administration_3
 			}
@@ -230,7 +237,7 @@ focus_tree = {
 		x = 0
 		y = 2
 		relative_position_id = GLA_the_jorgensen_way
-		cost = 5
+		cost = 3
 		prerequisite = {
 			focus = GLA_the_jorgensen_way
 		}
@@ -278,8 +285,24 @@ focus_tree = {
 		}
 		completion_reward = {
 		add_stability = 0.05
-
 		add_political_power = -35
+        random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2	
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 2
+    					instant_build = yes
+				}
+			}
+		random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_building_construction = {
+    					type = infrastructure
+    					level = 1
+    					instant_build = yes
+				}
+			}
 		}
 	}
 	focus = {
@@ -332,7 +355,6 @@ focus_tree = {
         			ideology = libertarian_right
         			popularity = 0.05
         		}
-		
 			add_stability = 0.05
 		}
 	}
@@ -357,7 +379,7 @@ focus_tree = {
 		id = GLA_fix_the_mistakes_of_jorgensen
 		icon = GFX_goal_GLA_fix_the_mistakes_of_jorgensen
 		x = 0
-		y = 3
+		y = 2
 		allow_branch = {
 			NOT = {
 				has_completed_focus = GLA_the_boogaloo_coup			
@@ -379,96 +401,21 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = GLA_work_with_the_people
-		icon = GFX_goal_GLA_work_with_the_people
-		x = -1
-		y = 1
-		mutually_exclusive = { focus = GLA_work_with_the_corporations }
-		relative_position_id = GLA_make_a_functing_government
-		cost = 5
-		prerequisite = {
-			focus = GLA_make_a_functing_government
-		}
-		completion_reward = {
-			add_stability = 0.05
-			add_popularity = {
-        			ideology = libertarian_right
-       				popularity = 0.05
-        		}
-
-		}
-	}
-	focus = {
-		id = GLA_work_with_the_corporations
-		icon = GFX_goal_GLA_work_with_the_corporations
-		x = 1
-		y = 1
-		mutually_exclusive = { focus = GLA_work_with_the_people }
-		relative_position_id = GLA_make_a_functing_government
-		cost = 5
-		prerequisite = {
-			focus = GLA_make_a_functing_government
-		}
-		completion_reward = {
-			add_political_power = 20
-			random_controlled_state = {
-				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
-				add_extra_state_shared_building_slots = 2		
-				add_building_construction = {
-    					type = industrial_complex
-    					level = 2
-    					instant_build = yes
-				}
-			}	
-		}
-	}
-	focus = {
-		id = GLA_keep_the_current_gun_laws
-		icon = GFX_goal_GLA_keep_the_current_gun_laws
-		x = -1
-		y = 1
-		mutually_exclusive = { focus = GLA_more_deregulation }
-		relative_position_id = GLA_stablize_the_nation
-		cost = 6
-		prerequisite = {
-			focus = GLA_stablize_the_nation
-		}
-		completion_reward = {
-			add_political_power = 10
-		}
-	}
-	focus = {
-		id = GLA_more_deregulation
-		icon = GFX_goal_GLA_more_deregulation
-		x = 1
-		y = 1
-		mutually_exclusive = { focus = GLA_keep_the_current_gun_laws }
-		relative_position_id = GLA_stablize_the_nation
-		cost = 6
-		prerequisite = {
-			focus = GLA_stablize_the_nation
-		}
-		completion_reward = {
-			add_ideas = GLA_more_gun_rights
-		}
-	}
-	focus = {
 		id = GLA_enshrine_the_second_amendment
 		icon = GFX_goal_GLA_enshrine_the_second_amendment
 		x = 1
 		y = 1
-		relative_position_id = GLA_keep_the_current_gun_laws
+		relative_position_id = GLA_stablize_the_nation
 		cost = 3
 		prerequisite = {
-			focus = GLA_more_deregulation
-			focus = GLA_keep_the_current_gun_laws
+			focus = GLA_stablize_the_nation
 		}
 		completion_reward = {
+		add_war_support = 0.05
 			add_popularity = {
-        			ideology = libertarian_right
-        			popularity = 0.03
-       			}
-
+        		ideology = libertarian_right
+        		popularity = 0.05
+       		}
 		}
 	}
 	focus = {
@@ -476,17 +423,17 @@ focus_tree = {
 		icon = GFX_goal_GLA_a_true_libertarian_government
 		x = -1
 		y = 1
-		relative_position_id = GLA_work_with_the_corporations
+		relative_position_id = GLA_make_a_functing_government
 		cost = 3
 		prerequisite = {
-			focus = GLA_work_with_the_people
-			focus = GLA_work_with_the_corporations
+			focus = GLA_make_a_functing_government
 		}
 		completion_reward = {
+		add_political_power = 25
 			add_popularity = {
-        			ideology = libertarian_right
-        			popularity = 0.03
-        		}
+        		ideology = libertarian_right
+        		popularity = 0.05
+        	}
 
 		}
 	}
@@ -503,7 +450,7 @@ focus_tree = {
 		}
 		completion_reward = {
 			add_political_power = -75
-       			remove_ideas = Inneffective_Government
+       		remove_ideas = Inneffective_Government
 		}
 	}
 	focus = {
@@ -517,6 +464,7 @@ focus_tree = {
 			focus = GLA_the_ancapistan_way
 		}
 		completion_reward = {
+		add_stability_factor = 0.05
 			add_popularity = {
         			ideology = libertarian_right
         			popularity = 0.05
@@ -537,10 +485,10 @@ focus_tree = {
 		completion_reward = {
 			random_controlled_state = {
 				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
-				add_extra_state_shared_building_slots = 2	
+				add_extra_state_shared_building_slots = 3	
 				add_building_construction = {
     					type = industrial_complex
-    					level = 2
+    					level = 3
     					instant_build = yes
 				}
 			}	
@@ -557,6 +505,7 @@ focus_tree = {
 			focus = GLA_appease_moderate_libertarians
 		}
 		completion_reward = {
+		add_political_power = 35
 			add_popularity = {
         			ideology = libertarian_right
         			popularity = 0.05
@@ -611,7 +560,7 @@ focus_tree = {
 			add_tech_bonus = {
         			bonus = 0.3
         			uses = 3
-        			category = radar_tech
+        			category = electronics
         		}
 
 		}
@@ -645,22 +594,881 @@ focus_tree = {
 
 		}
 	}
+	###########Libertarian Politics
+	focus = {
+		id = GLA_the_second_amendment
+		icon = GFX_goal_GLA_libertarian_social_policies
+		x = -3
+		y = 1
+		relative_position_id = GLA_fix_the_mistakes_of_jorgensen
+		cost = 5
+		prerequisite = {
+			focus = GLA_fix_the_mistakes_of_jorgensen
+			focus = GLA_bring_stablity_in_the_great_lakes
+		}
+		completion_reward = {
+		add_ideas = GLA_our_second_amendment_rights
+		}
+	}
+	focus = {
+		id = GLA_work_with_the_nra
+		icon = GFX_goal_GLA_libertarian_social_policies
+		x = 0
+		y = 2
+		relative_position_id = GLA_the_second_amendment
+		cost = 3
+		prerequisite = {
+			focus = GLA_loosen_gun_laws
+			focus = GLA_no_restrictions
+		}
+		prerequisite = {
+			focus = GLA_the_second_amendment
+		}
+		completion_reward = {
+		add_political_power = 15
+		add_equipment_to_stockpile = {
+        type = infantry_equipment
+        amount = 850
+        producer = GLA
+        }
+
+		}
+	}
+	focus = {
+		id = GLA_loosen_gun_laws
+		icon = GFX_goal_GLA_libertarian_social_policies
+		x = -3
+		y = 1
+		mutually_exclusive = { focus = GLA_no_restrictions }
+		relative_position_id = GLA_the_second_amendment
+		cost = 8
+		prerequisite = {
+			focus = GLA_the_second_amendment
+		}
+		prerequisite = {
+			focus = GLA_zero_government_intervention
+		}
+		prerequisite = {
+			focus = GLA_press_freedom
+		}
+		completion_reward = {
+		swap_ideas = {
+				remove_idea = GLA_our_second_amendment_rights
+				add_idea = GLA_our_second_amendment_rights_2
+			}
+		}
+	}
+	focus = {
+		id = GLA_careful_deregulation
+		icon = GFX_goal_GLA_libertarian_social_policies
+		x = 0
+		y = 2
+		relative_position_id = GLA_loosen_gun_laws
+		cost = 8
+		prerequisite = {
+			focus = GLA_loosen_gun_laws
+		}
+		completion_reward = {
+		swap_ideas = {
+				remove_idea = GLA_our_second_amendment_rights_2
+				add_idea = GLA_our_second_amendment_rights_3
+			}
+		}
+	}
+	focus = {
+		id = GLA_no_restrictions
+		icon = GFX_goal_GLA_libertarian_social_policies
+		x = -1
+		y = 1
+		mutually_exclusive = { focus = GLA_loosen_gun_laws }
+		relative_position_id = GLA_the_second_amendment
+		cost = 8
+		prerequisite = {
+			focus = GLA_the_second_amendment
+		}
+		prerequisite = {
+			focus = GLA_zero_government_intervention
+		}
+		prerequisite = {
+			focus = GLA_press_freedom
+		}
+		completion_reward = {
+		swap_ideas = {
+				remove_idea = GLA_our_second_amendment_rights
+				add_idea = GLA_no_gun_restrictions
+			}
+		}
+	}
+	focus = {
+		id = GLA_guns_deserve_freedom_too
+		icon = GFX_goal_GLA_libertarian_social_policies
+		x = 0
+		y = 2
+		relative_position_id = GLA_no_restrictions
+		cost = 8
+		prerequisite = {
+			focus = GLA_no_restrictions
+		}
+		completion_reward = {
+		swap_ideas = {
+				remove_idea = GLA_no_gun_restrictions
+				add_idea = GLA_no_gun_restrictions_2
+			}
+		}
+	}
+	focus = {
+		id = GLA_libertarian_social_policies
+		icon = GFX_goal_GLA_libertarian_social_policies
+		x = -9
+		y = 1
+		relative_position_id = GLA_fix_the_mistakes_of_jorgensen
+		cost = 2
+		prerequisite = {
+			focus = GLA_fix_the_mistakes_of_jorgensen
+			focus = GLA_bring_stablity_in_the_great_lakes
+		}
+		completion_reward = {
+		add_political_power = -10
+		}
+	}
+	focus = {
+		id = GLA_connect_with_the_youth
+		icon = GFX_goal_GLA_libertarian_social_policies
+		x = 0
+		y = 2
+		relative_position_id = GLA_libertarian_social_policies
+		cost = 5
+		prerequisite = {
+			focus = GLA_libertarian_social_policies
+		}
+		completion_reward = {
+		add_popularity = {
+       			ideology = libertarian_right
+        		popularity = 0.05
+        	}
+		}
+	}
+	focus = {
+		id = GLA_libertarian_conservatism
+		icon = GFX_goal_GLA_libertarian_social_policies
+		x = -1
+		y = 1
+		mutually_exclusive = { focus = GLA_libertarian_progressivism }
+		relative_position_id = GLA_libertarian_social_policies
+		cost = 8
+		prerequisite = {
+			focus = GLA_libertarian_social_policies
+		}
+		completion_reward = {
+		add_ideas = GLA_libertarian_conservatism
+		}
+	}
+	focus = {
+		id = GLA_preserve_american_tradtions
+		icon = GFX_goal_GLA_libertarian_social_policies
+		x = 0
+		y = 2
+		relative_position_id = GLA_libertarian_conservatism
+		cost = 5
+		prerequisite = {
+			focus = GLA_libertarian_conservatism
+		}
+		completion_reward = {
+		add_popularity = {
+       			ideology = libertarian_right
+        		popularity = 0.05
+        	}
+		add_popularity = {
+       			ideology = republican
+        		popularity = 0.05
+        	}
+		}
+	}
+	focus = {
+		id = GLA_libertarian_progressivism
+		icon = GFX_goal_GLA_libertarian_social_policies
+		x = 1
+		y = 1
+		mutually_exclusive = { focus = GLA_libertarian_conservatism }
+		relative_position_id = GLA_libertarian_social_policies
+		cost = 8
+		prerequisite = {
+			focus = GLA_libertarian_social_policies
+		}
+		completion_reward = {
+		add_ideas = GLA_libertarian_progressivism
+		}
+	}
+	focus = {
+		id = GLA_lgbtq_rights
+		icon = GFX_goal_GLA_libertarian_social_policies
+		x = 0
+		y = 2
+		relative_position_id = GLA_libertarian_progressivism
+		cost = 5
+		prerequisite = {
+			focus = GLA_libertarian_progressivism
+		}
+		completion_reward = {
+		add_popularity = {
+       			ideology = libertarian_right
+        		popularity = 0.05
+        	}
+		add_popularity = {
+       			ideology = democrat
+        		popularity = 0.05
+        	}
+		}
+	}
+	focus = {
+		id = GLA_zero_government_intervention
+		icon = GFX_goal_GLA_libertarian_social_policies
+		x = -7
+		y = 1
+		relative_position_id = GLA_fix_the_mistakes_of_jorgensen
+		cost = 8
+		prerequisite = {
+			focus = GLA_fix_the_mistakes_of_jorgensen
+			focus = GLA_bring_stablity_in_the_great_lakes
+		}
+		completion_reward = {
+		random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2	
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 2
+    					instant_build = yes
+				}
+			}
+		random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2	
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 2
+    					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = GLA_press_freedom
+		icon = GFX_goal_GLA_libertarian_social_policies
+		x = -5
+		y = 1
+		relative_position_id = GLA_fix_the_mistakes_of_jorgensen
+		cost = 5
+		prerequisite = {
+			focus = GLA_fix_the_mistakes_of_jorgensen
+			focus = GLA_bring_stablity_in_the_great_lakes
+		}
+		completion_reward = {
+		add_political_power = -25
+		add_timed_idea = {
+            idea = GLA_press_freedom
+            days = 300
+        }
+
+		}
+	}
+	focus = {
+		id = GLA_the_shine_of_liberty
+		icon = GFX_goal_GLA_libertarian_social_policies
+		x = 3
+		y = 1
+		relative_position_id = GLA_press_freedom
+		cost = 5
+		prerequisite = {
+			focus = GLA_zero_government_intervention
+		}
+		prerequisite = {
+			focus = GLA_press_freedom
+		}
+		completion_reward = {
+		add_war_support = 0.05
+		add_popularity = {
+       			ideology = libertarian_right
+        		popularity = 0.03
+        	}
+		}
+	}
+	focus = {
+		id = GLA_its_all_about_freedom
+		icon = GFX_goal_GLA_libertarian_social_policies
+		x = 0
+		y = 2
+		relative_position_id = GLA_the_shine_of_liberty
+		cost = 5
+		prerequisite = {
+			focus = GLA_the_shine_of_liberty
+		}
+		completion_reward = {
+		add_stability_factor = 0.05
+		add_popularity = {
+       			ideology = libertarian_right
+        		popularity = 0.03
+        	}
+		}
+	}
+	focus = {
+		id = GLA_true_american_economics
+		icon = GFX_goal_GLA_libertarian_social_policies
+		x = 0
+		y = 2
+		relative_position_id = GLA_zero_government_intervention
+		cost = 8
+		prerequisite = {
+			focus = GLA_loosen_gun_laws
+			focus = GLA_no_restrictions
+		}
+		prerequisite = {
+			focus = GLA_zero_government_intervention
+		}
+		completion_reward = {
+		add_stability_factor = 0.05
+		random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_building_construction = {
+    					type = infrastructure
+    					level = 1
+    					instant_build = yes
+				}
+			}
+		random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_building_construction = {
+    					type = infrastructure
+    					level = 1
+    					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = GLA_libertarian_individualism
+		icon = GFX_goal_GLA_libertarian_social_policies
+		x = 0
+		y = 2
+		relative_position_id = GLA_press_freedom
+		cost = 5
+		prerequisite = {
+			focus = GLA_loosen_gun_laws
+			focus = GLA_no_restrictions
+		}
+		completion_reward = {
+		add_stability_factor = 0.05
+		add_popularity = {
+       			ideology = libertarian_right
+        		popularity = 0.05
+        	}
+		}
+	}
+	focus = {
+		id = GLA_work_with_democrats
+		icon = GFX_goal_GLA_libertarian_social_policies
+		x = -1
+		y = 1
+		relative_position_id = GLA_fix_the_mistakes_of_jorgensen
+		cost = 5
+		prerequisite = {
+			focus = GLA_fix_the_mistakes_of_jorgensen
+			focus = GLA_bring_stablity_in_the_great_lakes
+			focus = GLA_welcome_to_ancapistan
+		}
+		available = {
+			NOT = {
+		    has_completed_focus = GLA_libertarian_conservatism
+			}
+		}
+		completion_reward = {
+		add_political_power = 15
+		}
+	}
+	focus = {
+		id = GLA_get_democrat_support
+		icon = GFX_goal_GLA_libertarian_social_policies
+		x = 0
+		y = 2
+		relative_position_id = GLA_work_with_democrats
+		cost = 5
+		prerequisite = {
+			focus = GLA_work_with_democrats
+		}
+		completion_reward = {
+		add_popularity = {
+       			ideology = libertarian_right
+        		popularity = 0.05
+        	}
+		add_popularity = {
+       			ideology = democrat
+        		popularity = 0.05
+        	}
+		}
+	}
+	focus = {
+		id = GLA_work_with_republicans
+		icon = GFX_goal_GLA_libertarian_social_policies
+		x = 1
+		y = 1
+		relative_position_id = GLA_fix_the_mistakes_of_jorgensen
+		cost = 5
+		prerequisite = {
+			focus = GLA_fix_the_mistakes_of_jorgensen
+			focus = GLA_bring_stablity_in_the_great_lakes
+			focus = GLA_welcome_to_ancapistan
+		}
+		available = {
+		    NOT = {
+		    has_completed_focus = GLA_libertarian_progressivism
+		    }
+		}
+		completion_reward = {
+		add_political_power = 15
+		}
+	}
+	focus = {
+		id = GLA_get_republican_support
+		icon = GFX_goal_GLA_libertarian_social_policies
+		x = 0
+		y = 2
+		relative_position_id = GLA_work_with_republicans
+		cost = 5
+		prerequisite = {
+			focus = GLA_work_with_republicans
+		}
+		completion_reward = {
+		add_popularity = {
+       			ideology = libertarian_right
+        		popularity = 0.05
+        	}
+		add_popularity = {
+       			ideology = republican
+        		popularity = 0.05
+        	}
+		}
+	}
+	focus = {
+		id = GLA_political_unity_in_the_party
+		icon = GFX_goal_GLA_libertarian_social_policies
+		x = 1
+		y = 1
+		relative_position_id = GLA_work_with_democrats
+		cost = 8
+		prerequisite = {
+			focus = GLA_work_with_republicans
+			focus = GLA_work_with_democrats
+		}
+		completion_reward = {
+		add_political_power = -35
+        add_stability_factor = 0.05
+		add_popularity = {
+       			ideology = libertarian_right
+        		popularity = 0.05
+        	}
+		}
+	}
+	focus = {
+		id = GLA_libertarianism_united
+		icon = GFX_goal_GLA_libertarian_social_policies
+		x = 0
+		y = 2
+		relative_position_id = GLA_political_unity_in_the_party
+		cost = 5
+		prerequisite = {
+			focus = GLA_political_unity_in_the_party
+		}
+		completion_reward = {
+		add_political_power = -35
+		add_popularity = {
+       			ideology = libertarian_right
+        		popularity = 0.05
+        	}
+		}
+	}
+	focus = {
+		id = GLA_meet_with_javier_milei
+		icon = GFX_goal_GLA_libertarian_social_policies
+		x = 3
+		y = 1
+		relative_position_id = GLA_fix_the_mistakes_of_jorgensen
+		cost = 5
+		prerequisite = {
+			focus = GLA_fix_the_mistakes_of_jorgensen
+			focus = GLA_bring_stablity_in_the_great_lakes
+			focus = GLA_welcome_to_ancapistan
+		}
+		available = {
+		date > 2023.12.10
+		}
+		completion_reward = {
+		country_event = {
+				id = greatlake.35
+				days = 0
+			}
+		}
+	}
+	focus = {
+		id = GLA_meet_with_silicon_valley
+		icon = GFX_goal_GLA_libertarian_social_policies
+		x = -1
+		y = 1
+		relative_position_id = GLA_meet_with_javier_milei
+		cost = 5
+		prerequisite = {
+			focus = GLA_meet_with_javier_milei
+		}
+		completion_reward = {
+		    add_tech_bonus = {
+            bonus = 0.4
+            uses = 3
+            category = electronics
+            }
+		}
+	}
+	focus = {
+		id = GLA_sign_contracts_with_big_tech_companies
+		icon = GFX_goal_GLA_libertarian_social_policies
+		x = 0
+		y = 2
+		relative_position_id = GLA_meet_with_silicon_valley
+		cost = 5
+		prerequisite = {
+			focus = GLA_meet_with_silicon_valley
+		}
+		completion_reward = {
+		    add_tech_bonus = {
+            bonus = 0.5
+            uses = 2
+            category = drones
+            }
+		}
+	}
+	focus = {
+		id = GLA_meet_with_crypto_bros
+		icon = GFX_goal_GLA_libertarian_social_policies
+		x = 1
+		y = 1
+		relative_position_id = GLA_meet_with_javier_milei
+		cost = 5
+		prerequisite = {
+			focus = GLA_meet_with_javier_milei
+		}
+		available = {
+			NOT = {
+                OR = {
+		        has_completed_focus = GLA_fix_the_mistakes_of_jorgensen
+				has_completed_focus = GLA_bring_stablity_in_the_great_lakes
+			    }
+			}
+		}
+		completion_reward = {
+		add_political_power = 15
+		}
+	}
+	focus = {
+		id = GLA_promote_cryptocurrency
+		icon = GFX_goal_GLA_libertarian_social_policies
+		x = 0
+		y = 2
+		relative_position_id = GLA_meet_with_crypto_bros
+		cost = 8
+		prerequisite = {
+			focus = GLA_meet_with_crypto_bros
+		}
+		prerequisite = {
+			focus = GLA_a_voluntary_society
+		}
+		completion_reward = {
+		add_ideas = GLA_cryptocurrency
+		}
+	}
+	focus = {
+		id = GLA_meet_with_russian_and_chinese_companies
+		icon = GFX_goal_GLA_libertarian_social_policies
+		x = 0
+		y = 2
+		relative_position_id = GLA_meet_with_javier_milei
+		cost = 5
+		prerequisite = {
+			focus = GLA_meet_with_javier_milei
+		}
+		completion_reward = {
+		    add_tech_bonus = {
+            bonus = 0.4
+            uses = 3
+            category = artillery
+            }
+		}
+	}
+	focus = {
+		id = GLA_abolish_the_state
+		icon = GFX_goal_GLA_libertarian_social_policies
+		x = 5
+		y = 1
+		relative_position_id = GLA_fix_the_mistakes_of_jorgensen
+		cost = 8
+		prerequisite = {
+			focus = GLA_welcome_to_ancapistan
+		}
+		completion_reward = {
+		add_political_power = -100
+		}
+	}
+	focus = {
+		id = GLA_a_voluntary_society
+		icon = GFX_goal_GLA_libertarian_social_policies
+		x = 0
+		y = 2
+		relative_position_id = GLA_abolish_the_state
+		cost = 5
+		prerequisite = {
+			focus = GLA_abolish_the_state
+		}
+		completion_reward = {
+		add_popularity = {
+       			ideology = libertarian_right
+        		popularity = 0.05
+        	}
+		add_offsite_building = { type = arms_factory level = 2 }
+		}
+	}
+    focus = {
+		id = GLA_anti_communist_campaigns
+		icon = GFX_goal_GLA_libertarian_social_policies
+		x = 7
+		y = 1
+		relative_position_id = GLA_fix_the_mistakes_of_jorgensen
+		cost = 5
+		prerequisite = {
+			focus = GLA_welcome_to_ancapistan
+		}
+		completion_reward = {
+		add_timed_idea = {
+            idea = GLA_anti_communism
+            days = 250
+        }
+		}
+	}
+	focus = {
+		id = GLA_demonize_communists
+		icon = GFX_goal_GLA_libertarian_social_policies
+		x = 0
+		y = 2
+		relative_position_id = GLA_anti_communist_campaigns
+		cost = 5
+		prerequisite = {
+			focus = GLA_anti_communist_campaigns
+		}
+		prerequisite = {
+			focus = GLA_get_rid_of_unionists
+		}
+		completion_reward = {
+		add_popularity = {
+       			ideology = libertarian_right
+        		popularity = 0.05
+        	}
+		}
+	}
+	focus = {
+		id = GLA_a_fully_capitalist_socitey
+		icon = GFX_goal_GLA_libertarian_social_policies
+		x = 1
+		y = 1
+		relative_position_id = GLA_abolish_the_state
+		cost = 5
+		prerequisite = {
+			focus = GLA_abolish_the_state
+		}
+		prerequisite = {
+			focus = GLA_anti_communist_campaigns
+		}
+		completion_reward = {
+		add_ideas = GLA_a_capitalist_socitey
+		}
+	}
+	focus = {
+		id = GLA_anarcho_capitalism_achieved
+		icon = GFX_goal_GLA_libertarian_social_policies
+		x = 0
+		y = 2
+		relative_position_id = GLA_a_fully_capitalist_socitey
+		cost = 5
+		prerequisite = {
+			focus = GLA_a_fully_capitalist_socitey
+		}
+		completion_reward = {
+		add_popularity = {
+       			ideology = libertarian_right
+        		popularity = 0.05
+        	}
+		add_stability_factor = 0.1
+		swap_ideas = {
+				remove_idea = GLA_a_capitalist_socitey
+				add_idea = GLA_a_capitalist_socitey_2
+			}
+		}
+	}
+	focus = {
+		id = GLA_the_inconveniences
+		icon = GFX_goal_GLA_libertarian_social_policies
+		x = 9
+		y = 1
+		relative_position_id = GLA_fix_the_mistakes_of_jorgensen
+		cost = 3
+		prerequisite = {
+			focus = GLA_welcome_to_ancapistan
+		}
+		completion_reward = {
+		add_political_power = -25
+		}
+	}
+	focus = {
+		id = GLA_get_rid_of_unionists
+		icon = GFX_goal_GLA_libertarian_social_policies
+		x = -1
+		y = 1
+		relative_position_id = GLA_the_inconveniences
+		cost = 8
+		prerequisite = {
+			focus = GLA_the_inconveniences
+		}
+		prerequisite = {
+			focus = GLA_anti_communist_campaigns
+		}
+		available = {
+			has_completed_focus = GLA_fuck_labour_rights
+		}
+		completion_reward = {
+		add_stability_factor = -0.05
+		add_political_power = 20
+		random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2	
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+		random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2	
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+		}
+	}
+    focus = {
+		id = GLA_workers_are_property
+		icon = GFX_goal_GLA_libertarian_social_policies
+		x = 0
+		y = 2
+		relative_position_id = GLA_get_rid_of_unionists
+		cost = 3
+		prerequisite = {
+			focus = GLA_get_rid_of_unionists
+		}
+		prerequisite = {
+			focus = GLA_demonize_communists
+		}
+		completion_reward = {
+		add_political_power = -15
+		add_popularity = {
+       			ideology = libertarian_right
+        		popularity = 0.03
+        	}
+		}
+	}
+	focus = {
+		id = GLA_get_the_homeless_out_of_the_cities
+		icon = GFX_goal_GLA_libertarian_social_policies
+		x = 1
+		y = 1
+		relative_position_id = GLA_the_inconveniences
+		cost = 8
+		prerequisite = {
+			focus = GLA_the_inconveniences
+		}
+		available = {
+			has_completed_focus = GLA_fuck_the_homeless
+		}
+		completion_reward = {
+		add_stability_factor = -0.05
+		add_political_power = 20
+		random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2	
+			}
+		random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2	
+			}
+		}
+	}
+	focus = {
+		id = GLA_who_cares_about_the_poor
+		icon = GFX_goal_GLA_libertarian_social_policies
+		x = 0
+		y = 2
+		relative_position_id = GLA_get_the_homeless_out_of_the_cities
+		cost = 3
+		prerequisite = {
+			focus = GLA_get_the_homeless_out_of_the_cities
+		}
+		completion_reward = {
+		add_political_power = -15
+		add_popularity = {
+       			ideology = libertarian_right
+        		popularity = 0.03
+        	}
+		}
+	}
+	focus = {
+		id = GLA_corporations_are_people_too
+		icon = GFX_goal_GLA_libertarian_social_policies
+		x = 0
+		y = 2
+		relative_position_id = GLA_the_inconveniences
+		cost = 5
+		prerequisite = {
+			focus = GLA_the_inconveniences
+		}
+		completion_reward = {
+		add_stability_factor = 0.1
+		add_popularity = {
+       			ideology = libertarian_right
+        		popularity = 0.05
+        	}
+		}
+	}
 	###########Libertarian Economy
 	focus = {
 		id = GLA_our_broken_economy
 		icon = GFX_goal_GLA_our_broken_economy
-		x = 3
-		y = 2
+		x = 35
+		y = 0
 		allow_branch = {
+		OR = {
+			has_completed_focus = GLA_the_jorgensen_way
+			has_completed_focus = GLA_the_moderate_way
+	    }
 			NOT = {
 				has_completed_focus = GLA_the_boogaloo_coup			
 			}
 		}
-		relative_position_id = GLA_bring_stablity_in_the_great_lakes
 		cost = 1
+		available = {
+			OR = {
+			has_completed_focus = GLA_the_jorgensen_way
+			has_completed_focus = GLA_the_moderate_way
+			}
+		}
 		prerequisite = {
-			focus = GLA_bring_stablity_in_the_great_lakes
-			focus = GLA_fix_the_mistakes_of_jorgensen
+		
 		}
 		completion_reward = {
 		
@@ -671,11 +1479,6 @@ focus_tree = {
 		icon = GFX_goal_GLA_rebuild_the_rust_belt
 		x = -2
 		y = 1
-		allow_branch = {
-			NOT = {
-				has_completed_focus = GLA_the_boogaloo_coup			
-			}
-		}
 		relative_position_id = GLA_our_broken_economy
 		cost = 8
 		prerequisite = {
@@ -693,11 +1496,6 @@ focus_tree = {
 		icon = GFX_goal_GLA_work_on_improving_education
 		x = 2
 		y = 1
-		allow_branch = {
-			NOT = {
-				has_completed_focus = GLA_the_boogaloo_coup			
-			}
-		}
 		relative_position_id = GLA_our_broken_economy
 		cost = 5
 		prerequisite = {
@@ -712,11 +1510,6 @@ focus_tree = {
 		icon = GFX_goal_GLA_libertarian_tech
 		x = 4
 		y = 1
-		allow_branch = {
-			NOT = {
-				has_completed_focus = GLA_the_boogaloo_coup			
-			}
-		}
 		relative_position_id = GLA_our_broken_economy
 		cost = 8
 		prerequisite = {
@@ -736,11 +1529,6 @@ focus_tree = {
 		icon = GFX_goal_GLA_convince_investers
 		x = -4
 		y = 1
-		allow_branch = {
-			NOT = {
-				has_completed_focus = GLA_the_boogaloo_coup			
-			}
-		}
 		relative_position_id = GLA_our_broken_economy
 		cost = 5
 		prerequisite = {
@@ -770,6 +1558,15 @@ focus_tree = {
 		}
 		completion_reward = {
 		add_stability = 0.05
+		random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2	
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 2
+    					instant_build = yes
+				}
+			}	
 		random_controlled_state = {
 				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
 				add_extra_state_shared_building_slots = 2	
@@ -939,7 +1736,16 @@ focus_tree = {
 			focus = GLA_connect_with_the_international_market
 		}
 		completion_reward = {
-			add_stability = 0.05
+		add_stability = 0.05
+		add_political_power = -25
+		random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1
+			}
+		random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1
+			}
 		}
 	}
 	focus = {
@@ -998,6 +1804,11 @@ focus_tree = {
 		}
 		completion_reward = {
 			add_political_power = -20
+			add_tech_bonus = {
+        			bonus = 0.2
+        			uses = 2
+        			category = industry
+        		}
 		}
 	}
 	focus = {
@@ -1031,7 +1842,7 @@ focus_tree = {
 			focus = GLA_libertarian_tech
 		}
 		completion_reward = {
-        		add_research_slot = 1
+        	add_research_slot = 1
 	    }
 	}
 	focus = {
@@ -1071,6 +1882,11 @@ focus_tree = {
 		}
 		completion_reward = {
 			add_political_power = 15
+			add_tech_bonus = {
+        			bonus = 0.2
+        			uses = 2
+        			category = electronics
+        		}
 		}
 	}
 	focus = {
@@ -1179,19 +1995,41 @@ focus_tree = {
 	}
 	###########Ancap Economy
 	focus = {
-		id = GLA_promote_our_nation_to_international_companies
+		id = GLA_ancap_economy
 		icon = GFX_goal_GLA_promote_our_nation_to_international_companies
-		x = 0
-		y = 1
+		x = 44
+		y = 0
 		allow_branch = {
+		has_completed_focus = GLA_the_ancapistan_way
 			NOT = {
 				has_completed_focus = GLA_the_boogaloo_coup			
 			}
 		}
-		relative_position_id = GLA_welcome_to_ancapistan
+		cost = 1
+		available = {
+			has_completed_focus = GLA_the_ancapistan_way
+		}
+		offset = {
+			x = -11
+			y = 0
+			trigger = {
+				has_completed_focus = GLA_the_ancapistan_way
+			}
+		}
+		completion_reward = {
+		
+		}
+
+	}
+	focus = {
+		id = GLA_promote_our_nation_to_international_companies
+		icon = GFX_goal_GLA_promote_our_nation_to_international_companies
+		x = 0
+		y = 1
+		relative_position_id = GLA_ancap_economy
 		cost = 5
 		prerequisite = {
-			focus = GLA_welcome_to_ancapistan
+			focus = GLA_ancap_economy
 		}
 		completion_reward = {
 		if = {
@@ -1216,19 +2054,30 @@ focus_tree = {
 		icon = GFX_goal_GLA_fuck_labour_rights
 		x = 2
 		y = 1
-		allow_branch = {
-			NOT = {
-				has_completed_focus = GLA_the_boogaloo_coup			
-			}
-		}
-		relative_position_id = GLA_welcome_to_ancapistan
+		relative_position_id = GLA_ancap_economy
 		cost = 5
 		prerequisite = {
-			focus = GLA_welcome_to_ancapistan
+			focus = GLA_ancap_economy
 		}
 		completion_reward = {
 		add_stability = -0.05
 		add_political_power = 45
+		add_resource = {
+            type = aluminium
+            amount = 65
+            state = 155
+        }
+		add_resource = {
+            type = aluminium
+            amount = 40
+            state = 165
+        }
+		add_resource = {
+            type = tungsten
+            amount = 35
+            state = 165
+        }
+
 		}
 
 	}
@@ -1237,18 +2086,28 @@ focus_tree = {
 		icon = GFX_goal_GLA_privateize_everything
 		x = -2
 		y = 1
-		allow_branch = {
-			NOT = {
-				has_completed_focus = GLA_the_boogaloo_coup			
-			}
-		}
-		relative_position_id = GLA_welcome_to_ancapistan
+		relative_position_id = GLA_ancap_economy
 		cost = 8
 		prerequisite = {
-			focus = GLA_welcome_to_ancapistan
+			focus = GLA_ancap_economy
 		}
 		completion_reward = {
-		add_political_power = 70
+		add_political_power = 45
+		add_resource = {
+            type = steel
+            amount = 30
+            state = 155
+        }
+		add_resource = {
+            type = oil
+            amount = 30
+            state = 165
+        }
+		add_resource = {
+            type = chromium
+            amount = 65
+            state = 155
+        }
 		}
 
 	}
@@ -1324,10 +2183,28 @@ focus_tree = {
 		completion_reward = {
 		random_controlled_state = {
 				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
-				add_extra_state_shared_building_slots = 2	
+				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
     					type = industrial_complex
-    					level = 2
+    					level = 1
+    					instant_build = yes
+				}
+			}
+		random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1	
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+		random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1	
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
     					instant_build = yes
 				}
 			}
@@ -1393,7 +2270,8 @@ focus_tree = {
 			focus = GLA_promote_our_nation_to_international_companies
 		}
 		completion_reward = {
-		add_stability = 0.1
+		add_political_power = -100
+		add_ideas = GLA_a_tax_free_nation
 		}
 
 	}
@@ -1456,6 +2334,11 @@ focus_tree = {
 		}
 		completion_reward = {
 		add_political_power = -30
+		add_tech_bonus = {
+        	bonus = 0.5
+        	uses = 5
+        	category = electronics
+        }
 		}
 
 	}
@@ -1523,7 +2406,7 @@ focus_tree = {
 		id = GLA_the_boogaloo_question
 		icon = GFX_goal_GLA_the_boogaloo_question
 		cost = 1
-		x = 36
+		x = 34
 		y = 0
 		select_effect = {  }
 		allow_branch = {
@@ -1538,6 +2421,23 @@ focus_tree = {
 			has_completed_focus = GLA_the_moderate_way
 			}
 			has_war = no
+		}
+		offset = {
+			x = 12
+			y = 0
+			trigger = {
+				OR = {
+			        has_completed_focus = GLA_the_jorgensen_way
+			        has_completed_focus = GLA_the_moderate_way
+                }
+			}
+		}
+		offset = {
+			x = 7
+			y = 0
+			trigger = {
+			    has_completed_focus = GLA_the_ancapistan_way
+			}
 		}
 		completion_reward = {
 		set_power_balance = {
@@ -1705,6 +2605,12 @@ focus_tree = {
         amount = 500
         producer = GLA
         }
+		add_tech_bonus = {
+        bonus = 0.3
+        uses = 4
+        category = air_doctrine
+        }
+
 		}
 
 	}
@@ -1785,6 +2691,12 @@ focus_tree = {
         name = "The Ayden"
         }
         }
+		add_tech_bonus = {
+        bonus = 0.3
+        uses = 4
+        category = naval_doctrine
+        }
+
 		}
 
 	}
@@ -1806,6 +2718,11 @@ focus_tree = {
 		}
 		completion_reward = {
 		army_experience = 40
+		add_tech_bonus = {
+        bonus = 0.3
+        uses = 4
+        category = land_doctrine
+        }
 		}
 
 	}
@@ -2244,6 +3161,12 @@ focus_tree = {
 		army_experience = 30
 		navy_experience = 30
 		air_experience = 30
+		add_tech_bonus = {
+        bonus = 0.3
+        uses = 3
+        category = land_doctrine
+        }
+
 		}
 
 	}
@@ -2296,10 +3219,28 @@ focus_tree = {
 		}
 	}
 	focus = {
+		id = GLA_libertarian_international_dipomancy
+		icon = GFX_goal_GLA_the_elections
+		cost = 3
+		x = -4
+		y = 1
+		relative_position_id = GLA_invade_detroit_and_wisconsin
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_invade_detroit_and_wisconsin
+		}
+		completion_reward = {
+	    add_war_support = 0.05
+		}
+
+	}
+	focus = {
 		id = GLA_the_orange_menace
 		icon = GFX_goal_GLA_the_elections
 		cost = 3
-		x = 5
+		x = 6
 		y = 1
 		relative_position_id = GLA_invade_detroit_and_wisconsin
 		select_effect = {  }
@@ -2310,10 +3251,6 @@ focus_tree = {
 		}
 		available = {
 			country_exists = USA
-		    NOT = {
-		        country_exists = DET
-		        country_exists = KMT
-		    }
 		}
 		completion_reward = {
 	    add_war_support = 0.05
@@ -2381,11 +3318,15 @@ focus_tree = {
 		prerequisite = {
 			focus = GLA_prepare_for_trump
 		}
+		bypass = { NOT = { country_exists = FRA } }
 		available = {
 			country_exists = USA
 		}
 		completion_reward = {
-	    country_event = greatlake.5
+		country_event = {
+				id = greatlake.5
+				days = 0
+			}
 		}
 
 	}
@@ -2406,7 +3347,11 @@ focus_tree = {
 			country_exists = USA
 		}
 		completion_reward = {
-	    
+		add_timed_idea = {
+            idea = GLA_keep_our_people_safe
+            days = 200
+        }
+
 		}
 
 	}
@@ -2506,6 +3451,7 @@ focus_tree = {
 			focus = GLA_the_orange_menace
 		}
 		available = {
+			country_exists = FRA
 			country_exists = USA
 			USA = {
 			has_completed_focus = USA_GLA_art_of_the_deal
@@ -2531,6 +3477,7 @@ focus_tree = {
 		}
 		available = {
 			country_exists = USA
+			country_exists = FRA
 		}
 		completion_reward = {
 	    add_ideas = GLA_the_attack_on_the_feds
@@ -2552,6 +3499,7 @@ focus_tree = {
 		}
 		available = {
 			country_exists = USA
+			country_exists = FRA
 		}
 		completion_reward = {
 	    add_war_support = 0.05
@@ -2573,6 +3521,7 @@ focus_tree = {
 		}
 		available = {
 			country_exists = USA
+			country_exists = FRA
 		}
 		completion_reward = {
 	    add_equipment_to_stockpile = {
@@ -2601,6 +3550,7 @@ focus_tree = {
 		}
 		available = {
 			country_exists = USA
+			country_exists = FRA
 		}
 		completion_reward = {
 	    swap_ideas = {
@@ -2628,6 +3578,7 @@ focus_tree = {
 		}
 		available = {
 			country_exists = USA
+			country_exists = FRA
 		}
 		completion_reward = {
 	    random_controlled_state = {
@@ -2669,6 +3620,7 @@ focus_tree = {
 		}
 		available = {
 			country_exists = USA
+			country_exists = FRA
 		}
 		completion_reward = {
 	    add_war_support = 0.05
@@ -2679,7 +3631,7 @@ focus_tree = {
 		id = GLA_america_shall_be_ours
 		icon = GFX_goal_GLA_the_elections
 		cost = 1
-		x = -5
+		x = 0
 		y = 1
 		allow_branch = {
 		
@@ -2699,7 +3651,15 @@ focus_tree = {
 		    }
 		}
 		completion_reward = {
-	    
+	    every_state = {
+			limit = { is_core_of = KMT }
+			add_core_of = GLA
+		}
+		every_state = {
+			limit = { is_core_of = DET }
+			add_core_of = GLA
+		}
+
 		}
 
 	}
@@ -2709,15 +3669,12 @@ focus_tree = {
 		cost = 2
 		x = -1
 		y = 1
-		relative_position_id = GLA_invade_the_anarchists
+		relative_position_id = GLA_into_the_south
 		select_effect = {  }
 		allow_branch = {
 		}
 		prerequisite = {
-			focus = GLA_invade_the_anarchists
-		}
-		prerequisite = {
-			focus = GLA_invade_west_virginia
+			focus = GLA_into_the_south
 		}
 		will_lead_to_war_with = TEX
 		bypass = { NOT = { country_exists = TEX } }
@@ -2734,11 +3691,246 @@ focus_tree = {
 
 	}
 	focus = {
-		id = GLA_invade_the_anarchists
+		id = GLA_into_the_south
+		icon = GFX_goal_GLA_the_elections
+		cost = 1
+		x = -5
+		y = 1
+		relative_position_id = GLA_invade_kentucky
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_invade_kentucky
+		}
+		available = {
+		has_war = no
+		}
+		completion_reward = {
+
+		}
+
+	}
+	focus = {
+		id = GLA_into_the_west
+		icon = GFX_goal_GLA_the_elections
+		cost = 1
+		x = 5
+		y = 1
+		relative_position_id = GLA_invade_kentucky
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_invade_kentucky
+		}
+		available = {
+		has_war = no
+		}
+		completion_reward = {
+			
+		}
+
+	}
+	focus = {
+		id = GLA_between_two_giants
+		icon = GFX_goal_GLA_the_elections
+		cost = 1
+		x = 0
+		y = 1
+		relative_position_id = GLA_invade_kentucky
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_invade_kentucky
+		}
+		available = {
+		has_war = no
+		}
+		completion_reward = {
+			
+		}
+
+	}
+	focus = {
+		id = GLA_invade_fra
 		icon = GFX_goal_GLA_the_elections
 		cost = 2
 		x = -1
 		y = 1
+		relative_position_id = GLA_between_two_giants
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_between_two_giants
+		}
+		will_lead_to_war_with = FRA
+		bypass = { NOT = { country_exists = FRA } }
+		available = {
+			has_war = no
+		    has_border_war_with = FRA
+			has_army_manpower = { size > 500000 }
+		}
+		completion_reward = {
+        create_wargoal = {
+			target = FRA
+			type = annex_everything
+		    }
+		}
+
+	}
+	focus = {
+		id = GLA_invade_trump
+		icon = GFX_goal_GLA_the_elections
+		cost = 2
+		x = 1
+		y = 1
+		relative_position_id = GLA_between_two_giants
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_between_two_giants
+		}
+		will_lead_to_war_with = USA
+		bypass = { NOT = { country_exists = USA } }
+		available = {
+			has_war = no
+		    has_border_war_with = USA
+			has_army_manpower = { size > 500000 }
+		}
+		completion_reward = {
+        create_wargoal = {
+			target = USA
+			type = annex_everything
+		    }
+		if = {
+			limit = { country_exists = NPA }
+				create_wargoal = {
+					target = NPA
+					type = annex_everything
+			}
+		}
+
+		}
+
+	}
+	focus = {
+		id = GLA_we_are_the_real_america
+		icon = GFX_goal_GLA_the_elections
+		cost = 4
+		x = 1
+		y = 1
+		relative_position_id = GLA_invade_fra
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_invade_fra
+		}
+		prerequisite = {
+			focus = GLA_invade_trump
+		}
+		available = {
+		has_war = no
+		NOT = {
+		    country_exists = USA
+			country_exists = FRA
+		    }
+		}
+		completion_reward = {
+		add_war_support = 0.05
+		every_state = {
+			limit = { is_core_of = USA }
+			add_core_of = GLA
+		    }
+		every_state = {
+			limit = { is_core_of = FRA }
+			add_core_of = GLA
+		    }
+		}
+
+	}
+	focus = {
+		id = GLA_invade_virginia
+		icon = GFX_goal_GLA_the_elections
+		cost = 2
+		x = 1
+		y = 1
+		relative_position_id = GLA_we_are_the_real_america
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_we_are_the_real_america
+		}
+		will_lead_to_war_with = VIR
+		bypass = { NOT = { country_exists = VIR } }
+		available = {
+			has_war = no
+		    has_border_war_with = VIR
+		}
+		completion_reward = {
+        create_wargoal = {
+			target = VIR
+			type = annex_everything
+		    }
+		}
+
+	}
+	focus = {
+		id = GLA_invade_maine
+		icon = GFX_goal_GLA_the_elections
+		cost = 2
+		x = -1
+		y = 1
+		relative_position_id = GLA_we_are_the_real_america
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_we_are_the_real_america
+		}
+		will_lead_to_war_with = NEW
+		will_lead_to_war_with = NAB
+		will_lead_to_war_with = WBK
+		bypass = { NOT = { country_exists = NEW  country_exists = NAB country_exists = WBK } }
+		available = {
+			has_war = no
+		}
+		completion_reward = {
+        if = {
+			limit = { country_exists = NEW }
+				create_wargoal = {
+					target = NEW
+					type = annex_everything
+			}
+		}
+		if = {
+			limit = { country_exists = NAB }
+				create_wargoal = {
+					target = NAB
+					type = annex_everything
+			}
+		}
+		if = {
+			limit = { country_exists = WBK }
+				create_wargoal = {
+					target = WBK
+					type = annex_everything
+			}
+		}
+		}
+
+	}
+	focus = {
+		id = GLA_invade_the_anarchists
+		icon = GFX_goal_GLA_the_elections
+		cost = 2
+		x = 0
+		y = 4
 		relative_position_id = GLA_america_shall_be_ours
 		select_effect = {  }
 		allow_branch = {
@@ -2764,17 +3956,14 @@ focus_tree = {
 		id = GLA_invade_dixieland
 		icon = GFX_goal_GLA_the_elections
 		cost = 2
-		x = 3
+		x = 1
 		y = 1
-		relative_position_id = GLA_invade_the_anarchists
+		relative_position_id = GLA_into_the_south
 		select_effect = {  }
 		allow_branch = {
 		}
 		prerequisite = {
-			focus = GLA_invade_the_anarchists
-		}
-		prerequisite = {
-			focus = GLA_invade_west_virginia
+			focus = GLA_into_the_south
 		}
 		will_lead_to_war_with = CSA
 		bypass = { NOT = { country_exists = CSA } }
@@ -2787,6 +3976,79 @@ focus_tree = {
 			target = CSA
 			type = annex_everything
 		}
+		if = { 
+		limit = { country_exists = FLO }
+		create_wargoal = {
+			target = FLO
+			type = annex_everything
+			}
+		}
+
+		}
+	}
+	focus = {
+		id = GLA_invade_florida
+		icon = GFX_goal_GLA_the_elections
+		cost = 2
+		x = 1
+		y = 1
+		relative_position_id = GLA_invade_texas
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_invade_texas
+		}
+		prerequisite = {
+			focus = GLA_invade_dixieland
+		}
+		will_lead_to_war_with = FLO
+		bypass = { NOT = { country_exists = FLO } }
+		available = {
+		has_war = no
+		has_border_war_with = FLO
+		}
+		completion_reward = {
+	    create_wargoal = {
+			target = FLO
+			type = annex_everything
+		    }
+		}
+	}
+	focus = {
+		id = GLA_the_south_is_ours
+		icon = GFX_goal_GLA_the_elections
+		cost = 4
+		x = 0
+		y = 1
+		relative_position_id = GLA_invade_florida
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_invade_florida
+		}
+		available = {
+		has_war = no
+		NOT = {
+		    country_exists = CSA
+			country_exists = TEX
+			country_exists = FLO
+		    }
+		}
+		completion_reward = {
+		every_state = {
+			limit = { is_core_of = CSA }
+			add_core_of = GLA
+		    }
+		every_state = {
+			limit = { is_core_of = TEX }
+			add_core_of = GLA
+		    }
+		every_state = {
+			limit = { is_core_of = FLO }
+			add_core_of = GLA
+		    }
 		}
 
 	}
@@ -2796,12 +4058,12 @@ focus_tree = {
 		cost = 2
 		x = 1
 		y = 1
-		relative_position_id = GLA_invade_the_anarchists
+		relative_position_id = GLA_invade_west_virginia
 		select_effect = {  }
 		allow_branch = {
 		}
 		prerequisite = {
-			focus = GLA_invade_the_anarchists
+			focus = GLA_invade_minnesota
 		}
 		prerequisite = {
 			focus = GLA_invade_west_virginia
@@ -2816,22 +4078,45 @@ focus_tree = {
 	    create_wargoal = {
 			target = KFC
 			type = annex_everything
+		    }
+        every_state = {
+			limit = { is_core_of = AFS }
+			add_core_of = GLA
+		    }
+		every_state = {
+			limit = { is_core_of = NRA }
+			add_core_of = GLA
+		    }
+		every_state = {
+			limit = { is_core_of = MIL }
+			add_core_of = GLA
+		    }
+		every_state = {
+			limit = { is_core_of = MNS }
+			add_core_of = GLA
+		    }
+		every_state = {
+			limit = { is_core_of = MIN }
+			add_core_of = GLA
+		    }
+		every_state = {
+			limit = { is_core_of = KFC }
+			add_core_of = GLA
+		    }
 		}
-		}
-
 	}
 	focus = {
 		id = GLA_invade_west_virginia
 		icon = GFX_goal_GLA_the_elections
 		cost = 2
-		x = 1
+		x = -1
 		y = 1
-		relative_position_id = GLA_america_shall_be_ours
+		relative_position_id = GLA_invade_the_anarchists
 		select_effect = {  }
 		allow_branch = {
 		}
 		prerequisite = {
-			focus = GLA_america_shall_be_ours
+			focus = GLA_invade_the_anarchists
 		}
 		will_lead_to_war_with = NRA
 		bypass = { NOT = { country_exists = NRA } }
@@ -2845,7 +4130,51 @@ focus_tree = {
 			type = annex_everything
 		}
 		}
+	}
+	focus = {
+		id = GLA_invade_minnesota
+		icon = GFX_goal_GLA_the_elections
+		cost = 2
+		x = 1
+		y = 1
+		relative_position_id = GLA_invade_the_anarchists
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_invade_the_anarchists
+		}
+		will_lead_to_war_with = MIL
+		will_lead_to_war_with = MNS
+		will_lead_to_war_with = MIN
+		bypass = { NOT = { country_exists = MIL  country_exists = MNS country_exists = MIN } }
+		available = {
+		has_war = no
+		}
+		completion_reward = {
+	    if = {
+			limit = { country_exists = MIL }
+				create_wargoal = {
+					target = MIL
+					type = annex_everything
+			}
+		}
+		if = {
+			limit = { country_exists = MNS }
+				create_wargoal = {
+					target = MNS
+					type = annex_everything
+			}
+		}
+		if = {
+			limit = { country_exists = MIN }
+				create_wargoal = {
+					target = MIN
+					type = annex_everything
+			}
+		}
 
+		}
 	}
 	focus = {
 		id = GLA_invade_utah
@@ -2853,18 +4182,12 @@ focus_tree = {
 		cost = 2
 		x = 0
 		y = 1
-		relative_position_id = GLA_invade_kentucky
+		relative_position_id = GLA_into_the_west
 		select_effect = {  }
 		allow_branch = {
 		}
 		prerequisite = {
-			focus = GLA_invade_texas
-		}
-		prerequisite = {
-			focus = GLA_invade_kentucky
-		}
-		prerequisite = {
-			focus = GLA_invade_dixieland
+			focus = GLA_into_the_west
 		}
 		will_lead_to_war_with = UTA
 		bypass = { NOT = { country_exists = UTA } }
@@ -2877,29 +4200,36 @@ focus_tree = {
 			target = UTA
 			type = annex_everything
 		}
-		if = { 
-					limit = { country_exists = AFO }
-					create_wargoal = {
-						target = AFO
-						type = annex_everything
-					}
-				}
-				if = { 
-					limit = { country_exists = SIN }
-					create_wargoal = {
-						target = SIN
-						type = annex_everything
-					}
-				}
-				if = { 
-					limit = { country_exists = HLY }
-					create_wargoal = {
-						target = HLY
-						type = annex_everything
-					}
-				}
+		if = {
+			limit = { country_exists = AFO }
+				create_wargoal = {
+					target = AFO
+					type = annex_everything
+			}
+		}
+		if = {
+			limit = { country_exists = SIN }
+				create_wargoal = {
+					target = SIN
+					type = annex_everything
+			}
+		}
+		if = {
+			limit = { country_exists = LAS }
+				create_wargoal = {
+					target = LAS
+					type = annex_everything
+			}
+		}
+		if = {
+			limit = { country_exists = MOL }
+				create_wargoal = {
+					target = MOL
+					type = annex_everything
+			}
 		}
 
+		}
 	}
 	focus = {
 		id = GLA_invade_montanna
@@ -2907,18 +4237,12 @@ focus_tree = {
 		cost = 2
 		x = 2
 		y = 1
-		relative_position_id = GLA_invade_kentucky
+		relative_position_id = GLA_into_the_west
 		select_effect = {  }
 		allow_branch = {
 		}
 		prerequisite = {
-			focus = GLA_invade_texas
-		}
-		prerequisite = {
-			focus = GLA_invade_kentucky
-		}
-		prerequisite = {
-			focus = GLA_invade_dixieland
+			focus = GLA_into_the_west
 		}
 		will_lead_to_war_with = MON
 		bypass = { NOT = { country_exists = MON } }
@@ -2931,8 +4255,15 @@ focus_tree = {
 			target = MON
 			type = annex_everything
 		}
+		if = { 
+		limit = { country_exists = IDA }
+		create_wargoal = {
+			target = IDA
+			type = annex_everything
+			}
 		}
 
+		}
 	}
 	focus = {
 		id = GLA_invade_the_nazis
@@ -2940,18 +4271,12 @@ focus_tree = {
 		cost = 2
 		x = -2
 		y = 1
-		relative_position_id = GLA_invade_kentucky
+		relative_position_id = GLA_into_the_west
 		select_effect = {  }
 		allow_branch = {
 		}
 		prerequisite = {
-			focus = GLA_invade_texas
-		}
-		prerequisite = {
-			focus = GLA_invade_kentucky
-		}
-		prerequisite = {
-			focus = GLA_invade_dixieland
+			focus = GLA_into_the_west
 		}
 		will_lead_to_war_with = HOP
 		bypass = { NOT = { country_exists = HOP } }
@@ -3003,9 +4328,9 @@ focus_tree = {
 			target = LIB
 			type = annex_everything
 			}
-			}
 		}
 
+		}
 	}
 	focus = {
 		id = GLA_invade_cailfornia
@@ -3037,7 +4362,7 @@ focus_tree = {
 			target = PRA
 			type = annex_everything
 		}
-		if = { 
+		        if = { 
 					limit = { country_exists = JFR }
 					create_wargoal = {
 						target = JFR
@@ -3122,7 +4447,6 @@ focus_tree = {
 					}
 				}
 		}
-
 	}
 	focus = {
 		id = GLA_into_the_pacific
@@ -3145,6 +4469,10 @@ focus_tree = {
 		bypass = { NOT = { country_exists = PAC } NOT = { country_exists = ALA } }
 		available = {
 		has_war = no
+		NOT = {
+		    country_exists = PRA
+			country_exists = CAS
+		    }
 		}
 		completion_reward = {
 		create_wargoal = {
@@ -3152,24 +4480,92 @@ focus_tree = {
 			type = annex_everything
 		}
 		if = { 
-					limit = { country_exists = ALA }
-					create_wargoal = {
-						target = ALA
-						type = annex_everything
-					}
-				}
+			limit = { country_exists = ALA }
+			    create_wargoal = {
+			    target = ALA
+			    type = annex_everything
+			    }
+			}
+		every_state = {
+			limit = { is_core_of = HOP }
+			add_core_of = GLA
+		    }
+		every_state = {
+			limit = { is_core_of = UTA }
+			add_core_of = GLA
+		    }
+		every_state = {
+			limit = { is_core_of = AFO }
+			add_core_of = GLA
+		    }
+		every_state = {
+			limit = { is_core_of = SIN }
+			add_core_of = GLA
+		    }
+		every_state = {
+			limit = { is_core_of = LAS }
+			add_core_of = GLA
+		    }
+		every_state = {
+			limit = { is_core_of = MOL }
+			add_core_of = GLA
+		    }
+		every_state = {
+			limit = { is_core_of = HOP }
+			add_core_of = GLA
+		    }
+		every_state = {
+			limit = { is_core_of = MON }
+			add_core_of = GLA
+		    }
+		every_state = {
+			limit = { is_core_of = IDA }
+			add_core_of = GLA
+		    }
+		every_state = {
+			limit = { is_core_of = CAS }
+			add_core_of = GLA
+		    }
+		every_state = {
+			limit = { is_core_of = LIB }
+			add_core_of = GLA
+		    }
+		every_state = {
+			limit = { is_core_of = PRA }
+			add_core_of = GLA
+		    }
+		every_state = {
+			limit = { is_core_of = SIL }
+			add_core_of = GLA
+		    }
+		every_state = {
+			limit = { is_core_of = ALA }
+			add_core_of = GLA
+		    }
+		every_state = {
+			limit = { is_core_of = PAC }
+			add_core_of = GLA
+		    }
 		}
-
 	}
 	focus = {
 		id = GLA_a_libertarian_america
 		icon = GFX_goal_GLA_the_elections
-		cost = 2
-		x = 0
+		cost = 1
+		x = 1
 		y = 1
-		relative_position_id = GLA_into_the_pacific
+		relative_position_id = GLA_invade_maine
 		select_effect = {  }
 		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_invade_maine
+		}
+		prerequisite = {
+			focus = GLA_invade_virginia
+		}
+		prerequisite = {
+			focus = GLA_the_south_is_ours
 		}
 		prerequisite = {
 			focus = GLA_into_the_pacific
@@ -3194,7 +4590,33 @@ focus_tree = {
 		has_war = no
 		}
 		completion_reward = {
-		country_event = greatlake.6
+	    if = {
+			limit = { OR = {
+			has_completed_focus = GLA_the_jorgensen_way
+			has_completed_focus = GLA_the_moderate_way
+			} }
+			set_cosmetic_tag = GLA_moderate_libertarian_america
+            country_event = {
+				id = greatlake.6
+				days = 0
+			}
+		}
+		if = {
+		    limit = { has_completed_focus = GLA_the_ancapistan_way }
+			set_cosmetic_tag = GLA_ancap_america
+            country_event = {
+				id = greatlake.33
+				days = 0
+			}
+		}
+		if = {
+		    limit = { has_completed_focus = GLA_the_boogaloo_coup }
+			set_cosmetic_tag = GLA_boogaloo_america
+            country_event = {
+				id = greatlake.34
+				days = 0
+			}
+		}
 		hidden_effect = {
 			every_state = {
 			limit = { 
@@ -3205,25 +4627,94 @@ focus_tree = {
 			}
 			}
 		}
-
+	}
+	focus = {
+		id = GLA_mexico_needs_our_help
+		icon = GFX_goal_GLA_the_elections
+		cost = 1
+		x = 2
+		y = 1
+		relative_position_id = GLA_libertarian_international_dipomancy
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_libertarian_international_dipomancy
+		}
+		completion_reward = {
+	    
+		}
+	}
+	focus = {
+		id = GLA_support_mexican_libertarians
+		icon = GFX_goal_GLA_the_elections
+		cost = 3
+		x = 1
+		y = 1
+		relative_position_id = GLA_mexico_needs_our_help
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_mexico_needs_our_help
+		}
+		completion_reward = {
+	    
+		}
+	}
+	focus = {
+		id = GLA_support_the_freedom_fighters
+		icon = GFX_goal_GLA_the_elections
+		cost = 3
+		x = -1
+		y = 1
+		relative_position_id = GLA_mexico_needs_our_help
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_mexico_needs_our_help
+		}
+		completion_reward = {
+	    
+		}
+	}
+	focus = {
+		id = GLA_send_jet_fighters
+		icon = GFX_goal_GLA_the_elections
+		cost = 3
+		x = 1
+		y = 1
+		relative_position_id = GLA_support_the_freedom_fighters
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_support_the_freedom_fighters
+		}
+		prerequisite = {
+			focus = GLA_support_mexican_libertarians
+		}
+		completion_reward = {
+	    
+		}
 	}
 	focus = {
 		id = GLA_canada_needs_our_help
 		icon = GFX_goal_GLA_the_elections
 		cost = 1
-		x = -5
+		x = -2
 		y = 1
-		relative_position_id = GLA_america_shall_be_ours
+		relative_position_id = GLA_libertarian_international_dipomancy
 		select_effect = {  }
 		allow_branch = {
 		}
 		prerequisite = {
-			focus = GLA_america_shall_be_ours
+			focus = GLA_libertarian_international_dipomancy
 		}
 		completion_reward = {
 	    
 		}
-
 	}
 	focus = {
 		id = GLA_send_volunteers_to_peterson
@@ -3241,7 +4732,6 @@ focus_tree = {
 		completion_reward = {
 
 		}
-
 	}
 	focus = {
 		id = GLA_send_equipment_to_the_westerners
@@ -3263,7 +4753,6 @@ focus_tree = {
         target = WPC
         }
 		}
-
 	}
 	focus = {
 		id = GLA_help_out_the_anarcho_capitalists
@@ -3288,30 +4777,92 @@ focus_tree = {
         target = NUN
         }
 		}
-
 	}
 	focus = {
 		id = GLA_invade_canada
 		icon = GFX_goal_GLA_the_elections
 		cost = 2
-		x = -8
+		x = -5
 		y = 1
 		mutually_exclusive = { focus = GLA_canada_needs_our_help }
-		relative_position_id = GLA_america_shall_be_ours
+		relative_position_id = GLA_libertarian_international_dipomancy
 		select_effect = {  }
 		allow_branch = {
 		}
 		prerequisite = {
-			focus = GLA_america_shall_be_ours
+			focus = GLA_libertarian_international_dipomancy
 		}
 		available = {
 		has_war = no
 		has_completed_focus = GLA_a_libertarian_america
 		}
+		will_lead_to_war_with = ALT
+		will_lead_to_war_with = ARY 
+		will_lead_to_war_with = WPC
+		will_lead_to_war_with = BRC 
+		will_lead_to_war_with = TEM
+		will_lead_to_war_with = ANA
+		will_lead_to_war_with = CAN
+		will_lead_to_war_with = QUE 
+		will_lead_to_war_with = ONT
+		will_lead_to_war_with = NUN
+		will_lead_to_war_with = PTR
+		will_lead_to_war_with = MRT
+		will_lead_to_war_with = FFR
 		completion_reward = {
-	    
+	    create_wargoal = {
+					type = annex_everything
+					target = ALT
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = ARY
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = WPC
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = BRC
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = TEM
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = ANA
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = MRT
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = PTR
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = NUN
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = ONT
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = QUE
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = CAN
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = FFR
+				}
 		}
-
 	}
 	focus = {
 		id = GLA_a_libertarian_canada
@@ -3328,11 +4879,34 @@ focus_tree = {
 		}
 		available = {
 		has_war = no
+		650 = { is_owned_by = GLA }
 		}
 		completion_reward = {
-	    
+	            every_state = {
+					limit = { is_core_of = ALT }
+					add_core_of = GLA
+				}
+				every_state = {
+					limit = { is_core_of = CAN }
+					add_core_of = GLA
+				}
+				every_state = {
+					limit = { is_core_of = WPC }
+					add_core_of = GLA
+				}
+				every_state = {
+					limit = { is_core_of = QUE }
+					add_core_of = GLA
+				}
+				every_state = {
+					limit = { is_core_of = VAN }
+					add_core_of = GLA
+				}
+				every_state = {
+					limit = { is_core_of = ONT }
+					add_core_of = GLA
+				}
 		}
-
 	}
 	###########The Boogaloo Coup
 	focus = {
@@ -3341,7 +4915,7 @@ focus_tree = {
 		x = 5
 		y = 0
 		allow_branch = { 
-			has_cosmetic_tag = GLA_Boogaloo
+			has_completed_focus = GLA_the_boogaloo_coup
 		}
 		#relative_position_id = 
 		cost = 1
