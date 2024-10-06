@@ -1,0 +1,1010 @@
+
+joint_focus = {
+	id = USA_IDA_connect_capitals
+	search_filters = { joint }
+	icon = GFX_goal_ILFM_Support
+
+	X = 8
+	Y = 0
+
+	offset = {
+		x = 0
+		y = 12
+		trigger = {
+			tag = USA
+		}
+	}
+
+	cost = 3
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = USA
+			tag = IDA
+		}
+	}
+	allow_branch = {
+		IDA = {
+			exists = yes
+			NOT = {
+				has_completed_focus = IDA_The_New_Kings_Of_The_Mountain
+			}
+		}
+		USA = {
+			exists = yes
+		}
+	}
+
+	completion_reward_joint_originator = {
+		build_railway = {
+    			level = 1
+    			fallback = yes
+    			path = { 1942 1051 8590 8581 8637 3561 }
+    			start_province = 1942
+    			target_province = 3561 
+		}
+
+		build_railway = {
+    			level = 1
+    			fallback = yes
+    			path = { 8788 1353 2004 9017 1796}
+    			start_province = 8788
+    			target_province = 1796
+		}
+	}
+
+	completion_reward = {
+		country_event = {
+    			id = maga.183
+    			days = 0
+    			random_hours = 8
+		}		
+	}
+}
+
+joint_focus = {
+	id = USA_IDA_civs
+	search_filters = { joint }
+	icon = GFX_goal_ILFM_Support
+
+	X = -5
+	Y = 1
+	relative_position_id = USA_IDA_connect_capitals
+
+	prerequisite = {
+		focus = USA_IDA_connect_capitals
+	}
+	cost = 4
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = USA
+			tag = IDA
+		}
+	}
+
+	#completion_reward_joint_originator = {
+
+	#}
+
+	completion_reward = {
+		random_controlled_state = {
+			limit = {
+				is_core_of = ROOT
+				OR = {
+					state = 422
+					state = 400
+				}
+			} 
+			add_extra_state_shared_building_slots = 1		
+			add_building_construction = {
+    				type = industrial_complex
+    				level = 1
+    				instant_build = yes
+			}
+		}		
+	}
+}
+
+joint_focus = {
+	id = USA_IDA_infra
+	search_filters = { joint }
+	icon = GFX_goal_ILFM_Support
+
+	X = -6
+	Y = 2
+	relative_position_id = USA_IDA_connect_capitals
+
+	prerequisite = {
+		focus = USA_IDA_civs
+	}
+	cost = 4
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = USA
+			tag = IDA
+		}
+	}
+
+	completion_reward_joint_originator = {
+		IDA = {
+			random_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				} 
+				add_extra_state_shared_building_slots = 1		
+				add_building_construction = {
+    					type = infrastructure
+    					level = 2
+    					instant_build = yes
+				}
+			}
+		}
+	}
+
+	#completion_reward = {
+		
+	#}
+}
+
+joint_focus = {
+	id = USA_IDA_fuel
+	search_filters = { joint }
+	icon = GFX_goal_ILFM_Support
+
+	X = -8
+	Y = 3
+	relative_position_id = USA_IDA_connect_capitals
+
+	prerequisite = {
+		focus = USA_IDA_infra
+	}
+	cost = 3
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = USA
+			tag = IDA
+		}
+	}
+
+	completion_reward_joint_originator = {
+		IDA = {
+			random_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				} 
+				add_extra_state_shared_building_slots = 3		
+				add_building_construction = {
+    					type = fuel_silo
+    					level = 3
+    					instant_build = yes
+				}
+			}
+		}
+	}
+
+	#completion_reward = {
+		
+	#}
+}
+
+joint_focus = {
+	id = USA_IDA_fuel_fill
+	search_filters = { joint }
+	icon = GFX_goal_ILFM_Support
+
+	X = -8
+	Y = 5
+	relative_position_id = USA_IDA_connect_capitals
+
+	prerequisite = {
+		focus = USA_IDA_fuel
+	}
+	cost = 2
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = USA
+			tag = IDA
+		}
+	}
+
+	completion_reward_joint_originator = {
+		IDA = {
+			set_fuel_ratio = 1
+		}
+	}
+
+	#completion_reward = {
+		
+	#}
+}
+
+joint_focus = {
+	id = USA_IDA_offmapciv
+	search_filters = { joint }
+	icon = GFX_goal_ILFM_Support
+
+	X = -6
+	Y = 3
+	relative_position_id = USA_IDA_connect_capitals
+
+	prerequisite = {
+		focus = USA_IDA_infra
+	}
+	cost = 3
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = USA
+			tag = IDA
+		}
+	}
+
+	#completion_reward_joint_originator = {
+
+	#}
+
+	completion_reward = {
+		add_offsite_building = { type = industrial_complex level = 1 }
+	}
+}
+
+joint_focus = {
+	id = USA_IDA_rgroup
+	search_filters = { joint }
+	icon = GFX_goal_ILFM_Support
+
+	X = -4
+	Y = 2
+	relative_position_id = USA_IDA_connect_capitals
+
+	prerequisite = {
+		focus = USA_IDA_civs
+	}
+	cost = 5
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = USA
+			tag = IDA
+		}
+	}
+
+	#completion_reward_joint_originator = {
+
+	#}
+
+	completion_reward = {
+		add_to_tech_sharing_group = republican_research
+	}
+}
+
+joint_focus = {
+	id = USA_IDA_industrial_tech
+	search_filters = { joint }
+	icon = GFX_goal_ILFM_Support
+
+	X = -4
+	Y = 3
+	relative_position_id = USA_IDA_connect_capitals
+
+	prerequisite = {
+		focus = USA_IDA_rgroup
+	}
+	cost = 5
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = USA
+			tag = IDA
+		}
+	}
+
+	#completion_reward_joint_originator = {
+
+	#}
+
+	completion_reward = {
+		add_tech_bonus = {
+    			bonus = 1
+    			uses = 1
+    			category = industry
+		}
+	}
+}
+
+joint_focus = {
+	id = USA_IDA_industrial_center
+	search_filters = { joint }
+	icon = GFX_goal_ILFM_Support
+
+	X = -5
+	Y = 4
+	relative_position_id = USA_IDA_connect_capitals
+
+	prerequisite = {
+		focus = USA_IDA_industrial_tech
+	}
+
+	prerequisite = {
+		focus = USA_IDA_offmapciv
+	}
+	cost = 6
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = USA
+			tag = IDA
+		}
+	}
+
+	completion_reward_joint_originator = {
+		random_controlled_state = {
+			limit = {
+				is_core_of = ROOT
+			} 
+			add_extra_state_shared_building_slots = 3		
+			add_building_construction = {
+    				type = industrial_complex
+    				level = 3
+    				instant_build = yes
+			}
+		}
+		country_event = {
+    			id = maga.184
+    			days = 3
+    			random_hours = 18
+		}
+	}
+
+
+
+	#completion_reward = {
+
+	#}
+
+	completion_reward_joint_member = {
+		country_event = {
+    			id = maga.185
+    			days = 3
+    			random_hours = 18
+		}
+	}
+}
+
+joint_focus = {
+	id = USA_IDA_minning
+	search_filters = { joint }
+	icon = GFX_goal_ILFM_Support
+
+	X = -5
+	Y = 5
+	relative_position_id = USA_IDA_connect_capitals
+
+	prerequisite = {
+		focus = USA_IDA_industrial_center
+	}
+
+	cost = 6
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = USA
+			tag = IDA
+		}
+	}
+
+	completion_reward_joint_originator = {
+		354 = {
+			limit = {
+				is_core_of = ROOT
+			} 
+			add_resource = {
+    				type = tungsten
+    				amount = 6
+			}
+		}
+
+		415 = {
+			limit = {
+				is_core_of = ROOT
+			} 
+			add_resource = {
+    				type = tungsten
+    				amount = 4
+			}
+		}
+		give_resource_rights = {
+    			receiver = USA
+    			state = 415
+    			resources = { tungsten }
+		}
+
+	}
+
+
+
+	#completion_reward = {
+
+	#}
+
+	#completion_reward_joint_member = {
+
+	#}
+}
+
+joint_focus = {
+	id = USA_IDA_guns
+	search_filters = { joint }
+	icon = GFX_goal_ILFM_Support
+
+	X = 0
+	Y = 1
+	relative_position_id = USA_IDA_connect_capitals
+
+	prerequisite = {
+		focus = USA_IDA_connect_capitals
+	}
+	cost = 4
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = USA
+			tag = IDA
+		}
+	}
+
+	completion_reward_joint_originator = {
+		IDA = {
+			country_event = {
+    				id = maga.186
+   	 			days = 0
+    				random_hours = 9
+			}
+			effect_tooltip = {
+				add_equipment_to_stockpile = {
+    					type = infantry_equipment
+    					amount = 3000
+    					producer = USA
+				}
+			}
+		}
+	}
+
+	#completion_reward = {
+		
+	#}
+}
+
+joint_focus = {
+	id = USA_IDA_exercises_land
+	search_filters = { joint }
+	icon = GFX_goal_ILFM_Support
+
+	X = -1
+	Y = 2
+	relative_position_id = USA_IDA_connect_capitals
+
+	prerequisite = {
+		focus = USA_IDA_guns
+	}
+	cost = 5
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = USA
+			tag = IDA
+		}
+	}
+
+	#completion_reward_joint_originator = {
+
+	#}
+
+	completion_reward = {
+		army_experience = 45
+		add_doctrine_cost_reduction = {
+			cost_reduction = 0.6
+			uses = 1
+			category = land_doctrine
+		}
+		country_event = {
+    			id = maga.187
+   	 		days = 4
+    			random_hours = 30
+		}	
+	}
+}
+
+joint_focus = {
+	id = USA_IDA_exercises_special_forces
+	search_filters = { joint }
+	icon = GFX_goal_ILFM_Support
+
+	X = -1
+	Y = 3
+	relative_position_id = USA_IDA_connect_capitals
+
+	prerequisite = {
+		focus = USA_IDA_exercises_land
+	}
+	cost = 8
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = USA
+			tag = IDA
+		}
+	}
+
+	completion_reward_joint_originator = {
+		add_ideas = USA_special_forces
+	}
+
+	completion_reward = {
+		add_doctrine_cost_reduction = {
+			cost_reduction = 0.4
+			uses = 1
+			category = special_forces_doctrine
+		}
+		add_doctrine_cost_reduction = {
+			cost_reduction = 0.4
+			uses = 1
+			category = cat_mountaineers_doctrine
+		}	
+	}
+}
+
+joint_focus = {
+	id = USA_IDA_airbases
+	search_filters = { joint }
+	icon = GFX_goal_ILFM_Support
+
+	X = 1
+	Y = 2
+	relative_position_id = USA_IDA_connect_capitals
+
+	prerequisite = {
+		focus = USA_IDA_guns
+	}
+	cost = 4
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = USA
+			tag = IDA
+		}
+	}
+
+	completion_reward_joint_originator = {
+		IDA = {	
+			random_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				} 			
+				add_building_construction = {
+    					type = air_base
+    					level = 3
+    					instant_build = yes
+				}
+			}
+		}
+	}
+
+	#completion_reward = {
+			
+	#}
+}
+
+
+joint_focus = {
+	id = USA_IDA_exercises_air
+	search_filters = { joint }
+	icon = GFX_goal_ILFM_Support
+
+	X = 1
+	Y = 3
+	relative_position_id = USA_IDA_connect_capitals
+
+	prerequisite = {
+		focus = USA_IDA_airbases
+	}
+	cost = 5
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = USA
+			tag = IDA
+		}
+	}
+
+	#completion_reward_joint_originator = {
+		
+	#}
+
+	completion_reward = {
+		air_experience = 50
+		add_doctrine_cost_reduction = {
+			cost_reduction = 0.6
+			uses = 1
+			category = air_doctrine
+		}
+		country_event = {
+    			id = maga.188
+   	 		days = 4
+    			random_hours = 30
+		}			
+	}
+}
+
+joint_focus = {
+	id = USA_IDA_exercises_paratroopers
+	search_filters = { joint }
+	icon = GFX_goal_ILFM_Support
+
+	X = 0
+	Y = 4
+	relative_position_id = USA_IDA_connect_capitals
+
+	prerequisite = {
+		focus = USA_IDA_exercises_air
+	}
+	prerequisite = {
+		focus = USA_IDA_exercises_special_forces
+	}
+	cost = 5
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = USA
+			tag = IDA
+		}
+	}
+
+	#completion_reward_joint_originator = {
+		
+	#}
+
+	completion_reward = {
+
+		add_doctrine_cost_reduction = {
+			cost_reduction = 0.6
+			uses = 2
+			category =cat_paratroopers_doctrine
+		}
+			
+	}
+}
+
+joint_focus = {
+	id = USA_IDA_join_arms_manufacturing
+	search_filters = { joint }
+	icon = GFX_goal_ILFM_Support
+
+	X = 0
+	Y = 5
+	relative_position_id = USA_IDA_connect_capitals
+
+	prerequisite = {
+		focus = USA_IDA_exercises_paratroopers
+	}
+	cost = 6
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = USA
+			tag = IDA
+		}
+	}
+
+	#completion_reward_joint_originator = {
+		
+	#}
+
+	completion_reward = {
+
+		random_controlled_state = {
+			limit = {
+				is_core_of = ROOT
+				OR = {
+					state = 422
+					state = 400
+				}
+			} 
+			add_extra_state_shared_building_slots = 2		
+			add_building_construction = {
+    				type = arms_factory
+    				level = 2
+    				instant_build = yes
+			}
+		}
+			
+	}
+}
+
+joint_focus = {
+	id = USA_IDA_annex
+	search_filters = { joint }
+	icon = GFX_goal_ILFM_Support
+
+	X = -3
+	Y = 6
+	relative_position_id = USA_IDA_connect_capitals
+
+	prerequisite = {
+		focus = USA_IDA_join_arms_manufacturing
+	}
+	prerequisite = {
+		focus = USA_IDA_minning
+	}
+	available = {
+		controls_state = 242
+		tag = USA
+	}
+	cost = 10
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = USA
+			tag = IDA
+		}
+	}
+
+	completion_reward_joint_member = {
+
+			country_event = {
+    				id = maga.189
+   	 			days = 2
+    				random_hours = 30
+			}
+
+	}
+
+	#completion_reward = {
+		
+	#}
+}
+
+joint_focus = {
+	id = USA_IDA_exile_prep
+	search_filters = { joint }
+	icon = GFX_goal_ILFM_Support
+
+	X = 5
+	Y = 1
+	relative_position_id = USA_IDA_connect_capitals
+
+	prerequisite = {
+		focus = USA_IDA_connect_capitals
+	}
+	available = {
+		IDA = {
+			surrender_progress > 0.1
+		}
+	}
+	cost = 5
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = USA
+			tag = IDA
+		}
+	}
+
+	completion_reward_joint_originator = {
+		USA = {
+			custom_effect_tooltip = exile_future
+		}
+		IDA = {
+			set_country_flag = exilable
+		}
+	}
+
+	#completion_reward = {
+				
+	#}
+}
+
+joint_focus = {
+	id = USA_IDA_annex_cap
+	search_filters = { joint }
+	icon = GFX_goal_ILFM_Support
+
+	X = 3
+	Y = 2
+	relative_position_id = USA_IDA_connect_capitals
+
+	prerequisite = {
+		focus = USA_IDA_exile_prep
+	}
+
+	mutually_exclusive = {
+		focus = USA_IDA_help_IDA
+	}
+
+	available = {
+		IDA = {
+			is_exiled_in = USA
+		}
+	}
+	cost = 6
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = USA
+			tag = IDA
+		}
+	}
+
+	completion_reward_joint_originator = {
+		IDA = {
+			every_core_state = {
+				add_core_of = USA
+			}
+			every_owned_state = {
+				controller = { 
+					PREV = {
+						transfer_state_to = PREV
+					}	
+				}
+				
+			}
+		}
+		USA = {
+			annex_country = {
+    				target = IDA
+    				transfer_troops = yes
+			}
+			mark_focus_tree_layout_dirty = yes
+		}
+
+	}
+
+	#completion_reward = {
+				
+	#}
+}
+
+joint_focus = {
+	id = USA_IDA_help_IDA
+	search_filters = { joint }
+	icon = GFX_goal_ILFM_Support
+
+	X = 5
+	Y = 2
+	relative_position_id = USA_IDA_connect_capitals
+	available_if_capitulated = yes
+	mutually_exclusive = {
+		focus = USA_IDA_annex_cap
+	}
+	prerequisite = {
+		focus = USA_IDA_exile_prep
+	}
+	available = {
+		IDA = {
+			is_exiled_in = USA
+		}
+	}
+	cost = 4
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = USA
+			tag = IDA
+		}
+	}
+
+	completion_reward_joint_originator = {
+		IDA = {
+			add_ideas = IDA_exile_support
+			country_event = {
+    				id = maga.191
+    				days = 0
+    				random_hours = 8
+			}
+		}
+		USA = {
+			country_event = {
+    				id = maga.192
+    				days = 0
+    				random_hours = 8
+			}
+		}
+	}
+
+	#completion_reward = {
+				
+	#}
+}
+
+joint_focus = {
+	id = USA_IDA_legitimacy
+	search_filters = { joint }
+	icon = GFX_goal_ILFM_Support
+
+	X = 7
+	Y = 2
+	relative_position_id = USA_IDA_connect_capitals
+	available_if_capitulated = yes
+	mutually_exclusive = {
+		focus = USA_IDA_annex_cap
+	}
+	prerequisite = {
+		focus = USA_IDA_exile_prep
+	}
+	available = {
+		IDA = {
+			is_exiled_in = USA
+		}
+	}
+	cost = 4
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = USA
+			tag = IDA
+		}
+	}
+
+	completion_reward_joint_originator = {
+		IDA = {
+			add_legitimacy = 30
+		}
+
+	}
+
+	completion_reward = {
+		country_event = {
+    			id = maga.193
+    			days = 0
+    			random_hours = 8
+		}				
+	}
+}
