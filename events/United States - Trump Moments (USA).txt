@@ -1788,7 +1788,8 @@ country_event = {
 	}
 }
 
-#Will be collapse chain when I get around to makeing it
+#Start of teh collapse chain (it continues on 194 tho).
+#Describes Gavin McInnes and the proudnboys having a conversation about how they consider that Trump has gone soft and they have to "force" him to "return" to his proper more radical self.
 country_event = {
 	id = maga.85
 	title = maga.85.t
@@ -1800,6 +1801,11 @@ country_event = {
 		name = maga.85.a
 		ai_chance = {
 			factor = 1
+		}
+		country_event = {
+    			id = maga.194
+    			days = 8
+    			random_hours = 28
 		}
 	}
 }
@@ -4300,11 +4306,472 @@ country_event = {
 	desc = maga.192.d
 	#picture =
 	is_triggered_only = yes
-	#fire_only_once = yes
+	fire_only_once = yes
 	option = { 
 		name = maga.193.a
 		ai_chance = {
 			factor = 1
+		}
+
+	}
+}
+##############
+#The collapse#
+##############
+
+#An event about Trump JR going to a meeting in Kansas city, while his father stays in Denver
+country_event = {
+	id = maga.194
+	title = maga.194.t
+	desc = maga.194.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.194.a
+		ai_chance = {
+			factor = 1
+		}
+		country_event = {
+    			id = maga.195
+    			days = 8
+    			random_hours = 28
+		}
+
+	}
+}
+
+#The PB attack denver and close roads leading to the city around Colorado
+country_event = {
+	id = maga.195
+	title = maga.195.t
+	desc = maga.195.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.195.a
+		ai_chance = {
+			factor = 1
+		}
+		hidden_effect = {
+			every_subject_country = {
+				USA={set_autonomy = {
+    					target = PREV
+    					autonomous_state = autonomy_free
+    					end_wars = no
+   					end_civil_wars = no
+				}}
+			}	
+			dismantle_faction = yes
+			every_country = {
+				limit = {has_war_with = USA}
+				white_peace = USA
+			}
+
+
+		}
+		add_political_power = -200
+		set_stability = 0
+		set_war_support = 0
+		country_event = {
+    			id = maga.196
+    			days = 0
+    			random_hours = 10
+		}
+		416 = {
+			set_demilitarized_zone = yes
+		}
+
+	}
+}
+
+#Trump JR Takes control after his dad was kinapted.
+country_event = {
+	id = maga.196
+	title = maga.196.t
+	desc = maga.196.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.196.a
+		ai_chance = {
+			factor = 1
+		}
+		load_focus_tree = { tree = Colorado_crisis}
+		add_political_power = -50
+		add_ideas = USA_don_jr_advisor
+		remove_ideas = USA_gavin_mcinnes_advisor
+		set_capital = {state = 236}
+		add_country_leader_role = {
+    			character = USA_donald_trump_jr
+    			promote_leader = yes
+    			country_leader = {
+        			ideology = trumpist
+        			traits = { the_future_of_republicanism }
+    			}
+		}		
+		country_event = {
+    			id = maga.197
+    			days = 37
+    			random_hours = 28
+		}
+
+	}
+}
+
+#Anti trump protestos acumulate all around Indianapolis and manage to kick the police an army.
+country_event = {
+	id = maga.197
+	title = maga.197.t
+	desc = maga.197.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.197.a
+		ai_chance = {
+			factor = 1
+		}
+		NPA = {
+			every_core_state = {
+				limit = {NOT = {state = 207}}
+				remove_core_of = NPA
+			}
+		}
+		207 = {
+			set_demilitarized_zone = yes
+		}
+		country_event = {
+    			id = maga.198
+    			days = 30
+    			random_hours = 28
+		}
+
+	}
+}
+
+#Military forces across the country have stop answering orders
+country_event = {
+	id = maga.198
+	title = maga.198.t
+	desc = maga.198.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.198.a
+		ai_chance = {
+			factor = 1
+		}
+		every_owned_state = {
+			add_to_array = {
+    				array = global.Trump_collapse_states
+    				value = THIS.id
+			}
+			set_demilitarized_zone = yes
+			remove_core_of = USA
+			
+		}
+		capital_scope = {
+			set_demilitarized_zone = no
+			add_core_of = USA
+		}
+		country_event = {
+    			id = maga.199
+    			days = 30
+    			random_hours = 28
+		}
+
+	}
+}
+
+#The proud boys and protestors set up their goverments
+country_event = {
+	id = maga.199
+	title = maga.199.t
+	desc = maga.199.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = { hidden_effect = {
+
+
+		207 = {
+			set_demilitarized_zone = no
+			transfer_state_to = NPA
+		}
+		416 = {
+			set_demilitarized_zone = no
+		}
+		add_to_array = {
+    			array = global.Trump_collapse_tags
+    			value = THIS.id
+		}
+		NPA = {
+			load_focus_tree = Trump_collapse
+			create_country_leader = {
+				name = "Lindsey Graham"
+				desc = " "
+				picture = gfx/leaders/USA/Portrait_Lindsey_Graham_Vanilla_MAA_copy.dds
+				expire = "2080.1.1"
+				ideology = neocon
+				traits = {}
+			}
+			add_to_array = {
+    				array = global.Trump_collapse_tags
+    				value = THIS.id
+			}
+		}
+		create_dynamic_country = {
+    			original_tag = USA
+   			load_focus_tree = Trump_collapse
+			transfer_state = 416
+			add_to_array = {
+    				array = global.Trump_collapse_tags
+    				value = THIS
+			}
+			add_state_core = 416
+			set_politics = {
+    				ruling_party = autocratic
+    				elections_allowed = no
+			}
+			set_temp_variable ={
+				PB = THIS
+			}
+			set_political_party = {
+    				ideology = autocratic
+    				popularity = 75
+			}
+		}
+
+
+		transfer_units_fraction= {
+			target = PB
+			stockpile_ratio = 0.1
+			army_ratio = 0.2
+			air_ratio = 0.25
+		}
+		delete_unit_template_and_units = {
+    			division_template = "PB paramilitary"
+    			disband = no
+		}
+		transfer_units_fraction= {
+			target = NPA
+			stockpile_ratio = 0.3
+			army_ratio = 0.4
+			air_ratio = 0.1
+		}
+
+		set_nationality = {
+    			target_country = PB
+    			character = USA_gavin_mcinnes 
+		}
+		var:PB = {
+			promote_character = USA_gavin_mcinnes 
+		}
+		country_event = {
+    			id = maga.200
+    			days = 15
+    			random_hours = 28
+		}
+	}}
+	option = { 
+		name = maga.199.a
+		ai_chance = {
+			factor = 1
+		}
+
+	}
+
+	option = { 
+		name = maga.199.b
+		ai_chance = {
+			factor = 0
+		}
+		NPA = { change_tag_from = ROOT }
+	}
+
+	option = { 
+		name = maga.199.c
+		ai_chance = {
+			factor = 0
+		}
+		var:global.Trump_collapse_tags^2 = { change_tag_from = ROOT }
+	}
+}
+
+#The televangelist Kennet Copeland takes advantage of the chaos to make his own state on Oklahoma.
+country_event = {
+	id = maga.200
+	title = maga.200.t
+	desc = maga.200.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = { hidden_effect = {
+
+		252 = {
+			set_demilitarized_zone = no
+			transfer_state_to = CPE	
+			add_core_of = CPE		
+		}
+		add_to_array = {
+    			array = global.Trump_collapse_tags
+    			value = CPE
+		}
+
+		transfer_units_fraction= {
+			target = CPE
+			stockpile_ratio = 0.1
+			army_ratio = 0.2
+		}
+		if = {
+			limit = { has_country_flag = pardoned_npa }
+			country_event = {
+    				id = maga.201
+    				days = 15
+    				random_hours = 28
+			}
+		}
+
+		country_event = {
+    			id = maga.202
+    			days = 60
+    			random_hours = 28
+		}
+
+
+	}}
+	option = { 
+		name = maga.200.a
+		ai_chance = {
+			factor = 1
+		}
+	
+	}
+
+	option = { 
+		name = maga.200.b
+		ai_chance = {
+			factor = 0
+		}
+		CPE= { change_tag_from = ROOT }
+	}
+}
+
+#Dennis praguer rilles up exiled, and leads a northern revolt
+country_event = {
+	id = maga.201
+	title = maga.201.t
+	desc = maga.201.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = { hidden_effect = {
+
+		create_dynamic_country = {
+    			original_tag = NPA
+   			load_focus_tree = Trump_collapse
+			transfer_state = 564 
+			add_to_array = {
+    				array = global.Trump_collapse_tags
+    				value = THIS
+			}
+			add_state_core = 564
+			set_politics = {
+    				ruling_party = republican
+    				elections_allowed = no
+			}
+			set_temp_variable ={
+				PU = THIS
+			}
+			set_political_party = {
+    				ideology = republican
+    				popularity = 100
+			}
+			set_cosmetic_tag = PU
+		}
+
+		transfer_units_fraction= {
+			target = PU
+			stockpile_ratio = 0.1
+			army_ratio = 0.2
+		}
+
+		set_nationality = {
+    			target_country = PU
+    			character = USA_dennis_prager 
+		}
+		var:PU = {
+			
+			add_country_leader_role = {
+    				character = USA_dennis_prager
+    				promote_leader = yes
+    				country_leader = {
+        				ideology = neocon
+        				traits = { }
+    				}
+			}
+ 
+		}
+
+	}}
+	option = { 
+		name = maga.201.a
+		ai_chance = {
+			factor = 1
+		}
+	
+	}
+
+	option = { 
+		name = maga.201.b
+		ai_chance = {
+			factor = 0
+		}
+		var:global.Trump_collapse_tags^4 = { change_tag_from = ROOT }
+	}
+}
+
+#We lose the little control we had left over the midwest
+country_event = {
+	id = maga.202
+	title = maga.202.t
+	desc = maga.202.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.202.a
+		ai_chance = {
+			factor = 1
+		}
+		load_focus_tree = Trump_collapse
+
+		create_dynamic_country = {
+    			original_tag = USA
+			set_politics = {
+    				ruling_party = libertarian_left
+    				elections_allowed = no
+			}
+			set_temp_variable ={
+				wild = THIS
+			}
+			set_cosmetic_tag = empty
+		}
+		every_owned_state = {
+			limit = {
+				is_capital = no
+			}
+			set_demilitarized_zone = no
+			transfer_state_to = wild
+		}
+		country_event = {
+    			id = maga.203
+    			days = 350
+    			random_hours = 28
 		}
 
 	}
