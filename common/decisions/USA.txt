@@ -976,7 +976,7 @@ USA_Collapse = {
 		}
 		is_good  = no
 		fire_only_once = yes
-		days_mission_timeout = 425
+		days_mission_timeout = 230
 		timeout_effect = {
 			custom_effect_tooltip = Trump_Collapse
 			country_event = {
@@ -1052,7 +1052,7 @@ USA_Collapse = {
 		days_remove = 30
 		#fire_only_once = yes
 		ai_will_do = {
-			base = 100
+			base = 300
 		}
 		remove_effect = {
 			FROM = {
@@ -1066,5 +1066,60 @@ USA_Collapse = {
 		}
 		
 	}
+	USA_collapse_borders = {
+		state_target = yes
+		on_map_mode = map_and_decisions_view
+		target_array = global.Trump_collapse_states
+		visible = {
+			has_war = no
+		 	FROM = {
+				any_neighbor_state = {
+					is_owned_by = ROOT
+				}
+				NOT= {
+					is_owned_by = ROOT
+				}
+				owner = {
+					is_in_array = {
+    						array = global.Trump_collapse_tags
+    						value = THIS.id
+					}
+				}
+			}	
+					
+		}
 
+		cost = 40
+		days_remove = 7
+		days_re_enable = 45
+		ai_will_do = {
+			base = 300
+		}
+		remove_effect = {
+			FROM = { random_neighbor_state = { 
+				limit = {is_owned_by = ROOT} 
+					ROOT = {
+						start_border_war = {
+							change_state_after_war =  yes
+							attacker = {
+								state = PREV
+								num_provinces = 5
+								on_win = conflict_results.1
+								on_lose = conflict_results.1
+								on_cancel = conflict_results.1
+							}
+					
+							defender = {
+								state = FROM
+								num_provinces = 5
+								on_win = conflict_results.2
+								on_lose = conflict_results.2
+								on_cancel = conflict_results.2
+							}
+						}
+					}
+				}
+			}			
+		}
+	}
 }
