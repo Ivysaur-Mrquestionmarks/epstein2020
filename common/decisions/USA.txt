@@ -964,6 +964,107 @@ USA_PB = {
 			}
 		}
 	}
+}
 
+USA_Collapse = {
+	USA_war_timer = {
+		activation = {
+			always = no
+		}
+		available = {
+			always = no
+		}
+		is_good  = no
+		fire_only_once = yes
+		days_mission_timeout = 425
+		timeout_effect = {
+			custom_effect_tooltip = Trump_Collapse
+			country_event = {
+    				id = maga.203
+    				days = 0
+			}
+			news_event = {
+    				id = News_events.23 
+    				days = 3
+			}
+		}
+	}
+	USA_expand = {
+		state_target = yes
+		on_map_mode = map_and_decisions_view
+		target_array = global.Trump_collapse_states
+
+		visible = {
+		 	FROM = {
+				owner = {
+					NOT = {
+						is_in_array = {
+    							array = global.Trump_collapse_tags
+    							value = THIS.id
+						}
+					}
+				}
+				num_owned_neighbour_states = {
+    					owner = ROOT
+    					count > 0
+				}
+			}	
+					
+		}
+		#available = {
+
+		#}
+		cost = 10
+		days_remove = 7
+		fire_only_once = yes
+		ai_will_do = {
+			base = 500
+		}
+		remove_effect = {
+			FROM = {
+				transfer_state_to = ROOT
+			}
+		}
+		
+	}
+
+	USA_civil_war_integrate = {
+		state_target = yes
+		on_map_mode = map_and_decisions_view
+		target_array = ROOT.owned_states
+
+		visible = {
+		 	FROM = {
+				NOT = {
+					is_core_of = ROOT
+				}
+				is_in_array = {
+    					array = global.Trump_collapse_states
+    					value = THIS.id
+				}
+			}	
+					
+		}
+		#available = {
+
+		#}
+		cost = 35
+		days_remove = 30
+		#fire_only_once = yes
+		ai_will_do = {
+			base = 100
+		}
+		remove_effect = {
+			FROM = {
+				add_core_of = ROOT
+				create_unit = {
+					division = "division_template = \"Local militias\"	start_experience_factor = 0.1	start_equipment_factor = 0.85"
+					owner = ROOT
+					count = 3
+				}				
+			}
+		}
+		
+	}
 
 }

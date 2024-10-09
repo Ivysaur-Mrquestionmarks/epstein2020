@@ -4749,6 +4749,7 @@ country_event = {
 			factor = 1
 		}
 		load_focus_tree = Trump_collapse
+		activate_mission_tooltip = USA_war_timer
 
 		create_dynamic_country = {
     			original_tag = USA
@@ -4759,6 +4760,14 @@ country_event = {
 			set_temp_variable ={
 				wild = THIS
 			}
+			create_country_leader = {
+				name = " "
+				desc = " "
+				picture = gfx/leaders/USA/noone.dds
+				expire = "2080.1.1"
+				ideology = anarchism 
+				traits = {}
+			}
 			set_cosmetic_tag = empty
 		}
 		every_owned_state = {
@@ -4768,11 +4777,337 @@ country_event = {
 			set_demilitarized_zone = no
 			transfer_state_to = wild
 		}
-		country_event = {
-    			id = maga.203
-    			days = 350
-    			random_hours = 28
+		for_each_scope_loop = {
+    			array = global.Trump_collapse_tags
+			set_stability = 0
+			set_war_support = 0.1
+			inherit_technology = USA
+			activate_mission = USA_war_timer
+			division_template = {
+		    		name = "Local militias"
+				is_locked = yes
+	    			division_names_group = USA_INF_01
+	    			regiments = {
+	        			infantry = { x = 0 y = 0 }
+	        			infantry = { x = 0 y = 1 }
+	        			infantry = { x = 0 y = 2 }
+	        			infantry = { x = 0 y = 3 }
+	        			infantry = { x = 0 y = 4 }
+	    			}
+			}			
+    		}
+	}
+}
+
+#The collapse wars starts
+country_event = {
+	id = maga.203
+	title = maga.203.t
+	desc = maga.203.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.203.a
+		ai_chance = {
+			factor = 1
+		}
+		every_country_with_original_tag = {
+    			original_tag_to_check = USA
+			limit = {has_government = libertarian_left}
+			set_politics = {
+    				ruling_party = libertarian_right
+    				elections_allowed = no
+			}
+			add_to_array = {
+    				array = global.Trump_collapse_tags
+    				value = THIS
+			}
+			division_template = {
+		    		name = "Local militias"
+				is_locked = yes
+	    			division_names_group = USA_INF_01
+	    			regiments = {
+	        			infantry = { x = 0 y = 0 }
+	        			infantry = { x = 0 y = 1 }
+	        			infantry = { x = 0 y = 2 }
+	        			infantry = { x = 0 y = 3 }
+	        			infantry = { x = 0 y = 4 }
+	    			}
+			}
+			every_owned_state = {
+				create_unit = {
+					division = "division_template = \"Local militias\"	start_experience_factor = 0.1	start_equipment_factor = 0.85"
+					owner = PREV
+					count = 5
+				}
+			}			
+		}
+		for_each_scope_loop = { #This loops declare the wars
+    			array = global.Trump_collapse_tags
+			for_each_scope_loop = {
+				array = global.Trump_collapse_tags
+				if = { limit = {Not = { OR = {has_war_with = PREV tag = PREV}}}
+					declare_war_on = {
+    						target = PREV
+    						type = annex_everything
+					}
+				}
+			}
+		}
+	}
+}
+
+#Still collapse related, but the following ones are the actions the player does to try to deal with the crisis (focus tree)
+#Aka this are being done at the same time as the previous collapse events
+
+#Trump JR and his staff discuss their plans to deal with the crisis
+country_event = {
+	id = maga.204
+	title = maga.204.t
+	desc = maga.204.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.204.a
+		ai_chance = {
+			factor = 1
 		}
 
+	}
+}
+
+#Trump JR tries ngotiating with the proud boys, but the negotiations fails due to the PB asking for too much.
+country_event = {
+	id = maga.205
+	title = maga.205.t
+	desc = maga.205.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.205.a
+		ai_chance = {
+			factor = 1
+		}
+
+	}
+}
+
+#Trump JR has a meeting with the army to ask them for support in the crisis.
+country_event = {
+	id = maga.206
+	title = maga.206.t
+	desc = maga.206.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.206.a
+		ai_chance = {
+			factor = 1
+		}
+		country_event = {
+    			id = maga.207
+    			days = 250
+    			random_hours = 50
+		}
+	}
+}
+
+#The army comes to support us in the crisis.
+country_event = {
+	id = maga.207
+	title = maga.207.t
+	desc = maga.207.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.207.a
+		ai_chance = {
+			factor = 1
+		}
+		division_template = {
+	    		name = "The Loyal army"
+	    		division_names_group = USA_INF_01
+	    		regiments = {
+	        		infantry = { x = 0 y = 0 }
+	        		infantry = { x = 0 y = 1 }
+	        		infantry = { x = 0 y = 2 }
+	        		infantry = { x = 0 y = 3 }
+	        		infantry = { x = 0 y = 4 }
+	        		infantry = { x = 1 y = 0 }
+	        		infantry = { x = 1 y = 1 }
+	        		infantry = { x = 1 y = 2 }
+	        		infantry = { x = 1 y = 3 }
+	        		infantry = { x = 1 y = 4 }
+	    		}
+		}
+		capital_scope = {
+			create_unit = {
+				division = "division_template = \"The Loyal army\"	start_experience_factor = 0.3	start_equipment_factor = 1"
+				owner = USA
+				count = 5
+			}
+		}
+	}
+}
+
+#Trump JR has a meeting with the airforce to ask them for support in the crisis.
+country_event = {
+	id = maga.208
+	title = maga.208.t
+	desc = maga.208.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.208.a
+		ai_chance = {
+			factor = 1
+		}
+		country_event = {
+    			id = maga.209
+    			days = 250
+    			random_hours = 50
+		}
+	}
+}
+
+#Some airfoce pilots come to our aid.
+country_event = {
+	id = maga.209
+	title = maga.209.t
+	desc = maga.209.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.209.a
+		ai_chance = {
+			factor = 1
+		}
+		add_equipment_to_stockpile = {
+    			type = medium_plane_fighter_airframe
+    			amount = 99
+    			producer = USA
+		}		
+	}
+}
+
+#Trump JR ask the Russians 
+country_event = {
+	id = maga.210
+	title = maga.210.t
+	desc = maga.210.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.210.a
+		ai_chance = {
+			factor = 1
+		}
+		country_event = {
+    			id = maga.211
+    			days = 250
+    			random_hours = 50
+		}
+	}
+}
+
+#The russian send a couple units to support us in the crisis.
+country_event = {
+	id = maga.211
+	title = maga.211.t
+	desc = maga.211.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = maga.211.a
+		ai_chance = {
+			factor = 1
+		}
+		division_template = {
+	    		name = "Russian legion"
+	    		division_names_group = USA_INF_01
+	    		regiments = {
+	        		IFV = { x = 0 y = 0 }
+	        		IFV= { x = 0 y = 1 }
+	        		IFV= { x = 0 y = 2 }
+	        		IFV= { x = 0 y = 3 }
+	        		IFV= { x = 0 y = 4 }
+	        		IFV= { x = 1 y = 0 }
+	        		IFV= { x = 1 y = 1 }
+	        		IFV= { x = 1 y = 2 }
+	        		IFV= { x = 1 y = 3 }
+	        		IFV= { x = 1 y = 4 }
+	    		}
+		}
+		capital_scope = {
+			create_unit = {
+				division = "division_template = \"Russian legion\"	start_experience_factor = 0.35	start_equipment_factor = 1"
+				owner = USA
+				count = 2
+			}
+		}
+	}
+}
+
+#Trump JR decides where to set up his base for now
+country_event = {
+	id = maga.212
+	title = maga.212.t
+	desc = maga.212.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #Stay in Oklahoma city 
+		name = maga.212.a
+		ai_chance = {
+			factor = 1
+		}
+		
+	}
+
+	option = { #Move to ST. Louis
+		name = maga.212.b
+		ai_chance = {
+			factor = 1
+		}
+		236 = {
+			set_demilitarized_zone = yes
+			remove_core_of = USA
+		}
+		238 = {
+			set_demilitarized_zone = no
+			add_core_of = USA
+		}
+		set_capital = {
+  			state = 238
+  			remember_old_capital = no
+		}
+	}
+
+	option = { #Omaha
+		name = maga.212.b
+		ai_chance = {
+			factor = 2
+		}
+		236 = {
+			set_demilitarized_zone = yes
+			remove_core_of = USA
+		}
+		234 = {
+			set_demilitarized_zone = no
+			add_core_of = USA
+		}
+		set_capital = {
+  			state = 234
+  			remember_old_capital = no
+		}
 	}
 }
