@@ -983,17 +983,18 @@ USA_Collapse = {
     				id = maga.203
     				days = 0
 			}
-			news_event = {
-    				id = News_events.23 
-    				days = 3
-			}
+
 		}
 	}
 	USA_expand = {
 		state_target = yes
 		on_map_mode = map_and_decisions_view
 		target_array = global.Trump_collapse_states
-
+		complete_effect = {
+			FROM = {
+				set_state_flag = claimed
+			}
+		}
 		visible = {
 		 	FROM = {
 				owner = {
@@ -1003,6 +1004,9 @@ USA_Collapse = {
     							value = THIS.id
 						}
 					}
+				}
+				NOT = {
+					has_state_flag = claimed
 				}
 				num_owned_neighbour_states = {
     					owner = ROOT
@@ -1023,6 +1027,7 @@ USA_Collapse = {
 		remove_effect = {
 			FROM = {
 				transfer_state_to = ROOT
+				clr_state_flag = claimed
 			}
 		}
 		
