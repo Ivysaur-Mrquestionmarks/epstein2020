@@ -69,3 +69,86 @@ unit_leader_event = {
 		}
 	}
 }
+
+#event for TOH letting player know they will be annexed.
+country_event = {
+	id = hoya_heya.3
+	title = hoya_heya.3.t
+	desc = hoya_heya.3.d
+	picture = event_sam_hyde_01
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = hoya_heya.3.a
+		NAV = { change_tag_from = ROOT }
+	}
+	option = {
+		name = hoya_heya.3.b
+		custom_effect_tooltip = TOH_why_tho_tt
+	}
+}
+
+#Sorensen saves the day
+country_event = {
+	id = hoya_heya.4
+	title = hoya_heya.4.t
+	desc = hoya_heya.4.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			set_country_flag = united_tribal_front
+			add_country_leader_role = {
+			    character = NAV_patrick_sorenson
+			    promote_leader = yes
+			    country_leader = {
+			        ideology = libertarian_ideology
+			        traits = { NAV_medicine_man }
+			    }
+			}
+			set_party_name = {
+			    ideology = libertarian_right
+			    long_name = NAV_sorenson_govt_party
+			    name = NAV_sorenson_govt_party
+			}
+			set_party_name = {
+			    ideology = autocratic
+			    long_name = NAV_sorenson_govt_party
+			    name = NAV_sorenson_govt_party
+			}
+			add_country_leader_role = {
+			    character = NAV_patrick_sorenson
+			    promote_leader = yes
+			    country_leader = {
+			        ideology = military_dictatorship
+			        traits = { }
+			    }
+			}
+			every_state = {
+				limit = {
+					OR = {
+						is_core_of = HOP
+						is_core_of = TOH
+					}
+				}
+				add_core_of = ROOT
+			}
+		}
+	}
+	option = {
+		name = hoya_heya.4.a
+		HOP = { add_ideas = NAV_nazis_are_fucked }
+		TOH = {
+			TOH_miguel_aguilar = {
+				set_nationality = ROOT
+			}
+		}
+		annex_country = {
+		    target = TOH
+		    transfer_troops = yes
+		}
+		dismantle_faction = yes
+		set_cosmetic_tag = NAV_tribal_confed_cos
+	}
+}
