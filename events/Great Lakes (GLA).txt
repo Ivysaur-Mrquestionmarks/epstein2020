@@ -361,7 +361,7 @@ country_event = {
         ideology = autocratic
         popularity = 0.15
         }
-		add_political_power = -50
+		add_political_power = -350
 		add_stability = -0.1
 		hidden_effect = {
 			country_event = {
@@ -508,7 +508,7 @@ country_event = {
 		ai_chance = {
 			factor = 25
 		}
-		add_stability = 0.1
+		add_stability = 0.05
 		add_political_power = 35
 	}
 }
@@ -1319,6 +1319,8 @@ country_event = {
 		ai_chance = {
 			factor = 25
 		}
+		add_ideas = GLA_boogaloo_rebels
+		add_ideas = GLA_unpopolar_government
 		set_cosmetic_tag = GLA_yarvin
 		GLA_curtis_yarvin = {
 			promote_character = yes
@@ -1328,6 +1330,10 @@ country_event = {
         elections_allowed = no
         last_election = "2021.4.30"
         election_frequency = 48
+        }
+		add_popularity = {
+            ideology = autocratic
+            popularity = -0.15
         }
 		mark_focus_tree_layout_dirty = yes
 		complete_national_focus = GLA_the_yarvin_march
@@ -2038,5 +2044,229 @@ country_event = {
 				add_idea = GLA_paleolibertarians_happy
 			    }
 		    }
+	}
+}
+
+#Great Lakes Wants to Be Friends With Texas
+country_event = {
+	id = greatlake.44
+	title = greatlake.44.t
+	desc = greatlake.44.d
+	#picture = er
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+    
+	}
+	option = {
+		name = greatlake.44.a
+		ai_chance = {
+			factor = 80
+		}
+		if = {
+		    limit = { NOT = { is_in_faction = no } }
+            GLA = { add_to_faction = TEX }
+		}
+		if = {
+		    limit = { is_in_faction = yes }
+            GLA = {
+            add_opinion_modifier = {
+                target = TEX
+                modifier = gla_diplomacy
+                }
+			}
+			give_guarantee = GLA
+			GLA = { give_guarantee = TEX }
+			give_military_access = GLA
+			GLA = { give_military_access = TEX }
+		}
+		hidden_effect = {
+			country_event = {
+				id = greatlake.45
+				days = 10
+			}
+		}
+	}
+	option = {
+		name = greatlake.44.b
+		ai_chance = {
+			factor = 20
+		}
+		hidden_effect = {
+			country_event = {
+				id = greatlake.46
+				days = 10
+			}
+		}
+	}
+}
+
+#Texas Joins
+country_event = {
+	id = greatlake.45
+	title = greatlake.45.t
+	desc = greatlake.45.d
+	#picture = er
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+    
+	}
+	option = {
+		name = greatlake.45.a
+		ai_chance = {
+			factor = 100
+		}
+		
+	}
+}
+
+#Texas Doesnt Join
+country_event = {
+	id = greatlake.46
+	title = greatlake.46.t
+	desc = greatlake.46.d
+	#picture = er
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+    
+	}
+	option = {
+		name = greatlake.46.a
+		ai_chance = {
+			factor = 100
+		}
+		
+	}
+}
+
+#Great Lakes Wants to Be Friends With Florida
+country_event = {
+	id = greatlake.47
+	title = greatlake.47.t
+	desc = greatlake.47.d
+	#picture = er
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+    
+	}
+	option = {
+		name = greatlake.47.a
+		ai_chance = {
+			factor = 80
+		}
+		if = {
+		    limit = { NOT = { is_in_faction = no } has_government = libertarian_right }
+            GLA = { add_to_faction = FLO }
+		}
+		if = {
+		    limit = { is_in_faction = yes has_government = republican }
+			GLA = {
+            add_opinion_modifier = {
+                target = FLO
+                modifier = gla_diplomacy
+                }
+			}
+			give_guarantee = GLA
+			GLA = { give_guarantee = FLO }
+			give_military_access = GLA
+			GLA = { give_military_access = FLO }
+		}
+		hidden_effect = {
+			country_event = {
+				id = greatlake.48
+				days = 10
+			}
+		}
+	}
+	option = {
+		name = greatlake.47.b
+		ai_chance = {
+			factor = 20
+		}
+		hidden_effect = {
+			country_event = {
+				id = greatlake.49
+				days = 10
+			}
+		}
+	}
+}
+
+#Florida Joins
+country_event = {
+	id = greatlake.48
+	title = greatlake.48.t
+	desc = greatlake.48.d
+	#picture = er
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+    
+	}
+	option = {
+		name = greatlake.48.a
+		ai_chance = {
+			factor = 100
+		}
+		
+	}
+}
+
+#Florida Doesnt Join
+country_event = {
+	id = greatlake.49
+	title = greatlake.49.t
+	desc = greatlake.49.d
+	#picture = er
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+    
+	}
+	option = {
+		name = greatlake.49.a
+		ai_chance = {
+			factor = 100
+		}
+		
+	}
+}
+
+#Yarvin America
+news_event = {
+	id = greatlake.50
+	title = greatlake.50.t
+	desc = greatlake.50.d
+	#picture = er
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.50.a
+		ai_chance = {
+			factor = 100
+		}
+		#if = {
+		#	limit = {NOT = {is_ai = yes}}
+		#	set_country_flag = {
+    	#			flag = super_event
+    	#			value = 35
+		#	}
+		#	if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
+		#		sound_effect = "german_texas_unification"
+		#	}
+		#}
 	}
 }
