@@ -6206,6 +6206,8 @@ focus_tree = {
 			}
 		}
 	}
+	
+	
 	focus = {
 		id = FLO_pure_trumpism
 		icon = GFX_goal_cross_rubicon
@@ -6214,12 +6216,13 @@ focus_tree = {
 			has_completed_focus = FLO_gaetz
 		}
 		relative_position_id = FLO_loyality
+		mutually_exclusive = { focus = FLO_orthodox_trumpism }
 		mutually_exclusive = { focus = FLO_trumps_law_enforcement }
 		mutually_exclusive = { focus = FLO_trumps_hispanic_connection }
 		prerequisite = {
 			focus = FLO_loyality
 		}
-		x = -5
+		x = -6
 		y = 1
 		completion_reward = {
 			add_political_power = 100
@@ -6293,6 +6296,76 @@ focus_tree = {
 			}
 		}
 	}
+	
+	
+	focus = {
+		id = FLO_orthodox_trumpism
+		icon = GFX_goal_cross_rubicon
+		cost = 2.00
+		available = {
+			has_completed_focus = FLO_desantis_true
+		}
+		relative_position_id = FLO_loyality
+		mutually_exclusive = { focus = FLO_trumps_law_enforcement }
+		mutually_exclusive = { focus = FLO_pure_trumpism }
+		mutually_exclusive = { focus = FLO_trumps_hispanic_connection }
+		prerequisite = {
+			focus = FLO_loyality
+		}
+		x = -2
+		y = 1
+		completion_reward = {
+			add_political_power = 100
+			add_popularity = {
+			    ideology = republican
+			    popularity = 0.10
+			}
+		}
+	}
+	focus = {
+		id = FLO_trumps_right_hand
+		icon = GFX
+		cost = 2.00
+		relative_position_id = FLO_orthodox_trumpism
+		prerequisite = {
+			focus = FLO_orthodox_trumpism
+		}
+		x = -1
+		y = 1
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = FLO_extradite_traitors
+		icon = GFX
+		cost = 3.00
+		relative_position_id = FLO_orthodox_trumpism
+		prerequisite = {
+			focus = FLO_orthodox_trumpism
+		}
+		x = 1
+		y = 1
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = FLO_a_model_state
+		icon = GFX
+		cost = 5.00
+		relative_position_id = FLO_orthodox_trumpism
+		prerequisite = {
+			focus = FLO_trumps_right_hand
+		}
+		prerequisite = {
+			focus = FLO_extradite_traitors
+		}
+		x = 0
+		y = 2
+		completion_reward = {
+		}
+	}
+	
+	
 	focus = {
 		id = FLO_trumps_law_enforcement
 		icon = GFX_goal_FLO_trumps_police
@@ -6301,12 +6374,13 @@ focus_tree = {
 			has_completed_focus = FLO_the_florida_man
 		}
 		relative_position_id = FLO_loyality
+		mutually_exclusive = { focus = FLO_orthodox_trumpism }
 		mutually_exclusive = { focus = FLO_pure_trumpism }
 		mutually_exclusive = { focus = FLO_trumps_hispanic_connection }
 		prerequisite = {
 			focus = FLO_loyality
 		}
-		x = 0
+		x = 2
 		y = 1
 		completion_reward = {
 			add_manpower = -2500
@@ -6375,6 +6449,8 @@ focus_tree = {
 			}
 		}
 	}
+	
+	
 	focus = {
 		id = FLO_trumps_hispanic_connection
 		icon = GFX_goal_FLO_trumps_hispanic
@@ -6383,12 +6459,13 @@ focus_tree = {
 			has_completed_focus = FLO_el_presidente
 		}
 		relative_position_id = FLO_loyality
+		mutually_exclusive = { focus = FLO_orthodox_trumpism }
 		mutually_exclusive = { focus = FLO_pure_trumpism }
 		mutually_exclusive = { focus = FLO_trumps_law_enforcement }
 		prerequisite = {
 			focus = FLO_loyality
 		}
-		x = 5
+		x = 6
 		y = 1
 		completion_reward = {
 			add_political_power = 150
@@ -6501,6 +6578,7 @@ focus_tree = {
 			}
 		}
 	}
+	
 	focus = {
 		id = FLO_integration
 		icon = GFX_goal_FLO_integration
@@ -6510,8 +6588,10 @@ focus_tree = {
 			focus = FLO_trumps_finest
 			focus = FLO_fuentes_tour
 			focus = FLO_ship_workers_to_denver
+			focus = FLO_a_model_state
 		}
-		x = -5
+		mutually_exclusive = { focus = FLO_command_zone }
+		x = -3
 		y = 1
 		completion_reward = {
 			USA = {
@@ -6534,6 +6614,142 @@ focus_tree = {
 			}
 		}
 	}
+	focus = {
+		id = FLO_command_zone
+		icon = GFX
+		cost = 3.00
+		relative_position_id = FLO_ship_workers_to_denver
+		prerequisite = {
+			focus = FLO_trumps_finest
+			focus = FLO_fuentes_tour
+			focus = FLO_a_model_state
+		}
+		mutually_exclusive = { focus = FLO_integration }
+		x = -9
+		y = 1
+		completion_reward = {
+			USA = {
+				if = {
+					limit = {
+						OR = {
+							has_dlc = "Together for Victory"
+							has_dlc = "Man the Guns"
+						}
+					}
+					set_autonomy = {
+						target = FLO
+						autonomous_state = autonomy_dominion
+						freedom_level = 0.2
+					}
+					else = {
+						puppet = FLO
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = FLO_trumps_navy
+		icon = GFX
+		cost = 3.00
+		relative_position_id = FLO_integration
+		prerequisite = {
+			focus = FLO_integration
+			focus = FLO_command_zone
+		}
+		x = -3
+		y = 1
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = FLO_send_excess_funds
+		icon = GFX
+		cost = 3.00
+		relative_position_id = FLO_trumps_navy
+		prerequisite = {
+			focus = FLO_trumps_navy
+		}
+		x = 0
+		y = 2
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = FLO_control_trade
+		icon = GFX
+		cost = 3.00
+		relative_position_id = FLO_trumps_navy
+		prerequisite = {
+			focus = FLO_trumps_navy
+		}
+		x = -2
+		y = 1
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = FLO_raise_tarriffs
+		icon = GFX
+		cost = 3.00
+		relative_position_id = FLO_control_trade
+		prerequisite = {
+			focus = FLO_control_trade
+		}
+		x = 1
+		y = 2
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = FLO_land_war_contribution
+		icon = GFX
+		cost = 3.00
+		relative_position_id = FLO_trumps_navy
+		prerequisite = {
+			focus = FLO_trumps_navy
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = FLO_patriot_army
+		icon = GFX
+		cost = 3.00
+		relative_position_id = FLO_land_war_contribution
+		prerequisite = {
+			focus = FLO_land_war_contribution
+		}
+		x = -1
+		y = 2
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = FLO_final_step
+		icon = GFX
+		cost = 3.00
+		relative_position_id = FLO_send_excess_funds
+		prerequisite = {
+			focus = FLO_patriot_army
+		}
+		prerequisite = {
+			focus = FLO_raise_tarriffs
+		}
+		prerequisite = {
+			focus = FLO_send_excess_funds
+		}
+		x = 0
+		y = 2
+		completion_reward = {
+		}
+	}
+	
+	
+	
 	focus = {
 		id = FLO_seperation
 		icon = GFX_goal_FLO_seperation
@@ -6576,7 +6792,7 @@ focus_tree = {
 		prerequisite = {
 			focus = FLO_seperation
 		}
-		x = 0
+		x = -2
 		y = 1
 		completion_reward = {
 			add_stability = 0.10
@@ -6849,7 +7065,7 @@ focus_tree = {
 		prerequisite = {
 			focus = FLO_seperation
 		}
-		x = 4
+		x = 2
 		y = 1
 		completion_reward = {
 			set_politics = { ruling_party = autocratic }
@@ -6950,7 +7166,7 @@ focus_tree = {
 		prerequisite = {
 			focus = FLO_army_of_judges
 		}
-		x = 0
+		x = 1
 		y = 1
 		completion_reward = {
 		}
@@ -6963,13 +7179,13 @@ focus_tree = {
 		prerequisite = {
 			focus = FLO_army_of_judges
 		}
-		x = -2
+		x = -1
 		y = 1
 		completion_reward = {
 		}
 	}
 	focus = {
-		id = FLO_north_korea_of_america
+		id = FLO_safe_and_secure
 		icon = GFX
 		cost = 2.00
 		relative_position_id = FLO_army_of_executioners
@@ -6993,7 +7209,7 @@ focus_tree = {
 			focus = FLO_patriot_front
 			focus = FLO_army_of_judges
 		}
-		x = 2
+		x = 3
 		y = 1
 		will_lead_to_war_with = CSA
 		will_lead_to_war_with = CSB
@@ -7188,7 +7404,7 @@ focus_tree = {
 		prerequisite = {
 			focus = FLO_seperation
 		}
-		x = 10
+		x = 8
 		y = 1
 		completion_reward = {
 		}
@@ -7243,7 +7459,7 @@ focus_tree = {
 		prerequisite = {
 			focus = FLO_patriot_front
 		}
-		x = 0
+		x = -1
 		y = 1
 		completion_reward = {
 		}
@@ -7256,7 +7472,7 @@ focus_tree = {
 		prerequisite = {
 			focus = FLO_patriot_front
 		}
-		x = 2
+		x = 1
 		y = 2
 		completion_reward = {
 		}
@@ -7288,7 +7504,7 @@ focus_tree = {
 		prerequisite = {
 			focus = FLO_a_south_built_on_law_and_order
 		}
-		x = -2
+		x = -1
 		y = 2
 		completion_reward = {
 		}
@@ -7339,15 +7555,9 @@ focus_tree = {
 	focus = {
 		id = FLO_declare_hispanic_america
 		icon = GFX_goal_FLO_declare_hispanic
-		cost = 2.00
+		cost = 10.00
 		available = {
-			OR = {
-				has_completed_focus = FLO_el_presidente
-				has_completed_focus = FLO_desantis_true
-			}
-			NOT = {
-				has_completed_focus = FLO_deportations
-			}
+			has_completed_focus = FLO_el_presidente
 		}
 		relative_position_id = FLO_seperation
 		mutually_exclusive = { 
@@ -7355,14 +7565,20 @@ focus_tree = {
 			focus = FLO_make_america_florida
 			focus = FLO_peace_will_prevail 
 		}
+		select_effect = {
+			hidden_effect = {
+				country_event = {
+					id = florida.58
+					days = 10
+				}
+			}
+		}
 		prerequisite = {
 			focus = FLO_seperation
 		}
 		x = -8
 		y = 1
 		completion_reward = {
-			if = {
-				limit = { has_completed_focus = FLO_el_presidente }
 				set_party_name = { 
 					ideology = autocratic
 					long_name = "The House of Rubio"
@@ -7381,28 +7597,6 @@ focus_tree = {
 					ideology = autocratic
 					popularity = 0.05
 				}
-			}
-			if = {
-				limit = { has_completed_focus = FLO_desantis_true }
-				set_party_name = { 
-					ideology = autocratic
-					long_name = "The House of DeSantis"
-					name = "HOD"
-				}
-				set_politics = { ruling_party = autocratic }
-				add_war_support = 0.10
-				remove_ideas = {
-					FLO_checks
-				}
-				set_cosmetic_tag = FLO_hispanic_america
-				FLO_king_desantis = {
-					promote_character = yes
-				}
-				add_popularity = {
-					ideology = autocratic
-					popularity = 0.05
-				}
-			}
 			every_state = {
 				limit = {
 					is_core_of = CUB
@@ -7468,8 +7662,7 @@ focus_tree = {
 		relative_position_id = FLO_declare_hispanic_america
 		available = { 
 			NOT = {
-				has_completed_focus = FLO_fifth
-				has_country_leader = { name = "Ron DeSantis" ruling_only = yes }
+ 				has_country_leader = { name = "Ron DeSantis" ruling_only = yes }
 			}
 		}
 		prerequisite = {
@@ -7525,8 +7718,7 @@ focus_tree = {
 		relative_position_id = FLO_reconquista_de_cuba
 		available = { 
 			NOT = {
-				has_completed_focus = FLO_fifth
-				has_country_leader = { name = "Ron DeSantis" ruling_only = yes }
+ 				has_country_leader = { name = "Ron DeSantis" ruling_only = yes }
 			}
 		}
 		prerequisite = {
@@ -7561,14 +7753,13 @@ focus_tree = {
 		relative_position_id = FLO_reconquista_de_hispaniola
 		available = { 
 			NOT = {
-				has_completed_focus = FLO_fifth
-				has_country_leader = { name = "Ron DeSantis" ruling_only = yes }
+ 				has_country_leader = { name = "Ron DeSantis" ruling_only = yes }
 			}
 		}
 		prerequisite = {
 			focus = FLO_reconquista_de_hispaniola
 		}
-		x = -3
+		x = -2
 		y = 1
 		will_lead_to_war_with = JAM
 		completion_reward = {
@@ -7590,7 +7781,7 @@ focus_tree = {
 		prerequisite = {
 			focus = FLO_reconquista_de_jamaica
 		}
-		x = -2
+		x = -1
 		y = 1
 		will_lead_to_war_with = CAY
 		completion_reward = {
@@ -7612,7 +7803,7 @@ focus_tree = {
 		prerequisite = {
 			focus = FLO_reconquista_de_jamaica
 		}
-		x = 0
+		x = 1
 		y = 1
 		will_lead_to_war_with = TAT
 		completion_reward = {
@@ -7633,8 +7824,7 @@ focus_tree = {
 		relative_position_id = FLO_reconquista_de_hispaniola
 		available = { 
 			NOT = {
-				has_completed_focus = FLO_fifth
-				has_country_leader = { name = "Ron DeSantis" ruling_only = yes }
+ 				has_country_leader = { name = "Ron DeSantis" ruling_only = yes }
 				country_exists = CUC
 				country_exists = CUB
 				country_exists = HAI
@@ -7646,7 +7836,7 @@ focus_tree = {
 		prerequisite = {
 			focus = FLO_reconquista_de_hispaniola
 		}
-		x = 3
+		x = 2
 		y = 1
 		will_lead_to_war_with = GUA
 		will_lead_to_war_with =  BLZ
@@ -7698,8 +7888,7 @@ focus_tree = {
 		relative_position_id = FLO_reconquista_de_centro_america
 		available = { 
 			NOT = {
-				has_completed_focus = FLO_fifth
-				has_country_leader = { name = "Ron DeSantis" ruling_only = yes }
+ 				has_country_leader = { name = "Ron DeSantis" ruling_only = yes }
 			}
 		}
 		prerequisite = {
@@ -7727,8 +7916,7 @@ focus_tree = {
 		relative_position_id = FLO_reconquista_de_centro_america
 		available = { 
 			NOT = {
-				has_completed_focus = FLO_fifth
-				has_country_leader = { name = "Ron DeSantis" ruling_only = yes }
+ 				has_country_leader = { name = "Ron DeSantis" ruling_only = yes }
 			}
 		}
 		prerequisite = {
@@ -7795,8 +7983,7 @@ focus_tree = {
 		relative_position_id = FLO_reconquista_de_mexico
 		available = { 
 			NOT = {
-				has_completed_focus = FLO_fifth
-				has_country_leader = { name = "Ron DeSantis" ruling_only = yes }
+ 				has_country_leader = { name = "Ron DeSantis" ruling_only = yes }
 			}
 		}
 		prerequisite = {
@@ -7992,8 +8179,7 @@ focus_tree = {
 		relative_position_id = FLO_reconquista_de_mexico
 		available = { 
 			NOT = {
-				has_completed_focus = FLO_fifth
-				has_country_leader = { name = "Ron DeSantis" ruling_only = yes }
+ 				has_country_leader = { name = "Ron DeSantis" ruling_only = yes }
 			}
 			TEX = {
 				has_completed_focus = TEX_the_hispanic_candidate
@@ -8025,8 +8211,7 @@ focus_tree = {
 		relative_position_id = FLO_reconquista_de_mexico
 		available = { 
 			NOT = {
-				has_completed_focus = FLO_fifth
-				has_country_leader = { name = "Ron DeSantis" ruling_only = yes }
+ 				has_country_leader = { name = "Ron DeSantis" ruling_only = yes }
 			}
 		}
 		prerequisite = {
@@ -8054,8 +8239,7 @@ focus_tree = {
 		relative_position_id = FLO_reconquista_de_tejas
 		available = { 
 			NOT = {
-				has_completed_focus = FLO_fifth
-				has_country_leader = { name = "Ron DeSantis" ruling_only = yes }
+ 				has_country_leader = { name = "Ron DeSantis" ruling_only = yes }
 			}
 		}
 		prerequisite = {
@@ -8089,6 +8273,17 @@ focus_tree = {
 			}
 		}
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	continuous_focus_position = { x = 2600 y = 700 }
+
+}
 	focus = {
 		id = FLO_fifth
 		icon = GFX_goal_FLO_fifth_column
@@ -8124,17 +8319,6 @@ focus_tree = {
 			set_cosmetic_tag = FLO_new_rome_tag
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	continuous_focus_position = { x = 2600 y = 700 }
-
-}
 #	focus = {
 #		id = FLO_stagnation
 #		icon = GFX_goal_FLO_Stagnation
