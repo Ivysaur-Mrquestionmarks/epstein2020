@@ -40,46 +40,18 @@ focus_tree = {
 		cost = 1
 		x = 6
 		y = 1
-		allow_branch = {
-			NOT = {
-				has_completed_focus = GLA_the_boogaloo_coup			
-			}
-		}
 		mutually_exclusive = { 
-			focus = GLA_the_jorgensen_way
-			focus = GLA_the_moderate_way 
+			focus = GLA_the_moderate_way
+			focus = GLA_the_paleolibertarianist_way 
 		}
-		relative_position_id = GLA_the_elections
-		prerequisite = {
-			focus = GLA_the_elections
-		}
-		available = {
-		
-		}
-		completion_reward = {
-			add_political_power = 15
-			activate_mission = GLA_fix_the_government
-			activate_mission = GLA_fix_the_economy
-		}
-	}
-	focus = {
-		id = GLA_the_jorgensen_way
-		icon = GFX_goal_GLA_the_jorgensen_way
-		cost = 1
-		x = -6
-		y = 1
 		allow_branch = {
-			NOT = {
+		    NOT = {
 				has_completed_focus = GLA_the_boogaloo_coup			
 			}
 		}
 		relative_position_id = GLA_the_elections
 		prerequisite = {
 			focus = GLA_the_elections
-		}
-		mutually_exclusive = { 
-			focus = GLA_the_ancapistan_way
-			focus = GLA_the_moderate_way 
 		}
 		available = {
 		
@@ -93,16 +65,44 @@ focus_tree = {
 	focus = {
 		id = GLA_the_moderate_way
 		icon = GFX_goal_GLA_the_moderate_way
-		x = 0
+		cost = 1
+		x = -6
 		y = 1
-		allow_branch = {
-			NOT = {
-				has_completed_focus = GLA_the_boogaloo_coup			
-			}
+		relative_position_id = GLA_the_elections
+		prerequisite = {
+			focus = GLA_the_elections
 		}
 		mutually_exclusive = { 
 			focus = GLA_the_ancapistan_way
-			focus = GLA_the_jorgensen_way 
+			focus = GLA_the_paleolibertarianist_way 
+		}
+		allow_branch = {
+		    NOT = {
+				has_completed_focus = GLA_the_boogaloo_coup			
+			}
+		}
+		available = {
+		
+		}
+		completion_reward = {
+			add_political_power = 15
+			activate_mission = GLA_fix_the_government
+			activate_mission = GLA_fix_the_economy
+		}
+	}
+	focus = {
+		id = GLA_the_paleolibertarianist_way
+		icon = GFX_goal_GLA_the_paleolibertarianist_way
+		x = 0
+		y = 1
+		mutually_exclusive = { 
+			focus = GLA_the_ancapistan_way
+			focus = GLA_the_moderate_way 
+		}
+		allow_branch = {
+		    NOT = {
+				has_completed_focus = GLA_the_boogaloo_coup			
+			}
 		}
 		relative_position_id = GLA_the_elections
 		cost = 1
@@ -121,40 +121,59 @@ focus_tree = {
 			activate_mission = GLA_fix_the_economy
 		}
 	}
-    ###########Jo Jorgensen
+    ###########The Moderates
 	focus = {
 		id = GLA_get_support
 		icon = GFX_goal_GLA_get_support
 		x = -1
 		y = 1
-		relative_position_id = GLA_the_jorgensen_way
+		relative_position_id = GLA_the_moderate_way
 		cost = 8
+		ai_will_do = {
+			factor = 50
+		}
 		prerequisite = {
-			focus = GLA_the_jorgensen_way
+			focus = GLA_the_moderate_way
 		}
 		completion_reward = {
 			add_popularity = {
        			ideology = libertarian_right
         		popularity = 0.05
        		}
-        	swap_ideas = {
-			    remove_idea = Unpopolar_Libertarian_Administration
-			    add_idea = Unpopolar_Libertarian_Administration_2
+			if = {
+                limit = {
+                    has_country_leader = {
+                    name = "Jo Jorgensen"
+                    ruling_only = yes
+                    }
+                }
+                swap_ideas = {
+			        remove_idea = Unpopolar_Libertarian_Administration
+			        add_idea = Unpopolar_Libertarian_Administration_2
+			    }
+            }
+			country_event = {
+				id = greatlake.40
+				days = 0
 			}
+			custom_effect_tooltip = GLA_decisions_are_unlocked
 		}
 	}
 	focus = {
-		id = GLA_jorgensens_government
-		icon = GFX_goal_GLA_jorgensens_government
+		id = GLA_forming_a_government_for_the_people
+		icon = GFX_goal_GLA_forming_a_government_for_the_people
 		x = 1
 		y = 1
-		relative_position_id = GLA_the_jorgensen_way
+		relative_position_id = GLA_the_moderate_way
 		cost = 5
+		ai_will_do = {
+			factor = 50
+		}
 		prerequisite = {
-			focus = GLA_the_jorgensen_way
+			focus = GLA_the_moderate_way
 		}
 		completion_reward = {
-			add_political_power = 25
+		add_ideas = GLA_a_constitutionality_accurate_government
 			add_popularity = {
        			ideology = libertarian_right
         		popularity = 0.05
@@ -168,18 +187,40 @@ focus_tree = {
 		y = 1
 		relative_position_id = GLA_get_support
 		cost = 8
+		ai_will_do = {
+			factor = 50
+		}
 		prerequisite = {
 			focus = GLA_get_support
 		}
 		completion_reward = {
-			add_popularity = {
-       				ideology = libertarian_right
-        			popularity = 0.05
-        		}
-        	swap_ideas = {
-				remove_idea = Unpopolar_Libertarian_Administration_2
-				add_idea = Unpopolar_Libertarian_Administration_3
-			}
+		custom_effect_tooltip = GLA_ancaps_will_be_happy
+		custom_effect_tooltip = GLA_minarchists_will_be_happy
+		custom_effect_tooltip = GLA_paleolibertarians_will_be_happy
+		modify_country_flag = {
+            flag = GLA_ancaps
+            value = 1
+            }
+		modify_country_flag = {
+            flag = GLA_minarchists
+            value = 1
+            }
+		modify_country_flag = {
+            flag = GLA_paleolibertarians
+            value = 1
+            }
+			if = {
+                limit = {
+                    has_country_leader = {
+                    name = "Jo Jorgensen"
+                    ruling_only = yes
+                    }
+                }
+                swap_ideas = {
+			        remove_idea = Unpopolar_Libertarian_Administration_2
+			        add_idea = Unpopolar_Libertarian_Administration_3
+			    }
+            }
 		}
 	}
 	focus = {
@@ -189,6 +230,9 @@ focus_tree = {
 		y = 1
 		relative_position_id = GLA_unite_the_party
 		cost = 5
+		ai_will_do = {
+			factor = 50
+		}
 		prerequisite = {
 			focus = GLA_unite_the_party
 		}
@@ -197,7 +241,15 @@ focus_tree = {
             idea = GLA_libertarian_propaganda
             days = 250
             }
-        	remove_ideas = Unpopolar_Libertarian_Administration_3
+			if = {
+                limit = {
+                    has_country_leader = {
+                    name = "Jo Jorgensen"
+                    ruling_only = yes
+                    }
+                }
+                remove_ideas = Unpopolar_Libertarian_Administration_3
+            }
 		}
 	}
 	focus = {
@@ -205,10 +257,13 @@ focus_tree = {
 		icon = GFX_goal_GLA_fix_up_the_governmment
 		x = 1
 		y = 1
-		relative_position_id = GLA_jorgensens_government
+		relative_position_id = GLA_forming_a_government_for_the_people
 		cost = 8
+		ai_will_do = {
+			factor = 50
+		}
 		prerequisite = {
-			focus = GLA_jorgensens_government
+			focus = GLA_forming_a_government_for_the_people
 		}
 		completion_reward = {
 			swap_ideas = {
@@ -224,6 +279,9 @@ focus_tree = {
 		y = 1
 		relative_position_id = GLA_fix_up_the_governmment
 		cost = 8
+		ai_will_do = {
+			factor = 50
+		}
 		prerequisite = {
 			focus = GLA_fix_up_the_governmment
 		}
@@ -239,14 +297,22 @@ focus_tree = {
 		icon = GFX_goal_GLA_give_in_to_the_opposition
 		x = 0
 		y = 2
-		relative_position_id = GLA_the_jorgensen_way
+		relative_position_id = GLA_the_moderate_way
 		cost = 3
+		ai_will_do = {
+			factor = 50
+		}
+		ai_will_do = {
+			factor = 50
+		}
 		prerequisite = {
-			focus = GLA_the_jorgensen_way
+			focus = GLA_the_moderate_way
 		}
 		completion_reward = {
-			add_political_power = -20
-			add_stability = 0.05
+			country_event = {
+				id = greatlake.57
+				days = 0
+			}
 		}
 	}
 	focus = {
@@ -271,23 +337,119 @@ focus_tree = {
 			focus = GLA_appel_to_the_youth
 		}
 		completion_reward = {
+		swap_ideas = {
+			    remove_idea = GLA_a_constitutionality_accurate_government
+			    add_idea = GLA_a_constitutionality_accurate_government_2
+			}
 		remove_ideas = Inneffective_Government_3
-		country_event = {
-				id = greatlake.40
-				days = 5
+		}
+	}
+	focus = {
+		id = GLA_sign_the_fair_tax_act
+		icon = GFX_goal_GLA_forming_a_government_for_the_people
+		x = -1
+		y = 1
+		relative_position_id = GLA_corporate_cooporation
+		cost = 5
+		prerequisite = {
+			focus = GLA_corporate_cooporation
+		}
+		available = {
+			has_country_leader = {
+                name = "Gary Johnson"
+                ruling_only = yes
+            }
+		}
+		completion_reward = {
+		add_stability = 0.05
+		random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2
+			}
+		random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2
 			}
 		}
 	}
-	###########The Moderates
+	focus = {
+		id = GLA_a_common_sense_business_approach
+		icon = GFX_goal_GLA_forming_a_government_for_the_people
+		x = 0
+		y = 2
+		relative_position_id = GLA_sign_the_fair_tax_act
+		cost = 5
+		prerequisite = {
+			focus = GLA_sign_the_fair_tax_act
+		}
+		completion_reward = {
+		random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2	
+				add_building_construction = {
+    					type = arms_factory
+    					level = 2
+    					instant_build = yes
+				}
+			}
+		random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 3
+    					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = GLA_free_market_healthcare
+		icon = GFX_goal_GLA_forming_a_government_for_the_people
+		x = -1
+		y = 1
+		relative_position_id = GLA_libertarian_progressivism
+		cost = 5
+		prerequisite = {
+			focus = GLA_libertarian_progressivism
+		}
+		available = {
+			has_country_leader = {
+                name = "Jo Jorgensen"
+                ruling_only = yes
+            }
+		}
+		completion_reward = {
+		add_ideas = GLA_free_market_healthcare
+		}
+	}
+	focus = {
+		id = GLA_demilitarize_the_police
+		icon = GFX_goal_GLA_forming_a_government_for_the_people
+		x = 0
+		y = 2
+		relative_position_id = GLA_free_market_healthcare
+		cost = 3
+		prerequisite = {
+			focus = GLA_free_market_healthcare
+		}
+		completion_reward = {
+		add_stability = 0.05
+		}
+	}
+	###########The Paleo-Libertarians
 	focus = {
 		id = GLA_libertarian_reforms
 		icon = GFX_goal_GLA_libertarian_reforms
 		x = 0
 		y = 2
-		relative_position_id = GLA_the_moderate_way
+		relative_position_id = GLA_the_paleolibertarianist_way
 		cost = 5
+		ai_will_do = {
+			factor = 50
+		}
 		prerequisite = {
-			focus = GLA_the_moderate_way
+			focus = GLA_the_paleolibertarianist_way
 		}
 		completion_reward = {
 		add_stability = 0.05
@@ -316,12 +478,16 @@ focus_tree = {
 		icon = GFX_goal_GLA_restructure_the_government
 		x = 1
 		y = 1
-		relative_position_id = GLA_the_moderate_way
+		relative_position_id = GLA_the_paleolibertarianist_way
 		cost = 8
+		ai_will_do = {
+			factor = 50
+		}
 		prerequisite = {
-			focus = GLA_the_moderate_way
+			focus = GLA_the_paleolibertarianist_way
 		}
 		completion_reward = {
+		add_ideas = GLA_a_constitutionality_accurate_government
 		swap_ideas = {
 			    remove_idea = Inneffective_Government
 			    add_idea = Inneffective_Government_2
@@ -333,17 +499,26 @@ focus_tree = {
 		icon = GFX_goal_GLA_work_with_other_libertarians
 		x = -1
 		y = 1
-		relative_position_id = GLA_the_moderate_way
+		relative_position_id = GLA_the_paleolibertarianist_way
 		cost = 5
+		ai_will_do = {
+			factor = 50
+		}
 		prerequisite = {
-			focus = GLA_the_moderate_way
+			focus = GLA_the_paleolibertarianist_way
 		}
 		completion_reward = {
-			add_popularity = {
-        			ideology = libertarian_right
-        			popularity = 0.05
-        		}
-
+		custom_effect_tooltip = GLA_ancaps_will_be_happy
+		custom_effect_tooltip = GLA_minarchists_will_be_happy
+		modify_country_flag = {
+            flag = GLA_ancaps
+            value = 1
+            }
+		modify_country_flag = {
+            flag = GLA_minarchists
+            value = 1
+            }
+		custom_effect_tooltip = GLA_decisions_are_unlocked
 		}
 	}
 	focus = {
@@ -353,6 +528,9 @@ focus_tree = {
 		y = 1
 		relative_position_id = GLA_work_with_other_libertarians
 		cost = 5
+		ai_will_do = {
+			factor = 50
+		}
 		prerequisite = {
 			focus = GLA_work_with_other_libertarians
 		}
@@ -371,6 +549,9 @@ focus_tree = {
 		y = 1
 		relative_position_id = GLA_restructure_the_government
 		cost = 8
+		ai_will_do = {
+			factor = 50
+		}
 		prerequisite = {
 			focus = GLA_restructure_the_government
 		}
@@ -393,6 +574,9 @@ focus_tree = {
 		}
 		relative_position_id = GLA_libertarian_reforms
 		cost = 3
+		ai_will_do = {
+			factor = 50
+		}
 		prerequisite = {
 			focus = GLA_libertarian_reforms
 		}
@@ -403,11 +587,11 @@ focus_tree = {
 			focus = GLA_enshrine_the_second_amendment
 		}
 		completion_reward = {
-		remove_ideas = Inneffective_Government_3
-		country_event = {
-				id = greatlake.40
-				days = 5
+		swap_ideas = {
+			    remove_idea = GLA_a_constitutionality_accurate_government
+			    add_idea = GLA_a_constitutionality_accurate_government_2
 			}
+		remove_ideas = Inneffective_Government_3
 		}
 	}
 	focus = {
@@ -417,6 +601,9 @@ focus_tree = {
 		y = 1
 		relative_position_id = GLA_stablize_the_nation
 		cost = 3
+		ai_will_do = {
+			factor = 50
+		}
 		prerequisite = {
 			focus = GLA_stablize_the_nation
 		}
@@ -435,6 +622,9 @@ focus_tree = {
 		y = 1
 		relative_position_id = GLA_make_a_functing_government
 		cost = 3
+		ai_will_do = {
+			factor = 50
+		}
 		prerequisite = {
 			focus = GLA_make_a_functing_government
 		}
@@ -445,6 +635,40 @@ focus_tree = {
             }
 		}
 	}
+	focus = {
+		id = GLA_end_the_fed
+		icon = GFX_goal_GLA_restructure_the_government
+		x = 1
+		y = 1
+		relative_position_id = GLA_libertarian_conservatism
+		cost = 5
+		prerequisite = {
+			focus = GLA_libertarian_conservatism
+		}
+		available = {
+			has_country_leader = {
+                name = "Ron Paul"
+                ruling_only = yes
+            }
+		}
+		completion_reward = {
+		custom_effect_tooltip = GLA_decisions_are_unlocked
+		}
+	}
+	focus = {
+		id = GLA_return_to_the_gold_standard
+		icon = GFX_goal_GLA_restructure_the_government
+		x = 0
+		y = 2
+		relative_position_id = GLA_end_the_fed
+		cost = 5
+		prerequisite = {
+			focus = GLA_end_the_fed
+		}
+		completion_reward = {
+		add_ideas = GLA_the_gold_standard
+		}
+	}
 	###########John McAfee
 	focus = {
 		id = GLA_decentralize_the_government
@@ -453,6 +677,9 @@ focus_tree = {
 		y = 1
 		relative_position_id = GLA_the_ancapistan_way
 		cost = 8
+		ai_will_do = {
+			factor = 50
+		}
 		prerequisite = {
 			focus = GLA_the_ancapistan_way
 		}
@@ -471,16 +698,19 @@ focus_tree = {
 		y = 1
 		relative_position_id = GLA_the_ancapistan_way
 		cost = 5
+		ai_will_do = {
+			factor = 50
+		}
 		prerequisite = {
 			focus = GLA_the_ancapistan_way
 		}
 		completion_reward = {
-		add_stability = 0.05
-			add_popularity = {
-        			ideology = libertarian_right
-        			popularity = 0.05
-        		}
-
+		custom_effect_tooltip = GLA_moderates_will_be_happy
+		modify_country_flag = {
+            flag = GLA_moderates
+            value = 1
+            }
+		custom_effect_tooltip = GLA_decisions_are_unlocked
 		}
 	}
 	focus = {
@@ -490,6 +720,9 @@ focus_tree = {
 		y = 1
 		relative_position_id = GLA_decentralize_the_government
 		cost = 5
+		ai_will_do = {
+			factor = 50
+		}
 		prerequisite = {
 			focus = GLA_decentralize_the_government
 		}
@@ -512,6 +745,9 @@ focus_tree = {
 		y = 1
 		relative_position_id = GLA_appease_moderate_libertarians
 		cost = 5
+		ai_will_do = {
+			factor = 50
+		}
 		prerequisite = {
 			focus = GLA_appease_moderate_libertarians
 		}
@@ -531,6 +767,9 @@ focus_tree = {
 		y = 1
 		relative_position_id = GLA_freedom_to_the_corporations
 		cost = 5
+		ai_will_do = {
+			factor = 50
+		}
 		prerequisite = {
 			focus = GLA_freedom_to_the_corporations
 		}
@@ -550,6 +789,9 @@ focus_tree = {
 		y = 1
 		relative_position_id = GLA_appel_to_democrats_and_republicans
 		cost = 5
+		ai_will_do = {
+			factor = 50
+		}
 		prerequisite = {
 			focus = GLA_appel_to_democrats_and_republicans
 		}
@@ -561,14 +803,40 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = GLA_mcafees_tech
+		id = GLA_true_capitalism_must_be_achieved
 		icon = GFX_goal_GLA_mcafees_tech
 		x = 0
 		y = 2
 		relative_position_id = GLA_the_ancapistan_way
 		cost = 5
+		ai_will_do = {
+			factor = 50
+		}
 		prerequisite = {
 			focus = GLA_the_ancapistan_way
+		}
+		completion_reward = {
+			country_event = {
+				id = greatlake.59
+				days = 0
+			}
+		}
+	}
+	focus = {
+		id = GLA_mcafees_tech
+		icon = GFX_goal_GLA_mcafees_tech
+		x = 1
+		y = 1
+		relative_position_id = GLA_meet_with_crypto_bros
+		cost = 5
+		prerequisite = {
+			focus = GLA_meet_with_crypto_bros
+		}
+		available = {
+			has_country_leader = {
+                name = "John McAfee"
+                ruling_only = yes
+            }
 		}
 		completion_reward = {
 			add_tech_bonus = {
@@ -581,17 +849,20 @@ focus_tree = {
 	focus = {
 		id = GLA_welcome_to_ancapistan
 		icon = GFX_goal_GLA_welcome_to_ancapistan
-		x = 0
-		y = 2
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 50
+		}
 		allow_branch = {
 			NOT = {
 				has_completed_focus = GLA_the_boogaloo_coup			
 			}
 		}
-		relative_position_id = GLA_mcafees_tech
+		relative_position_id = GLA_everyone_is_an_ancap
 		cost = 3
 		prerequisite = {
-			focus = GLA_mcafees_tech
+			focus = GLA_true_capitalism_must_be_achieved
 		}
 		prerequisite = {
 			focus = GLA_everyone_is_an_ancap
@@ -601,23 +872,59 @@ focus_tree = {
 		}
 		completion_reward = {
 		remove_ideas = Inneffective_Government_3
-        country_event = {
-				id = greatlake.40
-				days = 5
-			}
+		}
+	}
+	focus = {
+		id = GLA_accelerate_cypertech
+		icon = GFX_goal_GLA_decentralize_the_government
+		x = 0
+		y = 2
+		relative_position_id = GLA_mcafees_tech
+		cost = 5
+		prerequisite = {
+			focus = GLA_mcafees_tech
+		}
+		completion_reward = {
+		add_ideas = GLA_cypertech_acceleration
 		}
 	}
 	###########Libertarian Politics
 	focus = {
 		id = GLA_the_second_amendment
 		icon = GFX_goal_GLA_the_second_amendment
-		x = -8
+		x = -13
 		y = 1
 		relative_position_id = GLA_fix_the_mistakes_of_jorgensen
 		cost = 5
 		prerequisite = {
 			focus = GLA_fix_the_mistakes_of_jorgensen
 			focus = GLA_bring_stablity_in_the_great_lakes
+		}
+		available = {
+		NOT = {
+			if = {
+			limit = { NOT = { has_country_leader = { name = "Ron Paul" ruling_only = yes } } } 
+			    has_country_flag = {
+    			    flag = GLA_paleolibertarians
+    			    value < -2
+			        }
+			    }    
+			if = {
+			limit = {  NOT = { OR = { has_country_leader = { name = "Jo Jorgensen" ruling_only = yes } has_country_leader = { name = "Gary Johnson" ruling_only = yes } } } } 
+			    has_country_flag = {
+    			    flag = GLA_moderates
+    			    value < -2
+			        }
+			    }
+			has_country_flag = {
+    			flag = GLA_minarchists
+    			value < -2
+			    }
+			has_country_flag = {
+    			flag = GLA_ancaps
+    			value < -2
+			    }  
+		    }
 		}
 		completion_reward = {
 		add_ideas = GLA_our_second_amendment_rights
@@ -633,6 +940,32 @@ focus_tree = {
 		prerequisite = {
 			focus = GLA_guns_deserve_freedom_too
 			focus = GLA_careful_deregulation
+		}
+		available = {
+		NOT = {
+			if = {
+			limit = { NOT = { has_country_leader = { name = "Ron Paul" ruling_only = yes } } } 
+			    has_country_flag = {
+    			    flag = GLA_paleolibertarians
+    			    value < -2
+			        }
+			    }    
+			if = {
+			limit = {  NOT = { OR = { has_country_leader = { name = "Jo Jorgensen" ruling_only = yes } has_country_leader = { name = "Gary Johnson" ruling_only = yes } } } } 
+			    has_country_flag = {
+    			    flag = GLA_moderates
+    			    value < -2
+			        }
+			    }
+			has_country_flag = {
+    			flag = GLA_minarchists
+    			value < -2
+			    }
+			has_country_flag = {
+    			flag = GLA_ancaps
+    			value < -2
+			    }  
+		    }
 		}
 		completion_reward = {
 		add_political_power = 15
@@ -655,63 +988,33 @@ focus_tree = {
 		prerequisite = {
 			focus = GLA_the_second_amendment
 		}
+		available = {
+		NOT = {
+			if = {
+			limit = { NOT = { has_country_leader = { name = "Ron Paul" ruling_only = yes } } } 
+			    has_country_flag = {
+    			    flag = GLA_paleolibertarians
+    			    value < -2
+			        }
+			    }    
+			if = {
+			limit = {  NOT = { OR = { has_country_leader = { name = "Jo Jorgensen" ruling_only = yes } has_country_leader = { name = "Gary Johnson" ruling_only = yes } } } } 
+			    has_country_flag = {
+    			    flag = GLA_moderates
+    			    value < -2
+			        }
+			    }
+			has_country_flag = {
+    			flag = GLA_minarchists
+    			value < -2
+			    }
+			has_country_flag = {
+    			flag = GLA_ancaps
+    			value < -2
+			    }  
+		    }
+		}
 		completion_reward = {
-		if = {
-		    limit = { has_idea = GLA_minarchists_normal }
-            swap_ideas = {
-				remove_idea = GLA_minarchists_normal
-				add_idea = GLA_minarchists_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_minarchists_happy }
-            swap_ideas = {
-				remove_idea = GLA_minarchists_happy
-				add_idea = GLA_minarchists_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_minarchists_angry }
-            swap_ideas = {
-				remove_idea = GLA_minarchists_angry
-				add_idea = GLA_minarchists_very_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_minarchists_very_happy }
-            swap_ideas = {
-				remove_idea = GLA_minarchists_very_happy
-				add_idea = GLA_minarchists_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_ancaps_normal }
-            swap_ideas = {
-				remove_idea = GLA_ancaps_normal
-				add_idea = GLA_ancaps_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_ancaps_happy }
-            swap_ideas = {
-				remove_idea = GLA_ancaps_happy
-				add_idea = GLA_ancaps_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_ancaps_angry }
-            swap_ideas = {
-				remove_idea = GLA_ancaps_angry
-				add_idea = GLA_ancaps_very_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_ancaps_very_happy }
-            swap_ideas = {
-				remove_idea = GLA_ancaps_very_happy
-				add_idea = GLA_ancaps_happy
-			    }
-		    }
 		swap_ideas = {
 				remove_idea = GLA_our_second_amendment_rights
 				add_idea = GLA_our_second_amendment_rights_2
@@ -728,11 +1031,47 @@ focus_tree = {
 		prerequisite = {
 			focus = GLA_loosen_gun_laws
 		}
+		available = {
+		NOT = {
+			if = {
+			limit = { NOT = { has_country_leader = { name = "Ron Paul" ruling_only = yes } } } 
+			    has_country_flag = {
+    			    flag = GLA_paleolibertarians
+    			    value < -2
+			        }
+			    }    
+			if = {
+			limit = {  NOT = { OR = { has_country_leader = { name = "Jo Jorgensen" ruling_only = yes } has_country_leader = { name = "Gary Johnson" ruling_only = yes } } } } 
+			    has_country_flag = {
+    			    flag = GLA_moderates
+    			    value < -2
+			        }
+			    }
+			has_country_flag = {
+    			flag = GLA_minarchists
+    			value < -2
+			    }
+			has_country_flag = {
+    			flag = GLA_ancaps
+    			value < -2
+			    }  
+		    }
+		}
 		completion_reward = {
 		swap_ideas = {
 				remove_idea = GLA_our_second_amendment_rights_2
 				add_idea = GLA_our_second_amendment_rights_3
 			}
+            custom_effect_tooltip = GLA_ancaps_wont_be_happy
+			modify_country_flag = {
+                flag = GLA_ancaps
+                value = -1
+            }
+			custom_effect_tooltip = GLA_minarchists_wont_be_happy
+		    modify_country_flag = {
+                flag = GLA_minarchists
+                value = -1
+            }
 		}
 	}
 	focus = {
@@ -746,95 +1085,47 @@ focus_tree = {
 		prerequisite = {
 			focus = GLA_the_second_amendment
 		}
+		available = {
+		NOT = {
+			if = {
+			limit = { NOT = { has_country_leader = { name = "Ron Paul" ruling_only = yes } } } 
+			    has_country_flag = {
+    			    flag = GLA_paleolibertarians
+    			    value < -2
+			        }
+			    }    
+			if = {
+			limit = {  NOT = { OR = { has_country_leader = { name = "Jo Jorgensen" ruling_only = yes } has_country_leader = { name = "Gary Johnson" ruling_only = yes } } } } 
+			    has_country_flag = {
+    			    flag = GLA_moderates
+    			    value < -2
+			        }
+			    }
+			has_country_flag = {
+    			flag = GLA_minarchists
+    			value < -2
+			    }
+			has_country_flag = {
+    			flag = GLA_ancaps
+    			value < -2
+			    }  
+		    }
+		}
 		completion_reward = {
-		if = {
-		    limit = { has_idea = GLA_minarchists_normal }
-            swap_ideas = {
-				remove_idea = GLA_minarchists_normal
-				add_idea = GLA_minarchists_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_minarchists_happy }
-            swap_ideas = {
-				remove_idea = GLA_minarchists_happy
-				add_idea = GLA_minarchists_very_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_minarchists_angry }
-            swap_ideas = {
-				remove_idea = GLA_minarchists_angry
-				add_idea = GLA_minarchists_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_minarchists_very_angry }
-            swap_ideas = {
-				remove_idea = GLA_minarchists_very_angry
-				add_idea = GLA_minarchists_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_ancaps_normal }
-            swap_ideas = {
-				remove_idea = GLA_ancaps_normal
-				add_idea = GLA_ancaps_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_ancaps_happy }
-            swap_ideas = {
-				remove_idea = GLA_ancaps_happy
-				add_idea = GLA_ancaps_very_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_ancaps_angry }
-            swap_ideas = {
-				remove_idea = GLA_ancaps_angry
-				add_idea = GLA_ancaps_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_ancaps_very_angry }
-            swap_ideas = {
-				remove_idea = GLA_ancaps_very_angry
-				add_idea = GLA_ancaps_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_normal }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_normal
-				add_idea = GLA_moderate_libertarians_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_happy }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_happy
-				add_idea = GLA_moderate_libertarians_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_angry }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_angry
-				add_idea = GLA_moderate_libertarians_very_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_very_happy }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_very_happy
-				add_idea = GLA_moderate_libertarians_happy
-			    }
-		    }
 		swap_ideas = {
 				remove_idea = GLA_our_second_amendment_rights
 				add_idea = GLA_no_gun_restrictions
 			}
+			custom_effect_tooltip = GLA_ancaps_will_be_happy
+			modify_country_flag = {
+                flag = GLA_ancaps
+                value = 1
+            }
+			custom_effect_tooltip = GLA_minarchists_will_be_happy
+		    modify_country_flag = {
+                flag = GLA_minarchists
+                value = 1
+            }
 		    if = {
 		        limit = { has_power_balance = { id = boogaloo_bop } }
 		        add_power_balance_value = {
@@ -855,22 +1146,60 @@ focus_tree = {
 		prerequisite = {
 			focus = GLA_no_restrictions
 		}
+		available = {
+		NOT = {
+			if = {
+			limit = { NOT = { has_country_leader = { name = "Ron Paul" ruling_only = yes } } } 
+			    has_country_flag = {
+    			    flag = GLA_paleolibertarians
+    			    value < -2
+			        }
+			    }    
+			if = {
+			limit = {  NOT = { OR = { has_country_leader = { name = "Jo Jorgensen" ruling_only = yes } has_country_leader = { name = "Gary Johnson" ruling_only = yes } } } } 
+			    has_country_flag = {
+    			    flag = GLA_moderates
+    			    value < -2
+			        }
+			    }
+			custom_effect_tooltip = GLA_minarchists_will_be_happy
+			has_country_flag = {
+    			flag = GLA_minarchists
+    			value < -2
+			    }
+			custom_effect_tooltip = GLA_ancaps_will_be_happy
+			has_country_flag = {
+    			flag = GLA_ancaps
+    			value < -2
+			    }  
+		    }
+		}
 		completion_reward = {
 		swap_ideas = {
 				remove_idea = GLA_no_gun_restrictions
 				add_idea = GLA_no_gun_restrictions_2
 			}
+		    custom_effect_tooltip = GLA_ancaps_will_be_happy
+			modify_country_flag = {
+                flag = GLA_ancaps
+                value = 1
+            }
+			custom_effect_tooltip = GLA_minarchists_will_be_happy
+		    modify_country_flag = {
+                flag = GLA_minarchists
+                value = 1
+            }
 		}
 	}
 	focus = {
 		id = GLA_libertarian_social_policies
 		icon = GFX_goal_GLA_libertarian_social_policies
-		x = -2
+		x = -6
 		y = 1
-		relative_position_id = GLA_libertarianism_united
+		relative_position_id = GLA_political_unity_in_the_party
 		cost = 2
 		prerequisite = {
-			focus = GLA_libertarianism_united
+			focus = GLA_political_unity_in_the_party
 		}
 		completion_reward = {
 		add_political_power = 10
@@ -895,9 +1224,36 @@ focus_tree = {
 		}
 	}
 	focus = {
+		id = GLA_establish_a_libertarian_youth_wing
+		icon = GFX_goal_GLA_connect_with_the_youth
+		x = 0
+		y = 2
+		relative_position_id = GLA_connect_with_the_youth
+		cost = 3
+		prerequisite = {
+			focus = GLA_connect_with_the_youth
+		}
+		completion_reward = {
+		if = {
+			limit = { has_completed_focus = GLA_libertarian_progressivism } 
+				swap_ideas = {
+				    remove_idea = GLA_libertarian_progressivism_2
+				    add_idea = GLA_libertarian_progressivism_3
+			    }
+			}
+		if = {
+			limit = { has_completed_focus = GLA_libertarian_conservatism } 
+				swap_ideas = {
+				    remove_idea = GLA_libertarian_conservatism_2
+				    add_idea = GLA_libertarian_conservatism_3
+			    }
+			}
+		}
+	}
+	focus = {
 		id = GLA_libertarian_conservatism
 		icon = GFX_goal_GLA_libertarian_conservatism
-		x = -1
+		x = 1
 		y = 1
 		mutually_exclusive = { focus = GLA_libertarian_progressivism }
 		relative_position_id = GLA_libertarian_social_policies
@@ -905,35 +1261,24 @@ focus_tree = {
 		prerequisite = {
 			focus = GLA_libertarian_social_policies
 		}
+		available = {
+		if = {
+			limit = { NOT = { has_country_leader = { name = "Ron Paul" ruling_only = yes } } } 
+			    has_country_flag = {
+    			    flag = GLA_paleolibertarians
+    			    value < -2
+			    }
+			} 
+		}
 		completion_reward = {
 		if = {
-		    limit = { has_idea = GLA_paleolibertarians_normal }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_normal
-				add_idea = GLA_paleolibertarians_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_happy }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_happy
-				add_idea = GLA_paleolibertarians_very_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_angry }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_angry
-				add_idea = GLA_paleolibertarians_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_very_angry }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_very_angry
-				add_idea = GLA_paleolibertarians_angry
-			    }
-		    }
+			limit = { NOT = { has_country_leader = { name = "Ron Paul" ruling_only = yes } } } 
+			    modify_country_flag = {
+                    flag = GLA_paleolibertarians
+                    value = 1
+                }
+				custom_effect_tooltip = GLA_paleolibertarians_will_be_happy
+			}
 		add_ideas = GLA_libertarian_conservatism
 		if = {
 		    limit = { has_power_balance = { id = boogaloo_bop } }
@@ -957,47 +1302,23 @@ focus_tree = {
 		}
 		completion_reward = {
 		if = {
-		    limit = { has_idea = GLA_paleolibertarians_normal }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_normal
-				add_idea = GLA_paleolibertarians_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_happy }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_happy
-				add_idea = GLA_paleolibertarians_very_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_angry }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_angry
-				add_idea = GLA_paleolibertarians_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_very_angry }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_very_angry
-				add_idea = GLA_paleolibertarians_angry
-			    }
-		    }
-		add_popularity = {
-       			ideology = libertarian_right
-        		popularity = 0.05
-        	}
-		add_popularity = {
-       			ideology = republican
-        		popularity = 0.05
-        	}
+			limit = { NOT = { has_country_leader = { name = "Ron Paul" ruling_only = yes } } } 
+			    modify_country_flag = {
+                    flag = GLA_paleolibertarians
+                    value = 1
+                }
+				custom_effect_tooltip = GLA_paleolibertarians_will_be_happy
+			}
+		swap_ideas = {
+				remove_idea = GLA_libertarian_conservatism
+				add_idea = GLA_libertarian_conservatism_2
+			}
 		}
 	}
 	focus = {
 		id = GLA_libertarian_progressivism
 		icon = GFX_goal_GLA_libertarian_progressivism
-		x = 1
+		x = -1
 		y = 1
 		mutually_exclusive = { focus = GLA_libertarian_conservatism }
 		relative_position_id = GLA_libertarian_social_policies
@@ -1006,6 +1327,11 @@ focus_tree = {
 			focus = GLA_libertarian_social_policies
 		}
 		available = {
+		limit = { NOT = { OR = { has_country_leader = { name = "Jo Jorgensne" ruling_only = yes } has_country_leader = { name = "Gary Johnson" ruling_only = yes } } } } 
+			has_country_flag = {
+    			flag = GLA_moderates
+    			value > -2
+			}	    
 		NOT = {
             has_country_leader = {
                 name = "Ron Paul"
@@ -1015,33 +1341,13 @@ focus_tree = {
 		}
 		completion_reward = {
 		if = {
-		    limit = { has_idea = GLA_paleolibertarians_normal }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_normal
-				add_idea = GLA_paleolibertarians_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_happy }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_happy
-				add_idea = GLA_paleolibertarians_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_angry }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_angry
-				add_idea = GLA_paleolibertarians_very_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_very_happy }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_very_happy
-				add_idea = GLA_paleolibertarians_happy
-			    }
-		    }
+			limit = { NOT = { has_country_leader = { name = "Ron Paul" ruling_only = yes } } } 
+			    modify_country_flag = {
+                    flag = GLA_paleolibertarians
+                    value = -1
+                }
+				custom_effect_tooltip = GLA_paleoliberatarians_wont_be_happy
+			}
 		add_ideas = GLA_libertarian_progressivism
 		if = {
 		    limit = { has_power_balance = { id = boogaloo_bop } }
@@ -1065,41 +1371,17 @@ focus_tree = {
 		}
 		completion_reward = {
 		if = {
-		    limit = { has_idea = GLA_paleolibertarians_normal }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_normal
-				add_idea = GLA_paleolibertarians_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_happy }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_happy
-				add_idea = GLA_paleolibertarians_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_angry }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_angry
-				add_idea = GLA_paleolibertarians_very_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_very_happy }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_very_happy
-				add_idea = GLA_paleolibertarians_happy
-			    }
-		    }
-		add_popularity = {
-       			ideology = libertarian_right
-        		popularity = 0.05
-        	}
-		add_popularity = {
-       			ideology = democrat
-        		popularity = 0.05
-        	}
+			limit = { NOT = { has_country_leader = { name = "Ron Paul" ruling_only = yes } } } 
+			    modify_country_flag = {
+                    flag = GLA_paleolibertarians
+                    value = -1
+                }
+				custom_effect_tooltip = GLA_paleoliberatarians_wont_be_happy
+			}
+		swap_ideas = {
+				remove_idea = GLA_libertarian_progressivism
+				add_idea = GLA_libertarian_progressivism_2
+			}
 		}
 	}
 	focus = {
@@ -1111,6 +1393,32 @@ focus_tree = {
 		cost = 8
 		prerequisite = {
 			focus = GLA_the_second_amendment
+		}
+		available = {
+		NOT = {
+			if = {
+			limit = { NOT = { has_country_leader = { name = "Ron Paul" ruling_only = yes } } } 
+			    has_country_flag = {
+    			    flag = GLA_paleolibertarians
+    			    value < -2
+			        }
+			    }    
+			if = {
+			limit = {  NOT = { OR = { has_country_leader = { name = "Jo Jorgensen" ruling_only = yes } has_country_leader = { name = "Gary Johnson" ruling_only = yes } } } } 
+			    has_country_flag = {
+    			    flag = GLA_moderates
+    			    value < -2
+			        }
+			    }
+			has_country_flag = {
+    			flag = GLA_minarchists
+    			value < -2
+			    }
+			has_country_flag = {
+    			flag = GLA_ancaps
+    			value < -2
+			    }  
+		    }
 		}
 		completion_reward = {
 		random_controlled_state = {
@@ -1143,13 +1451,41 @@ focus_tree = {
 		prerequisite = {
 			focus = GLA_the_second_amendment
 		}
+		available = {
+		NOT = {
+			if = {
+			limit = { NOT = { has_country_leader = { name = "Ron Paul" ruling_only = yes } } } 
+			    has_country_flag = {
+    			    flag = GLA_paleolibertarians
+    			    value < -2
+			        }
+			    }    
+			if = {
+			limit = {  NOT = { OR = { has_country_leader = { name = "Jo Jorgensen" ruling_only = yes } has_country_leader = { name = "Gary Johnson" ruling_only = yes } } } } 
+			    has_country_flag = {
+    			    flag = GLA_moderates
+    			    value < -2
+			        }
+			    }
+			has_country_flag = {
+    			flag = GLA_minarchists
+    			value < -2
+			    }
+			has_country_flag = {
+    			flag = GLA_ancaps
+    			value < -2
+			    }  
+		    }
+		}
 		completion_reward = {
-		add_political_power = -25
+		swap_ideas = {
+			    remove_idea = GLA_a_constitutionality_accurate_government_2
+			    add_idea = GLA_a_constitutionality_accurate_government_3
+			}
 		add_timed_idea = {
             idea = GLA_press_freedom
             days = 250
-        }
-
+            }
 		}
 	}
 	focus = {
@@ -1163,8 +1499,37 @@ focus_tree = {
 			focus = GLA_refrom_the_criminal_justice_system
 			focus = GLA_true_american_economics
 		}
+		available = {
+		NOT = {
+			if = {
+			limit = { NOT = { has_country_leader = { name = "Ron Paul" ruling_only = yes } } } 
+			    has_country_flag = {
+    			    flag = GLA_paleolibertarians
+    			    value < -2
+			        }
+			    }    
+			if = {
+			limit = {  NOT = { OR = { has_country_leader = { name = "Jo Jorgensen" ruling_only = yes } has_country_leader = { name = "Gary Johnson" ruling_only = yes } } } } 
+			    has_country_flag = {
+    			    flag = GLA_moderates
+    			    value < -2
+			        }
+			    }
+			has_country_flag = {
+    			flag = GLA_minarchists
+    			value < -2
+			    }
+			has_country_flag = {
+    			flag = GLA_ancaps
+    			value < -2
+			    }  
+		    }
+		}
 		completion_reward = {
-		add_war_support = 0.05
+		swap_ideas = {
+			    remove_idea = GLA_a_constitutionality_accurate_government_4
+			    add_idea = GLA_a_constitutionality_accurate_government_5
+			}
 		add_popularity = {
        			ideology = libertarian_right
         		popularity = 0.03
@@ -1180,12 +1545,39 @@ focus_tree = {
 		cost = 5
 		prerequisite = {
 			focus = GLA_press_freedom
-		}
-		prerequisite = {
 			focus = GLA_legalize_recreational_drugs
 		}
+		available = {
+		NOT = {
+			if = {
+			limit = { NOT = { has_country_leader = { name = "Ron Paul" ruling_only = yes } } } 
+			    has_country_flag = {
+    			    flag = GLA_paleolibertarians
+    			    value < -2
+			        }
+			    }    
+			if = {
+			limit = {  NOT = { OR = { has_country_leader = { name = "Jo Jorgensen" ruling_only = yes } has_country_leader = { name = "Gary Johnson" ruling_only = yes } } } } 
+			    has_country_flag = {
+    			    flag = GLA_moderates
+    			    value < -2
+			        }
+			    }
+			has_country_flag = {
+    			flag = GLA_minarchists
+    			value < -2
+			    }
+			has_country_flag = {
+    			flag = GLA_ancaps
+    			value < -2
+			    }  
+		    }
+		}
 		completion_reward = {
-		add_stability = 0.05
+		swap_ideas = {
+			    remove_idea = GLA_a_constitutionality_accurate_government_3
+			    add_idea = GLA_a_constitutionality_accurate_government_4
+			}
 		add_popularity = {
        			ideology = libertarian_right
         		popularity = 0.05
@@ -1204,6 +1596,32 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = GLA_press_freedom
+		}
+		available = {
+		NOT = {
+			if = {
+			limit = { NOT = { has_country_leader = { name = "Ron Paul" ruling_only = yes } } } 
+			    has_country_flag = {
+    			    flag = GLA_paleolibertarians
+    			    value < -2
+			        }
+			    }    
+			if = {
+			limit = {  NOT = { OR = { has_country_leader = { name = "Jo Jorgensen" ruling_only = yes } has_country_leader = { name = "Gary Johnson" ruling_only = yes } } } } 
+			    has_country_flag = {
+    			    flag = GLA_moderates
+    			    value < -2
+			        }
+			    }
+			has_country_flag = {
+    			flag = GLA_minarchists
+    			value < -2
+			    }
+			has_country_flag = {
+    			flag = GLA_ancaps
+    			value < -2
+			    }  
+		    }
 		}
 		completion_reward = {
 		add_stability = 0.05
@@ -1239,37 +1657,41 @@ focus_tree = {
 			NOT = {
 		    has_completed_focus = GLA_libertarian_conservatism
 			}
+		NOT = {
+			if = {
+			limit = { NOT = { has_country_leader = { name = "Ron Paul" ruling_only = yes } } } 
+			    has_country_flag = {
+    			    flag = GLA_paleolibertarians
+    			    value < -2
+			        }
+			    }    
+			if = {
+			limit = {  NOT = { OR = { has_country_leader = { name = "Jo Jorgensen" ruling_only = yes } has_country_leader = { name = "Gary Johnson" ruling_only = yes } } } } 
+			    has_country_flag = {
+    			    flag = GLA_moderates
+    			    value < -2
+			        }
+			    }
+			has_country_flag = {
+    			flag = GLA_minarchists
+    			value < -2
+			    }
+			has_country_flag = {
+    			flag = GLA_ancaps
+    			value < -2
+			    }  
+		    }
 		}
 		completion_reward = {
+		if = {
+			limit = { NOT = { has_country_leader = { name = "Ron Paul" ruling_only = yes } } } 
+			    modify_country_flag = {
+                    flag = GLA_paleolibertarians
+                    value = -1
+                }
+				custom_effect_tooltip = GLA_paleoliberatarians_wont_be_happy
+			}
 		add_ideas = GLA_recreational_drugs_legalized
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_normal }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_normal
-				add_idea = GLA_paleolibertarians_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_happy }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_happy
-				add_idea = GLA_paleolibertarians_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_angry }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_angry
-				add_idea = GLA_paleolibertarians_very_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_very_happy }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_very_happy
-				add_idea = GLA_paleolibertarians_happy
-			    }
-		    }
 		}
 	}
 	focus = {
@@ -1283,6 +1705,13 @@ focus_tree = {
 			focus = GLA_political_unity_in_the_party
 		}
 		available = {
+			if = {
+			limit = { OR = { has_country_leader = { name = "Jo Jorgensne" ruling_only = yes } has_country_leader = { name = "Gary Johnson" ruling_only = yes } } } 
+			    has_country_flag = {
+    			    flag = GLA_moderates
+    			    value > -2
+			        }
+			    }
 			NOT = {
 		    has_completed_focus = GLA_libertarian_conservatism
 			}
@@ -1295,33 +1724,18 @@ focus_tree = {
 		}
 		completion_reward = {
 		if = {
-		    limit = { has_idea = GLA_paleolibertarians_normal }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_normal
-				add_idea = GLA_paleolibertarians_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_happy }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_happy
-				add_idea = GLA_paleolibertarians_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_angry }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_angry
-				add_idea = GLA_paleolibertarians_very_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_very_happy }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_very_happy
-				add_idea = GLA_paleolibertarians_happy
-			    }
-		    }
+			limit = { OR = { has_country_leader = { name = "Jo Jorgensne" ruling_only = yes } has_country_leader = { name = "Gary Johnson" ruling_only = yes } } }
+			    modify_country_flag = {
+                    flag = GLA_moderates
+                    value = 1
+                }
+				custom_effect_tooltip = GLA_moderates_will_be_happy
+			}
+		custom_effect_tooltip = GLA_paleoliberatarians_wont_be_happy
+		modify_country_flag = {
+            flag = GLA_paleolibertarians
+            value = -1
+            }
 		add_popularity = {
        			ideology = libertarian_right
         		popularity = 0.05
@@ -1343,11 +1757,31 @@ focus_tree = {
 			focus = GLA_work_with_democrats
 		}
 		available = {
+			if = {
+			limit = { OR = { has_country_leader = { name = "Jo Jorgensne" ruling_only = yes } has_country_leader = { name = "Gary Johnson" ruling_only = yes } } } 
+			    has_country_flag = {
+    			    flag = GLA_moderates
+    			    value < -2
+			        }
+			    }
 			NOT = {
 		    has_completed_focus = GLA_libertarian_conservatism
 			}
 		}
 		completion_reward = {
+		if = {
+			limit = { OR = { has_country_leader = { name = "Jo Jorgensne" ruling_only = yes } has_country_leader = { name = "Gary Johnson" ruling_only = yes } } }
+			    modify_country_flag = {
+                    flag = GLA_moderates
+                    value = 1
+                }
+				custom_effect_tooltip = GLA_moderates_will_be_happy
+			}
+		custom_effect_tooltip = GLA_paleoliberatarians_wont_be_happy
+		modify_country_flag = {
+            flag = GLA_paleolibertarians
+            value = -1
+            }
 		add_timed_idea = {
             idea = GLA_democrat_support
             days = 300
@@ -1365,11 +1799,31 @@ focus_tree = {
 			focus = GLA_work_with_democrats
 		}
 		available = {
+			if = {
+			limit = { OR = { has_country_leader = { name = "Jo Jorgensne" ruling_only = yes } has_country_leader = { name = "Gary Johnson" ruling_only = yes } } } 
+			    has_country_flag = {
+    			    flag = GLA_moderates
+    			    value < -2
+			        }
+			    }
 			NOT = {
 		    has_completed_focus = GLA_libertarian_conservatism
 			}
 		}
 		completion_reward = {
+		if = {
+			limit = { OR = { has_country_leader = { name = "Jo Jorgensne" ruling_only = yes } has_country_leader = { name = "Gary Johnson" ruling_only = yes } } }
+			    modify_country_flag = {
+                    flag = GLA_moderates
+                    value = 1
+                }
+				custom_effect_tooltip = GLA_moderates_will_be_happy
+			}
+		custom_effect_tooltip = GLA_paleoliberatarians_wont_be_happy
+		modify_country_flag = {
+            flag = GLA_paleolibertarians
+            value = -1
+            }
 		add_stability = 0.02
 		add_political_power = 15
         add_popularity = {
@@ -1383,6 +1837,7 @@ focus_tree = {
 		icon = GFX_goal_GLA_a_call_with_biden
 		x = 1
 		y = 1
+		mutually_exclusive = { focus = GLA_a_call_with_trump }
 		relative_position_id = GLA_get_democrat_support
 		cost = 5
 		prerequisite = {
@@ -1392,9 +1847,19 @@ focus_tree = {
 			focus = GLA_invite_democrats_to_the_party
 		}
 		available = {
+		if = {
+			limit = { OR = { has_country_leader = { name = "Jo Jorgensne" ruling_only = yes } has_country_leader = { name = "Gary Johnson" ruling_only = yes } } } 
+			    has_country_flag = {
+    			    flag = GLA_moderates
+    			    value < -2
+			        }
+			    }
 		country_exists = FRA
 		NOT = {
 		    has_completed_focus = GLA_libertarian_conservatism
+			}
+		NOT = {
+		    has_completed_focus = GLA_againist_neo_liberalism
 			}
 		NOT = {
 			OR = {
@@ -1407,33 +1872,18 @@ focus_tree = {
 		}
 		completion_reward = {
 		if = {
-		    limit = { has_idea = GLA_paleolibertarians_normal }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_normal
-				add_idea = GLA_paleolibertarians_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_happy }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_happy
-				add_idea = GLA_paleolibertarians_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_angry }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_angry
-				add_idea = GLA_paleolibertarians_very_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_very_happy }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_very_happy
-				add_idea = GLA_paleolibertarians_happy
-			    }
-		    }
+			limit = { OR = { has_country_leader = { name = "Jo Jorgensne" ruling_only = yes } has_country_leader = { name = "Gary Johnson" ruling_only = yes } } }
+			    modify_country_flag = {
+                    flag = GLA_moderates
+                    value = 1
+                }
+				custom_effect_tooltip = GLA_moderates_will_be_happy
+			}
+		custom_effect_tooltip = GLA_paleoliberatarians_wont_be_happy
+		modify_country_flag = {
+            flag = GLA_paleolibertarians
+            value = -1
+            }
 		add_opinion_modifier = {
             target = FRA
             modifier = gla_diplomacy
@@ -1451,39 +1901,26 @@ focus_tree = {
 			focus = GLA_political_unity_in_the_party
 		}
 		available = {
+			if = {
+			limit = { NOT = { has_country_leader = { name = "Ron Paul" ruling_only = yes } } } 
+			    has_country_flag = {
+    			    flag = GLA_paleolibertarians
+    			    value > -2
+			    }
+			}
 		    NOT = {
 		    has_completed_focus = GLA_libertarian_progressivism
 		    }
 		}
 		completion_reward = {
 		if = {
-		    limit = { has_idea = GLA_paleolibertarians_normal }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_normal
-				add_idea = GLA_paleolibertarians_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_happy }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_happy
-				add_idea = GLA_paleolibertarians_very_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_angry }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_angry
-				add_idea = GLA_paleolibertarians_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_very_angry }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_very_angry
-				add_idea = GLA_paleolibertarians_angry
-			    }
-		    }
+			limit = { NOT = { has_country_leader = { name = "Ron Paul" ruling_only = yes } } } 
+			    modify_country_flag = {
+                    flag = GLA_paleolibertarians
+                    value = 1
+                }
+				custom_effect_tooltip = GLA_paleolibertarians_will_be_happy
+			}
 		add_popularity = {
        			ideology = libertarian_right
         		popularity = 0.05
@@ -1505,11 +1942,26 @@ focus_tree = {
 			focus = GLA_work_with_republicans
 		}
 		available = {
+			if = {
+			limit = { NOT = { has_country_leader = { name = "Ron Paul" ruling_only = yes } } } 
+			    has_country_flag = {
+    			    flag = GLA_paleolibertarians
+    			    value < -2
+			    }
+			} 
 		    NOT = {
 		    has_completed_focus = GLA_libertarian_progressivism
 		    }
 		}
 		completion_reward = {
+		if = {
+			limit = { NOT = { has_country_leader = { name = "Ron Paul" ruling_only = yes } } } 
+			    modify_country_flag = {
+                    flag = GLA_paleolibertarians
+                    value = 1
+                }
+				custom_effect_tooltip = GLA_paleolibertarians_will_be_happy
+			}
 		add_timed_idea = {
             idea = GLA_republican_support
             days = 300
@@ -1527,11 +1979,26 @@ focus_tree = {
 			focus = GLA_work_with_republicans
 		} 
 		available = {
+			if = {
+			limit = { NOT = { has_country_leader = { name = "Ron Paul" ruling_only = yes } } } 
+			    has_country_flag = {
+    			    flag = GLA_paleolibertarians
+    			    value < -2
+			    }
+			} 
 		    NOT = {
 		    has_completed_focus = GLA_libertarian_progressivism
 		    }
 		}
 		completion_reward = {
+		if = {
+			limit = { NOT = { has_country_leader = { name = "Ron Paul" ruling_only = yes } } } 
+			    modify_country_flag = {
+                    flag = GLA_paleolibertarians
+                    value = 1
+                }
+				custom_effect_tooltip = GLA_paleolibertarians_will_be_happy
+			}
         add_stability = 0.02
 		add_political_power = 15
         add_popularity = {
@@ -1545,6 +2012,7 @@ focus_tree = {
 		icon = GFX_goal_GLA_a_call_with_trump
 		x = -1
 		y = 1
+		mutually_exclusive = { focus = GLA_a_call_with_biden }
 		relative_position_id = GLA_get_republican_support
 		cost = 5
 		prerequisite = {
@@ -1554,6 +2022,13 @@ focus_tree = {
 			focus = GLA_invite_republicans_to_the_party
 		}
 		available = {
+		if = {
+			limit = { NOT = { has_country_leader = { name = "Ron Paul" ruling_only = yes } } } 
+			    has_country_flag = {
+    			    flag = GLA_paleolibertarians
+    			    value < -2
+			    }
+			} 
 		country_exists = USA
 		NOT = {
 		    has_completed_focus = GLA_libertarian_progressivism
@@ -1569,33 +2044,13 @@ focus_tree = {
 		}
 		completion_reward = {
 		if = {
-		    limit = { has_idea = GLA_paleolibertarians_normal }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_normal
-				add_idea = GLA_paleolibertarians_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_happy }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_happy
-				add_idea = GLA_paleolibertarians_very_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_angry }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_angry
-				add_idea = GLA_paleolibertarians_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_very_angry }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_very_angry
-				add_idea = GLA_paleolibertarians_angry
-			    }
-		    }
+			limit = { NOT = { has_country_leader = { name = "Ron Paul" ruling_only = yes } } } 
+			    modify_country_flag = {
+                    flag = GLA_paleolibertarians
+                    value = 1
+                }
+				custom_effect_tooltip = GLA_paleolibertarians_will_be_happy
+			}
 		add_opinion_modifier = {
             target = USA
             modifier = gla_diplomacy
@@ -1608,292 +2063,88 @@ focus_tree = {
 		x = 0
 		y = 1
 		relative_position_id = GLA_fix_the_mistakes_of_jorgensen
-		cost = 8
+		cost = 2
 		prerequisite = {
 			focus = GLA_fix_the_mistakes_of_jorgensen
 			focus = GLA_bring_stablity_in_the_great_lakes
 			focus = GLA_welcome_to_ancapistan
 		}
 		completion_reward = {
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_normal }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_normal
-				add_idea = GLA_paleolibertarians_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_happy }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_happy
-				add_idea = GLA_paleolibertarians_very_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_angry }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_angry
-				add_idea = GLA_paleolibertarians_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_very_angry }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_very_angry
-				add_idea = GLA_paleolibertarians_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_normal }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_normal
-				add_idea = GLA_moderate_libertarians_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_happy }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_happy
-				add_idea = GLA_moderate_libertarians_very_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_angry }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_angry
-				add_idea = GLA_moderate_libertarians_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_very_angry }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_very_angry
-				add_idea = GLA_moderate_libertarians_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_minarchists_normal }
-            swap_ideas = {
-				remove_idea = GLA_minarchists_normal
-				add_idea = GLA_minarchists_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_minarchists_happy }
-            swap_ideas = {
-				remove_idea = GLA_minarchists_happy
-				add_idea = GLA_minarchists_very_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_minarchists_angry }
-            swap_ideas = {
-				remove_idea = GLA_minarchists_angry
-				add_idea = GLA_minarchists_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_minarchists_very_angry }
-            swap_ideas = {
-				remove_idea = GLA_minarchists_very_angry
-				add_idea = GLA_minarchists_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_ancaps_normal }
-            swap_ideas = {
-				remove_idea = GLA_ancaps_normal
-				add_idea = GLA_ancaps_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_ancaps_happy }
-            swap_ideas = {
-				remove_idea = GLA_ancaps_happy
-				add_idea = GLA_ancaps_very_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_ancaps_angry }
-            swap_ideas = {
-				remove_idea = GLA_ancaps_angry
-				add_idea = GLA_ancaps_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_ancaps_very_angry }
-            swap_ideas = {
-				remove_idea = GLA_ancaps_very_angry
-				add_idea = GLA_ancaps_angry
-			    }
-		    }
-		add_political_power = -50
-        add_stability = 0.05
-		add_popularity = {
-       			ideology = libertarian_right
-        		popularity = 0.05
-        	}
+		add_political_power = 10
 		}
 	}
 	focus = {
 		id = GLA_libertarianism_united
 		icon = GFX_goal_GLA_libertarianism_united
 		x = 0
-		y = 4
+		y = 1
 		relative_position_id = GLA_political_unity_in_the_party
 		cost = 5
 		prerequisite = {
 			focus = GLA_political_unity_in_the_party
 		}
+		available = { 
+			if = {
+			limit = { NOT = { has_country_leader = { name = "Ron Paul" ruling_only = yes } } } 
+			    has_country_flag = {
+    			    flag = GLA_paleolibertarians
+    			    value > 10
+			    }
+			}  
+			if = {
+			limit = {  NOT = { OR = { has_country_leader = { name = "Jo Jorgensen" ruling_only = yes } has_country_leader = { name = "Gary Johnson" ruling_only = yes } } } } 
+			    has_country_flag = {
+    			    flag = GLA_moderates
+    			    value > 10
+			    }
+			}
+			has_country_flag = {
+    			flag = GLA_minarchists
+    			value > 10
+			}
+			has_country_flag = {
+    			flag = GLA_ancaps
+    			value > 10
+			} 
+		}
 		completion_reward = {
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_normal }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_normal
-				add_idea = GLA_paleolibertarians_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_happy }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_happy
-				add_idea = GLA_paleolibertarians_very_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_angry }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_angry
-				add_idea = GLA_paleolibertarians_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_very_angry }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_very_angry
-				add_idea = GLA_paleolibertarians_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_normal }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_normal
-				add_idea = GLA_moderate_libertarians_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_happy }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_happy
-				add_idea = GLA_moderate_libertarians_very_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_angry }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_angry
-				add_idea = GLA_moderate_libertarians_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_very_angry }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_very_angry
-				add_idea = GLA_moderate_libertarians_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_minarchists_normal }
-            swap_ideas = {
-				remove_idea = GLA_minarchists_normal
-				add_idea = GLA_minarchists_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_minarchists_happy }
-            swap_ideas = {
-				remove_idea = GLA_minarchists_happy
-				add_idea = GLA_minarchists_very_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_minarchists_angry }
-            swap_ideas = {
-				remove_idea = GLA_minarchists_angry
-				add_idea = GLA_minarchists_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_minarchists_very_angry }
-            swap_ideas = {
-				remove_idea = GLA_minarchists_very_angry
-				add_idea = GLA_minarchists_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_ancaps_normal }
-            swap_ideas = {
-				remove_idea = GLA_ancaps_normal
-				add_idea = GLA_ancaps_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_ancaps_happy }
-            swap_ideas = {
-				remove_idea = GLA_ancaps_happy
-				add_idea = GLA_ancaps_very_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_ancaps_angry }
-            swap_ideas = {
-				remove_idea = GLA_ancaps_angry
-				add_idea = GLA_ancaps_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_ancaps_very_angry }
-            swap_ideas = {
-				remove_idea = GLA_ancaps_very_angry
-				add_idea = GLA_ancaps_angry
-			    }
-		    }
+		clr_country_flag = GLA_minarchists
+		clr_country_flag = GLA_ancaps
+		clr_country_flag = GLA_moderates
+		clr_country_flag = GLA_paleolibertarians
 		add_political_power = -35
 		add_popularity = {
        			ideology = libertarian_right
         		popularity = 0.05
         	}
+		custom_effect_tooltip = GLA_the_political_division_will_end
 		}
 	}
 	focus = {
-		id = GLA_meet_with_javier_milei
-		icon = GFX_goal_GLA_meet_with_javier_milei
-		x = 2
+		id = GLA_libertarian_economic_policies
+		icon = GFX_goal_GLA_libertarian_economic_policies
+		x = 6
 		y = 1
-		relative_position_id = GLA_libertarianism_united
-		cost = 5
+		relative_position_id = GLA_political_unity_in_the_party
+		cost = 2
 		prerequisite = {
-			focus = GLA_libertarianism_united
+			focus = GLA_political_unity_in_the_party
 		}
 		available = {
-		date > 2023.12.10
 		}
 		completion_reward = {
-		country_event = {
-				id = greatlake.35
-				days = 0
-			}
+		add_political_power = 10
 		}
 	}
 	focus = {
 		id = GLA_meet_with_silicon_valley
 		icon = GFX_goal_GLA_meet_with_silicon_valley
-		x = -1
+		x = -3
 		y = 1
-		relative_position_id = GLA_meet_with_javier_milei
+		relative_position_id = GLA_libertarian_international_dipomancy
 		cost = 5
 		prerequisite = {
-			focus = GLA_meet_with_javier_milei
+			focus = GLA_libertarian_international_dipomancy
 		}
 		completion_reward = {
 		    add_tech_bonus = {
@@ -1926,14 +2177,86 @@ focus_tree = {
 		}
 	}
 	focus = {
+		id = GLA_corporate_cooporation
+		icon = GFX_goal_GLA_forming_a_government_for_the_people
+		x = -1
+		y = 1
+		mutually_exclusive = { focus = GLA_meet_with_crypto_bros }
+		relative_position_id = GLA_libertarian_economic_policies
+		cost = 5
+		prerequisite = {
+			focus = GLA_libertarian_economic_policies
+		}
+		completion_reward = {
+		random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2	
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 2
+    					instant_build = yes
+				}
+			}
+		random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1	
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}	
+		}
+	}
+	focus = {
+		id = GLA_allow_union_busting
+		icon = GFX_goal_GLA_forming_a_government_for_the_people
+		x = 0
+		y = 2
+		relative_position_id = GLA_corporate_cooporation
+		cost = 5
+		prerequisite = {
+			focus = GLA_corporate_cooporation
+		}
+		completion_reward = {
+		add_stability = -0.05
+		random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_resource = {
+                    type = aluminium
+                    amount = 10
+                }	
+		    }
+		random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1	
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+		random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1	
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
 		id = GLA_meet_with_crypto_bros
 		icon = GFX_goal_GLA_meet_with_crypto_bros
 		x = 1
 		y = 1
-		relative_position_id = GLA_meet_with_javier_milei
+		mutually_exclusive = { focus = GLA_corporate_cooporation }
+		relative_position_id = GLA_libertarian_economic_policies
 		cost = 5
 		prerequisite = {
-			focus = GLA_meet_with_javier_milei
+			focus = GLA_libertarian_economic_policies
 		}
 		available = {
 		    OR = {
@@ -1976,12 +2299,12 @@ focus_tree = {
 	focus = {
 		id = GLA_meet_with_russian_and_chinese_companies
 		icon = GFX_goal_GLA_meet_with_russian_and_chinese_companies
-		x = 0
-		y = 2
-		relative_position_id = GLA_meet_with_javier_milei
+		x = -1
+		y = 1
+		relative_position_id = GLA_meet_with_silicon_valley
 		cost = 5
 		prerequisite = {
-			focus = GLA_meet_with_javier_milei
+			focus = GLA_meet_with_silicon_valley
 		}
 		completion_reward = {
 		    add_tech_bonus = {
@@ -1989,6 +2312,63 @@ focus_tree = {
             uses = 3
             category = artillery
             }
+		}
+	}
+	focus = {
+		id = GLA_mic_cooporation
+		icon = GFX_goal_GLA_meet_with_russian_and_chinese_companies
+		x = 0
+		y = 2
+		relative_position_id = GLA_libertarian_economic_policies
+		cost = 5
+		prerequisite = {
+			focus = GLA_libertarian_economic_policies
+		}
+		completion_reward = {
+		random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2	
+				add_building_construction = {
+    					type = arms_factory
+    					level = 2
+    					instant_build = yes
+				}
+			}
+		    add_timed_idea = {
+                idea = GLA_mic_cooporation
+                days = 250
+            }
+		}
+	}
+	focus = {
+		id = GLA_boost_the_weapon_industry
+		icon = GFX_goal_GLA_meet_with_russian_and_chinese_companies
+		x = 0
+		y = 2
+		relative_position_id = GLA_mic_cooporation
+		cost = 5
+		prerequisite = {
+			focus = GLA_mic_cooporation
+		}
+		completion_reward = {
+		random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2	
+				add_building_construction = {
+    					type = arms_factory
+    					level = 2
+    					instant_build = yes
+				}
+			}
+		random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2	
+				add_building_construction = {
+    					type = arms_factory
+    					level = 2
+    					instant_build = yes
+				}
+			}
 		}
 	}
 	focus = {
@@ -2001,65 +2381,40 @@ focus_tree = {
 		prerequisite = {
 			focus = GLA_the_inconveniences
 		}
+		available = {
+		NOT = {
+			has_country_flag = {
+    			flag = GLA_moderates
+    			value < -2
+			    }
+			has_country_flag = {
+    			flag = GLA_paleolibertarians
+    			value < -2
+			    }
+			has_country_flag = {
+    			flag = GLA_minarchists
+    			value < -2
+			    }  
+		    }
+		}
 		completion_reward = {
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_normal }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_normal
-				add_idea = GLA_paleolibertarians_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_happy }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_happy
-				add_idea = GLA_paleolibertarians_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_angry }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_angry
-				add_idea = GLA_paleolibertarians_very_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_very_happy }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_very_happy
-				add_idea = GLA_paleolibertarians_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_normal }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_normal
-				add_idea = GLA_moderate_libertarians_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_happy }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_happy
-				add_idea = GLA_moderate_libertarians_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_angry }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_angry
-				add_idea = GLA_moderate_libertarians_very_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_very_happy }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_very_happy
-				add_idea = GLA_moderate_libertarians_happy
-			    }
-		    }
 		add_political_power = -100
 		add_ideas = GLA_no_government
+		    custom_effect_tooltip = GLA_moderates_wont_be_happy
+		    modify_country_flag = {
+                flag = GLA_moderates
+                value = -2
+            }
+			custom_effect_tooltip = GLA_paleoliberatarians_wont_be_happy
+		    modify_country_flag = {
+                flag = GLA_paleolibertarians
+                value = -2
+            }
+			custom_effect_tooltip = GLA_minarchists_wont_be_happy
+			modify_country_flag = {
+                flag = GLA_minarchists
+                value = -2
+            }
 		}
 	}
 	focus = {
@@ -2070,10 +2425,26 @@ focus_tree = {
 		relative_position_id = GLA_abolish_the_state
 		cost = 5
 		prerequisite = {
-			focus = GLA_corporations_are_people_too
+			focus = GLA_a_fully_capitalist_socitey
 		}
 		prerequisite = {
 			focus = GLA_abolish_the_state
+		}
+		available = {
+		NOT = {
+			has_country_flag = {
+    			flag = GLA_moderates
+    			value < -2
+			    }
+			has_country_flag = {
+    			flag = GLA_paleolibertarians
+    			value < -2
+			    }
+			has_country_flag = {
+    			flag = GLA_minarchists
+    			value < -2
+			    }  
+		    }
 		}
 		completion_reward = {
 		add_popularity = {
@@ -2096,6 +2467,22 @@ focus_tree = {
 		prerequisite = {
 			focus = GLA_the_inconveniences
 		}
+		available = {
+		NOT = {
+			has_country_flag = {
+    			flag = GLA_moderates
+    			value < -2
+			    }
+			has_country_flag = {
+    			flag = GLA_paleolibertarians
+    			value < -2
+			    }
+			has_country_flag = {
+    			flag = GLA_minarchists
+    			value < -2
+			    }  
+		    }
+		}
 		completion_reward = {
 		add_timed_idea = {
             idea = GLA_anti_communism
@@ -2116,6 +2503,22 @@ focus_tree = {
 		prerequisite = {
 			focus = GLA_anti_communist_campaigns
 		}
+		available = {
+		NOT = {
+			has_country_flag = {
+    			flag = GLA_moderates
+    			value < -2
+			    }
+			has_country_flag = {
+    			flag = GLA_paleolibertarians
+    			value < -2
+			    }
+			has_country_flag = {
+    			flag = GLA_minarchists
+    			value < -2
+			    }  
+		    }
+		}
 		completion_reward = {
 		add_popularity = {
        			ideology = libertarian_right
@@ -2126,15 +2529,28 @@ focus_tree = {
 	focus = {
 		id = GLA_a_fully_capitalist_socitey
 		icon = GFX_goal_GLA_a_fully_capitalist_socitey
-		x = 1
+		x = 0
 		y = 1
-		relative_position_id = GLA_workers_are_property
+		relative_position_id = GLA_the_inconveniences
 		cost = 5
 		prerequisite = {
-			focus = GLA_workers_are_property
+			focus = GLA_the_inconveniences
 		}
-		prerequisite = {
-			focus = GLA_who_cares_about_the_poor
+		available = {
+		NOT = {
+			has_country_flag = {
+    			flag = GLA_moderates
+    			value < -2
+			    }
+			has_country_flag = {
+    			flag = GLA_paleolibertarians
+    			value < -2
+			    }
+			has_country_flag = {
+    			flag = GLA_minarchists
+    			value < -2
+			    }  
+		    }
 		}
 		completion_reward = {
 		add_ideas = GLA_a_capitalist_socitey
@@ -2153,6 +2569,22 @@ focus_tree = {
 		prerequisite = {
 			focus = GLA_a_voluntary_society
 		}
+		available = {
+		NOT = {
+			has_country_flag = {
+    			flag = GLA_moderates
+    			value < -2
+			    }
+			has_country_flag = {
+    			flag = GLA_paleolibertarians
+    			value < -2
+			    }
+			has_country_flag = {
+    			flag = GLA_minarchists
+    			value < -2
+			    }  
+		    }
+		}
 		completion_reward = {
 		add_popularity = {
        			ideology = libertarian_right
@@ -2168,12 +2600,28 @@ focus_tree = {
 	focus = {
 		id = GLA_the_inconveniences
 		icon = GFX_goal_GLA_the_inconveniences
-		x = 8
+		x = 13
 		y = 1
 		relative_position_id = GLA_fix_the_mistakes_of_jorgensen
 		cost = 2
 		prerequisite = {
 			focus = GLA_welcome_to_ancapistan
+		}
+		available = {
+		NOT = {
+			has_country_flag = {
+    			flag = GLA_moderates
+    			value < -2
+			    }
+			has_country_flag = {
+    			flag = GLA_paleolibertarians
+    			value < -2
+			    }
+			has_country_flag = {
+    			flag = GLA_minarchists
+    			value < -2
+			    }  
+		    }
 		}
 		completion_reward = {
 		add_political_power = 10
@@ -2191,6 +2639,20 @@ focus_tree = {
 		}
 		available = {
 			has_completed_focus = GLA_fuck_labour_rights
+			NOT = {
+			has_country_flag = {
+    			flag = GLA_moderates
+    			value < -2
+			    }
+			has_country_flag = {
+    			flag = GLA_paleolibertarians
+    			value < -2
+			    }
+			has_country_flag = {
+    			flag = GLA_minarchists
+    			value < -2
+			    }  
+		    }
 		}
 		completion_reward = {
 		add_stability = -0.05
@@ -2228,6 +2690,22 @@ focus_tree = {
 		prerequisite = {
 			focus = GLA_get_the_homeless_out_of_the_cities
 		}
+		available = {
+		NOT = {
+			has_country_flag = {
+    			flag = GLA_moderates
+    			value < -2
+			    }
+			has_country_flag = {
+    			flag = GLA_paleolibertarians
+    			value < -2
+			    }
+			has_country_flag = {
+    			flag = GLA_minarchists
+    			value < -2
+			    }  
+		    }
+		}
 		completion_reward = {
 		add_political_power = -15
 		add_popularity = {
@@ -2248,6 +2726,20 @@ focus_tree = {
 		}
 		available = {
 			has_completed_focus = GLA_fuck_the_homeless
+			NOT = {
+			has_country_flag = {
+    			flag = GLA_moderates
+    			value < -2
+			    }
+			has_country_flag = {
+    			flag = GLA_paleolibertarians
+    			value < -2
+			    }
+			has_country_flag = {
+    			flag = GLA_minarchists
+    			value < -2
+			    }  
+		    }
 		}
 		completion_reward = {
 		add_stability = -0.05
@@ -2273,7 +2765,23 @@ focus_tree = {
 			focus = GLA_get_the_homeless_out_of_the_cities
 		}
 		prerequisite = {
-			focus = GLA_corporations_are_people_too
+			focus = GLA_a_fully_capitalist_socitey
+		}
+		available = {
+		NOT = {
+			has_country_flag = {
+    			flag = GLA_moderates
+    			value < -2
+			    }
+			has_country_flag = {
+    			flag = GLA_paleolibertarians
+    			value < -2
+			    }
+			has_country_flag = {
+    			flag = GLA_minarchists
+    			value < -2
+			    }  
+		    }
 		}
 		completion_reward = {
 		add_political_power = -15
@@ -2286,12 +2794,31 @@ focus_tree = {
 	focus = {
 		id = GLA_corporations_are_people_too
 		icon = GFX_goal_GLA_corporations_are_people_too
-		x = 0
+		x = 1
 		y = 1
-		relative_position_id = GLA_the_inconveniences
+		relative_position_id = GLA_workers_are_property
 		cost = 5
 		prerequisite = {
-			focus = GLA_the_inconveniences
+			focus = GLA_workers_are_property
+		}
+		prerequisite = {
+			focus = GLA_who_cares_about_the_poor
+		}
+		available = {
+		NOT = {
+			has_country_flag = {
+    			flag = GLA_moderates
+    			value < -2
+			    }
+			has_country_flag = {
+    			flag = GLA_paleolibertarians
+    			value < -2
+			    }
+			has_country_flag = {
+    			flag = GLA_minarchists
+    			value < -2
+			    }  
+		    }
 		}
 		completion_reward = {
 		add_stability = 0.1
@@ -2305,7 +2832,7 @@ focus_tree = {
 	focus = {
 		id = GLA_our_broken_economy
 		icon = GFX_goal_GLA_our_broken_economy
-		x = 37
+		x = 42
 		y = 0
 		allow_branch = {
 		NOT = {
@@ -2313,10 +2840,14 @@ focus_tree = {
 			}
 		}
 		cost = 1
+		ai_will_do = {
+			factor = 30
+		}
 		available = {
 			OR = {
-			has_completed_focus = GLA_the_jorgensen_way
 			has_completed_focus = GLA_the_moderate_way
+			has_completed_focus = GLA_the_paleolibertarianist_way
+			has_completed_focus = GLA_the_ancapistan_way
 			}
 		}
 		completion_reward = {
@@ -2326,12 +2857,21 @@ focus_tree = {
 	focus = {
 		id = GLA_rebuild_the_rust_belt
 		icon = GFX_goal_GLA_rebuild_the_rust_belt
-		x = -3
+		x = -8
 		y = 1
 		relative_position_id = GLA_our_broken_economy
 		cost = 8
+		ai_will_do = {
+			factor = 30
+		}
 		prerequisite = {
 			focus = GLA_our_broken_economy
+		}
+		available = {
+			OR = {
+			has_completed_focus = GLA_the_moderate_way
+			has_completed_focus = GLA_the_paleolibertarianist_way
+			}
 		}
 		completion_reward = {
 			swap_ideas = {
@@ -2343,8 +2883,8 @@ focus_tree = {
 	focus = {
 		id = GLA_work_on_improving_education
 		icon = GFX_goal_GLA_work_on_improving_education
-		x = 2
-		y = 4
+		x = 0
+		y = 1
 		relative_position_id = GLA_our_broken_economy
 		cost = 5
 		prerequisite = {
@@ -2485,6 +3025,9 @@ focus_tree = {
 		y = 1
 		relative_position_id = GLA_rebuild_the_rust_belt
 		cost = 8
+		ai_will_do = {
+			factor = 30
+		}
 		prerequisite = {
 			focus = GLA_rebuild_the_rust_belt
 		}
@@ -2545,10 +3088,13 @@ focus_tree = {
 	focus = {
 		id = GLA_revive_the_rust_belt
 		icon = GFX_goal_GLA_revive_the_rust_belt
-		x = -1
+		x = -3
 		y = 1
 		relative_position_id = GLA_repair_urban_areas
 		cost = 8
+		ai_will_do = {
+			factor = 30
+		}
 		prerequisite = {
 			focus = GLA_connect_with_the_international_market
 		}
@@ -2562,10 +3108,6 @@ focus_tree = {
 			focus = GLA_help_out_farmers
 		}
 		completion_reward = {
-			swap_ideas = {
-			    remove_idea = Ruins_of_the_Rust_Belt_3
-			    add_idea = Ruins_of_the_Rust_Belt_4
-			}
 		random_controlled_state = {
 				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
 				add_resource = {
@@ -2604,6 +3146,10 @@ focus_tree = {
 			focus = GLA_great_lakes_manufacturing
 		}
 		completion_reward = {
+		swap_ideas = {
+			    remove_idea = Ruins_of_the_Rust_Belt_3
+			    add_idea = Ruins_of_the_Rust_Belt_4
+			}
 		random_controlled_state = {
 				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
 				add_extra_state_shared_building_slots = 2	
@@ -2636,14 +3182,18 @@ focus_tree = {
 		}
 		completion_reward = {
 		add_stability = 0.05
-		add_political_power = -25
+		add_political_power = -50
 		random_controlled_state = {
 				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
-				add_extra_state_shared_building_slots = 1
+				add_extra_state_shared_building_slots = 2
 			}
 		random_controlled_state = {
 				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
-				add_extra_state_shared_building_slots = 1
+				add_extra_state_shared_building_slots = 2
+			}
+		random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2
 			}
 		}
 	}
@@ -2653,10 +3203,22 @@ focus_tree = {
 		x = 1
 		y = 1
 		mutually_exclusive = { focus = GLA_promote_big_businesses }
-		relative_position_id = GLA_revive_the_rust_belt
+		relative_position_id = GLA_repair_urban_areas
 		cost = 5
+		ai_will_do = {
+			factor = 50
+		}
 		prerequisite = {
-			focus = GLA_revive_the_rust_belt
+			focus = GLA_connect_with_the_international_market
+		}
+		prerequisite = {
+			focus = GLA_canadian_investers
+		}
+		prerequisite = {
+			focus = GLA_repair_urban_areas
+		}
+		prerequisite = {
+			focus = GLA_help_out_farmers
 		}
 		completion_reward = {
 			add_timed_idea = {
@@ -2672,10 +3234,22 @@ focus_tree = {
 		x = -1
 		y = 1
 		mutually_exclusive = { focus = GLA_promote_small_businesses }
-		relative_position_id = GLA_revive_the_rust_belt
+		relative_position_id = GLA_repair_urban_areas
 		cost = 5
+		ai_will_do = {
+			factor = 50
+		}
 		prerequisite = {
-			focus = GLA_revive_the_rust_belt
+			focus = GLA_connect_with_the_international_market
+		}
+		prerequisite = {
+			focus = GLA_canadian_investers
+		}
+		prerequisite = {
+			focus = GLA_repair_urban_areas
+		}
+		prerequisite = {
+			focus = GLA_help_out_farmers
 		}
 		completion_reward = {
 			add_timed_idea = {
@@ -2717,7 +3291,7 @@ focus_tree = {
 		}
 		available = {
 		    NOT = {
-		    has_completed_focus = GLA_ancap_economy
+		    has_completed_focus = GLA_the_ancapistan_way
 		    }
 		}
 		completion_reward = {
@@ -2744,7 +3318,7 @@ focus_tree = {
 		}
 		available = {
 		    NOT = {
-		    has_completed_focus = GLA_ancap_economy
+		    has_completed_focus = GLA_the_ancapistan_way
 		    }
 		}
 		completion_reward = {
@@ -2800,34 +3374,7 @@ focus_tree = {
 			focus = GLA_work_on_improving_education
 		}
 		completion_reward = {
-		if = {
-		    limit = { has_idea = GLA_ancaps_normal }
-            swap_ideas = {
-				remove_idea = GLA_ancaps_normal
-				add_idea = GLA_ancaps_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_ancaps_happy }
-            swap_ideas = {
-				remove_idea = GLA_ancaps_happy
-				add_idea = GLA_ancaps_very_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_ancaps_angry }
-            swap_ideas = {
-				remove_idea = GLA_ancaps_angry
-				add_idea = GLA_ancaps_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_ancaps_very_angry }
-            swap_ideas = {
-				remove_idea = GLA_ancaps_very_angry
-				add_idea = GLA_ancaps_angry
-			    }
-		    }
+		
 		add_political_power = 15
 			add_tech_bonus = {
         		bonus = 0.2
@@ -2848,7 +3395,7 @@ focus_tree = {
 		}
 		available = {
 		    NOT = {
-		    has_completed_focus = GLA_ancap_economy
+		    has_completed_focus = GLA_the_ancapistan_way
 		    }
 		}
 		completion_reward = {
@@ -2940,33 +3487,20 @@ focus_tree = {
 	}
 	###########Ancap Economy
 	focus = {
-		id = GLA_ancap_economy
-		icon = GFX_goal_GLA_promote_our_nation_to_international_companies
-		x = 41
-		y = 0
-		allow_branch = {
-		NOT = {
-			has_completed_focus = GLA_the_boogaloo_coup			
-			}
-		}
-		cost = 1
-		available = {
-			has_completed_focus = GLA_the_ancapistan_way
-		}
-		completion_reward = {
-		
-		}
-
-	}
-	focus = {
 		id = GLA_promote_our_nation_to_international_companies
 		icon = GFX_goal_GLA_promote_our_nation_to_international_companies
-		x = 3
+		x = 8
 		y = 1
-		relative_position_id = GLA_ancap_economy
+		relative_position_id = GLA_our_broken_economy
 		cost = 5
+		ai_will_do = {
+			factor = 30
+		}
 		prerequisite = {
-			focus = GLA_ancap_economy
+			focus = GLA_our_broken_economy
+		}
+		available = {
+			has_completed_focus = GLA_the_ancapistan_way
 		}
 		completion_reward = {
 		if = {
@@ -3079,12 +3613,21 @@ focus_tree = {
 	focus = {
 		id = GLA_privateize_education
 		icon = GFX_goal_GLA_privateize_education
-		x = -1
+		x = -3
 		y = 1
-		relative_position_id = GLA_legalize_everything
+		relative_position_id = GLA_legalize_nuclear_weapons
 		cost = 5
 		prerequisite = {
-			focus = GLA_legalize_everything
+			focus = GLA_the_corporate_hotspot
+		}
+		prerequisite = {
+			focus = GLA_legalize_nuclear_weapons
+		}
+		prerequisite = {
+			focus = GLA_fuck_the_homeless
+		}
+		prerequisite = {
+			focus = GLA_privateize_the_police
 		}
 		completion_reward = {
 		add_ideas = GLA_privateized_education
@@ -3126,10 +3669,19 @@ focus_tree = {
 		icon = GFX_goal_GLA_to_serve_the_rich
 		x = 1
 		y = 1
-		relative_position_id = GLA_legalize_everything
+		relative_position_id = GLA_legalize_nuclear_weapons
 		cost = 5
 		prerequisite = {
-			focus = GLA_legalize_everything
+			focus = GLA_the_corporate_hotspot
+		}
+		prerequisite = {
+			focus = GLA_legalize_nuclear_weapons
+		}
+		prerequisite = {
+			focus = GLA_fuck_the_homeless
+		}
+		prerequisite = {
+			focus = GLA_privateize_the_police
 		}
 		completion_reward = {
 		random_controlled_state = {
@@ -3208,62 +3760,6 @@ focus_tree = {
 			focus = GLA_legalize_all_military_weapons
 		}
 		completion_reward = {
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_normal }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_normal
-				add_idea = GLA_paleolibertarians_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_happy }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_happy
-				add_idea = GLA_paleolibertarians_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_angry }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_angry
-				add_idea = GLA_paleolibertarians_very_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_very_happy }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_very_happy
-				add_idea = GLA_paleolibertarians_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_normal }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_normal
-				add_idea = GLA_moderate_libertarians_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_happy }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_happy
-				add_idea = GLA_moderate_libertarians_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_angry }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_angry
-				add_idea = GLA_moderate_libertarians_very_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_very_happy }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_very_happy
-				add_idea = GLA_moderate_libertarians_happy
-			    }
-		    }
 		add_stability = -0.1
 		}
 
@@ -3291,6 +3787,9 @@ focus_tree = {
 		y = 1
 		relative_position_id = GLA_privateize_everything
 		cost = 8
+		ai_will_do = {
+			factor = 30
+		}
 		prerequisite = {
 			focus = GLA_free_markets_and_free_trade
 		}
@@ -3334,6 +3833,9 @@ focus_tree = {
 		y = 1
 		relative_position_id = GLA_legalize_nuclear_weapons
 		cost = 6
+		ai_will_do = {
+			factor = 50
+		}
 		prerequisite = {
 			focus = GLA_the_corporate_hotspot
 		}
@@ -3347,62 +3849,8 @@ focus_tree = {
 			focus = GLA_privateize_the_police
 		}
 		completion_reward = {
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_normal }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_normal
-				add_idea = GLA_paleolibertarians_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_happy }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_happy
-				add_idea = GLA_paleolibertarians_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_angry }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_angry
-				add_idea = GLA_paleolibertarians_very_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_very_happy }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_very_happy
-				add_idea = GLA_paleolibertarians_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_normal }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_normal
-				add_idea = GLA_moderate_libertarians_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_happy }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_happy
-				add_idea = GLA_moderate_libertarians_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_angry }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_angry
-				add_idea = GLA_moderate_libertarians_very_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_very_happy }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_very_happy
-				add_idea = GLA_moderate_libertarians_happy
-			    }
-		    }
+		
+		
 		if = {
 		    limit = { has_idea = GLA_minarchists_normal }
             swap_ideas = {
@@ -3443,6 +3891,9 @@ focus_tree = {
 		y = 1
 		relative_position_id = GLA_promote_our_nation_to_international_companies
 		cost = 8
+		ai_will_do = {
+			factor = 30
+		}
 		prerequisite = {
 			focus = GLA_promote_our_nation_to_international_companies
 		}
@@ -3463,7 +3914,10 @@ focus_tree = {
 		id = GLA_the_boogaloo_militias
 		icon = GFX_goal_GLA_the_boogaloo_militias
 		cost = 1
-		x = 54
+		ai_will_do = {
+			factor = 50
+		}
+		x = 60
 		y = 0
 		select_effect = {  }
 		allow_branch = {
@@ -3474,8 +3928,8 @@ focus_tree = {
 		available = {
 			OR = {
 			has_completed_focus = GLA_the_ancapistan_way
-			has_completed_focus = GLA_the_jorgensen_way
 			has_completed_focus = GLA_the_moderate_way
+			has_completed_focus = GLA_the_paleolibertarianist_way
 			}
 			has_war = no
 		}
@@ -3764,8 +4218,8 @@ focus_tree = {
 		id = GLA_military_equipment
 		icon = GFX_goal_GLA_military_equipment
 		cost = 1
-		x = 0
-		y = 2
+		x = 8
+		y = 1
 		allow_branch = {
 			NOT = {
 				has_completed_focus = GLA_the_boogaloo_coup			
@@ -3776,9 +4230,7 @@ focus_tree = {
 		allow_branch = {
 		}
 		prerequisite = {
-			focus = GLA_get_mercenaries
-			focus = GLA_dissolve_the_boogaloo_army
-			focus = GLA_keep_the_boogaloo_army
+			focus = GLA_the_boogaloo_militias
 		}
 		completion_reward = {
 		
@@ -3789,7 +4241,7 @@ focus_tree = {
 		id = GLA_research_better_infantry_weapons
 		icon = GFX_goal_GLA_research_better_infantry_weapons
 		cost = 5
-		x = 1
+		x = 0
 		y = 1
 		relative_position_id = GLA_military_equipment
 		select_effect = {  }
@@ -3811,7 +4263,7 @@ focus_tree = {
 		id = GLA_research_better_tanks
 		icon = GFX_goal_GLA_research_better_tanks
 		cost = 5
-		x = -1
+		x = 2
 		y = 1
 		relative_position_id = GLA_military_equipment
 		select_effect = {  }
@@ -3833,7 +4285,7 @@ focus_tree = {
 		id = GLA_our_own_bombers
 		icon = GFX_goal_GLA_our_own_bombers
 		cost = 5
-		x = 0
+		x = 1
 		y = 2
 		relative_position_id = GLA_military_equipment
 		select_effect = {  }
@@ -3919,25 +4371,19 @@ focus_tree = {
 		id = GLA_develop_our_own_navy
 		icon = GFX_goal_GLA_develop_our_own_navy
 		cost = 5
-		x = -1
+		x = -2
 		y = 1
 		allow_branch = {
 			NOT = {
 				has_completed_focus = GLA_the_boogaloo_coup			
 			}
 		}
-		relative_position_id = GLA_research_better_military_jets
+		relative_position_id = GLA_military_equipment
 		select_effect = {  }
 		allow_branch = {
 		}
 		prerequisite = {
-			focus = GLA_research_better_military_jets
-		}
-		prerequisite = {
-			focus = GLA_research_better_artillery
-		}
-		prerequisite = {
-			focus = GLA_our_own_bombers
+			focus = GLA_military_equipment
 		}
 		completion_reward = {
 		add_tech_bonus = {
@@ -4036,8 +4482,8 @@ focus_tree = {
 		available = {
 		always = no
 			OR = {
-			has_completed_focus = GLA_the_jorgensen_way
 			has_completed_focus = GLA_the_moderate_way
+			has_completed_focus = GLA_the_paleolibertarianist_way
 			}
 		}
 		prerequisite = {
@@ -4083,8 +4529,8 @@ focus_tree = {
 		available = {
 		always = no
 			OR = {
-			has_completed_focus = GLA_the_jorgensen_way
 			has_completed_focus = GLA_the_moderate_way
+			has_completed_focus = GLA_the_paleolibertarianist_way
 			}
 		}
 		prerequisite = {
@@ -4110,7 +4556,6 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = GLA_dissolve_the_boogaloo_army
-			focus = GLA_keep_the_boogaloo_army
 		}
 		completion_reward = {
 		add_timed_idea = {
@@ -4132,7 +4577,6 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = GLA_dissolve_the_boogaloo_army
-			focus = GLA_keep_the_boogaloo_army
 		}
 		completion_reward = {
 		army_experience = 20
@@ -4239,14 +4683,142 @@ focus_tree = {
         }
 
 		}
+	}
+	focus = {
+		id = GLA_what_to_do_with_the_national_guard
+		icon = GFX_goal_GLA_a_real_military
+		cost = 3
+		x = 0
+		y = 1
+		relative_position_id = GLA_keep_the_boogaloo_army
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_keep_the_boogaloo_army
+		}
+		completion_reward = {
+		country_event = {
+				id = greatlake.58
+				days = 0
+			}
+		}
 
+	}
+	focus = {
+		id = GLA_boogaloo_supremacy
+		icon = GFX_goal_GLA_a_real_military
+		cost = 3
+		x = -1
+		y = 1
+		relative_position_id = GLA_what_to_do_with_the_national_guard
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_what_to_do_with_the_national_guard
+		}
+		completion_reward = {
+		army_experience = 45
+		}
+
+	}
+	focus = {
+		id = GLA_the_new_continental_army
+		icon = GFX_goal_GLA_a_real_military
+		cost = 5
+		x = 1
+		y = 1
+		relative_position_id = GLA_what_to_do_with_the_national_guard
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_what_to_do_with_the_national_guard
+		}
+		completion_reward = {
+		swap_ideas = {
+				remove_idea = boogaloo_militias
+				add_idea = boogaloo_militias_2
+			}
+		}
+	}
+	focus = {
+		id = GLA_fund_the_boogaloo_militias
+		icon = GFX_goal_GLA_a_real_military
+		cost = 5
+		x = 1
+		y = 1
+		relative_position_id = GLA_boogaloo_supremacy
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_boogaloo_supremacy
+		}
+		prerequisite = {
+			focus = GLA_the_new_continental_army
+		}
+		completion_reward = {
+		add_political_power = -35
+		add_tech_bonus = {
+            bonus = 0.3
+            uses = 4
+            category = land_doctrine
+            }
+		}
+	}
+	focus = {
+		id = GLA_a_boogaloo_military_staff
+		icon = GFX_goal_GLA_a_real_military
+		cost = 5
+		x = 1
+		y = 1
+		relative_position_id = GLA_fund_the_boogaloo_militias
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_fund_the_boogaloo_militias
+		}
+		completion_reward = {
+		army_experience = 50
+		add_tech_bonus = {
+            bonus = 0.3
+            uses = 3
+            category = land_doctrine
+            }
+		}
+	}
+	focus = {
+		id = GLA_boogaloo_training
+		icon = GFX_goal_GLA_a_real_military
+		cost = 5
+		x = -1
+		y = 1
+		relative_position_id = GLA_fund_the_boogaloo_militias
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_fund_the_boogaloo_militias
+		}
+		completion_reward = {
+		swap_ideas = {
+				remove_idea = boogaloo_militias_2
+				add_idea = boogaloo_militias_3
+			}
+		}
 	}
 	###########War Time
 	focus = {
 		id = GLA_its_time_to_liberate_america
 		icon = GFX_goal_GLA_its_time_to_liberate_america
 		cost = 1
-		x = 1
+		ai_will_do = {
+			factor = 50
+		}
+		x = -4
 		y = 0
 		allow_branch = {
 		
@@ -4293,7 +4865,7 @@ focus_tree = {
 		id = GLA_libertarian_international_dipomancy
 		icon = GFX_goal_GLA_its_time_to_liberate_america
 		cost = 2
-		x = -4
+		x = -5
 		y = 1
 		relative_position_id = GLA_invade_detroit_and_wisconsin
 		select_effect = {  }
@@ -4405,7 +4977,6 @@ focus_tree = {
 				days = 0
 			}
 		}
-
 	}
 	focus = {
 		id = GLA_dying_for_liberty
@@ -4419,7 +4990,7 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = GLA_defend_our_land
-			focus = GLA_againist_neo_liberalism
+			focus = GLA_prepare_for_the_attack
 		}
 		available = {
 			country_exists = USA
@@ -4453,7 +5024,7 @@ focus_tree = {
 		allow_branch = {
 		}
 		prerequisite = {
-			focus = GLA_againist_neo_liberalism
+			focus = GLA_prepare_for_the_attack
 			focus = GLA_defend_our_land
 		}
 		available = {
@@ -4466,7 +5037,6 @@ focus_tree = {
         producer = GLA
         }
 		}
-
 	}
 	focus = {
 		id = GLA_round_two
@@ -4528,7 +5098,7 @@ focus_tree = {
 		id = GLA_prepare_for_the_attack
 		icon = GFX_goal_GLA_its_time_to_liberate_america
 		cost = 5
-		x = 1
+		x = -1
 		y = 1
 		relative_position_id = GLA_work_with_trump
 		select_effect = {  }
@@ -4550,7 +5120,7 @@ focus_tree = {
 		id = GLA_againist_neo_liberalism
 		icon = GFX_goal_GLA_its_time_to_liberate_america
 		cost = 5
-		x = -1
+		x = 1
 		y = 1
 		relative_position_id = GLA_work_with_trump
 		select_effect = {  }
@@ -4562,6 +5132,9 @@ focus_tree = {
 		available = {
 			country_exists = USA
 			country_exists = FRA
+			NOT = {
+		    has_completed_focus = GLA_a_call_with_biden
+			}
 		}
 		completion_reward = {
 	    add_war_support = 0.05
@@ -4572,19 +5145,18 @@ focus_tree = {
 		id = GLA_get_the_capitalists_to_fight_with_us
 		icon = GFX_goal_GLA_its_time_to_liberate_america
 		cost = 5
-		x = -1
+		x = 1
 		y = 1
 		relative_position_id = GLA_prepare_for_the_attack
 		select_effect = {  }
 		allow_branch = {
 		}
 		prerequisite = {
-			focus = GLA_againist_neo_liberalism
+			focus = GLA_prepare_for_the_attack
 			focus = GLA_defend_our_land
 		}
 		available = {
 			country_exists = USA
-			country_exists = FRA
 		}
 		completion_reward = {
 	    random_controlled_state = {
@@ -5687,8 +6259,8 @@ focus_tree = {
 		completion_reward = {
 	    if = {
 			limit = { OR = {
-			has_completed_focus = GLA_the_jorgensen_way
 			has_completed_focus = GLA_the_moderate_way
+			has_completed_focus = GLA_the_paleolibertarianist_way
 			} }
 			set_cosmetic_tag = GLA_moderate_libertarian_america
             country_event = {
@@ -5846,7 +6418,7 @@ focus_tree = {
 		id = GLA_mexico_needs_our_help
 		icon = GFX_goal_GLA_its_time_to_liberate_america
 		cost = 1
-		x = 2
+		x = 3
 		y = 1
 		relative_position_id = GLA_libertarian_international_dipomancy
 		select_effect = {  }
@@ -5926,7 +6498,7 @@ focus_tree = {
 		id = GLA_canada_needs_our_help
 		icon = GFX_goal_GLA_its_time_to_liberate_america
 		cost = 1
-		x = -2
+		x = -1
 		y = 1
 		mutually_exclusive = { focus = GLA_invade_canada }
 		relative_position_id = GLA_libertarian_international_dipomancy
@@ -6018,7 +6590,7 @@ focus_tree = {
 		id = GLA_invade_canada
 		icon = GFX_goal_GLA_its_time_to_liberate_america
 		cost = 2
-		x = 0
+		x = 1
 		y = 1
 		mutually_exclusive = { focus = GLA_canada_needs_our_help }
 		relative_position_id = GLA_libertarian_international_dipomancy
@@ -7917,7 +8489,7 @@ focus_tree = {
 			focus = GLA_the_yarvin_march
 		}
 		completion_reward = {
-		add_political_power = 45
+		add_political_power = 50
 		}
 	}
 	focus = {
@@ -8019,15 +8591,14 @@ focus_tree = {
 		}
 		completion_reward = {
 		if = {
-		    limit = { NOT =  { complete_national_focus = GLA_the_society_of_consensus } }
-				add_ideas = GLA_a_perfect_society
-			}
-		if = {
-		    limit = { complete_national_focus = GLA_the_society_of_consensus }
-			swap_ideas = {
-			    remove_idea = GLA_a_perfect_society
-			    add_idea = GLA_a_perfect_society_2
+			limit = { has_idea = GLA_a_perfect_society }
+				swap_ideas = {
+			        remove_idea = GLA_a_perfect_society
+			        add_idea = GLA_a_perfect_society_2
 			    }
+			}
+		else = {
+			add_ideas = GLA_a_perfect_society
 			}
 		}
 	}
@@ -8045,16 +8616,15 @@ focus_tree = {
 			focus = GLA_yarvin_in_control
 		}
 		completion_reward = {
-		if = {
-		    limit = { NOT =  { complete_national_focus = GLA_the_loyal_socitey } }
-				add_ideas = GLA_a_perfect_society
-			}
-		if = {
-		    limit = { complete_national_focus = GLA_the_loyal_socitey }
-			swap_ideas = {
-			    remove_idea = GLA_a_perfect_society
-			    add_idea = GLA_a_perfect_society_2
+	    if = {
+			limit = { has_idea = GLA_a_perfect_society }
+				swap_ideas = {
+			        remove_idea = GLA_a_perfect_society
+			        add_idea = GLA_a_perfect_society_2
 			    }
+			}
+		else = {
+			add_ideas = GLA_a_perfect_society
 			}
 		}
 	}
@@ -8288,7 +8858,7 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = GLA_government_surveillance
+		id = GLA_the_modern_watchmen
 		icon = GFX_goal_GLA_freedom_to_the_corporations
 		cost = 5
 		x = -1
@@ -8311,7 +8881,7 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = GLA_anti_neo_liberalism
+		id = GLA_dark_enlightenment
 		icon = GFX_goal_GLA_freedom_to_the_corporations
 		cost = 5
 		x = 3
@@ -8351,21 +8921,24 @@ focus_tree = {
 			focus = GLA_traditional_societal_structures
 		}
 		completion_reward = {
-		
+		country_event = {
+				id = greatlake.52
+				days = 0
+			}
 		}
 	}
 	focus = {
-		id = GLA_inforce_conservatism
+		id = GLA_enlighten_the_masses
 		icon = GFX_goal_GLA_freedom_to_the_corporations
 		cost = 5
 		x = -1
 		y = 1
-		relative_position_id = GLA_anti_neo_liberalism
+		relative_position_id = GLA_dark_enlightenment
 		select_effect = {  }
 		allow_branch = {
 		}
 		prerequisite = {
-			focus = GLA_anti_neo_liberalism
+			focus = GLA_dark_enlightenment
 		}
 		prerequisite = {
 			focus = GLA_traditional_societal_structures
@@ -8383,12 +8956,12 @@ focus_tree = {
 		cost = 5
 		x = -1
 		y = 1
-		relative_position_id = GLA_government_surveillance
+		relative_position_id = GLA_the_modern_watchmen
 		select_effect = {  }
 		allow_branch = {
 		}
 		prerequisite = {
-			focus = GLA_government_surveillance
+			focus = GLA_the_modern_watchmen
 		}
 		completion_reward = {
 		swap_ideas = {
@@ -8403,12 +8976,12 @@ focus_tree = {
 		cost = 5
 		x = 1
 		y = 1
-		relative_position_id = GLA_government_surveillance
+		relative_position_id = GLA_the_modern_watchmen
 		select_effect = {  }
 		allow_branch = {
 		}
 		prerequisite = {
-			focus = GLA_government_surveillance
+			focus = GLA_the_modern_watchmen
 		}
 		prerequisite = {
 			focus = GLA_the_yarvin_monarchy
@@ -8418,12 +8991,12 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = GLA_media_censorship
+		id = GLA_the_media_dark_age
 		icon = GFX_goal_GLA_freedom_to_the_corporations
 		cost = 5
 		x = -1
 		y = 1
-		relative_position_id = GLA_inforce_conservatism
+		relative_position_id = GLA_enlighten_the_masses
 		select_effect = {  }
 		allow_branch = {
 		}
@@ -8431,7 +9004,7 @@ focus_tree = {
 			focus = GLA_the_yarvin_monarchy
 		}
 		prerequisite = {
-			focus = GLA_inforce_conservatism
+			focus = GLA_enlighten_the_masses
 		}
 		completion_reward = {
 		add_popularity = {
@@ -8457,17 +9030,17 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = GLA_repeal_lgbtq_rights
+		id = GLA_fight_against_degenerates
 		icon = GFX_goal_GLA_freedom_to_the_corporations
 		cost = 5
 		x = 1
 		y = 1
-		relative_position_id = GLA_inforce_conservatism
+		relative_position_id = GLA_enlighten_the_masses
 		select_effect = {  }
 		allow_branch = {
 		}
 		prerequisite = {
-			focus = GLA_inforce_conservatism
+			focus = GLA_enlighten_the_masses
 		}
 		completion_reward = {
 		swap_ideas = {
@@ -8515,7 +9088,7 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = GLA_abolish_worker_safey
+		id = GLA_break_their_backs
 		icon = GFX_goal_GLA_freedom_to_the_corporations
 		cost = 5
 		x = 0
@@ -8553,17 +9126,17 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = GLA_authoritarian_capitalism
+		id = GLA_modern_feudalism
 		icon = GFX_goal_GLA_freedom_to_the_corporations
 		cost = 5
 		x = 0
 		y = 2
-		relative_position_id = GLA_abolish_worker_safey
+		relative_position_id = GLA_break_their_backs
 		select_effect = {  }
 		allow_branch = {
 		}
 		prerequisite = {
-			focus = GLA_abolish_worker_safey
+			focus = GLA_break_their_backs
 		}
 		completion_reward = {
 		add_political_power = 40
@@ -8681,7 +9254,7 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = GLA_get_the_corporations_back
+		id = GLA_court_the_corporations
 		icon = GFX_goal_GLA_freedom_to_the_corporations
 		cost = 5
 		x = 0
@@ -8721,12 +9294,12 @@ focus_tree = {
 		cost = 5
 		x = 0
 		y = 2
-		relative_position_id = GLA_get_the_corporations_back
+		relative_position_id = GLA_court_the_corporations
 		select_effect = {  }
 		allow_branch = {
 		}
 		prerequisite = {
-			focus = GLA_get_the_corporations_back
+			focus = GLA_court_the_corporations
 		}
 		completion_reward = {
 		swap_ideas = {
@@ -8779,7 +9352,7 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = GLA_increase_productivity
+		id = GLA_break_their_wills
 		icon = GFX_goal_GLA_freedom_to_the_corporations
 		cost = 8
 		x = 0
@@ -8807,12 +9380,12 @@ focus_tree = {
 		cost = 8
 		x = 0
 		y = 2
-		relative_position_id = GLA_increase_productivity
+		relative_position_id = GLA_break_their_wills
 		select_effect = {  }
 		allow_branch = {
 		}
 		prerequisite = {
-			focus = GLA_increase_productivity
+			focus = GLA_break_their_wills
 		}
 		completion_reward = {
 		remove_ideas = GLA_the_economy_in_shambles_3
@@ -9148,7 +9721,7 @@ focus_tree = {
 		completion_reward = {
 		    add_equipment_to_stockpile = {
                 type = infantry_equipment
-                amount = 2000
+                amount = 5000
                 producer = GLA
             }
 		}

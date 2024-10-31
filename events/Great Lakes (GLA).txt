@@ -10,7 +10,7 @@ country_event = {
 	trigger = {
 		tag = GLA
 	}
-	mean_time_to_happen = { days = 25 }
+	mean_time_to_happen = { days = 30 }
 	fire_only_once = yes
 	immediate = {
     
@@ -631,8 +631,8 @@ country_event = {
 		add_political_power = -3
 		hidden_effect = {
 			country_event = {
-				id = greatlake.21
-				days = 10
+				id = greatlake.51
+				days = 35
 			}
 		}
 	}
@@ -645,7 +645,7 @@ country_event = {
 	desc = greatlake.21.d
 	#picture = er
 	is_triggered_only = yes
-	mean_time_to_happen = { days = 10 }
+	mean_time_to_happen = { days = 8 }
 	fire_only_once = yes
 	immediate = {
 	
@@ -765,7 +765,11 @@ country_event = {
 			factor = 25
 		}
 		complete_national_focus = GLA_the_elections
-		complete_national_focus = GLA_the_jorgensen_way
+		complete_national_focus = GLA_the_moderate_way
+		country_event = {
+				id = greatlake.53
+				days = 0
+			}
 	}
 	#Based McAffee RIP TO THE HOMIE
 	option = {
@@ -773,11 +777,19 @@ country_event = {
 		ai_chance = {
 			factor = 25
 		}
+		trigger = {
+		has_country_flag = john_mcafee_picked
+	    }
 		GLA_john_mcafee = {
 			promote_character = yes
 		}
+		clr_country_flag = john_mcafee_picked
 		complete_national_focus = GLA_the_elections
 		complete_national_focus = GLA_the_ancapistan_way
+		country_event = {
+				id = greatlake.54
+				days = 0
+			}
 		set_cosmetic_tag = GLA_McAffee
 		remove_ideas = Unpopolar_Libertarian_Administration
 	}
@@ -787,11 +799,19 @@ country_event = {
 		ai_chance = {
 			factor = 25
 		}
+		trigger = {
+		has_country_flag = gary_johnson_picked
+	    }
 		GLA_gary_johnson = {
 			promote_character = yes
 		}
+		clr_country_flag = gary_johnson_picked
 		complete_national_focus = GLA_the_elections
 		complete_national_focus = GLA_the_moderate_way
+		country_event = {
+				id = greatlake.55
+				days = 0
+			}
 		remove_ideas = Unpopolar_Libertarian_Administration
 	}
 	#Ronny Paully
@@ -800,11 +820,19 @@ country_event = {
 		ai_chance = {
 			factor = 25
 		}
+		trigger = {
+		has_country_flag = ron_paul_picked
+	    }
 		GLA_ron_paul = {
 			promote_character = yes
 		}
+		clr_country_flag = ron_paul_picked
 		complete_national_focus = GLA_the_elections
-		complete_national_focus = GLA_the_moderate_way
+		complete_national_focus = GLA_the_paleolibertarianist_way
+		country_event = {
+				id = greatlake.56
+				days = 0
+			}
 		set_cosmetic_tag = GLA_Ron_Paul
 		remove_ideas = Unpopolar_Libertarian_Administration
 	}
@@ -1180,13 +1208,38 @@ news_event = {
 	}
 }
 
-#Meeting With Milei
+#The Libertarian Party Divided
 country_event = {
 	id = greatlake.35
 	title = greatlake.35.t
 	desc = greatlake.35.d
 	#picture = er
-	is_triggered_only = yes
+	trigger = {
+		tag = GLA
+		if = {
+			limit = { NOT = { has_country_leader = { name = "Ron Paul" ruling_only = yes } } } 
+			    has_country_flag = {
+    			    flag = GLA_paleolibertarians
+    			    value < -10
+			    }
+			}    
+			if = {
+			limit = {  NOT = { OR = { has_country_leader = { name = "Jo Jorgensen" ruling_only = yes } has_country_leader = { name = "Gary Johnson" ruling_only = yes } } } } 
+			    has_country_flag = {
+    			    flag = GLA_moderates
+    			    value < -10
+			    }
+			}
+			has_country_flag = {
+    			flag = GLA_minarchists
+    			value < -10
+			}
+			has_country_flag = {
+    			flag = GLA_ancaps
+    			value < -10
+			}  
+	}
+	is_triggered_only = no
 	mean_time_to_happen = { days = 0 }
 	fire_only_once = yes
 	immediate = {
@@ -1197,16 +1250,8 @@ country_event = {
 		ai_chance = {
 			factor = 25
 		}
-		add_political_power = 25
-		army_experience = 25
-		random_controlled_state = {
-			limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
-			add_building_construction = {
-    			type = infrastructure
-    			level = 1
-    			instant_build = yes
-			}
-		}
+		add_ideas = GLA_libertarian_party_divided
+		mark_focus_tree_layout_dirty = yes
 	}
 }
 
@@ -1348,6 +1393,7 @@ country_event = {
 	}
 }
 
+#Gaining The People's Trust
 country_event = {
 	id = greatlake.40
 	title = greatlake.40.t
@@ -1357,45 +1403,12 @@ country_event = {
 	mean_time_to_happen = { days = 5 }
 	fire_only_once = yes
 	immediate = {
-	
 	}
 	option = {
 		name = greatlake.40.a
 		ai_chance = {
 			factor = 25
 		}
-		unlock_decision_category_tooltip = GLA_libertarian_political_decisions
-		if = {
-		    limit = { OR = { has_country_leader = {
-                name = "Jo Jorgensen"
-                ruling_only = yes
-                } has_country_leader = {
-                name = "Gary Johnson"
-                ruling_only = yes
-                } } }
-			add_ideas = GLA_paleolibertarians_normal
-		    add_ideas = GLA_minarchists_normal
-		    add_ideas = GLA_ancaps_normal
-		}
-		if = {
-		    limit = { has_country_leader = {
-                name = "Ron Paul"
-                ruling_only = yes
-                } }
-			add_ideas = GLA_moderate_libertarians_normal
-		    add_ideas = GLA_minarchists_normal
-		    add_ideas = GLA_ancaps_normal
-		}
-		if = {
-		    limit = { has_country_leader = {
-                name = "John McAfee"
-                ruling_only = yes
-                } }
-			add_ideas = GLA_paleolibertarians_normal
-			add_ideas = GLA_moderate_libertarians_normal
-		    add_ideas = GLA_minarchists_normal
-		}
-		custom_effect_tooltip = GLA_decisions_are_unlocked
 	}
 }
 
@@ -1415,125 +1428,13 @@ country_event = {
 		ai_chance = {
 			factor = 25
 		}
-		add_ideas = GLA_migrants_allowed
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_normal }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_normal
-				add_idea = GLA_paleolibertarians_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_happy }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_happy
-				add_idea = GLA_paleolibertarians_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_angry }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_angry
-				add_idea = GLA_paleolibertarians_very_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_very_happy }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_very_happy
-				add_idea = GLA_paleolibertarians_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_normal }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_normal
-				add_idea = GLA_moderate_libertarians_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_happy }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_happy
-				add_idea = GLA_moderate_libertarians_very_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_angry }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_angry
-				add_idea = GLA_moderate_libertarians_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_very_angry }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_very_angry
-				add_idea = GLA_moderate_libertarians_angry
-			    }
-		    }
+		add_ideas = GLA_migrants_allowed	
 	}
 	option = {
 		name = greatlake.41.b
 		ai_chance = {
 			factor = 25
 		}
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_normal }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_normal
-				add_idea = GLA_paleolibertarians_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_happy }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_happy
-				add_idea = GLA_paleolibertarians_very_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_angry }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_angry
-				add_idea = GLA_paleolibertarians_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_very_angry }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_very_angry
-				add_idea = GLA_paleolibertarians_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_normal }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_normal
-				add_idea = GLA_moderate_libertarians_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_happy }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_happy
-				add_idea = GLA_moderate_libertarians_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_angry }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_angry
-				add_idea = GLA_moderate_libertarians_very_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_very_happy }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_very_happy
-				add_idea = GLA_moderate_libertarians_happy
-			    }
-		    }
 	}
 }
 
@@ -1554,90 +1455,6 @@ country_event = {
 			factor = 25
 		}
 		add_ideas = GLA_free_market_environmentalism
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_normal }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_normal
-				add_idea = GLA_paleolibertarians_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_happy }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_happy
-				add_idea = GLA_paleolibertarians_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_angry }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_angry
-				add_idea = GLA_paleolibertarians_very_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_very_happy }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_very_happy
-				add_idea = GLA_paleolibertarians_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_ancaps_normal }
-            swap_ideas = {
-				remove_idea = GLA_ancaps_normal
-				add_idea = GLA_ancaps_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_ancaps_happy }
-            swap_ideas = {
-				remove_idea = GLA_ancaps_happy
-				add_idea = GLA_ancaps_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_ancaps_angry }
-            swap_ideas = {
-				remove_idea = GLA_ancaps_angry
-				add_idea = GLA_ancaps_very_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_ancaps_very_happy }
-            swap_ideas = {
-				remove_idea = GLA_ancaps_very_happy
-				add_idea = GLA_ancaps_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_normal }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_normal
-				add_idea = GLA_moderate_libertarians_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_happy }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_happy
-				add_idea = GLA_moderate_libertarians_very_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_angry }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_angry
-				add_idea = GLA_moderate_libertarians_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_very_angry }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_very_angry
-				add_idea = GLA_moderate_libertarians_angry
-			    }
-		    }
 	}
 	option = {
 		name = greatlake.42.b
@@ -1646,90 +1463,6 @@ country_event = {
 		}
 		add_stability = -0.05
 		add_political_power = 35
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_normal }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_normal
-				add_idea = GLA_paleolibertarians_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_happy }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_happy
-				add_idea = GLA_paleolibertarians_very_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_angry }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_angry
-				add_idea = GLA_paleolibertarians_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_very_angry }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_very_angry
-				add_idea = GLA_paleolibertarians_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_ancaps_normal }
-            swap_ideas = {
-				remove_idea = GLA_ancaps_normal
-				add_idea = GLA_ancaps_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_ancaps_happy }
-            swap_ideas = {
-				remove_idea = GLA_ancaps_happy
-				add_idea = GLA_ancaps_very_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_ancaps_angry }
-            swap_ideas = {
-				remove_idea = GLA_ancaps_angry
-				add_idea = GLA_ancaps_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_ancaps_very_angry }
-            swap_ideas = {
-				remove_idea = GLA_ancaps_very_angry
-				add_idea = GLA_ancaps_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_normal }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_normal
-				add_idea = GLA_moderate_libertarians_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_happy }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_happy
-				add_idea = GLA_moderate_libertarians_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_angry }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_angry
-				add_idea = GLA_moderate_libertarians_very_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_very_happy }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_very_happy
-				add_idea = GLA_moderate_libertarians_happy
-			    }
-		    }
 	}
 }
 
@@ -1750,118 +1483,6 @@ country_event = {
 			factor = 25
 		}
 		add_political_power = 25
-		if = {
-		    limit = { has_idea = GLA_minarchists_normal }
-            swap_ideas = {
-				remove_idea = GLA_minarchists_normal
-				add_idea = GLA_minarchists_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_minarchists_happy }
-            swap_ideas = {
-				remove_idea = GLA_minarchists_happy
-				add_idea = GLA_minarchists_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_minarchists_angry }
-            swap_ideas = {
-				remove_idea = GLA_minarchists_angry
-				add_idea = GLA_minarchists_very_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_minarchists_very_happy }
-            swap_ideas = {
-				remove_idea = GLA_minarchists_very_happy
-				add_idea = GLA_minarchists_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_ancaps_normal }
-            swap_ideas = {
-				remove_idea = GLA_ancaps_normal
-				add_idea = GLA_ancaps_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_ancaps_happy }
-            swap_ideas = {
-				remove_idea = GLA_ancaps_happy
-				add_idea = GLA_ancaps_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_ancaps_angry }
-            swap_ideas = {
-				remove_idea = GLA_ancaps_angry
-				add_idea = GLA_ancaps_very_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_ancaps_very_happy }
-            swap_ideas = {
-				remove_idea = GLA_ancaps_very_happy
-				add_idea = GLA_ancaps_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_normal }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_normal
-				add_idea = GLA_paleolibertarians_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_happy }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_happy
-				add_idea = GLA_paleolibertarians_very_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_angry }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_angry
-				add_idea = GLA_paleolibertarians_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_very_angry }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_very_angry
-				add_idea = GLA_paleolibertarians_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_normal }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_normal
-				add_idea = GLA_moderate_libertarians_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_happy }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_happy
-				add_idea = GLA_moderate_libertarians_very_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_angry }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_angry
-				add_idea = GLA_moderate_libertarians_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_very_angry }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_very_angry
-				add_idea = GLA_moderate_libertarians_angry
-			    }
-		    }
 	}
 	option = {
 		name = greatlake.43.b
@@ -1869,62 +1490,6 @@ country_event = {
 			factor = 25
 		}
 		add_political_power = -25
-		if = {
-		    limit = { has_idea = GLA_minarchists_normal }
-            swap_ideas = {
-				remove_idea = GLA_minarchists_normal
-				add_idea = GLA_minarchists_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_minarchists_happy }
-            swap_ideas = {
-				remove_idea = GLA_minarchists_happy
-				add_idea = GLA_minarchists_very_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_minarchists_angry }
-            swap_ideas = {
-				remove_idea = GLA_minarchists_angry
-				add_idea = GLA_minarchists_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_minarchists_very_angry }
-            swap_ideas = {
-				remove_idea = GLA_minarchists_very_angry
-				add_idea = GLA_minarchists_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_ancaps_normal }
-            swap_ideas = {
-				remove_idea = GLA_ancaps_normal
-				add_idea = GLA_ancaps_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_ancaps_happy }
-            swap_ideas = {
-				remove_idea = GLA_ancaps_happy
-				add_idea = GLA_ancaps_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_ancaps_angry }
-            swap_ideas = {
-				remove_idea = GLA_ancaps_angry
-				add_idea = GLA_ancaps_very_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_ancaps_very_happy }
-            swap_ideas = {
-				remove_idea = GLA_ancaps_very_happy
-				add_idea = GLA_ancaps_happy
-			    }
-		    }
 	}
 	option = {
 		name = greatlake.43.c
@@ -1932,118 +1497,6 @@ country_event = {
 			factor = 25
 		}
 		add_political_power = -50
-		if = {
-		    limit = { has_idea = GLA_minarchists_normal }
-            swap_ideas = {
-				remove_idea = GLA_minarchists_normal
-				add_idea = GLA_minarchists_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_minarchists_happy }
-            swap_ideas = {
-				remove_idea = GLA_minarchists_happy
-				add_idea = GLA_minarchists_very_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_minarchists_angry }
-            swap_ideas = {
-				remove_idea = GLA_minarchists_angry
-				add_idea = GLA_minarchists_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_minarchists_very_angry }
-            swap_ideas = {
-				remove_idea = GLA_minarchists_very_angry
-				add_idea = GLA_minarchists_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_ancaps_normal }
-            swap_ideas = {
-				remove_idea = GLA_ancaps_normal
-				add_idea = GLA_ancaps_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_ancaps_happy }
-            swap_ideas = {
-				remove_idea = GLA_ancaps_happy
-				add_idea = GLA_ancaps_very_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_ancaps_angry }
-            swap_ideas = {
-				remove_idea = GLA_ancaps_angry
-				add_idea = GLA_ancaps_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_ancaps_very_angry }
-            swap_ideas = {
-				remove_idea = GLA_ancaps_very_angry
-				add_idea = GLA_ancaps_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_normal }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_normal
-				add_idea = GLA_moderate_libertarians_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_happy }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_happy
-				add_idea = GLA_moderate_libertarians_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_angry }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_angry
-				add_idea = GLA_moderate_libertarians_very_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_moderate_libertarians_very_happy }
-            swap_ideas = {
-				remove_idea = GLA_moderate_libertarians_very_happy
-				add_idea = GLA_moderate_libertarians_happy
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_normal }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_normal
-				add_idea = GLA_paleolibertarians_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_happy }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_happy
-				add_idea = GLA_paleolibertarians_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_angry }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_angry
-				add_idea = GLA_paleolibertarians_very_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_paleolibertarians_very_happy }
-            swap_ideas = {
-				remove_idea = GLA_paleolibertarians_very_happy
-				add_idea = GLA_paleolibertarians_happy
-			    }
-		    }
 	}
 }
 
@@ -2268,5 +1721,304 @@ news_event = {
 		#		sound_effect = "german_texas_unification"
 		#	}
 		#}
+	}
+}
+
+#The Libertarian Opps Primary Election
+country_event = {
+	id = greatlake.51
+	title = greatlake.51.t
+	desc = greatlake.51.d
+	#picture = er
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 35 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	#Ron Paul
+	option = {
+		name = greatlake.51.a
+		ai_chance = {
+			factor = 25
+		}
+		hidden_effect = {
+			set_country_flag = ron_paul_picked
+			country_event = {
+				id = greatlake.21
+				days = 8
+			}
+		}
+	}
+	#Gary Johnson
+	option = {
+		name = greatlake.51.b
+		ai_chance = {
+			factor = 25
+		}
+		hidden_effect = {
+			set_country_flag = gary_johnson_picked
+			country_event = {
+				id = greatlake.21
+				days = 8
+			}
+		}
+	}
+	#John McAfee
+	option = {
+		name = greatlake.51.c
+		ai_chance = {
+			factor = 25
+		}
+		hidden_effect = {
+			set_country_flag = john_mcafee_picked
+			country_event = {
+				id = greatlake.21
+				days = 8
+			}
+		}
+	}
+}
+
+#Yarvin's Coronation
+country_event = {
+	id = greatlake.52
+	title = greatlake.52.t
+	desc = greatlake.52.d
+	#picture = er
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.52.a
+		ai_chance = {
+			factor = 25
+		}
+		add_popularity = {
+        ideology = autocratic
+        popularity = 0.05
+        }
+		add_political_power = 50
+		add_stability = 0.05
+	}
+}
+
+#Mama Jo Victory
+country_event = {
+	id = greatlake.53
+	title = greatlake.53.t
+	desc = greatlake.53.d
+	#picture = er
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.53.a
+		ai_chance = {
+			factor = 25
+		}
+		add_political_power = 10
+		set_country_flag = GLA_paleolibertarians
+		set_country_flag = GLA_ancaps
+		set_country_flag = GLA_minarchists
+		unlock_decision_category_tooltip = GLA_libertarian_political_decisions
+		custom_effect_tooltip = GLA_decisions_are_unlocked
+	}
+}
+
+#McAfee Victory
+country_event = {
+	id = greatlake.54
+	title = greatlake.54.t
+	desc = greatlake.54.d
+	#picture = er
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.54.a
+		ai_chance = {
+			factor = 25
+		}
+		add_political_power = 10
+		set_country_flag = GLA_paleolibertarians
+		set_country_flag = GLA_moderates
+		set_country_flag = GLA_minarchists
+		unlock_decision_category_tooltip = GLA_libertarian_political_decisions
+		custom_effect_tooltip = GLA_decisions_are_unlocked
+	}
+}
+
+#Gary Victory
+country_event = {
+	id = greatlake.55
+	title = greatlake.55.t
+	desc = greatlake.55.d
+	#picture = er
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.55.a
+		ai_chance = {
+			factor = 25
+		}
+		add_political_power = 10
+		set_country_flag = GLA_paleolibertarians
+		set_country_flag = GLA_ancaps
+		set_country_flag = GLA_minarchists
+		unlock_decision_category_tooltip = GLA_libertarian_political_decisions
+		custom_effect_tooltip = GLA_decisions_are_unlocked
+	}
+}
+
+#Ronny Victory
+country_event = {
+	id = greatlake.56
+	title = greatlake.56.t
+	desc = greatlake.56.d
+	#picture = er
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.56.a
+		ai_chance = {
+			factor = 25
+		}
+		add_political_power = 10
+		set_country_flag = GLA_moderates
+		set_country_flag = GLA_ancaps
+		set_country_flag = GLA_minarchists
+		unlock_decision_category_tooltip = GLA_libertarian_political_decisions
+		custom_effect_tooltip = GLA_decisions_are_unlocked
+	}
+}
+
+#Giving in to the Opps
+country_event = {
+	id = greatlake.57
+	title = greatlake.57.t
+	desc = greatlake.57.d
+	#picture = er
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.57.a
+		ai_chance = {
+			factor = 25
+		}
+		modify_country_flag = {
+            flag = GLA_paleolibertarians
+            value = 1
+            }
+	}
+	option = {
+		name = greatlake.57.b
+		ai_chance = {
+			factor = 25
+		}
+		modify_country_flag = {
+            flag = GLA_ancaps
+            value = 1
+            }
+	}
+	option = {
+		name = greatlake.57.c
+		ai_chance = {
+			factor = 25
+		}
+		modify_country_flag = {
+            flag = GLA_minarchists
+            value = 1
+            }
+	}
+}
+
+#What to Do with the National Guard
+country_event = {
+	id = greatlake.58
+	title = greatlake.58.t
+	desc = greatlake.58.d
+	#picture = er
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.58.a
+		ai_chance = {
+			factor = 40
+		}
+		add_political_power = -50
+		add_stability = -0.05
+		delete_unit_template_and_units = {
+        division_template = "National Guard"
+        disband = no
+        }
+	}
+	option = {
+		name = greatlake.58.b
+		ai_chance = {
+			factor = 60
+		}
+		add_political_power = 10
+	}
+}
+
+#True Capitalism Must Be Achieved!
+country_event = {
+	id = greatlake.59
+	title = greatlake.59.t
+	desc = greatlake.59.d
+	#picture = er
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.59.a
+		ai_chance = {
+			factor = 25
+		}
+		custom_effect_tooltip = GLA_minarchists_will_be_happy
+		modify_country_flag = {
+            flag = GLA_minarchists
+            value = 2
+            }
+		add_stability = 0.05
+	}
+	option = {
+		name = greatlake.59.b
+		ai_chance = {
+			factor = 25
+		}
+		add_popularity = {
+       		ideology = libertarian_right
+        	popularity = 0.05
+       	}
 	}
 }
