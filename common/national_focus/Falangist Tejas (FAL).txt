@@ -41,6 +41,50 @@ focus_tree = {
 		}
 	}
 	focus = {
+		id = FAL_brown_berets_integration
+		icon = GFX
+		cost = 2.00
+		x = -5
+		y = 1
+		relative_position_id = FAL_raise_the_phalanx
+		prerequisite = {
+			focus = FAL_raise_the_phalanx
+		}
+		mutually_exclusive = {
+			focus = FAL_rally_the_camisas_azules
+		}
+		completion_reward = {
+			add_corps_commander_role = {
+			    Character = FAL_juan_miguel_martinez
+			    skill = 1
+			    attack_skill = 2
+			    defense_skill = 1
+			    planning_skill = 1
+			    logistics_skill = 1
+			}
+			add_corps_commander_role = {
+			    Character = FAL_carnal_juan_aguirre
+			    skill = 1
+			    attack_skill = 1
+			    defense_skill = 1
+			    planning_skill = 2
+			    logistics_skill = 2
+			}
+			add_manpower = 15000
+			add_equipment_to_stockpile = {
+    			type = infantry_equipment
+    			amount = 2000
+    			producer = FAL
+			}
+			add_stability = -0.1
+			add_popularity = {
+				ideology = authoritarian_left
+				popularity = 0.05
+			}
+			custom_effect_tooltip = FAL_brown_beret_warning_tt
+		}
+	}
+	focus = {
 		id = FAL_rally_the_camisas_azules
 		icon = GFX_goal_FAL_rally_the_blue_shirts
 		cost = 2.00
@@ -50,12 +94,38 @@ focus_tree = {
 		prerequisite = {
 			focus = FAL_raise_the_phalanx
 		}
+		mutually_exclusive = {
+			focus = FAL_brown_berets_integration
+		}
 		completion_reward = {
-			add_manpower = 15000
+			add_manpower = 25000
 			add_equipment_to_stockpile = {
     			type = infantry_equipment
-    			amount = 2000
+    			amount = 5000
     			producer = FAL
+			}
+			add_popularity = {
+				ideology = autocratic
+				popularity = 0.05
+			}
+		}
+	}
+	focus = {
+		id = FAL_brown_terror
+		icon = GFX_goal_FAL_brown_terror
+		cost = 2.00
+		x = -1
+		y = 1
+		relative_position_id = FAL_rally_the_camisas_azules
+		prerequisite = {
+			focus = FAL_rally_the_camisas_azules
+			focus = FAL_brown_berets_integration
+		}
+		completion_reward = {
+			add_manpower = -5000
+			add_timed_idea = {
+				idea = FAL_brown_terror
+				days = 365
 			}
 		}
 	}
@@ -115,24 +185,6 @@ focus_tree = {
     			type = motorized_equipment
     			amount = 500
     			producer = FAL
-			}
-		}
-	}
-	focus = {
-		id = FAL_brown_terror
-		icon = GFX_goal_FAL_brown_terror
-		cost = 2.00
-		x = 0
-		y = 1
-		relative_position_id = FAL_rally_the_camisas_azules
-		prerequisite = {
-			focus = FAL_rally_the_camisas_azules
-		}
-		completion_reward = {
-			add_manpower = -5000
-			add_timed_idea = {
-				idea = FAL_brown_terror
-				days = 365
 			}
 		}
 	}
@@ -217,8 +269,8 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = FAL_reverse_santa_anna_mistake
-		icon = GFX_goal_FAL_reverse_the_santa_anna_mistake
+		id = FAL_bandits_and_soldiers
+		icon = GFX_goal_
 		cost = 2.00
 		x = -1
 		y = 1
@@ -234,19 +286,35 @@ focus_tree = {
 		}
 		completion_reward = {
 			declare_war_on = {
+				target = CRN
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = BLA
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = FAL_reverse_santa_anna_mistake
+		icon = GFX_goal_FAL_reverse_the_santa_anna_mistake
+		cost = 2.00
+		x = -1
+		y = 2
+		relative_position_id = FAL_reclaim_the_shore
+		available = {
+			has_war = no
+		}
+		prerequisite = {
+			focus = FAL_bandits_and_soldiers
+		}
+		completion_reward = {
+			declare_war_on = {
 				target = BET
 				type = annex_everything
 			}
 			declare_war_on = {
 				target = CRU
-				type = annex_everything
-			}
-			create_wargoal = {
-				target = CRN
-				type = annex_everything
-			}
-			create_wargoal = {
-				target = BLA
 				type = annex_everything
 			}
 		}
@@ -751,8 +819,9 @@ focus_tree = {
 			focus = FAL_jus_sanguinis
 		}
 		completion_reward = {
-			add_ideas = {
-				FAL_visigoths
+			swap_ideas = {
+				remove_idea = FAL_right_of_blood
+				add_idea = FAL_visigoths
 			}
 		}
 	}
@@ -867,7 +936,7 @@ focus_tree = {
 		id = FAL_violence_as_policy
 		icon = GFX_goal_FAL_violence_as_policy
 		cost = 3.00
-		x = 1
+		x = -1
 		y = 1
 		relative_position_id = FAL_mexican_cultural_dominance
 		prerequisite = {
@@ -889,7 +958,7 @@ focus_tree = {
 		id = FAL_spanish_as_primary_language
 		icon = GFX_goal_FAL_spanish_is_primary
 		cost = 3.00
-		x = -1
+		x = 1
 		y = 1
 		relative_position_id = FAL_mexican_cultural_dominance
 		prerequisite = {
@@ -917,14 +986,14 @@ focus_tree = {
 		id = FAL_true_fascism
 		icon = GFX_goal_FAL_falangism_is_fascist
 		cost = 3.00
-		x = -4
+		x = -2
 		y = 1
 		relative_position_id = FAL_violence_as_policy
 		prerequisite = {
 			focus = FAL_embrace_visigothic_heritage
 		}
 		prerequisite = {
-			focus = FAL_spanish_as_primary_language
+			focus = FAL_violence_as_policy
 		}
 		completion_reward = {
 			add_political_power = 100
@@ -1034,7 +1103,7 @@ focus_tree = {
 		y = 1
 		relative_position_id = FAL_syndical_republic
 		prerequisite = {
-			focus = FAL_violence_as_policy
+			focus = FAL_spanish_as_primary_language
 		}
 		prerequisite = {
 			focus = FAL_syndical_republic
@@ -2082,7 +2151,14 @@ focus_tree = {
 			focus = FAL_stay_out_of_it
 		}
 		completion_reward = {
-			add_manpower = 25000
+			314 = {
+				add_extra_state_shared_building_slots = 2
+				add_manpower = 15000
+			}
+			301 = {
+				add_extra_state_shared_building_slots = 2
+				add_manpower = 20000
+			}
 			add_stability = -0.03
 		}
 	}
@@ -2105,6 +2181,11 @@ focus_tree = {
 			BJC = {
 				add_stability = -0.2
 				add_political_power = -200
+			}
+			add_tech_bonus = {
+			    bonus = 3
+			    uses = 1
+			    category = industry
 			}
 		}
 	}
@@ -2167,6 +2248,10 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = FAL_economic_aid_for_catholics
+		}
+		mutually_exclusive = {
+			focus = FAL_a_grateful_ally
+			focus = FAL_a_loyal_puppet
 		}
 		completion_reward = {
 			release_puppet = WMX
@@ -2309,6 +2394,7 @@ focus_tree = {
 		}
 		mutually_exclusive = {
 			focus = FAL_a_loyal_puppet
+			focus = FAL_host_mexican_exiles
 		}
 		prerequisite = {
 			focus =  FAL_onwards_to_victory
@@ -3856,6 +3942,64 @@ focus_tree = {
 		}
 	}
 	focus = {
+		id = FAL_bring_exiles_home
+		icon = GFX
+		cost = 5.00
+		x = -3
+		y = 1
+		relative_position_id = FAL_towards_greater_aztlan
+		available = {
+			has_completed_focus = FAL_host_mexican_exiles
+		}
+		prerequisite = {
+			focus = FAL_towards_greater_aztlan
+		}
+		completion_reward = {
+			add_timed_idea = {
+				idea = FAL_supply_lines
+				days = 720
+			}
+			WMX = {
+				add_timed_idea = {
+					idea = FAL_supply_lines
+					days = 720
+				}
+			}
+			create_wargoal = {
+			    type = annex_everything
+			    target = WMX
+			}
+			create_wargoal = {
+			    type = annex_everything
+			    target = RMX
+			}
+			create_wargoal = {
+			    type = annex_everything
+			    target = CAR
+			}
+			create_wargoal = {
+			    type = annex_everything
+			    target = MEX
+			}
+			create_wargoal = {
+			    type = annex_everything
+			    target = ZAP
+			}
+			create_wargoal = {
+			    type = annex_everything
+			    target = YUC
+			}
+			create_wargoal = {
+			    type = annex_everything
+			    target = ADF
+			}
+			create_wargoal = {
+			    type = annex_everything
+			    target = PVB
+			}
+		}
+	}
+	focus = {
 		id = FAL_gut_the_south
 		icon = GFX
 		cost = 5.00
@@ -4241,7 +4385,7 @@ focus_tree = {
 		id = FAL_hispanidad_realized
 		icon = GFX
 		cost = 5.00
-		x = 0
+		x = -1
 		y = 1
 		relative_position_id = FAL_bring_into_fold
 		available = {
@@ -4308,6 +4452,7 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = FAL_bring_into_fold
+			focus = FAL_dominate_economics
 		}
 		completion_reward = {
 			IF = {
