@@ -361,11 +361,11 @@ country_event = {
         ideology = autocratic
         popularity = 0.15
         }
-		add_political_power = -350
+		set_political_power = 1
 		add_stability = -0.1
 		hidden_effect = {
 			country_event = {
-				id = greatlake.17
+				id = greatlake.13
 				days = 10
 			}
 			add_ideas = GLA_a_broken_government
@@ -400,26 +400,6 @@ country_event = {
 			remove_ideas = GLA_corporate_projects
 			remove_ideas = GLA_libertarian_military_training
 			remove_ideas = GLA_recruitment_ads
-			remove_ideas = GLA_paleolibertarians_normal
-			remove_ideas = GLA_paleolibertarians_happy
-			remove_ideas = GLA_paleolibertarians_very_happy
-			remove_ideas = GLA_paleolibertarians_angry
-			remove_ideas = GLA_paleolibertarians_very_angry
-			remove_ideas = GLA_moderate_libertarians_normal
-			remove_ideas = GLA_moderate_libertarians_happy
-			remove_ideas = GLA_moderate_libertarians_very_happy
-			remove_ideas = GLA_moderate_libertarians_angry
-			remove_ideas = GLA_moderate_libertarians_very_angry
-			remove_ideas = GLA_minarchists_normal
-			remove_ideas = GLA_minarchists_happy
-			remove_ideas = GLA_minarchists_very_happy
-			remove_ideas = GLA_minarchists_angry
-			remove_ideas = GLA_minarchists_very_angry
-			remove_ideas = GLA_ancaps_normal
-			remove_ideas = GLA_ancaps_happy
-			remove_ideas = GLA_ancaps_very_happy
-			remove_ideas = GLA_ancaps_angry
-			remove_ideas = GLA_ancaps_very_angry
 			remove_ideas = GLA_libertarian_propaganda
 			remove_ideas = GLA_libertarian_progressivism
 			remove_ideas = GLA_libertarian_conservatism
@@ -508,8 +488,8 @@ country_event = {
 		ai_chance = {
 			factor = 25
 		}
-		add_stability = 0.05
-		add_political_power = 35
+		add_stability = 0.1
+		add_political_power = 45
 	}
 }
 
@@ -553,7 +533,16 @@ country_event = {
 		ai_chance = {
 			factor = 25
 		}
-		promote_character = GLA_adam_fox
+		if = {
+			limit = { has_completed_focus = GLA_who_cares_about_the_people }
+			    promote_character = {
+				    character = GLA_adam_fox
+				    ideology = military_dictatorship
+			    }
+			}
+		else = {
+			promote_character = GLA_adam_fox
+		}
 	}
 }
 
@@ -1250,8 +1239,6 @@ country_event = {
 		ai_chance = {
 			factor = 25
 		}
-		add_ideas = GLA_libertarian_party_divided
-		mark_focus_tree_layout_dirty = yes
 	}
 }
 
@@ -1270,13 +1257,13 @@ country_event = {
 	option = {
 		name = greatlake.36.a
 		ai_chance = {
-			factor = 25
+			factor = 50
 		}
 	}
 	option = {
 		name = greatlake.36.b
 		ai_chance = {
-			factor = 25
+			factor = 50
 		}
 		add_political_power = 25
 		hidden_effect = {
@@ -1286,6 +1273,7 @@ country_event = {
 			}
 		}
 		custom_effect_tooltip = GLA_yarvin_power
+		set_country_flag = GLA_yarvins_power
 	}
 }
 
@@ -1313,6 +1301,10 @@ country_event = {
 			}
 		}
 		custom_effect_tooltip = GLA_yarvin_power
+		modify_country_flag = {
+			flag = GLA_yarvins_power
+			value = 2
+		}
 	}
 }
 
@@ -1334,13 +1326,11 @@ country_event = {
 			factor = 25
 		}
 		add_political_power = 25
-		hidden_effect = {
-			country_event = {
-				id = greatlake.39
-				days = 5
-			}
-		}
 		custom_effect_tooltip = GLA_yarvin_power
+		modify_country_flag = {
+			flag = GLA_yarvins_power
+			value = 1
+		}
 	}
 }
 
@@ -1351,9 +1341,13 @@ country_event = {
 	desc = greatlake.39.d
 	#picture = er
 	trigger = {
+		has_country_flag = {
+			flag = GLA_yarvins_power
+			value > 2
+		}
 		has_completed_focus = GLA_who_cares_about_the_people
 	}
-	is_triggered_only = yes
+	is_triggered_only = no
 	mean_time_to_happen = { days = 5 }
 	fire_only_once = yes
 	immediate = {
@@ -1366,15 +1360,23 @@ country_event = {
 		}
 		add_ideas = GLA_boogaloo_rebels
 		add_ideas = GLA_unpopolar_government
+		hidden_effect = {
+		    remove_ideas = Unorganized_Boogaloo
+		    remove_ideas = Unorganized_Boogaloo_2
+		    remove_ideas = Unorganized_Boogaloo_3
+		    remove_ideas = weakened_boogaloo_militias
+		    remove_ideas = weakened_boogaloo_militias_2
+		    remove_ideas = boogaloo_militias
+		}
 		set_cosmetic_tag = GLA_yarvin
 		GLA_curtis_yarvin = {
 			promote_character = yes
 		}
 		set_politics = {
-        ruling_party = autocratic
-        elections_allowed = no
-        last_election = "2021.4.30"
-        election_frequency = 48
+            ruling_party = autocratic
+            elections_allowed = no
+            last_election = "2021.4.30"
+            election_frequency = 48
         }
 		add_popularity = {
             ideology = autocratic
@@ -1384,12 +1386,6 @@ country_event = {
 		complete_national_focus = GLA_the_yarvin_march
 		add_political_power = -50
 		add_stability = 0.05
-		hidden_effect = {
-			country_event = {
-				id = greatlake.40
-				days = 4
-			}
-		}
 	}
 }
 
@@ -2035,5 +2031,196 @@ country_event = {
        		ideology = libertarian_right
         	popularity = 0.05
        	}
+	}
+}
+
+#Pinochet Larp
+country_event = {
+	id = greatlake.60
+	title = greatlake.60.t
+	desc = greatlake.60.d
+	#picture = er
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.60.a
+		ai_chance = {
+			factor = 25
+		}
+		add_stability = -0.05
+		add_popularity = {
+            ideology = libertarian_left
+            popularity = -0.1
+        }
+	}
+}
+
+#Exiling The Leftists
+country_event = {
+	id = greatlake.61
+	title = greatlake.61.t
+	desc = greatlake.61.d
+	#picture = er
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.61.a
+		ai_chance = {
+			factor = 25
+		}
+		add_popularity = {
+            ideology = libertarian_left
+            popularity = -0.1
+        }
+        USA = {
+		add_popularity = {
+            ideology = libertarian_left
+            popularity = 0.1
+            }
+	    }
+	}
+}
+
+#Yarvin Gets Arrested
+country_event = {
+	id = greatlake.62
+	title = greatlake.62.t
+	desc = greatlake.62.d
+	#picture = er
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.62.a
+		ai_chance = {
+			factor = 25
+		}
+		add_popularity = {
+			ideology = autocratic
+			popularity = 0.05
+		}
+	}
+}
+
+#Adam Fox Gets Arrested
+country_event = {
+	id = greatlake.63
+	title = greatlake.63.t
+	desc = greatlake.63.d
+	#picture = er
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.63.a
+		ai_chance = {
+			factor = 25
+		}
+		hidden_effect = {
+		    country_event = {
+			    id = greatlake.64
+			    days = 0
+		    }
+		}
+	}
+}
+
+#What To Do With Adam Fox
+country_event = {
+	id = greatlake.64
+	title = greatlake.64.t
+	desc = greatlake.64.d
+	#picture = er
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.64.a
+		ai_chance = {
+			factor = 70
+		}
+	}
+	option = {
+		name = greatlake.64.b
+		ai_chance = {
+			factor = 30
+		}
+	}
+}
+
+#The Future of The Great Lakes
+country_event = {
+	id = greatlake.65
+	title = greatlake.65.t
+	desc = greatlake.65.d
+	#picture = er
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.65.a
+		ai_chance = {
+			factor = 10
+		}
+	}
+}
+
+#Boogaloo Control
+country_event = {
+	id = greatlake.66
+	title = greatlake.66.t
+	desc = greatlake.66.d
+	#picture = er
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.66.a
+		ai_chance = {
+			factor = 10
+		}
+	}
+}
+
+#Boogaloo Freedom
+country_event = {
+	id = greatlake.67
+	title = greatlake.67.t
+	desc = greatlake.67.d
+	#picture = er
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.67.a
+		ai_chance = {
+			factor = 10
+		}
 	}
 }

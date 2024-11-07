@@ -3287,36 +3287,6 @@ focus_tree = {
 			focus = GLA_privateize_the_police
 		}
 		completion_reward = {
-		
-		
-		if = {
-		    limit = { has_idea = GLA_minarchists_normal }
-            swap_ideas = {
-				remove_idea = GLA_minarchists_normal
-				add_idea = GLA_minarchists_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_minarchists_happy }
-            swap_ideas = {
-				remove_idea = GLA_minarchists_happy
-				add_idea = GLA_minarchists_normal
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_minarchists_angry }
-            swap_ideas = {
-				remove_idea = GLA_minarchists_angry
-				add_idea = GLA_minarchists_very_angry
-			    }
-		    }
-		if = {
-		    limit = { has_idea = GLA_minarchists_very_happy }
-            swap_ideas = {
-				remove_idea = GLA_minarchists_very_happy
-				add_idea = GLA_minarchists_happy
-			    }
-		    }
 		add_political_power = -30
 		remove_ideas = Ruins_of_the_Rust_Belt_4
 		}
@@ -6160,12 +6130,12 @@ focus_tree = {
 		icon = GFX_goal_GLA_the_boogaloo_militias
 		x = 15
 		y = 15
-		allow_branch = { 
-			has_completed_focus = GLA_the_boogaloo_coup
-			NOT = {
-			has_completed_focus = GLA_the_yarvin_march
-			}
-		}
+		#allow_branch = { 
+		#	has_completed_focus = GLA_the_boogaloo_coup
+		#	NOT = {
+		#	has_completed_focus = GLA_the_yarvin_march
+		#	}
+		#}
 		#relative_position_id = 
 		cost = 1
 		prerequisite = {
@@ -6251,7 +6221,7 @@ focus_tree = {
 		allow_branch = {
 		}
 		available = {
-			has_idea = GLA_rising_tensions
+			has_completed_focus = GLA_stop_the_riots
 		}
 		prerequisite = {
 			focus = GLA_the_boogaloo_coup
@@ -6259,7 +6229,7 @@ focus_tree = {
 		completion_reward = {
 	        add_popularity = {
                 ideology = libertarian_left
-                popularity = -0.05
+                popularity = -0.1
             }
 		}
 
@@ -6281,6 +6251,10 @@ focus_tree = {
 			focus = GLA_the_boogaloo_coup
 		}
 		completion_reward = {
+		country_event = {
+				id = greatlake.36
+				days = 0
+			}
 	    swap_ideas = {
 			    remove_idea = GLA_rising_tensions
 			    add_idea = GLA_rising_tensions_2
@@ -6350,10 +6324,6 @@ focus_tree = {
 	    add_political_power = 30
 		add_stability = 0.05
 		remove_ideas = GLA_a_broken_government_3
-		country_event = {
-				id = greatlake.15
-				days = 0
-			}
 		}
 
 	}
@@ -6373,7 +6343,7 @@ focus_tree = {
 		completion_reward = {
 	    add_popularity = {
                 ideology = libertarian_left
-                popularity = -0.05
+                popularity = -0.1
             }
         add_political_power = -15
 		}
@@ -6395,7 +6365,7 @@ focus_tree = {
 		completion_reward = {
 	        add_popularity = {
                 ideology = libertarian_left
-                popularity = -0.05
+                popularity = -0.1
             }
 		add_political_power = 35
 		}
@@ -6410,9 +6380,6 @@ focus_tree = {
 		relative_position_id = GLA_stop_the_riots
 		select_effect = {  }
 		allow_branch = {
-		}
-		available = {
-			has_completed_focus = GLA_anti_leftist_propaganda
 		}
 		prerequisite = {
 			focus = GLA_stop_the_riots
@@ -6451,7 +6418,7 @@ focus_tree = {
 	focus = {
 		id = GLA_boogaloo_control
 		icon = GFX_goal_GLA_the_boogaloo_militias
-		cost = 2
+		cost = 3
 		x = 0
 		y = 1
 		relative_position_id = GLA_order_in_the_great_lakes
@@ -6459,10 +6426,7 @@ focus_tree = {
 		allow_branch = {
 		}
 		available = {
-		    every_owned_state = { 
-				limit = { is_core_of = ROOT }
-		        is_demilitarized_zone = no 
-		    }
+		
 		}
 		prerequisite = {
 			focus = GLA_order_in_the_great_lakes
@@ -6474,8 +6438,8 @@ focus_tree = {
 			focus = GLA_seize_military_equipment
 		}
 		completion_reward = {
-		country_event = {
-				id = greatlake.17
+			country_event = {
+				id = greatlake.15
 				days = 0
 			}
 		}
@@ -6503,6 +6467,10 @@ focus_tree = {
         popularity = 0.05
         }
 		add_stability = 0.05
+		country_event = {
+			id = greatlake.17
+			days = 5
+		}
 		}
 
 	}
@@ -6532,6 +6500,10 @@ focus_tree = {
 			}
 		add_political_power = 45
 		add_stability = -0.05
+		country_event = {
+			id = greatlake.17
+			days = 5
+		    }
 		}
 
 	}
@@ -6540,7 +6512,7 @@ focus_tree = {
 		icon = GFX_goal_GLA_the_boogaloo_militias
 		cost = 3
 		x = 0
-		y = 6
+		y = 8
 		relative_position_id = GLA_boogaloo_control
 		select_effect = {  }
 		allow_branch = {
@@ -6549,7 +6521,7 @@ focus_tree = {
 			focus = GLA_boogaloo_control
 		}
 		completion_reward = {
-	    army_experience = 15
+	    army_experience = 30
 		}
 
 	}
@@ -6585,10 +6557,10 @@ focus_tree = {
 			focus = GLA_everyone_deserves_freedom
 		}
 		completion_reward = {
-	        add_popularity = {
-                ideology = libertarian_left
-                popularity = -0.05
-            }
+	        country_event = {
+				id = greatlake.61
+				days = 0
+			}
 		}
 
 	}
@@ -6610,10 +6582,32 @@ focus_tree = {
                 ideology = autocratic
                 popularity = 0.05
             }
-		swap_ideas = {
+			swap_ideas = {
 			    remove_idea = GLA_boogaloo_liberty
 			    add_idea = GLA_boogaloo_liberty_2
 			}
+		}
+
+	}
+	focus = {
+		id = GLA_liberty_or_death
+		icon = GFX_goal_GLA_the_boogaloo_militias
+		cost = 4
+		x = 0
+		y = 2
+		relative_position_id = GLA_what_america_was_truly_about
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_what_america_was_truly_about
+		}
+		completion_reward = {
+			add_war_support = 0.1
+	        add_popularity = {
+                ideology = autocratic
+                popularity = 0.05
+            }
 		}
 
 	}
@@ -6683,6 +6677,28 @@ focus_tree = {
 
 	}
 	focus = {
+		id = GLA_uphold_our_rights
+		icon = GFX_goal_GLA_the_boogaloo_militias
+		cost = 4
+		x = 0
+		y = 2
+		relative_position_id = GLA_what_the_founding_fathers_intended
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_what_the_founding_fathers_intended
+		}
+		completion_reward = {
+		    add_stability = 0.05
+	        add_popularity = {
+                ideology = autocratic
+                popularity = 0.05
+            }
+		}
+
+	}
+	focus = {
 		id = GLA_a_patriotic_anarchist_society
 		icon = GFX_goal_GLA_the_boogaloo_militias
 		cost = 3
@@ -6703,10 +6719,32 @@ focus_tree = {
 		}
 		completion_reward = {
 	    add_popularity = {
-        ideology = autocratic
-        popularity = 0.05
-        }
+            ideology = autocratic
+            popularity = 0.05
+            }
 		add_stability = 0.05
+		custom_effect_tooltip = GLA_decisions_are_unlocked
+		}
+
+	}
+	focus = {
+		id = GLA_true_freedom_lies_within_anarchy
+		icon = GFX_goal_GLA_the_boogaloo_militias
+		cost = 3
+		x = 0
+		y = 2
+		relative_position_id = GLA_a_patriotic_anarchist_society
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_what_the_founding_fathers_intended
+		}
+		completion_reward = {
+	        country_event = {
+				id = greatlake.67
+				days = 0
+			}
 		}
 
 	}
@@ -6724,18 +6762,18 @@ focus_tree = {
 			focus = GLA_keep_our_promises
 		}
 		completion_reward = {
-	    add_popularity = {
-        ideology = autocratic
-        popularity = 0.05
-        }
+	        add_popularity = {
+                ideology = autocratic
+                popularity = 0.05
+            }
+		    unlock_decision_category_tooltip = GLA_boogaloo_political_decisions
 		}
-
 	}
 	focus = {
 		id = GLA_communal_economics
 		icon = GFX_goal_GLA_the_boogaloo_militias
 		cost = 5
-		x = 4
+		x = 5
 		y = 0
 		relative_position_id = GLA_keep_our_promises
 		select_effect = {  }
@@ -6876,6 +6914,50 @@ focus_tree = {
 
 	}
 	focus = {
+		id = GLA_anarchys_factories
+		icon = GFX_goal_GLA_the_boogaloo_militias
+		cost = 5
+		x = 1
+		y = 1
+		relative_position_id = GLA_rebuild_urban_areas
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_rebuild_urban_areas
+		}
+		completion_reward = {
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2	
+				add_building_construction = {
+    					type = arms_factory
+    					level = 2
+    					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2	
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 2
+    					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
 		id = GLA_rebuild_our_roads
 		icon = GFX_goal_GLA_the_boogaloo_militias
 		cost = 8
@@ -6914,7 +6996,46 @@ focus_tree = {
 				}
 			}
 		}
-
+	}
+	focus = {
+		id = GLA_roads_of_liberty
+		icon = GFX_goal_GLA_the_boogaloo_militias
+		cost = 5
+		x = -1
+		y = 1
+		relative_position_id = GLA_rebuild_our_roads
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_rebuild_our_roads
+		}
+		completion_reward = {
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_building_construction = {
+    					type = infrastructure
+    					level = 2
+    					instant_build = yes
+				}
+			}
+		random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_building_construction = {
+    					type = infrastructure
+    					level = 2
+    					instant_build = yes
+				}
+			}
+		random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_building_construction = {
+    					type = infrastructure
+    					level = 1
+    					instant_build = yes
+				}
+			}
+		}
 	}
 	focus = {
 		id = GLA_united_under_one_goal
@@ -6944,8 +7065,88 @@ focus_tree = {
 			    remove_idea = GLA_national_communalism
 			    add_idea = GLA_national_communalism_2
 			}
+			add_research_slot = 1
 		}
-
+	}
+	focus = {
+		id = GLA_dig_up_resources
+		icon = GFX_goal_GLA_the_boogaloo_militias
+		cost = 5
+		x = -1
+		y = 1
+		relative_position_id = GLA_united_under_one_goal
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_united_under_one_goal
+		}
+		completion_reward = {
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_resource = {
+                    type = steel
+                    amount = 30
+                }	
+		    }
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_resource = {
+                    type = aluminium
+                    amount = 45
+                }	
+		    }
+		    random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_resource = {
+                    type = tungsten
+                    amount = 40
+                }	
+		    }
+		}
+	}
+	focus = {
+		id = GLA_boogaloo_industries
+		icon = GFX_goal_GLA_the_boogaloo_militias
+		cost = 5
+		x = 1
+		y = 1
+		relative_position_id = GLA_united_under_one_goal
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_united_under_one_goal
+		}
+		completion_reward = {
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+    					type = arms_factory
+    					level = 2
+    					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2	
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 2
+    					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+		}
 	}
 	focus = {
 		id = GLA_empower_the_militias
@@ -7023,14 +7224,39 @@ focus_tree = {
 		}
 		completion_reward = {
 	    add_popularity = {
-        ideology = autocratic
-        popularity = 0.05
-        }
+                ideology = autocratic
+                popularity = 0.05
+            }
 		add_war_support = 0.1
 		swap_ideas = {
 			    remove_idea = GLA_a_boogaloo_dictatorship_2
 			    add_idea = GLA_a_boogaloo_dictatorship_3
 			}
+		}
+
+	}
+	focus = {
+		id = GLA_the_cult_of_adam_fox
+		icon = GFX_goal_GLA_the_boogaloo_militias
+		cost = 4
+		x = 0
+		y = 2
+		relative_position_id = GLA_we_are_the_true_patriots_of_america
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_we_are_the_true_patriots_of_america
+		}
+		prerequisite = {
+			focus = GLA_a_patriotic_dictatorship
+		}
+		completion_reward = {
+			add_war_support = 0.1
+	        add_popularity = {
+                ideology = autocratic
+                popularity = 0.05
+            }
 		}
 
 	}
@@ -7048,11 +7274,10 @@ focus_tree = {
 			focus = GLA_who_needs_freedom_of_speech_anyways
 		}
 		completion_reward = {
-	    add_stability = -0.05
-		add_popularity = {
-        ideology = libertarian_left
-        popularity = -0.05
-        }
+			country_event = {
+				id = greatlake.60
+				days = 0
+			}
 		}
 
 	}
@@ -7078,9 +7303,33 @@ focus_tree = {
 
 	}
 	focus = {
+		id = GLA_spy_on_the_people
+		icon = GFX_goal_GLA_the_boogaloo_militias
+		cost = 4
+		x = 0
+		y = 2
+		relative_position_id = GLA_aint_i_right
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_aint_i_right
+		}
+		prerequisite = {
+			focus = GLA_a_patriotic_dictatorship
+		}
+		completion_reward = {
+	        swap_ideas = {
+			    remove_idea = GLA_boogaloo_secret_police
+			    add_idea = GLA_boogaloo_secret_police_2
+			}
+		}
+
+	}
+	focus = {
 		id = GLA_a_patriotic_dictatorship
 		icon = GFX_goal_GLA_the_boogaloo_militias
-		cost = 5
+		cost = 3
 		x = -1
 		y = 1
 		relative_position_id = GLA_aint_i_right
@@ -7103,6 +7352,28 @@ focus_tree = {
                 ideology = autocratic
                 popularity = 0.05
             }
+		custom_effect_tooltip = GLA_decisions_are_unlocked
+		}
+
+	}
+	focus = {
+		id = GLA_total_control
+		icon = GFX_goal_GLA_the_boogaloo_militias
+		cost = 3
+		x = 0
+		y = 2
+		relative_position_id = GLA_a_patriotic_dictatorship
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_a_patriotic_dictatorship
+		}
+		completion_reward = {
+			country_event = {
+				id = greatlake.66
+				days = 0
+			}
 		}
 
 	}
@@ -7121,6 +7392,7 @@ focus_tree = {
 		}
 		completion_reward = {
 	    add_ideas = GLA_boogaloo_secret_police
+		unlock_decision_category_tooltip = GLA_boogaloo_political_decisions
 		}
 
 	}
@@ -7128,7 +7400,7 @@ focus_tree = {
 		id = GLA_sezie_industry
 		icon = GFX_goal_GLA_the_boogaloo_militias
 		cost = 5
-		x = -4
+		x = -5
 		y = 0
 		relative_position_id = GLA_who_cares_about_the_people
 		select_effect = {  }
@@ -7260,7 +7532,43 @@ focus_tree = {
 				}
 			}
 		}
-
+	}
+	focus = {
+		id = GLA_boogaloo_mines
+		icon = GFX_goal_GLA_the_boogaloo_militias
+		cost = 5
+		x = 1
+		y = 1
+		relative_position_id = GLA_boogaloo_manufacturing
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_boogaloo_manufacturing
+		}
+		completion_reward = {
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_resource = {
+                    type = steel
+                    amount = 45
+                }	
+		    }
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_resource = {
+                    type = aluminium
+                    amount = 35
+                }	
+		    }
+		    random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_resource = {
+                    type = tungsten
+                    amount = 35
+                }	
+		    }
+		}
 	}
 	focus = {
 		id = GLA_repair_infrastructure
@@ -7301,7 +7609,46 @@ focus_tree = {
 				}
 			}
 		}
-
+	}
+	focus = {
+		id = GLA_more_roads_for_americans
+		icon = GFX_goal_GLA_the_boogaloo_militias
+		cost = 5
+		x = -1
+		y = 1
+		relative_position_id = GLA_repair_infrastructure
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_repair_infrastructure
+		}
+		completion_reward = {
+        random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_building_construction = {
+    					type = infrastructure
+    					level = 2
+    					instant_build = yes
+				}
+			}
+		random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_building_construction = {
+    					type = infrastructure
+    					level = 2
+    					instant_build = yes
+				}
+			}
+		random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_building_construction = {
+    					type = infrastructure
+    					level = 1
+    					instant_build = yes
+				}
+			}
+		}
 	}
 	focus = {
 		id = GLA_our_own_markets
@@ -7331,8 +7678,75 @@ focus_tree = {
 			    remove_idea = GLA_american_corporatism
 			    add_idea = GLA_american_corporatism_2
 			}
+			add_research_slot = 1
 		}
-
+	}
+	focus = {
+		id = GLA_russian_trade
+		icon = GFX_goal_GLA_the_boogaloo_militias
+		cost = 5
+		x = 1
+		y = 1
+		relative_position_id = GLA_our_own_markets
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_our_own_markets
+		}
+		completion_reward = {
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1	
+				add_building_construction = {
+    					type = arms_factory
+    					level = 1
+    					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = GLA_build_up_the_war_machine
+		icon = GFX_goal_GLA_the_boogaloo_militias
+		cost = 5
+		x = -1
+		y = 1
+		relative_position_id = GLA_our_own_markets
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_our_own_markets
+		}
+		completion_reward = {
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2	
+				add_building_construction = {
+    					type = arms_factory
+    					level = 2
+    					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2	
+				add_building_construction = {
+    					type = arms_factory
+    					level = 2
+    					instant_build = yes
+				}
+			}
+		}
 	}
 	focus = {
 		id = GLA_get_better_equipment
@@ -7540,6 +7954,7 @@ focus_tree = {
         uses = 3
         category = armor
         }
+		add_research_slot = 1
 		}
 
 	}
@@ -7759,11 +8174,11 @@ focus_tree = {
 	focus = {
 		id = GLA_the_yarvin_march
 		icon = GFX_goal_GLA_freedom_to_the_corporations
-		x = 33
+		x = 36
 		y = 15
-		allow_branch = { 
-			has_completed_focus = GLA_the_yarvin_march
-		}
+		#allow_branch = { 
+		#	has_completed_focus = GLA_the_yarvin_march
+		#}
 		#relative_position_id = 
 		cost = 1
 		prerequisite = {
@@ -7773,7 +8188,7 @@ focus_tree = {
 			has_cosmetic_tag = GLA_yarvin
 		}
 		offset = {
-			x = -13
+			x = -16
 			y = -15
 			trigger = {
 				has_completed_focus = GLA_the_yarvin_march
@@ -7907,6 +8322,10 @@ focus_tree = {
 			focus = GLA_arrest_boogaloo_militiamen
 		}
 		completion_reward = {
+			country_event = {
+				id = greatlake.63
+				days = 0
+			}
 		swap_ideas = {
 			    remove_idea = GLA_boogaloo_rebels_2
 			    add_idea = GLA_boogaloo_rebels_3
@@ -7986,13 +8405,13 @@ focus_tree = {
 		}
 		completion_reward = {
 		    add_tech_bonus = {
-        		bonus = 0.3
-        		uses = 3
+        		bonus = 0.5
+        		uses = 5
         		category = electronics
         	}
 			add_tech_bonus = {
-        		bonus = 0.3
-        		uses = 3
+        		bonus = 0.5
+        		uses = 5
         		category = industry
         	}
 		}
@@ -8176,7 +8595,10 @@ focus_tree = {
 			focus = GLA_accelerate_technology
 		}
 		completion_reward = {
-		
+			country_event = {
+				id = greatlake.65
+				days = 0
+			}
 		}
 	}
 	focus = {
@@ -8253,6 +8675,10 @@ focus_tree = {
 			remove_idea = GLA_a_perfect_society_3
 			add_idea = GLA_a_perfect_society_4
 			}
+		custom_effect_tooltip = GLA_decisions_are_unlocked
+		    hidden_effect = {
+		        unlock_decision_category_tooltip = GLA_boogaloo_political_decisions
+		    }
 		}
 	}
 	focus = {
@@ -8273,6 +8699,10 @@ focus_tree = {
 			remove_idea = GLA_cameralism_2
 			add_idea = GLA_cameralism_3
 			}
+		custom_effect_tooltip = GLA_decisions_are_unlocked
+		    hidden_effect = {
+		        unlock_decision_category_tooltip = GLA_boogaloo_political_decisions
+		    }
 		}
 	}
 	focus = {
@@ -8406,6 +8836,7 @@ focus_tree = {
 			remove_idea = GLA_cameralism_4
 			add_idea = GLA_cameralism_5
 			}
+			custom_effect_tooltip = GLA_decisions_are_unlocked
 		}
 	}
 	focus = {
@@ -8459,11 +8890,11 @@ focus_tree = {
             }
 		add_popularity = {
                 ideology = libertarian_right
-                popularity = -0.1
+                popularity = -0.15
             }
 		add_popularity = {
                 ideology = authoritarian_left
-                popularity = -0.1
+                popularity = -0.15
             }
 		}
 	}
@@ -8485,6 +8916,80 @@ focus_tree = {
 			remove_idea = GLA_a_perfect_society_5
 			add_idea = GLA_a_perfect_society_6
 			}
+		custom_effect_tooltip = GLA_decisions_are_unlocked
+		}
+	}
+	focus = {
+		id = GLA_control_over_the_media
+		icon = GFX_goal_GLA_freedom_to_the_corporations
+		cost = 3
+		x = -1
+		y = 1
+		relative_position_id = GLA_the_media_dark_age
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_the_media_dark_age
+		}
+		prerequisite = {
+			focus = GLA_militarize_socitey
+		}
+		completion_reward = {
+			add_ideas = GLA_media_control
+		}
+	}
+	focus = {
+		id = GLA_control_over_the_schools
+		icon = GFX_goal_GLA_freedom_to_the_corporations
+		cost = 3
+		x = -1
+		y = 1
+		relative_position_id = GLA_fight_against_degenerates
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_the_media_dark_age
+		}
+		prerequisite = {
+			focus = GLA_fight_against_degenerates
+		}
+		completion_reward = {
+			add_tech_bonus = {
+        		bonus = 0.4
+        		uses = 3
+        		category = industry
+        	}
+			add_tech_bonus = {
+        		bonus = 0.4
+        		uses = 3
+        		category = electronics
+        	}
+		}
+	}
+	focus = {
+		id = GLA_control_over_the_people
+		icon = GFX_goal_GLA_freedom_to_the_corporations
+		cost = 3
+		x = 1
+		y = 1
+		relative_position_id = GLA_our_own_social_credit_system
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_the_media_dark_age
+		}
+		prerequisite = {
+			focus = GLA_fight_against_degenerates
+		}
+		completion_reward = {
+			add_stability = 0.05
+	        add_popularity = {
+                ideology = autocratic
+                popularity = 0.05
+            }
 		}
 	}
 	#Yarvin's Economy
@@ -8606,6 +9111,37 @@ focus_tree = {
 		}
 	}
 	focus = {
+		id = GLA_crush_worker_unions
+		icon = GFX_goal_GLA_freedom_to_the_corporations
+		cost = 5
+		x = 1
+		y = 1
+		relative_position_id = GLA_modern_feudalism
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_modern_feudalism
+		}
+		completion_reward = {
+			add_stability = -0.05
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_resource = {
+					type = aluminium
+					amount = 45
+				}	
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_resource = {
+					type = tungsten
+					amount = 25
+				}	
+			}
+		}
+	}
+	focus = {
 		id = GLA_corporate_freedom
 		icon = GFX_goal_GLA_freedom_to_the_corporations
 		cost = 5
@@ -8666,6 +9202,43 @@ focus_tree = {
 				add_building_construction = {
     					type = infrastructure
     					level = 1
+    					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = GLA_fuel_the_flames_of_capitalism
+		icon = GFX_goal_GLA_freedom_to_the_corporations
+		cost = 5
+		x = 1
+		y = 1
+		relative_position_id = GLA_privateize_pubic_services
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_privateize_pubic_services
+		}
+		completion_reward = {
+		random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2
+			}
+		random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2
+			}
+		random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+    					type = arms_factory
+    					level = 2
     					instant_build = yes
 				}
 			}
@@ -8747,6 +9320,26 @@ focus_tree = {
 		}
 	}
 	focus = {
+		id = GLA_yarvins_economic_miracle
+		icon = GFX_goal_GLA_freedom_to_the_corporations
+		cost = 5
+		x = -1
+		y = 1
+		relative_position_id = GLA_restart_the_economy
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_restart_the_economy
+		}
+		completion_reward = {
+		swap_ideas = {
+			    remove_idea = GLA_the_yarvin_econom_2
+			    add_idea = GLA_the_yarvin_economy_3
+			}
+		}
+	}
+	focus = {
 		id = GLA_fund_cypernetics
 		icon = GFX_goal_GLA_freedom_to_the_corporations
 		cost = 6
@@ -8790,6 +9383,33 @@ focus_tree = {
 		}
 	}
 	focus = {
+		id = GLA_expand_great_lakes_research
+		icon = GFX_goal_GLA_freedom_to_the_corporations
+		cost = 6
+		x = -1
+		y = 1
+		relative_position_id = GLA_fund_robotics
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_fund_robotics
+		}
+		completion_reward = {
+			add_tech_bonus = {
+        		bonus = 0.4
+        		uses = 4
+        		category = electronics
+        	}
+		    add_tech_bonus = {
+        		bonus = 0.4
+        		uses = 4
+        		category = industry
+        	}
+		    add_research_slot = 1
+		}
+	}
+	focus = {
 		id = GLA_break_their_wills
 		icon = GFX_goal_GLA_freedom_to_the_corporations
 		cost = 8
@@ -8827,6 +9447,58 @@ focus_tree = {
 		}
 		completion_reward = {
 		remove_ideas = GLA_the_economy_in_shambles_3
+		}
+	}
+	focus = {
+		id = GLA_reopen_factories
+		icon = GFX_goal_GLA_freedom_to_the_corporations
+		cost = 5
+		x = 0
+		y = 2
+		relative_position_id = GLA_rebuild_the_nation
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_rebuild_the_nation
+		}
+		completion_reward = {
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = arms_factory
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = arms_factory
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1	
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
 		}
 	}
 	#Yarvin's Military
@@ -8912,6 +9584,27 @@ focus_tree = {
 		}
 	}
 	focus = {
+		id = GLA_foreign_military_studies
+		icon = GFX_goal_GLA_freedom_to_the_corporations
+		cost = 5
+		x = 1
+		y = 1
+		relative_position_id = GLA_yarvins_military_funding
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_yarvins_military_funding
+		}
+		completion_reward = {
+	    add_tech_bonus = {
+                bonus = 0.3
+                uses = 3
+                category = land_doctrine
+            }
+		}
+	}
+	focus = {
 		id = GLA_youth_recruitment
 		icon = GFX_goal_GLA_freedom_to_the_corporations
 		cost = 5
@@ -8949,6 +9642,29 @@ focus_tree = {
 		army_experience = 25
 		navy_experience = 25
 		air_experience = 25
+		}
+	}
+	focus = {
+		id = GLA_militarize_the_schools
+		icon = GFX_goal_GLA_freedom_to_the_corporations
+		cost = 5
+		x = 1
+		y = 1
+		relative_position_id = GLA_military_propaganda
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_military_propaganda
+		}
+		completion_reward = {
+		add_war_support = 0.1
+		army_experience = 45
+		add_tech_bonus = {
+			bonus = 0.3
+			uses = 3
+			category = land_doctrine
+		    }
 		}
 	}
 	focus = {
@@ -9008,6 +9724,22 @@ focus_tree = {
                 uses = 3
                 category = armor
             }
+		}
+	}
+	focus = {
+		id = GLA_up_to_date_artillery
+		icon = GFX_goal_GLA_freedom_to_the_corporations
+		cost = 5
+		x = -1
+		y = 1
+		relative_position_id = GLA_up_to_date_tanks_and_artillery
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_up_to_date_tanks_and_artillery
+		}
+		completion_reward = {
 		add_tech_bonus = {
                 bonus = 0.4
                 uses = 4
@@ -9066,33 +9798,49 @@ focus_tree = {
 		}
 		completion_reward = {
 		add_tech_bonus = {
-                bonus = 0.3
-                uses = 2
+                bonus = 0.4
+                uses = 3
                 category = light_air
             }
 		add_tech_bonus = {
-                bonus = 0.3
-                uses = 2
+                bonus = 0.4
+                uses = 3
                 category = medium_air
             }
 		add_tech_bonus = {
-                bonus = 0.3
-                uses = 2
+                bonus = 0.4
+                uses = 3
                 category = heavy_air
             }
+		}
+	}
+	focus = {
+		id = GLA_the_latest_bombers
+		icon = GFX_goal_GLA_freedom_to_the_corporations
+		cost = 5
+		x = -1
+		y = 1
+		relative_position_id = GLA_the_latest_jets
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_the_latest_jets
+		}
+		completion_reward = {
 		add_tech_bonus = {
-                bonus = 0.3
-                uses = 2
+                bonus = 0.4
+                uses = 3
                 category = tactical_bomber
             }
 		add_tech_bonus = {
-                bonus = 0.3
-                uses = 2
+                bonus = 0.4
+                uses = 3
                 category = cas_bomber
             }
 		add_tech_bonus = {
-                bonus = 0.3
-                uses = 2
+                bonus = 0.4
+                uses = 3
                 category = cat_strategic_bomber
             }
 		}
@@ -9162,6 +9910,25 @@ focus_tree = {
                 amount = 5000
                 producer = GLA
             }
+		}
+	}
+	focus = {
+		id = GLA_international_military_agreements
+		icon = GFX_goal_GLA_freedom_to_the_corporations
+		cost = 5
+		x = 0
+		y = 2
+		relative_position_id = GLA_purchase_foreign_equipment
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_purchase_foreign_equipment
+		}
+		completion_reward = {
+			army_experience = 35
+		    navy_experience = 35
+		    air_experience = 35
 		}
 	}
 
