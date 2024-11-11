@@ -420,6 +420,10 @@ country_event = {
 			remove_ideas = GLA_a_capitalist_anarchy
 			remove_ideas = GLA_free_market_environmentalism
 			remove_ideas = GLA_migrants_allowed
+			clear_variable = GLA_paleolibertarians
+		    clear_variable = GLA_moderate_libertarians
+		    clear_variable = GLA_minarchists
+		    clear_variable = GLA_ancaps
 		}
 	}
 }
@@ -644,12 +648,43 @@ country_event = {
 		ai_chance = {
 			factor = 25
 		}
-		add_political_power = -3
+		set_variable = {
+			var = GLA_opps
+			value = 35
+			tooltip = GLA_the_chances_of_no_victory
+		}
+		custom_effect_tooltip = GLA_decisions_are_unlocked
 		hidden_effect = {
 			country_event = {
 				id = greatlake.22
 				days = 35
 			}
+			set_country_flag = GLA_mama_jo_side
+			unlock_decision_tooltip = GLA_anti_opp_propaganda
+			unlock_decision_tooltip = GLA_mama_jo_rally
+			unlock_decision_tooltip = GLA_connect_with_the_voters
+		}
+	}
+	option = {
+		name = greatlake.21.b
+		ai_chance = {
+			factor = 25
+		}
+		set_variable = {
+			var = GLA_opps
+			value = 40
+			tooltip = GLA_the_chances_of_victory
+		}
+		custom_effect_tooltip = GLA_decisions_are_unlocked
+		hidden_effect = {
+			country_event = {
+				id = greatlake.22
+				days = 35
+			}
+			set_country_flag = GLA_opp_side
+			unlock_decision_tooltip = GLA_anti_jorgensen_propaganda
+			unlock_decision_tooltip = GLA_hold_a_rally
+			unlock_decision_tooltip = GLA_strengthen_the_opps
 		}
 	}
 }
@@ -729,7 +764,7 @@ country_event = {
 		hidden_effect = {
 			country_event = {
 				id = greatlake.25
-				days = 5
+				days = 2
 			}
 		}
 	}
@@ -742,7 +777,7 @@ country_event = {
 	desc = greatlake.25.d
 	#picture = er
 	is_triggered_only = yes
-	mean_time_to_happen = { days = 5 }
+	mean_time_to_happen = { days = 2 }
 	fire_only_once = yes
 	immediate = {
 	
@@ -753,12 +788,22 @@ country_event = {
 		ai_chance = {
 			factor = 25
 		}
+		trigger = {
+            check_variable = {
+				var = GLA_opps
+				value = 50
+				compare = less_than
+			}
+		}
 		complete_national_focus = GLA_the_elections
 		complete_national_focus = GLA_the_moderate_way
 		country_event = {
-				id = greatlake.53
-				days = 0
-			}
+			id = greatlake.53
+			days = 0
+		}
+		clear_variable = GLA_opps
+		clr_country_flag = GLA_opp_side
+		clr_country_flag = GLA_mama_jo_side
 	}
 	#Based McAffee RIP TO THE HOMIE
 	option = {
@@ -767,7 +812,12 @@ country_event = {
 			factor = 25
 		}
 		trigger = {
-		has_country_flag = john_mcafee_picked
+		    has_country_flag = john_mcafee_picked
+		    check_variable = {
+			    var = GLA_opps
+			    value = 50
+			    compare = greater_than_or_equals
+		    }
 	    }
 		GLA_john_mcafee = {
 			promote_character = yes
@@ -781,6 +831,9 @@ country_event = {
 			}
 		set_cosmetic_tag = GLA_McAffee
 		remove_ideas = Unpopolar_Libertarian_Administration
+		clear_variable = GLA_opps
+		clr_country_flag = GLA_opp_side
+		clr_country_flag = GLA_mama_jo_side
 	}
 	#Gary Johnson
 	option = {
@@ -789,7 +842,12 @@ country_event = {
 			factor = 25
 		}
 		trigger = {
-		has_country_flag = gary_johnson_picked
+		    has_country_flag = gary_johnson_picked
+			check_variable = {
+			    var = GLA_opps
+			    value = 50
+			    compare = greater_than_or_equals
+		    }
 	    }
 		GLA_gary_johnson = {
 			promote_character = yes
@@ -802,6 +860,9 @@ country_event = {
 				days = 0
 			}
 		remove_ideas = Unpopolar_Libertarian_Administration
+		clear_variable = GLA_opps
+		clr_country_flag = GLA_opp_side
+		clr_country_flag = GLA_mama_jo_side
 	}
 	#Ronny Paully
 	option = {
@@ -810,7 +871,12 @@ country_event = {
 			factor = 25
 		}
 		trigger = {
-		has_country_flag = ron_paul_picked
+		    has_country_flag = ron_paul_picked
+			check_variable = {
+			    var = GLA_opps
+			    value = 50
+			    compare = greater_than_or_equals
+		    }
 	    }
 		GLA_ron_paul = {
 			promote_character = yes
@@ -824,6 +890,9 @@ country_event = {
 			}
 		set_cosmetic_tag = GLA_Ron_Paul
 		remove_ideas = Unpopolar_Libertarian_Administration
+		clear_variable = GLA_opps
+		clr_country_flag = GLA_opp_side
+		clr_country_flag = GLA_mama_jo_side
 	}
 	#option = {
 	#	name = greatlake.25.f
@@ -1197,7 +1266,7 @@ news_event = {
 	}
 }
 
-#The Libertarian Party Divided
+#Dont Know What to Do With This Event For Now
 country_event = {
 	id = greatlake.35
 	title = greatlake.35.t
@@ -1205,30 +1274,8 @@ country_event = {
 	#picture = er
 	trigger = {
 		tag = GLA
-		if = {
-			limit = { NOT = { has_country_leader = { name = "Ron Paul" ruling_only = yes } } } 
-			    has_country_flag = {
-    			    flag = GLA_paleolibertarians
-    			    value < -10
-			    }
-			}    
-			if = {
-			limit = {  NOT = { OR = { has_country_leader = { name = "Jo Jorgensen" ruling_only = yes } has_country_leader = { name = "Gary Johnson" ruling_only = yes } } } } 
-			    has_country_flag = {
-    			    flag = GLA_moderates
-    			    value < -10
-			    }
-			}
-			has_country_flag = {
-    			flag = GLA_minarchists
-    			value < -10
-			}
-			has_country_flag = {
-    			flag = GLA_ancaps
-    			value < -10
-			}  
 	}
-	is_triggered_only = no
+	is_triggered_only = yes
 	mean_time_to_happen = { days = 0 }
 	fire_only_once = yes
 	immediate = {
@@ -1438,14 +1485,11 @@ country_event = {
 			}
 		}
 		add_ideas = GLA_border_control
-	    if = {
-			limit = { NOT = { has_country_leader = { name = "Ron Paul" ruling_only = yes } } } 
-			    modify_country_flag = {
-                    flag = GLA_paleolibertarians
-                    value = 1
-                }
-				custom_effect_tooltip = GLA_paleolibertarians_will_be_happy
-			}
+	    add_to_variable = {
+			var = GLA_moderate_libertarians
+			value = 5
+			tooltip = GLA_moderate_libertarians_will_be_happy
+		}
 	}
 }
 
@@ -1835,11 +1879,30 @@ country_event = {
 			factor = 25
 		}
 		add_political_power = 10
-		set_country_flag = GLA_paleolibertarians
-		set_country_flag = GLA_ancaps
-		set_country_flag = GLA_minarchists
 		unlock_decision_category_tooltip = GLA_libertarian_political_decisions
 		custom_effect_tooltip = GLA_decisions_are_unlocked
+		hidden_effect = {
+			set_variable = {
+				var = GLA_moderate_libertarians
+				value = 90
+				tooltip = GLA_the_chances_of_victory
+			}
+			set_variable = {
+				var = GLA_paleolibertarians
+				value = 25
+				tooltip = GLA_the_chances_of_victory
+			}
+			set_variable = {
+				var = GLA_ancaps
+				value = 25
+				tooltip = GLA_the_chances_of_victory
+			}
+			set_variable = {
+				var = GLA_minarchists
+				value = 25
+				tooltip = GLA_the_chances_of_victory
+			}
+		}
 	}
 }
 
@@ -1861,11 +1924,30 @@ country_event = {
 			factor = 25
 		}
 		add_political_power = 10
-		set_country_flag = GLA_paleolibertarians
-		set_country_flag = GLA_moderates
-		set_country_flag = GLA_minarchists
 		unlock_decision_category_tooltip = GLA_libertarian_political_decisions
 		custom_effect_tooltip = GLA_decisions_are_unlocked
+		hidden_effect = {
+			set_variable = {
+				var = GLA_moderate_libertarians
+				value = 25
+				tooltip = GLA_the_chances_of_victory
+			}
+			set_variable = {
+				var = GLA_paleolibertarians
+				value = 25
+				tooltip = GLA_the_chances_of_victory
+			}
+			set_variable = {
+				var = GLA_ancaps
+				value = 90
+				tooltip = GLA_the_chances_of_victory
+			}
+			set_variable = {
+				var = GLA_minarchists
+				value = 25
+				tooltip = GLA_the_chances_of_victory
+			}
+		}
 	}
 }
 
@@ -1887,11 +1969,30 @@ country_event = {
 			factor = 25
 		}
 		add_political_power = 10
-		set_country_flag = GLA_paleolibertarians
-		set_country_flag = GLA_ancaps
-		set_country_flag = GLA_minarchists
 		unlock_decision_category_tooltip = GLA_libertarian_political_decisions
 		custom_effect_tooltip = GLA_decisions_are_unlocked
+		hidden_effect = {
+			set_variable = {
+				var = GLA_moderate_libertarians
+				value = 90
+				tooltip = GLA_the_chances_of_victory
+			}
+			set_variable = {
+				var = GLA_paleolibertarians
+				value = 25
+				tooltip = GLA_the_chances_of_victory
+			}
+			set_variable = {
+				var = GLA_ancaps
+				value = 25
+				tooltip = GLA_the_chances_of_victory
+			}
+			set_variable = {
+				var = GLA_minarchists
+				value = 25
+				tooltip = GLA_the_chances_of_victory
+			}
+		}
 	}
 }
 
@@ -1913,11 +2014,30 @@ country_event = {
 			factor = 25
 		}
 		add_political_power = 10
-		set_country_flag = GLA_moderates
-		set_country_flag = GLA_ancaps
-		set_country_flag = GLA_minarchists
 		unlock_decision_category_tooltip = GLA_libertarian_political_decisions
 		custom_effect_tooltip = GLA_decisions_are_unlocked
+		hidden_effect = {
+			set_variable = {
+				var = GLA_moderate_libertarians
+				value = 25
+				tooltip = GLA_the_chances_of_victory
+			}
+			set_variable = {
+				var = GLA_paleolibertarians
+				value = 90
+				tooltip = GLA_the_chances_of_victory
+			}
+			set_variable = {
+				var = GLA_ancaps
+				value = 25
+				tooltip = GLA_the_chances_of_victory
+			}
+			set_variable = {
+				var = GLA_minarchists
+				value = 25
+				tooltip = GLA_the_chances_of_victory
+			}
+		}
 	}
 }
 
@@ -1938,30 +2058,33 @@ country_event = {
 		ai_chance = {
 			factor = 25
 		}
-		modify_country_flag = {
-            flag = GLA_paleolibertarians
-            value = 1
-            }
+		add_to_variable = {
+			var = GLA_paleolibertarians
+			value = 5
+			tooltip = GLA_paleolibertarians_will_be_happy
+		}
 	}
 	option = {
 		name = greatlake.57.b
 		ai_chance = {
 			factor = 25
 		}
-		modify_country_flag = {
-            flag = GLA_ancaps
-            value = 1
-            }
+		add_to_variable = {
+			var = GLA_ancaps
+			value = 5
+			tooltip = GLA_ancaps_will_be_happy
+		}
 	}
 	option = {
 		name = greatlake.57.c
 		ai_chance = {
 			factor = 25
 		}
-		modify_country_flag = {
-            flag = GLA_minarchists
-            value = 1
-            }
+		add_to_variable = {
+			var = GLA_minarchists
+			value = 5
+			tooltip = GLA_minarchists_will_be_happy
+		}
 	}
 }
 
@@ -2015,11 +2138,11 @@ country_event = {
 		ai_chance = {
 			factor = 25
 		}
-		custom_effect_tooltip = GLA_minarchists_will_be_happy
-		modify_country_flag = {
-            flag = GLA_minarchists
-            value = 2
-            }
+		add_to_variable = {
+			var = GLA_minarchists
+			value = 5
+			tooltip = GLA_minarchists_will_be_happy
+		}
 		add_stability = 0.05
 	}
 	option = {
