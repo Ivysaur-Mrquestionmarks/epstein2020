@@ -15,6 +15,7 @@ country_event = {
 	immediate = {
     
 	}
+	#JoJo
 	option = {
 		name = greatlake.1.a
 		ai_chance = {
@@ -379,16 +380,6 @@ country_event = {
 			remove_ideas = Ruins_of_the_Rust_Belt_2
 			remove_ideas = Ruins_of_the_Rust_Belt_3
 			remove_ideas = Ruins_of_the_Rust_Belt_4
-			remove_ideas = GLA_a_constitutionality_accurate_government
-			remove_ideas = GLA_a_constitutionality_accurate_government_2
-			remove_ideas = GLA_a_constitutionality_accurate_government_3
-			remove_ideas = GLA_a_constitutionality_accurate_government_4
-			remove_ideas = GLA_a_constitutionality_accurate_government_5
-			remove_ideas = GLA_libertarian_party_divided
-			remove_ideas = GLA_libertarian_party_divided_2
-			remove_ideas = GLA_libertarian_party_divided_3
-			remove_ideas = GLA_libertarian_party_divided_4
-			remove_ideas = GLA_libertarian_party_divided_5
 			remove_ideas = GLA_more_gun_rights
 			remove_ideas = GLA_ancapistan
 			remove_ideas = GLA_ancapistan_2
@@ -546,15 +537,16 @@ country_event = {
 		ai_chance = {
 			factor = 25
 		}
-		retire_character = GLA_the_boogaloo_council
-		create_country_leader = {
-			name = "Adam Fox"
-			picture = "gfx/leaders/GLA/GLA_adam_fox.dds"
-			expire = "2500.1.1"
-			ideology = military_dictatorship
-			traits = {}
+		if = {
+			limit = { has_completed_focus = GLA_who_cares_about_the_people }
+			    promote_character = {
+				    character = GLA_adam_fox
+				    ideology = military_dictatorship
+			    }
+			}
+		else = {
+			promote_character = GLA_adam_fox
 		}
-		#promote_character = GLA_adam_fox
 	}
 }
 
@@ -1142,8 +1134,11 @@ country_event = {
 	title = greatlake.30.t
 	desc = greatlake.30.d
 	#picture = er
+	trigger = {
+		has_completed_focus = GLA_the_boogaloo_militias
+	}
 	is_triggered_only = yes
-	mean_time_to_happen = { days = 0 }
+	mean_time_to_happen = { days = 1 }
 	fire_only_once = yes
 	immediate = {
 	
@@ -1163,8 +1158,11 @@ country_event = {
 	title = greatlake.31.t
 	desc = greatlake.31.d
 	#picture = er
+	trigger = {
+		has_completed_focus = GLA_the_boogaloo_militias
+	}
 	is_triggered_only = yes
-	mean_time_to_happen = { days = 0 }
+	mean_time_to_happen = { days = 1 }
 	fire_only_once = yes
 	immediate = {
 	
@@ -1187,8 +1185,11 @@ country_event = {
 	title = greatlake.32.t
 	desc = greatlake.32.d
 	#picture = er
+	trigger = {
+		has_completed_focus = GLA_the_boogaloo_militias
+	}
 	is_triggered_only = yes
-	mean_time_to_happen = { days = 0 }
+	mean_time_to_happen = { days = 1 }
 	fire_only_once = yes
 	immediate = {
 	
@@ -1265,7 +1266,7 @@ news_event = {
 	}
 }
 
-#Starting Event
+#Dont Know What to Do With This Event For Now
 country_event = {
 	id = greatlake.35
 	title = greatlake.35.t
@@ -1394,7 +1395,7 @@ country_event = {
 		has_completed_focus = GLA_who_cares_about_the_people
 	}
 	is_triggered_only = no
-	mean_time_to_happen = { days = 3 }
+	mean_time_to_happen = { days = 5 }
 	fire_only_once = yes
 	immediate = {
 	
@@ -1423,8 +1424,6 @@ country_event = {
             elections_allowed = no
             last_election = "2021.4.30"
             election_frequency = 48
-			long_name = GLA_yarvin_party_long
-			name = GLA_yarvin_party
         }
 		add_popularity = {
             ideology = autocratic
@@ -1882,7 +1881,6 @@ country_event = {
 		add_political_power = 10
 		unlock_decision_category_tooltip = GLA_libertarian_political_decisions
 		custom_effect_tooltip = GLA_decisions_are_unlocked
-		add_ideas = GLA_libertarian_party_divided
 		hidden_effect = {
 			set_variable = {
 				var = GLA_moderate_libertarians
@@ -1928,7 +1926,6 @@ country_event = {
 		add_political_power = 10
 		unlock_decision_category_tooltip = GLA_libertarian_political_decisions
 		custom_effect_tooltip = GLA_decisions_are_unlocked
-		add_ideas = GLA_libertarian_party_divided
 		hidden_effect = {
 			set_variable = {
 				var = GLA_moderate_libertarians
@@ -1974,7 +1971,6 @@ country_event = {
 		add_political_power = 10
 		unlock_decision_category_tooltip = GLA_libertarian_political_decisions
 		custom_effect_tooltip = GLA_decisions_are_unlocked
-		add_ideas = GLA_libertarian_party_divided
 		hidden_effect = {
 			set_variable = {
 				var = GLA_moderate_libertarians
@@ -2019,7 +2015,7 @@ country_event = {
 		}
 		add_political_power = 10
 		unlock_decision_category_tooltip = GLA_libertarian_political_decisions
-		add_ideas = GLA_libertarian_party_divided
+		custom_effect_tooltip = GLA_decisions_are_unlocked
 		hidden_effect = {
 			set_variable = {
 				var = GLA_moderate_libertarians
@@ -2348,134 +2344,6 @@ country_event = {
 		name = greatlake.67.a
 		ai_chance = {
 			factor = 10
-		}
-	}
-}
-
-#The CEO Takeover
-country_event = {
-	id = greatlake.68
-	title = greatlake.68.t
-	desc = greatlake.68.d
-	#picture = er
-	is_triggered_only = yes
-	mean_time_to_happen = { days = 0 }
-	fire_only_once = yes
-	immediate = {
-	
-	}
-	option = {
-		name = greatlake.68.a
-		ai_chance = {
-			factor = 10
-		}
-		swap_ideas = {
-			remove_idea = GLA_ceo_freedom_2
-			add_idea = GLA_ceo_control
-		}
-		remove_power_balance = {
-            id = yarvin_bop
-        }
-		add_trait = {
-			character = GLA_curtis_yarvin
-			ideology = dark_enlightenment
-			trait = GLA_corporate_puppet
-	    }
-	}
-}
-
-#An Attempted Assassination of Yarvin
-country_event = {
-	id = greatlake.69
-	title = greatlake.69.t
-	desc = greatlake.69.d
-	#picture = er
-	is_triggered_only = yes
-	mean_time_to_happen = { days = 0 }
-	fire_only_once = yes
-	immediate = {
-	
-	}
-	option = {
-		name = greatlake.69.a
-		ai_chance = {
-			factor = 10
-		}
-		add_trait = {
-			character = GLA_curtis_yarvin
-			ideology = dark_enlightenment
-			trait = assassination_survivor
-	    }
-		country_event = {
-			id = greatlake.71
-			days = 2
-		}
-	}
-}
-
-#Political Parties Secretly Funding Resistance Organizations
-country_event = {
-	id = greatlake.70
-	title = greatlake.70.t
-	desc = greatlake.70.d
-	#picture = er
-	is_triggered_only = yes
-	mean_time_to_happen = { days = 0 }
-	fire_only_once = yes
-	immediate = {
-	
-	}
-	option = {
-		name = greatlake.70.a
-		ai_chance = {
-			factor = 10
-		}
-		every_occupied_country = { add_resistance = -5 }
-		add_popularity = {
-			ideology = autocratic
-			popularity = 0.05
-		}
-		add_stability = -0.05
-	}
-}
-
-#Yarvin's Declaration
-country_event = {
-	id = greatlake.71
-	title = greatlake.71.t
-	desc = greatlake.71.d
-	#picture = er
-	is_triggered_only = yes
-	mean_time_to_happen = { days = 0 }
-	fire_only_once = yes
-	immediate = {
-	
-	}
-	option = {
-		name = greatlake.71.a
-		ai_chance = {
-			factor = 10
-		}
-		swap_ideas = {
-			remove_idea = GLA_ceo_freedom_2
-			add_idea = GLA_ceos_under_control
-		}
-		add_war_support = 0.1
-		add_political_power = -100
-		remove_power_balance = {
-            id = yarvin_bop
-        }
-		set_character_name = {
-			character = GLA_curtis_yarvin
-			name = Mencius Moldbug
-		}
-		remove_advisor_role = {
-			character = "GLA_yves_guillemot"
-			slot = political_advisor
-		}
-		remove_advisor_role = {
-			character = "GLA_chris_kempczinski"
-			slot = political_advisor
 		}
 	}
 }
