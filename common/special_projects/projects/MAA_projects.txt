@@ -1,0 +1,128 @@
+
+#LASERS >:3
+
+sp_laser_tank = {
+	specialization = specialization_land
+	#icon = GFX_sp_land_flamethrower_tank ### Automatically hooked-in since the GFX ID matches the project ID.
+
+	project_tags = sp_tag_tank
+
+	ai_will_do = {
+		base = 1
+	}
+
+	allowed = {
+		has_dlc = "No Step Back"
+		#always = yes
+	}
+	
+	available = {
+		always = yes
+	}
+
+	breakthrough_cost = {
+		specialization_land = 1
+	}
+
+	resource_cost = {
+		resources = { 
+			steel = 12
+			chromium = 8
+		}
+	}
+	
+	prototype_time = sp_time.prototype.short
+
+	complexity = sp_complexity.medium
+	
+	project_output = {
+		country_effects = {
+			custom_effect_tooltip = {
+				localization_key = SP_UNLOCK_TECH
+				TECH = sp_armor_laser_tech	
+			}
+		}
+
+		#equipment_bonus = {
+
+		#}
+
+		enable_equipment_modules = {
+			limit = {
+				has_dlc = "No Step Back"
+			}
+			AA_Laser_tank
+		}
+
+	}
+
+	generic_prototype_rewards = {
+		sp_land_generic_reward_scientist_xp_1
+		sp_land_generic_reward_scientist_xp_2
+		sp_land_generic_reward_scientist_xp_3
+		sp_land_generic_reward_army_xp_1
+		sp_land_generic_reward_army_xp_2
+		sp_land_generic_reward_army_xp_3
+		sp_land_generic_reward_major_progress_1
+		sp_land_generic_reward_major_progress_2
+		sp_land_generic_reward_major_progress_3
+		sp_land_generic_reward_test_failure_1
+		sp_land_generic_reward_test_failure_2
+		sp_land_generic_reward_test_failure_3
+		sp_land_generic_reward_resource_scarcity
+	}
+
+	unique_prototype_rewards = {
+		sp_land_lasers_uses = { #This technology has many uses
+			threshold = { 
+				min = 20
+				max = 70
+			}
+
+			weight = {
+				base = 4
+			}
+			option = {
+				token = sp_land_lasers_uses_focus_on_project
+				
+				iteration_output = {
+					country_effects = {
+						FROM = {
+							add_project_progress_ratio = constant:sp_progress.gain.low
+						}
+					}
+				}
+			}
+			option = {
+				token = sp_land_lasers_uses_give_to_army
+				
+				iteration_output = {
+					country_effects = {
+						add_tech_bonus = {
+    							bonus = 1
+    							uses = 2
+    							category = infantry_weapons
+						}
+						army_experience = 15
+					}
+				}
+			}
+			option = {
+				token = sp_land_lasers_share_with_other_branches
+				
+				iteration_output = {
+					country_effects = {
+						add_breakthrough_progress = {
+							specialization = specialization_navy
+							value = 0.8
+						}
+						add_breakthrough_progress = {
+							specialization = specialization_land
+							value = 0.8
+						}
+					}
+				}
+			}
+		}
+	}
+}
