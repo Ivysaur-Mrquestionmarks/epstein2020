@@ -1783,6 +1783,84 @@ focus_tree = {
 	}
 
 	focus = {
+		id = USA_NEW_RR_propaganda #RR is resistance radio
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 8
+		prerequisite = {
+			focus = USA_bring_new
+		}
+
+		x = 36
+		y = 8
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		
+		available = {
+			is_hosting_exile = NEW
+		}
+		completion_reward = {			
+			add_war_support = 0.05
+			NEW = {
+				add_war_support = 0.1
+				add_manpower = 20000
+				add_legitimacy = 40
+				add_offsite_building = { type = arms_factory level = 1 }
+			}		
+		}
+	}
+
+	focus = {
+		id = USA_NEW_units
+		icon = GFX_goal_CAS_Rebuild_Seattle
+		cost = 8
+		prerequisite = {
+			focus = USA_NEW_RR_propaganda 
+		}
+
+		x = 36
+		y = 10
+		#mutually_exclusive = {
+		#	focus = 
+		#}
+		available = {
+			is_hosting_exile = NEW
+		}
+		completion_reward = {			
+			NEW = {
+				division_template = {
+    					name = "Maine exiles"
+    					division_names_group = USA_INF_01
+    					priority = 0
+    					template_counter = 0
+    					regiments = {
+        					infantry = { x = 0 y = 0 }
+        					infantry = { x = 0 y = 1 }
+        					infantry = { x = 0 y = 2 }
+        					infantry = { x = 0 y = 3 }
+        					infantry = { x = 0 y = 4 }
+        					infantry = { x = 1 y = 0 }
+        					infantry = { x = 1 y = 1 }
+        					infantry = { x = 1 y = 2 }
+        					infantry = { x = 1 y = 3 }
+        					infantry = { x = 1 y = 4 }
+    					}
+    					support = {
+        					artillery = { x = 0 y = 0 }
+    					}
+				}
+			}
+			capital_scope = {
+				create_unit = {
+					division = "division_template = \"Maine exiles\"	start_experience_factor = 0.45	start_equipment_factor = 1"
+					owner = NEW
+					allow_spawning_on_enemy_provs = yes
+					count = 3
+				}
+			}		
+		}
+	}
+	focus = {
 		id = USA_expand_minning
 		icon = GFX_goal_CAS_Rebuild_Seattle
 		cost = 6
