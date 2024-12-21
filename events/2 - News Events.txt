@@ -882,3 +882,271 @@ news_event = {
 		}	
 	}
 }
+
+#The Cannonball Run!
+news_event = {
+	id = News_events.35 #This was .25 but in the locals that is being used by Fall of Aleppo.
+	title = News_events.35.t
+	desc = News_events.35.d
+	major = yes
+	#picture =
+	trigger = {
+		NOT = {
+			has_global_flag = cannonball_run_has_begun
+			date > 2022.05.05
+		}
+	}
+	immediate = {
+		hidden_effect = {
+			set_global_flag = cannonball_run_has_begun
+		}
+	}
+	option = {
+		name = News_events.35.a
+		if = {
+			limit = {
+				tag = FRA
+			}
+			country_event = {
+				id = News_events.26
+			}
+		}
+	}
+}
+#Flavour event- FRA hears about the Cannonball Run
+country_event = {
+	id = News_events.26
+	title = News_events.26.t
+	desc = News_events.26.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #It's not worth wasting resources stopping them
+		name = News_events.26.a
+		add_manpower = -34
+		AFS = {
+			country_event = {
+				id = News_events.27
+				hours = 8
+			}
+		}
+	}
+}
+#Flavour event- AFS hears about the Cannonball Run
+country_event = {
+	id = News_events.27
+	title = News_events.27.t
+	desc = News_events.27.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #Good luck boys!
+		name = News_events.27.a
+		add_political_power = 5
+		if = {
+			limit = {
+				country_exists = USA
+			}
+			USA = {
+				country_event = {
+					id = News_events.28
+					hours = 8
+				}
+			}
+			else_if = {
+				limit = {
+					country_exists = NPA
+				}
+				NPA = {
+					country_event = {
+						id = News_events.28
+						hours = 8
+					}
+				}
+			}
+		}
+	}
+}
+#Flavour event- USA hears about the Cannonball Run
+country_event = {
+	id = News_events.28
+	title = News_events.28.t
+	desc = News_events.28.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #Catch Them!
+		name = News_events.28.a
+		ai_chance = {
+			factor = 0
+		}
+		add_political_power = -25
+		random_list = {
+			10 = {
+				country_event = {
+					id = News_events.29
+					hours = 2
+				}
+			}
+			90 = {
+				country_event = {
+					id = News_events.30
+					hours = 5
+				}
+			}
+		}
+	}
+	option = { #Let them go...
+		name = News_events.28.b
+		ai_chance = {
+			factor = 100
+		}
+		TEX = {
+			country_event = {
+				id = News_events.31
+				hours = 8
+			}
+		}
+	}
+}
+#Flavour event- the Cannonballers have been caught!
+country_event = {
+	id = News_events.29
+	title = News_events.29.t
+	desc = News_events.29.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = News_events.29.a
+		add_political_power = 50
+		add_equipment_to_stockpile = {
+		    type = motorized_equipment_1
+		    amount = 34
+		    producer = FRA
+		}
+	}
+}
+#Flavour event- the Cannonballers escape!
+country_event = {
+	id = News_events.30
+	title = News_events.30.t
+	desc = News_events.30.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = News_events.30.a
+		add_manpower = -2
+		add_war_support = -0.01
+		TEX = {
+			country_event = {
+				id = News_events.31
+				hours = 5
+			}
+		}		
+	}
+}
+#Flavour event- the Cannonballers in Texas!
+country_event = {
+	id = News_events.31
+	title = News_events.31.t
+	desc = News_events.31.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = News_events.31.a
+		add_stability = 0.005
+		add_war_support = 0.005
+		PRA = {
+			country_event = {
+				id = News_events.32
+				hours = 10
+			}
+		}
+	}
+}
+#Flavour event- the Cannonballers cross the border!
+country_event = {
+	id = News_events.32
+	title = News_events.32.t
+	desc = News_events.32.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #They're not going anywhere!
+		name = News_events.32.a
+		add_political_power = 10
+		add_manpower = -2
+		add_popularity = {
+			ideology = authoritarian_left
+			popularity = 0.05
+		}
+		hidden_effect = {
+			add_popularity = {
+				ideology = autocratic
+				popularity = 0.01
+			}
+		}
+		news_event = {
+			id = News_events.33
+			hours = 2
+		}
+	}
+	option = { #let them go in peace
+		name = News_events.32.b
+		add_political_power = 10
+		add_popularity = {
+			ideology = libertarian_left
+			popularity = 0.01
+		}
+		add_popularity = {
+			ideology = democrat
+			popularity = 0.01
+		}
+		news_event = {
+			id = News_events.34
+			hours = 4
+		}
+	}
+}
+#The Cannonball Massacre
+news_event = {
+	id = News_events.33
+	title = News_events.33.t
+	desc = News_events.33.d
+	#picture =
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = News_events.33.a
+		trigger = {
+			NOT = { original_tag = PRA }
+		}
+	}
+	option = {
+		name = News_events.33.b
+		trigger = {
+			original_tag = PRA
+		}
+	}
+}
+#The end of the Cannonball Run
+news_event = {
+	id = News_events.34
+	title = News_events.34.t
+	desc = News_events.34.d
+	#picture =
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = News_events.34.a
+		if = {
+			limit = {
+				original_tag = FRA
+			}
+			add_manpower = 34
+		}
+	}
+}
