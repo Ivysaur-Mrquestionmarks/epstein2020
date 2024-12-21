@@ -2515,34 +2515,6 @@ focus_tree = {
 			add_manpower = 20000
 		}
 	}
-	focus = {
-		id = FLO_final_step2
-		icon = GFX_goal_FLO_final_step_icon
-		cost = 3.00
-		relative_position_id = FLO_send_excess_funds2
-		prerequisite = {
-			focus = FLO_patriot_army2
-		}
-		prerequisite = {
-			focus = FLO_raise_tarriffs2
-		}
-		prerequisite = {
-			focus = FLO_send_excess_funds2
-		}
-		available = {
-			NOT = { country_exists = FRA }
-		}
-		x = 0
-		y = 2
-		completion_reward = {
-			USA = {
-				annex_country = {
-					target = FLO
-					transfer_troops = yes
-				}
-			}
-		}
-	}
 	
 	
 	
@@ -6995,34 +6967,6 @@ focus_tree = {
 			add_manpower = 20000
 		}
 	}
-	focus = {
-		id = FLO_final_step
-		icon = GFX_goal_FLO_final_step_icon
-		cost = 3.00
-		relative_position_id = FLO_send_excess_funds
-		prerequisite = {
-			focus = FLO_patriot_army
-		}
-		prerequisite = {
-			focus = FLO_raise_tarriffs
-		}
-		prerequisite = {
-			focus = FLO_send_excess_funds
-		}
-		available = {
-			NOT = { country_exists = FRA }
-		}
-		x = 0
-		y = 2
-		completion_reward = {
-			USA = {
-				annex_country = {
-					target = FLO
-					transfer_troops = yes
-				}
-			}
-		}
-	}
 	
 	
 	
@@ -7346,6 +7290,9 @@ focus_tree = {
 		x = 1
 		y = 2
 		completion_reward = {
+			unlock_decision_category_tooltip = FLO_caribbean_unification
+			add_war_support = 0.1
+			add_stability = -0.05
 		}
 	}
 	focus = {
@@ -7359,6 +7306,7 @@ focus_tree = {
 		x = 1
 		y = 1
 		completion_reward = {
+			create_faction = "Caribbean Shield"
 		}
 	}
 	focus = {
@@ -7375,6 +7323,7 @@ focus_tree = {
 		x = 1
 		y = 1
 		completion_reward = {
+			add_to_faction = DOM
 		}
 	}
 	focus = {
@@ -7384,11 +7333,18 @@ focus_tree = {
 		relative_position_id = FLO_ally_dominican_republic
 		prerequisite = {
 			focus = FLO_ally_dominican_republic
-			focus = FLO_restore_order_on_hispanola
+			#focus = FLO_restore_order_on_hispanola
+		}
+		available = {
+			DOM = { is_in_faction_with = FLO }
 		}
 		x = 0
 		y = 1
 		completion_reward = {
+			if = {
+				limit = { DOM = { is_in_faction_with = FLO } }
+				puppet = DOM
+			}
 		}
 	}
 	focus = {
@@ -7405,7 +7361,22 @@ focus_tree = {
 		}
 		x = -1
 		y = 2
+		will_lead_to_war_with = CUB
+		will_lead_to_war_with = CUC
+		will_lead_to_war_with = GTB
 		completion_reward = {
+			create_wargoal = {
+				target = CUB
+				type = puppet_wargoal_focus
+			}
+			create_wargoal = {
+				target = CUC
+				type = puppet_wargoal_focus
+			}
+			create_wargoal = {
+				target = GTB
+				type = puppet_wargoal_focus
+			}
 		}
 	}
 	focus = {
@@ -7418,7 +7389,12 @@ focus_tree = {
 		}
 		x = -1
 		y = 1
+		will_lead_to_war_with = VEN
 		completion_reward = {
+			create_wargoal = {
+				target = VEN
+				type = puppet_wargoal_focus
+			}
 		}
 	}
 	focus = {
@@ -7431,7 +7407,12 @@ focus_tree = {
 		}
 		x = 1
 		y = 1
+		will_lead_to_war_with = NIC
 		completion_reward = {
+			create_wargoal = {
+				target = NIC
+				type = puppet_wargoal_focus
+			}
 		}
 	}
 	focus = {
@@ -7445,6 +7426,9 @@ focus_tree = {
 		x = -1
 		y = 1
 		completion_reward = {
+			army_experience = 50
+			navy_experience = 100
+			air_experience = 50
 		}
 	}
 	focus = {
@@ -7460,7 +7444,17 @@ focus_tree = {
 		}
 		x = 1
 		y = 1
+		will_lead_to_war_with = HBI
+		will_lead_to_war_with = HAI
 		completion_reward = {
+			create_wargoal = {
+				target = HAI
+				type = puppet_wargoal_focus
+			}
+			create_wargoal = {
+				target = HBI
+				type = puppet_wargoal_focus
+			}
 		}
 	}
 	focus = {
@@ -7473,7 +7467,16 @@ focus_tree = {
 		}
 		x = 0
 		y = 2
+		will_lead_to_war_with = BAH
 		completion_reward = {
+			create_wargoal = {
+				target = BAH
+				type = annex_everything
+			}
+			every_state = {
+				limit = { is_core_of = BAH }
+				add_core_of = FLO
+			}
 		}
 	}
 	focus = {
@@ -7486,7 +7489,16 @@ focus_tree = {
 		}
 		x = -1
 		y = 1
+		will_lead_to_war_with = PUE
 		completion_reward = {
+			create_wargoal = {
+				target = PUE
+				type = annex_everything
+			}
+			every_state = {
+				limit = { is_core_of = PUE }
+				add_core_of = FLO
+			}
 		}
 	}
 	
@@ -7611,6 +7623,10 @@ focus_tree = {
 		x = 1
 		y = 1
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = FLO_judges
+				add_idea = FLO_judges2
+			}
 		}
 	}
 	focus = {
@@ -7624,6 +7640,11 @@ focus_tree = {
 		x = -1
 		y = 1
 		completion_reward = {
+			add_popularity = {
+				ideology = autocratic
+				popularity = 0.1
+			}
+			add_manpower = 50000
 		}
 	}
 	focus = {
@@ -7640,6 +7661,12 @@ focus_tree = {
 		x = -1
 		y = 1
 		completion_reward = {
+			add_popularity = {
+				ideology = autocratic
+				popularity = 1
+			}
+			add_war_support = 1
+			add_stability = 1
 		}
 	}
 	focus = {
@@ -7849,6 +7876,7 @@ focus_tree = {
 		x = 8
 		y = 1
 		completion_reward = {
+			set_cosmetic_tag = FLO_MAF_ct
 		}
 	}
 	focus = {
@@ -7862,6 +7890,12 @@ focus_tree = {
 		x = 1
 		y = 1
 		completion_reward = {
+			add_political_power = 50
+			add_popularity = {
+				ideology = republican
+				popularity = 0.1
+			}
+			add_stability = 0.05
 		}
 	}
 	focus = {
@@ -7875,6 +7909,11 @@ focus_tree = {
 		x = -1
 		y = 1
 		completion_reward = {
+			add_political_power = -15
+			add_popularity = {
+				ideology = republican
+				popularity = 0.1
+			}
 		}
 	}
 	focus = {
@@ -7891,6 +7930,8 @@ focus_tree = {
 		x = -1
 		y = 1
 		completion_reward = {
+			add_manpower = 50000
+			add_war_support = 0.15
 		}
 	}
 	focus = {
@@ -7904,6 +7945,11 @@ focus_tree = {
 		x = -1
 		y = 1
 		completion_reward = {
+			add_popularity = {
+				ideology = republican
+				popularity = -0.25
+			}
+			add_political_power = 50
 		}
 	}
 	focus = {
@@ -7917,6 +7963,15 @@ focus_tree = {
 		x = 1
 		y = 2
 		completion_reward = {
+			add_popularity = {
+				ideology = republican
+				popularity = 0.1
+			}
+			add_popularity = {
+				ideology = democrat
+				popularity = 0.1
+			}
+			add_political_power = 20
 		}
 	}
 	focus = {
@@ -7933,12 +7988,19 @@ focus_tree = {
 		x = -1
 		y = 1
 		completion_reward = {
+			add_popularity = {
+				ideology = republican
+				popularity = 0.1
+			}
+			add_war_support = 0.2
+			add_stability = 0.2
+			add_political_power = -100
 		}
 	}
 	focus = {
 		id = FLO_the_next_phase
 		icon = GFX_goal_FLO_the_next_phase
-		cost = 5.00
+		cost = 0
 		relative_position_id = FLO_separate_maga_from_trump
 		prerequisite = {
 			focus = FLO_separate_maga_from_trump
@@ -7961,7 +8023,34 @@ focus_tree = {
 		}
 		x = -3
 		y = 1
+		will_lead_to_war_with = FRA
+		will_lead_to_war_with = NEW
+		will_lead_to_war_with = AFS
 		completion_reward = {
+				create_wargoal = {
+					target = FRA
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = NEW
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = NAB
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = WBK
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = AFS
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = TIM
+					type = annex_everything
+				}
 		}
 	}
 	focus = {
@@ -7974,7 +8063,47 @@ focus_tree = {
 		}
 		x = 3
 		y = 1
+		will_lead_to_war_with = USA
+		will_lead_to_war_with = GLA
+		will_lead_to_war_with = NPA
+		will_lead_to_war_with = DET
 		completion_reward = {
+			create_wargoal = {
+					target = USA
+					type = annex_everything
+			}
+			create_wargoal = {
+				target = NPA
+				type = annex_everything
+			}
+				create_wargoal = {
+					target = GLA
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = KMT
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = MIL
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = MNS
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = MIN
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = ISA
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = DET
+					type = annex_everything
+				}
 		}
 	}
 	focus = {
@@ -7987,7 +8116,135 @@ focus_tree = {
 		}
 		x = 0
 		y = 1
+		will_lead_to_war_with = PRA
+		will_lead_to_war_with = UTA
+		will_lead_to_war_with = HOP
+		will_lead_to_war_with = CAS
+		will_lead_to_war_with = MON
+		will_lead_to_war_with = LAS
+		will_lead_to_war_with = IDA
+		will_lead_to_war_with = SIN
 		completion_reward = {
+			declare_war_on = {
+			    target = PRA
+			    type = annex_everything
+			}
+			if = { 
+				limit = { country_exists = JFR }
+				create_wargoal = {
+					target = JFR
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = PRC }
+				create_wargoal = {
+					target = PRC
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = HLY }
+				create_wargoal = {
+					target = HLY
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = CST }
+				create_wargoal = {
+					target = CST
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = ACF }
+				create_wargoal = {
+					target = ACF
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = SAC }
+				create_wargoal = {
+					target = SAC
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = ABG }
+				create_wargoal = {
+					target = ABG
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = NVD }
+				create_wargoal = {
+					target = NVD
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = SIL }
+				create_wargoal = {
+					target = SIL
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = FIR }
+				create_wargoal = {
+					target = FIR
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = ORO }
+				create_wargoal = {
+					target = ORO
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = BJC }
+				create_wargoal = {
+					target = BJC
+					type = annex_everything
+				}
+			}
+			create_wargoal = {
+					target = CAS
+					type = annex_everything
+				}
+			create_wargoal = {
+				target = LIB
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = MON
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = IDA
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = UTA
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = HOP
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = SIN
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = LAS
+				type = annex_everything
+			}
 		}
 	}
 	
@@ -8626,6 +8883,7 @@ focus_tree = {
 			}
 			TEX = {
 				has_completed_focus = TEX_the_hispanic_candidate
+				is_ai = yes
 			}
 			is_ai = no
 		}
