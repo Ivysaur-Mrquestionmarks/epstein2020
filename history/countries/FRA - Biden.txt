@@ -11,8 +11,6 @@ set_technology = {
 	interwar_antiair = 1
 	early_fighter = 1
 	fighter1 = 1
-	early_bomber = 1
-	tactical_bomber1 = 1
 	strategic_bomber1 = 1
 	CAS1 = 1
 	naval_bomber1 = 1
@@ -23,29 +21,6 @@ set_technology = {
 	fuel_refining = 1
 }
 set_country_flag = FRA_trumpist_resistance
-if = {
-	limit = {
-		NOT = { has_dlc = "No Step Back" }
-	}
-	set_technology = {
-		gwtank = 1
-		basic_light_tank = 1
-		improved_light_tank = 1
-		basic_heavy_tank = 1
-	}
-}
-if = {
-	limit = {
-		has_dlc = "No Step Back"
-	}
-	set_technology = {
-		gwtank_chassis = 1
-		basic_light_tank_chassis = 1
-		improved_light_tank_chassis = 1
-		basic_heavy_tank_chassis = 1
-		engine_tech_1 = 1
-	}
-}
 
 set_convoys = 1000
 
@@ -54,6 +29,7 @@ set_war_support = 0.25
 
 set_country_flag = vice_president_kamala
 activate_advisor = FRA_kamala_harris
+
 set_country_flag = {
     flag = reunification_start
     value = 2
@@ -91,6 +67,8 @@ add_to_faction = FRA
 add_to_faction = VIR
 add_to_faction = FME
 oob = "FRA_2021"
+
+
 every_state = {
 	limit = { has_dynamic_modifier = { modifier = FRA_rural_rebels } }
 	add_to_array = {
@@ -98,6 +76,30 @@ every_state = {
 		value = THIS.id
 	}
 }
+
+
+
+add_to_array = {
+    array = global.FRA_new_england_collapse
+    value = WMS.id
+    index = 0
+}
+add_to_array = {
+    array = global.FRA_new_england_collapse
+    value = PVD.id
+    index = 1
+}
+add_to_array = {
+    array = global.FRA_new_england_collapse
+    value = NHC.id
+    index = 2
+}
+add_to_array = {
+    array = global.FRA_new_england_collapse
+    value = BRA.id
+    index = 3
+}
+
 if = {
 	limit = {
 		OR = {
@@ -110,14 +112,8 @@ if = {
 		autonomous_state = autonomy_dominion
 		freedom_level = 0.2
 	}
-	set_autonomy = {
-		target = FME
-		autonomous_state = autonomy_integrated_puppet
-		freedom_level = 0.8
-	}
 	else = {
 		puppet = VIR
-		puppet = FME
 	}
 }
 
