@@ -18,13 +18,15 @@ focus_tree = {
 	focus = {
 		id = FRA_biden_admin
 		icon = GFX_goal_Joe_Biden_Admin
-		cost = 4.40
+		cost = 5
 		x = -30
 		y = 0
 		#relative_position_id =
 		bypass = {
-			has_country_leader = { name = "Joe Biden" ruling_only = yes }
+			#has_country_leader = { name = "Joe Biden" ruling_only = yes }
 		}
+		
+		
 		completion_reward = {
 		}
 
@@ -36,13 +38,34 @@ focus_tree = {
 		prerequisite = {
 			focus = FRA_biden_admin
 		}
+		offset = {
+			x = -6
+			y = 0
+			trigger = {
+				has_completed_focus = FRA_reconciliation
+			}
+		}
+		offset = {
+			x = -6
+			y = 0
+			trigger = {
+				has_completed_focus = FRA_reform
+			}
+		}
 		x = 25
 		y = 1
 		relative_position_id = FRA_biden_admin
-		available = {
+		allow_branch = {
 			has_country_leader = { name = "Joe Biden" ruling_only = yes }
 		}
+		
+
+		available_if_capitulated = yes
+		cancel_if_invalid = no
+		cancelable = no
+		
 		completion_reward = {
+			country_event = bidone.94
 			set_power_balance = {
 				id = progressive_conservative_bop
 			}
@@ -65,11 +88,27 @@ focus_tree = {
 		x = -4
 		y = 1
 		relative_position_id = FRA_assemble_the_cabinet
+		allow_branch = {
+			NOT = {
+				has_completed_focus = FRA_reform
+			}
+		}
+		offset = {
+			x = 4
+			y = 0
+			trigger = {
+				has_completed_focus = FRA_reconciliation
+			}
+		}
 		available = {
 			has_country_leader = { name = "Joe Biden" ruling_only = yes }
 		}
 		completion_reward = {
-			set_country_flag = FRA_progressives_angry
+			custom_effect_tooltip = FRA_angering_progressives_may_be_bad_tt
+			hidden_effect = {
+				mark_focus_tree_layout_dirty = yes
+				set_country_flag = FRA_progressives_angry
+			}
 			add_power_balance_value = {
 				id = progressive_conservative_bop
 				value = 0.1
@@ -473,11 +512,25 @@ focus_tree = {
 			focus = FRA_reform
 			focus = FRA_reconciliation
 		}
-		x = 4
-		y = 1
-		relative_position_id = FRA_reconciliation
+		x = 0
+		y = 2
+		relative_position_id = FRA_assemble_the_cabinet
 		bypass = {
 			NOT = { has_country_leader = { name = "Joe Biden" ruling_only = yes } }
+		}
+		offset = {
+			x = 4
+			y = 0
+			trigger = {
+				has_completed_focus = FRA_reconciliation
+			}
+		}
+		offset = {
+			x = -4
+			y = 0
+			trigger = {
+				has_completed_focus = FRA_reform
+			}
 		}
 		completion_reward = {
 			add_ideas = FRA_bidenomics
@@ -709,6 +762,7 @@ focus_tree = {
 		y = 1
 		relative_position_id = FRA_bipartisan_tax_reform
 		completion_reward = {
+			custom_effect_tooltip = FRA_military_focuses_unlocked_tt
 			random_owned_state = {
 				add_extra_state_shared_building_slots = 4
 				add_building_construction = {
@@ -728,16 +782,23 @@ focus_tree = {
 			country_event = bidone.91
 		}
 	}
+	
+	
+	
+	# MILITARY TREE
+	
 	focus = {
 		id = FRA_rejuvinate_pentagon
 		icon = GFX_goal_FRA_rejuvenate_the_pentagon
 		cost = 5.00
 		prerequisite = {
-			focus = FRA_bipartisan_MIC_expansion
+			focus = FRA_biden_admin
 		}
-		x = 0
-		y = 2
-		relative_position_id = FRA_bipartisan_MIC_expansion
+		#allow_branch = { has_completed_focus = FRA_bipartisan_MIC_expansion }
+		available = { has_completed_focus = FRA_bipartisan_MIC_expansion }
+		x = -13
+		y = 1
+		relative_position_id = FRA_biden_admin
 		completion_reward = {
 			add_ideas = FRA_pentagon_modernized
 		}
@@ -973,10 +1034,25 @@ focus_tree = {
 		x = 4
 		y = 1
 		relative_position_id = FRA_assemble_the_cabinet
+		allow_branch = {
+			NOT = {
+				has_completed_focus = FRA_reconciliation
+			}
+		}
+		offset = {
+			x = -4
+			y = 0
+			trigger = {
+				has_completed_focus = FRA_reform
+			}
+		}
 		available = {
 			has_country_leader = { name = "Joe Biden" ruling_only = yes }
 		}
 		completion_reward = {
+			hidden_effect = {
+				mark_focus_tree_layout_dirty = yes
+			}
 			add_power_balance_value = {
 				id = progressive_conservative_bop
 				value = -0.1
@@ -1366,7 +1442,7 @@ focus_tree = {
 			focus = FRA_abolish_electoral_college
 		}
 		x = -3
-		y = 4
+		y = 1
 		relative_position_id = FRA_we_own_finish_line
 		available = {
 			has_country_leader = { name = "Joe Biden" ruling_only = yes }
@@ -1389,7 +1465,7 @@ focus_tree = {
 			focus = FRA_national_unity_agreement
 		}
 		x = 3
-		y = 4
+		y = 1
 		relative_position_id = FRA_america_second_to_none
 		available = {
 			has_country_leader = { name = "Joe Biden" ruling_only = yes }
@@ -1411,6 +1487,20 @@ focus_tree = {
 		relative_position_id = FRA_lets_finish_the_job
 		available = {
 			has_country_leader = { name = "Joe Biden" ruling_only = yes }
+		}
+		offset = {
+			x = -4
+			y = 0
+			trigger = {
+				has_completed_focus = FRA_reconciliation
+			}
+		}
+		offset = {
+			x = 4
+			y = 0
+			trigger = {
+				has_completed_focus = FRA_reform
+			}
 		}
 		completion_reward = {
 			remove_power_balance = {
@@ -7721,7 +7811,7 @@ focus_tree = {
 		icon = GFX_goal_Icon_the_Clinton_Administration_MAA
 		cost = 5.00
 		x = -30
-		y = 11
+		y = 20
 		#relative_position_id = 
 		allow_branch = {
 			#has_country_leader = { name = "Hillary Rodham Clinton" ruling_only = yes }
