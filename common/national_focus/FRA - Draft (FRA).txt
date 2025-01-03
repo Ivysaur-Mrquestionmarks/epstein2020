@@ -129,6 +129,7 @@ focus_tree = {
 		relative_position_id = FRA_reconciliation
 		available = {
 			has_country_leader = { name = "Joe Biden" ruling_only = yes }
+			has_completed_focus = FRA_hunt_rural_rebels_focus
 		}
 		completion_reward = {
 			add_ideas = FRA_federal_republic
@@ -168,6 +169,7 @@ focus_tree = {
 		relative_position_id = FRA_reconciliation
 		available = {
 			has_country_leader = { name = "Joe Biden" ruling_only = yes }
+			has_completed_focus = FRA_hunt_rural_rebels_focus
 		}
 		completion_reward = {
 			add_power_balance_value = {
@@ -216,6 +218,7 @@ focus_tree = {
 		relative_position_id = FRA_reconciliation
 		available = {
 			has_country_leader = { name = "Joe Biden" ruling_only = yes }
+			has_completed_focus = FRA_hunt_rural_rebels_focus
 		}
 		completion_reward = {
 			add_power_balance_value = {
@@ -517,6 +520,9 @@ focus_tree = {
 		relative_position_id = FRA_assemble_the_cabinet
 		bypass = {
 			NOT = { has_country_leader = { name = "Joe Biden" ruling_only = yes } }
+		}
+		available = { 
+			has_completed_focus = FRA_hunt_rural_rebels_focus
 		}
 		offset = {
 			x = 4
@@ -1072,6 +1078,7 @@ focus_tree = {
 		relative_position_id = FRA_reform
 		available = {
 			has_country_leader = { name = "Joe Biden" ruling_only = yes }
+			has_completed_focus = FRA_hunt_rural_rebels_focus
 		}
 		completion_reward = {
 			add_power_balance_value = {
@@ -1123,6 +1130,7 @@ focus_tree = {
 		relative_position_id = FRA_reform
 		available = {
 			has_country_leader = { name = "Joe Biden" ruling_only = yes }
+			has_completed_focus = FRA_hunt_rural_rebels_focus
 		}
 		completion_reward = {
 			add_power_balance_value = {
@@ -1192,6 +1200,7 @@ focus_tree = {
 		relative_position_id = FRA_reform
 		available = {
 			has_country_leader = { name = "Joe Biden" ruling_only = yes }
+			has_completed_focus = FRA_hunt_rural_rebels_focus
 		}
 		completion_reward = {
 		}
@@ -1267,6 +1276,7 @@ focus_tree = {
 		relative_position_id = FRA_reform
 		available = {
 			has_country_leader = { name = "Joe Biden" ruling_only = yes }
+			has_completed_focus = FRA_hunt_rural_rebels_focus
 		}
 		completion_reward = {
 		}
@@ -1333,6 +1343,10 @@ focus_tree = {
 		x = 8
 		y = 1
 		relative_position_id = FRA_reform
+		available = {
+			has_country_leader = { name = "Joe Biden" ruling_only = yes }
+			has_completed_focus = FRA_hunt_rural_rebels_focus
+		}
 		completion_reward = {
 			add_power_balance_value = {
 				id = progressive_conservative_bop
@@ -1546,15 +1560,24 @@ focus_tree = {
 		icon = GFX_goal_FRA_third_obama_administration
 		cost = 2.00
 		prerequisite = {
-			#focus = FRA_2024_election
+			focus = FRA_biden_admin
 		}
-		x = 18
+		x = 50
 		y = 1
-		#relative_position_id = FRA_2024_election
+		offset = {
+			x = -31
+			y = 0
+			trigger = {
+				has_completed_focus = FRA_third_obama_admin
+			}
+		}
+		#allow_branch = { has_country_flag = president_obama }
+		relative_position_id = FRA_biden_admin
 		available = {
 			has_country_flag = president_obama
 		}
 		completion_reward = {
+			mark_focus_tree_layout_dirty = yes
 		}
 
 	}
@@ -2168,13 +2191,21 @@ focus_tree = {
 		icon = GFX_goal_FRA_first_progressive_administration
 		cost = 2.00
 		prerequisite = {
-			#focus = FRA_2024_election
+			focus = FRA_biden_admin
 		}
-		x = 7
-		y = 12
-		#relative_position_id = FRA_2024_election
-		available = {
-			has_country_flag = progressive_president
+		x = 95
+		y = 1
+		offset = {
+			x = -76
+			y = 0
+			trigger = {
+				has_completed_focus = FRA_first_progressive_admin
+			}
+		}
+		#allow_branch = { has_country_flag = progressive_president }
+		relative_position_id = FRA_biden_admin
+		completion_reward = {
+			mark_focus_tree_layout_dirty = yes
 		}
 
 	}
@@ -2728,15 +2759,21 @@ focus_tree = {
 		icon = GFX_goal_The_Harris_Administration
 		cost = 4.40
 		prerequisite = {
-			#focus = FRA_2024_election
+			focus = FRA_biden_admin
 		}
-		x = -10
-		y = 15
-		#relative_position_id = FRA_2024_election
-		available = {
-			has_country_leader = { name = "Kamala Harris" ruling_only = yes }
+		x = 110
+		y = 1
+		offset = {
+			x = -91
+			y = 0
+			trigger = {
+				has_completed_focus = FRA_harris_admin
+			}
 		}
+		#allow_branch = { has_country_flag = president_kamala }
+		relative_position_id = FRA_biden_admin
 		completion_reward = {
+			mark_focus_tree_layout_dirty = yes
 			add_country_leader_trait = FRA_kamala_harris_trait
 			set_country_flag = kamala_progressive_question
 		}
@@ -3054,8 +3091,7 @@ focus_tree = {
 		y = 1
 		relative_position_id = FRA_great_retreat
 		completion_reward = {
-			add_stability = 0.10
-			add_war_support = -0.01
+			add_political_power = 50
 		}
 
 	}
@@ -3070,7 +3106,7 @@ focus_tree = {
 		y = 1
 		relative_position_id = FRA_absorb_bourbons
 		completion_reward = {
-			add_war_support = 0.10
+			country_event = bidone.95
 		}
 
 	}
@@ -3090,6 +3126,7 @@ focus_tree = {
 				ideology = republican
 				popularity = 0.05
 			}
+			add_ideas = FRA_kamabla_republican_unity
 		}
 
 	}
@@ -3111,6 +3148,11 @@ focus_tree = {
 			clr_country_flag = vice_president_nancy
 			add_ideas = FRA_mitch_mcconnell_vp
 			set_country_flag = vice_president_mitch
+			
+			swap_ideas = {
+				remove_idea = FRA_kamabla_republican_unity
+				add_idea = FRA_kamabla_republican_unity2
+			}
 		}
 
 	}
@@ -3125,6 +3167,10 @@ focus_tree = {
 		y = 1
 		relative_position_id = FRA_replace_pelosi
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = FRA_kamabla_republican_unity2
+				add_idea = FRA_kamabla_republican_unity_establishment
+			}
 		}
 	}
 	focus = {
@@ -3139,6 +3185,10 @@ focus_tree = {
 		relative_position_id = FRA_great_retreat
 		completion_reward = {
 			add_ideas = FRA_marijuana_ban
+			if = {
+				limit = { has_idea = FRA_marijuana_tax }
+				remove_ideas = FRA_marijuana_tax
+			}
 		}
 
 	}
@@ -3153,6 +3203,7 @@ focus_tree = {
 		y = 1
 		relative_position_id = FRA_great_retreat
 		completion_reward = {
+			country_event = bidone.96
 		}
 
 	}
@@ -3171,7 +3222,7 @@ focus_tree = {
 		}
 		relative_position_id = FRA_kamala_in_perpeteum
 		completion_reward = {
-			add_war_support = 0.05
+			add_war_support = 0.1
 		}
 
 	}
@@ -3186,6 +3237,12 @@ focus_tree = {
 		y = 1
 		relative_position_id = FRA_might_makes_right
 		completion_reward = {
+			hidden_effect = {
+				news_event = {
+					id = bidone.100
+					days = 4
+				}
+			}
 			add_timed_idea = {
 				idea = FRA_disregarded_constitution
 				days = 365
@@ -3196,7 +3253,7 @@ focus_tree = {
 	focus = {
 		id = FRA_ban_fox
 		icon = GFX_goal_FRA_ban_fox_news
-		cost = 7.00
+		cost = 3
 		prerequisite = {
 			focus = FRA_might_makes_right
 		}
@@ -3204,13 +3261,15 @@ focus_tree = {
 		y = 1
 		relative_position_id = FRA_might_makes_right
 		completion_reward = {
+			country_event = bidone.97
+			add_ideas = FRA_progressive_state_media
 		}
 
 	}
 	focus = {
 		id = FRA_kamunism
 		icon = GFX_goal_FRA_kamunism
-		cost = 7.00
+		cost = 3
 		prerequisite = {
 			focus = FRA_might_makes_right
 		}
@@ -3218,13 +3277,14 @@ focus_tree = {
 		y = 1
 		relative_position_id = FRA_might_makes_right
 		completion_reward = {
+			country_event = bidone.98
 		}
 
 	}
 	focus = {
 		id = FRA_the_great_court_reshuffle
 		icon = GFX_goal_FRA_great_court_reshuffle
-		cost = 4.40
+		cost = 3
 		prerequisite = {
 			focus = FRA_disregard_the_constitution
 		}
@@ -3232,13 +3292,22 @@ focus_tree = {
 		y = 1
 		relative_position_id = FRA_disregard_the_constitution
 		completion_reward = {
-			add_stability = 0.05
+			if = {
+				limit = { has_idea = FRA_balance_of_power_broken }
+				swap_ideas = {
+					remove_idea = FRA_balance_of_power_broken
+					add_idea = FRA_balance_of_power_fractured
+				}
+			}
+			else = {
+				add_ideas = FRA_balance_of_power_broken
+			}
 		}
 	}
 	focus = {
 		id = FRA_temp_suspend_senate_and_house
 		icon = GFX_goal_FRA_suspend_congress
-		cost = 4.40
+		cost = 3
 		prerequisite = {
 			focus = FRA_disregard_the_constitution
 		}
@@ -3246,13 +3315,22 @@ focus_tree = {
 		y = 1
 		relative_position_id = FRA_disregard_the_constitution
 		completion_reward = {
-			add_stability = 0.05
+			if = {
+				limit = { has_idea = FRA_balance_of_power_broken }
+				swap_ideas = {
+					remove_idea = FRA_balance_of_power_broken
+					add_idea = FRA_balance_of_power_fractured
+				}
+			}
+			else = {
+				add_ideas = FRA_balance_of_power_broken
+			}
 		}
 	}
 	focus = {
 		id = FRA_appoint_progressives
 		icon = GFX_goal_FRA_appoint_progressives
-		cost = 4.40
+		cost = 3
 		prerequisite = {
 			focus = FRA_temp_suspend_senate_and_house
 		}
@@ -3263,12 +3341,16 @@ focus_tree = {
 		y = 1
 		relative_position_id = FRA_the_great_court_reshuffle
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = FRA_balance_of_power_fractured
+				add_idea = FRA_balance_of_power_shattered
+			}
 		}
 	}
 	focus = {
 		id = FRA_kamala_constitution
 		icon = GFX_goal_FRA_kamala_constitution
-		cost = 4.40
+		cost = 20
 		prerequisite = {
 			focus = FRA_appoint_progressives
 		}
@@ -3276,6 +3358,10 @@ focus_tree = {
 		y = 1
 		relative_position_id = FRA_appoint_progressives
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = FRA_balance_of_power_shattered
+				add_idea = FRA_Kamalas_Constitution
+			}
 		}
 	}
 	
@@ -3293,6 +3379,8 @@ focus_tree = {
 		y = 1
 		relative_position_id = FRA_kamala_constitution
 		completion_reward = {
+			add_country_leader_trait = FRA_kamala_attorney_trait
+			country_event = bidone.99
 		}
 	}
 	
@@ -3311,6 +3399,7 @@ focus_tree = {
 		}
 		relative_position_id = FRA_kamala_in_perpeteum
 		completion_reward = {
+			add_stability = 0.05
 		}
 
 	}
@@ -3348,9 +3437,6 @@ focus_tree = {
 		completion_reward = {
 			add_stability = 0.15
 			add_manpower = -10000
-			USA = {
-				add_manpower = 8000
-			}
 		}
 
 	}
@@ -3387,6 +3473,11 @@ focus_tree = {
 		relative_position_id = FRA_give_us_your_guns
 		completion_reward = {
 			add_stability = 0.15
+			add_equipment_to_stockpile = {
+			    type = infantry_equipment
+			    amount = 10000
+			    producer = FRA
+			}
 		}
 
 	}
@@ -3400,16 +3491,25 @@ focus_tree = {
 		icon = GFX_goal_The_McConnell_administration
 		cost = 4.40
 		prerequisite = { 
-			#focus = FRA_2024_election
+			focus = FRA_biden_admin
 		}
-		x = 40
-		y = 6
-		#relative_position_id = FRA_2024_election
+		x = 70
+		y = 1
+		offset = {
+			x = -51
+			y = 0
+			trigger = {
+				has_completed_focus = FRA_mcconnell_admin
+			}
+		}
+		#allow_branch = { has_country_flag = president_mcconnell }
+		relative_position_id = FRA_biden_admin
 		available = {
 			has_country_leader = { name = "Mitch McConnell" ruling_only = yes }
 		}
 		completion_reward = {
 			add_popularity = { ideology = republican popularity = 0.05 }
+			mark_focus_tree_layout_dirty = yes
 			add_stability = 0.05
 			add_war_support = -0.05
 			add_political_power = 50
