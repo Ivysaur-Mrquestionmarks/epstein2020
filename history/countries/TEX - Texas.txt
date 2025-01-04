@@ -13,8 +13,6 @@ set_technology = {
 	interwar_antiair = 1
 	early_fighter = 1
 	fighter1 = 1
-	early_bomber = 1
-	tactical_bomber1 = 1
 	strategic_bomber1 = 1
 	CAS1 = 1
 	naval_bomber1 = 1
@@ -22,33 +20,6 @@ set_technology = {
 	synth_oil_experiments = 1
 	fuel_silos = 1
 	fuel_refining = 1
-	
-    early_destroyer = 1
-    basic_destroyer = 1
-	early_light_cruiser = 1
-    basic_light_cruiser = 1
-	early_heavy_cruiser = 1
-    basic_heavy_cruiser = 1
-	early_battlecruiser = 1
-    basic_battlecruiser = 1
-    early_battleship = 1
-    basic_battleship = 1
-    transport = 1
-    landing_craft = 1
-    tank_landing_craft = 1
-    early_carrier = 1
-    early_submarine = 1
-    basic_submarine = 1
-}
-if = {
-	limit = {
-		NOT = { has_dlc = "No Step Back" }
-	}
-	set_technology = {
-		gwtank = 1
-		basic_light_tank = 1
-		improved_light_tank = 1
-	}
 }
 if = {
 	limit = {
@@ -63,6 +34,21 @@ if = {
 }
 
 set_research_slots = 4
+
+every_state = {
+	limit = { has_dynamic_modifier = { modifier = TEX_nmx_rebels_state_modifier } }
+	add_to_array = {
+		array = TEX.rebel_states_nmx
+		value = THIS.id
+	}
+}
+every_state = {
+	limit = { has_dynamic_modifier = { modifier = TEX_oklahoma_rebels_state_modifier } }
+	add_to_array = {
+		array = TEX.rebel_states_okl
+		value = THIS.id
+	}
+}
 
 set_politics = {
 	ruling_party = libertarian_right
