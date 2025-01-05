@@ -1,3 +1,131 @@
 #VIR_Civil_War = {
 #
 #}
+
+VIR_join_a_faction = {
+	VIR_join_biden = {
+		icon = hol_draw_up_staff_plans
+
+		allowed = {
+			original_tag = VIR
+		}
+
+		available = {
+			has_war = no
+			has_government = democrat
+		}
+		cost = 0
+
+		fire_only_once = yes
+
+		days_remove = 10
+
+		modifier = {
+			
+		}
+
+		visible = {
+			is_in_faction = no
+		}
+
+		complete_effect = {
+		}
+
+		remove_effect = {
+			FRA = { add_to_faction = VIR }
+		}
+
+	}
+	VIR_join_trump = {
+		icon = hol_draw_up_staff_plans
+
+		allowed = {
+			original_tag = RVR
+		}
+
+		available = {
+			has_war = no
+			has_government = republican
+			USA = { has_war_with = FRA }
+		}
+		cost = 0
+
+		fire_only_once = yes
+
+		days_remove = 10
+
+		modifier = {
+			
+		}
+
+		visible = {
+			is_in_faction = no
+		}
+
+		complete_effect = {
+		}
+
+		remove_effect = {
+			USA = { add_to_faction = RVR }
+		}
+
+	}
+
+}
+
+VIR_greater_virginia_cat = { 
+	VIR_form_greater_virginia_dec = {
+		icon = hol_draw_up_staff_plans
+
+		allowed = {
+			OR = {
+				original_tag = RVR
+				original_tag = VIR
+				original_tag = NRA
+			}
+		}
+
+		available = {
+			has_war = no
+			all_state = {
+				OR = {
+					NOT = {
+						is_core_of = NRA
+					}
+					is_controlled_by = VIR
+				}
+			}
+		}
+		cost = 0
+
+		fire_only_once = yes
+
+		days_remove = 10
+
+		modifier = {
+			
+		}
+
+		visible = {
+		}
+
+		complete_effect = {
+		}
+
+		remove_effect = {
+			every_state = {
+				limit = {
+					OR = {
+						is_core_of = NRA
+						is_core_of = VIR
+						is_core_of = RVR
+						state = 375
+						state = 502
+					}
+				}
+				add_core_of = ROOT
+			}
+		}
+
+	}
+}
