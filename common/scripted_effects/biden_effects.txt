@@ -1,3 +1,212 @@
+FRA_middle_states_collapse_start_effect = {
+	hidden_effect = {
+		PEN = {
+			add_state_core = 672
+			add_state_core = 671
+			add_state_core = 357
+			add_state_core = 360
+			add_state_core = 361
+			add_state_core = 555
+			add_state_core = 277
+			inherit_technology = FRA
+		}
+		SYR = {
+			add_state_core = 183
+			add_state_core = 276
+			add_state_core = 556
+			add_state_core = 670
+			add_state_core = 189
+			inherit_technology = FRA
+		}
+		PIT = {
+			add_state_core = 273
+			inherit_technology = FRA
+		}
+		release_on_controlled = PEN
+		release_on_controlled = PIT
+		release_on_controlled = SYR
+		every_state = {
+			limit = { is_core_of = SYR }
+			add_core_of = UTC
+			add_core_of = TNY
+		}
+		every_state = {
+			limit = { is_core_of = PIT }
+			add_core_of = PEN
+		}
+		every_state = {
+			limit = { is_core_of = PEN }
+			add_core_of = PIT
+		}
+		country_event = {
+			id = biden_collapse.3
+			days = 14
+		}
+	}
+
+}
+
+FRA_new_york_collapse_start_effect = {
+	NYC = {
+		add_state_core = 220
+		add_state_core = 223
+		add_state_core = 624
+		add_state_core = 227
+		add_state_core = 228
+		add_state_core = 222
+		add_state_core = 225
+		add_state_core = 213
+		add_state_core = 219
+		add_state_core = 590
+		inherit_technology = FRA
+	}
+	UTC = {
+		add_state_core = 170
+		add_state_core = 554
+		add_state_core = 557
+		inherit_technology = FRA
+	}
+	TNY = {
+		add_state_core = 281
+		add_state_core = 191
+		add_state_core = 553
+		inherit_technology = FRA
+	}
+	release_on_controlled = UTC
+	release_on_controlled = TNY
+	release_on_controlled = NYC
+	
+	for_each_scope_loop = { #This loops declare the wars
+    	array = global.FRA_new_york_collapse
+		for_each_scope_loop = {
+				array = global.FRA_new_york_collapse
+			if = { 
+				limit = {
+					NOT = { 
+						OR = {
+							has_war_with = PREV 
+							is_in_faction_with = PREV
+							tag = PREV
+						}
+					}
+				}
+				
+				declare_war_on = {
+    					target = PREV
+    					type = annex_everything
+				}
+				every_state = {
+					limit = { OR = { is_core_of = PREV is_core_of = NYC } }
+					add_core_of = ROOT
+				}
+			}
+		}
+	}
+	every_country = { #loads the basic focus tree
+		limit = {
+			is_in_array = {
+				array = global.FRA_new_york_collapse
+				value = THIS.id
+			}
+		}
+		#add_ideas = CSA_collapse_no_faction - CHANGE
+	}
+	
+	#TNY = { load_oob = "NHR_collapse" }
+	#NYC = { load_oob = "VER_collapse" }
+	#UTC = { load_oob = "DMA_collapse" }
+	#SYR = { load_oob = "DMA_collapse" }
+	
+	FRA = {
+		country_event = {
+			id = biden_collapse.4
+			days = 14
+		}
+	}
+	if = {
+		limit = { NOT = { country_exists = TIM } }
+		NRA = {
+			set_country_flag = biren_collapse
+		}
+	}
+}
+
+
+FRA_upper_NE_collapse_start_effect = {
+	VER = {
+		add_state_core = 614
+		add_state_core = 615
+		add_state_core = 618
+		add_state_core = 171
+		add_state_core = 168
+		add_state_core = 180
+		inherit_technology = FRA
+	}
+	NHR = {
+		add_state_core = 613
+		add_state_core = 178
+		add_state_core = 617
+		add_state_core = 616
+		add_state_core = 619
+		inherit_technology = FRA
+	}
+	DMA = {
+		add_state_core = 172
+		add_state_core = 174
+		add_state_core = 620
+		inherit_technology = FRA
+	}
+	release_on_controlled = DMA
+	release_on_controlled = NHR
+	release_on_controlled = VER
+	
+	for_each_scope_loop = { #This loops declare the wars
+    	array = global.FRA_upper_new_england_collapse
+		for_each_scope_loop = {
+				array = global.FRA_upper_new_england_collapse
+			if = { 
+				limit = {
+					NOT = { 
+						OR = {
+							has_war_with = PREV 
+							is_in_faction_with = PREV
+							tag = PREV
+						}
+					}
+				}
+				
+				declare_war_on = {
+    					target = PREV
+    					type = annex_everything
+				}
+				every_state = {
+					limit = { is_core_of = PREV }
+					add_core_of = ROOT
+				}
+			}
+		}
+	}
+	every_country = { #loads the basic focus tree
+		limit = {
+			is_in_array = {
+				array = global.FRA_upper_new_england_collapse
+				value = THIS.id
+			}
+		}
+		#add_ideas = CSA_collapse_no_faction - CHANGE
+	}
+	
+	NHR = { load_oob = "NHR_collapse" }
+	VER = {	load_oob = "VER_collapse" }
+	DMA = { load_oob = "DMA_collapse" }
+	
+	FRA = {
+		country_event = {
+			id = biden_collapse.2
+			days = 14
+		}
+	}
+}
 FRA_NE_CORES_give = {
 		WMS = {
 			add_state_core = 594
