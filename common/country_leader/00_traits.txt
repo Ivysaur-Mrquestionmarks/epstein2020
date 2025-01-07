@@ -1,6 +1,10 @@
-@tier1 = 30
-@tier2 = 20
-@tier3 = 10
+@tier1_cp_cap_increase = 10
+@tier2_cp_cap_increase = 20
+@tier3_cp_cap_increase = 30
+
+@tier1_cp_cost = 0
+@tier2_cp_cost = 0
+@tier3_cp_cost = 0
 
 @experience_gain_low = 0.03
 @experience_gain_medium = 0.06
@@ -9,6 +13,31 @@
 @chief_experience_gain_low = 0.20
 @chief_experience_gain_medium = 0.30
 @chief_experience_gain_high = 0.40
+
+@army_chief_factor_1 = 0.42
+@army_chief_factor_2 = 0.68
+@army_chief_factor_3 = 0.84
+
+@navy_chief_factor_1 = 0.31
+@navy_chief_factor_2 = 0.57
+@navy_chief_factor_3 = 0.73
+
+@air_chief_factor_1 = 0.10
+@air_chief_factor_2 = 0.13
+@air_chief_factor_3 = 0.16
+
+@army_command_factor_1 = 0.42
+@army_command_factor_2 = 0.64
+@army_command_factor_3 = 0.86
+
+@navy_command_factor_1 = 0.41
+@navy_command_factor_2 = 0.62
+@navy_command_factor_3 = 0.83
+
+@air_command_factor_1 = 0.40
+@air_command_factor_2 = 0.60
+@air_command_factor_3 = 0.80
+
 
 leader_traits = {
 	
@@ -322,14 +351,14 @@ leader_traits = {
 	famous_aviator = {
 		random = no
 		equipment_bonus = {
-			tac_bomber_equipment = {
+			medium_plane_airframe = {
 				air_range = 0.01
 			}
-			fighter_equipment = {
+			small_plane_airframe = {
 				air_range = 0.01
 			}
 		}
-		
+
 		ai_will_do = {
 			factor = 1
 		}
@@ -2074,7 +2103,7 @@ leader_traits = {
 		sprite = 1
 		political_power_factor = 0.15
 		equipment_bonus = {
-			heavy_fighter_equipment = {
+			medium_plane_fighter_airframe = {
 				build_cost_ic = -0.025
 			}
 		}
@@ -3911,55 +3940,55 @@ leader_traits = {
 			factor = 500
 		}
 	}
-	
+
 	air_warfare_theorist = {
 		sprite = 14
 		air_doctrine_cost_factor = -0.1
-		
+
 		ai_will_do = {
-			factor = 500
+			factor = 1
 		}
 	}
-	
+
 	dive_bomber = {
 		sprite = 14
 		equipment_bonus = {
-			CAS_equipment = {
+			small_plane_cas_airframe = {
 				instant = yes
-				air_ground_attack = 0.1 
+				air_ground_attack = 0.1
 			}
 		}
 		air_doctrine_cost_factor = -0.10
-		
+
 		ai_will_do = {
-			factor = 100
+			factor = 1
 		}
 	}
-	
+
 	victory_through_airpower = {
 		sprite = 14
 		cat_strategic_destruction_cost_factor = -0.15
-		
+
 		ai_will_do = {
-			factor = 100
+			factor = 1
 		}
 	}
-	
+
 	close_air_support_proponent = {
 		sprite = 14
 		cat_battlefield_support_cost_factor = -0.15
-		
+
 		ai_will_do = {
-			factor = 100
+			factor = 1
 		}
 	}
-	
+
 	assault_avaition = {
 		sprite = 14
 		cat_operational_integrity_cost_factor = -0.15
-		
+
 		ai_will_do = {
-			factor = 100
+			factor = 1
 		}
 	}
 	
@@ -4022,128 +4051,173 @@ leader_traits = {
 			factor = 1
 		}
 	}
-	
+
 	light_aircraft_manufacturer = {
 		random = no
 		equipment_bonus = {
-			fighter_equipment = {
+			small_plane_airframe = {
 				air_agility = 0.1 maximum_speed = 0.1
 			}
-			cv_fighter_equipment = {
+			cv_small_plane_airframe = {
 				air_agility = 0.1 maximum_speed = 0.1
 			}
 		}
-		
+
 		ai_will_do = {
 			factor = 1
 		}
 	}
 
-	light_aircraft_manufacturer_2 = { 
+	light_aircraft_manufacturer_2 = {
 		random = no
 		equipment_bonus = {
-			fighter_equipment = {
+			small_plane_airframe = {
 				air_agility = 0.2 maximum_speed = 0.1
 			}
-			cv_fighter_equipment = {
+			cv_small_plane_airframe = {
 				air_agility = 0.2 maximum_speed = 0.1
 			}
 		}
-		
+
 		ai_will_do = {
 			factor = 2
 		}
 	}
-	
-	
+
+
 	CAS_manufacturer = {
 		random = no
 		equipment_bonus = {
-			CAS_equipment = {
+			small_plane_cas_airframe = {
 				air_ground_attack = 0.1 reliability = 0.1
 			}
-			cv_CAS_equipment = {
+			cv_small_plane_cas_airframe = {
 				air_ground_attack = 0.1 reliability = 0.1
-			}		
-		}
-		
-		ai_will_do = {
-			factor = 1
-		}
-	}
-	
-	medium_aircraft_manufacturer = {
-		random = no
-		equipment_bonus = {
-			heavy_fighter_equipment = {
-				reliability = 0.2
-			}
-			tac_bomber_equipment = {
-				reliability = 0.2
-			}
-			scout_plane_equipment = {
-				reliability = 0.2
 			}
 		}
-		
+
 		ai_will_do = {
 			factor = 1
 		}
 	}
 
-	fuel_efficient_aircraft_manufacturer = { 
+	medium_aircraft_manufacturer = {
 		random = no
 		equipment_bonus = {
-			fighter_equipment = {
-				air_range = 0.1
-			}
-			heavy_fighter_equipment = {
-				air_range = 0.1
+			medium_plane_fighter_airframe = {
 				reliability = 0.2
 			}
-			tac_bomber_equipment = {
+			medium_plane_airframe = {
+				reliability = 0.2
+			}
+			medium_plane_scout_plane_airframe = {
 				reliability = 0.2
 			}
 		}
-		
+
 		ai_will_do = {
 			factor = 1
 		}
 	}
-	
+
+	fuel_efficient_aircraft_manufacturer = {
+		random = no
+		equipment_bonus = {
+			small_plane_airframe = {
+				air_range = 0.1
+			}
+			medium_plane_fighter_airframe = {
+				air_range = 0.1
+				reliability = 0.2
+			}
+			medium_plane_airframe = {
+				reliability = 0.2
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
 	heavy_aircraft_manufacturer = {
 		random = no
 		equipment_bonus = {
 
-			strat_bomber_equipment = {
+			large_plane_airframe = {
 				air_bombing = 0.1
 			}
 		}
-		
+
 		ai_will_do = {
 			factor = 1
 		}
 	}
-	
+
 	naval_aircraft_manufacturer = {
 		random = no
 		equipment_bonus = {
-			nav_bomber_equipment = {
+			small_plane_naval_bomber_airframe = {
 				air_range = 0.1 naval_strike_attack = 0.1
 			}
-			cv_nav_bomber_equipment = {
+			cv_small_plane_naval_bomber_airframe = {
 				air_range = 0.1 naval_strike_attack = 0.1
 			}
-			cv_fighter_equipment = {
+			cv_small_plane_airframe = {
 				air_range = 0.1 air_agility = 0.1
 			}
-			cv_CAS_equipment = {
+			cv_small_plane_cas_airframe = {
 				air_range = 0.1 naval_strike_attack = 0.1
 			}
 		}
-		
+
 		ai_will_do = {
 			factor = 1
+		}
+	}
+
+	multi_role_aircraft_manufacturer = {
+		random = no
+		equipment_bonus = {
+			small_plane_naval_bomber_airframe = {
+				reliability = 0.1
+			}
+			medium_plane_airframe = {
+				reliability = 0.1
+			}
+			small_plane_cas_airframe = {
+				reliability = 0.1
+			}
+			medium_plane_scout_plane_airframe = {
+				reliability = 0.1
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	aircraft_production_plant = {
+		random = no
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		equipment_bonus = {
+
+			large_plane_airframe = {
+				build_cost_ic = -0.1 instant = yes
+			}
+
+			small_plane_airframe = {
+				build_cost_ic = -0.1 instant = yes
+			}
+			
+			medium_plane_airframe = {
+				build_cost_ic = -0.1 instant = yes
+			}
 		}
 	}
 	
@@ -5560,13 +5634,14 @@ leader_traits = {
 		experience_gain_air = @chief_experience_gain_low
 		experience_gain_air_factor = 0.05
 
-		command_cap = @tier1
+		command_cap_increase = @tier1_cp_cap_increase
+		command_power = @tier1_cp_cost
 
 		ai_will_do = {
-			factor = 1
+			factor = @air_chief_factor_1
 			modifier = {
 				factor = 0
-				command_power < @tier1
+				command_power < @tier1_cp_cost
 			}
 		}
 	}
@@ -5576,13 +5651,14 @@ leader_traits = {
 		experience_gain_air = @chief_experience_gain_medium
 		experience_gain_air_factor = 0.10
 
-		command_cap = @tier2
+		command_cap_increase = @tier2_cp_cap_increase
+		command_power = @tier2_cp_cost
 
 		ai_will_do = {
-			factor = 2
+			factor = @air_chief_factor_2
 			modifier = {
 				factor = 0
-				command_power < @tier2
+				command_power < @tier2_cp_cost
 			}
 		}
 	}
@@ -5592,13 +5668,14 @@ leader_traits = {
 		experience_gain_air = @chief_experience_gain_high
 		experience_gain_air_factor = 0.15
 
-		command_cap = @tier3
+		command_cap_increase = @tier3_cp_cap_increase
+		command_power = @tier3_cp_cost
 
 		ai_will_do = {
-			factor = 3
+			factor = @air_chief_factor_3
 			modifier = {
 				factor = 0
-				command_power < @tier3
+				command_power < @tier3_cp_cost
 			}
 		}
 	}
@@ -5609,13 +5686,14 @@ leader_traits = {
 		air_accidents_factor = -0.05
 		experience_gain_air = @chief_experience_gain_low
 
-		command_cap = @tier1
+		command_cap_increase = @tier1_cp_cap_increase
+		command_power = @tier1_cp_cost
 
 		ai_will_do = {
-			factor = 1
+			factor = @air_chief_factor_1
 			modifier = {
 				factor = 0
-				command_power < @tier1
+				command_power < @tier1_cp_cost
 			}
 		}
 	}
@@ -5625,13 +5703,14 @@ leader_traits = {
 		air_accidents_factor = -0.1
 		experience_gain_air = @chief_experience_gain_medium
 
-		command_cap = @tier2
+		command_cap_increase = @tier2_cp_cap_increase
+		command_power = @tier2_cp_cost
 
 		ai_will_do = {
-			factor = 2
+			factor = @air_chief_factor_2
 			modifier = {
 				factor = 0
-				command_power < @tier2
+				command_power < @tier2_cp_cost
 			}
 		}
 	}
@@ -5641,13 +5720,14 @@ leader_traits = {
 		air_accidents_factor = -0.15
 		experience_gain_air = @chief_experience_gain_high
 
-		command_cap = @tier3
+		command_cap_increase = @tier3_cp_cap_increase
+		command_power = @tier3_cp_cost
 
 		ai_will_do = {
-			factor = 3
+			factor = @air_chief_factor_3
 			modifier = {
 				factor = 0
-				command_power < @tier3
+				command_power < @tier3_cp_cost
 			}
 		}
 	}
@@ -5661,7 +5741,7 @@ leader_traits = {
 			factor = 0.25
 			modifier = {
 				factor = 0
-				command_power < @tier1
+				command_power < @tier1_cp_cost
 			}
 		}
 	}
@@ -5671,13 +5751,14 @@ leader_traits = {
 		air_night_penalty = -0.1
 		experience_gain_air = @chief_experience_gain_low
 
-		command_cap = @tier1
+		command_cap_increase = @tier1_cp_cap_increase
+		command_power = @tier1_cp_cost
 
 		ai_will_do = {
-			factor = 1
+			factor = @air_chief_factor_1
 			modifier = {
 				factor = 0
-				command_power < @tier1
+				command_power < @tier1_cp_cost
 			}
 		}
 	}
@@ -5687,13 +5768,14 @@ leader_traits = {
 		air_night_penalty = -0.2
 		experience_gain_air = @chief_experience_gain_medium
 
-		command_cap = @tier2
+		command_cap_increase = @tier2_cp_cap_increase
+		command_power = @tier2_cp_cost
 
 		ai_will_do = {
-			factor = 2
+			factor = @air_chief_factor_2
 			modifier = {
 				factor = 0
-				command_power < @tier2
+				command_power < @tier2_cp_cost
 			}
 		}
 	}
@@ -5703,13 +5785,14 @@ leader_traits = {
 		air_night_penalty = -0.3
 		experience_gain_air = @chief_experience_gain_high
 
-		command_cap = @tier3
+		command_cap_increase = @tier3_cp_cap_increase
+		command_power = @tier3_cp_cost
 
 		ai_will_do = {
-			factor = 3
+			factor = @air_chief_factor_3
 			modifier = {
 				factor = 0
-				command_power < @tier3
+				command_power < @tier3_cp_cost
 			}
 		}
 	}
@@ -5720,13 +5803,14 @@ leader_traits = {
 		army_bonus_air_superiority_factor = 0.05
 		experience_gain_air = @chief_experience_gain_low
 
-		command_cap = @tier1
+		command_cap_increase = @tier1_cp_cap_increase
+		command_power = @tier1_cp_cost
 
 		ai_will_do = {
-			factor = 1
+			factor = @air_chief_factor_1
 			modifier = {
 				factor = 0
-				command_power < @tier1
+				command_power < @tier1_cp_cost
 			}
 		}
 	}
@@ -5736,13 +5820,14 @@ leader_traits = {
 		army_bonus_air_superiority_factor = 0.1
 		experience_gain_air = @chief_experience_gain_medium
 
-		command_cap = @tier2
+		command_cap_increase = @tier2_cp_cap_increase
+		command_power = @tier2_cp_cost
 
 		ai_will_do = {
-			factor = 2
+			factor = @air_chief_factor_2
 			modifier = {
 				factor = 0
-				command_power < @tier2
+				command_power < @tier2_cp_cost
 			}
 		}
 	}
@@ -5752,13 +5837,14 @@ leader_traits = {
 		army_bonus_air_superiority_factor = 0.15
 		experience_gain_air = @chief_experience_gain_high
 
-		command_cap = @tier3
+		command_cap_increase = @tier3_cp_cap_increase
+		command_power = @tier3_cp_cost
 
 		ai_will_do = {
-			factor = 3
+			factor = @air_chief_factor_3
 			modifier = {
 				factor = 0
-				command_power < @tier3
+				command_power < @tier3_cp_cost
 			}
 		}
 	}
@@ -5770,13 +5856,14 @@ leader_traits = {
 		air_weather_penalty = -0.1
 		experience_gain_air = @chief_experience_gain_low
 
-		command_cap = @tier1
+		command_cap_increase = @tier1_cp_cap_increase
+		command_power = @tier1_cp_cost
 
 		ai_will_do = {
-			factor = 1
+			factor = @air_chief_factor_1
 			modifier = {
 				factor = 0
-				command_power < @tier1
+				command_power < @tier1_cp_cost
 			}
 		}
 	}
@@ -5786,13 +5873,14 @@ leader_traits = {
 		air_weather_penalty = -0.2
 		experience_gain_air = @chief_experience_gain_medium
 
-		command_cap = @tier2
+		command_cap_increase = @tier2_cp_cap_increase
+		command_power = @tier2_cp_cost
 
 		ai_will_do = {
-			factor = 2
+			factor = @air_chief_factor_2
 			modifier = {
 				factor = 0
-				command_power < @tier2
+				command_power < @tier2_cp_cost
 			}
 		}
 	}
@@ -5802,13 +5890,14 @@ leader_traits = {
 		air_weather_penalty = -0.3
 		experience_gain_air = @chief_experience_gain_high
 
-		command_cap = @tier3
+		command_cap_increase = @tier3_cp_cap_increase
+		command_power = @tier3_cp_cost
 
 		ai_will_do = {
-			factor = 3
+			factor = @air_chief_factor_3
 			modifier = {
 				factor = 0
-				command_power < @tier3
+				command_power < @tier3_cp_cost
 			}
 		}
 	}
@@ -5819,13 +5908,14 @@ leader_traits = {
 		air_ace_generation_chance_factor = 0.05
 		#experience_gain_air = @experience_gain_low
 
-		command_cap = @tier1
+		command_cap_increase = @tier1_cp_cap_increase
+		command_power = @tier1_cp_cost
 
 		ai_will_do = {
-			factor = 1
+			factor = @army_command_factor_1
 			modifier = {
 				factor = 0
-				command_power < @tier1
+				command_power < @tier1_cp_cost
 			}
 		}
 	}
@@ -5835,13 +5925,14 @@ leader_traits = {
 		air_ace_generation_chance_factor = 0.1
 		#experience_gain_air = @experience_gain_medium
 
-		command_cap = @tier2
+		command_cap_increase = @tier2_cp_cap_increase
+		command_power = @tier2_cp_cost
 
 		ai_will_do = {
-			factor = 2
+			factor = @army_command_factor_2
 			modifier = {
 				factor = 0
-				command_power < @tier2
+				command_power < @tier2_cp_cost
 			}
 		}
 	}
@@ -5851,395 +5942,340 @@ leader_traits = {
 		air_ace_generation_chance_factor = 0.15
 		#experience_gain_air = @experience_gain_high
 
-		command_cap = @tier3
+		command_cap_increase = @tier3_cp_cap_increase
+		command_power = @tier3_cp_cost
 
 		ai_will_do = {
-			factor = 3
+			factor = @army_command_factor_3
 			modifier = {
 				factor = 0
-				command_power < @tier3
+				command_power < @tier3_cp_cost
 			}
 		}
 	}
 
-	# Guesstimation of what % increased efficiency might look like
-	air_naval_strike_1 = { # Naval Strike mission efficiency increased by 4%
+	air_naval_strike_1 = {
 		sprite = 2
 		naval_strike_attack_factor = 0.02
 		naval_strike_targetting_factor = 0.02
 		naval_strike_agility_factor = 0.02
 		#experience_gain_air = @experience_gain_low
 
-		command_cap = @tier1
+		command_cap_increase = @tier1_cp_cap_increase
+		command_power = @tier1_cp_cost
 
 		ai_will_do = {
-			factor = 1
+			factor = @army_command_factor_1
 			modifier = {
 				factor = 0
-				command_power < @tier1
+				command_power < @tier1_cp_cost
 			}
 		}
 	}
 
-	air_naval_strike_2 = { # Naval Strike mission efficiency increased by 8%
+	air_naval_strike_2 = {
 		sprite = 2
 		naval_strike_attack_factor = 0.03
 		naval_strike_targetting_factor = 0.03
 		naval_strike_agility_factor = 0.03
 		#experience_gain_air = @experience_gain_medium
 
-		command_cap = @tier2
+		command_cap_increase = @tier2_cp_cap_increase
+		command_power = @tier2_cp_cost
 
 		ai_will_do = {
-			factor = 2
+			factor = @army_command_factor_2
 			modifier = {
 				factor = 0
-				command_power < @tier2
+				command_power < @tier2_cp_cost
 			}
 		}
 	}
 
-	air_naval_strike_3 = { # Naval Strike mission efficiency increased by 12%
+	air_naval_strike_3 = {
 		sprite = 2
 		naval_strike_attack_factor = 0.05
 		naval_strike_targetting_factor = 0.05
 		naval_strike_agility_factor = 0.05
 		#experience_gain_air = @experience_gain_high
 
-		command_cap = @tier3
+		command_cap_increase = @tier3_cp_cap_increase
+		command_power = @tier3_cp_cost
 
 		ai_will_do = {
-			factor = 3
+			factor = @army_command_factor_3
 			modifier = {
 				factor = 0
-				command_power < @tier3
+				command_power < @tier3_cp_cost
 			}
 		}
 	}
 
 
-	air_bomber_interception_1 = { # Bomber Interception mission efficiency increased by 4%
+	air_bomber_interception_1 = {
 		sprite = 1
-		air_interception_attack_factor = 0.02
-		air_interception_defence_factor = 0.02
-		air_interception_agility_factor = 0.02
+		air_intercept_efficiency = 0.05
 		#experience_gain_air = @experience_gain_low
 
-		command_cap = @tier1
+		command_cap_increase = @tier1_cp_cap_increase
+		command_power = @tier1_cp_cost
 
 		ai_will_do = {
-			factor = 1
+			factor = @army_command_factor_1
 			modifier = {
 				factor = 0
-				command_power < @tier1
+				command_power < @tier1_cp_cost
 			}
 		}
 	}
 
-	air_bomber_interception_2 = { # Bomber Interception mission efficiency increased by 8%
+	air_bomber_interception_2 = {
 		sprite = 1
-		air_interception_attack_factor = 0.03
-		air_interception_defence_factor = 0.03
-		air_interception_agility_factor = 0.03
+		air_intercept_efficiency = 0.10
 		#experience_gain_air = @experience_gain_medium
 
-		command_cap = @tier2
+		command_cap_increase = @tier2_cp_cap_increase
+		command_power = @tier2_cp_cost
 
 		ai_will_do = {
-			factor = 2
+			factor = @army_command_factor_2
 			modifier = {
 				factor = 0
-				command_power < @tier2
+				command_power < @tier2_cp_cost
 			}
 		}
 	}
 
-	air_bomber_interception_3 = { # Bomber Interception mission efficiency increased by 12%
+	air_bomber_interception_3 = {
 		sprite = 1
-		air_interception_attack_factor = 0.05
-		air_interception_defence_factor = 0.05
-		air_interception_agility_factor = 0.05
+		air_intercept_efficiency = 0.15
 		#experience_gain_air = @experience_gain_high
 
-		command_cap = @tier3
+		command_cap_increase = @tier3_cp_cap_increase
+		command_power = @tier3_cp_cost
 
 		ai_will_do = {
-			factor = 3
+			factor = @army_command_factor_3
 			modifier = {
 				factor = 0
-				command_power < @tier3
+				command_power < @tier3_cp_cost
 			}
 		}
 	}
 
 
-	air_air_superiority_1 = { # Air Superiority mission efficiency increased by 4%
+	air_air_superiority_1 = {
 		sprite = 1
-		air_air_superiority_attack_factor = 0.02
-		air_air_superiority_defence_factor = 0.02
-		air_air_superiority_agility_factor = 0.02
+		air_superiority_efficiency = 0.05
 		#experience_gain_air = @experience_gain_low
 
-		command_cap = @tier1
+		command_cap_increase = @tier1_cp_cap_increase
+		command_power = @tier1_cp_cost
 
 		ai_will_do = {
-			factor = 1
+			factor = @army_command_factor_1
 			modifier = {
 				factor = 0
-				command_power < @tier1
+				command_power < @tier1_cp_cost
 			}
 		}
 	}
 
-	air_air_superiority_2 = { # Air Superiority mission efficiency increased by 8%
+	air_air_superiority_2 = {
 		sprite = 1
-		air_air_superiority_attack_factor = 0.03
-		air_air_superiority_defence_factor = 0.03
-		air_air_superiority_agility_factor = 0.03
+		air_superiority_efficiency = 0.1
 		#experience_gain_air = @experience_gain_medium
 
-		command_cap = @tier2
+		command_cap_increase = @tier2_cp_cap_increase
+		command_power = @tier2_cp_cost
 
 		ai_will_do = {
-			factor = 2
+			factor = @army_command_factor_2
 			modifier = {
 				factor = 0
-				command_power < @tier2
+				command_power < @tier2_cp_cost
 			}
 		}
 	}
 
-	air_air_superiority_3 = { # Air Superiority mission efficiency increased by 12%
+	air_air_superiority_3 = {
 		sprite = 1
-		air_air_superiority_attack_factor = 0.05
-		air_air_superiority_defence_factor = 0.05
-		air_air_superiority_agility_factor = 0.05
+		air_superiority_efficiency = 0.15
 		#experience_gain_air = @experience_gain_high
 
-		command_cap = @tier3
+		command_cap_increase = @tier3_cp_cap_increase
+		command_power = @tier3_cp_cost
 
 		ai_will_do = {
-			factor = 3
+			factor = @army_command_factor_3
 			modifier = {
 				factor = 0
-				command_power < @tier3
+				command_power < @tier3_cp_cost
 			}
 		}
 	}
 
 
-	air_close_air_support_1 = { # Close Air Support mission efficiency increased by 4%
+	air_close_air_support_1 = {
 		sprite = 1
-		air_close_air_support_attack_factor = 0.02
-		air_close_air_support_defence_factor = 0.02
-		air_close_air_support_agility_factor = 0.02
-		experience_gain_air = @experience_gain_low
+		air_cas_efficiency = 0.05
+		ground_attack_factor = 0.03
+		#experience_gain_air = @experience_gain_low
 
-		command_cap = @tier1
+		command_cap_increase = @tier1_cp_cap_increase
+		command_power = @tier1_cp_cost
 
 		ai_will_do = {
-			factor = 1
+			factor = @army_command_factor_1
 			modifier = {
 				factor = 0
-				command_power < @tier1
+				command_power < @tier1_cp_cost
 			}
 		}
 	}
 
-	air_close_air_support_2 = { # Close Air Support mission efficiency increased by 8%
+	air_close_air_support_2 = {
 		sprite = 1
-		air_close_air_support_attack_factor = 0.03
-		air_close_air_support_defence_factor = 0.03
-		air_close_air_support_agility_factor = 0.03
-		experience_gain_air = @experience_gain_medium
+		air_cas_efficiency = 0.1
+		ground_attack_factor = 0.05
+		#experience_gain_air = @experience_gain_medium
 
-		command_cap = @tier2
+		command_cap_increase = @tier2_cp_cap_increase
+		command_power = @tier2_cp_cost
 
 		ai_will_do = {
-			factor = 2
+			factor = @army_command_factor_2
 			modifier = {
 				factor = 0
-				command_power < @tier2
+				command_power < @tier2_cp_cost
 			}
 		}
 	}
 
-	air_close_air_support_3 = { # Close Air Support mission efficiency increased by 12%
+	air_close_air_support_3 = {
 		sprite = 1
-		air_close_air_support_attack_factor = 0.05
-		air_close_air_support_defence_factor = 0.05
-		air_close_air_support_agility_factor = 0.05
-		experience_gain_air = @experience_gain_high
+		air_cas_efficiency = 0.15
+		ground_attack_factor = 0.08
+		#experience_gain_air = @experience_gain_high
 
-		command_cap = @tier3
+		command_cap_increase = @tier3_cp_cap_increase
+		command_power = @tier3_cp_cost
 
 		ai_will_do = {
-			factor = 3
+			factor = @army_command_factor_3
 			modifier = {
 				factor = 0
-				command_power < @tier3
+				command_power < @tier3_cp_cost
 			}
 		}
 	}
 
 
-	air_strategic_bombing_1 = { # Strategic Bombing mission efficiency increased by 4%
+	air_strategic_bombing_1 = {
 		sprite = 2
-		air_strategic_bomber_attack_factor = 0.01
 		air_strategic_bomber_defence_factor = 0.01
-		air_strategic_bomber_agility_factor = 0.01
 		air_strategic_bomber_bombing_factor = 0.03
 		#experience_gain_air = @experience_gain_low
 
-		command_cap = @tier1
+		command_cap_increase = @tier1_cp_cap_increase
+		command_power = @tier1_cp_cost
 
 		ai_will_do = {
-			factor = 1
+			factor = @army_command_factor_1
 			modifier = {
 				factor = 0
-				command_power < @tier1
+				command_power < @tier1_cp_cost
 			}
 		}
 	}
 
-	air_strategic_bombing_2 = { # Strategic Bombing mission efficiency increased by 8%
+	air_strategic_bombing_2 = {
 		sprite = 2
-		air_strategic_bomber_attack_factor = 0.02
 		air_strategic_bomber_defence_factor = 0.02
-		air_strategic_bomber_agility_factor = 0.02
 		air_strategic_bomber_bombing_factor = 0.05
 		#experience_gain_air = @experience_gain_medium
 
-		command_cap = @tier2
+		command_cap_increase = @tier2_cp_cap_increase
+		command_power = @tier2_cp_cost
 
 		ai_will_do = {
-			factor = 2
+			factor = @army_command_factor_2
 			modifier = {
 				factor = 0
-				command_power < @tier2
+				command_power < @tier2_cp_cost
 			}
 		}
 	}
 
-	air_strategic_bombing_3 = { # Strategic Bombing mission efficiency increased by 12%
+	air_strategic_bombing_3 = {
 		sprite = 2
-		air_strategic_bomber_attack_factor = 0.03
 		air_strategic_bomber_defence_factor = 0.03
-		air_strategic_bomber_agility_factor = 0.03
 		air_strategic_bomber_bombing_factor = 0.09
 		#experience_gain_air = @experience_gain_high
 
-		command_cap = @tier3
+		command_cap_increase = @tier3_cp_cap_increase
+		command_power = @tier3_cp_cost
 
 		ai_will_do = {
-			factor = 3
+			factor = @army_command_factor_3
 			modifier = {
 				factor = 0
-				command_power < @tier3
+				command_power < @tier3_cp_cost
 			}
 		}
 	}
 
-	# Removed?
-	air_tactical_bombing_1 = { # Tactical Bombing mission efficiency increased
-		sprite = 2
-		air_cas_present_factor = 0.1
+
+	air_airborne_1 = {
+		sprite = 1
+		paradrop_organization_factor = 1.20
+		paratrooper_aa_defense = 0.1
 		#experience_gain_air = @experience_gain_low
 
-		command_cap = @tier1
+		command_cap_increase = @tier1_cp_cap_increase
+		command_power = @tier1_cp_cost
 
 		ai_will_do = {
-			factor = 1
+			factor = @army_command_factor_1
 			modifier = {
 				factor = 0
-				command_power < @tier1
+				command_power < @tier1_cp_cost
 			}
 		}
 	}
 
-	air_tactical_bombing_2 = { # Tactical Bombing mission efficiency increased
-		sprite = 2
-		air_cas_present_factor = 0.15
+	air_airborne_2 = {
+		sprite = 1
+		paradrop_organization_factor = 1.80
+		paratrooper_aa_defense = 0.15
 		#experience_gain_air = @experience_gain_medium
 
-		command_cap = @tier2
+		command_cap_increase = @tier2_cp_cap_increase
+		command_power = @tier2_cp_cost
 
 		ai_will_do = {
-			factor = 2
+			factor = @army_command_factor_2
 			modifier = {
 				factor = 0
-				command_power < @tier2
+				command_power < @tier2_cp_cost
 			}
 		}
 	}
 
-	air_tactical_bombing_3 = { # Tactical Bombing mission efficiency increased
-		sprite = 2
-		air_cas_present_factor = 0.2
+	air_airborne_3 = {
+		sprite = 1
+		paradrop_organization_factor = 2.40
+		paratrooper_aa_defense = 0.25
 		#experience_gain_air = @experience_gain_high
 
-		command_cap = @tier3
+		command_cap_increase = @tier3_cp_cap_increase
+		command_power = @tier3_cp_cost
 
 		ai_will_do = {
-			factor = 3
+			factor = @army_command_factor_3
 			modifier = {
 				factor = 0
-				command_power < @tier3
-			}
-		}
-	}
-
-
-	air_airborne_1 = { # Paratrooper drop efficiency increased by 4%
-		sprite = 1
-		air_paradrop_attack_factor = 0.01
-		air_paradrop_defence_factor = 0.03
-		air_paradrop_agility_factor = 0.03
-		#experience_gain_air = @experience_gain_low
-
-		command_cap = @tier1
-
-		ai_will_do = {
-			factor = 1
-			modifier = {
-				factor = 0
-				command_power < @tier1
-			}
-		}
-	}
-
-	air_airborne_2 = { # Paratrooper drop efficiency increased by 8%
-		sprite = 1
-		air_paradrop_attack_factor = 0.02
-		air_paradrop_defence_factor = 0.05
-		air_paradrop_agility_factor = 0.05
-		#experience_gain_air = @experience_gain_medium
-
-		command_cap = @tier2
-
-		ai_will_do = {
-			factor = 2
-			modifier = {
-				factor = 0
-				command_power < @tier2
-			}
-		}
-	}
-
-	air_airborne_3 = { # Paratrooper drop efficiency increased by 12%
-		sprite = 1
-		air_paradrop_attack_factor = 0.03
-		air_paradrop_defence_factor = 0.07
-		air_paradrop_agility_factor = 0.07
-		#experience_gain_air = @experience_gain_high
-
-		command_cap = @tier3
-
-		ai_will_do = {
-			factor = 3
-			modifier = {
-				factor = 0
-				command_power < @tier3
+				command_power < @tier3_cp_cost
 			}
 		}
 	}
@@ -6249,13 +6285,14 @@ leader_traits = {
 		air_training_xp_gain_factor = 0.05
 		#experience_gain_air = @experience_gain_low
 
-		command_cap = @tier1
+		command_cap_increase = @tier1_cp_cap_increase
+		command_power = @tier1_cp_cost
 
 		ai_will_do = {
-			factor = 1
+			factor = @army_command_factor_1
 			modifier = {
 				factor = 0
-				command_power < @tier1
+				command_power < @tier1_cp_cost
 			}
 		}
 	}
@@ -6264,13 +6301,14 @@ leader_traits = {
 		air_training_xp_gain_factor = 0.1
 		#experience_gain_air = @experience_gain_medium
 
-		command_cap = @tier2
+		command_cap_increase = @tier2_cp_cap_increase
+		command_power = @tier2_cp_cost
 
 		ai_will_do = {
-			factor = 2
+			factor = @army_command_factor_2
 			modifier = {
 				factor = 0
-				command_power < @tier2
+				command_power < @tier2_cp_cost
 			}
 		}
 	}
@@ -6279,13 +6317,14 @@ leader_traits = {
 		air_training_xp_gain_factor = 0.15
 		#experience_gain_air = @experience_gain_high
 
-		command_cap = @tier3
+		command_cap_increase = @tier3_cp_cap_increase
+		command_power = @tier3_cp_cost
 
 		ai_will_do = {
-			factor = 3
+			factor = @army_command_factor_3
 			modifier = {
 				factor = 0
-				command_power < @tier3
+				command_power < @tier3_cp_cost
 			}
 		}
 	}
