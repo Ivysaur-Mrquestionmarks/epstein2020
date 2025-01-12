@@ -1,3 +1,46 @@
+add_namespace = npaBeginnningFocusChoice
+country_event = { 
+	id = npaBeginnningFocusChoice.1
+	title = npaBeginnningFocusChoice.1.t
+	desc = npaBeginnningFocusChoice.1.d
+	picture = event_NPA_Pence_Talks
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #Reach Out
+		name = npaBeginnningFocusChoice.1.a
+		complete_national_focus = NPA_forge_new_alliances
+		ai_chance = {
+			base = 50
+			modifier = {
+				factor = 0 
+				OR = {
+					has_game_rule = {
+						rule = NPA_do_they_reach_out
+						option = NPA_LONE_WOLF_PATH
+					}
+				}
+			}
+        }
+		
+	}
+	option = { #Lone Wolf
+		name = npaBeginnningFocusChoice.1.b
+		complete_national_focus = NPA_path_of_the_lone_wolf
+		ai_chance = {
+			base = 50
+			modifier = {
+				factor = 0 
+				OR = {
+					has_game_rule = {
+						rule = NPA_do_they_reach_out
+						option = NPA_REACH_OUT_TO_DEMS
+					}
+				}
+			}
+        }
+	}
+}
+
 add_namespace = npa
 
 
@@ -18,6 +61,9 @@ country_event = { #FRA POV - PENCE WANTS TO JOIN
 		FRA = { add_to_faction = NPA }
 		hidden_effect = {
 			NPA = { country_event = { id = npa.2 } }
+		}
+		ai_chance = {
+			base = 100
 		}
 	}
 	option = {
@@ -314,6 +360,58 @@ news_event = { #good old usa
 	
 	option = {
 		name = npa.13.a
+		if = {
+			limit = {NOT = {is_ai = yes}}
+			set_country_flag = {
+    				flag = super_event
+    				value = 36
+			}
+			if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
+				sound_effect = "good_ending_unification"
+				play_song = "one_minute_of_silence"
+			}
+		}
+	}
+
+}
+news_event = { #pax americana
+	id = npa.133
+	title = npa.133.t
+	desc = npa.133.d
+	#picture =
+	is_triggered_only = yes
+	#fire_only_once = yes
+	
+	option = {
+		trigger = { ROOT = { original_tag = NPA } }
+		name = npa.133.a
+		if = {
+			limit = {NOT = {is_ai = yes}}
+			set_country_flag = {
+    				flag = super_event
+    				value = 40
+			}
+			if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
+				sound_effect = "roman_pence_npa"
+				play_song = "one_minute_of_silence"
+			}
+		}
+	}
+	
+	option = {
+		trigger = { ROOT = { NOT = { original_tag = NPA } } }
+		name = npa.133.b
+		if = {
+			limit = {NOT = {is_ai = yes}}
+			set_country_flag = {
+    				flag = super_event
+    				value = 40
+			}
+			if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
+				sound_effect = "roman_pence_npa"
+				play_song = "one_minute_of_silence"
+			}
+		}
 	}
 
 }
@@ -683,9 +781,9 @@ country_event = {
 		add_stability = -0.3
 		
 	}
-	option = { #Rumuours of discontent
-		name = npa.29.b
-	}
+	#option = { #Rumuours of discontent - future secret garfield path for those of you who like to go through game files :D
+	#	name = npa.29.b
+	#}
 }
 
 
@@ -770,6 +868,17 @@ news_event = { #safe america - ADD SUPER EVENT
 	
 	option = {
 		name = npa.33.a
+		if = {
+			limit = {NOT = {is_ai = yes}}
+			set_country_flag = {
+    				flag = super_event
+    				value = 39
+			}
+			if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
+				sound_effect = "american_mossad_unification"
+				play_song = "one_minute_of_silence"
+			}
+		}
 	}
 }
 
@@ -825,6 +934,17 @@ news_event = { #traditionalist reunification - add super event later
 	#fire_only_once = yes
 	option = {
 		name = npa.203.a
+		if = {
+			limit = {NOT = {is_ai = yes}}
+			set_country_flag = {
+    				flag = super_event
+    				value = 37
+			}
+			if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
+				sound_effect = "trad_con_unification"
+				play_song = "one_minute_of_silence"
+			}
+		}
 	}
 }
 

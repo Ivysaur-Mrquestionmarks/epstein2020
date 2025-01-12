@@ -705,7 +705,7 @@ focus_tree = {
 		y = 0
 		ai_will_do = { factor = 4 }
 		available = {
-			NOT = { is_puppet_of = USA }
+			always = no
 		}
 		completion_reward = {
 			add_political_power = 300
@@ -782,6 +782,18 @@ focus_tree = {
 			}
 			is_puppet = no
 		}
+		ai_will_do = {
+            base = 50 
+            modifier = {
+				factor = 0 
+				OR = {
+					has_game_rule = {
+						rule = NPA_the_lone_wolf_path_choices
+						option = NPA_GO_WITH_PENCE_GOP
+					}
+				}
+			}
+        }
 		prerequisite = {  focus = NPA_path_of_the_lone_wolf  }
 		mutually_exclusive = { focus = NPA_old_republican_party_reshuffle  }
 		completion_reward = {
@@ -1346,9 +1358,10 @@ focus_tree = {
 		}
 		completion_reward = {
 			set_cosmetic_tag = IDA_Pax_Americana
+			news_event = npa.133
 			every_state = { add_core_of = NPA }
 			every_country = {
-				LIMIT = { NOT = NPA }
+				LIMIT = { NOT = { original_tag = NPA } }
 				NPA = {
 					create_wargoal = {
 						target = PREV
@@ -2094,6 +2107,7 @@ focus_tree = {
 		}
 		completion_reward = {
 			news_event = npa.33
+			core_america = yes
 		}
 	}
 
@@ -2120,6 +2134,18 @@ focus_tree = {
 		}
 		x = -10
 		y = 1
+		ai_will_do = {
+            base = 50 
+            modifier = {
+				factor = 0 
+				OR = {
+					has_game_rule = {
+						rule = NPA_the_lone_wolf_path_choices
+						option = NPA_GO_WITH_PENCE_AUTOCRATIC
+					}
+				}
+			}
+        }
 		relative_position_id = NPA_path_of_the_lone_wolf
 		prerequisite = { focus = NPA_path_of_the_lone_wolf  }
 		mutually_exclusive = { focus = NPA_necessary_measures  }
@@ -3262,6 +3288,7 @@ focus_tree = {
 		}
 		completion_reward = {
 			news_event = npa.203
+			core_america = yes
 		}
 	}
 	
@@ -3437,6 +3464,9 @@ focus_tree = {
 		icon = GFX_focus_NPA_Forge_New_Alliances
 		x = 11
 		y = 0
+		available = {
+			always = no
+		}
 		mutually_exclusive = { focus = NPA_path_of_the_lone_wolf  }
 		completion_reward = {
 			add_stability = 0.15
@@ -3994,6 +4024,7 @@ focus_tree = {
 		}
 		completion_reward = {
 			news_event = npa.13 #add super event later
+			core_america = yes
 		}
 	}
 }
