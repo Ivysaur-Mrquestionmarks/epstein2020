@@ -12,6 +12,8 @@ focus_tree = {
 	}
 	
 	default = no
+	
+	## CW TREE
 	focus = {
 		id = VIR_Restore_ties_with_Biden
 		icon = GFX_goal_Biden_Handshake
@@ -168,30 +170,18 @@ focus_tree = {
 			add_stability = 0.05
 			add_war_support = 0.05
 			set_country_flag = VIR_Virginia_Civil_war_Ended
+			hidden_effect = {
+				add_ideas = {
+					VIR_post_cw_economic_bad
+					VIR_post_cw_political_instability
+				}
+			}
 		}
 	}
-	focus = {
-		id = VIR_The_Donkey_Holds_Firm
-		icon = GFX_goal_Make_Peace
-		cost = 5.00
-		x = 15
-		y = 0
-		prerequisite = {
-			
-		}
-		mutually_exclusive = {
-			focus = VIR_The_Revolution_has_Begun
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		available = {
-			has_completed_focus = VIR_the_End_of_the_Revolt
-		}
-		completion_reward = {
-			
-		}
-	}
+	
+	
+	
+	# POST CW
 	
 	focus = {
 		id = VIR_The_Revolution_has_Begun
@@ -216,6 +206,8 @@ focus_tree = {
 		}
 	}
 	
+	
+	## ANTIFA
 	focus = {
 		id = VIR_Empower_the_League
 		icon = GFX_goal_Make_Peace
@@ -237,6 +229,8 @@ focus_tree = {
 		}
 	}
 	
+	
+	## BLM
 	focus = {
 		id = VIR_Remember_Floyd
 		icon = GFX_goal_Make_Peace
@@ -258,6 +252,34 @@ focus_tree = {
 		}
 	}
 	
+	
+	## More normal paths
+	focus = {
+		id = VIR_The_Donkey_Holds_Firm
+		icon = GFX_goal_Make_Peace
+		cost = 5.00
+		x = 15
+		y = 0
+		prerequisite = {
+			
+		}
+		mutually_exclusive = {
+			focus = VIR_The_Revolution_has_Begun
+		}
+		ai_will_do = { 
+			factor = 300
+		}
+		available = {
+			has_completed_focus = VIR_the_End_of_the_Revolt
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = VIR_post_cw_political_instability
+				add_idea = VIR_post_cw_political_instability2
+			}
+			
+		}
+	}
 	focus = {
 		id = VIR_The_Richmond_Accords
 		icon = GFX_goal_generic_army_bill
@@ -267,16 +289,32 @@ focus_tree = {
 		prerequisite = {
 			focus = VIR_The_Donkey_Holds_Firm
 		}
-		ai_will_do = { 
-			factor = 300
+		select_effect = {
+			country_event = {
+				id = virginia_democrats.1
+				days = 5
+			}
 		}
 		available = {
 			
 		}
 		completion_reward = {
-			
+			if = {
+				limit = { has_country_flag = VIR_DEM_3_letter_agency }
+				complete_national_focus = VIR_The_Military_Steps_in
+			}
+			if = {
+				limit = { has_country_flag = VIR_DEM_status_quo }
+				complete_national_focus = VIR_Hunter_Remains
+			}
+			if = {
+				limit = { has_country_flag = VIR_DEM_auth_dems }
+				complete_national_focus = VIR_A_Republic_within_a_Republic
+			}
 		}
 	}
+	
+	### Hunter
 	focus = {
 		id = VIR_Hunter_Remains
 		icon = GFX_goal_generic_army_bill
@@ -312,9 +350,6 @@ focus_tree = {
 		prerequisite = {
 			focus = VIR_Hunter_Remains
 		}
-		ai_will_do = { 
-			factor = 300
-		}
 		mutually_exclusive = {
 			focus = VIR_Boster_the_Drug_Trade
 		}
@@ -322,7 +357,13 @@ focus_tree = {
 			
 		}
 		completion_reward = {
-			
+			hidden_effect = {
+				set_country_flag = VIR_DEMS_hunter_in_rehab
+				country_event = {
+					id = virginia_democrats.2
+					days = 90
+				}
+			}
 		}
 	}
 	focus = {
@@ -335,11 +376,8 @@ focus_tree = {
 		prerequisite = {
 			focus = VIR_Like_father_like_Son
 		}
-		ai_will_do = { 
-			factor = 300
-		}
 		available = {
-			
+			NOT = { has_country_flag = VIR_DEMS_hunter_in_rehab }
 		}
 		completion_reward = {
 			
@@ -354,9 +392,6 @@ focus_tree = {
 		relative_position_id = VIR_Reassure_Virginian_Conservatives
 		prerequisite = {
 			focus = VIR_Reassure_Virginian_Conservatives
-		}
-		ai_will_do = { 
-			factor = 300
 		}
 		available = {
 			
@@ -375,11 +410,8 @@ focus_tree = {
 		prerequisite = {
 			focus = VIR_Like_father_like_Son
 		}
-		ai_will_do = { 
-			factor = 300
-		}
 		available = {
-			
+			NOT = { has_country_flag = VIR_DEMS_hunter_in_rehab }
 		}
 		completion_reward = {
 			
@@ -779,6 +811,8 @@ focus_tree = {
 			
 		}
 	}
+	
+	
 	
 	
 	focus = {
