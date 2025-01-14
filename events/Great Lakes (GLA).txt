@@ -1,6 +1,5 @@
 add_namespace = greatlake
 
-
 #Great Lakes Election
 country_event = {
 	id = greatlake.1
@@ -19,6 +18,42 @@ country_event = {
 		name = greatlake.1.a
 		ai_chance = {
 			factor = 100
+		}
+		set_variable = {
+			var = GLA_opps
+			value = 40
+			tooltip = GLA_the_chances_of_no_victory
+		}
+		custom_effect_tooltip = GLA_decisions_are_unlocked
+		hidden_effect = {
+			set_country_flag = GLA_mama_jo_side
+			unlock_decision_tooltip = GLA_anti_opp_propaganda
+			unlock_decision_tooltip = GLA_mama_jo_rally
+			unlock_decision_tooltip = GLA_connect_with_the_voters
+		}
+		hidden_effect = {
+			country_event = {
+				id = greatlake.18
+				days = 10
+			}
+		}
+	}
+	option = {
+		name = greatlake.1.b
+		ai_chance = {
+			factor = 100
+		}
+		set_variable = {
+			var = GLA_opps
+			value = 40
+			tooltip = GLA_the_chances_of_victory
+		}
+		custom_effect_tooltip = GLA_decisions_are_unlocked
+		hidden_effect = {
+			set_country_flag = GLA_opp_side
+			unlock_decision_tooltip = GLA_anti_jorgensen_propaganda
+			unlock_decision_tooltip = GLA_hold_a_rally
+			unlock_decision_tooltip = GLA_strengthen_the_opps
 		}
 		hidden_effect = {
 			country_event = {
@@ -693,7 +728,7 @@ country_event = {
 		add_political_power = -3
 		hidden_effect = {
 			country_event = {
-				id = greatlake.51
+				id = greatlake.21
 				days = 35
 			}
 		}
@@ -717,21 +752,27 @@ country_event = {
 		ai_chance = {
 			factor = 25
 		}
-		set_variable = {
+		trigger = {
+            check_variable = {
+				var = GLA_opps
+				value = 50
+				compare = less_than
+			}
+		}
+		add_popularity = {
+			ideology = libertarian_right
+			popularity = 0.01
+		}
+		add_to_variable = {
 			var = GLA_opps
-			value = 35
+			value = -5
 			tooltip = GLA_the_chances_of_no_victory
 		}
-		custom_effect_tooltip = GLA_decisions_are_unlocked
 		hidden_effect = {
 			country_event = {
 				id = greatlake.22
 				days = 35
 			}
-			set_country_flag = GLA_mama_jo_side
-			unlock_decision_tooltip = GLA_anti_opp_propaganda
-			unlock_decision_tooltip = GLA_mama_jo_rally
-			unlock_decision_tooltip = GLA_connect_with_the_voters
 		}
 	}
 	option = {
@@ -739,21 +780,27 @@ country_event = {
 		ai_chance = {
 			factor = 25
 		}
-		set_variable = {
+		trigger = {
+            check_variable = {
+				var = GLA_opps
+				value = 50
+				compare = greater_than_or_equals
+			}
+		}
+		add_popularity = {
+			ideology = libertarian_right
+			popularity = 0.01
+		}
+		add_to_variable = {
 			var = GLA_opps
-			value = 40
+			value = 5
 			tooltip = GLA_the_chances_of_victory
 		}
-		custom_effect_tooltip = GLA_decisions_are_unlocked
 		hidden_effect = {
 			country_event = {
 				id = greatlake.22
 				days = 35
 			}
-			set_country_flag = GLA_opp_side
-			unlock_decision_tooltip = GLA_anti_jorgensen_propaganda
-			unlock_decision_tooltip = GLA_hold_a_rally
-			unlock_decision_tooltip = GLA_strengthen_the_opps
 		}
 	}
 }
@@ -802,12 +849,10 @@ country_event = {
 		ai_chance = {
 			factor = 25
 		}
-		add_political_power = -10
-		hidden_effect = {
-			country_event = {
-				id = greatlake.24
-				days = 65
-			}
+		add_political_power = 15
+		country_event = {
+			id = greatlake.24
+			days = 45
 		}
 	}
 }
@@ -881,7 +926,6 @@ country_event = {
 			factor = 25
 		}
 		trigger = {
-		    has_country_flag = john_mcafee_picked
 		    check_variable = {
 			    var = GLA_opps
 			    value = 50
@@ -911,7 +955,6 @@ country_event = {
 			factor = 25
 		}
 		trigger = {
-		    has_country_flag = gary_johnson_picked
 			check_variable = {
 			    var = GLA_opps
 			    value = 50
@@ -940,7 +983,6 @@ country_event = {
 			factor = 25
 		}
 		trigger = {
-		    has_country_flag = ron_paul_picked
 			check_variable = {
 			    var = GLA_opps
 			    value = 50
@@ -1341,9 +1383,6 @@ country_event = {
 	title = greatlake.35.t
 	desc = greatlake.35.d
 	#picture = er
-	trigger = {
-		tag = GLA
-	}
 	is_triggered_only = yes
 	mean_time_to_happen = { days = 0 }
 	fire_only_once = yes
@@ -1870,60 +1909,60 @@ news_event = {
 }
 
 #The Libertarian Opps Primary Election
-country_event = {
-	id = greatlake.51
-	title = greatlake.51.t
-	desc = greatlake.51.d
-	#picture = er
-	is_triggered_only = yes
-	mean_time_to_happen = { days = 35 }
-	fire_only_once = yes
-	immediate = {
-	
-	}
-	#Ron Paul
-	option = {
-		name = greatlake.51.a
-		ai_chance = {
-			factor = 25
-		}
-		hidden_effect = {
-			set_country_flag = ron_paul_picked
-			country_event = {
-				id = greatlake.21
-				days = 8
-			}
-		}
-	}
-	#Gary Johnson
-	option = {
-		name = greatlake.51.b
-		ai_chance = {
-			factor = 25
-		}
-		hidden_effect = {
-			set_country_flag = gary_johnson_picked
-			country_event = {
-				id = greatlake.21
-				days = 8
-			}
-		}
-	}
-	#John McAfee
-	option = {
-		name = greatlake.51.c
-		ai_chance = {
-			factor = 25
-		}
-		hidden_effect = {
-			set_country_flag = john_mcafee_picked
-			country_event = {
-				id = greatlake.21
-				days = 8
-			}
-		}
-	}
-}
+#country_event = {
+#	id = greatlake.51
+#	title = greatlake.51.t
+#	desc = greatlake.51.d
+#	#picture = er
+#	is_triggered_only = yes
+#	mean_time_to_happen = { days = 35 }
+#	fire_only_once = yes
+#	immediate = {
+#	
+#	}
+#	#Ron Paul
+#	option = {
+#		name = greatlake.51.a
+#		ai_chance = {
+#			factor = 25
+#		}
+#		hidden_effect = {
+#			set_country_flag = ron_paul_picked
+#			country_event = {
+#				id = greatlake.21
+#				days = 8
+#			}
+#		}
+#	}
+#	#Gary Johnson
+#	option = {
+#		name = greatlake.51.b
+#		ai_chance = {
+#			factor = 25
+#		}
+#		hidden_effect = {
+#			set_country_flag = gary_johnson_picked
+#			country_event = {
+#				id = greatlake.21
+#				days = 8
+#			}
+#		}
+#	}
+#	#John McAfee
+#	option = {
+#		name = greatlake.51.c
+#		ai_chance = {
+#			factor = 25
+#		}
+#		hidden_effect = {
+#			set_country_flag = john_mcafee_picked
+#			country_event = {
+#				id = greatlake.21
+#				days = 8
+#			}
+#		}
+#	}
+#}
 
 #Yarvin's Coronation
 country_event = {
@@ -1971,7 +2010,6 @@ country_event = {
 		add_political_power = 10
 		unlock_decision_category_tooltip = GLA_libertarian_political_decisions
 		custom_effect_tooltip = GLA_decisions_are_unlocked
-		add_ideas = GLA_libertarian_party_divided
 		hidden_effect = {
 			set_variable = {
 				var = GLA_moderate_libertarians
@@ -2017,7 +2055,6 @@ country_event = {
 		add_political_power = 10
 		unlock_decision_category_tooltip = GLA_libertarian_political_decisions
 		custom_effect_tooltip = GLA_decisions_are_unlocked
-		add_ideas = GLA_libertarian_party_divided
 		hidden_effect = {
 			set_variable = {
 				var = GLA_moderate_libertarians
@@ -2063,7 +2100,6 @@ country_event = {
 		add_political_power = 10
 		unlock_decision_category_tooltip = GLA_libertarian_political_decisions
 		custom_effect_tooltip = GLA_decisions_are_unlocked
-		add_ideas = GLA_libertarian_party_divided
 		hidden_effect = {
 			set_variable = {
 				var = GLA_moderate_libertarians
@@ -2108,7 +2144,6 @@ country_event = {
 		}
 		add_political_power = 10
 		unlock_decision_category_tooltip = GLA_libertarian_political_decisions
-		add_ideas = GLA_libertarian_party_divided
 		hidden_effect = {
 			set_variable = {
 				var = GLA_moderate_libertarians
