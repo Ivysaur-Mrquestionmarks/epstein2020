@@ -3,7 +3,7 @@ focus_tree = {
 	continuous_focus_position = { x = 0 y = 2000 } 
 	country = {
 		factor = 0
-		# Screw the former dev, this tree is a mess
+		# Screw the former dev, this tree is a mess -Turklander
 		modifier = {
 			add = 10
 			tag = NPA
@@ -163,12 +163,11 @@ focus_tree = {
 		available = {
 			NOT = { has_war_with = USA }
 			controls_state = 198
+			controls_state = 197
+			controls_state = 209
 		}
 		prerequisite = { 
 			focus = NPA_focus_on_illinois 
-			controls_state = 198
-			controls_state = 197
-			controls_state = 209
 		}
 		completion_reward = {
 			add_research_slot = 1
@@ -201,6 +200,12 @@ focus_tree = {
 		relative_position_id = NPA_focus_on_missouri
 		available = {
 			NOT = { has_war_with = USA }			
+			OR = { 
+				has_completed_focus = NPA_christian_first 
+				has_completed_focus = NPA_retire_in_glory 
+				has_completed_focus = NPA_old_republican_party_reshuffle 
+				has_completed_focus = NPA_forge_new_alliances
+			}			
 			controls_state = 238
 		}
 		prerequisite = { 
@@ -265,9 +270,9 @@ focus_tree = {
 		id = NPA_strike_the_right_balance
 		cost = 5
 		icon = GFX_focus_NPA_Strike_The_Right_Balance_2
-		x = -2
-		y = 1
-		relative_position_id = NPA_back_to_paper_books
+		x = 0
+		y = 2
+		relative_position_id = NPA_focus_on_kansas
 		available = {
 			NOT = { has_war_with = USA }
 		}
@@ -765,7 +770,7 @@ focus_tree = {
 		y = 1
 		relative_position_id = NPA_path_of_the_lone_wolf
 		available = {
-			NOT = { has_war_with = USA }
+			#NOT = { has_war_with = USA }
 			OR = {
 				has_country_leader = {
 					name = "Ben Shapiro"
@@ -781,6 +786,7 @@ focus_tree = {
 				}
 			}
 			is_puppet = no
+			has_country_flag = NPA_npw_over_flag
 		}
 		ai_will_do = {
             base = 50 
@@ -800,55 +806,20 @@ focus_tree = {
 			custom_effect_tooltip = NPA_NM_tt
 			
 			hidden_effect = {
-			set_cosmetic_tag = NPA_fascist
-				if = {
-					limit = { has_country_leader = { name = "Mike Pence" ruling_only = yes } }
-					set_politics = {
-						ruling_party = autocratic
-						elections_allowed = no
-						last_election = "1935.12.17"
-						election_frequency = 48
-					}
-					set_popularities = {
-						democrat = 0
-						republican = 5
-						libertarian_left = 0
-						libertarian_right  = 5
-						authoritarian_left = 0
-						autocratic = 90
-					}
+				set_cosmetic_tag = NPA_fascist
+				set_popularities = {
+					democrat = 0
+					republican = 5
+					libertarian_left = 0
+					libertarian_right  = 5
+					authoritarian_left = 0
+					autocratic = 90
 				}
-				if = {
-					limit = { has_country_leader = { name = "Liz Cheney" ruling_only = yes } }
-					set_party_name = { 
-						ideology = autocratic
-						long_name = NPA_Cheney_Party_Long 
-						name = NPA_Cheney_Party 
-					}
-					set_politics = {
-						ruling_party = autocratic
-						elections_allowed = no
-						last_election = "1935.12.17"
-						election_frequency = 48
-					}
-					set_popularities = {
-						democrat = 0
-						republican = 5
-						libertarian_left = 0
-						libertarian_right  = 5
-						authoritarian_left = 0
-						autocratic = 90
-					}
-					create_country_leader = {
-						name = "Liz Cheney"
-						picture = "gfx/leaders/NPA/liz_cheney.dds"
-						expire = "2060.1.1"
-						ideology = fascism
-						female = yes
-						traits = {
-							hawk
-						}
-					}
+				set_politics = {
+					ruling_party = autocratic
+					elections_allowed = no
+					last_election = "2020.1.1"
+					election_frequency = 48
 				}
 				if = {
 					limit = { has_country_leader = { name = "Ben Shapiro" ruling_only = yes } }
@@ -857,59 +828,13 @@ focus_tree = {
 						long_name = NPA_Shapiro_Party_Long 
 						name = NPA_Shapiro_Party 
 					}
-					set_politics = {
-						ruling_party = autocratic
-						elections_allowed = no
-						last_election = "1935.12.17"
-						election_frequency = 48
-					}
-					set_popularities = {
-						democrat = 0
-						republican = 5
-						libertarian_left = 0
-						libertarian_right  = 5
-						authoritarian_left = 0
-						autocratic = 90
-					}
-					create_country_leader = {
-						name = "Ben Shapiro"
-						picture = "gfx/leaders/NPA/shapiro.dds"
-						expire = "2060.1.1"
-						ideology = fascism
-						traits = {
-							political_dancer
-						}
-					}
 				}
 				if = {
 					limit = { has_country_leader = { name = "John Bolton" ruling_only = yes } }
-					set_politics = {
-						ruling_party = autocratic
-						elections_allowed = no
-						last_election = "1935.12.17"
-						election_frequency = 48
-					}
 					set_party_name = { 
 						ideology = autocratic
 						long_name = NPA_Bolton_Party_Long 
 						name = NPA_Bolton_Party 
-					}
-					set_popularities = {
-						democrat = 0
-						republican = 5
-						libertarian_left = 0
-						libertarian_right  = 5
-						authoritarian_left = 0
-						autocratic = 90
-					}
-					create_country_leader = {
-						name = "John Bolton"
-						picture = "gfx/leaders/NPA/bolton.dds"
-						expire = "2060.1.1"
-						ideology = fascism
-						traits = {
-							hawk
-						}
 					}
 				}
 			}
@@ -1032,6 +957,37 @@ focus_tree = {
 		}
 		completion_reward = {
 			add_ideas = NPA_new_roman_senate
+		}
+	}
+	focus = {
+		id = NPA_indianapolis_rebuilt
+		cost = 5
+		icon = GFX_focus_NPA_A_More_Central_Capital
+		x = 1
+		y = 1
+		relative_position_id = NPA_restore_the_senate
+		prerequisite = { 
+			focus = NPA_restore_the_senate  
+		}
+		prerequisite = { 
+			focus = NPA_new_ranks_and_hierarchy  
+		}
+		available = { controls_state = 224 }
+		completion_reward = {
+			207 = {
+				set_building_level = {
+					type = infrastructure
+					level = 10
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 4
+				increase_state_category = yes
+				hidden_effect = { increase_state_category = yes }
+			}
+			add_victory_points = {
+				province = 9087
+				value = 30
+			}
 		}
 	}
 	focus = {
@@ -2120,7 +2076,7 @@ focus_tree = {
 		cost = 5
 		icon = GFX_focus_NPA_Old_Republican_Party_Reshuffle
 		available = { 
-			NOT = { has_war_with = USA }
+			#NOT = { has_war_with = USA }
 			OR = {
 				has_country_leader = {
 					name = "Mike Pence"
@@ -2131,6 +2087,7 @@ focus_tree = {
 					ruling_only = yes
 				}
 			}
+			has_country_flag = NPA_npw_over_flag
 		}
 		x = -10
 		y = 1
@@ -2238,7 +2195,7 @@ focus_tree = {
 				add_state_core = 535
 				transfer_state = 536
 				add_state_core = 536
-				set_capital = 536
+				set_capital = { state = 536 }
 				declare_war_on = {
 					target = CSA
 					type = annex_everything
