@@ -157,6 +157,14 @@ focus_tree = {
 		completion_reward = {
 			add_stability = 0.05
 			add_war_support = 0.05
+			if = {
+				limit = { has_idea = VIR_Virginias_Bloody_Soil }
+				remove_ideas = VIR_Virginias_Bloody_Soil
+			}
+			if = {
+				limit = { has_idea = VIR_Crossroad_of_America }
+				remove_ideas = VIR_Crossroad_of_America
+			}
 			set_country_flag = VIR_Virginia_Civil_war_Ended
 			hidden_effect = {
 				add_ideas = {
@@ -1038,6 +1046,219 @@ focus_tree = {
 						}
 					}
 			}
+		}
+	}
+	focus = {
+		id = VIR_end_the_second_confederacy
+		icon = GFX_goal_focus_end_the_second_confederacy
+		x = 1
+		y = 1
+		relative_position_id = VIR_march_into_kentucky
+		cost = 5
+		prerequisite = {
+			focus = VIR_march_into_kentucky
+		}
+		prerequisite = {
+			focus = VIR_request_the_eastern_shore
+		}
+		will_lead_to_war_with = CSA
+		will_lead_to_war_with = CSB
+		will_lead_to_war_with = KKK
+		will_lead_to_war_with = AFR
+		will_lead_to_war_with = LGB
+		will_lead_to_war_with = APA
+		will_lead_to_war_with = ARK
+		will_lead_to_war_with = ZIO
+		available = {
+		}
+		completion_reward = {
+			set_cosmetic_tag = TEX_CSA_FRA
+			create_wargoal = {
+			    target = CSA
+			    type = annex_everything
+			}
+			if = { 
+				limit = {
+					country_exists = KKK
+				}
+				declare_war_on = {
+			   	  target = KKK
+				  type = annex_everything
+				}
+			}
+			if = { 
+				limit = {
+					country_exists = AFR
+				}
+				declare_war_on = {
+			   	  target = AFR
+				  type = annex_everything
+				}
+			}
+			if = { 
+				limit = {
+					country_exists = CSB
+				}
+				declare_war_on = {
+			   	  target = CSB
+				  type = annex_everything
+				}
+			}
+			if = { 
+				limit = {
+					country_exists = ZIO
+				}
+				declare_war_on = {
+			   	  target = ZIO
+				  type = annex_everything
+				}
+			}
+			if = { 
+				limit = {
+					country_exists = LGB
+				}
+				declare_war_on = {
+			   	  target = LGB
+				  type = annex_everything
+				}
+			}
+			if = { 
+				limit = {
+					country_exists = ARK
+				}
+				declare_war_on = {
+			   	  target = ARK
+				  type = annex_everything
+				}
+			}
+			if = { 
+				limit = {
+					country_exists = APA
+				}
+				declare_war_on = {
+			   	  target = APA
+				  type = annex_everything
+				}
+			}
+
+		}
+	}
+	focus = {
+		id = VIR_end_the_floridian_feifdom
+		icon = GFX_goal_focus_finish_floridian_autonomy
+		x = -1
+		y = 1
+		relative_position_id = VIR_end_the_second_confederacy
+		cost = 5
+		prerequisite = {
+			focus = VIR_end_the_second_confederacy
+		}
+		will_lead_to_war_with = FLO
+		available = {
+		}
+		completion_reward = {
+				create_wargoal = {
+					target = FLO
+					type = annex_everything
+				}
+				if = { 
+					limit = { country_exists = NSA }
+					create_wargoal = {
+						target = NSA
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = GKJ }
+					create_wargoal = {
+						target = GKJ
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = FLD }
+					create_wargoal = {
+						target = FLD
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = FLA }
+					create_wargoal = {
+						target = FLA
+						type = annex_everything
+					}
+				}
+				if = { 
+					limit = { country_exists = SEM }
+					create_wargoal = {
+						target = SEM
+						type = annex_everything
+					}
+				}
+
+		}
+	}
+	focus = {
+		id = VIR_unite_with_texas
+		icon = GFX_goal_focus_unite_with_virginia
+		x = 1
+		y = 1
+		relative_position_id = VIR_end_the_second_confederacy
+		cost = 5
+		prerequisite = {
+			focus = VIR_end_the_second_confederacy
+		}
+		available = {
+		}
+		completion_reward = {
+			IF = {
+				limit = { TEX = has_government = democrat }
+				TEX = { country_event = texas.46 }
+			}
+			else = {
+				War_on_texas_collapse_tags = yes
+			}
+		}
+	}
+	focus = {
+		id = VIR_the_southern_united_states_of_america
+		icon = GFX_goal_focus_proclaim_the_southern_federal_republic
+		x = -1
+		y = 1
+		relative_position_id = VIR_unite_with_texas
+		cost = 5
+		prerequisite = {
+			focus = VIR_end_the_floridian_feifdom
+		}
+		prerequisite = {
+			focus = VIR_unite_with_texas
+		}
+		available = {
+			NOT = { country_exists = CSA }
+		}
+		completion_reward = {
+			every_state = {
+				limit = { is_core_of = CSA }
+				add_core_of = TEX
+			}
+			every_state = {
+				limit = { is_core_of = FLO }
+				add_core_of = TEX
+			}
+			every_state = {
+				limit = { is_core_of = VIR }
+				add_core_of = TEX
+			}
+			every_state = {
+				limit = { is_core_of = RVR }
+				add_core_of = TEX
+			}
+			every_state = {
+				limit = { is_core_of = OBX }
+				add_core_of = TEX
+			}
+				
 		}
 	}
 	
