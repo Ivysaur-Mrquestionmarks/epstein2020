@@ -2661,7 +2661,29 @@ focus_tree = {
 			focus = OBX_a_general_from_europe
 		}
 		completion_reward = {
-			
+			hidden_effect = {
+				set_country_flag = OBX_NATO_training_Army
+				set_variable = {
+					var = OBX.var_army_improvement
+					value = 0.01
+				}
+				set_variable = {
+					var = OBX.var_army_improvement_supply
+					value = -0.01
+				}
+				set_variable = {
+					var = OBX.var_army_improvement_negatives
+					value = 0.01
+				}
+				set_variable = {
+					var = OBX.var_army_improvement_speed
+					value = 0.01
+				}
+			}
+			add_dynamic_modifier = {
+				modifier = OBX_NATO_army_idea
+			}
+			army_experience = 50
 		}
 	}
 
@@ -2679,7 +2701,13 @@ focus_tree = {
 			focus = OBX_nato_standards
 		}
 		completion_reward = {
-			
+			army_experience = 15
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.5
+				uses = 2
+				category = cat_mobile_warfare
+			}
+			custom_effect_tooltip = OBX_nato_army_upgrade_tt
 		}
 	}
 
@@ -2697,7 +2725,15 @@ focus_tree = {
 			focus = OBX_nato_style_training
 		}
 		completion_reward = {
-			
+			if = {
+				limit = { has_dlc = "Arms Against Tyranny" }
+				every_military_industrial_organization = {
+					add_mio_funds = 500
+				}
+			}
+			else = {
+				add_ideas = OBX_NATO_military_industrial_complex
+			}
 		}
 	}
 
@@ -2715,7 +2751,11 @@ focus_tree = {
 			focus = OBX_nato_style_training
 		}
 		completion_reward = {
-			
+			add_to_variable = {
+				var = OBX.var_army_improvement_speed
+				value = 0.05
+				tooltip = add_05_to_speed_var_tt
+			}
 		}
 	}
 
@@ -2733,6 +2773,16 @@ focus_tree = {
 			focus = OBX_subsidize_defense_contractors
 		}
 		completion_reward = {
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.5
+				uses = 2
+				category = cat_mobile_warfare
+			}
+			add_to_variable = {
+				var = OBX.var_army_improvement
+				value = 0.05
+				tooltip = add_05_to_army_var_tt
+			}
 			
 		}
 	}
@@ -2751,7 +2801,11 @@ focus_tree = {
 			focus = OBX_rapid_response_readiness
 		}
 		completion_reward = {
-			
+			subtract_from_variable = {
+				var = OBX.var_army_improvement_supply
+				value = 0.05
+				tooltip = add_05_to_supply_var_tt
+			}
 		}
 	}
 
@@ -2772,7 +2826,21 @@ focus_tree = {
 			focus = OBX_logistics_and_supply_chains
 		}
 		completion_reward = {
-			
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.5
+				uses = 2
+				category = cat_mobile_warfare
+			}
+			add_to_variable = {
+				var = OBX.var_army_improvement_speed
+				value = 0.05
+				tooltip = add_05_to_speed_var_tt
+			}
+			subtract_from_variable = {
+				var = OBX.var_army_improvement_supply
+				value = 0.05
+				tooltip = add_05_to_supply_var_tt
+			}
 		}
 	}
 	
@@ -2790,7 +2858,16 @@ focus_tree = {
 			focus = OBX_strategic_mobility
 		}
 		completion_reward = {
-			
+			add_to_variable = {
+				var = OBX.var_army_improvement
+				value = 0.05
+				tooltip = add_05_to_army_var_tt
+			}
+			subtract_from_variable = {
+				var = OBX.var_army_improvement_negatives
+				value = 0.1
+				tooltip = subtract_01_to_negative_var_tt
+			}
 		}
 	}
 
