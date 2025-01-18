@@ -4248,6 +4248,10 @@ focus_tree = {
 			#	}
 			#	add_core_of = FRA
 			#}
+			#if = {
+			#	limit = { GRL = { is_in_faction = yes } }
+			#	leave_faction = yes
+			#}
 		}
 	}
 	focus = {
@@ -5535,12 +5539,10 @@ focus_tree = {
 		relative_position_id = FRA_wcw_round_two
 		available = { 
 			NOT = { 
-				country_exists = PRA
 				country_exists = PAC
 				country_exists = CAS
 				country_exists = LIB
 				country_exists = IDA
-				country_exists = MON
 				country_exists = HOP
 				country_exists = SIN
 				country_exists = JFR
@@ -5549,7 +5551,36 @@ focus_tree = {
 				country_exists = AFO
 				country_exists = LAS
 				country_exists = ORO
-				country_exists = UTA
+			}
+			OR = {
+				NOT = {
+					country_exists = PRA
+				}
+				is_in_faction_with = PRA
+			}
+			OR = {
+				NOT = {
+					country_exists = MON
+				}
+				is_in_faction_with = MON
+			}
+			OR = {
+				NOT = {
+					country_exists = UTA
+				}
+				is_in_faction_with = UTA
+			}
+			OR = {
+				NOT = {
+					country_exists = ALA
+				}
+				is_in_faction_with = ALA
+			}
+			OR = {
+				NOT = {
+					country_exists = PAC
+				}
+				is_in_faction_with = PAC
 			}
 		}
 		completion_reward = {
@@ -5850,8 +5881,6 @@ focus_tree = {
 		relative_position_id = FRA_retake_miami
 		available = {
 			NOT = {
-				country_exists = TEX
-				country_exists = BET
 				country_exists = CRU
 				country_exists = CRN
 				country_exists = FTA
@@ -5871,8 +5900,22 @@ focus_tree = {
 				country_exists = FLO
 				country_exists = KFC
 				country_exists = RVR
-				country_exists = VIR
 			}
+			OR = {
+				NOT = {
+					country_exists = TEX
+					country_exists = BET
+				}
+				is_in_faction_with = TEX
+				is_in_faction_with = BET
+			}
+			OR = {
+				NOT = {
+					country_exists = VIR
+				}
+				is_in_faction_with = VIR
+			}
+				
 		}
 		completion_reward = {
 			every_state = {
@@ -6014,8 +6057,13 @@ focus_tree = {
 				country_exists = DET
 				country_exists = MIN
 				country_exists = MNS
-				country_exists = MIL
 				country_exists = KMT
+			}
+			OR = {
+				NOT = {
+					country_exists = MIL
+				}
+				is_in_faction_with = MIL
 			}
 		}
 		completion_reward = {
