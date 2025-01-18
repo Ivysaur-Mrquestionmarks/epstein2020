@@ -211,7 +211,7 @@ focus_tree = {
 	focus = {
 		id = FRA_protect_freedom_of_speech
 		icon = GFX_goal_FRA_protect_first_amendment
-		cost = 5.00
+		cost = 3.00
 		prerequisite = {
 			focus = FRA_reconciliation
 		}
@@ -238,7 +238,7 @@ focus_tree = {
 	focus = {
 		id = FRA_revise_migration_quotas
 		icon = GFX_goal_FRA_revise_immigration_quotas
-		cost = 5.00
+		cost = 3.00
 		prerequisite = {
 			focus = FRA_protect_freedom_of_speech
 		}
@@ -262,7 +262,7 @@ focus_tree = {
 	focus = {
 		id = FRA_root_out_corruption
 		icon = GFX_goal_FRA_relearn_compromise
-		cost = 5.00
+		cost = 3.00
 		prerequisite = {
 			focus = FRA_revise_migration_quotas
 		}
@@ -289,7 +289,7 @@ focus_tree = {
 	focus = {
 		id = FRA_loosen_lockdown_regulations
 		icon = GFX_goal_FRA_loosen_lockdown_regulations
-		cost = 4.00
+		cost = 3.00
 		prerequisite = {
 			focus = FRA_reconciliation
 		}
@@ -319,7 +319,7 @@ focus_tree = {
 	focus = {
 		id = FRA_assure_neocons
 		icon = GFX_goal_FRA_assure_neocons
-		cost = 4.00
+		cost = 3.00
 		prerequisite = {
 			focus = FRA_loosen_lockdown_regulations
 		}
@@ -345,7 +345,7 @@ focus_tree = {
 	focus = {
 		id = FRA_unban_fox_news
 		icon = GFX_goal_FRA_unban_fox_news
-		cost = 4.00
+		cost = 3.00
 		prerequisite = {
 			focus = FRA_assure_neocons
 		}
@@ -370,7 +370,7 @@ focus_tree = {
 	focus = {
 		id = FRA_rehabilitate_northeast_fox_assets
 		icon = GFX_goal_FRA_rehabilate_northeastern_fox_assets
-		cost = 4.00
+		cost = 3.00
 		prerequisite = {
 			focus = FRA_assure_neocons
 		}
@@ -428,7 +428,7 @@ focus_tree = {
 	focus = {
 		id = FRA_reduce_energy_regulations
 		icon = GFX_goal_FRA_reduce_energy_regulations
-		cost = 4.40
+		cost = 3.00
 		prerequisite = {
 			focus = FRA_raise_minimum_wage_to_15
 		}
@@ -453,7 +453,7 @@ focus_tree = {
 	focus = {
 		id = FRA_national_unity_agreement
 		icon = GFX_goal_FRA_national_unity_agreement
-		cost = 4.40
+		cost = 4
 		prerequisite = {
 			focus = FRA_honor_mccain
 		}
@@ -512,7 +512,7 @@ focus_tree = {
 	focus = {
 		id = FRA_bidenomics
 		icon = GFX_goal_FRA_creating_bidenomics
-		cost = 5.00
+		cost = 4.00
 		prerequisite = {
 			focus = FRA_reform
 			focus = FRA_reconciliation
@@ -551,7 +551,7 @@ focus_tree = {
 	focus = {
 		id = FRA_fed_union_protections
 		icon = GFX_goal_FRA_federally_protected_unions
-		cost = 5.00
+		cost = 4.00
 		prerequisite = {
 			focus = FRA_bidenomics
 		}
@@ -573,7 +573,7 @@ focus_tree = {
 	focus = {
 		id = FRA_chips_act
 		icon = GFX_goal_FRA_chips_act
-		cost = 5.00
+		cost = 4.00
 		prerequisite = {
 			focus = FRA_bidenomics
 		}
@@ -605,7 +605,7 @@ focus_tree = {
 	focus = {
 		id = FRA_raise_minimum_wage_to_15
 		icon = GFX_goal_FRA_$15_minimum_wage
-		cost = 5.00
+		cost = 4.00
 		prerequisite = {
 			focus = FRA_chips_act
 		}
@@ -633,7 +633,7 @@ focus_tree = {
 	focus = {
 		id = FRA_american_rescue_plan
 		icon = GFX_goal_Icon_The_American_Rescue_Plan
-		cost = 5.00
+		cost = 4.00
 		prerequisite = {
 			focus = FRA_raise_minimum_wage_to_15
 		}
@@ -663,7 +663,7 @@ focus_tree = {
 	focus = {
 		id = FRA_bipartisan_tax_reform
 		icon = GFX_goal_FRA_bipartisan_tax_reform
-		cost = 5.00
+		cost = 4.00
 		prerequisite = {
 			focus = FRA_bidenomics
 		}
@@ -703,7 +703,7 @@ focus_tree = {
 	focus = {
 		id = FRA_forgive_student_loans
 		icon = GFX_goal_FRA_cancel_student_loan_debt
-		cost = 5.00
+		cost = 4.00
 		prerequisite = {
 			focus = FRA_bipartisan_tax_reform
 		}
@@ -728,7 +728,7 @@ focus_tree = {
 	focus = {
 		id = FRA_inflation_reduction_act
 		icon = GFX_goal_Icon_Inflation_Reduction_Act
-		cost = 5.00
+		cost = 4.00
 		prerequisite = {
 			focus = FRA_forgive_student_loans
 		}
@@ -759,7 +759,7 @@ focus_tree = {
 	focus = {
 		id = FRA_bipartisan_MIC_expansion
 		icon = GFX_goal_FRA_bipartisan_mic_expansion
-		cost = 5.00
+		cost = 3.00
 		prerequisite = {
 			focus = FRA_fed_union_protections
 		}
@@ -1000,14 +1000,29 @@ focus_tree = {
 			all_state = {
 				OR = {
 					NOT = { is_core_of = NRA }
-					is_controlled_by = FRA
+					OR = {
+						is_controlled_by = FRA
+						AND = {
+							is_controlled_by = VIR
+							VIR = { is_ally_with = FRA }
+						}
+					}
 				}
 			}
 		}
 		completion_reward = {
-			random_owned_state = {
+			random_state = {
 				limit = {
-					is_core_of = NRA
+					OR = {
+						AND = {
+							is_core_of = NRA
+							is_owned_by = FRA
+						}
+						AND = {
+							is_core_of = NRA
+							is_owned_by = VIR
+						}
+					}
 				}
 				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
@@ -1016,9 +1031,18 @@ focus_tree = {
 				    instant_build = yes
 				}
 			}
-			random_owned_state = {
+			random_state = {
 				limit = {
-					is_core_of = NRA
+					OR = {
+						AND = {
+							is_core_of = NRA
+							is_owned_by = FRA
+						}
+						AND = {
+							is_core_of = NRA
+							is_owned_by = VIR
+						}
+					}
 				}
 				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
@@ -1027,9 +1051,18 @@ focus_tree = {
 				    instant_build = yes
 				}
 			}
-			random_owned_state = {
+			random_state = {
 				limit = {
-					is_core_of = NRA
+					OR = {
+						AND = {
+							is_core_of = NRA
+							is_owned_by = FRA
+						}
+						AND = {
+							is_core_of = NRA
+							is_owned_by = VIR
+						}
+					}
 				}
 				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
@@ -1038,9 +1071,18 @@ focus_tree = {
 				    instant_build = yes
 				}
 			}
-			random_owned_state = {
+			random_state = {
 				limit = {
-					is_core_of = NRA
+					OR = {
+						AND = {
+							is_core_of = NRA
+							is_owned_by = FRA
+						}
+						AND = {
+							is_core_of = NRA
+							is_owned_by = VIR
+						}
+					}
 				}
 				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
@@ -1079,8 +1121,28 @@ focus_tree = {
 		y = 1
 		relative_position_id = FRA_expand_the_boston_dynamics
 		completion_reward = {
+			add_stability = 0.1
+			add_political_power = 75
 		}
-
+	}
+	focus = {
+		id = FRA_reintegrate_pittsburg_and_maryland
+		icon = GFX
+		cost = 5.00
+		prerequisite = {
+			focus = FRA_the_illusion_of_normalcy
+		}
+		x = 0
+		y = 2
+		relative_position_id = FRA_the_illusion_of_normalcy
+		available = {
+			controls_state = 273
+			controls_state = 503
+		}
+		completion_reward = {
+			add_state_core = 273
+			add_state_core = 503
+		}
 	}
 	
 	focus = {
@@ -1426,7 +1488,7 @@ focus_tree = {
 	focus = {
 		id = FRA_gun_owners_are_malarkey
 		icon = GFX_goal_FRA_gun_malarkey
-		cost = 5.00
+		cost = 3.00
 		prerequisite = {
 			focus = FRA_reform
 		}
@@ -1457,7 +1519,7 @@ focus_tree = {
 	focus = {
 		id = FRA_maga_is_malarkey
 		icon = GFX_goal_FRA_maga_malarkey
-		cost = 5.00
+		cost = 3.00
 		prerequisite = {
 			focus = FRA_gun_owners_are_malarkey
 		}
@@ -1482,7 +1544,7 @@ focus_tree = {
 	focus = {
 		id = FRA_kill_malarkey
 		icon = GFX_goal_Icon_No_More_Malarkey
-		cost = 5.00
+		cost = 3.00
 		prerequisite = {
 			focus = FRA_maga_is_malarkey
 		}
