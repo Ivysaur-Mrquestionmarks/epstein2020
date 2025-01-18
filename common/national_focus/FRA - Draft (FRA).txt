@@ -7861,16 +7861,19 @@ focus_tree = {
 			focus = FRA_marshal_milleys_war
 		}
 		mutually_exclusive = { focus = FRA_reinforcements_are_coming }
-		x = 1
+		x = -1
 		y = 1
 		relative_position_id = FRA_marshal_milleys_war
 		available = {
 			country_exists = MIL
+			MIL = { is_ai = yes }
+			FRA = { is_ai = no }
 		}
 		bypass = {
 			NOT = { country_exists = MIL }
 		}
 		completion_reward = {
+			add_stability = 0.1
 		}
 
 	}
@@ -7891,6 +7894,12 @@ focus_tree = {
 			NOT = { country_exists = MIL }
 		}
 		completion_reward = {
+			MIL = {
+				send_equipment_fraction = {
+					value = 0.75
+					target = FRA
+				}
+			}
 		}
 
 	}
@@ -7901,7 +7910,7 @@ focus_tree = {
 		prerequisite = {
 			focus = FRA_securing_our_equipment
 		}
-		x = 1
+		x = -1
 		y = 1
 		relative_position_id = FRA_securing_our_equipment
 		available = {
@@ -7911,6 +7920,35 @@ focus_tree = {
 			NOT = { country_exists = MIL }
 		}
 		completion_reward = {
+			country_event = {
+				id = bidone.101
+				days = 4
+			}
+			give_military_access = MIL
+			MIL = {
+				teleport_armies = {
+					to_state = 183
+				}
+				transfer_units_fraction= {
+					target = FRA
+					size = 1
+					stockpile_ratio = 1
+					army_ratio = 1
+					navy_ratio = 1
+					air_ratio = 1
+				}
+				MIL = {
+					every_unit_leader = {
+						set_nationality = FRA
+					}
+				}
+				MIL_timothy_walz = {
+					limit = { has_nationality = MIL }
+					set_nationality = FRA 
+				}
+				
+			}
+			
 		}
 
 	}
@@ -7931,6 +7969,7 @@ focus_tree = {
 			NOT = { country_exists = MIL }
 		}
 		completion_reward = {
+			custom_effect_tooltip = unfinished_content_warning_tooltip
 		}
 
 	}
@@ -7943,7 +7982,7 @@ focus_tree = {
 			focus = FRA_marshal_milleys_war
 		}
 		mutually_exclusive = { focus = FRA_time_to_go_home }
-		x = -1
+		x = 1
 		y = 1
 		relative_position_id = FRA_marshal_milleys_war
 		available = {
@@ -7965,7 +8004,7 @@ focus_tree = {
 		prerequisite = {
 			focus = FRA_reinforcements_are_coming
 		}
-		x = -2
+		x = 2
 		y = 1
 		relative_position_id = FRA_reinforcements_are_coming
 		available = {
@@ -8005,6 +8044,12 @@ focus_tree = {
 		y = 1
 		relative_position_id = FRA_one_hell_of_a_propaganda
 		completion_reward = {
+			MIL = {
+				add_manpower = 2000
+				add_war_support = 0.2
+			}
+			add_manpower = -2000
+			
 		}
 
 	}
@@ -8019,6 +8064,16 @@ focus_tree = {
 		y = 1
 		relative_position_id = FRA_one_hell_of_a_propaganda
 		completion_reward = {
+			send_equipment = {
+			    equipment = infantry_equipment
+			    amount = 2000
+			    target = MIL
+			}
+			send_equipment = {
+			    equipment = support_equipment
+			    amount = 200
+			    target = MIL
+			}
 		}
 
 	}
@@ -8034,8 +8089,18 @@ focus_tree = {
 		}
 		x = -1
 		y = 1
+		available = {
+			NOT = {
+				country_exists = MIN
+				country_exists = MNS
+			}
+		}
 		relative_position_id = FRA_send_milley_our_finest
 		completion_reward = {
+			puppet = MIL
+			MIL = {
+				add_research_slot = 2
+			}
 		}
 
 	}
