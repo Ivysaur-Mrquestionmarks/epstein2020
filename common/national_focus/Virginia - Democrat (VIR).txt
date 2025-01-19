@@ -1013,6 +1013,69 @@ focus_tree = {
 		}
 	}
 	focus = {
+		id = VIR_integrate_all_of_kfc
+		icon = GFX_goal_generic_army_bill
+		cost = 5.00
+		x = -1
+		y = 1
+		relative_position_id = VIR_march_into_kentucky
+		prerequisite = {
+			focus = VIR_march_into_kentucky
+		}
+		available = {
+			NOT = { country_exists = KFC }
+		}
+		mutually_exclusive = { focus = VIR_end_the_second_confederacy }
+		completion_reward = {
+			every_state = {
+				limit = { is_core_of = KFC }
+				add_core_of = VIR
+			}
+		}
+	}
+	focus = {
+		id = VIR_kill_the_afs
+		icon = GFX_goal_generic_army_bill
+		cost = 5.00
+		x = -1
+		y = 1
+		relative_position_id = VIR_integrate_all_of_kfc
+		prerequisite = {
+			focus = VIR_integrate_all_of_kfc
+		}
+		available = {
+			
+		}
+		will_lead_to_war_with = AFS
+		completion_reward = {
+			create_wargoal = {
+			    target = AFS
+			    type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = VIR_integrate_the_afs
+		icon = GFX_goal_generic_army_bill
+		cost = 5.00
+		x = 0
+		y = 1
+		relative_position_id = VIR_kill_the_afs
+		prerequisite = {
+			focus = VIR_kill_the_afs
+		}
+		available = {
+			NOT = { country_exists = AFS }
+		}
+		will_lead_to_war_with = AFS
+		completion_reward = {
+			every_state = {
+				limit = { is_core_of = AFS }
+				add_core_of = VIR
+			}
+		}
+	}
+	focus = {
 		id = VIR_end_the_second_confederacy
 		icon = GFX_goal_focus_end_the_second_confederacy
 		x = 1
@@ -1025,6 +1088,7 @@ focus_tree = {
 		prerequisite = {
 			focus = VIR_request_the_eastern_shore
 		}
+		mutually_exclusive = { focus = VIR_integrate_all_of_kfc }
 		will_lead_to_war_with = CSA
 		will_lead_to_war_with = CSB
 		will_lead_to_war_with = KKK
