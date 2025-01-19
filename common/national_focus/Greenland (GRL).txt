@@ -98,11 +98,11 @@ focus_tree = {
 		id = GRL_soc_dem_victory
 		cost = 5
 		icon = GFX
-		x = -5
+		x = -3
 		y = 1
 		mutually_exclusive = {
 			focus = GRL_inuit_socialism
-			focus = GRL_a_MAGA_greenland
+			#focus = GRL_a_MAGA_greenland
 		}
 		relative_position_id = GRL_new_elections
 		prerequisite = { 
@@ -115,27 +115,6 @@ focus_tree = {
 		}
 	}
 	
-	### MAGA
-	focus = {
-		id = GRL_a_MAGA_greenland
-		cost = 5
-		icon = GFX
-		x = -3
-		y = 1
-		mutually_exclusive = {
-			focus = GRL_inuit_socialism
-			focus = GRL_soc_dem_victory
-		}
-		relative_position_id = GRL_new_elections
-		prerequisite = { 
-			focus = GRL_new_elections
-		}
-		available = {
-			always = no
-		}
-		completion_reward = {
-		}
-	}
 	
 	
 	### Socialism
@@ -146,7 +125,7 @@ focus_tree = {
 		x = 3
 		y = 1
 		mutually_exclusive = {
-			focus = GRL_a_MAGA_greenland
+			#focus = GRL_a_MAGA_greenland
 			focus = GRL_soc_dem_victory
 		}
 		relative_position_id = GRL_new_elections
@@ -188,6 +167,8 @@ focus_tree = {
 	}
 	
 	
+	
+	
 	### Econ Tree
 	focus = {
 		id = GRL_danish_north_america
@@ -199,13 +180,14 @@ focus_tree = {
 		#prerequisite = { focus =   }
 		completion_reward = {
 			add_political_power = 150
+			add_offsite_building = { type = arms_factory level = 2 }
 		}
 	}
 	focus = {
 		id = GRL_invite_settlers
 		cost = 5
 		icon = GFX
-		x = 1
+		x = 3
 		y = 1
 		relative_position_id = GRL_danish_north_america
 		prerequisite = { 
@@ -213,8 +195,27 @@ focus_tree = {
 		}
 		completion_reward = {
 			674 = {
-				add_manpower = 50000
+				add_manpower = 20000
 			}
+		}
+	}
+	focus = {
+		id = GRL_american_companies
+		cost = 5
+		icon = GFX
+		x = 0
+		y = 1
+		relative_position_id = GRL_invite_settlers
+		prerequisite = { 
+			focus = GRL_invite_settlers 
+		}
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 0.75
+				uses = 3
+				category = excavation_tech
+			}
+			add_offsite_building = { type = industrial_complex level = 2 }
 		}
 	}
 	focus = {
@@ -231,6 +232,24 @@ focus_tree = {
 			674 = {
 				add_manpower = 20000
 			}
+			every_state = {
+				limit = { is_core_of = MRT }
+				add_core_of = GRL
+			}
+		}
+	}
+	focus = {
+		id = GRL_canadian_scientists
+		cost = 5
+		icon = GFX
+		x = 1
+		y = 1
+		relative_position_id = GRL_canadian_refugees
+		prerequisite = { 
+			focus = GRL_canadian_refugees 
+		}
+		completion_reward = {
+			add_research_slot = 1
 		}
 	}
 	focus = {
@@ -244,6 +263,8 @@ focus_tree = {
 			focus = GRL_danish_north_america 
 		}
 		completion_reward = {
+			add_ideas = free_trade 
+			add_offsite_building = { type = industrial_complex level = 2 }
 		}
 	}
 	focus = {
@@ -257,6 +278,21 @@ focus_tree = {
 			focus = GRL_open_up_trade 
 		}
 		completion_reward = {
+			add_resource = {
+				type = aluminium
+				amount = 15
+				state = 674
+			}
+			add_resource = {
+				type = steel
+				amount = 15
+				state = 674
+			}
+			add_resource = {
+				type = tungsten
+				amount = 15
+				state = 674
+			}
 		}
 	}
 	focus = {
@@ -270,6 +306,7 @@ focus_tree = {
 			focus = GRL_open_up_trade 
 		}
 		completion_reward = {
+			add_ideas = GRL_whaling
 		}
 	}
 	focus = {
@@ -283,6 +320,13 @@ focus_tree = {
 			focus = GRL_expand_mining_operations 
 		}
 		completion_reward = {
+			674 = {
+				add_state_modifier = {
+					modifier = {
+						local_resources = 0.5
+					}
+				}
+			}
 		}
 	}
 	focus = {
@@ -296,6 +340,25 @@ focus_tree = {
 			focus = GRL_expand_mining_operations 
 		}
 		completion_reward = {
+			add_resource = {
+				type = oil
+				amount = 40
+				state = 674
+			}
+		}
+	}
+	focus = {
+		id = GRL_switch_to_generico
+		cost = 5
+		icon = GFX
+		x = 0
+		y = 1
+		relative_position_id = GRL_eco_friendly_resource_extraction
+		prerequisite = { 
+			focus = GRL_eco_friendly_resource_extraction 
+		}
+		completion_reward = {
+			load_focus_tree = generic_focus
 		}
 	}
 	
@@ -310,6 +373,14 @@ focus_tree = {
 		#relative_position_id = 
 		#prerequisite = { focus =   }
 		completion_reward = {
+			674 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+			}
 		}
 	}
 	
@@ -326,6 +397,10 @@ focus_tree = {
 			focus = GRL_rethinking_the_navy 
 		}
 		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = convoy
+				amount = 100
+			}
 		}
 	}
 	
@@ -336,12 +411,16 @@ focus_tree = {
 		icon = GFX
 		x = 5
 		y = 1
-		mutually_exclusive = { focus = GRL_american_militias }
+		mutually_exclusive = { 
+			focus = GRL_american_militias 
+			focus = GRL_EU_military_mission 
+		}
 		relative_position_id = GRL_rethinking_the_navy
 		prerequisite = { 
 			focus = GRL_rethinking_the_navy 
 		}
 		completion_reward = {
+			add_ideas = GRL_danish_army
 		}
 	}
 	focus = {
@@ -350,12 +429,58 @@ focus_tree = {
 		icon = GFX
 		x = 7
 		y = 1
-		mutually_exclusive = { focus = GRL_the_danish_army_of_NA }
+		mutually_exclusive = { 
+			focus = GRL_the_danish_army_of_NA 
+			focus = GRL_EU_military_mission 
+		}
 		relative_position_id = GRL_rethinking_the_navy
 		prerequisite = { 
 			focus = GRL_rethinking_the_navy 
 		}
 		completion_reward = {
+			add_ideas = GRL_american_militias_army
 		}
 	}
+	focus = {
+		id = GRL_EU_military_mission
+		cost = 5
+		icon = GFX
+		x = 9
+		y = 1
+		mutually_exclusive = { 
+			focus = GRL_the_danish_army_of_NA 
+			focus = GRL_american_militias 
+		}
+		relative_position_id = GRL_rethinking_the_navy
+		prerequisite = { 
+			focus = GRL_rethinking_the_navy 
+		}
+		completion_reward = {
+			add_ideas = GRL_eu_army
+		}
+	}
+	
+	
+	### MAGA
+	focus = {
+		id = GRL_a_MAGA_greenland
+		cost = 5
+		icon = GFX
+		x = -30
+		y = 0
+		#mutually_exclusive = {
+		#	focus = GRL_inuit_socialism
+		#	focus = GRL_soc_dem_victory
+		#}
+		#relative_position_id = GRL_new_elections
+		#prerequisite = { 
+		#	focus = GRL_new_elections
+		#}
+		available = {
+			always = no
+		}
+		completion_reward = {
+		}
+	}
+	
 }
