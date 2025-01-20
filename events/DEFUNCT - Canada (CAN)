@@ -1,0 +1,396 @@
+add_namespace = Canada_old
+
+#Canadian Collapse
+country_event = {
+	id = Canada_old.1
+	title = Canada_old.1.t
+	desc = Canada_old.1.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+		}
+	}
+	#continue as Trud Gov
+	option = {
+		name = Canada_old.1.a
+		add_threat = 15
+	}
+	#Ontario
+	option = {
+		name = Canada_old.1.b
+		add_threat = 15
+		ONT = { change_tag_from = ROOT }
+	}
+	#Vancouver
+	option = {
+		name = Canada_old.1.c
+		add_threat = 15
+		VAN = { change_tag_from = ROOT }
+	}
+	#Alberta
+	option = {
+		name = Canada_old.1.e
+		add_threat = 15
+		WPC = { change_tag_from = ROOT }
+	}
+}
+#35 day deadline to recover exiled divisions ends
+country_event = {
+	id = Canada_old.2
+	title = Canada_old.2.t
+	desc = Canada_old.2.d
+	#picture =
+	fire_only_once = yes
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			declare_war_on = {
+			    target = ONT
+ 			    type = annex_everything
+			}
+			declare_war_on = {
+			    target = PTR
+ 			    type = annex_everything
+			}
+			BRC = {
+				declare_war_on = {
+			  		target = VAN
+ 			    	type = annex_everything
+				}
+			}
+		}
+	}
+	option = {
+		name = Canada_old.2.a
+		hidden_effect = {
+			news_event = {
+				id = Canada_old.3
+			}
+		}
+	}
+}
+#Civil War news event
+news_event = {
+	id = Canada_old.3
+	title = Canada_old.3.t
+	desc = Canada_old.3.d
+	picture = event_news_war_with_canada
+	major = yes
+	is_triggered_only = yes
+	option = {
+		name = Canada_old.3.a
+		if = {
+			limit = {NOT = {is_ai = yes}}
+			set_country_flag = {
+    				flag = super_event
+    				value = 4
+			}
+			if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
+				sound_effect = "canada_cw"
+				play_song = "one_minute_of_silence"
+			}
+		}
+	}
+}
+#Trudeau suppresses anti-war protests
+country_event = {
+	id = Canada_old.4
+	title = Canada_old.4.t
+	desc = Canada_old.4.d
+	#picture =
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = Canada_old.4.a
+		add_stability = -0.05
+		add_war_support = 0.05
+		ENG = {
+			country_event = { id = Canada_old.5 days = 3 }
+		}
+	}
+}
+#England hears of the Canadian problem
+country_event = {
+	id = Canada_old.5
+	title = Canada_old.5.t
+	desc = Canada_old.5.d
+	#picture =
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		CAN = {
+			country_event = { id = Canada_old.6 days = 2 }
+		}
+	}
+}
+#Trudeau abolishes the monarchy
+country_event = {
+	id = Canada_old.6
+	title = Canada_old.6.t
+	desc = Canada_old.6.d
+	#picture =
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		add_stability = -0.05
+		if = {
+			limit = {
+				is_in_faction = yes
+			}
+			leave_faction = yes
+		}
+		create_country_leader = {
+			name = "Justin Trudeau"
+			picture = "Trudeau.dds"
+			expire = "2060.1.1"
+			ideology = Authoritarian_Liberalism
+			traits = {
+				###		
+			}
+		}
+		remove_ideas = Queen_Elizabeth_II
+		set_party_name = { 
+		    ideology = authoritarian_left
+		    long_name = CAN_new_liberals_party
+		    name = CAN_new_liberals_party_long
+		}
+		set_politics = {
+			ruling_party = authoritarian_left
+		}
+		add_popularity = {
+		    ideology = authoritarian_left
+		    popularity = 0.10
+		}
+		country_event = {
+			id = Canada_old.1
+			days = 14
+		}
+		hidden_effect = {
+			news_event = { id = Canada_old.7 }
+		}
+	}
+}
+#Canadian Republic
+news_event = {
+	id = Canada_old.7
+	title = Canada_old.7.t
+	desc = Canada_old.7.d
+	picture = event_news_canada_01
+	major = yes
+	is_triggered_only = yes
+	option = {
+		name = Canada_old.7.a
+	}
+}
+#Ottowa attacks the rest of Canada -formerly just Aryan Guard but I have now changed it to all of Alberta.
+country_event = {
+	id = Canada_old.8
+	title = Canada_old.8.t
+	desc = Canada_old.8.d
+	#picture =
+	fire_only_once = yes
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 10 }
+	option = {
+		declare_war_on = {
+			target = WPC
+ 	    		type = annex_everything
+		}
+		declare_war_on = {
+			target = BRC
+ 	    		type = annex_everything
+		}
+		if = {
+			limit = {
+				is_in_faction_with = PTR
+			}
+			annex_country = {
+			    target = PTR
+			    transfer_troops = yes
+			}
+			every_state = {
+				limit = {
+					is_core_of = PTR
+				}
+				add_core_of = ROOT
+			}
+		}
+		if = {
+			limit = {
+				country_exists = QUE
+				NOT = {
+					has_war_with = QUE
+				}
+			}
+			if = {
+				limit = {
+					is_in_faction_with = QUE
+				}
+				remove_from_faction = QUE
+			}
+			declare_war_on = {
+				target = QUE
+ 	    			type = annex_everything
+			}
+		}
+		if = {
+			limit = {
+				tag = ONT
+			}
+			set_cosmetic_tag = CAN_british
+		}
+	}
+}
+country_event = {
+	id = Canada_old.14
+	title = Canada_old.14.t
+	desc = Canada_old.14.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = Canada_old.14.a
+		remove_ideas = DET_support_from_canada
+		country_event = {
+    			id = detroit.3
+    			days = 1
+    			random_hours = 6
+		}
+		CAN = {
+			diplomatic_relation = {
+			    country = DET
+			    relation = guarantee
+			    active = no
+			}
+		}
+	}
+}
+
+#starting situation
+country_event = {
+	id = Canada_old.9
+	title = Canada_old.9.t
+	desc = Canada_old.9.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = Canada_old.9.a
+		add_stability = -0.05
+		
+	}
+}
+
+#Honk Honk!
+country_event = {
+	id = Canada_old.10
+	title = Canada_old.10.t
+	desc = Canada_old.10.d
+	#picture =
+	#trigger = {
+	#	date > 2022.01.14
+	#	tag = CAN
+	#}
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 10 }
+	fire_only_once = yes
+	option = {
+		name = Canada_old.10.a
+		add_stability = -0.10
+		add_political_power = -50
+		country_event = { id = Canada_old.11 days = 4 }
+	}
+}
+#The Truckers Are Coming
+country_event = {
+	id = Canada_old.11
+	title = Canada_old.11.t
+	desc = Canada_old.11.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = Canada_old.11.a
+		add_stability = -0.05
+		add_political_power = -100
+		country_event = { id = Canada_old.12 days = 7 }
+	}
+}
+#Battle of Ottawa
+country_event = {
+	id = Canada_old.12
+	title = Canada_old.12.t
+	desc = Canada_old.12.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = Canada_old.12.a
+		add_stability = -0.20
+		add_political_power = -200
+		news_event = { id = Canada_old.13 }
+		country_event = { id = Canada_old.16 days = 5 }
+	}
+}
+#Massacre in Ottawa
+news_event = {
+	id = Canada_old.13
+	title = Canada_old.13.t
+	desc = Canada_old.13.d
+	picture = event_news_canada_02
+	major = yes
+	is_triggered_only = yes
+	option = {
+		name = Canada_old.13.a
+		trigger = { NOT = { tag = CAN } }
+	}
+	option = {
+		name = Canada_old.13.b
+		trigger = { tag = CAN }
+		add_political_power = -20
+		add_war_support = -0.10
+	}
+}
+#O'Toole disgraced after the Battle of Ottawa
+country_event = {
+	id = Canada_old.16
+	title = Canada_old.16.t
+	desc = Canada_old.16.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = Canada_old.16.a
+		add_popularity = {
+			ideology = republican
+			popularity = -0.05
+		}
+		hidden_effect = {
+			country_event = {
+				id = Canada_old.15
+				days = 3
+			}
+		}
+	}
+}
+#Pierre Poilievre takes charge
+country_event = {
+	id = Canada_old.15
+	title = Canada_old.15.t
+	desc = Canada_old.15.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = Canada_old.15.a
+		retire_character = CAN_erin_otoole
+		promote_character = CAN_pierre_poilievre
+		add_popularity = {
+			ideology = republican
+			popularity = 0.075
+		}
+		add_stability = -0.005
+	}
+}

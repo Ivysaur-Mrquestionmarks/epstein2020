@@ -1,0 +1,530 @@
+CAN_collapse_cores = {
+	every_state = {
+		limit = {
+			is_core_of = QUE 
+		}
+		remove_core_of = QUE
+	}
+	every_state = {
+		limit = {
+			is_core_of = MRT 
+		}
+		remove_core_of = MRT
+	}
+	every_state = {
+		limit = {
+			is_core_of = NUN 
+		}
+		remove_core_of = NUN
+	}
+	every_state = {
+		limit = {
+			is_core_of = BRC 
+		}
+		remove_core_of = BRC
+	}
+	every_state = {
+		limit = {
+			is_core_of = WPC 
+		}
+		remove_core_of = WPC
+	}
+	every_state = {
+		limit = {
+			is_core_of = PTR 
+		}
+		remove_core_of = PTR
+	}
+	every_state = {
+		limit = {
+			is_core_of = ONT
+		}
+		remove_core_of = ONT
+	}
+	every_state = {
+		limit = {
+			is_core_of = VAN 
+		}
+		remove_core_of = VAN
+	}
+	every_state = {
+		limit = {
+			OR = {
+				state = 377
+				state = 166
+				state = 163
+				state = 133
+				state = 129
+				state = 91
+				state = 48
+				state = 21
+				state = 7
+				state = 128
+				state = 72
+				state = 663
+				state = 664
+			}
+		}
+		add_core_of = QUE
+	}
+	every_state = {
+		limit = {
+			OR = {
+				state = 173
+				state = 127
+				state = 146
+				state = 176
+				state = 145
+				state = 135
+				state = 154
+				state = 175
+				state = 49
+				state = 156
+				state = 164
+				state = 18
+				state = 17
+				state = 10
+				state = 20
+				state = 182
+			}
+		}
+		add_core_of = MRT
+	}
+	every_state = {
+		limit = {
+			OR = {
+				state = 13
+				state = 24
+				state = 47
+				state = 26
+			}
+		}
+		add_core_of = NUN
+	}
+	every_state = {
+		limit = {
+			OR = {
+				state = 158
+				state = 110
+				state = 134
+				state = 100
+				state = 102
+				state = 42
+				state = 485
+				state = 12
+			}
+		}
+		add_core_of = ONT
+	}
+	every_state = {
+		limit = {
+			OR = {
+				state = 647
+				state = 167
+				state = 649
+				state = 177
+			}
+		}
+		add_core_of = PTR
+	}
+	every_state = {
+		limit = {
+			OR = {
+				state = 26
+				state = 56
+				state = 120
+				state = 71
+				state = 9
+				state = 1
+				state = 149
+				state = 31
+				state = 36
+				state = 8
+				state = 32
+				state = 6
+				state = 76
+				state = 5
+				state = 69
+				state = 30
+				state = 58
+				state = 82
+				state = 81
+				state = 75
+				state = 103
+				state = 98
+				state = 59
+				state = 78
+				state = 54
+				state = 105
+				state = 68
+				state = 27
+			}
+		}
+		add_core_of = WPC
+	}
+	every_state = {
+		limit = {
+			OR = {
+				state = 58
+				state = 82
+				state = 81
+				state = 75
+				state = 103
+				state = 98
+				state = 59
+				state = 78
+				state = 54
+				state = 105
+				state = 68
+				state = 27
+				state = 4
+			}
+		}
+		add_core_of = BRC
+	}
+	every_state = {
+		limit = {
+			OR = {
+				state = 54
+				state = 105
+				state = 68
+				state = 27
+			}
+		}
+		add_core_of = VAN
+	}
+	every_country = { #gives tech
+		limit = {
+			is_in_array = {
+				array = global.CAN_collapse
+				value = THIS.id
+			}
+		}
+		inherit_technology = CAN
+	}
+
+}
+
+QUE_separation_effect = {
+	release_on_controlled = QUE
+	NEW = {
+		transfer_state = 132 #Part of Maine
+	}
+}
+
+Maritimes_separation_effect = {
+	release_on_controlled = MRT
+	release_on_controlled = NUN
+	NUN = {
+		transfer_state = 26
+	}
+	MRT = {
+		add_state_core = 128
+		add_state_core = 72
+		add_state_core = 21
+	}
+	QUE = {
+		add_state_core = 18
+	}
+}
+
+
+
+Western_canada_breaks_away_effect = {
+	release_on_controlled = WPC
+	WPC = {
+		set_cosmetic_tag = WPC_western_canada
+	}
+}
+
+BRC_breaks_away_effect = {
+	release_on_controlled = BRC
+	WPC = {
+		drop_cosmetic_tag = yes
+	}
+}
+VAN_breaks_away_effect = {
+	release_on_controlled = VAN
+	BRC = {
+		kill_country_leader = yes
+		set_politics = {
+			ruling_party = republican
+		}
+		add_popularity = {
+			ideology = libertarian_left
+			popularity = -1
+		}
+	}
+}
+
+
+ONT_break_up_effect = {
+	release_on_controlled = ONT
+	release_on_controlled = PTR
+	ONT = {
+		create_faction = CAN_monarchist_faction_name
+	}
+	every_state = {
+		limit = {
+			is_owned_by = ONT
+		}
+		add_core_of = PTR
+		add_core_of = CAN
+	}
+	every_state = {
+		limit = {
+			is_owned_by = PTR
+		}
+		add_core_of = CAN
+		add_core_of = ONT
+	}
+	every_state = {
+		limit = {
+			is_owned_by = CAN
+		}
+		add_core_of = PTR
+		add_core_of = ONT
+	}
+}
+
+
+
+CAN_collapse_start_and_troop_and_OOBS_effect = { ##### TODO: ADD OOBs
+	DET = { country_event = { id = Canada.13 hours = 5 } }
+	set_global_flag = canadian_civil_war
+	if = {
+		limit = {
+			tag = CAN
+		}
+		set_cosmetic_tag = CAN_collapse
+		create_faction = CAN_trudeau_faction_name
+	}
+	country_event = { id = Canada.2 days = 35 }
+	add_field_marshal_role = {
+		Character = CAN_justin_trudeau
+		skill = 2
+		traits = { politically_connected trait_reckless }
+		attack_skill = 3
+		defense_skill = 2
+		planning_skill = 1
+		logistics_skill = 3
+	}
+	ONT = {
+		add_popularity = {
+		    ideology = democrat
+		    popularity = 0.30
+		}
+		set_politics = {
+			ruling_party = democrat
+		}
+	}
+	CAS_fascist_invasion_effect = yes
+	
+	
+	
+	### Code to be scrapped
+	transfer_units_fraction= {
+		target = ONT
+		size = 0.2
+		stockpile_ratio = 0.5
+		army_ratio = 0.2
+		navy_ratio = 0.0
+		air_ratio = 0.8
+	}
+	transfer_units_fraction= {
+		target = VAN
+		size = 0.1
+		stockpile_ratio = 0.2
+		army_ratio = 0.1
+		navy_ratio = 0.4
+		air_ratio = 0.0
+	}
+	transfer_units_fraction= {
+		target = QUE
+		size = 0.1
+		stockpile_ratio = 0.1
+		army_ratio = 0.1
+		navy_ratio = 0.0
+		air_ratio = 0.1
+	}
+	transfer_units_fraction= {
+		target = PTR
+		size = 0.1
+		stockpile_ratio = 0.1
+		army_ratio = 0.1
+		navy_ratio = 0.0
+		air_ratio = 0.0
+	}
+	transfer_units_fraction= {
+		target = WPC
+		size = 0.1
+		stockpile_ratio = 0.2
+		army_ratio = 0.2
+		navy_ratio = 0.0
+		air_ratio = 0.0
+	}
+	transfer_units_fraction= {
+		target = BRC
+		size = 0.1
+		stockpile_ratio = 0.2
+		army_ratio = 0.1
+		navy_ratio = 0.0
+		air_ratio = 0.0
+	}
+}
+
+CAS_fascist_invasion_effect = {
+	if = {
+		limit = {
+			CAS = { 
+				has_war = no 
+				OR = {
+					has_country_leader = {
+ 					   name = "Vince Bert"
+ 					   ruling_only = yes
+					}
+					has_country_leader = {
+ 					   name = "National-Social Directorate"
+ 					   ruling_only = yes
+					}
+					has_country_leader = {
+ 					   name = "Wodensson"
+ 					   ruling_only = yes
+					}
+				}
+			}
+		}
+		CAS = {
+			add_ideas = CAS_unpopular_government_war
+			declare_war_on = {
+	  			target = VAN
+				type = annex_everything
+			}
+		}
+		VAN = {
+			division_template = {
+				name = "Anti-Fascist Militia"
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+				}
+			}
+			54 = {
+				create_unit = {
+					division = "name = \"1st Canadian Sepoys\" division_template = \"Anti-Fascist Militia\" start_experience_factor = 0.1" 
+					owner = VAN
+				}
+				create_unit = {
+					division = "name = \"2nd Canadian Sepoys\" division_template = \"Anti-Fascist Militia\" start_experience_factor = 0.1" 
+					owner = VAN
+				}
+				create_unit = {
+					division = "name = \"1st Liberal Vanguard\" division_template = \"Anti-Fascist Militia\" start_experience_factor = 0.1" 
+					owner = VAN
+				}
+				create_unit = {
+					division = "name = \"2nd Liberal Vanguard\" division_template = \"Anti-Fascist Militia\" start_experience_factor = 0.1" 
+					owner = VAN
+				}
+			}
+		}
+	}
+}
+
+CAN_collapse_war_start_effect = {
+	declare_war_on = {
+	    target = ONT
+ 	    type = annex_everything
+	}
+	ONT = {
+		declare_war_on = {
+			target = PTR
+			type = annex_everything
+		}
+	}
+	declare_war_on = {
+	    target = PTR
+ 	    type = annex_everything
+	}
+	BRC = {
+		declare_war_on = {
+	  		target = VAN
+ 	    	type = annex_everything
+		}
+	}
+}
+
+CAN_collapse_ONT_reunified_next_phase_effect = {
+	declare_war_on = {
+		target = WPC
+ 		type = annex_everything
+	}
+	declare_war_on = {
+		target = BRC
+ 	   	type = annex_everything
+	}
+	if = {
+		limit = {
+			country_exists = QUE
+			NOT = {
+				has_war_with = QUE
+			}
+		}
+		if = {
+			limit = {
+				is_in_faction_with = QUE
+			}
+			remove_from_faction = QUE
+		}
+		declare_war_on = {
+			target = QUE
+ 	   			type = annex_everything
+		}
+	}
+	every_state = {
+		limit = { has_state_flag = part_of_canada }
+		add_core_of = ROOT
+	}
+	if = {
+		limit = {
+			tag = ONT
+		}
+		set_cosmetic_tag = CAN_british
+	}
+}
+
+CAN_monarchy_abolished_effect = {
+	add_stability = -0.05
+	if = {
+		limit = {
+			is_in_faction = yes
+		}
+		leave_faction = yes
+	}
+	add_country_leader_role = {
+		character = CAN_justin_trudeau
+		promote_leader = yes
+		country_leader = {
+			ideology = Authoritarian_Liberalism
+			expire = "2060.1.1.1"
+			traits = { }
+		}
+	}
+	remove_ideas = King_George_VII
+	set_party_name = { 
+	    ideology = authoritarian_left
+	    long_name = CAN_new_liberals_party
+	    name = CAN_new_liberals_party_long
+	}
+	set_politics = {
+		ruling_party = authoritarian_left
+	}
+	add_popularity = {
+	    ideology = authoritarian_left
+	    popularity = 0.10
+	}
+	hidden_effect = {
+		news_event = { id = Canada.10 }
+	}
+}
