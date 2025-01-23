@@ -1064,7 +1064,7 @@ focus_tree = {
 			focus = GLA_no_restrictions
 		}
 		completion_reward = {
-		swap_ideas = {
+		    swap_ideas = {
 				remove_idea = GLA_no_gun_restrictions
 				add_idea = GLA_no_gun_restrictions_2
 			}
@@ -3903,7 +3903,11 @@ focus_tree = {
 			focus = GLA_purchase_military_jets
 		}
 		completion_reward = {
-		army_experience = 25
+		    army_experience = 25
+			swap_ideas = {
+			    remove_idea = GLA_a_merc_army
+			    add_idea = GLA_a_merc_army_2
+			}
 		}
 
 	}
@@ -3921,7 +3925,11 @@ focus_tree = {
 			focus = GLA_our_mercenaries_are_ready
 		}
 		completion_reward = {
-		unlock_decision_category_tooltip = GLA_merc
+		    unlock_decision_category_tooltip = GLA_merc
+			swap_ideas = {
+			    remove_idea = GLA_a_merc_army_2
+			    add_idea = GLA_a_merc_army_3
+			}
 		}
 
 	}
@@ -3989,12 +3997,16 @@ focus_tree = {
 			focus = GLA_get_more_mercenaries
 		}
 		completion_reward = {
-		army_experience = 40
-		add_tech_bonus = {
-        bonus = 0.3
-        uses = 4
-        category = land_doctrine
-        }
+		    army_experience = 40
+		    add_tech_bonus = {
+                bonus = 0.3
+                uses = 4
+                category = land_doctrine
+            }
+			swap_ideas = {
+			    remove_idea = GLA_a_merc_army_3
+			    add_idea = GLA_a_merc_army_4
+			}
 		}
 
 	}
@@ -4367,9 +4379,13 @@ focus_tree = {
 			focus = GLA_dissolve_the_boogaloo_army
 		}
 		completion_reward = {
-		army_experience = 20
-		navy_experience = 20
-		air_experience = 20
+		    army_experience = 20
+		    navy_experience = 20
+		    air_experience = 20
+			swap_ideas = {
+			    remove_idea = GLA_national_guard_army
+			    add_idea = GLA_national_guard_army_2
+			}
 		}
 
 	}
@@ -4390,11 +4406,15 @@ focus_tree = {
 			focus = GLA_recruitment_ads
 		}
 		completion_reward = {
-		add_tech_bonus = {
-        bonus = 0.3
-        uses = 4
-        category = land_doctrine
-        }
+		    add_tech_bonus = {
+                bonus = 0.3
+                uses = 4
+                category = land_doctrine
+            }
+			swap_ideas = {
+			    remove_idea = GLA_national_guard_army_2
+			    add_idea = GLA_national_guard_army_3
+			}
 		}
 
 	}
@@ -4412,17 +4432,17 @@ focus_tree = {
 			focus = GLA_a_real_military_staff
 		}
 		completion_reward = {
-		add_political_power = -35
-		add_tech_bonus = {
-        bonus = 0.3
-        uses = 4
-        category = naval_doctrine
-        }
-		add_tech_bonus = {
-        bonus = 0.3
-        uses = 4
-        category = air_doctrine
-        }
+		    add_political_power = -35
+		    add_tech_bonus = {
+                bonus = 0.3
+                uses = 4
+                category = naval_doctrine
+            }
+		    add_tech_bonus = {
+                bonus = 0.3
+                uses = 4
+                category = air_doctrine
+            }
 		}
 
 	}
@@ -4440,7 +4460,7 @@ focus_tree = {
 			focus = GLA_a_real_military_staff
 		}
 		completion_reward = {
-		add_manpower = 100000
+		    add_manpower = 100000
 		}
 
 	}
@@ -4461,15 +4481,18 @@ focus_tree = {
 			focus = GLA_convince_the_youth_to_serve
 		}
 		completion_reward = {
-		army_experience = 30
-		navy_experience = 30
-		air_experience = 30
-		add_tech_bonus = {
-        bonus = 0.3
-        uses = 3
-        category = land_doctrine
-        }
-
+		    army_experience = 30
+		    navy_experience = 30
+		    air_experience = 30
+		    add_tech_bonus = {
+                bonus = 0.3
+                uses = 3
+                category = land_doctrine
+            }
+			swap_ideas = {
+			    remove_idea = GLA_national_guard_army_3
+			    add_idea = GLA_national_guard_army_4
+			}
 		}
 	}
 	focus = {
@@ -4795,7 +4818,7 @@ focus_tree = {
 		}
 		completion_reward = {
 		if = {
-			limit = { NOT = { has_completed_focus = GLA_againist_neo_liberalism } }
+			limit = { NOT = { has_completed_focus = GLA_prepare_for_the_attack } }
 			swap_ideas = {
 			    remove_idea = GLA_defend_our_land
 			    add_idea = GLA_defend_our_land_2
@@ -8363,13 +8386,16 @@ focus_tree = {
 		}
 		completion_reward = {
 	    add_ideas = GLA_just_like_1776
-		if = {
-		    limit = { has_idea = Unorganized_Boogaloo_2 }
-            swap_ideas = {
+		    hidden_effect = {
+				remove_idea = Unorganized_Boogaloo
 				remove_idea = Unorganized_Boogaloo_2
-				add_idea = Unorganized_Boogaloo_3
-			    }
-		    }
+				remove_idea = Unorganized_Boogaloo_3
+				remove_idea = boogaloo_militias
+				remove_idea = boogaloo_militias_2
+				remove_idea = boogaloo_militias_3
+				remove_idea = weakened_boogaloo_militias
+				remove_idea = weakened_boogaloo_militias_2
+			}
 		}
 
 	}
@@ -10452,16 +10478,338 @@ focus_tree = {
 		    air_experience = 35
 		}
 	}
-
-
-
-
-
-
-
-
-
-
+###########Post Reunification
+	focus = {
+		id = GLA_americas_return
+		icon = GFX_goal_GLA_the_elections
+		cost = 1
+		x = -4
+		y = 14
+		select_effect = {  }
+		allow_branch = {
+		}
+		available = {
+			always = no
+		}
+		completion_reward = {
+		
+		}
+	}
+	focus = {
+		id = GLA_a_shining_beacon_of_libertarianism
+		icon = GFX_goal_GLA_the_elections
+		cost = 1
+		x = -6
+		y = 1
+		relative_position_id = GLA_americas_return
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_americas_return
+		}
+		completion_reward = {
+		
+		}
+	}
+	focus = {
+		id = GLA_work_with_the_united_nations
+		icon = GFX_goal_GLA_the_elections
+		cost = 3
+		x = 1
+		y = 1
+		relative_position_id = GLA_a_shining_beacon_of_libertarianism
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_a_shining_beacon_of_libertarianism
+		}
+		completion_reward = {
+		
+		}
+	}
+	focus = {
+		id = GLA_meet_with_libertarian_world_leaders
+		icon = GFX_goal_GLA_the_elections
+		cost = 3
+		x = 1
+		y = 1
+		relative_position_id = GLA_work_with_the_united_nations
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_work_with_the_united_nations
+		}
+		completion_reward = {
+		
+		}
+	}
+	focus = {
+		id = GLA_questions_in_the_government
+		icon = GFX_goal_GLA_the_elections
+		cost = 5
+		x = -1
+		y = 1
+		relative_position_id = GLA_a_shining_beacon_of_libertarianism
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_a_shining_beacon_of_libertarianism
+		}
+		completion_reward = {
+		
+		}
+	}
+	focus = {
+		id = GLA_rebuild_american_cities
+		icon = GFX_goal_GLA_the_elections
+		cost = 5
+		x = -1
+		y = 1
+		relative_position_id = GLA_questions_in_the_government
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_questions_in_the_government
+		}
+		completion_reward = {
+		
+		}
+	}
+	focus = {
+		id = GLA_proclaim_neutrality
+		icon = GFX_goal_GLA_the_elections
+		cost = 3
+		x = 1
+		y = 1
+		relative_position_id = GLA_questions_in_the_government
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_questions_in_the_government
+		}
+		prerequisite = {
+			focus = GLA_work_with_the_united_nations
+		}
+		completion_reward = {
+		
+		}
+	}
+	focus = {
+		id = GLA_enforce_americanism
+		icon = GFX_goal_GLA_the_elections
+		cost = 1
+		x = 0
+		y = 1
+		relative_position_id = GLA_americas_return
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_americas_return
+		}
+		completion_reward = {
+		
+		}
+	}
+	focus = {
+		id = GLA_americanize_mexico_and_central_america
+		icon = GFX_goal_GLA_the_elections
+		cost = 2
+		x = 1
+		y = 1
+		relative_position_id = GLA_enforce_americanism
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_enforce_americanism
+		}
+		completion_reward = {
+		
+		}
+	}
+	focus = {
+		id = GLA_americanize_the_rest_of_north_america
+		icon = GFX_goal_GLA_the_elections
+		cost = 2
+		x = 1
+		y = 1
+		relative_position_id = GLA_americanize_mexico_and_central_america
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_americanize_mexico_and_central_america
+		}
+		completion_reward = {
+		
+		}
+	}
+	focus = {
+		id = GLA_a_government_of_americans
+		icon = GFX_goal_GLA_the_elections
+		cost = 5
+		x = -1
+		y = 1
+		relative_position_id = GLA_enforce_americanism
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_enforce_americanism
+		}
+		completion_reward = {
+		
+		}
+	}
+	focus = {
+		id = GLA_revive_american_industries
+		icon = GFX_goal_GLA_the_elections
+		cost = 5
+		x = -1
+		y = 1
+		relative_position_id = GLA_a_government_of_americans
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_a_government_of_americans
+		}
+		completion_reward = {
+		
+		}
+	}
+	focus = {
+		id = GLA_work_with_russia
+		icon = GFX_goal_GLA_the_elections
+		cost = 3
+		x = 1
+		y = 1
+		relative_position_id = GLA_a_government_of_americans
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_a_government_of_americans
+		}
+		prerequisite = {
+			focus = GLA_americanize_mexico_and_central_america
+		}
+		completion_reward = {
+		
+		}
+	}
+	focus = {
+		id = GLA_spread_our_enlightenment
+		icon = GFX_goal_GLA_the_elections
+		cost = 1
+		x = 6
+		y = 1
+		relative_position_id = GLA_americas_return
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_americas_return
+		}
+		completion_reward = {
+		
+		}
+	}
+	focus = {
+		id = GLA_enlighten_mexico_and_central_america
+		icon = GFX_goal_GLA_the_elections
+		cost = 3
+		x = 1
+		y = 1
+		relative_position_id = GLA_spread_our_enlightenment
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_spread_our_enlightenment
+		}
+		completion_reward = {
+		
+		}
+	}
+	focus = {
+		id = GLA_enlighten_the_americas
+		icon = GFX_goal_GLA_the_elections
+		cost = 3
+		x = 1
+		y = 1
+		relative_position_id = GLA_enlighten_mexico_and_central_america
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_enlighten_mexico_and_central_america
+		}
+		completion_reward = {
+		
+		}
+	}
+	focus = {
+		id = GLA_from_states_to_duchies
+		icon = GFX_goal_GLA_the_elections
+		cost = 5
+		x = -1
+		y = 1
+		relative_position_id = GLA_spread_our_enlightenment
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_spread_our_enlightenment
+		}
+		completion_reward = {
+		
+		}
+	}
+	focus = {
+		id = GLA_the_fourth_industrial_revoluion
+		icon = GFX_goal_GLA_the_elections
+		cost = 5
+		x = -1
+		y = 1
+		relative_position_id = GLA_from_states_to_duchies
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_from_states_to_duchies
+		}
+		completion_reward = {
+		
+		}
+	}
+	focus = {
+		id = GLA_work_with_china#question mark
+		icon = GFX_goal_GLA_the_elections
+		cost = 5
+		x = 1
+		y = 1
+		relative_position_id = GLA_from_states_to_duchies
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_from_states_to_duchies
+		}
+		prerequisite = {
+			focus = GLA_enlighten_mexico_and_central_america
+		}
+		completion_reward = {
+		
+		}
+	}
 }
 	
 	
