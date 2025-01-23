@@ -437,7 +437,7 @@ focus_tree = {
             }
 		}
 		completion_reward = {
-		add_ideas = GLA_free_market_healthcare
+		    add_ideas = GLA_free_market_healthcare
 		}
 	}
 	focus = {
@@ -451,7 +451,7 @@ focus_tree = {
 			focus = GLA_free_market_healthcare
 		}
 		completion_reward = {
-		add_stability = 0.05
+		    add_stability = 0.05
 		}
 	}
 	###########The Paleo-Libertarians
@@ -1106,7 +1106,7 @@ focus_tree = {
 			focus = GLA_libertarian_social_policies
 		}
 		completion_reward = {
-		add_popularity = {
+		    add_popularity = {
        			ideology = libertarian_right
         		popularity = 0.05
         	}
@@ -1597,9 +1597,9 @@ focus_tree = {
 				value = -5
 				tooltip = GLA_paleolibertarians_wont_be_happy
 			}
-		add_timed_idea = {
-            idea = GLA_democrat_support
-            days = 300
+		    add_timed_idea = {
+                idea = GLA_democrat_support
+                days = 300
             }
 		}
 	}
@@ -2166,7 +2166,7 @@ focus_tree = {
 			focus = GLA_libertarian_economic_policies
 		}
 		completion_reward = {
-		random_controlled_state = {
+		    random_controlled_state = {
 				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
 				add_extra_state_shared_building_slots = 2	
 				add_building_construction = {
@@ -2395,9 +2395,9 @@ focus_tree = {
 			has_completed_focus = GLA_fuck_labour_rights
 		}
 		completion_reward = {
-		add_stability = -0.05
-		add_political_power = 20
-		random_controlled_state = {
+		    add_stability = -0.05
+		    add_political_power = 20
+		    random_controlled_state = {
 				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
 				add_extra_state_shared_building_slots = 1	
 				add_building_construction = {
@@ -2406,7 +2406,7 @@ focus_tree = {
     					instant_build = yes
 				}
 			}
-		random_controlled_state = {
+		    random_controlled_state = {
 				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
 				add_extra_state_shared_building_slots = 1	
 				add_building_construction = {
@@ -2703,11 +2703,11 @@ focus_tree = {
 			focus = GLA_lower_taxes
 		}
 		completion_reward = {
-		random_controlled_state = {
+		    random_controlled_state = {
 				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
 				add_extra_state_shared_building_slots = 2
 			}
-		random_controlled_state = {
+		    random_controlled_state = {
 				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
 				add_building_construction = {
     					type = infrastructure
@@ -2715,7 +2715,7 @@ focus_tree = {
     					instant_build = yes
 				}
 			}
-		random_controlled_state = {
+		    random_controlled_state = {
 				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
 				add_building_construction = {
     					type = infrastructure
@@ -4817,14 +4817,14 @@ focus_tree = {
 			country_exists = USA
 		}
 		completion_reward = {
-		if = {
+		    if = {
 			limit = { NOT = { has_completed_focus = GLA_prepare_for_the_attack } }
 			swap_ideas = {
 			    remove_idea = GLA_defend_our_land
 			    add_idea = GLA_defend_our_land_2
 			    }
 		    }
-		if = {
+		    if = {
 			limit = { NOT = { has_completed_focus = GLA_defend_our_land } }
 			swap_ideas = {
 			    remove_idea = GLA_the_attack_on_the_feds
@@ -10486,7 +10486,15 @@ focus_tree = {
 		x = -4
 		y = 14
 		select_effect = {  }
-		allow_branch = {
+		#allow_branch = {
+		#	OR = {
+		#	    has_completed_focus = GLA_a_libertarian_america
+		#		has_completed_focus = GLA_a_boogaloo_america
+		#		has_completed_focus = GLA_a_reactionary_america
+		#	}
+		#}
+		prerequisite = {
+			focus = GLA_a_libertarian_america
 		}
 		available = {
 			always = no
@@ -10504,12 +10512,21 @@ focus_tree = {
 		relative_position_id = GLA_americas_return
 		select_effect = {  }
 		allow_branch = {
+			#has_completed_focus = GLA_a_libertarian_america
 		}
 		prerequisite = {
 			focus = GLA_americas_return
 		}
+		#offset = {
+		#	x = 0
+		#	y = 6
+		#	trigger = {
+		#		has_completed_focus = GLA_a_libertarian_america
+		#	}
+		#}
 		completion_reward = {
-		
+		    add_stability = 0.15
+			add_war_support = -0.45
 		}
 	}
 	focus = {
@@ -10526,7 +10543,8 @@ focus_tree = {
 			focus = GLA_a_shining_beacon_of_libertarianism
 		}
 		completion_reward = {
-		
+			add_political_power = -100
+			add_stability = 0.05
 		}
 	}
 	focus = {
@@ -10543,7 +10561,10 @@ focus_tree = {
 			focus = GLA_work_with_the_united_nations
 		}
 		completion_reward = {
-		
+			country_event = {
+				id = greatlake.82
+				days = 0
+			}
 		}
 	}
 	focus = {
@@ -10560,7 +10581,10 @@ focus_tree = {
 			focus = GLA_a_shining_beacon_of_libertarianism
 		}
 		completion_reward = {
-		
+			country_event = {
+				id = greatlake.79
+				days = 0
+			}
 		}
 	}
 	focus = {
@@ -10577,7 +10601,70 @@ focus_tree = {
 			focus = GLA_questions_in_the_government
 		}
 		completion_reward = {
-		
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1
+			}
+		    random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_building_construction = {
+    					type = infrastructure
+    					level = 1
+    					instant_build = yes
+				}
+			}
+		    random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_building_construction = {
+    					type = infrastructure
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_building_construction = {
+    					type = infrastructure
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_building_construction = {
+    					type = infrastructure
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_building_construction = {
+    					type = infrastructure
+    					level = 1
+    					instant_build = yes
+				}
+			}
 		}
 	}
 	focus = {
@@ -10597,7 +10684,7 @@ focus_tree = {
 			focus = GLA_work_with_the_united_nations
 		}
 		completion_reward = {
-		
+		    add_ideas = GLA_america_sleeps
 		}
 	}
 	focus = {
@@ -10609,12 +10696,13 @@ focus_tree = {
 		relative_position_id = GLA_americas_return
 		select_effect = {  }
 		allow_branch = {
+			#has_completed_focus = GLA_a_boogaloo_america
 		}
 		prerequisite = {
 			focus = GLA_americas_return
 		}
 		completion_reward = {
-		
+			add_stability = 0.15
 		}
 	}
 	focus = {
@@ -10630,8 +10718,85 @@ focus_tree = {
 		prerequisite = {
 			focus = GLA_enforce_americanism
 		}
+		available = {
+			has_war = no
+		}
+		will_lead_to_war_with = MEX
+		will_lead_to_war_with = WMX
+		will_lead_to_war_with = CAR
+		will_lead_to_war_with = RMX
+		will_lead_to_war_with = ADF
+		will_lead_to_war_with = ZAP	
+		will_lead_to_war_with = YUC
+		will_lead_to_war_with = GUA
+		will_lead_to_war_with = BLZ
+		will_lead_to_war_with = HON
+		will_lead_to_war_with = ELS
+		will_lead_to_war_with = NIC
+		will_lead_to_war_with = COS
+		will_lead_to_war_with = PAN
+		will_lead_to_war_with = CHI
 		completion_reward = {
-		
+			create_wargoal = {
+				type = annex_everything
+				target = MEX
+		    }
+		    create_wargoal = {
+				type = annex_everything
+				target = WMX
+		    }	
+		    create_wargoal = {
+				type = annex_everything
+				target = CAR
+		    }		
+		    create_wargoal = {
+				type = annex_everything
+				target = RMX
+		    }
+		    create_wargoal = {
+				type = annex_everything
+				target = ADF
+		    }
+		    create_wargoal = {
+				type = annex_everything
+				target = ZAP
+		    }
+		    create_wargoal = {
+				type = annex_everything
+				target = YUC
+		    }
+			create_wargoal = {
+				type = annex_everything
+				target = GUA
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = BLZ
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = HON
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = ELS
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = NIC
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = COS
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = CHI
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = PAN
+			}
 		}
 	}
 	focus = {
@@ -10646,6 +10811,9 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = GLA_americanize_mexico_and_central_america
+		}
+		available = {
+			has_war = no
 		}
 		completion_reward = {
 		
@@ -10665,7 +10833,7 @@ focus_tree = {
 			focus = GLA_enforce_americanism
 		}
 		completion_reward = {
-		
+			add_war_support = 0.15
 		}
 	}
 	focus = {
@@ -10682,7 +10850,86 @@ focus_tree = {
 			focus = GLA_a_government_of_americans
 		}
 		completion_reward = {
-		
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+    					type = arms_factory
+    					level = 2
+    					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+    					type = arms_factory
+    					level = 2
+    					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+    					type = arms_factory
+    					level = 2
+    					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+    					type = arms_factory
+    					level = 2
+    					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+    					type = arms_factory
+    					level = 2
+    					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_resource = {
+                    type = steel
+                    amount = 15
+                }	
+		    }
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_resource = {
+                    type = steel
+                    amount = 15
+                }	
+		    }
+		    random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_resource = {
+                    type = oil
+                    amount = 15
+                }	
+		    }
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_resource = {
+                    type = oil
+                    amount = 15
+                }	
+		    }
+		    random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_resource = {
+                    type = chromium
+                    amount = 15
+                }	
+		    }
 		}
 	}
 	focus = {
@@ -10702,7 +10949,10 @@ focus_tree = {
 			focus = GLA_americanize_mexico_and_central_america
 		}
 		completion_reward = {
-		
+			country_event = {
+				id = greatlake.83
+				days = 0
+			}
 		}
 	}
 	focus = {
@@ -10714,12 +10964,20 @@ focus_tree = {
 		relative_position_id = GLA_americas_return
 		select_effect = {  }
 		allow_branch = {
+			#has_completed_focus = GLA_a_reactionary_america
 		}
 		prerequisite = {
 			focus = GLA_americas_return
 		}
+		#offset = {
+		#	x = 0
+		#	y = -6
+		#	trigger = {
+		#		has_completed_focus = GLA_a_reactionary_america
+		#	}
+		#}
 		completion_reward = {
-		
+			add_stability = 0.15
 		}
 	}
 	focus = {
@@ -10735,8 +10993,85 @@ focus_tree = {
 		prerequisite = {
 			focus = GLA_spread_our_enlightenment
 		}
+		available = {
+			has_war = no
+		}
+		will_lead_to_war_with = MEX
+		will_lead_to_war_with = WMX
+		will_lead_to_war_with = CAR
+		will_lead_to_war_with = RMX
+		will_lead_to_war_with = ADF
+		will_lead_to_war_with = ZAP	
+		will_lead_to_war_with = YUC
+		will_lead_to_war_with = GUA
+		will_lead_to_war_with = BLZ
+		will_lead_to_war_with = HON
+		will_lead_to_war_with = ELS
+		will_lead_to_war_with = NIC
+		will_lead_to_war_with = COS
+		will_lead_to_war_with = PAN
+		will_lead_to_war_with = CHI
 		completion_reward = {
-		
+			create_wargoal = {
+				type = annex_everything
+				target = MEX
+		    }
+		    create_wargoal = {
+				type = annex_everything
+				target = WMX
+		    }	
+		    create_wargoal = {
+				type = annex_everything
+				target = CAR
+		    }		
+		    create_wargoal = {
+				type = annex_everything
+				target = RMX
+		    }
+		    create_wargoal = {
+				type = annex_everything
+				target = ADF
+		    }
+		    create_wargoal = {
+				type = annex_everything
+				target = ZAP
+		    }
+		    create_wargoal = {
+				type = annex_everything
+				target = YUC
+		    }
+			create_wargoal = {
+				type = annex_everything
+				target = GUA
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = BLZ
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = HON
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = ELS
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = NIC
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = COS
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = CHI
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = PAN
+			}
 		}
 	}
 	focus = {
@@ -10751,6 +11086,9 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = GLA_enlighten_mexico_and_central_america
+		}
+		available = {
+			has_war = no
 		}
 		completion_reward = {
 		
@@ -10770,7 +11108,8 @@ focus_tree = {
 			focus = GLA_spread_our_enlightenment
 		}
 		completion_reward = {
-		
+			add_political_power = -150
+			add_stability = 0.05
 		}
 	}
 	focus = {
@@ -10787,11 +11126,85 @@ focus_tree = {
 			focus = GLA_from_states_to_duchies
 		}
 		completion_reward = {
-		
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_building_construction = {
+    					type = infrastructure
+    					level = 1
+    					instant_build = yes
+				}
+			}
+		    random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_building_construction = {
+    					type = infrastructure
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_building_construction = {
+    					type = infrastructure
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_building_construction = {
+    					type = infrastructure
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_building_construction = {
+    					type = infrastructure
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_resource = {
+                    type = oil
+                    amount = 15
+                }	
+		    }
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_resource = {
+                    type = oil
+                    amount = 15
+                }	
+		    }
+		    random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_resource = {
+                    type = chromium
+                    amount = 15
+                }	
+		    }
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_resource = {
+                    type = aluminium
+                    amount = 15
+                }	
+		    }
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_resource = {
+                    type = aluminium
+                    amount = 15
+                }	
+		    }
 		}
 	}
 	focus = {
-		id = GLA_work_with_china#question mark
+		id = GLA_work_with_china
 		icon = GFX_goal_GLA_the_elections
 		cost = 5
 		x = 1
@@ -10807,7 +11220,10 @@ focus_tree = {
 			focus = GLA_enlighten_mexico_and_central_america
 		}
 		completion_reward = {
-		
+			country_event = {
+				id = greatlake.84
+				days = 0
+			}
 		}
 	}
 }

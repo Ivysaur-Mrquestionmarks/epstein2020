@@ -2200,9 +2200,15 @@ country_event = {
 		add_political_power = -50
 		add_stability = -0.05
 		delete_unit_template_and_units = {
-        division_template = "National Guard"
-        disband = no
+            division_template = "National Guard"
+            disband = no
         }
+		every_unit_leader = { 
+			if = {
+				limit = { has_trait = national_guard_member }
+				remove_unit_leader = yes
+			}
+		}
 	}
 	option = {
 		name = greatlake.58.b
@@ -2616,7 +2622,7 @@ news_event = {
 	id = greatlake.74
 	title = greatlake.74.t
 	desc = greatlake.74.d
-	#picture = er
+	picture = event_news_GLA_boogaloo_coup
 	is_triggered_only = yes
 	fire_only_once = yes
 	immediate = {
@@ -2635,7 +2641,7 @@ news_event = {
 	id = greatlake.75
 	title = greatlake.75.t
 	desc = greatlake.75.d
-	#picture = er
+	picture = event_news_GLA_yarvin_coup
 	is_triggered_only = yes
 	fire_only_once = yes
 	immediate = {
@@ -2729,5 +2735,342 @@ country_event = {
 			planning_skill = 3
 			logistics_skill = 4
 		}
+	}
+}
+
+#Yarvin Comes Back to California
+country_event = {
+	id = greatlake.77
+	title = greatlake.77.t
+	desc = greatlake.77.d
+	#picture = er
+	is_triggered_only = no
+	fire_only_once = yes
+	trigger = {
+		tag = GLA
+		owns_state = 304
+	}
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.77.a
+		ai_chance = {
+			factor = 10
+		}
+	}
+}
+
+#Gary Johnson Comes Back to New Mexico
+country_event = {
+	id = greatlake.78
+	title = greatlake.78.t
+	desc = greatlake.78.d
+	#picture = er
+	is_triggered_only = no
+	fire_only_once = yes
+	trigger = {
+		tag = GLA
+		owns_state = 310
+	}
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.78.a
+		ai_chance = {
+			factor = 10
+		}
+	}
+}
+
+#Libertarian Government Part 1: Party System
+country_event = {
+	id = greatlake.79
+	title = greatlake.79.t
+	desc = greatlake.79.d
+	#picture = er
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	#Two-party system
+	option = {
+		name = greatlake.79.a
+		ai_chance = {
+			factor = 10
+		}
+		country_event = {
+			id = greatlake.80
+			days = 5
+		}
+		if = {
+		    limit = { has_completed_focus = GLA_libertarian_conservatism }
+            add_popularity = {
+				ideology = democrat
+				popularity = 0.4
+			}
+		}
+		if = {
+		    limit = { has_completed_focus = GLA_libertarian_progressivism }
+            add_popularity = {
+				ideology = republican
+				popularity = 0.4
+			}
+		}
+	}
+	#Multi-party system
+	option = {
+		name = greatlake.79.b
+		ai_chance = {
+			factor = 10
+		}
+		country_event = {
+			id = greatlake.80
+			days = 5
+		}
+		add_popularity = {
+			ideology = democrat
+			popularity = 0.15
+		}
+		add_popularity = {
+			ideology = republican
+			popularity = 0.15
+		}
+		add_popularity = {
+			ideology = libertarian_left
+			popularity = 0.15
+		}
+	}
+}
+
+#Libertarian Government Part 2: Join Other International Organizations?
+country_event = {
+	id = greatlake.80
+	title = greatlake.80.t
+	desc = greatlake.80.d
+	#picture = er
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	#Yes
+	option = {
+		name = greatlake.80.a
+		ai_chance = {
+			factor = 10
+		}
+		country_event = {
+			id = greatlake.81
+			days = 5
+		}
+		add_stability = 0.05
+		add_war_support = -0.05
+	}
+	#No
+	option = {
+		name = greatlake.80.b
+		ai_chance = {
+			factor = 10
+		}
+		country_event = {
+			id = greatlake.81
+			days = 5
+		}
+		add_stability = -0.05
+		add_war_support = 0.05
+	}
+}
+
+#Libertarian Government Part 3: Our New Capital?
+country_event = {
+	id = greatlake.81
+	title = greatlake.81.t
+	desc = greatlake.81.d
+	#picture = er
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	#Washington D.C
+	option = {
+		name = greatlake.81.a
+		ai_chance = {
+			factor = 10
+		}
+		set_capital = {state = 242}
+	}
+	#New York City
+	option = {
+		name = greatlake.81.b
+		ai_chance = {
+			factor = 10
+		}
+		set_capital = {state = 223}
+	}
+	#Chicago
+	option = {
+		name = greatlake.81.c
+		ai_chance = {
+			factor = 10
+		}
+		set_capital = {state = 198}
+	}
+	#Detroit
+	option = {
+		name = greatlake.81.d
+		ai_chance = {
+			factor = 10
+		}
+		set_capital = {state = 153}
+	}
+	#Los Angeles
+	option = {
+		name = greatlake.81.e
+		ai_chance = {
+			factor = 10
+		}
+		set_capital = {state = 302}
+	}
+	#Keep Our Capitol
+	option = {
+		name = greatlake.81.f
+		ai_chance = {
+			factor = 10
+		}
+	}
+}
+
+#Meeting With Libertarian World Leaders
+country_event = {
+	id = greatlake.82
+	title = greatlake.82.t
+	desc = greatlake.82.d
+	#picture = er
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.82.a
+		ai_chance = {
+			factor = 10
+		}
+	}
+}
+
+#Our Friends At Moscow
+country_event = {
+	id = greatlake.83
+	title = greatlake.83.t
+	desc = greatlake.83.d
+	#picture = er
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.83.a
+		ai_chance = {
+			factor = 10
+		}
+	}
+}
+
+#Work With China?
+country_event = {
+	id = greatlake.84
+	title = greatlake.84.t
+	desc = greatlake.84.d
+	#picture = er
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.84.a
+		ai_chance = {
+			factor = 10
+		}
+	}
+	option = {
+		name = greatlake.84.b
+		ai_chance = {
+			factor = 10
+		}
+	}
+}
+
+#Protests Over Boogaloo Militias
+country_event = {
+	id = greatlake.85
+	title = greatlake.85.t
+	desc = greatlake.85.d
+	#picture = er
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.85.a
+		ai_chance = {
+			factor = 10
+		}
+		add_stability = -0.05
+		add_popularity = {
+			ideology = libertarian_right
+		    popularity = -0.05
+	    }
+	}
+}
+
+#The National Guard Warns Us About The Boogaloo Militias
+country_event = {
+	id = greatlake.86
+	title = greatlake.86.t
+	desc = greatlake.86.d
+	#picture = er
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.86.a
+		ai_chance = {
+			factor = 10
+		}
+		add_stability = -0.05
+	}
+}
+
+#More Protests Over Boogaloo Militias
+country_event = {
+	id = greatlake.87
+	title = greatlake.87.t
+	desc = greatlake.87.d
+	#picture = er
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.87.a
+		ai_chance = {
+			factor = 10
+		}
+		add_stability = -0.05
+		add_popularity = {
+			ideology = libertarian_right
+		    popularity = -0.05
+	    }
 	}
 }
