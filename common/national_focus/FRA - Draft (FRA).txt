@@ -5539,7 +5539,7 @@ focus_tree = {
 		relative_position_id = FRA_wcw_round_two
 		available = { 
 			NOT = { 
-				country_exists = PAC
+				#country_exists = PAC
 				country_exists = CAS
 				country_exists = LIB
 				country_exists = IDA
@@ -5570,12 +5570,12 @@ focus_tree = {
 				}
 				is_in_faction_with = UTA
 			}
-			OR = {
-				NOT = {
-					country_exists = ALA
-				}
-				is_in_faction_with = ALA
-			}
+			#OR = {
+			#	NOT = {
+			#		country_exists = ALA
+			#	}
+			#	is_in_faction_with = ALA
+			#}
 			OR = {
 				NOT = {
 					country_exists = PAC
@@ -6823,7 +6823,7 @@ focus_tree = {
 		x = 0
 		y = 1
 		available = { has_country_leader = { name = "Robert F. Kennedy Jr." ruling_only = yes } }
-		allow_branch = { has_country_flag = rfk_pres_after_unification } 
+		#allow_branch = { has_country_flag = rfk_pres_after_unification } 
 		relative_position_id = FRA_reduce_senatorial_powers
 		completion_reward = {
 			custom_effect_tooltip = rfk_kill_cia_tt
@@ -7052,6 +7052,13 @@ focus_tree = {
 		will_lead_to_war_with = PTR
 		will_lead_to_war_with = MRT
 		completion_reward = {
+				if = {
+					limit = { is_ai = no }
+					if = {
+						limit = { CAN = { is_ai = no } }
+						puppet = CAN
+					}
+				}
 				create_wargoal = {
 					type = annex_everything
 					target = ALT
@@ -7108,7 +7115,52 @@ focus_tree = {
 		x = 1
 		y = 1
 		relative_position_id = FRA_international_diplomacy
+		will_lead_to_war_with = RMX
+		will_lead_to_war_with = MEX
+		will_lead_to_war_with = WMX
+		will_lead_to_war_with = PVB
+		will_lead_to_war_with = CAR 
+		will_lead_to_war_with = ADF 
+		will_lead_to_war_with = ZAP
+		will_lead_to_war_with = YUC
+		will_lead_to_war_with = BJC
 		completion_reward = {
+				create_wargoal = {
+					type = annex_everything
+					target = RMX
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = MEX
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = WMX
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = PVB
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = CAR
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = ADF
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = ZAP
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = YUC
+				}
+				create_wargoal = {
+					type = annex_everything
+					target = BJC
+				}
 		}
 	}
 	focus = {
@@ -7130,6 +7182,7 @@ focus_tree = {
 					NOT = { OR = { is_core_of = CAN is_core_of = MEX } }
 					is_owned_by = ROOT
 					owner = { is_ally_with = ROOT } #Checks for territory controlled by indpendent faction members/puppets
+					owner = { is_subject_of = ROOT } #Checks for territory controlled by indpendent faction members/puppets
 				}		
 			}
 			ROOT = {
@@ -7143,9 +7196,23 @@ focus_tree = {
 			}
 		}
 		completion_reward = {
-			release_puppet = CAN
+			every_owned_state = {
+				limit = { 
+					AND = {
+						is_core_of = CAN
+						NOT = { is_core_of = FRA }
+					}
+				}
+				transfer_state_to = CAN
+			}
+			#puppet = CAN
 			release_puppet = MEX
 			create_faction = "NATO"
+			add_to_faction = HOL
+			add_to_faction = ENG
+			add_to_faction = CAN
+			add_to_faction = GRL
+			add_to_faction = FFR
 		}
 	}
 	focus = {
@@ -7787,6 +7854,19 @@ focus_tree = {
 		x = 0
 		y = 1
 		relative_position_id = FRA_mexican_question
+		available = {
+			NOT = {
+				country_exists = RMX
+				country_exists = MEX
+				country_exists = WMX
+				country_exists = PVB
+				country_exists = CAR
+				country_exists = ADF
+				country_exists = ZAP
+				country_exists = YUC
+				country_exists = BJC
+			}
+		}
 		completion_reward = {
 			every_state = {
 				limit = { is_core_of = MEX }
