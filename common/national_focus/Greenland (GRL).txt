@@ -48,6 +48,11 @@ focus_tree = {
 			focus = GRL_the_NATO_crisis
 		}
 		completion_reward = {
+			remove_ideas = {
+				GRL_danish_realm
+				GRL_kingdom_of_denmark
+				NATO_NATO_idea
+			}
 		}
 	}
 	
@@ -70,6 +75,13 @@ focus_tree = {
 			always = no
 		}
 		completion_reward = {
+			FFR = { add_to_faction = GRL }
+			add_ideas = {
+				NATO_NATO_idea
+				GRL_kingdom_of_denmark
+				GRL_danish_realm
+			}
+			add_ideas = GRL_inuit_resistance
 		}
 	}
 	focus = {
@@ -83,6 +95,10 @@ focus_tree = {
 			focus = GRL_royalist_coup
 		}
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = GRL_kingdom_of_denmark
+				add_idea = GRL_kingdom_of_denmark_king
+			}
 		}
 	}
 	focus = {
@@ -96,6 +112,14 @@ focus_tree = {
 			focus = GRL_royalist_coup
 		}
 		completion_reward = {
+			add_popularity = {
+				ideology = libertarian_left
+				popularity = -1
+			}
+			swap_ideas = {
+				remove_idea = GRL_inuit_resistance
+				add_ideas = GRL_inuit_resistance2
+			}
 		}
 	}
 	focus = {
@@ -111,7 +135,13 @@ focus_tree = {
 		prerequisite = { 
 			focus = GRL_outlaw_the_inuit_socialists
 		}
+		available = {
+			has_completed_focus = GRL_full_integration_into_denmark
+		}
 		completion_reward = {
+			674 = { 
+				set_state_category = megalopolis
+			}
 		}
 	}
 	focus = {
@@ -125,6 +155,7 @@ focus_tree = {
 			focus = GRL_build_a_palace_in_nuuk
 		}
 		completion_reward = {
+			add_country_leader_trait = king_of_denmark
 		}
 	}
 	focus = {
@@ -138,6 +169,10 @@ focus_tree = {
 			focus = GRL_build_a_palace_in_nuuk
 		}
 		completion_reward = {
+			add_ideas = GRL_icelandic_Realm
+			674 = { 
+				add_manpower = 393000
+			}
 		}
 	}
 	focus = {
@@ -154,6 +189,10 @@ focus_tree = {
 			focus = GRL_reunification_with_iceland
 		}
 		completion_reward = {
+			set_cosmetic_tag = GRL_DEN_NSE
+			add_war_support = 0.2
+			add_stability = 0.1
+			add_political_power = 35
 		}
 	}
 	focus = {
@@ -167,6 +206,7 @@ focus_tree = {
 			focus = GRL_build_a_palace_in_nuuk
 		}
 		completion_reward = {
+			add_war_support = 0.3
 		}
 	}
 	focus = {
@@ -180,6 +220,7 @@ focus_tree = {
 			focus = GRL_the_empire_of_old
 		}
 		completion_reward = {
+			transfer_state = 467
 		}
 	}
 	focus = {
@@ -196,6 +237,10 @@ focus_tree = {
 			focus = GRL_north_sea_empire_returns
 		}
 		completion_reward = {
+			country_event = {
+				id = greenland.4
+				days = 10
+			}
 		}
 	}
 	
@@ -214,6 +259,18 @@ focus_tree = {
 			focus = GRL_danish_integration_program
 		}
 		completion_reward = { ## News Event for denmark seizing greenland 
+			country_event = {
+				id = greenland.2
+				days = 1
+			}
+			swap_ideas = {
+				remove_idea = GRL_danish_realm
+				add_idea = GRL_denmark
+			}
+			swap_ideas = {
+				remove_idea = GRL_inuit_resistance2
+				add_idea = GRL_inuit_resistance3
+			}
 		}
 	}
 	focus = {
@@ -227,6 +284,19 @@ focus_tree = {
 			focus = GRL_full_integration_into_denmark
 		}
 		completion_reward = {
+			if = {
+				limit = { has_idea = GRL_inuit_resistance4 }
+				swap_ideas = {
+					remove_idea = GRL_inuit_resistance4
+					add_idea = GRL_inuit_resistance5
+				}
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = GRL_inuit_resistance3
+					add_idea = GRL_inuit_resistance4
+				}
+			}
 		}
 	}
 	focus = {
@@ -240,6 +310,19 @@ focus_tree = {
 			focus = GRL_full_integration_into_denmark
 		}
 		completion_reward = {
+			if = {
+				limit = { has_idea = GRL_inuit_resistance4 }
+				swap_ideas = {
+					remove_idea = GRL_inuit_resistance4
+					add_idea = GRL_inuit_resistance5
+				}
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = GRL_inuit_resistance3
+					add_idea = GRL_inuit_resistance4
+				}
+			}
 		}
 	}
 	focus = {
@@ -256,6 +339,10 @@ focus_tree = {
 			focus = GRL_displace_inuits
 		}
 		completion_reward = { 
+			swap_ideas = {
+				remove_idea = GRL_inuit_resistance5
+				add_idea = GRL_inuit_resistance6
+			}
 		}
 	}
 	focus = {
@@ -272,6 +359,7 @@ focus_tree = {
 			focus = GRL_danish_investments
 		}
 		completion_reward = { 
+			add_research_slot = 1
 		}
 	}
 	
@@ -289,6 +377,7 @@ focus_tree = {
 			has_global_flag = canadian_civil_war
 		}
 		completion_reward = { 
+			add_ideas = GRL_seize_opportunity
 		}
 	}
 	focus = {
@@ -301,10 +390,15 @@ focus_tree = {
 		prerequisite = { 
 			focus = GRL_a_new_opportunity
 		}
+		will_lead_to_war_with = MRT
 		completion_reward = { 
 			every_state = {
 				limit = { is_core_of = MRT }
 				add_core_of = GRL
+			}
+			create_wargoal = {
+				target = MRT
+				type = annex_everything
 			}
 		}
 	}
@@ -322,11 +416,12 @@ focus_tree = {
 			focus = GRL_reclaim_vinland
 		}
 		completion_reward = { 
+			add_ideas = GRL_closer_nordic_coop_idea
 		}
 	}
 	focus = {
 		id = GRL_lease_st_pierre_and_miquelon
-		cost = 5
+		cost = 1
 		icon = GFX
 		x = -1
 		y = 1
@@ -335,6 +430,7 @@ focus_tree = {
 			focus = GRL_a_new_opportunity
 		}
 		completion_reward = { 
+			transfer_state = 144
 		}
 	}
 	focus = {
@@ -351,6 +447,27 @@ focus_tree = {
 			focus = GRL_lease_st_pierre_and_miquelon
 		}
 		completion_reward = { 
+			every_owned_state = {
+				limit = {
+					OR = {
+						state = 164
+						state = 156
+						state = 17
+						state = 10
+						state = 20
+						state = 154
+						state = 175
+						state = 176
+						state = 127
+					}
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = infrastructure
+					level = 4
+					instant_build = yes
+				}
+			}
 		}
 	}
 	focus = {
@@ -366,7 +483,27 @@ focus_tree = {
 		prerequisite = { 
 			focus = GRL_reclaim_the_danish_virgin_islands
 		}
+		will_lead_to_war_with = PUE
+		will_lead_to_war_with = HBI
+		will_lead_to_war_with = HAI
+		will_lead_to_war_with = DOM
 		completion_reward = { 
+			create_wargoal = {
+				target = HAI
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = HBI
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = DOM
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = PUE
+				type = annex_everything
+			}
 		}
 	}
 	focus = {
@@ -380,6 +517,7 @@ focus_tree = {
 			focus = GRL_dominate_the_caribbean
 		}
 		completion_reward = { 
+			country_event = greenland.5
 		}
 	}
 	focus = {
@@ -392,7 +530,27 @@ focus_tree = {
 		prerequisite = { 
 			focus = GRL_dominate_the_caribbean
 		}
+		will_lead_to_war_with = YUC
 		completion_reward = { 
+			transfer_state = 665
+			if = {
+				limit = {
+					YUC = {
+						is_in_faction = yes
+					}
+				}
+				set_autonomy = {
+					target = YUC
+					autonomous_state = autonomy_free
+					end_wars = yes
+					end_civil_wars = yes
+				}
+				leave_faction = yes
+			}
+			create_wargoal = {
+				target = YUC
+				type = annex_everything
+			}
 		}
 	}
 	focus = {
@@ -408,7 +566,17 @@ focus_tree = {
 		prerequisite = { 
 			focus = GRL_raid_cape_canaveral
 		}
+		will_lead_to_war_with = CHI
+		will_lead_to_war_with = PAN
 		completion_reward = { 
+			create_wargoal = {
+				target = CHI
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = PAN
+				type = annex_everything
+			}
 		}
 	}
 	focus = {
@@ -422,6 +590,22 @@ focus_tree = {
 			focus = GRL_a_launchpoint_for_invasion
 		}
 		completion_reward = { 
+			create_wargoal = {
+				target = WBK
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = NAB
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = NEW
+				type = annex_everything
+			}
+			every_state = {
+				limit = { is_core_of = NEW }
+				add_core_of = ROOT	
+			}
 		}
 	}
 	focus = {
@@ -435,6 +619,12 @@ focus_tree = {
 			focus = GRL_invade_maine
 		}
 		completion_reward = { 
+			transfer_state = 217
+			transfer_state = 620
+			transfer_state = 590
+			transfer_state = 214
+			transfer_state = 216
+			every_owned_state = { set_demilitarized_zone = no }
 		}
 	}
 	focus = {
@@ -447,7 +637,35 @@ focus_tree = {
 		prerequisite = { 
 			focus = GRL_invade_maine
 		}
+		will_lead_to_war_with = QUE
+		will_lead_to_war_with = ONT
+		will_lead_to_war_with = PTR
+		will_lead_to_war_with = CAN
 		completion_reward = { 
+			create_wargoal = {
+				target = QUE
+				type = puppet_wargoal_focus
+			}
+			create_wargoal = {
+				target = CAN
+				type = puppet_wargoal_focus
+			}
+			create_wargoal = {
+				target = PTR
+				type = puppet_wargoal_focus
+			}
+			create_wargoal = {
+				target = ONT
+				type = puppet_wargoal_focus
+			}
+			add_state_Core = 377
+			add_state_Core = 129
+			add_state_Core = 72
+			add_state_Core = 132
+			add_state_Core = 133
+			add_state_Core = 91
+			add_state_Core = 48
+			add_state_Core = 128
 		}
 	}
 	focus = {
@@ -464,10 +682,25 @@ focus_tree = {
 			focus = GRL_a_launchpoint_for_invasion
 		}
 		completion_reward = { 
+			every_state = {
+				limit = {
+					OR = {
+						state = 242
+						state = 244
+						state = 558
+						state = 248
+						state = 188
+						state = 655
+						state = 502
+						state = 248
+					}
+				}
+				add_core_of = GRL
+			}
 		}
 	}
 	focus = {
-		id = GRL_take_back_their_caribbean_posessions
+		id = GRL_expand_caribbean_posessions
 		cost = 5
 		icon = GFX
 		x = -1
@@ -479,7 +712,27 @@ focus_tree = {
 		prerequisite = { 
 			focus = GRL_claim_old_swedish_colonies
 		}
+		will_lead_to_war_with = GTB
+		will_lead_to_war_with = CUC
+		will_lead_to_war_with = CUB
+		will_lead_to_war_with = CAY
 		completion_reward = { 
+			create_wargoal = {
+				target = GTB
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = CAY
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = CUB
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = CUC
+				type = annex_everything
+			}
 		}
 	}
 	focus = {
@@ -488,14 +741,15 @@ focus_tree = {
 		icon = GFX
 		x = 1
 		y = 1
-		relative_position_id = GRL_take_back_their_caribbean_posessions
+		relative_position_id = GRL_expand_caribbean_posessions
 		prerequisite = { 
-			focus = GRL_take_back_their_caribbean_posessions
+			focus = GRL_expand_caribbean_posessions
 		}
 		prerequisite = { 
 			focus = GRL_into_the_chesapeake_bay
 		}
 		completion_reward = { 
+			add_ideas = GRL_danish_ocean
 		}
 	}
 	focus = {
@@ -512,6 +766,11 @@ focus_tree = {
 			focus = GRL_claim_old_swedish_colonies
 		}
 		completion_reward = { 
+			create_wargoal = {
+				target = FRA
+				type = take_state_focus
+				generator = { 242 244 248 558 188 655 502 }	
+			}
 		}
 	}
 	focus = {
@@ -527,7 +786,11 @@ focus_tree = {
 		prerequisite = { 
 			focus = GRL_down_the_st_lawrence
 		}
+		available = {
+			owns_state = 223
+		}
 		completion_reward = { 
+			HOL = { transfer_state = 223 }
 		}
 	}
 	focus = {
@@ -540,7 +803,17 @@ focus_tree = {
 		prerequisite = { 
 			focus = GRL_down_the_st_lawrence
 		}
+		available = {
+			OR = {
+				owns_state = 163
+				QUE = {
+					is_subject_of = GRL
+					owns_state = 163
+				}
+			}
+		}
 		completion_reward = { 
+			FFR = { transfer_state = 163 }
 		}
 	}
 	
@@ -637,6 +910,7 @@ focus_tree = {
 			always = no
 		}
 		completion_reward = {
+			set_country_flag = GRL_independent_from_denmark_flag
 		}
 	}
 	focus = {
@@ -1012,6 +1286,24 @@ focus_tree = {
 			always = no
 		}
 		completion_reward = {
+			if = {
+				limit = { has_government = libertarian_left }
+				swap_ideas = {
+					remove_idea = GRL_kingdom_of_denmark
+					add_idea = GRL_kingdom_of_denmark_lib_left
+				}
+			}
+			if = {
+				limit = { has_government = democrat }
+				swap_ideas = {
+					remove_idea = GRL_kingdom_of_denmark
+					add_idea = GRL_kingdom_of_denmark_democrat
+				}
+			}
+			swap_ideas = {
+				remove_idea = GRL_danish_realm
+				add_idea = GRL_danish_realm2
+			}
 		}
 	}
 	
@@ -1046,6 +1338,7 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
+			add_ideas = GRL_inuit_rights
 		}
 	}
 	focus = {
@@ -1063,6 +1356,7 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
+			add_ideas = GRL_danish_integration_idea
 		}
 	}
 	focus = {
@@ -1080,6 +1374,7 @@ focus_tree = {
 			#has_completed_focus = GRL_expand_danish_settlement
 		}
 		completion_reward = {
+			add_ideas = GRL_danish_welfare_state
 		}
 	}
 	focus = {
@@ -1095,6 +1390,7 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
+			add_offsite_building = { type = arms_factory level = 3 }
 		}
 	}
 	focus = {
@@ -1110,6 +1406,14 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
+			add_offsite_building = { type = industrial_complex level = 3 }
+			674 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 4
+					instant_build = yes
+				}
+			}
 		}
 	}
 	focus = {
@@ -1128,6 +1432,7 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
+			add_ideas = GRL_expanded_eez
 		}
 	}
 	focus = {
@@ -1143,6 +1448,10 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = GRL_expanded_eez
+				add_idea = GRL_expanded_eez2
+			}
 		}
 	}
 	focus = {
@@ -1158,6 +1467,11 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
+			add_resource = {
+				type = oil
+				amount = 50
+				state = 674
+			}
 		}
 	}
 	
@@ -1178,6 +1492,7 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
+			add_political_power = 50
 		}
 	}
 	focus = {
@@ -1191,6 +1506,7 @@ focus_tree = {
 			focus = GRL_assure_NATO_allies
 		}
 		completion_reward = {
+			army_experience = 50
 		}
 	}
 	focus = {
@@ -1204,6 +1520,7 @@ focus_tree = {
 			focus = GRL_joint_exercises
 		}
 		completion_reward = {
+			add_ideas = GRL_NA_NATO_HQ
 		}
 	}
 	focus = {
@@ -1713,20 +2030,6 @@ focus_tree = {
 				amount = 40
 				state = 674
 			}
-		}
-	}
-	focus = {
-		id = GRL_switch_to_generico
-		cost = 5
-		icon = GFX
-		x = 0
-		y = 1
-		relative_position_id = GRL_eco_friendly_resource_extraction
-		prerequisite = { 
-			focus = GRL_eco_friendly_resource_extraction 
-		}
-		completion_reward = {
-			load_focus_tree = generic_focus
 		}
 	}
 	
