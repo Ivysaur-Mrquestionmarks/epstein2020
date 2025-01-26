@@ -1594,13 +1594,13 @@ focus_tree = {
 		relative_position_id = GRL_build_a_volunteer_force
 		prerequisite = { 
 			focus = GRL_build_a_volunteer_force 
+			focus = GRL_contact_canadian_sympathizers 
 		}
 		available = {
 		}
 		completion_reward = {
-			add_war_support = 0.1
-			add_manpower = 30000
 			add_ideas = GRL_danish_army_in_NA
+			add_research_slot = 1
 		}
 	}
 	focus = {
@@ -1617,6 +1617,12 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
+			army_experience = 50
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.5
+				uses = 5
+				category = land_doctrine
+			}
 		}
 	}
 	
@@ -1667,6 +1673,16 @@ focus_tree = {
 			focus = GRL_NATO_intervention
 		}
 		completion_reward = {
+			transfer_state = 144
+			add_state_core = 144
+			144 = {
+				add_building_construction = {
+					type = naval_base
+					level = 4
+					instant_build = yes
+					province = 12114
+				}
+			}
 		}
 	}
 	focus = {
@@ -1682,7 +1698,12 @@ focus_tree = {
 		prerequisite = { 
 			focus = GRL_st_pierre_launchpad
 		}
+		will_lead_to_war_with = MRT
 		completion_reward = {
+			create_wargoal = {
+				target = MRT
+				type = annex_everything 
+			}
 		}
 	}
 	focus = {
@@ -1695,7 +1716,19 @@ focus_tree = {
 		prerequisite = { 
 			focus = GRL_NATO_invasion_of_maritimes
 		}
+		available = {
+			NOT = {
+				country_exists = MRT
+			}
+		}
 		completion_reward = {
+			every_state = {
+				limit = {
+					is_core_of = MRT
+				}
+				add_core_of = ROOT
+			}
+			set_cosmetic_tag = GRL_NATO_zone_can
 		}
 	}
 	focus = {
@@ -1708,7 +1741,12 @@ focus_tree = {
 		prerequisite = { 
 			focus = GRL_NATO_invasion_of_maritimes
 		}
+		will_lead_to_war_with = QUE
 		completion_reward = {
+			create_wargoal = {
+				target = QUE
+				type = annex_everything 
+			}
 		}
 	}
 	focus = {
@@ -1722,6 +1760,7 @@ focus_tree = {
 			focus = GRL_NATO_invasion_of_maritimes
 		}
 		completion_reward = {
+			add_ideas = GRL_better_supply_in_can
 		}
 	}
 	focus = {
@@ -1740,7 +1779,12 @@ focus_tree = {
 		prerequisite = { 
 			focus = GRL_establish_NATO_reconstruction_of_canada
 		}
+		will_lead_to_war_with = CAN
 		completion_reward = {
+			create_wargoal = {
+				target = CAN
+				type = annex_everything 
+			}
 		}
 	}
 	focus = {
@@ -1759,7 +1803,22 @@ focus_tree = {
 		prerequisite = { 
 			focus = GRL_expand_supply_chain
 		}
+		will_lead_to_war_with = NUN
+		will_lead_to_war_with = ONT
+		will_lead_to_war_with = CAN
 		completion_reward = {
+			create_wargoal = {
+				target = ONT
+				type = annex_everything 
+			}
+			create_wargoal = {
+				target = NUN
+				type = annex_everything 
+			}
+			create_wargoal = {
+				target = PTR
+				type = annex_everything 
+			}
 		}
 	}
 	focus = {
@@ -1775,7 +1834,23 @@ focus_tree = {
 		prerequisite = { 
 			focus = GRL_the_canada_crisis_mad_tyrant
 		}
+		will_lead_to_war_with = WPC
+		will_lead_to_war_with = VAN
 		completion_reward = {
+			create_wargoal = {
+				target = WPC
+				type = annex_everything 
+			}
+			create_wargoal = {
+				target = VAN
+				type = annex_everything 
+			}
+			every_state = {
+				limit = {
+					has_state_flag = part_of_canada
+				}
+				add_core_of = ROOT
+			}
 		}
 	}
 	focus = {
@@ -1788,7 +1863,12 @@ focus_tree = {
 		prerequisite = { 
 			focus = GRL_end_wexit
 		}
+		will_lead_to_war_with = ENG
 		completion_reward = {
+			create_wargoal = {
+				target = ENG
+				type = puppet_wargoal_focus 
+			}
 		}
 	}
 	focus = {
@@ -1801,7 +1881,12 @@ focus_tree = {
 		prerequisite = { 
 			focus = GRL_end_wexit
 		}
+		will_lead_to_war_with = ALA
 		completion_reward = {
+			create_wargoal = {
+				target = ALA
+				type = puppet_wargoal_focus 
+			}
 		}
 	}
 	focus = {
@@ -1817,7 +1902,12 @@ focus_tree = {
 		prerequisite = { 
 			focus = GRL_end_russian_influence_in_america
 		}
+		will_lead_to_war_with = PRA
 		completion_reward = {
+			create_wargoal = {
+				target = PRA
+				type = puppet_wargoal_focus 
+			}
 		}
 	}
 	
