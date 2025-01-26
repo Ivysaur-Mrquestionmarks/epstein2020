@@ -18,7 +18,7 @@ focus_tree = {
 		id = RVR_Fight_from_the_Mountains
 		icon = GFX_goal_Send_the_Radicals_to_the_Mountains
 		cost = 5.00
-		x = 6
+		x = 5
 		y = 0
 		available = {
 			NOT = {
@@ -110,7 +110,7 @@ focus_tree = {
 		id = RVR_Sic_Semper_Tyrannis
 		icon = GFX_goal_Sic_Semper_Tyrannus_no_Text
 		cost = 5
-		x = -5
+		x = -12
 		y = 1
 		relative_position_id = RVR_What_Now
 		available = {
@@ -190,7 +190,7 @@ focus_tree = {
 		id = RVR_Republicanism_Holds
 		icon = GFX_goal_Work_with_Republicans
 		cost = 5
-		x = 0
+		x = 9
 		y = 1
 		relative_position_id = RVR_Keep_out_the_Autocrats
 		available = {
@@ -307,23 +307,6 @@ focus_tree = {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	### President Cox
 	
 	focus = {
@@ -364,7 +347,7 @@ focus_tree = {
 		id = RVR_Teach_Children_of_Virginia
 		icon = GFX_goal_Generic_Books
 		cost = 5
-		x = 0
+		x = 1
 		y = 1
 		relative_position_id = RVR_President_Cox
 		available = {
@@ -378,8 +361,8 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = RVR_Honor_the_Famous_Virginians
-		icon = GFX_goal_Generic_George_Washington
+		id = RVR_Funding_for_the_Sciences
+		icon = GFX_goal_Generic_Science
 		cost = 5
 		x = 0
 		y = 1
@@ -391,29 +374,755 @@ focus_tree = {
 			focus = RVR_Teach_Children_of_Virginia
 		}
 		completion_reward = {
+			add_research_slot = 1
+		}
+	}
+	
+	
+	
+	
+	
+	
+	### Overly glorified McDonell
+	
+	
+	
+	focus = {
+		id = RVR_President_McDonell
+		icon = GFX_goal_McDonnell
+		cost = 5
+		x = -5
+		y = 1
+		relative_position_id = RVR_Republicanism_Holds
+		available = {
+
+		}
+		mutually_exclusive = {
+			focus = RVR_President_Sarvis
+			focus = RVR_President_Cox
+			focus = RVR_President_Youngkin
+		}
+		prerequisite = {
+			focus = RVR_Republicanism_Holds
+		}
+		completion_reward = {
 			add_popularity = {
-				ideology = libertarian_right
+				ideology = republican
 				popularity = 0.10
 			}
-			add_stability = 0.1
-			add_war_support = 0.1
 		}
 	}
 	focus = {
-		id = RVR_Funding_for_the_Sciences
-		icon = GFX_goal_Generic_Science
+		id = RVR_Disassociate_from_Americanism
+		icon = GFX_goal_Generic_Ripping_Papers
 		cost = 5
-		x = 0
+		x = 2
 		y = 1
-		relative_position_id = RVR_Honor_the_Famous_Virginians
+		relative_position_id = RVR_President_McDonell
 		available = {
 
 		}
 		prerequisite = {
-			focus = RVR_Honor_the_Famous_Virginians
+			focus = RVR_President_McDonell
 		}
 		completion_reward = {
-			add_research_slot = 1
+			#Every_owned_state = {
+			#	Clr_state_flag = part_of_america
+			#}
+		}
+	}
+	focus = {
+		id = RVR_Hail_to_the_Chief
+		icon = GFX_goal_Generic_Command_Power
+		cost = 5
+		x = -2
+		y = 1
+		relative_position_id = RVR_President_McDonell
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_President_McDonell
+		}
+		completion_reward = {
+			add_ideas = RVR_Hail_to_the_Chief
+		}
+	}
+	focus = {
+		id = RVR_Rally_the_Army
+		icon = GFX_Focus_Volunteer_Army
+		cost = 5
+		x = 1
+		y = 1
+		relative_position_id = RVR_Hail_to_the_Chief
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Hail_to_the_Chief
+		}
+		completion_reward = {
+			army_experience = 25
+			add_ideas = limited_conscription
+		}
+	}
+	focus = {
+		id = RVR_intensive_training
+		icon = GFX_Generic_War_Skeleton
+		cost = 5
+		x = -1
+		y = 1
+		relative_position_id = RVR_Hail_to_the_Chief
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Hail_to_the_Chief
+		}
+		completion_reward = {
+			army_experience = 25
+			navy_experience = 25
+			air_experience = 25
+		}
+	}
+	
+	
+	focus = {
+		id = RVR_Secure_a_Permanent_Independent_Virginia
+		icon = GFX_goal_McDonnell_is_Virginia
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = RVR_President_McDonell
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_President_McDonell
+		}
+		completion_reward = {
+			add_ideas = RVR_Independent_Virginia_Plans
+		}
+	}
+	
+	focus = {
+		id = RVR_America_is_No_More
+		icon = GFX_goal_USA_Flag_down
+		cost = 5
+		x = 1
+		y = 1
+		relative_position_id = RVR_Secure_a_Permanent_Independent_Virginia
+		prerequisite = {
+			focus = RVR_Secure_a_Permanent_Independent_Virginia
+		}
+		prerequisite = {
+			focus = RVR_Disassociate_from_Americanism
+		}
+		completion_reward = {
+			add_stability  = -0.05
+			add_war_support = -0.05
+		}
+	}
+	focus = {
+		id = RVR_Reclaim_the_1611_Charter
+		icon = GFX_goal_1611_Charter
+		cost = 5
+		x = -1
+		y = 1
+		relative_position_id = RVR_America_is_No_More
+		available = {
+
+		}
+		mutually_exclusive = { 
+			focus = RVR_Claim_1784_Charter
+		}
+		prerequisite = {
+			focus = RVR_America_is_No_More
+		}
+		completion_reward = {
+			set_cosmetic_tag = RVR_Greater_Virginia
+		}
+	}
+	focus = {
+		id = RVR_Claim_1784_Charter
+		icon = GFX_Focus_Generic_Accept_Treaty
+		cost = 5
+		x = 1
+		y = 1
+		relative_position_id = RVR_America_is_No_More
+		available = {
+
+		}
+		mutually_exclusive = { 
+			focus = RVR_Reclaim_the_1611_Charter
+		}
+		prerequisite = {
+			focus = RVR_America_is_No_More
+		}
+		completion_reward = {
+			every_state = {
+				LIMIT = {
+					is_core_of = NRA
+				}
+				add_claim_by = RVR
+			}
+			every_state = {
+				LIMIT = {
+					is_core_of = AFS
+				}
+				add_claim_by = RVR
+			}
+			every_state = {
+				LIMIT = {
+					is_core_of = GLA
+				}
+				add_claim_by = RVR
+			}
+		}
+	}
+	focus = {
+		id = RVR_Proclaim_Greater_Virginia_McDonnell
+		icon = GFX_goal_Big_Virginia
+		cost = 5
+		x = 1
+		y = 1
+		relative_position_id = RVR_Claim_1784_Charter
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Claim_1784_Charter
+		}
+		completion_reward = {
+			set_cosmetic_tag = RVR_Greater_Virginia
+		}
+	}
+	
+	
+	
+	
+	focus = {
+		id = RVR_Reclaim_Greater_Virginia
+		icon = GFX_goal_Send_the_Radicals_to_the_Mountains
+		cost = 5
+		x = 1
+		y = 1
+		relative_position_id = RVR_Reclaim_the_1611_Charter
+		prerequisite = {
+			focus = RVR_Reclaim_the_1611_Charter
+			focus = RVR_Claim_1784_Charter
+		}
+		completion_reward = {
+			every_state = {
+				LIMIT = {
+					is_core_of = NRA
+				}
+				add_core_of = RVR
+			}
+			create_wargoal = {
+				target = NRA
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = KFC
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = RVR_Topple_the_Triumverate
+		icon = GFX_goal_dismantlestate
+		cost = 5
+		x = 1
+		y = 1
+		relative_position_id = RVR_Reclaim_Greater_Virginia
+		available = {
+			or = {
+			is_neighbor_of = AFS
+			NOT = {
+				country_exists = AFS
+			}
+			}
+			NOT = {
+				country_exists = NRA
+			}
+
+		}
+		prerequisite = {
+			focus = RVR_Reclaim_Greater_Virginia
+		}
+		completion_reward = {
+			create_wargoal = {
+				target = AFS
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = RVR_Take_the_Lakes
+		icon = GFX_goal_Generic_Naval_Industry
+		cost = 5
+		x = 1
+		y = 1
+		relative_position_id = RVR_Topple_the_Triumverate
+		available = {
+			or = {
+			is_neighbor_of = GLA
+			NOT = {
+				country_exists = GLA
+			}
+			}
+		}
+		prerequisite = {
+			focus = RVR_Topple_the_Triumverate
+		}
+		completion_reward = {
+			create_wargoal = {
+				target = GLA
+				type = annex_everything
+			}
+			hidden_effect = {
+				create_wargoal = {
+					target = MIL
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = MNS
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = MIN
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = DET
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = ISA
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = KMT
+					type = annex_everything
+				}
+			}
+		}
+	}
+	focus = {
+		id = RVR_Our_Home_in_Dixie
+		icon = GFX_goal_Confederate_Army
+		cost = 5
+		x = -1
+		y = 1
+		relative_position_id = RVR_Reclaim_the_1611_Charter
+		available = {
+			
+		}
+		prerequisite = {
+			focus = RVR_Reclaim_the_1611_Charter
+		}
+		completion_reward = {
+			custom_effect_tooltip = Wargoal_on_All_Confederates
+			every_state = {
+				LIMIT = {
+					is_core_of = CSA
+				}
+				add_core_of = RVR
+			}
+			hidden_effect = {
+				every_state = {
+					LIMIT = {
+						is_core_of = CSB
+					}
+					add_core_of = RVR
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = AFR
+					}
+					add_core_of = RVR
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = ZIO
+					}
+					add_core_of = RVR
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = APA
+					}
+					add_core_of = RVR
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = LGB
+					}
+					add_core_of = RVR
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = KKK
+					}
+					add_core_of = RVR
+				}
+				create_wargoal = {
+					target = AFR
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = ZIO
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = APA
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = CSA
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = LGB
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = CSB
+					type = annex_everything
+				}
+				create_wargoal = {
+					target = KKK
+					type = annex_everything
+				}
+			}
+		}
+	}
+	focus = {
+		id = RVR_The_Floridian_Gambit
+		icon = GFX_goal_Florida
+		cost = 5
+		x = -1
+		y = 1
+		relative_position_id = RVR_Our_Home_in_Dixie
+		available = {
+			
+		}
+		prerequisite = {
+			focus = RVR_Our_Home_in_Dixie
+		}
+		completion_reward = {
+			every_state = {
+				LIMIT = {
+					is_core_of = FLO
+				}
+				add_core_of = RVR
+			}
+
+			random_country = {
+				limit = {
+					owns_state = 397
+				}
+				RVR = {
+					create_wargoal = {
+		    			type = take_state_focus
+		    			target = PREV
+	            		generator = { 397 353 346 345 339 }
+	     			}
+				}
+			}
+			hidden_effect = {
+				every_state = {
+					LIMIT = {
+						is_core_of = RMV
+					}
+					add_core_of = RVR
+				}
+				create_wargoal = {
+					target = RMV
+					type = annex_everything
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = JEB
+					}
+					add_core_of = RVR
+				}
+				create_wargoal = {
+					target = JEB
+					type = annex_everything
+				}
+			}
+		}
+	}
+	focus = {
+		id = RVR_Take_on_Texas
+		icon = GFX_goal_Texas
+		cost = 5
+		x = 1
+		y = 1
+		relative_position_id = RVR_Our_Home_in_Dixie
+		available = {
+			is_neighbor_of = TEX
+		}
+		prerequisite = {
+			focus = RVR_Our_Home_in_Dixie
+		}
+		completion_reward = {
+			custom_effect_tooltip = Wargoal_on_All_Texans
+			hidden_effect = {
+				every_state = {
+					LIMIT = {
+						is_core_of = TEX
+					}
+					add_core_of = RVR
+				}
+				create_wargoal = {
+					target = TEX
+					type = annex_everything
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = BET
+					}
+					add_core_of = RVR
+				}
+				create_wargoal = {
+					target = BET
+					type = annex_everything
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = BLA
+					}
+					add_core_of = RVR
+				}
+				create_wargoal = {
+					target = BLA
+					type = annex_everything
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = BSH
+					}
+					add_core_of = RVR
+				}
+				create_wargoal = {
+					target = BSH
+					type = annex_everything
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = CRN
+					}
+					add_core_of = RVR
+				}
+				create_wargoal = {
+					target = CRN
+					type = annex_everything
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = CRU
+					}
+					add_core_of = RVR
+				}
+				create_wargoal = {
+					target = CRU
+					type = annex_everything
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = FAL
+					}
+					add_core_of = RVR
+				}
+				create_wargoal = {
+					target = FAL
+					type = annex_everything
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = FTA
+					}
+					add_core_of = RVR
+				}
+				create_wargoal = {
+					target = FTA
+					type = annex_everything
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = LOU
+					}
+					add_core_of = RVR
+				}
+				create_wargoal = {
+					target = LOU
+					type = annex_everything
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = OKL
+					}
+					add_claim_by = RVR
+				}
+				create_wargoal = {
+					target = OKL
+					type = annex_everything
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = NMX
+					}
+					add_claim_by = RVR
+				}
+				create_wargoal = {
+					target = NMX
+					type = annex_everything
+				}
+				every_state = {
+					LIMIT = {
+						is_core_of = SAN
+					}
+					add_core_of = RVR
+				}
+				create_wargoal = {
+					target = SAN
+					type = annex_everything
+				}
+			}
+		}
+	}
+	focus = {
+		id = RVR_The_Midwest_Gambit
+		icon = GFX_goal_Trump_Statue
+		cost = 5
+		x = -1
+		y = 1
+		relative_position_id = RVR_Take_on_Texas
+		available = {
+			is_neighbor_of = USA
+		}
+		prerequisite = {
+			focus = RVR_Take_on_Texas
+		}
+		completion_reward = {
+			create_wargoal = {
+				target = USA
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = IDA
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = RVR_The_Ideological_Enemy
+		icon = GFX_goal_Drain_the_Swamp
+		cost = 5
+		x = 1
+		y = 1
+		relative_position_id = RVR_Take_on_Texas
+		available = {
+			
+		}
+		prerequisite = {
+			focus = RVR_Take_on_Texas
+		}
+		completion_reward = {
+			every_state = {
+					LIMIT = {
+						is_core_of = FRA
+					}
+					add_claim_by = RVR
+				}
+			create_wargoal = {
+				target = FRA
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = RVR_Reform_the_United_States
+		icon = GFX_goal_America_with_Eagle
+		cost = 5
+		x = 1
+		y = 1
+		relative_position_id = RVR_The_Midwest_Gambit
+		available = {
+			
+		}
+		prerequisite = {
+			focus = RVR_The_Ideological_Enemy
+		}
+		prerequisite = {
+			focus = RVR_The_Midwest_Gambit
+		}
+		completion_reward = {
+			if = {
+				limit = {
+					has_completed_focus = RVR_A_Founder_Aristocracy
+				}
+				set_cosmetic_tag = RVR_American_Kingdom
+			}
+			if = {
+				limit = {
+					has_completed_focus = RVR_Proclaim_the_Confederate_Kingdoms
+				}
+				set_cosmetic_tag = RVR_Confederated_American_Kingdom
+			}
+			if = {
+				limit = {
+					has_completed_focus = RVR_The_Virginian_Commonwealth
+				}
+				set_cosmetic_tag = RVR_48_Colonies
+			}
+			if = {
+				limit = {
+					has_completed_focus = RVR_Go_Against_the_Windsors
+				}
+				set_cosmetic_tag = RVR_Anglo_American_Empire
+			}
+			if = {
+				limit = {
+					has_completed_focus = RVR_Condemn_the_Sinners
+				}
+				set_cosmetic_tag = RVR_Kingdom_of_New_Antioch
+			}
+		}
+	}
+	
+	
+	
+	
+	#### Shared Mcdonell and Cox
+	focus = {
+		id = RVR_Honor_the_Famous_Virginians
+		icon = GFX_goal_Generic_George_Washington
+		cost = 5
+		x = 4
+		y = 1
+		relative_position_id = RVR_President_Cox
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_President_McDonell
+			focus = RVR_President_Cox
+		}
+		completion_reward = {
+			add_popularity = {
+				ideology = libertarian_right
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = republican
+				popularity = 0.05
+			}
+			add_stability = 0.1
+			add_war_support = 0.1
 		}
 	}
 	
@@ -427,7 +1136,7 @@ focus_tree = {
 		id = RVR_President_Youngkin
 		icon = GFX_goal_Youngkin
 		cost = 5
-		x = 3
+		x = 5
 		y = 1
 		relative_position_id = RVR_Republicanism_Holds
 		available = {
@@ -515,199 +1224,6 @@ focus_tree = {
 	
 	
 	
-	
-	### Overly glorified McDonell
-	
-	
-	
-	focus = {
-		id = RVR_President_McDonell
-		icon = GFX_goal_McDonnell
-		cost = 5
-		x = -1
-		y = 1
-		relative_position_id = RVR_Republicanism_Holds
-		available = {
-
-		}
-		mutually_exclusive = {
-			focus = RVR_President_Sarvis
-			focus = RVR_President_Cox
-			focus = RVR_President_Youngkin
-		}
-		prerequisite = {
-			focus = RVR_Republicanism_Holds
-		}
-		completion_reward = {
-			add_popularity = {
-				ideology = republican
-				popularity = 0.10
-			}
-		}
-	}
-	focus = {
-		id = RVR_Hail_to_the_Chief
-		icon = GFX_goal_Generic_Command_Power
-		cost = 5
-		x = 0
-		y = 1
-		relative_position_id = RVR_President_McDonell
-		available = {
-
-		}
-		prerequisite = {
-			focus = RVR_President_McDonell
-		}
-		completion_reward = {
-			add_ideas = RVR_Hail_to_the_Chief
-		}
-	}
-	focus = {
-		id = RVR_Rally_the_Army
-		icon = GFX_Focus_Volunteer_Army
-		cost = 5
-		x = 0
-		y = 1
-		relative_position_id = RVR_Hail_to_the_Chief
-		available = {
-
-		}
-		prerequisite = {
-			focus = RVR_Hail_to_the_Chief
-		}
-		completion_reward = {
-			army_experience = 25
-			add_ideas = limited_conscription
-		}
-	}
-	focus = {
-		id = RVR_Secure_a_Permanent_Independent_Virginia
-		icon = GFX_goal_McDonnell_is_Virginia
-		cost = 5
-		x = 0
-		y = 1
-		relative_position_id = RVR_Rally_the_Army
-		available = {
-
-		}
-		prerequisite = {
-			focus = RVR_Rally_the_Army
-		}
-		completion_reward = {
-			add_ideas = RVR_Independent_Virginia_Plans
-		}
-	}
-	focus = {
-		id = RVR_Claim_1784_Charter
-		icon = GFX_Focus_Generic_Accept_Treaty
-		cost = 5
-		x = 1
-		y = 1
-		relative_position_id = RVR_Secure_a_Permanent_Independent_Virginia
-		available = {
-
-		}
-		prerequisite = {
-			focus = RVR_Secure_a_Permanent_Independent_Virginia
-		}
-		completion_reward = {
-			every_state = {
-				LIMIT = {
-					is_core_of = NRA
-				}
-				add_core_of = RVR
-			}
-			every_state = {
-				LIMIT = {
-					is_core_of = AFS
-				}
-				add_core_of = RVR
-			}
-			every_state = {
-				LIMIT = {
-					is_core_of = GLA
-				}
-				add_core_of = RVR
-			}
-		}
-	}
-	focus = {
-		id = RVR_Disassociate_from_Americanism
-		icon = GFX_goal_Generic_Ripping_Papers
-		cost = 5
-		x = -1
-		y = 1
-		relative_position_id = RVR_Secure_a_Permanent_Independent_Virginia
-		available = {
-
-		}
-		prerequisite = {
-			focus = RVR_Secure_a_Permanent_Independent_Virginia
-		}
-		completion_reward = {
-			#Every_owned_state = {
-			#	Clr_state_flag = part_of_america
-			#}
-		}
-	}
-	focus = {
-		id = RVR_Test_our_Skills
-		icon = GFX_Generic_War_Skeleton
-		cost = 5
-		x = -1
-		y = 1
-		relative_position_id = RVR_Claim_1784_Charter
-		available = {
-
-		}
-		prerequisite = {
-			focus = RVR_Claim_1784_Charter
-		}
-		prerequisite = {
-			focus = RVR_Disassociate_from_Americanism
-		}
-		completion_reward = {
-			army_experience = 25
-			navy_experience = 25
-			air_experience = 25
-			create_wargoal = {
-				target = GLA
-				type = annex_everything
-			}
-			create_wargoal = {
-				target = NRA
-				type = annex_everything
-			}
-			create_wargoal = {
-				target = AFS
-				type = annex_everything
-			}
-		}
-	}
-	focus = {
-		id = RVR_Proclaim_Greater_Virginia_McDonnell
-		icon = GFX_goal_Big_Virginia
-		cost = 5
-		x = 0
-		y = 1
-		relative_position_id = RVR_Test_our_Skills
-		available = {
-
-		}
-		prerequisite = {
-			focus = RVR_Test_our_Skills
-		}
-		completion_reward = {
-			set_cosmetic_tag = RVR_Greater_Virginia
-		}
-	}
-	
-	
-	
-	
-	
-	
-	
 	### The cool larpy paths :3 or the edgy weird nazi paths 
 	
 	
@@ -715,7 +1231,7 @@ focus_tree = {
 		id = RVR_Nos_Sunt_Tyrannis
 		icon = GFX_goal_Nos_Sunt_Tyrannus
 		cost = 5
-		x = 11
+		x = 25
 		y = 1
 		relative_position_id = RVR_What_Now
 		available = {
@@ -2868,508 +3384,6 @@ focus_tree = {
 	
 	
 	
-	### Foreign policy part 3?
-	
-	focus = {
-		id = RVR_Reclaim_Greater_Virginia
-		icon = GFX_goal_Send_the_Radicals_to_the_Mountains
-		cost = 5
-		x = -8
-		y = 0
-		available = {
-			OR = {
-				has_completed_focus = RVR_A_Founder_Aristocracy
-				has_completed_focus = RVR_Proclaim_the_Confederate_Kingdoms
-				has_completed_focus = RVR_The_Virginian_Commonwealth
-				has_completed_focus = RVR_Go_Against_the_Windsors
-				has_completed_focus = RVR_Condemn_the_Sinners
-				has_completed_focus = RVR_The_Virginian_Theocrat
-			}
-		}
-		prerequisite = {
-		}
-		completion_reward = {
-			every_state = {
-				LIMIT = {
-					is_core_of = NRA
-				}
-				add_core_of = RVR
-			}
-			create_wargoal = {
-				target = NRA
-				type = annex_everything
-			}
-			create_wargoal = {
-				target = KFC
-				type = annex_everything
-			}
-		}
-	}
-	focus = {
-		id = RVR_Topple_the_Triumverate
-		icon = GFX_goal_dismantlestate
-		cost = 5
-		x = -1
-		y = 1
-		relative_position_id = RVR_Reclaim_Greater_Virginia
-		available = {
-			or = {
-			is_neighbor_of = AFS
-			NOT = {
-				country_exists = AFS
-			}
-			}
-			NOT = {
-				country_exists = NRA
-			}
-
-		}
-		prerequisite = {
-			focus = RVR_Reclaim_Greater_Virginia
-		}
-		completion_reward = {
-			create_wargoal = {
-				target = AFS
-				type = annex_everything
-			}
-		}
-	}
-	focus = {
-		id = RVR_Take_the_Lakes
-		icon = GFX_goal_Generic_Naval_Industry
-		cost = 5
-		x = -1
-		y = 1
-		relative_position_id = RVR_Topple_the_Triumverate
-		available = {
-			or = {
-			is_neighbor_of = GLA
-			NOT = {
-				country_exists = GLA
-			}
-			}
-		}
-		prerequisite = {
-			focus = RVR_Topple_the_Triumverate
-		}
-		completion_reward = {
-			create_wargoal = {
-				target = GLA
-				type = annex_everything
-			}
-			hidden_effect = {
-				create_wargoal = {
-					target = MIL
-					type = annex_everything
-				}
-				create_wargoal = {
-					target = MNS
-					type = annex_everything
-				}
-				create_wargoal = {
-					target = MIN
-					type = annex_everything
-				}
-				create_wargoal = {
-					target = DET
-					type = annex_everything
-				}
-				create_wargoal = {
-					target = ISA
-					type = annex_everything
-				}
-				create_wargoal = {
-					target = KMT
-					type = annex_everything
-				}
-			}
-		}
-	}
-	focus = {
-		id = RVR_Our_Home_in_Dixie
-		icon = GFX_goal_Confederate_Army
-		cost = 5
-		x = 1
-		y = 1
-		relative_position_id = RVR_Reclaim_Greater_Virginia
-		available = {
-			
-		}
-		prerequisite = {
-			focus = RVR_Reclaim_Greater_Virginia
-		}
-		completion_reward = {
-			custom_effect_tooltip = Wargoal_on_All_Confederates
-			every_state = {
-				LIMIT = {
-					is_core_of = CSA
-				}
-				add_core_of = RVR
-			}
-			hidden_effect = {
-				every_state = {
-					LIMIT = {
-						is_core_of = CSB
-					}
-					add_core_of = RVR
-				}
-				every_state = {
-					LIMIT = {
-						is_core_of = AFR
-					}
-					add_core_of = RVR
-				}
-				every_state = {
-					LIMIT = {
-						is_core_of = ZIO
-					}
-					add_core_of = RVR
-				}
-				every_state = {
-					LIMIT = {
-						is_core_of = APA
-					}
-					add_core_of = RVR
-				}
-				every_state = {
-					LIMIT = {
-						is_core_of = LGB
-					}
-					add_core_of = RVR
-				}
-				every_state = {
-					LIMIT = {
-						is_core_of = KKK
-					}
-					add_core_of = RVR
-				}
-				create_wargoal = {
-					target = AFR
-					type = annex_everything
-				}
-				create_wargoal = {
-					target = ZIO
-					type = annex_everything
-				}
-				create_wargoal = {
-					target = APA
-					type = annex_everything
-				}
-				create_wargoal = {
-					target = CSA
-					type = annex_everything
-				}
-				create_wargoal = {
-					target = LGB
-					type = annex_everything
-				}
-				create_wargoal = {
-					target = CSB
-					type = annex_everything
-				}
-				create_wargoal = {
-					target = KKK
-					type = annex_everything
-				}
-			}
-		}
-	}
-	focus = {
-		id = RVR_The_Floridian_Gambit
-		icon = GFX_goal_Florida
-		cost = 5
-		x = 1
-		y = 1
-		relative_position_id = RVR_Our_Home_in_Dixie
-		available = {
-			
-		}
-		prerequisite = {
-			focus = RVR_Our_Home_in_Dixie
-		}
-		completion_reward = {
-			every_state = {
-				LIMIT = {
-					is_core_of = FLO
-				}
-				add_core_of = RVR
-			}
-
-			random_country = {
-				limit = {
-					owns_state = 397
-				}
-				RVR = {
-					create_wargoal = {
-		    			type = take_state_focus
-		    			target = PREV
-	            		generator = { 397 353 346 345 339 }
-	     			}
-				}
-			}
-			hidden_effect = {
-				every_state = {
-					LIMIT = {
-						is_core_of = RMV
-					}
-					add_core_of = RVR
-				}
-				create_wargoal = {
-					target = RMV
-					type = annex_everything
-				}
-				every_state = {
-					LIMIT = {
-						is_core_of = JEB
-					}
-					add_core_of = RVR
-				}
-				create_wargoal = {
-					target = JEB
-					type = annex_everything
-				}
-			}
-		}
-	}
-	focus = {
-		id = RVR_Take_on_Texas
-		icon = GFX_goal_Texas
-		cost = 5
-		x = 1
-		y = 1
-		relative_position_id = RVR_Topple_the_Triumverate
-		available = {
-			is_neighbor_of = TEX
-		}
-		prerequisite = {
-			focus = RVR_Our_Home_in_Dixie
-			focus = RVR_Topple_the_Triumverate
-		}
-		completion_reward = {
-			custom_effect_tooltip = Wargoal_on_All_Texans
-			hidden_effect = {
-				every_state = {
-					LIMIT = {
-						is_core_of = TEX
-					}
-					add_core_of = RVR
-				}
-				create_wargoal = {
-					target = TEX
-					type = annex_everything
-				}
-				every_state = {
-					LIMIT = {
-						is_core_of = BET
-					}
-					add_core_of = RVR
-				}
-				create_wargoal = {
-					target = BET
-					type = annex_everything
-				}
-				every_state = {
-					LIMIT = {
-						is_core_of = BLA
-					}
-					add_core_of = RVR
-				}
-				create_wargoal = {
-					target = BLA
-					type = annex_everything
-				}
-				every_state = {
-					LIMIT = {
-						is_core_of = BSH
-					}
-					add_core_of = RVR
-				}
-				create_wargoal = {
-					target = BSH
-					type = annex_everything
-				}
-				every_state = {
-					LIMIT = {
-						is_core_of = CRN
-					}
-					add_core_of = RVR
-				}
-				create_wargoal = {
-					target = CRN
-					type = annex_everything
-				}
-				every_state = {
-					LIMIT = {
-						is_core_of = CRU
-					}
-					add_core_of = RVR
-				}
-				create_wargoal = {
-					target = CRU
-					type = annex_everything
-				}
-				every_state = {
-					LIMIT = {
-						is_core_of = FAL
-					}
-					add_core_of = RVR
-				}
-				create_wargoal = {
-					target = FAL
-					type = annex_everything
-				}
-				every_state = {
-					LIMIT = {
-						is_core_of = FTA
-					}
-					add_core_of = RVR
-				}
-				create_wargoal = {
-					target = FTA
-					type = annex_everything
-				}
-				every_state = {
-					LIMIT = {
-						is_core_of = LOU
-					}
-					add_core_of = RVR
-				}
-				create_wargoal = {
-					target = LOU
-					type = annex_everything
-				}
-				every_state = {
-					LIMIT = {
-						is_core_of = OKL
-					}
-					add_claim_by = RVR
-				}
-				create_wargoal = {
-					target = OKL
-					type = annex_everything
-				}
-				every_state = {
-					LIMIT = {
-						is_core_of = NMX
-					}
-					add_claim_by = RVR
-				}
-				create_wargoal = {
-					target = NMX
-					type = annex_everything
-				}
-				every_state = {
-					LIMIT = {
-						is_core_of = SAN
-					}
-					add_core_of = RVR
-				}
-				create_wargoal = {
-					target = SAN
-					type = annex_everything
-				}
-			}
-		}
-	}
-	focus = {
-		id = RVR_The_Midwest_Gambit
-		icon = GFX_goal_Trump_Statue
-		cost = 5
-		x = -1
-		y = 1
-		relative_position_id = RVR_Take_on_Texas
-		available = {
-			is_neighbor_of = USA
-		}
-		prerequisite = {
-			focus = RVR_Take_on_Texas
-		}
-		completion_reward = {
-			create_wargoal = {
-				target = USA
-				type = annex_everything
-			}
-			create_wargoal = {
-				target = IDA
-				type = annex_everything
-			}
-		}
-	}
-	focus = {
-		id = RVR_The_Ideological_Enemy
-		icon = GFX_goal_Drain_the_Swamp
-		cost = 5
-		x = 1
-		y = 1
-		relative_position_id = RVR_Take_on_Texas
-		available = {
-			
-		}
-		prerequisite = {
-			focus = RVR_Take_on_Texas
-		}
-		completion_reward = {
-			every_state = {
-					LIMIT = {
-						is_core_of = FRA
-					}
-					add_claim_by = RVR
-				}
-			create_wargoal = {
-				target = FRA
-				type = annex_everything
-			}
-		}
-	}
-	focus = {
-		id = RVR_Reform_the_United_States
-		icon = GFX_goal_America_with_Eagle
-		cost = 5
-		x = 1
-		y = 1
-		relative_position_id = RVR_The_Midwest_Gambit
-		available = {
-			
-		}
-		prerequisite = {
-			focus = RVR_The_Ideological_Enemy
-		}
-		prerequisite = {
-			focus = RVR_The_Midwest_Gambit
-		}
-		completion_reward = {
-			if = {
-				limit = {
-					has_completed_focus = RVR_A_Founder_Aristocracy
-				}
-				set_cosmetic_tag = RVR_American_Kingdom
-			}
-			if = {
-				limit = {
-					has_completed_focus = RVR_Proclaim_the_Confederate_Kingdoms
-				}
-				set_cosmetic_tag = RVR_Confederated_American_Kingdom
-			}
-			if = {
-				limit = {
-					has_completed_focus = RVR_The_Virginian_Commonwealth
-				}
-				set_cosmetic_tag = RVR_48_Colonies
-			}
-			if = {
-				limit = {
-					has_completed_focus = RVR_Go_Against_the_Windsors
-				}
-				set_cosmetic_tag = RVR_Anglo_American_Empire
-			}
-			if = {
-				limit = {
-					has_completed_focus = RVR_Condemn_the_Sinners
-				}
-				set_cosmetic_tag = RVR_Kingdom_of_New_Antioch
-			}
-		}
-	}
 	
 	
 	
@@ -4148,9 +4162,6 @@ focus_tree = {
 		available = {
 			is_faction_leader = yes
 		}
-		mutually_exclusive = {
-			focus = RVR_America_is_No_More
-		}
 		prerequisite = {
 			focus = RVR_Operation_El_Paso
 		}
@@ -4165,47 +4176,6 @@ focus_tree = {
 				}
 				add_claim_by = RVR
 			}
-		}
-	}
-	focus = {
-		id = RVR_America_is_No_More
-		icon = GFX_goal_USA_Flag_down
-		cost = 5
-		x = 1
-		y = 2
-		relative_position_id = RVR_Operation_El_Paso
-		available = {
-			is_faction_leader = yes
-		}
-		mutually_exclusive = {
-			focus = RVR_The_Rightful_Claim
-		}
-		prerequisite = {
-			focus = RVR_Operation_El_Paso
-		}
-		prerequisite = {
-			focus = RVR_Reunite_Appalachia
-		}
-		completion_reward = {
-			add_stability  = -0.05
-			add_war_support = -0.05
-		}
-	}
-	focus = {
-		id = RVR_Reclaim_the_1611_Charter
-		icon = GFX_goal_1611_Charter
-		cost = 5
-		x = 0
-		y = 1
-		relative_position_id = RVR_America_is_No_More
-		available = {
-
-		}
-		prerequisite = {
-			focus = RVR_America_is_No_More
-		}
-		completion_reward = {
-			set_cosmetic_tag = RVR_Greater_Virginia
 		}
 	}
 	
