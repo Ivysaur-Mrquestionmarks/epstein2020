@@ -17,8 +17,8 @@ focus_tree = {
 	focus = {
 		id = RVR_Fight_from_the_Mountains
 		icon = GFX_goal_Send_the_Radicals_to_the_Mountains
-		cost = 9.00
-		x = 4
+		cost = 5.00
+		x = 6
 		y = 0
 		available = {
 			NOT = {
@@ -32,27 +32,10 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = RVR_Defend_our_Land
-		icon = GFX_goal_Generic_Jungle_Ghost
-		cost = 9.00
-		x = 0
-		y = 1
-		relative_position_id = RVR_Fight_from_the_Mountains
-		prerequisite = {
-			focus = RVR_Fight_from_the_Mountains
-		}
-		completion_reward = {
-			swap_ideas = {
-				remove_idea = RVR_Mountain_Defense
-				add_idea = RVR_Mountain_Defense_2
-			}
-		}
-	}
-	focus = {
 		id = RVR_A_United_Front
 		icon = GFX_goal_Generic_Military_Constitution
-		cost = 9.00
-		x = 6
+		cost = 5.00
+		x = 3
 		y = 0
 		available = {
 			RVR = {
@@ -64,28 +47,15 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = RVR_reach_out_to_libertarians ###need to be renamed
-		icon = GFX
-		cost = 9.00
-		x = 0
+		id = RVR_Fighting_Against_Liberalism
+		icon = GFX_goal_Generic_Conservative
+		cost = 5.00
+		x = 1
 		y = 1
 		relative_position_id = RVR_A_United_Front
 		prerequisite = {
 			focus = RVR_A_United_Front
-		}
-		completion_reward = {
-		}
-	}
-	focus = {
-		id = RVR_Fighting_Against_Liberalism
-		icon = GFX_goal_Generic_Conservative
-		cost = 9.00
-		x = 1
-		y = 1
-		relative_position_id = RVR_Defend_our_Land
-		prerequisite = {
-			focus = RVR_Defend_our_Land
-			focus = RVR_reach_out_to_libertarians
+			focus = RVR_Fight_from_the_Mountains
 		}
 		completion_reward = {
 			add_ideas = RVR_Fight_Against_Liberalism
@@ -94,7 +64,7 @@ focus_tree = {
 	focus = {
 		id = RVR_the_End_of_the_War
 		icon = GFX_goal_Repeal_Gun_Laws
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_Fighting_Against_Liberalism
@@ -119,8 +89,8 @@ focus_tree = {
 	focus = {
 		id = RVR_What_Now
 		icon = GFX_goal_Generic_Paper_Question
-		cost = 9.00
-		x = 15
+		cost = 5
+		x = 25
 		y = 0
 		available = {
 			has_country_flag = RVR_Virginia_Civil_war_Ended
@@ -139,7 +109,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Sic_Semper_Tyrannis
 		icon = GFX_goal_Sic_Semper_Tyrannus_no_Text
-		cost = 9.00
+		cost = 5
 		x = -5
 		y = 1
 		relative_position_id = RVR_What_Now
@@ -152,6 +122,11 @@ focus_tree = {
 		prerequisite = {
 			focus = RVR_What_Now
 		}
+		allow_branch = {
+			NOT = {
+				has_completed_focus = RVR_Nos_Sunt_Tyrannis
+			}
+		}
 		completion_reward = {
 			add_popularity = {
 				ideology = libertarian_right
@@ -162,12 +137,13 @@ focus_tree = {
 				popularity = 0.05
 			}
 			set_cosmetic_tag = RVR_Republic_of_Virginia
+			mark_focus_tree_layout_dirty = yes
 		}
 	}
 	focus = {
 		id = RVR_Keep_out_the_Autocrats
 		icon = GFX_PB_Generic_Ban_Fascism
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_Sic_Semper_Tyrannis
@@ -187,10 +163,10 @@ focus_tree = {
 	focus = {
 		id = RVR_Liberty_for_All
 		icon = GFX_goal_Work_with_Libertarians
-		cost = 9.00
-		x = -3
-		y = 1
-		relative_position_id = RVR_Keep_out_the_Autocrats
+		cost = 5
+		x = 0
+		y = 3
+		relative_position_id = RVR_A_United_Front
 		#mutually_exclusive = {
 		#	focus = RVR_Boogaloo_Boys_Launch_their_True_Revolution
 		#}
@@ -201,7 +177,7 @@ focus_tree = {
 			focus = RVR_Keep_out_the_Autocrats
 		}
 		prerequisite = {
-			focus = RVR_reach_out_to_libertarians
+			focus = RVR_A_United_Front
 		}
 		completion_reward = {
 			add_popularity = {
@@ -213,7 +189,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Republicanism_Holds
 		icon = GFX_goal_Work_with_Republicans
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_Keep_out_the_Autocrats
@@ -233,52 +209,6 @@ focus_tree = {
 	
 	
 	
-	#focus = {
-	#	id = RVR_Boogaloo_Boys_Launch_their_True_Revolution
-	#	icon = GFX_goal_Boog_Shield
-	#	cost = 10.00
-	#	x = 5
-	#	y = 3
-	#	ai_will_do = { 
-	#		factor = 300
-	#	}
-	#	mutually_exclusive = {
-	#		focus = RVR_Liberty_for_All
-	#	}
-	#	prerequisite = {
-	#		focus = RVR_Keep_out_the_Autocrats
-	#	}
-	#	prerequisite = {
-	#		focus = RVR_reach_out_to_libertarians
-	#	}
-	#	completion_reward = {
-	#		hidden_effect = {
-	#			load_focus_tree = Boogaloo_Revolution
-	#		}
-	#		set_cosmetic_tag = RVR_Boogaloo_Cosmetic
-	#		set_party_name = { ideology = libertarian_right long_name = RVR_Boog_Long name = RVR_Boog }
-	#		every_controlled_state = {
-	#			limit = {
-	#				is_fully_controlled_by = RVR
-	#				NOT = { state = 188 }
-	#			}
-	#			set_demilitarized_zone = yes
-	#		}
-	#		OBX = {
-	#			transfer_state = 265
-	#			transfer_state = 516
-	#			set_politics = {
-	#				ruling_party = republican
-	#			}
-	#		}
-	#		set_politics = {
-	#			ruling_party = libertarian_right
-	#		}
-	#		RVR_mike_dunn = {
-	#			promote_character = yes
-	#		}
-	#	}
-	#}
 	
 	
 	
@@ -288,15 +218,14 @@ focus_tree = {
 	focus = {
 		id = RVR_President_Sarvis
 		icon = GFX_goal_Sarvis
-		cost = 9.00
-		x = -2
+		cost = 5
+		x = -4
 		y = 1
 		relative_position_id = RVR_Liberty_for_All
 		available = {
 
 		}
 		mutually_exclusive = {
-			focus = RVR_President_Santini
 			focus = RVR_President_Cox
 			focus = RVR_President_Youngkin
 			focus = RVR_President_McDonell
@@ -323,7 +252,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Legality_of_Libertarianism
 		icon = GFX_goal_Generic_Social_Liberal
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_President_Sarvis
@@ -340,7 +269,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Uphold_Constitutional_Rights
 		icon = GFX_goal_Generic_Constitution
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_Legality_of_Libertarianism
@@ -361,7 +290,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Investigate_the_Parties
 		icon = GFX_goal_Focus_Examine_Foreign_Laws
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_Uphold_Constitutional_Rights
@@ -381,698 +310,11 @@ focus_tree = {
 	
 	
 	
-	### Foreign Policy
-	
-	focus = {
-		id = RVR_Shut_down_big_Government
-		icon = GFX_goal_Generic_Divided_Government
-		cost = 9.00
-		x = -20
-		y = 0
-		available = {
-
-		}
-		#prerequisite = {
-		#	focus = RVR_Investigate_the_Parties
-		#	focus = RVR_Create_the_Independence_Party
-		#}
-		mutually_exclusive = {
-			focus = RVR_Rally_Anti_Trump_Republicans
-		}
-		completion_reward = {
-			add_popularity = {
-				ideology = libertarian_right
-				popularity = 0.10
-			}
-			add_ideas = RVR_Decentralization
-		}
-	}
-	focus = {
-		id = RVR_Dont_Tread_on_Me
-		icon = GFX_goal_No_Step_on_Snek
-		cost = 9.00
-		x = 0
-		y = 1
-		relative_position_id = RVR_Shut_down_big_Government
-		available = {
-
-		}
-		prerequisite = {
-			focus = RVR_Shut_down_big_Government
-		}
-		mutually_exclusive = {
-			focus = RVR_A_Jeffersonian_State
-		}
-		completion_reward = {
-			add_ideas = RVR_Dont_Tread
-		}
-	}
-	focus = {
-		id = RVR_Etsablish_The_NightWatchmen
-		icon = GFX_goal_Focus_Spy_Infiltration
-		cost = 9.00
-		x = 0
-		y = 1
-		relative_position_id = RVR_Dont_Tread_on_Me
-		available = {
-
-		}
-		prerequisite = {
-			focus = RVR_Dont_Tread_on_Me
-		}
-		completion_reward = {
-			set_country_leader_ideology = Minarchism
-			swap_ideas = {
-				remove_idea = RVR_Dont_Tread
-				add_idea = RVR_Minarchism
-			}
-		}
-	}
-	focus = {
-		id = RVR_A_Jeffersonian_State
-		icon = GFX_goal_Jefferson
-		cost = 9.00
-		x = -2
-		y = 1
-		relative_position_id = RVR_Shut_down_big_Government
-		available = {
-
-		}
-		mutually_exclusive = {
-			focus = RVR_Dont_Tread_on_Me
-		}
-		prerequisite = {
-			focus = RVR_Shut_down_big_Government
-		}
-		completion_reward = {
-			set_country_leader_ideology = Jeffersonianism
-			add_ideas = RVR_Agrarian_Foundations
-		}
-	}
-	focus = {
-		id = RVR_An_Ode_to_Jefferson
-		icon = GFX_goal_Jefferson_VIR_Flag
-		cost = 9.00
-		x = 0
-		y = 1
-		relative_position_id = RVR_A_Jeffersonian_State
-		available = {
-
-		}
-		prerequisite = {
-			focus = RVR_A_Jeffersonian_State
-		}
-		completion_reward = {
-			set_cosmetic_tag = RVR_Jefferson
-		}
-	}
-	focus = {
-		id = RVR_The_Status_of_the_Third_Confederacy
-		icon = GFX_goal_Confederate_Army
-		cost = 9.00
-		x = 0
-		y = 1
-		relative_position_id = RVR_Etsablish_The_NightWatchmen
-		available = {
-
-		}
-		prerequisite = {
-			focus = RVR_An_Ode_to_Jefferson
-			focus = RVR_Etsablish_The_NightWatchmen
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = RVR_Confederates_Were_Libertarians
-		icon = GFX_goal_Libertarian_Confederates
-		cost = 9.00
-		x = -1
-		y = 1
-		relative_position_id = RVR_The_Status_of_the_Third_Confederacy
-		available = {
-
-		}
-		mutually_exclusive = {
-			focus = RVR_Right_to_Own_What
-		}
-		prerequisite = {
-			focus = RVR_The_Status_of_the_Third_Confederacy
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = RVR_Offer_Annexation_to_CSB
-		icon = GFX_goal_Generic_Pass_Legislation
-		cost = 9.00
-		x = 0
-		y = 1
-		relative_position_id = RVR_Confederates_Were_Libertarians
-		available = {
-
-		}
-		prerequisite = {
-			focus = RVR_Confederates_Were_Libertarians
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = RVR_Right_to_Own_What
-		icon = GFX_goal_African_slavery
-		cost = 9.00
-		x = 1
-		y = 1
-		relative_position_id = RVR_The_Status_of_the_Third_Confederacy
-		available = {
-
-		}
-		mutually_exclusive = {
-			focus = RVR_Confederates_Were_Libertarians
-		}
-		prerequisite = {
-			focus = RVR_The_Status_of_the_Third_Confederacy
-		}
-		completion_reward = {
-			CSB = {
-				add_stability = -0.03
-			}
-		}
-	}
-	focus = {
-		id = RVR_Lift_the_Boot_from_The_Confederate_People
-		icon = GFX_goal_Destroy_Southern_Spirit
-		cost = 9.00
-		x = 0
-		y = 1
-		relative_position_id = RVR_Right_to_Own_What
-		available = {
-
-		}
-		prerequisite = {
-			focus = RVR_Right_to_Own_What
-		}
-		completion_reward = {
-			every_state = {
-				LIMIT = {
-					is_core_of = CSA
-				}
-				add_claim_by = RVR
-			}
-			create_wargoal = {
-				target = CSA
-				type = annex_everything
-			}
-			create_wargoal = {
-				target = CSB
-				type = annex_everything
-			}
-			create_wargoal = {
-				target = AFR
-				type = annex_everything
-			}
-			create_wargoal = {
-				target = KKK
-				type = annex_everything
-			}
-			create_wargoal = {
-				target = LGB
-				type = annex_everything
-			}
-			create_wargoal = {
-				target = ZIO
-				type = annex_everything
-			}
-		}
-	}
-	focus = {
-		id = RVR_Reach_out_to_the_GLA
-		icon = GFX_goal_Virginia_and_GLA
-		cost = 9.00
-		x = -2
-		y = 1
-		relative_position_id = RVR_An_Ode_to_Jefferson
-		available = {
-
-		}
-		prerequisite = {
-			focus = RVR_An_Ode_to_Jefferson
-			focus = RVR_Etsablish_The_NightWatchmen
-		}
-		completion_reward = {
-			add_stability = 0.05
-		}
-	}
-	focus = {
-		id = RVR_Not_Real_Libertarians
-		icon = GFX_goal_Anti_Trump
-		cost = 9.00
-		x = -1
-		y = 1
-		relative_position_id = RVR_Reach_out_to_the_GLA
-		available = {
-
-		}
-		mutually_exclusive = {
-			focus = RVR_Join_the_Constitutionalists
-		}
-		prerequisite = {
-			focus = RVR_Reach_out_to_the_GLA
-		}
-		completion_reward = {
-			GLA = {
-				add_opinion_modifier = {
-					target = RVR
-					modifier = faction_traitor
-				}
-				add_stability = -0.01
-			}
-		}
-	}
-	focus = {
-		id = RVR_The_True_Libertarian_State
-		icon = GFX_goal_Celebration_of_Anarchism
-		cost = 9.00
-		x = 0
-		y = 1
-		relative_position_id = RVR_Not_Real_Libertarians
-		available = {
-
-		}
-		prerequisite = {
-			focus = RVR_Not_Real_Libertarians
-		}
-		completion_reward = {
-			add_war_support = 0.05
-			every_state = {
-				LIMIT = {
-					is_core_of = GLA
-				}
-				add_claim_by = RVR
-			}
-			create_wargoal = {
-				target = TEX
-				type = annex_everything
-			}
-		}
-	}
-	focus = {
-		id = RVR_Join_the_Constitutionalists
-		icon = GFX_goal_Generic_Mutual_Cooperation
-		cost = 9.00
-		x = 1
-		y = 1
-		relative_position_id = RVR_Reach_out_to_the_GLA
-		available = {
-
-		}
-		mutually_exclusive = {
-			focus = RVR_Not_Real_Libertarians
-		}
-		prerequisite = {
-			focus = RVR_Reach_out_to_the_GLA
-		}
-		completion_reward = {
-			GLA = {
-				add_to_faction = RVR
-			}
-		}
-	}
-	focus = {
-		id = RVR_Unite_with_the_GLA
-		icon = GFX_goal_Generic_Party_Bottle
-		cost = 9.00
-		x = 0
-		y = 1
-		relative_position_id = RVR_Join_the_Constitutionalists
-		available = {
-			is_neighbor_of = GLA
-		}
-		prerequisite = {
-			focus = RVR_Join_the_Constitutionalists
-		}
-		completion_reward = {
-			GLA = {
-				annex_country = {
-    				target = RVR
-    				transfer_troops = yes
-				}
-				every_state = {
-					LIMIT = {
-						IF = {
-							is_fully_controlled_by = RVR
-						}
-					}
-					add_core_of = GLA
-				}
-			}
-		}
-	}
-	focus = {
-		id = RVR_American_Liberty_lives_on
-		icon = GFX_goal_Generic_Liberty_Calling
-		cost = 9.00
-		x = 3
-		y = 1
-		relative_position_id = RVR_The_True_Libertarian_State
-		available = {
-			has_completed_focus = RVR_Reunite_Appalachia
-		}
-		prerequisite = {
-			focus = RVR_Lift_the_Boot_from_The_Confederate_People
-			focus = RVR_Offer_Annexation_to_CSB
-		}
-		prerequisite = {
-			focus = RVR_The_True_Libertarian_State
-		}
-		completion_reward = {
-			add_political_power = 25
-			set_major = yes
-			create_faction = RVR_A_f_LAF
-		}
-	}
-	focus = {
-		id = RVR_Protect_Freedom_from_Democracy
-		icon = GFX_goal_Generic_Elections_Banned
-		cost = 9.00
-		x = 0
-		y = 1
-		relative_position_id = RVR_American_Liberty_lives_on
-		available = {
-
-		}
-		prerequisite = {
-			focus = RVR_American_Liberty_lives_on
-		}
-		completion_reward = {
-			#add_ideas = RVR_Protecting_Freedom
-		}
-	}
-	focus = {
-		id = RVR_Our_Manifest_Destiny
-		icon = GFX_goal_Generic_Manifest_Destiny
-		cost = 9.00
-		x = 0
-		y = 1
-		relative_position_id = RVR_Protect_Freedom_from_Democracy
-		available = {
-
-		}
-		prerequisite = {
-			#focus = 
-		}
-		completion_reward = {
-			add_ideas = RVR_Manifest_Destiny
-		}
-	}
-	focus = {
-		id = RVR_American_Reunification
-		icon = GFX_goal_Generic_Americanism
-		cost = 9.00
-		x = 0
-		y = 1
-		relative_position_id = RVR_Our_Manifest_Destiny
-		available = {
-
-		}
-		prerequisite = {
-			focus = RVR_Our_Manifest_Destiny
-		}
-		completion_reward = {
-			IF = {
-				LIMIT = {
-					has_cosmetic_tag = RVR_Jefferson
-				}
-				set_cosmetic_tag = RVR_United_States_of_Jefferson
-			}
-			else = {
-				set_cosmetic_tag = RVR_Free_and_Independent_States_of_America
-			}
-		}
-	}
-	focus = {
-		id = RVR_Secure_Mexican_Markets
-		icon = GFX_focus_mex_jefe_maximo
-		cost = 9.00
-		x = 2
-		y = 1
-		relative_position_id = RVR_American_Reunification
-		available = {
-
-		}
-		prerequisite = {
-			focus = RVR_American_Reunification
-		}
-		completion_reward = {
-			create_wargoal = {
-				target = MEX
-				type = annex_everything
-			}
-			create_wargoal = {
-				target = RMX
-				type = annex_everything
-			}
-			create_wargoal = {
-				target = WMX
-				type = annex_everything
-			}
-			create_wargoal = {
-				target = ZAP
-				type = annex_everything
-			}
-		}
-	}
-	focus = {
-		id = RVR_Retake_the_Canal
-		icon = GFX_goal_Focus_Generic_Maritime_Trade
-		cost = 9.00
-		x = 0
-		y = 1
-		relative_position_id = RVR_Secure_Mexican_Markets
-		available = {
-
-		}
-		prerequisite = {
-			focus = RVR_Secure_Mexican_Markets
-		}
-		completion_reward = {
-			create_wargoal = {
-				target = PAN
-				type = annex_everything
-			}
-		}
-	}
-	focus = {
-		id = RVR_Operation_Great_North
-		icon = GFX_goal_oh_canada
-		cost = 9.00
-		x = 0
-		y = 1
-		relative_position_id = RVR_American_Reunification
-		available = {
-
-		}
-		prerequisite = {
-			focus = RVR_American_Reunification
-		}
-		completion_reward = {
-			create_wargoal = {
-				target = CAN
-				type = annex_everything
-			}
-			create_wargoal = {
-				target = VAN
-				type = annex_everything
-			}
-		}
-	}
-	focus = {
-		id = RVR_Enforce_Monroe_Doctrine
-		icon = GFX_focus_eng_decolonization
-		cost = 9.00
-		x = 0
-		y = 1
-		relative_position_id = RVR_Operation_Great_North
-		available = {
-
-		}
-		prerequisite = {
-			focus = RVR_Operation_Great_North
-		}
-		completion_reward = {
-			create_wargoal = {
-				target = ENG
-				type = annex_everything
-			}
-			create_wargoal = {
-				target = FFR
-				type = annex_everything
-			}
-			create_wargoal = {
-				target = HOL
-				type = annex_everything
-			}
-		}
-	}
-	focus = {
-		id = RVR_The_Plight_of_Cuba
-		icon = GFX_goal_Communist_Pride
-		cost = 9.00
-		x = -2
-		y = 1
-		relative_position_id = RVR_American_Reunification
-		available = {
-
-		}
-		prerequisite = {
-			focus = RVR_American_Reunification
-		}
-		completion_reward = {
-			create_wargoal = {
-				target = CUB
-				type = annex_everything
-			}
-			create_wargoal = {
-				target = CUC
-				type = annex_everything
-			}
-		}
-	}
-	focus = {
-		id = RVR_End_Venezuelan_Socialism
-		icon = GFX_goal_Generic_Purge_Social_Democracy
-		cost = 9.00
-		x = 0
-		y = 1
-		relative_position_id = RVR_The_Plight_of_Cuba
-		available = {
-
-		}
-		prerequisite = {
-			focus = RVR_The_Plight_of_Cuba
-		}
-		completion_reward = {
-			create_wargoal = {
-				target = VEN
-				type = annex_everything
-			}
-		}
-	}
 	
 	
 	
 	
 	
-	
-	#### President Santini
-	
-	focus = {
-		id = RVR_President_Santini
-		icon = GFX_goal_Santini
-		cost = 9.00
-		x = 0
-		y = 1
-		relative_position_id = RVR_Liberty_for_All
-		available = {
-
-		}
-		mutually_exclusive = {
-			focus = RVR_President_Sarvis
-			focus = RVR_President_Cox
-			focus = RVR_President_Youngkin
-			focus = RVR_President_McDonell
-		}
-		prerequisite = {
-			focus = RVR_Republicanism_Holds
-		}
-		prerequisite = {
-			focus = RVR_Liberty_for_All
-		}
-		completion_reward = {
-			add_popularity = {
-				ideology = libertarian_right
-				popularity = 0.05
-			}
-			add_popularity = {
-				ideology = republican
-				popularity = 0.05
-			}
-			set_politics = {
-				ruling_party = libertarian_right
-			}
-			RVR_kurt_santini = {
-				promote_character = yes
-			}
-		}
-	}
-	focus = {
-		id = RVR_Unify_the_Two_Parties
-		icon = GFX_PB_ENG_Party_of_Haig
-		cost = 9.00
-		x = 0
-		y = 1
-		relative_position_id = RVR_President_Santini
-		available = {
-
-		}
-		prerequisite = {
-			focus = RVR_President_Santini
-		}
-		completion_reward = {
-			add_popularity = {
-				ideology = libertarian_right
-				popularity = 0.10
-			}
-			add_popularity = {
-				ideology = republican
-				popularity = 0.10
-			}
-			add_ideas = RVR_Unstable_Party
-		}
-	}
-	focus = {
-		id = RVR_Just_A_Regular_Guy
-		icon = GFX_goal_Generic_Paper_Question
-		cost = 9.00
-		x = 0
-		y = 1
-		relative_position_id = RVR_Unify_the_Two_Parties
-		available = {
-
-		}
-		prerequisite = {
-			focus = RVR_Unify_the_Two_Parties
-		}
-		completion_reward = {
-			add_political_power = 75
-		}
-	}
-	focus = {
-		id = RVR_Create_the_Independence_Party
-		icon = GFX_goal_Generic_Party_Bottle
-		cost = 9.00
-		x = 0
-		y = 1
-		relative_position_id = RVR_Just_A_Regular_Guy
-		available = {
-
-		}
-		prerequisite = {
-			focus = RVR_Just_A_Regular_Guy
-		}
-		completion_reward = {
-			set_party_name = { ideology = libertarian_right long_name = RVR_IND_PARTY_Long name = RVR_IND_PARTY }
-			set_party_name = { ideology = republican long_name = RVR_IND_PARTY_Long name = RVR_IND_PARTY }
-			swap_ideas = {
-				remove_idea = RVR_Unstable_Party
-				add_idea = RVR_Independence_Party
-			}
-		}
-	}
 	
 	
 	
@@ -1084,24 +326,24 @@ focus_tree = {
 	
 	### President Cox
 	
-	
-	
 	focus = {
 		id = RVR_President_Cox
 		icon = GFX_goal_COX_Virginia
-		cost = 9.00
-		x = 1
+		cost = 5
+		x = 4
 		y = 1
-		relative_position_id = RVR_Republicanism_Holds
+		relative_position_id = RVR_Liberty_for_All
 		available = {
 
 		}
 		prerequisite = {
 			focus = RVR_Republicanism_Holds
 		}
+		prerequisite = {
+			focus = RVR_Liberty_for_All
+		}
 		mutually_exclusive = {
 			focus = RVR_President_Sarvis
-			focus = RVR_President_Santini
 			focus = RVR_President_Youngkin
 			focus = RVR_President_McDonell
 		}
@@ -1121,7 +363,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Teach_Children_of_Virginia
 		icon = GFX_goal_Generic_Books
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_President_Cox
@@ -1138,7 +380,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Honor_the_Famous_Virginians
 		icon = GFX_goal_Generic_George_Washington
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_Teach_Children_of_Virginia
@@ -1160,7 +402,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Funding_for_the_Sciences
 		icon = GFX_goal_Generic_Science
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_Honor_the_Famous_Virginians
@@ -1177,270 +419,6 @@ focus_tree = {
 	
 	
 	
-	
-	
-	
-	
-	### GOP Foreign Policy
-	
-	
-	focus = {
-		id = RVR_Rally_Anti_Trump_Republicans	
-		icon = GFX_goal_ITA_Armed_Neutrality
-		cost = 9.00
-		x = -15
-		y = 0
-		available = {
-
-		}
-		
-		#prerequisite = {
-		#	focus = RVR_Funding_for_the_Sciences
-		#	focus = RVR_Create_the_Independence_Party
-		#}
-		mutually_exclusive = {
-			focus = RVR_Shut_down_big_Government
-		}
-		completion_reward = {
-			add_ideas = RVR_Anti_Trumpism
-		}
-	}
-	focus = {
-		id = RVR_The_Birthplace_of_America
-		icon = GFX_goal_The_Return_of_America
-		cost = 9.00
-		x = 0
-		y = 1
-		relative_position_id = RVR_Rally_Anti_Trump_Republicans
-		available = {
-
-		}
-		prerequisite = {
-			focus = RVR_Rally_Anti_Trump_Republicans
-		}
-		completion_reward = {
-			add_war_support = 0.1
-			add_command_power = 35
-		}
-	}
-	focus = {
-		id = RVR_Fry_their_Asses
-		icon = GFX_goal_Kill_Kentucky
-		cost = 9.00
-		x = -3
-		y = 1
-		relative_position_id = RVR_The_Birthplace_of_America
-		available = {
-
-		}
-		prerequisite = {
-			focus = RVR_The_Birthplace_of_America
-			focus = RVR_Dont_Tread_on_Me
-			focus = RVR_A_Jeffersonian_State
-		}
-		completion_reward = {
-			every_state = {
-				LIMIT = {
-					is_core_of = KFC
-				}
-				add_core_of = RVR
-			}
-			create_wargoal = {
-				target = KFC
-				type = annex_everything
-			}
-		}
-	}
-	focus = {
-		id = RVR_Reunite_Appalachia
-		icon = GFX_goal_FRA_Dig_Sites
-		cost = 9.00
-		x = 0
-		y = 1
-		relative_position_id = RVR_Fry_their_Asses
-		available = {
-
-		}
-		prerequisite = {
-			focus = RVR_Fry_their_Asses
-		}
-		completion_reward = {
-			every_state = {
-				LIMIT = {
-					is_core_of = APA
-				}
-				add_core_of = RVR
-			}
-			create_wargoal = {
-				target = APA
-				type = annex_everything
-			}
-			every_state = {
-				LIMIT = {
-					is_core_of = NRA
-				}
-				add_core_of = RVR
-			}
-			create_wargoal = {
-				target = NRA
-				type = annex_everything
-			}
-		}
-	}
-	focus = {
-		id = RVR_Operation_Sherman
-		icon = GFX_goal_Study_The_March_to_the_sea
-		cost = 9.00
-		x = -1
-		y = 1
-		relative_position_id = RVR_The_Birthplace_of_America
-		available = {
-
-		}
-		prerequisite = {
-			focus = RVR_The_Birthplace_of_America
-		}
-		completion_reward = {
-			every_state = {
-				LIMIT = {
-					is_core_of = CSA
-				}
-				add_core_of = RVR
-			}
-			create_wargoal = {
-				target = CSA
-				type = annex_everything
-			}
-		}
-	}
-	focus = {
-		id = RVR_Operation_El_Paso
-		icon = GFX_goal_George_Bush_Victory
-		cost = 9.00
-		x = 0
-		y = 1
-		relative_position_id = RVR_Operation_Sherman
-		available = {
-		}
-		prerequisite = {
-			focus = RVR_Operation_Sherman
-		}
-		completion_reward = {
-		}
-	}
-	focus = {
-		id = RVR_Exploit_Langley
-		icon = GFX_goal_Generic_International_Espionage
-		cost = 9.00
-		x = 1
-		y = 1
-		relative_position_id = RVR_The_Birthplace_of_America
-		available = {
-
-		}
-		prerequisite = {
-			focus = RVR_The_Birthplace_of_America
-		}
-		completion_reward = {
-			add_ideas = RVR_Espionage_Capital
-		}
-	}
-	focus = {
-		id = RVR_Recreate_the_OSS
-		icon = GFX_goal_Office_of_Strategic_Services
-		cost = 9.00
-		x = 0
-		y = 1
-		relative_position_id = RVR_Exploit_Langley
-		available = {
-
-		}
-		prerequisite = {
-			focus = RVR_Exploit_Langley
-		}
-		completion_reward = {
-			create_intelligence_agency = yes
-		}
-	}
-	focus = {
-		id = RVR_The_Rightful_Claim
-		icon = GFX_goal_USA_Monument
-		cost = 9.00
-		x = -1
-		y = 2
-		relative_position_id = RVR_Operation_El_Paso
-		available = {
-			is_faction_leader = yes
-		}
-		mutually_exclusive = {
-			focus = RVR_America_is_No_More
-		}
-		prerequisite = {
-			focus = RVR_Operation_El_Paso
-		}
-		prerequisite = {
-			focus = RVR_Reunite_Appalachia
-		}
-		completion_reward = {
-			set_cosmetic_tag = RVR_Republic_of_America
-			every_state = {
-				LIMIT = {
-					has_state_flag = part_of_america
-				}
-				add_claim_by = RVR
-			}
-		}
-	}
-	focus = {
-		id = RVR_America_is_No_More
-		icon = GFX_goal_USA_Flag_down
-		cost = 9.00
-		x = 1
-		y = 2
-		relative_position_id = RVR_Operation_El_Paso
-		available = {
-			is_faction_leader = yes
-		}
-		mutually_exclusive = {
-			focus = RVR_The_Rightful_Claim
-		}
-		prerequisite = {
-			focus = RVR_Operation_El_Paso
-		}
-		prerequisite = {
-			focus = RVR_Reunite_Appalachia
-		}
-		completion_reward = {
-			add_stability  = -0.05
-			add_war_support = -0.05
-		}
-	}
-	focus = {
-		id = RVR_Reclaim_the_1611_Charter
-		icon = GFX_goal_1611_Charter
-		cost = 9.00
-		x = 0
-		y = 1
-		relative_position_id = RVR_America_is_No_More
-		available = {
-
-		}
-		prerequisite = {
-			focus = RVR_America_is_No_More
-		}
-		completion_reward = {
-			set_cosmetic_tag = RVR_Greater_Virginia
-		}
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	#### The horribly butchered Youngkin path
 	
 	
@@ -1448,7 +426,7 @@ focus_tree = {
 	focus = {
 		id = RVR_President_Youngkin
 		icon = GFX_goal_Youngkin
-		cost = 9.00
+		cost = 5
 		x = 3
 		y = 1
 		relative_position_id = RVR_Republicanism_Holds
@@ -1460,7 +438,6 @@ focus_tree = {
 		}
 		mutually_exclusive = {
 			focus = RVR_President_Sarvis
-			focus = RVR_President_Santini
 			focus = RVR_President_Cox
 			focus = RVR_President_McDonell
 		}
@@ -1480,7 +457,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Reach_out_to_The_DJT
 		icon = GFX_goal_flo_two_trumps
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_President_Youngkin
@@ -1500,7 +477,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Formerly_Pardon_Trump
 		icon = GFX_focus_law
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_Reach_out_to_The_DJT
@@ -1518,7 +495,7 @@ focus_tree = {
 	focus = {
 		id = RVR_the_Eastern_Command_Zone
 		icon = GFX_goal_focus_army_is_ready
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_Formerly_Pardon_Trump
@@ -1546,7 +523,7 @@ focus_tree = {
 	focus = {
 		id = RVR_President_McDonell
 		icon = GFX_goal_McDonnell
-		cost = 9.00
+		cost = 5
 		x = -1
 		y = 1
 		relative_position_id = RVR_Republicanism_Holds
@@ -1555,7 +532,6 @@ focus_tree = {
 		}
 		mutually_exclusive = {
 			focus = RVR_President_Sarvis
-			focus = RVR_President_Santini
 			focus = RVR_President_Cox
 			focus = RVR_President_Youngkin
 		}
@@ -1572,7 +548,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Hail_to_the_Chief
 		icon = GFX_goal_Generic_Command_Power
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_President_McDonell
@@ -1589,7 +565,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Rally_the_Army
 		icon = GFX_Focus_Volunteer_Army
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_Hail_to_the_Chief
@@ -1607,7 +583,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Secure_a_Permanent_Independent_Virginia
 		icon = GFX_goal_McDonnell_is_Virginia
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_Rally_the_Army
@@ -1624,7 +600,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Claim_1784_Charter
 		icon = GFX_Focus_Generic_Accept_Treaty
-		cost = 9.00
+		cost = 5
 		x = 1
 		y = 1
 		relative_position_id = RVR_Secure_a_Permanent_Independent_Virginia
@@ -1658,7 +634,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Disassociate_from_Americanism
 		icon = GFX_goal_Generic_Ripping_Papers
-		cost = 9.00
+		cost = 5
 		x = -1
 		y = 1
 		relative_position_id = RVR_Secure_a_Permanent_Independent_Virginia
@@ -1677,7 +653,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Test_our_Skills
 		icon = GFX_Generic_War_Skeleton
-		cost = 9.00
+		cost = 5
 		x = -1
 		y = 1
 		relative_position_id = RVR_Claim_1784_Charter
@@ -1711,7 +687,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Proclaim_Greater_Virginia_McDonnell
 		icon = GFX_goal_Big_Virginia
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_Test_our_Skills
@@ -1732,13 +708,13 @@ focus_tree = {
 	
 	
 	
-	### The cool larpy paths :3
+	### The cool larpy paths :3 or the edgy weird nazi paths 
 	
 	
 	focus = {
 		id = RVR_Nos_Sunt_Tyrannis
 		icon = GFX_goal_Nos_Sunt_Tyrannus
-		cost = 9.00
+		cost = 5
 		x = 11
 		y = 1
 		relative_position_id = RVR_What_Now
@@ -1750,6 +726,11 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = RVR_What_Now
+		}
+		allow_branch = {
+			NOT = {
+				has_completed_focus = RVR_Sic_Semper_Tyrannis
+			}
 		}
 		completion_reward = {
 			add_popularity = {
@@ -1764,6 +745,7 @@ focus_tree = {
 				promote_character = yes
 			}
 			set_cosmetic_tag = RVR_Virginian_Military_Junta
+			mark_focus_tree_layout_dirty = yes
 		}
 	}
 	
@@ -1777,7 +759,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Uphold_Purity
 		icon = GFX_focus_Navajo_Raid
-		cost = 9.00
+		cost = 5
 		x = 30
 		y = 1
 		relative_position_id = RVR_Nos_Sunt_Tyrannis
@@ -1803,7 +785,7 @@ focus_tree = {
 	focus = {
 		id = RVR_The_First_Men_of_Virginia
 		icon = GFX_goal_First_Virginians
-		cost = 9.00
+		cost = 5
 		x = 2
 		y = 1
 		relative_position_id = RVR_Uphold_Purity
@@ -1822,7 +804,7 @@ focus_tree = {
 	focus = {
 		id = RVR_The_Night_of_the_Red_Banner
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_The_First_Men_of_Virginia
@@ -1846,7 +828,7 @@ focus_tree = {
 	focus = {
 		id = RVR_The_Purpose_of_Our_Nation
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_The_Night_of_the_Red_Banner
@@ -1864,7 +846,7 @@ focus_tree = {
 	focus = {
 		id = RVR_2_Percent_Purity_Act
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = 6
 		y = 1
 		relative_position_id = RVR_The_Purpose_of_Our_Nation
@@ -1885,7 +867,7 @@ focus_tree = {
 	focus = {
 		id = RVR_0_point_5_Percent_Purity_Act
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = 4
 		y = 1
 		relative_position_id = RVR_The_Purpose_of_Our_Nation
@@ -1906,7 +888,7 @@ focus_tree = {
 	focus = {
 		id = RVR_0_point_1_Percent_Purity_Act
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = 2
 		y = 1
 		relative_position_id = RVR_The_Purpose_of_Our_Nation
@@ -1927,7 +909,7 @@ focus_tree = {
 	focus = {
 		id = RVR_The_Conditional_Citizens
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_0_point_5_Percent_Purity_Act
@@ -1946,7 +928,7 @@ focus_tree = {
 	focus = {
 		id = RVR_The_Descendents_of_the_20_and_Odd
 		icon = GFX_goal_African_slavery
-		cost = 9.00
+		cost = 5
 		x = -1
 		y = 1
 		relative_position_id = RVR_The_Conditional_Citizens
@@ -1963,7 +945,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Debate_Expansion_of_Dates
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = 1
 		y = 1
 		relative_position_id = RVR_The_Conditional_Citizens
@@ -1980,7 +962,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Legacy_of_John_Smith
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_The_Purpose_of_Our_Nation
@@ -1997,7 +979,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Enlist_Founding_Families
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_Legacy_of_John_Smith
@@ -2016,7 +998,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Revenge_against_Opechancanough
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_Legacy_of_John_Smith
@@ -2033,7 +1015,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Expand_our_Grip
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_Revenge_against_Opechancanough
@@ -2056,7 +1038,7 @@ focus_tree = {
 	focus = {
 		id = RVR_the_New_England_Colonies
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = -2
 		y = 1
 		relative_position_id = RVR_Expand_our_Grip
@@ -2075,7 +1057,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Our_Plymouth_Brethren
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_the_New_England_Colonies
@@ -2092,7 +1074,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Complete_Control_over_the_NE_Colonies
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_Our_Plymouth_Brethren
@@ -2112,7 +1094,7 @@ focus_tree = {
 	focus = {
 		id = RVR_the_Southern_Colonies
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = 2
 		y = 1
 		relative_position_id = RVR_Expand_our_Grip
@@ -2129,7 +1111,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Klan_Sympathies
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_the_Southern_Colonies
@@ -2146,7 +1128,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Complete_Control_of_the_South
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_Klan_Sympathies
@@ -2169,7 +1151,7 @@ focus_tree = {
 	focus = {
 		id = RVR_the_Middle_Colonies
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_Expand_our_Grip
@@ -2186,7 +1168,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Allow_Amish_Control
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_the_Middle_Colonies
@@ -2210,7 +1192,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Purge_the_Den_of_Capitalism
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_Allow_Amish_Control
@@ -2230,7 +1212,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Proclaim_Pure_America
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_Purge_the_Den_of_Capitalism
@@ -2269,7 +1251,7 @@ focus_tree = {
 	focus = {
 		id = RVR_True_Purpose_of_Charlottesville
 		icon = GFX_focus_For_Aryans
-		cost = 9.00
+		cost = 5
 		x = -2
 		y = 1
 		relative_position_id = RVR_Uphold_Purity
@@ -2289,7 +1271,7 @@ focus_tree = {
 	focus = {
 		id = RVR_The_Meeting_of_the_Minds
 		icon = GFX_goal_gamers_rise_up
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_True_Purpose_of_Charlottesville
@@ -2319,7 +1301,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Patria_Dei
 		icon = GFX_goal_Gods_Virginia
-		cost = 9.00
+		cost = 5
 		x = 15
 		y = 1
 		relative_position_id = RVR_Nos_Sunt_Tyrannis
@@ -2348,7 +1330,7 @@ focus_tree = {
 	focus = {
 		id = RVR_The_Diocese_of_Richmond
 		icon = GFX_goal_Diocese_of_Virginia
-		cost = 9.00
+		cost = 5
 		x = -8
 		y = 1
 		relative_position_id = RVR_Patria_Dei
@@ -2374,7 +1356,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Holy_Order_of_Virginia
 		icon = GFX_goal_holyorder_of_Virginia
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_The_Diocese_of_Richmond
@@ -2391,7 +1373,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Copy_the_Hospitallers
 		icon = GFX_goal_Copy_the_Knights
-		cost = 9.00
+		cost = 5
 		x = -3
 		y = 1
 		relative_position_id = RVR_Holy_Order_of_Virginia
@@ -2412,7 +1394,7 @@ focus_tree = {
 	focus = {
 		id = RVR_warrior_priests
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = -1
 		y = 1
 		relative_position_id = RVR_Copy_the_Hospitallers
@@ -2428,7 +1410,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Copy_the_Tuetons
 		icon = GFX_goal_copytheteutons
-		cost = 9.00
+		cost = 5
 		x = 1
 		y = 1
 		relative_position_id = RVR_Copy_the_Hospitallers
@@ -2449,7 +1431,7 @@ focus_tree = {
 	focus = {
 		id = RVR_learn_from_king_baldwin
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = -1
 		y = 1
 		relative_position_id = RVR_Copy_the_Tuetons
@@ -2470,7 +1452,7 @@ focus_tree = {
 	focus = {
 		id = RVR_under_the_holy_trinity
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_Holy_Order_of_Virginia
@@ -2486,7 +1468,7 @@ focus_tree = {
 	focus = {
 		id = RVR_mass_baptisms
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_under_the_holy_trinity
@@ -2502,7 +1484,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Veneration_of_Mary
 		icon = GFX_goal_Veneration_of_Mary
-		cost = 9.00
+		cost = 5
 		x = 3
 		y = 1
 		relative_position_id = RVR_Holy_Order_of_Virginia
@@ -2519,7 +1501,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Christ_the_Savior
 		icon = GFX_goal_Christthesavior
-		cost = 9.00
+		cost = 5
 		x = -1
 		y = 1
 		relative_position_id = RVR_Veneration_of_Mary
@@ -2542,7 +1524,7 @@ focus_tree = {
 	focus = {
 		id = RVR_care_for_the_poor_and_sick
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = 1
 		y = 1
 		relative_position_id = RVR_Christ_the_Savior
@@ -2558,7 +1540,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Elevate_Saint_Virginia
 		icon = GFX_goal_Venerate_Saint_Virginia
-		cost = 9.00
+		cost = 5
 		x = 1
 		y = 1
 		relative_position_id = RVR_Veneration_of_Mary
@@ -2575,7 +1557,7 @@ focus_tree = {
 	focus = {
 		id = RVR_The_Crusaders_of_Richmond
 		icon = GFX_goal_richmondcrusaders
-		cost = 9.00
+		cost = 5
 		x = 2
 		y = 1
 		relative_position_id = RVR_Copy_the_Tuetons
@@ -2598,7 +1580,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Prepare_for_the_American_Crusade
 		icon = GFX_goal_americancrusade2
-		cost = 9.00
+		cost = 5
 		x = -2
 		y = 1
 		relative_position_id = RVR_The_Crusaders_of_Richmond
@@ -2616,7 +1598,7 @@ focus_tree = {
 	focus = {
 		id = RVR_god_with_virginia
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = 2
 		y = 1
 		relative_position_id = RVR_The_Crusaders_of_Richmond
@@ -2632,7 +1614,7 @@ focus_tree = {
 	focus = {
 		id = RVR_meet_with_the_holy_see
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_The_Crusaders_of_Richmond
@@ -2648,7 +1630,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Condemn_the_Sinners
 		icon = GFX_goal_Condemn_the_sinners_to_hellfire
-		cost = 9.00
+		cost = 5
 		x = 1
 		y = 1
 		relative_position_id = RVR_meet_with_the_holy_see
@@ -2672,7 +1654,7 @@ focus_tree = {
 	focus = {
 		id = RVR_enforce_novus_ordo
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = -1
 		y = 1
 		relative_position_id = RVR_meet_with_the_holy_see
@@ -2694,7 +1676,7 @@ focus_tree = {
 	focus = {
 		id = RVR_the_dominion_of_god_in_america
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = -1
 		y = 1
 		relative_position_id = RVR_Condemn_the_Sinners
@@ -2721,7 +1703,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Spirit_of_Martin_Luther
 		icon = GFX_goal_Spirit_of_Martin_Luther
-		cost = 9.00
+		cost = 5
 		x = 8
 		y = 1
 		relative_position_id = RVR_Patria_Dei
@@ -2741,7 +1723,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Pat_Robertson_focus
 		icon = GFX_goal_Spread_the_True_Gospel
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_Spirit_of_Martin_Luther
@@ -2766,7 +1748,7 @@ focus_tree = {
 	focus = {
 		id = RVR_The_New_Social_Class
 		icon = GFX_goal_Create_the_Handmaids
-		cost = 9.00
+		cost = 5
 		x = -2
 		y = 1
 		relative_position_id = RVR_Pat_Robertson_focus
@@ -2783,7 +1765,7 @@ focus_tree = {
 	focus = {
 		id = RVR_mass_produce_bible
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = -1
 		y = 1
 		relative_position_id = RVR_The_New_Social_Class
@@ -2799,7 +1781,7 @@ focus_tree = {
 	focus = {
 		id = RVR_individualistic_christianity
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = 1
 		y = 1
 		relative_position_id = RVR_mass_produce_bible
@@ -2815,7 +1797,7 @@ focus_tree = {
 	focus = {
 		id = RVR_disavow_sectarianism
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = -1
 		y = 1
 		relative_position_id = RVR_individualistic_christianity
@@ -2831,7 +1813,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Sola_Fide
 		icon = GFX_goal_throughfaith
-		cost = 9.00
+		cost = 5
 		x = 2
 		y = 1
 		relative_position_id = RVR_Pat_Robertson_focus
@@ -2848,7 +1830,7 @@ focus_tree = {
 	focus = {
 		id = RVR_God_Loves_Virginia
 		icon = GFX_goal_God_LOVES_Virginia
-		cost = 9.00
+		cost = 5
 		x = 1
 		y = 1
 		relative_position_id = RVR_Sola_Fide
@@ -2866,7 +1848,7 @@ focus_tree = {
 	focus = {
 		id = RVR_The_Virginian_Theocrat
 		icon = GFX_goal_The_Virginian_Theocrat
-		cost = 9.00
+		cost = 5
 		x = -1
 		y = 1
 		relative_position_id = RVR_God_Loves_Virginia
@@ -2886,7 +1868,7 @@ focus_tree = {
 	focus = {
 		id = RVR_tv_in_every_house
 		icon = GFX_goal_The_Virginian_Theocrat
-		cost = 9.00
+		cost = 5
 		x = 1
 		y = 1
 		relative_position_id = RVR_The_Virginian_Theocrat
@@ -2902,7 +1884,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Staunch_Televangelism
 		icon = GFX_goal_televangelism
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_Pat_Robertson_focus
@@ -2919,7 +1901,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Farewell_Falwell
 		icon = GFX_goal_RIP_Falwell
-		cost = 9.00
+		cost = 5
 		x = -1
 		y = 1
 		relative_position_id = RVR_Staunch_Televangelism
@@ -2935,7 +1917,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Follow_the_Holy_Word
 		icon = GFX_goal_Holy_word
-		cost = 9.00
+		cost = 5
 		x = 1
 		y = 1
 		relative_position_id = RVR_Staunch_Televangelism
@@ -2955,7 +1937,7 @@ focus_tree = {
 	focus = {
 		id = RVR_a_promise_of_salvation
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = -1
 		y = 1
 		relative_position_id = RVR_Follow_the_Holy_Word
@@ -2974,7 +1956,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Purify_Christendom
 		icon = GFX_goal_Heavenly_Officers
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_a_promise_of_salvation
@@ -2998,7 +1980,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Cast_the_First_Stone
 		icon = GFX_goal_castthefirststone
-		cost = 9.00
+		cost = 5
 		x = 1
 		y = 1
 		relative_position_id = RVR_Purify_Christendom
@@ -3021,7 +2003,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Proclaim_the_Divine_Republic
 		icon = GFX_goal_proclaimgilead
-		cost = 9.00
+		cost = 5
 		x = -1
 		y = 1
 		relative_position_id = RVR_Purify_Christendom
@@ -3041,7 +2023,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Reunite_America_Under_God
 		icon = GFX_goal_Battle_for_the_Soul_of_the_Nation
-		cost = 9.00
+		cost = 5
 		x = 1
 		y = 1
 		relative_position_id = RVR_Proclaim_the_Divine_Republic
@@ -3070,7 +2052,7 @@ focus_tree = {
 	focus = {
 		id = RVR_reach_out_to_mormons
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = 6
 		y = 1
 		relative_position_id = RVR_The_Diocese_of_Richmond
@@ -3088,7 +2070,7 @@ focus_tree = {
 	focus = {
 		id = RVR_denounce_heretical_mormons
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = 4
 		y = 1
 		relative_position_id = RVR_The_Diocese_of_Richmond
@@ -3106,7 +2088,7 @@ focus_tree = {
 	focus = {
 		id = RVR_reach_out_to_liberty
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = -6
 		y = 1
 		relative_position_id = RVR_Spirit_of_Martin_Luther
@@ -3123,7 +2105,7 @@ focus_tree = {
 	focus = {
 		id = RVR_rebuild_missionary_corps
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = -4
 		y = 1
 		relative_position_id = RVR_Spirit_of_Martin_Luther
@@ -3140,7 +2122,7 @@ focus_tree = {
 	focus = {
 		id = RVR_construct_new_churches
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = 8
 		y = 1
 		relative_position_id = RVR_The_Diocese_of_Richmond
@@ -3157,7 +2139,7 @@ focus_tree = {
 	focus = {
 		id = RVR_bring_jesus_to_west_Va
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_construct_new_churches
@@ -3173,7 +2155,7 @@ focus_tree = {
 	focus = {
 		id = RVR_free_the_afs
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = 1
 		y = 1
 		relative_position_id = RVR_bring_jesus_to_west_Va
@@ -3189,7 +2171,7 @@ focus_tree = {
 	focus = {
 		id = RVR_god_hates_kfc
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = -1
 		y = 1
 		relative_position_id = RVR_bring_jesus_to_west_Va
@@ -3205,7 +2187,7 @@ focus_tree = {
 	focus = {
 		id = RVR_the_sds
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = -1
 		y = 1
 		relative_position_id = RVR_free_the_afs
@@ -3224,7 +2206,7 @@ focus_tree = {
 	focus = {
 		id = RVR_the_wrath #CSA
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 2
 		relative_position_id = RVR_the_sds
@@ -3240,7 +2222,7 @@ focus_tree = {
 	focus = {
 		id = RVR_the_lust #trump + montana
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = 2
 		y = 2
 		relative_position_id = RVR_the_sds
@@ -3256,7 +2238,7 @@ focus_tree = {
 	focus = {
 		id = RVR_the_sloth #biden
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = -2
 		y = 2
 		relative_position_id = RVR_the_sds
@@ -3272,7 +2254,7 @@ focus_tree = {
 	focus = {
 		id = RVR_the_pride #HOPi
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = -1
 		y = 1
 		relative_position_id = RVR_the_sds
@@ -3288,7 +2270,7 @@ focus_tree = {
 	focus = {
 		id = RVR_the_greed #texas
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = 1
 		y = 1
 		relative_position_id = RVR_the_sds
@@ -3304,7 +2286,7 @@ focus_tree = {
 	focus = {
 		id = RVR_the_envy #gla + soda
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = -3
 		y = 1
 		relative_position_id = RVR_the_sds
@@ -3320,7 +2302,7 @@ focus_tree = {
 	focus = {
 		id = RVR_the_gluttony #pra + cascadia
 		icon = GFX
-		cost = 9.00
+		cost = 5
 		x = 3
 		y = 1
 		relative_position_id = RVR_the_sds
@@ -3347,7 +2329,7 @@ focus_tree = {
 	focus = {
 		id = RVR_The_Bloody_Crown_of_Virginia
 		icon = GFX_goal_Generic_Bloody_Crown
-		cost = 9.00
+		cost = 5
 		x = -7
 		y = 1
 		relative_position_id = RVR_Nos_Sunt_Tyrannis
@@ -3383,7 +2365,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Shaffner_Takes_Control
 		icon = GFX_goal_Washington_Monarch
-		cost = 9.00
+		cost = 5
 		x = -3
 		y = 1
 		relative_position_id = RVR_The_Bloody_Crown_of_Virginia
@@ -3404,7 +2386,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Restore_the_Manor_of_Mount_Vernon
 		icon = GFX_goal_Generic_Extravagence
-		cost = 9.00
+		cost = 5
 		x = -1
 		y = 1
 		relative_position_id = RVR_Shaffner_Takes_Control
@@ -3421,7 +2403,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Prove_the_Divinity_of_the_Washingtons
 		icon = GFX_goal_Generic_Cult_of_Washington
-		cost = 9.00
+		cost = 5
 		x = -0
 		y = 1
 		relative_position_id = RVR_Restore_the_Manor_of_Mount_Vernon
@@ -3439,7 +2421,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Gonna_Need_A_Right_hand_Man
 		icon = GFX_goal_Generic_Maintain_Cabinet_Loyalty
-		cost = 9.00
+		cost = 5
 		x = 1
 		y = 1
 		relative_position_id = RVR_Prove_the_Divinity_of_the_Washingtons
@@ -3459,7 +2441,7 @@ focus_tree = {
 	focus = {
 		id = RVR_A_Founder_Aristocracy
 		icon = GFX_Goal_generic_aristocracy
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_Gonna_Need_A_Right_hand_Man
@@ -3480,7 +2462,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Lee_Monarchy
 		icon = GFX_goal_Lee_Monarch
-		cost = 9.00
+		cost = 5
 		x = -1
 		y = 1
 		relative_position_id = RVR_The_Bloody_Crown_of_Virginia
@@ -3501,7 +2483,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Spirit_of_Lee
 		icon = GFX_goal_Glorify_the_Confederacy
-		cost = 9.00
+		cost = 5
 		x = 1
 		y = 1
 		relative_position_id = RVR_Lee_Monarchy
@@ -3519,7 +2501,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Sons_of_the_Army_of_Northern_Virginia 
 		icon = GFX_goal_dixiemilitias
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_Spirit_of_Lee
@@ -3579,7 +2561,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Restore_the_Virginian_Planters
 		icon = GFX_goal_Generic_Cotton_Farming
-		cost = 9.00
+		cost = 5
 		x = -1
 		y = 1
 		relative_position_id = RVR_Sons_of_the_Army_of_Northern_Virginia
@@ -3600,7 +2582,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Proclaim_the_Confederate_Kingdoms
 		icon = GFX_goal_Confederate_Kingdom
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_Restore_the_Virginian_Planters
@@ -3617,7 +2599,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Legacy_of_Washington
 		icon = GFX_goal_Generic_George_Washington
-		cost = 9.00
+		cost = 5
 		x = 1
 		y = 1
 		relative_position_id = RVR_Shaffner_Takes_Control
@@ -3635,7 +2617,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Restore_the_Continental_Army
 		icon = GFX_goal_AME_Hail_Columbia
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_Legacy_of_Washington
@@ -3716,7 +2698,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Restore_the_Earl_of_Dunmore
 		icon = GFX_goal_Earl_of_Dunmore
-		cost = 9.00
+		cost = 5
 		x = 1
 		y = 1
 		relative_position_id = RVR_The_Bloody_Crown_of_Virginia
@@ -3736,7 +2718,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Redistribute_Land
 		icon = GFX_goal_Generic_Land_Reform
-		cost = 9.00
+		cost = 5
 		x = 1
 		y = 1
 		relative_position_id = RVR_Restore_the_Earl_of_Dunmore
@@ -3756,7 +2738,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Reach_out_to_our_Great_Monarch
 		icon = GFX_goal_Generic_British_Diplomacy
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_Redistribute_Land
@@ -3775,7 +2757,7 @@ focus_tree = {
 	focus = {
 		id = RVR_The_Last_Bastion_of_the_Empire
 		icon = GFX_Focus_ENG_Imperial_Federalism_Retained
-		cost = 9.00
+		cost = 5
 		x = -1
 		y = 1
 		relative_position_id = RVR_Reach_out_to_our_Great_Monarch
@@ -3793,7 +2775,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Feign_the_British_support
 		icon = GFX_goal_generic_control_money
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_The_Last_Bastion_of_the_Empire
@@ -3811,7 +2793,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Go_Against_the_Windsors
 		icon = GFX_goal_Generic_Attack_Britain
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_Feign_the_British_support
@@ -3828,7 +2810,7 @@ focus_tree = {
 	focus = {
 		id = RVR_the_British_dominion
 		icon = GFX_goal_Generic_Rule_Britannia
-		cost = 9.00
+		cost = 5
 		x = 1
 		y = 1
 		relative_position_id = RVR_Reach_out_to_our_Great_Monarch
@@ -3847,7 +2829,7 @@ focus_tree = {
 	focus = {
 		id = RVR_British_Virginian_Ties
 		icon = GFX_goal_Focus_ENG_Imperial_Investment
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_the_British_dominion
@@ -3866,7 +2848,7 @@ focus_tree = {
 	focus = {
 		id = RVR_The_Virginian_Commonwealth
 		icon = GFX_goal_Commonwealth_of_Nations
-		cost = 9.00
+		cost = 5
 		x = 0
 		y = 1
 		relative_position_id = RVR_British_Virginian_Ties
@@ -3891,8 +2873,8 @@ focus_tree = {
 	focus = {
 		id = RVR_Reclaim_Greater_Virginia
 		icon = GFX_goal_Send_the_Radicals_to_the_Mountains
-		cost = 9.00
-		x = 1
+		cost = 5
+		x = -8
 		y = 0
 		available = {
 			OR = {
@@ -3926,7 +2908,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Topple_the_Triumverate
 		icon = GFX_goal_dismantlestate
-		cost = 9.00
+		cost = 5
 		x = -1
 		y = 1
 		relative_position_id = RVR_Reclaim_Greater_Virginia
@@ -3955,7 +2937,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Take_the_Lakes
 		icon = GFX_goal_Generic_Naval_Industry
-		cost = 9.00
+		cost = 5
 		x = -1
 		y = 1
 		relative_position_id = RVR_Topple_the_Triumverate
@@ -4006,7 +2988,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Our_Home_in_Dixie
 		icon = GFX_goal_Confederate_Army
-		cost = 9.00
+		cost = 5
 		x = 1
 		y = 1
 		relative_position_id = RVR_Reclaim_Greater_Virginia
@@ -4095,7 +3077,7 @@ focus_tree = {
 	focus = {
 		id = RVR_The_Floridian_Gambit
 		icon = GFX_goal_Florida
-		cost = 9.00
+		cost = 5
 		x = 1
 		y = 1
 		relative_position_id = RVR_Our_Home_in_Dixie
@@ -4152,7 +3134,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Take_on_Texas
 		icon = GFX_goal_Texas
-		cost = 9.00
+		cost = 5
 		x = 1
 		y = 1
 		relative_position_id = RVR_Topple_the_Triumverate
@@ -4292,7 +3274,7 @@ focus_tree = {
 	focus = {
 		id = RVR_The_Midwest_Gambit
 		icon = GFX_goal_Trump_Statue
-		cost = 9.00
+		cost = 5
 		x = -1
 		y = 1
 		relative_position_id = RVR_Take_on_Texas
@@ -4316,7 +3298,7 @@ focus_tree = {
 	focus = {
 		id = RVR_The_Ideological_Enemy
 		icon = GFX_goal_Drain_the_Swamp
-		cost = 9.00
+		cost = 5
 		x = 1
 		y = 1
 		relative_position_id = RVR_Take_on_Texas
@@ -4342,7 +3324,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Reform_the_United_States
 		icon = GFX_goal_America_with_Eagle
-		cost = 9.00
+		cost = 5
 		x = 1
 		y = 1
 		relative_position_id = RVR_The_Midwest_Gambit
@@ -4391,7 +3373,950 @@ focus_tree = {
 	
 	
 	
+	### Foreign Policy
 	
+	focus = {
+		id = RVR_Shut_down_big_Government
+		icon = GFX_goal_Generic_Divided_Government
+		cost = 5
+		x = -20
+		y = 0
+		available = {
+
+		}
+		#prerequisite = {
+		#	focus = RVR_Investigate_the_Parties
+		#	focus = RVR_Create_the_Independence_Party
+		#}
+		mutually_exclusive = {
+			focus = RVR_Rally_Anti_Trump_Republicans
+		}
+		completion_reward = {
+			add_popularity = {
+				ideology = libertarian_right
+				popularity = 0.10
+			}
+			add_ideas = RVR_Decentralization
+		}
+	}
+	focus = {
+		id = RVR_Dont_Tread_on_Me
+		icon = GFX_goal_No_Step_on_Snek
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = RVR_Shut_down_big_Government
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Shut_down_big_Government
+		}
+		mutually_exclusive = {
+			focus = RVR_A_Jeffersonian_State
+		}
+		completion_reward = {
+			add_ideas = RVR_Dont_Tread
+		}
+	}
+	focus = {
+		id = RVR_Etsablish_The_NightWatchmen
+		icon = GFX_goal_Focus_Spy_Infiltration
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = RVR_Dont_Tread_on_Me
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Dont_Tread_on_Me
+		}
+		completion_reward = {
+			set_country_leader_ideology = Minarchism
+			swap_ideas = {
+				remove_idea = RVR_Dont_Tread
+				add_idea = RVR_Minarchism
+			}
+		}
+	}
+	focus = {
+		id = RVR_A_Jeffersonian_State
+		icon = GFX_goal_Jefferson
+		cost = 5
+		x = -2
+		y = 1
+		relative_position_id = RVR_Shut_down_big_Government
+		available = {
+
+		}
+		mutually_exclusive = {
+			focus = RVR_Dont_Tread_on_Me
+		}
+		prerequisite = {
+			focus = RVR_Shut_down_big_Government
+		}
+		completion_reward = {
+			set_country_leader_ideology = Jeffersonianism
+			add_ideas = RVR_Agrarian_Foundations
+		}
+	}
+	focus = {
+		id = RVR_An_Ode_to_Jefferson
+		icon = GFX_goal_Jefferson_VIR_Flag
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = RVR_A_Jeffersonian_State
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_A_Jeffersonian_State
+		}
+		completion_reward = {
+			set_cosmetic_tag = RVR_Jefferson
+		}
+	}
+	focus = {
+		id = RVR_The_Status_of_the_Third_Confederacy
+		icon = GFX_goal_Confederate_Army
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = RVR_Etsablish_The_NightWatchmen
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_An_Ode_to_Jefferson
+			focus = RVR_Etsablish_The_NightWatchmen
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = RVR_Confederates_Were_Libertarians
+		icon = GFX_goal_Libertarian_Confederates
+		cost = 5
+		x = -1
+		y = 1
+		relative_position_id = RVR_The_Status_of_the_Third_Confederacy
+		available = {
+
+		}
+		mutually_exclusive = {
+			focus = RVR_Right_to_Own_What
+		}
+		prerequisite = {
+			focus = RVR_The_Status_of_the_Third_Confederacy
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = RVR_Offer_Annexation_to_CSB
+		icon = GFX_goal_Generic_Pass_Legislation
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = RVR_Confederates_Were_Libertarians
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Confederates_Were_Libertarians
+		}
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = RVR_Right_to_Own_What
+		icon = GFX_goal_African_slavery
+		cost = 5
+		x = 1
+		y = 1
+		relative_position_id = RVR_The_Status_of_the_Third_Confederacy
+		available = {
+
+		}
+		mutually_exclusive = {
+			focus = RVR_Confederates_Were_Libertarians
+		}
+		prerequisite = {
+			focus = RVR_The_Status_of_the_Third_Confederacy
+		}
+		completion_reward = {
+			CSB = {
+				add_stability = -0.03
+			}
+		}
+	}
+	focus = {
+		id = RVR_Lift_the_Boot_from_The_Confederate_People
+		icon = GFX_goal_Destroy_Southern_Spirit
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = RVR_Right_to_Own_What
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Right_to_Own_What
+		}
+		completion_reward = {
+			every_state = {
+				LIMIT = {
+					is_core_of = CSA
+				}
+				add_claim_by = RVR
+			}
+			create_wargoal = {
+				target = CSA
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = CSB
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = AFR
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = KKK
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = LGB
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = ZIO
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = RVR_Reach_out_to_the_GLA
+		icon = GFX_goal_Virginia_and_GLA
+		cost = 5
+		x = -2
+		y = 1
+		relative_position_id = RVR_An_Ode_to_Jefferson
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_An_Ode_to_Jefferson
+			focus = RVR_Etsablish_The_NightWatchmen
+		}
+		completion_reward = {
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = RVR_Not_Real_Libertarians
+		icon = GFX_goal_Anti_Trump
+		cost = 5
+		x = -1
+		y = 1
+		relative_position_id = RVR_Reach_out_to_the_GLA
+		available = {
+
+		}
+		mutually_exclusive = {
+			focus = RVR_Join_the_Constitutionalists
+		}
+		prerequisite = {
+			focus = RVR_Reach_out_to_the_GLA
+		}
+		completion_reward = {
+			GLA = {
+				add_opinion_modifier = {
+					target = RVR
+					modifier = faction_traitor
+				}
+				add_stability = -0.01
+			}
+		}
+	}
+	focus = {
+		id = RVR_The_True_Libertarian_State
+		icon = GFX_goal_Celebration_of_Anarchism
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = RVR_Not_Real_Libertarians
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Not_Real_Libertarians
+		}
+		completion_reward = {
+			add_war_support = 0.05
+			every_state = {
+				LIMIT = {
+					is_core_of = GLA
+				}
+				add_claim_by = RVR
+			}
+			create_wargoal = {
+				target = TEX
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = RVR_Join_the_Constitutionalists
+		icon = GFX_goal_Generic_Mutual_Cooperation
+		cost = 5
+		x = 1
+		y = 1
+		relative_position_id = RVR_Reach_out_to_the_GLA
+		available = {
+
+		}
+		mutually_exclusive = {
+			focus = RVR_Not_Real_Libertarians
+		}
+		prerequisite = {
+			focus = RVR_Reach_out_to_the_GLA
+		}
+		completion_reward = {
+			GLA = {
+				add_to_faction = RVR
+			}
+		}
+	}
+	focus = {
+		id = RVR_Unite_with_the_GLA
+		icon = GFX_goal_Generic_Party_Bottle
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = RVR_Join_the_Constitutionalists
+		available = {
+			is_neighbor_of = GLA
+		}
+		prerequisite = {
+			focus = RVR_Join_the_Constitutionalists
+		}
+		completion_reward = {
+			GLA = {
+				annex_country = {
+    				target = RVR
+    				transfer_troops = yes
+				}
+				every_state = {
+					LIMIT = {
+						IF = {
+							is_fully_controlled_by = RVR
+						}
+					}
+					add_core_of = GLA
+				}
+			}
+		}
+	}
+	focus = {
+		id = RVR_American_Liberty_lives_on
+		icon = GFX_goal_Generic_Liberty_Calling
+		cost = 5
+		x = 3
+		y = 1
+		relative_position_id = RVR_The_True_Libertarian_State
+		available = {
+			has_completed_focus = RVR_Reunite_Appalachia
+		}
+		prerequisite = {
+			focus = RVR_Lift_the_Boot_from_The_Confederate_People
+			focus = RVR_Offer_Annexation_to_CSB
+		}
+		prerequisite = {
+			focus = RVR_The_True_Libertarian_State
+		}
+		completion_reward = {
+			add_political_power = 25
+			set_major = yes
+			create_faction = RVR_A_f_LAF
+		}
+	}
+	focus = {
+		id = RVR_Protect_Freedom_from_Democracy
+		icon = GFX_goal_Generic_Elections_Banned
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = RVR_American_Liberty_lives_on
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_American_Liberty_lives_on
+		}
+		completion_reward = {
+			#add_ideas = RVR_Protecting_Freedom
+		}
+	}
+	focus = {
+		id = RVR_Our_Manifest_Destiny
+		icon = GFX_goal_Generic_Manifest_Destiny
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = RVR_Protect_Freedom_from_Democracy
+		available = {
+
+		}
+		prerequisite = {
+			#focus = 
+		}
+		completion_reward = {
+			add_ideas = RVR_Manifest_Destiny
+		}
+	}
+	focus = {
+		id = RVR_American_Reunification
+		icon = GFX_goal_Generic_Americanism
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = RVR_Our_Manifest_Destiny
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Our_Manifest_Destiny
+		}
+		completion_reward = {
+			IF = {
+				LIMIT = {
+					has_cosmetic_tag = RVR_Jefferson
+				}
+				set_cosmetic_tag = RVR_United_States_of_Jefferson
+			}
+			else = {
+				set_cosmetic_tag = RVR_Free_and_Independent_States_of_America
+			}
+		}
+	}
+	focus = {
+		id = RVR_Secure_Mexican_Markets
+		icon = GFX_focus_mex_jefe_maximo
+		cost = 5
+		x = 2
+		y = 1
+		relative_position_id = RVR_American_Reunification
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_American_Reunification
+		}
+		completion_reward = {
+			create_wargoal = {
+				target = MEX
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = RMX
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = WMX
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = ZAP
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = RVR_Retake_the_Canal
+		icon = GFX_goal_Focus_Generic_Maritime_Trade
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = RVR_Secure_Mexican_Markets
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Secure_Mexican_Markets
+		}
+		completion_reward = {
+			create_wargoal = {
+				target = PAN
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = RVR_Operation_Great_North
+		icon = GFX_goal_oh_canada
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = RVR_American_Reunification
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_American_Reunification
+		}
+		completion_reward = {
+			create_wargoal = {
+				target = CAN
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = VAN
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = RVR_Enforce_Monroe_Doctrine
+		icon = GFX_focus_eng_decolonization
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = RVR_Operation_Great_North
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Operation_Great_North
+		}
+		completion_reward = {
+			create_wargoal = {
+				target = ENG
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = FFR
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = HOL
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = RVR_The_Plight_of_Cuba
+		icon = GFX_goal_Communist_Pride
+		cost = 5
+		x = -2
+		y = 1
+		relative_position_id = RVR_American_Reunification
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_American_Reunification
+		}
+		completion_reward = {
+			create_wargoal = {
+				target = CUB
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = CUC
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = RVR_End_Venezuelan_Socialism
+		icon = GFX_goal_Generic_Purge_Social_Democracy
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = RVR_The_Plight_of_Cuba
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_The_Plight_of_Cuba
+		}
+		completion_reward = {
+			create_wargoal = {
+				target = VEN
+				type = annex_everything
+			}
+		}
+	}
+	
+	
+	
+	### GOP Foreign Policy
+	
+	
+	focus = {
+		id = RVR_Rally_Anti_Trump_Republicans	
+		icon = GFX_goal_ITA_Armed_Neutrality
+		cost = 5
+		x = -15
+		y = 0
+		available = {
+
+		}
+		
+		#prerequisite = {
+		#	focus = RVR_Funding_for_the_Sciences
+		#	focus = RVR_Create_the_Independence_Party
+		#}
+		mutually_exclusive = {
+			focus = RVR_Shut_down_big_Government
+		}
+		completion_reward = {
+			add_ideas = RVR_Anti_Trumpism
+		}
+	}
+	focus = {
+		id = RVR_The_Birthplace_of_America
+		icon = GFX_goal_The_Return_of_America
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = RVR_Rally_Anti_Trump_Republicans
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Rally_Anti_Trump_Republicans
+		}
+		completion_reward = {
+			add_war_support = 0.1
+			add_command_power = 35
+		}
+	}
+	focus = {
+		id = RVR_Fry_their_Asses
+		icon = GFX_goal_Kill_Kentucky
+		cost = 5
+		x = -3
+		y = 1
+		relative_position_id = RVR_The_Birthplace_of_America
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_The_Birthplace_of_America
+			focus = RVR_Dont_Tread_on_Me
+			focus = RVR_A_Jeffersonian_State
+		}
+		completion_reward = {
+			every_state = {
+				LIMIT = {
+					is_core_of = KFC
+				}
+				add_core_of = RVR
+			}
+			create_wargoal = {
+				target = KFC
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = RVR_Reunite_Appalachia
+		icon = GFX_goal_FRA_Dig_Sites
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = RVR_Fry_their_Asses
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Fry_their_Asses
+		}
+		completion_reward = {
+			every_state = {
+				LIMIT = {
+					is_core_of = APA
+				}
+				add_core_of = RVR
+			}
+			create_wargoal = {
+				target = APA
+				type = annex_everything
+			}
+			every_state = {
+				LIMIT = {
+					is_core_of = NRA
+				}
+				add_core_of = RVR
+			}
+			create_wargoal = {
+				target = NRA
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = RVR_Operation_Sherman
+		icon = GFX_goal_Study_The_March_to_the_sea
+		cost = 5
+		x = -1
+		y = 1
+		relative_position_id = RVR_The_Birthplace_of_America
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_The_Birthplace_of_America
+		}
+		completion_reward = {
+			every_state = {
+				LIMIT = {
+					is_core_of = CSA
+				}
+				add_core_of = RVR
+			}
+			create_wargoal = {
+				target = CSA
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = RVR_Operation_El_Paso
+		icon = GFX_goal_George_Bush_Victory
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = RVR_Operation_Sherman
+		available = {
+		}
+		prerequisite = {
+			focus = RVR_Operation_Sherman
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = RVR_Exploit_Langley
+		icon = GFX_goal_Generic_International_Espionage
+		cost = 5
+		x = 1
+		y = 1
+		relative_position_id = RVR_The_Birthplace_of_America
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_The_Birthplace_of_America
+		}
+		completion_reward = {
+			add_ideas = RVR_Espionage_Capital
+		}
+	}
+	focus = {
+		id = RVR_Recreate_the_OSS
+		icon = GFX_goal_Office_of_Strategic_Services
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = RVR_Exploit_Langley
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_Exploit_Langley
+		}
+		completion_reward = {
+			create_intelligence_agency = yes
+		}
+	}
+	focus = {
+		id = RVR_The_Rightful_Claim
+		icon = GFX_goal_USA_Monument
+		cost = 5
+		x = -1
+		y = 2
+		relative_position_id = RVR_Operation_El_Paso
+		available = {
+			is_faction_leader = yes
+		}
+		mutually_exclusive = {
+			focus = RVR_America_is_No_More
+		}
+		prerequisite = {
+			focus = RVR_Operation_El_Paso
+		}
+		prerequisite = {
+			focus = RVR_Reunite_Appalachia
+		}
+		completion_reward = {
+			set_cosmetic_tag = RVR_Republic_of_America
+			every_state = {
+				LIMIT = {
+					has_state_flag = part_of_america
+				}
+				add_claim_by = RVR
+			}
+		}
+	}
+	focus = {
+		id = RVR_America_is_No_More
+		icon = GFX_goal_USA_Flag_down
+		cost = 5
+		x = 1
+		y = 2
+		relative_position_id = RVR_Operation_El_Paso
+		available = {
+			is_faction_leader = yes
+		}
+		mutually_exclusive = {
+			focus = RVR_The_Rightful_Claim
+		}
+		prerequisite = {
+			focus = RVR_Operation_El_Paso
+		}
+		prerequisite = {
+			focus = RVR_Reunite_Appalachia
+		}
+		completion_reward = {
+			add_stability  = -0.05
+			add_war_support = -0.05
+		}
+	}
+	focus = {
+		id = RVR_Reclaim_the_1611_Charter
+		icon = GFX_goal_1611_Charter
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = RVR_America_is_No_More
+		available = {
+
+		}
+		prerequisite = {
+			focus = RVR_America_is_No_More
+		}
+		completion_reward = {
+			set_cosmetic_tag = RVR_Greater_Virginia
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	### Removed paths that have potential
+	#### President Santini
+	
+	#focus = {
+	#	id = RVR_President_Santini
+	#	icon = GFX_goal_Santini
+	#	cost = 5
+	#	x = 3
+	#	y = 1
+	#	relative_position_id = RVR_Liberty_for_All
+	#	available = {
+	#
+	#	}
+	#	prerequisite = {
+	#		focus = RVR_Republicanism_Holds
+	#	}
+	#	prerequisite = {
+	#		focus = RVR_Liberty_for_All
+	#	}
+	#	completion_reward = {
+	#		add_popularity = {
+	#			ideology = libertarian_right
+	#			popularity = 0.05
+	#		}
+	#		add_popularity = {
+	#			ideology = republican
+	#			popularity = 0.05
+	#		}
+	#		set_politics = {
+	#			ruling_party = libertarian_right
+	#		}
+	#		RVR_kurt_santini = {
+	#			promote_character = yes
+	#		}
+	#	}
+	#}
+	#focus = {
+	#	id = RVR_Unify_the_Two_Parties
+	#	icon = GFX_PB_ENG_Party_of_Haig
+	#	cost = 5
+	#	x = 0
+	#	y = 1
+	#	relative_position_id = RVR_President_Santini
+	#	available = {
+	#
+	#	}
+	#	prerequisite = {
+	#		focus = RVR_President_Santini
+	#	}
+	#	completion_reward = {
+	#		add_popularity = {
+	#			ideology = libertarian_right
+	#			popularity = 0.10
+	#		}
+	#		add_popularity = {
+	#			ideology = republican
+	#			popularity = 0.10
+	#		}
+	#		add_ideas = RVR_Unstable_Party
+	#	}
+	#}
+	#focus = {
+	#	id = RVR_Just_A_Regular_Guy
+	#	icon = GFX_goal_Generic_Paper_Question
+	#	cost = 5
+	#	x = 0
+	#	y = 1
+	#	relative_position_id = RVR_Unify_the_Two_Parties
+	#	available = {
+	#
+	#	}
+	#	prerequisite = {
+	#		focus = RVR_Unify_the_Two_Parties
+	#	}
+	#	completion_reward = {
+	#		add_political_power = 75
+	#	}
+	#}
+	#focus = {
+	#	id = RVR_Create_the_Independence_Party
+	#	icon = GFX_goal_Generic_Party_Bottle
+	#	cost = 5
+	#	x = 0
+	#	y = 1
+	#	relative_position_id = RVR_Just_A_Regular_Guy
+	#	available = {
+	#
+	#	}
+	#	prerequisite = {
+	#		focus = RVR_Just_A_Regular_Guy
+	#	}
+	#	completion_reward = {
+	#		set_party_name = { ideology = libertarian_right long_name = RVR_IND_PARTY_Long name = RVR_IND_PARTY }
+	#		set_party_name = { ideology = republican long_name = RVR_IND_PARTY_Long name = RVR_IND_PARTY }
+	#		swap_ideas = {
+	#			remove_idea = RVR_Unstable_Party
+	#			add_idea = RVR_Independence_Party
+	#		}
+	#	}
+	#}
 	
 	
 	
