@@ -13,7 +13,6 @@
 ### search_filters = { FOCUS_FILTER_POLITICAL_CHARACTER }
 ### search_filters = { FOCUS_FILTER_MILITARY_CHARACTER }
 ### search_filters = { FOCUS_FILTER_INTERNATIONAL_TRADE }
-### search_filters = { FOCUS_FILTER_HISTORICAL }
 
 focus_tree = {
 	id = biden_rework
@@ -5059,6 +5058,61 @@ focus_tree = {
 
 	}
 	focus = {
+		id = FRA_learn_from_our_intervention_in_kfc
+		icon = GFX
+		cost = 3.00
+		prerequisite = {
+			focus = FRA_the_great_crisis_of_our_time
+		}
+		x = 2
+		y = 1
+		relative_position_id = FRA_the_great_crisis_of_our_time
+		available = {
+			all_country_with_original_tag  = {
+				original_tag_to_check = KFC
+				NOT = { has_government = autocratic }
+				has_volunteers_amount_from = {
+					tag = FRA
+					count > 1
+				}
+			}
+		}
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		completion_reward = {
+			army_experience = 25
+			add_war_support = 0.1
+			add_political_power = 15
+		}
+
+	}
+	focus = {
+		id = FRA_learn_from_our_intervention_in_soda
+		icon = GFX
+		cost = 3.00
+		prerequisite = {
+			focus = FRA_the_great_crisis_of_our_time
+		}
+		x = -2
+		y = 1
+		relative_position_id = FRA_the_great_crisis_of_our_time
+		available = {
+			all_country_with_original_tag  = {
+				original_tag_to_check = MIL
+				has_volunteers_amount_from = {
+					tag = FRA
+					count > 1
+				}
+			}
+		}
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		completion_reward = {
+			army_experience = 25
+			add_war_support = 0.1
+			add_political_power = 15
+		}
+
+	}
+	focus = {
 		id = FRA_the_eternal_senators_focus
 		icon = GFX_goal_FRA_the_eternal_senators_focus
 		cost = 4.00
@@ -7032,7 +7086,7 @@ focus_tree = {
 		x = 0
 		y = 1
 		available = { has_country_leader = { name = "Robert F. Kennedy Jr." ruling_only = yes } }
-		#allow_branch = { has_country_flag = rfk_pres_after_unification } 
+		allow_branch = { has_country_flag = rfk_pres_after_unification } 
 		relative_position_id = FRA_reduce_senatorial_powers
 		completion_reward = {
 			custom_effect_tooltip = rfk_kill_cia_tt
