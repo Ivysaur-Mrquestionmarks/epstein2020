@@ -744,7 +744,6 @@ USA_TRUMP = {
 		}
 		
 	}
-
 }
 USA_PB = {
 
@@ -963,6 +962,154 @@ USA_PB = {
     				ideology = libertarian_right
     				popularity = 0.2
 			}
+		}
+	}
+}
+
+USA_evangelism_opposition = {
+	USA_crackdown = {
+		cost = 25
+		days_remove = 15
+		days_re_enable = 30
+		ai_will_do = {
+			base = 30
+		}
+
+		modifier = {
+			stability_factor = -0.1
+			political_power_cost = 0.1
+		}
+
+		visible = {
+			has_completed_focus = USA_harsh_aproach
+		}
+		#fire_only_once = yes
+		
+		remove_effect = {
+			random_list = {
+				1 = {
+					add_manpower = -98
+					add_to_variable = {
+    						var = opp_resistance
+    						value = -0.01
+    						tooltip = USA_res_lower
+					}
+				}
+				2 = {
+					add_to_variable = {
+    						var = opp_resistance
+    						value = -0.02
+    						tooltip = USA_res_lower
+					}
+				}
+			}
+		}
+	}
+
+	USA_censor_opposition = {
+		cost = 25
+		days_remove = 200
+		days_re_enable = 50
+		ai_will_do = {
+			base = 30
+		}
+
+		modifier = {
+			stability_factor = -0.02
+			political_power_cost = 0.03
+			democrat_drift = -0.05
+		}
+
+		visible = {
+			has_completed_focus = USA_harsh_aproach
+		}
+		#fire_only_once = yes
+
+	}
+
+	USA_negotiate = {
+		cost = 30
+		days_remove = 180
+		days_re_enable = 50
+		ai_will_do = {
+			base = 30
+		}
+
+		modifier = {
+			compliance_gain = 0.5
+			political_power_cost = 0.02
+
+		}
+
+		visible = {
+			has_completed_focus = USA_open_discourse
+		}
+		#fire_only_once = yes
+		
+		remove_effect = {
+			add_to_variable = {
+    				var = opp_comp
+    				value = 0.1
+    				tooltip = USA_comp_increase
+			}
+			
+		}
+	}
+
+	USA_democrat_protest = {
+		activation = {
+			always = no
+		}
+		available = {
+			always = no
+		}
+		is_good  = no
+		#fire_only_once = yes
+		days_remove = 90
+
+		modifier = {
+			democrat_drift = 0.03
+		}
+
+		remove_effect = {
+			USA_opp_worsens = yes
+			country_event = {
+    				id = maga.244
+    				days = 0
+			}
+
+		}
+	}
+
+	USA_convert_our_opponents = {
+		cost = 100
+		days_remove = 70
+		days_re_enable = 45
+		ai_will_do = {
+			base = 30
+		}
+
+		modifier = {
+			political_power_cost = 0.05
+			republican_drift = 0.08
+		}
+
+		visible = {
+			has_completed_focus = USA_fight_the_blue_devil
+		}
+		#fire_only_once = yes
+		
+		remove_effect = {
+			add_to_variable = {
+    				var = opp_comp
+    				value = 0.1
+    				tooltip = USA_comp_increase
+			}
+			add_to_variable = {
+    				var = opp_resistance
+    				value = -0.05
+    				tooltip = USA_res_lower
+			}			
 		}
 	}
 }
