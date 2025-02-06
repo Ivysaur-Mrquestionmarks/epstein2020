@@ -1047,6 +1047,7 @@ focus_tree = {
 			focus = GRL_newfoundland_inuit_factories
 		}
 		completion_reward = {
+			army_experience = 50
 		}
 	}
 	focus = {
@@ -1060,6 +1061,7 @@ focus_tree = {
 			focus = GRL_an_adaptable_army
 		}
 		completion_reward = {
+			add_ideas = GRL_inuit_hit_and_run
 		}
 	}
 	focus = {
@@ -1073,6 +1075,7 @@ focus_tree = {
 			focus = GRL_an_adaptable_army
 		}
 		completion_reward = {
+			add_ideas = GRL_inuit_supply
 		}
 	}
 	focus = {
@@ -1086,6 +1089,7 @@ focus_tree = {
 			focus = GRL_greenlandish_welfare_state
 		}
 		completion_reward = {
+			add_ideas = GRL_gender_equality_idea
 		}
 	}
 	focus = {
@@ -1101,7 +1105,39 @@ focus_tree = {
 		prerequisite = { 
 			focus = GRL_free_natives_in_mrt
 		}
+		available = {
+			controls_state = 10
+			controls_state = 17
+		}
 		completion_reward = {
+			10 = {
+				add_building_construction = {
+					type = industrial_complex 
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure 
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 3
+				add_manpower = 10000
+			}
+			17 = {
+				add_building_construction = {
+					type = industrial_complex 
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure 
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 3
+				add_manpower = 10000
+			}
 		}
 	}
 	focus = {
@@ -1117,7 +1153,39 @@ focus_tree = {
 		prerequisite = { 
 			focus = GRL_renativization_campaigns
 		}
+		available = {
+			controls_state = 164
+			controls_state = 156
+		}
 		completion_reward = {
+			164 = {
+				add_building_construction = {
+					type = industrial_complex 
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure 
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 3
+				add_manpower = 10000
+			}
+			156 = {
+				add_building_construction = {
+					type = industrial_complex 
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure 
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 3
+				add_manpower = 10000
+			}
 		}
 	}
 	
@@ -1133,11 +1201,13 @@ focus_tree = {
 			focus = GRL_inuit_socialism
 		}
 		completion_reward = {
+			add_war_support = 0.4
+			add_political_power = 150
 		}
 	}
 	focus = {
 		id = GRL_canadian_crisis_inuit
-		cost = 5
+		cost = 0
 		icon = GFX_focus_generic_total_war
 		x = 1
 		y = 1
@@ -1161,7 +1231,12 @@ focus_tree = {
 		prerequisite = { 
 			focus = GRL_canadian_crisis_inuit
 		}
+		will_lead_to_war_with = MRT
 		completion_reward = {
+			create_wargoal = {
+				target = MRT
+				type = annex_everything
+			}
 		}
 	}
 	focus = {
@@ -1174,7 +1249,37 @@ focus_tree = {
 		prerequisite = { 
 			focus = GRL_free_natives_in_mrt
 		}
+		available = {
+			NOT = { country_exists = MRT }
+			controls_state = 164
+			controls_state = 156
+			controls_state = 10
+			controls_state = 17
+		}
 		completion_reward = {
+			every_owned_state = {
+				limit = {
+					is_core_of = MRT
+				}
+				add_core_of = ROOT
+			}
+			every_owned_state = {
+				limit = {
+					AND  = {
+						is_core_of = MRT
+						NOT = {
+							OR = {
+								state = 135
+								state = 10
+								state = 17
+								state = 20
+								state = 72
+							}
+						}
+					}
+				}
+				add_manpower = -50000
+			}
 		}
 	}
 	focus = {
