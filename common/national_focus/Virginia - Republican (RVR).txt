@@ -64,7 +64,7 @@ focus_tree = {
 	focus = {
 		id = RVR_the_End_of_the_War
 		icon = GFX_goal_Repeal_Gun_Laws
-		cost = 5
+		cost = 1
 		x = 0
 		y = 1
 		relative_position_id = RVR_Fighting_Against_Liberalism
@@ -93,7 +93,7 @@ focus_tree = {
 	focus = {
 		id = RVR_What_Now
 		icon = GFX_goal_Generic_Paper_Question
-		cost = 5
+		cost = 2
 		x = 25
 		y = 0
 		available = {
@@ -113,7 +113,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Sic_Semper_Tyrannis
 		icon = GFX_goal_Sic_Semper_Tyrannus_no_Text
-		cost = 5
+		cost = 3
 		x = -12
 		y = 1
 		relative_position_id = RVR_What_Now
@@ -144,7 +144,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Keep_out_the_Autocrats
 		icon = GFX_PB_Generic_Ban_Fascism
-		cost = 5
+		cost = 2
 		x = 0
 		y = 1
 		relative_position_id = RVR_Sic_Semper_Tyrannis
@@ -161,7 +161,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Liberty_for_All
 		icon = GFX_goal_Work_with_Libertarians
-		cost = 5
+		cost = 1
 		x = -8
 		y = 3
 		relative_position_id = RVR_A_United_Front
@@ -184,7 +184,7 @@ focus_tree = {
 	focus = {
 		id = RVR_Republicanism_Holds
 		icon = GFX_goal_Work_with_Republicans
-		cost = 5
+		cost = 1
 		x = 18
 		y = 1
 		relative_position_id = RVR_Keep_out_the_Autocrats
@@ -1587,26 +1587,10 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = RVR_Disassociate_from_Americanism
-		icon = GFX_goal_Generic_Ripping_Papers
-		cost = 5
-		x = 2
-		y = 1
-		relative_position_id = RVR_President_McDonell
-		prerequisite = {
-			focus = RVR_President_McDonell
-		}
-		completion_reward = {
-			#Every_owned_state = {
-			#	Clr_state_flag = part_of_america
-			#}
-		}
-	}
-	focus = {
 		id = RVR_Hail_to_the_Chief
 		icon = GFX_goal_Generic_Command_Power
 		cost = 5
-		x = -2
+		x = -4
 		y = 1
 		relative_position_id = RVR_President_McDonell
 		prerequisite = {
@@ -1650,8 +1634,8 @@ focus_tree = {
 	
 	
 	focus = {
-		id = RVR_Secure_a_Permanent_Independent_Virginia
-		icon = GFX_goal_McDonnell_is_Virginia
+		id = RVR_promote_virginian_patriotism
+		icon = GFX
 		cost = 5
 		x = 0
 		y = 1
@@ -1660,12 +1644,46 @@ focus_tree = {
 			focus = RVR_President_McDonell
 		}
 		completion_reward = {
+			#Every_owned_state = {
+			#	Clr_state_flag = part_of_america
+			#}
+		}
+	}
+	focus = {
+		id = RVR_Disassociate_from_Americanism
+		icon = GFX_goal_Generic_Ripping_Papers
+		cost = 5
+		x = 1
+		y = 1
+		relative_position_id = RVR_promote_virginian_patriotism
+		prerequisite = {
+			focus = RVR_promote_virginian_patriotism
+		}
+		completion_reward = {
+			#Every_owned_state = {
+			#	Clr_state_flag = part_of_america
+			#}
+		}
+	}
+	
+	
+	focus = {
+		id = RVR_Secure_a_Permanent_Independent_Virginia
+		icon = GFX_goal_McDonnell_is_Virginia
+		cost = 5
+		x = -1
+		y = 1
+		relative_position_id = RVR_promote_virginian_patriotism
+		prerequisite = {
+			focus = RVR_promote_virginian_patriotism
+		}
+		completion_reward = {
 			add_ideas = RVR_Independent_Virginia_Plans
 		}
 	}
 	
 	focus = {
-		id = RVR_America_is_No_More
+		id = RVR_take_down_the_american_flag
 		icon = GFX_goal_USA_Flag_down
 		cost = 5
 		x = 1
@@ -1676,6 +1694,22 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = RVR_Disassociate_from_Americanism
+		}
+		completion_reward = {
+			add_stability  = -0.05
+			add_war_support = -0.05
+		}
+	}
+	
+	focus = {
+		id = RVR_America_is_No_More
+		icon = GFX_goal_USA_Flag_down
+		cost = 5
+		x = 0
+		y = 2
+		relative_position_id = RVR_take_down_the_american_flag
+		prerequisite = {
+			focus = RVR_take_down_the_american_flag
 		}
 		completion_reward = {
 			add_stability  = -0.05
@@ -2381,6 +2415,9 @@ focus_tree = {
 			focus = RVR_President_Youngkin
 		}
 		completion_reward = {
+			add_dynamic_modifier = {
+				modifier = RVR_youngkins_counter_revolution
+			}
 		}
 	}
 	
@@ -2395,6 +2432,21 @@ focus_tree = {
 			focus = RVR_a_true_counter_revolution
 		}
 		completion_reward = {
+			add_to_variable = {
+				var = var_pp_level
+				value = 0.05
+				tooltip = increase_pp_var_tt
+			}
+			add_to_variable = {
+				var = var_abortion_level
+				value = 0.4
+				tooltip = increase_birth_var_tt
+			}
+			subtract_from_variable = {
+				var = var_stability_level
+				value = 0.1
+				tooltip = decrease_stability_var_tt
+			}
 		}
 	}
 	
@@ -2412,6 +2464,21 @@ focus_tree = {
 			focus = RVR_education_reform
 		}
 		completion_reward = {
+			add_to_variable = {
+				var = var_cg_level
+				value = 0.05
+				tooltip = increase_cg_var_tt
+			}
+			add_to_variable = {
+				var = var_stability_level
+				value = 0.05
+				tooltip = increase_stability_var_tt
+			}
+			add_to_variable = {
+				var = var_research_level
+				value = 0.03
+				tooltip = increase_research_var_tt
+			}
 		}
 	}
 	focus = {
@@ -2426,6 +2493,16 @@ focus_tree = {
 		}
 		
 		completion_reward = {
+			add_to_variable = {
+				var = var_research_level
+				value = 0.03
+				tooltip = increase_research_var_tt
+			}
+			add_to_variable = {
+				var = var_max_production_level
+				value = 0.03
+				tooltip = increase_production_max_var_tt
+			}
 		}
 	}
 	focus = {
@@ -2440,6 +2517,21 @@ focus_tree = {
 		}
 		
 		completion_reward = {
+			add_to_variable = {
+				var = var_pp_level
+				value = 0.05
+				tooltip = increase_pp_var_tt
+			}
+			add_to_variable = {
+				var = var_stability_level
+				value = 0.05
+				tooltip = increase_stability_var_tt
+			}
+			add_to_variable = {
+				var = var_republican_level
+				value = 0.05
+				tooltip = increase_republican_var_tt
+			}
 		}
 	}
 	focus = {
@@ -2457,6 +2549,26 @@ focus_tree = {
 		}
 		
 		completion_reward = {
+			add_to_variable = {
+				var = var_pp_level
+				value = 0.05
+				tooltip = increase_pp_var_tt
+			}
+			add_to_variable = {
+				var = var_research_level
+				value = 0.03
+				tooltip = increase_research_var_tt
+			}
+			add_to_variable = {
+				var = var_compliance_level
+				value = 0.06
+				tooltip = increase_compliance_var_tt
+			}
+			add_to_variable = {
+				var = var_republican_level
+				value = 0.05
+				tooltip = increase_republican_var_tt
+			}
 		}
 	}
 	focus = {
@@ -2471,6 +2583,16 @@ focus_tree = {
 		}
 		
 		completion_reward = {
+			add_to_variable = {
+				var = var_research_level
+				value = 0.03
+				tooltip = increase_research_var_tt
+			}
+			add_to_variable = {
+				var = var_compliance_level
+				value = 0.06
+				tooltip = increase_compliance_var_tt
+			}
 		}
 	}
 	focus = {
@@ -2485,6 +2607,21 @@ focus_tree = {
 		}
 		
 		completion_reward = {
+			add_to_variable = {
+				var = var_research_level
+				value = 0.05
+				tooltip = increase_research_var_tt
+			}
+			add_to_variable = {
+				var = var_max_production_level
+				value = 0.03
+				tooltip = increase_production_max_var_tt
+			}
+			add_to_variable = {
+				var = var_growth_production_level
+				value = 0.05
+				tooltip = increase_production_growth_var_tt
+			}
 		}
 	}
 	
@@ -2499,6 +2636,26 @@ focus_tree = {
 			focus = RVR_a_true_counter_revolution
 		}
 		completion_reward = {
+			add_to_variable = {
+				var = var_cg_level
+				value = 0.05
+				tooltip = increase_cg_var_tt
+			}
+			add_to_variable = {
+				var = var_stability_level
+				value = 0.05
+				tooltip = increase_stability_var_tt
+			}
+			add_to_variable = {
+				var = var_compliance_level
+				value = 0.06
+				tooltip = increase_compliance_var_tt
+			}
+			add_to_variable = {
+				var = var_espionage_level
+				value = 0.1
+				tooltip = increase_espionage_var_tt
+			}
 		}
 	}
 	
@@ -2513,6 +2670,16 @@ focus_tree = {
 			focus = RVR_refund_the_police
 		}
 		completion_reward = {
+			add_to_variable = {
+				var = var_stability_level
+				value = 0.05
+				tooltip = increase_stability_var_tt
+			}
+			add_to_variable = {
+				var = var_espionage_level
+				value = 0.1
+				tooltip = increase_espionage_var_tt
+			}
 		}
 	}
 	focus = {
@@ -2526,6 +2693,21 @@ focus_tree = {
 			focus = RVR_return_order_to_the_streets
 		}
 		completion_reward = {
+			add_to_variable = {
+				var = var_pp_level
+				value = 0.05
+				tooltip = increase_pp_var_tt
+			}
+			add_to_variable = {
+				var = var_espionage_level
+				value = 0.1
+				tooltip = increase_espionage_var_tt
+			}
+			subtract_from_variable = {
+				var = var_stability_level
+				value = 0.1
+				tooltip = decrease_stability_var_tt
+			}
 		}
 	}
 	focus = {
@@ -2539,6 +2721,21 @@ focus_tree = {
 			focus = RVR_return_order_to_the_streets
 		}
 		completion_reward = {
+			add_to_variable = {
+				var = var_cg_level
+				value = 0.05
+				tooltip = increase_cg_var_tt
+			}
+			add_to_variable = {
+				var = var_stability_level
+				value = 0.05
+				tooltip = increase_stability_var_tt
+			}
+			add_to_variable = {
+				var = var_growth_production_level
+				value = 0.05
+				tooltip = increase_production_growth_var_tt
+			}
 		}
 	}
 	focus = {
@@ -2552,6 +2749,31 @@ focus_tree = {
 			focus = RVR_recriminalize_weed
 		}
 		completion_reward = {
+			add_to_variable = {
+				var = var_pp_level
+				value = 0.05
+				tooltip = increase_pp_var_tt
+			}
+			add_to_variable = {
+				var = var_stability_level
+				value = 0.05
+				tooltip = increase_stability_var_tt
+			}
+			add_to_variable = {
+				var = var_compliance_level
+				value = 0.06
+				tooltip = increase_compliance_var_tt
+			}
+			add_to_variable = {
+				var = var_republican_level
+				value = 0.05
+				tooltip = increase_republican_var_tt
+			}
+			add_to_variable = {
+				var = var_espionage_level
+				value = 0.1
+				tooltip = increase_espionage_var_tt
+			}
 		}
 	}
 	
@@ -2569,6 +2791,21 @@ focus_tree = {
 			focus = RVR_refund_the_police
 		}
 		completion_reward = {
+			add_to_variable = {
+				var = var_pp_level
+				value = 0.05
+				tooltip = increase_pp_var_tt
+			}
+			add_to_variable = {
+				var = var_stability_level
+				value = 0.05
+				tooltip = increase_stability_var_tt
+			}
+			add_to_variable = {
+				var = var_research_level
+				value = 0.03
+				tooltip = increase_research_var_tt
+			}
 		}
 	}
 	focus = {
@@ -2585,6 +2822,21 @@ focus_tree = {
 			focus = RVR_only_lgb_not_t
 		}
 		completion_reward = {
+			add_to_variable = {
+				var = var_pp_level
+				value = 0.05
+				tooltip = increase_pp_var_tt
+			}
+			add_to_variable = {
+				var = var_stability_level
+				value = 0.05
+				tooltip = increase_stability_var_tt
+			}
+			add_to_variable = {
+				var = var_republican_level
+				value = 0.01
+				tooltip = increase_republican_var_tt
+			}
 		}
 	}
 	focus = {
@@ -2601,6 +2853,26 @@ focus_tree = {
 			focus = RVR_remove_political_indoctrination_in_schools
 		}
 		completion_reward = {
+			add_to_variable = {
+				var = var_pp_level
+				value = 0.05
+				tooltip = increase_pp_var_tt
+			}
+			subtract_from_variable = {
+				var = var_stability_level
+				value = 0.05
+				tooltip = decrease_stability_var_tt
+			}
+			add_to_variable = {
+				var = var_compliance_level
+				value = 0.07
+				tooltip = increase_compliance_var_tt
+			}
+			add_to_variable = {
+				var = var_republican_level
+				value = 0.05
+				tooltip = increase_republican_var_tt
+			}
 		}
 	}
 	
@@ -2608,14 +2880,27 @@ focus_tree = {
 	focus = {
 		id = RVR_reevaluate_regulations
 		icon = GFX_focus_generic_the_giant_wakes
-		cost = 5
+		cost = 3
 		x = 8
 		y = 1
 		relative_position_id = RVR_President_Youngkin
 		prerequisite = {
 			focus = RVR_President_Youngkin
 		}
+		available = {
+			has_completed_focus = RVR_a_true_counter_revolution
+		}
 		completion_reward = {
+			subtract_from_variable = {
+				var = var_expectedcg_level
+				value = 0.05
+				tooltip = decrease_cg_var_tt
+			}
+			add_to_variable = {
+				var = var_production_start_level
+				value = 0.05
+				tooltip = increase_production_start_var_tt
+			}
 		}
 	}
 	
@@ -2630,6 +2915,21 @@ focus_tree = {
 			focus = RVR_reevaluate_regulations
 		}
 		completion_reward = {
+			add_to_variable = {
+				var = var_expectedcg_level
+				value = 0.05
+				tooltip = increase_cg_var_tt
+			}
+			add_to_variable = {
+				var = var_max_production_level
+				value = 0.03
+				tooltip = increase_production_max_var_tt
+			}
+			add_to_variable = {
+				var = var_growth_production_level
+				value = 0.05
+				tooltip = increase_production_growth_var_tt
+			}
 		}
 	}
 	
@@ -2644,6 +2944,7 @@ focus_tree = {
 			focus = RVR_eliminate_sales_tax
 		}
 		completion_reward = {
+			add_ideas = RVR_washington_wizards
 		}
 	}
 	focus = {
@@ -2657,6 +2958,16 @@ focus_tree = {
 			focus = RVR_steel_the_washington_wizards
 		}
 		completion_reward = {
+			subtract_from_variable = {
+				var = var_cg_level
+				value = 0.2
+				tooltip = decrease_cg_var_tt
+			}
+			subtract_from_variable = {
+				var = var_expectedcg_level
+				value = 0.1
+				tooltip = decrease_cg_var_tt
+			}
 		}
 	}
 	
@@ -2671,6 +2982,59 @@ focus_tree = {
 			focus = RVR_eliminate_sales_tax
 		}
 		completion_reward = {
+			add_to_variable = {
+				var = var_expectedcg_level
+				value = 0.05
+				tooltip = increase_cg_var_tt
+			}
+			random_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				} 
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}	
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				} 
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}	
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				} 
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}	
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
 		}
 	}
 	focus = {
@@ -2684,6 +3048,21 @@ focus_tree = {
 			focus = RVR_fund_affordable_housing
 		}
 		completion_reward = {
+			add_to_variable = {
+				var = var_expectedcg_level
+				value = 0.05
+				tooltip = increase_cg_var_tt
+			}
+			add_to_variable = {
+				var = var_max_production_level
+				value = 0.03
+				tooltip = increase_production_max_var_tt
+			}
+			add_to_variable = {
+				var = var_growth_production_level
+				value = 0.05
+				tooltip = increase_production_growth_var_tt
+			}
 		}
 	}
 	focus = {
@@ -2697,6 +3076,21 @@ focus_tree = {
 			focus = RVR_eliminate_sales_tax
 		}
 		completion_reward = {
+			add_to_variable = {
+				var = var_max_production_level
+				value = 0.05
+				tooltip = increase_production_max_var_tt
+			}
+			add_to_variable = {
+				var = var_growth_production_level
+				value = 0.05
+				tooltip = increase_production_growth_var_tt
+			}
+			add_to_variable = {
+				var = var_production_start_level
+				value = 0.05
+				tooltip = increase_production_start_var_tt
+			}
 		}
 	}
 	focus = {
@@ -2710,10 +3104,30 @@ focus_tree = {
 			focus = RVR_modernize_virginia_employment_commission
 		}
 		completion_reward = {
+			add_to_variable = {
+				var = var_expectedcg_level
+				value = 0.05
+				tooltip = increase_cg_var_tt
+			}
+			add_to_variable = {
+				var = var_max_production_level
+				value = 0.03
+				tooltip = increase_production_max_var_tt
+			}
+			add_to_variable = {
+				var = var_growth_production_level
+				value = 0.05
+				tooltip = increase_production_growth_var_tt
+			}
+			subtract_from_variable = {
+				var = var_stability_level
+				value = 0.05
+				tooltip = decrease_stability_var_tt
+			}
 		}
 	}
 	focus = {
-		id = RVR_repeal_collective_bargaining
+		id = RVR_the_best_State_for_business
 		icon = GFX_focus_generic_the_giant_wakes
 		cost = 5
 		x = -1
@@ -2726,6 +3140,54 @@ focus_tree = {
 			focus = RVR_protect_right_to_work_law
 		}
 		completion_reward = {
+			random_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				} 
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}	
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				} 
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}	
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				} 
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}	
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
 		}
 	}
 	
@@ -2739,7 +3201,15 @@ focus_tree = {
 		prerequisite = {
 			focus = RVR_reevaluate_regulations
 		}
+		available = {
+			has_completed_focus = RVR_a_true_counter_revolution
+		}
 		completion_reward = {
+			add_to_variable = {
+				var = var_exp_level
+				value = 0.05
+				tooltip = increase_exp_var_tt
+			}
 		}
 	}
 	
@@ -2754,6 +3224,12 @@ focus_tree = {
 			focus = RVR_te_virginian_armed_forces
 		}
 		completion_reward = {
+			add_ideas = RVR_drone_boost
+			add_tech_bonus = {
+				bonus = 2
+				uses = 2
+				category = drones
+			}	
 		}
 	}
 	
@@ -2768,6 +3244,39 @@ focus_tree = {
 			focus = RVR_te_virginian_armed_forces
 		}
 		completion_reward = {
+			random_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				} 
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}	
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				} 
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}	
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			army_experience = 50
 		}
 	}
 	focus = {
@@ -2781,6 +3290,11 @@ focus_tree = {
 			focus = RVR_focus_on_tank_and_ifv_youngkin
 		}
 		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1
+				uses = 2
+				category = cat_heavy_armor
+			}
 		}
 	}
 	focus = {
@@ -2794,6 +3308,11 @@ focus_tree = {
 			focus = RVR_expamd_heavy_tank_research_youngkin
 		}
 		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1
+				uses = 2
+				category = ifv
+			}
 		}
 	}
 	focus = {
@@ -2810,6 +3329,7 @@ focus_tree = {
 			focus = RVR_reinvest_in_virginia_military_factories
 		}
 		completion_reward = {
+			add_ideas = VIR_tanks_uWu
 		}
 	}
 	focus = {
@@ -2823,6 +3343,54 @@ focus_tree = {
 			focus = RVR_focus_on_tank_and_ifv_youngkin
 		}
 		completion_reward = {
+			random_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				} 
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}	
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				} 
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}	
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				} 
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}	
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
 		}
 	}
 	
@@ -2837,6 +3405,16 @@ focus_tree = {
 			focus = RVR_te_virginian_armed_forces
 		}
 		completion_reward = {
+			add_to_variable = {
+				var = var_exp_level
+				value = 0.05
+				tooltip = increase_exp_var_tt
+			}
+			add_to_variable = {
+				var = var_attack_level
+				value = 0.05
+				tooltip = increase_attack_var_tt
+			}
 		}
 	}
 	focus = {
@@ -2850,6 +3428,41 @@ focus_tree = {
 			focus = RVR_reform_general_staff_youngkin
 		}
 		completion_reward = {
+			add_to_variable = {
+				var = var_attack_level
+				value = 0.03
+				tooltip = increase_attack_var_tt
+			}
+			add_to_variable = {
+				var = var_speed_level
+				value = 0.05
+				tooltip = increase_speed_var_tt
+			}
+			add_to_variable = {
+				var = var_breakthrough_level
+				value = 0.08
+				tooltip = increase_breakthrough_var_tt
+			}
+			add_to_variable = {
+				var = var_digspeed_level
+				value = 0.03
+				tooltip = increase_digspeed_var_tt
+			}
+			add_to_variable = {
+				var = var_supply_level
+				value = 0.03
+				tooltip = increase_supply_consumption_var_tt
+			}
+			subtract_from_variable = {
+				var = var_maxdig_level
+				value = 0.05
+				tooltip = decrease_maxdig_var_tt
+			}
+			subtract_from_variable = {
+				var = var_defense_level
+				value = 0.05
+				tooltip = decrease_defense_var_tt
+			}
 		}
 	}
 	focus = {
@@ -2863,6 +3476,41 @@ focus_tree = {
 			focus = RVR_encourage_recklessness
 		}
 		completion_reward = {
+			add_to_variable = {
+				var = var_attack_level
+				value = 0.03
+				tooltip = increase_attack_var_tt
+			}
+			add_to_variable = {
+				var = var_speed_level
+				value = 0.05
+				tooltip = increase_speed_var_tt
+			}
+			add_to_variable = {
+				var = var_breakthrough_level
+				value = 0.08
+				tooltip = increase_breakthrough_var_tt
+			}
+			add_to_variable = {
+				var = var_digspeed_level
+				value = 0.03
+				tooltip = increase_digspeed_var_tt
+			}
+			add_to_variable = {
+				var = var_supply_level
+				value = 0.03
+				tooltip = increase_supply_consumption_var_tt
+			}
+			subtract_from_variable = {
+				var = var_maxdig_level
+				value = 0.05
+				tooltip = decrease_maxdig_var_tt
+			}
+			subtract_from_variable = {
+				var = var_defense_level
+				value = 0.05
+				tooltip = decrease_defense_var_tt
+			}
 		}
 	}
 	focus = {
@@ -2876,6 +3524,11 @@ focus_tree = {
 			focus = RVR_reform_general_staff_youngkin
 		}
 		completion_reward = {
+			add_to_variable = {
+				var = var_planning_level
+				value = 0.15
+				tooltip = increase_planning_var_tt
+			}
 		}
 	}
 	
@@ -2923,6 +3576,12 @@ focus_tree = {
 			focus = RVR_Reach_out_to_The_DJT
 		}
 		completion_reward = {
+			add_command_power = 30
+			add_stability = 0.05
+			add_popularity = {
+				ideology = republican
+				popularity = 0.1
+			}
 		}
 	}
 	focus = {
@@ -2939,6 +3598,10 @@ focus_tree = {
 			focus = RVR_expose_bidens_crack_addiction
 		}
 		completion_reward = {
+			swap_ruler_traits = {
+				remove = Trumps_Bitch
+				add = Trumps_Bitch2
+			}
 		}
 	}
 	focus = {
@@ -2959,7 +3622,7 @@ focus_tree = {
 	focus = {
 		id = RVR_the_west
 		icon = GFX_goal_focus_army_is_ready
-		cost = 1
+		cost = 0
 		x = -6
 		y = 1
 		relative_position_id = RVR_the_Eastern_Command_Zone
@@ -2979,6 +3642,9 @@ focus_tree = {
 		prerequisite = {
 			focus = RVR_the_west
 		}
+		available = {
+			NRA = { has_government = republican } 
+		}
 		completion_reward = {
 		}
 	}
@@ -2992,7 +3658,18 @@ focus_tree = {
 		prerequisite = {
 			focus = RVR_the_west
 		}
+		will_lead_to_war_with = NRA
 		completion_reward = {
+			create_wargoal = {
+				target = NRA
+				type = annex_everything
+			}
+			every_state = {
+				limit = {
+					is_core_of = NRA
+				}
+				add_core_of = ROOT
+			}
 		}
 	}
 	focus = {
@@ -3006,7 +3683,18 @@ focus_tree = {
 			focus = RVR_crush_american_bolshevism
 			focus = RVR_treaty_with_NRA_west_virginia
 		}
+		will_lead_to_war_with = TIM
 		completion_reward = {
+			create_wargoal = {
+				target = TIM
+				type = annex_everything
+			}
+			every_state = {
+				limit = {
+					is_core_of = TIM
+				}
+				add_core_of = ROOT
+			}
 		}
 	}
 	focus = {
@@ -3032,7 +3720,17 @@ focus_tree = {
 		prerequisite = {
 			focus = RVR_sweep_the_compound
 		}
+		will_lead_to_war_with = KFC
 		completion_reward = {
+			every_country = {
+				limit = { original_tag = KFC }
+				ROOT = {
+					create_wargoal = {
+						target = PREV
+						type = annex_everything
+					}
+				}
+			}
 		}
 	}
 	focus = {
@@ -3045,7 +3743,18 @@ focus_tree = {
 		prerequisite = {
 			focus = RVR_no_deals_with_kfc_Traitors
 		}
+		available = {
+			NOT = {
+				country_exists = KFC
+			}
+		}
 		completion_reward = {
+			every_state = {
+				limit = {
+					is_core_of = KFC
+				}
+				add_core_of = ROOT
+			}
 		}
 	}
 	focus = {
@@ -3059,6 +3768,10 @@ focus_tree = {
 			focus = RVR_sweep_the_compound
 		}
 		completion_reward = {
+			create_wargoal = {
+				target = AFS
+				type = annex_everything
+			}
 		}
 	}
 	focus = {
@@ -3071,7 +3784,18 @@ focus_tree = {
 		prerequisite = {
 			focus = RVR_connect_with_trump
 		}
+		available = {
+			NOT = {
+				country_exists = AFS
+			}
+		}
 		completion_reward = {
+			every_state = {
+				limit = {
+					is_core_of = AFS
+				}
+				add_core_of = ROOT
+			}
 		}
 	}
 	
@@ -3112,6 +3836,7 @@ focus_tree = {
 			focus = RVR_the_south
 		}
 		completion_reward = {
+			
 		}
 	}
 	focus = {
@@ -3128,6 +3853,12 @@ focus_tree = {
 			focus = RVR_intervene_in_the_confederate_collapse
 		}
 		completion_reward = {
+			every_owned_state = {
+				limit = {
+					is_core_of = CSA
+				}
+				add_core_of = ROOT
+			}
 		}
 	}
 	focus = {
@@ -3227,7 +3958,7 @@ focus_tree = {
 	focus = {
 		id = RVR_anti_federalist_training
 		icon = GFX_goal_focus_army_is_ready
-		cost = 1
+		cost = 0
 		x = -1
 		y = 1
 		relative_position_id = RVR_the_north
@@ -3240,7 +3971,7 @@ focus_tree = {
 	focus = {
 		id = RVR_secure_NoVa
 		icon = GFX_goal_focus_army_is_ready
-		cost = 1
+		cost = 0
 		x = 1
 		y = 1
 		relative_position_id = RVR_the_north
@@ -3253,7 +3984,7 @@ focus_tree = {
 	focus = {
 		id = RVR_patriot_victory
 		icon = GFX_goal_focus_army_is_ready
-		cost = 1
+		cost = 0
 		x = 1
 		y = 1
 		relative_position_id = RVR_anti_federalist_training
@@ -3262,6 +3993,11 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = RVR_secure_NoVa
+		}
+		available = {
+			NOT = {
+				country_exists = FRA
+			}
 		}
 		completion_reward = {
 		}
@@ -3277,6 +4013,18 @@ focus_tree = {
 			focus = RVR_patriot_victory
 		}
 		completion_reward = {
+			if = {
+				limit = { owns_state = 242 }
+				USA = {
+					transfer_state = 242
+				}
+			}
+			every_owned_state = {
+				limit = {
+					is_core_of = FRA
+				}
+				add_core_of = ROOT
+			}
 		}
 	}
 	focus = {
@@ -3326,6 +4074,12 @@ focus_tree = {
 			focus = RVR_President_McDonell
 		}
 		completion_reward = {
+			add_to_variable = {
+				var = var_research_level
+				value = 0.05
+				tooltip = increase_research_var_tt
+			}
+			add_research_slot = 1
 		}
 	}
 	focus = {
@@ -3339,6 +4093,12 @@ focus_tree = {
 			focus = RVR_education_reform
 		}
 		completion_reward = {
+			add_to_variable = {
+				var = var_research_level
+				value = 0.05
+				tooltip = increase_research_var_tt
+			}
+			add_research_slot = 1
 		}
 	}
 	
