@@ -1284,7 +1284,7 @@ focus_tree = {
 	}
 	focus = {
 		id = GRL_northern_confederation
-		cost = 5
+		cost = 1
 		icon = GFX_focus_CHL_union_of_hispanic_republics
 		x = 1
 		y = 1
@@ -1293,6 +1293,7 @@ focus_tree = {
 			focus = GRL_free_natives_in_mrt
 		}
 		completion_reward = {
+			set_cosmetic_tag = GRL_north_confed
 		}
 	}
 	focus = {
@@ -1305,7 +1306,23 @@ focus_tree = {
 		prerequisite = { 
 			focus = GRL_northern_confederation
 		}
+		will_lead_to_war_with = QUE
 		completion_reward = {
+			create_wargoal = {
+				target = QUE
+				type = annex_everything
+			}
+			every_state = {
+				limit = {
+					OR = {
+						state = 377
+						state = 21
+						state = 48
+						state = 72
+					}
+				}
+				add_core_of = ROOT
+			}
 		}
 	}
 	focus = {
@@ -1318,7 +1335,18 @@ focus_tree = {
 		prerequisite = { 
 			focus = GRL_northern_confederation
 		}
+		will_lead_to_war_with = ALA
 		completion_reward = {
+			create_wargoal = {
+				target = ALA
+				type = annex_everything
+			}
+			every_state = {
+				limit = {
+					is_core_of = ALA
+				}
+				add_core_of = ROOT
+			}
 		}
 	}
 	focus = {
@@ -1331,7 +1359,32 @@ focus_tree = {
 		prerequisite = { 
 			focus = GRL_invade_alaska
 		}
+		available = {
+			NOT = {
+				country_exists = ALA
+			}
+		}
+		will_lead_to_war_with = BRC
+		will_lead_to_war_with = VAN
 		completion_reward = {
+			create_wargoal = {
+				target = VAN
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = BRC
+				type = annex_everything
+			}
+			every_state = {
+				limit = {
+					OR = {
+						state = 82
+						state = 27
+						state = 58
+					}
+				}
+				add_core_of = ROOT
+			}
 		}
 	}
 	focus = {
@@ -1344,7 +1397,24 @@ focus_tree = {
 		prerequisite = { 
 			focus = GRL_seize_quebec
 		}
+		available = {
+			NOT = {
+				country_exists = QUE
+			}
+		}
 		completion_reward = {
+			NUN = {
+				country_event = {
+					id = greenland.7
+					days = 2
+				}
+			}
+			every_state = {
+				limit = {
+					is_core_of = NUN
+				}
+				add_core_of = ROOT
+			}
 		}
 	}
 	focus = {
@@ -1357,7 +1427,28 @@ focus_tree = {
 		prerequisite = { 
 			focus = GRL_reach_out_to_nunavut
 		}
+		available = {
+			NOT = {
+				country_exists = QUE
+			}
+		}
 		completion_reward = {
+			WBK = {
+				country_event = {
+					id = greenland.7
+					days = 2
+				}
+			}
+			every_state = {
+				limit = {
+					OR = {
+						is_core_of = WBK
+						is_core_of = NEW
+						is_core_of = NAB
+					}
+				}
+				add_core_of = ROOT
+			}
 		}
 	}
 	focus = {
@@ -1370,7 +1461,31 @@ focus_tree = {
 		prerequisite = { 
 			focus = GRL_seize_quebec
 		}
+		available = {
+			NOT = {
+				country_exists = NUN
+			}
+		}
+		will_lead_to_war_with = WPC
 		completion_reward = {
+			create_wargoal = {
+				target = WPC
+				type = annex_everything
+			}
+			every_state = {
+				limit = {
+					OR = {
+						state = 32
+						state = 4
+						state = 5
+						state = 1
+						state = 9
+						state = 26
+						state = 
+					}
+				}
+				add_core_of = ROOT
+			}
 		}
 	}
 	focus = {
@@ -1389,7 +1504,30 @@ focus_tree = {
 		prerequisite = { 
 			focus = GRL_seize_vancouver
 		}
+		available = {
+			has_war = no
+			NOT = {
+				country_exists = ALA
+				country_exists = QUE
+				country_exists = MRT
+			}
+		}
+		will_lead_to_war_with = USA
+		will_lead_to_war_with = FRA
+		will_lead_to_war_with = CAN
 		completion_reward = {
+			create_wargoal = {
+				target = USA
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = FRA
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = CAN
+				type = annex_everything
+			}
 		}
 	}
 	
@@ -2567,6 +2705,12 @@ focus_tree = {
 			focus = GRL_american_militias 
 			focus = GRL_EU_military_mission 
 		}
+		available = {
+			OR = {
+				has_completed_focus = GRL_assure_NATO_allies
+				has_completed_focus = GRL_royalist_coup
+			}
+		}
 		relative_position_id = GRL_rethinking_the_navy
 		prerequisite = { 
 			focus = GRL_rethinking_the_navy 
@@ -2585,6 +2729,12 @@ focus_tree = {
 			focus = GRL_the_danish_army_of_NA 
 			focus = GRL_EU_military_mission 
 		}
+		available = {
+			OR = {
+				has_completed_focus = GRL_inuit_socialism
+				has_completed_focus = GRL_american_companies
+			}
+		}
 		relative_position_id = GRL_rethinking_the_navy
 		prerequisite = { 
 			focus = GRL_rethinking_the_navy 
@@ -2602,6 +2752,12 @@ focus_tree = {
 		mutually_exclusive = { 
 			focus = GRL_the_danish_army_of_NA 
 			focus = GRL_american_militias 
+		}
+		available = {
+			OR = {
+				has_completed_focus = GRL_assure_NATO_allies
+				has_completed_focus = GRL_closer_nordic_coop
+			}
 		}
 		relative_position_id = GRL_rethinking_the_navy
 		prerequisite = { 
@@ -2640,19 +2796,6 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = GRL_new_officer_schools
-		cost = 5
-		icon = GFX_focus_generic_military_academy
-		x = 3
-		y = 1
-		relative_position_id = GRL_form_a_general_staff
-		prerequisite = { 
-			focus = GRL_form_a_general_staff
-		}
-		completion_reward = {
-		}
-	}
-	focus = {
 		id = GRL_advanced_logistical_techniques
 		cost = 5
 		icon = GFX_focus_GER_kriegslokomotive
@@ -2663,6 +2806,7 @@ focus_tree = {
 			focus = GRL_form_a_general_staff
 		}
 		completion_reward = {
+			add_ideas = GRL_good_logistics_idea
 		}
 	}
 	focus = {
