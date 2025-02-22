@@ -460,15 +460,15 @@ country_event = {
 
 #National Socialist Coup!
 country_event = {
-	id = hoya_heya.14
-	title = hoya_heya.14.t
-	desc = hoya_heya.14.d
+	id = hoya_heya.15
+	title = hoya_heya.15.t
+	desc = hoya_heya.15.d
 	picture = event_fascists_01
 	is_triggered_only = yes
 	fire_only_once = yes
 	#coup fails
 	option = {
-		name = hoya_heya.14.b #NOTE: B and A were swapped around for narrative reasons
+		name = hoya_heya.15.b #NOTE: B and A were swapped around for narrative reasons
 		retire_character = HOP_erich_gliebe
 		retire_character = HOP_daniel_burnside
 		retire_character = HOP_paul_miller
@@ -479,7 +479,7 @@ country_event = {
 	}
 	#Coup Succeeds!
 	option = {
-		name = hoya_heya.14.a
+		name = hoya_heya.15.a
 		set_party_name = {
 			ideology = autocratic
 			long_name = NAV_nazi_party
@@ -503,5 +503,62 @@ country_event = {
 		}
 		unlock_national_focus = NAV_enabling_act
 		complete_national_focus = NAV_national_social_club
+	}
+}
+
+#Thomas Cyr joins the Boogaloo Boys
+country_event = {
+	id = hoya_heya.16
+	hidden = yes
+	fire_only_once = yes
+	trigger = {
+		original_tag = GLA
+		has_government = autocratic
+		is_subject = no
+		NOT = {
+			country_exists = NAV
+		}
+	}
+	mean_time_to_happen = {
+		days = {
+			135
+		}
+	}
+	immediate = {
+		NAV = {
+			NAV_thomas_cyr = {
+				set_nationality = ROOT
+				add_corps_commander_role = {
+				    skill = 5
+				    attack_skill = 4
+				    defense_skill = 4
+				    planning_skill = 4
+				    logistics_skill = 4
+				    traits = {
+				    	media_personality harsh_leader brilliant_strategist trickster 
+				    }
+				}
+			}
+		}
+		NAV_thomas_cyr = {
+			unit_leader_event = {
+				id = hoya_heya.17
+			}
+		}
+	}
+}
+#unit leader event for above
+unit_leader_event = {
+	id = hoya_heya.17
+	title = hoya_heya.17.t
+	desc = hoya_heya.17.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = hoya_heya.17.a
+		effect_tooltip = {
+			create_corps_commander = { name = "Thomas Cyr" }
+		}
 	}
 }
