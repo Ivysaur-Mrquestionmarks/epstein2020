@@ -257,13 +257,21 @@ focus_tree = {
 		x = 10
 		y = 2
 		completion_reward = {
+			#add_country_leader_role = {
+    			#character = NAV_julian_bear_runner
+    			#promote_leader = yes
+    			#country_leader = {
+    			#    ideology = Jeffersonianism
+    			#    traits = { NAV_sioux_exile }
+    			#}
+			#}
 			add_country_leader_role = {
-    			character = NAV_julian_bear_runner
-    			promote_leader = yes
-    			country_leader = {
-    			    ideology = Jeffersonianism
-    			    traits = { NAV_sioux_exile }
-    			}
+    				character = NAV_julian_bear_runner
+    				promote_leader = yes
+    				country_leader = {
+    				    ideology = NAV_transitionary_council
+    				    traits = { NAV_transitionary_council_trait }
+    				}
 			}
 			set_party_name = {
 			    ideology = libertarian_right
@@ -461,6 +469,15 @@ focus_tree = {
 			HAM_chief_sundiata = {
 				retire = yes
 			}
+			hidden_effect = {
+				NAV_transitionary_council = {
+					set_character_name = "American Witenagemot"
+					remove_trait = {
+					    ideology = Jeffersonianism
+					    trait = NAV_transitionary_council_trait
+					}
+				}
+			}
 		}
 
 	}
@@ -490,6 +507,15 @@ focus_tree = {
 			    ruling_party = republican
 			    elections_allowed = yes
 			}
+			hidden_effect = {
+				NAV_transitionary_council = {
+					set_character_name = "American Witenagemot"
+					remove_trait = {
+					    ideology = Jeffersonianism
+					    trait = NAV_transitionary_council_trait
+					}
+				}
+			}
 		}
 
 	}
@@ -516,6 +542,15 @@ focus_tree = {
 			    ruling_party = democrat
 			    elections_allowed = yes
 			}
+			hidden_effect = {
+				NAV_transitionary_council = {
+					set_character_name = "American Witenagemot"
+					remove_trait = {
+					    ideology = Jeffersonianism
+					    trait = NAV_transitionary_council_trait
+					}
+				}
+			}
 		}
 
 	}
@@ -541,6 +576,15 @@ focus_tree = {
 			set_politics = {
 			    ruling_party = libertarian_left
 			    elections_allowed = yes
+			}
+			hidden_effect = {
+				NAV_transitionary_council = {
+					set_character_name = "American Witenagemot"
+					remove_trait = {
+					    ideology = Jeffersonianism
+					    trait = NAV_transitionary_council_trait
+					}
+				}
 			}
 		}
 
@@ -1303,6 +1347,18 @@ focus_tree = {
 		}
 		x = 6
 		y = 6
+		select_effect = {
+			country_event = {
+				id = hoya_heya.14
+				days = 5
+			}
+		}
+		completion_reward = {
+			add_popularity = {
+				ideology = autocratic
+				popularity = 0.10
+			}
+		}
 
 	}
 	focus = {
@@ -1317,24 +1373,30 @@ focus_tree = {
 		}
 		x = 7
 		y = 7
+		available = {
+			always = no
+		}
 		completion_reward = {
-			set_party_name = {
-			    ideology = autocratic
-			    long_name = NAV_nazi_party
-			    name = NAV_nazi_party
-			}
-			add_country_leader_role = {
-			    character = HOP_erich_gliebe
-			    promote_leader = yes
-			    country_leader = {
-			        ideology = neonazism
-			        traits = { 
-					###
-				}
-			    }
-			}
-			NAV_wahsayah_whitebird = { retire = yes }
-			NAV_patrick_sorenson = { retire = yes }
+			#set_party_name = {
+			#    ideology = autocratic
+			#    long_name = NAV_nazi_party
+			#    name = NAV_nazi_party
+			#}
+			#add_country_leader_role = {
+			#    character = HOP_erich_gliebe
+			#    promote_leader = yes
+			#    country_leader = {
+			#        ideology = neonazism
+			#        traits = { 
+			#		###
+			#	}
+			#    }
+			#}
+			#NAV_wahsayah_whitebird = { retire = yes }
+			#NAV_patrick_sorenson = { retire = yes }
+			set_cosmetic_tag = NAV_national_social_club_ct
+			add_stability = -0.05
+			load_oob = "NAV_nazi_militia"
 		}
 
 	}
@@ -1350,6 +1412,12 @@ focus_tree = {
 		}
 		x = 5
 		y = 7
+		available = {
+			has_government = autocratic
+		}
+		completion_reward = {
+			#EVENT TODO
+		}
 
 	}
 	focus = {
@@ -1361,6 +1429,17 @@ focus_tree = {
 		}
 		x = 7
 		y = 8
+		available = {
+			has_government = autocratic
+		}
+		completion_reward = {
+			HOP_erich_gliebe = {
+				add_trait = {
+				    ideology = neonazism
+				    trait = NAV_aryan_barbarian
+				}
+			}
+		}
 
 	}
 	focus = {
@@ -1383,6 +1462,28 @@ focus_tree = {
 		}
 		x = 7
 		y = 9
+		available = {
+			has_government = autocratic
+		}
+		completion_reward = {
+			add_stability = 0.05
+			add_popularity = {
+				ideology = autocratic
+				popularity = 0.05
+			}
+			NAV_thomas_cyr = {
+				add_corps_commander_role = {
+				    skill = 5
+				    attack_skill = 4
+				    defense_skill = 4
+				    planning_skill = 4
+				    logistics_skill = 4
+				    traits = {
+				    	media_personality harsh_leader brilliant_strategist trickster 
+				    }
+				}
+			}
+		}
 
 	}
 	focus = {
@@ -1567,5 +1668,37 @@ focus_tree = {
 		x = 30
 		y = 4
 
+	}
+	#new focuses
+	focus = {
+		id = NAV_return_to_los_alamos
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = NAV_confederate_constitutional_convention
+		}
+		x = 22
+		y = 1
+		available = {
+			owns_state = 40
+		}
+		completion_reward = {
+			40 = {
+				add_building_construction = {
+					type = nuclear_facility
+					level = 1
+					province = 4641
+					instant_build = yes
+				}
+				add_victory_points = {
+					province = 4641
+					value = 1
+				}
+			}
+			add_breakthrough_points = {
+			  specialization = specialization_nuclear
+			  value = 1
+			}
+		}
 	}
 }
