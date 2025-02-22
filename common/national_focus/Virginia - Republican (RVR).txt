@@ -2579,35 +2579,6 @@ focus_tree = {
 			}
 		}
 	}
-	focus = {
-		id = RVR_only_necessary_classes
-		icon = GFX_goal_generic_attack_allies
-		cost = 5
-		x = -0
-		y = 1
-		relative_position_id = RVR_erase_crt
-		prerequisite = {
-			focus = RVR_erase_crt
-		}
-		
-		completion_reward = {
-			add_to_variable = {
-				var = var_research_level
-				value = 0.05
-				tooltip = increase_research_var_tt
-			}
-			add_to_variable = {
-				var = var_max_production_level
-				value = 0.03
-				tooltip = increase_production_max_var_tt
-			}
-			add_to_variable = {
-				var = var_growth_production_level
-				value = 0.05
-				tooltip = increase_production_growth_var_tt
-			}
-		}
-	}
 	
 	focus = {
 		id = RVR_refund_the_police
@@ -2670,7 +2641,7 @@ focus_tree = {
 		id = RVR_downscale_the_marcus_system
 		icon = GFX_goal_generic_attack_allies
 		cost = 5
-		x = 1
+		x = -1
 		y = 1
 		relative_position_id = RVR_return_order_to_the_streets
 		prerequisite = {
@@ -2698,7 +2669,7 @@ focus_tree = {
 		id = RVR_recriminalize_weed
 		icon = GFX_goal_generic_attack_allies
 		cost = 5
-		x = -1
+		x = 1
 		y = 1
 		relative_position_id = RVR_return_order_to_the_streets
 		prerequisite = {
@@ -2834,7 +2805,7 @@ focus_tree = {
 			focus = RVR_increase_parental_voice_in_education
 		}
 		prerequisite = {
-			focus = RVR_remove_political_indoctrination_in_schools
+			#focus = RVR_remove_political_indoctrination_in_schools
 		}
 		completion_reward = {
 			add_to_variable = {
@@ -2856,6 +2827,35 @@ focus_tree = {
 				var = var_republican_level
 				value = 0.05
 				tooltip = increase_republican_var_tt
+			}
+		}
+	}
+	focus = {
+		id = RVR_only_necessary_classes
+		icon = GFX_goal_generic_attack_allies
+		cost = 5
+		x = 1
+		y = 1
+		relative_position_id = RVR_increase_parental_voice_in_education
+		prerequisite = {
+			focus = RVR_increase_parental_voice_in_education
+		}
+		
+		completion_reward = {
+			add_to_variable = {
+				var = var_research_level
+				value = 0.05
+				tooltip = increase_research_var_tt
+			}
+			add_to_variable = {
+				var = var_max_production_level
+				value = 0.03
+				tooltip = increase_production_max_var_tt
+			}
+			add_to_variable = {
+				var = var_growth_production_level
+				value = 0.05
+				tooltip = increase_production_growth_var_tt
 			}
 		}
 	}
@@ -3667,6 +3667,11 @@ focus_tree = {
 			focus = RVR_crush_american_bolshevism
 			focus = RVR_treaty_with_NRA_west_virginia
 		}
+		bypass = {
+			NOT = {
+				country_exists = TIM
+			}
+		}
 		will_lead_to_war_with = TIM
 		completion_reward = {
 			create_wargoal = {
@@ -3681,6 +3686,7 @@ focus_tree = {
 			}
 		}
 	}
+	
 	focus = {
 		id = RVR_treaty_with_the_tea_party
 		icon = GFX_goal_focus_army_is_ready
@@ -3691,9 +3697,39 @@ focus_tree = {
 		prerequisite = {
 			focus = RVR_sweep_the_compound
 		}
+		available = {
+			KFC = {
+				has_completed_focus = KFC_washington_of_kentucky
+				is_in_faction_with = USA
+			}
+		}
 		completion_reward = {
+			KFC = {
+				country_event = virginia_republicans.8
+			}
 		}
 	}
+	focus = {
+		id = RVR_joint_military_training_with_kfc
+		icon = GFX_goal_focus_army_is_ready
+		cost = 1
+		x = -0
+		y = 1
+		relative_position_id = RVR_treaty_with_the_tea_party
+		prerequisite = {
+			focus = RVR_treaty_with_the_tea_party
+		}
+		available = {
+			has_country_flag = KFC_teaparty_coop_flag
+		}
+		completion_reward = {
+			KFC = {
+				army_experience = 50
+			}
+			army_experience = 50
+		}
+	}
+	
 	focus = {
 		id = RVR_no_deals_with_kfc_Traitors
 		icon = GFX_goal_focus_army_is_ready
