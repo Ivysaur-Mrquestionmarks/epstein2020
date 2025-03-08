@@ -1708,4 +1708,1575 @@ focus_tree = {
 			}
 		}
 	}
+
+
+
+	#Trying something new here?
+	#yeah, I guess it's just straight up plagiarism right
+	#### MILITARY ####
+
+	focus = {
+		id = NAV_royal_iraqi_army
+		icon = GFX_goal_unknown
+		#prerequisite = { focus = }
+		#mutually_exclusive = { focus = }
+		x = 16
+		y = 0
+		relative_position_id = NAV_lessons_of_fascist_war
+
+		cost = 10
+
+		ai_will_do = {
+			base = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+
+			custom_effect_tooltip = NAV_royal_army_intro_tt
+			add_to_variable = { 
+				NAV_conscription_factor = 0.05
+				tooltip = conscription_factor_tt
+			}
+			add_to_variable = { 
+				NAV_experience_gain_army_factor = 0.03
+				tooltip = experience_gain_army_factor_tt
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			army_experience = 50
+			
+		}
+	}
+
+	focus = {
+		id = NAV_infantry_focus
+		icon = GFX_focus_generic_manpower
+		prerequisite = { focus = NAV_royal_iraqi_army }
+		#mutually_exclusive = { focus = }
+		x = -2
+		y = 1
+		relative_position_id = NAV_royal_iraqi_army
+
+		cost = 10
+
+		ai_will_do = {
+			base = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+
+			custom_effect_tooltip = NAV_royal_army_intro_tt
+			add_to_variable = { 
+				NAV_army_core_defence_factor = 0.1
+				tooltip = army_core_defence_factor_tt
+			}
+			add_to_variable = { 
+				NAV_army_core_attack_factor = 0.05
+				tooltip = army_core_attack_factor_tt
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = yes
+					}	
+				}
+				prioritize = { 291 } 
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}	
+			}
+
+		}
+	}
+
+	focus = {
+		id = NAV_scavenging
+		icon = GFX_focus_AFG_scavenging 
+		prerequisite = { focus = NAV_infantry_focus }
+		x = -2
+		y = 1
+		relative_position_id = NAV_infantry_focus
+		cost = 10
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+		}
+		
+		search_filters = {  }
+
+		completion_reward = {
+
+			add_ideas = NAV_scavenging_tactics_idea
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			random_army_leader = {			
+				limit = {
+					NOT = {
+						has_trait = scavenger
+					}
+				}
+				add_trait = { trait = scavenger }
+			}
+
+			random_army_leader = {			
+				limit = {
+					NOT = {
+						has_trait = scavenger
+					}
+				}
+				add_trait = { trait = scavenger}
+			}
+
+		}
+	}
+
+	focus = {
+		id = NAV_modernization
+		icon = GFX_focus_generic_combined_arms
+		prerequisite = { focus = NAV_royal_iraqi_army }
+		#mutually_exclusive = { focus = }
+		x = 1
+		y = 1
+		relative_position_id = NAV_royal_iraqi_army
+
+		cost = 5
+
+		ai_will_do = {
+			base = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+
+			add_tech_bonus = {
+				name = NAV_modernization
+				bonus = 0.4
+				uses = 3
+				category = infantry_weapons
+				category = motorized_equipment
+				category = artillery
+				category = support_tech
+			}	
+			
+		}
+	}
+
+	focus = {
+		id = NAV_cavalry_integration
+		icon = GFX_focus_URG_turmoil_of_paso_morlan
+		prerequisite = { focus = NAV_infantry_focus }
+		#mutually_exclusive = { focus = }
+		x = 0
+		y = 1
+		relative_position_id = NAV_infantry_focus
+
+		cost = 5
+
+		ai_will_do = {
+			base = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			custom_effect_tooltip = NAV_royal_army_intro_tt
+			add_to_variable = { 
+				NAV_modifier_army_sub_unit_cavalry_attack_factor = 0.1
+				tooltip = cavalry_attack_factor_tt
+			}	
+			add_to_variable = { 
+				NAV_modifier_army_sub_unit_cavalry_speed_factor = 0.05
+				tooltip = modifier_army_sub_unit_cavalry_speed_factor_tt
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			add_tech_bonus = {
+				name = NAV_cavalry_integration
+				bonus = 0.5
+				uses = 2
+				category = support_tech
+			}		
+
+		}
+	}
+
+	focus = {
+		id = NAV_expand_camel_corps
+		icon = GFX_focus_generic_camel_corps
+		prerequisite = { focus = NAV_cavalry_integration }
+		#mutually_exclusive = { focus = }
+		x = -1
+		y = 1
+		relative_position_id = NAV_cavalry_integration
+
+		allow_branch = {
+			has_dlc = "Battle for the Bosporus"
+		}
+
+		cost = 5
+
+		ai_will_do = {
+			base = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			division_template = {
+				name = "Camel Corps" 			# Tank Battalion
+
+				division_names_group = NAV_CAV_01
+
+				regiments = {
+					camelry = { x = 0 y = 0 } 
+					camelry = { x = 0 y = 1 } 
+					camelry = { x = 1 y = 0 } 
+					camelry = { x = 1 y = 1 }
+				}
+			}
+			random_owned_controlled_state = {
+				create_unit = {
+					division = "division_template = \"Camel Corps\" start_experience_factor = 0.05 start_equipment_factor = 1"
+					owner = NAV
+					count = 2
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = NAV_purchase_mechanized_equipment
+		icon = GFX_focus_generic_purchase_mechanized_equipment
+		prerequisite = { focus = NAV_modernization }
+		#mutually_exclusive = { focus = }
+		x = -1
+		y = 1
+		relative_position_id = NAV_modernization
+
+		cost = 5
+
+		ai_will_do = {
+			base = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			custom_effect_tooltip = NAV_royal_army_intro_tt
+			add_to_variable = { 
+				NAV_motorized_attack_factor = 0.05
+				tooltip = motorized_attack_factor_tt
+			}
+			add_equipment_to_stockpile = { 
+				type = motorized_equipment_1
+				amount = 200
+				producer = NAV
+			}
+		}			
+	}
+
+	focus = {
+		id = NAV_purchase_armored_equipment
+		icon = GFX_focus_generic_tankette
+		prerequisite = { focus = NAV_modernization }
+		#mutually_exclusive = { focus = }
+		x = 1
+		y = 1
+		relative_position_id = NAV_modernization
+
+		cost = 10
+
+		ai_will_do = {
+			base = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_equipment_to_stockpile = { 
+				type = light_tank_equipment_1
+				amount = 700
+				producer = WAG
+			}		
+		}
+	}
+
+	focus = {
+		id = NAV_approach_tribes_for_support
+		icon = GFX_goal_unknown
+		prerequisite = { focus = NAV_royal_iraqi_army }
+		#mutually_exclusive = { focus = }
+		x = 3
+		y = 1
+		relative_position_id = NAV_royal_iraqi_army
+
+		cost = 10
+
+		ai_will_do = {
+			base = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+
+		}
+
+		search_filters = { FOCUS_FILTER_MANPOWER }
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+
+			add_manpower = 35000
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			add_ideas = IRQ_armed_tribes_idea
+			
+		}
+	}
+
+	focus = {
+		id = NAV_invest_in_ordnance_mountain_howitzers
+		icon = GFX_focus_SMB_mountain_guns
+		prerequisite = { focus = NAV_royal_iraqi_army }
+		#mutually_exclusive = { focus = }
+		x = -5
+		y = 1
+		relative_position_id = NAV_royal_iraqi_army
+
+		cost = 5
+
+		ai_will_do = {
+			base = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+
+		}
+
+		search_filters = { }
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+
+			custom_effect_tooltip = mountain_guns_tt
+			hidden_effect = {
+			    set_technology = {
+			        mountain_gun = 1
+			        popup = no
+			    }
+			}
+			
+		}
+	}
+
+	focus = {
+		id = NAV_training
+		icon = GFX_goal_generic_small_arms
+		prerequisite = { focus = NAV_cavalry_integration focus = NAV_purchase_mechanized_equipment focus = NAV_purchase_armored_equipment }
+		#mutually_exclusive = { focus = }
+		x = -1
+		y = 1
+		relative_position_id = NAV_purchase_mechanized_equipment
+
+		cost = 10
+
+		ai_will_do = {
+			base = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+
+			custom_effect_tooltip = IRQ_royal_army_intro_tt
+			add_to_variable = { 
+				NAV_conscription_factor = 0.05
+				tooltip = conscription_factor_tt
+			}
+			add_to_variable = { 
+				NAV_training_time_factor = -0.05
+				tooltip = training_time_factor_tt
+			}
+			add_to_variable = { 
+				NAV_army_org_factor = 0.05
+				tooltip = army_org_factor_tt
+			}
+
+		}
+	}
+
+	focus = {
+		id = NAV_army_research_bonus
+		icon = GFX_goal_generic_army_doctrines
+		prerequisite = { focus = NAV_training }
+		#mutually_exclusive = { focus = }
+		x = 0
+		y = 1
+		relative_position_id = NAV_training
+
+		cost = 10
+
+		ai_will_do = {
+			base = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.5
+				name = NAV_army_research_bonus
+				cost_reduction = 0.5
+				uses = 2
+				category = land_doctrine
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			add_research_slot = 1
+		}
+	}
+
+	focus = {
+		id = NAV_project_babylon_focus
+		icon = GFX_focus_generic_railway_gun
+		prerequisite = { focus = NAV_army_research_bonus }
+		#mutually_exclusive = { focus = }
+		x = 0
+		y = 3
+		relative_position_id = NAV_army_research_bonus
+
+		cost = 10
+
+		ai_will_do = {
+			base = 1
+		}
+
+		available = {
+			any_owned_state = {
+				nuclear_facility < 1
+				air_facility < 1
+				land_facility < 1
+				naval_facility < 1
+			}
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			
+			random_owned_controlled_state = {
+				limit = {
+					land_facility < 1
+					air_facility < 1
+					nuclear_facility < 1
+					naval_facility < 1
+				}
+				prioritize = { 1011 }
+				add_building_construction = {
+					type = land_facility
+					level = 1
+					instant_build = yes
+					province = 2004 
+				}
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			add_tech_bonus = {
+				name = NAV_project_babylon_focus
+				bonus = 0.5
+				uses = 1
+				category = artillery
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.5
+			}
+
+		}
+	}
+
+  	focus = {
+		id = NAV_form_the_independent_mechanized_brigade
+		icon = GFX_focus_generic_mechanized
+		prerequisite = { focus = NAV_purchase_mechanized_equipment focus = NAV_purchase_armored_equipment }
+		#mutually_exclusive = { focus = }
+		x = 1
+		y = 1
+		relative_position_id = NAV_purchase_mechanized_equipment
+
+		cost = 10
+
+		ai_will_do = {
+			base = 1
+		}
+
+		available = {
+			has_tech = mechanised_infantry
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+
+			add_tech_bonus = {
+				name = NAV_form_the_independent_mechanized_brigade
+				ahead_reduction = 1
+				bonus = 1
+				uses = 1
+				category = cat_mechanized_equipment
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+			custom_effect_tooltip = IRQ_royal_army_intro_tt
+			add_to_variable = { 
+				NAV_mechanized_attack_factor = 0.05
+				tooltip = mechanized_attack_factor_tt
+			}			
+			custom_effect_tooltip = generic_skip_one_line_tt
+			custom_effect_tooltip = IRQ_form_the_independent_mechanized_brigade_tt
+			division_template = {
+				name = "The Mechanists"
+				is_locked = no
+				support = {
+					engineer = { x = 0 y = 0 }
+					artillery = { x = 0 y = 1 }
+					mot_recon = { x = 0 y = 2}					
+				}
+				regiments = {
+					mechanized = { x = 0 y = 0 }
+					mechanized = { x = 0 y = 1 }
+					mechanized = { x = 0 y = 2 }
+					mechanized = { x = 1 y = 0 }
+					mechanized = { x = 1 y = 1 }
+					mechanized = { x = 2 y = 0 }
+					mechanized = { x = 2 y = 1 }
+				}
+			}	
+			random_owned_controlled_state = {
+
+				create_unit = {
+					division = "division_template = \"Steel Riders\" start_experience_factor = 0.05 start_equipment_factor = 1"
+					owner = NAV
+					count = 1
+				}
+			}
+
+			if = { #If NAV hasnt researched mech1 start_equipment_factor wont will the div above as expected, causing an error. This will fill the template instead by adding it to the stockpile if it doesnt exsits. If u change the template you need to either add or remove how much u give.
+				limit = {
+					NOT = { has_tech = mechanised_infantry }		
+				}
+				add_equipment_to_stockpile = { 
+					type = mechanized_equipment_1
+					amount = 280
+					#producer = GER
+				}
+			}					
+		}
+	}
+
+	focus = {
+		id = NAV_expand_habbaniya_airbase
+		icon = GFX_goal_unknown
+		prerequisite = { focus = NAV_royal_iraqi_army }
+		#mutually_exclusive = { focus = }
+		x = -7
+		y = 1
+		relative_position_id = NAV_royal_iraqi_army
+
+		cost = 5
+
+		ai_will_do = {
+			base = 1
+		}
+
+		available = {
+			291 = {
+				is_fully_controlled_by = ROOT
+			}
+		}
+
+		bypass = {
+			291 = {
+				NOT = { is_owned_by = ROOT }
+			}
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+
+			IF = {
+				limit = {
+					291 = {
+						air_base < 9
+					}
+				}
+				291 = {
+					add_building_construction = {
+						type = air_base
+						level = 2
+						instant_build = yes
+					}	
+				}
+				custom_effect_tooltip = generic_skip_one_line_tt
+			}
+
+			air_experience = 50
+			
+		}
+	}
+
+	focus = {
+		id = NAV_independent_flight_schools
+		icon = GFX_focus_SOV_flying_clubs
+		prerequisite = { focus = NAV_expand_habbaniya_airbase }
+		#mutually_exclusive = { focus = }
+		x = 0
+		y = 1
+		relative_position_id = NAV_expand_habbaniya_airbase
+
+		cost = 5
+
+		ai_will_do = {
+			base = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+
+		}
+
+		search_filters = { }
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_dynamic_modifier = {
+				modifier = NAV_air_force_modifier
+			}
+
+			#custom_effect_tooltip = NAV_air_force_intro_tt
+			#add_to_variable = { 
+			#	NAV_air_accidents_factor = -0.1
+			#	tooltip = air_accidents_factor_tt
+			#}
+
+			#add_to_variable = { 
+			#	NAV_air_weather_penalty = -0.05
+			#	tooltip = air_weather_penalty_tt
+			#}
+			
+		}
+	}
+
+	focus = {
+		id = NAV_purchase_british_aircraft
+		icon = GFX_focus_generic_air_partners
+		prerequisite = { focus = NAV_independent_flight_schools }
+		mutually_exclusive = { focus = NAV_purchase_alternative_aricraft }
+		x = -1
+		y = 1
+		relative_position_id = NAV_independent_flight_schools
+
+		cost = 10
+
+		ai_will_do = {
+			base = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+
+		}
+
+		search_filters = { FOCUS_FILTER_INDUSTRY  }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+		# dear content designer or modder who stumbled across this
+		# this is genuinely the worst code i have written in my entire life
+		# do not read this
+		# do not try to understand it
+		# do not try to fix it
+		# you will have an aneurism
+		# - lily
+
+		#I don't know who the FUCK lily is, but I bet she's a tranny
+		#no problem! I bang trannies too, anyway. share the love! rock n roll, bitch!
+		#this is what I get for plagiarising unfinished content just to see what will happen
+		# - merf
+
+				###
+
+
+
+
+			#okay she was right that was fucking insane.
+			#just deleting all of this for now and will come up with something better for it later.
+		}
+	}
+
+	focus = {
+		id = NAV_purchase_alternative_aricraft
+		icon = GFX_focus_SMB_purchase_aircraft
+		prerequisite = { focus = NAV_independent_flight_schools }
+		mutually_exclusive = { focus = NAV_purchase_british_aircraft }
+		x = 1
+		y = 1
+		relative_position_id = NAV_independent_flight_schools
+
+		cost = 10
+
+		ai_will_do = {
+			base = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+
+		}
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			ELSE_IF = {
+				limit = {
+					has_dlc = "By Blood Alone"
+				}
+				add_equipment_to_stockpile = { 
+					type = small_plane_airframe_1
+					amount = 55
+					producer = CAN
+				}
+			}
+			ELSE = {
+				add_equipment_to_stockpile = { 
+					type = fighter_equipment_1
+					amount = 55
+					producer = CAN
+				}
+			}
+			CAN = {
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = IRQ_purchased_our_equipment
+				}
+				IF = {
+					limit = {
+						has_government = authoritarian_left
+					}
+					ROOT = {
+						add_popularity = {
+							ideology = authoritarian_left
+							popularity = 0.025
+						}
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = NAV_bomber_training
+		icon = GFX_focus_usa_escort_fighters
+		prerequisite = { focus = NAV_purchase_alternative_aricraft focus = NAV_purchase_british_aircraft }
+		#mutually_exclusive = { focus = }
+		x = -1
+		y = 1
+		relative_position_id = NAV_purchase_british_aircraft
+
+		cost = 10
+
+		ai_will_do = {
+			base = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+
+			air_experience = 15
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			custom_effect_tooltip = IRQ_royal_air_force_intro_tt
+			add_to_variable = { 
+				NAV_air_strategic_bomber_bombing_factor = 0.1
+				tooltip = air_strategic_bomber_bombing_factor_tt
+			}		
+			add_to_variable = { 
+				NAV_air_range_factor = 0.1
+				tooltip = air_range_factor_tt
+			}	
+			add_to_variable = { 
+				NAV_air_cas_efficiency = 0.1
+				tooltip = air_cas_efficiency_tt
+			}
+
+		}
+	}
+
+	focus = {
+		id = NAV_naval_air_support
+		icon = GFX_goal_generic_air_naval_bomber
+		prerequisite = { focus = NAV_purchase_alternative_aricraft focus = NAV_purchase_british_aircraft }
+		#mutually_exclusive = { focus = }
+		x = 1
+		y = 1
+		relative_position_id = NAV_purchase_british_aircraft
+
+		cost = 10
+
+		ai_will_do = {
+			base = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+
+		}
+
+		search_filters = { FOCUS_FILTER_RESEARCH }
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+
+			air_experience = 15
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			custom_effect_tooltip = IRQ_royal_air_force_intro_tt
+			add_to_variable = { 
+				NAV_air_nav_efficiency = 0.1
+				tooltip = air_nav_efficiency_tt
+			}
+			IF = {
+				limit = {
+					has_dlc = "By Blood Alone"
+				}
+				IF = {
+					limit = {
+						NOT = {
+							has_tech = air_torpedoe_1
+						}
+					}
+					set_technology = {
+						air_torpedoe_1 = 1
+						popup = yes
+					}	
+				}
+			}
+			ELSE = {
+				IF = {
+					limit = {
+						NOT = {
+							has_tech = naval_bomber1
+						}
+					}
+					set_technology = {
+						naval_bomber1 = 1
+						popup = yes
+					}
+				}
+			}	
+
+		}
+	}
+
+	focus = {
+		id = NAV_fighter_training
+		icon = GFX_goal_generic_air_fighter
+		prerequisite = { focus = NAV_purchase_alternative_aricraft focus = NAV_purchase_british_aircraft }
+		#mutually_exclusive = { focus = }
+		x = 1
+		y = 1
+		relative_position_id = NAV_purchase_alternative_aricraft
+
+		cost = 10
+
+		ai_will_do = {
+			base = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+
+			air_experience = 15
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			custom_effect_tooltip = IRQ_royal_air_force_intro_tt
+			add_to_variable = { 
+				NAV_air_agility_factor = 0.1
+				tooltip = air_agility_factor_tt
+			}
+			add_to_variable = { 
+				NAV_air_ace_generation_chance_factor = 0.05
+				tooltip = air_ace_generation_chance_factor_tt
+			}
+			add_to_variable = {
+				NAV_air_superiority_efficiency = 0.1
+				tooltip = air_superiority_efficiency_tt
+			}		
+
+		}
+	}
+	
+	focus = {
+		id = NAV_air_research_bonus
+		icon = GFX_focus_generic_aircraft_production
+		prerequisite = { focus = NAV_fighter_training focus = NAV_naval_air_support focus = NAV_bomber_training }
+		#mutually_exclusive = { focus = }
+		x = 0
+		y = 1
+		relative_position_id = NAV_naval_air_support
+
+		cost = 10
+
+		ai_will_do = {
+			base = 1
+		}
+
+		available = {
+			any_owned_state = {
+				nuclear_facility < 1
+				air_facility < 1
+				land_facility < 1
+				naval_facility < 1
+			}
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			
+			random_owned_controlled_state = {
+				limit = {
+					can_construct_building = air_facility
+				}
+				prioritize = { 1010 }
+				construct_building_in_random_province = {
+					air_facility = 1
+				}
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			add_tech_bonus = {
+				name = NAV_air_research_bonus
+				bonus = 0.5
+				uses = 1
+				category = light_air
+			}	
+			add_tech_bonus = {
+				name = NAV_air_research_bonus
+				bonus = 0.5
+				uses = 1
+				category = medium_air
+			}
+
+		}
+	}
+
+	focus = {
+		id = NAV_special_projects
+		icon = GFX_focus_wonderweapons
+		prerequisite = { focus = NAV_air_research_bonus }
+		prerequisite = { focus = NAV_army_research_bonus }
+		#mutually_exclusive = { focus = }
+		x = -2
+		y = 2
+		relative_position_id = NAV_army_research_bonus
+
+		cost = 10
+
+		ai_will_do = {
+			base = 1
+		}
+
+		available = {
+			any_owned_state = {
+				nuclear_facility < 1
+				air_facility < 1
+				land_facility < 1
+				naval_facility < 1
+			}
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			
+			#random_owned_controlled_state = { #Already has the Return to Alamo focus
+			#	limit = {
+			#		can_construct_building = nuclear_facility
+			#	}
+			#	prioritize = { 291 }
+			#	construct_building_in_random_province = {
+			#		nuclear_facility = 1
+			#	}
+			#}
+
+			#custom_effect_tooltip = generic_skip_one_line_tt
+
+			if = {
+				limit = {
+					NOT = { has_tech = atomic_research }
+				}
+				add_tech_bonus = {
+					name = NAV_special_projects
+					bonus = 0.5
+					uses = 1
+					category = nuclear
+				}
+			}
+			#else = { #what the FUCK is this else gate doing here? are PDX retarded?
+				add_breakthrough_progress = {
+					specialization = specialization_nuclear
+					value = 0.25
+				}
+			#}
+			
+		}
+	}
+
+	focus = {
+		id = NAV_special_forces
+		icon = GFX_goal_generic_special_forces
+		prerequisite = { focus = NAV_army_research_bonus }
+		#mutually_exclusive = { focus = }
+		x = 2
+		y = 2
+		relative_position_id = NAV_army_research_bonus
+
+		cost = 10
+
+		ai_will_do = {
+			base = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+
+		}
+
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+
+			IF = {
+				limit = {
+					has_dlc = "Arms Against Tyranny"
+				}
+				add_potential_special_forces_tree = yes
+				add_doctrine_cost_reduction = {
+					name = NAV_special_forces
+					cost_reduction = 0.25
+					uses = 1
+					category = special_forces_doctrine
+				}
+				add_tech_bonus = {
+					name = NAV_special_forces
+					bonus = 0.5
+					uses = 1
+					category = cat_special_forces_generic
+				}	
+				custom_effect_tooltip = generic_skip_one_line_tt
+			}
+			ELSE = {
+				add_tech_bonus = {
+					name = NAV_special_forces
+					bonus = 0.5
+					uses = 2
+					category = cat_special_forces_generic
+				}	
+				custom_effect_tooltip = generic_skip_one_line_tt	
+			}	
+
+			custom_effect_tooltip = IRQ_royal_air_force_intro_tt
+			add_to_variable = { 
+				NAV_special_forces_cap = 0.15 
+				tooltip = special_forces_cap_tt 
+			}			
+		}
+	}
+
+	focus = {
+		id = NAV_establish_iraqi_coastal_defense_force
+		icon = GFX_goal_unknown
+		prerequisite = { focus = NAV_royal_iraqi_army }
+		#mutually_exclusive = { focus = }
+		x = 5
+		y = 1
+		relative_position_id = NAV_royal_iraqi_army
+
+
+		cost = 10
+
+		ai_will_do = {
+			base = 1
+		}
+
+		available = {
+			any_owned_state = {
+				is_coastal = yes
+			}
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+
+			add_dynamic_modifier = {
+				modifier = NAV_navy_modifier
+			}		
+
+		}
+	}
+
+	focus = {
+		id = NAV_invite_foreign_advisors
+		icon = GFX_focus_generic_naval_discipline
+		prerequisite = { focus = NAV_establish_iraqi_coastal_defense_force }
+		#mutually_exclusive = { focus = }
+		x = -1
+		y = 1
+		relative_position_id = NAV_establish_iraqi_coastal_defense_force
+
+		cost = 5
+
+		ai_will_do = {
+			base = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			custom_effect_tooltip = IRQ_navy_modifier_intro_tt
+			add_to_variable = { 
+				NAV_navy_spirit_category_type_cost_factor = -0.1
+				tooltip = navy_spirit_category_type_cost_factor_tt
+			}
+			add_to_variable = { 
+				NAV_naval_coordination = 0.1
+				tooltip = naval_coordination_tt
+			}
+			add_to_variable = { 
+				NAV_naval_accidents_chance = -0.1
+				tooltip = naval_accidents_chance_tt
+			}
+		}
+	}
+
+	#focus = {
+	#	id = NAV_invite_foreign_corporations
+	#	#icon = GFX_focus_hun_elect_a_king
+	#	prerequisite = { focus = NAV_establish_iraqi_coastal_defense_force }
+	#	#mutually_exclusive = { focus = }
+	#	x = 1
+	#	y = 1
+	#	relative_position_id = NAV_establish_iraqi_coastal_defense_force
+#
+	#	cost = 10
+#
+	#	ai_will_do = {
+	#		base = 1
+	#	}
+#
+	#	available = {
+	#		
+	#	}
+#
+	#	bypass = {
+#
+	#	}
+#
+	#	search_filters = { }
+#
+	#	cancel_if_invalid = yes
+	#	continue_if_invalid = no
+	#	available_if_capitulated = no
+#
+	#	completion_reward = {
+#
+	#		
+	#	}
+	#}
+
+	focus = {
+		id = NAV_purchase_small_ships
+		icon = GFX_focus_SWE_italian_destroyers
+		prerequisite = { focus = NAV_invite_foreign_advisors }
+		#mutually_exclusive = { focus = }
+		x = 0
+		y = 1
+		relative_position_id = NAV_invite_foreign_advisors
+
+		cost = 5
+
+		ai_will_do = {
+			base = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			custom_effect_tooltip = ETH_purchase_obsolete_ships_tt
+			set_country_flag = generic_purchase_old_ships_flag			
+		}
+	}
+
+	focus = {
+		id = NAV_create_repair_yards
+		icon = GFX_goal_generic_construct_naval_dockyard
+		prerequisite = { focus = NAV_establish_iraqi_coastal_defense_force }
+		#mutually_exclusive = { focus = }
+		x = 1
+		y = 1
+		relative_position_id = NAV_establish_iraqi_coastal_defense_force
+
+		cost = 10
+
+		ai_will_do = {
+			base = 1
+		}
+
+		available = {
+			any_owned_state = { is_coastal = yes }
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+
+			random_owned_state = {
+				limit = {
+					is_costal = yes
+				}
+				IF = {
+					limit = { naval_base < 8 }
+					add_building_construction = {
+						type = naval_base
+						level = 1
+						instant_build = yes
+						province = {
+							all_provinces = yes
+							limit_to_coastal = yes
+					    }
+					}
+				}
+				IF = {
+					limit = { 
+						dockyard < 8
+					}
+					add_extra_state_shared_building_slots = 2
+					add_building_construction = {
+						type = dockyard
+						level = 2
+						instant_build = yes
+					}
+					
+				}
+			}
+
+		}
+	}
+
+	focus = {
+		id = NAV_navy_research_bonus
+		icon = GFX_focus_generic_navy_research_bonus
+		prerequisite = { focus = NAV_purchase_small_ships }
+		#mutually_exclusive = { focus = }
+		x = 0
+		y = 1
+		relative_position_id = NAV_purchase_small_ships
+
+		cost = 10
+
+		ai_will_do = {
+			base = 1
+		}
+
+		available = {
+			
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			set_technology = { coastal_defense_ships = 1 }
+			add_tech_bonus = {
+				name = NAV_navy_research_bonus
+				bonus = 1.0
+				uses = 1
+				category = ss_tech
+			}
+			add_tech_bonus = {
+				name = NAV_navy_research_bonus
+				bonus = 1.0
+				uses = 1
+				category = cl_tech
+			}			
+		}
+	}
 }
