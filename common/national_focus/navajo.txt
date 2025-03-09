@@ -1277,7 +1277,11 @@ focus_tree = {
     				instant_build = yes
 				}
 			}
-			#TODO: ADD RAILWAY THROUGH MAIN CORE LAND
+			build_railway = {
+                level = 2
+                start_province = 2835
+                target_province = 891
+            }
 			#TODO: NATIONAL SPIRIT BIGLY REDUCING SUPPLY CONSUMPTION
 		}
 
@@ -1291,6 +1295,54 @@ focus_tree = {
 		}
 		x = 20
 		y = 6
+		will_lead_to_war_with = UTA
+		will_lead_to_war_with = SIN
+		will_lead_to_war_with = MOL
+		available = {
+			OR = {
+				country_exists = UTA
+				country_exists = SIN
+				country_exists = MOL
+			}
+		}
+		bypass = {
+			NOT = {
+				OR = {
+					country_exists = UTA
+					country_exists = SIN
+					country_exists = MOL
+				}
+			}
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = NAV_peoples_liberation_army_3
+				add_idea = NAV_peoples_liberation_army_4
+			}
+			create_wargoal = {
+			    type = annex_everything
+			    target = UTA
+			}
+			create_wargoal = {
+			    type = annex_everything
+			    target = SIN
+			}
+			create_wargoal = {
+			    type = annex_everything
+			    target = MOL
+			}
+			every_state = {
+				limit = {
+					OR = {
+						is_core_of = UTA
+						is_core_of = SIN
+						is_core_of = MOL
+						is_core_of = LAS
+					}
+				}
+				add_claim_by = ROOT
+			}
+		}
 
 	}
 	focus = {
@@ -1302,6 +1354,26 @@ focus_tree = {
 		}
 		x = 20
 		y = 7
+		available = {
+			NOT = {
+				country_exists = UTA
+				country_exists = SIN
+			}
+		}
+		completion_reward = {
+			every_state = {
+				limit = {
+					OR = {
+						is_core_of = UTA
+						is_core_of = SIN
+						is_core_of = MOL
+						is_core_of = LAS
+					}
+				}
+				add_core_of = ROOT
+			}
+			load_oob = "NAV_nauvoo_legion"
+		}
 
 	}
 	focus = {
@@ -1316,6 +1388,15 @@ focus_tree = {
 		}
 		x = 18
 		y = 6
+		completion_reward = {
+			add_manpower = 10000
+			effect_tooltip = {
+				create_corps_commander = {
+					name = "Eddie Dempsey"
+				}
+			}
+			load_oob = "NAV_trade_unionists"
+		}
 
 	}
 	focus = {
@@ -2165,6 +2246,9 @@ focus_tree = {
 		available_if_capitulated = no
 
 		completion_reward = {
+			custom_effect_tooltip = TUR_unlock_camelry_effect_tt
+			hidden_effect = { set_technology = { camelry = 1 } } 
+
 			division_template = {
 				name = "Camel Corps" 			# Tank Battalion
 
