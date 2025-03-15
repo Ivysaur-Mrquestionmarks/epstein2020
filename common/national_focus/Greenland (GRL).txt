@@ -1242,10 +1242,12 @@ focus_tree = {
 		}
 		will_lead_to_war_with = MRT
 		completion_reward = {
-			create_wargoal = {
+			declare_war_on = {
 				target = MRT
 				type = annex_everything
 			}
+			custom_effect_tooltip = GRL_mrt_sympathy_tt
+			hidden_effect = { load_oob = "GRL_mrt_inuit_militias" }
 		}
 	}
 	focus = {
@@ -2359,6 +2361,7 @@ focus_tree = {
 			}
 		}
 		completion_reward = {
+			add_offsite_building = { type = industrial_complex level = 2 }
 		}
 	}
 	
@@ -2379,6 +2382,9 @@ focus_tree = {
 			has_completed_focus = GRL_convert_profits
 		}
 		completion_reward = {
+			add_war_support = 0.1
+			add_stability = 0.1
+			add_political_power = 50
 		}
 	}
 	focus = {
@@ -2398,6 +2404,7 @@ focus_tree = {
 			has_completed_focus = GRL_convert_profits
 		}
 		completion_reward = {
+			add_ideas = GRL_make_enemies_walk_on_lego_bricks_idea
 		}
 	}
 	focus = {
@@ -2417,6 +2424,7 @@ focus_tree = {
 			has_completed_focus = GRL_convert_profits
 		}
 		completion_reward = {
+			add_offsite_building = { type = industrial_complex level = 2 }
 		}
 	}
 	focus = {
@@ -2439,6 +2447,7 @@ focus_tree = {
 			has_completed_focus = GRL_convert_profits
 		}
 		completion_reward = {
+			add_offsite_building = { type = industrial_complex level = 2 }
 		}
 	}
 	
@@ -3038,6 +3047,9 @@ focus_tree = {
 			always = no
 		}
 		completion_reward = {
+			GRL_MAGA_coup_bye_denmark_idea_effect = yes
+			add_stability = -0.5
+			add_war_support = -0.5
 		}
 	}
 	focus = {
@@ -3051,6 +3063,13 @@ focus_tree = {
 			focus = GRL_a_MAGA_greenland
 		}
 		completion_reward = {
+			add_stability = 150
+			add_war_support = 0.2
+			add_stability = 0.2
+			add_popularity = {
+				ideology = republican
+				popularity = 0.75
+			}
 		}
 	}
 	focus = {
@@ -3084,6 +3103,12 @@ focus_tree = {
 			focus = GRL_empower_the_militias
 		}
 		completion_reward = {
+			set_cosmetic_tag = GRL_MAGA2
+			add_country_leader_trait = GRL_governor_trait
+			complete_national_focus = GRL_the_51st_state
+			complete_national_focus = GRL_the_52nd_state
+			complete_national_focus = GRL_the_53rd_state
+			complete_national_focus = GRL_the_54th_state
 		}
 	}
 	
@@ -3113,6 +3138,7 @@ focus_tree = {
 			focus = GRL_the_51st_state
 		}
 		completion_reward = {
+			add_manpower = 10000
 		}
 	}
 	focus = {
@@ -3126,6 +3152,8 @@ focus_tree = {
 			focus = GRL_invite_loyalists
 		}
 		completion_reward = {
+			custom_effect_tooltip = GRL_raise_pb_div_tt
+			hidden_effect = { load_oob = "GRL_PB_oathkeeper_militias" }
 		}
 	}
 	focus = {
@@ -3139,6 +3167,8 @@ focus_tree = {
 			focus = GRL_invite_loyalists
 		}
 		completion_reward = {
+			add_ideas = GRL_prepare_fro_FRA
+			army_experience = 50
 		}
 	}
 	focus = {
@@ -3155,6 +3185,8 @@ focus_tree = {
 			focus = GRL_prepare_for_the_war_against_fra
 		}
 		completion_reward = {
+			add_ideas = GRL_trade_disrupt
+			FRA = { add_ideas = GRL_trade_disrupt_FRA }
 		}
 	}
 	focus = {
@@ -3168,11 +3200,14 @@ focus_tree = {
 			focus = GRL_the_51st_state
 		}
 		completion_reward = {
+			674 = {
+				add_manpower = 20000
+			}
 		}
 	}
 	focus = {
 		id = GRL_get_rid_of_environment_protections
-		cost = 5
+		cost = 4
 		icon = GFX_goal_GRL_Delete_Environmental_Protections
 		x = 1
 		y = 1
@@ -3181,6 +3216,7 @@ focus_tree = {
 			focus = GRL_americanization
 		}
 		completion_reward = {
+			add_offsite_building = { type = industrial_complex level = 3 }
 		}
 	}
 	focus = {
@@ -3194,6 +3230,8 @@ focus_tree = {
 			focus = GRL_get_rid_of_environment_protections
 		}
 		completion_reward = {
+			add_ideas = GRL_MAGA_resource_extraction
+			USA = { add_ideas = GRL_MAGA_resource_extraction_USA }
 		}
 	}
 	focus = {
@@ -3207,6 +3245,7 @@ focus_tree = {
 			focus = GRL_extract_rare_resources_to_trump
 		}
 		completion_reward = {
+			add_ideas = GRL_MAGA_pop_growth
 		}
 	}
 	focus = {
@@ -3220,6 +3259,16 @@ focus_tree = {
 			focus = GRL_extract_rare_resources_to_trump
 		}
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = GRL_MAGA_resource_extraction
+				add_idea = GRL_MAGA_resource_extraction2
+			}
+			USA = {
+				swap_ideas = {
+					remove_idea = GRL_MAGA_resource_extraction_USA
+					add_idea = GRL_MAGA_resource_extraction_USA2
+				}
+			}
 		}
 	}
 	focus = {
@@ -3239,7 +3288,19 @@ focus_tree = {
 			focus = GRL_disrupt_trade
 		}
 		bypass = { NOT = { country_exists = USA } }
+		available = {
+			OR = {
+				NOT = { 
+					country_exists = FRA
+				}
+				NOT = { 
+					country_exists = USA
+				}
+			}
+		}
 		completion_reward = {
+			add_political_power = 150
+			add_stability = 0.5
 		}
 	}
 	
@@ -3268,7 +3329,14 @@ focus_tree = {
 		prerequisite = { 
 			focus = GRL_the_52nd_state
 		}
+		will_lead_to_war_with = MRT
 		completion_reward = {
+			declare_war_on = {
+				target = MRT
+				type = annex_everything
+			}
+			custom_effect_tooltip = GRL_mrt_sympathy_tt
+			hidden_effect = { load_oob = "GRL_mrt_maga_militias" }
 		}
 	}
 	focus = {
@@ -3281,7 +3349,17 @@ focus_tree = {
 		prerequisite = { 
 			focus = GRL_a_return_to_the_mainland
 		}
+		available = { 
+			NOT = { 
+				country_exists = MRT
+			}
+		}
+		will_lead_to_war_with = QUE
 		completion_reward = {
+			create_wargoal = {
+				target = QUE
+				type = annex_everything
+			}
 		}
 	}
 	focus = {
@@ -3294,7 +3372,27 @@ focus_tree = {
 		prerequisite = { 
 			focus = GRL_a_return_to_the_mainland
 		}
+		available = { 
+			NOT = { 
+				country_exists = MRT
+			}
+		}
+		will_lead_to_war_with = ONT
+		will_lead_to_war_with = PTR
+		will_lead_to_war_with = CAN
 		completion_reward = {
+			create_wargoal = {
+				target = CAN
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = PTR
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = ONT
+				type = annex_everything
+			}
 		}
 	}
 	focus = {
@@ -3307,7 +3405,30 @@ focus_tree = {
 		prerequisite = { 
 			focus = GRL_commence_operation_poutine
 		}
+		available = { 
+			NOT = { 
+				country_exists = QUE
+				country_exists = ONT
+				country_exists = CAN
+				country_exists = PTR
+			}
+		}
+		will_lead_to_war_with = BRC
+		will_lead_to_war_with = VAN
+		will_lead_to_war_with = WPC
 		completion_reward = {
+			create_wargoal = {
+				target = BRC
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = VAN
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = WPC
+				type = annex_everything
+			}
 		}
 	}
 	focus = {
@@ -3321,6 +3442,7 @@ focus_tree = {
 			focus = GRL_commence_operation_poutine
 		}
 		completion_reward = {
+			add_ideas = GRL_canadian_compliance
 		}
 	}
 	focus = {
@@ -3339,7 +3461,34 @@ focus_tree = {
 		prerequisite = { 
 			focus = GRL_teach_canada_guns
 		}
+		available = { 
+			NOT = { 
+				country_exists = QUE
+				country_exists = ONT
+				country_exists = CAN
+				country_exists = PTR
+				country_exists = BRC
+				country_exists = VAN
+				country_exists = WPC
+			}
+		}
 		completion_reward = {
+			country_event = greenland.8
+			every_state = {
+				limit = {
+					OR = {
+						is_core_of = CAN
+						is_core_of = ONT
+						is_core_of = PTR
+						is_core_of = QUE
+						is_core_of = MRT
+						is_core_of = WPC
+						is_core_of = VAN
+						is_core_of = BRC
+					}
+				}
+				add_core_of = ROOT
+			}
 		}
 	}
 	focus = {
@@ -3355,7 +3504,29 @@ focus_tree = {
 		prerequisite = { 
 			focus = GRL_teach_canada_guns
 		}
+		available = { 
+			NOT = { 
+				country_exists = QUE
+				country_exists = ONT
+				country_exists = CAN
+				country_exists = PTR
+				country_exists = BRC
+				country_exists = VAN
+				country_exists = WPC
+			}
+		}
+		will_lead_to_war_with = ALA
 		completion_reward = {
+			create_wargoal = {
+				target = ALA
+				type = annex_everything
+			}
+			every_state = {
+				limit = {
+					is_core_of = ALA
+				}
+				add_core_of = ROOT
+			}
 		}
 	}
 	focus = {
@@ -3371,7 +3542,29 @@ focus_tree = {
 		prerequisite = { 
 			focus = GRL_the_return_of_49
 		}
+		available = { 
+			NOT = { 
+				country_exists = QUE
+				country_exists = ONT
+				country_exists = CAN
+				country_exists = PTR
+				country_exists = BRC
+				country_exists = VAN
+				country_exists = WPC
+			}
+		}
+		will_lead_to_war_with = PAC
 		completion_reward = {
+			create_wargoal = {
+				target = PAC
+				type = annex_everything
+			}
+			every_state = {
+				limit = {
+					is_core_of = PAC
+				}
+				add_core_of = ROOT
+			}
 		}
 	}
 	
@@ -3401,6 +3594,7 @@ focus_tree = {
 			focus = GRL_the_53rd_state
 		}
 		completion_reward = {
+			FLO = { give_military_access = ROOT }
 		}
 	}
 	focus = {
@@ -3414,6 +3608,7 @@ focus_tree = {
 			focus = GRL_the_53rd_state
 		}
 		completion_reward = {
+			COL = { give_military_access = ROOT }
 		}
 	}
 	focus = {
@@ -3429,7 +3624,22 @@ focus_tree = {
 		prerequisite = { 
 			focus = GRL_request_docking_rights_from_florida
 		}
+		will_lead_to_war_with = PAN
+		will_lead_to_war_with = CHI
 		completion_reward = {
+			every_country = {
+				limit = { owns_state = 667 }
+				ROOT = {
+					declare_war_on = {
+						target = PREV
+						type = annex_everything
+					}
+				}
+			}
+			every_state = {
+				limit = { is_core_of = PAN }
+				add_core_of = ROOT
+			}
 		}
 	}
 	
@@ -3461,7 +3671,13 @@ focus_tree = {
 		prerequisite = { 
 			focus = GRL_the_54th_state
 		}
+		available = {
+			NOT = { country_exists = PAN } 
+			NOT = { country_exists = CHI } 
+		}
 		completion_reward = {
+			transfer_state = 665
+			665 = { add_core_of = ROOT }
 		}
 	}
 	focus = {
@@ -3474,7 +3690,12 @@ focus_tree = {
 		prerequisite = { 
 			focus = GRL_seize_cozumel
 		}
+		will_lead_to_war_with = YUC
 		completion_reward = {
+			create_wargoal = {
+				target = YUC
+				type = annex_everything
+			}
 		}
 	}
 	focus = {
@@ -3487,7 +3708,14 @@ focus_tree = {
 		prerequisite = { 
 			focus = GRL_invade_the_yucatan
 		}
+		available = { NOT = { country_exists = YUC } }
 		completion_reward = {
+			318 = {
+				add_resource = {
+					type = oil
+					amount = 100
+				}
+			}
 		}
 	}
 	focus = {
@@ -3500,9 +3728,51 @@ focus_tree = {
 		prerequisite = { 
 			focus = GRL_invade_the_yucatan
 		}
+		available = { NOT = { country_exists = YUC } }
 		completion_reward = {
+			every_state = {
+				limit = { is_core_of = YUC }
+				add_core_of = ROOT
+			}
+			318 = {
+				add_manpower = 100000
+			}
+			416 = {
+				add_manpower = -20000
+			}
+			43 = {
+				add_manpower = -20000
+			}
+			50 = {
+				add_manpower = -20000
+			}
+			297 = {
+				add_manpower = -20000
+			}
+			580 = {
+				add_manpower = -20000
+			}
+			355 = {
+				add_manpower = 100000
+			}
+			34 = {
+				add_manpower = -20000
+			}
+			310 = {
+				add_manpower = -20000
+			}
+			495 = {
+				add_manpower = -20000
+			}
+			228 = {
+				add_manpower = -20000
+			}
+			223 = {
+				add_manpower = -20000
+			}
 		}
 	}
+	
 	focus = {
 		id = GRL_the_gulf_of_america
 		cost = 5
@@ -3513,7 +3783,9 @@ focus_tree = {
 		prerequisite = { 
 			focus = GRL_invade_the_yucatan
 		}
+		available = { NOT = { country_exists = YUC } }
 		completion_reward = {
+			news_event = greenland.10
 		}
 	}
 	
@@ -3521,7 +3793,7 @@ focus_tree = {
 	### The Final Part
 	focus = {
 		id = GRL_victory_of_the_patriots
-		cost = 5
+		cost = 0
 		icon = GFX_goal_USA_Trumpian_Legions
 		x = 1
 		y = 1
@@ -3537,6 +3809,9 @@ focus_tree = {
 		}
 		prerequisite = { 
 			focus = GRL_the_return_of_50
+		}
+		bypass = {
+			NOT = { country_exists = USA }
 		}
 		completion_reward = {
 		}
@@ -3555,7 +3830,16 @@ focus_tree = {
 			focus = GRL_the_outer_USA
 			focus = GRL_how_horribly_things_have_gone
 		}
+		available = {
+			country_exists = USA
+		}
 		completion_reward = {
+			USA = {
+				annex_country = {
+					target = ROOT
+					transfer_troops = yes
+				}
+			}
 		}
 	}
 	focus = {
@@ -3572,7 +3856,12 @@ focus_tree = {
 			focus = GRL_how_horribly_things_have_gone
 			focus = GRL_join_the_patriots
 		}
+		available = {
+			country_exists = USA
+		}
 		completion_reward = {
+			set_cosmetic_tag = GRL_outer_america_tag
+			remove_country_leader_trait = GRL_humiliated_trait
 		}
 	}
 	focus = {
@@ -3586,13 +3875,14 @@ focus_tree = {
 			focus = GRL_victory_of_the_patriots
 		}
 		available = {
-			always = no
+			NOT = { country_exists = USA }
 		}
 		mutually_exclusive = { 
 			focus = GRL_the_outer_USA
 			focus = GRL_join_the_patriots
 		}
 		completion_reward = {
+			set_cosmetic_tag = USA
 		}
 	}
 	focus = {
@@ -3606,6 +3896,11 @@ focus_tree = {
 			focus = GRL_how_horribly_things_have_gone
 		}
 		completion_reward = {
+			add_manpower = 150000
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 30000
+			}
 		}
 	}
 	focus = {
@@ -3620,6 +3915,7 @@ focus_tree = {
 		}
 		completion_reward = {
 			custom_effect_tooltip = bring_america_under_grip_tt
+			core_america = yes
 			hidden_effect = {				
 				every_state  = {
 					limit = { has_state_flag = part_of_america }
@@ -3659,6 +3955,7 @@ focus_tree = {
 		}
 		completion_reward = {
 			add_ideas = TEX_trumpist_advisors3
+			remove_country_leader_trait = GRL_humiliated_trait
 		}
 	}
 	focus = {
