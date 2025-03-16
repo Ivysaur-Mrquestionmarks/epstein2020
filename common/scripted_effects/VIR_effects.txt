@@ -39,7 +39,7 @@ VIR_become_free_for_cw_effect_leftist = {
 			}
 			add_core_of = RVR
 		}
-		add_ideas = RVR_Rebellion
+		#add_ideas = RVR_Rebellion
 		declare_war_on = {
 		    target = VIR
 		    type = annex_everything
@@ -49,15 +49,81 @@ VIR_become_free_for_cw_effect_leftist = {
 		set_province_controller = 9223
 		set_province_controller = 5208
 		set_province_controller = 9602
-		load_oob = VIR_good_cw
-		load_oob = VIR_feds_volunteer
-		load_oob = VIR_antifa_blm_cpusa_acp_volunteers
+		load_oob = "VIR_good_cw"
+		if = {
+			limit = { has_country_flag = VIR_will_get_Fed_units_flag }
+			load_oob = "VIR_feds_volunteer"
+		}
+		if = {
+			limit = { has_country_flag = VIR_will_get_leftist_units_flag }
+			load_oob = "VIR_antifa_blm_cpusa_acp_volunteers"
+		}
+		if = {
+			limit = { has_country_flag = VIR_dem_planning_bonus_flag }
+			add_ideas = VIR_Rebellion_gone_good
+		}
+		if = {
+			limit = { VIR = { has_country_flag = VIR_dem_more_manpower_flag } }
+			add_manpower = 50000
+		}
+		if = {
+			limit = { VIR = { has_country_flag = VIR_gop_few_units_flag } }
+			RVR = { add_ideas = RVR_weak_rebellion }
+		}
+		division_template = {
+			name = "True Virginian National Guard"
+			is_locked = no
+			priority = 1
+			regiments = {
+				infantry = { x = 0 y = 0 }
+				infantry = { x = 0 y = 1 }
+				infantry = { x = 0 y = 2 }
+				infantry = { x = 1 y = 0 }
+				infantry = { x = 1 y = 1 }
+				infantry = { x = 1 y = 2 }
+			}
+			support = {
+				artillery = { x = 0 y = 0 }
+				engineer = { x = 0 y = 1 }
+				military_police = { x = 0 y = 2 }
+			}
+		}
+		if = {
+			limit = { VIR = { has_country_flag = VIR_dem_cw_get_more_troops_flag } }
+			random_owned_controlled_state = {
+				limit = { ROOT = { has_full_control_of_state = PREV } }
+				create_unit = {
+					division = "name = \"1st True Virginian National Guard\" division_template = \"True Virginian National Guard\" start_experience_factor = 0.6" 
+					owner = VIR
+				}
+				create_unit = {
+					division = "name = \"2nd True Virginian National Guard\" division_template = \"True Virginian National Guard\" start_experience_factor = 0.6" 
+					owner = VIR
+				}
+				create_unit = {
+					division = "name = \"3rd True Virginian National Guard\" division_template = \"True Virginian National Guard\" start_experience_factor = 0.6" 
+					owner = VIR
+				}
+				create_unit = {
+					division = "name = \"4th True Virginian National Guard\" division_template = \"True Virginian National Guard\" start_experience_factor = 0.6" 
+					owner = VIR
+				}
+			}
+		}
+		if = {
+			limit = { VIR = { has_country_flag = VIR_dems_seized_guns_flag } }
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 5000
+				producer = VIR
+			}
+		}
 	}
 	RVR = {
 		set_province_controller = 2613
 		set_province_controller = 9522
 		set_province_controller = 1996
-		load_oob = RVR_bad_cw
+		load_oob = "RVR_bad_cw"
 	}
 }
 
@@ -106,12 +172,6 @@ VIR_become_free_for_cw_effect_rightist = {
 		    type = annex_everything
 		}
 		set_country_flag = VIR_Republicans_Successful
-		#add_ideas = RVR_Rebellion_Perfect
-		add_equipment_to_stockpile = {
-		    type = infantry_equipment
-		    amount = 5000
-		    producer = VIR
-		}
 		division_template = {
 			name = "True Virginian National Guard"
 			is_locked = no
@@ -130,23 +190,26 @@ VIR_become_free_for_cw_effect_rightist = {
 				military_police = { x = 0 y = 2 }
 			}
 		}
-		random_owned_controlled_state = {
-			limit = { ROOT = { has_full_control_of_state = PREV } }
-			create_unit = {
-				division = "name = \"1st True Virginian National Guard\" division_template = \"True Virginian National Guard\" start_experience_factor = 0.6" 
-				owner = RVR
-			}
-			create_unit = {
-				division = "name = \"2nd True Virginian National Guard\" division_template = \"True Virginian National Guard\" start_experience_factor = 0.6" 
-				owner = RVR
-			}
-			create_unit = {
-				division = "name = \"3rd True Virginian National Guard\" division_template = \"True Virginian National Guard\" start_experience_factor = 0.6" 
-				owner = RVR
-			}
-			create_unit = {
-				division = "name = \"4th True Virginian National Guard\" division_template = \"True Virginian National Guard\" start_experience_factor = 0.6" 
-				owner = RVR
+		if = {
+			limit = { VIR = { has_country_flag = VIR_gop_reunited_flag } }
+			random_owned_controlled_state = {
+				limit = { ROOT = { has_full_control_of_state = PREV } }
+				create_unit = {
+					division = "name = \"1st True Virginian National Guard\" division_template = \"True Virginian National Guard\" start_experience_factor = 0.6" 
+					owner = RVR
+				}
+				create_unit = {
+					division = "name = \"2nd True Virginian National Guard\" division_template = \"True Virginian National Guard\" start_experience_factor = 0.6" 
+					owner = RVR
+				}
+				create_unit = {
+					division = "name = \"3rd True Virginian National Guard\" division_template = \"True Virginian National Guard\" start_experience_factor = 0.6" 
+					owner = RVR
+				}
+				create_unit = {
+					division = "name = \"4th True Virginian National Guard\" division_template = \"True Virginian National Guard\" start_experience_factor = 0.6" 
+					owner = RVR
+				}
 			}
 		}
 	}
@@ -158,15 +221,45 @@ VIR_become_free_for_cw_effect_rightist = {
 		set_province_controller = 9331
 		set_province_controller = 9364
 		set_province_controller = 4567
-		load_oob = VIR_bad_cw
+		load_oob = "VIR_bad_cw"
+		if = {
+			limit = { has_country_flag = VIR_crackfederacy_revealed_flag }
+			add_ideas = VIR_Rebellion_gone_bad
+		}
 	}
 	RVR = {
 		set_province_controller = 2613
 		set_province_controller = 9522
 		set_province_controller = 1996
-		load_oob = RVR_good_Cw
-		load_oob = RVR_alt_right_volunteers
-		load_oob = RVR_lolbert_volunteers
+		load_oob = "RVR_good_Cw"
+		if = {
+			limit = { VIR = { has_country_flag = VIR_guns_at_cw_gop_flag } }
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 5000
+				producer = VIR
+			}
+		}
+		if = {
+			limit = { VIR = { NOT = { has_country_flag = VIR_gop_biden_dont_want_nova_flag } } }
+			FRA = { transfer_state = 655   add_state_core = 655 }
+		}
+		if = {
+			limit = { VIR = { has_country_flag = VIR_manpower_at_cw_gop_flag } }
+			add_manpower = 50000
+		}
+		if = {
+			limit = { VIR = { has_country_flag = VIR_gop_planning_flag } }
+			add_ideas = RVR_Rebellion_Perfect
+		}
+		if = {
+			limit = { VIR = { has_country_flag = VIR_GOP_received_nazi_militias_flag } }
+			load_oob = "RVR_alt_right_volunteers"
+		}
+		if = {
+			limit = { VIR = { has_country_flag = VIR_GOP_received_lolbert_militias_flag } }
+			load_oob = "RVR_lolbert_volunteers"
+		}
 	}
 }
 
