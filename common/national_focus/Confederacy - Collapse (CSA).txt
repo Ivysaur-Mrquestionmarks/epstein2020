@@ -10,9 +10,15 @@ focus_tree = {
 				value = THIS.id
 			}			
 		}
+		#modifier = {
+		#	add = 20
+		#	tag = CSA			
+		#}
 	}
 	default = no
-        continuous_focus_position = { x = 1000 y = 1000}
+    continuous_focus_position = { x = 1000 y = 1000}
+	
+	
 	focus = {
 		id = CSA_so_it_begins
 		icon = GFX_goal_CSA_it_begins
@@ -195,6 +201,13 @@ focus_tree = {
 			unlock_decision_tooltip = integrate_state
 			clr_global_flag = Confederate_Collapse
 			set_global_flag = Confederate_Collapse_ended
+			if = {
+				limit = { tag = CSA }
+				if = {
+					limit = { has_dynamic_modifier = { modifier = DIX_dixie_war_idea } }
+					remove_dynamic_modifier = { modifier = DIX_dixie_war_idea }
+				}
+			}
 		}
 	}
 
@@ -251,6 +264,11 @@ focus_tree = {
 			}
 		}
 	}
+	
+	
+	
+	### Zion
+	
 	focus = {
 		id = ZIO_Hebrew_Militant_Groups
 		icon = GFX_focus_secret_rearmament
@@ -401,6 +419,9 @@ focus_tree = {
 			add_ideas = ZIO_the_israeli_blitzkrieg
 		}
 	}
+	
+	
+	### New Afrika
 	focus = {
 		id = AFR_Operations_In_Enemy_Territory
 		icon = GFX_focus_secret_rearmament
@@ -549,6 +570,10 @@ focus_tree = {
 			add_ideas = AFR_Reintegrate_Zionists
 		}
 	}
+	
+	
+	
+	### South Carolina
 	focus = {
 		id = SCA_The_National_Army_of_South_Carolina
 		icon = GFX_focus_secret_rearmament
@@ -714,7 +739,10 @@ focus_tree = {
 			add_ideas = SCA_mcartys_march
 		}
 	}
-
+	
+	
+	
+	#### KKK
 	focus = {
 		id = CSA_KKK_our_chance
 		icon = GFX_goal_CSA_purge_the_klan
@@ -836,7 +864,9 @@ focus_tree = {
 			add_political_power = 20
 		}
 	}
-
+	
+	
+	### Arkansas
 	focus = {
 		id = ARK_CSA #Black bird,all stuff that has this as prerequisite will only be visible for Arkansas 
 		icon = GFX_focus_secret_rearmament
@@ -859,14 +889,16 @@ focus_tree = {
 
 		}
 	}
+	
+	#### Dixie
 	focus = {
 		id = CSA_dixie 
 		icon = GFX_focus_secret_rearmament
 		allow_branch = {
-        tag = CSA
+			tag = CSA
 		}
 		prerequisite = { focus = CSA_so_it_begins }
-		x = -1
+		x = -4
 		y = 1
 		relative_position_id = CSA_so_it_begins
 		cost = 5
@@ -878,9 +910,206 @@ focus_tree = {
 		available_if_capitulated = no
 
 		completion_reward = {
+			add_dynamic_modifier = { modifier = DIX_dixie_war_idea }
+		}
+	}
+	
+	focus = {
+		id = DIX_the_army_of_dixie
+		icon = GFX_focus_secret_rearmament
+		cost = 5
+		x = 2
+		y = 1
+		relative_position_id = CSA_dixie
+		prerequisite = { focus = CSA_dixie }
+		
+		available_if_capitulated = no
+		
+		completion_reward = {
+			add_to_variable = {
+				var = CSA.var_attack_improvement
+				value = 0.02
+				tooltip = add_02_to_attack_tt
+			}
+			add_to_variable = {
+				var = CSA.var_defence_improvement
+				value = 0.01
+				tooltip = add_01_to_defence_tt
+			}
+			add_to_variable = {
+				var = CSA.var_army_plan_improvement
+				value = 0.03
+				tooltip = add_03_to_planning_tt
+			}
+		}
+	}
+	focus = {
+		id = DIX_revisit_our_tactics
+		icon = GFX_focus_secret_rearmament
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = DIX_the_army_of_dixie
+		prerequisite = { focus = DIX_the_army_of_dixie }
 
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_to_variable = {
+				var = CSA.var_army_plan_improvement
+				value = 0.02
+				tooltip = add_02_to_planning_tt
+			}
+			subtract_from_variable = {
+				var = CSA.var_leader_improvement
+				value = 0.05
+				tooltip = remove_05_to_leader_tt
+			}
 		}
+	}
+	focus = {
+		id = DIX_reinforce_our_troops
+		icon = GFX_focus_secret_rearmament
+		cost = 5
+		x = 1
+		y = 1
+		relative_position_id = DIX_revisit_our_tactics
+		prerequisite = { focus = DIX_revisit_our_tactics }
+		mutually_exclusive = { focus = DIX_break_their_lines }
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_to_variable = {
+				var = CSA.var_army_org_improvement
+				value = 0.05
+				tooltip = add_05_to_org_tt
+			}
 		}
+	}
+	focus = {
+		id = DIX_break_their_lines
+		icon = GFX_focus_secret_rearmament
+		cost = 5
+		x = -1
+		y = 1
+		relative_position_id = DIX_revisit_our_tactics
+		prerequisite = { focus = DIX_revisit_our_tactics }
+		mutually_exclusive = { focus = DIX_reinforce_our_troops }
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_to_variable = {
+				var = CSA.var_army_improvement_speed_improvement
+				value = 0.05
+				tooltip = add_05_to_breakthrough_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = DIX_the_dixie_war_effort
+		icon = GFX_focus_secret_rearmament
+		cost = 5
+		x = -2
+		y = 1
+		relative_position_id = CSA_dixie
+		prerequisite = { focus = CSA_dixie }
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = arms_factory
+					level = 3
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = DIX_fight_domestic_terrorists
+		icon = GFX_focus_secret_rearmament
+		cost = 5
+		x = -2
+		y = 1
+		relative_position_id = DIX_the_dixie_war_effort
+		prerequisite = { focus = DIX_the_dixie_war_effort }
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_stability = 0.1
+			add_political_power = 25
+		}
+	}
+	focus = {
+		id = DIX_civilian_rationing
+		icon = GFX_focus_secret_rearmament
+		cost = 5
+		x = 2
+		y = 1
+		relative_position_id = DIX_the_dixie_war_effort
+		prerequisite = { focus = DIX_the_dixie_war_effort }
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_stability = -0.05
+			subtract_from_variable = {
+				var = CSA.var_army_improvement_supply_improvement
+				value = 0.05
+				tooltip = remove_05_to_supply_tt
+			}
+		}
+	}
+	focus = {
+		id = DIX_war_bonds
+		icon = GFX_focus_secret_rearmament
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = DIX_the_dixie_war_effort
+		prerequisite = { focus = DIX_the_dixie_war_effort }
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			subtract_from_variable = {
+				var = CSA.var_cg_dixie_war
+				value = 0.15
+				tooltip = remove_15_to_cg_tt
+			}
+		}
+	}
+	focus = {
+		id = DIX_with_god_as_our_protector
+		icon = GFX_focus_secret_rearmament
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = DIX_war_bonds
+		prerequisite = { focus = DIX_war_bonds }
+		prerequisite = { focus = DIX_civilian_rationing }
+		prerequisite = { focus = DIX_fight_domestic_terrorists }
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_to_variable = {
+				var = CSA.var_army_org_improvement
+				value = 0.05
+				tooltip = add_05_to_org_tt
+			}
+			add_war_support = 0.2
+		}
+	}
+	
+	
+	
+	### Ancaps - CSB
 	focus = {
 	id = CSB_Crush_The_Statist_Monopoly
 		icon = GFX_focus_secret_rearmament
