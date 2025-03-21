@@ -1,4 +1,5 @@
 add_namespace = News_Events
+add_namespace = News_Events_Trigger
 
 #The Death of Prince Philip, Duke of Edinburgh
 news_event = {
@@ -614,12 +615,13 @@ news_event = {
 	}
 }
 
-#Russia Annexes Belarus
+#Russia Annexes Belarus TRIGGER
 news_event = {
-	id = News_events.9
-	title = News_events.9.t
-	desc = News_events.9.d
+	id = News_Events_Trigger.9
+	title = News_Events_Trigger.9.t
+	desc = News_Events_Trigger.9.d
 	picture = event_belarus_1
+	fire_only_once = yes
 	trigger = {
 		date > 2021.11.11
 		NOT = {
@@ -627,11 +629,49 @@ news_event = {
 		}
 	}
 	immediate = {
+		news_event = News_events.9
+	}
+	hidden = yes
+	option = {
+		name = News_Events_Trigger.9.a
+	}
+}
+
+#Russia Annexes Belarus
+news_event = {
+	id = News_events.9
+	title = News_events.9.t
+	desc = News_events.9.d
+	picture = event_belarus_1
+	is_triggered_only = yes
+	major = yes
+	immediate = {
 		set_global_flag = belarus_annexed_by_putin
 	}
-	major = yes
 	option = {
 		name = News_Events.9.a
+	}
+}
+
+#Invasion of Ukraine
+news_event = {
+	id = News_Events_Trigger.10
+	title = News_Events_Trigger.10.t
+	desc = News_Events_Trigger.10.d
+	picture = event_ukraine_war_1
+	fire_only_once = yes
+	trigger = {
+		date > 2022.2.20
+		NOT = {
+			has_global_flag = ukraine_annexed_by_putin
+		}
+	}
+	immediate = {
+		news_event = News_events.10
+	}
+	hidden = yes
+	option = {
+		name = News_Events_Trigger.10.a
 	}
 }
 
@@ -641,12 +681,7 @@ news_event = {
 	title = News_events.10.t
 	desc = News_events.10.d
 	picture = event_ukraine_war_1
-	trigger = {
-		date > 2022.2.20
-		NOT = {
-			has_global_flag = ukraine_annexed_by_putin
-		}
-	}
+	is_triggered_only = yes
 	immediate = {
 		set_global_flag = ukraine_annexed_by_putin
 	}
@@ -916,12 +951,13 @@ news_event = {
 	}
 }
 
-#Fall of Aleppo
+#Fall of Aleppo TRIGGER
 news_event = {
-	id = News_events.25
-	title = News_events.25.t
-	desc = News_events.25.d
+	id = News_Events_Trigger.25
+	title = News_Events_Trigger.25.t
+	desc = News_Events_Trigger.25.d
 	picture = news_event_SYR_fall_of_aleppo
+	fire_only_once = yes
 	trigger = {
 		date > 2024.11.20
 		NOT = {
@@ -929,11 +965,53 @@ news_event = {
 		}
 	}
 	immediate = {
+		news_event = News_events.25
+	}
+	
+	mean_time_to_happen = {
+		days = 7
+	}
+	hidden = yes
+	option = {
+		name = News_Events_Trigger.25.a
+	}
+}
+
+#Fall of Aleppo
+news_event = {
+	id = News_events.25
+	title = News_events.25.t
+	desc = News_events.25.d
+	picture = news_event_SYR_fall_of_aleppo
+	is_triggered_only = yes
+	immediate = {
 		set_global_flag = aleppo_falls
 	}
 	major = yes
 	option = {
 		name = News_Events.25.a
+	}
+}
+
+#The Cannonball Run! TRIGGER
+news_event = {
+	id = News_Events_Trigger.35 #This was .25 but in the locals that is being used by Fall of Aleppo.
+	title = News_Events_Trigger.35.t
+	desc = News_Events_Trigger.35.d
+	hidden = yes
+	fire_only_once = yes
+	picture = news_event_cannonball_run_01
+	trigger = {
+		NOT = {
+			has_global_flag = cannonball_run_has_begun
+		}
+		date > 2022.05.05
+	}
+	immediate = {
+		news_event = News_events.35
+	}
+	option = {
+		name = News_Events_Trigger.35.a
 	}
 }
 
@@ -944,12 +1022,7 @@ news_event = {
 	desc = News_events.35.d
 	major = yes
 	picture = news_event_cannonball_run_01
-	trigger = {
-		NOT = {
-			has_global_flag = cannonball_run_has_begun
-		}
-		date > 2022.05.05
-	}
+	is_triggered_only = yes
 	immediate = {
 		hidden_effect = {
 			set_global_flag = cannonball_run_has_begun
