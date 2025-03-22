@@ -18,21 +18,44 @@ focus_tree = {
 		cost = 3.00
 		x = 25
 		y = 0
-		available = {
-
-		}
+		
 		completion_reward = { ### Remember to change portrait to gfx/leaders/CSA/Republican_Kemp.tga
+			set_politics = {
+				ruling_party = republican
+			}
+			set_stability = 0.05
+			set_war_support = 0.05
+			set_political_power = -10
+			every_state = {
+				LIMIT = {
+					is_owned_by = CSA
+				}
+				add_core_of = CSA
+			}
+			set_party_name = { ideology = libertarian_right long_name = DIX_LR_L name = DIX_LR }
+			set_party_name = { ideology = libertarian_left long_name = DIX_LL_L name = DIX_LL }
+			set_party_name = { ideology = republican long_name = DIX_R_L name = DIX_R }
+			set_party_name = { ideology = democrat long_name = DIX_D_L name = DIX_D }
+			set_party_name = { ideology = autocratic long_name = DIX_A_L name = DIX_A }
+			set_party_name = { ideology = authoritarian_left long_name = DIX_AL_L name = DIX_AL }
+			set_popularities = {
+				libertarian_right = 13
+				libertarian_left = 9
+				republican = 25
+				democrat = 17
+				authoritarian_left = 10
+				autocratic = 26
+			}
 		}
 	}
 	focus = {
 		id = DIX_A_New_Identity
 		icon = GFX_goal_New_Dixie
 		cost = 3.00
-		x = 24
+		x = -2
 		y = 1
-		available = {
-
-		}
+		relative_position_id = DIX_Proclaim_the_First_True_Republic
+		
 		prerequisite = {
 			focus = DIX_Proclaim_the_First_True_Republic
 		}
@@ -40,11 +63,11 @@ focus_tree = {
 			focus = DIX_Old_Glory
 		}
 		completion_reward = {
-			add_war_support = -0.03
-			set_cosmetic_tag = DIX_New_Dixie_Republic
 			custom_effect_tooltip = DIX_Unpopular_with_Republicans
 			custom_effect_tooltip = DIX_Unpopular_with_Dixiecrats
 			custom_effect_tooltip = DIX_Popular_with_Minorities
+			add_war_support = -0.03
+			set_cosmetic_tag = DIX_New_Dixie_Republic
 			hidden_effect = {
 				add_popularity = {
     				ideology = republican
@@ -69,11 +92,10 @@ focus_tree = {
 		id = DIX_A_Place_for_Everyone
 		icon = GFX_goal_Confed_House
 		cost = 3.00
-		x = 24
-		y = 2
-		available = {
-
-		}
+		x = -1
+		y = 1
+		relative_position_id = DIX_A_New_Identity
+		
 		prerequisite = {
 			focus = DIX_A_New_Identity
 		}
@@ -94,11 +116,10 @@ focus_tree = {
 		id = DIX_Old_Glory
 		icon = GFX_goal_Glorify_the_Confederacy
 		cost = 3.00
-		x = 26
+		x = 2
 		y = 1
-		available = {
-
-		}
+		relative_position_id = DIX_Proclaim_the_First_True_Republic
+		
 		prerequisite = {
 			focus = DIX_Proclaim_the_First_True_Republic
 		}
@@ -135,45 +156,125 @@ focus_tree = {
 		id = DIX_Update_Legislation
 		icon = GFX_goal_Generic_Pass_Legislation
 		cost = 3.00
-		x = 26
-		y = 2
-		available = {
-
-		}
+		x = 1
+		y = 1
+		relative_position_id = DIX_Old_Glory
+		
 		prerequisite = {
 			focus = DIX_Old_Glory
 		}
 		completion_reward = {
 		}
 	}
+	
+	
+	
+	focus = {
+		id = DIX_end_terrorism
+		icon = GFX_goal_Confed_House
+		cost = 3.00
+		x = 1
+		y = 1
+		relative_position_id = DIX_A_New_Identity
+		
+		prerequisite = {
+			focus = DIX_A_New_Identity
+			focus = DIX_Old_Glory
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = DIX_force_the_klan_back_into_hiding
+		icon = GFX_goal_Confed_House
+		cost = 3.00
+		x = -1
+		y = 1
+		relative_position_id = DIX_Old_Glory
+		
+		prerequisite = {
+			focus = DIX_A_New_Identity
+			focus = DIX_Old_Glory
+		}
+		completion_reward = {
+		}
+	}
+	
 	focus = {
 		id = DIX_Distance_ourselves_from_Kanyeism
 		icon = GFX_goal_kanye_generic
-		cost = 3.00
-		x = 25
-		y = 3
-		available = {
-
-		}
+		x = 3
+		y = 1
+		relative_position_id = DIX_A_Place_for_Everyone
+		
 		prerequisite = {
 			focus = DIX_A_Place_for_Everyone
 			focus = DIX_Update_Legislation
 		}
+		prerequisite = {
+			focus = DIX_end_terrorism
+		}
+		prerequisite = {
+			focus = DIX_force_the_klan_back_into_hiding
+		}
 		completion_reward = {
 			#add_ideas = DIX_Kanyeism
+		}
+	}
+	
+	focus = {
+		id = DIX_Reopen_the_Press
+		icon = GFX_goal_Focus_Generic_Press_Liberalization
+		cost = 3.00
+		x = -2
+		y = 1
+		relative_position_id = DIX_Distance_ourselves_from_Kanyeism
+		
+		prerequisite = {
+			focus = DIX_Distance_ourselves_from_Kanyeism
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = DIX_Pardon_Traitors
+		icon = GFX_Goal_generic_jury
+		cost = 3.00
+		x = 1
+		y = 1
+		relative_position_id = DIX_Reopen_the_Press
+		
+		prerequisite = {
+			focus = DIX_Reopen_the_Press
+		}
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = DIX_Recover_from_the_War
+		icon = GFX_goal_ENG_Path_to_Recovery
+		cost = 3.00
+		x = 2
+		y = 1
+		relative_position_id = DIX_Distance_ourselves_from_Kanyeism
+		
+		prerequisite = {
+			focus = DIX_Distance_ourselves_from_Kanyeism
+		}
+		completion_reward = {
 		}
 	}
 	focus = {
 		id = DIX_Reopen_the_ports
 		icon = GFX_goal_Focus_Generic_Maritime_Trade
 		cost = 3.00
-		x = 21
-		y = 4
-		available = {
-
-		}
+		x = -1
+		y = 1
+		relative_position_id = DIX_Recover_from_the_War
+		
 		prerequisite = {
-			focus = DIX_Distance_ourselves_from_Kanyeism
+			focus = DIX_Recover_from_the_War
 		}
 		completion_reward = {
 			add_equipment_to_stockpile = {
@@ -185,83 +286,32 @@ focus_tree = {
 			add_ideas = export_focus
 		}
 	}
-	focus = {
-		id = DIX_Reopen_the_Press
-		icon = GFX_goal_Focus_Generic_Press_Liberalization
-		cost = 3.00
-		x = 23
-		y = 4
-		available = {
-
-		}
-		prerequisite = {
-			focus = DIX_Distance_ourselves_from_Kanyeism
-		}
-		completion_reward = {
-		}
-	}
-	focus = {
-		id = DIX_Recover_from_the_War
-		icon = GFX_goal_ENG_Path_to_Recovery
-		cost = 3.00
-		x = 25
-		y = 4
-		available = {
-
-		}
-		prerequisite = {
-			focus = DIX_Distance_ourselves_from_Kanyeism
-		}
-		completion_reward = {
-		}
-	}
+	
 	focus = {
 		id = DIX_Keep_Army_out_of_Politics
 		icon = GFX_goal_Generic_Military_Constitution
 		cost = 3.00
-		x = 27
-		y = 4
-		available = {
-
-		}
+		x = 0
+		y = 1
+		relative_position_id = DIX_Distance_ourselves_from_Kanyeism
+		
 		prerequisite = {
 			focus = DIX_Distance_ourselves_from_Kanyeism
 		}
 		completion_reward = {
 		}
 	}
-	focus = {
-		id = DIX_Pardon_Traitors
-		icon = GFX_Goal_generic_jury
-		cost = 3.00
-		x = 29
-		y = 4
-		available = {
-
-		}
-		prerequisite = {
-			focus = DIX_Distance_ourselves_from_Kanyeism
-		}
-		completion_reward = {
-		}
-	}
+	
 	focus = {
 		id = DIX_Open_the_Ballot_Boxes
 		icon = GFX_Focus_Generic_Democratic_Election
 		cost = 3.00
-		x = 25
-		y = 5
-		available = {
-
-		}
+		x = 0
+		y = 2
+		relative_position_id = DIX_Keep_Army_out_of_Politics
+		
 		prerequisite = {
 			focus = DIX_Reopen_the_ports
-		}
-		prerequisite = {
-			focus = DIX_Reopen_the_Press
-		}
-		prerequisite = {
-			focus = DIX_Recover_from_the_War
 		}
 		prerequisite = {
 			focus = DIX_Keep_Army_out_of_Politics
@@ -277,11 +327,10 @@ focus_tree = {
 		id = DIX_Rally_the_Youth_Voters
 		icon = GFX_goal_Young_Confederate_Voters
 		cost = 3.00
-		x = 25
-		y = 6
-		available = {
-
-		}
+		x = 0
+		y = 1
+		relative_position_id = DIX_Open_the_Ballot_Boxes
+		
 		prerequisite = {
 			focus = DIX_Open_the_Ballot_Boxes
 		}
@@ -293,11 +342,10 @@ focus_tree = {
 		id = DIX_Rally_the_Older_Generations
 		icon = GFX_goal_Old_Confederate_Voters
 		cost = 3.00
-		x = 24
-		y = 7
-		available = {
-
-		}
+		x = -1
+		y = 1
+		relative_position_id = DIX_Rally_the_Youth_Voters
+		
 		prerequisite = {
 			focus = DIX_Rally_the_Youth_Voters
 		}
@@ -310,11 +358,10 @@ focus_tree = {
 		id = DIX_Legalize_Early_Voting
 		icon = GFX_goal_Allow_Mail_in_Votes
 		cost = 3.00
-		x = 26
-		y = 7
-		available = {
-
-		}
+		x = 1
+		y = 1
+		relative_position_id = DIX_Rally_the_Youth_Voters
+		
 		prerequisite = {
 			focus = DIX_Rally_the_Youth_Voters
 		}
@@ -326,11 +373,10 @@ focus_tree = {
 		id = DIX_Campaign_in_Alabama
 		icon = GFX_goal_Alabama_Election
 		cost = 3.00
-		x = 25
-		y = 8
-		available = {
-
-		}
+		x = -1
+		y = 1
+		relative_position_id = DIX_Legalize_Early_Voting
+		
 		bypass = {
 			OR = {
 				autocratic > 0.49
@@ -353,11 +399,10 @@ focus_tree = {
 		id = DIX_Campaign_in_Arkansas
 		icon = GFX_goal_Arkansas_Election
 		cost = 3.00
-		x = 23
-		y = 8
-		available = {
-
-		}
+		x = -1
+		y = 1
+		relative_position_id = DIX_Rally_the_Older_Generations
+		
 		bypass = {
 			OR = {
 				autocratic > 0.49
@@ -380,11 +425,10 @@ focus_tree = {
 		id = DIX_Campaign_in_Louisiana
 		icon = GFX_goal_Louisiana_Election
 		cost = 3.00
-		x = 27
-		y = 8
-		available = {
-
-		}
+		x = 1
+		y = 1
+		relative_position_id = DIX_Legalize_Early_Voting
+		
 		bypass = {
 			OR = {
 				autocratic > 0.49
@@ -407,11 +451,10 @@ focus_tree = {
 		id = DIX_Campaign_in_Tennessee
 		icon = GFX_goal_Tennesse_Election
 		cost = 3.00
-		x = 29
-		y = 8
-		available = {
-
-		}
+		x = 3
+		y = 1
+		relative_position_id = DIX_Legalize_Early_Voting
+		
 		bypass = {
 			OR = {
 				autocratic > 0.49
@@ -434,11 +477,10 @@ focus_tree = {
 		id = DIX_Campaign_in_Mississippi
 		icon = GFX_goal_Mississippi_Election
 		cost = 3.00
-		x = 21
-		y = 8
-		available = {
-
-		}
+		x = -3
+		y = 1
+		relative_position_id = DIX_Rally_the_Older_Generations
+		
 		bypass = {
 			OR = {
 				autocratic > 0.49
@@ -461,11 +503,10 @@ focus_tree = {
 		id = DIX_Campaign_in_Georgia
 		icon = GFX_goal_Georgia_Election
 		cost = 3.00
-		x = 19
-		y = 8
-		available = {
-
-		}
+		x = -5
+		y = 1
+		relative_position_id = DIX_Rally_the_Older_Generations
+		
 		bypass = {
 			OR = {
 				autocratic > 0.49
@@ -488,11 +529,10 @@ focus_tree = {
 		id = DIX_Campaign_in_Carolina
 		icon = GFX_goal_Carolina_Election
 		cost = 3.00
-		x = 31
-		y = 8
-		available = {
-
-		}
+		x = 5
+		y = 1
+		relative_position_id = DIX_Legalize_Early_Voting
+		
 		bypass = {
 			OR = {
 				autocratic > 0.49
@@ -515,11 +555,10 @@ focus_tree = {
 		id = DIX_The_Results_are_in
 		icon = GFX_goal_generic_elections
 		cost = 3.00
-		x = 25
-		y = 9
-		available = {
-
-		}
+		x = 0
+		y = 1
+		relative_position_id = DIX_Campaign_in_Alabama
+		
 		prerequisite = {
 			focus = DIX_Campaign_in_Carolina
 		}
@@ -553,8 +592,9 @@ focus_tree = {
 		id = DIX_Cotton_Wins
 		icon = GFX_goal_Cotton
 		cost = 3.00
-		x = 5
-		y = 10
+		x = -20
+		y = 1
+		relative_position_id = DIX_The_Results_are_in
 		available = {
 			has_country_flag = DIX_Republican_Victory
 			republican > 0.49
@@ -634,8 +674,9 @@ focus_tree = {
 		id = DIX_Williams_Wins
 		icon = GFX_goal_Hank_Williams
 		cost = 3.00
-		x = 25
-		y = 10
+		x = -10
+		y = 1
+		relative_position_id = DIX_The_Results_are_in
 		available = {
 			has_country_flag = DIX_Republican_Victory
 			republican > 0.49
@@ -676,8 +717,9 @@ focus_tree = {
 		id = DIX_Kemp_Wins
 		icon = GFX_goal_Brian_Kemp
 		cost = 3.00
-		x = 35
-		y = 10
+		x = -0
+		y = 1
+		relative_position_id = DIX_The_Results_are_in
 		available = {
 			has_country_flag = DIX_Kemp_Victory
 			republican > 0.49
@@ -692,12 +734,14 @@ focus_tree = {
 			}
 		}
 	}
+	
 	focus = {
 		id = DIX_Rebuild_Southern_Infrastructure
 		icon = GFX_goal_Road_Construction
 		cost = 3.00
-		x = 30
-		y = 11
+		x = -5
+		y = 1
+		relative_position_id = DIX_Kemp_Wins
 		available = {
 			
 		}
@@ -705,15 +749,15 @@ focus_tree = {
 			focus = DIX_Kemp_Wins
 		}
 		completion_reward = {
-			add_ideas = DIX_Southern_Infrastructure
 		}
 	}
 	focus = {
 		id = DIX_Strengthen_Southern_Culture
 		icon = GFX_goal_strengthensouthernculture
 		cost = 3.00
-		x = 32
-		y = 11
+		x = -1
+		y = 1
+		relative_position_id = DIX_Kemp_Wins
 		available = {
 			
 		}
@@ -721,34 +765,33 @@ focus_tree = {
 			focus = DIX_Kemp_Wins
 		}
 		completion_reward = {
-			set_country_fla = DIX_Southern_Cultural_Centers
+			#set_country_flag = DIX_Southern_Cultural_Centers
 		}
 	}
 	focus = {
 		id = DIX_Dixies_Revival
 		icon = GFX_goal_asouthernrevival
 		cost = 3.00
-		x = 31
-		y = 12
-		available = {
-			
-		}
-		prerequisite = {
-			focus = DIX_Rebuild_Southern_Infrastructure
-		}
+		x = 1
+		y = 2
+		relative_position_id = DIX_Strengthen_Southern_Culture
 		prerequisite = {
 			focus = DIX_Strengthen_Southern_Culture
 		}
+		prerequisite = {
+			focus = DIX_One_Nation_Indivisible
+		}
 		completion_reward = {
-			add_ideas = DIX_Dixies_Revival
 		}
 	}
+	
 	focus = {
 		id = DIX_The_Unexpected_President
 		icon = GFX_goal_asurprise
 		cost = 1.00
-		x = 34
-		y = 11
+		x = 1
+		y = 1
+		relative_position_id = DIX_Kemp_Wins
 		available = {
 			
 		}
@@ -763,8 +806,9 @@ focus_tree = {
 		id = DIX_But_A_Welcome_One
 		icon = GFX_goal_awelcomeone
 		cost = 1.00
-		x = 36
-		y = 11
+		x = 3
+		y = 1
+		relative_position_id = DIX_Kemp_Wins
 		available = {
 			has_completed_focus = DIX_The_Unexpected_President
 		}
@@ -779,10 +823,12 @@ focus_tree = {
 		id = DIX_One_Nation_Indivisible
 		icon = GFX_goal_One_Nation_Indivisible
 		cost = 3.00
-		x = 35
-		y = 12
-		available = {
-
+		x = -1
+		y = 1
+		relative_position_id = DIX_But_A_Welcome_One
+		
+		prerequisite = {
+			focus = DIX_The_Unexpected_President
 		}
 		prerequisite = {
 			focus = DIX_But_A_Welcome_One
@@ -795,11 +841,10 @@ focus_tree = {
 		id = DIX_Thunderous_Applause
 		icon = GFX_goal_Thunderous_Applause
 		cost = 3.00
-		x = 37
-		y = 15
-		available = {
-
-		}
+		x = 2
+		y = 1
+		relative_position_id = DIX_One_Nation_Indivisible
+		
 		prerequisite = {
 			focus = DIX_One_Nation_Indivisible
 		}
@@ -810,40 +855,6 @@ focus_tree = {
     			ideology = republican
     			popularity = 0.05
 			}
-		}
-	}
-	focus = {
-		id = DIX_Staunch_Neutrality
-		icon = GFX_goal_KEMP_neutrality
-		cost = 3.00
-		x = 33
-		y = 15
-		available = {
-
-		}
-		prerequisite = {
-			focus = DIX_One_Nation_Indivisible
-		}
-		completion_reward = {
-			add_ideas = DIX_Neutrality_Clause
-		}
-	}
-	focus = {
-		id = DIX_Keep_Dixieland_Safe
-		icon = GFX_goal_ProtectDixieLand
-		cost = 3.00
-		x = 33
-		y = 16
-		available = {
-
-		}
-		prerequisite = {
-			focus = DIX_Staunch_Neutrality
-		}
-		completion_reward = {
-			army_experience = 50
-			navy_experience = 50
-			air_experience = 50
 		}
 	}
 	
@@ -858,8 +869,9 @@ focus_tree = {
 		id = DIX_Wallace_Wins
 		icon = GFX_goal_Wallace_Jr
 		cost = 3.00
-		x = 45
-		y = 10
+		x = 20
+		y = 1
+		relative_position_id = DIX_The_Results_are_in
 		available = {
 			has_country_flag = DIX_Dixiecrat_Victory
 			autocratic > 0.49
@@ -890,8 +902,9 @@ focus_tree = {
 		id = DIX_Thurmond_Wins
 		icon = GFX_goal_Paul_Thurmond
 		cost = 3.00
-		x = 55
-		y = 10
+		x = 10
+		y = 1
+		relative_position_id = DIX_The_Results_are_in
 		available = {
 			has_country_flag = DIX_Dixiecrat_Victory
 			autocratic > 0.49
@@ -933,8 +946,9 @@ focus_tree = {
 		id = DIX_Davis_Wins
 		icon = GFX_goal_Davis
 		cost = 3.00
-		x = 65
-		y = 10
+		x = 30
+		y = 1
+		relative_position_id = DIX_The_Results_are_in
 		available = {
 			has_country_flag = DIX_Dixiecrat_Victory
 			autocratic > 0.49
@@ -974,8 +988,9 @@ focus_tree = {
 		id = DIX_Webb_Wins
 		icon = GFX_goal_Webb
 		cost = 3.00
-		x = 75
-		y = 10
+		x = 40
+		y = 1
+		relative_position_id = DIX_The_Results_are_in
 		available = {
 			has_country_flag = DIX_Democrat_Victory
 			democrat > 0.49
