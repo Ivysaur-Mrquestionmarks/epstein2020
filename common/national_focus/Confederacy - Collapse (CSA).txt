@@ -1130,12 +1130,14 @@ focus_tree = {
 	
 	### Ancaps - CSB
 	focus = {
-	id = CSB_Crush_The_Statist_Monopoly
+		id = CSB_Crush_The_Statist_Monopoly
 		icon = GFX_focus_secret_rearmament
 		allow_branch = {
         tag = CSB
 		}
-		prerequisite = { focus = CSA_so_it_begins }
+		prerequisite = { 
+			focus = CSA_so_it_begins 
+		}
 		x = -1
 		y = 1
 		relative_position_id = CSA_so_it_begins
@@ -1152,143 +1154,99 @@ focus_tree = {
 		}
 	}
 	focus = {
-	id = CSB_Privatized_Defense_Forces
+		id = CSB_Privatized_Defense_Forces
 		icon = GFX_focus_secret_rearmament
-		allow_branch = {
-        tag = CSB
-		}
-		prerequisite = { focus = CSB_Crush_The_Statist_Monopoly }
+		cost = 5
 		x = -2
 		y = 2
 		relative_position_id = CSA_so_it_begins
-		cost = 5
-
-		ai_will_do = {
-			factor = 5
+		
+		prerequisite = { 
+			focus = CSB_Crush_The_Statist_Monopoly 
 		}
-
-		available_if_capitulated = no
-
 		completion_reward = {
 			add_ideas = CSB_Private_Defense_Forces
 		}
 	}
 	focus = {
-	id = CSB_Civilian_Gun_Production
+		id = CSB_Civilian_Gun_Production
 		icon = GFX_focus_secret_rearmament
-		allow_branch = {
-        tag = CSB
-		}
-		prerequisite = { focus = CSB_Crush_The_Statist_Monopoly }
+		cost = 5
 		x = 0
 		y = 2
 		relative_position_id = CSA_so_it_begins
-		cost = 5
-
-		ai_will_do = {
-			factor = 5
+		
+		prerequisite = { 
+			focus = CSB_Crush_The_Statist_Monopoly 
 		}
-
-		available_if_capitulated = no
-
 		completion_reward = {
 			add_equipment_to_stockpile = {
     				type = infantry_equipment
     				amount = 750
 			}
-			add_offsite_building = { type = arms_factory level = 1 }
-			
+			add_offsite_building = { 
+				type = arms_factory level = 1 
+			}
 		}
 	}
 	focus = {
-	id = CSB_Hire_More_Mercenaries
-		icon = GFX_focus_secret_rearmament
-		allow_branch = {
-        tag = CSB
-		}
-		prerequisite = { focus = CSB_Privatized_Defense_Forces focus = CSB_Civilian_Gun_Production }
+		id = CSB_Hire_More_Mercenaries
+		icon = GFX_focus_generic_limited_social_mobilization
+		cost = 5
 		x = -1
 		y = 3
 		relative_position_id = CSA_so_it_begins
-		cost = 5
-
-		ai_will_do = {
-			factor = 5
+		
+		prerequisite = { 
+			focus = CSB_Privatized_Defense_Forces focus = CSB_Civilian_Gun_Production 
 		}
-
 		available_if_capitulated = no
 
 		completion_reward = {
-		    division_template = {
-		    name = "Security Group"
-		#    division_names_group =
-			regiments = {
-				infantry = { x = 0 y = 0 }
-				infantry = { x = 0 y = 1 }
-				infantry = { x = 1 y = 0 }
-				infantry = { x = 1 y = 1 }
-				infantry = { x = 2 y = 0 }
-				infantry = { x = 2 y = 1 }
-			}
-			support = { 
-			recon = { x = 0 y = 0 }
-	        } 
-		}
-		420 = {
 			create_unit = {
-				division = "name = \"Fairhope Security Detachment\" division_template = \"Security Group\" start_experience_factor = 0.25 start_equipment_factor = 0.35" 
-				owner = CSB
-			}
-			create_unit = {
-				division = "name = \"Free Soldiers Militia\" division_template = \"Security Group\" start_experience_factor = 0.25 start_equipment_factor = 0.35" 
-				owner = CSB
+				division = "division_template = \"militias\"	start_experience_factor = 0.25	start_equipment_factor = 1"
+				owner = ROOT
+				count = 1
+			}			
+			unlock_decision_tooltip = CSA_units
+			set_country_flag = CSA_unit
 		}
-    }	
+	}
 	focus = {
-	id = CSB_Strike_The_Statists_From_The_Air
+		id = CSB_Strike_The_Statists_From_The_Air
 		icon = GFX_focus_secret_rearmament
-		allow_branch = {
-        tag = CSB
-		}
-		prerequisite = { focus = CSB_Hire_More_Mercenaries }
+		cost = 5
 		x = -1
 		y = 4
 		relative_position_id = CSA_so_it_begins
-		cost = 5
-
-		ai_will_do = {
-			factor = 5
-		}
-
-		available_if_capitulated = no   
 		
+		prerequisite = { 
+			focus = CSB_Hire_More_Mercenaries
+		}
 		completion_reward = {
-			add_equipment_to_stockpile = {
-    				type = army_attack_helicopter_equipment_1
-    				amount = 20
+			random_owned_controlled_state = {
+				add_resource = {
+				type = rubber
+				amount = 8
+				}
 			}
-			add_offsite_building = { type = arms_factory level = 1 }
-			
+			add_offsite_building = { 
+				type = arms_factory level = 1 
+			}
 		}
     }
 	focus = {
-	id = CSB_Reclaim_The_Mises_Institute
+		id = CSB_Reclaim_The_Mises_Institute
 		icon = GFX_focus_secret_rearmament
-		allow_branch = {
-        tag = CSB
-		}
-		prerequisite = { focus = CSB_Strike_The_Statists_From_The_Air }
+		cost = 10
 		x = -1
 		y = 5
 		relative_position_id = CSA_so_it_begins
-		cost = 10
-
-		ai_will_do = {
-			factor = 5
-		}
-
-		available_if_capitulated = no   
 		
+		prerequisite = { 
+			focus = CSB_Strike_The_Statists_From_The_Air 
+			controls_state = 386
+		}
 		completion_reward = {
 			add_state_core = 386
 			add_state_core = 294
