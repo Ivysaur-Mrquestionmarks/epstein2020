@@ -1,0 +1,454 @@
+PAC_army_influence_10 = {
+	add_to_variable = {
+		var = army_strength
+		value = 0.1
+	}
+	add_to_variable = {
+		var = militia_strength
+		value = -0.1
+	}
+	add_to_variable = {
+		var = x_orientation
+		value = -25
+	}
+	clamp_variable = {
+		var = x_orientation
+		min = 125
+		max = 375
+	}
+	clamp_variable = {
+		var = army_strength
+		min = -0.5
+		max = 0.5
+	}
+	clamp_variable = {
+		var = militia_strength
+		min = -0.5
+		max = 0.5
+	}
+	custom_effect_tooltip = PAC_army_10
+}
+
+PAC_militia_influence_10 = {
+	add_to_variable = {
+		var = army_strength
+		value = -0.1
+	}
+	add_to_variable = {
+		var = militia_strength
+		value = 0.1
+	}
+	add_to_variable = {
+		var = x_orientation
+		value = 25
+	}
+	clamp_variable = {
+		var = x_orientation
+		min = 125
+		max = 375
+	}
+	clamp_variable = {
+		var = army_strength
+		min = -0.5
+		max = 0.5
+	}
+	clamp_variable = {
+		var = militia_strength
+		min = -0.5
+		max = 0.5
+	}
+	custom_effect_tooltip = PAC_militia_10
+}
+
+PAC_army_influence_5 = {
+	add_to_variable = {
+		var = army_strength
+		value = 0.05
+	}
+	add_to_variable = {
+		var = militia_strength
+		value = -0.05
+	}
+	add_to_variable = {
+		var = x_orientation
+		value = -12.5
+	}
+	clamp_variable = {
+		var = x_orientation
+		min = 125
+		max = 375
+	}
+	clamp_variable = {
+		var = army_strength
+		min = -0.5
+		max = 0.5
+	}
+	clamp_variable = {
+		var = militia_strength
+		min = -0.5
+		max = 0.5
+	}
+	custom_effect_tooltip = PAC_army_5
+}
+
+PAC_militia_influence_5 = {
+	add_to_variable = {
+		var = army_strength
+		value = -0.05
+	}
+	add_to_variable = {
+		var = militia_strength
+		value = 0.05
+	}
+	add_to_variable = {
+		var = x_orientation
+		value = 12.5
+	}
+	clamp_variable = {
+		var = x_orientation
+		min = 125
+		max = 375
+	}
+	clamp_variable = {
+		var = army_strength
+		min = -0.5
+		max = 0.5
+	}
+	clamp_variable = {
+		var = militia_strength
+		min = -0.5
+		max = 0.5
+	}
+	custom_effect_tooltip = PAC_militia_5
+}
+
+CSA_war = { #using global.south_collapse
+	for_each_scope_loop = { #This loops declare the wars
+    		array = global.south_collapse
+		for_each_scope_loop = {
+				array = global.south_collapse
+			if = { limit = {Not = { OR = {has_war_with = PREV tag = PREV}}}
+				declare_war_on = {
+    					target = PREV
+    					type = annex_everything
+				}
+			}
+		}
+	}
+	every_country = { #loads the basic focus tree
+		limit = {is_in_array = {
+			array = global.south_collapse
+			value = THIS.id
+		}}
+		add_ideas = CSA_collapse_no_faction
+		load_focus_tree = csa_collapse
+		if = { limit = {NOT = {tag = CSA}}
+			inherit_technology = CSA
+		}
+	} 
+
+	#Loads the oob and idea for each tag
+	LGB = {load_oob = "LGB_DCW"}
+	ZIO = {load_oob = "ZIO_DCW"}
+	CSB = {load_oob = "CSB_DCW"}
+	KKK = {load_oob = "KKK_DCW" add_ideas = KKK_our_time_to_act}
+	CSA = {load_oob = "CSA_DCW"}
+	AFR = {load_oob = "AFR_DCW"}
+	
+	#Events
+	country_event = {
+    		id = south.9
+    		days = 1		
+	}
+
+	USA = {
+		country_event = {
+    			id = south.76
+    			days = 14		
+		}
+	}
+	FRA = {
+		country_event = {
+    			id = south.77
+    			days = 14		
+		}
+	}	
+}
+
+
+fuel_clamp = {
+			clamp_variable = {
+				var = expense_civs
+				min = -0.35
+				max = 0.35
+			}
+			clamp_variable = {
+				var = fuel_lost_1
+				min = -21
+				max = 21
+			}
+			clamp_variable = {
+				var = fuel_lost_2
+				min = -21
+				max = 21
+			}
+			clamp_variable = {
+				var = fuel_rationing_1
+				min = -0.35
+				max = 0.35
+			}
+			clamp_variable = {
+				var = fuel_rationing_2
+				min = -0.35
+				max = 0.35
+			}
+			clamp_variable = {
+				var = expense_mil
+				min = -0.35
+				max = 0.35
+			}
+			set_variable = {
+				var = fuel_lost
+				value = fuel_lost_1
+			}
+			add_to_variable = {
+				var = fuel_lost
+				value = fuel_lost_2
+			}
+			set_variable = {
+				var = fuel_rationing
+				value = fuel_rationing_1
+			}
+			add_to_variable = {
+				var = fuel_rationing
+				value = fuel_rationing_2
+			}
+}
+
+CSA_dynamic_faith = {
+	clamp_variable = {
+		var = pop_faith
+		min = 0
+		max = 1
+	}
+	set_temp_variable = { div = pop_faith}
+	subtract_from_temp_variable = { div = 0.5 }
+	set_variable = { pop_sup = div }
+	set_variable = { cons_faith = div}
+}
+
+FAL_economic_hispanidad = {
+	clamp_variable = {
+		var = ech_strength
+		min = 0
+		max = 12
+	}
+	clamp_variable = {
+		var = ech_consumer
+		min = 0
+		max = 1
+	}
+	clamp_variable = {
+		var = ech_factory
+		min = 0
+		max = 1
+	}
+	clamp_variable = {
+		var = ech_construction
+		min = 0
+		max = 1
+	}
+}
+
+black_market_increase = {
+	add_to_variable = {
+		var = resource_import_political_power_cost 
+		value = 0.05
+	}
+	add_to_variable = {
+		var = resource_import_consumer_goods_factor
+		value = 1
+	}
+}
+
+black_market_decrease = {
+	add_to_variable = {
+		var = resource_import_political_power_cost 
+		value = -0.05
+	}
+	add_to_variable = {
+		var = resource_import_consumer_goods_factor
+		value = -1
+	}
+	#clamp_variable = {
+	#	var = resource_import_political_power_cost 
+	#	min = 0
+	#}
+	#clamp_variable = {
+	#	var = resource_import_consumer_goods_factor
+	#	min = 0
+	#}
+}
+
+USA_FRA_usaNegated = {
+        	if = {
+			limit = {
+				has_global_flag = {
+    					flag = USA_FRA_pardons
+    					value = 1
+				}
+			}
+			modify_global_flag = {
+    				flag = USA_FRA_pardons
+    				value = 1
+			}
+		}
+		else_if = {
+			limit = {
+				has_global_flag = {
+    					flag = USA_FRA_POW_USA
+    					value = 1
+				}
+			}
+			modify_global_flag = {
+    				flag = USA_FRA_POW_USA
+    				value = 1
+			}
+		}
+		else_if = {
+
+			limit = {
+				has_global_flag = {
+    					flag = USA_FRA_trade
+    					value = 1
+				}
+			}
+			modify_global_flag = {
+    				flag = USA_FRA_trade
+    				value = 1
+			}
+		}
+}
+
+USA_FRA_fraNegated = {
+        	if = {
+			limit = {
+				has_global_flag = {
+    					flag = USA_FRA_protest
+    					value = 1
+				}
+			}
+			modify_global_flag = {
+    				flag = USA_FRA_protest
+    				value = 1
+			}
+		}
+		else_if = {
+			limit = {
+				has_global_flag = {
+    					flag = USA_FRA_POW_FRA
+    					value = 1
+				}
+			}
+			modify_global_flag = {
+    				flag = USA_FRA_POW_USA
+    				value = 1
+			}
+		}
+		else_if = {
+
+			limit = {
+				has_global_flag = {
+    					flag = USA_FRA_trade
+    					value = 1
+				}
+			}
+			modify_global_flag = {
+    				flag = USA_FRA_trade
+    				value = 1
+			}
+		}
+		country_event = {
+    			id = maga.229
+    			days = 1
+    			random_hours = 34
+		}
+}
+
+USA_opp_worsens = {
+	add_to_variable = {
+    		var = opp_resistance
+    		value = 0.05
+    		tooltip = USA_res_increase
+	}
+	add_to_variable = {
+    		var = opp_comp
+    		value = -0.1
+    		tooltip = USA_comp_decrease
+	}
+	if = {
+		limit = {
+			democrat > 0.79
+		}
+		start_civil_war = {
+    			ideology = democrat
+    			army_ratio = 0.4
+    			capital = 207
+    			keep_political_leader = yes
+    			keep_political_party_members = yes
+		}
+		add_popularity = {
+    			ideology = democrat
+    			popularity = -0.4
+		}		
+	}
+
+	add_popularity = {
+    		ideology = democrat
+    		popularity = 0.05
+	}	
+}
+
+reconquer_america = {
+	hidden_effect = {				
+		every_state  = {
+			limit = { has_state_flag = part_of_america }
+			every_country = {
+				limit = { controls_state = PREV }
+				set_country_flag = controls_american_state
+			}
+		}
+	}
+	every_country = {
+		limit = {
+			AND = {
+				has_country_flag = controls_american_state
+				NOT = { 
+					original_tag = ROOT
+					is_in_faction_with = ROOT
+				}
+			}
+		}
+		ROOT = {
+			create_wargoal = {
+				target = PREV
+				type = annex_everything
+			}
+		}
+	}
+	every_country = {
+		limit = { has_country_flag = controls_american_state }
+		clr_country_flag = controls_american_state
+	}
+	custom_effect_tooltip = bring_america_under_grip_tt
+}
+core_america = {
+	hidden_effect = {
+		every_state  = {
+			limit = { has_state_flag = part_of_america }
+			add_core_of = ROOT
+		}
+	}
+	custom_effect_tooltip = reborn_USA_we_will_core_america_tt
+}
+

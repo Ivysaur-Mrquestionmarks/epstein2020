@@ -1,0 +1,3440 @@
+add_namespace = greatlake
+
+#Great Lakes Election
+country_event = {
+	id = greatlake.1
+	title = greatlake.1.t
+	desc = greatlake.1.d
+	picture = event_city_hall_lib
+	trigger = {
+		tag = GLA
+	}
+	#mean_time_to_happen = { days = 30 }
+	fire_only_once = yes
+	immediate = {
+    
+	}
+	option = {
+		name = greatlake.1.a
+		ai_chance = {
+			factor = 100
+		}
+		set_variable = {
+			var = GLA_opps
+			value = 45
+			tooltip = GLA_the_chances_of_no_victory
+		}
+		custom_effect_tooltip = GLA_decisions_are_unlocked
+		hidden_effect = {
+			set_country_flag = GLA_mama_jo_side
+			unlock_decision_tooltip = GLA_anti_opp_propaganda
+			unlock_decision_tooltip = GLA_mama_jo_rally
+			unlock_decision_tooltip = GLA_connect_with_the_voters
+		}
+		hidden_effect = {
+			country_event = {
+				id = greatlake.18
+				days = 10
+			}
+			country_event = {
+				id = greatlake.97
+				days = 30
+			}
+			country_event = {
+				id = greatlake.98
+				days = 45
+			}
+		}
+	}
+	option = {
+		name = greatlake.1.b
+		ai_chance = {
+			factor = 100
+		}
+		set_variable = {
+			var = GLA_opps
+			value = 45
+			tooltip = GLA_the_chances_of_victory
+		}
+		custom_effect_tooltip = GLA_decisions_are_unlocked
+		hidden_effect = {
+			set_country_flag = GLA_opp_side
+			unlock_decision_tooltip = GLA_anti_jorgensen_propaganda
+			unlock_decision_tooltip = GLA_hold_a_rally
+			unlock_decision_tooltip = GLA_strengthen_the_opps
+		}
+		hidden_effect = {
+			country_event = {
+				id = greatlake.18
+				days = 10
+			}
+		}
+	}
+}
+
+#Boogaloo Militias Riot Cites
+country_event = {
+	id = greatlake.2
+	title = greatlake.2.t
+	desc = greatlake.2.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 1 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.2.a
+		ai_chance = {
+			factor = 25
+		}
+		add_stability = -0.05
+		add_political_power = -45
+		hidden_effect = {
+			country_event = {
+				id = greatlake.4
+				days = 5
+			}
+		}
+	}
+}
+
+#country_event = {
+#	id = greatlake.3
+#	title = greatlake.3.t
+#	desc = greatlake.3.d
+#	#picture = er
+#	is_triggered_only = yes
+#	#mean_time_to_happen = { days = 1 }
+#	fire_only_once = yes
+#	immediate = {
+#	
+#	}
+#	option = {
+#		name = greatlake.3.a
+#		ai_chance = {
+#			factor = 30
+#		}
+#		add_political_power = -45
+#		remove_power_balance = {
+#           id = boogaloo_bop
+#        }
+#		delete_unit_template_and_units = {
+#        division_template = "Boogaloo Militia"
+#        disband = no
+#        }
+#		delete_unit_template_and_units = {
+#        division_template = "KillDozer Division"
+#        disband = no
+#        }
+#		remove_ideas = Unorganized_Boogaloo
+#		remove_trait = {
+#        ideology = anarcho_capitalism
+#        trait = Boogaloo_Sympathizer
+#        }
+#	}
+#	option = {
+#		name = greatlake.3.b
+#		ai_chance = {
+#			factor = 70
+#		}
+#		add_political_power = 15
+#	}
+#}
+
+#More Boogaloo Militias Riot Cites
+country_event = {
+	id = greatlake.4
+	title = greatlake.4.t
+	desc = greatlake.4.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 5 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.4.a
+		ai_chance = {
+			factor = 90
+		}
+		add_political_power = -35
+		add_stability = -0.05
+		hidden_effect = {
+			country_event = {
+				id = greatlake.8
+				days = 5
+			}
+		}
+	}
+}
+
+#A Deal With Biden
+country_event = {
+	id = greatlake.5
+	title = greatlake.5.t
+	desc = greatlake.5.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 1 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.5.a
+		ai_chance = {
+			factor = 25
+		}
+		add_equipment_to_stockpile = {
+        type = infantry_equipment
+        amount = 2500
+        producer = FRA
+        }
+		diplomatic_relation = {
+        country = FRA
+        relation = non_aggression_pact
+        active = yes
+        }
+	}
+}
+
+#America Reunited (moderate libertarian)
+news_event = {
+	id = greatlake.6
+	title = greatlake.6.t
+	desc = greatlake.6.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.6.a
+		ai_chance = {
+			factor = 100
+		}
+		if = {
+			limit = {NOT = {is_ai = yes}}
+			set_country_flag = {
+    				flag = super_event
+    				value = 44
+			}
+			hidden_effect = {
+			    if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
+				    sound_effect = "moderate_libertarian"
+				    play_song = "one_minute_of_silence"
+			    }
+			}
+		}
+	}
+}
+
+#country_event = {
+#	id = greatlake.7
+#	title = greatlake.7.t
+#	desc = greatlake.7.d
+#	#picture = er
+#	is_triggered_only = yes
+#	#mean_time_to_happen = { days = 50 }
+#	fire_only_once = yes
+#	immediate = {
+#	
+#	}
+#	option = {
+#		name = greatlake.7.a
+#		ai_chance = {
+#			factor = 25
+#		}
+#		swap_ideas = {
+#			    remove_idea = Unorganized_Boogaloo_2
+#			    add_idea = boogaloo_militas
+#			}
+#	}
+#}
+
+#Boogaloo Militias Getting Arrested
+country_event = {
+	id = greatlake.8
+	title = greatlake.8.t
+	desc = greatlake.8.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 5 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.8.a
+		ai_chance = {
+			factor = 25
+		}
+		add_political_power = -25
+		add_stability = 0.05
+		hidden_effect = {
+			country_event = {
+				id = greatlake.9
+				days = 5
+			}
+		}
+	}
+}
+
+#More Boogaloo Militias Getting Arrested
+country_event = {
+	id = greatlake.9
+	title = greatlake.9.t
+	desc = greatlake.9.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 5 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.9.a
+		ai_chance = {
+			factor = 25
+		}
+		add_political_power = -25
+		add_stability = 0.05
+		hidden_effect = {
+			country_event = {
+				id = greatlake.10
+				days = 15
+			}
+		}
+	}
+}
+
+#Boogaloo Militias Trial
+country_event = {
+	id = greatlake.10
+	title = greatlake.10.t
+	desc = greatlake.10.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 15 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.10.a
+		ai_chance = {
+			factor = 25
+		}
+		add_political_power = -10
+		hidden_effect = {
+			country_event = {
+				id = greatlake.11
+				days = 30
+			}
+		}
+	}
+}
+
+#Boogaloo Militias Verdict Ends
+country_event = {
+	id = greatlake.11
+	title = greatlake.11.t
+	desc = greatlake.11.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 30 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.11.a
+		ai_chance = {
+			factor = 25
+		}
+		add_political_power = 15
+	}
+}
+
+#Boogaloo Coop
+country_event = {
+	id = greatlake.12
+	title = greatlake.12.t
+	desc = greatlake.12.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 10 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.12.a
+		ai_chance = {
+			factor = 25
+		}
+		124 = { set_demilitarized_zone = yes }
+		155 = { set_demilitarized_zone = yes }
+		152 = { set_demilitarized_zone = yes }
+		197 = { set_demilitarized_zone = yes }
+		198 = { set_demilitarized_zone = yes }
+		209 = { set_demilitarized_zone = yes }
+		204 = { set_demilitarized_zone = yes }
+		206 = { set_demilitarized_zone = yes }
+		560 = { set_demilitarized_zone = yes }
+		208 = { set_demilitarized_zone = yes }
+		157 = { set_demilitarized_zone = yes }
+		190 = { set_demilitarized_zone = yes }
+		161 = { set_demilitarized_zone = yes }
+		162 = { set_demilitarized_zone = yes }
+		160 = { set_demilitarized_zone = yes }
+		set_cosmetic_tag = GLA_Boogaloo
+		set_politics = {
+        ruling_party = autocratic
+        elections_allowed = no
+        last_election = "2021.4.30"
+        election_frequency = 48
+        }
+		mark_focus_tree_layout_dirty = yes
+		complete_national_focus = GLA_the_boogaloo_coup
+		add_popularity = {
+        ideology = autocratic
+        popularity = 0.15
+        }
+		set_political_power = 1
+		add_stability = -0.1
+		hidden_effect = {
+			country_event = {
+				id = greatlake.13
+				days = 10
+			}
+			country_event = {
+				id = greatlake.74
+				days = 0
+			}
+			add_ideas = GLA_a_broken_government
+			add_ideas = GLA_the_economy_in_shambles
+			remove_ideas = Inneffective_Government
+			remove_ideas = Inneffective_Government_2
+			remove_ideas = Inneffective_Government_3
+			remove_ideas = Unpopolar_Libertarian_Administration
+			remove_ideas = Unpopolar_Libertarian_Administration_2
+			remove_ideas = Unpopolar_Libertarian_Administration_3
+			remove_ideas = Ruins_of_the_Rust_Belt
+			remove_ideas = Ruins_of_the_Rust_Belt_2
+			remove_ideas = Ruins_of_the_Rust_Belt_3
+			remove_ideas = Ruins_of_the_Rust_Belt_4
+			remove_ideas = GLA_a_constitutionality_accurate_government
+			remove_ideas = GLA_a_constitutionality_accurate_government_2
+			remove_ideas = GLA_a_constitutionality_accurate_government_3
+			remove_ideas = GLA_a_constitutionality_accurate_government_4
+			remove_ideas = GLA_a_constitutionality_accurate_government_5
+			remove_ideas = GLA_libertarian_party_divided
+			remove_ideas = GLA_libertarian_party_divided_2
+			remove_ideas = GLA_libertarian_party_divided_3
+			remove_ideas = GLA_libertarian_party_divided_4
+			remove_ideas = GLA_libertarian_party_divided_5
+			remove_ideas = GLA_more_gun_rights
+			remove_ideas = GLA_ancapistan
+			remove_ideas = GLA_ancapistan_2
+			remove_ideas = GLA_ancapistan_3
+			remove_ideas = GLA_ancapistan_4
+			remove_ideas = GLA_libertarian_education
+			remove_ideas = GLA_libertarian_education_2
+			remove_ideas = GLA_libertarian_education_3
+			remove_ideas = GLA_the_great_lakes_economy
+			remove_ideas = GLA_the_great_lakes_economy_2
+			remove_ideas = GLA_privateized_police
+			remove_ideas = GLA_privateized_education
+			remove_ideas = GLA_cooporation_with_farmers
+			remove_ideas = GLA_cooporation_with_small_businesses
+			remove_ideas = GLA_cooporation_with_big_businesses
+			remove_ideas = GLA_a_tax_free_nation
+			remove_ideas = GLA_loan
+			remove_ideas = GLA_corporate_projects
+			remove_ideas = GLA_libertarian_military_training
+			remove_ideas = GLA_recruitment_ads
+			remove_ideas = GLA_libertarian_propaganda
+			remove_ideas = GLA_libertarian_progressivism
+			remove_ideas = GLA_libertarian_conservatism
+			remove_ideas = GLA_our_second_amendment_rights
+			remove_ideas = GLA_our_second_amendment_rights_2
+			remove_ideas = GLA_our_second_amendment_rights_3
+			remove_ideas = GLA_no_gun_restrictions
+			remove_ideas = GLA_no_gun_restrictions_2
+			remove_ideas = GLA_press_freedom
+			remove_ideas = GLA_recreational_drugs_legalized
+			remove_ideas = GLA_democrat_support
+			remove_ideas = GLA_republican_support
+			remove_ideas = GLA_cryptocurrency
+			remove_ideas = GLA_anti_communism
+			remove_ideas = GLA_a_capitalist_socitey
+			remove_ideas = GLA_a_capitalist_socitey_2
+			remove_ideas = GLA_no_government
+			remove_ideas = GLA_a_capitalist_anarchy
+			remove_ideas = GLA_free_market_environmentalism
+			remove_ideas = GLA_migrants_allowed
+			clear_variable = GLA_paleolibertarians
+		    clear_variable = GLA_moderate_libertarians
+		    clear_variable = GLA_minarchists
+		    clear_variable = GLA_ancaps
+			every_unit_leader = { 
+				if = {
+				    limit = { has_trait = national_guard_member }
+				    remove_unit_leader = yes
+				}
+			}
+		}
+	}
+}
+
+#Socialist Parties Grow
+country_event = {
+	id = greatlake.13
+	title = greatlake.13.t
+	desc = greatlake.13.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 10 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.13.a
+		ai_chance = {
+			factor = 25
+		}
+		add_popularity = {
+        ideology = libertarian_left
+        popularity = 0.1
+        }
+		add_political_power = -15
+		add_stability = -0.05
+        add_ideas = GLA_rising_tensions
+	}
+}
+
+#The Nation in Chaos Blah Blah Blah
+country_event = {
+	id = greatlake.14
+	title = greatlake.14.t
+	desc = greatlake.14.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.14.a
+		ai_chance = {
+			factor = 25
+		}
+	}
+}
+
+#Everything is Under Control
+country_event = {
+	id = greatlake.15
+	title = greatlake.15.t
+	desc = greatlake.15.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.15.a
+		ai_chance = {
+			factor = 25
+		}
+		add_stability = 0.1
+		add_political_power = 45
+	}
+}
+
+#Lore
+#country_event = {
+#	id = greatlake.16
+#	title = greatlake.16.t
+#	desc = greatlake.16.d
+#	#picture = er
+#	trigger = {
+#		tag = GLA
+#	}
+#	is_triggered_only = no
+#	#mean_time_to_happen = { days = 0 }
+#	fire_only_once = yes
+#	immediate = {
+#	
+#	}
+#	option = {
+#		name = greatlake.16.a
+#		ai_chance = {
+#			factor = 99
+#		}
+#	}
+#}
+
+#Adam Fox Becomes Leader
+country_event = {
+	id = greatlake.17
+	title = greatlake.17.t
+	desc = greatlake.17.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.17.a
+		ai_chance = {
+			factor = 25
+		}
+		promote_character = {
+			character = GLA_adam_fox
+			ideology = national_anarchism
+		}
+		retire_character = GLA_the_boogaloo_council
+		#promote_character = GLA_adam_fox
+	}
+}
+
+#Ron Paul Announces His Campaign
+country_event = {
+	id = greatlake.18
+	title = greatlake.18.t
+	desc = greatlake.18.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 4 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.18.a
+		ai_chance = {
+			factor = 25
+		}
+		hidden_effect = {
+			country_event = {
+				id = greatlake.19
+				days = 10
+			}
+		}
+	}
+}
+
+#John McAfee Announces His Campaign
+country_event = {
+	id = greatlake.19
+	title = greatlake.19.t
+	desc = greatlake.19.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 4 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.19.a
+		ai_chance = {
+			factor = 25
+		}
+		hidden_effect = {
+			country_event = {
+				id = greatlake.20
+				days = 10
+			}
+		}
+	}
+}
+
+#Gary Johnson Announces His Campaign
+country_event = {
+	id = greatlake.20
+	title = greatlake.20.t
+	desc = greatlake.20.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 4 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.20.a
+		ai_chance = {
+			factor = 25
+		}
+		hidden_effect = {
+			country_event = {
+				id = greatlake.21
+				days = 35
+			}
+		}
+	}
+}
+
+#Campaigning
+country_event = {
+	id = greatlake.21
+	title = greatlake.21.t
+	desc = greatlake.21.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 8 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.21.a
+		ai_chance = {
+			factor = 25
+		}
+		trigger = {
+            check_variable = {
+				var = GLA_opps
+				value = 50
+				compare = less_than
+			}
+		}
+		add_popularity = {
+			ideology = libertarian_right
+			popularity = 0.01
+		}
+		add_to_variable = {
+			var = GLA_opps
+			value = -5
+			tooltip = GLA_the_chances_of_no_victory
+		}
+		hidden_effect = {
+			country_event = {
+				id = greatlake.22
+				days = 35
+			}
+		}
+	}
+	option = {
+		name = greatlake.21.b
+		ai_chance = {
+			factor = 25
+		}
+		trigger = {
+            check_variable = {
+				var = GLA_opps
+				value = 50
+				compare = greater_than_or_equals
+			}
+		}
+		add_popularity = {
+			ideology = libertarian_right
+			popularity = 0.01
+		}
+		add_to_variable = {
+			var = GLA_opps
+			value = 5
+			tooltip = GLA_the_chances_of_victory
+		}
+		hidden_effect = {
+			country_event = {
+				id = greatlake.22
+				days = 35
+			}
+		}
+	}
+}
+
+#Libertarian Party Debate
+country_event = {
+	id = greatlake.22
+	title = greatlake.22.t
+	desc = greatlake.22.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 35 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.22.a
+		ai_chance = {
+			factor = 25
+		}
+		add_political_power = 15
+		add_popularity = {
+			ideology = libertarian_right
+			popularity = 0.03
+		}
+		add_to_variable = {
+			var = GLA_opps
+			value = 5
+			tooltip = GLA_the_chances_of_victory
+		}
+		hidden_effect = {
+			country_event = {
+				id = greatlake.23
+				days = 55
+			}
+		}
+	}
+}
+
+#Pls Vote
+country_event = {
+	id = greatlake.23
+	title = greatlake.23.t
+	desc = greatlake.23.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 55 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.23.a
+		ai_chance = {
+			factor = 25
+		}
+		add_political_power = 15
+		country_event = {
+			id = greatlake.24
+			days = 45
+		}
+	}
+}
+
+#The Election Starts
+country_event = {
+	id = greatlake.24
+	title = greatlake.24.t
+	desc = greatlake.24.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 65 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.24.a
+		ai_chance = {
+			factor = 25
+		}
+		add_political_power = -10
+		hidden_effect = {
+			country_event = {
+				id = greatlake.25
+				days = 2
+			}
+		}
+	}
+}
+
+#The REAL Election
+country_event = {
+	id = greatlake.25
+	title = greatlake.25.t
+	desc = greatlake.25.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 2 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	#JoJo
+	option = {
+		name = greatlake.25.a
+		ai_chance = {
+			factor = 25
+		}
+		trigger = {
+            check_variable = {
+				var = GLA_opps
+				value = 50
+				compare = less_than
+			}
+		}
+		complete_national_focus = GLA_the_elections
+		complete_national_focus = GLA_the_moderate_way
+		country_event = {
+			id = greatlake.53
+			days = 0
+		}
+		clear_variable = GLA_opps
+		clr_country_flag = GLA_opp_side
+		clr_country_flag = GLA_mama_jo_side
+	}
+	#Based McAffee RIP TO THE HOMIE
+	option = {
+		name = greatlake.25.b
+		ai_chance = {
+			factor = 25
+		}
+		trigger = {
+		    check_variable = {
+			    var = GLA_opps
+			    value = 50
+			    compare = greater_than_or_equals
+		    }
+	    }
+		GLA_john_mcafee = {
+			promote_character = yes
+		}
+		clr_country_flag = john_mcafee_picked
+		complete_national_focus = GLA_the_elections
+		complete_national_focus = GLA_the_ancapistan_way
+		country_event = {
+				id = greatlake.54
+				days = 0
+			}
+		set_cosmetic_tag = GLA_McAffee
+		remove_ideas = Unpopolar_Libertarian_Administration
+		clear_variable = GLA_opps
+		clr_country_flag = GLA_opp_side
+		clr_country_flag = GLA_mama_jo_side
+	}
+	#Gary Johnson
+	option = {
+		name = greatlake.25.c
+		ai_chance = {
+			factor = 25
+		}
+		trigger = {
+			check_variable = {
+			    var = GLA_opps
+			    value = 50
+			    compare = greater_than_or_equals
+		    }
+	    }
+		GLA_gary_johnson = {
+			promote_character = yes
+		}
+		clr_country_flag = gary_johnson_picked
+		complete_national_focus = GLA_the_elections
+		complete_national_focus = GLA_the_moderate_way
+		country_event = {
+				id = greatlake.55
+				days = 0
+			}
+		remove_ideas = Unpopolar_Libertarian_Administration
+		clear_variable = GLA_opps
+		clr_country_flag = GLA_opp_side
+		clr_country_flag = GLA_mama_jo_side
+	}
+	#Ronny Paully
+	option = {
+		name = greatlake.25.e
+		ai_chance = {
+			factor = 25
+		}
+		trigger = {
+			check_variable = {
+			    var = GLA_opps
+			    value = 50
+			    compare = greater_than_or_equals
+		    }
+	    }
+		GLA_ron_paul = {
+			promote_character = yes
+		}
+		clr_country_flag = ron_paul_picked
+		complete_national_focus = GLA_the_elections
+		complete_national_focus = GLA_the_paleolibertarianist_way
+		country_event = {
+				id = greatlake.56
+				days = 0
+			}
+		set_cosmetic_tag = GLA_Ron_Paul
+		remove_ideas = Unpopolar_Libertarian_Administration
+		clear_variable = GLA_opps
+		clr_country_flag = GLA_opp_side
+		clr_country_flag = GLA_mama_jo_side
+	}
+	#option = {
+	#	name = greatlake.25.f
+	#	ai_chance = {
+	#		factor = 20
+	#	}
+	#	create_country_leader = {
+	#		name = "Jeremy ''Spike'' Cohen"
+	#		picture = "gfx/leaders/GLA/Spike_Cohen.tga"
+	#		expire = "2060.1.1"
+	#		ideology = Minarchism
+	#		traits = {
+	#			Boogaloo_Sympathizer
+	#		}
+	#	}
+	#   complete_national_focus = GLA_the_elections
+	#	complete_national_focus = GLA_the_moderate_way
+	#	set_cosmetic_tag = GLA_Minarchist
+	#}
+}
+
+#Boogaloo Demand Support 1
+country_event = {
+	id = greatlake.26
+	title = greatlake.26.t
+	desc = greatlake.26.d
+	#picture = er
+	trigger = {
+		has_completed_focus = GLA_the_boogaloo_militias
+		has_power_balance = {
+            id = boogaloo_bop
+        }
+	}
+	is_triggered_only = no
+	#mean_time_to_happen = { days = 50 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.26.a
+		ai_chance = {
+			factor = 25
+		}
+		add_political_power = -45
+		add_power_balance_value = {
+        id = boogaloo_bop
+        value = 0.15
+        tooltip_side = boogaloo_likes_us
+        }
+		hidden_effect = {
+			country_event = {
+				id = greatlake.27
+				days = 70
+			}
+		}
+	}
+	option = {
+		name = greatlake.26.b
+		ai_chance = {
+			factor = 25
+		}
+		add_power_balance_value = {
+        id = boogaloo_bop
+        value = -0.15
+        tooltip_side = boogaloo_hates_us
+        }
+		hidden_effect = {
+			country_event = {
+				id = greatlake.27
+				days = 70
+			}
+		}
+	}
+}
+
+#Boogaloo Demand Support 2
+country_event = {
+	id = greatlake.27
+	title = greatlake.27.t
+	desc = greatlake.27.d
+	#picture = er
+	trigger = {
+		has_completed_focus = GLA_the_boogaloo_militias
+		has_power_balance = {
+            id = boogaloo_bop
+        }
+	}
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 70 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.27.a
+		ai_chance = {
+			factor = 25
+		}
+		add_political_power = -10
+		add_power_balance_value = {
+        id = boogaloo_bop
+        value = 0.15
+        tooltip_side = boogaloo_likes_us
+        }
+		hidden_effect = {
+			country_event = {
+				id = greatlake.28
+				days = 70
+			}
+		}
+	}
+	option = {
+		name = greatlake.27.b
+		ai_chance = {
+			factor = 25
+		}
+		add_political_power = -10
+		add_power_balance_value = {
+        id = boogaloo_bop
+        value = -0.15
+        tooltip_side = boogaloo_hates_us
+        }
+		hidden_effect = {
+			country_event = {
+				id = greatlake.28
+				days = 70
+			}
+		}
+	}
+}
+
+#Boogaloo Demand Support 3
+country_event = {
+	id = greatlake.28
+	title = greatlake.28.t
+	desc = greatlake.28.d
+	#picture = er
+	trigger = {
+		has_completed_focus = GLA_the_boogaloo_militias
+		has_power_balance = {
+            id = boogaloo_bop
+        }
+	}
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 70 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.28.a
+		ai_chance = {
+			factor = 25
+		}
+		add_stability = -0.05
+		add_power_balance_value = {
+        id = boogaloo_bop
+        value = 0.15
+        tooltip_side = boogaloo_likes_us
+        }
+		hidden_effect = {
+			country_event = {
+				id = greatlake.29
+				days = 75
+			}
+		}
+	}
+	option = {
+		name = greatlake.28.b
+		ai_chance = {
+			factor = 25
+		}
+		add_political_power = -10
+		add_power_balance_value = {
+        id = boogaloo_bop
+        value = -0.15
+        tooltip_side = boogaloo_hates_us
+        }
+		hidden_effect = {
+			country_event = {
+				id = greatlake.29
+				days = 75
+			}
+		}
+	}
+}
+
+#Boogaloo Demand Support 4
+country_event = {
+	id = greatlake.29
+	title = greatlake.29.t
+	desc = greatlake.29.d
+	#picture = er
+	trigger = {
+		has_completed_focus = GLA_the_boogaloo_militias
+		has_power_balance = {
+            id = boogaloo_bop
+        }
+	}
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 75 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.29.a
+		ai_chance = {
+			factor = 25
+		}
+		add_equipment_to_stockpile = {
+            type = infantry_equipment
+            amount = -450
+            producer = GLA
+        }
+		add_power_balance_value = {
+        id = boogaloo_bop
+        value = 0.15
+        tooltip_side = boogaloo_likes_us
+        }
+	}
+	option = {
+		name = greatlake.29.b
+		ai_chance = {
+			factor = 25
+		}
+		add_power_balance_value = {
+        id = boogaloo_bop
+        value = -0.15
+        tooltip_side = boogaloo_hates_us
+        }
+	}
+}
+
+#Boogaloo Gone
+country_event = {
+	id = greatlake.30
+	title = greatlake.30.t
+	desc = greatlake.30.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.30.a
+		ai_chance = {
+			factor = 25
+		}
+		complete_national_focus = GLA_dissolve_the_boogaloo_army
+	}
+}
+
+#Getting Mercs
+country_event = {
+	id = greatlake.31
+	title = greatlake.31.t
+	desc = greatlake.31.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.31.a
+		ai_chance = {
+			factor = 25
+		}
+		remove_power_balance = {
+            id = boogaloo_bop
+        }
+		complete_national_focus = GLA_get_mercenaries
+		if = {
+			limit = {
+				power_balance_value = {
+				    id = boogaloo_bop
+				    value < -0.15
+			    } 
+		    } 
+			remove_country_leader_trait = Boogaloo_Sympathizer
+		}
+	}
+}
+
+#Keep The Boogaloo
+country_event = {
+	id = greatlake.32
+	title = greatlake.32.t
+	desc = greatlake.32.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.32.a
+		ai_chance = {
+			factor = 25
+		}
+		remove_power_balance = {
+            id = boogaloo_bop
+        }
+		complete_national_focus = GLA_keep_the_boogaloo_army
+	}
+}
+
+#AnCap America
+news_event = {
+	id = greatlake.33
+	title = greatlake.33.t
+	desc = greatlake.33.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.33.a
+		ai_chance = {
+			factor = 100
+		}
+		if = {
+			limit = {NOT = {is_ai = yes}}
+			set_country_flag = {
+    				flag = super_event
+    				value = 42
+			}
+			hidden_effect = {
+			    if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
+				    sound_effect = "ancapistan"
+				    play_song = "one_minute_of_silence"
+			    }
+			}
+		}
+	}
+}
+
+#Boogaloo America
+news_event = {
+	id = greatlake.34
+	title = greatlake.34.t
+	desc = greatlake.34.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.34.a
+		ai_chance = {
+			factor = 100
+		}
+		if = {
+			limit = {NOT = {is_ai = yes}}
+			set_country_flag = {
+    				flag = super_event
+    				value = 43
+			}
+			hidden_effect = {
+			    if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
+				    sound_effect = "boogaloo"
+				    play_song = "one_minute_of_silence"
+			    }
+			}
+		}
+	}
+}
+
+#Starting Event
+country_event = {
+	id = greatlake.35
+	title = greatlake.35.t
+	desc = greatlake.35.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.35.a
+		ai_chance = {
+			factor = 25
+		}
+	}
+}
+
+#Yarvin Rises
+country_event = {
+	id = greatlake.36
+	title = greatlake.36.t
+	desc = greatlake.36.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 10 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.36.a
+		ai_chance = {
+			factor = 50
+		}
+	}
+	option = {
+		name = greatlake.36.b
+		ai_chance = {
+			factor = 50
+		}
+		add_political_power = 25
+		hidden_effect = {
+			country_event = {
+				id = greatlake.37
+				days = 15
+			}
+		}
+		custom_effect_tooltip = GLA_yarvin_power
+		set_country_flag = GLA_yarvins_power
+	}
+}
+
+#Yarvin's Party Grows
+country_event = {
+	id = greatlake.37
+	title = greatlake.37.t
+	desc = greatlake.37.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 15 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.37.a
+		ai_chance = {
+			factor = 25
+		}
+		hidden_effect = {
+			country_event = {
+				id = greatlake.38
+				days = 15
+			}
+		}
+		custom_effect_tooltip = GLA_yarvin_power
+		modify_country_flag = {
+			flag = GLA_yarvins_power
+			value = 2
+		}
+	}
+}
+
+#Yarvin's Speech
+country_event = {
+	id = greatlake.38
+	title = greatlake.38.t
+	desc = greatlake.38.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 15 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.38.a
+		ai_chance = {
+			factor = 25
+		}
+		add_political_power = 25
+		custom_effect_tooltip = GLA_yarvin_power
+		modify_country_flag = {
+			flag = GLA_yarvins_power
+			value = 1
+		}
+	}
+}
+
+#Yarvin Coops The Boogaloo Militias
+country_event = {
+	id = greatlake.39
+	title = greatlake.39.t
+	desc = greatlake.39.d
+	#picture = er
+	trigger = {
+		has_country_flag = {
+			flag = GLA_yarvins_power
+			value > 2
+		}
+		has_completed_focus = GLA_who_cares_about_the_people
+	}
+	is_triggered_only = no
+	#mean_time_to_happen = { days = 3 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.39.a
+		ai_chance = {
+			factor = 25
+		}
+		add_ideas = GLA_boogaloo_rebels
+		add_ideas = GLA_unpopolar_government
+		hidden_effect = {
+			country_event = {
+				id = greatlake.75
+				days = 0
+			}
+		    remove_ideas = Unorganized_Boogaloo
+		    remove_ideas = Unorganized_Boogaloo_2
+		    remove_ideas = Unorganized_Boogaloo_3
+		    remove_ideas = weakened_boogaloo_militias
+		    remove_ideas = weakened_boogaloo_militias_2
+		    remove_ideas = boogaloo_militias
+			every_unit_leader = { 
+				if = {
+				    limit = { has_trait = boogaloo_general }
+				    remove_unit_leader = yes
+				}
+			}
+			add_corps_commander_role = {
+				Character = GLA_andrew_tate
+				skill = 2
+				attack_skill = 1
+				defense_skill = 1
+				planning_skill = 2
+				logistics_skill = 2
+			}
+		}
+		set_cosmetic_tag = GLA_yarvin
+		GLA_curtis_yarvin = {
+			promote_character = yes
+		}
+		set_politics = {
+            ruling_party = autocratic
+            elections_allowed = no
+            last_election = "2021.4.30"
+            election_frequency = 48
+			long_name = GLA_yarvin_party_long
+			name = GLA_yarvin_party
+        }
+		add_popularity = {
+            ideology = autocratic
+            popularity = -0.15
+        }
+		mark_focus_tree_layout_dirty = yes
+		complete_national_focus = GLA_the_yarvin_march
+		add_political_power = -50
+		add_stability = 0.05
+	}
+}
+
+#Gaining The People's Trust
+country_event = {
+	id = greatlake.40
+	title = greatlake.40.t
+	desc = greatlake.40.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 5 }
+	fire_only_once = yes
+	immediate = {
+	}
+	option = {
+		name = greatlake.40.a
+		ai_chance = {
+			factor = 25
+		}
+	}
+}
+
+#Migrant Question
+country_event = {
+	id = greatlake.41
+	title = greatlake.41.t
+	desc = greatlake.41.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 15 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.41.a
+		ai_chance = {
+			factor = 25
+		}
+		add_ideas = GLA_migrants_allowed
+		add_to_variable = {
+			var = GLA_moderate_libertarians
+			value = 5
+			tooltip = GLA_moderate_libertarians_will_be_happy
+		}
+		add_to_variable = {
+			var = GLA_paleolibertarians
+			value = -5
+			tooltip = GLA_paleolibertarians_wont_be_happy
+		}
+	}
+	option = {
+		name = greatlake.41.b
+		ai_chance = {
+			factor = 25
+		}
+		trigger = {
+			NOT = {
+				has_completed_focus = GLA_the_ancapistan_way
+			}
+		}
+		add_ideas = GLA_border_control
+		add_to_variable = {
+			var = GLA_paleolibertarians
+			value = 5
+			tooltip = GLA_paleolibertarians_will_be_happy
+		}
+	}
+}
+
+country_event = {
+	id = greatlake.42
+	title = greatlake.42.t
+	desc = greatlake.42.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 15 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.42.a
+		ai_chance = {
+			factor = 25
+		}
+		add_ideas = GLA_free_market_environmentalism
+	}
+	option = {
+		name = greatlake.42.b
+		ai_chance = {
+			factor = 25
+		}
+		add_stability = -0.05
+		add_political_power = 35
+	}
+}
+
+country_event = {
+	id = greatlake.43
+	title = greatlake.43.t
+	desc = greatlake.43.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.43.a
+		ai_chance = {
+			factor = 25
+		}
+		swap_ideas = {
+			remove_idea = GLA_a_constitutionality_accurate_government_5
+			add_idea = GLA_a_constitutionality_accurate_government_6a
+		}
+	}
+	option = {
+		name = greatlake.43.b
+		ai_chance = {
+			factor = 25
+		}
+		swap_ideas = {
+			remove_idea = GLA_a_constitutionality_accurate_government_5
+			add_idea = GLA_a_constitutionality_accurate_government_6b
+		}
+	}
+	option = {
+		name = greatlake.43.c
+		ai_chance = {
+			factor = 25
+		}
+		swap_ideas = {
+			remove_idea = GLA_a_constitutionality_accurate_government_5
+			add_idea = GLA_a_constitutionality_accurate_government_6c
+		}
+	}
+}
+
+#Great Lakes Wants to Be Friends With Texas
+country_event = {
+	id = greatlake.44
+	title = greatlake.44.t
+	desc = greatlake.44.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+    
+	}
+	option = {
+		name = greatlake.44.a
+		ai_chance = {
+			factor = 80
+		}
+		if = {
+		    limit = { NOT = { is_in_faction = no } }
+            GLA = { add_to_faction = TEX }
+		}
+		if = {
+		    limit = { is_in_faction = yes }
+            GLA = {
+            add_opinion_modifier = {
+                target = TEX
+                modifier = gla_diplomacy
+                }
+			}
+			give_guarantee = GLA
+			GLA = { give_guarantee = TEX }
+			give_military_access = GLA
+			GLA = { give_military_access = TEX }
+		}
+		hidden_effect = {
+			country_event = {
+				id = greatlake.45
+				days = 10
+			}
+		}
+	}
+	option = {
+		name = greatlake.44.b
+		ai_chance = {
+			factor = 20
+		}
+		hidden_effect = {
+			country_event = {
+				id = greatlake.46
+				days = 10
+			}
+		}
+	}
+}
+
+#Texas Joins
+country_event = {
+	id = greatlake.45
+	title = greatlake.45.t
+	desc = greatlake.45.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+    
+	}
+	option = {
+		name = greatlake.45.a
+		ai_chance = {
+			factor = 100
+		}
+		
+	}
+}
+
+#Texas Doesnt Join
+country_event = {
+	id = greatlake.46
+	title = greatlake.46.t
+	desc = greatlake.46.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+    
+	}
+	option = {
+		name = greatlake.46.a
+		ai_chance = {
+			factor = 100
+		}
+		
+	}
+}
+
+#Great Lakes Wants to Be Friends With Florida
+country_event = {
+	id = greatlake.47
+	title = greatlake.47.t
+	desc = greatlake.47.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+    
+	}
+	option = {
+		name = greatlake.47.a
+		ai_chance = {
+			factor = 80
+		}
+		if = {
+		    limit = { NOT = { is_in_faction = no } has_government = libertarian_right }
+            GLA = { add_to_faction = FLO }
+		}
+		if = {
+		    limit = { is_in_faction = yes has_government = republican }
+			GLA = {
+            add_opinion_modifier = {
+                target = FLO
+                modifier = gla_diplomacy
+                }
+			}
+			give_guarantee = GLA
+			GLA = { give_guarantee = FLO }
+			give_military_access = GLA
+			GLA = { give_military_access = FLO }
+		}
+		hidden_effect = {
+			country_event = {
+				id = greatlake.48
+				days = 10
+			}
+		}
+	}
+	option = {
+		name = greatlake.47.b
+		ai_chance = {
+			factor = 20
+		}
+		hidden_effect = {
+			country_event = {
+				id = greatlake.49
+				days = 10
+			}
+		}
+	}
+}
+
+#Florida Joins
+country_event = {
+	id = greatlake.48
+	title = greatlake.48.t
+	desc = greatlake.48.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+    
+	}
+	option = {
+		name = greatlake.48.a
+		ai_chance = {
+			factor = 100
+		}
+		
+	}
+}
+
+#Florida Doesnt Join
+country_event = {
+	id = greatlake.49
+	title = greatlake.49.t
+	desc = greatlake.49.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+    
+	}
+	option = {
+		name = greatlake.49.a
+		ai_chance = {
+			factor = 100
+		}
+		
+	}
+}
+
+#Yarvin America
+news_event = {
+	id = greatlake.50
+	title = greatlake.50.t
+	desc = greatlake.50.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.50.a
+		ai_chance = {
+			factor = 100
+		}
+		if = {
+			limit = {NOT = {is_ai = yes}}
+			set_country_flag = {
+    				flag = super_event
+    				value = 45
+			}
+			hidden_effect = {
+			    if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
+				    sound_effect = "yarvin"
+				    play_song = "one_minute_of_silence"
+			    }
+		    }
+		}
+	}
+}
+
+#The Libertarian Opps Primary Election
+#country_event = {
+#	id = greatlake.51
+#	title = greatlake.51.t
+#	desc = greatlake.51.d
+#	#picture = er
+#	is_triggered_only = yes
+#	#mean_time_to_happen = { days = 35 }
+#	fire_only_once = yes
+#	immediate = {
+#	
+#	}
+#	#Ron Paul
+#	option = {
+#		name = greatlake.51.a
+#		ai_chance = {
+#			factor = 25
+#		}
+#		hidden_effect = {
+#			set_country_flag = ron_paul_picked
+#			country_event = {
+#				id = greatlake.21
+#				days = 8
+#			}
+#		}
+#	}
+#	#Gary Johnson
+#	option = {
+#		name = greatlake.51.b
+#		ai_chance = {
+#			factor = 25
+#		}
+#		hidden_effect = {
+#			set_country_flag = gary_johnson_picked
+#			country_event = {
+#				id = greatlake.21
+#				days = 8
+#			}
+#		}
+#	}
+#	#John McAfee
+#	option = {
+#		name = greatlake.51.c
+#		ai_chance = {
+#			factor = 25
+#		}
+#		hidden_effect = {
+#			set_country_flag = john_mcafee_picked
+#			country_event = {
+#				id = greatlake.21
+#				days = 8
+#			}
+#		}
+#	}
+#}
+
+#Yarvin's Coronation
+country_event = {
+	id = greatlake.52
+	title = greatlake.52.t
+	desc = greatlake.52.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.52.a
+		ai_chance = {
+			factor = 25
+		}
+		add_popularity = {
+        ideology = autocratic
+        popularity = 0.05
+        }
+		add_political_power = 50
+		add_stability = 0.05
+	}
+}
+
+#Mama Jo Victory
+country_event = {
+	id = greatlake.53
+	title = greatlake.53.t
+	desc = greatlake.53.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.53.a
+		ai_chance = {
+			factor = 25
+		}
+		add_political_power = 10
+		unlock_decision_category_tooltip = GLA_libertarian_political_decisions
+		custom_effect_tooltip = GLA_decisions_are_unlocked
+		hidden_effect = {
+			set_variable = {
+				var = GLA_moderate_libertarians
+				value = 90
+				tooltip = GLA_the_chances_of_victory
+			}
+			set_variable = {
+				var = GLA_paleolibertarians
+				value = 25
+				tooltip = GLA_the_chances_of_victory
+			}
+			set_variable = {
+				var = GLA_ancaps
+				value = 25
+				tooltip = GLA_the_chances_of_victory
+			}
+			set_variable = {
+				var = GLA_minarchists
+				value = 25
+				tooltip = GLA_the_chances_of_victory
+			}
+		}
+	}
+}
+
+#McAfee Victory
+country_event = {
+	id = greatlake.54
+	title = greatlake.54.t
+	desc = greatlake.54.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.54.a
+		ai_chance = {
+			factor = 25
+		}
+		add_political_power = 10
+		unlock_decision_category_tooltip = GLA_libertarian_political_decisions
+		custom_effect_tooltip = GLA_decisions_are_unlocked
+		hidden_effect = {
+			set_variable = {
+				var = GLA_moderate_libertarians
+				value = 25
+				tooltip = GLA_the_chances_of_victory
+			}
+			set_variable = {
+				var = GLA_paleolibertarians
+				value = 25
+				tooltip = GLA_the_chances_of_victory
+			}
+			set_variable = {
+				var = GLA_ancaps
+				value = 90
+				tooltip = GLA_the_chances_of_victory
+			}
+			set_variable = {
+				var = GLA_minarchists
+				value = 25
+				tooltip = GLA_the_chances_of_victory
+			}
+		}
+	}
+}
+
+#Gary Victory
+country_event = {
+	id = greatlake.55
+	title = greatlake.55.t
+	desc = greatlake.55.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.55.a
+		ai_chance = {
+			factor = 25
+		}
+		add_political_power = 10
+		unlock_decision_category_tooltip = GLA_libertarian_political_decisions
+		custom_effect_tooltip = GLA_decisions_are_unlocked
+		hidden_effect = {
+			set_variable = {
+				var = GLA_moderate_libertarians
+				value = 90
+				tooltip = GLA_the_chances_of_victory
+			}
+			set_variable = {
+				var = GLA_paleolibertarians
+				value = 25
+				tooltip = GLA_the_chances_of_victory
+			}
+			set_variable = {
+				var = GLA_ancaps
+				value = 25
+				tooltip = GLA_the_chances_of_victory
+			}
+			set_variable = {
+				var = GLA_minarchists
+				value = 25
+				tooltip = GLA_the_chances_of_victory
+			}
+		}
+	}
+}
+
+#Ronny Victory
+country_event = {
+	id = greatlake.56
+	title = greatlake.56.t
+	desc = greatlake.56.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.56.a
+		ai_chance = {
+			factor = 25
+		}
+		add_political_power = 10
+		unlock_decision_category_tooltip = GLA_libertarian_political_decisions
+		hidden_effect = {
+			set_variable = {
+				var = GLA_moderate_libertarians
+				value = 25
+				tooltip = GLA_the_chances_of_victory
+			}
+			set_variable = {
+				var = GLA_paleolibertarians
+				value = 90
+				tooltip = GLA_the_chances_of_victory
+			}
+			set_variable = {
+				var = GLA_ancaps
+				value = 25
+				tooltip = GLA_the_chances_of_victory
+			}
+			set_variable = {
+				var = GLA_minarchists
+				value = 25
+				tooltip = GLA_the_chances_of_victory
+			}
+		}
+	}
+}
+
+#Giving in to the Opps
+country_event = {
+	id = greatlake.57
+	title = greatlake.57.t
+	desc = greatlake.57.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.57.a
+		ai_chance = {
+			factor = 25
+		}
+		add_to_variable = {
+			var = GLA_paleolibertarians
+			value = 5
+			tooltip = GLA_paleolibertarians_will_be_happy
+		}
+	}
+	option = {
+		name = greatlake.57.b
+		ai_chance = {
+			factor = 25
+		}
+		add_to_variable = {
+			var = GLA_ancaps
+			value = 5
+			tooltip = GLA_ancaps_will_be_happy
+		}
+	}
+	option = {
+		name = greatlake.57.c
+		ai_chance = {
+			factor = 25
+		}
+		add_to_variable = {
+			var = GLA_minarchists
+			value = 5
+			tooltip = GLA_minarchists_will_be_happy
+		}
+	}
+}
+
+#What to Do with the National Guard
+country_event = {
+	id = greatlake.58
+	title = greatlake.58.t
+	desc = greatlake.58.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.58.a
+		ai_chance = {
+			factor = 40
+		}
+		add_political_power = -50
+		add_stability = -0.05
+		delete_unit_template_and_units = {
+            division_template = "National Guard"
+            disband = no
+        }
+		every_unit_leader = { 
+			if = {
+				limit = { has_trait = national_guard_member }
+				remove_unit_leader = yes
+			}
+		}
+	}
+	option = {
+		name = greatlake.58.b
+		ai_chance = {
+			factor = 60
+		}
+		add_political_power = 10
+	}
+}
+
+#True Capitalism Must Be Achieved!
+country_event = {
+	id = greatlake.59
+	title = greatlake.59.t
+	desc = greatlake.59.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.59.a
+		ai_chance = {
+			factor = 25
+		}
+		add_to_variable = {
+			var = GLA_minarchists
+			value = 5
+			tooltip = GLA_minarchists_will_be_happy
+		}
+		add_stability = 0.05
+	}
+	option = {
+		name = greatlake.59.b
+		ai_chance = {
+			factor = 25
+		}
+		add_popularity = {
+       		ideology = libertarian_right
+        	popularity = 0.05
+       	}
+	}
+}
+
+#Pinochet Larp
+country_event = {
+	id = greatlake.60
+	title = greatlake.60.t
+	desc = greatlake.60.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.60.a
+		ai_chance = {
+			factor = 25
+		}
+		add_stability = -0.05
+		add_popularity = {
+            ideology = libertarian_left
+            popularity = -0.1
+        }
+	}
+}
+
+#Exiling The Leftists
+country_event = {
+	id = greatlake.61
+	title = greatlake.61.t
+	desc = greatlake.61.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.61.a
+		ai_chance = {
+			factor = 25
+		}
+		add_popularity = {
+            ideology = libertarian_left
+            popularity = -0.1
+        }
+        USA = {
+		add_popularity = {
+            ideology = libertarian_left
+            popularity = 0.1
+            }
+	    }
+	}
+}
+
+#Yarvin Gets Arrested
+country_event = {
+	id = greatlake.62
+	title = greatlake.62.t
+	desc = greatlake.62.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.62.a
+		ai_chance = {
+			factor = 25
+		}
+		add_popularity = {
+			ideology = autocratic
+			popularity = 0.05
+		}
+	}
+}
+
+#Adam Fox Gets Arrested
+country_event = {
+	id = greatlake.63
+	title = greatlake.63.t
+	desc = greatlake.63.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.63.a
+		ai_chance = {
+			factor = 25
+		}
+		hidden_effect = {
+		    country_event = {
+			    id = greatlake.64
+			    days = 0
+		    }
+		}
+	}
+}
+
+#What To Do With Adam Fox
+country_event = {
+	id = greatlake.64
+	title = greatlake.64.t
+	desc = greatlake.64.d
+	#picture = er
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.64.a
+		ai_chance = {
+			factor = 70
+		}
+	}
+	option = {
+		name = greatlake.64.b
+		ai_chance = {
+			factor = 30
+		}
+	}
+}
+
+#The Future of The Great Lakes
+country_event = {
+	id = greatlake.65
+	title = greatlake.65.t
+	desc = greatlake.65.d
+	#picture = er
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.65.a
+		ai_chance = {
+			factor = 10
+		}
+	}
+}
+
+#Boogaloo Control
+country_event = {
+	id = greatlake.66
+	title = greatlake.66.t
+	desc = greatlake.66.d
+	#picture = er
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.66.a
+		ai_chance = {
+			factor = 10
+		}
+	}
+}
+
+#Boogaloo Freedom
+country_event = {
+	id = greatlake.67
+	title = greatlake.67.t
+	desc = greatlake.67.d
+	#picture = er
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.67.a
+		ai_chance = {
+			factor = 10
+		}
+	}
+}
+
+#The CEO Takeover
+country_event = {
+	id = greatlake.68
+	title = greatlake.68.t
+	desc = greatlake.68.d
+	#picture = er
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.68.a
+		ai_chance = {
+			factor = 10
+		}
+		swap_ideas = {
+			remove_idea = GLA_ceo_freedom_2
+			add_idea = GLA_ceo_control
+		}
+		remove_power_balance = {
+            id = yarvin_bop
+        }
+		add_trait = {
+			character = GLA_curtis_yarvin
+			ideology = dark_enlightenment
+			trait = GLA_corporate_puppet
+	    }
+	}
+}
+
+#An Attempted Assassination of Yarvin
+country_event = {
+	id = greatlake.69
+	title = greatlake.69.t
+	desc = greatlake.69.d
+	#picture = er
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.69.a
+		ai_chance = {
+			factor = 10
+		}
+		add_trait = {
+			character = GLA_curtis_yarvin
+			ideology = dark_enlightenment
+			trait = assassination_survivor
+	    }
+		country_event = {
+			id = greatlake.71
+			days = 2
+		}
+	}
+}
+
+#Political Parties Secretly Funding Resistance Organizations
+country_event = {
+	id = greatlake.70
+	title = greatlake.70.t
+	desc = greatlake.70.d
+	#picture = er
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.70.a
+		ai_chance = {
+			factor = 10
+		}
+		every_occupied_country = { add_resistance = -5 }
+		add_popularity = {
+			ideology = autocratic
+			popularity = 0.05
+		}
+		add_stability = -0.05
+	}
+}
+
+#Yarvin's Declaration
+country_event = {
+	id = greatlake.71
+	title = greatlake.71.t
+	desc = greatlake.71.d
+	#picture = er
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.71.a
+		ai_chance = {
+			factor = 10
+		}
+		swap_ideas = {
+			remove_idea = GLA_ceo_freedom_2
+			add_idea = GLA_ceos_under_control
+		}
+		add_war_support = 0.1
+		add_political_power = -100
+		remove_power_balance = {
+            id = yarvin_bop
+        }
+		set_character_name = {
+			character = GLA_curtis_yarvin
+			name = "Mencius Moldbug"
+		}
+		remove_advisor_role = {
+			character = "GLA_yves_guillemot"
+			slot = political_advisor
+		}
+		remove_advisor_role = {
+			character = "GLA_chris_kempczinski"
+			slot = political_advisor
+		}
+	}
+}
+
+#Boogaloo Militias Spreads Propaganda Againist Us
+country_event = {
+	id = greatlake.72
+	title = greatlake.72.t
+	desc = greatlake.72.d
+	#picture = er
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.72.a
+		ai_chance = {
+			factor = 10
+		}
+		add_popularity = {
+			ideology = libertarian_right
+			popularity = -0.05
+		}
+		add_popularity = {
+			ideology = autocratic
+			popularity = 0.05
+		}
+	}
+}
+
+#Boogaloo Militias Start Rallies
+country_event = {
+	id = greatlake.73
+	title = greatlake.73.t
+	desc = greatlake.73.d
+	#picture = er
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.73.a
+		ai_chance = {
+			factor = 10
+		}
+		add_popularity = {
+			ideology = autocratic
+			popularity = 0.07
+		}
+	}
+}
+
+#Boogaloo Coop News Event
+news_event = {
+	id = greatlake.74
+	title = greatlake.74.t
+	desc = greatlake.74.d
+	picture = event_news_GLA_boogaloo_coup
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.74.a
+		ai_chance = {
+			factor = 10
+		}
+	}
+}
+
+#Yarvin Coop News Event
+news_event = {
+	id = greatlake.75
+	title = greatlake.75.t
+	desc = greatlake.75.d
+	picture = event_news_GLA_yarvin_coup
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.75.a
+		ai_chance = {
+			factor = 10
+		}
+	}
+}
+
+#Yarvin Gets the National Guard Back
+country_event = {
+	id = greatlake.76
+	title = greatlake.76.t
+	desc = greatlake.76.d
+	#picture = er
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.76.a
+		ai_chance = {
+			factor = 25
+		}
+		add_corps_commander_role = {
+			Character = GLA_bryan_teff
+			skill = 4
+			attack_skill = 2
+			defense_skill = 4
+			planning_skill = 2
+			logistics_skill = 4
+		}
+		add_corps_commander_role = {
+			Character = GLA_paul_rogers
+			skill = 5
+			attack_skill = 2
+			defense_skill = 4
+			planning_skill = 2
+			logistics_skill = 4
+		}
+		add_corps_commander_role = {
+			Character = GLA_paul_knapp
+			skill = 4
+			attack_skill = 3
+			defense_skill = 3
+			planning_skill = 3
+			logistics_skill = 3
+		}
+		add_corps_commander_role = {
+			Character = GLA_allen_robinson
+			skill = 5
+			attack_skill = 1
+			defense_skill = 3
+			planning_skill = 3
+			logistics_skill = 3
+		}
+		add_corps_commander_role = {
+			Character = GLA_ravindra_wagh
+			skill = 5
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 3
+			logistics_skill = 2
+		}
+		add_corps_commander_role = {
+			Character = GLA_jenny_r_balabuch
+			skill = 5
+			attack_skill = 3
+			defense_skill = 1
+			planning_skill = 3
+			logistics_skill = 2
+		}
+		add_corps_commander_role = {
+			Character = GLA_matthew_hopkins
+			skill = 4
+			attack_skill = 1
+			defense_skill = 4
+			planning_skill = 2
+			logistics_skill = 1
+		}
+		add_field_marshal_role = {
+			Character = GLA_william_w_russell
+			skill = 5
+			attack_skill = 2
+			defense_skill = 4
+			planning_skill = 3
+			logistics_skill = 4
+		}
+	}
+}
+
+#Yarvin Comes Back to California
+country_event = {
+	id = greatlake.77
+	title = greatlake.77.t
+	desc = greatlake.77.d
+	#picture = er
+	is_triggered_only = no
+	fire_only_once = yes
+	trigger = {
+		tag = GLA
+		owns_state = 304
+	}
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.77.a
+		ai_chance = {
+			factor = 10
+		}
+	}
+}
+
+#Gary Johnson Comes Back to New Mexico
+country_event = {
+	id = greatlake.78
+	title = greatlake.78.t
+	desc = greatlake.78.d
+	#picture = er
+	is_triggered_only = no
+	fire_only_once = yes
+	trigger = {
+		tag = GLA
+		owns_state = 310
+	}
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.78.a
+		ai_chance = {
+			factor = 10
+		}
+	}
+}
+
+#Libertarian Government Part 1: Party System
+country_event = {
+	id = greatlake.79
+	title = greatlake.79.t
+	desc = greatlake.79.d
+	#picture = er
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	#Two-party system
+	option = {
+		name = greatlake.79.a
+		ai_chance = {
+			factor = 10
+		}
+		country_event = {
+			id = greatlake.80
+			days = 5
+		}
+		if = {
+		    limit = { has_completed_focus = GLA_libertarian_conservatism }
+            add_popularity = {
+				ideology = democrat
+				popularity = 0.4
+			}
+		}
+		if = {
+		    limit = { has_completed_focus = GLA_libertarian_progressivism }
+            add_popularity = {
+				ideology = republican
+				popularity = 0.4
+			}
+		}
+	}
+	#Multi-party system
+	option = {
+		name = greatlake.79.b
+		ai_chance = {
+			factor = 10
+		}
+		country_event = {
+			id = greatlake.80
+			days = 5
+		}
+		add_popularity = {
+			ideology = democrat
+			popularity = 0.15
+		}
+		add_popularity = {
+			ideology = republican
+			popularity = 0.15
+		}
+		add_popularity = {
+			ideology = libertarian_left
+			popularity = 0.15
+		}
+	}
+}
+
+#Libertarian Government Part 2: Join Other International Organizations?
+country_event = {
+	id = greatlake.80
+	title = greatlake.80.t
+	desc = greatlake.80.d
+	#picture = er
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	#Yes
+	option = {
+		name = greatlake.80.a
+		ai_chance = {
+			factor = 10
+		}
+		country_event = {
+			id = greatlake.81
+			days = 5
+		}
+		add_stability = 0.05
+		add_war_support = -0.05
+	}
+	#No
+	option = {
+		name = greatlake.80.b
+		ai_chance = {
+			factor = 10
+		}
+		country_event = {
+			id = greatlake.81
+			days = 5
+		}
+		add_stability = -0.05
+		add_war_support = 0.05
+	}
+}
+
+#Libertarian Government Part 3: Our New Capital?
+country_event = {
+	id = greatlake.81
+	title = greatlake.81.t
+	desc = greatlake.81.d
+	#picture = er
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	#Washington D.C
+	option = {
+		name = greatlake.81.a
+		ai_chance = {
+			factor = 10
+		}
+		set_capital = {state = 242}
+	}
+	#New York City
+	option = {
+		name = greatlake.81.b
+		ai_chance = {
+			factor = 10
+		}
+		set_capital = {state = 223}
+	}
+	#Chicago
+	option = {
+		name = greatlake.81.c
+		ai_chance = {
+			factor = 10
+		}
+		set_capital = {state = 198}
+	}
+	#Detroit
+	option = {
+		name = greatlake.81.d
+		ai_chance = {
+			factor = 10
+		}
+		set_capital = {state = 153}
+	}
+	#Los Angeles
+	option = {
+		name = greatlake.81.e
+		ai_chance = {
+			factor = 10
+		}
+		set_capital = {state = 302}
+	}
+	#Keep Our Capitol
+	option = {
+		name = greatlake.81.f
+		ai_chance = {
+			factor = 10
+		}
+	}
+}
+
+#Meeting With Libertarian World Leaders
+country_event = {
+	id = greatlake.82
+	title = greatlake.82.t
+	desc = greatlake.82.d
+	#picture = er
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.82.a
+		ai_chance = {
+			factor = 10
+		}
+	}
+}
+
+#Our Friends At Moscow
+country_event = {
+	id = greatlake.83
+	title = greatlake.83.t
+	desc = greatlake.83.d
+	#picture = er
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.83.a
+		ai_chance = {
+			factor = 10
+		}
+		add_ideas = GLA_russian_coop
+	}
+}
+
+#Work With China?
+country_event = {
+	id = greatlake.84
+	title = greatlake.84.t
+	desc = greatlake.84.d
+	#picture = er
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.84.a
+		ai_chance = {
+			factor = 10
+		}
+		add_ideas = GLA_chinese_coop
+	}
+	option = {
+		name = greatlake.84.b
+		ai_chance = {
+			factor = 10
+		}
+		add_war_support = 0.1
+	}
+}
+
+#Protests Over Boogaloo Militias
+country_event = {
+	id = greatlake.85
+	title = greatlake.85.t
+	desc = greatlake.85.d
+	#picture = er
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.85.a
+		ai_chance = {
+			factor = 10
+		}
+		add_stability = -0.05
+		add_popularity = {
+			ideology = libertarian_right
+		    popularity = -0.05
+	    }
+	}
+}
+
+#The National Guard Warns Us About The Boogaloo Militias
+country_event = {
+	id = greatlake.86
+	title = greatlake.86.t
+	desc = greatlake.86.d
+	#picture = er
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.86.a
+		ai_chance = {
+			factor = 10
+		}
+		add_stability = -0.05
+	}
+}
+
+#More Protests Over Boogaloo Militias
+country_event = {
+	id = greatlake.87
+	title = greatlake.87.t
+	desc = greatlake.87.d
+	#picture = er
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.87.a
+		ai_chance = {
+			factor = 10
+		}
+		add_stability = -0.05
+		add_popularity = {
+			ideology = libertarian_right
+		    popularity = -0.05
+	    }
+	}
+}
+
+#Pink Libertarianism (this event is about the lgbtq's growing support for libertarianism in the great lakes :D)
+country_event = {
+	id = greatlake.88
+	title = greatlake.88.t
+	desc = greatlake.88.d
+	#picture = er
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.88.a
+		ai_chance = {
+			factor = 10
+		}
+		add_stability = 0.02
+		add_popularity = {
+			ideology = libertarian_right
+		    popularity = 0.04
+	    }
+	}
+}
+
+#The Return of American Tradtions (this event is about the youth in great lakes growing support for tradtionalism)
+country_event = {
+	id = greatlake.89
+	title = greatlake.89.t
+	desc = greatlake.89.d
+	#picture = er
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.89.a
+		ai_chance = {
+			factor = 10
+		}
+		add_stability = 0.02
+		add_popularity = {
+			ideology = libertarian_right
+		    popularity = 0.04
+	    }
+	}
+}
+
+#Connecting With The New Generation
+country_event = {
+	id = greatlake.90
+	title = greatlake.90.t
+	desc = greatlake.90.d
+	#picture = er
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.90.a
+		ai_chance = {
+			factor = 10
+		}
+	}
+}
+
+#Cryptocurrency Becomes More Widespread
+country_event = {
+	id = greatlake.91
+	title = greatlake.91.t
+	desc = greatlake.91.d
+	#picture = er
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.91.a
+		ai_chance = {
+			factor = 10
+		}
+		add_ideas = GLA_cryptocurrency
+	}
+}
+
+
+#Crypto Stocks Crashes
+country_event = {
+	id = greatlake.92
+	title = greatlake.92.t
+	desc = greatlake.92.d
+	#picture = er
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.92.a
+		ai_chance = {
+			factor = 10
+		}
+		add_stability = -0.05
+		random_controlled_state = {
+			limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+			add_extra_state_shared_building_slots = -1
+			add_building_construction = {
+					type = industrial_complex
+					level = -1
+					instant_build = yes
+			}
+		}
+		random_controlled_state = {
+			limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+			add_extra_state_shared_building_slots = -1
+			add_building_construction = {
+					type = industrial_complex
+					level = -1
+					instant_build = yes
+			}
+		}
+		random_controlled_state = {
+			limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+			add_extra_state_shared_building_slots = -1
+			add_building_construction = {
+					type = industrial_complex
+					level = -1
+					instant_build = yes
+			}
+		}
+	}
+}
+
+#A New Chicago (the event talks about how much chicago has changed ever since mcafee became leader)
+country_event = {
+	id = greatlake.93
+	title = greatlake.93.t
+	desc = greatlake.93.d
+	#picture = er
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.93.a
+		ai_chance = {
+			factor = 10
+		}
+	}
+}
+
+#The Weed and Vape Industry Skyrocket
+country_event = {
+	id = greatlake.94
+	title = greatlake.94.t
+	desc = greatlake.94.d
+	#picture = er
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.94.a
+		ai_chance = {
+			factor = 10
+		}
+		random_controlled_state = {
+			limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+			}
+		}
+		random_controlled_state = {
+			limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+			}
+		}
+	}
+}
+
+#Hackers Breach Into Our Government Databases (gay furry hackers hack into yarvin's government, yes this is a event im adding :3)
+country_event = {
+	id = greatlake.95
+	title = greatlake.95.t
+	desc = greatlake.95.d
+	#picture = er
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.95.a
+		ai_chance = {
+			factor = 10
+		}
+	}
+}
+
+#Rebuilding Chicago
+country_event = {
+	id = greatlake.96
+	title = greatlake.96.t
+	desc = greatlake.96.d
+	#picture = er
+	is_triggered_only = no
+	trigger = {
+		tag = GLA
+		NOT = { country_exists = ISA }
+	}
+	mean_time_to_happen = { days = 0 }
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.96.a
+		ai_chance = {
+			factor = 10
+		}
+		add_stability = 0.01
+	}
+}
+
+#Crime Rates Continue to Increse
+country_event = {
+	id = greatlake.97
+	title = greatlake.97.t
+	desc = greatlake.97.d
+	#picture = er
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.97.a
+		ai_chance = {
+			factor = 10
+		}
+		add_stability = -0.03
+	}
+}
+
+#Anti-Libertarian Protests Spring Up
+country_event = {
+	id = greatlake.98
+	title = greatlake.98.t
+	desc = greatlake.98.d
+	#picture = er
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.98.a
+		ai_chance = {
+			factor = 10
+		}
+		add_popularity = {
+			ideology = libertarian_right
+		    popularity = -0.05
+	    }
+	}
+}
+
+#McAfee's Empire of Vice
+country_event = {
+	id = greatlake.99
+	title = greatlake.99.t
+	desc = greatlake.99.d
+	#picture = er
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.99.a
+		ai_chance = {
+			factor = 10
+		}
+		add_political_power = 50
+		random_controlled_state = {
+			limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+			}
+		}
+		random_controlled_state = {
+			limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+			}
+		}
+	}
+}
+
+#
+country_event = {
+	id = greatlake.100
+	title = greatlake.100.t
+	desc = greatlake.100.d
+	#picture = er
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.100.a
+		ai_chance = {
+			factor = 10
+		}
+	}
+}

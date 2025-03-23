@@ -1,0 +1,340 @@
+# Starting tech
+set_technology = {
+	infantry_weapons = 1
+	infantry_weapons1 = 1
+	tech_recon = 1
+	tech_support = 1		
+	tech_engineers = 1
+	tech_mountaineers = 1
+	motorised_infantry = 1
+	gw_artillery = 1
+	interwar_antiair = 1
+	early_fighter = 1
+	fighter1 = 1
+	 
+	 
+	strategic_bomber1 = 1
+	CAS1 = 1
+	naval_bomber1 = 1
+	mechanised_infantry = 1
+	formation_flying = 1
+	synth_oil_experiments = 1
+	fuel_silos = 1
+	fuel_refining = 1
+}
+if = {
+	limit = {
+		NOT = { has_dlc = "No Step Back" }
+	}
+	set_technology = {
+		gwtank = 1
+		basic_light_tank = 1
+		improved_light_tank = 1
+		basic_heavy_tank = 1
+	}
+}
+if = {
+	limit = {
+		has_dlc = "No Step Back"
+	}
+	set_technology = {
+		gwtank_chassis = 1
+		basic_light_tank_chassis = 1
+		improved_light_tank_chassis = 1
+		basic_heavy_tank_chassis = 1
+		engine_tech_1 = 1
+	}
+}
+if = {
+	limit = {
+		not = { has_dlc = "Man the Guns" }
+	}
+	set_technology = {
+		early_submarine = 1
+		early_destroyer = 1
+		basic_destroyer = 1
+		early_light_cruiser = 1
+		early_heavy_cruiser = 1
+		early_battleship = 1
+		early_battlecruiser = 1
+		early_carrier = 1
+		transport = 1
+	}
+	set_naval_oob = "CSA_naval"
+}
+if = {
+	limit = {
+		has_dlc = "Man the Guns" 
+	}
+	set_technology = {
+		basic_naval_mines = 1
+		submarine_mine_laying = 1
+		early_ship_hull_light = 1
+		basic_ship_hull_light = 1
+		early_ship_hull_submarine = 1
+		early_ship_hull_cruiser = 1
+		basic_ship_hull_cruiser = 1
+		early_ship_hull_heavy = 1
+		early_ship_hull_carrier = 1
+		basic_ship_hull_carrier = 1
+		basic_battery = 1
+		basic_light_battery = 1
+		basic_medium_battery = 1
+		basic_heavy_battery = 1
+		basic_torpedo = 1
+		sonar = 1
+		smoke_generator = 1
+		basic_depth_charges = 1
+		basic_secondary_battery = 1
+		basic_cruiser_armor_scheme = 1
+		basic_heavy_armor_scheme = 1
+		mtg_transport = 1
+		improved_secondary_battery = 1
+		basic_fire_control_system = 1
+	}
+	set_naval_oob = "CSA_naval_mtg"
+}
+
+capital = 506
+
+set_research_slots = 3
+
+add_opinion_modifier = {
+    target = FRA
+    modifier = illegitimate_successor_opinion
+}
+add_opinion_modifier = {
+    target = USA
+    modifier = illegitimate_successor_opinion
+}
+add_opinion_modifier = {
+    target = PRA
+    modifier = illegitimate_successor_opinion
+}
+add_opinion_modifier = {
+    target = AFS
+    modifier = illegitimate_successor_opinion
+}
+
+oob = "CSA_2021"
+set_variable = {
+	var = sexy_x
+	value = -200 #50 required for state take over, 58 max
+}
+set_country_flag = {
+    flag = kkk_strike
+    value = 1 #will be 1, keep in it at 5 to test the southern collapse
+}
+set_country_flag = {
+    flag = black_strike
+    value = 0
+}
+set_country_flag = {
+    flag = rebuild_progres
+    value = 5 
+}
+add_ideas = {
+	CSA_the_klan
+	CSA_black_panthers
+	CSA_ruined_economy_0
+	#International_Vaccines #no vaccines in the Chaosfederacy
+}
+
+set_country_flag = has_wing_republican
+set_country_flag = has_wing_democrat
+set_country_flag = has_wing_libertarian_right
+set_country_flag = has_wing_libertarian_left
+set_country_flag = has_wing_authoritarian_left
+set_country_flag = has_political_discourse
+
+#for the dixie crisis
+
+country_event = {
+    id = south.2
+    days = 1400
+}
+
+country_event = {
+    id = south.14
+    days = 360
+}
+
+country_event = {
+    id = south.21
+    days = 600
+}
+
+country_event = {
+    id = south.24
+    days = 1000
+}
+
+country_event = {
+    id = south.10
+    days = 90
+}
+
+add_to_array = {
+    array = global.south_collapse
+    value = CSA.id
+    index = 0
+}
+add_to_array = {
+    array = global.south_collapse
+    value = KKK.id
+    index = 1
+}
+add_to_array = {
+    array = global.south_collapse
+    value = AFR.id
+    index = 2
+}
+add_to_array = {
+    array = global.south_collapse
+    value = CSB.id
+    index = 3
+}
+add_to_array = {
+    array = global.south_collapse
+    value = LGB.id
+    index = 4
+}
+add_to_array = {
+    array = global.south_collapse
+    value = ZIO.id
+    index = 5
+}
+
+add_to_array = {
+    array = global.south_collapse
+    value = ARK.id
+    index = 6
+}
+
+add_to_array = {
+    array = global.south_collapse
+    value = SCA.id
+    index = 7
+}
+#add_to_array = { #Still unsure on weather to include them
+#    array = global.south_collapse
+#    value = BLM.id
+#   index = 6
+#}
+
+
+set_politics = {
+	ruling_party = autocratic
+	last_election = "2020.11.3"
+	election_frequency = 48
+	elections_allowed = no
+}
+set_popularities = {
+	autocratic = 70
+	republican = 10
+	democrat = 5
+	authoritarian_left = 15
+	libertarian_right = 0
+	libertarian_left = 0
+}
+
+#Starting airforce
+add_equipment_to_stockpile = {
+	type = fighter_equipment_1
+	amount = 40
+    	producer = FRA
+}
+
+#Fuck your political power gain :>
+add_stability = -0.1
+
+### Country Leaders ###
+recruit_character = CSA_kanye_west
+recruit_character = CSA_west
+recruit_character = CSA_michelle_tidball
+recruit_character = CSA_brian_kemp
+recruit_character = CSA_shaka_zulu
+recruit_character = CSA_enrique_tarrio
+recruit_character = KKK_Gene_Andrews
+
+### Military Staff and Political Advisors ###
+
+### Generals ###
+recruit_character = CSA_elmer_stewart_rhodes
+recruit_character = CSA_john_johnson
+recruit_character = CSA_richard_spencer
+recruit_character = CSA_richard_mack
+recruit_character = CSA_charles_dyer
+recruit_character = CSA_jake_botta
+recruit_character = CSA_henry_macnamara
+recruit_character = CSA_craig_lang
+recruit_character = CSA_der_soldat
+recruit_character = CSA_bobbie_goodwin
+recruit_character = CSA_christopher_s_walker
+recruit_character = CSA_darius_paul
+recruit_character = CSA_clarence_ervin
+recruit_character = CSA_kevin_murphy
+recruit_character = CSA_alastor_dutch
+recruit_character = CSA_h_k_edgerton
+
+### Admirals ###
+recruit_character = CSA_wayne_justice
+recruit_character = CSA_arthur_brooks
+
+if = {
+	limit = {
+		NOT = { has_dlc = "Man the Guns" }
+	}
+	create_equipment_variant = {
+		name = "Submarine Hunter"
+		type = destroyer_1
+		parent_version = 0
+		upgrades = {
+			ship_reliability_upgrade = 2
+			ship_engine_upgrade = 2
+			ship_gun_upgrade = 2
+			ship_anti_air_upgrade = 2
+		}
+	}
+	create_equipment_variant = {
+		name = "Hunley Class"
+		type = submarine_1
+		parent_version = 0
+		upgrades = {
+			ship_reliability_upgrade = 3
+			sub_engine_upgrade = 2
+			sub_stealth_upgrade = 2
+			sub_torpedo_upgrade = 3
+		}
+	}
+}
+if = {
+	limit = { 
+		has_dlc = "Man the Guns" 
+	}
+	create_equipment_variant = {
+		name = "Submarine Hunter"				
+		type = ship_hull_light_1
+		parent_version = 0
+		modules = {
+			fixed_ship_battery_slot = ship_light_battery_1
+			fixed_ship_anti_air_slot = empty
+			fixed_ship_fire_control_system_slot = empty
+			fixed_ship_radar_slot = empty
+			fixed_ship_engine_slot = light_ship_engine_1
+			fixed_ship_torpedo_slot = ship_torpedo_1
+			mid_1_custom_slot = ship_depth_charge_1
+			rear_1_custom_slot = ship_depth_charge_1
+		}
+	}
+	create_equipment_variant = {
+		name = "Hunley Class"
+		type = ship_hull_submarine_1
+		parent_version = 0
+		modules = {
+			fixed_ship_torpedo_slot = ship_torpedo_sub_1
+			fixed_ship_engine_slot = sub_ship_engine_1
+			rear_1_custom_slot = ship_torpedo_sub_1
+		}
+	}
+}

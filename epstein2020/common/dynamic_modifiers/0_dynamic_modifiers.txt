@@ -1,0 +1,291 @@
+#	Example:
+# 
+#	example_dynamic_modifier = {
+#		icon = "GFX_idea_unknown" # optional, will show up in guis if icon is specified
+#		enable = { always = yes } #optional, the modifier won't apply if not enabled
+#		remove_trigger = { always = no } #optional, will remove the modifier if true
+#
+#		# list of modifiers
+#		fuel_cost = 321
+#		max_fuel = var_max_fuel # will be taken from a variable
+#	}
+#
+#
+#	In a script file:
+#
+#	effect = {
+#		add_dynamic_modifier = {
+#			modifier = example_dynamic_modifier
+#			scope = GER # optional, if you specify this your dynamic modifier scoped to this scope (root is the effect scope)
+#			days = 14 # optional, will be removed after this many days passes
+#		}
+#	}
+#
+#	can be added to countries, states or unit leaders
+#	will only updated daily, unless forced by force_update_dynamic_modifier effect
+
+sabotaged_resources = {
+	remove_trigger = { 
+		has_resistance = no
+	}
+	
+	icon = GFX_modifiers_sabotaged_resource
+	
+	temporary_state_resource_oil = sabotaged_oil
+	temporary_state_resource_aluminium = sabotaged_aluminium
+	temporary_state_resource_rubber = sabotaged_rubber
+	temporary_state_resource_tungsten = sabotaged_tungsten
+	temporary_state_resource_steel = sabotaged_steel
+	temporary_state_resource_chromium = sabotaged_chromium
+}
+
+resource_import_cost = { #NATIONAL SPIRIT, balls.
+	enable = { always = yes }
+
+	icon = GFX_idea_resource_import_cost
+	
+	political_power_cost = resource_import_political_power_cost 
+	civilian_factory_use = resource_import_consumer_goods_factor #Was originaly cg before paradox fucked em up
+	country_resource_rubber = resource_import_rubber
+	country_resource_oil = resource_import_oil
+	country_resource_tungsten = resource_import_tungsten
+	country_resource_aluminium = resource_import_aluminium
+	country_resource_chromium = resource_import_chromium
+	country_resource_steel = resource_import_steel
+}
+
+
+
+PAC_army_militia_mechanic = {
+	icon = "GFX_idea_PAC_rivalry"
+	conscription_factor = militia_strength
+	army_attack_factor = army_strength
+	army_defence_factor = army_strength
+}
+
+
+fuel_mechanic = {
+	industrial_capacity_factory = expense_mil
+	production_speed_buildings_factor = expense_civs
+	base_fuel_gain = fuel_lost
+	fuel_gain_factor = fuel_rationing
+}
+
+
+
+
+FRA_rural_rebels = {
+	icon = "GFX_idea_FLO_trumpism" 
+	disable_strategic_redeployment_for_controller = yes
+	army_speed_factor = -0.2
+	local_supplies_for_controller = -0.5
+	attrition_for_controller = 0.4
+	local_org_regain = -0.2
+	state_resources_factor = -0.5
+	local_manpower = -0.85
+	state_production_speed_buildings_factor = -0.75
+	local_resources_factor = -0.75
+	local_building_slots_factor = -0.75
+	remove_trigger = { 
+		NOT = { controller = { has_country_flag = FRA_trumpist_resistance } }
+	}
+}
+FRA_defense_of_dc = {
+	icon = "GFX_idea_FRA_bidone_glasses" 
+	army_core_attack_factor = 0.1
+	army_core_defence_factor = 0.1
+	army_defence_factor = 0.1
+	army_org_factor = 0.2
+	army_org_regain = 0.3
+	army_morale_factor = 0.3
+}
+
+
+TEX_nmx_rebels_state_modifier = {
+	icon = "GFX_idea_TEX_New_Mexican_Terrorism"
+	resistance_target = 0.5
+	resistance_growth = 0.5
+	#no_compliance_gain = yes
+	remove_trigger = { 
+		NOT = { controller = { original_tag = TEX } }
+	}
+}
+TEX_oklahoma_rebels_state_modifier = {
+	icon = "GFX_idea_TEX_Oklahoma_Rebels"
+	resistance_target = 0.5
+	resistance_growth = 0.5
+	#no_compliance_gain = yes
+	remove_trigger = { 
+		NOT = { controller = { original_tag = TEX } }
+	}
+
+}
+
+
+
+
+CSA_southern_bloodshet = {
+	icon = "GFX_idea_CSA_blood" 
+	army_speed_factor = -0.5 
+	army_defence_factor = 0.2
+	supply_consumption_factor = 1
+	army_morale_factor = -0.25
+	org_damage_multiplier = -0.2
+}
+CSA_ruined_infra = {
+	icon = "GFX_idea_unknown" 
+	army_speed_factor = -0.40
+	supply_consumption_factor = 1
+	army_morale_factor = -0.25
+}
+CSA_faith = {
+	icon = "GFX_idea_unknown" 
+	stability_factor = pop_sup
+	war_support_factor = pop_sup
+	conscription_factor = cons_faith
+}
+
+
+
+USA_opposition = {
+	icon = "GFX_idea_unknown" 
+	custom_modifier_tooltip = USA_opp_tuto
+	political_power_cost = party_popularity@democrat
+	resistance_target = opp_resistance
+	compliance_gain = opp_comp
+}
+USA_proud_boys_idea = {
+	enable = { always = yes }
+
+	stability_factor = usa_proud_boys_stability_var
+	army_attack_factor = usa_proud_boys_attack_var
+	army_defence_factor = usa_proud_boys_attack_var
+	conscription_factor = usa_proud_boys_var
+	ai_focus_aggressive_factor = usa_proud_boys_var
+}
+
+FAL_ech = {
+	icon = "GFX_idea_FAL_ech"
+
+	consumer_goods_factor = ech_consumer
+	industrial_capacity_factory = ech_factory
+	production_speed_buildings_factor = ech_construction
+	political_power_gain = -0.1
+}
+
+OBX_low_cost_eq = {
+    enable = { always = yes }
+	consumer_goods_expected_value = OBX.low_cost_cg
+	
+}
+OBX_med_cost_eq = {
+    enable = { always = yes }
+	consumer_goods_expected_value = OBX.med_cost_cg
+	
+}
+OBX_high_cost_eq = {
+    enable = { always = yes }
+	consumer_goods_expected_value = OBX.high_cost_cg
+	
+}
+OBX_NATO_air_idea = { #NATIONAL SPIRIT, balls.
+	enable = { always = yes }
+
+	icon = generic_air_research
+	
+	air_ace_bonuses_factor = OBX.air_general_modifier
+	air_ace_generation_chance_factor = OBX.air_general_modifier
+	ace_effectiveness_factor = OBX.air_general_modifier
+
+	air_maximum_speed_factor = OBX.air_general_modifier
+	air_mission_efficiency = OBX.air_general_modifier
+	air_mission_xp_gain_factor = OBX.air_general_modifier
+
+	air_agility_factor = OBX.air_fighter_modifier
+	air_attack_factor = OBX.air_fighter_modifier
+	air_defence_factor = OBX.air_fighter_modifier
+	air_superiority_detect_factor = OBX.air_fighter_modifier
+	air_superiority_efficiency = OBX.air_fighter_modifier
+
+	air_interception_detect_factor = OBX.air_fighter_modifier
+	air_escort_efficiency = OBX.air_fighter_modifier
+	air_home_defence_factor = OBX.air_fighter_modifier
+	air_intercept_efficiency = OBX.air_fighter_modifier
+
+	naval_strike_targetting_factor = OBX.air_cas_modifier
+	air_close_air_support_org_damage_factor = OBX.air_cas_modifier
+	air_bombing_targetting = OBX.air_cas_modifier
+	air_cas_efficiency = OBX.air_cas_modifier
+	ground_attack_factor = OBX.air_cas_modifier
+
+	air_strategic_bomber_bombing_factor = OBX.air_tac_modifier
+
+}
+OBX_NATO_army_idea = { #NATIONAL SPIRIT, balls.
+	enable = { always = yes }
+
+	icon = generic_air_research
+	
+	army_attack_factor = OBX.var_army_improvement
+	army_defence_factor = OBX.var_army_improvement
+	army_speed_factor = OBX.var_army_improvement_speed
+	army_org_factor = OBX.var_army_improvement
+	army_org_regain = OBX.var_army_improvement_speed
+	org_loss_when_moving = OBX.var_army_improvement_supply
+	army_morale_factor = OBX.var_army_improvement
+	breakthrough_factor = OBX.var_army_improvement
+	dig_in_speed_factor = OBX.var_army_improvement
+	max_dig_in_factor = OBX.var_army_improvement
+	max_planning_factor = OBX.var_army_improvement
+	planning_speed = OBX.var_army_improvement
+	supply_consumption_factor = OBX.var_army_improvement_supply
+	unit_upkeep_attrition_factor = OBX.var_army_improvement_negatives
+	training_time_army_factor = OBX.var_army_improvement_negatives
+	military_leader_cost_factor = OBX.var_army_improvement_negatives
+	army_leader_cost_factor = OBX.var_army_improvement_negatives
+	reassignment_duration_factor = OBX.var_army_improvement_negatives
+
+}
+
+
+RVR_youngkins_counter_revolution = { #NATIONAL SPIRIT, balls.
+	enable = { always = yes }
+
+	icon = generic_air_research
+	
+	political_power_gain = RVR.var_pp_level
+	research_speed_factor = RVR.var_research_level
+	compliance_growth = RVR.var_compliance_level
+	monthly_population = RVR.var_abortion_level
+	stability_factor = RVR.var_stability_level
+	war_support_factor = RVR.war_support_level
+	
+	experience_gain_army = RVR.var_exp_level
+	experience_gain_air = RVR.var_exp_level
+	experience_gain_navy = RVR.var_exp_level
+	
+	max_planning_factor = RVR.var_planning_level
+	planning_speed = RVR.var_planning_level
+	
+	army_attack_factor = RVR.var_attack_level
+	army_defence_factor = RVR.var_defense_level
+	army_speed_factor = RVR.var_speed_level
+	breakthrough_factor = RVR.var_breakthrough_level
+	dig_in_speed_factor = RVR.var_digspeed_level
+	max_dig_in_factor = RVR.var_maxdig_level
+	supply_consumption_factor = RVR.var_supply_level
+	
+	boost_ideology_mission_factor = RVR.var_espionage_level
+	root_out_resistance_effectiveness_factor = RVR.var_espionage_level
+	intel_network_gain_factor = RVR.var_espionage_level
+	
+	production_factory_start_efficiency_factor = RVR.var_production_start_level
+	production_factory_max_efficiency_factor = RVR.var_max_production_level
+	production_factory_efficiency_gain_factor = RVR.var_growth_production_level
+	consumer_goods_factor = RVR.var_cg_level
+	consumer_goods_expected_value = RVR.var_expectedcg_level
+	
+	republican_drift = RVR.var_republican_level
+
+}
+

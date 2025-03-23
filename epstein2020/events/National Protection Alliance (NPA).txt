@@ -1,0 +1,1046 @@
+add_namespace = npaBeginnningFocusChoice
+country_event = { 
+	id = npaBeginnningFocusChoice.1
+	title = npaBeginnningFocusChoice.1.t
+	desc = npaBeginnningFocusChoice.1.d
+	picture = event_NPA_Pence_Talks
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #Reach Out
+		name = npaBeginnningFocusChoice.1.a
+		complete_national_focus = NPA_forge_new_alliances
+		ai_chance = {
+			base = 50
+			modifier = {
+				factor = 0 
+				OR = {
+					has_game_rule = {
+						rule = NPA_do_they_reach_out
+						option = NPA_LONE_WOLF_PATH
+					}
+				}
+			}
+        }
+		
+	}
+	option = { #Lone Wolf
+		name = npaBeginnningFocusChoice.1.b
+		complete_national_focus = NPA_path_of_the_lone_wolf
+		ai_chance = {
+			base = 50
+			modifier = {
+				factor = 0 
+				OR = {
+					has_game_rule = {
+						rule = NPA_do_they_reach_out
+						option = NPA_REACH_OUT_TO_DEMS
+					}
+				}
+			}
+        }
+	}
+}
+
+add_namespace = npa
+
+
+
+
+########## Biden Faction Joining ##########
+
+
+country_event = { #FRA POV - PENCE WANTS TO JOIN
+	id = npa.1
+	title = npa.1.t
+	desc = npa.1.d
+	picture = event_NPA_Pence_Talks
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = npa.1.a
+		FRA = { add_to_faction = NPA }
+		hidden_effect = {
+			NPA = { country_event = { id = npa.2 } }
+		}
+		ai_chance = {
+			base = 100
+		}
+	}
+	option = {
+		name = npa.1.b
+		hidden_effect = {
+			NPA = { country_event = { id = npa.3 } }
+		}
+	}
+}
+
+country_event = { #BIDEN SAYS YES
+	id = npa.2
+	title = npa.2.t
+	desc = npa.2.d
+	picture = event_NPA_Biden_Talks
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = npa.2.a
+	}
+}
+
+country_event = { #BIDEN SAYS NO
+	id = npa.3
+	title = npa.3.t
+	desc = npa.3.d
+	picture = event_NPA_Biden_Talks
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = npa.3.a
+	}
+}
+
+########## NPA War Events Part 1 ########## 
+
+country_event = { #GRP
+	id = npa.4
+	title = npa.4.t
+	desc = npa.4.d
+	picture = event_NPA_GRP
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = npa.4.a
+		add_ideas = NPA_wave_1
+		hidden_effect= {
+			set_country_flag = NPA_WaveR1
+		}
+	}
+	option = {
+		name = npa.4.b
+		add_ideas = NPA_wave_2
+		hidden_effect= {
+			set_country_flag = NPA_WaveR2
+		}
+	}
+	option = {
+		name = npa.4.c
+		add_ideas = NPA_wave_3
+		hidden_effect= {
+			set_country_flag = NPA_WaveR3
+		}
+	}
+	option = {
+		name = npa.4.e
+		add_ideas = NPA_wave_4
+		hidden_effect= {
+			set_country_flag = NPA_WaveR4
+		}
+	}
+}
+
+country_event = { #Propaganda
+	id = npa.5
+	title = npa.5.t
+	desc = npa.5.d
+	picture = event_NPA_Hope
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = npa.5.a
+		trigger = {
+			OR = {
+				has_idea = NPA_Motivation_High
+				has_idea = NPA_Motivation_Medium
+				has_idea = NPA_Motivation_Low
+			}
+		}
+		NPA = { add_ideas = NPA_Motivation_Soldified }
+		hidden_effect = {
+			if = {
+				limit = { has_idea = NPA_Motivation_High }
+					remove_ideas = NPA_Motivation_High
+				}
+			if = {
+				limit = { has_idea = NPA_Motivation_Medium }
+					remove_ideas = NPA_Motivation_Medium
+				}
+			if = {
+				limit = { has_idea = NPA_Motivation_Low }
+				remove_ideas = NPA_Motivation_Low
+				}
+			set_country_flag = NPA_Motivation_Propaganda
+		}
+	}
+	option = {
+		name = npa.5.b
+		trigger = {
+			NOT = {
+				has_idea = NPA_Motivation_High
+				has_idea = NPA_Motivation_Medium
+				has_idea = NPA_Motivation_Low
+			}
+		}
+		add_war_support = -0.1
+	}
+}
+
+country_event = { #Trump Declares War on Minnesota
+	id = npa.6
+	title = npa.6.t
+	desc = npa.6.d
+	picture = event_MON_Secessionists_Bad
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = npa.6.a
+		if = {
+			limit = { country_exists = MIN }
+			declare_war_on = {
+				target = MIN
+				type = annex_everything
+			}
+		}
+		if = {
+			limit = { country_exists = MNS }
+			declare_war_on = {
+				target = MNS
+				type = annex_everything
+			}
+		}
+		if = {
+			limit = { country_exists = MIL }
+			declare_war_on = {
+				target = MIL
+				type = annex_everything
+			}
+		}
+	}
+}
+
+country_event = { #NPA white peace with resistance radio
+	id = npa.7
+	title = npa.7.t
+	desc = npa.7.d
+	picture = event_MON_Secessionists_Bad
+	fire_only_once = yes
+	trigger = {
+		tag = NPA
+		owns_state = 416
+		NOT = { country_exists = USA }
+	}
+	option = {
+		name = npa.7.a
+		white_peace = NEW
+	}
+}
+
+country_event = { #Medial Counter Revolution Event
+	id = npa.8
+	title = npa.8.t
+	desc = npa.8.d
+	picture = event_NPA_Broadcast_Choice
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = npa.8.a	
+		ai_chance = {
+			base = 50
+		}
+		complete_national_focus = NPA_patriotic_propaganda
+	}
+	option = {
+		name = npa.8.b
+		ai_chance = {
+			base = 50
+		}
+		add_war_support = 0.2
+		add_equipment_to_stockpile = {
+    		type = infantry_equipment
+    		amount = 2500
+		}
+		add_manpower = 25000
+	}
+	option = { 
+		name = npa.8.c
+		ai_chance = {
+			base = 0
+		}
+		custom_effect_tooltip = NPA_wtf_tt
+		hidden_effect = {
+			NPA = {
+				country_event = { 
+					id = npa.10
+					days = 32
+				} 
+			}
+		}
+	}
+}
+
+news_event = { #Garfield Worked! - news event (why is it before the country event)
+	id = npa.9
+	title = npa.9.t
+	desc = npa.9.d
+	picture = event_NPA_garfield_success
+	is_triggered_only = yes
+	#fire_only_once = yes
+	
+	option = {
+		name = npa.9.a	
+	}
+}
+country_event = { #Garfield Worked! - country event (why is it after the news event)
+	id = npa.10
+	title = npa.10.t
+	desc = npa.10.d
+	picture = event_NPA_Pence_Talks
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = npa.10.a	
+		207 = {
+		    add_extra_state_shared_building_slots = 6
+			add_building_construction = {
+    			type = industrial_complex
+    			level = 6
+    			instant_build = yes
+			}
+		}
+		add_political_power = 100
+		hidden_effect = {
+			news_event = {
+				id = npa.9
+				days = 2
+			}
+			set_country_flag = garfield_success
+		}
+	}
+}
+
+
+
+############################################
+########## Ally with Biden Events ##########
+############################################
+
+country_event = { #new establishment
+	id = npa.11
+	title = npa.11.t
+	desc = npa.11.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = npa.11.a
+	}
+
+}
+country_event = { #kill populism
+	id = npa.12
+	title = npa.12.t
+	desc = npa.12.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = npa.12.a
+	}
+
+}
+news_event = { #good old usa
+	id = npa.13
+	title = npa.13.t
+	desc = npa.13.d
+	#picture =
+	is_triggered_only = yes
+	#fire_only_once = yes
+	
+	option = {
+		name = npa.13.a
+		if = {
+			limit = {NOT = {is_ai = yes}}
+			set_country_flag = {
+    				flag = super_event
+    				value = 36
+			}
+			if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
+				sound_effect = "good_ending_unification"
+				play_song = "one_minute_of_silence"
+			}
+		}
+	}
+
+}
+news_event = { #pax americana
+	id = npa.133
+	title = npa.133.t
+	desc = npa.133.d
+	#picture =
+	is_triggered_only = yes
+	#fire_only_once = yes
+	
+	option = {
+		trigger = { ROOT = { original_tag = NPA } }
+		name = npa.133.a
+		if = {
+			limit = {NOT = {is_ai = yes}}
+			set_country_flag = {
+    				flag = super_event
+    				value = 40
+			}
+			if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
+				sound_effect = "roman_pence_npa"
+				play_song = "one_minute_of_silence"
+			}
+		}
+	}
+	
+	option = {
+		trigger = { ROOT = { NOT = { original_tag = NPA } } }
+		name = npa.133.b
+		if = {
+			limit = {NOT = {is_ai = yes}}
+			set_country_flag = {
+    				flag = super_event
+    				value = 40
+			}
+			if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
+				sound_effect = "roman_pence_npa"
+				play_song = "one_minute_of_silence"
+			}
+		}
+	}
+
+}
+country_event = { #npa demands we give in
+	id = npa.14
+	title = npa.17.t #Intentional
+	desc = npa.17.d
+	#picture =
+	is_triggered_only = yes
+	#fire_only_once = yes
+	
+	option = {
+		name = npa.17.a
+		ai_chance = {
+			base = 10
+		}
+		NPA = {
+			annex_country = { 
+				target = ROOT
+				transfer_troops = yes
+			}
+		}
+		every_state = {
+			limit = { is_core_of = ROOT }
+			add_core_of = NPA
+		}
+	}
+	option = {
+		name = npa.17.b
+		ai_chance = {
+			base = 90
+		}
+		NPA = {
+			create_wargoal = {
+				type = annex_everything
+				target = ROOT
+			}
+		}
+	}
+
+}
+
+country_event = { #GOP Debate Result
+	id = npa.15
+	title = npa.15.t
+	desc = npa.15.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = npa.15.a
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Liz Cheney"
+			picture = "gfx/leaders/NPA/liz_cheney.dds"
+			expire = "2060.1.1"
+			ideology = neocon
+			female = yes
+			traits = {
+				hawk
+			}
+		}
+	}
+
+}
+
+country_event = { #ICE LEGION POV - NPA demands unification
+	id = npa.16
+	title = npa.17.t
+	desc = npa.17.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = npa.17.a
+		ai_chance = {
+			base = 100
+		}
+		NPA = {
+			annex_country = { 
+				target = MIL
+				transfer_troops = yes
+			}
+		}
+		every_state = {
+			limit = { is_core_of = MIL }
+			add_core_of = NPA
+		}
+	}
+	option = {
+		name = npa.17.b
+	}
+
+}
+country_event = { #npa demands we give in
+	id = npa.17
+	title = npa.17.t
+	desc = npa.17.d
+	#picture =
+	is_triggered_only = yes
+	#fire_only_once = yes
+	
+	option = {
+		name = npa.17.a
+		ai_chance = {
+			base = 75
+		}
+		NPA = {
+			annex_country = { 
+				target = ROOT
+				transfer_troops = yes
+			}
+		}
+		every_state = {
+			limit = { is_core_of = ROOT }
+			add_core_of = NPA
+		}
+	}
+	option = {
+		name = npa.17.b
+		ai_chance = {
+			base = 25
+		}
+	}
+
+}
+
+
+
+country_event = { #AFS pov - we are going to be partitioned
+	id = npa.18
+	title = npa.18.t
+	desc = npa.18.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = npa.18.a
+		NPA = {
+			transfer_state = 224
+			transfer_state = 237
+			transfer_state = 226
+			transfer_state = 205
+			transfer_state = 559
+		}
+		FRA = {
+			transfer_state = 396
+			transfer_state = 399
+			transfer_state = 358
+		}
+		hidden_effect = {
+			NPA = { country_event = { id = npa.19 } }
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {
+		name = npa.18.b
+		hidden_effect = {
+			NPA = { country_event = { id = npa.20 } }
+		}
+	}
+}
+
+country_event = { #AFS Surrenders
+	id = npa.19
+	title = npa.19.t
+	desc = npa.19.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = npa.18.a
+	}
+}
+
+country_event = { #AFS continues to fight
+	id = npa.20
+	title = npa.20.t
+	desc = npa.20.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = npa.20.a
+	}
+}
+
+country_event = { #Proposal for Unification
+	id = npa.21
+	title = npa.21.t
+	desc = npa.21.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = npa.21.a
+		ai_chance = {
+			base = 1
+		}
+		NPA = { 
+			country_event = {
+				id = npa.22
+				days = 3
+			}
+		}
+	}
+	option = {
+		name = npa.21.b
+		NPA = { 
+			country_event = {
+				id = npa.23
+				days = 3
+			}
+		}
+	}
+}
+
+country_event = { #REUNITE ACCEPTED
+	id = npa.22
+	title = npa.22.t
+	desc = npa.22.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			FRA = {
+				every_unit_leader = {
+            		set_nationality = NPA
+        		}
+			}
+		}
+	}
+	option = {
+		name = npa.22.a
+		NPA = {
+			annex_country = {
+				target = FRA
+				transfer_troops = yes
+			}
+		}
+		hidden_effect = {
+			NPA = { 
+				news_event = {
+					id = npa.24
+					days = 3
+				}
+			}
+		}
+	}
+}
+
+country_event = { #REUNITE REJECTED
+	id = npa.23
+	title = npa.23.t
+	desc = npa.23.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = npa.23.a
+		hidden_effect = {
+			NPA = { 
+				news_event = {
+					id = npa.25
+					days = 3
+				}
+			}
+		}
+	}
+}
+
+news_event = { #REUNIFICATION NEWS
+	id = npa.24
+	title = npa.24.t
+	desc = npa.24.d
+	#picture =
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = npa.24.a
+	}
+}
+news_event = { #REUNIFICATION FAILED NEWS
+	id = npa.25
+	title = npa.25.t
+	desc = npa.25.d
+	#picture =
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = npa.25.a
+	}
+}
+
+#######################################
+########## Autocratic Purges ##########
+#######################################
+
+country_event = {
+	id = npa.26
+	title = npa.26.t
+	desc = npa.26.d
+	picture = event_NPA_Valparaiso_Purged
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = npa.26.a
+		add_stability = -0.1
+		add_manpower = -3000
+	}
+}
+
+
+country_event = {
+	id = npa.27
+	title = npa.27.t
+	desc = npa.27.d
+	picture = event_NPA_Valparaiso_Purged
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = npa.27.a
+		add_stability = -0.15
+		add_manpower = -16000
+	}
+}
+
+
+country_event = {
+	id = npa.28
+	title = npa.28.t
+	desc = npa.28.d
+	picture = event_NPA_Valparaiso_Purged
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = npa.28.a
+		add_stability = -0.2
+		add_manpower = -50000
+	}
+}
+
+
+country_event = {
+	id = npa.29
+	title = npa.29.t
+	desc = npa.29.d
+	picture = event_NPA_Valparaiso_Marxist
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = npa.29.a
+		add_stability = -0.3
+		
+	}
+	#option = { #Rumuours of discontent - future secret garfield path for those of you who like to go through game files :D
+	#	name = npa.29.b
+	#}
+}
+
+
+
+########## Post Autocratic Purge ##########
+
+
+country_event = { #Cursed PNAC event
+	id = npa.30
+	title = npa.30.t
+	desc = npa.30.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Pence civil arrest
+		name = npa.30.a	
+		set_country_flag = NPA_Pence_LockedUp
+	}
+	option = { #Pence gets hanged
+		name = npa.30.b
+		set_country_flag = NPA_pence_not_dead_yet
+	}
+}
+
+country_event = { #Caesar Pence??
+	id = npa.31
+	title = npa.31.t
+	desc = npa.31.d
+	picture = event_NPA_Pence_Talks
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = npa.31.a
+		complete_national_focus = NPA_christian_first
+	}
+	option = {
+		name = npa.31.b
+		promote_character = NPA_caesar_pence
+		complete_national_focus = NPA_the_new_caesar
+	}
+}
+country_event = { #trump was wrong
+	id = npa.32
+	title = npa.32.t
+	desc = npa.32.d
+	#picture = 
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = npa.32.a
+	}
+}
+news_event = { #safe america - ADD SUPER EVENT
+	id = npa.33
+	title = npa.33.t
+	desc = npa.33.d
+	#picture = 
+	is_triggered_only = yes
+	#fire_only_once = yes
+	
+	option = {
+		name = npa.33.a
+		if = {
+			limit = {NOT = {is_ai = yes}}
+			set_country_flag = {
+    				flag = super_event
+    				value = 39
+			}
+			if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
+				sound_effect = "american_mossad_unification"
+				play_song = "one_minute_of_silence"
+			}
+		}
+	}
+}
+
+
+
+
+
+# Good old GOP
+country_event = { #trump was wrong
+	id = npa.200
+	title = npa.200.t
+	desc = npa.200.d
+	#picture = 
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = npa.200.a
+	}
+}
+country_event = { #take advantage
+	id = npa.201
+	title = npa.201.t
+	desc = npa.201.d
+	#picture = 
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = npa.201.a
+	}
+}
+country_event = { #trumpist trial
+	id = npa.202
+	title = npa.202.t
+	desc = npa.202.d
+	#picture = 
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = npa.202.a
+		swap_ideas = {
+			remove_idea = NPA_true_gop
+			add_idea = NPA_true_gop2
+		}
+	}
+}
+news_event = { #traditionalist reunification - add super event later
+	id = npa.203
+	title = npa.203.t
+	desc = npa.203.d
+	#picture = 
+	is_triggered_only = yes
+	#fire_only_once = yes
+	option = {
+		name = npa.203.a
+		if = {
+			limit = {NOT = {is_ai = yes}}
+			set_country_flag = {
+    				flag = super_event
+    				value = 37
+			}
+			if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
+				sound_effect = "trad_con_unification"
+				play_song = "one_minute_of_silence"
+			}
+		}
+	}
+}
+
+
+
+########### Misc. Events #############
+
+country_event = { #elections in reunited states - dem primary
+	id = npa.100
+	title = npa.100.t
+	desc = npa.100.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # Kamala Harris
+		name = npa.100.a
+		create_country_leader = {
+			name = "Kamala Harris"
+			picture = "gfx/leaders/FRA/kamala.dds"
+			expire = "2060.1.1"
+			ideology = establishment
+			traits = {
+			}
+		}
+		set_country_flag = kamala
+		country_event = {
+			id = npa.101
+			days = 7
+		}
+	}
+	option = { # Progressive - Elizabeth Warren
+		name = npa.100.b
+		create_country_leader = {
+			name = "Elizabeth Warren"
+			picture = "gfx/leaders/FRA/elizabeth_warren.dds"
+			expire = "2060.1.1"
+			ideology = progressive
+			traits = {
+			}
+		}
+		set_country_flag = warren
+		country_event = {
+			id = npa.101
+			days = 7
+		}
+	}
+
+}
+country_event = { #elections in reunited states - GOP primary
+	id = npa.101
+	title = npa.101.t
+	desc = npa.101.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # Liz Cheney duh
+		name = npa.101.a
+		IF = {
+			limit = { has_country_flag = kamala }
+			country_event = {
+				id = npa.102
+				days = 14
+			}
+		}
+		IF = {
+			limit = { has_country_flag = warren }
+			country_event = {
+				id = npa.103
+				days = 14
+			}
+		}
+	}
+
+}
+country_event = { #elections in reunited states - kamala
+	id = npa.102
+	title = npa.102.t
+	desc = npa.102.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # Liz Cheney
+		name = npa.102.a
+	}
+	option = { # Kamala
+		name = npa.102.b
+		set_politics = {
+			ruling_party = democrat
+		}
+		add_popularity = {
+			ideology = democrat
+			popularity = 0.5
+		}
+	}
+
+}
+country_event = { #elections in reunited states - progressive - intentional loc codes btw
+	id = npa.103
+	title = npa.102.t
+	desc = npa.103.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # Liz Cheney
+		name = npa.102.a
+	}
+	option = { # progressive - warren 
+		name = npa.103.b
+		set_politics = {
+			ruling_party = democrat
+		}
+		add_popularity = {
+			ideology = democrat
+			popularity = 0.5
+		}
+	}
+
+}

@@ -1,0 +1,3624 @@
+focus_tree = {
+	id = greenland
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = GRL
+		}
+	}
+	default = no
+	continuous_focus_position = { x = 1800 y = 800 } 
+
+	
+	
+	### NATO Crisis
+	focus = {
+		id = GRL_the_NATO_crisis
+		cost = 5
+		icon = GFX_goal_GRL_NATO_Crisis
+		x = 3
+		y = 0
+		available = {
+			has_country_flag = GRL_NATO_crisis
+		}
+		#relative_position_id = 
+		#prerequisite = { focus =   }
+		completion_reward = {
+			add_stability = -0.2
+		}
+	}
+	
+	
+	### Independence
+	focus = {
+		id = GRL_sever_ties_with_denmark
+		cost = 5
+		icon = GFX_focus_generic_attack_denmark
+		x = -3
+		y = 1
+		available = {
+			always = no
+		}
+		mutually_exclusive = {
+			focus = GRL_continue_on_course
+		}
+		relative_position_id = GRL_the_NATO_crisis
+		prerequisite = { 
+			focus = GRL_the_NATO_crisis
+		}
+		completion_reward = {
+			remove_ideas = {
+				GRL_danish_realm
+				GRL_kingdom_of_denmark
+				NATO_NATO_idea
+			}
+		}
+	}
+	
+	
+	#### Royalist Coup
+	focus = {
+		id = GRL_royalist_coup
+		cost = 5
+		icon = GFX_focus_DEN_danish_freedom
+		x = 5
+		y = 1
+		mutually_exclusive = {
+			focus = GRL_new_elections
+		}
+		relative_position_id = GRL_sever_ties_with_denmark
+		prerequisite = { 
+			focus = GRL_sever_ties_with_denmark
+		}
+		available = {
+			always = no
+		}
+		completion_reward = {
+			FFR = { add_to_faction = GRL }
+			add_ideas = {
+				NATO_NATO_idea
+				GRL_kingdom_of_denmark
+				GRL_danish_realm
+			}
+			add_ideas = GRL_inuit_resistance
+		}
+	}
+	focus = {
+		id = GRL_a_pseudo_absolute_monarchy
+		cost = 5
+		icon = GFX_focus_generic_monarchy_1
+		x = -3
+		y = 1
+		relative_position_id = GRL_royalist_coup
+		prerequisite = { 
+			focus = GRL_royalist_coup
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = GRL_kingdom_of_denmark
+				add_idea = GRL_kingdom_of_denmark_king
+			}
+		}
+	}
+	focus = {
+		id = GRL_outlaw_the_inuit_socialists
+		cost = 5
+		icon = GFX_focus_GER_end_european_communism
+		x = 0
+		y = 1
+		relative_position_id = GRL_royalist_coup
+		prerequisite = { 
+			focus = GRL_royalist_coup
+		}
+		completion_reward = {
+			add_popularity = {
+				ideology = libertarian_left
+				popularity = -1
+			}
+			swap_ideas = {
+				remove_idea = GRL_inuit_resistance
+				add_idea = GRL_inuit_resistance2
+			}
+		}
+	}
+	focus = {
+		id = GRL_build_a_palace_in_nuuk
+		cost = 5
+		icon = GFX_focus_NORDIC_mon_form_alliance
+		x = -4
+		y = 1
+		relative_position_id = GRL_outlaw_the_inuit_socialists
+		prerequisite = { 
+			focus = GRL_a_pseudo_absolute_monarchy
+		}
+		prerequisite = { 
+			focus = GRL_outlaw_the_inuit_socialists
+		}
+		available = {
+			has_completed_focus = GRL_full_integration_into_denmark
+		}
+		completion_reward = {
+			674 = { 
+				set_state_category = megalopolis
+			}
+		}
+	}
+	focus = {
+		id = GRL_a_new_empire
+		cost = 5
+		icon = GFX_focus_NORDIC_mon_materiel
+		x = -1
+		y = 1
+		relative_position_id = GRL_build_a_palace_in_nuuk
+		prerequisite = { 
+			focus = GRL_build_a_palace_in_nuuk
+		}
+		completion_reward = {
+			add_country_leader_trait = king_of_denmark
+		}
+	}
+	focus = {
+		id = GRL_reunification_with_iceland
+		cost = 5
+		icon = GFX_focus_ICE_fighting_as_equals
+		x = -3
+		y = 1
+		relative_position_id = GRL_build_a_palace_in_nuuk
+		prerequisite = { 
+			focus = GRL_build_a_palace_in_nuuk
+		}
+		completion_reward = {
+			add_ideas = GRL_icelandic_Realm
+			674 = { 
+				add_manpower = 393000
+			}
+		}
+	}
+	focus = {
+		id = GRL_north_sea_empire_returns
+		cost = 5
+		icon = GFX_focus_generic_north_atlantic_fleet
+		x = -1
+		y = 1
+		relative_position_id = GRL_a_new_empire
+		prerequisite = { 
+			focus = GRL_a_new_empire
+		}
+		prerequisite = { 
+			focus = GRL_reunification_with_iceland
+		}
+		completion_reward = {
+			set_cosmetic_tag = GRL_DEN_NSE
+			add_war_support = 0.2
+			add_stability = 0.1
+			add_political_power = 35
+		}
+	}
+	focus = {
+		id = GRL_the_empire_of_old
+		cost = 5
+		icon = GFX_focus_NORDIC_mon_selector_army
+		x = 1
+		y = 1
+		relative_position_id = GRL_build_a_palace_in_nuuk
+		prerequisite = { 
+			focus = GRL_build_a_palace_in_nuuk
+		}
+		completion_reward = {
+			add_war_support = 0.3
+		}
+	}
+	focus = {
+		id = GRL_lease_of_bonaire #HOL tag
+		cost = 5
+		icon = GFX_focus_NORDIC_mon_capstone_materiel
+		x = -1
+		y = 1
+		relative_position_id = GRL_the_empire_of_old
+		prerequisite = { 
+			focus = GRL_the_empire_of_old
+		}
+		completion_reward = {
+			transfer_state = 467
+		}
+	}
+	focus = {
+		id = GRL_reclaim_the_danish_virgin_islands
+		cost = 5
+		icon = GFX_seize_the_virgin_islands
+		x = -1
+		y = 1
+		relative_position_id = GRL_lease_of_bonaire
+		prerequisite = { 
+			focus = GRL_lease_of_bonaire
+		}
+		prerequisite = { 
+			focus = GRL_north_sea_empire_returns
+		}
+		completion_reward = {
+			country_event = {
+				id = greenland.4
+				days = 5
+			}
+		}
+	}
+	
+	
+	focus = {
+		id = GRL_full_integration_into_denmark
+		cost = 5
+		icon = GFX_focus_ICE_reclaiming_the_empire
+		x = 1
+		y = 1
+		relative_position_id = GRL_outlaw_the_inuit_socialists
+		prerequisite = { 
+			focus = GRL_outlaw_the_inuit_socialists
+		}
+		prerequisite = { 
+			focus = GRL_danish_integration_program
+		}
+		completion_reward = { ## News Event for denmark seizing greenland 
+			country_event = {
+				id = greenland.2
+				days = 1
+			}
+			swap_ideas = {
+				remove_idea = GRL_danish_realm
+				add_idea = GRL_denmark
+			}
+			swap_ideas = {
+				remove_idea = GRL_inuit_resistance2
+				add_idea = GRL_inuit_resistance3
+			}
+		}
+	}
+	focus = {
+		id = GRL_only_recognize_danish
+		cost = 5
+		icon = GFX_focus_generic_befriend_denmark
+		x = 1
+		y = 1
+		relative_position_id = GRL_full_integration_into_denmark
+		prerequisite = { 
+			focus = GRL_full_integration_into_denmark
+		}
+		completion_reward = {
+			if = {
+				limit = { has_idea = GRL_inuit_resistance4 }
+				swap_ideas = {
+					remove_idea = GRL_inuit_resistance4
+					add_idea = GRL_inuit_resistance5
+				}
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = GRL_inuit_resistance3
+					add_idea = GRL_inuit_resistance4
+				}
+			}
+		}
+	}
+	focus = {
+		id = GRL_displace_inuits
+		cost = 5
+		icon = GFX_focus_NOR_empower_sivorg
+		x = -1
+		y = 1
+		relative_position_id = GRL_full_integration_into_denmark
+		prerequisite = { 
+			focus = GRL_full_integration_into_denmark
+		}
+		completion_reward = {
+			if = {
+				limit = { has_idea = GRL_inuit_resistance4 }
+				swap_ideas = {
+					remove_idea = GRL_inuit_resistance4
+					add_idea = GRL_inuit_resistance5
+				}
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = GRL_inuit_resistance3
+					add_idea = GRL_inuit_resistance4
+				}
+			}
+		}
+	}
+	focus = {
+		id = GRL_reassert_european_dominance
+		cost = 5
+		icon = GFX_focus_GER_european_confederation
+		x = -1
+		y = 1
+		relative_position_id = GRL_only_recognize_danish
+		prerequisite = { 
+			focus = GRL_only_recognize_danish
+		}
+		prerequisite = { 
+			focus = GRL_displace_inuits
+		}
+		completion_reward = { 
+			swap_ideas = {
+				remove_idea = GRL_inuit_resistance5
+				add_idea = GRL_inuit_resistance6
+			}
+		}
+	}
+	focus = {
+		id = GRL_funds_for_education
+		cost = 5
+		icon = GFX_SOV_national_academies_of_sciences_ccp_2d_sov_compatibility
+		x = 1
+		y = 1
+		relative_position_id = GRL_only_recognize_danish
+		prerequisite = { 
+			focus = GRL_only_recognize_danish
+		}
+		prerequisite = { 
+			focus = GRL_danish_investments
+		}
+		completion_reward = { 
+			add_research_slot = 1
+		}
+	}
+	
+	focus = {
+		id = GRL_a_new_opportunity
+		cost = 5
+		icon = GFX_focus_DEN_undermine_overlord_continuous_focus
+		x = -1
+		y = 3
+		relative_position_id = GRL_outlaw_the_inuit_socialists
+		prerequisite = { 
+			focus = GRL_outlaw_the_inuit_socialists
+		}
+		available = {
+			has_global_flag = canadian_civil_war
+		}
+		completion_reward = { 
+			add_ideas = GRL_seize_opportunity
+		}
+	}
+	focus = {
+		id = GRL_reclaim_vinland
+		cost = 5
+		icon = GFX_focus_ICE_vinland
+		x = 1
+		y = 1
+		relative_position_id = GRL_a_new_opportunity
+		prerequisite = { 
+			focus = GRL_a_new_opportunity
+		}
+		will_lead_to_war_with = MRT
+		completion_reward = { 
+			every_state = {
+				limit = { is_core_of = MRT }
+				add_core_of = GRL
+			}
+			create_wargoal = {
+				target = MRT
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = GRL_closer_nordic_coop
+		cost = 5
+		icon = GFX_focus_generic_pan_scandinavism
+		x = 1
+		y = 1
+		relative_position_id = GRL_reclaim_vinland
+		prerequisite = { 
+			focus = GRL_EU_hub_of_NA
+		}
+		prerequisite = { 
+			focus = GRL_reclaim_vinland
+		}
+		completion_reward = { 
+			add_ideas = GRL_closer_nordic_coop_idea
+		}
+	}
+	focus = {
+		id = GRL_lease_st_pierre_and_miquelon
+		cost = 1
+		icon = GFX_focus_chi_reach_out_to_france
+		x = -1
+		y = 1
+		relative_position_id = GRL_a_new_opportunity
+		prerequisite = { 
+			focus = GRL_a_new_opportunity
+		}
+		completion_reward = { 
+			transfer_state = 144
+		}
+	}
+	focus = {
+		id = GRL_a_launchpoint_for_invasion
+		cost = 5
+		icon = GFX_focus_ICE_the_viking_spirit
+		x = -1
+		y = 1
+		relative_position_id = GRL_reclaim_vinland
+		prerequisite = { 
+			focus = GRL_reclaim_vinland
+		}
+		prerequisite = { 
+			focus = GRL_lease_st_pierre_and_miquelon
+		}
+		completion_reward = { 
+			every_owned_state = {
+				limit = {
+					OR = {
+						state = 164
+						state = 156
+						state = 17
+						state = 10
+						state = 20
+						state = 154
+						state = 175
+						state = 176
+						state = 127
+					}
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = infrastructure
+					level = 4
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = GRL_dominate_the_caribbean
+		cost = 5
+		icon = GFX_goal_FLO_stabilize_the_caribbean
+		x = -3
+		y = 1
+		relative_position_id = GRL_a_launchpoint_for_invasion
+		prerequisite = { 
+			focus = GRL_a_launchpoint_for_invasion
+		}
+		prerequisite = { 
+			focus = GRL_reclaim_the_danish_virgin_islands
+		}
+		will_lead_to_war_with = PUE
+		will_lead_to_war_with = HBI
+		will_lead_to_war_with = HAI
+		will_lead_to_war_with = DOM
+		completion_reward = { 
+			create_wargoal = {
+				target = HAI
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = HBI
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = DOM
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = PUE
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = GRL_raid_cape_canaveral
+		cost = 5
+		icon = GFX_focus_NPA_Retake_Florida
+		x = -2
+		y = 1
+		relative_position_id = GRL_dominate_the_caribbean
+		prerequisite = { 
+			focus = GRL_dominate_the_caribbean
+		}
+		completion_reward = { 
+			country_event = greenland.5
+		}
+	}
+	focus = {
+		id = GRL_annex_cozumel ### Gulf of denmark
+		cost = 5
+		icon = GFX_focus_attack_mexico
+		x = 0
+		y = 1
+		relative_position_id = GRL_dominate_the_caribbean
+		prerequisite = { 
+			focus = GRL_dominate_the_caribbean
+		}
+		will_lead_to_war_with = YUC
+		completion_reward = { 
+			transfer_state = 665
+			if = {
+				limit = {
+					YUC = {
+						is_in_faction = yes
+					}
+				}
+				set_autonomy = {
+					target = YUC
+					autonomous_state = autonomy_free
+					end_wars = yes
+					end_civil_wars = yes
+				}
+				leave_faction = yes
+			}
+			create_wargoal = {
+				target = YUC
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = GRL_panama_canal_moer_like_danish_canal_hahahahahahahahahahah
+		cost = 5
+		icon = GFX_focus_DEN_unify_flyvevabnet
+		x = -1
+		y = 1
+		relative_position_id = GRL_annex_cozumel
+		prerequisite = { 
+			focus = GRL_annex_cozumel
+		}
+		prerequisite = { 
+			focus = GRL_raid_cape_canaveral
+		}
+		will_lead_to_war_with = CHI
+		will_lead_to_war_with = PAN
+		completion_reward = { 
+			create_wargoal = {
+				target = CHI
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = PAN
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = GRL_invade_maine
+		cost = 5
+		icon = GFX_goal_NRA_Get_Maine_For_Ourselves
+		x = 3
+		y = 1
+		relative_position_id = GRL_a_launchpoint_for_invasion
+		prerequisite = { 
+			focus = GRL_a_launchpoint_for_invasion
+		}
+		completion_reward = { 
+			create_wargoal = {
+				target = WBK
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = NAB
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = NEW
+				type = annex_everything
+			}
+			every_state = {
+				limit = { is_core_of = NEW }
+				add_core_of = ROOT	
+			}
+		}
+	}
+	focus = {
+		id = GRL_raid_FRA_coasts
+		cost = 5
+		icon = GFX_focus_SWE_coastal_support
+		x = 0
+		y = 1
+		relative_position_id = GRL_invade_maine
+		prerequisite = { 
+			focus = GRL_invade_maine
+		}
+		completion_reward = { 
+			transfer_state = 217
+			transfer_state = 620
+			transfer_state = 590
+			transfer_state = 214
+			transfer_state = 216
+			every_owned_state = { set_demilitarized_zone = no }
+		}
+	}
+	focus = {
+		id = GRL_down_the_st_lawrence
+		cost = 5
+		icon = GFX_goal_tfv_can_forced_quebec_conscription
+		x = 2
+		y = 1
+		relative_position_id = GRL_invade_maine
+		prerequisite = { 
+			focus = GRL_invade_maine
+		}
+		will_lead_to_war_with = QUE
+		will_lead_to_war_with = ONT
+		will_lead_to_war_with = PTR
+		will_lead_to_war_with = CAN
+		completion_reward = { 
+			create_wargoal = {
+				target = QUE
+				type = puppet_wargoal_focus
+			}
+			create_wargoal = {
+				target = CAN
+				type = puppet_wargoal_focus
+			}
+			create_wargoal = {
+				target = PTR
+				type = puppet_wargoal_focus
+			}
+			create_wargoal = {
+				target = ONT
+				type = puppet_wargoal_focus
+			}
+			add_state_Core = 377
+			add_state_Core = 129
+			add_state_Core = 72
+			add_state_Core = 132
+			add_state_Core = 133
+			add_state_Core = 91
+			add_state_Core = 48
+			add_state_Core = 128
+		}
+	}
+	focus = {
+		id = GRL_claim_old_swedish_colonies
+		cost = 5
+		icon = GFX_focus_generic_befriend_sweden
+		x = 0
+		y = 1
+		relative_position_id = GRL_a_launchpoint_for_invasion
+		prerequisite = { 
+			focus = GRL_closer_nordic_coop
+		}
+		prerequisite = { 
+			focus = GRL_a_launchpoint_for_invasion
+		}
+		completion_reward = { 
+			every_state = {
+				limit = {
+					OR = {
+						state = 242
+						state = 244
+						state = 558
+						state = 248
+						state = 188
+						state = 655
+						state = 502
+						state = 248
+					}
+				}
+				add_core_of = GRL
+			}
+		}
+	}
+	focus = {
+		id = GRL_expand_caribbean_posessions
+		cost = 5
+		icon = GFX_focus_CHL_liberate_the_caribbean
+		x = -1
+		y = 1
+		relative_position_id = GRL_claim_old_swedish_colonies
+		prerequisite = { 
+			focus = GRL_dominate_the_caribbean
+		}
+		prerequisite = { 
+			focus = GRL_claim_old_swedish_colonies
+		}
+		will_lead_to_war_with = GTB
+		will_lead_to_war_with = CUC
+		will_lead_to_war_with = CUB
+		will_lead_to_war_with = CAY
+		completion_reward = { 
+			create_wargoal = {
+				target = GTB
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = CAY
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = CUB
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = CUC
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = GRL_danish_ocean_not_Atlantic
+		cost = 5
+		icon = GFX_focus_generic_north_atlantic_fleet
+		x = 1
+		y = 1
+		relative_position_id = GRL_expand_caribbean_posessions
+		prerequisite = { 
+			focus = GRL_expand_caribbean_posessions
+		}
+		prerequisite = { 
+			focus = GRL_into_the_chesapeake_bay
+		}
+		completion_reward = { 
+			add_ideas = GRL_danish_ocean
+		}
+	}
+	focus = {
+		id = GRL_into_the_chesapeake_bay
+		cost = 5
+		icon = GFX_goal_OBX_Prepare_for_War_with_Biden
+		x = 1
+		y = 1
+		relative_position_id = GRL_claim_old_swedish_colonies
+		prerequisite = { 
+			focus = GRL_invade_maine
+		}
+		prerequisite = { 
+			focus = GRL_claim_old_swedish_colonies
+		}
+		completion_reward = { 
+			create_wargoal = {
+				target = FRA
+				type = take_state_focus
+				generator = { 242 244 248 558 188 655 502 }	
+			}
+		}
+	}
+	focus = {
+		id = GRL_pay_back_the_dutch
+		cost = 5
+		icon = GFX_focus_hol_oranje_boven
+		x = 2
+		y = 1
+		relative_position_id = GRL_into_the_chesapeake_bay
+		prerequisite = { 
+			focus = GRL_into_the_chesapeake_bay
+		}
+		prerequisite = { 
+			focus = GRL_down_the_st_lawrence
+		}
+		available = {
+			owns_state = 223
+		}
+		completion_reward = { 
+			HOL = { transfer_state = 223 }
+		}
+	}
+	focus = {
+		id = GRL_pay_back_the_frnch
+		cost = 5
+		icon = GFX_focus_fra_french_union
+		x = 1
+		y = 1
+		relative_position_id = GRL_down_the_st_lawrence
+		prerequisite = { 
+			focus = GRL_down_the_st_lawrence
+		}
+		available = {
+			OR = {
+				owns_state = 163
+				QUE = {
+					is_subject_of = GRL
+					owns_state = 163
+				}
+			}
+		}
+		completion_reward = {
+			FFR = { transfer_state = 163 }
+		}
+	}
+	
+	
+	
+	
+	
+	### Elections
+	focus = {
+		id = GRL_new_elections
+		cost = 5
+		icon = GFX_focus_NOR_restore_public_trust_in_the_storting
+		x = -5
+		y = 1
+		mutually_exclusive = {
+			focus = GRL_royalist_coup
+		}
+		relative_position_id = GRL_sever_ties_with_denmark
+		prerequisite = { 
+			focus = GRL_sever_ties_with_denmark
+		}
+		available = {
+			always = no
+		}
+		completion_reward = {
+		}
+	}
+	### Why did you feel the need to do this???
+	focus = {
+		id = GRL_soc_dem_victory
+		cost = 5
+		icon = GFX_focus_generic_social_democracy
+		x = 1
+		y = 1
+		mutually_exclusive = {
+			focus = GRL_inuit_socialism
+			#focus = GRL_a_MAGA_greenland
+		}
+		relative_position_id = GRL_new_elections
+		prerequisite = { 
+			focus = GRL_new_elections
+		}
+		available = {
+			always = no
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = GRL_increase_integration_with_denmark
+		cost = 5
+		icon = GFX_focus_generic_befriend_denmark
+		x = -0
+		y = 1
+		relative_position_id = GRL_soc_dem_victory
+		prerequisite = { 
+			focus = GRL_soc_dem_victory
+		}
+		completion_reward = {
+			set_cosmetic_tag = GRL_DEN_democrat
+			add_ideas = {
+				GRL_danish_realm
+				GRL_kingdom_of_denmark
+				NATO_NATO_idea
+			}
+			FFR = { add_to_faction = GRL }
+			complete_national_focus = GRL_continue_on_course
+		}
+	}
+	focus = {
+		id = GRL_reach_out_to_iceland
+		cost = 5
+		icon = GFX_focus_ICE_iceland_defense_force
+		x = 2
+		y = 1
+		relative_position_id = GRL_soc_dem_victory
+		prerequisite = { 
+			focus = GRL_soc_dem_victory
+		}
+		completion_reward = {
+			add_ideas = GRL_icelandic_Realm
+		}
+	}
+	
+	
+	
+	### Socialism
+	focus = {
+		id = GRL_inuit_socialism
+		cost = 5
+		icon = GFX_focus_PAR_align_with_the_guion_rojo
+		x = -2
+		y = 1
+		mutually_exclusive = {
+			#focus = GRL_a_MAGA_greenland
+			focus = GRL_soc_dem_victory
+		}
+		relative_position_id = GRL_new_elections
+		prerequisite = { 
+			focus = GRL_new_elections
+		}
+		available = {
+			always = no
+		}
+		completion_reward = {
+			set_country_flag = GRL_independent_from_denmark_flag
+		}
+	}
+	focus = {
+		id = GRL_nationalize_danish_assets
+		cost = 5
+		icon = GFX_focus_SWE_danish_communists
+		x = -1
+		y = 1
+		relative_position_id = GRL_inuit_socialism
+		prerequisite = { 
+			focus = GRL_inuit_socialism
+		}
+		completion_reward = {
+			add_offsite_building = { type = industrial_complex level = 3 }
+		}
+	}
+	focus = {
+		id = GRL_cut_oil_exports
+		cost = 5
+		icon = GFX_goal_TEX_Oil_Barons_Under_Me
+		x = -0
+		y = 1
+		relative_position_id = GRL_nationalize_danish_assets
+		prerequisite = { 
+			focus = GRL_nationalize_danish_assets
+		}
+		mutually_exclusive = { focus = GRL_necessary_evil }
+		completion_reward = {
+			add_resource = {
+				type = oil
+				amount = -60
+				state = 674
+			}
+			add_stability = 0.25
+			add_political_power = 125
+			add_war_support = 0.1
+		}
+	}
+	focus = {
+		id = GRL_search_for_uranium
+		cost = 5
+		icon = GFX_goal_OBX_Nuclear_Incentives
+		x = 1
+		y = 1
+		relative_position_id = GRL_cut_oil_exports
+		prerequisite = { 
+			focus = GRL_cut_oil_exports
+		}
+		completion_reward = {
+			add_resource = {
+				type = chromium
+				amount = 60
+				state = 674
+			}
+		}
+	}
+	focus = {
+		id = GRL_necessary_evil
+		cost = 3
+		icon = GFX_goal_TEX_Oil
+		x = -2
+		y = 1
+		relative_position_id = GRL_nationalize_danish_assets
+		prerequisite = { 
+			focus = GRL_nationalize_danish_assets
+		}
+		mutually_exclusive = { focus = GRL_cut_oil_exports }
+		completion_reward = {
+			add_stability = -0.1
+		}
+	}
+	focus = {
+		id = GRL_speed_up_urbanization
+		cost = 5
+		icon = GFX_focus_generic_communist_industry
+		x = -1
+		y = 1
+		relative_position_id = GRL_necessary_evil
+		prerequisite = { 
+			focus = GRL_necessary_evil
+		}
+		completion_reward = {
+			674 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 4
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+				increase_state_category = yes
+			}
+		}
+	}
+	focus = {
+		id = GRL_greenlandish_welfare_state
+		cost = 5
+		icon = GFX_focus_por_workers_of_iberia 
+		x = -1
+		y = 1
+		relative_position_id = GRL_cut_oil_exports
+		prerequisite = { 
+			focus = GRL_necessary_evil
+			focus = GRL_cut_oil_exports
+		}
+		completion_reward = {
+			add_ideas = GRL_greenlander_welfare
+		}
+	}
+	focus = {
+		id = GRL_expand_education_efforts
+		cost = 5
+		icon = GFX_focus_generic_socialist_science
+		x = 0
+		y = 2
+		relative_position_id = GRL_greenlandish_welfare_state
+		prerequisite = { 
+			focus = GRL_greenlandish_welfare_state
+		}
+		completion_reward = {
+			add_research_slot = 1
+		}
+	}
+	focus = {
+		id = GRL_an_adaptable_army
+		cost = 5
+		icon = GFX_focus_generic_winter_warfare
+		x = 1
+		y = 1
+		relative_position_id = GRL_expand_education_efforts
+		prerequisite = { 
+			focus = GRL_expand_education_efforts
+		}
+		prerequisite = { 
+			focus = GRL_newfoundland_inuit_factories
+		}
+		completion_reward = {
+			army_experience = 50
+		}
+	}
+	focus = {
+		id = GRL_guerilla_tactics
+		cost = 5
+		icon = GFX_SOV_an_adaptable_army_ccp_2d_sov_compatibility
+		x = 1
+		y = 1
+		relative_position_id = GRL_an_adaptable_army
+		prerequisite = { 
+			focus = GRL_an_adaptable_army
+		}
+		completion_reward = {
+			add_ideas = GRL_inuit_hit_and_run
+		}
+	}
+	focus = {
+		id = GRL_independent_supply_lines
+		cost = 5
+		icon = GFX_focus_FIN_motti_tactics
+		x = -1
+		y = 1
+		relative_position_id = GRL_an_adaptable_army
+		prerequisite = { 
+			focus = GRL_an_adaptable_army
+		}
+		completion_reward = {
+			add_ideas = GRL_inuit_supply
+		}
+	}
+	focus = {
+		id = GRL_gender_equality
+		cost = 5
+		icon = GFX_focus_ARG_women_in_industry
+		x = -1
+		y = 1
+		relative_position_id = GRL_greenlandish_welfare_state
+		prerequisite = { 
+			focus = GRL_greenlandish_welfare_state
+		}
+		completion_reward = {
+			add_ideas = GRL_gender_equality_idea
+		}
+	}
+	focus = {
+		id = GRL_urbanize_labrador
+		cost = 5
+		icon = GFX_focus_NORDIC_com_selector_civilian
+		x = 1
+		y = 1
+		relative_position_id = GRL_greenlandish_welfare_state
+		prerequisite = { 
+			focus = GRL_greenlandish_welfare_state
+		}
+		prerequisite = { 
+			focus = GRL_free_natives_in_mrt
+		}
+		available = {
+			controls_state = 10
+			controls_state = 17
+		}
+		completion_reward = {
+			10 = {
+				add_building_construction = {
+					type = industrial_complex 
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure 
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 3
+				add_manpower = 10000
+			}
+			17 = {
+				add_building_construction = {
+					type = industrial_complex 
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure 
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 3
+				add_manpower = 10000
+			}
+		}
+	}
+	focus = {
+		id = GRL_newfoundland_inuit_factories
+		cost = 5
+		icon = GFX_focus_NORDIC_com_civilian
+		x = 1
+		y = 1
+		relative_position_id = GRL_urbanize_labrador
+		prerequisite = { 
+			focus = GRL_urbanize_labrador
+		}
+		prerequisite = { 
+			focus = GRL_renativization_campaigns
+		}
+		available = {
+			controls_state = 164
+			controls_state = 156
+		}
+		completion_reward = {
+			164 = {
+				add_building_construction = {
+					type = industrial_complex 
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure 
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 3
+				add_manpower = 10000
+			}
+			156 = {
+				add_building_construction = {
+					type = industrial_complex 
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure 
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 3
+				add_manpower = 10000
+			}
+		}
+	}
+	
+	
+	focus = {
+		id = GRL_anti_colonialist_fervor
+		cost = 5
+		icon = GFX_goal_tfv_sever_ties_with_uk
+		x = 1
+		y = 1
+		relative_position_id = GRL_inuit_socialism
+		prerequisite = { 
+			focus = GRL_inuit_socialism
+		}
+		completion_reward = {
+			add_war_support = 0.4
+			add_political_power = 150
+		}
+	}
+	focus = {
+		id = GRL_canadian_crisis_inuit
+		cost = 0
+		icon = GFX_focus_generic_total_war
+		x = 1
+		y = 1
+		relative_position_id = GRL_anti_colonialist_fervor
+		prerequisite = { 
+			focus = GRL_anti_colonialist_fervor
+		}
+		available = {
+			has_global_flag = canadian_civil_war
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = GRL_free_natives_in_mrt
+		cost = 5
+		icon = GFX_SOV_coup_detat_ccp_2d_sov_compatibility
+		x = 0
+		y = 1
+		relative_position_id = GRL_canadian_crisis_inuit
+		prerequisite = { 
+			focus = GRL_canadian_crisis_inuit
+		}
+		will_lead_to_war_with = MRT
+		completion_reward = {
+			create_wargoal = {
+				target = MRT
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = GRL_renativization_campaigns
+		cost = 5
+		icon = GFX_focus_GER_integration_of_puppet_economies
+		x = -1
+		y = 1
+		relative_position_id = GRL_free_natives_in_mrt
+		prerequisite = { 
+			focus = GRL_free_natives_in_mrt
+		}
+		available = {
+			NOT = { country_exists = MRT }
+			controls_state = 164
+			controls_state = 156
+			controls_state = 10
+			controls_state = 17
+		}
+		completion_reward = {
+			every_owned_state = {
+				limit = {
+					is_core_of = MRT
+				}
+				add_core_of = ROOT
+			}
+			every_owned_state = {
+				limit = {
+					AND  = {
+						is_core_of = MRT
+						NOT = {
+							OR = {
+								state = 135
+								state = 10
+								state = 17
+								state = 20
+								state = 72
+							}
+						}
+					}
+				}
+				add_manpower = -50000
+			}
+		}
+	}
+	focus = {
+		id = GRL_northern_confederation
+		cost = 1
+		icon = GFX_focus_CHL_union_of_hispanic_republics
+		x = 1
+		y = 1
+		relative_position_id = GRL_free_natives_in_mrt
+		prerequisite = { 
+			focus = GRL_free_natives_in_mrt
+		}
+		completion_reward = {
+			set_cosmetic_tag = GRL_north_confed
+		}
+	}
+	focus = {
+		id = GRL_seize_quebec
+		cost = 5
+		icon = GFX_goal_GRL_Seize_Quebec
+		x = -1
+		y = 1
+		relative_position_id = GRL_northern_confederation
+		prerequisite = { 
+			focus = GRL_northern_confederation
+		}
+		will_lead_to_war_with = QUE
+		completion_reward = {
+			create_wargoal = {
+				target = QUE
+				type = annex_everything
+			}
+			every_state = {
+				limit = {
+					OR = {
+						state = 377
+						state = 21
+						state = 48
+						state = 72
+					}
+				}
+				add_core_of = ROOT
+			}
+		}
+	}
+	focus = {
+		id = GRL_invade_alaska
+		cost = 5
+		icon = GFX_goal_GRL_Invade_Alaska
+		x = 1
+		y = 1
+		relative_position_id = GRL_northern_confederation
+		prerequisite = { 
+			focus = GRL_northern_confederation
+		}
+		will_lead_to_war_with = ALA
+		completion_reward = {
+			create_wargoal = {
+				target = ALA
+				type = annex_everything
+			}
+			every_state = {
+				limit = {
+					is_core_of = ALA
+				}
+				add_core_of = ROOT
+			}
+		}
+	}
+	focus = {
+		id = GRL_seize_vancouver
+		cost = 5
+		icon = GFX_goal_GRL_Seize_Vancouver
+		x = 1
+		y = 1
+		relative_position_id = GRL_invade_alaska
+		prerequisite = { 
+			focus = GRL_invade_alaska
+		}
+		available = {
+			NOT = {
+				country_exists = ALA
+			}
+		}
+		will_lead_to_war_with = BRC
+		will_lead_to_war_with = VAN
+		completion_reward = {
+			create_wargoal = {
+				target = VAN
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = BRC
+				type = annex_everything
+			}
+			every_state = {
+				limit = {
+					OR = {
+						state = 82
+						state = 27
+						state = 58
+					}
+				}
+				add_core_of = ROOT
+			}
+		}
+	}
+	focus = {
+		id = GRL_reach_out_to_nunavut
+		cost = 5
+		icon = GFX_goal_GRL_Reach_out_to_Nunavut
+		x = -1
+		y = 1
+		relative_position_id = GRL_seize_quebec
+		prerequisite = { 
+			focus = GRL_seize_quebec
+		}
+		available = {
+			NOT = {
+				country_exists = QUE
+			}
+		}
+		completion_reward = {
+			NUN = {
+				country_event = {
+					id = greenland.7
+					days = 2
+				}
+			}
+			every_state = {
+				limit = {
+					is_core_of = NUN
+				}
+				add_core_of = ROOT
+			}
+		}
+	}
+	focus = {
+		id = GRL_reach_out_to_WBK
+		cost = 5
+		icon = GFX_goal_GRL_Reach_out_to_WBK
+		x = 1
+		y = 1
+		relative_position_id = GRL_reach_out_to_nunavut
+		prerequisite = { 
+			focus = GRL_reach_out_to_nunavut
+		}
+		available = {
+			NOT = {
+				country_exists = QUE
+			}
+		}
+		completion_reward = {
+			WBK = {
+				country_event = {
+					id = greenland.7
+					days = 2
+				}
+			}
+			every_state = {
+				limit = {
+					OR = {
+						is_core_of = WBK
+						is_core_of = NEW
+						is_core_of = NAB
+					}
+				}
+				add_core_of = ROOT
+			}
+		}
+	}
+	focus = {
+		id = GRL_demand_north_WPC
+		cost = 5
+		icon = GFX_goal_GRL_Demand_North_WPC
+		x = 1
+		y = 1
+		relative_position_id = GRL_seize_quebec
+		prerequisite = { 
+			focus = GRL_seize_quebec
+		}
+		available = {
+			NOT = {
+				country_exists = NUN
+			}
+		}
+		will_lead_to_war_with = WPC
+		completion_reward = {
+			create_wargoal = {
+				target = WPC
+				type = annex_everything
+			}
+			every_state = {
+				limit = {
+					OR = {
+						state = 32
+						state = 4
+						state = 5
+						state = 1
+						state = 9
+						state = 26
+						state = 
+					}
+				}
+				add_core_of = ROOT
+			}
+		}
+	}
+	focus = {
+		id = GRL_revenge_on_the_colonists
+		cost = 5
+		icon = GFX_goal_GRL_Revenge_on_Colonists
+		x = 3
+		y = 2
+		relative_position_id = GRL_reach_out_to_nunavut
+		prerequisite = { 
+			focus = GRL_demand_north_WPC
+		}
+		prerequisite = { 
+			focus = GRL_reach_out_to_WBK
+		}
+		prerequisite = { 
+			focus = GRL_seize_vancouver
+		}
+		available = {
+			has_war = no
+			NOT = {
+				country_exists = ALA
+				country_exists = QUE
+				country_exists = MRT
+			}
+		}
+		will_lead_to_war_with = USA
+		will_lead_to_war_with = FRA
+		will_lead_to_war_with = CAN
+		completion_reward = {
+			create_wargoal = {
+				target = USA
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = FRA
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = CAN
+				type = annex_everything
+			}
+		}
+	}
+	
+	
+	
+	
+	### Continue on course
+	focus = {
+		id = GRL_continue_on_course
+		cost = 5
+		icon = GFX_focus_generic_befriend_denmark
+		x = 9
+		y = 1
+		available = {
+			has_country_flag = GRL_NATO_crisis
+		}
+		mutually_exclusive = {
+			focus = GRL_sever_ties_with_denmark
+		}
+		relative_position_id = GRL_the_NATO_crisis
+		prerequisite = { 
+			focus = GRL_the_NATO_crisis
+		}
+		available = {
+			always = no
+		}
+		completion_reward = {
+			if = {
+				limit = { has_government = libertarian_left }
+				swap_ideas = {
+					remove_idea = GRL_kingdom_of_denmark
+					add_idea = GRL_kingdom_of_denmark_lib_left
+				}
+			}
+			if = {
+				limit = { has_government = democrat }
+				swap_ideas = {
+					remove_idea = GRL_kingdom_of_denmark
+					add_idea = GRL_kingdom_of_denmark_democrat
+				}
+			}
+			swap_ideas = {
+				remove_idea = GRL_danish_realm
+				add_idea = GRL_danish_realm2
+			}
+		}
+	}
+	
+	### groneland
+	focus = {
+		id = GRL_expand_danish_settlement
+		cost = 5
+		icon = GFX_focus_generic_full_employment
+		x = -2
+		y = 1
+		relative_position_id = GRL_continue_on_course
+		prerequisite = { 
+			focus = GRL_continue_on_course
+		}
+		available = {
+		}
+		completion_reward = {
+			674 = { add_manpower = 10000 }
+		}
+	}
+	focus = {
+		id = GRL_protect_inuit_rights
+		cost = 5
+		icon = GFX_focus_generic_democratic_europe
+		x = 1
+		y = 1
+		relative_position_id = GRL_expand_danish_settlement
+		mutually_exclusive = { focus = GRL_danish_integration_program }
+		prerequisite = { 
+			focus = GRL_expand_danish_settlement
+		}
+		available = {
+		}
+		completion_reward = {
+			add_ideas = GRL_inuit_rights
+		}
+	}
+	focus = {
+		id = GRL_danish_integration_program
+		cost = 5
+		icon = GFX_focus_DEN_national_unity
+		x = -2
+		y = 1
+		relative_position_id = GRL_expand_danish_settlement
+		mutually_exclusive = { focus = GRL_protect_inuit_rights }
+		prerequisite = { 
+			focus = GRL_expand_danish_settlement
+			focus = GRL_royalist_coup
+		}
+		available = {
+			OR = {
+				has_completed_focus = GRL_royalist_coup
+				has_completed_focus = GRL_soc_dem_victory
+			}
+		}
+		completion_reward = {
+			add_ideas = GRL_danish_integration_idea
+		}
+	}
+	focus = {
+		id = GRL_expand_the_welfare_State
+		cost = 5
+		icon = GFX_focus_MON_New_State_Healthcare
+		x = 2
+		y = 1
+		relative_position_id = GRL_danish_integration_program
+		prerequisite = { 
+			focus = GRL_protect_inuit_rights 
+			focus = GRL_danish_integration_program
+		}
+		available = {
+			#has_completed_focus = GRL_expand_danish_settlement
+		}
+		completion_reward = {
+			add_ideas = GRL_danish_welfare_state
+		}
+	}
+	focus = {
+		id = GRL_danish_investments
+		cost = 5
+		icon = GFX_focus_generic_modernize_industry
+		x = -1
+		y = 1
+		relative_position_id = GRL_expand_the_welfare_State
+		prerequisite = { 
+			focus = GRL_expand_the_welfare_State 
+		}
+		available = {
+		}
+		completion_reward = {
+			add_offsite_building = { type = arms_factory level = 3 }
+		}
+	}
+	focus = {
+		id = GRL_urbanize_nuuk
+		cost = 5
+		icon = GFX_goal_GLA_rebuild_urban_areas
+		x = 1
+		y = 1
+		relative_position_id = GRL_expand_the_welfare_State
+		prerequisite = { 
+			focus = GRL_expand_the_welfare_State 
+		}
+		available = {
+		}
+		completion_reward = {
+			add_offsite_building = { type = industrial_complex level = 3 }
+			674 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 4
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = GRL_petition_for_an_expanded_eez
+		cost = 5
+		icon = GFX_goal_OBX_Expand_Our_Ports
+		x = -1
+		y = 1
+		relative_position_id = GRL_urbanize_nuuk
+		prerequisite = { 
+			focus = GRL_urbanize_nuuk 
+		}
+		prerequisite = { 
+			focus = GRL_danish_investments 
+		}
+		available = {
+		}
+		completion_reward = {
+			add_ideas = GRL_expanded_eez
+		}
+	}
+	focus = {
+		id = GRL_EU_hub_of_NA
+		cost = 5
+		icon = GFX_goal_OBX_Reach_Out_to_European_Allies
+		x = -1
+		y = 1
+		relative_position_id = GRL_petition_for_an_expanded_eez
+		prerequisite = { 
+			focus = GRL_petition_for_an_expanded_eez 
+		}
+		available = {
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = GRL_expanded_eez
+				add_idea = GRL_expanded_eez2
+			}
+		}
+	}
+	focus = {
+		id = GRL_alternative_to_russian_oil
+		cost = 5
+		icon = GFX_focus_generic_offshore_oil_rig
+		x = 1
+		y = 1
+		relative_position_id = GRL_petition_for_an_expanded_eez
+		prerequisite = { 
+			focus = GRL_petition_for_an_expanded_eez 
+		}
+		available = {
+		}
+		completion_reward = {
+			add_resource = {
+				type = oil
+				amount = 50
+				state = 674
+			}
+		}
+	}
+	
+	
+	
+	
+	### NATO Part
+	focus = {
+		id = GRL_assure_NATO_allies
+		cost = 5
+		icon = GFX_goal_NATO
+		x = 2
+		y = 1
+		relative_position_id = GRL_continue_on_course
+		prerequisite = { 
+			focus = GRL_continue_on_course
+		}
+		available = {
+		}
+		completion_reward = {
+			add_political_power = 50
+		}
+	}
+	focus = {
+		id = GRL_joint_exercises
+		cost = 5
+		icon = GFX_goal_OBX_NATO_style_Training
+		x = -1
+		y = 1
+		relative_position_id = GRL_assure_NATO_allies
+		prerequisite = { 
+			focus = GRL_assure_NATO_allies
+		}
+		completion_reward = {
+			army_experience = 50
+		}
+	}
+	focus = {
+		id = GRL_NA_HQ
+		cost = 5
+		icon = GFX_goal_OBX_NATO_Standards
+		x = -0
+		y = 1
+		relative_position_id = GRL_joint_exercises
+		prerequisite = { 
+			focus = GRL_joint_exercises
+		}
+		completion_reward = {
+			add_ideas = GRL_NA_NATO_HQ
+		}
+	}
+	focus = {
+		id = GRL_the_canada_crisis
+		cost = 5
+		icon = GFX_goal_GRL_Canada_Crisis
+		x = 2
+		y = 1
+		relative_position_id = GRL_assure_NATO_allies
+		prerequisite = { 
+			focus = GRL_assure_NATO_allies
+		}
+		available = {
+			has_global_flag = canadian_civil_war
+		}
+		completion_reward = {
+			country_event = greenland.6
+		}
+	}
+	
+	
+	focus = {
+		id = GRL_vote_fails
+		cost = 5
+		icon = GFX_goal_GRL_Vote_Fails
+		x = -1
+		y = 1
+		relative_position_id = GRL_the_canada_crisis
+		prerequisite = { 
+			focus = GRL_the_canada_crisis
+		}
+		mutually_exclusive = { 
+			focus = GRL_NATO_intervention
+		}
+		available = {
+			always = no
+		}
+		completion_reward = {
+			add_political_power = 50
+		}
+	}
+	focus = {
+		id = GRL_build_a_volunteer_force
+		cost = 5
+		icon = GFX_goal_GRL_Build_a_Volunteer_Force
+		x = 3
+		y = 1
+		relative_position_id = GRL_expand_the_welfare_State
+		prerequisite = { 
+			focus = GRL_expand_the_welfare_State 
+		}
+		prerequisite = { 
+			focus = GRL_vote_fails 
+		}
+		available = {
+		}
+		completion_reward = {
+			add_ideas = GRL_intervention_force
+		}
+	}
+	focus = {
+		id = GRL_invite_danish_soldiers
+		cost = 5
+		icon = GFX_goal_GRL_Invite_Danish_Soldiers
+		x = 1
+		y = 1
+		relative_position_id = GRL_build_a_volunteer_force
+		prerequisite = { 
+			focus = GRL_build_a_volunteer_force 
+			focus = GRL_contact_canadian_sympathizers 
+		}
+		available = {
+		}
+		completion_reward = {
+			add_ideas = GRL_danish_army_in_NA
+			add_research_slot = 1
+		}
+	}
+	focus = {
+		id = GRL_nuuk_NATO_base
+		cost = 5
+		icon = GFX_goal_GRL_Nuuk_NATO_Base
+		x = 1
+		y = 1
+		relative_position_id = GRL_urbanize_nuuk
+		prerequisite = { 
+			focus = GRL_urbanize_nuuk 
+			focus = GRL_build_a_volunteer_force 
+		}
+		available = {
+		}
+		completion_reward = {
+			army_experience = 50
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.5
+				uses = 5
+				category = land_doctrine
+			}
+		}
+	}
+	
+	
+	focus = {
+		id = GRL_NATO_intervention
+		cost = 5
+		icon = GFX_goal_GRL_Vote_Successful
+		x = 1
+		y = 1
+		relative_position_id = GRL_the_canada_crisis
+		prerequisite = { 
+			focus = GRL_the_canada_crisis
+		}
+		mutually_exclusive = { 
+			focus = GRL_vote_fails
+		}
+		available = {
+			always = no
+		}
+		completion_reward = {
+			add_political_power = -50
+			add_war_support = 0.2
+		}
+	}
+	focus = {
+		id = GRL_contact_canadian_sympathizers
+		cost = 5
+		icon = GFX_goal_GRL_Contact_Canadian_Sympathizers
+		x = -1
+		y = 1
+		relative_position_id = GRL_NATO_intervention
+		prerequisite = { 
+			focus = GRL_NATO_intervention
+		}
+		completion_reward = {
+			add_ideas = GRL_canadian_compliance
+		}
+	}
+	focus = {
+		id = GRL_st_pierre_launchpad
+		cost = 5
+		icon = GFX_goal_GRL_Saint_Pierre_and_Miquelon_Launch_Pad
+		x = 1
+		y = 1
+		relative_position_id = GRL_NATO_intervention
+		prerequisite = { 
+			focus = GRL_NATO_intervention
+		}
+		completion_reward = {
+			transfer_state = 144
+			add_state_core = 144
+			144 = {
+				add_building_construction = {
+					type = naval_base
+					level = 4
+					instant_build = yes
+					province = 12114
+				}
+			}
+		}
+	}
+	focus = {
+		id = GRL_NATO_invasion_of_maritimes
+		cost = 5
+		icon = GFX_goal_GRL_NATO_Invasion_of_the_Maritimes
+		x = 1
+		y = 1
+		relative_position_id = GRL_contact_canadian_sympathizers
+		prerequisite = { 
+			focus = GRL_contact_canadian_sympathizers
+		}
+		prerequisite = { 
+			focus = GRL_st_pierre_launchpad
+		}
+		will_lead_to_war_with = MRT
+		completion_reward = {
+			create_wargoal = {
+				target = MRT
+				type = annex_everything 
+			}
+		}
+	}
+	focus = {
+		id = GRL_establish_NATO_reconstruction_of_canada
+		cost = 5
+		icon = GFX_goal_GRL_Establish_NATO_Reconstruction_of_Canada
+		x = 0
+		y = 1
+		relative_position_id = GRL_NATO_invasion_of_maritimes
+		prerequisite = { 
+			focus = GRL_NATO_invasion_of_maritimes
+		}
+		available = {
+			NOT = {
+				country_exists = MRT
+			}
+		}
+		completion_reward = {
+			every_state = {
+				limit = {
+					is_core_of = MRT
+				}
+				add_core_of = ROOT
+			}
+			set_cosmetic_tag = GRL_NATO_zone_can
+		}
+	}
+	focus = {
+		id = GRL_blitz_quebec
+		cost = 5
+		icon = GFX_goal_GRL_Blitz_Quebec
+		x = -2
+		y = 1
+		relative_position_id = GRL_NATO_invasion_of_maritimes
+		prerequisite = { 
+			focus = GRL_NATO_invasion_of_maritimes
+		}
+		will_lead_to_war_with = QUE
+		completion_reward = {
+			create_wargoal = {
+				target = QUE
+				type = annex_everything 
+			}
+		}
+	}
+	focus = {
+		id = GRL_expand_supply_chain
+		cost = 5
+		icon = GFX_goal_GRL_Expand_Supply_Chains
+		x = 2
+		y = 1
+		relative_position_id = GRL_NATO_invasion_of_maritimes
+		prerequisite = { 
+			focus = GRL_NATO_invasion_of_maritimes
+		}
+		completion_reward = {
+			add_ideas = GRL_better_supply_in_can
+		}
+	}
+	focus = {
+		id = GRL_the_canada_crisis_mad_tyrant
+		cost = 5
+		icon = GFX_goal_GRL_The_One_Who_Started_It
+		x = -1
+		y = 1
+		relative_position_id = GRL_expand_supply_chain
+		prerequisite = { 
+			focus = GRL_expand_supply_chain
+		}
+		prerequisite = { 
+			focus = GRL_blitz_quebec
+		}
+		prerequisite = { 
+			focus = GRL_establish_NATO_reconstruction_of_canada
+		}
+		will_lead_to_war_with = CAN
+		completion_reward = {
+			create_wargoal = {
+				target = CAN
+				type = annex_everything 
+			}
+		}
+	}
+	focus = {
+		id = GRL_british_puppets
+		cost = 5
+		icon = GFX_goal_GRL_Crush_British_Puppets
+		x = 1
+		y = 1
+		relative_position_id = GRL_blitz_quebec
+		prerequisite = { 
+			focus = GRL_blitz_quebec
+		}
+		prerequisite = { 
+			focus = GRL_establish_NATO_reconstruction_of_canada
+		}
+		prerequisite = { 
+			focus = GRL_expand_supply_chain
+		}
+		will_lead_to_war_with = NUN
+		will_lead_to_war_with = ONT
+		will_lead_to_war_with = CAN
+		completion_reward = {
+			create_wargoal = {
+				target = ONT
+				type = annex_everything 
+			}
+			create_wargoal = {
+				target = NUN
+				type = annex_everything 
+			}
+			create_wargoal = {
+				target = PTR
+				type = annex_everything 
+			}
+		}
+	}
+	focus = {
+		id = GRL_end_wexit
+		cost = 5
+		icon = GFX_goal_GRL_End_Wexit
+		x = 1
+		y = 1
+		relative_position_id = GRL_british_puppets
+		prerequisite = { 
+			focus = GRL_british_puppets
+		}
+		prerequisite = { 
+			focus = GRL_the_canada_crisis_mad_tyrant
+		}
+		will_lead_to_war_with = WPC
+		will_lead_to_war_with = VAN
+		completion_reward = {
+			create_wargoal = {
+				target = WPC
+				type = annex_everything 
+			}
+			create_wargoal = {
+				target = VAN
+				type = annex_everything 
+			}
+			every_state = {
+				limit = {
+					has_state_flag = part_of_canada
+				}
+				add_core_of = ROOT
+			}
+		}
+	}
+	focus = {
+		id = GRL_force_british_back_in_nato
+		cost = 5
+		icon = GFX_goal_GRL_Force_the_British_Back_in_NATO
+		x = 1
+		y = 1
+		relative_position_id = GRL_end_wexit
+		prerequisite = { 
+			focus = GRL_end_wexit
+		}
+		will_lead_to_war_with = ENG
+		completion_reward = {
+			create_wargoal = {
+				target = ENG
+				type = puppet_wargoal_focus 
+			}
+		}
+	}
+	focus = {
+		id = GRL_end_russian_influence_in_america # alaska
+		cost = 5
+		icon = GFX_goal_GRL_End_Russian_Influence_in_America
+		x = -1
+		y = 1
+		relative_position_id = GRL_end_wexit
+		prerequisite = { 
+			focus = GRL_end_wexit
+		}
+		will_lead_to_war_with = ALA
+		completion_reward = {
+			create_wargoal = {
+				target = ALA
+				type = puppet_wargoal_focus 
+			}
+		}
+	}
+	focus = {
+		id = GRL_end_the_chinese_puppets # PRA 
+		cost = 5
+		icon = GFX_goal_OBX_conquer_california
+		x = -1
+		y = 1
+		relative_position_id = GRL_force_british_back_in_nato
+		prerequisite = { 
+			focus = GRL_force_british_back_in_nato
+		}
+		prerequisite = { 
+			focus = GRL_end_russian_influence_in_america
+		}
+		will_lead_to_war_with = PRA
+		completion_reward = {
+			create_wargoal = {
+				target = PRA
+				type = puppet_wargoal_focus 
+			}
+		}
+	}
+	
+	
+	
+	
+	### Econ Tree
+	focus = {
+		id = GRL_danish_north_america
+		cost = 5
+		icon = GFX_focus_DEN_protect_greenland
+		x = -15
+		y = 0
+		#relative_position_id = 
+		#prerequisite = { focus =   }
+		completion_reward = {
+			add_political_power = 150
+			add_offsite_building = { type = arms_factory level = 2 }
+		}
+	}
+	focus = {
+		id = GRL_invite_settlers
+		cost = 5
+		icon = GFX_focus_generic_the_giant_wakes
+		x = 3
+		y = 1
+		relative_position_id = GRL_danish_north_america
+		prerequisite = { 
+			focus = GRL_danish_north_america 
+		}
+		completion_reward = {
+			674 = {
+				add_manpower = 20000
+			}
+			add_stability = -0.05
+		}
+	}
+	focus = {
+		id = GRL_american_companies
+		cost = 5
+		icon = GFX_focus_generic_american_investments
+		x = 0
+		y = 1
+		relative_position_id = GRL_invite_settlers
+		prerequisite = { 
+			focus = GRL_invite_settlers 
+		}
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 0.75
+				uses = 3
+				category = excavation_tech
+			}
+			add_offsite_building = { type = industrial_complex level = 2 }
+		}
+	}
+	focus = {
+		id = GRL_convert_profits #offmap factory conversion from regular factories
+		cost = 5
+		icon = GFX_focus_generic_currency_reforms
+		x = -1
+		y = 1
+		relative_position_id = GRL_american_companies
+		prerequisite = { 
+			focus = GRL_american_companies 
+		}
+		completion_reward = {
+			unlock_decision_category_tooltip = GRL_factory_conversion
+		}
+	}
+	focus = {
+		id = GRL_canadian_refugees
+		cost = 5
+		icon = GFX_goal_generic_improve_relations
+		x = 2
+		y = 1
+		relative_position_id = GRL_invite_settlers
+		prerequisite = { 
+			focus = GRL_invite_settlers 
+		}
+		available = {
+			has_global_flag = canadian_civil_war
+		}
+		completion_reward = {
+			674 = {
+				add_manpower = 10000
+			}
+			add_stability = -0.05
+		}
+	}
+	focus = {
+		id = GRL_mexican_refugees
+		cost = 5
+		icon = GFX_goal_tripartite_pact
+		x = -1
+		y = 1
+		relative_position_id = GRL_canadian_refugees
+		prerequisite = { 
+			focus = GRL_canadian_refugees 
+		}
+		completion_reward = {
+			674 = {
+				add_manpower = 20000
+			}
+			add_stability = -0.1
+		}
+	}
+	focus = {
+		id = GRL_canadian_scientists
+		cost = 5
+		icon = GFX_goal_generic_scientific_exchange
+		x = 1
+		y = 1
+		relative_position_id = GRL_canadian_refugees
+		prerequisite = { 
+			focus = GRL_canadian_refugees 
+		}
+		completion_reward = {
+			add_research_slot = 1
+		}
+	}
+	
+	focus = {
+		id = GRL_open_up_trade
+		cost = 5
+		icon = GFX_focus_GER_customs_union
+		x = -1
+		y = 1
+		relative_position_id = GRL_danish_north_america
+		prerequisite = { 
+			focus = GRL_danish_north_america 
+		}
+		completion_reward = {
+			add_ideas = free_trade 
+			add_offsite_building = { type = industrial_complex level = 2 }
+		}
+	}
+	
+	focus = {
+		id = GRL_bring_resources_From_europe
+		cost = 5
+		icon = GFX_focus_generic_monetary_union
+		x = 1
+		y = 1
+		relative_position_id = GRL_danish_north_america
+		prerequisite = { 
+			focus = GRL_danish_north_america 
+		}
+		completion_reward = {
+			add_resource = {
+				type = steel
+				amount = 50
+				state = 674
+			}
+			add_ideas = GRL_importing_european_goods
+		}
+	}
+	focus = {
+		id = GRL_expand_mining_operations
+		cost = 5
+		icon = GFX_focus_generic_mining_industry
+		x = 0
+		y = 1
+		relative_position_id = GRL_open_up_trade
+		prerequisite = { 
+			focus = GRL_open_up_trade 
+		}
+		completion_reward = {
+			add_resource = {
+				type = aluminium
+				amount = 15
+				state = 674
+			}
+			add_resource = {
+				type = steel
+				amount = 15
+				state = 674
+			}
+			add_resource = {
+				type = tungsten
+				amount = 15
+				state = 674
+			}
+		}
+	}
+	focus = {
+		id = GRL_expand_whaling
+		cost = 5
+		icon = GFX_focus_ICE_modernizing_the_coast_guard
+		x = -2
+		y = 1
+		relative_position_id = GRL_open_up_trade
+		prerequisite = { 
+			focus = GRL_open_up_trade 
+		}
+		completion_reward = {
+			add_ideas = GRL_whaling
+		}
+	}
+	focus = {
+		id = GRL_melt_the_ice_sheets
+		cost = 5
+		icon = GFX_focus_DEN_expand_ivittuut_mine
+		x = -1
+		y = 1
+		relative_position_id = GRL_expand_mining_operations
+		prerequisite = { 
+			focus = GRL_expand_mining_operations 
+		}
+		completion_reward = {
+			674 = {
+				add_state_modifier = {
+					modifier = {
+						local_resources = 0.5
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = GRL_eco_friendly_resource_extraction
+		cost = 5
+		icon = GFX_focus_GER_plenipotentiary_of_the_four_year_plan 
+		x = 1
+		y = 1
+		relative_position_id = GRL_expand_mining_operations
+		prerequisite = { 
+			focus = GRL_expand_mining_operations 
+		}
+		completion_reward = {
+			add_resource = {
+				type = oil
+				amount = 40
+				state = 674
+			}
+		}
+	}
+	
+	
+	### Military Tree
+	focus = {
+		id = GRL_rethinking_the_navy
+		cost = 5
+		icon = GFX_SOV_naval_infantry_ccp_2d_sov_compatibility
+		x = 25
+		y = 0
+		#relative_position_id = 
+		#prerequisite = { focus =   }
+		completion_reward = {
+			674 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	
+	### Navy
+	focus = {
+		id = GRL_airport_building
+		cost = 5
+		icon = GFX_focus_generic_air_bases
+		x = -5
+		y = 1
+		relative_position_id = GRL_rethinking_the_navy
+		prerequisite = { 
+			focus = GRL_rethinking_the_navy 
+		}
+		completion_reward = {
+			674 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = GRL_pilot_training
+		cost = 5
+		icon = GFX_focus_generic_cas_aircraft
+		x = -1
+		y = 1
+		relative_position_id = GRL_airport_building
+		prerequisite = { 
+			focus = GRL_airport_building 
+		}
+		completion_reward = {
+			air_experience = 50
+		}
+	}
+	focus = {
+		id = GRL_plane_research_effort # Use old danish planes
+		cost = 5
+		icon = GFX_focus_DEN_domestic_designs
+		x = 1
+		y = 1
+		relative_position_id = GRL_airport_building
+		prerequisite = { 
+			focus = GRL_airport_building 
+		}
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 3
+				category = light_air
+			}
+		}
+	}
+	focus = {
+		id = GRL_study_foreign_doctrines
+		cost = 5
+		icon = GFX_focus_SMB_purchase_aircraft
+		x = 1
+		y = 1
+		relative_position_id = GRL_pilot_training
+		prerequisite = { 
+			focus = GRL_pilot_training 
+		}
+		prerequisite = { 
+			focus = GRL_plane_research_effort 
+		}
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.5
+				uses = 4
+				category = air_doctrine
+			}
+		}
+	}
+	focus = {
+		id = GRL_research_facility_air
+		cost = 5
+		icon = GFX_focus_NORDIC_dem_airforce
+		x = 0
+		y = 2
+		relative_position_id = GRL_study_foreign_doctrines
+		prerequisite = { 
+			focus = GRL_study_foreign_doctrines 
+		}
+		mutually_exclusive = {
+			focus = GRL_research_facility_army
+			focus = GRL_research_facility_navy
+			focus = GRL_research_facility_nuclear
+		}
+		completion_reward = {
+			674 = {
+				add_building_construction = {
+					type = air_facility
+					level = 1
+					instant_build = yes
+					province = 12802
+				}
+			}
+		}
+	}
+	
+	
+	### Navy
+	focus = {
+		id = GRL_merchant_vessels
+		cost = 5
+		icon = GFX_focus_generic_merchant_fleet
+		x = 0
+		y = 1
+		relative_position_id = GRL_rethinking_the_navy
+		prerequisite = { 
+			focus = GRL_rethinking_the_navy 
+		}
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = convoy
+				amount = 100
+			}
+		}
+	}
+	focus = {
+		id = GRL_map_the_north
+		cost = 5
+		icon = GFX_focus_generic_north_atlantic_fleet
+		x = -1
+		y = 1
+		relative_position_id = GRL_merchant_vessels
+		prerequisite = { 
+			focus = GRL_merchant_vessels 
+		}
+		completion_reward = {
+			add_ideas = GRL_navy_idea
+		}
+	}
+	focus = {
+		id = GRL_light_cruiser_concentration
+		cost = 5
+		icon = GFX_focus_generic_navy_battleship2
+		x = 0
+		y = 1
+		relative_position_id = GRL_map_the_north
+		prerequisite = { 
+			focus = GRL_map_the_north 
+		}
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 3
+				category = cl_tech
+			}
+		}
+	}
+	focus = {
+		id = GRL_learn_from_ww2_uboat
+		cost = 5
+		icon = GFX_goal_generic_navy_submarine
+		x = 1
+		y = 1
+		relative_position_id = GRL_light_cruiser_concentration
+		prerequisite = { 
+			focus = GRL_light_cruiser_concentration 
+		}
+		prerequisite = { 
+			focus = GRL_naval_Exercises 
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = GRL_navy_idea
+				add_idea = GRL_navy_idea2
+			}
+		}
+	}
+	focus = {
+		id = GRL_invite_theorists
+		cost = 5
+		icon = GFX_focus_generic_university_3
+		x = 1
+		y = 1
+		relative_position_id = GRL_merchant_vessels
+		prerequisite = { 
+			focus = GRL_merchant_vessels 
+		}
+		completion_reward = {
+			navy_experience = 75
+		}
+	}
+	focus = {
+		id = GRL_naval_Exercises
+		cost = 5
+		icon = GFX_focus_SWE_Vasa_II
+		x = 0
+		y = 1
+		relative_position_id = GRL_invite_theorists
+		prerequisite = { 
+			focus = GRL_invite_theorists 
+		}
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.5
+				uses = 4
+				category = naval_doctrine
+			}
+		}
+	}
+	focus = {
+		id = GRL_research_facility_navy
+		cost = 5
+		icon = GFX_focus_NORDIC_dem_navy
+		x = 0
+		y = 1
+		relative_position_id = GRL_learn_from_ww2_uboat
+		prerequisite = { 
+			focus = GRL_learn_from_ww2_uboat 
+		}
+		mutually_exclusive = {
+			focus = GRL_research_facility_army
+			#GRL_research_facility_navy
+			focus = GRL_research_facility_air
+			focus = GRL_research_facility_nuclear
+		}
+		completion_reward = {
+			674 = {
+				add_building_construction = {
+					type = naval_facility
+					level = 1
+					instant_build = yes
+					province = 12802
+				}
+			}
+		}
+	}
+	focus = {
+		id = GRL_amphib_assault
+		cost = 5
+		icon = GFX_goal_generic_navy_doctrines_tactics
+		x = 2
+		y = 1
+		relative_position_id = GRL_naval_Exercises
+		prerequisite = { 
+			focus = GRL_naval_Exercises 
+		}
+		prerequisite = { 
+			focus = GRL_modernize_tech 
+		}
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1.5
+				ahead_reduction = 2
+				uses = 2
+				category = tp_tech
+			}
+			add_ideas = GRL_transports
+		}
+	}
+	
+	### Army
+	focus = {
+		id = GRL_the_danish_army_of_NA
+		cost = 5
+		icon = GFX_focus_DEN_haeren_reorganization
+		x = 4
+		y = 1
+		mutually_exclusive = { 
+			focus = GRL_american_militias 
+			focus = GRL_EU_military_mission 
+		}
+		available = {
+			OR = {
+				has_completed_focus = GRL_assure_NATO_allies
+				has_completed_focus = GRL_royalist_coup
+			}
+		}
+		relative_position_id = GRL_rethinking_the_navy
+		prerequisite = { 
+			focus = GRL_rethinking_the_navy 
+		}
+		completion_reward = {
+			add_ideas = GRL_danish_army
+		}
+	}
+	focus = {
+		id = GRL_american_militias
+		cost = 5
+		icon = GFX_focus_generic_befriend_usa
+		x = 6
+		y = 1
+		mutually_exclusive = { 
+			focus = GRL_the_danish_army_of_NA 
+			focus = GRL_EU_military_mission 
+		}
+		available = {
+			OR = {
+				has_completed_focus = GRL_inuit_socialism
+				has_completed_focus = GRL_american_companies
+			}
+		}
+		relative_position_id = GRL_rethinking_the_navy
+		prerequisite = { 
+			focus = GRL_rethinking_the_navy 
+		}
+		completion_reward = {
+			add_ideas = GRL_american_militias_army
+		}
+	}
+	focus = {
+		id = GRL_EU_military_mission
+		cost = 5
+		icon = GFX_focus_generic_the_council_of_europe
+		x = 8
+		y = 1
+		mutually_exclusive = { 
+			focus = GRL_the_danish_army_of_NA 
+			focus = GRL_american_militias 
+		}
+		available = {
+			OR = {
+				has_completed_focus = GRL_assure_NATO_allies
+				has_completed_focus = GRL_closer_nordic_coop
+			}
+		}
+		relative_position_id = GRL_rethinking_the_navy
+		prerequisite = { 
+			focus = GRL_rethinking_the_navy 
+		}
+		completion_reward = {
+			add_ideas = GRL_eu_army
+		}
+	}
+	focus = {
+		id = GRL_form_a_general_staff
+		cost = 5
+		icon = GFX_focus_generic_military_dictatorship
+		x = 0
+		y = 1
+		relative_position_id = GRL_american_militias
+		prerequisite = { 
+			focus = GRL_EU_military_mission 
+			focus = GRL_american_militias 
+			focus = GRL_the_danish_army_of_NA 
+		}
+		completion_reward = {
+			army_experience = 50
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.75
+				uses = 5
+				category = land_doctrine
+			}
+		}
+	}
+	focus = {
+		id = GRL_modernize_tech
+		cost = 5
+		icon = GFX_focus_generic_industrialists
+		x = -1
+		y = 1
+		relative_position_id = GRL_form_a_general_staff
+		prerequisite = { 
+			focus = GRL_form_a_general_staff
+		}
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1
+				uses = 3
+				category = armor
+			}
+			add_tech_bonus = {
+				bonus = 0.75
+				uses = 3
+				category = artillery
+			}
+			add_tech_bonus = {
+				bonus = 0.75
+				uses = 3
+				category = infantry_weapons
+			}
+		}
+	}
+	focus = {
+		id = GRL_advanced_logistical_techniques
+		cost = 5
+		icon = GFX_focus_GER_kriegslokomotive
+		x = 1
+		y = 1
+		relative_position_id = GRL_form_a_general_staff
+		prerequisite = { 
+			focus = GRL_form_a_general_staff
+		}
+		completion_reward = {
+			add_ideas = GRL_good_logistics_idea
+		}
+	}
+	focus = {
+		id = GRL_winter_weather_specialization
+		cost = 5
+		icon = GFX_goal_Generic_Winter_Warfare
+		x = 1
+		y = 1
+		relative_position_id = GRL_modernize_tech
+		prerequisite = { 
+			focus = GRL_advanced_logistical_techniques
+		}
+		prerequisite = { 
+			focus = GRL_modernize_tech
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = GRL_good_logistics_idea
+				add_idea = GRL_good_logistics_idea2
+			}
+		}
+	}
+	focus = {
+		id = GRL_research_facility_army
+		cost = 5
+		icon = GFX_focus_NORDIC_dem_materiel
+		x = 0
+		y = 1
+		relative_position_id = GRL_winter_weather_specialization
+		prerequisite = { 
+			focus = GRL_winter_weather_specialization 
+		}
+		mutually_exclusive = {
+			focus = GRL_research_facility_navy
+			focus = GRL_research_facility_air
+			focus = GRL_research_facility_nuclear
+		}
+		completion_reward = {
+			674 = {
+				add_building_construction = {
+					type = land_facility
+					level = 1
+					instant_build = yes
+					province = 12802
+				}
+			}
+		}
+	}
+	focus = {
+		id = GRL_research_facility_nuclear
+		cost = 5
+		icon = GFX_focus_NORDIC_dem_research
+		x = 3
+		y = 1
+		relative_position_id = GRL_winter_weather_specialization
+		prerequisite = { 
+			focus = GRL_winter_weather_specialization 
+		}
+		mutually_exclusive = {
+			focus = GRL_research_facility_navy
+			focus = GRL_research_facility_air
+			focus = GRL_research_facility_army
+		}
+		completion_reward = {
+			674 = {
+				add_building_construction = {
+					type = nuclear_facility
+					level = 1
+					instant_build = yes
+					province = 12802
+				}
+			}
+			add_tech_bonus = {
+				bonus = 1
+				ahead_reduction = 2
+				uses = 1
+				category = nuclear
+			}
+		}
+	}
+	
+	
+	### MAGA
+	focus = {
+		id = GRL_a_MAGA_greenland
+		cost = 5
+		icon = GFX_goal_GRL_MAGA_Greenland
+		x = -30
+		y = 0
+		#mutually_exclusive = {
+		#	focus = GRL_inuit_socialism
+		#	focus = GRL_soc_dem_victory
+		#}
+		#relative_position_id = GRL_new_elections
+		#prerequisite = { 
+		#	focus = GRL_new_elections
+		#}
+		available = {
+			always = no
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = GRL_consolidate_power
+		cost = 5
+		icon = GFX_goal_USA_Reform_the_Military
+		x = 1
+		y = 1
+		relative_position_id = GRL_a_MAGA_greenland
+		prerequisite = { 
+			focus = GRL_a_MAGA_greenland
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = GRL_empower_the_militias
+		cost = 5
+		icon = GFX_goal_USA_New_American_Army
+		x = -1
+		y = 1
+		relative_position_id = GRL_a_MAGA_greenland
+		prerequisite = { 
+			focus = GRL_a_MAGA_greenland
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = GRL_declare_the_51st_state
+		cost = 5
+		icon = GFX_goal_GRL_Declare_the_51st_State
+		x = -1
+		y = 1
+		relative_position_id = GRL_consolidate_power
+		prerequisite = { 
+			focus = GRL_consolidate_power
+		}
+		prerequisite = { 
+			focus = GRL_empower_the_militias
+		}
+		completion_reward = {
+		}
+	}
+	
+	## Greenland
+	
+	focus = {
+		id = GRL_the_51st_state
+		cost = 5
+		icon = GFX_goal_GRL_51st_State
+		x = -1
+		y = 1
+		relative_position_id = GRL_declare_the_51st_state
+		prerequisite = { 
+			focus = GRL_declare_the_51st_state
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = GRL_invite_loyalists
+		cost = 5
+		icon = GFX_goal_USA_Hire_Trumpists
+		x = -1
+		y = 1
+		relative_position_id = GRL_the_51st_state
+		prerequisite = { 
+			focus = GRL_the_51st_state
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = GRL_invite_pb_and_oath_keeper_militias
+		cost = 5
+		icon = GFX_goal_GRL_Invite_PB_and_OK
+		x = -1
+		y = 1
+		relative_position_id = GRL_invite_loyalists
+		prerequisite = { 
+			focus = GRL_invite_loyalists
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = GRL_prepare_for_the_war_against_fra
+		cost = 5
+		icon = GFX_goal_USA_Best_of_the_Best
+		x = 1
+		y = 1
+		relative_position_id = GRL_invite_loyalists
+		prerequisite = { 
+			focus = GRL_invite_loyalists
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = GRL_disrupt_trade
+		cost = 5
+		icon = GFX_goal_USA_navy_docks
+		x = 1
+		y = 1
+		relative_position_id = GRL_invite_pb_and_oath_keeper_militias
+		prerequisite = { 
+			focus = GRL_invite_pb_and_oath_keeper_militias
+		}
+		prerequisite = { 
+			focus = GRL_prepare_for_the_war_against_fra
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = GRL_americanization
+		cost = 5
+		icon = GFX_goal_USA_American_Patriots
+		x = 1
+		y = 1
+		relative_position_id = GRL_the_51st_state
+		prerequisite = { 
+			focus = GRL_the_51st_state
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = GRL_get_rid_of_environment_protections
+		cost = 5
+		icon = GFX_goal_GRL_Delete_Environmental_Protections
+		x = 1
+		y = 1
+		relative_position_id = GRL_americanization
+		prerequisite = { 
+			focus = GRL_americanization
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = GRL_extract_rare_resources_to_trump
+		cost = 5
+		icon = GFX_goal_GRL_Rare_Metal_Export
+		x = 0
+		y = 1
+		relative_position_id = GRL_get_rid_of_environment_protections
+		prerequisite = { 
+			focus = GRL_get_rid_of_environment_protections
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = GRL_rapid_population_growth_programs
+		cost = 5
+		icon = GFX_goal_GRL_Population_Growth_Programs
+		x = -1
+		y = 1
+		relative_position_id = GRL_extract_rare_resources_to_trump
+		prerequisite = { 
+			focus = GRL_extract_rare_resources_to_trump
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = GRL_oil_for_trump
+		cost = 5
+		icon = GFX_goal_GRL_Send_Oil_to_the_Loyalists
+		x = 1
+		y = 1
+		relative_position_id = GRL_extract_rare_resources_to_trump
+		prerequisite = { 
+			focus = GRL_extract_rare_resources_to_trump
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = GRL_the_defeat_of_the_bidenists
+		cost = 5
+		icon = GFX_goal_USA_LETSGOBRANDON
+		x = -1
+		y = 1
+		relative_position_id = GRL_rapid_population_growth_programs
+		prerequisite = { 
+			focus = GRL_rapid_population_growth_programs
+		}
+		prerequisite = { 
+			focus = GRL_oil_for_trump
+		}
+		prerequisite = { 
+			focus = GRL_disrupt_trade
+		}
+		bypass = { NOT = { country_exists = USA } }
+		completion_reward = {
+		}
+	}
+	
+	## Canada
+	
+	focus = {
+		id = GRL_the_52nd_state
+		cost = 5
+		icon = GFX_goal_GRL_52nd_State
+		x = -6
+		y = 1
+		relative_position_id = GRL_declare_the_51st_state
+		prerequisite = { 
+			focus = GRL_declare_the_51st_state
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = GRL_a_return_to_the_mainland
+		cost = 5
+		icon = GFX_goal_GRL_Return_to_the_Mainland
+		x = 0
+		y = 1
+		relative_position_id = GRL_the_52nd_state
+		prerequisite = { 
+			focus = GRL_the_52nd_state
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = GRL_invade_quebec
+		cost = 5
+		icon = GFX_goal_GRL_Invade_Quebec
+		x = 1
+		y = 1
+		relative_position_id = GRL_a_return_to_the_mainland
+		prerequisite = { 
+			focus = GRL_a_return_to_the_mainland
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = GRL_commence_operation_poutine
+		cost = 5
+		icon = GFX_goal_GRL_Operation_Poutine
+		x = -1
+		y = 1
+		relative_position_id = GRL_a_return_to_the_mainland
+		prerequisite = { 
+			focus = GRL_a_return_to_the_mainland
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = GRL_rush_to_the_pacific
+		cost = 5
+		icon = GFX_goal_GRL_Rush_to_the_Pacific
+		x = 1
+		y = 1
+		relative_position_id = GRL_commence_operation_poutine
+		prerequisite = { 
+			focus = GRL_commence_operation_poutine
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = GRL_teach_canada_guns
+		cost = 5
+		icon = GFX_goal_GRL_Bring_the_Second_Amendment_to_Canada
+		x = -1
+		y = 1
+		relative_position_id = GRL_commence_operation_poutine
+		prerequisite = { 
+			focus = GRL_commence_operation_poutine
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = GRL_rename_canada ##Make an event here
+		cost = 5
+		icon = GFX_goal_GRL_Rename_Canada
+		x = 1
+		y = 1
+		relative_position_id = GRL_rush_to_the_pacific
+		prerequisite = { 
+			focus = GRL_invade_quebec
+		}
+		prerequisite = { 
+			focus = GRL_rush_to_the_pacific
+		}
+		prerequisite = { 
+			focus = GRL_teach_canada_guns
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = GRL_the_return_of_49
+		cost = 5
+		icon = GFX_goal_GRL_Return_to_Alaska
+		x = -1
+		y = 1
+		relative_position_id = GRL_rush_to_the_pacific
+		prerequisite = { 
+			focus = GRL_rush_to_the_pacific
+		}
+		prerequisite = { 
+			focus = GRL_teach_canada_guns
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = GRL_the_return_of_50
+		cost = 5
+		icon = GFX_goal_GRL_Retake_Hawaii
+		x = 1
+		y = 1
+		relative_position_id = GRL_the_return_of_49
+		prerequisite = { 
+			focus = GRL_rename_canada
+		}
+		prerequisite = { 
+			focus = GRL_the_return_of_49
+		}
+		completion_reward = {
+		}
+	}
+	
+	## Panama
+	
+	focus = {
+		id = GRL_the_53rd_state
+		cost = 5
+		icon = GFX_goal_GRL_53rd_State
+		x = 3
+		y = 1
+		relative_position_id = GRL_declare_the_51st_state
+		prerequisite = { 
+			focus = GRL_declare_the_51st_state
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = GRL_request_docking_rights_from_florida
+		cost = 5
+		icon = GFX_goal_USA_FloridaLoyalism
+		x = 1
+		y = 1
+		relative_position_id = GRL_the_53rd_state
+		prerequisite = { 
+			focus = GRL_the_53rd_state
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = GRL_negotiate_with_colombia
+		cost = 5
+		icon = GFX_goal_GRL_Negociate_with_Colombia
+		x = -1
+		y = 1
+		relative_position_id = GRL_the_53rd_state
+		prerequisite = { 
+			focus = GRL_the_53rd_state
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = GRL_commence_the_raid
+		cost = 5
+		icon = GFX_goal_GRL_Commence_the_Raid
+		x = -1
+		y = 1
+		relative_position_id = GRL_request_docking_rights_from_florida
+		prerequisite = { 
+			focus = GRL_negotiate_with_colombia
+		}
+		prerequisite = { 
+			focus = GRL_request_docking_rights_from_florida
+		}
+		completion_reward = {
+		}
+	}
+	
+	## yucatan
+	
+	focus = {
+		id = GRL_the_54th_state
+		cost = 5
+		icon = GFX_goal_GRL_54th_State
+		x = 7
+		y = 1
+		relative_position_id = GRL_declare_the_51st_state
+		prerequisite = { 
+			focus = GRL_declare_the_51st_state
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = GRL_seize_cozumel
+		cost = 5
+		icon = GFX_goal_GRL_Seize_Cozumel
+		x = 2
+		y = 1
+		relative_position_id = GRL_commence_the_raid
+		prerequisite = { 
+			focus = GRL_commence_the_raid
+		}
+		prerequisite = { 
+			focus = GRL_the_54th_state
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = GRL_invade_the_yucatan
+		cost = 5
+		icon = GFX_goal_GRL_Invade_the_Yucatan
+		x = 0
+		y = 1
+		relative_position_id = GRL_seize_cozumel
+		prerequisite = { 
+			focus = GRL_seize_cozumel
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = GRL_yucatan_oil_flows
+		cost = 5
+		icon = GFX_goal_GRL_Let_the_Oil_Flow
+		x = 2
+		y = 1
+		relative_position_id = GRL_invade_the_yucatan
+		prerequisite = { 
+			focus = GRL_invade_the_yucatan
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = GRL_begin_the_remigration
+		cost = 5
+		icon = GFX_goal_GRL_Population_Growth_Programs
+		x = -2
+		y = 1
+		relative_position_id = GRL_invade_the_yucatan
+		prerequisite = { 
+			focus = GRL_invade_the_yucatan
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = GRL_the_gulf_of_america
+		cost = 5
+		icon = GFX_goal_GRL_Rename_the_Gulf
+		x = 0
+		y = 1
+		relative_position_id = GRL_invade_the_yucatan
+		prerequisite = { 
+			focus = GRL_invade_the_yucatan
+		}
+		completion_reward = {
+		}
+	}
+	
+	
+	### The Final Part
+	focus = {
+		id = GRL_victory_of_the_patriots
+		cost = 5
+		icon = GFX_goal_USA_Trumpian_Legions
+		x = 1
+		y = 1
+		relative_position_id = GRL_the_defeat_of_the_bidenists
+		prerequisite = { 
+			focus = GRL_the_defeat_of_the_bidenists
+		}
+		prerequisite = { 
+			focus = GRL_the_gulf_of_america
+		}
+		prerequisite = { 
+			focus = GRL_begin_the_remigration
+		}
+		prerequisite = { 
+			focus = GRL_the_return_of_50
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = GRL_join_the_patriots
+		cost = 5
+		icon = GFX_goal_USA_Trump_God
+		x = -2
+		y = 1
+		relative_position_id = GRL_victory_of_the_patriots
+		prerequisite = { 
+			focus = GRL_victory_of_the_patriots
+		}
+		mutually_exclusive = { 
+			focus = GRL_the_outer_USA
+			focus = GRL_how_horribly_things_have_gone
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = GRL_the_outer_USA
+		cost = 5
+		icon = GFX_goal_USA_Trumpian_Legions
+		x = 2
+		y = 1
+		relative_position_id = GRL_victory_of_the_patriots
+		prerequisite = { 
+			focus = GRL_victory_of_the_patriots
+		}
+		mutually_exclusive = { 
+			focus = GRL_how_horribly_things_have_gone
+			focus = GRL_join_the_patriots
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = GRL_how_horribly_things_have_gone
+		cost = 5
+		icon = GFX_goal_Trumps_Failure
+		x = 0
+		y = 1
+		relative_position_id = GRL_victory_of_the_patriots
+		prerequisite = { 
+			focus = GRL_victory_of_the_patriots
+		}
+		available = {
+			always = no
+		}
+		mutually_exclusive = { 
+			focus = GRL_the_outer_USA
+			focus = GRL_join_the_patriots
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = GRL_reach_out_to_remaining_loyalists
+		cost = 5
+		icon = GFX_goal_Divided_Exiles
+		x = -1
+		y = 1
+		relative_position_id = GRL_how_horribly_things_have_gone
+		prerequisite = { 
+			focus = GRL_how_horribly_things_have_gone
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = GRL_finish_what_We_started
+		cost = 5
+		icon = GFX_goal_One_Defeat
+		x = 0
+		y = 1
+		relative_position_id = GRL_reach_out_to_remaining_loyalists
+		prerequisite = { 
+			focus = GRL_reach_out_to_remaining_loyalists
+		}
+		completion_reward = {
+			custom_effect_tooltip = bring_america_under_grip_tt
+			hidden_effect = {				
+				every_state  = {
+					limit = { has_state_flag = part_of_america }
+					every_country = {
+						limit = { controls_state = PREV }
+						set_country_flag = controls_american_state
+					}
+				}
+				every_country = {
+					limit = {
+						AND = {
+							has_country_flag = controls_american_state
+							NOT = { 
+								is_in_faction_with = ROOT
+							}
+						}
+					}
+					ROOT = {
+						create_wargoal = {
+							target = PREV
+							type = annex_everything
+						}
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = GRL_erase_the_past_embarassments
+		cost = 5
+		icon = GFX_goal_Join_Big_Boss
+		x = 1
+		y = 1
+		relative_position_id = GRL_how_horribly_things_have_gone
+		prerequisite = { 
+			focus = GRL_how_horribly_things_have_gone
+		}
+		completion_reward = {
+			add_ideas = TEX_trumpist_advisors3
+		}
+	}
+	focus = {
+		id = GRL_the_true_american_augustus
+		cost = 5
+		icon = GFX_goal_Trumpist_Safehaven
+		x = 0
+		y = 1
+		relative_position_id = GRL_erase_the_past_embarassments
+		prerequisite = { 
+			focus = GRL_erase_the_past_embarassments
+		}
+		completion_reward = {
+			add_country_leader_trait = the_american_augustus
+		}
+	}
+	focus = {
+		id = GRL_father_would_be_finally_proud
+		cost = 5
+		icon = GFX_goal_Not_Perma_Defeatr
+		x = -1
+		y = 1
+		relative_position_id = GRL_the_true_american_augustus
+		prerequisite = { 
+			focus = GRL_finish_what_We_started
+		}
+		prerequisite = { 
+			focus = GRL_the_true_american_augustus
+		}
+		available = {
+			all_state = {	
+				OR = {
+					NOT = {has_state_flag = part_of_america}
+					is_owned_by = ROOT
+					owner = { is_ally_with = ROOT } #Checks for territory controlled by indpendent faction members/puppets
+				}		
+			}
+			ROOT = {
+				if = {
+					limit = {
+						is_in_faction = yes
+					}
+					is_faction_leader = yes
+				}
+				is_subject = no
+			}
+		}
+		completion_reward = {
+			hidden_effect = {
+				add_stability = 0.10
+				every_state = {
+					limit = { 
+						is_owned_by = ROOT
+						has_state_flag = part_of_america
+					}
+					add_core_of = ROOT
+				}
+			}
+			country_event = {
+    			id = News_events.98
+			}
+		}
+	}
+	
+	
+	
+}

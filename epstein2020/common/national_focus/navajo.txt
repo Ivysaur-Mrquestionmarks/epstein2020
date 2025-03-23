@@ -1,0 +1,1714 @@
+focus_tree = {
+	id = navajo
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = NAV
+		}
+	}
+	default = no
+	focus = {
+		id = NAV_restore_order
+		icon = GFX_goal_NAV_Restore_Order
+		cost = 4.00
+		x = 3
+		y = 0
+		completion_reward = {
+			40 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = industrial_complex
+    				level = 1
+    				instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = NAV_develop_tuscon
+		icon = GFX_goal_NAV_Develop_Tuscon
+		cost = 4.00
+		x = 5
+		y = 0
+		completion_reward = {
+			489 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = arms_factory
+    				level = 1
+    				instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = NAV_confederate_constitutional_convention
+		icon = GFX_goal_unknown
+		cost = 10.00
+		x = 13
+		y = 0
+		available = {
+			NOT = {
+				country_exists = HOP
+			}
+		}
+		select_effect = {
+			country_event = {
+				id = hoya_heya.6
+				days = 15
+			}
+			country_event = {
+				id = hoya_heya.7
+				days = 30
+			}
+			country_event = {
+				id = hoya_heya.8
+				days = 45
+			}
+			country_event = {
+				id = hoya_heya.9
+				days = 60
+			}
+		}
+		completion_reward = {
+			country_event = hoya_heya.10
+		}
+
+	}
+	focus = {
+		id = NAV_holding_out_for_hero
+		icon = GFX_goal_NAV_Holding_out_for_a_Hero
+		cost = 2.00
+		prerequisite = {
+			focus = NAV_develop_tuscon
+		}
+		prerequisite = {
+			focus = NAV_restore_order
+		}
+		x = 4
+		y = 1
+		available = {
+			has_war_with = HOP
+		}
+		bypass = {
+			NOT = {
+				has_war_with = HOP
+			}
+		}
+		completion_reward = {
+			add_timed_idea = {
+				idea = NAV_dig_in
+				days = 40
+			}
+		}
+
+	}
+	focus = {
+		id = NAV_counterattack
+		icon = GFX_goal_NAV_CounterAttack
+		cost = 6.00
+		prerequisite = {
+			focus = NAV_holding_out_for_hero
+		}
+		x = 4
+		y = 2
+		available = {
+			has_war_with = HOP
+		}
+		bypass = {
+			NOT = {
+				has_war_with = HOP
+			}
+		}
+		completion_reward = {
+			add_timed_idea = {
+				idea = NAV_counterattack
+				days = 25
+			}
+		}
+
+	}
+	focus = {
+		id = NAV_looting_fallen
+		icon = GFX_goal_NAV_Looting_the_Fallen
+		cost = 3.00
+		prerequisite = {
+			focus = NAV_counterattack
+		}
+		x = 3
+		y = 3
+		completion_reward = {
+			add_ideas = NAV_romanians
+		}
+
+	}
+	focus = {
+		id = NAV_final_push
+		icon = GFX_goal_NAV_Final_Push
+		cost = 3.00
+		prerequisite = {
+			focus = NAV_counterattack
+		}
+		x = 4
+		y = 4
+		available = {
+			has_war_with = HOP
+		}
+		completion_reward = {
+			add_timed_idea = {
+				idea = NAV_final_push
+				days = 14
+			}
+		}
+
+	}
+	focus = {
+		id = NAV_enlist_comanche
+		icon = GFX_goal_NAV_Enlist_the_Comanche
+		cost = 3.00
+		prerequisite = {
+			focus = NAV_counterattack
+		}
+		x = 5
+		y = 3
+		completion_reward = {
+			load_oob = "NAV_comanche_riders"
+			effect_tooltip = {
+				create_corps_commander = {
+					name = "George Tahdooahnippah"
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = NAV_shining_beacon
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_confederate_constitutional_convention
+		}
+		mutually_exclusive = {
+			focus = NAV_marching_on
+		}
+		x = 10
+		y = 1
+		completion_reward = {
+			add_ideas = NAV_shining_beacon
+		}
+
+	}
+	focus = {
+		id = NAV_reestablish_democratic_process
+		icon = GFX_goal_unknown
+		cost = 3.00
+		prerequisite = {
+			focus = NAV_shining_beacon
+		}
+		x = 8
+		y = 2
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = NAV_shining_beacon
+				add_idea = NAV_shining_beacon_1
+			}
+			add_popularity = {
+				ideology = democrat
+				popularity = 0.07
+			}
+			add_popularity = {
+				ideology = republican
+				popularity = 0.07
+			}
+			add_popularity = {
+				ideology = libertarian_left
+				popularity = 0.07
+			}
+		}
+
+	}
+	focus = {
+		id = NAV_hold_local_elections
+		icon = GFX_goal_unknown
+		cost = 3.00
+		prerequisite = {
+			focus = NAV_reestablish_democratic_process
+		}
+		x = 8
+		y = 3
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = NAV_shining_beacon_1
+				add_idea = NAV_shining_beacon_2
+			}
+		}
+
+	}
+	focus = {
+		id = NAV_sorensons_retirement
+		icon = GFX_goal_unknown
+		cost = 3.00
+		prerequisite = {
+			focus = NAV_shining_beacon
+		}
+		x = 10
+		y = 2
+		completion_reward = {
+			#add_country_leader_role = {
+    			#character = NAV_julian_bear_runner
+    			#promote_leader = yes
+    			#country_leader = {
+    			#    ideology = Jeffersonianism
+    			#    traits = { NAV_sioux_exile }
+    			#}
+			#}
+			add_country_leader_role = {
+    				character = NAV_transitionary_council
+    				promote_leader = yes
+    				country_leader = {
+    				    ideology = Jeffersonianism
+    				    traits = { NAV_transitionary_council_trait }
+    				}
+			}
+			set_party_name = {
+			    ideology = libertarian_right
+			    long_name = NAV_transitional_government_party_long
+			    name = NAV_transitional_government_party
+			}
+		}
+
+	}
+	focus = {
+		id = NAV_new_parties
+		icon = GFX_goal_unknown
+		cost = 3.00
+		prerequisite = {
+			focus = NAV_sorensons_retirement
+		}
+		x = 10
+		y = 3
+		completion_reward = {
+			add_stability = 0.10
+			set_party_name = {
+			    ideology = libertarian_right
+			    long_name = NAV_liberty_party
+			    name = NAV_liberty_party
+			}
+			set_party_name = {
+			    ideology = republican
+			    long_name = NAV_unionist_party
+			    name = NAV_unionist_party
+			}
+			set_party_name = {
+			    ideology = democrat
+			    long_name = NAV_democratic_party
+			    name = NAV_democratic_party
+			}
+			add_country_leader_role = {
+    			character = NAV_dante_desiderio
+    			promote_leader = yes
+    			country_leader = {
+    			    ideology = Authoritative_Democracy
+    			    traits = { 
+    			    	#TODO
+    			    }
+    			}
+			}
+			add_country_leader_role = {
+    			character = NAV_joe_garcia
+    			promote_leader = yes
+    			country_leader = {
+    			    ideology = liberal
+    			    traits = { 
+    			    	#TODO
+    			    }
+    			}
+			}
+			hidden_effect = {
+				country_event = {
+					id = hoya_heya.13
+					days = 730
+				}
+			}
+			NAV_wahsayah_whitebird = {
+				remove_unit_leader_role = yes
+			}
+		}
+
+	}
+	focus = {
+		id = NAV_absorb_hammer_city
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_shining_beacon
+		}
+		x = 12
+		y = 2
+		will_lead_to_war_with = HAM
+		available = {
+			country_exists = HAM
+		}
+		bypass = {
+			NOT = {
+				country_exists = HAM
+			}
+		}
+		completion_reward = {
+			add_state_core = 510
+			create_wargoal = {
+    			type = take_state_focus
+    			target = HAM
+    			generator = { 510 }
+			}
+		}
+
+	}
+	focus = {
+		id = NAV_pardon_kodo
+		icon = GFX_goal_unknown
+		cost = 3.00
+		prerequisite = {
+			focus = NAV_absorb_hammer_city
+		}
+		x = 12
+		y = 3
+		available = {
+			NOT = {
+				country_exists = HAM
+			}
+		}
+		completion_reward = {
+			army_experience = 10
+			HAM = {
+				HAM_gazi_kodzo = {
+					set_nationality = ROOT
+					demote_leader = yes
+				}
+				HAM_chief_suh = {
+					set_nationality = ROOT
+				}
+				HAM_chief_sundiata = {
+					set_nationality = ROOT
+				}
+			}
+			add_popularity = {
+				ideology = authoritarian_left
+				popularity = 0.03
+			}
+		}
+
+	}
+	focus = {
+		id = NAV_first_presidential_election
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_pardon_kodo
+		}
+		prerequisite = {
+			focus = NAV_new_parties
+		}
+		prerequisite = {
+			focus = NAV_hold_local_elections
+		}
+		x = 10
+		y = 4
+		completion_reward = {
+			add_stability = 0.10
+			add_war_support = 0.05
+			add_popularity = {
+				ideology = libertarian_right
+				popularity = -1.0
+			}
+		}
+
+	}
+	focus = {
+		id = NAV_monarchist_party
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_first_presidential_election
+		}
+		mutually_exclusive = {
+			focus = NAV_defanged_communist_party
+			focus = NAV_democrats_prevail
+			focus = NAV_unionist_win
+		}
+		x = 6
+		y = 5
+		available = {
+			is_subject = no
+			has_country_flag = nav_paronded_nazi_flag
+		}
+		completion_reward = {
+			set_party_name = {
+			    ideology = autocratic
+			    long_name = NAV_monarchist_party
+			    name = NAV_monarchist_party
+			}
+			add_country_leader_role = {
+    			character = NAV_calvin_osife
+    			promote_leader = yes
+    			country_leader = {
+    			    ideology = social_nationalism
+    			    traits = { 
+    			    	#TODO
+    			    }
+    			}
+			}
+			add_popularity = {
+				ideology = autocratic
+				popularity = 0.20
+			}			
+			set_politics = {
+			    ruling_party = autocratic
+			    elections_allowed = no
+			}
+			HAM_chief_sundiata = {
+				retire = yes
+			}
+			hidden_effect = {
+				NAV_transitionary_council = {
+					set_character_name = "American Witenagemot"
+					remove_trait = {
+					    ideology = Jeffersonianism
+					    trait = NAV_transitionary_council_trait
+					}
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = NAV_unionist_win
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = NAV_first_presidential_election
+		}
+		mutually_exclusive = {
+			focus = NAV_defanged_communist_party
+			focus = NAV_monarchist_party
+			focus = NAV_democrats_prevail
+		}
+		x = 9
+		y = 5
+		available = {
+			is_subject = no
+		}
+		completion_reward = {
+			add_popularity = {
+				ideology = republican
+				popularity = 0.33
+			}			
+			set_politics = {
+			    ruling_party = republican
+			    elections_allowed = yes
+			}
+			hidden_effect = {
+				NAV_transitionary_council = {
+					set_character_name = "American Witenagemot"
+					remove_trait = {
+					    ideology = Jeffersonianism
+					    trait = NAV_transitionary_council_trait
+					}
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = NAV_democrats_prevail
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_first_presidential_election
+		}
+		mutually_exclusive = {
+			focus = NAV_defanged_communist_party
+			focus = NAV_monarchist_party
+			focus = NAV_unionist_win
+		}
+		x = 11
+		y = 5
+		completion_reward = {
+			add_popularity = {
+				ideology = democrat
+				popularity = 0.33
+			}			
+			set_politics = {
+			    ruling_party = democrat
+			    elections_allowed = yes
+			}
+			hidden_effect = {
+				NAV_transitionary_council = {
+					set_character_name = "American Witenagemot"
+					remove_trait = {
+					    ideology = Jeffersonianism
+					    trait = NAV_transitionary_council_trait
+					}
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = NAV_defanged_communist_party
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_first_presidential_election
+		}
+		mutually_exclusive = {
+			focus = NAV_democrats_prevail
+			focus = NAV_unionist_win
+			focus = NAV_monarchist_party
+		}
+		x = 14
+		y = 5
+		completion_reward = {
+			add_popularity = {
+				ideology = libertarian_left
+				popularity = 0.33
+			}			
+			set_politics = {
+			    ruling_party = libertarian_left
+			    elections_allowed = yes
+			}
+			hidden_effect = {
+				NAV_transitionary_council = {
+					set_character_name = "American Witenagemot"
+					remove_trait = {
+					    ideology = Jeffersonianism
+					    trait = NAV_transitionary_council_trait
+					}
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = NAV_meet_in_middle
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_defanged_communist_party
+			focus = NAV_democrats_prevail
+		}
+		x = 13
+		y = 6
+		available = {
+			is_subject = no
+		}
+		completion_reward = {
+			unlock_decision_tooltip = NAV_join_biden_dec
+			unlock_decision_tooltip = NAV_join_bernie_dec
+		}
+
+	}
+	focus = {
+		id = NAV_marching_on
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_confederate_constitutional_convention
+		}
+		mutually_exclusive = {
+			focus = NAV_shining_beacon
+		}
+		x = 16
+		y = 1
+		completion_reward = {
+			add_ideas = NAV_whitebird_faction
+			NAV_wahsayah_whitebird = {
+				promote_leader = yes
+			}
+			set_portraits = {
+    			character = NAV_wahsayah_whitebird
+    			army = { large = "GFX_portrait_general_whitebird" }
+    			civilian = { large = "GFX_portrait_general_whitebird" }
+			}
+		}
+
+	}
+	focus = {
+		id = NAV_create_pla
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_marching_on
+		}
+		x = 15
+		y = 2
+		available = {
+			is_subject = no
+		}
+		bypass = {
+			is_subject = yes
+		}
+		completion_reward = {
+			add_ideas = NAV_peoples_liberation_army
+			create_faction = NAV_alliance_liberation_army
+		}
+
+	}
+	focus = {
+		id = NAV_conspire_with_kodo
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_create_pla
+		}
+		x = 14
+		y = 3
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = NAV_peoples_liberation_army
+				add_idea = NAV_peoples_liberation_army_2
+			}
+			HAM = {
+				add_ideas = NAV_hammer_city_friends
+			}
+		}
+
+	}
+	focus = {
+		id = NAV_general_strike
+		icon = GFX_goal_unknown
+		cost = 3.00
+		prerequisite = {
+			focus = NAV_marching_on
+		}
+		x = 17
+		y = 2
+		completion_reward = {
+			add_popularity = {
+				ideology = authoritarian_left
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = libertarian_left
+				popularity = 0.075
+			}
+			add_timed_idea = { idea =  NAV_communist_strike_action days = 140 }
+		}
+
+	}
+	focus = {
+		id = NAV_move_the_capital_to_tuscon
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_marching_on
+		}
+		x = 19
+		y = 2
+		completion_reward = {
+			set_capital = {state = 489}
+			489 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = industrial_complex
+    				level = 1
+    				instant_build = yes
+				}
+				add_building_construction = {
+    				type = infrastructure
+    				level = 1
+    				instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = NAV_lockdown_tuscon
+		icon = GFX_goal_unknown
+		cost = 4.00
+		prerequisite = {
+			focus = NAV_create_pla
+		}
+		prerequisite = {
+			focus = NAV_general_strike
+		}
+		prerequisite = {
+			focus = NAV_move_the_capital_to_tuscon
+		}
+		x = 17
+		y = 3
+		completion_reward = {
+			add_popularity = {
+				ideology = authoritarian_left
+				popularity = 0.075
+			}
+			add_popularity = {
+				ideology = libertarian_left
+				popularity = 0.10
+			}
+		}
+
+	}
+	focus = {
+		id = NAV_general_whitebird
+		icon = GFX_goal_unknown
+		cost = 3.00
+		prerequisite = {
+			focus = NAV_marching_on
+		}
+		x = 21
+		y = 2
+		completion_reward = {
+			NAV_wahsayah_whitebird = {
+				promote_leader = yes
+				add_logistics = 1
+				add_planning = 1
+				add_defense = 1
+				add_attack = 1
+			}
+			add_popularity = {
+				ideology = authoritarian_left
+				popularity = 0.075
+			}
+			add_war_support = 0.025
+		}
+
+	}
+	focus = {
+		id = NAV_bring_over_wisconsin_party
+		icon = GFX_goal_unknown
+		cost = 4.00
+		prerequisite = {
+			focus = NAV_general_whitebird
+		}
+		x = 21
+		y = 3
+		completion_reward = {
+			add_manpower = 2000
+			add_equipment_to_stockpile = {
+    			type = infantry_equipment
+    			amount = 800
+    			producer = KMT
+			}
+		}
+
+	}
+	focus = {
+		id = NAV_bloodless_transition
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_lockdown_tuscon
+		}
+		prerequisite = {
+			focus = NAV_bring_over_wisconsin_party
+		}
+		x = 19
+		y = 4
+		available = {
+			is_subject = no
+		}
+		completion_reward = {
+			set_politics = {
+    			ruling_party = authoritarian_left
+    			long_name = NAV_just_communists_party
+    			name = NAV_just_communists_party
+			}
+			news_event = hoya_heya.12
+		}
+
+	}
+	focus = {
+		id = NAV_ally_HAM
+		icon = GFX_goal_unknown
+		cost = 3.00
+		prerequisite = {
+			focus = NAV_bloodless_transition
+		}
+		prerequisite = {
+			focus = NAV_conspire_with_kodo
+		}
+		x = 16
+		y = 5
+		available = {
+			country_exists = HAM
+			NOT = {
+				has_war_with = HAM
+			}
+		}
+		bypass = {
+			NOT = {
+				country_exists = HAM
+			}
+		}
+		completion_reward = {
+			#create_faction "Anti-Colonial League"
+			HAM = {
+				country_event = {
+					id = _zzz.3
+				}
+			}
+			#set_autonomy = {
+			#   target = HAM
+			#    autonomous_state = autonomy_dominion
+			#    end_wars = no
+			#    end_civil_wars = no
+			#}
+		}
+
+	}
+	focus = {
+		id = NAV_seize_means
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_bloodless_transition
+		}
+		x = 18
+		y = 5
+		available = {
+			OR = {
+				has_government = authoritarian_left
+				has_government = libertarian_left
+			}
+		}
+		completion_reward = {
+			add_ideas = NAV_revolutionary_economy
+		}
+
+	}
+	focus = {
+		id = NAV_reform_national_guard
+		icon = GFX_goal_unknown
+		cost = 7.00
+		prerequisite = {
+			focus = NAV_bloodless_transition
+		}
+		prerequisite = {
+			focus = NAV_conspire_with_kodo
+		}
+		x = 20
+		y = 5
+		completion_reward = {
+			#NOTE: LATER MAKE THIS SPAWN NATIONAL GUARD GENERALS
+			swap_ideas = {
+				remove_idea = NAV_peoples_liberation_army_2
+				add_idea = NAV_peoples_liberation_army_3
+			}
+			load_oob = "NAV_national_guard"
+		}
+
+	}
+	focus = {
+		id = NAV_great_liberator
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_bloodless_transition
+		}
+		x = 22
+		y = 5
+		completion_reward = {
+			
+			add_trait = {
+    			 character = NAV_wahsayah_whitebird
+    			 ideology = communism
+    			 trait = NAV_whitebird_liberator_trait
+			}
+		}
+
+	}
+	focus = {
+		id = NAV_national_front
+		icon = GFX_goal_unknown
+		cost = 3.00
+		prerequisite = {
+			focus = NAV_great_liberator
+		}
+		x = 22
+		y = 6
+		available = {
+			is_faction_leader = yes
+		}
+		bypass = {
+			is_faction_leader = no
+		}
+		completion_reward = {
+			### UNLOCK DECISION TO INVITE CERTAIN AUTH-LEFT TAGS TO FACTION
+		}
+
+	}
+	focus = {
+		id = NAV_never_tiring_never_faultering
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_national_front
+		}
+		x = 22
+		y = 7
+		available = {
+			is_subject = no
+		}
+		completion_reward = {
+			NAV_wahsayah_whitebird = {
+				swap_country_leader_traits = {
+    				remove = NAV_whitebird_liberator_trait
+    				add = NAV_whitebird_liberator_trait_1
+    				ideology = communism
+				}
+			}
+			set_cosmetic_tag = NAV_peoples_liberation_army_ct
+		}
+
+	}
+	focus = {
+		id = NAV_tribal_economy
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = NAV_confederate_constitutional_convention
+		}
+		x = 25
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+    			bonus = 0.75
+    			uses = 2
+    			category = industry
+			}
+		}
+
+	}
+	focus = {
+		id = NAV_smoke_signals_into_smoke_stacks
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = NAV_tribal_economy
+		}
+		x = 24
+		y = 2
+
+	}
+	focus = {
+		id = NAV_leather_economy
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = NAV_smoke_signals_into_smoke_stacks
+		}
+		x = 24
+		y = 3
+
+	}
+	focus = {
+		id = NAV_economic_miracle
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = NAV_leather_economy
+		}
+		x = 24
+		y = 4
+
+	}
+	focus = {
+		id = NAV_firearm_procurement
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = NAV_tribal_economy
+		}
+		x = 26
+		y = 2
+
+	}
+	focus = {
+		id = NAV_crop_dusters_into_fighters
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_firearm_procurement
+		}
+		x = 26
+		y = 3
+
+	}
+	focus = {
+		id = NAV_arming_a_nation
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = NAV_crop_dusters_into_fighters
+		}
+		x = 26
+		y = 4
+
+	}
+	focus = {
+		id = NAV_modern_economy
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = NAV_arming_a_nation
+		}
+		prerequisite = {
+			focus = NAV_economic_miracle
+		}
+		x = 25
+		y = 5
+
+	}
+	focus = {
+		id = NAV_lessons_of_fascist_war
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = NAV_confederate_constitutional_convention
+		}
+		x = 29
+		y = 1
+
+	}
+	focus = {
+		id = NAV_wild_west
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = NAV_lessons_of_fascist_war
+		}
+		x = 28
+		y = 2
+
+	}
+	focus = {
+		id = NAV_no_more_bows_and_arrows
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = NAV_wild_west
+		}
+		x = 28
+		y = 3
+
+	}
+	focus = {
+		id = NAV_plains_cruisers
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = NAV_no_more_bows_and_arrows
+		}
+		x = 28
+		y = 4
+
+	}
+	focus = {
+		id = NAV_nationalise_transport
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_seize_means
+			focus = NAV_defanged_communist_party
+		}
+		x = 16
+		y = 6
+
+	}
+	focus = {
+		id = NAV_rocky_mountain_pacification
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_reform_national_guard
+		}
+		x = 20
+		y = 6
+
+	}
+	focus = {
+		id = NAV_introduce_mormons_to_equality
+		icon = GFX_goal_unknown
+		cost = 7.00
+		prerequisite = {
+			focus = NAV_rocky_mountain_pacification
+		}
+		x = 20
+		y = 7
+
+	}
+	focus = {
+		id = NAV_international_brigade
+		icon = GFX_goal_unknown
+		cost = 4.00
+		prerequisite = {
+			focus = NAV_reform_national_guard
+		}
+		prerequisite = {
+			focus = NAV_seize_means
+		}
+		x = 18
+		y = 6
+
+	}
+	focus = {
+		id = NAV_liberation_of_texas
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_introduce_mormons_to_equality
+		}
+		prerequisite = {
+			focus = NAV_never_tiring_never_faultering
+		}
+		x = 21
+		y = 8
+
+	}
+	focus = {
+		id = NAV_integrate_red_army
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_liberation_of_texas
+		}
+		x = 20
+		y = 9
+
+	}
+	focus = {
+		id = NAV_access_to_the_sea
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_liberation_of_texas
+		}
+		x = 23
+		y = 9
+
+	}
+	focus = {
+		id = NAV_pivot_north
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_liberation_of_texas
+		}
+		x = 22
+		y = 10
+
+	}
+	focus = {
+		id = NAV_death_to_revisionists
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_integrate_red_army
+		}
+		x = 20
+		y = 10
+
+	}
+	focus = {
+		id = NAV_form_USLR
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = NAV_death_to_revisionists
+		}
+		prerequisite = {
+			focus = NAV_pivot_north
+		}
+		x = 21
+		y = 11
+
+	}
+	focus = {
+		id = NAV_communitarian_politics
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_nationalise_transport
+		}
+		x = 14
+		y = 7
+
+	}
+	focus = {
+		id = NAV_militia_regulation_act
+		icon = GFX_goal_unknown
+		cost = 4.00
+		prerequisite = {
+			focus = NAV_democrats_prevail
+		}
+		x = 11
+		y = 6
+
+	}
+	focus = {
+		id = NAV_oil_fields_into_solar_farms
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_liberation_of_texas
+		}
+		x = 25
+		y = 9
+
+	}
+	focus = {
+		id = NAV_focus_on_arts
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_nationalise_transport
+		}
+		mutually_exclusive = {
+			focus = NAV_science_funding
+		}
+		x = 16
+		y = 7
+
+	}
+	focus = {
+		id = NAV_science_funding
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_nationalise_transport
+		}
+		mutually_exclusive = {
+			focus = NAV_focus_on_arts
+		}
+		x = 18
+		y = 7
+
+	}
+	focus = {
+		id = NAV_confederal_highways_act
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_militia_regulation_act
+		}
+		x = 11
+		y = 7
+
+	}
+	focus = {
+		id = NAV_arizona_new_mexico_statehood_act
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_confederal_highways_act
+			focus = NAV_one_eyed_legion
+		}
+		x = 10
+		y = 8
+
+	}
+	focus = {
+		id = NAV_colorado_delegation
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_unionist_win
+		}
+		x = 9
+		y = 6
+
+	}
+	focus = {
+		id = NAV_one_eyed_legion
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_colorado_delegation
+		}
+		x = 9
+		y = 7
+
+	}
+	focus = {
+		id = NAV_rapid_industrialisation
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_communitarian_politics
+		}
+		prerequisite = {
+			focus = NAV_meet_in_middle
+		}
+		x = 13
+		y = 8
+
+	}
+	focus = {
+		id = NAV_enabling_act
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_monarchist_party
+		}
+		x = 6
+		y = 6
+		select_effect = {
+			country_event = {
+				id = hoya_heya.14
+				days = 5
+			}
+		}
+		completion_reward = {
+			add_popularity = {
+				ideology = autocratic
+				popularity = 0.10
+			}
+		}
+
+	}
+	focus = {
+		id = NAV_national_social_club
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_enabling_act
+		}
+		mutually_exclusive = {
+			focus = NAV_elect_a_king
+		}
+		x = 7
+		y = 7
+		available = {
+			always = no
+		}
+		completion_reward = {
+			#set_party_name = {
+			#    ideology = autocratic
+			#    long_name = NAV_nazi_party
+			#    name = NAV_nazi_party
+			#}
+			#add_country_leader_role = {
+			#    character = HOP_erich_gliebe
+			#    promote_leader = yes
+			#    country_leader = {
+			#        ideology = neonazism
+			#        traits = { 
+			#		###
+			#	}
+			#    }
+			#}
+			#NAV_wahsayah_whitebird = { retire = yes }
+			#NAV_patrick_sorenson = { retire = yes }
+			set_cosmetic_tag = NAV_national_social_club_ct
+			add_stability = -0.05
+			load_oob = "NAV_nazi_militia"
+		}
+
+	}
+	focus = {
+		id = NAV_elect_a_king
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_enabling_act
+		}
+		mutually_exclusive = {
+			focus = NAV_national_social_club
+		}
+		x = 5
+		y = 7
+		available = {
+			has_government = autocratic
+		}
+		completion_reward = {
+			#EVENT TODO
+		}
+
+	}
+	focus = {
+		id = NAV_fighting_populist
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_national_social_club
+		}
+		x = 7
+		y = 8
+		available = {
+			has_government = autocratic
+		}
+		completion_reward = {
+			HOP_erich_gliebe = {
+				add_trait = {
+				    ideology = neonazism
+				    trait = NAV_aryan_barbarian
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = NAV_resurrect_silent_brotherhood
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_fighting_populist
+		}
+		x = 9
+		y = 9
+
+	}
+	focus = {
+		id = NAV_dark_enlightenment
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_fighting_populist
+		}
+		x = 7
+		y = 9
+		available = {
+			has_government = autocratic
+		}
+		completion_reward = {
+			add_stability = 0.05
+			add_popularity = {
+				ideology = autocratic
+				popularity = 0.05
+			}
+			NAV_thomas_cyr = {
+				add_corps_commander_role = {
+				    skill = 5
+				    attack_skill = 4
+				    defense_skill = 4
+				    planning_skill = 4
+				    logistics_skill = 4
+				    traits = {
+				    	media_personality harsh_leader brilliant_strategist substance_abuser trickster 
+				    }
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = NAV_triumph_of_will
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_fighting_populist
+		}
+		x = 11
+		y = 9
+
+	}
+	focus = {
+		id = NAV_war_in_desert
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_dark_enlightenment
+			focus = NAV_resurrect_silent_brotherhood
+			focus = NAV_triumph_of_will
+			focus = NAV_ride_of_valkyries
+			focus = NAV_aztec_spirit
+			focus = NAV_remember_king_philip
+		}
+		x = 6
+		y = 10
+
+	}
+	focus = {
+		id = NAV_honourary_aryans
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_triumph_of_will
+		}
+		prerequisite = {
+			focus = NAV_resurrect_silent_brotherhood
+		}
+		prerequisite = {
+			focus = NAV_dark_enlightenment
+		}
+		x = 9
+		y = 10
+
+	}
+	focus = {
+		id = NAV_aryan_call
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_honourary_aryans
+		}
+		x = 9
+		y = 11
+
+	}
+	focus = {
+		id = NAV_texan_quagmire
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_war_in_desert
+		}
+		x = 6
+		y = 11
+
+	}
+	focus = {
+		id = NAV_unification_of_plains
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_texan_quagmire
+		}
+		x = 6
+		y = 12
+
+	}
+	focus = {
+		id = NAV_luddite_monarchy
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_elect_a_king
+		}
+		x = 5
+		y = 8
+
+	}
+	focus = {
+		id = NAV_ride_of_valkyries
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = NAV_fighting_populist
+			focus = NAV_luddite_monarchy
+		}
+		x = 5
+		y = 9
+
+	}
+	focus = {
+		id = NAV_barbarian_horde
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_elect_a_king
+		}
+		x = 3
+		y = 8
+
+	}
+	focus = {
+		id = NAV_aztec_spirit
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_barbarian_horde
+		}
+		x = 1
+		y = 9
+
+	}
+	focus = {
+		id = NAV_remember_king_philip
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_barbarian_horde
+		}
+		prerequisite = {
+			focus = NAV_luddite_monarchy
+		}
+		x = 3
+		y = 9
+
+	}
+	focus = {
+		id = NAV_no_quarter
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = NAV_remember_king_philip
+		}
+		prerequisite = {
+			focus = NAV_aztec_spirit
+		}
+		x = 2
+		y = 10
+
+	}
+	focus = {
+		id = NAV_tribal_air_force
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = NAV_lessons_of_fascist_war
+		}
+		x = 30
+		y = 2
+
+	}
+	focus = {
+		id = NAV_air_is_our_sea
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = NAV_tribal_air_force
+		}
+		x = 30
+		y = 3
+
+	}
+	focus = {
+		id = NAV_terror_of_skies
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = NAV_air_is_our_sea
+		}
+		x = 30
+		y = 4
+
+	}
+	#new focuses
+	focus = {
+		id = NAV_return_to_los_alamos
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = NAV_confederate_constitutional_convention
+		}
+		x = 22
+		y = 1
+		available = {
+			owns_state = 40
+		}
+		completion_reward = {
+			40 = {
+				add_building_construction = {
+					type = nuclear_facility
+					level = 1
+					province = 4641
+					instant_build = yes
+				}
+				add_victory_points = {
+					province = 4641
+					value = 1
+				}
+			}
+			add_breakthrough_points = {
+			  specialization = specialization_nuclear
+			  value = 1
+			}
+		}
+	}
+}
