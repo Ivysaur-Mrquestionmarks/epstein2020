@@ -2013,7 +2013,60 @@ focus_tree = {
 		}
 		x = 6
 		y = 10
-		#todo
+		available = {
+			OR = {
+				country_exists = UTA
+				country_exists = SIN
+				country_exists = MOL
+				country_exists = LAS
+				country_exists = AFO
+			}
+		}
+		bypass = {
+			NOT = {
+				AND = {
+					country_exists = UTA
+					country_exists = SIN
+					country_exists = MOL
+					country_exists = LAS
+					country_exists = AFO
+				}
+			}
+		}
+		will_lead_to_war_with = UTA
+		will_lead_to_war_with = SIN
+		will_lead_to_war_with = MOL
+		will_lead_to_war_with = LAS
+		will_lead_to_war_with = AFO
+		completion_reward = {
+			create_wargoal = {
+			    type = annex_everything
+			    target = UTA
+			}
+			create_wargoal = {
+			    type = annex_everything
+			    target = SIN
+			}
+			create_wargoal = {
+			    type = annex_everything
+			    target = MOL
+			}	
+			create_wargoal = {
+			    type = annex_everything
+			    target = LAS
+			}			
+			if = {
+				limit = {
+					AFO = {
+						is_in_faction = no
+					}
+				}
+				create_wargoal = {
+			    	type = annex_everything
+			    	target = AFO
+				}	
+			}
+		}
 
 	}
 	focus = {
@@ -2107,6 +2160,17 @@ focus_tree = {
 		}
 		x = 6
 		y = 11
+		will_lead_to_war_with = TEX
+		completion_reward = {
+			War_on_texas_collapse_tags = yes
+			custom_effect_tooltip = generic_skip_one_line_tt
+			every_state = {
+				limit = {
+					is_core_of = TEX
+				}
+				add_claim_by = ROOT
+			}
+		}
 
 	}
 	focus = {
@@ -2118,6 +2182,25 @@ focus_tree = {
 		}
 		x = 6
 		y = 12
+		will_lead_to_war_with = USA
+		available = {
+			country_exists = USA
+		}
+		bypass = {
+			NOT = {
+				country_exists = USA
+			}
+		}
+		bypass_effect = { #first time playing with this, hopefully it works
+			add_state_core = 416
+		}
+		completion_reward = {
+			create_wargoal = {
+			    type = annex_everything
+			    target = USA
+			}
+			add_state_core = 416
+		}
 
 	}
 	focus = {
