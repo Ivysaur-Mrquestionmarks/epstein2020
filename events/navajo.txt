@@ -596,3 +596,27 @@ country_event = {
 		}
 	}
 }
+
+#Whitebird Unification event
+news_event = {
+	id = hoya_heya.19
+	title = hoya_heya.19.t
+	desc = hoya_heya.19.d
+	picture = news_event_NAV_communists_1 #TEMP PICTURE- REPLACE
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = hoya_heya.19.a
+		if = {
+			limit = {NOT = {is_ai = yes}}
+			set_country_flag = {
+    				flag = super_event
+    				value = 46
+			}
+			if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
+				sound_effect = 	"whitebird_unification_track"
+				play_song = "one_minute_of_silence"
+			}
+		}	
+	}
+}
