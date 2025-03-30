@@ -62,15 +62,15 @@ focus_tree = {
 			}
 			country_event = {
 				id = hoya_heya.7
-				days = 30
+				days = 31
 			}
 			country_event = {
 				id = hoya_heya.8
-				days = 45
+				days = 46
 			}
 			country_event = {
 				id = hoya_heya.9
-				days = 60
+				days = 57
 			}
 		}
 		completion_reward = {
@@ -313,7 +313,7 @@ focus_tree = {
     			country_leader = {
     			    ideology = Authoritative_Democracy
     			    traits = { 
-    			    	#TODO
+    			    	NAV_loyalist_bigwig NAV_hedonist
     			    }
     			}
 			}
@@ -323,7 +323,7 @@ focus_tree = {
     			country_leader = {
     			    ideology = liberal
     			    traits = { 
-    			    	#TODO
+    			    	NAV_federalist_hopeful
     			    }
     			}
 			}
@@ -333,7 +333,7 @@ focus_tree = {
     			country_leader = {
     			    ideology = democratic_socialism
     			    traits = { 
-    			    	#TODO
+    			    	NAV_five_year_plans
     			    }
     			}
 			}
@@ -1565,6 +1565,29 @@ focus_tree = {
 			NOT = {
 				country_exists = USA
 				country_exists = KMT
+			}
+		}
+		bypass_effect = {
+			every_state = {
+				limit = {
+					OR = {
+						state = 443
+						state = 421
+						state = 564
+						state = 434
+						state = 442
+						state = 431
+						state = 41
+						state = 565
+						state = 453
+						state = 447
+						state = 446
+						state = 425
+						state = 567
+						is_core_of = KMT
+					}
+				}
+				add_core_of = ROOT
 			}
 		}
 		completion_reward = {
@@ -2851,11 +2874,26 @@ focus_tree = {
 		available_if_capitulated = no
 
 		completion_reward = {
-			add_equipment_to_stockpile = { 
-				type = light_tank_equipment_1
-				amount = 700
-				producer = WAG
-			}		
+			if = {
+				limit = {
+					NOT = { has_dlc = "No Step Back" }
+				}
+				add_equipment_to_stockpile = { 
+					type = basic_light_tank
+					amount = 700
+					producer = WAG
+				}	
+			}
+			if = {
+				limit = {
+					has_dlc = "No Step Back"
+				}
+				add_equipment_to_stockpile = { 
+					type = basic_light_tank_chassis
+					amount = 700
+					producer = WAG
+				}	
+			}
 		}
 	}
 
@@ -3301,11 +3339,21 @@ focus_tree = {
 		}
 
 		available = {
-			always = no
+			NOT = {
+				has_war_with = TEX
+			}
+			country_exists = TEX
 		}
 
 		bypass = {
-
+			OR = {
+				has_war_with = TEX
+				NOT = { country_exists = TEX }
+			}
+			OR = {
+				has_war_with = CAN
+				NOT = { country_exists = CAN }
+			}
 		}
 
 		cancel_if_invalid = yes
@@ -3333,6 +3381,18 @@ focus_tree = {
 
 			#okay she was right that was fucking insane.
 			#just deleting all of this for now and will come up with something better for it later.
+
+			add_equipment_to_stockpile = { 
+				type = fighter_equipment_1
+				amount = 55
+				producer = TEX
+			}
+			TEX = {
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = IRQ_purchased_our_equipment
+				}
+			}			
 		}
 	}
 
@@ -3352,11 +3412,21 @@ focus_tree = {
 		}
 
 		available = {
-			
+			NOT = {
+				has_war_with = CAN
+			}
+			country_exists = CAN
 		}
 
 		bypass = {
-
+			OR = {
+				has_war_with = TEX
+				NOT = { country_exists = TEX }
+			}
+			OR = {
+				has_war_with = CAN
+				NOT = { country_exists = CAN }
+			}
 		}
 
 		cancel_if_invalid = yes
@@ -3364,22 +3434,10 @@ focus_tree = {
 		available_if_capitulated = no
 
 		completion_reward = {
-			IF = {
-				limit = {
-					has_dlc = "By Blood Alone"
-				}
-				add_equipment_to_stockpile = { 
-					type = small_plane_airframe_1
-					amount = 55
-					producer = CAN
-				}
-			}
-			ELSE = {
-				add_equipment_to_stockpile = { 
-					type = fighter_equipment_1
-					amount = 55
-					producer = CAN
-				}
+			add_equipment_to_stockpile = { 
+				type = fighter_equipment_1
+				amount = 55
+				producer = CAN
 			}
 			CAN = {
 				add_opinion_modifier = {
@@ -3434,7 +3492,7 @@ focus_tree = {
 
 			custom_effect_tooltip = generic_skip_one_line_tt
 
-			custom_effect_tooltip = IRQ_royal_air_force_intro_tt
+			#custom_effect_tooltip = IRQ_royal_air_force_intro_tt
 			add_to_variable = { 
 				NAV_air_strategic_bomber_bombing_factor = 0.1
 				tooltip = air_strategic_bomber_bombing_factor_tt
@@ -3467,7 +3525,9 @@ focus_tree = {
 		}
 
 		available = {
-			
+			any_owned_state = {
+				is_coastal = yes
+			}			
 		}
 
 		bypass = {
@@ -3484,7 +3544,7 @@ focus_tree = {
 
 			custom_effect_tooltip = generic_skip_one_line_tt
 
-			custom_effect_tooltip = IRQ_royal_air_force_intro_tt
+			#custom_effect_tooltip = IRQ_royal_air_force_intro_tt
 			add_to_variable = { 
 				NAV_air_nav_efficiency = 0.1
 				tooltip = air_nav_efficiency_tt
@@ -3505,19 +3565,17 @@ focus_tree = {
 			#		}	
 			#	}
 			#}
-			#ELSE = {
-			#	IF = {
-			#		limit = {
-			#			NOT = {
-			#				has_tech = naval_bomber1
-			#			}
-			#		}
-			#		set_technology = {
-			#			naval_bomber1 = 1
-			#			popup = yes
-			#		}
-			#	}
-			#}	
+			IF = {
+				limit = {
+					NOT = {
+						has_tech = naval_bomber1
+					}
+				}
+				set_technology = {
+					naval_bomber1 = 1
+					popup = yes
+				}
+			}
 
 		}
 	}
@@ -3555,7 +3613,7 @@ focus_tree = {
 
 			custom_effect_tooltip = generic_skip_one_line_tt
 
-			custom_effect_tooltip = IRQ_royal_air_force_intro_tt
+			#custom_effect_tooltip = IRQ_royal_air_force_intro_tt
 			add_to_variable = { 
 				NAV_air_agility_factor = 0.1
 				tooltip = air_agility_factor_tt
@@ -3756,7 +3814,7 @@ focus_tree = {
 				custom_effect_tooltip = generic_skip_one_line_tt	
 			}	
 
-			custom_effect_tooltip = IRQ_royal_air_force_intro_tt
+			#custom_effect_tooltip = IRQ_royal_air_force_intro_tt
 			add_to_variable = { 
 				NAV_special_forces_cap = 0.15 
 				tooltip = special_forces_cap_tt 
@@ -3796,9 +3854,9 @@ focus_tree = {
 
 		completion_reward = {
 
-			#add_dynamic_modifier = {
-			#	modifier = NAV_navy_modifier
-			#}		
+			add_dynamic_modifier = {
+				modifier = NAV_navy_modifier
+			}		
 
 		}
 	}
@@ -3831,7 +3889,7 @@ focus_tree = {
 		available_if_capitulated = no
 
 		completion_reward = {
-			custom_effect_tooltip = IRQ_navy_modifier_intro_tt
+			#custom_effect_tooltip = IRQ_navy_modifier_intro_tt
 			add_to_variable = { 
 				NAV_navy_spirit_category_type_cost_factor = -0.1
 				tooltip = navy_spirit_category_type_cost_factor_tt
