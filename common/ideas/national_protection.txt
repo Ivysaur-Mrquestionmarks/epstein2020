@@ -103,16 +103,36 @@ ideas = {
 			rule = {
 				can_join_factions = no
 			}
-			cancel = { NOT = { has_war_with = USA } }
-			on_remove = {
-				news_event = {
-					id = maga.3
-					days = 1
+			cancel = { 
+				OR = {
+					NOT = { 
+						country_exists = USA 
+						has_war_with = USA 
+					}
+					207 = { is_controlled_by = USA }
 				}
-				NPA = {
-					country_event = {
-						id = maga.2
-						days = 2
+			}
+			on_remove = {
+				if = {
+					limit = { 207 = { is_controlled_by = USA } }
+					news_event = city_conquest.1
+				}
+				if = {
+					limit = { 
+						NOT = { 
+							has_war_with = USA 
+							country_exists = USA
+						} 
+					}
+					news_event = {
+						id = maga.3
+						days = 1
+					}
+					NPA = {
+						country_event = {
+							id = maga.2
+							days = 2
+						}
 					}
 				}
 			}
