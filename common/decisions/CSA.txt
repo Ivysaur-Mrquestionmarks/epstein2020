@@ -385,9 +385,11 @@ CSA_recovery = {
 		cost = 35
 		fire_only_once = yes
 		days_remove = 15
-
-		highlight_state_targets = {
-			state = 287
+		
+		highlight_states = {
+			highlight_state_targets = {
+				state = 287
+			}
 		}
 		ai_will_do = {
 			base = 100
@@ -455,8 +457,10 @@ CSA_recovery = {
 		fire_only_once = yes
 		days_remove = 15
 
-		highlight_state_targets = {
-			state = 388
+		highlight_states = {
+			highlight_state_targets = {
+				state = 388
+			}
 		}
 		ai_will_do = {
 			base = 100
@@ -488,8 +492,10 @@ CSA_recovery = {
 		fire_only_once = yes
 		days_remove = 15
 
-		highlight_state_targets = {
-			state = 280
+		highlight_states = {
+			highlight_state_targets = {
+				state = 280
+			}
 		}
 		ai_will_do = {
 			base = 100
@@ -521,8 +527,10 @@ CSA_recovery = {
 		fire_only_once = yes
 		days_remove = 15
 
-		highlight_state_targets = {
-			state = 324
+		highlight_states = {
+			highlight_state_targets = {
+				state = 324
+			}
 		}
 		ai_will_do = {
 			base = 100
@@ -553,8 +561,10 @@ CSA_recovery = {
 		fire_only_once = yes
 		days_remove = 20
 
-		highlight_state_targets = {
-			state = 322
+		highlight_states = {
+			highlight_state_targets = {
+				state = 322
+			}
 		}
 		ai_will_do = {
 			base = 100
@@ -631,8 +641,10 @@ CSA_recovery = {
 		fire_only_once = yes
 		days_remove = 20
 
-		highlight_state_targets = {
-			state = 271
+		highlight_states = {
+			highlight_state_targets = {
+				state = 271
+			}
 		}
 		ai_will_do = {
 			base = 100
@@ -664,8 +676,10 @@ CSA_recovery = {
 		fire_only_once = yes
 		days_remove = 20
 
-		highlight_state_targets = {
-			state = 323
+		highlight_states = {
+			highlight_state_targets = {
+				state = 323
+			}
 		}
 		ai_will_do = {
 			base = 100
@@ -697,8 +711,10 @@ CSA_recovery = {
 		fire_only_once = yes
 		days_remove = 20
 
-		highlight_state_targets = {
-			state = 291
+		highlight_states = {
+			highlight_state_targets = {
+				state = 291
+			}
 		}
 		ai_will_do = {
 			base = 100
@@ -730,8 +746,10 @@ CSA_recovery = {
 		fire_only_once = yes
 		days_remove = 20
 
-		highlight_state_targets = {
-			state = 307
+		highlight_states = {
+			highlight_state_targets = {
+				state = 307
+			}
 		}
 		ai_will_do = {
 			base = 100
@@ -765,8 +783,10 @@ CSA_recovery = {
 		fire_only_once = yes
 		days_remove = 20
 
-		highlight_state_targets = {
-			state = 264
+		highlight_states = {
+			highlight_state_targets = {
+				state = 264
+			}
 		}
 		ai_will_do = {
 			base = 100
@@ -821,8 +841,10 @@ CSA_recovery = {
 		fire_only_once = yes
 		days_remove = 20
 
-		highlight_state_targets = {
-			state = 260
+		highlight_states = {
+			highlight_state_targets = {
+				state = 260
+			}
 		}
 		ai_will_do = {
 			base = 100
@@ -854,8 +876,10 @@ CSA_recovery = {
 		fire_only_once = yes
 		days_remove = 20
 
-		highlight_state_targets = {
-			state = 315
+		highlight_states = {
+			highlight_state_targets = {
+				state = 315
+			}
 		}
 		ai_will_do = {
 			base = 100
@@ -887,8 +911,10 @@ CSA_recovery = {
 		fire_only_once = yes
 		days_remove = 20
 
-		highlight_state_targets = {
-			state = 420
+		highlight_states = {
+			highlight_state_targets = {
+				state = 420
+			}
 		}
 		ai_will_do = {
 			base = 100
@@ -920,8 +946,10 @@ CSA_recovery = {
 		fire_only_once = yes
 		days_remove = 20
 
-		highlight_state_targets = {
-			state = 386
+		highlight_states = {
+			highlight_state_targets = {
+				state = 386
+			}
 		}
 		ai_will_do = {
 			base = 100
@@ -1414,11 +1442,11 @@ CSA_ARK = {
 					country_event = {
     						id = south.79
 					}	
-					teleport_armies = {
-    						limit = {
-        						is_core_of = ARK
-    						}
-					}
+					#teleport_armies = {
+    				#		limit = {
+        			#			is_core_of = ARK
+    				#		}
+					#}
 				}
 				ARK = {
 					transfer_state = PREV
@@ -1525,11 +1553,11 @@ CSA_SCA = {
 					country_event = {
     						id = south.80
 					}
-					teleport_armies = {
-    						limit = {
-        						is_core_of = SCA
-    						}
-					}
+					#teleport_armies = {
+    				#		limit = {
+        			#			is_core_of = SCA
+    				#		}
+					#}
 				}
 				SCA = {
 					transfer_state = PREV
@@ -1594,19 +1622,26 @@ CSA_supress = {
 		remove_effect = {
 			custom_effect_tooltip = csa_supress
 			FROM = {clr_state_flag = influence}
-			if = {limit = {FROM = is_core_of = SCA}}
-				FRA = {modify_country_flag = {
-    					flag = SCA_rebelion
-    					value = -1
-				}}
+			if = {
+				limit = { FROM = { is_core_of = SCA } }
+				FRA = {
+					modify_country_flag = {
+							flag = SCA_rebelion
+							value = -1
+					}
+				}
 			}
-			else_if = {limit = {FROM = is_core_of = ARK}}
-				USA = {modify_country_flag = {
+			else_if = {
+				limit = { FROM = { is_core_of = ARK } } 
+				USA = {
+					modify_country_flag = {
     					flag = ARK_rebelion
     					value = -1
-				}}
+					}
+				}
 			}
 		}
-
+		
 	}
 }
+
