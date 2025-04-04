@@ -317,19 +317,23 @@ MON_Forest_Privatization_Program = {
 
 		remove_effect = {
 			FROM = {
-				add_extra_state_shared_building_slots = -2
-				limit = {
-					free_building_slots = {
-						building = industrial_complex
-						size > 1
-						include_locked = yes
+				if = {
+					limit = {
+						AND = {
+							free_building_slots = {
+								building = industrial_complex
+								size > 1
+								include_locked = yes
+							}
+							is_core_of = ROOT
+						}
 					}
-					is_core_of = ROOT
-				}
-				add_building_construction = {
-					type = industrial_complex
-					level = 1
-					instant_build = yes
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+					add_extra_state_shared_building_slots = -2
 				}
 			}
 		}
@@ -337,4 +341,3 @@ MON_Forest_Privatization_Program = {
 
 }
 	
-}
