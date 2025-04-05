@@ -3291,11 +3291,11 @@ GLA_boogaloo_political_decisions = {
 
 	#Autocrat Decisions
 	GLA_investigate_yarvin = {
-		icon = GFX_decision_hol_exchange_intelligence_data
+		icon = GFX_decision_eng_trade_unions_support
 		allowed = {
 			original_tag = GLA
 		}
-		cost = 50
+		cost = 35
 		fire_only_once = yes
 		ai_will_do = {
 			base = 50
@@ -3326,7 +3326,7 @@ GLA_boogaloo_political_decisions = {
 	}
 
 	GLA_arrest_dissidents = {
-		icon = GFX_decision_hol_exchange_intelligence_data
+		icon = GFX_decision_generic_arrest
 		allowed = {
 			original_tag = GLA
 		}
@@ -3337,31 +3337,40 @@ GLA_boogaloo_political_decisions = {
 		}
 		visible = {
 		has_completed_focus = GLA_establish_a_patriotic_sercet_police
-		autocratic < 0.99
 		}
 		available = {
 			NOT = {
 			    has_country_flag = GLA_doing_boogaloo_things_2
 			}
 		    has_completed_focus = GLA_establish_a_patriotic_sercet_police
-		    autocratic < 0.99
+		    any_owned_state = { 
+				resistance > 15
+			}
 		}
-		days_re_enable = 15
-		days_remove = 20
+		days_re_enable = 25
+		days_remove = 35
 		complete_effect = {
 			set_country_flag = {
 				flag = GLA_doing_boogaloo_things_2
-				days = 20
+				days = 35
 				value = 1
 			}
 		}
 		modifier = {
-			autocratic_drift = 0.05
+			political_power_gain = -0.1
+			stability_weekly = -0.0010
+			command_power_gain = -0.05
+		}
+		remove_effect = {
+			every_owned_state = { 
+				limit = { NOT = { is_core_of = GLA } resistance > 15 }
+				add_resistance = -15
+			}
 		}
 	}
 
 	GLA_keep_the_libertarians_under_control = {
-		icon = GFX_decision_hol_exchange_intelligence_data
+		icon = GFX_decision_generic_civil_support
 		allowed = {
 			original_tag = GLA
 		}
@@ -3392,11 +3401,13 @@ GLA_boogaloo_political_decisions = {
 		}
 		modifier = {
 			autocratic_drift = 0.05
+			libertarian_right_drift = -0.05
+			drift_defence_factor = 0.1
 		}
 	}
 
 	GLA_crush_national_guard_remnants = {
-		icon = GFX_decision_hol_exchange_intelligence_data
+		icon = GFX_decision_oppression
 		allowed = {
 			original_tag = GLA
 		}
@@ -3427,12 +3438,12 @@ GLA_boogaloo_political_decisions = {
 		}
 		modifier = {
 			autocratic_drift = 0.05
-			stability_weekly_factor = 0.0010
+			stability_weekly = 0.0010
 		}
 	}
 
 	GLA_crush_anti_patriot_rhetoric = {
-		icon = GFX_decision_hol_exchange_intelligence_data
+		icon = GFX_decision_generic_USA_flag
 		allowed = {
 			original_tag = GLA
 		}
@@ -3464,11 +3475,12 @@ GLA_boogaloo_political_decisions = {
 		modifier = {
 			autocratic_drift = 0.05
 			war_support_weekly = 0.0010
+			stability_weekly = -0.0010
 		}
 	}
 
 	GLA_silence_the_people = {
-		icon = GFX_decision_hol_exchange_intelligence_data
+		icon = GFX_decision_oppression
 		allowed = {
 			original_tag = GLA
 		}
@@ -3499,6 +3511,8 @@ GLA_boogaloo_political_decisions = {
 		}
 		modifier = {
 			autocratic_drift = 0.05
+			stability_weekly = -0.0010
+			drift_defence_factor = 0.1
 		}
 	}
 
@@ -3535,7 +3549,7 @@ GLA_boogaloo_political_decisions = {
 		}
 		modifier = {
 			autocratic_drift = 0.05
-			stability_weekly_factor = 0.0010
+			stability_weekly = 0.0010
 		}
 	}
 
@@ -3612,7 +3626,7 @@ GLA_boogaloo_political_decisions = {
 	}
 
 	GLA_promote_patriotism = {
-		icon = GFX_decision_hol_exchange_intelligence_data
+		icon = GFX_decision_generic_USA_flag
 		allowed = {
 			original_tag = GLA
 		}
@@ -3648,7 +3662,7 @@ GLA_boogaloo_political_decisions = {
 	}
 
 	GLA_promote_anarchic_unity = {
-		icon = GFX_decision_hol_exchange_intelligence_data
+		icon = GFX_decision_eng_propaganda_campaigns
 		allowed = {
 			original_tag = GLA
 		}
@@ -3679,11 +3693,13 @@ GLA_boogaloo_political_decisions = {
 		}
 		modifier = {
 			autocratic_drift = 0.05
+			stability_weekly = 0.0005
+			war_support_weekly = 0.0005
 		}
 	}
 
 	GLA_promote_stability = {
-		icon = GFX_decision_hol_exchange_intelligence_data
+		icon = GFX_decision_SWI_swiss_democratic_tradition_campaign
 		allowed = {
 			original_tag = GLA
 		}
@@ -3714,7 +3730,7 @@ GLA_boogaloo_political_decisions = {
 		}
 		modifier = {
 			autocratic_drift = 0.05
-			stability_weekly_factor = 0.0010
+			stability_weekly = 0.0010
 		}
 	}
 }
@@ -3722,7 +3738,7 @@ GLA_boogaloo_political_decisions = {
 GLA_yarvin_political_decisions = {
 
     GLA_crack_down_on_boogaloo_sympathizers = {
-		icon = GFX_decision_hol_exchange_intelligence_data
+		icon = GFX_decision_oppression
 		allowed = {
 			original_tag = GLA
 		}
@@ -3758,7 +3774,7 @@ GLA_yarvin_political_decisions = {
 	}
 
 	GLA_convert_libertarians = {
-		icon = GFX_decision_hol_exchange_intelligence_data
+		icon = GFX_decision_eng_propaganda_campaigns
 		allowed = {
 			original_tag = GLA
 		}
@@ -3793,7 +3809,7 @@ GLA_yarvin_political_decisions = {
 	}
 
 	GLA_more_surveillance_funding = {
-		icon = GFX_decision_hol_exchange_intelligence_data
+		icon = GFX_decision_oppression
 		allowed = {
 			original_tag = GLA
 		}
@@ -3804,31 +3820,40 @@ GLA_yarvin_political_decisions = {
 		}
 		visible = {
 			has_completed_focus = GLA_our_own_social_credit_system
-			autocratic < 0.99
 		}
 		available = {
 			NOT = {
 				has_country_flag = GLA_doing_yarvin_things
 			}
 			has_completed_focus = GLA_our_own_social_credit_system
-			autocratic < 0.99
+			any_owned_state = { 
+				resistance > 15
+			}
 		}
-		days_remove = 55
+		days_re_enable = 25
+		days_remove = 35
 		complete_effect = {
 			set_country_flag = {
 				flag = GLA_doing_yarvin_things
-				days = 55
+				days = 35
 				value = 1
 			}
 		}
 		modifier = {
-			autocratic_drift = 0.05
-			stability_weekly_factor = 0.0010
+			political_power_gain = -0.1
+			stability_weekly = -0.0010
+			command_power_gain = -0.05
+		}
+		remove_effect = {
+			every_owned_state = { 
+				limit = { NOT = { is_core_of = GLA } resistance > 15 }
+				add_resistance = -15
+			}
 		}
 	}
 
 	GLA_fully_establish_social_credit = {
-		icon = GFX_decision_hol_exchange_intelligence_data
+		icon = GFX_decision_recruit_operative
 		allowed = {
 			original_tag = GLA
 		}
@@ -3839,31 +3864,38 @@ GLA_yarvin_political_decisions = {
 		}
 		visible = {
 			has_completed_focus = GLA_our_own_social_credit_system
-			autocratic < 0.99
 		}
 		available = {
 			NOT = {
 				has_country_flag = GLA_doing_yarvin_things
 			}
 			has_completed_focus = GLA_our_own_social_credit_system
-			autocratic < 0.99
+			any_owned_state = { 
+				compliance < 50
+			}
 		}
-		days_remove = 55
+		days_remove = 35
+		days_re_enable = 25
 		complete_effect = {
 			set_country_flag = {
 				flag = GLA_doing_yarvin_things
-				days = 55
+				days = 35
 				value = 1
 			}
 		}
 		modifier = {
-			autocratic_drift = 0.05
-			stability_weekly_factor = 0.0010
+			political_power_gain = -0.1
+		}
+		remove_effect = {
+			every_owned_state = { 
+				limit = { NOT = { is_core_of = GLA } compliance < 50 }
+				add_compliance = 15
+			}
 		}
 	}
 
 	GLA_anti_modernity_propaganda = {
-		icon = GFX_decision_hol_exchange_intelligence_data
+		icon = GFX_decision_eng_propaganda_campaigns
 		allowed = {
 			original_tag = GLA
 		}
@@ -3899,7 +3931,7 @@ GLA_yarvin_political_decisions = {
 	}
 
 	GLA_traditionalist_propaganda = {
-		icon = GFX_decision_hol_exchange_intelligence_data
+		icon = GFX_decision_eng_propaganda_campaigns
 		allowed = {
 			original_tag = GLA
 		}
@@ -3930,11 +3962,12 @@ GLA_yarvin_political_decisions = {
 		}
 		modifier = {
 			autocratic_drift = 0.05
+			stability_weekly = 0.0010
 		}
 	}
 
 	GLA_ban_lgbtq_organizations = {
-		icon = GFX_decision_hol_exchange_intelligence_data
+		icon = GFX_decision_oppression
 		allowed = {
 			original_tag = GLA
 		}
@@ -3964,12 +3997,13 @@ GLA_yarvin_political_decisions = {
 		}
 		modifier = {
 			autocratic_drift = 0.05
-			stability_weekly_factor = -0.0010
+			drift_defence_factor = 0.1
+			stability_weekly = -0.0010
 		}
 	}
 
 	GLA_internet_censorship = {
-		icon = GFX_decision_hol_exchange_intelligence_data
+		icon = GFX_decision_oppression
 		allowed = {
 			original_tag = GLA
 		}
@@ -3999,11 +4033,13 @@ GLA_yarvin_political_decisions = {
 		}
 		modifier = {
 			autocratic_drift = 0.05
+			drift_defence_factor = 0.1
+			stability_weekly = -0.0010
 		}
 	}
 
 	GLA_promote_libertarian_social_views = {
-		icon = GFX_decision_hol_exchange_intelligence_data
+		icon = GFX_decision_eng_propaganda_campaigns
 		allowed = {
 			original_tag = GLA
 		}
@@ -4034,7 +4070,8 @@ GLA_yarvin_political_decisions = {
 		}
 		modifier = {
 			autocratic_drift = 0.05
-			stability_weekly_factor = -0.0010
+			libertarian_right_drift = 0.03
+			stability_weekly = 0.0010
 		}
 	}
 
@@ -4070,11 +4107,13 @@ GLA_yarvin_political_decisions = {
 		}
 		modifier = {
 			autocratic_drift = 0.05
+			stability_weekly = 0.0005
+			war_support_weekly = 0.0005
 		}
 	}
 
 	GLA_censor_anti_yarvin_social_media_accounts = {
-		icon = GFX_decision_hol_exchange_intelligence_data
+		icon = GFX_decision_oppression
 		allowed = {
 			original_tag = GLA
 		}
@@ -4105,11 +4144,13 @@ GLA_yarvin_political_decisions = {
 		}
 		modifier = {
 			autocratic_drift = 0.05
+			drift_defence_factor = 0.1
+			stability_weekly = -0.0010
 		}
 	}
 
 	GLA_utilize_the_media = {
-		icon = GFX_decision_hol_exchange_intelligence_data
+		icon = GFX_decision_eng_propaganda_campaigns
 		allowed = {
 			original_tag = GLA
 		}
