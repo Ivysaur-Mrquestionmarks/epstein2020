@@ -18,7 +18,7 @@ GLA_merc = {
 		}
         days_re_enable = 50
 		complete_effect = {
-		random_owned_controlled_state = {
+		    random_owned_controlled_state = {
 				limit = { ROOT = { has_full_control_of_state = PREV } }
 				create_unit = {
 					division = "name = \"Mercenary Division\" division_template = \"Mercenary Division\" start_experience_factor = 0.9" 
@@ -1808,9 +1808,6 @@ GLA_libertarian_political_decisions = {
 		}
 		visible = {
 			has_variable = GLA_paleolibertarians
-			check_variable = {
-				GLA_paleolibertarians < 90
-			}
 		}
 		available = {
 		NOT = {
@@ -1851,9 +1848,6 @@ GLA_libertarian_political_decisions = {
 		}
 		visible = {
 			has_variable = GLA_moderate_libertarians
-			check_variable = {
-				GLA_moderate_libertarians < 90
-			}
 		}
 		available = {
 		NOT = {
@@ -1894,9 +1888,6 @@ GLA_libertarian_political_decisions = {
 		}
 		visible = {
 			has_variable = GLA_minarchists
-			check_variable = {
-				GLA_minarchists < 90
-			}
 		}
 		available = {
 		NOT = {
@@ -1937,9 +1928,6 @@ GLA_libertarian_political_decisions = {
 		}
 		visible = {
 			has_variable = GLA_ancaps
-			check_variable = {
-				GLA_ancaps < 90
-			}
 		}
 		available = {
 		NOT = {
@@ -2079,7 +2067,7 @@ GLA_libertarian_political_decisions = {
 		allowed = {
 			original_tag = GLA
 		}
-		cost = 50
+		cost = 45
 		fire_only_once = yes
 		ai_will_do = {
 			base = 50
@@ -2093,37 +2081,21 @@ GLA_libertarian_political_decisions = {
 			}
 		has_completed_focus = GLA_end_the_fed
 		}
-		days_remove = 30
+		days_remove = 55
 		complete_effect = {
 			set_country_flag = {
 				flag = GLA_doing_political_things
-				days = 30
+				days = 55
 				value = 1
 			}
 		}
-		remove_effect = {
-		    add_popularity = {
-       			ideology = libertarian_right
-        		popularity = 0.05
-        	}
-		    random_controlled_state = {
-				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
-				add_extra_state_shared_building_slots = -1	
-				add_building_construction = {
-    					type = industrial_complex
-    					level = -1
-    					instant_build = yes
-				}
-			}
-		    random_controlled_state = {
-				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
-				add_extra_state_shared_building_slots = -1	
-				add_building_construction = {
-    					type = industrial_complex
-    					level = -1
-    					instant_build = yes
-				}
-			}
+		modifier = {
+			libertarian_right_drift = 0.05
+			stability_weekly = 0.0010
+            production_speed_buildings_factor = -0.05
+			production_factory_efficiency_gain_factor = -0.05
+			consumer_goods_factor = -0.10
+			consumer_goods_expected_value = -0.10
 		}
 	}
 
@@ -2155,11 +2127,16 @@ GLA_libertarian_political_decisions = {
 			}
 		}
 		remove_effect = {
-		    add_stability = 0.05
-		    add_popularity = {
-       			ideology = libertarian_right
-        		popularity = 0.05
-        	}
+		    if = {
+				limit = { has_idea = GLA_the_gold_standard }
+					swap_ideas = {
+						remove_idea = GLA_the_gold_standard
+						add_idea = GLA_the_gold_standard_2
+					}
+				}
+			else = {
+				add_ideas = GLA_the_gold_standard
+			}
 		}
 	}
 
@@ -2439,6 +2416,7 @@ GLA_libertarian_political_decisions = {
 		}
 		modifier = {
 			libertarian_right_drift = 0.05
+			stability_weekly = 0.0010
 		}
 	}
 
@@ -2484,6 +2462,7 @@ GLA_libertarian_political_decisions = {
 		}
 		modifier = {
 			libertarian_right_drift = 0.05
+			stability_weekly = 0.0010
 		}
 	}
 
@@ -2554,6 +2533,7 @@ GLA_libertarian_political_decisions = {
 		}
 		modifier = {
 			libertarian_right_drift = 0.05
+			monthly_population = 0.05
 		}
 	}
 
@@ -2669,6 +2649,7 @@ GLA_libertarian_political_decisions = {
 		}
 		modifier = {
 			libertarian_right_drift = 0.05
+			stability_weekly = 0.0010
 		}
 	}
 
@@ -2712,6 +2693,8 @@ GLA_libertarian_political_decisions = {
 		}
 		modifier = {
 			libertarian_right_drift = 0.05
+			local_resources_factor = 0.05
+			production_factory_max_efficiency_factor = 0.05
 		}
 	}
 
@@ -2755,6 +2738,10 @@ GLA_libertarian_political_decisions = {
 		}
 		modifier = {
 			libertarian_right_drift = 0.05
+			monthly_population = 0.05
+			consumer_goods_factor = -0.05
+			consumer_goods_expected_value = -0.05
+			custom_modifier_tooltip = GLA_wisconsin_cheese
 		}
 	}
 
@@ -2798,6 +2785,9 @@ GLA_libertarian_political_decisions = {
 		}
 		modifier = {
 			libertarian_right_drift = 0.05
+			research_speed_factor = 0.05
+			equipment_upgrade_xp_cost = -0.1
+			production_factory_efficiency_gain_factor = 0.05
 		}
 	}
 }
@@ -2838,38 +2828,17 @@ GLA_libertarian_economic_decisions = {
 			}
 		}
 		remove_effect = {
-		    random_controlled_state = {
-				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
-				add_extra_state_shared_building_slots = 2	
-			}
-		    random_controlled_state = {
-				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
-				add_extra_state_shared_building_slots = 2	
-			}
-		    random_controlled_state = {
-				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
-				add_extra_state_shared_building_slots = 2	
-			}
-		    random_controlled_state = {
-				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
-				add_extra_state_shared_building_slots = 2	
-			}
-		    random_controlled_state = {
-				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
-				add_extra_state_shared_building_slots = 2	
-			}
-		    random_controlled_state = {
-				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
-				add_extra_state_shared_building_slots = 2	
-			}
-		    random_controlled_state = {
-				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
-				add_extra_state_shared_building_slots = 2	
-			}
-		    random_controlled_state = {
-				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
-				add_extra_state_shared_building_slots = 2	
-			}
+			every_owned_state = {
+				limit = {
+					OR = {
+						has_state_category = city
+						has_state_category = large_city
+						has_state_category = metropolis
+						has_state_category = megalopolis
+					}
+				}
+				add_extra_state_shared_building_slots = 2
+		    }
 		}
 	}
 
@@ -2924,7 +2893,7 @@ GLA_libertarian_economic_decisions = {
 		    random_controlled_state = {
 				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
 				add_resource = {
-                    type = tungsten
+                    type = aluminium
                     amount = 5
                 }	
 		    }
@@ -2969,14 +2938,14 @@ GLA_libertarian_economic_decisions = {
 				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
 				add_resource = {
                     type = oil
-                    amount = 10
+                    amount = 5
                 }	
 		    }
 		    random_controlled_state = {
 				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
 				add_resource = {
                     type = oil
-                    amount = 10
+                    amount = 5
                 }	
 		    }
 		}
@@ -3028,10 +2997,19 @@ GLA_libertarian_economic_decisions = {
 			}
 		    random_controlled_state = {
 				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
-				add_extra_state_shared_building_slots = 2	
+				add_extra_state_shared_building_slots = 1	
 				add_building_construction = {
     					type = industrial_complex
-    					level = 2
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1	
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
     					instant_build = yes
 				}
 			}
@@ -3129,38 +3107,22 @@ GLA_libertarian_economic_decisions = {
 			    remove_idea = GLA_the_great_lakes_economy_2
 			    add_idea = GLA_the_great_lakes_economy_3
 			}
-		    random_controlled_state = {
-				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
-				add_extra_state_shared_building_slots = 2	
-			}
-		    random_controlled_state = {
-				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
-				add_extra_state_shared_building_slots = 2	
-			}
-		    random_controlled_state = {
-				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
-				add_extra_state_shared_building_slots = 2	
-			}
-		    random_controlled_state = {
-				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
-				add_extra_state_shared_building_slots = 2	
-			}
-		    random_controlled_state = {
-				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
-				add_extra_state_shared_building_slots = 2	
-			}
-		    random_controlled_state = {
-				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
-				add_extra_state_shared_building_slots = 2	
-			}
-		    random_controlled_state = {
-				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
-				add_extra_state_shared_building_slots = 2	
-			}
-		    random_controlled_state = {
-				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
-				add_extra_state_shared_building_slots = 2	
-			}
+		    every_owned_state = {
+				limit = {
+					OR = {
+						has_state_category = city
+						has_state_category = large_city
+						has_state_category = metropolis
+						has_state_category = megalopolis
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = arms_factory
+    				level = 1
+    				instant_build = yes
+				}
+		    }
 		}
 	}
 
@@ -3275,14 +3237,14 @@ GLA_libertarian_economic_decisions = {
 		available = {
 		    has_completed_focus = GLA_our_broken_economy
 		}
-		days_re_enable = 80
+		days_re_enable = 65
 		days_remove = 250
 		complete_effect = {
 		    add_ideas = GLA_loan
 		}
 		remove_effect = {
 		    remove_ideas = GLA_loan
-		    add_political_power = -75
+		    add_political_power = -80
 		}
 	}
 }
@@ -3962,7 +3924,7 @@ GLA_yarvin_political_decisions = {
 		}
 		modifier = {
 			autocratic_drift = 0.05
-			stability_weekly = 0.0010
+			monthly_population = 0.05
 		}
 	}
 
