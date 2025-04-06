@@ -205,19 +205,21 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_ANNEXATION }
 		completion_reward = {
 			66 = {
-				limit = {
-					free_building_slots = {
-						building = industrial_complex
-						size > 1
-						include_locked = yes
+				if = {
+					limit = {
+						free_building_slots = {
+							building = industrial_complex
+							size > 1
+							include_locked = yes
+						}
+						is_core_of = ROOT
 					}
-					is_core_of = ROOT
-				}
-				add_extra_state_shared_building_slots = 1
-				add_building_construction = {
-					type = industrial_complex
-					level = 1
-					instant_build = yes
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
 				}
 			}
 		add_resource = {
@@ -262,19 +264,21 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_ANNEXATION }
 		completion_reward = {
 			67 = {
-				limit = {
-					free_building_slots = {
-						building = industrial_complex
-						size > 1
-						include_locked = yes
+				if = {
+					limit = {
+						free_building_slots = {
+							building = industrial_complex
+							size > 1
+							include_locked = yes
+						}
+						is_core_of = ROOT
 					}
-					is_core_of = ROOT
-				}
-				add_extra_state_shared_building_slots = 1
-				add_building_construction = {
-					type = industrial_complex
-					level = 1
-					instant_build = yes
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
 				}
 			}	
 		add_resource = {
@@ -348,35 +352,39 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_ANNEXATION }
 		completion_reward = {
 			86 = {
-				limit = {
-					free_building_slots = {
-						building = synthetic_refinery
-						size > 3
-						include_locked = yes
+				if = {
+					limit = {
+						free_building_slots = {
+							building = synthetic_refinery
+							size > 3
+							include_locked = yes
+						}
+						is_core_of = ROOT
 					}
-					is_core_of = ROOT
-				}
-				add_extra_state_shared_building_slots = 3
-				add_building_construction = {
-					type = synthetic_refinery
-					level = 3
-					instant_build = yes
+					add_extra_state_shared_building_slots = 3
+					add_building_construction = {
+						type = synthetic_refinery
+						level = 3
+						instant_build = yes
+					}
 				}
 			}
             99 = {
-				limit = {
-					free_building_slots = {
-						building = fuel_silo
-						size > 2
-						include_locked = yes
+				if = {
+					limit = {
+						free_building_slots = {
+							building = fuel_silo
+							size > 2
+							include_locked = yes
+						}
+						is_core_of = ROOT
 					}
-					is_core_of = ROOT
-				}
-				add_extra_state_shared_building_slots = 2
-				add_building_construction = {
-					type = fuel_silo
-					level = 2
-					instant_build = yes
+					add_extra_state_shared_building_slots = 2
+					add_building_construction = {
+						type = fuel_silo
+						level = 2
+						instant_build = yes
+					}
 				}
 			}			
 		add_resource = {
@@ -1030,7 +1038,7 @@ focus_tree = {
 		army_experience = 20
 		add_ideas = MON_Operation_Shining_Eagle
 		create_wargoal = {
-        type = all
+        type = annex_everything
         target = PRA
         }
 		}
@@ -1098,69 +1106,71 @@ focus_tree = {
 		available_if_capitulated = yes
 		search_filters = { FOCUS_FILTER_ANNEXATION }
 		completion_reward = {
-		every_unit_leader = {
-			limit = {
-				has_id = 42063 
+			every_unit_leader = {
+				limit = {
+					has_id = 42063 
+				}
+				set_nationality = NEW
 			}
-			set_nationality = NEW
-		}
-		IF = {
-			LIMIT = {
-				PRA = {
-					has_completed_focus = Amazing_Grace
-				}
-				PRA = { 
-                   if = {
-                    limit = {
-                        OR = {
-                            has_dlc = "Together for Victory"
-                            has_dlc = "Man the Guns"
-                        }
-                    }
-                    set_autonomy = {
-                        target = MON
-                        autonomous_state = autonomy_integrated_puppet
-                        freedom_level = 0.2
-                    }
-                    else = {
-                        puppet = MON
-                    }
-                }				
-				}
+			IF = {
+				LIMIT = {
+					PRA = {
+						has_completed_focus = Amazing_Grace
+					}
+					PRA = { 
+					   if = {
+							limit = {
+								OR = {
+									has_dlc = "Together for Victory"
+									has_dlc = "Man the Guns"
+								}
+							}
+							PRA {
+								set_autonomy = {
+									target = MON
+									autonomous_state = autonomy_integrated_puppet
+									freedom_level = 0.2
+								}
+							}
+						}
+						else = {
+							PRA = { puppet = MON }
+						}				
+					}
 
+				}
 			}
-		}
-		else = {
-			FRA = {
-			    if = {
-                    limit = {
-                        OR = {
-                            has_dlc = "Together for Victory"
-                            has_dlc = "Man the Guns"
-                        }
-                    }
-                    set_autonomy = {
-                        target = MON
-                        autonomous_state = autonomy_integrated_puppet
-                        freedom_level = 0.2
-                    }
-                    else = {
-                        puppet = MON
-                    }
-                }
+			else = {
+				FRA = {
+					if = {
+						limit = {
+							OR = {
+								has_dlc = "Together for Victory"
+								has_dlc = "Man the Guns"
+							}
+						}
+						set_autonomy = {
+							target = MON
+							autonomous_state = autonomy_integrated_puppet
+							freedom_level = 0.2
+						}
+						else = {
+							puppet = MON
+						}
+					}
+				}
 			}
-		}
-		hidden_effect = {
-		set_cosmetic_tag = MON_democrat_puppet
-		set_party_name = { 
-			ideology = democrat
-			long_name = MON_democratpuppet_party_long
-			name = MON_democratpuppet_party
-		}
-		MON = {
-			country_event = { id = montana.30 days = 9 }
-		}
-		}
+			hidden_effect = {
+				set_cosmetic_tag = MON_democrat_puppet
+				set_party_name = { 
+					ideology = democrat
+					long_name = MON_democratpuppet_party_long
+					name = MON_democratpuppet_party
+				}
+				MON = {
+					country_event = { id = montana.30 days = 9 }
+				}
+			}
 		}
 	}
 	focus = {
