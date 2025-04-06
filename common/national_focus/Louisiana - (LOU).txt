@@ -636,23 +636,6 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = LOU_thou_shall_not_worship_idols
-		icon = GFX
-		x = -1
-		y = 1
-		relative_position_id = LOU_private_charity
-		cost = 5
-		prerequisite = {
-			focus = LOU_fund_christian_businesses
-		}
-		prerequisite = {
-			focus = LOU_private_charity
-		}
-		completion_reward = {
-			custom_effect_tooltip = lou_theocratic_decisions
-		}
-	}
-	focus = {
 		id = LOU_private_charity
 		icon = GFX
 		x = -2
@@ -667,14 +650,14 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = LOU_honor_your_father_and_mother
+		id = LOU_thou_shall_not_worship_idols
 		icon = GFX
 		x = -1
 		y = 1
-		relative_position_id = LOU_the_old_testament
+		relative_position_id = LOU_private_charity
 		cost = 5
 		prerequisite = {
-			focus = LOU_the_old_testament
+			focus = LOU_fund_christian_businesses
 		}
 		prerequisite = {
 			focus = LOU_private_charity
@@ -703,6 +686,23 @@ focus_tree = {
 					instant_build = yes
 				}
 			}
+		}
+	}
+	focus = {
+		id = LOU_honor_your_father_and_mother
+		icon = GFX
+		x = -1
+		y = 1
+		relative_position_id = LOU_the_old_testament
+		cost = 5
+		prerequisite = {
+			focus = LOU_the_old_testament
+		}
+		prerequisite = {
+			focus = LOU_private_charity
+		}
+		completion_reward = {
+			custom_effect_tooltip = lou_theocratic_decisions
 		}
 	}
 	focus = {
@@ -737,23 +737,6 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = LOU_the_right_to_live
-		icon = GFX
-		x = -1
-		y = 1
-		relative_position_id = LOU_balanced_budget
-		cost = 5
-		prerequisite = {
-			focus = LOU_preach_genesis
-		}
-		prerequisite = {
-			focus = LOU_balanced_budget
-		}
-		completion_reward = {
-			add_ideas = LOU_pro_life
-		}
-	}
-	focus = {
 		id = LOU_balanced_budget
 		icon = GFX
 		x = 4
@@ -768,6 +751,23 @@ focus_tree = {
 				idea = LOU_balanced_budget
 				days = 365
 			}
+		}
+	}
+	focus = {
+		id = LOU_the_right_to_live
+		icon = GFX
+		x = -1
+		y = 1
+		relative_position_id = LOU_balanced_budget
+		cost = 5
+		prerequisite = {
+			focus = LOU_preach_genesis
+		}
+		prerequisite = {
+			focus = LOU_balanced_budget
+		}
+		completion_reward = {
+			add_ideas = LOU_pro_life
 		}
 	}
 	focus = {
@@ -2311,7 +2311,7 @@ focus_tree = {
 				mark_focus_tree_layout_dirty = yes
 			}
 			IF = { 
-				limit = { has_completed_focus =  }
+				limit = { has_completed_focus = LOU_last_bastion_of_kanyeism }
 				set_country_flag = kanyeists_victorious
 				mark_focus_tree_layout_dirty = yes
 			}
@@ -2497,7 +2497,7 @@ focus_tree = {
 				add_core_of = LOU
 			}
 			army_experience = 50
-			add_manpower 10000
+			add_manpower = 10000
 			add_political_power = 50
 		}
 	}
@@ -2553,17 +2553,19 @@ focus_tree = {
 				province = 6372
 				value = 50
 			}
-			add_building_construction = {
-				type = coastal_bunker
-				level = 10
-				instant_build = yes
-				province = 6372
-			}
-			add_building_construction = {
-				type = naval_base
-				level = 10
-				instant_build = yes
-				province = 6372
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = coastal_bunker
+					level = 10
+					instant_build = yes
+					province = 6372
+				}
+				add_building_construction = {
+					type = naval_base
+					level = 10
+					instant_build = yes
+					province = 6372
+				}
 			}
 		}
 	}
@@ -2758,7 +2760,7 @@ focus_tree = {
 		}
 		available = { NOT = { country_exists = FLO } }
 		completion_reward = {
-			ever_state = {
+			every_state = {
 				limit = { is_core_of = FLO }
 				add_building_construction = {
 					type = infrastructure
@@ -4336,7 +4338,7 @@ focus_tree = {
 		prerequisite = {
 			focus = LOU_the_ones_who_started_this
 		}
-		ill_lead_to_war_with = WBK
+		will_lead_to_war_with = WBK
 		will_lead_to_war_with = NAB
 		will_lead_to_war_with = NEW
 		completion_reward = {
@@ -5821,7 +5823,7 @@ focus_tree = {
 		completion_reward = {
 			add_political_power = 25
 			diplomatic_relation = {
-				country = ffr
+				country = FFR
 				relation = non_aggression_pact
 				active = yes
 			}
@@ -6046,7 +6048,10 @@ focus_tree = {
 		}
 		available = { is_ai = no }
 		completion_reward = {
-			annex_country = QUE
+			annex_country = {
+				target = QUE
+				transfer_troops = yes
+			}
 			every_state = {
 				limit = { is_core_of = QUE }
 				add_core_of = LOU
@@ -6127,7 +6132,7 @@ focus_tree = {
 					division = "name = \"UN Peacekeeping Battallion\"  division_template = \"UN Peacekeeping Force\"  start_experience_factor = 1"
 					allow_spawning_on_enemy_provs = yes
 					owner = LOU
-					province = 11784
+					#province = 11784
 					count = 2
 					
 				}
