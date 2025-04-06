@@ -342,6 +342,196 @@ focus_tree = {
 		}
 	}
 	focus = {
+		id = GLA_libertarian_reforms
+		icon = GFX_goal_GLA_libertarian_reforms
+		x = 0
+		y = 2
+		relative_position_id = GLA_the_paleolibertarianist_way
+		cost = 5
+		ai_will_do = {
+			factor = 75
+		}
+		prerequisite = {
+			focus = GLA_the_paleolibertarianist_way
+		}
+		completion_reward = {
+		    add_stability = 0.05
+		    add_political_power = -35
+            random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2	
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 2
+    					instant_build = yes
+				}
+			}
+		    random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_building_construction = {
+    					type = infrastructure
+    					level = 1
+    					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = GLA_fix_the_mistakes_of_jorgensen
+		icon = GFX_goal_GLA_fix_the_mistakes_of_jorgensen
+		x = 0
+		y = 2
+		allow_branch = {
+			NOT = {
+				has_completed_focus = GLA_the_boogaloo_coup			
+			}
+		}
+		relative_position_id = GLA_libertarian_reforms
+		cost = 3
+		ai_will_do = {
+			factor = 75
+		}
+		prerequisite = {
+			focus = GLA_libertarian_reforms
+		}
+		prerequisite = {
+			focus = GLA_a_true_libertarian_government
+		}
+		prerequisite = {
+			focus = GLA_enshrine_the_second_amendment
+		}
+		completion_reward = {
+		    swap_ideas = {
+			    remove_idea = GLA_a_constitutionality_accurate_government
+			    add_idea = GLA_a_constitutionality_accurate_government_2
+			}
+		    remove_ideas = Inneffective_Government_3
+		}
+	}
+	focus = {
+		id = GLA_political_unity_in_the_party
+		icon = GFX_goal_GLA_political_unity_in_the_party
+		x = 0
+		y = 1
+		relative_position_id = GLA_fix_the_mistakes_of_jorgensen
+		cost = 2
+		prerequisite = {
+			focus = GLA_fix_the_mistakes_of_jorgensen
+			focus = GLA_bring_stablity_in_the_great_lakes
+			focus = GLA_welcome_to_ancapistan
+		}
+		completion_reward = {
+		add_political_power = 10
+		}
+	}
+	focus = {
+		id = GLA_libertarian_economic_policies
+		icon = GFX_goal_GLA_libertarian_economic_policies
+		x = 6
+		y = 1
+		relative_position_id = GLA_political_unity_in_the_party
+		cost = 2
+		prerequisite = {
+			focus = GLA_political_unity_in_the_party
+		}
+		available = {
+		}
+		completion_reward = {
+		add_political_power = 10
+		}
+	}
+	focus = {
+		id = GLA_meet_with_crypto_bros
+		icon = GFX_goal_GLA_meet_with_crypto_bros
+		x = 1
+		y = 1
+		mutually_exclusive = { focus = GLA_corporate_cooporation }
+		relative_position_id = GLA_libertarian_economic_policies
+		cost = 5
+		prerequisite = {
+			focus = GLA_libertarian_economic_policies
+		}
+		available = {
+		    OR = {
+                has_country_leader = {
+                name = "Ron Paul"
+                ruling_only = yes
+                }
+				has_country_leader = {
+                name = "John McAfee"
+                ruling_only = yes
+                }
+			}
+		}
+		completion_reward = {
+		    add_political_power = 15
+		    random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2	
+			}
+		    random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+	focus = {
+		id = GLA_mcafees_tech
+		icon = GFX_goal_GLA_mcafees_tech
+		x = 1
+		y = 1
+		relative_position_id = GLA_meet_with_crypto_bros
+		cost = 5
+		prerequisite = {
+			focus = GLA_meet_with_crypto_bros
+		}
+		available = {
+			has_country_leader = {
+                name = "John McAfee"
+                ruling_only = yes
+            }
+		}
+		completion_reward = {
+			add_tech_bonus = {
+        		bonus = 0.3
+        		uses = 3
+        		category = electronics
+        	}
+		}
+	}
+	focus = {
+		id = GLA_corporate_cooporation
+		icon = GFX_goal_GLA_corporate_cooporation
+		x = -1
+		y = 1
+		mutually_exclusive = { focus = GLA_meet_with_crypto_bros }
+		relative_position_id = GLA_libertarian_economic_policies
+		cost = 5
+		prerequisite = {
+			focus = GLA_libertarian_economic_policies
+		}
+		completion_reward = {
+		random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2	
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 2
+    					instant_build = yes
+				}
+			}
+		random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1	
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}	
+		}
+	}
+	focus = {
 		id = GLA_sign_the_fair_tax_act
 		icon = GFX_goal_GLA_sign_the_fair_tax_act
 		x = -1
@@ -424,6 +614,66 @@ focus_tree = {
 		}
 	}
 	focus = {
+		id = GLA_libertarian_social_policies
+		icon = GFX_goal_GLA_libertarian_social_policies
+		x = -6
+		y = 1
+		relative_position_id = GLA_political_unity_in_the_party
+		cost = 2
+		prerequisite = {
+			focus = GLA_political_unity_in_the_party
+		}
+		completion_reward = {
+		add_political_power = 10
+		custom_effect_tooltip = GLA_decisions_are_unlocked
+		}
+	}
+	focus = {
+		id = GLA_libertarian_progressivism
+		icon = GFX_goal_GLA_libertarian_progressivism
+		x = -1
+		y = 1
+		mutually_exclusive = { focus = GLA_libertarian_conservatism }
+		relative_position_id = GLA_libertarian_social_policies
+		cost = 8
+		prerequisite = {
+			focus = GLA_libertarian_social_policies
+		}
+		available = {	    
+		NOT = {
+            has_country_leader = {
+                name = "Ron Paul"
+                ruling_only = yes
+                }
+		    }
+		}
+		completion_reward = {
+			add_to_variable = {
+				var = GLA_moderate_libertarians
+				value = 5
+				tooltip = GLA_moderate_libertarians_will_be_happy
+			}
+			add_to_variable = {
+				var = GLA_paleolibertarians
+				value = -5
+				tooltip = GLA_paleolibertarians_wont_be_happy
+			}
+		    add_ideas = GLA_libertarian_progressivism
+		    if = {
+		        limit = { has_power_balance = { id = boogaloo_bop } }
+		            add_power_balance_value = {
+                    id = boogaloo_bop
+                    value = -0.1
+                    tooltip_side = boogaloo_hates_us
+                }
+		    }
+			hidden_effect = {
+			    GLA_libertarian_factions_pls_dont_go_over_100 = yes
+			}
+		}
+	}
+	
+	focus = {
 		id = GLA_free_market_healthcare
 		icon = GFX_goal_GLA_free_market_healthcare
 		x = -1
@@ -458,41 +708,6 @@ focus_tree = {
 		}
 	}
 	###########The Paleo-Libertarians
-	focus = {
-		id = GLA_libertarian_reforms
-		icon = GFX_goal_GLA_libertarian_reforms
-		x = 0
-		y = 2
-		relative_position_id = GLA_the_paleolibertarianist_way
-		cost = 5
-		ai_will_do = {
-			factor = 75
-		}
-		prerequisite = {
-			focus = GLA_the_paleolibertarianist_way
-		}
-		completion_reward = {
-		    add_stability = 0.05
-		    add_political_power = -35
-            random_controlled_state = {
-				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
-				add_extra_state_shared_building_slots = 2	
-				add_building_construction = {
-    					type = industrial_complex
-    					level = 2
-    					instant_build = yes
-				}
-			}
-		    random_controlled_state = {
-				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
-				add_building_construction = {
-    					type = infrastructure
-    					level = 1
-    					instant_build = yes
-				}
-			}
-		}
-	}
 	focus = {
 		id = GLA_restructure_the_government
 		icon = GFX_goal_GLA_restructure_the_government
@@ -586,38 +801,6 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = GLA_fix_the_mistakes_of_jorgensen
-		icon = GFX_goal_GLA_fix_the_mistakes_of_jorgensen
-		x = 0
-		y = 2
-		allow_branch = {
-			NOT = {
-				has_completed_focus = GLA_the_boogaloo_coup			
-			}
-		}
-		relative_position_id = GLA_libertarian_reforms
-		cost = 3
-		ai_will_do = {
-			factor = 75
-		}
-		prerequisite = {
-			focus = GLA_libertarian_reforms
-		}
-		prerequisite = {
-			focus = GLA_a_true_libertarian_government
-		}
-		prerequisite = {
-			focus = GLA_enshrine_the_second_amendment
-		}
-		completion_reward = {
-		    swap_ideas = {
-			    remove_idea = GLA_a_constitutionality_accurate_government
-			    add_idea = GLA_a_constitutionality_accurate_government_2
-			}
-		    remove_ideas = Inneffective_Government_3
-		}
-	}
-	focus = {
 		id = GLA_enshrine_the_second_amendment
 		icon = GFX_goal_GLA_enshrine_the_second_amendment
 		x = 1
@@ -656,26 +839,6 @@ focus_tree = {
             idea = GLA_libertarian_propaganda
             days = 250
             }
-		}
-	}
-	focus = {
-		id = GLA_end_the_fed
-		icon = GFX_goal_GLA_end_the_fed
-		x = 1
-		y = 1
-		relative_position_id = GLA_libertarian_conservatism
-		cost = 5
-		prerequisite = {
-			focus = GLA_libertarian_conservatism
-		}
-		available = {
-			has_country_leader = {
-                name = "Ron Paul"
-                ruling_only = yes
-            }
-		}
-		completion_reward = {
-		    custom_effect_tooltip = GLA_decisions_are_unlocked
 		}
 	}
 	focus = {
@@ -858,30 +1021,6 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = GLA_mcafees_tech
-		icon = GFX_goal_GLA_mcafees_tech
-		x = 1
-		y = 1
-		relative_position_id = GLA_meet_with_crypto_bros
-		cost = 5
-		prerequisite = {
-			focus = GLA_meet_with_crypto_bros
-		}
-		available = {
-			has_country_leader = {
-                name = "John McAfee"
-                ruling_only = yes
-            }
-		}
-		completion_reward = {
-			add_tech_bonus = {
-        		bonus = 0.3
-        		uses = 3
-        		category = electronics
-        	}
-		}
-	}
-	focus = {
 		id = GLA_welcome_to_ancapistan
 		icon = GFX_goal_GLA_welcome_to_ancapistan
 		x = 1
@@ -946,26 +1085,6 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = GLA_work_with_the_nra
-		icon = GFX_goal_GLA_work_with_the_nra
-		x = 1
-		y = 1
-		relative_position_id = GLA_careful_deregulation
-		cost = 3
-		prerequisite = {
-			focus = GLA_guns_deserve_freedom_too
-			focus = GLA_careful_deregulation
-		}
-		completion_reward = {
-		    add_political_power = 15
-		    add_equipment_to_stockpile = {
-                type = infantry_equipment
-                amount = 850
-                producer = GLA
-            }
-		}
-	}
-	focus = {
 		id = GLA_loosen_gun_laws
 		icon = GFX_goal_GLA_loosen_gun_laws
 		x = 2
@@ -1026,6 +1145,26 @@ focus_tree = {
 			hidden_effect = {
 			    GLA_libertarian_factions_pls_dont_go_over_100 = yes
 			}
+		}
+	}
+	focus = {
+		id = GLA_work_with_the_nra
+		icon = GFX_goal_GLA_work_with_the_nra
+		x = 1
+		y = 1
+		relative_position_id = GLA_careful_deregulation
+		cost = 3
+		prerequisite = {
+			focus = GLA_guns_deserve_freedom_too
+			focus = GLA_careful_deregulation
+		}
+		completion_reward = {
+		    add_political_power = 15
+		    add_equipment_to_stockpile = {
+                type = infantry_equipment
+                amount = 850
+                producer = GLA
+            }
 		}
 	}
 	focus = {
@@ -1110,21 +1249,6 @@ focus_tree = {
 			hidden_effect = {
 			    GLA_libertarian_factions_pls_dont_go_over_100 = yes
 			}
-		}
-	}
-	focus = {
-		id = GLA_libertarian_social_policies
-		icon = GFX_goal_GLA_libertarian_social_policies
-		x = -6
-		y = 1
-		relative_position_id = GLA_political_unity_in_the_party
-		cost = 2
-		prerequisite = {
-			focus = GLA_political_unity_in_the_party
-		}
-		completion_reward = {
-		add_political_power = 10
-		custom_effect_tooltip = GLA_decisions_are_unlocked
 		}
 	}
 	focus = {
@@ -1236,6 +1360,26 @@ focus_tree = {
 		}
 	}
 	focus = {
+		id = GLA_end_the_fed
+		icon = GFX_goal_GLA_end_the_fed
+		x = 1
+		y = 1
+		relative_position_id = GLA_libertarian_conservatism
+		cost = 5
+		prerequisite = {
+			focus = GLA_libertarian_conservatism
+		}
+		available = {
+			has_country_leader = {
+                name = "Ron Paul"
+                ruling_only = yes
+            }
+		}
+		completion_reward = {
+		    custom_effect_tooltip = GLA_decisions_are_unlocked
+		}
+	}
+	focus = {
 		id = GLA_preserve_american_tradtions
 		icon = GFX_goal_GLA_preserve_american_tradtions
 		x = 0
@@ -1284,50 +1428,6 @@ focus_tree = {
 				id = greatlake.89
 				days = 0
 			}
-			hidden_effect = {
-			    GLA_libertarian_factions_pls_dont_go_over_100 = yes
-			}
-		}
-	}
-	focus = {
-		id = GLA_libertarian_progressivism
-		icon = GFX_goal_GLA_libertarian_progressivism
-		x = -1
-		y = 1
-		mutually_exclusive = { focus = GLA_libertarian_conservatism }
-		relative_position_id = GLA_libertarian_social_policies
-		cost = 8
-		prerequisite = {
-			focus = GLA_libertarian_social_policies
-		}
-		available = {	    
-		NOT = {
-            has_country_leader = {
-                name = "Ron Paul"
-                ruling_only = yes
-                }
-		    }
-		}
-		completion_reward = {
-			add_to_variable = {
-				var = GLA_moderate_libertarians
-				value = 5
-				tooltip = GLA_moderate_libertarians_will_be_happy
-			}
-			add_to_variable = {
-				var = GLA_paleolibertarians
-				value = -5
-				tooltip = GLA_paleolibertarians_wont_be_happy
-			}
-		    add_ideas = GLA_libertarian_progressivism
-		    if = {
-		        limit = { has_power_balance = { id = boogaloo_bop } }
-		            add_power_balance_value = {
-                    id = boogaloo_bop
-                    value = -0.1
-                    tooltip_side = boogaloo_hates_us
-                }
-		    }
 			hidden_effect = {
 			    GLA_libertarian_factions_pls_dont_go_over_100 = yes
 			}
@@ -1445,30 +1545,6 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = GLA_the_shine_of_liberty
-		icon = GFX_goal_GLA_the_shine_of_liberty
-		x = -1
-		y = 1
-		relative_position_id = GLA_refrom_the_criminal_justice_system
-		cost = 5
-		prerequisite = {
-			focus = GLA_refrom_the_criminal_justice_system
-		}
-		prerequisite = {
-			focus = GLA_true_american_economics
-		}
-		completion_reward = {
-		    swap_ideas = {
-			    remove_idea = GLA_a_constitutionality_accurate_government_4
-			    add_idea = GLA_a_constitutionality_accurate_government_5
-			}
-		    add_popularity = {
-       			ideology = libertarian_right
-        		popularity = 0.03
-        	}
-		}
-	}
-	focus = {
 		id = GLA_refrom_the_criminal_justice_system
 		icon = GFX_goal_GLA_refrom_the_criminal_justice_system
 		x = 1
@@ -1512,6 +1588,30 @@ focus_tree = {
 		    add_popularity = {
        			ideology = libertarian_right
         		popularity = 0.05
+        	}
+		}
+	}
+	focus = {
+		id = GLA_the_shine_of_liberty
+		icon = GFX_goal_GLA_the_shine_of_liberty
+		x = -1
+		y = 1
+		relative_position_id = GLA_refrom_the_criminal_justice_system
+		cost = 5
+		prerequisite = {
+			focus = GLA_refrom_the_criminal_justice_system
+		}
+		prerequisite = {
+			focus = GLA_true_american_economics
+		}
+		completion_reward = {
+		    swap_ideas = {
+			    remove_idea = GLA_a_constitutionality_accurate_government_4
+			    add_idea = GLA_a_constitutionality_accurate_government_5
+			}
+		    add_popularity = {
+       			ideology = libertarian_right
+        		popularity = 0.03
         	}
 		}
 	}
@@ -1959,22 +2059,6 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = GLA_political_unity_in_the_party
-		icon = GFX_goal_GLA_political_unity_in_the_party
-		x = 0
-		y = 1
-		relative_position_id = GLA_fix_the_mistakes_of_jorgensen
-		cost = 2
-		prerequisite = {
-			focus = GLA_fix_the_mistakes_of_jorgensen
-			focus = GLA_bring_stablity_in_the_great_lakes
-			focus = GLA_welcome_to_ancapistan
-		}
-		completion_reward = {
-		add_political_power = 10
-		}
-	}
-	focus = {
 		id = GLA_libertarianism_united
 		icon = GFX_goal_GLA_libertarianism_united
 		x = 0
@@ -2019,22 +2103,6 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = GLA_libertarian_economic_policies
-		icon = GFX_goal_GLA_libertarian_economic_policies
-		x = 6
-		y = 1
-		relative_position_id = GLA_political_unity_in_the_party
-		cost = 2
-		prerequisite = {
-			focus = GLA_political_unity_in_the_party
-		}
-		available = {
-		}
-		completion_reward = {
-		add_political_power = 10
-		}
-	}
-	focus = {
 		id = GLA_meet_with_silicon_valley
 		icon = GFX_goal_GLA_meet_with_silicon_valley
 		x = -3
@@ -2072,38 +2140,6 @@ focus_tree = {
                 uses = 2
                 category = drones
             }
-		}
-	}
-	focus = {
-		id = GLA_corporate_cooporation
-		icon = GFX_goal_GLA_corporate_cooporation
-		x = -1
-		y = 1
-		mutually_exclusive = { focus = GLA_meet_with_crypto_bros }
-		relative_position_id = GLA_libertarian_economic_policies
-		cost = 5
-		prerequisite = {
-			focus = GLA_libertarian_economic_policies
-		}
-		completion_reward = {
-		random_controlled_state = {
-				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
-				add_extra_state_shared_building_slots = 2	
-				add_building_construction = {
-    					type = industrial_complex
-    					level = 2
-    					instant_build = yes
-				}
-			}
-		random_controlled_state = {
-				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
-				add_extra_state_shared_building_slots = 1	
-				add_building_construction = {
-    					type = industrial_complex
-    					level = 1
-    					instant_build = yes
-				}
-			}	
 		}
 	}
 	focus = {
@@ -2150,41 +2186,6 @@ focus_tree = {
 			}
 			hidden_effect = {
 			    GLA_libertarian_factions_pls_dont_go_over_100 = yes
-			}
-		}
-	}
-	focus = {
-		id = GLA_meet_with_crypto_bros
-		icon = GFX_goal_GLA_meet_with_crypto_bros
-		x = 1
-		y = 1
-		mutually_exclusive = { focus = GLA_corporate_cooporation }
-		relative_position_id = GLA_libertarian_economic_policies
-		cost = 5
-		prerequisite = {
-			focus = GLA_libertarian_economic_policies
-		}
-		available = {
-		    OR = {
-                has_country_leader = {
-                name = "Ron Paul"
-                ruling_only = yes
-                }
-				has_country_leader = {
-                name = "John McAfee"
-                ruling_only = yes
-                }
-			}
-		}
-		completion_reward = {
-		    add_political_power = 15
-		    random_controlled_state = {
-				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
-				add_extra_state_shared_building_slots = 2	
-			}
-		    random_controlled_state = {
-				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
-				add_extra_state_shared_building_slots = 2
 			}
 		}
 	}
@@ -2322,6 +2323,20 @@ focus_tree = {
     					instant_build = yes
 				}
 			}
+		}
+	}
+	focus = {
+		id = GLA_the_inconveniences
+		icon = GFX_goal_GLA_the_inconveniences
+		x = 12
+		y = 1
+		relative_position_id = GLA_fix_the_mistakes_of_jorgensen
+		cost = 2
+		prerequisite = {
+			focus = GLA_welcome_to_ancapistan
+		}
+		completion_reward = {
+		add_political_power = 10
 		}
 	}
 	focus = {
@@ -2484,20 +2499,6 @@ focus_tree = {
 				id = greatlake.93
 				days = 0
 			}
-		}
-	}
-	focus = {
-		id = GLA_the_inconveniences
-		icon = GFX_goal_GLA_the_inconveniences
-		x = 12
-		y = 1
-		relative_position_id = GLA_fix_the_mistakes_of_jorgensen
-		cost = 2
-		prerequisite = {
-			focus = GLA_welcome_to_ancapistan
-		}
-		completion_reward = {
-		add_political_power = 10
 		}
 	}
 	focus = {
@@ -2723,6 +2724,25 @@ focus_tree = {
 		}
 	}
 	focus = {
+		id = GLA_libertarian_robotics
+		icon = GFX_goal_GLA_libertarian_robotics
+		x = 0
+		y = 2
+		relative_position_id = GLA_privateize_public_universites
+		cost = 5
+		prerequisite = {
+			focus = GLA_rust_belt_tech
+			focus = GLA_teach_the_childern_about_economics
+		}
+		completion_reward = {
+			add_tech_bonus = {
+        		bonus = 0.5
+        		uses = 4
+        		category = industry
+        	}
+		}
+	}
+	focus = {
 		id = GLA_libertarian_tech
 		icon = GFX_goal_GLA_libertarian_tech
 		x = 0
@@ -2941,6 +2961,49 @@ focus_tree = {
 		}
 	}
 	focus = {
+		id = GLA_repair_urban_areas
+		icon = GFX_goal_GLA_repair_urban_areas
+		x = -1
+		y = 1
+		relative_position_id = GLA_great_lakes_manufacturing
+		cost = 5
+		ai_will_do = {
+			factor = 50
+		}
+		prerequisite = {
+			focus = GLA_lower_taxes
+		}
+		prerequisite = {
+			focus = GLA_great_lakes_manufacturing
+		}
+		completion_reward = {
+			add_days_mission_timeout = {
+				mission = GLA_fix_the_economy
+				days = 15
+			}
+		    swap_ideas = {
+			    remove_idea = Ruins_of_the_Rust_Belt_3
+			    add_idea = Ruins_of_the_Rust_Belt_4
+			}
+			every_owned_state = {
+				limit = {
+					OR = {
+						has_state_category = city
+						has_state_category = large_city
+						has_state_category = metropolis
+						has_state_category = megalopolis
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = industrial_complex
+    				level = 1
+    				instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
 		id = GLA_revive_the_rust_belt
 		icon = GFX_goal_GLA_revive_the_rust_belt
 		x = -3
@@ -2985,49 +3048,6 @@ focus_tree = {
                 }	
 		    }
 		    custom_effect_tooltip = GLA_decisions_are_unlocked
-		}
-	}
-	focus = {
-		id = GLA_repair_urban_areas
-		icon = GFX_goal_GLA_repair_urban_areas
-		x = -1
-		y = 1
-		relative_position_id = GLA_great_lakes_manufacturing
-		cost = 5
-		ai_will_do = {
-			factor = 50
-		}
-		prerequisite = {
-			focus = GLA_lower_taxes
-		}
-		prerequisite = {
-			focus = GLA_great_lakes_manufacturing
-		}
-		completion_reward = {
-			add_days_mission_timeout = {
-				mission = GLA_fix_the_economy
-				days = 15
-			}
-		    swap_ideas = {
-			    remove_idea = Ruins_of_the_Rust_Belt_3
-			    add_idea = Ruins_of_the_Rust_Belt_4
-			}
-			every_owned_state = {
-				limit = {
-					OR = {
-						has_state_category = city
-						has_state_category = large_city
-						has_state_category = metropolis
-						has_state_category = megalopolis
-					}
-				}
-				add_extra_state_shared_building_slots = 1
-				add_building_construction = {
-    				type = industrial_complex
-    				level = 1
-    				instant_build = yes
-				}
-			}
 		}
 	}
 	focus = {
@@ -3294,25 +3314,6 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = GLA_libertarian_robotics
-		icon = GFX_goal_GLA_libertarian_robotics
-		x = 0
-		y = 2
-		relative_position_id = GLA_privateize_public_universites
-		cost = 5
-		prerequisite = {
-			focus = GLA_rust_belt_tech
-			focus = GLA_teach_the_childern_about_economics
-		}
-		completion_reward = {
-			add_tech_bonus = {
-        		bonus = 0.5
-        		uses = 4
-        		category = industry
-        	}
-		}
-	}
-	focus = {
 		id = GLA_promote_civilian_research
 		icon = GFX_goal_GLA_promote_civilian_research
 		x = 1
@@ -3506,6 +3507,35 @@ focus_tree = {
 
 	}
 	focus = {
+		id = GLA_legalize_nuclear_weapons
+		icon = GFX_goal_GLA_legalize_nuclear_weapons
+		x = -1
+		y = 1
+		relative_position_id = GLA_legalize_all_military_weapons
+		cost = 5
+		ai_will_do = {
+			factor = 50
+		}
+		prerequisite = {
+			focus = GLA_abolish_taxes
+		}
+		prerequisite = {
+			focus = GLA_legalize_all_military_weapons
+		}
+		completion_reward = {
+		    add_stability = -0.1
+		    add_tech_bonus = {
+			    bonus = 1.0
+			    uses = 1
+			    category = nuclear
+		    }
+			add_breakthrough_progress = {
+				specialization = specialization_nuclear
+				value = 0.5
+			}
+		}
+	}
+	focus = {
 		id = GLA_privateize_education
 		icon = GFX_goal_GLA_privateize_education
 		x = -3
@@ -3661,35 +3691,6 @@ focus_tree = {
             }
 		}
 
-	}
-	focus = {
-		id = GLA_legalize_nuclear_weapons
-		icon = GFX_goal_GLA_legalize_nuclear_weapons
-		x = -1
-		y = 1
-		relative_position_id = GLA_legalize_all_military_weapons
-		cost = 5
-		ai_will_do = {
-			factor = 50
-		}
-		prerequisite = {
-			focus = GLA_abolish_taxes
-		}
-		prerequisite = {
-			focus = GLA_legalize_all_military_weapons
-		}
-		completion_reward = {
-		    add_stability = -0.1
-		    add_tech_bonus = {
-			    bonus = 1.0
-			    uses = 1
-			    category = nuclear
-		    }
-			add_breakthrough_progress = {
-				specialization = specialization_nuclear
-				value = 0.5
-			}
-		}
 	}
 	focus = {
 		id = GLA_abolish_taxes
@@ -4772,6 +4773,24 @@ focus_tree = {
 		}
 
 	}
+	focus = {
+		id = GLA_libertarian_international_dipomancy
+		icon = GFX_goal_GLA_libertarian_international_dipomancy
+		cost = 1
+		x = -6
+		y = 1
+		relative_position_id = GLA_its_time_to_liberate_america
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_its_time_to_liberate_america
+		}
+		completion_reward = {
+	        add_political_power = 5
+		}
+
+	}
     focus = {
 		id = GLA_invade_detroit_and_wisconsin
 		icon = GFX_goal_GLA_invade_detroit_and_wisconsin
@@ -4803,24 +4822,6 @@ focus_tree = {
     			target = KMT
 			}
 		}
-	}
-	focus = {
-		id = GLA_libertarian_international_dipomancy
-		icon = GFX_goal_GLA_libertarian_international_dipomancy
-		cost = 1
-		x = -6
-		y = 1
-		relative_position_id = GLA_its_time_to_liberate_america
-		select_effect = {  }
-		allow_branch = {
-		}
-		prerequisite = {
-			focus = GLA_its_time_to_liberate_america
-		}
-		completion_reward = {
-	        add_political_power = 5
-		}
-
 	}
 	focus = {
 		id = GLA_the_orange_menace
@@ -5190,6 +5191,105 @@ focus_tree = {
 		}
 	}
 	focus = {
+		id = GLA_invade_west_virginia
+		icon = GFX_goal_GLA_invade_west_virginia
+		cost = 2
+		x = -1
+		y = 1
+		relative_position_id = GLA_invade_the_anarchists
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_invade_the_anarchists
+		}
+		will_lead_to_war_with = NRA
+		bypass = { NOT = { country_exists = NRA } }
+		available = {
+		has_war = no
+		is_neighbor_of = NRA
+		}
+		completion_reward = {
+	    create_wargoal = {
+			target = NRA
+			type = annex_everything
+		}
+		}
+	}
+	focus = {
+		id = GLA_invade_kentucky
+		icon = GFX_goal_GLA_invade_kentucky
+		cost = 2
+		x = 1
+		y = 1
+		relative_position_id = GLA_invade_west_virginia
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_invade_minnesota
+		}
+		prerequisite = {
+			focus = GLA_invade_west_virginia
+		}
+		will_lead_to_war_with = KFC
+		bypass = { NOT = { country_exists = KFC } }
+		available = {
+		has_war = no
+		is_neighbor_of = KFC
+		}
+		completion_reward = {
+	    create_wargoal = {
+			target = KFC
+			type = annex_everything
+		    }
+        every_state = {
+			limit = { is_core_of = AFS }
+			add_core_of = GLA
+		    }
+		every_state = {
+			limit = { is_core_of = NRA }
+			add_core_of = GLA
+		    }
+		every_state = {
+			limit = { is_core_of = MIL }
+			add_core_of = GLA
+		    }
+		every_state = {
+			limit = { is_core_of = MNS }
+			add_core_of = GLA
+		    }
+		every_state = {
+			limit = { is_core_of = MIN }
+			add_core_of = GLA
+		    }
+		every_state = {
+			limit = { is_core_of = KFC }
+			add_core_of = GLA
+		    }
+		}
+	}
+	focus = {
+		id = GLA_into_the_south
+		icon = GFX_goal_GLA_into_the_south
+		cost = 1
+		x = -5
+		y = 1
+		relative_position_id = GLA_invade_kentucky
+		select_effect = {  }
+		allow_branch = {
+		}
+		prerequisite = {
+			focus = GLA_invade_kentucky
+		}
+		available = {
+		has_war = no
+		}
+		completion_reward = {
+
+		}
+	}
+	focus = {
 		id = GLA_invade_texas
 		icon = GFX_goal_GLA_invade_texas
 		cost = 2
@@ -5243,26 +5343,6 @@ focus_tree = {
 				    days = 0
 			    }
 			}
-		}
-	}
-	focus = {
-		id = GLA_into_the_south
-		icon = GFX_goal_GLA_into_the_south
-		cost = 1
-		x = -5
-		y = 1
-		relative_position_id = GLA_invade_kentucky
-		select_effect = {  }
-		allow_branch = {
-		}
-		prerequisite = {
-			focus = GLA_invade_kentucky
-		}
-		available = {
-		has_war = no
-		}
-		completion_reward = {
-
 		}
 	}
 	focus = {
@@ -5657,85 +5737,6 @@ focus_tree = {
 		    }
 		}
 
-	}
-	focus = {
-		id = GLA_invade_kentucky
-		icon = GFX_goal_GLA_invade_kentucky
-		cost = 2
-		x = 1
-		y = 1
-		relative_position_id = GLA_invade_west_virginia
-		select_effect = {  }
-		allow_branch = {
-		}
-		prerequisite = {
-			focus = GLA_invade_minnesota
-		}
-		prerequisite = {
-			focus = GLA_invade_west_virginia
-		}
-		will_lead_to_war_with = KFC
-		bypass = { NOT = { country_exists = KFC } }
-		available = {
-		has_war = no
-		is_neighbor_of = KFC
-		}
-		completion_reward = {
-	    create_wargoal = {
-			target = KFC
-			type = annex_everything
-		    }
-        every_state = {
-			limit = { is_core_of = AFS }
-			add_core_of = GLA
-		    }
-		every_state = {
-			limit = { is_core_of = NRA }
-			add_core_of = GLA
-		    }
-		every_state = {
-			limit = { is_core_of = MIL }
-			add_core_of = GLA
-		    }
-		every_state = {
-			limit = { is_core_of = MNS }
-			add_core_of = GLA
-		    }
-		every_state = {
-			limit = { is_core_of = MIN }
-			add_core_of = GLA
-		    }
-		every_state = {
-			limit = { is_core_of = KFC }
-			add_core_of = GLA
-		    }
-		}
-	}
-	focus = {
-		id = GLA_invade_west_virginia
-		icon = GFX_goal_GLA_invade_west_virginia
-		cost = 2
-		x = -1
-		y = 1
-		relative_position_id = GLA_invade_the_anarchists
-		select_effect = {  }
-		allow_branch = {
-		}
-		prerequisite = {
-			focus = GLA_invade_the_anarchists
-		}
-		will_lead_to_war_with = NRA
-		bypass = { NOT = { country_exists = NRA } }
-		available = {
-		has_war = no
-		is_neighbor_of = NRA
-		}
-		completion_reward = {
-	    create_wargoal = {
-			target = NRA
-			type = annex_everything
-		}
-		}
 	}
 	focus = {
 		id = GLA_invade_minnesota
@@ -6738,22 +6739,24 @@ focus_tree = {
                 disband = no
             }
 		    195 = {
-				limit = { ROOT = { has_full_control_of_state = PREV } }
-				create_unit = {
-					division = "name = \"''Gadsden'' Division\" division_template = \"Boogaloo Militia\" start_experience_factor = 0.2" 
-					owner = GLA
-				}
-				create_unit = {
-					division = "name = \"''Washington'' Division\" division_template = \"Boogaloo Militia\" start_experience_factor = 0.2" 
-					owner = GLA
-				}
-				create_unit = {
-					division = "name = \"''Jackson'' Division\" division_template = \"Boogaloo Militia\" start_experience_factor = 0.2" 
-					owner = GLA
-				}
-				create_unit = {
-					division = "name = \"''Killer Queen'' Division\" division_template = \"Boogaloo Militia\" start_experience_factor = 0.2" 
-					owner = GLA
+				if = {
+					limit = { ROOT = { has_full_control_of_state = PREV } }
+					create_unit = {
+						division = "name = \"''Gadsden'' Division\" division_template = \"Boogaloo Militia\" start_experience_factor = 0.2" 
+						owner = GLA
+					}
+					create_unit = {
+						division = "name = \"''Washington'' Division\" division_template = \"Boogaloo Militia\" start_experience_factor = 0.2" 
+						owner = GLA
+					}
+					create_unit = {
+						division = "name = \"''Jackson'' Division\" division_template = \"Boogaloo Militia\" start_experience_factor = 0.2" 
+						owner = GLA
+					}
+					create_unit = {
+						division = "name = \"''Killer Queen'' Division\" division_template = \"Boogaloo Militia\" start_experience_factor = 0.2" 
+						owner = GLA
+					}
 				}
 			}
 		}
@@ -6984,7 +6987,7 @@ focus_tree = {
 		completion_reward = {
 		    remove_ideas = GLA_rising_tensions_3
 	        add_equipment_to_stockpile = {
-                type = infantry_equipment
+                type = artillery_equipment
                 amount = 1500
                 producer = GLA
             }
@@ -8353,35 +8356,35 @@ focus_tree = {
 	        army_experience = 15
 		    if = {
 		        limit = { has_idea = Unorganized_Boogaloo }
-				remove_idea = Unorganized_Boogaloo
+				remove_ideas = Unorganized_Boogaloo
 		    }
 		    if = {
 		        limit = { has_idea = Unorganized_Boogaloo_2 }
-				remove_idea = Unorganized_Boogaloo_2
+				remove_ideas = Unorganized_Boogaloo_2
 		    }
 			if = {
 		        limit = { has_idea = Unorganized_Boogaloo_2 }
-				remove_idea = Unorganized_Boogaloo_3
+				remove_ideas = Unorganized_Boogaloo_3
 		    }
 			if = {
 		        limit = { has_idea = boogaloo_militias }
-				remove_idea = boogaloo_militias
+				remove_ideas = boogaloo_militias
 		    }
 			if = {
 		        limit = { has_idea = boogaloo_militias_2 }
-				remove_idea = boogaloo_militias_2
+				remove_ideas = boogaloo_militias_2
 		    }
 			if = {
 		        limit = { has_idea = boogaloo_militias_3 }
-				remove_idea = boogaloo_militias_3
+				remove_ideas = boogaloo_militias_3
 		    }
 			if = {
 		        limit = { has_idea = weakened_boogaloo_militias }
-				remove_idea = weakened_boogaloo_militias
+				remove_ideas = weakened_boogaloo_militias
 		    }
 		    if = {
 		        limit = { has_idea = weakened_boogaloo_militias_2 }
-				remove_idea = weakened_boogaloo_militias_2
+				remove_ideas = weakened_boogaloo_militias_2
 		    }
 		}
 
@@ -8699,42 +8702,44 @@ focus_tree = {
         }
 		}
 	    195 = {
-				limit = { ROOT = { has_full_control_of_state = PREV } }
-				create_unit = {
-					division = "name = \"''We The People'' Division\" division_template = \"American Militias\" start_experience_factor = 0.8" 
-					owner = GLA
-				}
-				create_unit = {
-					division = "name = \"''We The People'' Division\" division_template = \"American Militias\" start_experience_factor = 0.8" 
-					owner = GLA
-				}
-				create_unit = {
-					division = "name = \"''We The People'' Division\" division_template = \"American Militias\" start_experience_factor = 0.8" 
-					owner = GLA
-				}
-				create_unit = {
-					division = "name = \"''We The People'' Division\" division_template = \"American Militias\" start_experience_factor = 0.8" 
-					owner = GLA
-				}
-				create_unit = {
-					division = "name = \"''We The People'' Division\" division_template = \"American Militias\" start_experience_factor = 0.8" 
-					owner = GLA
-				}
-				create_unit = {
-					division = "name = \"''We The People'' Division\" division_template = \"American Militias\" start_experience_factor = 0.8" 
-					owner = GLA
-				}
-				create_unit = {
-					division = "name = \"''We The People'' Division\" division_template = \"American Militias\" start_experience_factor = 0.8" 
-					owner = GLA
-				}
-				create_unit = {
-					division = "name = \"''We The People'' Division\" division_template = \"American Militias\" start_experience_factor = 0.8" 
-					owner = GLA
-				}
-				create_unit = {
-					division = "name = \"''We The People'' Division\" division_template = \"American Militias\" start_experience_factor = 0.8" 
-					owner = GLA
+			if = {
+					limit = { ROOT = { has_full_control_of_state = PREV } }
+					create_unit = {
+						division = "name = \"''We The People'' Division\" division_template = \"American Militias\" start_experience_factor = 0.8" 
+						owner = GLA
+					}
+					create_unit = {
+						division = "name = \"''We The People'' Division\" division_template = \"American Militias\" start_experience_factor = 0.8" 
+						owner = GLA
+					}
+					create_unit = {
+						division = "name = \"''We The People'' Division\" division_template = \"American Militias\" start_experience_factor = 0.8" 
+						owner = GLA
+					}
+					create_unit = {
+						division = "name = \"''We The People'' Division\" division_template = \"American Militias\" start_experience_factor = 0.8" 
+						owner = GLA
+					}
+					create_unit = {
+						division = "name = \"''We The People'' Division\" division_template = \"American Militias\" start_experience_factor = 0.8" 
+						owner = GLA
+					}
+					create_unit = {
+						division = "name = \"''We The People'' Division\" division_template = \"American Militias\" start_experience_factor = 0.8" 
+						owner = GLA
+					}
+					create_unit = {
+						division = "name = \"''We The People'' Division\" division_template = \"American Militias\" start_experience_factor = 0.8" 
+						owner = GLA
+					}
+					create_unit = {
+						division = "name = \"''We The People'' Division\" division_template = \"American Militias\" start_experience_factor = 0.8" 
+						owner = GLA
+					}
+					create_unit = {
+						division = "name = \"''We The People'' Division\" division_template = \"American Militias\" start_experience_factor = 0.8" 
+						owner = GLA
+					}
 				}
 			}
 		}
@@ -8790,30 +8795,32 @@ focus_tree = {
             }
 		}
 		    195 = {
-				limit = { ROOT = { has_full_control_of_state = PREV } }
-				create_unit = {
-					division = "name = \"''Royal Guard'' Division\" division_template = \"Royal Guard\" start_experience_factor = 0.15" 
-					owner = GLA
-				}
-				create_unit = {
-					division = "name = \"''Royal Guard'' Division\" division_template = \"Royal Guard\" start_experience_factor = 0.15" 
-					owner = GLA
-				}
-				create_unit = {
-					division = "name = \"''Royal Guard'' Division\" division_template = \"Royal Guard\" start_experience_factor = 0.15" 
-					owner = GLA
-				}
-				create_unit = {
-					division = "name = \"''Royal Guard'' Division\" division_template = \"Royal Guard\" start_experience_factor = 0.15" 
-					owner = GLA
-				}
-				create_unit = {
-					division = "name = \"''Royal Guard'' Division\" division_template = \"Royal Guard\" start_experience_factor = 0.15" 
-					owner = GLA
-				}
-				create_unit = {
-					division = "name = \"''Royal Guard'' Division\" division_template = \"Royal Guard\" start_experience_factor = 0.15" 
-					owner = GLA
+				if = {
+					limit = { ROOT = { has_full_control_of_state = PREV } }
+					create_unit = {
+						division = "name = \"''Royal Guard'' Division\" division_template = \"Royal Guard\" start_experience_factor = 0.15" 
+						owner = GLA
+					}
+					create_unit = {
+						division = "name = \"''Royal Guard'' Division\" division_template = \"Royal Guard\" start_experience_factor = 0.15" 
+						owner = GLA
+					}
+					create_unit = {
+						division = "name = \"''Royal Guard'' Division\" division_template = \"Royal Guard\" start_experience_factor = 0.15" 
+						owner = GLA
+					}
+					create_unit = {
+						division = "name = \"''Royal Guard'' Division\" division_template = \"Royal Guard\" start_experience_factor = 0.15" 
+						owner = GLA
+					}
+					create_unit = {
+						division = "name = \"''Royal Guard'' Division\" division_template = \"Royal Guard\" start_experience_factor = 0.15" 
+						owner = GLA
+					}
+					create_unit = {
+						division = "name = \"''Royal Guard'' Division\" division_template = \"Royal Guard\" start_experience_factor = 0.15" 
+						owner = GLA
+					}
 				}
 			}
 		}
@@ -10137,40 +10144,42 @@ focus_tree = {
 		completion_reward = {
 		add_ideas = GLA_forming_a_military
 		    195 = {
-			limit = { ROOT = { has_full_control_of_state = PREV } }
-			create_unit = {
-				division = "name = \"''The King's Finest''\" division_template = \"Royal Guard\" start_experience_factor = 0.45" 
-				owner = GLA
-			    }
-			create_unit = {
-				division = "name = \"''The King's Finest''\" division_template = \"Royal Guard\" start_experience_factor = 0.45" 
-				owner = GLA
-			    }
-			create_unit = {
-				division = "name = \"''The King's Finest''\" division_template = \"Royal Guard\" start_experience_factor = 0.45" 
-				owner = GLA
-			    }
-			create_unit = {
-				division = "name = \"''The King's Finest''\" division_template = \"Royal Guard\" start_experience_factor = 0.45" 
-				owner = GLA
-			    }
-			create_unit = {
-				division = "name = \"''The King's Finest''\" division_template = \"Royal Guard\" start_experience_factor = 0.45" 
-				owner = GLA
-			    }
-			create_unit = {
-				division = "name = \"''The King's Finest''\" division_template = \"Royal Guard\" start_experience_factor = 0.45" 
-				owner = GLA
-			    }
-			create_unit = {
-				division = "name = \"''The King's Finest''\" division_template = \"Royal Guard\" start_experience_factor = 0.45" 
-				owner = GLA
-			    }
-			create_unit = {
-				division = "name = \"''The King's Finest''\" division_template = \"Royal Guard\" start_experience_factor = 0.45" 
-				owner = GLA
-			    }
-		    }
+				if = {
+					limit = { ROOT = { has_full_control_of_state = PREV } }
+					create_unit = {
+						division = "name = \"''The King's Finest''\" division_template = \"Royal Guard\" start_experience_factor = 0.45" 
+						owner = GLA
+						}
+					create_unit = {
+						division = "name = \"''The King's Finest''\" division_template = \"Royal Guard\" start_experience_factor = 0.45" 
+						owner = GLA
+						}
+					create_unit = {
+						division = "name = \"''The King's Finest''\" division_template = \"Royal Guard\" start_experience_factor = 0.45" 
+						owner = GLA
+						}
+					create_unit = {
+						division = "name = \"''The King's Finest''\" division_template = \"Royal Guard\" start_experience_factor = 0.45" 
+						owner = GLA
+						}
+					create_unit = {
+						division = "name = \"''The King's Finest''\" division_template = \"Royal Guard\" start_experience_factor = 0.45" 
+						owner = GLA
+						}
+					create_unit = {
+						division = "name = \"''The King's Finest''\" division_template = \"Royal Guard\" start_experience_factor = 0.45" 
+						owner = GLA
+						}
+					create_unit = {
+						division = "name = \"''The King's Finest''\" division_template = \"Royal Guard\" start_experience_factor = 0.45" 
+						owner = GLA
+						}
+					create_unit = {
+						division = "name = \"''The King's Finest''\" division_template = \"Royal Guard\" start_experience_factor = 0.45" 
+						owner = GLA
+						}
+					}
+			}
 		}
 	}
 	focus = {
@@ -10207,38 +10216,40 @@ focus_tree = {
                 category = air_doctrine
             }
 			195 = {
-				limit = { ROOT = { has_full_control_of_state = PREV } }
-				create_unit = {
-					division = "name = \"''The King's Finest''\" division_template = \"Royal Guard\" start_experience_factor = 0.75" 
-					owner = GLA
-				}
-				create_unit = {
-					division = "name = \"''The King's Finest''\" division_template = \"Royal Guard\" start_experience_factor = 0.75" 
-					owner = GLA
-				}
-				create_unit = {
-					division = "name = \"''The King's Finest''\" division_template = \"Royal Guard\" start_experience_factor = 0.75" 
-					owner = GLA
-				}
-				create_unit = {
-					division = "name = \"''The King's Finest''\" division_template = \"Royal Guard\" start_experience_factor = 0.75" 
-					owner = GLA
-				}
-				create_unit = {
-					division = "name = \"''The King's Finest''\" division_template = \"Royal Guard\" start_experience_factor = 0.75" 
-					owner = GLA
-				}
-				create_unit = {
-					division = "name = \"''The King's Finest''\" division_template = \"Royal Guard\" start_experience_factor = 0.75" 
-					owner = GLA
-				}
-				create_unit = {
-					division = "name = \"''The King's Finest''\" division_template = \"Royal Guard\" start_experience_factor = 0.75" 
-					owner = GLA
-				}
-				create_unit = {
-					division = "name = \"''The King's Finest''\" division_template = \"Royal Guard\" start_experience_factor = 0.75" 
-					owner = GLA
+				if = {
+					limit = { ROOT = { has_full_control_of_state = PREV } }
+					create_unit = {
+						division = "name = \"''The King's Finest''\" division_template = \"Royal Guard\" start_experience_factor = 0.75" 
+						owner = GLA
+					}
+					create_unit = {
+						division = "name = \"''The King's Finest''\" division_template = \"Royal Guard\" start_experience_factor = 0.75" 
+						owner = GLA
+					}
+					create_unit = {
+						division = "name = \"''The King's Finest''\" division_template = \"Royal Guard\" start_experience_factor = 0.75" 
+						owner = GLA
+					}
+					create_unit = {
+						division = "name = \"''The King's Finest''\" division_template = \"Royal Guard\" start_experience_factor = 0.75" 
+						owner = GLA
+					}
+					create_unit = {
+						division = "name = \"''The King's Finest''\" division_template = \"Royal Guard\" start_experience_factor = 0.75" 
+						owner = GLA
+					}
+					create_unit = {
+						division = "name = \"''The King's Finest''\" division_template = \"Royal Guard\" start_experience_factor = 0.75" 
+						owner = GLA
+					}
+					create_unit = {
+						division = "name = \"''The King's Finest''\" division_template = \"Royal Guard\" start_experience_factor = 0.75" 
+						owner = GLA
+					}
+					create_unit = {
+						division = "name = \"''The King's Finest''\" division_template = \"Royal Guard\" start_experience_factor = 0.75" 
+						owner = GLA
+					}
 				}
 			}
 		}
@@ -10966,7 +10977,7 @@ focus_tree = {
 		completion_reward = {
 			every_state = { add_core_of = GLA }
 			every_country = {
-				limit = { NOT = GLA }
+				limit = { NOT = { tag = GLA } }
 				GLA = {
 					create_wargoal = {
 						target = PREV
@@ -11250,7 +11261,7 @@ focus_tree = {
 		completion_reward = {
 			every_state = { add_core_of = GLA }
 			every_country = {
-				limit = { NOT = GLA }
+				limit = { NOT = { tag =  GLA } }
 				GLA = {
 					create_wargoal = {
 						target = PREV
