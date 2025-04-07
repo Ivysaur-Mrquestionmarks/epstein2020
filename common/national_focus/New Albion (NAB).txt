@@ -35,7 +35,13 @@ focus_tree = {
 		}
 		
 		completion_reward = {
-			add_political_power = 50
+			set_popularities = {
+				autocratic = 30
+				republican = 50
+				authoritarian_left = 10
+				libertarian_right = 10
+			}
+			
 		}
 		
 	}
@@ -314,6 +320,86 @@ focus_tree = {
 	}
 	
 	focus = {
+		id = NAB_Destroy_Radicals
+		
+		cost = 3.00
+		
+		x = -15
+		
+		y = 7
+		
+		relative_position_id = NAB_Set_Up_The_Camp
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		available = {
+			is_puppet_of = NEW
+		}
+		
+		prerequisite = { 
+			focus = NAB_Invite_Trumpists
+		}
+		
+		completion_reward = {
+			add_popularity = {
+				ideology = autocratic
+				popularity = -0.15
+			}
+			add_popularity = {
+				ideology = authoritarian_left
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = libertarian_right
+				popularity = -0.05
+			}
+		}
+		
+	}
+	
+	focus = {
+		id = NAB_Rejoin_Maine
+		
+		cost = 3.00
+		
+		x = -15
+		
+		y = 9
+		
+		relative_position_id = NAB_Set_Up_The_Camp
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		available = {
+			is_puppet_of = NEW
+		}
+		
+		prerequisite = { 
+			focus = NAB_Destroy_Radicals
+		}
+		
+		completion_reward = {
+			NEW = {
+				annex_country = {
+					target = NAB
+					transfer_troops = yes
+				}
+			}
+			
+			NEW = {
+				change_tag_from = NAB
+			}
+			
+		}
+		
+	}
+	
+	
+	focus = {
 		id = NAB_Expand_The_Lumber_Industry
 		
 		cost = 3.00
@@ -326,10 +412,6 @@ focus_tree = {
 		
 		ai_will_do = { 
 			factor = 100
-		}
-		
-		available = {
-			is_puppet_of = NEW
 		}
 		
 		prerequisite = { 
@@ -356,10 +438,6 @@ focus_tree = {
 		
 		ai_will_do = { 
 			factor = 100
-		}
-		
-		available = {
-			is_puppet_of = NEW
 		}
 		
 		prerequisite = { 
@@ -390,10 +468,6 @@ focus_tree = {
 		
 		ai_will_do = { 
 			factor = 100
-		}
-		
-		available = {
-			is_puppet_of = NEW
 		}
 		
 		prerequisite = { 
@@ -429,24 +503,307 @@ focus_tree = {
 			factor = 100
 		}
 		
-		available = {
-			is_puppet_of = NEW
-		}
-		
 		prerequisite = { 
 			focus = NAB_Loyalty
 			focus = NAB_Freedom
 		}
 		
 		completion_reward = {
-			random_owned_controlled_state = {
-				add_extra_state_shared_building_slots = 1
-				add_building_construction = {
-				    type = arms_factory 
-				    level = 1
-				    instant_build = yes
-				}
+			add_offsite_building = { 
+				type = arms_factory
+				level = 1 
 			}
+			add_offsite_building = { 
+				type = arms_factory
+				level = 1 
+			}
+			add_offsite_building = { 
+				type = arms_factory
+				level = 1 
+			}
+		}
+		
+	}
+	
+	focus = {
+		id = NAB_Expand_Our_Industry
+		
+		cost = 3.00
+		
+		x = -3
+		
+		y = 6
+		
+		relative_position_id = NAB_Set_Up_The_Camp
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NAB_Underground_Military_Workshops
+		}
+		
+		completion_reward = {
+			add_ideas = {
+				NAB_Expand_Industry1
+			}
+		}
+		
+	}
+	
+	focus = {
+		id = NAB_Learn_With_Our_Boys
+		
+		cost = 3.00
+		
+		x = 0
+		
+		y = 7
+		
+		relative_position_id = NAB_Set_Up_The_Camp
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NAB_Underground_Military_Workshops
+		}
+		
+		completion_reward = {
+			army_experience = 50 
+		}
+		
+	}
+	
+	focus = {
+		id = NAB_Get_New_Equipment
+		
+		cost = 3.00
+		
+		x = 0
+		
+		y = 8
+		
+		relative_position_id = NAB_Set_Up_The_Camp
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NAB_Learn_With_Our_Boys
+		}
+		
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1.00
+				uses = 1
+				category = artillery
+			}
+			
+			add_tech_bonus = {
+				bonus = 1.00
+				uses = 1
+				category = cat_anti_air
+			}
+			
+			add_tech_bonus = {
+				bonus = 1.00
+				uses = 1
+				category = cat_anti_tank
+			}
+		}
+		
+	}
+	
+	focus = {
+		id = NAB_Use_Our_Vehicles
+		
+		cost = 3.00
+		
+		x = 5
+		
+		y = 9
+		
+		relative_position_id = NAB_Set_Up_The_Camp
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NAB_Get_New_Equipment
+		}
+		
+		completion_reward = {
+			add_equipment_to_stockpile = {
+			    type = motorized_equipment
+			    amount = 250
+			    producer = NAB
+			}
+			
+			add_equipment_to_stockpile = {
+			    type = train_equipment
+			    amount = 25
+			    producer = NAB
+			}
+			
+			set_technology = { bicycle_infantry = 1 }
+			set_technology = { camelry = 1 } 
+		}
+		
+	}
+	
+	focus = {
+		id = NAB_Learn_From_The_War_Against_Pence
+		
+		cost = 3.00
+		
+		x = 4
+		
+		y = 10
+		
+		relative_position_id = NAB_Set_Up_The_Camp
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NAB_Get_New_Equipment
+		}
+		
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.5
+				uses = 2
+				category = land_doctrine
+			}
+		}
+		
+	}
+	
+	focus = {
+		id = NAB_Improve_Our_Army
+		
+		cost = 3.00
+		
+		x = 3
+		
+		y = 6
+		
+		relative_position_id = NAB_Set_Up_The_Camp
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NAB_Underground_Military_Workshops
+		}
+		
+		completion_reward = {
+			add_ideas = {
+				NAB_Improve_Our_Army1
+			}
+		}
+		
+	}
+	
+	focus = {
+		id = NAB_Defend_Our_White_Homeland
+		
+		cost = 3.00
+		
+		x = 5
+		
+		y = 7
+		
+		relative_position_id = NAB_Set_Up_The_Camp
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NAB_Improve_Our_Army
+		}
+		
+		prerequisite = { 
+			focus = NAB_Our_Sacred_Soil
+		}
+		
+		completion_reward = {
+			swap_ideas = {
+				add_idea = NAB_Improve_Our_Army2
+				remove_idea = NAB_Improve_Our_Army1
+			}
+		}
+		
+	}
+	
+	focus = {
+		id = NAB_Greatness_Of_Our_Race
+		
+		cost = 3.00
+		
+		x = 7
+		
+		y = 8
+		
+		relative_position_id = NAB_Set_Up_The_Camp
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NAB_Defend_Our_White_Homeland
+		}
+		
+		prerequisite = { 
+			focus = NAB_Strengthen_Our_Blood
+		}
+		
+		completion_reward = {
+			swap_ideas = {
+				add_idea = NAB_Improve_Our_Army3
+				remove_idea = NAB_Improve_Our_Army2
+			}
+			
+			
+		}
+		
+	}
+	
+	focus = {
+		id = NAB_Blood_And_Soil
+		
+		cost = 5.00
+		
+		x = 7
+		
+		y = 9
+		
+		relative_position_id = NAB_Set_Up_The_Camp
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NAB_Greatness_Of_Our_Race
+		}
+		
+		completion_reward = {
+			add_ideas = NAB_Blood_N_Soil
+			remove_ideas = NAB_Neo_Nationalism3
+			remove_ideas = NAB_Improve_Our_Army3
+			
+			
 		}
 		
 	}
@@ -464,10 +821,6 @@ focus_tree = {
 		
 		ai_will_do = { 
 			factor = 100
-		}
-		
-		available = {
-			is_puppet_of = NEW
 		}
 		
 		prerequisite = { 
@@ -496,10 +849,6 @@ focus_tree = {
 			factor = 100
 		}
 		
-		available = {
-			is_puppet_of = NEW
-		}
-		
 		prerequisite = { 
 			focus = NAB_Loyalty
 			focus = NAB_Freedom
@@ -524,10 +873,6 @@ focus_tree = {
 		
 		ai_will_do = { 
 			factor = 100
-		}
-		
-		available = {
-			is_puppet_of = NEW
 		}
 		
 		prerequisite = { 
@@ -556,14 +901,8 @@ focus_tree = {
 			factor = 100
 		}
 		
-		available = {
-			is_puppet_of = NEW
-		}
-		
 		prerequisite = { 
 			focus = NAB_Neo_English_Nationalism
-			focus = NAB_Revive_Atlantic_English
-			focus = NAB_The_Purest_Americans
 		}
 		
 		completion_reward = {
@@ -588,10 +927,6 @@ focus_tree = {
 		
 		ai_will_do = { 
 			factor = 100
-		}
-		
-		available = {
-			is_puppet_of = NEW
 		}
 		
 		prerequisite = { 
@@ -621,10 +956,6 @@ focus_tree = {
 			factor = 100
 		}
 		
-		available = {
-			is_puppet_of = NEW
-		}
-		
 		prerequisite = { 
 			focus = NAB_Neo_English_Nationalism
 			focus = NAB_Revive_Atlantic_English
@@ -634,6 +965,9 @@ focus_tree = {
 		completion_reward = {
 			add_manpower = 1555
 			# the state is 623, add population to it... somehow
+			623 = {
+				
+			}
 		}
 		
 	}
@@ -651,10 +985,6 @@ focus_tree = {
 		
 		ai_will_do = { 
 			factor = 100
-		}
-		
-		available = {
-			is_puppet_of = NEW
 		}
 		
 		prerequisite = {  
@@ -685,12 +1015,10 @@ focus_tree = {
 			factor = 100
 		}
 		
-		available = {
-			is_puppet_of = NEW
-		}
-		
 		prerequisite = {  
 			focus = NAB_Use_Our_IQ
+			focus = NAB_Invite_White_Refugees
+			focus = NAB_Our_Sacred_Soil
 		}
 		
 		completion_reward = {
@@ -714,12 +1042,10 @@ focus_tree = {
 			factor = 100
 		}
 		
-		available = {
-			is_puppet_of = NEW
-		}
-		
 		prerequisite = {  
 			focus = NAB_Invite_White_Refugees
+			focus = NAB_Use_Our_IQ
+			focus = NAB_Our_Sacred_Soil
 		}
 		
 		completion_reward = {
@@ -741,10 +1067,6 @@ focus_tree = {
 		
 		ai_will_do = { 
 			factor = 100
-		}
-		
-		available = {
-			is_puppet_of = NEW
 		}
 		
 		prerequisite = { 
@@ -769,6 +1091,51 @@ focus_tree = {
 		
 	}
 	
+	focus = {
+		id = NAB_Smash_The_Radio
+		
+		cost = 10.00
+		
+		x = 15
+		
+		y = 7
+		
+		relative_position_id = NAB_Set_Up_The_Camp
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		will_lead_to_war_with = NEW
+		
+		available = {
+			is_puppet_of = NEW
+			
+			strength_ratio = {
+				tag = NEW
+				ratio > 1
+			}
+			
+		}
+		
+		prerequisite = { 
+			focus = NAB_Work_With_Our_New_Friends
+		}
+		
+		completion_reward = {
+			
+			NEW = {
+				end_puppet = NAB
+			}
+			
+			create_wargoal = { 
+				type = annex_everything 
+				target = NEW
+			}
+			
+		}
+		
+	}
 	
 	### WAR AGAINST RESISTANCE RADIO AND LARP PATHS ###
 	
@@ -778,9 +1145,9 @@ focus_tree = {
 		
 		cost = 2.00
 		
-		x = 40
+		x = 38
 		
-		y = 6
+		y = 7
 		
 		ai_will_do = { 
 			factor = 100
@@ -799,7 +1166,7 @@ focus_tree = {
 	focus = {
 		id = NAB_Lock_And_Ready
 		
-		cost = 2.00
+		cost = 1.00
 		
 		x = 2
 		
@@ -825,6 +1192,103 @@ focus_tree = {
 			    amount = 1250
 			    producer = NAB
 			}
+		}
+		
+	}
+	
+	focus = {
+		id = NAB_Ideological_War
+		
+		cost = 1.00
+		
+		x = 0
+		
+		y = 3
+		
+		relative_position_id = NAB_The_Great_Uprising
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		available = {
+			has_war_with = NEW
+		}
+		
+		prerequisite = { 
+			focus = NAB_The_Great_Uprising
+		}
+		
+		completion_reward = {
+			add_war_support = 0.05
+		}
+		
+	}
+	
+	focus = {
+		id = NAB_Great_Push
+		
+		cost = 1.00
+		
+		x = 1
+		
+		y = 2
+		
+		relative_position_id = NAB_The_Great_Uprising
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		available = {
+			has_war_with = NEW
+		}
+		
+		prerequisite = { 
+			focus = NAB_The_Great_Uprising
+		}
+		
+		completion_reward = {
+			add_timed_idea = { 
+				idea = NAB_Big_Push  
+				days = 100
+			}
+		}
+		
+	}
+	
+	focus = {
+		id = NAB_Destroy_The_Wabanaki
+		
+		cost = 3.00
+		
+		x = 4
+		
+		y = 2
+		
+		relative_position_id = NAB_The_Great_Uprising
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		available = {
+			country_exists = WBK
+		}
+		
+		will_lead_to_war_with = WBK
+		
+		prerequisite = { 
+			focus = NAB_The_Great_Uprising
+		}
+		
+		completion_reward = {
+			
+			create_wargoal = { 
+				type = annex_everything 
+				target = WBK
+			}
+			
 		}
 		
 	}
