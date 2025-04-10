@@ -14,11 +14,14 @@ focus_tree = {
 	continuous_focus_position = { x = 50 y = 5000 }
 	
 	default = no
+	
+	### Montana Will Be Independent ###
+	
 	focus = {
 		id = MON_Self_Sufficiency_Plan
 		icon = GFX_focus_MON_Self_Sufficiency_Plan
 		cost = 8
-		x = 18
+		x = 40
 		y = 0
 		
 		available = {
@@ -78,12 +81,175 @@ focus_tree = {
 			CAN = {	country_event = { id = montana.10 hours = 2 } }
 		}
 	}
+	
+	focus = {
+		id = MON_Military_Deals_With_Canada
+		icon = GFX_goal_The_Canadian_Gamble
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = MON_Negotiate_with_Canada
+		prerequisite = { 
+			focus = MON_Negotiate_with_Canada
+		}
+		mutually_exclusive = { 
+			focus = MON_Military_Deals_With_China 
+			focus = MON_Military_Deals_With_Russia 
+		}
+		available = { always = no } #Need to wait for update before proper montana work starts
+		
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = MON_Purchase_Canadian_Equipment
+		icon = GFX_goal_GRL_Bring_the_Second_Amendment_to_Canada
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = MON_Military_Deals_With_Canada
+		prerequisite = { 
+			focus = MON_Military_Deals_With_Canada
+		}
+		
+		completion_reward = {
+			add_political_power = -300
+			add_equipment_to_stockpile = {
+    			type = infantry_equipment
+    			amount = 10000
+    			producer = CAN
+			}
+			add_equipment_to_stockpile = {
+    			type = artillery_equipment
+    			amount = 5000
+    			producer = CAN
+			}
+			add_equipment_to_stockpile = {
+    			type = support_equipment
+    			amount = 2500
+    			producer = CAN
+			}
+		}
+	}
+	focus = {
+		id = MON_fate_of_the_canadian_army_in_montana
+		icon = GFX_goal_GRL_Canada_Crisis
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = MON_Purchase_Canadian_Equipment
+		prerequisite = { 
+			focus = MON_Purchase_Canadian_Equipment
+		}
+		#allow_branch = {}
+		
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = MON_Military_Deals_With_Russia
+		icon = GFX_focus_MON_Russia
+		cost = 5
+		x = -2
+		y = 1
+		relative_position_id = MON_Negotiate_with_Canada
+		prerequisite = { 
+			focus = MON_Negotiate_with_Canada
+		}
+		mutually_exclusive = { 
+			focus = MON_Military_Deals_With_China 
+			focus = MON_Military_Deals_With_Canada 
+		}
+		
+		completion_reward = {
+			custom_effect_tooltip = INS_NegotiateRUM_effect_tooltip
+			hidden_effect = {
+				country_event = ins.1
+			}
+		}
+	}
+	focus = {
+		id = MON_Examine_Russian_Weaponry
+		icon = GFX_focus_generic_combined_arms
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = MON_Military_Deals_With_Russia
+		prerequisite = { 
+			focus = MON_Military_Deals_With_Russia
+		}
+		
+		completion_reward = {
+			army_experience = 5
+		  	add_tech_bonus = {
+				name = armor_bonus
+				bonus = 1.05
+				uses = 2
+				category = armor
+	        }
+			add_tech_bonus = {
+				name = artillery_bonus
+				bonus = 1.05
+				uses = 2
+				category = artillery
+	        }
+			add_tech_bonus = {
+				name = infantry_weapons_bonus
+				bonus = 1.05
+				uses = 2
+				category = infantry_weapons
+	       	}
+		}
+	}
+	focus = {
+		id = MON_Military_Deals_With_China
+		icon = GFX_focus_MON_China
+		cost = 5
+		x = 2
+		y = 1
+		prerequisite = { 
+			focus = MON_Negotiate_with_Canada
+		}
+		relative_position_id = MON_Negotiate_with_Canada
+		mutually_exclusive = { 
+			focus = MON_Military_Deals_With_Russia 
+			focus = MON_Military_Deals_With_Canada 
+		}
+		
+		completion_reward = {
+			custom_effect_tooltip = INS_NegotiateCHM_effect_tooltip
+		}
+	}
+	focus = {
+		id = MON_Study_the_Chinese_Doctrine
+		icon = GFX_goal_generic_army_doctrines
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = MON_Military_Deals_With_China
+		prerequisite = { 
+			focus = MON_Military_Deals_With_China
+		}
+		
+		completion_reward = {
+			army_experience = 15
+		    	add_tech_bonus = {
+				name = land_doc_bonus
+				bonus = 1.0
+				uses = 3
+				category = cat_superior_firepower
+	        }
+		}
+	}
+	
 	focus = {
 		id = MON_Suspend_Minerals_Export
 		icon = GFX_focus_MON_Suspend_Minerals_Export
 		cost = 5
-		x = -4
-		y = 2
+		x = -5
+		y = 1
 		relative_position_id = MON_Self_Sufficiency_Plan
 		prerequisite = { 
 			focus = MON_Self_Sufficiency_Plan
@@ -96,27 +262,12 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = MON_Redirect_Budget_To_Agriculture
-		icon = GFX_focus_MON_Redirect_Budget_To_Agriculture
-		cost = 5
-		x = 4
-		y = 2
-		relative_position_id = MON_Self_Sufficiency_Plan
-		prerequisite = { 
-			focus = MON_Self_Sufficiency_Plan
-		}
-		
-		completion_reward = {
-			add_ideas = MON_Agricultural_Focus
-		}
-	}
-	focus = {
 		id = MON_Copper_Valley
 		icon = GFX_focus_MON_Copper_Valley
 		cost = 5
-		x = -5
-		y = 2
-		relative_position_id = MON_Negotiate_with_Canada
+		x = -1
+		y = 1
+		relative_position_id = MON_Suspend_Minerals_Export
 		prerequisite = { 
 			focus = MON_Suspend_Minerals_Export
 		}
@@ -197,9 +348,9 @@ focus_tree = {
 		id = MON_Expand_Gold_Mines
 		icon = GFX_focus_MON_Expand_Gold_Mines
 		cost = 5
-		x = -3
-		y = 2
-		relative_position_id = MON_Negotiate_with_Canada
+		x = 1
+		y = 1
+		relative_position_id = MON_Suspend_Minerals_Export
 		prerequisite = { 
 			focus = MON_Suspend_Minerals_Export
 		}
@@ -285,133 +436,30 @@ focus_tree = {
 			add_ideas = MON_Extraction_Tools
 		}
 	}
+	
+	
 	focus = {
-		id = MON_Military_Deals_With_Russia
-		icon = GFX_focus_MON_Russia
+		id = MON_Redirect_Budget_To_Agriculture
+		icon = GFX_focus_MON_Redirect_Budget_To_Agriculture
 		cost = 5
-		x = -1
+		x = 5
 		y = 1
-		relative_position_id = MON_Negotiate_with_Canada
+		relative_position_id = MON_Self_Sufficiency_Plan
 		prerequisite = { 
-			focus = MON_Negotiate_with_Canada
-		}
-		mutually_exclusive = { focus = MON_Military_Deals_With_China }
-		
-		completion_reward = {
-			custom_effect_tooltip = INS_NegotiateRUM_effect_tooltip
-			hidden_effect = {
-				country_event = ins.1
-			}
-		}
-	}
-	focus = {
-		id = MON_Military_Deals_With_China
-		icon = GFX_focus_MON_China
-		cost = 5
-		x = 1
-		y = 1
-		prerequisite = { 
-			focus = MON_Negotiate_with_Canada
-		}
-		relative_position_id = MON_Negotiate_with_Canada
-		mutually_exclusive = { focus = MON_Military_Deals_With_Russia }
-		
-		completion_reward = {
-			custom_effect_tooltip = INS_NegotiateCHM_effect_tooltip
-		}
-	}
-	focus = {
-		id = MON_Examine_Russian_Weaponry
-		icon = GFX_focus_generic_combined_arms
-		cost = 5
-		x = 0
-		y = 1
-		relative_position_id = MON_Military_Deals_With_Russia
-		prerequisite = { 
-			focus = MON_Military_Deals_With_Russia
+			focus = MON_Self_Sufficiency_Plan
 		}
 		
 		completion_reward = {
-			army_experience = 5
-		  	add_tech_bonus = {
-				name = armor_bonus
-				bonus = 1.05
-				uses = 2
-				category = armor
-	        }
-			add_tech_bonus = {
-				name = artillery_bonus
-				bonus = 1.05
-				uses = 2
-				category = artillery
-	        }
-			add_tech_bonus = {
-				name = infantry_weapons_bonus
-				bonus = 1.05
-				uses = 2
-				category = infantry_weapons
-	       	}
-		}
-	}
-	focus = {
-		id = MON_Study_the_Chinese_Doctrine
-		icon = GFX_goal_generic_army_doctrines
-		cost = 5
-		x = 0
-		y = 1
-		relative_position_id = MON_Military_Deals_With_China
-		prerequisite = { 
-			focus = MON_Military_Deals_With_China
-		}
-		
-		completion_reward = {
-			army_experience = 15
-		    	add_tech_bonus = {
-				name = land_doc_bonus
-				bonus = 1.0
-				uses = 3
-				category = cat_superior_firepower
-	        }
-		}
-	}
-	focus = {
-		id = MON_Purchase_Canadian_Equipment
-		icon = GFX_goal_generic_small_arms
-		cost = 5
-		x = -1
-		y = 1
-		relative_position_id = MON_Study_the_Chinese_Doctrine
-		prerequisite = { 
-			focus = MON_Study_the_Chinese_Doctrine
-			focus = MON_Examine_Russian_Weaponry
-		}
-		
-		completion_reward = {
-			add_political_power = -300
-			add_equipment_to_stockpile = {
-    			type = infantry_equipment
-    			amount = 10000
-    			producer = CAN
-			}
-			add_equipment_to_stockpile = {
-    			type = artillery_equipment
-    			amount = 5000
-    			producer = CAN
-			}
-			add_equipment_to_stockpile = {
-    			type = support_equipment
-    			amount = 2500
-    			producer = CAN
-			}
+			add_ideas = MON_Agricultural_Focus
 		}
 	}
 	focus = {
 		id = MON_Montana_Commercial_Kitchens
 		icon = GFX_focus_MON_Montana_Commercial_Kitchens
 		cost = 5
-		x = 3
-		y = 2
-		relative_position_id = MON_Negotiate_with_Canada
+		x = -1
+		y = 1
+		relative_position_id = MON_Redirect_Budget_To_Agriculture
 		prerequisite = { 
 			focus = MON_Redirect_Budget_To_Agriculture
 		}
@@ -442,9 +490,9 @@ focus_tree = {
 		id = MON_Sell_Forests_To_Farmers
 		icon = GFX_focus_MON_Sell_Forests_To_Farmers
 		cost = 5
-		x = 5
-		y = 2
-		relative_position_id = MON_Negotiate_with_Canada
+		x = 1
+		y = 1
+		relative_position_id = MON_Redirect_Budget_To_Agriculture
 		prerequisite = { 
 			focus = MON_Redirect_Budget_To_Agriculture
 		}
@@ -490,7 +538,7 @@ focus_tree = {
 		id = MON_Industry_Of_The_Future
 		icon = GFX_focus_MON_Industry_Of_The_Future
 		cost = 5
-		x = -4
+		x = -5
 		y = 1
 		relative_position_id = MON_Idahoan_Potato_Farms
 		prerequisite = { 
@@ -506,11 +554,15 @@ focus_tree = {
 	}
 	
 	
+	
+	
+	### Montana decides to take a side ###
+	
 	focus = {
 		id = MON_Revision_Of_The_Import_Plans
 		icon = GFX_focus_MON_Revision_Of_The_Import_Plans
 		cost = 13
-		x = 31
+		x = 61
 		y = 0
 		
 		mutually_exclusive = { focus = MON_Self_Sufficiency_Plan }
