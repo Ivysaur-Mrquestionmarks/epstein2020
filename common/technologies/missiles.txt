@@ -475,7 +475,7 @@ technologies = {
 	anti_ship_missile_equipment_1 = {
 
 		special_project_specialization = { specialization_air }
-
+		special_project_specialization = { specialization_naval }
 		
 
 		enable_equipments = {
@@ -512,6 +512,7 @@ technologies = {
 	anti_ship_missile_equipment_2 = {
 
 		special_project_specialization = { specialization_air }
+		special_project_specialization = { specialization_naval }
 
 		path = {
 			leads_to_tech = missile_naval_targeting 
@@ -577,11 +578,13 @@ technologies = {
 			rocketry
 		}
 		special_project_specialization = { specialization_air }
+		special_project_specialization = { specialization_naval }
 	}
 
 	anti_ship_missile_equipment_3 = {
 
 		special_project_specialization = { specialization_air }
+		special_project_specialization = { specialization_naval }
 
 		path = {
 			leads_to_tech = anti_ship_missile_equipment_4
@@ -617,6 +620,7 @@ technologies = {
 	anti_ship_missile_equipment_4 = {
 
 		special_project_specialization = { specialization_air }
+		special_project_specialization = { specialization_naval }
 
 		path = {
 			leads_to_tech = ASM_detection
@@ -653,6 +657,7 @@ technologies = {
 	ASM_detection = {
 
 		special_project_specialization = { specialization_air }
+		special_project_specialization = { specialization_naval }
 
 		path = {
 			leads_to_tech = anti_ship_missile_equipment_5 #requires an special project
@@ -686,7 +691,14 @@ technologies = {
 	#This one requires am special  project to be researched (not added yet)
 	anti_ship_missile_equipment_5 = {
 
+		allow = { 	 		
+			ROOT = {
+				is_special_project_completed = sp:sp_hypersonic_missile
+			} 
+		}
+		is_special_project_tech = yes
 		special_project_specialization = { specialization_air }
+		special_project_specialization = { specialization_naval }
 
 		path = {
 			leads_to_tech = ASM_detection
@@ -903,6 +915,13 @@ technologies = {
 			cruise_missile_equipment_3
 		}
 
+		on_research_complete = {
+			custom_effect_tooltip = {
+				localization_key = SP_UNLOCK_PROJECT
+				PROJECT = sp_hypersonic_missile	
+			}
+		}
+
 		path = {
 			leads_to_tech = CM_mass_production
 			research_cost_coeff = 1
@@ -988,5 +1007,83 @@ technologies = {
 		}
 	}
 
+
+	ICBM_mult_reentry_vehicles = {
+
+		allow = { 	 		
+			ROOT = {
+				is_special_project_completed = sp:sp_rockets_medium_range_ballistic_missile 
+			} 
+		}
+		is_special_project_tech = yes
+		special_project_specialization = { specialization_air }
+
+		path = {
+			leads_to_tech = ICBM_decoids
+			research_cost_coeff = 1
+		}		
+
+		ballistic_missile = {
+			air_attack = 0.2
+			air_defence = 0.15
+		}
+		nuclear_missile = {
+			air_defence = 0.15
+		}
+		research_cost = 1
+		start_year = 2020
+		
+		folder = {
+			name = missile_folder
+			position = { x = 0 y = 0}
+		}
+
+
+		
+		ai_will_do = {
+			factor = 1
+		}
+		
+		categories = {
+			rocketry
+		}
+	}
+
+
+	ICBM_decoids = {
+
+
+		is_special_project_tech = yes
+		special_project_specialization = { specialization_air }
+
+		path = {
+			leads_to_tech = ASM_detection
+			research_cost_coeff = 1
+		}		
+
+		ballistic_missile = {
+			air_defence = 0.25
+		}
+		nuclear_missile = {
+			air_defence = 0.25
+		}
+		research_cost = 1
+		start_year = 2020
+		
+		folder = {
+			name = missile_folder
+			position = { x = 0 y = 3}
+		}
+
+
+		
+		ai_will_do = {
+			factor = 1
+		}
+		
+		categories = {
+			rocketry
+		}
+	}
 
 }
