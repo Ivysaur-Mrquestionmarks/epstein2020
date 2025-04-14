@@ -387,14 +387,7 @@ focus_tree = {
 			    popularity = 0.15
 			}
 			TEX_end_the_okl_rebels = yes
-			create_country_leader = {
-				name = "Ted Cruz"
-				picture = "gfx/leaders/TEX/ted.dds"
-				expire = "2060.1.1"
-				ideology = populist_conservatism
-				traits = {
-				}
-			}
+			promote_character = TEX_ted_cruz
 		}
 
 	}
@@ -1663,13 +1656,23 @@ focus_tree = {
 			focus = TEX_Extradite_Democrats_and_RINOs
 		}
 		completion_reward = {
-			253 = { transfer_state_to = TEX  add_core_of = TEX }
-			252 = { transfer_state_to = TEX  add_core_of = TEX }
-			254 = { transfer_state_to = TEX  add_core_of = TEX }
-			255 = { transfer_state_to = TEX  add_core_of = TEX }
-			256 = { transfer_state_to = TEX  add_core_of = TEX }
-			257 = { transfer_state_to = TEX  add_core_of = TEX }
-			
+			every_state = {
+				limit = {
+					OR = {
+						state = 252
+						state = 253
+						state = 254
+						state = 255
+						state = 256
+						state = 257
+					}
+				}
+				if = {
+					limit = { is_owned_by = USA }
+					transfer_state_to = TEX
+					add_core_of = TEX
+				}
+			}
 		}
 	}
 	focus = {
@@ -2078,30 +2081,12 @@ focus_tree = {
 					limit = {
 						AND = {
 							has_country_flag = controls_american_state
-							has_government = democrat
 							NOT = { 
-								is_in_faction_with = TEX
+								is_in_faction_with = ROOT
 							}
 						}
 					}
-					TEX = {
-						create_wargoal = {
-							target = PREV
-							type = annex_everything
-						}
-					}
-				}
-				every_country = {
-					limit = {
-						AND = {
-							has_country_flag = controls_american_state
-							has_government = republican
-							NOT = { 
-								is_in_faction_with = TEX
-							}
-						}
-					}
-					TEX = {
+					ROOT = {
 						create_wargoal = {
 							target = PREV
 							type = annex_everything
