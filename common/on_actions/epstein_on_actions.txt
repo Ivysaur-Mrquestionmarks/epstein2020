@@ -305,6 +305,27 @@ on_actions = {
 				leave_faction = yes
 				clr_country_flag = temp_alliance
 			}
+			else_if = {
+				limit = {
+					original_tag = HOP #победитель
+					FROM = { original_tag = NAV } #проигравший
+				}
+				NAV = {
+					NAV_michael_hopp = {
+						set_nationality = KMT
+					}
+				}
+				KMT = {
+					add_country_leader_role = {
+					    character = NAV_michael_hopp
+					    promote_leader = yes
+					    country_leader = {
+					        ideology = communism
+					        traits = { labor_defense_organizer }
+					    }
+					}
+				}
+			}
 		}
 	}
 	on_civil_war_end = { 
