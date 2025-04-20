@@ -13,7 +13,21 @@ set_technology = {
 	fighter1 = 1
 	CAS1 = 1
 	naval_bomber1 = 1
+	#For navy ( ammo)
+	experimental_rockets = 1
+	cruise_missile_equipment_0 = 1
+	anti_ship_missile_equipment_1 = 1
 }
+
+add_equipment_to_stockpile = {
+    type = anti_ship_missile_equipment
+    amount = 33
+}
+add_equipment_to_stockpile = {
+    type = cruise_missile_equipment
+    amount = 15
+}
+
 if = {
 	limit = {
 		has_dlc = "No Step Back"
@@ -79,3 +93,41 @@ recruit_character = CAS_jonathan_curtis
 
 ### Admirals ###
 recruit_character = CAS_christian_parilla
+
+
+if = {
+	limit = {
+		has_dlc = "Man the Guns"
+	}
+	set_technology = {
+		early_ship_hull_light = 1
+		basic_ship_hull_light = 1
+		basic_battery = 1
+		basic_light_battery = 1
+		basic_medium_battery = 1
+		basic_torpedo = 1
+		sonar = 1
+		smoke_generator = 1
+		basic_depth_charges = 1
+		basic_secondary_battery = 1
+		mtg_transport = 1
+		improved_secondary_battery = 1
+		basic_fire_control_system = 1
+	}
+	create_equipment_variant = {
+		name = "Arleigh Burke"				
+		type = ship_hull_light_1
+		parent_version = 0
+		modules = {
+			fixed_ship_battery_slot = missile_pod_1
+			fixed_ship_anti_air_slot = ship_anti_air_1
+			fixed_ship_fire_control_system_slot = ship_fire_control_system_0
+			fixed_ship_radar_slot = empty
+			fixed_ship_engine_slot = light_ship_engine_1
+			fixed_ship_torpedo_slot = ship_torpedo_1
+			mid_1_custom_slot = empty
+			rear_1_custom_slot = ship_depth_charge_1
+		}
+	}
+	set_naval_oob = "CAS_navy_mtg"
+}
