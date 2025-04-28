@@ -1,0 +1,388 @@
+scripted_gui = {
+	open_opener_button= {
+		window_name = "epstein_open_opener_container"
+		context_type = player_context
+		parent_window_token = top_bar
+		triggers = {
+			open_startup_screen_button_click_enabled = {
+				check_variable = {
+					var = MAA_opener_show
+					value = 1
+					compare = equals
+				}
+			}
+		}
+		effects = {
+			opener_open_button_oc_click = {
+				set_variable = {
+					var = MAA_opener_show
+					value = 0
+				}
+			}
+		}
+		ai_enabled = {
+            always = no
+		}
+	}
+    
+}
+
+scripted_gui = {
+
+	epstein_opener_placeholder = {
+		context_type = player_context
+		window_name = "epstein_opener_container"
+		visible = {
+			is_ai = no
+			check_variable = {
+				MAA_opener_show = 0
+			}
+		}
+		triggers = {
+			mod_info_click_enabled = {
+				check_variable = {
+					var = tech_show
+					value = 0
+					compare = equals
+				}
+			}
+			unit_balance_click_enabled = {
+				check_variable = {
+					var = mechanic_show
+					value = 0
+					compare = equals
+				}
+			}
+			money_system_click_enabled = {
+				check_variable = {
+					var = changelog_show
+					value = 0
+					compare = equals
+				}
+			}
+			credit_click_enabled = {
+				check_variable = {
+					var = credit_show
+					value = 0
+					compare = equals
+				}
+			}
+			country_info_click_enabled = {
+				check_variable = {
+					var = country_info_show
+					value = 0
+					compare = equals
+				}
+			}
+			country_info_click_enabled = {
+				check_variable = {
+					var = lore_show
+					value = 0
+					compare = equals
+				}
+			}
+		}
+		effects = {
+			opener_close_button_click = {
+				set_variable = {
+					MAA_opener_show = 1
+				}
+				if = {
+					limit = { 
+						OR = {
+							tag = GLA
+							tag = FRA
+							tag = TEX
+							tag = GRL
+						}
+					}
+					if = {
+						limit = {
+							NOT = { has_country_flag = pathguide_popup_received }
+						}
+						country_event = bidone_pathguides.0
+					}
+				}
+			}
+			opener_maa_button_click = {
+				set_variable = {
+					MAA_opener_show = 1
+				}
+				if = {
+					limit = { 
+						OR = {
+							tag = GLA
+							tag = FRA
+							tag = TEX
+							tag = GRL
+						}
+					}
+					if = {
+						limit = {
+							NOT = { has_country_flag = pathguide_popup_received }
+						}
+						country_event = bidone_pathguides.0
+					}
+				}
+			}
+			country_overview_explanation_maa_button_click = {
+				set_variable = {
+					tech_show = 0
+				}
+				set_variable = {
+					mechanic_show = 0
+				}
+				set_variable = {
+					changelog_show = 0
+				}
+				set_variable = {
+					lore_show = 0
+				}
+				set_variable = {
+					credit_show = 0
+				}
+				set_variable = {
+					country_info_show = 1
+				}
+			}
+			credits_maa_button_click = {
+				set_variable = {
+					tech_show = 0
+				}
+				set_variable = {
+					mechanic_show = 0
+				}
+				set_variable = {
+					lore_show = 0
+				}
+				set_variable = {
+					changelog_show = 0
+				}
+				set_variable = {
+					credit_show = 1
+				}
+				set_variable = {
+					country_info_show = 0
+				}
+			}
+			features_explanation_maa_button_click = {
+				set_variable = {
+					tech_show = 0
+				}
+				set_variable = {
+					mechanic_show = 1
+				}
+				set_variable = {
+					changelog_show = 0
+				}
+				set_variable = {
+					lore_show = 0
+				}
+				set_variable = {
+					credit_show = 0
+				}
+				set_variable = {
+					country_info_show = 0
+				}
+			}
+			tech_explanation_maa_button_click = {
+				set_variable = {
+					tech_show = 1
+				}
+				set_variable = {
+					mechanic_show = 0
+				}
+				set_variable = {
+					changelog_show = 0
+				}
+				set_variable = {
+					lore_show = 0
+				}
+				set_variable = {
+					credit_show = 0
+				}
+				set_variable = {
+					country_info_show = 0
+				}
+			}
+			changelog_maa_button_click = {
+				set_variable = {
+					tech_show = 0
+				}
+				set_variable = {
+					mechanic_show = 0
+				}
+				set_variable = {
+					changelog_show = 1
+				}
+				set_variable = {
+					lore_show = 0
+				}
+				set_variable = {
+					credit_show = 0
+				}
+				set_variable = {
+					country_info_show = 0
+				}
+			}
+		}
+	}
+	changelog_mod_overview = {
+		parent_window_name = epstein_opener_container
+		context_type = player_context
+		window_name = "mod_changelog_container"
+		ai_enabled = {
+			always = no
+		}
+		visible = {
+			is_ai = no
+			check_variable = {
+				changelog_show = 1
+			}
+		}
+		dynamic_lists = {
+		}
+		properties = {
+		}
+		effects = {
+		}
+		triggers = {
+		}
+	}
+	tech_mod_overview = {
+		parent_window_name = epstein_opener_container
+		context_type = player_context
+		window_name = "mod_tech_info_container"
+		ai_enabled = {
+			always = no
+		}
+		visible = {
+			is_ai = no
+			check_variable = {
+				tech_show = 1
+			}
+		}
+		dynamic_lists = {
+		}
+		properties = {
+		}
+		effects = {
+		}
+		triggers = {
+		}
+	}
+	mechanic_mod_overview = {
+		parent_window_name = epstein_opener_container
+		context_type = player_context
+		window_name = "mod_mechanics_container"
+		ai_enabled = {
+			always = no
+		}
+		visible = {
+			is_ai = no
+			check_variable = {
+				mechanic_show = 1
+			}
+		}
+		dynamic_lists = {
+		}
+		properties = {
+		}
+		effects = {
+			country_path_tutorial_maa_button_click = {
+				country_event = bidone_pathguides.0
+			}
+		}
+		triggers = {
+		}
+	}
+	country_mod_overview = {
+		parent_window_name = epstein_opener_container
+		context_type = player_context
+		window_name = "mod_overview_container"
+		ai_enabled = {
+			always = no
+		}
+		visible = {
+			is_ai = no
+			check_variable = {
+				country_info_show = 1
+			}
+		}
+		dynamic_lists = {
+		}
+		properties = {
+		}
+		effects = {
+			additional_lore_maa_button_click = {
+				set_variable = {
+					tech_show = 0
+				}
+				set_variable = {
+					mechanic_show = 0
+				}
+				set_variable = {
+					changelog_show = 0
+				}
+				set_variable = {
+					lore_show = 1
+				}
+				set_variable = {
+					credit_show = 0
+				}
+				set_variable = {
+					country_info_show = 0
+				}
+			}
+		}
+		triggers = {
+		}
+	}
+	country_credit_overview = {
+		parent_window_name = epstein_opener_container
+		context_type = player_context
+		window_name = "mod_credits_container"
+		ai_enabled = {
+			always = no
+		}
+		visible = {
+			is_ai = no
+			check_variable = {
+				credit_show = 1
+			}
+		}
+		dynamic_lists = {
+		}
+		properties = {
+		}
+		effects = {
+		}
+		triggers = {
+		}
+	}
+	country_lore_overview = {
+		parent_window_name = epstein_opener_container
+		context_type = player_context
+		window_name = "mod_additional_lore_container"
+		ai_enabled = {
+			always = no
+		}
+		visible = {
+			is_ai = no
+			check_variable = {
+				lore_show = 1
+			}
+		}
+		dynamic_lists = {
+		}
+		properties = {
+		}
+		effects = {
+		}
+		triggers = {
+		}
+	}
+	
+
+}
+

@@ -26,7 +26,38 @@ set_technology = {
 	early_fighter = 1
 	fighter1 = 1
 	naval_bomber1 = 1
+	infantry_AT_equipment_1 = 1
+	#For navy ( ammo)
+	experimental_rockets = 1
+	cruise_missile_equipment_0 = 1
+	cruise_missile_equipment_1 = 1
+	improve_war_heads = 1
+	sam_missile_equipment = 1
+	anti_ship_missile_equipment_1 = 1
+	anti_ship_missile_equipment_2 = 1
+
 }
+#Starting SPs
+complete_special_project = sp:sp_naval_rocket_launching_submarine
+
+#Missile ammo stockpile.
+add_equipment_to_stockpile = {
+    type = anti_ship_missile_equipment
+    amount = 500
+}
+add_equipment_to_stockpile = {
+    type = cruise_missile_equipment
+    amount = 80
+}
+add_equipment_to_stockpile = {
+    type = sam_missile_equipment
+    amount = 120
+}
+add_equipment_to_stockpile = {
+    type = nav_bomber_equipment_1
+    amount = 92
+}
+
 if = {
 	limit = {
 		NOT = { has_dlc = "No Step Back" }
@@ -92,6 +123,10 @@ if = {
 		mtg_transport = 1
 		improved_secondary_battery = 1
 		basic_fire_control_system = 1
+		ship_hull_coast_1 = 1
+		ship_hull_coast_2 = 1
+		ship_hull_assult_1 = 1
+		ship_hull_assult_2 = 1
 	}
 	set_naval_oob = "PAC_navy_mtg"
 }
@@ -238,7 +273,7 @@ if = {
 		type = ship_hull_light_1
 		parent_version = 0
 		modules = {
-			fixed_ship_battery_slot = ship_light_battery_1
+			fixed_ship_battery_slot = missile_pod_1
 			fixed_ship_anti_air_slot = ship_anti_air_1
 			fixed_ship_fire_control_system_slot = ship_fire_control_system_0
 			fixed_ship_radar_slot = empty
@@ -254,13 +289,13 @@ if = {
 		parent_version = 0
 		modules = {
 			fixed_ship_battery_slot = ship_light_medium_battery_2
-			fixed_ship_anti_air_slot = ship_anti_air_1
+			fixed_ship_anti_air_slot = AA_missile_pod_1
 			fixed_ship_fire_control_system_slot = ship_fire_control_system_0
 			fixed_ship_radar_slot = empty
 			fixed_ship_engine_slot = cruiser_ship_engine_1
 			fixed_ship_armor_slot = ship_armor_cruiser_1
 			mid_1_custom_slot = ship_torpedo_1
-			mid_2_custom_slot = ship_light_medium_battery_2
+			mid_2_custom_slot = missile_pod_1
 			rear_1_custom_slot = ship_airplane_launcher_1
 		}
 	}	
@@ -275,7 +310,59 @@ if = {
 			fixed_ship_radar_slot = empty
 			fixed_ship_engine_slot = carrier_ship_engine_1
 			fixed_ship_secondaries_slot = empty
-			front_1_custom_slot = ship_deck_space
+			front_1_custom_slot = ship_anti_air_1
+				
+		}
+	}
+
+	create_equipment_variant = {
+		name = "virginia Class" #attack sub
+		type = ship_hull_submarine_1
+		parent_version = 0
+		modules = {
+			fixed_ship_torpedo_slot = ship_torpedo_1
+			fixed_ship_engine_slot = sub_ship_nuclear_engine_1
+			rear_1_custom_slot = empty
+				
+		}
+	}
+
+	create_equipment_variant = { #Omg if Ohio was a submarine (I am pretty sure it can carry enough nukes to destroy every major city in Russia)
+		name = "Ohio Class" #Missile sub
+		type = ship_hull_submarine_1
+		parent_version = 0
+		modules = {
+			fixed_ship_torpedo_slot = sub_missile_launcher
+			fixed_ship_engine_slot = sub_ship_nuclear_engine_1
+			rear_1_custom_slot = empty
+				
+		}
+	}
+
+	create_equipment_variant = { 
+		name = "Wasp Class"
+		type = ship_hull_assult_1
+		parent_version = 0
+		modules = {
+			fixed_ship_deck_slot_1 = heli_deck
+			fixed_ship_anti_air_slot = ship_anti_air_1
+			fixed_ship_radar_slot = empty
+			fixed_ship_engine_slot = assult_ship_engine_1
+			front_1_custom_slot = ship_anti_air_1
+				
+		}
+	}
+
+	create_equipment_variant = { #FREEEEEEEEEEOM 
+		name = "Freedom Class"
+		type = ship_hull_coast_1
+		parent_version = 0
+		modules = {
+			fixed_ship_anti_air_slot = ship_anti_air_1
+			fixed_ship_fire_control_system_slot = empty
+			fixed_ship_radar_slot = empty
+			fixed_ship_engine_slot = coast_ship_engine_1
+			mid_1_custom_slot = missile_pod_1
 				
 		}
 	}

@@ -2021,15 +2021,18 @@ news_event = {
     				flag = super_event
     				value = 41
 			}
-			if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
-				sound_effect = "total_federal_victory_unification"
-				play_song = "one_minute_of_silence"
+			if = { 
+				limit = { has_country_flag = SuperEventsWillBePlayed_flag }
+				if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
+					sound_effect = "total_federal_victory_unification"
+					play_song = "one_minute_of_silence"
+				}
 			}
 		}
 	}
 }
 
-# america restored - news - empire - add super event
+# america restored - news - empire - add super event - TODO
 news_event = {
 	id = bidone.59
 	title = bidone.59.t
@@ -2037,8 +2040,22 @@ news_event = {
 	picture = event_news_mcconnell_03
 	is_triggered_only = yes
 	#fire_only_once = yes
-	option = { # 
+	option = { # todo
 		name = bidone.59.a
+		if = {
+			limit = {NOT = {is_ai = yes}}
+			set_country_flag = {
+    				flag = super_event
+    				value = 41
+			}
+			if = { 
+				limit = { has_country_flag = SuperEventsWillBePlayed_flag }
+				if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
+					sound_effect = "total_federal_victory_unification"
+					play_song = "one_minute_of_silence"
+				}
+			}
+		}
 	}
 }
 
@@ -3162,6 +3179,12 @@ country_event = {
 	#fire_only_once = yes
 	option = { # 
 		name = bidone_pathguides.0.a
+		if = {
+			limit = {
+				NOT = { has_country_flag = pathguide_popup_received }
+			}
+			set_country_flag = pathguide_popup_received
+		}
 	}
 }
 

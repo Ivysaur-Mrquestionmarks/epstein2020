@@ -68,6 +68,14 @@ country_event = {
 				id = greatlake.18
 				days = 10
 			}
+			country_event = {
+				id = greatlake.97
+				days = 30
+			}
+			country_event = {
+				id = greatlake.98
+				days = 45
+			}
 		}
 	}
 }
@@ -225,10 +233,13 @@ news_event = {
     			value = 44
 			}
 			hidden_effect = {
-			    if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
-				    sound_effect = "moderate_libertarian"
-				    play_song = "one_minute_of_silence"
-			    }
+				if = { 
+					limit = { has_country_flag = SuperEventsWillBePlayed_flag }
+			    		if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
+				    		sound_effect = "moderate_libertarian"
+				    		play_song = "one_minute_of_silence"
+			   		}
+				}
 			}
 		}
 	}
@@ -595,26 +606,45 @@ country_event = {
 		ai_chance = {
 			factor = 25
 		}
-		trigger = {
-            check_variable = {
-				var = GLA_opps
-				value = 50
-				compare = less_than
-			}
-		}
-		add_popularity = {
-			ideology = libertarian_right
-			popularity = 0.01
-		}
-		add_to_variable = {
-			var = GLA_opps
-			value = -5
-			tooltip = GLA_the_chances_of_no_victory
-		}
 		hidden_effect = {
 			country_event = {
 				id = greatlake.22
 				days = 35
+			}
+			if = {
+			    limit = { has_country_flag = GLA_mama_jo_side }
+				random_list = {
+					50 = {
+			            add_popularity = {
+			                ideology = libertarian_right
+			                popularity = 0.03
+		                }
+		                add_to_variable = {
+			                var = GLA_opps
+			                value = -5
+			                tooltip = GLA_the_chances_of_victory
+		                }
+					}
+					50 = {
+		                add_to_variable = {
+			                var = GLA_opps
+			                value = 5
+			                tooltip = GLA_the_chances_of_victory
+		                }
+					}
+				}
+			}
+			if = {
+			    limit = { has_country_flag = GLA_opp_side }
+			    add_popularity = {
+			        ideology = libertarian_right
+			        popularity = 0.03
+		        }
+		        add_to_variable = {
+			        var = GLA_opps
+			        value = 5
+			        tooltip = GLA_the_chances_of_victory
+		        }
 			}
 		}
 	}
@@ -623,26 +653,102 @@ country_event = {
 		ai_chance = {
 			factor = 25
 		}
-		trigger = {
-            check_variable = {
-				var = GLA_opps
-				value = 50
-				compare = greater_than_or_equals
+		hidden_effect = {
+			country_event = {
+				id = greatlake.22
+				days = 35
+			}
+			if = {
+			    limit = { has_country_flag = GLA_mama_jo_side }
+			    add_popularity = {
+			        ideology = libertarian_right
+			        popularity = 0.03
+		        }
+		        add_to_variable = {
+			        var = GLA_opps
+			        value = -5
+			        tooltip = GLA_the_chances_of_victory
+		        }
+			}
+			if = {
+			    limit = { has_country_flag = GLA_opp_side }
+			    add_popularity = {
+			        ideology = libertarian_right
+			        popularity = 0.03
+		        }
+		        add_to_variable = {
+			        var = GLA_opps
+			        value = 5
+			        tooltip = GLA_the_chances_of_victory
+		        }
 			}
 		}
-		add_popularity = {
-			ideology = libertarian_right
-			popularity = 0.01
-		}
-		add_to_variable = {
-			var = GLA_opps
-			value = 5
-			tooltip = GLA_the_chances_of_victory
+	}
+	option = {
+		name = greatlake.21.c
+		ai_chance = {
+			factor = 25
 		}
 		hidden_effect = {
 			country_event = {
 				id = greatlake.22
 				days = 35
+			}
+			if = {
+			    limit = { has_country_flag = GLA_mama_jo_side }
+		        add_to_variable = {
+			        var = GLA_opps
+			        value = 5
+			        tooltip = GLA_the_chances_of_victory
+		        }
+			}
+			if = {
+			    limit = { has_country_flag = GLA_opp_side }
+			    add_popularity = {
+			        ideology = libertarian_right
+			        popularity = 0.03
+		        }
+		        add_to_variable = {
+			        var = GLA_opps
+			        value = 5
+			        tooltip = GLA_the_chances_of_victory
+		        }
+			}
+		}
+	}
+	option = {
+		name = greatlake.21.e
+		ai_chance = {
+			factor = 25
+		}
+		hidden_effect = {
+			country_event = {
+				id = greatlake.22
+				days = 35
+			}
+			if = {
+			    limit = { has_country_flag = GLA_mama_jo_side }
+			    add_popularity = {
+			        ideology = libertarian_right
+			        popularity = 0.03
+		        }
+		        add_to_variable = {
+			        var = GLA_opps
+			        value = -5
+			        tooltip = GLA_the_chances_of_victory
+		        }
+			}
+			if = {
+			    limit = { has_country_flag = GLA_opp_side }
+			    add_popularity = {
+			        ideology = libertarian_right
+			        popularity = 0.03
+		        }
+		        add_to_variable = {
+			        var = GLA_opps
+			        value = 5
+			        tooltip = GLA_the_chances_of_victory
+		        }
 			}
 		}
 	}
@@ -1196,10 +1302,13 @@ news_event = {
     				value = 42
 			}
 			hidden_effect = {
-			    if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
-				    sound_effect = "ancapistan"
-				    play_song = "one_minute_of_silence"
-			    }
+				if = { 
+					limit = { has_country_flag = SuperEventsWillBePlayed_flag }
+			    		if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
+				    		sound_effect = "ancapistan"
+				    		play_song = "one_minute_of_silence"
+			    		}
+				}
 			}
 		}
 	}
@@ -1229,10 +1338,13 @@ news_event = {
     				value = 43
 			}
 			hidden_effect = {
-			    if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
-				    sound_effect = "boogaloo"
-				    play_song = "one_minute_of_silence"
-			    }
+				if = { 
+					limit = { has_country_flag = SuperEventsWillBePlayed_flag }
+			    		if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
+				    		sound_effect = "boogaloo"
+				    		play_song = "one_minute_of_silence"
+			    		}
+				}
 			}
 		}
 	}
@@ -1742,11 +1854,14 @@ news_event = {
     				value = 45
 			}
 			hidden_effect = {
-			    if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
-				    sound_effect = "yarvin"
-				    play_song = "one_minute_of_silence"
-			    }
-		    }
+				if = { 
+					limit = { has_country_flag = SuperEventsWillBePlayed_flag }
+			    		if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
+				    		sound_effect = "yarvin"
+				    		play_song = "one_minute_of_silence"
+			    		}
+				}
+		    	}
 		}
 	}
 }
@@ -3278,5 +3393,51 @@ country_event = {
 					instant_build = yes
 			}
 		}
+	}
+}
+
+
+###########################################################
+####################### PATH GUIDES #######################
+###########################################################
+
+add_namespace = great_lakes_pathguides
+
+#path guide notification
+country_event = {
+	id = great_lakes_pathguides.0
+	title = great_lakes_pathguides.0.t
+	desc = great_lakes_pathguides.0.d
+	picture = event_MAA_path_guides
+	is_triggered_only = yes
+	#fire_only_once = yes
+	option = { # 
+		name = great_lakes_pathguides.0.a
+	}
+}
+
+#Boogaloo Militias
+country_event = {
+	id = great_lakes_pathguides.1
+	title = great_lakes_pathguides.1.t
+	desc = great_lakes_pathguides.1.d
+	#picture =
+	is_triggered_only = yes
+	#fire_only_once = yes
+	option = { # 
+		name = great_lakes_pathguides.1.a
+	}
+}
+
+#Yarvin
+country_event = {
+	id = great_lakes_pathguides.2
+	title = great_lakes_pathguides.2.t
+	desc = great_lakes_pathguides.2.d
+	#picture =
+	is_triggered_only = yes
+	#fire_only_once = yes
+	option = { # 
+		name = great_lakes_pathguides.2.a
 	}
 }

@@ -11,7 +11,7 @@ focus_tree = {
 		}
 	}
 	
-	continuous_focus_position = { x = 50 y = 5000 }
+	continuous_focus_position = { x = 1750 y = 1750 }
 	
 	default = no
 	reset_on_civilwar = no
@@ -40,6 +40,24 @@ focus_tree = {
 				republican = 50
 				authoritarian_left = 10
 				libertarian_right = 10
+			}
+			
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = industrial_complex 
+				    level = 1
+				    instant_build = yes
+				}
+			}
+			
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = arms_factory 
+				    level = 1
+				    instant_build = yes
+				}
 			}
 			
 		}
@@ -180,7 +198,7 @@ focus_tree = {
 	focus = {
 		id = NAB_Open_Up_Our_Political_Sphere
 		
-		cost = 5.00
+		cost = 4.00
 		
 		x = 0
 		
@@ -435,6 +453,65 @@ focus_tree = {
 	}
 	
 	focus = {
+		id = NAB_Better_Use_For_Our_Land
+		
+		cost = 3.00
+		
+		x = -11
+		
+		y = 6
+		
+		relative_position_id = NAB_Set_Up_The_Camp
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NAB_Get_New_Radios
+			focus = NAB_Use_Hydroelectric_Energy
+			focus = NAB_Expand_The_Lumber_Industry
+		}
+		
+		completion_reward = {
+			add_ideas = NAB_Better_Land
+		}
+		
+	}
+	
+	focus = {
+		id = NAB_Extract_New_Iron_Ores
+		
+		cost = 3.00
+		
+		x = -12
+		
+		y = 7
+		
+		relative_position_id = NAB_Set_Up_The_Camp
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NAB_Better_Use_For_Our_Land
+			focus = NAB_Get_New_Tools
+			focus = NAB_Pavel_The_Roads
+		}
+		
+		completion_reward = {
+			623 = {
+				add_resource = {
+					type = steel
+					amount = 8
+				}	
+			}
+		}
+		
+	}
+	
+	focus = {
 		id = NAB_Get_New_Radios
 		
 		cost = 3.00
@@ -457,8 +534,84 @@ focus_tree = {
 		completion_reward = {
 			add_tech_bonus = {
 				bonus = 1
-				uses = 1 
+				uses = 2 
 				category = electronics
+			}
+		}
+		
+	}
+	
+	focus = {
+		id = NAB_Get_New_Tools
+		
+		cost = 3.00
+		
+		x = -9
+		
+		y = 6
+		
+		relative_position_id = NAB_Set_Up_The_Camp
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NAB_Get_New_Radios
+			focus = NAB_Use_Hydroelectric_Energy
+			focus = NAB_Expand_The_Lumber_Industry
+			
+		}
+		
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1
+				uses = 2 
+				category = industry
+			}
+		}
+		
+	}
+	
+	focus = {
+		id = NAB_Acquire_Fuel
+		
+		cost = 3.00
+		
+		x = -10
+		
+		y = 7
+		
+		relative_position_id = NAB_Set_Up_The_Camp
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NAB_Better_Use_For_Our_Land
+			focus = NAB_Get_New_Tools
+			focus = NAB_Pavel_The_Roads
+		}
+		
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = fuel_silo
+					level = 1
+					instant_build = yes
+				}
+				
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 1
+					instant_build = yes
+				}
+				
 			}
 		}
 		
@@ -547,6 +700,8 @@ focus_tree = {
 		}
 		
 		prerequisite = { 
+			focus = NAB_Better_Use_For_Our_Land
+			focus = NAB_Get_New_Tools
 			focus = NAB_Pavel_The_Roads
 		}
 		
@@ -649,6 +804,34 @@ focus_tree = {
 	}
 	
 	focus = {
+		id = NAB_Protection_Against_Bombs
+		
+		cost = 3.00
+		
+		x = -3
+		
+		y = 8
+		
+		relative_position_id = NAB_Set_Up_The_Camp
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NAB_Use_New_Technologies
+		}
+		
+		completion_reward = {
+			swap_ideas = {
+				add_idea = NAB_Expand_Industry3
+				remove_idea = NAB_Expand_Industry2
+			}
+		}
+		
+	}
+	
+	focus = {
 		id = NAB_Use_Our_Land
 		
 		cost = 3.00
@@ -675,6 +858,42 @@ focus_tree = {
 				    level = 1
 				    instant_build = yes
 				}
+			}
+		}
+		
+	}
+	
+	focus = {
+		id = NAB_Secret_Industries
+		
+		cost = 4.00
+		
+		x = -5
+		
+		y = 8
+		
+		relative_position_id = NAB_Set_Up_The_Camp
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NAB_Use_Our_Land
+		}
+		
+		completion_reward = {
+			add_offsite_building = { 
+				type = industrial_complex
+				level = 1 
+			}
+			add_offsite_building = { 
+				type = industrial_complex
+				level = 1 
+			}
+			add_offsite_building = { 
+				type = industrial_complex
+				level = 1 
 			}
 		}
 		
@@ -870,6 +1089,101 @@ focus_tree = {
 		}
 		
 	}
+	
+	focus = {
+		id = NAB_Buy_More_Rifles
+		
+		cost = 3.00
+		
+		x = -3
+		
+		y = 10
+		
+		relative_position_id = NAB_Set_Up_The_Camp
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NAB_Get_New_Equipment
+		}
+		
+		completion_reward = {
+			add_equipment_to_stockpile = {
+			    type = infantry_equipment_0
+			    amount = 2500
+			    producer = NAB
+			}
+			
+			add_political_power = -150
+			
+		}
+		
+	}
+	
+	
+	focus = {
+		id = NAB_Recruit_Appalachian_Mercs
+		
+		cost = 5.00
+		
+		x = -5
+		
+		y = 9
+		
+		relative_position_id = NAB_Set_Up_The_Camp
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NAB_Get_New_Equipment
+		}
+		
+		completion_reward = {
+			division_template = {
+					name = "Appalachian PMC Contract Mercenaries"
+					is_locked = no
+					division_cap = 30 
+					#division_names_group = USA_INF_01
+					priority = 1
+					template_counter = 30
+					regiments = {
+						mountaineers = { x = 0 y = 0 }
+						mountaineers = { x = 0 y = 1 }
+						mountaineers = { x = 0 y = 2 }
+						mountaineers = { x = 1 y = 0 }
+						mountaineers = { x = 1 y = 1 }
+						mountaineers = { x = 1 y = 2 }
+						mountaineers = { x = 2 y = 0 }
+						mountaineers = { x = 2 y = 1 }
+						mountaineers = { x = 2 y = 2 }
+						
+					}
+					support = {
+						military_police = { x = 0 y = 0 }
+						recon = { x = 0 y = 1 }
+					}
+			}
+			set_division_force_allow_recruiting = {
+				division_template = "Appalachian PMC Contract Mercenaries"
+			}
+			
+			random_owned_controlled_state = {
+				create_unit = {
+					division = "name = \"Mercenaries\"  division_template = \"Appalachian PMC Contract Mercenaries\"  start_experience_factor = 2"
+					owner = NAB
+					count = 5
+				}
+			}
+			
+		}
+		
+	}
+	
+	
 	
 	focus = {
 		id = NAB_Improve_Our_Army
@@ -1237,7 +1551,7 @@ focus_tree = {
 		}
 		
 		completion_reward = {
-			add_political_power = 25
+			add_political_power = 50
 		}
 		
 	}
@@ -1301,7 +1615,7 @@ focus_tree = {
 			
 			strength_ratio = {
 				tag = NEW
-				ratio > 1
+				ratio > 0.80
 			}
 			
 		}
@@ -1580,19 +1894,257 @@ focus_tree = {
 		
 	}
 	
+	focus = {
+		id = NAB_What_Now
+		
+		cost = 1.00
+		
+		x = 0
+		
+		y = 1
+		
+		relative_position_id = NAB_Victory
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NAB_Victory
+		}
+		
+		completion_reward = {
+			add_political_power = 50
+		}
+		
+	}
 	
+	focus = {
+		id = NAB_Dealing_With_Biden
+		
+		cost = 5.00
+		
+		x = 0
+		
+		y = 2
+		
+		relative_position_id = NAB_Victory
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NAB_What_Now
+		}
+		
+		completion_reward = {
+			add_ideas = NAB_Biden_Bad
+		}
+		
+	}
 	
+	focus = {
+		id = NAB_Our_First_Elections
+		
+		cost = 5.00
+		
+		x = 10
+		
+		y = 1
+		
+		relative_position_id = NAB_Victory
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NAB_Victory
+		}
+		
+		completion_reward = {
+			country_event = {
+				id = new_abilon.7
+				days = 3
+			}
+		}
+		
+	}
 	
+	focus = {
+		id = NAB_Purge_Possible_Enemies
+		
+		cost = 2.00
+		
+		x = 2
+		
+		y = 1
+		
+		relative_position_id = NAB_Victory
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NAB_Victory
+		}
+		
+		completion_reward = {
+			add_popularity = {
+				ideology = republican
+				popularity = -0.10
+			}
+			add_popularity = {
+				ideology = democrat
+				popularity = -0.10
+			}
+			add_popularity = {
+				ideology = libertarian_left
+				popularity = -0.10
+			}
+		}
+		
+	}
 	
+	focus = {
+		id = NAB_Victory_For_Tom_Kawczynski
+		
+		cost = 3.00
+		
+		x = 5
+		
+		y = 2
+		
+		relative_position_id = NAB_Victory
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NAB_Our_First_Elections
+		}
+		
+		mutually_exclusive = { 
+			focus = NAB_Victory_For_Nick_Land
+		}
+		
+		mutually_exclusive = { 
+			focus = NAB_Victory_For_Mike_Ma
+		}
+		
+		available = {
+			has_government = autocratic
+		}
+		
+		completion_reward = {
+			add_popularity = {
+				ideology = autocratic
+				popularity = 0.10
+			}
+			
+			unlock_decision_category_tooltip = NAB_Balance_Of_Power_Tom_Category
+			
+			set_power_balance = {
+				id = NAB_Tom_Nationalism
+			}
+			
+		}
+		
+	}
 	
+	focus = {
+		id = NAB_Victory_For_Nick_Land
+		
+		cost = 3.00
+		
+		x = 10
+		
+		y = 2
+		
+		relative_position_id = NAB_Victory
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NAB_Our_First_Elections
+		}
+		
+		mutually_exclusive = { 
+			focus = NAB_Victory_For_Tom_Kawczynski
+		}
+		
+		mutually_exclusive = { 
+			focus = NAB_Victory_For_Mike_Ma
+		}
+		
+		available = {
+			has_government = libertarian_right
+		}
+		
+		completion_reward = {
+			add_popularity = {
+				ideology = libertarian_right
+				popularity = 0.10
+			}
+		}
+		
+		unlock_decision_category_tooltip = NAB_Balance_Of_Power_Nick_Category
+		
+		set_power_balance = {
+			id = NAB_Nick_Accelerationism
+		}
+	}
 	
-	
-	
-	
-	
-	
-	
-	
+	focus = {
+		id = NAB_Victory_For_Mike_Ma
+		
+		cost = 3.00
+		
+		x = 15
+		
+		y = 2
+		
+		relative_position_id = NAB_Victory
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NAB_Our_First_Elections
+		}
+		
+		mutually_exclusive = { 
+			focus = NAB_Victory_For_Nick_Land
+		}
+		
+		mutually_exclusive = { 
+			focus = NAB_Victory_For_Tom_Kawczynski
+		}
+		
+		available = {
+			has_government = authoritarian_left
+		}
+		
+		completion_reward = {
+			add_popularity = {
+				ideology = authoritarian_left
+				popularity = 0.10
+			}
+		}
+		
+		unlock_decision_category_tooltip = NAB_Balance_Of_Power_Mike_Category
+		
+		set_power_balance = {
+			id = NAB_Mike_Ecologism
+		}
+		
+	}
 	
 	
 	

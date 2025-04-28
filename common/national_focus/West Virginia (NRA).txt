@@ -5272,7 +5272,7 @@ focus_tree = {
 	focus = {
 		id = NRA_A_New_America
 		icon = GFX_goal_NRA_A_New_America
-		cost = 0.00
+		cost = 1.00
 		
 		x = 0
 		
@@ -5647,7 +5647,9 @@ focus_tree = {
         }
 		
 		completion_reward = {
-			army_experience = 5
+			army_experience = 55
+			navy_experience = 55
+			air_experience = 55
 		}
 	}
 	
@@ -5794,7 +5796,7 @@ focus_tree = {
 				create_unit = {
 					division = "name = \"Mercenaries\"  division_template = \"Vinnell PMC Contract Mercenaries\"  start_experience_factor = 1"
 					owner = NRA
-					count = 2
+					count = 4
 				}
 			}
 		}
@@ -5897,7 +5899,7 @@ focus_tree = {
 		}
 		
 		completion_reward = {
-		
+			add_political_power = 50
 		}
 		
 	}
@@ -5994,7 +5996,74 @@ focus_tree = {
 		}
 		
 		completion_reward = {
-			add_war_support = 0.05
+			add_tech_bonus = {
+				bonus = 1.50
+				uses = 3
+				category = infantry_weapons
+			}
+		}
+		
+	}
+	
+	focus = {
+		id = NRA_Support_Our_Troops
+		
+		cost = 5.00
+		
+		x = 6
+		
+		y = 3
+		relative_position_id = NRA_The_Harsh_Reality
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NRA_Meet_The_Mercenaries
+		}
+		
+		prerequisite = { 
+			focus = NRA_Purge_The_Rebels
+		}
+		
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1.50
+				uses = 3
+				category = support_tech
+			}
+		}
+		
+	}
+	
+	focus = {
+		id = NRA_Learn_With_Kanyes_Forces
+		
+		cost = 4.00
+		
+		x = 5
+		
+		y = 4
+		relative_position_id = NRA_The_Harsh_Reality
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NRA_Meet_The_Mercenaries
+		}
+		
+		prerequisite = { 
+			focus = NRA_Pressure_The_National_Rifle_Association
+		}
+		
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.5
+				uses = 2
+				category = land_doctrine
+			}
 		}
 		
 	}
@@ -6017,6 +6086,22 @@ focus_tree = {
 		}
 		
 		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = industrial_complex 
+				    level = 1
+				    instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = industrial_complex 
+				    level = 1
+				    instant_build = yes
+				}
+			}
 			random_owned_controlled_state = {
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
@@ -6053,6 +6138,60 @@ focus_tree = {
 	}
 	
 	focus = {
+		id = NRA_Bribe_Scientists
+		
+		cost = 5.00
+		
+		x = 2
+		
+		y = 2
+		relative_position_id = NRA_The_Harsh_Reality
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NRA_Mass_Survelliance
+		}
+		
+		prerequisite = { 
+			focus = NRA_Implement_AI
+		}
+		
+		completion_reward = {
+			add_research_slot = 1
+		}
+		
+	}
+	
+	focus = {
+		id = NRA_Acquire_Drones
+		
+		cost = 2.00
+		
+		x = 2
+		
+		y = 4
+		relative_position_id = NRA_The_Harsh_Reality
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NRA_Bribe_Scientists
+		}
+		
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 2.00
+				uses = 2
+				category = drones
+			}
+		}
+		
+	}
+	
+	focus = {
 		id = NRA_Implement_AI
 		icon = GFX_goal_NRA_Implement_A.I.
 		cost = 5.00
@@ -6072,7 +6211,7 @@ focus_tree = {
 		completion_reward = {
 			add_tech_bonus = {
 				bonus = 1
-				uses = 1 
+				uses = 2
 				category = electronics
 			
 			}
@@ -6101,11 +6240,15 @@ focus_tree = {
 			add_manpower = -5000
 			add_popularity = {
 				ideology = authoritarian_left
-				popularity = -0.03
+				popularity = -0.10
 			}
 			add_popularity = {
 				ideology = democrat
-				popularity = -0.03
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = libertarian_left
+				popularity = -0.05
 			}
 			
 		}
@@ -6153,11 +6296,7 @@ focus_tree = {
 		}
 		
 		completion_reward = {
-			add_political_power = -25
-			add_popularity = {
-				ideology = republican
-				popularity = -0.03
-			}
+			add_war_support = 0.07
 		}
 		
 	}
@@ -6181,12 +6320,80 @@ focus_tree = {
 		
 		completion_reward = {
 			random_owned_controlled_state = {
-				add_extra_state_shared_building_slots = 1
+				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 				    type = arms_factory 
-				    level = 1
+				    level = 2
 				    instant_build = yes
 				}
+			}
+		}
+		
+	}
+	
+	focus = {
+		id = NRA_Mass_Expansion_Of_Industry
+		
+		cost = 4.00
+		
+		x = -4
+		
+		y = 4
+		relative_position_id = NRA_The_Harsh_Reality
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NRA_More_Guns_For_The_Mercenaries
+		}
+		
+		prerequisite = { 
+			focus = NRA_Expand_Our_Industries
+		}
+		
+		completion_reward = {
+			
+			add_ideas = NRA_Massive_Expansion
+			
+		}
+		
+	}
+	
+	focus = {
+		id = NRA_Learn_From_Our_Mistakes
+		
+		cost = 3.00
+		
+		x = -2
+		
+		y = 4
+		relative_position_id = NRA_The_Harsh_Reality
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NRA_More_Guns_For_The_Mercenaries
+		}
+		
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1.00
+				uses = 1
+				category = artillery
+			}
+			
+			add_tech_bonus = {
+				bonus = 1.00
+				uses = 1
+				category = cat_anti_air
+			}
+			
+			add_tech_bonus = {
+				bonus = 1.00
+				uses = 1
+				category = cat_anti_tank
 			}
 		}
 		
@@ -6197,9 +6404,9 @@ focus_tree = {
 		icon = GFX_goal_NRA_Build_More_Natural_Gas_Wells
 		cost = 2.00
 		
-		x = -12
+		x = -11
 		
-		y = 2
+		y = 1
 		relative_position_id = NRA_The_Harsh_Reality
 		ai_will_do = { 
 			factor = 100
@@ -6237,6 +6444,118 @@ focus_tree = {
 	}
 	
 	focus = {
+		id = NRA_Produce_More_Energy
+		
+		cost = 4.00
+		
+		x = -10
+		
+		y = 2
+		relative_position_id = NRA_The_Harsh_Reality
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NRA_Build_New_Natural_Gas_Wells
+		}
+		
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1
+				uses = 1 
+				category = synth_resources
+			}
+			
+			372 = {
+				add_resource = {
+					type = oil
+					amount = 16
+				}	
+			}
+			
+			add_ideas = NRA_Better_Energy
+		}
+	}
+	
+	focus = {
+		id = NRA_Bring_Here_The_Goodies
+		
+		cost = 5.00
+		
+		x = -10
+		
+		y = 3
+		relative_position_id = NRA_The_Harsh_Reality
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NRA_Produce_More_Energy
+		}
+		
+		completion_reward = {
+			
+			372 = {
+				add_resource = {
+					type = tungsten
+					amount = 10
+				}	
+			}
+			
+			368 = {
+				add_resource = {
+					type = tungsten
+					amount = 10
+				}	
+			}
+			
+			368 = {
+				add_resource = {
+					type = uranium
+					amount = 10
+				}	
+			}
+			
+			356 = {
+				add_resource = {
+					type = aluminium
+					amount = 10
+				}	
+			}
+			
+		}
+	}
+	
+	focus = {
+		id = NRA_The_Economy_Is_Saved
+		
+		cost = 10.00
+		
+		x = -8
+		
+		y = 4
+		relative_position_id = NRA_The_Harsh_Reality
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NRA_Bring_Here_The_Goodies
+		}
+		
+		prerequisite = { 
+			focus = NRA_Offshore_Industries
+		}
+		
+		completion_reward = {
+			
+			add_ideas = NRA_The_New_Economy
+		}
+	}
+	
+	focus = {
 		id = NRA_Mass_Mechanization
 		icon = GFX_goal_NRA_Mass_Mechanization
 		cost = 2.00
@@ -6256,8 +6575,95 @@ focus_tree = {
 		completion_reward = {
 			add_tech_bonus = {
 				bonus = 1
-				uses = 1 
+				uses = 2
 				category = industry
+			}
+			
+		}
+	}
+	
+	focus = {
+		id = NRA_Construct_New_Roads
+		
+		cost = 3.00
+		
+		x = -6
+		
+		y = 3
+		relative_position_id = NRA_The_Harsh_Reality
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NRA_Mass_Mechanization
+		}
+		
+		prerequisite = { 
+			focus = NRA_Re_Open_The_Market
+		}
+		
+		completion_reward = {
+			
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				
+			}
+			
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				
+			}
+			
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				
+			}
+		}
+	}
+	
+	focus = {
+		id = NRA_Offshore_Industries
+		
+		cost = 2.00
+		
+		x = -8
+		
+		y = 3
+		relative_position_id = NRA_The_Harsh_Reality
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NRA_Mass_Mechanization
+		}
+		
+		completion_reward = {
+			
+			add_offsite_building = { 
+				type = industrial_complex
+				level = 1 
+			}
+			add_offsite_building = { 
+				type = industrial_complex
+				level = 1 
+			}
+			add_offsite_building = { 
+				type = industrial_complex
+				level = 1 
 			}
 			
 		}
@@ -7506,7 +7912,7 @@ focus_tree = {
 			add_stability = 0.05
 			add_war_support = 0.05
 			add_political_power = 100
-			add_political_power = 20
+			add_command_power = 20
 			add_research_slot = 1
 			add_ideas = NRA_Corporate_Expansion
 			set_technology = { bicycle_infantry = 1 }
@@ -7870,6 +8276,103 @@ focus_tree = {
 		completion_reward = {
 			add_ideas = NRA_CEO_Of_Appalachia
 			country_event = corporate.9
+		}
+		
+	}
+	
+	focus = {
+		id = NRA_The_Federalist_Threat
+		
+		cost = 1.00
+		
+		x = -1
+		
+		y = 2
+		relative_position_id = NRA_Integrate_Them
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NRA_Ownership_Over_Appalachia
+		}
+		
+		completion_reward = {
+			add_ideas = NRA_Scary_Biden
+		}
+		
+	}
+	
+	focus = {
+		id = NRA_Intensify_The_Production_Of_Bunkers
+		
+		cost = 1.00
+		
+		x = 1
+		
+		y = 2
+		relative_position_id = NRA_Integrate_Them
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NRA_Ownership_Over_Appalachia
+		}
+		
+		completion_reward = {
+			add_ideas = NRA_New_Bunkers
+		}
+		
+	}
+	
+	focus = {
+		id = NRA_Prepare_For_Enemy_Planes
+		
+		cost = 1.00
+		
+		x = -3
+		
+		y = 2
+		relative_position_id = NRA_Integrate_Them
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NRA_Ownership_Over_Appalachia
+		}
+		
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = anti_air_building 
+				    level = 1
+				    instant_build = yes
+				}
+				
+			}
+			
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = anti_air_building
+				    level = 1
+				    instant_build = yes
+				}
+				
+			}
+			
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = anti_air_building
+				    level = 2
+				    instant_build = yes
+				}
+				
+			}
 		}
 		
 	}
@@ -8713,7 +9216,7 @@ focus_tree = {
 	focus = {
 		id = NRA_Militaires_Sans_Frontieres
 		icon = GFX_goal_NRA_Militaires_Sans_Frontrières
-		cost = 0.00
+		cost = 1.00
 		
 		x = -3
 		
@@ -9726,7 +10229,7 @@ focus_tree = {
 	focus = {
 		id = NRA_Another_Day_Another_Banger
 		icon = GFX_goal_NRA_Another_Day_Another_Banger
-		cost = 0.00
+		cost = 1.00
 		
 		x = 2
 		
@@ -9852,7 +10355,6 @@ focus_tree = {
 		}
 		
 		completion_reward = {
-			# event
 			add_stability = 0.05
 			add_war_support = 0.05
 		}
@@ -9997,8 +10499,8 @@ focus_tree = {
 		completion_reward = {
 			transfer_state = 666
 			transfer_state = 667
-			add_political_power = -200
-			add_war_support = -0.4
+			add_political_power = -150
+			add_war_support = -0.20
 		}
 		
 	}
@@ -11003,7 +11505,7 @@ focus_tree = {
 	focus = {
 		id = NRA_Atlas_Shrugged
 		icon = GFX_goal_NRA_Atlas_Shrugged
-		cost = 0.00
+		cost = 1.00
 		
 		x = 0
 		

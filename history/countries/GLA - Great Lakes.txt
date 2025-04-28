@@ -24,7 +24,35 @@ set_technology = {
 	synth_oil_experiments = 1
 	fuel_silos = 1
 	fuel_refining = 1
+
+	#For navy ( ammo)
+	experimental_rockets = 1
+	cruise_missile_equipment_0 = 1
+	cruise_missile_equipment_1 = 1
+	improve_war_heads = 1
+	sam_missile_equipment = 1
+	anti_ship_missile_equipment_1 = 1
+
 }
+
+#Missile ammo stockpile.
+add_equipment_to_stockpile = {
+    type = anti_ship_missile_equipment
+    amount = 65
+}
+add_equipment_to_stockpile = {
+    type = cruise_missile_equipment
+    amount = 30
+}
+add_equipment_to_stockpile = {
+    type = sam_missile_equipment
+    amount = 10
+}
+add_equipment_to_stockpile = {
+    type = nav_bomber_equipment_1
+    amount = 30
+}
+
 if = {
 	limit = {
 		NOT = { has_dlc = "No Step Back" }
@@ -91,6 +119,10 @@ if = {
 		mtg_transport = 1
 		improved_secondary_battery = 1
 		basic_fire_control_system = 1
+		ship_hull_coast_1 = 1
+		ship_hull_coast_2 = 1
+		ship_hull_assult_1 = 1
+		ship_hull_assult_2 = 1
 	}
 	set_naval_oob = "GLA_Navy_mtg"
 }
@@ -105,10 +137,8 @@ set_politics = {
 	election_frequency = 48
 	elections_allowed = no
 }
-country_event = {
-	id = greatlake.35
-	days = 0
-}
+
+
 add_ideas = {
 	isolation
 	free_trade
@@ -188,6 +218,7 @@ recruit_character = GLA_yves_guillemot
 recruit_character = GLA_matthew_maloney
 recruit_character = GLA_blake_moret
 recruit_character = GLA_peter_thiel
+recruit_character = GLA_costin_alamariu
 
 ### Military Leaders ###
 
@@ -221,17 +252,7 @@ if = {
 		}
 	}
 
-	create_equipment_variant = {
-		name = "US Carrier Class"
-		type = carrier_1
-		parent_version = 0
-		upgrades = {
-			ship_deckspace_upgrade = 5
-			carrier_armor_upgrade = 2
-			ship_engine_upgrade = 2
-			ship_reliability_upgrade = 3
-		}
-	}
+
 }
 if = {
 	limit = {
@@ -242,14 +263,14 @@ if = {
 		type = ship_hull_cruiser_1
 		parent_version = 0
 		modules = {
-			fixed_ship_battery_slot = ship_light_medium_battery_2
+			fixed_ship_battery_slot = missile_pod_1
 			fixed_ship_anti_air_slot = ship_anti_air_1
 			fixed_ship_fire_control_system_slot = ship_fire_control_system_0
 			fixed_ship_radar_slot = empty
 			fixed_ship_engine_slot = cruiser_ship_engine_1
 			fixed_ship_armor_slot = ship_armor_cruiser_1
 			mid_1_custom_slot = ship_torpedo_1
-			mid_2_custom_slot = ship_light_medium_battery_2
+			mid_2_custom_slot = missile_pod_1
 			rear_1_custom_slot = ship_airplane_launcher_1
 		}
 	}
@@ -259,7 +280,7 @@ if = {
 		type = ship_hull_light_1
 		parent_version = 0
 		modules = {
-			fixed_ship_battery_slot = ship_light_battery_1
+			fixed_ship_battery_slot = missile_pod_1
 			fixed_ship_anti_air_slot = ship_anti_air_1
 			fixed_ship_fire_control_system_slot = ship_fire_control_system_0
 			fixed_ship_radar_slot = empty
@@ -270,18 +291,42 @@ if = {
 		}
 	}
 
-	create_equipment_variant = {
-		name = "US Carrier Class"
-		type = ship_hull_carrier_1
+	create_equipment_variant = { 
+		name = "Wasp Class"
+		type = ship_hull_assult_1
 		parent_version = 0
 		modules = {
-			fixed_ship_deck_slot_1 = ship_deck_space
-			fixed_ship_deck_slot_2 = ship_deck_space
+			fixed_ship_deck_slot_1 = heli_deck
 			fixed_ship_anti_air_slot = ship_anti_air_1
 			fixed_ship_radar_slot = empty
-			fixed_ship_engine_slot = carrier_ship_engine_1
-			fixed_ship_secondaries_slot = empty
-			front_1_custom_slot = ship_deck_space
+			fixed_ship_engine_slot = assult_ship_engine_1
+			front_1_custom_slot = ship_anti_air_1
+				
+		}
+	}
+
+	create_equipment_variant = { #FREEEEEEEEEEOM 
+		name = "Freedom Class"
+		type = ship_hull_coast_1
+		parent_version = 0
+		modules = {
+			fixed_ship_anti_air_slot = ship_anti_air_1
+			fixed_ship_fire_control_system_slot = empty
+			fixed_ship_radar_slot = empty
+			fixed_ship_engine_slot = coast_ship_engine_1
+			mid_1_custom_slot = missile_pod_1
+				
+		}
+	}
+
+	create_equipment_variant = { #Omg if Ohio was a submarine (I am pretty sure it can carry enough nukes to destroy every major city in Russia)
+		name = "Ohio Class" #Missile sub
+		type = ship_hull_submarine_1
+		parent_version = 0
+		modules = {
+			fixed_ship_torpedo_slot = sub_missile_launcher
+			fixed_ship_engine_slot = sub_ship_nuclear_engine_1
+			rear_1_custom_slot = empty
 				
 		}
 	}

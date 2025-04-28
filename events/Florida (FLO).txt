@@ -270,18 +270,20 @@ country_event = {
 				add_state_core = 580
 				add_state_core = 584
 				transfer_state = 584
+				load_oob = "JEB_revolt"
 			}
-			transfer_units_fraction= {
-			    target = JEB
-			    size = 0.3
-			    stockpile_ratio = 0.2
-			    army_ratio = 0.3
-			    navy_ratio = 0.5
-			    air_ratio = 0.7
-			    keep_unit_leaders_trigger = {
-			      has_unit_leader_flag = barron_loyalist
-				}
-			}
+			#transfer_units_fraction= {
+			#    target = JEB
+			#	size = 0.001
+			#	stockpile_ratio = 0.0
+			#	army_ratio = 0.3
+			#	navy_ratio = 0.01
+			#	air_ratio = 0.0
+			#    keep_unit_leaders_trigger = {
+			#      has_unit_leader_flag = barron_loyalist
+			#	}
+			#}
+
 			declare_war_on = {
 			    target = JEB
 			    type = annex_everything
@@ -531,9 +533,12 @@ news_event = {
     				flag = super_event
     				value = 2
 			}
-			if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
-				sound_effect = "jeb_revolt"
-				play_song = "one_minute_of_silence"
+			if = { 
+				limit = { has_country_flag = SuperEventsWillBePlayed_flag }
+				if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
+					sound_effect = "jeb_revolt"
+					play_song = "one_minute_of_silence"
+				}
 			}
 		}
 	}

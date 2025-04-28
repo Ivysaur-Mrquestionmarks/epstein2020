@@ -3,7 +3,7 @@ add_namespace = hoya_heya
 #Wahsayah Whitebird buggers off
 unit_leader_event = {
 	id = hoya_heya.1
-	title = hoya.heya.1.t
+	title = hoya_heya.1.t
 	desc = hoya_heya.1.d
 	is_triggered_only = yes
 	fire_only_once = yes
@@ -144,6 +144,18 @@ country_event = {
 				name = "Patrick Sorenson"
 			}
 		}
+		#NAV_patrick_sorenson = { #he will start with this role now so player knows it is upcoming
+		#		add_advisor_role = {
+		#		    advisor = {
+		#		        slot = army_chief
+		#		        cost = 100
+		#		        idea_token = NAV_patrick_sorenson_adviser
+		#		        traits = {
+		#		            army_chief_defensive_1
+		#		        }
+		#		    }
+		#		}
+		#}
 		HOP = { add_ideas = NAV_nazis_are_fucked }
 		TOH = {
 			TOH_miguel_aguilar = {
@@ -353,6 +365,12 @@ country_event = {
 		name = hoya_heya.10.a
 		#ADD STUFF HERE LATER BASED OFF COUNTRY FLAGS
 		#TODO
+		NAV_patrick_sorenson = {
+			add_country_leader_trait = {
+			    ideology = libertarian_ideology
+			    trait = NAV_interim_president
+			}
+		}
 	}
 }
 
@@ -560,6 +578,16 @@ unit_leader_event = {
 		effect_tooltip = {
 			create_corps_commander = { name = "Thomas Cyr" }
 		}
+		add_advisor_role = {
+		    advisor = {
+		        slot = political_advisor
+		        cost = 145
+		        idea_token = GLA_thomas_cyr_adviser
+		        traits = {
+		            prince_of_terror
+		        }
+		    }
+		}
 	}
 }
 
@@ -620,10 +648,106 @@ news_event = {
     				flag = super_event
     				value = 46
 			}
-			if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
-				sound_effect = 	"whitebird_unification_track"
-				play_song = "one_minute_of_silence"
+			if = { 
+				limit = { has_country_flag = SuperEventsWillBePlayed_flag }
+				if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
+					sound_effect = 	"whitebird_unification_track"
+					play_song = "one_minute_of_silence"
+				}
 			}
 		}	
+	}
+}
+
+#Joke Event- TO THE MOON
+country_event = {
+	id = hoya_heya.20
+	title = hoya_heya.20.t
+	desc = hoya_heya.20.d
+	picture = event_nav_moon_man
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = hoya_heya.20.a
+		custom_effect_tooltip = nav_moon_is_now_a_core_of_root_tt
+	}
+}
+
+#Wolverines!
+country_event = {
+	id = hoya_heya.21
+	title = hoya_heya.21.t
+	desc = hoya_heya.21.d
+	picture = Maine_Failed
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = hoya_heya.21.a
+		add_ideas = NAV_wolverine_resistance
+		activate_mission = NAV_wolverine_terror_attack
+		add_country_leader_role = {
+		    character = NAV_wolverines_leader
+		    promote_leader = yes
+		    country_leader = {
+		        ideology = populist_conservatism
+		        traits = { 
+				###
+			}
+		    }
+		}
+		set_party_name = {
+		    ideology = libertarian_right
+		    long_name = NAV_wolverines_party
+		    name = NAV_wolverines_party
+		}
+		hidden_effect = {
+			add_popularity = {
+				ideology = libertarian_right
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = republican
+				popularity = -0.025
+			}
+			add_popularity = {
+				ideology = democrat
+				popularity = -0.025
+			}
+		}
+	}
+}
+#Wolverines Strike
+country_event = {
+	id = hoya_heya.22
+	title = hoya_heya.22.t
+	desc = hoya_heya.22.d
+	picture = Maine_Failed
+	is_triggered_only = yes
+	fire_only_once = no
+	option = {
+		name = hoya_heya.22.a
+	}
+}
+#Wolverines leader killed
+unit_leader_event = {
+	id = hoya_heya.23
+	title = hoya_heya.23.t
+	desc = hoya_heya.23.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = hoya_heya.23.a
+		kill_ideology_leader = libertarian_right
+		add_popularity = {
+			ideology = libertarian_right
+			popularity = -0.07
+		}
+		hidden_effect = {
+			set_party_name = {
+			    ideology = libertarian_right
+			    long_name = NAV_liberty_party
+			    name = NAV_liberty_party
+			}			
+		}
 	}
 }

@@ -1,11 +1,7 @@
 American_reunification = {
 	integrate_state = {
 		state_target = any_owned_state
-		target_trigger = {
-		 	FROM = {
-				has_state_flag = part_of_america
-			}
-		}
+		target_array = global.part_of_USA
 		visible = {
 			NOT = {
 				OR = {
@@ -79,20 +75,7 @@ American_reunification = {
 	}
 
 	reunification_ultimatum = {
-		target_trigger = {
-		 	FROM = {
-				OR = {
-					is_in_faction_with = ROOT
-					is_puppet_of = ROOT
-				}
-				NOT = {
-					OR = {
-						tag = RKM
-						tag = KKK
-					}
-				}
-			}
-		}
+		target_array = ROOT.allies
 		visible = {
 			NOT = {
 				OR = {
@@ -175,23 +158,20 @@ American_reunification = {
 	}
 
 	American_reunification = {
-		visible = {
 			NOT = {
 				OR = {
 					original_tag = DOM
 					original_tag = HAI
 				}
 			}
-		}
 		
 		available = {
-			all_state = {	
-				OR = {
-					NOT = {has_state_flag = part_of_america}
-					is_owned_by = ROOT
-					owner = { is_ally_with = ROOT } #Checks for territory controlled by indpendent faction members/puppets
-				}		
+			all_of_scopes = {
+    				array = global.part_of_USA
+				is_owned_by = ROOT
+				owner = { is_ally_with = ROOT }
 			}
+
 			ROOT = {
 				if = {
 					limit = {
@@ -211,13 +191,10 @@ American_reunification = {
 				set_country_flag = winner_of_the_2ACW
 			}
 			add_stability = 0.10
-			every_state = {
-   				limit = { 
-    				is_owned_by = ROOT
-					has_state_flag = part_of_america
+			for_each_scope_loop = {
+    				array = global.part_of_USA
+    				add_core_of = ROOT
     			}
-    			add_core_of = ROOT
-    		}
 			custom_effect_tooltip = generic_unification_tt
 			if = {
 				limit = {

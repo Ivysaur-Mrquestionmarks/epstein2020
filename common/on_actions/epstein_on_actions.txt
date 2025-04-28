@@ -153,13 +153,23 @@ on_actions = {
 			}
 			
 			TEX = {
-				country_event = {
-					id = texas_path_guides.7
-					days = 10
-				}
-				#country_event = bidone_pathguides.0
+				#country_event = {
+				#	id = texas_path_guides.7
+				#	days = 10
+				#}
+				country_event = bidone_pathguides.0
 			}
 
+			ENG = {
+				news_event = {
+					id = News_events.36
+					days = 82
+				}
+				news_event = {
+					id = News_events.37
+					days = 625
+				}
+			}
 			
 			GKJ = {
 				add_ideas = {
@@ -240,6 +250,10 @@ on_actions = {
 					}
 					every_owned_state = {
 						set_state_flag = part_of_america
+						add_to_array = {
+    							array = global.part_of_USA
+    							value = THIS
+						}
 					}
 				}			
 			}
@@ -252,6 +266,68 @@ on_actions = {
 					}
 				}
 			}
+			every_country = {
+				if = {
+					limit = { is_ai = no }
+					country_event = {
+						id = super_event_sound.1
+						days = 1
+					}
+				}
+			}
+			every_country = {
+				limit = {
+					is_ai = no
+				}
+				set_variable = {
+					MAA_opener_show = 0
+				}
+				set_variable = {
+					tech_show = 0
+				}
+				set_variable = {
+					mechanic_show = 0
+				}
+				set_variable = {
+					changelog_show = 0
+				}
+				set_variable = {
+					credit_show = 0
+				}
+				set_variable = {
+					lore_show = 0
+				}
+				set_variable = {
+					country_info_show = 1
+				}
+			}
+			every_possible_country = {
+				limit = {
+					is_ai = yes
+				}
+				set_variable = {
+					MAA_opener_show = 1
+				}
+				set_variable = {
+					tech_show = 0
+				}
+				set_variable = {
+					mechanic_show = 0
+				}
+				set_variable = {
+					changelog_show = 0
+				}
+				set_variable = {
+					credit_show = 0
+				}
+				set_variable = {
+					lore_show = 0
+				}
+				set_variable = {
+					country_info_show = 1
+				}
+			}
+
 		}
 	}
 	on_peaceconference_ended = {
@@ -285,6 +361,27 @@ on_actions = {
 				}
 				leave_faction = yes
 				clr_country_flag = temp_alliance
+			}
+			else_if = {
+				limit = {
+					original_tag = HOP #победитель
+					FROM = { original_tag = NAV } #проигравший
+				}
+				NAV = {
+					NAV_michael_hopp = {
+						set_nationality = KMT
+					}
+				}
+				KMT = {
+					add_country_leader_role = {
+					    character = NAV_michael_hopp
+					    promote_leader = yes
+					    country_leader = {
+					        ideology = communism
+					        traits = { labor_defense_organizer }
+					    }
+					}
+				}
 			}
 		}
 	}

@@ -806,6 +806,7 @@ focus_tree = {
 		x = 21
 		y = 3
 		completion_reward = {
+			show_ideas_tooltip = NAV_michael_hopp
 			add_manpower = 2000
 			add_equipment_to_stockpile = {
     			type = infantry_equipment
@@ -837,6 +838,12 @@ focus_tree = {
     			name = NAV_just_communists_party
 			}
 			news_event = hoya_heya.12
+			hidden_effect = {
+				country_event = {
+					id = hoya_heya.21
+					days = 45
+				}
+			}
 		}
 
 	}
@@ -912,7 +919,42 @@ focus_tree = {
 		x = 20
 		y = 5
 		completion_reward = {
-			#NOTE: LATER MAKE THIS SPAWN NATIONAL GUARD GENERALS
+			NAV_jamison_herrera = {
+				add_corps_commander_role = {
+				    skill = 4
+				    attack_skill = 3
+				    defense_skill = 3
+				    planning_skill = 3
+				    logistics_skill = 4
+				    traits = {
+				    	national_guard_member armor_officer organizer
+				    }
+				}
+			}
+			NAV_daniel_hughes = {
+				add_corps_commander_role = {
+				    skill = 2
+				    attack_skill = 3
+				    defense_skill = 2
+				    planning_skill = 1
+				    logistics_skill = 2
+				    traits = {
+				    	national_guard_member career_officer trait_mountaineer
+				    }
+				}
+			}
+			NAV_richard_g_smith = {
+				add_corps_commander_role = {
+				    skill = 3
+				    attack_skill = 3
+				    defense_skill = 2
+				    planning_skill = 2
+				    logistics_skill = 2
+				    traits = {
+				    	national_guard_member infantry_officer camouflage_expert
+				    }
+				}
+			}
 			swap_ideas = {
 				remove_idea  =NAV_peoples_liberation_army_2
 				add_idea = NAV_peoples_liberation_army_3
@@ -962,6 +1004,26 @@ focus_tree = {
 			unlock_decision_tooltip = NAV_invite_commie_nicaraugua 
 			unlock_decision_tooltip = NAV_invite_commie_louisiana 
 			unlock_decision_tooltip = NAV_invite_commie_hawaii
+		}
+
+	}
+	focus = {
+		id = NAV_institute_marxism_leninism
+		#icon = 
+		cost = 3.00
+		prerequisite = {
+			focus = NAV_great_liberator
+		}
+		x = 24
+		y = 6
+		available = {
+			has_government = authoritarian_left
+		}
+		bypass = {
+			###
+		}
+		completion_reward = {
+			add_political_power = 100
 		}
 
 	}
@@ -1420,6 +1482,19 @@ focus_tree = {
 			effect_tooltip = {
 				create_corps_commander = {
 					name = "Eddie Dempsey"
+				}
+			}
+			#NOTE TO SELF: MIGHT REMOVE MAKING DEMPSEY AN ADVISER. HIS SMALL PORTRAIT USES ARMY BACKGROUND.
+			NAV_eddie_dempsey = {
+				add_advisor_role = {
+				    advisor = {
+				        slot = political_advisor
+				        cost = 150
+				        idea_token = NAV_eddie_dempsey_adviser
+				        traits = {
+				            left_trade_unionist
+				        }
+				    }
 				}
 			}
 			load_oob = "NAV_trade_unionists"
@@ -1978,6 +2053,36 @@ focus_tree = {
 			set_cosmetic_tag = NAV_national_social_club_ct
 			add_stability = -0.05
 			load_oob = "NAV_nazi_militia"
+			HOP_daniel_burnside = {
+				add_advisor_role = {
+				    advisor = {
+				        slot = army_chief
+				        cost = 100
+				        idea_token = NAV_daniel_burnside_adviser
+				        traits = {
+				            army_chief_maneuver_2
+				        }
+				    }
+				}
+			}
+			HOP_paul_miller = {
+				add_advisor_role = {
+				    advisor = {
+				        slot = political_advisor
+				        cost = 135
+				        idea_token = NAV_paul_miller_adviser
+				        traits = {
+				            national_socialist_paramilitarist
+				        }
+				    }
+				}
+			}
+			hidden_effect = {
+				country_event = {
+					id = hoya_heya.21
+					days = 45
+				}
+			}
 		}
 
 	}
@@ -2002,6 +2107,12 @@ focus_tree = {
 			}
 			add_political_power = 100
 			add_stability = 0.05
+			hidden_effect = {
+				country_event = {
+					id = hoya_heya.21
+					days = 45
+				}
+			}
 		}
 
 	}
@@ -2810,7 +2921,7 @@ focus_tree = {
 		icon = GFX_focus_generic_purchase_mechanized_equipment
 		prerequisite = { focus = NAV_modernization }
 		#mutually_exclusive = { focus = }
-		x = -1
+		x = 0
 		y = 1
 		relative_position_id = NAV_modernization
 
@@ -2846,56 +2957,56 @@ focus_tree = {
 		}			
 	}
 
-	focus = {
-		id = NAV_purchase_armored_equipment
-		icon = GFX_focus_generic_tankette
-		prerequisite = { focus = NAV_modernization }
-		#mutually_exclusive = { focus = }
-		x = 1
-		y = 1
-		relative_position_id = NAV_modernization
-
-		cost = 10
-
-		ai_will_do = {
-			base = 1
-		}
-
-		available = {
-			
-		}
-
-		bypass = {
-
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = no
-
-		completion_reward = {
-			if = {
-				limit = {
-					NOT = { has_dlc = "No Step Back" }
-				}
-				add_equipment_to_stockpile = { 
-					type = light_tank_equipment_1
-					amount = 700
-					producer = WAG
-				}	
-			}
-			if = {
-				limit = {
-					has_dlc = "No Step Back"
-				}
-				add_equipment_to_stockpile = { 
-					type = light_tank_chassis_0
-					amount = 700
-					producer = WAG
-				}	
-			}
-		}
-	}
+#	focus = {
+#		id = NAV_purchase_armored_equipment
+#		icon = GFX_focus_generic_tankette
+#		prerequisite = { focus = NAV_modernization }
+#		#mutually_exclusive = { focus = }
+#		x = 1
+#		y = 1
+#		relative_position_id = NAV_modernization
+#
+#		cost = 10
+#
+#		ai_will_do = {
+#			base = 1
+#		}
+#
+#		available = {
+#			
+#		}
+#
+#		bypass = {
+#
+#		}
+#
+#		cancel_if_invalid = yes
+#		continue_if_invalid = no
+#		available_if_capitulated = no
+#
+#		completion_reward = {
+#			if = {
+#				limit = {
+#					NOT = { has_dlc = "No Step Back" }
+#				}
+#				add_equipment_to_stockpile = { 
+#					type = light_tank_equipment_1
+#					amount = 700
+#					producer = WAG
+#				}	
+#			}
+#			if = {
+#				limit = {
+#					has_dlc = "No Step Back"
+#				}
+#				add_equipment_to_stockpile = { 
+#					type = light_tank_chassis_0
+#					amount = 700
+#					producer = WAG
+#				}	
+#			}
+#		}
+#	}
 
 	focus = {
 		id = NAV_approach_tribes_for_support
@@ -2980,7 +3091,11 @@ focus_tree = {
 	focus = {
 		id = NAV_training
 		icon = GFX_goal_generic_small_arms
-		prerequisite = { focus = NAV_cavalry_integration focus = NAV_purchase_mechanized_equipment focus = NAV_purchase_armored_equipment }
+		prerequisite = { 
+			focus = NAV_cavalry_integration 
+			focus = NAV_purchase_mechanized_equipment 
+			#focus = NAV_purchase_armored_equipment 
+		}
 		#mutually_exclusive = { focus = }
 		x = -1
 		y = 1
@@ -3153,7 +3268,10 @@ focus_tree = {
   	focus = {
 		id = NAV_form_the_independent_mechanized_brigade
 		icon = GFX_focus_generic_mechanized
-		prerequisite = { focus = NAV_purchase_mechanized_equipment focus = NAV_purchase_armored_equipment }
+		prerequisite = { 
+			focus = NAV_purchase_mechanized_equipment 
+			#focus = NAV_purchase_armored_equipment 
+		}
 		#mutually_exclusive = { focus = }
 		x = 1
 		y = 1
