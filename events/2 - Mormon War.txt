@@ -173,6 +173,7 @@ country_event = {
 			news_event = { id = mormon.6 days = 1 } 
 			UTA = { create_faction = MORMON_WAR_MORMON_ALLIANCE } 
 			MOL = { country_event = { id = mormon.8 days = 6 } } 
+			PRA = { country_event = { id = mormon.9 days = 5 } } 
 			every_state = {
                 limit = {
 					is_core_of = UTA
@@ -288,15 +289,7 @@ country_event = {
 	title = mormon.9.t
 	desc = mormon.9.d
 	picture = event_las_vegas_01
-	trigger = { #DURING LAS REWORK, CHANGE THIS TO BE FIRED IN PRA HISTORY FILE
-		tag = PRA
-		#owns_state = 46
-		#owns_state = 33
-		LAS = {
-			is_subject_of = PRA
-		}
-		has_global_flag = mormon_war_begun
-	}
+	is_triggered_only = yes
 	fire_only_once = yes
 	option = {
 		name = mormon.9.a
@@ -308,6 +301,13 @@ country_event = {
 		}
 		LAS = {
 			country_event = mormon.13
+			leave_faction = yes
+		}
+		every_country = {
+			limit = {
+				has_war_with = LAS
+			}
+			white_peace = LAS
 		}
 		hidden_effect = {
 			LAS = {
