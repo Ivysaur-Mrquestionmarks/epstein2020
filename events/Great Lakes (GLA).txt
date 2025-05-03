@@ -234,7 +234,7 @@ news_event = {
 			}
 			hidden_effect = {
 				if = { 
-					limit = { has_global_flag = SuperEventsWillBePlayed_flag }
+					limit = { has_country_flag = SuperEventsWillBePlayed_flag }
 			    		if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
 				    		sound_effect = "moderate_libertarian"
 				    		play_song = "one_minute_of_silence"
@@ -1363,7 +1363,7 @@ news_event = {
 			}
 			hidden_effect = {
 				if = { 
-					limit = { has_global_flag = SuperEventsWillBePlayed_flag }
+					limit = { has_country_flag = SuperEventsWillBePlayed_flag }
 			    		if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
 				    		sound_effect = "ancapistan"
 				    		play_song = "one_minute_of_silence"
@@ -1399,7 +1399,7 @@ news_event = {
 			}
 			hidden_effect = {
 				if = { 
-					limit = { has_global_flag = SuperEventsWillBePlayed_flag }
+					limit = { has_country_flag = SuperEventsWillBePlayed_flag }
 			    		if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
 				    		sound_effect = "boogaloo"
 				    		play_song = "one_minute_of_silence"
@@ -1915,7 +1915,7 @@ news_event = {
 			}
 			hidden_effect = {
 				if = { 
-					limit = { has_global_flag = SuperEventsWillBePlayed_flag }
+					limit = { has_country_flag = SuperEventsWillBePlayed_flag }
 			    		if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
 				    		sound_effect = "yarvin"
 				    		play_song = "one_minute_of_silence"
@@ -2556,11 +2556,8 @@ country_event = {
 		ai_chance = {
 			factor = 10
 		}
-		add_trait = {
-			character = GLA_curtis_yarvin
-			ideology = dark_enlightenment
-			trait = assassination_survivor
-	    }
+		add_stability = -0.05
+		add_political_power = -25
 		country_event = {
 			id = greatlake.71
 			days = 2
@@ -2609,9 +2606,19 @@ country_event = {
 		ai_chance = {
 			factor = 10
 		}
-		swap_ideas = {
-			remove_idea = GLA_ceo_freedom_2
-			add_idea = GLA_ceos_under_control
+		if = {
+			limit = { has_idea = GLA_ceo_freedom }
+		    swap_ideas = {
+			    remove_idea = GLA_ceo_freedom
+			    add_idea = GLA_ceos_under_control
+		    }
+		}
+		if = {
+			limit = { has_idea = GLA_ceo_freedom_2 }
+		    swap_ideas = {
+			    remove_idea = GLA_ceo_freedom_2
+			    add_idea = GLA_ceos_under_control
+		    }
 		}
 		add_war_support = 0.05
 		add_political_power = -50
