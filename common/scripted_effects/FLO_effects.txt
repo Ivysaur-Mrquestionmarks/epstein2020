@@ -1,0 +1,113 @@
+GKJ_civil_war_effect = {
+	hidden_effect = {
+		every_owned_state = {
+			limit = {
+				OR = {
+					state = 602
+					state = 397
+					state = 577
+					state = 578
+					state = 579
+				}
+			}
+			transfer_state_to = NSA
+		}
+		every_owned_state = {
+			limit = {
+				OR = {
+					state = 339
+					state = 581
+					state = 584
+				}
+			}
+			transfer_state_to = SEM
+		}
+		every_owned_state = {
+			limit = {
+				OR = {
+					state = 345
+					state = 580
+					state = 582
+				}
+			}
+			transfer_state_to = FLD
+		}
+		every_owned_state = {
+			limit = {
+				OR = {
+					state = 324
+					state = 603
+					state = 327
+					state = 323
+					state = 322
+					state = 346
+					state = 353
+				}
+			}
+			transfer_state_to = FLA
+		}
+		NSA = {
+			add_ideas = NSA_starting
+			load_oob = "NSA_FCW"
+		}
+		SEM = {
+			add_ideas = SEM_starting
+			load_oob = "SEM_FCW"
+		}
+		FLD = {
+			add_ideas = FLD_starting
+			load_oob = "FLD_FCW"
+		}
+		FLA = {
+			add_ideas = FLA_mansons_anarchists
+			news_event = { id = News_Events.87 days = 4 }
+			load_oob = "FLA_FCW"
+		}
+		
+		# Cores
+		every_state = {
+			limit = {
+				OR = {
+					is_core_of = GKJ
+					is_owned_by = GKJ
+				}
+			}
+			add_core_of = NSA
+			add_core_of = FLA
+			add_core_of = FLD
+			add_core_of = SEM
+		}
+		
+		#This loops declare the wars
+		for_each_scope_loop = { 
+    		array = global.florida_collapse
+			for_each_scope_loop = {
+				array = global.florida_collapse
+				if = { limit = { NOT = { OR = { has_war_with = PREV  tag = PREV } } }
+					declare_war_on = {
+						target = PREV
+						type = annex_everything
+					}
+				}
+			}
+		}
+		
+		
+		#gives tech and ideas
+		every_country = { 
+			limit = {
+				is_in_array = {
+					array = global.florida_collapse
+					value = THIS.id
+				}
+			}
+			inherit_technology = GKJ
+			add_ideas = {
+				FLO_fcw_idea
+				FLA_florida_civil_war_army
+				FLA_florida_civil_war_industry
+				FLA_florida_civil_war_power
+			}
+		} 
+	}
+}

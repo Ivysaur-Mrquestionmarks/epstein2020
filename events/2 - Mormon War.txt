@@ -173,6 +173,7 @@ country_event = {
 			news_event = { id = mormon.6 days = 1 } 
 			UTA = { create_faction = MORMON_WAR_MORMON_ALLIANCE } 
 			MOL = { country_event = { id = mormon.8 days = 6 } } 
+			PRA = { country_event = { id = mormon.9 days = 5 } } 
 			every_state = {
                 limit = {
 					is_core_of = UTA
@@ -199,7 +200,7 @@ news_event = {
     				value = 1
 			}
 			if = { 
-				limit = { has_country_flag = SuperEventsWillBePlayed_flag }
+				limit = { has_global_flag = SuperEventsWillBePlayed_flag }
 				if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
 					sound_effect = 	"mormon_war"
 					play_song = "one_minute_of_silence"
@@ -288,48 +289,53 @@ country_event = {
 	title = mormon.9.t
 	desc = mormon.9.d
 	picture = event_las_vegas_01
-	trigger = {
-		tag = PRA
-		owns_state = 46
-		owns_state = 33
-		has_global_flag = mormon_war_begun
-	}
+	is_triggered_only = yes
 	fire_only_once = yes
 	option = {
 		name = mormon.9.a
-		release = LAS
+		set_autonomy = {
+		    target = LAS
+		    autonomous_state = autonomy_free
+		    end_wars = yes
+		    end_civil_wars = yes
+		}
 		LAS = {
-			transfer_state = 33
-			add_state_core = 46
-			add_state_core = 33
+			country_event = mormon.13
+			leave_faction = yes
+		}
+		every_country = {
+			limit = {
+				has_war_with = LAS
+			}
+			white_peace = LAS
 		}
 		hidden_effect = {
 			LAS = {
 				country_event = {
 					id = mormon.10
-					days = 2
+					days = 3
 				}
 			}
 		}
 	}
-	option = {
-		name = mormon.9.b
-		release = LAS
-		LAS = { change_tag_from = PRA }
-		LAS = {
-			transfer_state = 33
-			add_state_core = 46
-			add_state_core = 33
-		}
-		hidden_effect = {
-			LAS = {
-				country_event = {
-					id = mormon.10
-					days = 2
-				}
-			}
-		}
-	}
+#	option = {
+#		name = mormon.9.b
+#		release = LAS
+#		LAS = { change_tag_from = PRA }
+#		LAS = {
+#			transfer_state = 33
+#			add_state_core = 46
+#			add_state_core = 33
+#		}
+#		hidden_effect = {
+#			LAS = {
+#				country_event = {
+#					id = mormon.10
+#					days = 2
+#				}
+#			}
+#		}
+#	}
 }
 #Las Vegas declares WAR on the Mormons!!
 country_event = {
@@ -489,5 +495,21 @@ country_event = {
 			}
 		}
 		}
+	}
+}
+
+#LAS is informed they are now independent
+country_event = {
+	id = mormon.13
+	title = mormon.13.t
+	desc = mormon.13.d
+	picture = event_las_vegas_01
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = mormon.13.a
+		remove_ideas = LAS_tributary_status
+		remove_country_leader_trait = aloof_authority_alt
+		custom_effect_tooltip = las_indie_prepare_war_tt
 	}
 }

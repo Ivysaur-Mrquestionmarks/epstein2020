@@ -1006,6 +1006,11 @@ country_event = {
 		ai_chance = {
 			factor = 25
 		}
+		trigger = {
+			NOT = {
+				has_country_flag = GLA_ai_forced_to_do_boogaloo_coup
+			}
+		}
 		add_political_power = -45
 		add_power_balance_value = {
         id = boogaloo_bop
@@ -1024,11 +1029,21 @@ country_event = {
 		ai_chance = {
 			factor = 25
 		}
-		add_power_balance_value = {
-        id = boogaloo_bop
-        value = -0.15
-        tooltip_side = boogaloo_hates_us
-        }
+		if = {
+			limit = { has_country_flag = GLA_ai_forced_to_do_boogaloo_coup }
+			add_power_balance_value = {
+                id = boogaloo_bop
+                value = -0.30
+                tooltip_side = boogaloo_hates_us
+            }
+		}
+		else = {
+			add_power_balance_value = {
+                id = boogaloo_bop
+                value = -0.15
+                tooltip_side = boogaloo_hates_us
+            }
+		}
 		hidden_effect = {
 			country_event = {
 				id = greatlake.27
@@ -1061,6 +1076,11 @@ country_event = {
 		ai_chance = {
 			factor = 25
 		}
+		trigger = {
+			NOT = {
+				has_country_flag = GLA_ai_forced_to_do_boogaloo_coup
+			}
+		}
 		add_political_power = -10
 		add_power_balance_value = {
         id = boogaloo_bop
@@ -1080,11 +1100,21 @@ country_event = {
 			factor = 25
 		}
 		add_political_power = -10
-		add_power_balance_value = {
-        id = boogaloo_bop
-        value = -0.15
-        tooltip_side = boogaloo_hates_us
-        }
+		if = {
+			limit = { has_country_flag = GLA_ai_forced_to_do_boogaloo_coup }
+			add_power_balance_value = {
+                id = boogaloo_bop
+                value = -0.30
+                tooltip_side = boogaloo_hates_us
+            }
+		}
+		else = {
+			add_power_balance_value = {
+                id = boogaloo_bop
+                value = -0.15
+                tooltip_side = boogaloo_hates_us
+            }
+		}
 		hidden_effect = {
 			country_event = {
 				id = greatlake.28
@@ -1117,6 +1147,11 @@ country_event = {
 		ai_chance = {
 			factor = 25
 		}
+		trigger = {
+			NOT = {
+				has_country_flag = GLA_ai_forced_to_do_boogaloo_coup
+			}
+		}
 		add_stability = -0.05
 		add_power_balance_value = {
         id = boogaloo_bop
@@ -1136,11 +1171,21 @@ country_event = {
 			factor = 25
 		}
 		add_political_power = -10
-		add_power_balance_value = {
-        id = boogaloo_bop
-        value = -0.15
-        tooltip_side = boogaloo_hates_us
-        }
+		if = {
+			limit = { has_country_flag = GLA_ai_forced_to_do_boogaloo_coup }
+			add_power_balance_value = {
+                id = boogaloo_bop
+                value = -0.30
+                tooltip_side = boogaloo_hates_us
+            }
+		}
+		else = {
+			add_power_balance_value = {
+                id = boogaloo_bop
+                value = -0.15
+                tooltip_side = boogaloo_hates_us
+            }
+		}
 		hidden_effect = {
 			country_event = {
 				id = greatlake.29
@@ -1173,6 +1218,11 @@ country_event = {
 		ai_chance = {
 			factor = 25
 		}
+		trigger = {
+			NOT = {
+				has_country_flag = GLA_ai_forced_to_do_boogaloo_coup
+			}
+		}
 		add_equipment_to_stockpile = {
             type = infantry_equipment
             amount = -450
@@ -1189,11 +1239,21 @@ country_event = {
 		ai_chance = {
 			factor = 25
 		}
-		add_power_balance_value = {
-        id = boogaloo_bop
-        value = -0.15
-        tooltip_side = boogaloo_hates_us
-        }
+		if = {
+			limit = { has_country_flag = GLA_ai_forced_to_do_boogaloo_coup }
+			add_power_balance_value = {
+                id = boogaloo_bop
+                value = -0.30
+                tooltip_side = boogaloo_hates_us
+            }
+		}
+		else = {
+			add_power_balance_value = {
+                id = boogaloo_bop
+                value = -0.15
+                tooltip_side = boogaloo_hates_us
+            }
+		}
 	}
 }
 
@@ -2496,11 +2556,8 @@ country_event = {
 		ai_chance = {
 			factor = 10
 		}
-		add_trait = {
-			character = GLA_curtis_yarvin
-			ideology = dark_enlightenment
-			trait = assassination_survivor
-	    }
+		add_stability = -0.05
+		add_political_power = -25
 		country_event = {
 			id = greatlake.71
 			days = 2
@@ -2549,9 +2606,19 @@ country_event = {
 		ai_chance = {
 			factor = 10
 		}
-		swap_ideas = {
-			remove_idea = GLA_ceo_freedom_2
-			add_idea = GLA_ceos_under_control
+		if = {
+			limit = { has_idea = GLA_ceo_freedom }
+		    swap_ideas = {
+			    remove_idea = GLA_ceo_freedom
+			    add_idea = GLA_ceos_under_control
+		    }
+		}
+		if = {
+			limit = { has_idea = GLA_ceo_freedom_2 }
+		    swap_ideas = {
+			    remove_idea = GLA_ceo_freedom_2
+			    add_idea = GLA_ceos_under_control
+		    }
 		}
 		add_war_support = 0.05
 		add_political_power = -50
@@ -3396,25 +3463,43 @@ country_event = {
 	}
 }
 
+#McAfee's Empire of Vice
+country_event = {
+	id = greatlake.100
+	title = greatlake.100.t
+	desc = greatlake.100.d
+	#picture = event_GLA_mcafee2
+	trigger = {
+		tag = GLA
+		is_ai = yes
+	}
+	is_triggered_only = no
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.100.a
+		ai_chance = {
+			factor = 40
+		}
+		set_country_flag = GLA_ai_forced_to_do_boogaloo_coup
+	}
+	option = {
+		name = greatlake.100.b
+		ai_chance = {
+			factor = 60
+		}
+		
+	}
+}
+
 
 ###########################################################
 ####################### PATH GUIDES #######################
 ###########################################################
 
 add_namespace = great_lakes_pathguides
-
-#path guide notification
-country_event = {
-	id = great_lakes_pathguides.0
-	title = great_lakes_pathguides.0.t
-	desc = great_lakes_pathguides.0.d
-	picture = event_MAA_path_guides
-	is_triggered_only = yes
-	#fire_only_once = yes
-	option = { # 
-		name = great_lakes_pathguides.0.a
-	}
-}
 
 #Boogaloo Militias
 country_event = {
