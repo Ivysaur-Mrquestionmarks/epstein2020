@@ -196,13 +196,33 @@ American_reunification = {
     				add_core_of = ROOT
     			}
 			custom_effect_tooltip = generic_unification_tt
+
+			if = {
+				limit = {
+					has_variable = super_event
+				}
+				add_ideas = var:super_event
+			}
+			else = {
+				hidden_effect = {
+					set_country_flag = generic_american_unifier
+					country_event = {
+						id = _zzz.2 
+						days = 3
+					}
+				}
+				country_event = {
+    				id = News_events.92
+				}
+			}
+
 			if = {
 				limit = {
 					tag = PAC 
 					has_country_flag = army_state
 				}
 				country_event = {
-    				id = News_events.81
+    					id = News_events.81
 				}
 			}
 			else_if = {
@@ -302,21 +322,7 @@ American_reunification = {
     					id = News_events.21
 				}
 			}
-			else_if = {
-				limit = {
-					tag = USA
-				}
-				country_event = {
-    					id = News_events.22
-				}
-				hidden_effect = {
-					set_portraits = {
-					    character = USA_donald_trump
-					    army = { large ="GFX_portrait_unification_donald" }
-					    civilian = { large ="GFX_portrait_unification_donald" }
-					}
-				}	
-			}
+
 			else_if = {
 				limit = {
 					tag = NAV
@@ -341,18 +347,7 @@ American_reunification = {
 				}	
 			}
 			#All other reunification super events should go above this one 
-			else = {
-				hidden_effect = {
-					set_country_flag = generic_american_unifier
-					country_event = {
-						id = _zzz.2 
-						days = 3
-					}
-				}
-				country_event = {
-    				id = News_events.92
-				}
-			}
+
 		}
 	}
 }
