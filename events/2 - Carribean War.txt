@@ -352,3 +352,90 @@ country_event = {
 		effect_tooltip = { add_ideas = NIC_caribbean_intervention }
 	}
 }
+
+#Fuhrer Bukele
+country_event = {
+	id = carribean.12
+	title = carribean.12.t
+	desc = carribean.12.d
+	#picture =
+	fire_only_once = yes
+	trigger = {
+		original_tag = ELS
+		has_government = republican
+		is_subject = no
+		OR = {
+			republican > 0.70
+			has_war = yes
+		}
+	}
+	#this would debase our ideals
+	option = {
+		name = carribean.12.a
+		add_political_power = 150
+		ai_chance = {
+			factor = 0
+		}
+	}
+	#LONG LIVE BUKELE
+	option = {
+		name = carribean.12.b
+		set_portraits = {
+		    character = ELS_nayib_bukele
+		    civilian = { large ="GFX_portrait_ELS_evil_bukele" }
+		}
+		add_popularity = {
+		    ideology = autocratic
+		    popularity = 0.60
+		}
+		set_party_name = {
+		    ideology = autocratic
+		    long_name = ELS_republican_party
+		    name = ELS_republican_party
+		}
+		add_country_leader_role = {
+		    character = ELS_nayib_bukele
+		    promote_leader = yes
+		    country_leader = {
+		        ideology = fascism #should this be Social Nationalism instead? discuss.
+		        traits = {  }
+		    }
+		}
+		set_politics = {
+		    ruling_party = autocratic
+		    elections_allowed = no
+		}
+		swap_ideas = {
+			remove_idea = ELS_cecot
+			add_idea = ELS_cecot_1
+		}
+		news_event = {
+			id = carribean.13
+			hours = 12
+		}
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+#news event for Bukele self-coup
+news_event = {
+	id = carribean.13
+	title = carribean.13.t
+	desc = carribean.13.d
+	#picture =
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = carribean.13.a
+		trigger = {
+			original_tag = ELS
+		}
+	}
+	option = {
+		name = carribean.13.b
+		trigger = {
+			NOT = { original_tag = ELS }
+		}
+	}
+}
