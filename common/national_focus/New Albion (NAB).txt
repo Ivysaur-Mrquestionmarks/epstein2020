@@ -1935,7 +1935,7 @@ focus_tree = {
 		
 		cost = 4.00
 		
-		x = 25
+		x = 30
 		
 		y = 2
 		
@@ -2084,6 +2084,53 @@ focus_tree = {
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
 				    type = arms_factory 
+				    level = 1
+				    instant_build = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = NAB_Inagurate_New_Dockyards
+		
+		cost = 5.00
+		
+		x = 7
+		
+		y = 5
+		
+		relative_position_id = NAB_Victory
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NAB_Build_A_Proper_Industry
+		}
+		
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = dockyard 
+				    level = 1
+				    instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = dockyard 
+				    level = 1
+				    instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = dockyard 
 				    level = 1
 				    instant_build = yes
 				}
@@ -2959,11 +3006,11 @@ focus_tree = {
 	}
 	
 	focus = {
-		id = NAB_Air_Navy_Collaboration
+		id = NAB_Air_Navy_Coordination
 		
 		cost = 5.00
 		
-		x = 20
+		x = 19
 		
 		y = 8
 		
@@ -2975,6 +3022,7 @@ focus_tree = {
 		
 		prerequisite = { 
 			focus = NAB_Flying_In_Harsh_Spaces
+			focus = NAB_Sailing_In_Safety
 		}
 		
 		completion_reward = {
@@ -3227,7 +3275,7 @@ focus_tree = {
 		
 		cost = 5.00
 		
-		x = 15
+		x = 14
 		
 		y = 9
 		
@@ -3246,6 +3294,31 @@ focus_tree = {
 				remove_idea = NAB_Save_The_Army_Based1
 				add_idea = NAB_Save_The_Army_Based2
 			}
+		}
+		
+	}
+	
+	focus = {
+		id = NAB_Always_Learning
+		
+		cost = 5.00
+		
+		x = 16
+		
+		y = 9
+		
+		relative_position_id = NAB_Victory
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NAB_Army_Exercise
+		}
+		
+		completion_reward = {
+			add_ideas = NAB_New_Doctrines
 		}
 		
 	}
@@ -3335,11 +3408,373 @@ focus_tree = {
 	}
 	
 	focus = {
+		id = NAB_Train_Marines
+		
+		cost = 3.00
+		
+		x = 16
+		
+		y = 4
+		relative_position_id = NAB_Victory
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NAB_Use_Small_Cargo_Ships
+		}
+		
+		prerequisite = { 
+			focus = NAB_Even_Better_Guns
+		}
+		
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 2.00
+				uses = 1
+				technology = marines
+				technology = marines2
+				technology = marines3
+			}
+		}
+		
+	}
+	
+	focus = {
+		id = NAB_Develop_Subs
+		
+		cost = 3.00
+		
+		x = 18
+		
+		y = 4
+		relative_position_id = NAB_Victory
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NAB_Use_Small_Cargo_Ships
+		}
+		
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 3.00
+				uses = 2
+				category = ss_tech
+			}
+		}
+		
+	}
+	
+	focus = {
+		id = NAB_Learn_How_To_Swim
+		
+		cost = 3.00
+		
+		x = 20
+		
+		y = 5
+		relative_position_id = NAB_Victory
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NAB_Develop_Subs
+		}
+		
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = NAB_Lack_Of_A_Navy
+				add_idea = NAB_Lack_Of_A_Navy_Based
+			}
+		}
+		
+	}
+	
+	focus = {
+		id = NAB_Big_Ships
+		
+		cost = 3.00
+		
+		x = 20
+		
+		y = 6
+		relative_position_id = NAB_Victory
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NAB_Learn_How_To_Swim
+		}
+		
+		mutually_exclusive = {
+			focus = NAB_Small_Ships
+		}
+		
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 3.00
+				uses = 2
+				category = bc_tech
+			}
+			
+			add_tech_bonus = {
+				bonus = 3.00
+				uses = 2
+				category = bb_tech
+			}
+			
+			add_tech_bonus = {
+				bonus = 3.00
+				uses = 2
+				category = cv_tech
+			}
+		}
+		
+	}
+	
+	focus = {
+		id = NAB_Small_Ships
+		
+		cost = 3.00
+		
+		x = 22
+		
+		y = 6
+		relative_position_id = NAB_Victory
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NAB_Learn_How_To_Swim
+		}
+		
+		mutually_exclusive = {
+			focus = NAB_Big_Ships
+		}
+		
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 3.00
+				uses = 2
+				category = dd_tech
+			}
+			
+			add_tech_bonus = {
+				bonus = 3.00
+				uses = 2
+				category = cl_tech
+			}
+			
+			add_tech_bonus = {
+				bonus = 3.00
+				uses = 2
+				category = ca_tech
+			}
+		}
+		
+	}
+	
+	focus = {
+		id = NAB_Sailing_In_Safety
+		
+		cost = 3.00
+		
+		x = 21
+		
+		y = 7
+		relative_position_id = NAB_Victory
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NAB_Big_Ships
+			focus = NAB_Small_Ships
+		}
+		
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = NAB_Lack_Of_A_Navy_Based
+				add_idea = NAB_Lack_Of_A_Navy_Based1
+			}
+		}
+		
+	}
+	
+	focus = {
+		id = NAB_Sailing_To_Tomorrow
+		
+		cost = 3.00
+		
+		x = 21
+		
+		y = 8
+		relative_position_id = NAB_Victory
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NAB_Sailing_In_Safety
+		}
+		
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = naval_doc_bonus
+				cost_reduction = 0.5
+				uses = 2
+				category = naval_doctrine
+			}
+		}
+		
+	}
+	
+	focus = {
+		id = NAB_Navy_Exercise
+		
+		cost = 3.00
+		
+		x = 19
+		
+		y = 7
+		relative_position_id = NAB_Victory
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NAB_Big_Ships
+			focus = NAB_Small_Ships
+		}
+		
+		completion_reward = {
+			navy_experience = 50
+		}
+		
+	}
+	
+	focus = {
+		id = NAB_The_Glorious_Navy
+		
+		cost = 3.00
+		
+		x = 19
+		
+		y = 9
+		relative_position_id = NAB_Victory
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NAB_Sailing_To_Tomorrow
+		}
+		
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = NAB_Lack_Of_A_Navy_Based1
+				add_idea = NAB_Lack_Of_A_Navy_Based2
+			}
+		}
+		
+	}
+	
+	focus = {
+		id = NAB_Transport_Our_Troops
+		
+		cost = 3.00
+		
+		x = 18
+		
+		y = 6
+		relative_position_id = NAB_Victory
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NAB_Learn_How_To_Swim
+			focus = NAB_Army_Drills
+		}
+		
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 2.00
+				uses = 1
+				category = tp_tech
+			}
+			
+			add_ideas = NAB_Naval_Invasion
+		}
+		
+	}
+	
+	focus = {
+		id = NAB_Secret_Docks_In_Our_Lakes
+		
+		cost = 3.00
+		
+		x = 22
+		
+		y = 3
+		relative_position_id = NAB_Victory
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NAB_The_Army_The_Navy_And_The_Airforce
+		}
+		
+		completion_reward = {
+			add_offsite_building = { 
+				type = dockyard
+				level = 1 
+			}
+			
+			add_offsite_building = { 
+				type = dockyard
+				level = 1 
+			}
+		}
+		
+	}
+	
+	focus = {
+		id = NAB_Prepare_New_Bunkers
+		
+		cost = 1.00
+		
+		x = 25
+		
+		y = 4
+		relative_position_id = NAB_Victory
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NAB_Secret_Docks_In_Our_Lakes
+			focus = NAB_Dealing_With_Biden
+		}
+		
+		completion_reward = {
+			add_ideas = NAB_Bunkers
+		}
+		
+	}
+	
+	focus = {
 		id = NAB_Dealing_With_Canada
 		
 		cost = 5.00
 		
-		x = 26
+		x = 31
 		
 		y = 3
 		
@@ -3354,8 +3789,7 @@ focus_tree = {
 		}
 		
 		completion_reward = {
-			add_stability = 0.03
-			add_war_support = 0.03
+			add_political_power = 35
 		}
 		
 	}
@@ -3365,7 +3799,7 @@ focus_tree = {
 		
 		cost = 5.00
 		
-		x = 27
+		x = 32
 		
 		y = 4
 		
@@ -3402,7 +3836,7 @@ focus_tree = {
 		
 		cost = 1.00
 		
-		x = 25
+		x = 30
 		
 		y = 4
 		
@@ -3427,7 +3861,7 @@ focus_tree = {
 		
 		cost = 2.00
 		
-		x = 23
+		x = 28
 		
 		y = 5
 		
@@ -3471,7 +3905,7 @@ focus_tree = {
 		
 		cost = 2.00
 		
-		x = 25
+		x = 30
 		
 		y = 5
 		
@@ -3513,7 +3947,7 @@ focus_tree = {
 		
 		cost = 1.00
 		
-		x = 25
+		x = 30
 		
 		y = 6
 		
@@ -3555,7 +3989,7 @@ focus_tree = {
 		
 		cost = 2.00
 		
-		x = 27
+		x = 32
 		
 		y = 5
 		
@@ -3595,7 +4029,7 @@ focus_tree = {
 		
 		cost = 5.00
 		
-		x = 23
+		x = 28
 		
 		y = 3
 		
@@ -3620,7 +4054,7 @@ focus_tree = {
 		
 		cost = 2.00
 		
-		x = 23
+		x = 28
 		
 		y = 4
 		
@@ -3643,7 +4077,7 @@ focus_tree = {
 	focus = {
 		id = NAB_Our_First_Elections
 		
-		cost = 5.00
+		cost = 2.00
 		
 		x = -5
 		
@@ -3766,6 +4200,34 @@ focus_tree = {
 		
 		cost = 5.00
 		
+		x = -13
+		
+		y = 6
+		
+		relative_position_id = NAB_Victory
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NAB_Erect_New_Bridges
+		}
+		
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = NAB_Create_A_National_Identity_Based1
+				add_idea = NAB_Create_A_National_Identity_Based2
+			}
+		}
+		
+	}
+	
+	focus = {
+		id = NAB_Erect_New_Bridges
+		
+		cost = 3.00
+		
 		x = -12
 		
 		y = 5
@@ -3781,22 +4243,44 @@ focus_tree = {
 		}
 		
 		completion_reward = {
-			swap_ideas = {
-				remove_idea = NAB_Create_A_National_Identity_Based1
-				add_idea = NAB_Create_A_National_Identity_Based2
+			random_owned_controlled_state = {
+				add_building_construction = {
+				    type = infrastructure 
+				    level = 1
+				    instant_build = yes
+				}
+				
+			}
+			
+			random_owned_controlled_state = {
+				add_building_construction = {
+				    type = infrastructure 
+				    level = 1
+				    instant_build = yes
+				}
+				
+			}
+			
+			random_owned_controlled_state = {
+				add_building_construction = {
+				    type = infrastructure 
+				    level = 1
+				    instant_build = yes
+				}
+				
 			}
 		}
 		
 	}
 	
 	focus = {
-		id = NAB_Erect_New_Bridges
+		id = NAB_Learn_From_European_Groups
 		
-		cost = 5.00
+		cost = 1.00
 		
-		x = -13
+		x = -12
 		
-		y = 6
+		y = 7
 		
 		relative_position_id = NAB_Victory
 		
@@ -3809,38 +4293,41 @@ focus_tree = {
 		}
 		
 		completion_reward = {
-			random_owned_controlled_state = {
-				add_building_construction = {
-				    type = infrastructure 
-				    level = 1
-				    instant_build = yes
-				}
-				
-			}
-			
-			random_owned_controlled_state = {
-				add_building_construction = {
-				    type = infrastructure 
-				    level = 1
-				    instant_build = yes
-				}
-				
-			}
-			
-			random_owned_controlled_state = {
-				add_building_construction = {
-				    type = infrastructure 
-				    level = 1
-				    instant_build = yes
-				}
-				
+			country_event = {
+				id = new_abilon.19
+				days = 4
 			}
 		}
 		
 	}
 	
-	
-	
+	focus = {
+		id = NAB_Rise_And_Shine_Evropa
+		
+		cost = 1.00
+		
+		x = -13
+		
+		y = 8
+		
+		relative_position_id = NAB_Victory
+		
+		ai_will_do = { 
+			factor = 100
+		}
+		
+		prerequisite = { 
+			focus = NAB_Learn_From_European_Groups
+		}
+		
+		completion_reward = {
+			add_stability = 0.05
+			add_war_support = 0.05
+			add_political_power = 50
+			add_command_power = 10
+		}
+		
+	}
 	
 	focus = {
 		id = NAB_Victory_For_Tom_Kawczynski
