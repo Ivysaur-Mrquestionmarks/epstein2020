@@ -1,0 +1,751 @@
+focus_tree = {
+	id = las_vegas
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = LAS
+		}
+	}
+	default = no
+	focus = {
+		id = LAS_sin_city
+		icon = GFX_goal_unknown
+		cost = 1.00
+		x = 8
+		y = 0
+		completion_reward = {
+			add_political_power = 10
+			add_popularity = {
+				ideology = democrat
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = republican
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = autocratic
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = authoritarian_left
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = libertarian_left
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = libertarian_right
+				popularity = 0.05
+			}
+		}
+
+	}
+	focus = {
+		id = LAS_institute_casino_tax
+		icon = GFX_goal_unknown
+		cost = 5.00
+		x = 11
+		y = 0
+		available = {
+			has_completed_focus = LAS_viva_las_vegas
+		}
+		completion_reward = {
+			add_ideas = LAS_casino_tax_spirit
+			add_power_balance_value = {
+    			id = LAS_casinos_vs_people_bop
+    			value = 0.05
+    			tooltip_side = people_favored
+			}
+		}
+
+	}
+	focus = {
+		id = LAS_develop_south
+		icon = GFX_goal_unknown
+		cost = 5.00
+		x = 13
+		y = 0
+		available = {
+			has_completed_focus = LAS_viva_las_vegas
+		}
+		completion_reward = {
+			33 = {
+				set_state_category = large_town
+			}
+			add_resource = {
+			    type = steel
+			    amount = 12
+			    state = 33
+			}
+			add_resource = {
+			    type = tungsten
+			    amount = 6
+			    state = 33
+			}
+		}
+
+	}
+	focus = {
+		id = LAS_great_mormon_war
+		icon = GFX_goal_unknown
+		cost = 1.00
+		x = 3
+		y = 0
+		available = {
+			always = no
+		}
+		bypass = {
+			has_war_with = UTA
+		}
+
+	}
+	focus = {
+		id = LAS_las_vegas_airforce
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = LAS_great_mormon_war
+		}
+		x = 1
+		y = 1
+		completion_reward = {
+			air_experience = 100
+			add_tech_bonus = {
+    			bonus = 0.85
+    			uses = 3
+    			category = air_equipment
+			}
+		}
+
+	}
+	focus = {
+		id = LAS_lessons_of_mormon_war
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = LAS_great_mormon_war
+		}
+		x = 3
+		y = 1
+		completion_reward = {
+			army_experience = 50
+			air_experience = 25
+			add_doctrine_cost_reduction = {
+				cost_reduction = 1.0
+				uses = 1
+				category = land_doctrine
+			}
+		}
+
+	}
+	focus = {
+		id = LAS_doctrinal_hegemony
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = LAS_lessons_of_mormon_war
+		}
+		prerequisite = {
+			focus = LAS_las_vegas_airforce
+		}
+		x = 2
+		y = 2
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.90
+				uses = 2
+				category = land_doctrine
+			}
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.90
+				uses = 2
+				category = air_doctrine
+			}
+		}
+
+	}
+	focus = {
+		id = LAS_desert_rats
+		icon = GFX_goal_unknown
+		cost = 2.00
+		prerequisite = {
+			focus = LAS_great_mormon_war
+		}
+		x = 5
+		y = 1
+		completion_reward = {
+			LAS_joe_lombardo = {
+				add_unit_leader_trait = desert_fox
+			}
+			LAS_case_cunningham = {
+				add_unit_leader_trait = desert_fox
+			}
+			LAS_michael_butler = {
+				add_unit_leader_trait = desert_fox
+			}
+		}
+
+	}
+	focus = {
+		id = LAS_create_minutemen
+		icon = GFX_goal_unknown
+		cost = 4.00
+		prerequisite = {
+			focus = LAS_lessons_of_mormon_war
+		}
+		prerequisite = {
+			focus = LAS_desert_rats
+		}
+		x = 4
+		y = 2
+		completion_reward = {
+			add_manpower = 1000
+			load_oob = "LAS_minutemen"
+			add_power_balance_value = {
+    			id = LAS_casinos_vs_people_bop
+    			value = 0.05
+    			tooltip_side = people_favored
+			}
+		}
+
+	}
+	focus = {
+		id = LAS_business_is_pleasure
+		icon = GFX_goal_unknown
+		cost = 4.00
+		prerequisite = {
+			focus = LAS_sin_city
+		}
+		x = 8
+		y = 1
+		completion_reward = {
+			set_power_balance = {
+				id = LAS_casinos_vs_people_bop
+			}
+		}
+
+	}
+	focus = {
+		id = LAS_enlist_casino_security
+		icon = GFX_goal_unknown
+		cost = 4.00
+		prerequisite = {
+			focus = LAS_business_is_pleasure
+		}
+		x = 7
+		y = 2
+		completion_reward = {
+			add_ideas = LAS_casino_security_levies
+			add_power_balance_value = {
+    			id = LAS_casinos_vs_people_bop
+    			value = -0.10
+    			tooltip_side = casino_favored
+			}
+		}
+
+	}
+	focus = {
+		id = LAS_bolster_casino_seecurity
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = LAS_doctrinal_hegemony
+		}
+		prerequisite = {
+			focus = LAS_create_minutemen
+		}
+		prerequisite = {
+			focus = LAS_enlist_casino_security
+		}
+		x = 3
+		y = 3
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = LAS_casino_security_levies
+				add_idea = LAS_casino_security_levies_1
+			}
+			add_power_balance_value = {
+    			id = LAS_casinos_vs_people_bop
+    			value = -0.05
+    			tooltip_side = casino_favored
+			}
+		}
+
+	}
+	focus = {
+		id = LAS_raise_militias
+		icon = GFX_goal_unknown
+		cost = 4.00
+		prerequisite = {
+			focus = LAS_business_is_pleasure
+		}
+		x = 9
+		y = 2
+		completion_reward = {
+			add_ideas = LAS_las_vegas_militiamen
+			add_power_balance_value = {
+    			id = LAS_casinos_vs_people_bop
+    			value = 0.10
+    			tooltip_side = people_favored
+			}
+		}
+
+	}
+	focus = {
+		id = LAS_viva_las_vegas
+		icon = GFX_goal_unknown
+		cost = 3.00
+		prerequisite = {
+			focus = LAS_raise_militias
+			focus = LAS_enlist_casino_security
+		}
+		x = 8
+		y = 3
+		completion_reward = {
+
+				#####################################
+				#	ENABLES THE GAMBLING MECHANIC	#
+				#####################################
+
+		}
+
+	}
+	focus = {
+		id = LAS_fear_and_loathing
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = LAS_viva_las_vegas
+		}
+		x = 4
+		y = 4
+
+	}
+	focus = {
+		id = LAS_assemble_families
+		icon = GFX_goal_unknown
+		cost = 4.00
+		prerequisite = {
+			focus = LAS_fear_and_loathing
+		}
+		x = 2
+		y = 5
+
+	}
+	focus = {
+		id = LAS_entertainment_industry
+		icon = GFX_goal_unknown
+		cost = 4.00
+		prerequisite = {
+			focus = LAS_fear_and_loathing
+		}
+		x = 6
+		y = 5
+
+	}
+	focus = {
+		id = LAS_fortify_southern_border
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = LAS_viva_las_vegas
+		}
+		x = 8
+		y = 4
+
+	}
+	focus = {
+		id = LAS_twenty_two_years
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = LAS_viva_las_vegas
+		}
+		x = 12
+		y = 4
+
+	}
+	focus = {
+		id = LAS_orthodox_approach
+		icon = GFX_goal_unknown
+		cost = 4.00
+		prerequisite = {
+			focus = LAS_twenty_two_years
+		}
+		x = 8
+		y = 5
+
+	}
+	focus = {
+		id = LAS_covert_loyalism
+		icon = GFX_goal_unknown
+		cost = 4.00
+		prerequisite = {
+			focus = LAS_orthodox_approach
+		}
+		x = 8
+		y = 6
+
+	}
+	focus = {
+		id = LAS_overt_loyalism
+		icon = GFX_goal_unknown
+		cost = 4.00
+		prerequisite = {
+			focus = LAS_covert_loyalism
+		}
+		x = 8
+		y = 7
+
+	}
+	focus = {
+		id = LAS_groom_the_successor
+		icon = GFX_goal_unknown
+		cost = 3.00
+		prerequisite = {
+			focus = LAS_twenty_two_years
+		}
+		x = 12
+		y = 5
+
+	}
+	focus = {
+		id = LAS_safeguard_democracy
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = LAS_orthodox_approach
+			focus = LAS_groom_the_successor
+		}
+		x = 10
+		y = 6
+
+	}
+	focus = {
+		id = LAS_anti_mob_raids
+		icon = GFX_goal_unknown
+		cost = 2.00
+		prerequisite = {
+			focus = LAS_safeguard_democracy
+		}
+		x = 10
+		y = 7
+
+	}
+	focus = {
+		id = LAS_public_works
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = LAS_institute_casino_tax
+		}
+		x = 11
+		y = 1
+
+	}
+	focus = {
+		id = LAS_invite_arms_dealers
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = LAS_public_works
+		}
+		x = 11
+		y = 2
+
+	}
+	focus = {
+		id = LAS_build_more_casinos
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = LAS_develop_south
+		}
+		x = 13
+		y = 1
+
+	}
+	focus = {
+		id = LAS_colorado_river_irrigation_programme
+		icon = GFX_goal_unknown
+		cost = 7.00
+		prerequisite = {
+			focus = LAS_build_more_casinos
+		}
+		x = 13
+		y = 2
+
+	}
+	focus = {
+		id = LAS_bright_light_of_mojave
+		icon = GFX_goal_unknown
+		cost = 10.00
+		prerequisite = {
+			focus = LAS_colorado_river_irrigation_programme
+			focus = LAS_invite_arms_dealers
+		}
+		x = 12
+		y = 3
+
+	}
+	focus = {
+		id = LAS_purple_star
+		icon = GFX_goal_unknown
+		cost = 4.00
+		prerequisite = {
+			focus = LAS_twenty_two_years
+		}
+		x = 16
+		y = 5
+
+	}
+	focus = {
+		id = LAS_casino_monarchism
+		icon = GFX_goal_unknown
+		cost = 4.00
+		prerequisite = {
+			focus = LAS_purple_star
+			focus = LAS_groom_the_successor
+		}
+		x = 14
+		y = 6
+
+	}
+	focus = {
+		id = LAS_monarcho_biden_synthesis
+		icon = GFX_goal_unknown
+		cost = 4.00
+		prerequisite = {
+			focus = LAS_casino_monarchism
+		}
+		x = 14
+		y = 7
+
+	}
+	focus = {
+		id = LAS_gangster_army
+		icon = GFX_goal_unknown
+		cost = 4.00
+		prerequisite = {
+			focus = LAS_assemble_families
+		}
+		x = 2
+		y = 6
+
+	}
+	focus = {
+		id = LAS_business_as_usual
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = LAS_entertainment_industry
+			focus = LAS_assemble_families
+		}
+		x = 4
+		y = 6
+
+	}
+	focus = {
+		id = LAS_wizard_unions
+		icon = GFX_goal_unknown
+		cost = 4.00
+		prerequisite = {
+			focus = LAS_entertainment_industry
+		}
+		x = 6
+		y = 6
+
+	}
+	focus = {
+		id = LAS_calling_in_a_favour
+		icon = GFX_goal_unknown
+		cost = 4.00
+		prerequisite = {
+			focus = LAS_groom_the_successor
+		}
+		x = 12
+		y = 6
+
+	}
+	focus = {
+		id = LAS_hold_parade
+		icon = GFX_goal_unknown
+		cost = 4.00
+		prerequisite = {
+			focus = LAS_purple_star
+		}
+		x = 16
+		y = 6
+
+	}
+	focus = {
+		id = LAS_prepare_the_coup
+		icon = GFX_goal_unknown
+		cost = 3.00
+		prerequisite = {
+			focus = LAS_gangster_army
+		}
+		x = 2
+		y = 7
+
+	}
+	focus = {
+		id = LAS_honouring_elvis
+		icon = GFX_goal_unknown
+		cost = 4.00
+		prerequisite = {
+			focus = LAS_business_as_usual
+		}
+		x = 4
+		y = 7
+
+	}
+	focus = {
+		id = LAS_win_over_people
+		icon = GFX_goal_unknown
+		cost = 4.00
+		prerequisite = {
+			focus = LAS_wizard_unions
+		}
+		x = 6
+		y = 7
+
+	}
+	focus = {
+		id = LAS_entrench_goodmanism
+		icon = GFX_goal_unknown
+		cost = 4.00
+		prerequisite = {
+			focus = LAS_calling_in_a_favour
+		}
+		x = 12
+		y = 7
+
+	}
+	focus = {
+		id = LAS_control_people
+		icon = GFX_goal_unknown
+		cost = 4.00
+		prerequisite = {
+			focus = LAS_hold_parade
+		}
+		x = 16
+		y = 7
+
+	}
+	focus = {
+		id = LAS_the_coup
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = LAS_prepare_the_coup
+		}
+		mutually_exclusive = {
+			focus = LAS_sixteen_ninety
+			focus = LAS_the_compromise
+			focus = LAS_pass_the_torch
+			focus = LAS_force_election
+			focus = LAS_magical_strike
+		}
+		x = 2
+		y = 8
+
+	}
+	focus = {
+		id = LAS_magical_strike
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = LAS_win_over_people
+		}
+		mutually_exclusive = {
+			focus = LAS_sixteen_ninety
+			focus = LAS_the_compromise
+			focus = LAS_pass_the_torch
+			focus = LAS_force_election
+			focus = LAS_the_coup
+		}
+		x = 6
+		y = 8
+
+	}
+	focus = {
+		id = LAS_force_election
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = LAS_overt_loyalism
+		}
+		mutually_exclusive = {
+			focus = LAS_sixteen_ninety
+			focus = LAS_the_compromise
+			focus = LAS_pass_the_torch
+			focus = LAS_magical_strike
+			focus = LAS_the_coup
+		}
+		x = 8
+		y = 8
+
+	}
+	focus = {
+		id = LAS_pass_the_torch
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = LAS_entrench_goodmanism
+		}
+		mutually_exclusive = {
+			focus = LAS_sixteen_ninety
+			focus = LAS_the_compromise
+			focus = LAS_force_election
+			focus = LAS_magical_strike
+			focus = LAS_the_coup
+		}
+		x = 12
+		y = 8
+
+	}
+	focus = {
+		id = LAS_sixteen_ninety
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = LAS_control_people
+		}
+		mutually_exclusive = {
+			focus = LAS_the_compromise
+			focus = LAS_pass_the_torch
+			focus = LAS_force_election
+			focus = LAS_magical_strike
+			focus = LAS_the_coup
+		}
+		x = 16
+		y = 8
+
+	}
+	focus = {
+		id = LAS_the_compromise
+		icon = GFX_goal_unknown
+		cost = 5.00
+		prerequisite = {
+			focus = LAS_entrench_goodmanism
+			focus = LAS_control_people
+		}
+		prerequisite = {
+			focus = LAS_monarcho_biden_synthesis
+		}
+		mutually_exclusive = {
+			focus = LAS_sixteen_ninety
+			focus = LAS_pass_the_torch
+			focus = LAS_force_election
+			focus = LAS_magical_strike
+			focus = LAS_the_coup
+		}
+		x = 14
+		y = 8
+
+	}
+}

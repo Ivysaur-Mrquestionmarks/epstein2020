@@ -179,8 +179,10 @@ American_reunification = {
 		available = {
 			all_of_scopes = {
     				array = global.part_of_USA
-				is_owned_by = ROOT
-				owner = { is_ally_with = ROOT }
+				OR = {
+					is_owned_by = ROOT
+					owner = { is_ally_with = ROOT }
+				}
 			}
 
 			ROOT = {
@@ -201,7 +203,7 @@ American_reunification = {
 			hidden_effect = {
 				set_country_flag = winner_of_the_2ACW
 			}
-			add_stability = 0.10
+			
 			for_each_scope_loop = {
     				array = global.part_of_USA
     				add_core_of = ROOT
@@ -215,6 +217,7 @@ American_reunification = {
 				add_ideas = var:super_event
 			}
 			else = {
+				add_stability = 0.10
 				hidden_effect = {
 					set_country_flag = generic_american_unifier
 					country_event = {
@@ -223,141 +226,25 @@ American_reunification = {
 					}
 				}
 				country_event = {
-    				id = News_events.92
+    					id = News_events.92
 				}
 			}
 
-			if = {
-				limit = {
-					tag = PAC 
-					has_country_flag = army_state
-				}
-				country_event = {
-    					id = News_events.81
-				}
-			}
-			else_if = {
-				limit = {
-					tag = HOP
-					has_completed_focus = HOP_jester
-				}
-				country_event = {
-    				id = News_events.82
-				}
-			}
-			else_if = { 
-				limit = {
-					tag = CSA 
-					has_focus_tree = csa_jesus
-				}
-				country_event = {
-    				id = News_events.84
-				}
-			}
-			else_if = { 
-				limit = {
-					tag = CSA 
-					NOT = {has_focus_tree = csa_jesus}
-				}
-				country_event = {
-    				id = News_events.85
-				}
-			}
-			else_if = { 
-				limit = {
-					original_tag = TEX 
-					has_country_leader = {
-						character = TEX_ted_cruz
-						ruling_only = yes
-					}
-				}
-				country_event = {
-    				id = News_events.20
-				}
-			}
-			else_if = { 
-				limit = {
-					original_tag = IDA 
-					has_cosmetic_tag = IDA_Nauvoo
-				}
-				country_event = {
-    				id = News_events.96
-				}
-			}
-			else_if = { 
-				limit = {
-					original_tag = IDA 
-					has_cosmetic_tag = IDA_Occidencia
-				}
-				hidden_effect = {
-					country_event = {
-						id = idaho_rework.284
-						days = 10
-					}
-				}
-				country_event = {
-    				id = News_events.97
-				}
-			}
-			else_if = { 
-				limit = {
-					original_tag = IDA 
-					has_cosmetic_tag = IDA_Pax_Americana
-				}
-				hidden_effect = {
-					country_event = {
-						id = idaho_rework.285
-						days = 10
-					}
-				}
-				country_event = {
-    				id = News_events.98
-				}
-			}
+
 			#else_if = { 
 			#	limit = {
-			#		original_tag = NRA
-			#		has_government = authoritarian_left 
+			#		original_tag = TEX 
+			#		has_country_leader = {
+			#			character = TEX_ted_cruz
+			#			ruling_only = yes
+			#		}
 			#	}
-			#
 			#	country_event = {
-    		#			id = News_events.19
+    			#	id = News_events.20
 			#	}
 			#}
-			else_if = {
-				limit = {
-					tag = KKK
-				}
-				remove_mission = KKK_time
-				country_event = {
-    					id = News_events.21
-				}
-			}
 
-			else_if = {
-				limit = {
-					tag = NAV
-					has_country_leader = {
-						character = NAV_wahsayah_whitebird
-						ruling_only = yes
-					}
-				}
-				country_event = {
-    					id = hoya_heya.19
-				}
-				hidden_effect = {
-					#set_country_flag = generic_american_unifier
-					#country_event = {
-    					#	id = _zzz.2 
-					#	days = 3
-					#}
-					set_portraits = {
-					    character = NAV_wahsayah_whitebird
-					    civilian = { large ="GFX_portrait_NAV_president_whitebird" }
-					}
-				}	
-			}
-			#All other reunification super events should go above this one 
+			 
 
 		}
 	}
