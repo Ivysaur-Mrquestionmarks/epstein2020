@@ -454,11 +454,25 @@ news_event = {
 	id = gkj.21
 	title = gkj.21.t
 	desc = gkj.21.d
-	picture = vatican_burning
+	picture = event_news_jeb_returns
 	is_triggered_only = yes
 	#fire_only_once = yes
 	option = {
 		name = gkj.21.a
-		
+		if = {
+			limit = { is_ai = no }
+			set_country_flag = {
+    				flag = super_event
+    				value = 48
+			}
+			if = { 
+				limit = { has_global_flag = SuperEventsWillBePlayed_flag }
+				if = { 
+					limit = { NOT= { any_other_country = { has_country_flag = super_event } } }
+					sound_effect = "god_king_jeb_unification_track"
+					play_song = "one_minute_of_silence"
+				}
+			}
+		}
 	}
 }
