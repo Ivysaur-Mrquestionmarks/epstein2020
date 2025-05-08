@@ -1875,17 +1875,21 @@ focus_tree = {
 		relative_position_id = GKJ_the_chinese_puppet
 		available = {
 			has_completed_focus = GKJ_burn_portland
-			all_state = {	
+			all_of_scopes = {
+    				array = global.part_of_USA
 				OR = {
-					NOT = {has_state_flag = part_of_america}
 					is_owned_by = ROOT
 					owner = { is_ally_with = ROOT }
-					owner = { tag = AFR }
-					AND = {
-						ROOT = {original_tag = HOP}
-						owner = { tag = KKK }
+				}
+			}
+			ROOT = {
+				if = {
+					limit = {
+						is_in_faction = yes
 					}
-				}		
+					is_faction_leader = yes
+				}
+				is_subject = no
 			}
 		}
 		prerequisite = {
@@ -1898,7 +1902,13 @@ focus_tree = {
 			focus = GKJ_cleanse_cali	
 		}
 		completion_reward = {
-			
+			core_america = yes
+			hidden_effect = { 
+				add_ideas = var:super_event
+				set_country_flag = winner_of_the_2ACW
+			}
+			custom_effect_tooltip = generic_unification_tt
+			set_cosmetic_tag = GKJ_america_tag
 		}
 
 	}
@@ -2766,7 +2776,7 @@ focus_tree = {
 			owns_state = 495
 		}
 		completion_reward = {
-			
+			country_event = gkj.22
 		}
 
 	}
