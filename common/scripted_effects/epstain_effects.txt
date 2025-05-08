@@ -412,41 +412,37 @@ USA_opp_worsens = {
 reconquer_america = {
 	hidden_effect = {				
 		every_state  = {
-			limit = { has_state_flag = part_of_america }
-			every_country = {
-				limit = { controls_state = PREV }
-				set_country_flag = controls_american_state
+			limit = { 
+				any_state_in  = {
+					array = global.part_of_USA
+				}
 			}
-		}
-	}
-	every_country = {
-		limit = {
-			AND = {
-				has_country_flag = controls_american_state
-				NOT = { 
-					original_tag = ROOT
-					is_in_faction_with = ROOT
+			every_country = {
+				limit = {
+					AND = {
+						controls_state = PREV 
+						NOT = { 
+							original_tag = ROOT
+							is_in_faction_with = ROOT
+						}
+					}
+				}
+				ROOT = {
+					create_wargoal = {
+						target = PREV
+						type = annex_everything
+					}
 				}
 			}
 		}
-		ROOT = {
-			create_wargoal = {
-				target = PREV
-				type = annex_everything
-			}
-		}
-	}
-	every_country = {
-		limit = { has_country_flag = controls_american_state }
-		clr_country_flag = controls_american_state
 	}
 	custom_effect_tooltip = bring_america_under_grip_tt
 }
 core_america = {
 	hidden_effect = {
-		every_state  = {
-			limit = { has_state_flag = part_of_america }
-			add_core_of = ROOT
+		for_each_scope_loop = {
+    		array = global.part_of_USA
+    		add_core_of = ROOT
 		}
 	}
 	custom_effect_tooltip = reborn_USA_we_will_core_america_tt
@@ -652,10 +648,4 @@ NAB_spawn = {
 		
 		
 	}
-	
-	
-	
-	
-	
-	
 }
