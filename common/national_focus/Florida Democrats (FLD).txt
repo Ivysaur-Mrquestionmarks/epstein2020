@@ -636,7 +636,7 @@
 		cost = 3
 		prerequisite = { focus = FLD_a_new_florida }
 		relative_position_id = FLD_a_new_florida
-		x = 18
+		x = 28
 		y = 1
 		completion_reward = {
 			add_tech_bonus = {
@@ -648,6 +648,7 @@
 		}
 
 	}
+	
 	focus = {
 		id = FLD_reestablish_international_trade
 		icon = GFX_goal_FLO_trade
@@ -669,21 +670,92 @@
 			focus = FLD_reestablish_international_trade
 		}
 		relative_position_id = FLD_reestablish_international_trade
-		x = 0
+		x = 1
 		y = 1
 		completion_reward = {
 		}
 	}
 	focus = {
-		id = FLD_invite_foreign_investors
-		icon = GFX_goal_FLO_tax_cuts
+		id = FLD_rebuild_themeparks
+		icon = GFX_goal_FLO_expand_entirtainment
 		cost = 5
+		prerequisite = { 
+			focus = FLD_reestablish_international_trade
+		}
+		relative_position_id = FLD_reestablish_international_trade
+		x = -1
+		y = 1
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = FLD_regrant_special_tax_zones
+		icon = GFX_goal_FLO_expand_entirtainment
+		cost = 5
+		prerequisite = { 
+			focus = FLD_rebuild_themeparks
+		}
 		prerequisite = { 
 			focus = FLD_tourist_industry
 		}
 		relative_position_id = FLD_tourist_industry
 		x = -1
-		y = 2
+		y = 1
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = FLD_expand_miami_manufacturing
+		icon = GFX_goal_FLO_trade
+		cost = 5
+		prerequisite = { 
+			focus = FLD_what_we_once_had
+		}
+		relative_position_id = FLD_what_we_once_had
+		x = 6
+		y = 1
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = FLD_expand_networks
+		icon = GFX_goal_FLO_expand_entirtainment
+		cost = 5
+		prerequisite = { 
+			focus = FLD_expand_miami_manufacturing
+		}
+		relative_position_id = FLD_expand_miami_manufacturing
+		x = 1
+		y = 1
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = FLD_employment_for_migrants
+		icon = GFX_goal_FLO_expand_entirtainment
+		cost = 5
+		prerequisite = { 
+			focus = FLD_expand_miami_manufacturing
+		}
+		relative_position_id = FLD_expand_miami_manufacturing
+		x = -1
+		y = 1
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = FLD_support_small_businesses
+		icon = GFX_goal_FLO_expand_entirtainment
+		cost = 5
+		prerequisite = { 
+			focus = FLD_employment_for_migrants
+		}
+		prerequisite = { 
+			focus = FLD_expand_networks
+		}
+		relative_position_id = FLD_expand_networks
+		x = -1
+		y = 1
 		completion_reward = {
 		}
 	}
@@ -708,7 +780,7 @@
 			focus = FLD_everglade_protection_act
 		}
 		relative_position_id = FLD_everglade_protection_act
-		x = 0
+		x = 1
 		y = 1
 		completion_reward = {
 		}
@@ -718,31 +790,47 @@
 		icon = GFX_goal_FLD_Clean_Up_the_Beaches
 		cost = 5
 		prerequisite = { 
-			focus = FLD_reforestation
+			focus = FLD_everglade_protection_act
 		}
-		relative_position_id = FLD_reforestation
-		x = 0
+		relative_position_id = FLD_everglade_protection_act
+		x = -1
 		y = 1
 		completion_reward = {
 		}
 	}
 	focus = {
-		id = FLD_improved_quality_of_life
-		icon = GFX_goal_Univesrty
-		cost = 5
+		id = FLD_water_management
+		icon = GFX_goal_FLD_Water_Management
+		cost = 3
 		prerequisite = { 
-			focus = FLD_clean_up_the_beaches
+			focus = FLD_reforestation
 		}
 		prerequisite = { 
-			focus = FLD_water_management
+			focus = FLD_clean_up_the_beaches
 		}
 		relative_position_id = FLD_clean_up_the_beaches
 		x = 1
 		y = 1
 		completion_reward = {
-			add_research_slot = 1
+			every_state = {
+				limit = { OR = { state = 579 state = 346 state = 584 state = 581 } }
+				if = {
+					limit = {
+						free_building_slots = {
+							building = infrastructure 
+							size > 1
+							include_locked = yes
+						}
+						#is_core_of = ROOT
+					}
+					add_building_construction = {
+						type = infrastructure
+						level = 2
+						instant_build = yes
+					}
+				}
+			}
 		}
-
 	}
 	focus = {
 		id = FLD_internal_florida_infrastructure
@@ -752,7 +840,7 @@
 			focus = FLD_what_we_once_had
 		}
 		relative_position_id = FLD_what_we_once_had
-		x = 0
+		x = -6
 		y = 1
 		completion_reward = {
 			build_railway = {
@@ -770,12 +858,6 @@
 			build_railway = {
 				path = { 11157 2946 5941 11207 5431 }
 			}
-			#add_building_construction = {
-			#	type = supply_node
-			#	level = 1
-			#	province = 2182
-			#	instant_build = yes
-			#}
 		}
 
 	}
@@ -787,7 +869,7 @@
 			focus = FLD_internal_florida_infrastructure
 		}
 		relative_position_id = FLD_internal_florida_infrastructure
-		x = 0
+		x = 1
 		y = 1
 		completion_reward = {
 			every_state = {
@@ -814,56 +896,59 @@
 
 	}
 	focus = {
-		id = FLD_water_management
-		icon = GFX_goal_FLD_Water_Management
-		cost = 3
+		id = FLD_improved_quality_of_life
+		icon = GFX_goal_Univesrty
+		cost = 5
 		prerequisite = { 
-			focus = FLD_invest_in_civilian_industries
+			focus = FLD_internal_florida_infrastructure
 		}
-		relative_position_id = FLD_invest_in_civilian_industries
-		x = 0
+		relative_position_id = FLD_internal_florida_infrastructure
+		x = -1
 		y = 1
 		completion_reward = {
-			every_state = {
-				limit = { OR = { state = 579 state = 346 state = 584 state = 581 } }
-				if = {
-					limit = {
-						free_building_slots = {
-							building = infrastructure 
-							size > 1
-							include_locked = yes
-						}
-						#is_core_of = ROOT
-					}
-					add_building_construction = {
-						type = infrastructure
-						level = 2
-						instant_build = yes
-					}
-				}
-			}
+			add_research_slot = 1
 		}
 	}
 	focus = {
-		id = FLD_new_era_for_florida
-		icon = GFX_goal_FLO_open
+		id = FLD_invite_foreign_investors
+		icon = GFX_goal_FLO_tax_cuts
 		cost = 5
 		prerequisite = { 
 			focus = FLD_improved_quality_of_life
 		}
 		prerequisite = { 
-			#focus = FLD_coastal_patrol_vessels
+			focus = FLD_invest_in_civilian_industries
 		}
-		prerequisite = { 
-			focus = FLD_invite_foreign_investors
-		}
-		relative_position_id = FLD_water_management
-		x = 0
-		y = 2
+		relative_position_id = FLD_invest_in_civilian_industries
+		x = -1
+		y = 1
 		completion_reward = {
 		}
 	}
 	
+	
+	focus = {
+		id = FLD_new_era_for_florida
+		icon = GFX_goal_FLO_open
+		cost = 5
+		prerequisite = { 
+			focus = FLD_water_management
+		}
+		prerequisite = { 
+			focus = FLD_invite_foreign_investors
+		}
+		prerequisite = { 
+			focus = FLD_regrant_special_tax_zones
+		}
+		prerequisite = { 
+			focus = FLD_support_small_businesses
+		}
+		relative_position_id = FLD_water_management
+		x = 2
+		y = 1
+		completion_reward = {
+		}
+	}
 	
 	
 	#### Elections ####
@@ -1016,11 +1101,11 @@
 			focus = FLD_silicon_valley_of_the_east
 		}
 		prerequisite = {
-			focus = FLD_smart_plan
+			#focus = FLD_smart_plan
 		}
-		relative_position_id = FLD_smart_plan
-		x = -1
-		y = 2
+		relative_position_id = FLD_silicon_valley_of_the_east
+		x = 1
+		y = 1
 		completion_reward = {
 		}
 	}
@@ -1060,33 +1145,33 @@
 	}
 	focus = {
 		id = FLD_bastion_of_the_establishment
-		icon = GFX_goal_Celebrate_the_Establishment
+		icon = GFX_goal_TEX_Work_With_Moderate_Democrats
 		cost = 7
 		prerequisite = { 
 			focus = FLD_demings
 		}
 		relative_position_id = FLD_demings
-		x = -3
+		x = -5
 		y = 1
 		completion_reward = {
 		}
 	}
 	focus = {
 		id = FLD_focus_on_agriculture
-		icon = GFX_goal_FLO_invest_in_ag
+		icon = GFX_focus_NPA_Upgrade_Of_The_Agricultural_Sector_2
 		cost = 7
 		prerequisite = { 
 			focus = FLD_bastion_of_the_establishment
 		}
 		relative_position_id = FLD_bastion_of_the_establishment
-		x = -1
+		x = -2
 		y = 1
 		completion_reward = {
 		}
 	}
 	focus = {
 		id = FLD_female_stem_education
-		icon = GFX_goal_FLO_STEM
+		icon = GFX_goal_FRA_free_higher_education
 		cost = 7
 		prerequisite = { 
 			focus = FLD_focus_on_agriculture
@@ -1100,44 +1185,13 @@
 
 	}
 	focus = {
-		id = FLD_reduce_carbon_emissions
-		icon = GFX_goal_Generic_Factory_Complex
-		cost = 7
-		prerequisite = { 
-			focus = FLD_funding_for_abortion
-		}
-		prerequisite = { 
-			focus = FLD_female_stem_education
-		}
-		relative_position_id = FLD_female_stem_education
-		x = 1
-		y = 1
-		completion_reward = {
-
-		}
-
-	}
-	focus = {
-		id = FLD_close_the_wage_gap
-		icon = GFX_goal_Stimulus_Check_Stubs
+		id = FLD_funding_for_abortion
+		icon = GFX_goal_TEX_protect_abortions
 		cost = 7
 		prerequisite = { 
 			focus = FLD_bastion_of_the_establishment
 		}
 		relative_position_id = FLD_bastion_of_the_establishment
-		x = 1
-		y = 1
-		completion_reward = {
-		}
-	}
-	focus = {
-		id = FLD_funding_for_abortion
-		icon = GFX_goal_FLO_abolish_abortions
-		cost = 7
-		prerequisite = { 
-			focus = FLD_close_the_wage_gap
-		}
-		relative_position_id = FLD_close_the_wage_gap
 		x = 0
 		y = 1
 		completion_reward = {
@@ -1145,28 +1199,57 @@
 	}
 	focus = {
 		id = FLD_woman_of_the_people
-		icon = GFX_goal_A_Woman_in_Power
+		icon = GFX_goal_TEX_continue_progressive_policies
 		cost = 10
 		prerequisite = {
-			focus = FLD_reduce_carbon_emissions
+			focus = FLD_funding_for_abortion
+		}
+		relative_position_id = FLD_funding_for_abortion
+		x = 0
+		y = 1
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = FLD_entrench_the_democrats
+		icon = GFX_goal_VIR_reunite_the_left
+		cost = 10
+		prerequisite = {
+			focus = FLD_female_stem_education
 		}
 		prerequisite = {
-			focus = FLD_progressive_movement
+			focus = FLD_woman_of_the_people
 		}
-		relative_position_id = FLD_reduce_carbon_emissions
-		x = 3
+		relative_position_id = FLD_woman_of_the_people
+		x = -1
+		y = 1
+		completion_reward = {
+		}
+	}
+	
+	
+	
+	focus = {
+		id = FLD_progressive_movement
+		icon = GFX_goal_TEX_reconcile_progressives
+		cost = 10.00
+		prerequisite = { 
+			focus = FLD_demings
+		}
+		relative_position_id = FLD_demings
+		x = 5
 		y = 1
 		completion_reward = {
 		}
 	}
 	focus = {
 		id = FLD_ban_firearms
-		icon = GFX_goal_We_Need_Guns
+		icon = GFX_goal_VIR_stricter_gun_laws
 		cost = 7
 		prerequisite = { 
-			focus = FLD_demings
+			focus = FLD_progressive_movement
 		}
-		relative_position_id = FLD_demings
+		relative_position_id = FLD_progressive_movement
 		x = 0
 		y = 1
 		completion_reward = {
@@ -1174,7 +1257,7 @@
 	}
 	focus = {
 		id = FLD_defund_the_police
-		icon = GFX_goal_Policeless_Society
+		icon = GFX_focus_defund_police
 		cost = 7
 		prerequisite = { 
 			focus = FLD_ban_firearms
@@ -1187,12 +1270,12 @@
 	}
 	focus = {
 		id = FLD_universal_healthcare
-		icon = GFX_goal_A_better_VA
+		icon = GFX_goal_Obamacare
 		cost = 7
 		prerequisite = { 
-			focus = FLD_demings
+			focus = FLD_progressive_movement
 		}
-		relative_position_id = FLD_demings
+		relative_position_id = FLD_progressive_movement
 		x = 2
 		y = 1
 		completion_reward = {
@@ -1200,7 +1283,7 @@
 	}
 	focus = {
 		id = FLD_legalize_marijuana
-		icon = GFX_goal_Black_Market
+		icon = GFX_goal_OBX_recreational_drug_usage
 		cost = 7
 		prerequisite = { 
 			focus = FLD_universal_healthcare
@@ -1227,55 +1310,203 @@
 		completion_reward = {
 		}
 	}
+	
 	focus = {
-		id = FLD_limit_offshore_drilling
-		icon = GFX_goal_Alt_Energy
+		id = FLD_close_the_wage_gap
+		icon = GFX_goal_Stimulus_Check_Stubs
 		cost = 7
 		prerequisite = { 
-			focus = FLD_demings
+			focus = FLD_progressive_movement
+			focus = FLD_bastion_of_the_establishment
 		}
-		relative_position_id = FLD_demings
-		x = 4
-		y = 2
+		relative_position_id = FLD_progressive_movement
+		x = -2
+		y = 1
 		completion_reward = {
 		}
 	}
 	focus = {
-		id = FLD_progressive_movement
-		icon = GFX_goal_A_Progressive_America
-		cost = 10.00
+		id = FLD_enhance_union_protections
+		icon = GFX_goal_FRA_Bolster_Private_Unions
+		cost = 7
 		prerequisite = { 
-			focus = FLD_limit_offshore_drilling
+			focus = FLD_close_the_wage_gap
 		}
-		prerequisite = {
-			focus = FLD_expand_voting_rights
+		prerequisite = { 
+			focus = FLD_ban_corporate_donations
 		}
-		relative_position_id = FLD_limit_offshore_drilling
+		relative_position_id = FLD_close_the_wage_gap
 		x = -1
 		y = 2
 		completion_reward = {
 		}
 	}
 	
+	focus = {
+		id = FLD_purge_altright_and_extremists_from_military
+		icon = GFX_goal_FRA_Permanently_Purge_Trumpists
+		cost = 7
+		prerequisite = { 
+			focus = FLD_progressive_movement
+			focus = FLD_bastion_of_the_establishment
+		}
+		relative_position_id = FLD_bastion_of_the_establishment
+		x = 2
+		y = 1
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = FLD_woke_propaganda
+		icon = GFX_goal_FRA_use_disney
+		cost = 7
+		prerequisite = { 
+			focus = FLD_purge_altright_and_extremists_from_military
+		}
+		prerequisite = { 
+			focus = FLD_mandatory_corporate_diversity
+		}
+		relative_position_id = FLD_purge_altright_and_extremists_from_military
+		x = 1
+		y = 2
+		completion_reward = {
+		}
+	}
 	
 	
-
+	focus = {
+		id = FLD_denounce_corporate_influence
+		icon = GFX_goal_FRA_Antitrust_Laws
+		cost = 5
+		mutually_exclusive = {
+			focus = FLD_era_of_woke_corporations
+		}
+		prerequisite = {
+			focus = FLD_progressive_movement
+			focus = FLD_bastion_of_the_establishment
+		}
+		relative_position_id = FLD_progressive_movement
+		x = -4
+		y = 1
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = FLD_ban_corporate_donations
+		icon = GFX_goal_FRA_Anti_Corruption_Programs
+		cost = 5
+		prerequisite = { 
+			focus = FLD_denounce_corporate_influence
+		}
+		relative_position_id = FLD_denounce_corporate_influence
+		x = 0
+		y = 1
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = FLD_era_of_woke_corporations
+		icon = GFX_goal_FRA_meet_with_lgbt
+		cost = 5
+		mutually_exclusive = {
+			focus = FLD_denounce_corporate_influence
+		}
+		prerequisite = { 
+			focus = FLD_progressive_movement
+			focus = FLD_bastion_of_the_establishment
+		}
+		relative_position_id = FLD_bastion_of_the_establishment
+		x = 4
+		y = 1
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = FLD_mandatory_corporate_diversity
+		icon = GFX_goal_Icon_Gay_Shit_Protection
+		cost = 5
+		prerequisite = { 
+			focus = FLD_era_of_woke_corporations
+		}
+		relative_position_id = FLD_era_of_woke_corporations
+		x = 0
+		y = 1
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = FLD_limit_offshore_drilling
+		icon = GFX_goal_FRA_Conservation_Conservatism
+		cost = 7
+		prerequisite = { 
+			focus = FLD_progressive_movement
+			focus = FLD_bastion_of_the_establishment
+		}
+		relative_position_id = FLD_demings
+		x = 0
+		y = 4
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = FLD_reduce_carbon_emissions
+		icon = GFX_goal_FRA_fund_offshore_wind
+		cost = 7
+		prerequisite = { 
+			focus = FLD_limit_offshore_drilling
+		}
+		relative_position_id = FLD_limit_offshore_drilling
+		x = 1
+		y = 1
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = FLD_incentivize_electric_cars
+		icon = GFX_goal_FRA_VIR_economy
+		cost = 7
+		prerequisite = { 
+			focus = FLD_limit_offshore_drilling
+		}
+		relative_position_id = FLD_limit_offshore_drilling
+		x = -1
+		y = 1
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = FLD_floridian_green_new_deal
+		icon = GFX_goal_FRA_restructure_economy
+		cost = 7
+		prerequisite = { 
+			focus = FLD_reduce_carbon_emissions
+		}
+		prerequisite = { 
+			focus = FLD_incentivize_electric_cars
+		}
+		relative_position_id = FLD_incentivize_electric_cars
+		x = 1
+		y = 1
+		completion_reward = {
+		}
+	}
 
 
 	#### Foreign Policy ###
 	
 	focus = {
 		id = FLD_floridas_place_in_america
-		icon = GFX_goal_Drain_the_Swamp
+		icon = GFX_goal_FLD_our_new_nation
 		cost = 7
-		prerequisite = {
-			focus = FLD_an_independent_politician
-			focus = FLD_woman_of_the_people
+		#prerequisite = {
+		#	focus = FLD_an_independent_politician
+		#	focus = FLD_woman_of_the_people
 			#focus = FLD_progressive_movement
-		}
+		#}
 		relative_position_id = FLD_florida_election
 		x = 0
-		y = 9
+		y = 13
 		completion_reward = {
 		}
 	}
@@ -1463,17 +1694,14 @@
 	
 	
 	focus = {
-		id = FLD_demand_the_panhandle
-		icon = GFX_goal_panhandle_raid
-		cost = 7
+		id = FLD_slow_normalization_of_drugs
+		icon = GFX_goal_OBX_recreational_drug_usage
+		cost = 5
 		mutually_exclusive = {
-			focus = FLD_give_up_claims_to_panhandle
+			focus = FLD_take_on_the_cartels
 		}
 		prerequisite = { 
 			focus = FLD_floridas_place_in_america
-		}
-		ai_will_do = { 
-			factor = 1
 		}
 		relative_position_id = FLD_floridas_place_in_america
 		x = 4
@@ -1482,47 +1710,121 @@
 		}
 	}
 	focus = {
-		id = FLD_war_with_the_csa
-		icon = GFX_goal_FLO_Strike_North
-		cost = 7
+		id = FLD_legalize_illicit_substances
+		icon = GFX_goal_FLO_drug_test
+		cost = 5
 		prerequisite = { 
-			focus = FLD_demand_the_panhandle
+			focus = FLD_slow_normalization_of_drugs
 		}
-		relative_position_id = FLD_demand_the_panhandle
+		relative_position_id = FLD_slow_normalization_of_drugs
 		x = 0
 		y = 1
 		completion_reward = {
 		}
 	}
-
-
 	focus = {
-		id = FLD_give_up_claims_to_panhandle
-		icon = GFX_goal_FLO_panhandle_treaty
-		cost = 7
+		id = FLD_regulate_the_trade
+		icon = GFX_goal_focus_drug_money
+		cost = 5
+		prerequisite = { 
+			focus = FLD_legalize_illicit_substances
+		}
+		relative_position_id = FLD_legalize_illicit_substances
+		x = 0
+		y = 1
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = FLD_take_on_the_cartels
+		icon = GFX_goal_USA_Continue_War_On_Drugs
+		cost = 5
 		mutually_exclusive = {
-			focus = FLD_demand_the_panhandle
+			focus = FLD_slow_normalization_of_drugs
 		}
 		prerequisite = { 
 			focus = FLD_floridas_place_in_america
 		}
-		ai_will_do = { 
-			factor = 10
-		}
 		relative_position_id = FLD_floridas_place_in_america
-		x = 7
+		x = 8
 		y = 1
 		completion_reward = {
 		}
 	}
 	focus = {
-		id = FLD_nonaggression_pact_with_csa
-		icon = GFX_goal_confederatefriendship
-		cost = 7
+		id = FLD_at_home
+		icon = GFX_goal_FLD_internal_matters
+		cost = 5
 		prerequisite = { 
-			focus = FLD_give_up_claims_to_panhandle
+			focus = FLD_take_on_the_cartels
 		}
-		relative_position_id = FLD_give_up_claims_to_panhandle
+		relative_position_id = FLD_take_on_the_cartels
+		x = -1
+		y = 1
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = FLD_crack_down_on_illegal_activities
+		icon = GFX_goal_FLD_internal_matters
+		cost = 5
+		prerequisite = { 
+			focus = FLD_at_home
+		}
+		relative_position_id = FLD_at_home
+		x = 0
+		y = 1
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = FLD_the_root_of_the_problem
+		icon = GFX_goal_FLD_internal_matters
+		cost = 5
+		prerequisite = { 
+			focus = FLD_take_on_the_cartels
+		}
+		relative_position_id = FLD_take_on_the_cartels
+		x = 1
+		y = 1
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = FLD_colombia
+		icon = GFX_goal_FLD_internal_matters
+		cost = 5
+		prerequisite = { 
+			focus = FLD_the_root_of_the_problem
+		}
+		relative_position_id = FLD_the_root_of_the_problem
+		x = 0
+		y = 1
+		completion_reward = {
+		}
+	}	
+	focus = {
+		id = FLD_mexico
+		icon = GFX_goal_FLD_internal_matters
+		cost = 5
+		prerequisite = { 
+			focus = FLD_colombia
+		}
+		relative_position_id = FLD_colombia
+		x = 0
+		y = 1
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = FLD_end_the_cartels_for_good
+		icon = GFX_goal_FLD_internal_matters
+		cost = 5
+		prerequisite = { 
+			focus = FLD_mexico
+		}
+		relative_position_id = FLD_mexico
 		x = 0
 		y = 1
 		completion_reward = {
