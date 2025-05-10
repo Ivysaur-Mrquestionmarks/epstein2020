@@ -58,6 +58,8 @@ country_event = {
 	fire_only_once = yes
 	option = {
 		name = lou_csa.3.a
+		set_country_flag = lou_csa_intervention_cajuns
+		mark_focus_tree_layout_dirty = yes
 	}
 }
 #Western Kanye Bulwark
@@ -72,7 +74,7 @@ country_event = {
 		name = lou_csa.4.a
 		add_political_power = 50
 		add_war_support = 0.2
-		set_country_flag = lou_csa_intervention_cajuns
+		set_country_flag = LOU_kanyeist_western_bulwark_flag
 		mark_focus_tree_layout_dirty = yes
 	}
 }
@@ -132,15 +134,13 @@ country_event = {
 	fire_only_once = yes
 	option = { #right
 		name = lou_csa.7.a
-		set_politics = {
-			ruling_party = republican
-		}
 		complete_national_focus = LOU_the_right
 	}
 	option = { #left
 		name = lou_csa.7.b 
-		set_politics = {
-			ruling_party = authoritarian_left
+		promote_character = {
+			character = LOU_tony_campolo
+			ideology = theocracy
 		}
 		complete_national_focus = LOU_the_left
 	}
@@ -312,6 +312,31 @@ country_event = {
 	}
 }
 
+
+#confederate forces intervene to take louisiana
+news_event = {
+	id = lou_csa.19
+	title = lou_csa.19.t
+	desc = lou_csa.19.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { 
+		name = lou_csa.19.a
+		trigger = {
+			NOT = { tag = LOU }
+		}
+	}
+	option = { 
+		name = lou_csa.19.a
+		add_dynamic_modifier = {
+			modifier = LOU_armed_forces
+		}
+		trigger = {
+			tag = LOU
+		}
+	}
+}
 
 
 

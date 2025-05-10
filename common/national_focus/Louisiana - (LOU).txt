@@ -30,35 +30,49 @@ focus_tree = {
 		}
 		#allow_branch = { has_country_flag = LOU_dixie }
 		completion_reward = {
-				division_template = {
-					name = "Confederate Militants"
-					is_locked = yes
-					division_cap = 30 
-					#division_names_group = USA_INF_01
-					priority = 1
-					template_counter = 60
-					regiments = {
-						infantry = { x = 0 y = 0 }
-						infantry = { x = 0 y = 1 }
-						infantry = { x = 0 y = 2 }
-						infantry = { x = 1 y = 0 }
-						infantry = { x = 1 y = 1 }
-						infantry = { x = 1 y = 2 }
-						infantry = { x = 2 y = 0 }
-						infantry = { x = 2 y = 1 }
-						infantry = { x = 2 y = 2 }
-						artillery_brigade  = { x = 3 y = 0 }
-					}
-					support = {
-						military_police = { x = 0 y = 0 }
-						recon = { x = 0 y = 1 }
-						engineer = { x = 0 y = 2 }
-						
+			if = {
+				limit = { 
+					NOT = {
+						has_country_leader = {
+							character = LOU_auth_mike_johnson
+							ruling_only = yes
+						}
 					}
 				}
-				set_division_force_allow_recruiting = {
-					division_template = "Confederate Militants"
+				promote_character = {
+					character = LOU_auth_mike_johnson
+					ideology = theocracy
 				}
+			}
+			division_template = {
+				name = "Confederate Militants"
+				is_locked = yes
+				division_cap = 30 
+				#division_names_group = USA_INF_01
+				priority = 1
+				template_counter = 60
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+					infantry = { x = 1 y = 2 }
+					infantry = { x = 2 y = 0 }
+					infantry = { x = 2 y = 1 }
+					infantry = { x = 2 y = 2 }
+					artillery_brigade  = { x = 3 y = 0 }
+				}
+				support = {
+					military_police = { x = 0 y = 0 }
+					recon = { x = 0 y = 1 }
+					engineer = { x = 0 y = 2 }
+					
+				}
+			}
+			set_division_force_allow_recruiting = {
+				division_template = "Confederate Militants"
+			}
 			random_owned_state = {
 				create_unit = {
 					division = "name = \"CSA Volunteer Corps\"  division_template = \"Confederate Militants\"  start_experience_factor = 1"
@@ -114,14 +128,22 @@ focus_tree = {
 			focus = LOU_kanye_commanders
 		}
 		completion_reward = {
+			every_country = {
+				limit = {
+					has_war_with = LOU
+				}
+				white_peace = LOU
+			}
 			set_cosmetic_tag = LOU_kanye_puppet
 			CSA = { 
 				puppet = LOU
 				country_event = lou_csa.2
 			}
 			hidden_effect = {
-				add_ideas = LOU_disorganized_armed_forces
+				#add_ideas = LOU_disorganized_armed_forces
 			}
+			news_event = lou_csa.19
+			
 		}
 	}
 	
@@ -326,7 +348,7 @@ focus_tree = {
 		x = 0
 		y = 1
 		relative_position_id = LOU_kanyeism
-		cost = 0
+		cost = 2
 		prerequisite = {
 			focus = LOU_kanyeism
 		}
@@ -340,7 +362,7 @@ focus_tree = {
 		x = 1
 		y = 1
 		relative_position_id = LOU_a_more_consolidated_approach
-		cost = 5
+		cost = 3
 		prerequisite = {
 			focus = LOU_a_more_consolidated_approach
 		}
@@ -354,7 +376,7 @@ focus_tree = {
 		x = -1
 		y = 1
 		relative_position_id = LOU_a_more_consolidated_approach
-		cost = 5
+		cost = 3
 		prerequisite = {
 			focus = LOU_a_more_consolidated_approach
 		}
@@ -374,7 +396,7 @@ focus_tree = {
 		x = -1
 		y = 1
 		relative_position_id = LOU_remove_secularism
-		cost = 5
+		cost = 3
 		prerequisite = {
 			focus = LOU_remove_secularism
 		}
@@ -441,6 +463,7 @@ focus_tree = {
 		mutually_exclusive = { focus = LOU_complete_control_question }
 		completion_reward = {
 			country_event = lou_csa.4
+			custom_effect_tooltip = LOU_unlocks_new_focuses_tt
 		}
 	}
 	focus = {
@@ -454,6 +477,7 @@ focus_tree = {
 			focus = LOU_the_western_bulwark
 		}
 		available = { NOT = { has_global_flag = Dixie_Collapse_Global } }
+		#allow_branch = { has_country_flag = LOU_kanyeist_western_bulwark_flag }
 		completion_reward = {
 			CSA = { country_event = lou_csa.5 }
 		}
@@ -468,6 +492,7 @@ focus_tree = {
 		prerequisite = {
 			focus = LOU_the_western_bulwark
 		}
+		#allow_branch = { has_country_flag = LOU_kanyeist_western_bulwark_flag }
 		completion_reward = {
 			country_event = lou_csa.6
 		}
@@ -577,11 +602,11 @@ focus_tree = {
 		completion_reward = {
 			add_popularity = {
 				ideology = republican
-				popularity = 0.2
+				popularity = 0.3
 			}
 			add_popularity = {
 				ideology = authoritarian_left
-				popularity = 0.2
+				popularity = 0.3
 			}
 		}
 	}
@@ -597,6 +622,7 @@ focus_tree = {
 		}
 		completion_reward = {
 			country_event = lou_csa.7
+			add_dynamic_modifier = { modifier = LOU_christian_coalition }
 		}
 	}
 	focus = {
@@ -1228,10 +1254,10 @@ focus_tree = {
 			focus = LOU_kanyeism
 		}
 		completion_reward = {
-			swap_ideas = {
-				remove_idea = LOU_disorganized_armed_forces
-				add_idea = LOU_disorganized_armed_forces2
-			}
+			#swap_ideas = {
+			#	remove_idea = LOU_disorganized_armed_forces
+			#	add_idea = LOU_disorganized_armed_forces2
+			#}
 		}
 	}
 	focus = {
@@ -1246,10 +1272,10 @@ focus_tree = {
 		}
 		mutually_exclusive = { focus = LOU_integrate_militias }
 		completion_reward = {
-			swap_ideas = {
-				remove_idea = LOU_disorganized_armed_forces2
-				add_idea = LOU_disorganized_armed_forces3
-			}
+			#swap_ideas = {
+			#	remove_idea = LOU_disorganized_armed_forces2
+			#	add_idea = LOU_disorganized_armed_forces3
+			#}
 			army_experience = 50
 			add_equipment_to_stockpile = {
 				type = infantry_equipment
@@ -1270,10 +1296,10 @@ focus_tree = {
 		mutually_exclusive = { focus = LOU_disband_militias }
 		completion_reward = {
 			add_manpower = 50000
-			swap_ideas = {
-				remove_idea = LOU_disorganized_armed_forces2
-				add_idea = LOU_disorganized_armed_forces3
-			}
+			#swap_ideas = {
+			#	remove_idea = LOU_disorganized_armed_forces2
+			#	add_idea = LOU_disorganized_armed_forces3
+			#}
 		}
 	}
 	focus = {
@@ -1289,11 +1315,11 @@ focus_tree = {
 		}
 		mutually_exclusive = { focus = LOU_independent_high_command }
 		completion_reward = {
-			add_command_power = 150
-			swap_ideas = {
-				remove_idea = LOU_disorganized_armed_forces3
-				add_idea = LOU_disorganized_armed_forces4
-			}
+			add_command_power = 50
+			#swap_ideas = {
+			#	remove_idea = LOU_disorganized_armed_forces3
+			#	add_idea = LOU_disorganized_armed_forces4
+			#}
 		}
 	}
 	focus = {
@@ -1309,10 +1335,10 @@ focus_tree = {
 		}
 		mutually_exclusive = { focus = LOU_confederate_advisors }
 		completion_reward = {
-			swap_ideas = {
-				remove_idea = LOU_disorganized_armed_forces3
-				add_idea = LOU_disorganized_armed_forces4
-			}
+			#swap_ideas = {
+			#	remove_idea = LOU_disorganized_armed_forces3
+			#	add_idea = LOU_disorganized_armed_forces4
+			#}
 			army_experience = 50
 			add_manpower = 5000
 		}
@@ -1330,10 +1356,10 @@ focus_tree = {
 		}
 		mutually_exclusive = { focus = LOU_more_guns }
 		completion_reward = {
-			swap_ideas = {
-				remove_idea = LOU_disorganized_armed_forces4
-				add_idea = LOU_disorganized_armed_forces5
-			}
+			#swap_ideas = {
+			#	remove_idea = LOU_disorganized_armed_forces4
+			#	add_idea = LOU_disorganized_armed_forces5
+			#}
 			add_ideas = LOU_guns_better
 		}
 	}
@@ -1350,10 +1376,10 @@ focus_tree = {
 		}
 		mutually_exclusive = { focus = LOU_better_guns }
 		completion_reward = {
-			swap_ideas = {
-				remove_idea = LOU_disorganized_armed_forces4
-				add_idea = LOU_disorganized_armed_forces5
-			}
+			#swap_ideas = {
+			#	remove_idea = LOU_disorganized_armed_forces4
+			#	add_idea = LOU_disorganized_armed_forces5
+			#}
 			add_ideas = LOU_guns_more
 		}
 	}
@@ -1369,7 +1395,7 @@ focus_tree = {
 			focus = LOU_more_guns
 		}
 		completion_reward = {
-			remove_ideas = LOU_disorganized_armed_forces5
+			#remove_ideas = LOU_disorganized_armed_forces5
 		}
 	}
 	
@@ -4682,10 +4708,10 @@ focus_tree = {
 			focus = LOU_stockpile_weapons
 		}
 		completion_reward = {
-			swap_ideas = {
-				remove_idea = LOU_disorganized_armed_forces
-				add_idea = LOU_disorganized_armed_forces2
-			}
+			#swap_ideas = {
+			#	remove_idea = LOU_disorganized_armed_forces
+			#	add_idea = LOU_disorganized_armed_forces2
+			#}
 		}
 	}
 	focus = {
@@ -5457,7 +5483,7 @@ focus_tree = {
 			focus = LOU_french_advisors
 		}
 		completion_reward = {
-			remove_ideas = LOU_disorganized_armed_forces2
+			#remove_ideas = LOU_disorganized_armed_forces2
 		}
 	}
 	focus = {
