@@ -1,0 +1,92 @@
+#let's make sure the Cubans/Dominicans fight each other.
+Cuba_In_Hispaniola = {
+	allowed = {
+		OR = {
+			original_tag = CUB
+			original_tag = CUC
+			original_tag = GTB
+		}
+	}
+	enable = {
+		has_global_flag = carribean_war_globflag
+		OR = {
+			CUB = {
+				has_capitulated = yes
+			}
+			CUC = {
+				has_capitulated = yes
+			}
+			NOT = {
+				country_exists = CUB
+			}
+			NOT = {
+				country_exists = CUC
+			}
+		}
+		has_war_with = DOM
+	}
+	abort = {
+		NOT = { 
+			country_exists = DOM
+		}
+	}
+	
+	ai_strategy = {
+		type = invade
+		id = DOM
+		value = 500
+	}
+}
+Dominican_Republic_In_Cuba = {
+	allowed = {
+		DOM
+	}
+	enable = {
+		has_global_flag = carribean_war_globflag
+		OR = {
+			HAI = {
+				has_capitulated = yes
+			}
+			NOT = {
+				country_exists = HAI
+			}
+		}
+		OR = {
+			HBI = {
+				has_capitulated = yes
+			}
+			NOT = {
+				country_exists = HBI
+			}
+		}
+		OR = {
+			has_war_with = CUB
+			has_war_with = CUC
+		}
+	}
+	abort = {
+		NOT = {
+			OR = {
+				has_war_with = CUB
+				has_war_with = CUC
+				has_war_with = GTB
+			}
+		}
+	}
+	
+	ai_strategy = {
+		type = invade
+		id = CUB
+		value = 500
+	}
+	ai_strategy = {
+		type = invade
+		id = CUC
+		value = 500
+	}
+	ai_strategy = {
+		type = invade
+		id = GTB
+		value = 500
+	}
+}
