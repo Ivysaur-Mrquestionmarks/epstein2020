@@ -22,7 +22,7 @@ FRA_the_wall_street_block_decision = {
 			factor = 100
 		}
 
-		cost = 75
+		cost = 0
 
 		complete_effect = {
 			add_manpower = -2000
@@ -31,52 +31,10 @@ FRA_the_wall_street_block_decision = {
 			    target = NYC
 			    transfer_troops = no
 			}
+			add_political_power = -25
 			remove_ideas = FRA_wall_street_block
 			clr_country_flag = FRA_wall_street_block
 		}
-
-	}
-
-	FRA_negotiate_with_the_block = {
-
-		icon = generic_civil_support
-
-		available = {
-			has_country_flag = FRA_wall_street_block
-			hidden_trigger = {
-				NOT = { 
-					has_country_flag = dostum_is_invading_nyc
-				}
-			}
-		}
-
-		fire_only_once = yes
-
-		cost = 125
-
-		ai_will_do = {
-			factor = 0
-		}
-
-		days_remove = 30
-
-		complete_effect = {
-			add_stability = -0.05
-			hidden_effect = {
-				set_country_flag = negotiating_with_wall_street_block
-			}
-		}
-
-		remove_effect = {
-			add_stability = 0.05
-			annex_country = {
-			    target = NYC
-			    transfer_troops = no
-			}
-			remove_ideas = FRA_wall_street_block
-			clr_country_flag = FRA_wall_street_block
-		}
-
 
 	}
 
@@ -247,7 +205,7 @@ FRA_border_conflict = {
 FRA_biden_sickness_category = { 
 	FRA_biden_health_worsening_crisis = {
 	
-		icon = TUR_the_constitutional_arrows
+		icon = GFX_decision_category_usa_congress
 
 		priority = 10
 
@@ -410,7 +368,7 @@ FRA_green_mountain_boys_decision = {
 			factor = 100
 		}
 
-		cost = 80
+		cost = 0
 
 		complete_effect = {
 			add_war_support = 0.05
@@ -907,9 +865,12 @@ FRA_economic_upgrade_decision_cat = {
 
 		available = {
 			date > 2023.1.1
-			custom_trigger_tooltip = {
-				tooltip = FRA_completed_bidenomics_focus_tt
-				has_country_flag = FRA_completed_bidenomics_focus_flag
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = FRA_completed_bidenomics_focus_tt
+					has_country_flag = FRA_completed_bidenomics_focus_flag
+				}
+				NOT = { has_country_leader = { name = "Joe Biden" ruling_only = yes } }
 			}
 		}
 
@@ -930,7 +891,7 @@ FRA_economic_upgrade_decision_cat = {
 		}
 	}
 
-	FRA_infra_investment_decision = {
+	FRA_electronic_grant_decision = {
 	
 		icon = generic_research
 
@@ -941,30 +902,42 @@ FRA_economic_upgrade_decision_cat = {
 		available = {
 			date > 2022.1.1
 			custom_trigger_tooltip = {
-				tooltip = FRA_completed_bidenomics_focus_tt
-				has_country_flag = FRA_completed_bidenomics_focus_flag
+				tooltip = FRA_completed_chips_focus_tt
+				has_country_flag = FRA_completed_chips_focus_flag
 			}
 		}
 
-		cost = 75
+		cost = 25
 
-		days_remove = 100
-		days_re_enable = 
+		days_remove = 160
+		days_re_enable = 100
 
 		fire_only_once = no
 		modifier = {
 			consumer_goods_factor = 0.1
+			research_speed_factor = 0.05
+			research_sharing_per_country_bonus_factor = 0.25
 		}
 		complete_effect = {
 		}
 
 		remove_effect = {
+			add_tech_bonus = {
+				bonus = 0.25
+				uses = 1
+				category = electronics
+			}
+			add_tech_bonus = {
+				bonus = 0.25
+				uses = 1
+				category = industry
+			}
 		}
 	}
 
-	FRA_reduce_inflationary_pressures_decision = {
+	FRA_infra_investment_decision = {
 	
-		icon = generic_research
+		icon = GFX_decision_generic_trucks
 
 		allowed = { 
 			original_tag = FRA
@@ -981,13 +954,123 @@ FRA_economic_upgrade_decision_cat = {
 		cost = 75
 
 		days_remove = 100
-		days_re_enable = 
+		days_re_enable = 100
+
+		fire_only_once = no
+		modifier = {
+			consumer_goods_factor = 0.1
+			production_speed_buildings_factor = 0.05
+			production_speed_infrastructure_factor = 0.15
+			production_speed_rail_way_factor = 0.15
+			production_speed_supply_node_factor = 0.15
+		}
+		complete_effect = {
+		}
+
+		remove_effect = {
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = infrastructure
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = infrastructure
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = infrastructure
+    				level = 1
+    				instant_build = yes
+				}
+			}
+		}
+	}
+
+	FRA_urbanization_decision = {
+	
+		icon = GFX_decision_generic_factory
+
+		allowed = { 
+			original_tag = FRA
+		}
+
+		available = {
+			date > 2022.1.1
+			custom_trigger_tooltip = {
+				tooltip = FRA_completed_bidenomics_focus_tt
+				has_country_flag = FRA_completed_bidenomics_focus_flag
+			}
+		}
+
+		cost = 75
+
+		days_remove = 100
+		days_re_enable = 100
+
+		fire_only_once = no
+		modifier = {
+			consumer_goods_factor = 0.15
+			production_speed_buildings_factor = 0.05
+			production_speed_industrial_complex_factor = 0.1
+		}
+		complete_effect = {
+		}
+
+		remove_effect = {
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = industrial_complex
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    				type = industrial_complex
+    				level = 1
+    				instant_build = yes
+				}
+			}
+		}
+	}
+
+	FRA_reduce_inflationary_pressures_decision = {
+	
+		icon = GFX_decision_gre_paying_ifc_debt
+
+		allowed = { 
+			original_tag = FRA
+		}
+
+		available = {
+			date > 2022.1.1
+			custom_trigger_tooltip = {
+				tooltip = FRA_completed_bidenomics_focus_tt
+				has_country_flag = FRA_completed_bidenomics_focus_flag
+			}
+		}
+
+		cost = 75
+
+		days_remove = 160
+		days_re_enable = 100
 
 		fire_only_once = no
 		modifier = {
 			consumer_goods_factor = -0.2
-			stability_factor = -0.1
-			political_power_cost = 0.15
+			stability_factor = -0.05
+			political_power_cost = 0.05
 		}
 		complete_effect = {
 		}
