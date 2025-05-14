@@ -4,18 +4,18 @@ joint_focus = {
 	search_filters = { joint }
 	icon = GFX_goal_USA_IDA_Connect_Capitals
 
-	X = 8
-	Y = 0
+	X = 25
+	Y = 14
 
 	offset = {
-		x = 0
-		y = 12
+		x = 15
+		y = -14
 		trigger = {
-			tag = USA
+			tag = NEW
 		}
 	}
 
-	cost = 3
+	cost = 2
 	text_icon = NORDIC_focus_style
 	ai_will_do = {
 		factor = 1
@@ -33,12 +33,1015 @@ joint_focus = {
 		}
 	}
 
-	completion_reward_joint_originator = {
-		
-	}
 
 	completion_reward = {
-				
+		country_event = {
+    			id = maga.267
+    			days = 0
+    			random_hours = 17
+		}				
 	}
 }
 
+joint_focus = {
+	id = USA_NEW_border
+	search_filters = { joint }
+	icon = GFX_goal_USA_IDA_Connect_Capitals
+
+
+	X = -2
+	Y = 1
+	relative_position_id = USA_NEW_45th_directive
+
+	prerequisite = {
+		focus = USA_NEW_45th_directive
+	}
+	cost = 7
+	text_icon = NORDIC_focus_style
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = USA
+			tag = NEW
+		}
+	}
+
+	completion_reward_joint_originator = {
+		NEW = {
+			every_controlled_state = {
+				add_building_construction = {
+    					type = bunker
+    					level = 3
+    					instant_build = yes
+    					province = {
+        					all_provinces = yes
+						limit_to_coastal = yes
+				    	}
+				}
+			}			
+		}
+	}
+
+	#completion_reward = {
+		
+	#}
+}
+
+joint_focus = {
+	id = USA_NEW_coast
+	search_filters = { joint }
+	icon = GFX_goal_USA_IDA_Connect_Capitals
+
+
+	X = -4
+	Y = 2
+	relative_position_id = USA_NEW_45th_directive
+
+	prerequisite = {
+		focus = USA_NEW_border
+	}
+	cost = 5
+	text_icon = NORDIC_focus_style
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = USA
+			tag = NEW
+		}
+	}
+
+	completion_reward_joint_originator = {
+		NEW = {
+			every_controlled_state = {
+				add_building_construction = {
+    					type = coastal_bunker 
+    					level = 3
+    					instant_build = yes
+    					province = {
+        					all_provinces = yes
+						limit_to_border_country = FRA
+				    	}
+				}
+			}			
+		}
+	}
+
+	#completion_reward = {
+		
+	#}
+}
+
+joint_focus = {
+	id = USA_NEW_naval_missile
+	search_filters = { joint }
+	icon = GFX_goal_USA_IDA_Connect_Capitals
+
+
+	X = -4
+	Y = 4
+	relative_position_id = USA_NEW_45th_directive
+
+	prerequisite = {
+		focus = USA_NEW_coast
+	}
+	cost = 6
+	text_icon = NORDIC_focus_style
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = USA
+			tag = NEW
+		}
+	}
+
+	#completion_reward_joint_originator = {
+		
+	#}
+
+	completion_reward = {
+		add_tech_bonus = {
+    			bonus = 1
+    			uses = 2
+    			category = naval_missile
+		}
+	}
+}
+
+joint_focus = {
+	id = USA_NEW_AA
+	search_filters = { joint }
+	icon = GFX_goal_USA_IDA_Connect_Capitals
+
+
+	X = -2
+	Y = 2
+	relative_position_id = USA_NEW_45th_directive
+
+	prerequisite = {
+		focus = USA_NEW_border
+	}
+	cost = 8
+	text_icon = NORDIC_focus_style
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = USA
+			tag = NEW
+		}
+	}
+
+	completion_reward_joint_originator = {
+		NEW = {
+			every_controlled_state = {
+				add_building_construction = {
+    					type = anti_air_building
+    					level = 2
+    					instant_build = yes
+				}
+			}			
+		}
+	}
+
+	#completion_reward = {
+		
+	#}
+}
+
+joint_focus = {
+	id = USA_NEW_AA_tech
+	search_filters = { joint }
+	icon = GFX_goal_USA_IDA_Connect_Capitals
+
+
+	X = -2
+	Y = 3
+	relative_position_id = USA_NEW_45th_directive
+
+	prerequisite = {
+		focus = USA_NEW_AA
+	}
+	cost = 4
+	text_icon = NORDIC_focus_style
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = USA
+			tag = NEW
+		}
+	}
+
+	#completion_reward_joint_originator = {
+
+	#}
+
+	completion_reward = {
+		add_tech_bonus = {
+    			bonus = 1.2
+    			uses = 1
+    			category = sam
+		}	
+	}
+}
+
+joint_focus = {
+	id = USA_NEW_frigates
+	search_filters = { joint }
+	icon = GFX_goal_USA_IDA_Connect_Capitals
+
+
+	X = -2
+	Y = 5
+	relative_position_id = USA_NEW_45th_directive
+
+	prerequisite = {
+		focus = USA_NEW_AA_tech
+	}
+	prerequisite = {
+		focus = USA_NEW_naval_missile
+	}
+	cost = 8
+	text_icon = NORDIC_focus_style
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = USA
+			tag = NEW
+		}
+	}
+
+	completion_reward_joint_originator = {
+		NEW = {
+			hidden_effect = {
+				set_technology = {
+					ship_hull_coast_1 = 1
+					ship_hull_coast_2 = 1
+				}
+			}
+			create_equipment_variant = { #FREEEEEEEEEEOM 
+				name = "Freedom Class"
+				type = ship_hull_coast_2
+				parent_version = 0
+				modules = {
+					fixed_ship_anti_air_slot = ship_anti_air_1
+					fixed_ship_fire_control_system_slot = empty
+					fixed_ship_radar_slot = empty
+					fixed_ship_engine_slot = coast_ship_engine_1
+					mid_1_custom_slot = missile_pod_1
+						
+				}
+			}
+    			create_ship = {
+        			type = ship_hull_coast_2
+        			equipment_variant = "Freedom Class"
+        			creator = NEW
+        			name = "USS Lobster"
+    			}
+    			create_ship = {
+        			type = ship_hull_coast_2
+        			equipment_variant = "Freedom Class"
+        			creator = NEW
+        			name = "USS Freedom" 
+    			}			
+		}
+	}
+
+	#completion_reward = {
+		
+	#}
+}
+
+joint_focus = {
+	id = USA_NEW_mils
+	search_filters = { joint }
+	icon = GFX_goal_USA_IDA_Connect_Capitals
+
+
+	X = 0
+	Y = 1
+	relative_position_id = USA_NEW_45th_directive
+
+	prerequisite = {
+		focus = USA_NEW_45th_directive
+	}
+	cost = 6
+	text_icon = NORDIC_focus_style
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = USA
+			tag = NEW
+		}
+	}
+
+	#completion_reward_joint_originator = {
+		
+	#}
+
+	completion_reward = {
+		add_offsite_building = { type = arms_factory level = 2 }
+	}
+}
+
+joint_focus = {
+	id = USA_NEW_electronics
+	search_filters = { joint }
+	icon = GFX_goal_USA_IDA_Connect_Capitals
+
+
+	X = 0
+	Y = 3
+	relative_position_id = USA_NEW_45th_directive
+
+	prerequisite = {
+		focus = USA_NEW_mils
+	}
+	cost = 3
+	text_icon = NORDIC_focus_style
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = USA
+			tag = NEW
+		}
+	}
+
+	#completion_reward_joint_originator = {
+		
+	#}
+
+	completion_reward = {
+		add_tech_bonus = {
+    			bonus = 1.2
+    			uses = 1
+    			category = electronics
+		}
+	}
+}
+
+joint_focus = {
+	id = USA_NEW_minning
+	search_filters = { joint }
+	icon = GFX_goal_USA_IDA_Connect_Capitals
+
+
+	X = 0
+	Y = 5
+	relative_position_id = USA_NEW_45th_directive
+
+	prerequisite = {
+		focus = USA_NEW_electronics
+	}
+	cost = 7
+	text_icon = NORDIC_focus_style
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = USA
+			tag = NEW
+		}
+	}
+
+	completion_reward_joint_originator = {
+		NEW = {
+			622 = {
+				add_resource = {
+    					type = steel
+    					amount = 5
+				}
+				add_building_construction = {
+    					type = infrastructure
+    					level = 1
+    					instant_build = yes
+				}				
+			}
+		}	
+	}
+
+	#completion_reward = {
+		
+	#}
+}
+joint_focus = {
+	id = USA_NEW_missiles
+	search_filters = { joint }
+	icon = GFX_goal_USA_IDA_Connect_Capitals
+
+
+	X = 2
+	Y = 1
+	relative_position_id = USA_NEW_45th_directive
+
+	prerequisite = {
+		focus = USA_NEW_45th_directive
+	}
+	cost = 8
+	text_icon = NORDIC_focus_style
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = USA
+			tag = NEW
+		}
+	}
+
+	#completion_reward_joint_originator = {
+
+	#}
+
+	completion_reward = {
+		set_technology = {
+			cruise_missile_equipment_0 = 1
+
+		}
+		add_equipment_to_stockpile = {
+    			type = cruise_missile_equipment
+    			amount = 100
+		}
+	}
+}
+
+joint_focus = {
+	id = USA_NEW_silo
+	search_filters = { joint }
+	icon = GFX_goal_USA_IDA_Connect_Capitals
+
+
+	X = 2
+	Y = 2
+	relative_position_id = USA_NEW_45th_directive
+
+	prerequisite = {
+		focus = USA_NEW_missiles
+	}
+	cost = 4
+	text_icon = NORDIC_focus_style
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = USA
+			tag = NEW
+		}
+	}
+
+	#completion_reward_joint_originator = {
+
+	#}
+
+	completion_reward = {
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+    				type = rocket_site 
+    				level = 1
+    				instant_build = yes
+			}			
+		}
+	}
+}
+
+
+joint_focus = {
+	id = USA_NEW_missile_bonus
+	search_filters = { joint }
+	icon = GFX_goal_USA_IDA_Connect_Capitals
+
+
+	X = 2
+	Y = 3
+	relative_position_id = USA_NEW_45th_directive
+
+	prerequisite = {
+		focus = USA_NEW_silo
+	}
+	cost = 8
+	text_icon = NORDIC_focus_style
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = USA
+			tag = NEW
+		}
+	}
+
+	#completion_reward_joint_originator = {
+
+	#}
+
+	completion_reward = {
+
+		add_equipment_bonus = {
+  			bonus = {
+    				cruise_missile_equipment = { # Type of equipment
+					air_range = 0.1
+					air_bombing = 0.15
+      					instant = yes
+    				}
+
+  			}
+		}
+		add_equipment_to_stockpile = {
+    			type = cruise_missile_equipment
+    			amount = 100
+		}
+	}
+}
+
+joint_focus = {
+	id = USA_NEW_rocket_tech
+	search_filters = { joint }
+	icon = GFX_goal_USA_IDA_Connect_Capitals
+
+
+	X = 4
+	Y = 2
+	relative_position_id = USA_NEW_45th_directive
+
+	prerequisite = {
+		focus = USA_NEW_missiles
+	}
+	cost = 4
+	text_icon = NORDIC_focus_style
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = USA
+			tag = NEW
+		}
+	}
+
+	#completion_reward_joint_originator = {
+
+	#}
+
+	completion_reward = {
+		add_tech_bonus = {
+    			bonus = 0.85
+    			uses = 2
+    			category = rocketry
+		}		
+	}
+}
+
+joint_focus = {
+	id = USA_NEW_cruise
+	search_filters = { joint }
+	icon = GFX_goal_USA_IDA_Connect_Capitals
+
+
+	X = 4
+	Y = 4
+	relative_position_id = USA_NEW_45th_directive
+
+	prerequisite = {
+		focus = USA_NEW_rocket_tech
+	}
+	cost = 6
+	text_icon = NORDIC_focus_style
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = USA
+			tag = NEW
+		}
+	}
+
+	#completion_reward_joint_originator = {
+
+	#}
+
+	completion_reward = {
+		add_tech_bonus = {
+    			bonus = 1.35
+    			uses = 1
+    			category = cruise_missile
+		}				
+	}
+}
+
+joint_focus = {
+	id = USA_NEW_research_group
+	search_filters = { joint }
+	icon = GFX_goal_USA_IDA_Connect_Capitals
+
+
+	X = 2
+	Y = 5
+	relative_position_id = USA_NEW_45th_directive
+
+	prerequisite = {
+		focus = USA_NEW_missile_bonus
+	}
+	prerequisite = {
+		focus = USA_NEW_cruise
+	}
+	cost = 8
+	text_icon = USA_NEW_missile_bonus
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = USA
+			tag = NEW
+		}
+	}
+
+	#completion_reward_joint_originator = {
+
+	#}
+
+	completion_reward = {
+		add_to_tech_sharing_group = republican_research		
+	}
+}
+
+joint_focus = {
+	id = USA_NEW_brimstone
+	search_filters = { joint }
+	icon = GFX_goal_USA_IDA_Connect_Capitals
+
+
+	X = 0
+	Y = 6
+	relative_position_id = USA_NEW_45th_directive
+
+	prerequisite = {
+		focus = USA_NEW_research_group
+	}
+	prerequisite = {
+		focus = USA_NEW_minning
+	}
+	prerequisite = {
+		focus = USA_NEW_frigates
+	}
+
+	available = {
+		has_war_with = FRA
+	}
+	cost = 8
+	text_icon = USA_NEW_missile_bonus
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = USA
+			tag = NEW
+		}
+	}
+
+	#completion_reward_joint_originator = {
+
+	#}
+
+	completion_reward = {
+		country_event = {
+    			id = maga.268
+    			days = 0
+    			random_hours = 17
+		}
+		add_timed_idea = {
+    			idea = USA_operation_brimstone 
+    			days = 120
+		}	
+	}
+}
+
+joint_focus = {
+	id = USA_NEW_resistance
+	search_filters = { joint }
+	icon = GFX_goal_USA_IDA_Connect_Capitals
+
+
+	X = -1
+	Y = 7
+	relative_position_id = USA_NEW_45th_directive
+
+	prerequisite = {
+		focus = USA_NEW_brimstone
+	}
+
+
+	available = {
+		NEW = {
+			has_capitulated = yes
+		}
+	}
+	cost = 4
+	text_icon = USA_NEW_missile_bonus
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = USA
+			tag = NEW
+		}
+	}
+
+	completion_reward_joint_originator = {
+		NEW = {
+			country_event = {
+    				id = maga.269
+    				days = 0
+    				random_hours = 17
+			}
+			every_core_state = {
+				add_resistance_target = 15
+			}
+		}
+	}
+
+	#completion_reward = {
+	
+	#}
+}
+
+joint_focus = {
+	id = USA_NEW_resistance_rise
+	search_filters = { joint }
+	icon = GFX_goal_USA_IDA_Connect_Capitals
+
+
+	X = -3
+	Y = 8
+	relative_position_id = USA_NEW_45th_directive
+
+	prerequisite = {
+		focus = USA_NEW_resistance
+	}
+
+
+	available = {
+		NEW = {
+			has_capitulated = yes
+		}
+	}
+	cost = 8
+	text_icon = USA_NEW_missile_bonus
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = USA
+			tag = NEW
+		}
+	}
+
+	completion_reward_joint_originator = {
+		NEW = {
+			country_event = {
+    				id = maga.270
+    				days = 0
+    				random_hours = 0
+			}
+			division_template = {
+   				name = "Northen Legion"
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 0 y = 3 }
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+
+				} 
+			}
+			every_core_state = {
+				limit = {resistance > 40}
+				create_unit = {
+					division = "division_template = \"Northen Legion\"	start_experience_factor = 1	start_equipment_factor = 0.9"
+					owner = NEW
+					allow_spawning_on_enemy_provs = yes
+					count = 3
+				}				
+			}
+		}
+	}
+
+	#completion_reward = {
+	
+	#}
+}
+
+joint_focus = {
+	id = USA_NEW_no_comp
+	search_filters = { joint }
+	icon = GFX_goal_USA_IDA_Connect_Capitals
+
+
+	X = -1
+	Y = 8
+	relative_position_id = USA_NEW_45th_directive
+
+	prerequisite = {
+		focus = USA_NEW_resistance
+	}
+
+
+	available = {
+		NEW = {
+			has_capitulated = yes
+		}
+	}
+	cost = 6
+	text_icon = USA_NEW_missile_bonus
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = USA
+			tag = NEW
+		}
+	}
+
+	completion_reward_joint_originator = {
+		NEW = {
+			every_core_state = {
+				add_compliance = -100	
+			}
+		}
+	}
+
+	#completion_reward = {
+	
+	#}
+}
+
+joint_focus = {
+	id = USA_NEW_puppet
+	search_filters = { joint }
+	icon = GFX_goal_USA_IDA_Connect_Capitals
+
+
+	X = 1
+	Y = 7
+	relative_position_id = USA_NEW_45th_directive
+
+	prerequisite = {
+		focus = USA_NEW_brimstone
+	}
+
+
+	available = {
+		FRA = {
+			exists = no
+		}
+	}
+	cost = 6
+	text_icon = USA_NEW_missile_bonus
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = USA
+			tag = NEW
+		}
+	}
+
+	completion_reward_joint_originator = {
+		USA = {
+			set_autonomy = {
+    				target = NEW
+    				autonomous_state = autonomy_integrated_puppet
+    				end_wars = no
+    				end_civil_wars = no
+			}
+		}
+	}
+
+	#completion_reward = {
+	
+	#}
+}
+
+joint_focus = {
+	id = USA_NEW_annex
+	search_filters = { joint }
+	icon = GFX_goal_USA_IDA_Connect_Capitals
+	mutually_exclusive = {
+		focus = USA_NEW_annex
+	}
+
+	X = 1
+	Y = 8
+	relative_position_id = USA_NEW_45th_directive
+
+	prerequisite = {
+		focus = USA_NEW_puppet
+	}
+	mutually_exclusive = {
+		focus = USA_NEW_reintegration
+	}
+
+
+	cost = 10
+	text_icon = USA_NEW_missile_bonus
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = USA
+			tag = NEW
+		}
+	}
+
+	completion_reward_joint_originator = {
+		NEW = {
+			country_event = {
+    				id = maga.189
+   	 			days = 5
+    				random_hours = 30
+			}
+		}
+	}
+
+	#completion_reward = {
+	
+	#}
+}
+
+joint_focus = {
+	id = USA_NEW_reintegration
+	search_filters = { joint }
+	icon = GFX_goal_USA_IDA_Connect_Capitals
+
+
+	X = 3
+	Y = 8
+	relative_position_id = USA_NEW_45th_directive
+
+	prerequisite = {
+		focus = USA_NEW_puppet
+	}
+	mutually_exclusive = {
+		focus = USA_NEW_annex
+	}
+
+
+	cost = 7
+	text_icon = USA_NEW_missile_bonus
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = USA
+			tag = NEW
+		}
+	}
+
+	completion_reward_joint_originator = {
+		NEW = {
+			add_ideas = USA_NEW_integration
+			country_event = {
+    				id = maga.271
+   	 			days = 5
+    				random_hours = 30
+			}
+		}
+		USA = {
+			country_event = {
+    				id = maga.272
+   	 			days = 5
+    				random_hours = 30
+			}			
+		}
+	}
+
+	#completion_reward = {
+	
+	#}
+}
