@@ -1,0 +1,90 @@
+American_reunification = {
+	
+	unify_great_lakes_GENERIC = {
+		icon = generic_form_nation
+
+		allowed = {
+			OR = {
+				original_tag = ISA
+				original_tag = DET
+				original_tag = KMT
+			}
+		}
+
+		available = {
+			is_subject = no
+			controls_state = 155
+			controls_state = 124
+			controls_state = 152
+			controls_state = 195
+			controls_state = 197
+			controls_state = 198
+			controls_state = 209
+			controls_state = 204
+			controls_state = 190
+			controls_state = 161
+			controls_state = 160
+			controls_state = 162
+			controls_state = 157
+			controls_state = 165
+			controls_state = 153
+			controls_state = 130
+		}
+
+		visible = {
+			OR = {
+				original_tag = ISA
+				original_tag = DET
+				original_tag = KMT
+			}
+			NOT = { has_global_flag = form_great_lakes_flag }
+		}
+
+		complete_effect = {
+			if = {
+				limit = {
+					original_tag = KMT
+				}
+				if = {
+					limit = {
+						NOT = {
+							owns_state = 155
+						}
+					}
+					transfer_state = 155
+				}
+				set_capital = {
+				  state = 155
+				  remember_old_capital = no
+				}
+			}
+			set_cosmetic_tag = KMT_generic_great_lakes_formable
+			hidden_effect = {
+				every_state = {
+					limit = {
+						OR = {
+							is_core_of = GLA
+							is_core_of = KMT
+							is_core_of = DET
+							state = 158
+							state = 167
+							state = 205
+	`						state = 104
+							state = 111
+							state = 25
+							state = 42
+							state = 102
+							state = 110
+						}
+					}
+					add_core_of = ROOT
+				}
+				set_global_flag = form_great_lakes_flag
+			}
+		}
+
+		ai_will_do = {
+			factor = 200
+		}
+	}
+}
