@@ -1,4 +1,4 @@
-### This is meant for countries that have collapses and if u want to have these wargoals streamlined instead of cluttering code :)
+### This is meant for countries that have collapses or regional wargoals and if u want to have these wargoals streamlined instead of cluttering code :)
 # From Turklander
 
 ## Texas and Texas Collapse
@@ -9,7 +9,7 @@ War_on_texas_collapse_tags = { #using global.texas_collapse
 			if = { 
 				limit = {
 					NOT = { 
-						has_war_with = PREV 
+						has_wargoal_against = PREV 
 					}
 				}
 				create_wargoal = {
@@ -19,7 +19,7 @@ War_on_texas_collapse_tags = { #using global.texas_collapse
 			}
 		}
 	}
-	custom_effect_tooltip = texas_war_tt
+	custom_effect_tooltip = effect_kill_TEX_tt
 }
 
 ### CSA Collapse Wargoals
@@ -31,7 +31,46 @@ RVR_kill_the_CSA = {
 			if = { 
 				limit = {
 					NOT = { 
-						has_war_with = PREV 
+						has_wargoal_against = PREV 
+					}
+				}
+				create_wargoal = {
+    					target = PREV
+    					type = annex_everything
+				}
+			}
+		}
+	}
+}
+
+
+
+### PRA Collapse Wargoals
+effect_kill_the_PRA = {
+	custom_effect_tooltip = effect_kill_the_PRA_tt
+	for_each_scope_loop = { #This loops declare the wars
+    		array = global.cali_anarchist_collapse
+		ROOT = {
+			if = { 
+				limit = {
+					NOT = { 
+						has_wargoal_against = PREV 
+					}
+				}
+				create_wargoal = {
+    					target = PREV
+    					type = annex_everything
+				}
+			}
+		}
+	}
+	for_each_scope_loop = { #This loops declare the wars
+    		array = global.cali_normal_collapse
+		ROOT = {
+			if = { 
+				limit = {
+					NOT = { 
+						has_wargoal_against = PREV 
 					}
 				}
 				create_wargoal = {
