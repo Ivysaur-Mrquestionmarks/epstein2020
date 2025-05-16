@@ -790,6 +790,9 @@ focus_tree = {
 			focus = KFC_the_empire_of_kentucky
 			focus = KFC_hegemony
 		}
+		available = {
+			NRA = { exists = NO }
+		}
 		relative_position_id = KFC_invade_appalachia
 		x = -1
 		y = 1
@@ -815,6 +818,9 @@ focus_tree = {
 			focus = KFC_we_are_appalachia
 			focus = KFC_hegemony
 		}
+		available = {
+			NRA = { exists = NO }
+		}
 		relative_position_id = KFC_invade_appalachia
 		x = 1
 		y = 1
@@ -836,8 +842,14 @@ focus_tree = {
 			}
 			every_state = {
 				limit = {
-					is_core_of = CSA
-					any_neighbor_state = { is_core_of = KFC }
+					OR = {
+						is_core_of = APA
+						state = 260
+						state = 593
+						state = 591
+						state = 271
+						state = 592
+					}
 				}
 				add_core_of = KFC
 			}
@@ -860,6 +872,9 @@ focus_tree = {
 		relative_position_id = KFC_a_possible_ally
 		x = -1
 		y = 1
+		available = {
+			NRA = { exists = NO }
+		}
 		completion_reward = {
 			add_threat = 10
 			every_state = {
@@ -870,14 +885,13 @@ focus_tree = {
 			}
 			every_state = {
 				limit = {
-					is_core_of = GLA
+					is_core_of = VIR
 				}
 				add_core_of = KFC
 			}
 			every_state = {
 				limit = {
 					is_core_of = NRA
-					any_neighbor_state = { is_core_of = KFC }
 				}
 				add_core_of = KFC
 			}
@@ -897,6 +911,12 @@ focus_tree = {
 		relative_position_id = KFC_a_possible_ally
 		x = 1
 		y = 1
+		available = {
+			OR = {
+				is_in_faction_with = NRA
+				NRA = { exists = NO }
+			}
+		}
 		completion_reward = {
 			add_threat = 6
 			every_state = {
@@ -908,13 +928,135 @@ focus_tree = {
 			every_state = {
 				limit = {
 					is_core_of = NRA
-					any_neighbor_state = { is_core_of = KFC }
+					#any_neighbor_state = { is_core_of = KFC }
 				}
 				add_core_of = KFC
 			}
 			set_cosmetic_tag = KFC_nazBOL_confed_cosmetic
 		}
 	}
+	
+	focus = {
+		id = KFC_crush_free_state
+		icon = GFX_goal_NRA_Destroy_Northern_Anarchism
+		cost = 2.00
+		prerequisite = {
+			focus = KFC_hegemony
+			focus = KFC_the_empire_of_kentucky
+			focus = KFC_we_are_appalachia
+			focus = KFC_nazbol_confederacy
+		}
+		relative_position_id = KFC_hegemony
+		x = 1
+		y = 1
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = KFC_crush_virginia
+		icon = GFX_goal_NRA_Integrate_Virginia_2
+		cost = 2.00
+		prerequisite = {
+			focus = KFC_hegemony
+			focus = KFC_the_empire_of_kentucky
+			focus = KFC_we_are_appalachia
+			focus = KFC_nazbol_confederacy
+		}
+		relative_position_id = KFC_hegemony
+		x = -3
+		y = 1
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = KFC_another_ally
+		icon = GFX_goal_NRA_Invite_Virginia_to_the_Pact
+		cost = 2.00
+		prerequisite = {
+			focus = KFC_hegemony
+			focus = KFC_the_empire_of_kentucky
+			focus = KFC_we_are_appalachia
+			focus = KFC_nazbol_confederacy
+		}
+		relative_position_id = KFC_hegemony
+		x = -1
+		y = 1
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = KFC_intervene_in_tennesee
+		icon = GFX_goal_NRA_Integrate_Tennessee
+		cost = 2.00
+		prerequisite = {
+			focus = KFC_hegemony
+			focus = KFC_the_empire_of_kentucky
+			focus = KFC_we_are_appalachia
+			focus = KFC_nazbol_confederacy
+		}
+		relative_position_id = KFC_we_are_appalachia
+		x = -1
+		y = 1
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = KFC_a_stranglehold_over_appalachia
+		icon = GFX_goal_NRA_Proclaim_Greater_Appalachia
+		cost = 2.00
+		prerequisite = {
+			focus = KFC_another_ally
+		}
+		prerequisite = {
+			focus = KFC_crush_virginia
+		}
+		prerequisite = {
+			focus = KFC_crush_free_state
+		}
+		prerequisite = {
+			focus = KFC_intervene_in_tennesee
+		}
+		relative_position_id = KFC_another_ally
+		x = -1
+		y = 1
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = KFC_on_the_road_to_reunification
+		icon = GFX_goal_NRA_Liberate_America
+		cost = 2.00
+		prerequisite = {
+			focus = KFC_hegemony
+			focus = KFC_nazbol_confederacy
+		}
+		relative_position_id = KFC_nazbol_confederacy
+		x = 1
+		y = 1
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = KFC_utilize_new_resources
+		icon = GFX_goal_NRA_Embrace_Industrial_Revolution
+		cost = 2.00
+		prerequisite = {
+			focus = KFC_on_the_road_to_reunification
+		}
+		prerequisite = {
+			focus = KFC_a_stranglehold_over_appalachia
+		}
+		relative_position_id = KFC_on_the_road_to_reunification
+		x = -1
+		y = 2
+		completion_reward = {
+		}
+	}
+	
+	
 	focus = {
 		id = KFC_root_out_opposition
 		icon = GFX_focus_KFC_Root_Out_Opposition
