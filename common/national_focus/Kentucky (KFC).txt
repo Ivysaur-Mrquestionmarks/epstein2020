@@ -414,8 +414,11 @@ focus_tree = {
 			NOT = {tag = KFC}
 			has_government = libertarian_right 
 		}
+		mutually_exclusive = {
+			focus = KFC_the_governor
+		}
 		relative_position_id = KFC_organising_dissidence
-		x = -3
+		x = -4
 		y = 1
 		completion_reward = {
 			add_popularity = {
@@ -444,10 +447,54 @@ focus_tree = {
 		}
 	}
 	focus = {
+		id = KFC_the_governor
+		icon = GFX_goal_unkown
+		cost = 4.00
+		prerequisite = {
+			focus = KFC_organising_dissidence
+		}
+		bypass = {
+			NOT = {tag = KFC}
+			has_government = libertarian_right 
+		}
+		mutually_exclusive = {
+			focus = KFC_the_mayor
+		}
+		relative_position_id = KFC_organising_dissidence
+		x = -2
+		y = 1
+		completion_reward = {
+			add_popularity = {
+				ideology = democrat
+				popularity = 0.10
+			}
+		}
+	}
+	focus = {
+		id = KFC_sway_the_national_guard
+		icon = GFX_goal_unkown
+		cost = 5.00
+		prerequisite = {
+			focus = KFC_the_governor
+		}
+		bypass = {
+			NOT = {tag = KFC}
+			has_government = libertarian_right 
+		}
+		relative_position_id = KFC_the_governor
+		x = 0
+		y = 2
+		completion_reward = {
+			set_country_flag = KFC_nationalguard_beshear_flag
+			custom_effect_tooltip = KFC_nationalguard_beshear_flag
+		}
+	}
+	focus = {
 		id = KFC_utilise_connections
 		icon = GFX_goal_USMC_Connections
 		cost = 5.00
 		prerequisite = {
+			focus = KFC_sway_the_national_guard
 			focus = KFC_louisville_pd
 		}
 		bypass = {
@@ -455,7 +502,7 @@ focus_tree = {
 			has_government = libertarian_right 
 		}
 		relative_position_id = KFC_louisville_pd
-		x = 0
+		x = 1
 		y = 2
 		completion_reward = {
 			set_country_flag = KFC_uscm_connections
