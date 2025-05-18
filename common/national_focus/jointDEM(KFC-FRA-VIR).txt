@@ -1,6 +1,6 @@
 
 joint_focus = {
-	id = KFC_FRA_VIR_connect_capitals
+	id = KFC_FRA_VIR_legitimists_in_kentucky
 	search_filters = { joint }
 	icon = GFX_goal_FRA_VIR_connect_capitals
 
@@ -22,8 +22,8 @@ joint_focus = {
 		}
 	}
 	offset = {
-		x = 6
-		y = 30
+		x = 0
+		y = 16
 		trigger = {
 			tag = KFC
 		}
@@ -31,9 +31,6 @@ joint_focus = {
 
 	cost = 3
 	text_icon = NORDIC_focus_style
-	ai_will_do = {
-		factor = 1
-	}
 	joint_trigger = {
   		OR = {
 			tag = FRA
@@ -59,25 +56,57 @@ joint_focus = {
 	}
 	available = {
 		VIR = {
-			has_country_flag = VIR_stayed_loyal_to_biden_flag
+			#has_country_flag = VIR_stayed_loyal_to_biden_flag
 			exists = yes
+			NOT = {
+				has_completed_focus = VIR_The_Revolution_has_Begun
+				#has_country_flag = VIR_stayed_loyal_to_biden_flag
+			}
 		}
 		FRA = {
 			exists = yes
 		}
 		KFC = {
 			exists = yes
+			is_in_faction_with = FRA
+		}
+	}
+
+	completion_reward = {
+		add_stability = 0.05
+	}
+}
+
+joint_focus = {
+	id = KFC_FRA_VIR_receive_dc_funding
+	search_filters = { joint }
+	icon = GFX_goal_FRA_VIR_connect_capitals
+
+	X = 1
+	Y = 1
+	relative_position_id = KFC_FRA_VIR_legitimists_in_kentucky
+
+	prerequisite = {
+		focus = KFC_FRA_VIR_legitimists_in_kentucky
+	}
+
+	cost = 3
+	text_icon = NORDIC_focus_style
+	joint_trigger = {
+  		OR = {
+			tag = FRA
+			tag = VIR
+			tag = KFC
+		}
+	}
+	available = {
+  		OR = {
+			tag = FRA
+			tag = KFC
 		}
 	}
 
 	completion_reward_joint_originator = {
-		build_railway = {
-    			level = 1
-    			fallback = yes
-    			#path = { 1942 1051 8590 8581 8637 3561 }
-    			start_province = 4426
-    			target_province = 3690 
-		}
 	}
 
 	completion_reward = {
