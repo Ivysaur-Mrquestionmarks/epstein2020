@@ -1,0 +1,86 @@
+
+joint_focus = {
+	id = KFC_FRA_VIR_connect_capitals
+	search_filters = { joint }
+	icon = GFX_goal_FRA_VIR_connect_capitals
+
+	X = 0
+	Y = 0
+
+	offset = {
+		x = -75
+		y = 6
+		trigger = {
+			tag = FRA
+		}
+	}
+	offset = {
+		x = 45
+		y = 12
+		trigger = {
+			tag = VIR
+		}
+	}
+	offset = {
+		x = 6
+		y = 30
+		trigger = {
+			tag = KFC
+		}
+	}
+
+	cost = 3
+	text_icon = NORDIC_focus_style
+	ai_will_do = {
+		factor = 1
+	}
+	joint_trigger = {
+  		OR = {
+			tag = FRA
+			tag = VIR
+			tag = KFC
+		}
+	}
+	allow_branch = {
+		VIR = {
+			exists = yes
+			NOT = {
+				has_completed_focus = VIR_The_Revolution_has_Begun
+				#has_country_flag = VIR_stayed_loyal_to_biden_flag
+			}
+		}
+		FRA = {
+			exists = yes
+		}
+		KFC = {
+			exists = yes
+			#has_completed_focus = KFC_labor_government
+		}
+	}
+	available = {
+		VIR = {
+			has_country_flag = VIR_stayed_loyal_to_biden_flag
+			exists = yes
+		}
+		FRA = {
+			exists = yes
+		}
+		KFC = {
+			exists = yes
+		}
+	}
+
+	completion_reward_joint_originator = {
+		build_railway = {
+    			level = 1
+    			fallback = yes
+    			#path = { 1942 1051 8590 8581 8637 3561 }
+    			start_province = 4426
+    			target_province = 3690 
+		}
+	}
+
+	completion_reward = {
+		add_stability = 0.05
+	}
+}
