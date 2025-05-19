@@ -415,6 +415,9 @@ country_event = {
 			id = carribean.13
 			hours = 12
 		}
+		hidden_effect = {
+			country_event = { id = carribean.19 days = 400 }
+		}
 		ai_chance = {
 			factor = 100
 		}
@@ -673,5 +676,143 @@ news_event = {
 	major = yes
 	option = {
 		name = carribean.18.a
+	}
+}
+
+#Bukele begins great war of pacification
+country_event = {
+	id = carribean.19
+	title = carribean.19.t
+	desc = carribean.19.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = carribean.19.a
+		ai_chance = {
+			factor = 100
+		}
+		set_cosmetic_tag = ELS_centro_america_ct
+		add_timed_idea = {
+			idea = ELS_central_american_war_good
+			days = 68
+		}
+		HON = {
+			add_timed_idea = {
+				idea = ELS_central_american_war_bad
+				days = 30
+			}
+		}
+		GUA = {
+			add_timed_idea = {
+				idea = ELS_central_american_war_bad
+				days = 32
+			}
+		}
+		every_state = {
+			limit = {
+				state = 367
+				state = 321
+				state = 547
+				state = 369
+				state = 546
+				state = 370
+				state = 52
+				state = 464
+				state = 462
+				state = 448
+				state = 454
+				state = 457
+				state = 336
+				state = 667
+			}
+			add_claim_by = ROOT
+		}
+		declare_war_on = {
+		    target = HON
+		    type = annex_everything
+		}
+		declare_war_on = {
+		    target = GUA
+		    type = annex_everything
+		}
+		if = {
+			limit = {
+				GUA = {
+					is_in_faction = no
+				}
+				HON = {
+					is_in_faction = no
+				}
+			}
+			HON = {
+				create_faction = "Quetzaltenango Treaty"
+				add_to_faction = GUA
+			}
+		}
+		NIC = {
+			hidden_effect = {
+				country_event = {
+					id = carribean.21
+					days = 70
+				}
+			}
+		}
+		news_event = carribean.20
+	}
+	#nah I don't think I will
+	option = {
+		name = carribean.19.b
+		add_war_support = -0.30
+		add_popularity = {
+			ideology = democrat
+			popularity = 0.45
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+#news event for above
+news_event = {
+	id = carribean.20
+	title = carribean.20.t
+	desc = carribean.20.d
+	#picture =
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = carribean.20.a
+		trigger = { original_tag = ELS }
+	}
+	option = {
+		name = carribean.20.b
+		trigger = { NOT = { original_tag = ELS } }
+	}
+}
+#nicaragua joins in
+country_event = {
+	id = carribean.21
+	title = carribean.21.t
+	desc = carribean.21.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = carribean.21.a
+		declare_war_on = {
+		    target = ELS
+		    type = annex_everything
+		}	
+		if = {
+			limit = {
+				HON = {
+					is_faction_leader = yes
+				}
+			}
+			HON = {
+				add_to_faction = NIC
+			}
+		}
 	}
 }
