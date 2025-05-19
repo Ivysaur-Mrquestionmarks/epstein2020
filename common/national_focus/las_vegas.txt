@@ -344,7 +344,24 @@ focus_tree = {
 		}
 		x = 2
 		y = 5
-		#todo
+		available = {
+			power_balance_value = {
+    			id = LAS_casinos_vs_people_bop 
+    			value < -0.20
+			}
+		}
+		completion_reward= {
+			add_ideas = LAS_casino_corruption
+			add_popularity = {
+				ideology = autocratic
+				popularity = 0.05
+			}
+			add_power_balance_value = {
+    			id = LAS_casinos_vs_people_bop
+    			value = -0.05
+    			tooltip_side = casino_favored
+			}
+		}
 
 	}
 	focus = {
@@ -381,6 +398,47 @@ focus_tree = {
 		}
 		x = 8
 		y = 4
+		completion_reward = {
+			46 = {
+				add_building_construction = {
+				    type = bunker
+				    level = 3
+				    instant_build = yes
+				    province = {
+				    	all_provinces = yes
+					    limit_to_border_country = PRA
+					}
+				}
+			}
+			33 = {
+				add_building_construction = {
+				    type = bunker
+				    level = 3
+				    instant_build = yes
+				    province = {
+				    	all_provinces = yes
+					    limit_to_border_country = PRA
+					}
+				}
+			}
+			if = {
+				limit = {
+					owns_state = 491
+				}
+				491 = {
+					add_building_construction = {
+					    type = bunker
+					    level = 3
+					    instant_build = yes
+					    province = {
+					    	all_provinces = yes
+						    limit_to_border_country = PRA
+						}
+					}
+				}
+			}
+			#AFTER DOING THE BORDER TENSION MECHANIC, RETURN HERE AND CAUSE EFFECTS WITH THAT.
+		}
 
 	}
 	focus = {
@@ -392,6 +450,14 @@ focus_tree = {
 		}
 		x = 12
 		y = 4
+		completion_reward = {
+			add_stability = 0.05
+			add_power_balance_value = {
+    			id = LAS_casinos_vs_people_bop
+    			value = 0.10
+    			tooltip_side = people_favored
+			}
+		}
 
 	}
 	focus = {
@@ -403,6 +469,39 @@ focus_tree = {
 		}
 		x = 8
 		y = 5
+		available = {
+			power_balance_value = {
+    			id = LAS_casinos_vs_people_bop 
+    			value > 0.20
+			}
+		}
+		completion_reward = {
+			add_popularity = {
+				ideology = republican
+				popularity = 0.05
+			}
+			LAS_stavros_anthony = {
+				add_country_leader_role = {
+				    promote_leader = yes
+				    country_leader = {
+				        ideology = trumpist
+				        traits = { 
+				        	###
+				        }
+				    }
+				}
+				add_advisor_role = {
+				    advisor = {
+				        slot = political_advisor
+				        cost = 100
+				        idea_token = LAS_stavros_anthony_advisor
+				        traits = {
+				            RAJ_GOE_a_way_with_words
+				        }
+				    }
+				}
+			}
+		}
 
 	}
 	focus = {
@@ -414,6 +513,26 @@ focus_tree = {
 		}
 		x = 8
 		y = 6
+		available = {
+			power_balance_value = {
+    			id = LAS_casinos_vs_people_bop 
+    			value > 0.25
+			}
+		}
+		bypass = {
+			OR = {
+				has_war_with = USA
+				NOT = {
+					country_exists = USA
+				}
+			}
+		}
+		completion_reward = {
+			add_manpower = -2000
+			USA = {
+				country_event = viva_las_vegas.1
+			}
+		}
 
 	}
 	focus = {
@@ -425,6 +544,24 @@ focus_tree = {
 		}
 		x = 8
 		y = 7
+		available = {
+			NOT = {
+				has_war_with = USA
+			}
+			power_balance_value = {
+    			id = LAS_casinos_vs_people_bop 
+    			value > 0.35
+			}
+		}
+		completion_reward = {
+			add_ideas = LAS_recognised_loyalists
+			USA = {
+				add_opinion_modifier = {
+				    target = LAS
+				    modifier = ger_cze_diplomatic_focus
+				}
+			}
+		}
 
 	}
 	focus = {
