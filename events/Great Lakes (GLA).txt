@@ -34,7 +34,7 @@ country_event = {
 		hidden_effect = {
 			country_event = {
 				id = greatlake.18
-				days = 10
+				days = 8
 			}
 			country_event = {
 				id = greatlake.97
@@ -66,7 +66,7 @@ country_event = {
 		hidden_effect = {
 			country_event = {
 				id = greatlake.18
-				days = 10
+				days = 8
 			}
 			country_event = {
 				id = greatlake.97
@@ -531,7 +531,7 @@ country_event = {
 		hidden_effect = {
 			country_event = {
 				id = greatlake.19
-				days = 10
+				days = 8
 			}
 		}
 	}
@@ -557,7 +557,7 @@ country_event = {
 		hidden_effect = {
 			country_event = {
 				id = greatlake.20
-				days = 10
+				days = 8
 			}
 		}
 	}
@@ -583,7 +583,7 @@ country_event = {
 		hidden_effect = {
 			country_event = {
 				id = greatlake.21
-				days = 35
+				days = 10
 			}
 		}
 	}
@@ -609,7 +609,7 @@ country_event = {
 		hidden_effect = {
 			country_event = {
 				id = greatlake.22
-				days = 35
+				days = 30
 			}
 			if = {
 			    limit = { has_country_flag = GLA_mama_jo_side }
@@ -656,7 +656,7 @@ country_event = {
 		hidden_effect = {
 			country_event = {
 				id = greatlake.22
-				days = 35
+				days = 30
 			}
 			if = {
 			    limit = { has_country_flag = GLA_mama_jo_side }
@@ -692,7 +692,7 @@ country_event = {
 		hidden_effect = {
 			country_event = {
 				id = greatlake.22
-				days = 35
+				days = 30
 			}
 			if = {
 			    limit = { has_country_flag = GLA_mama_jo_side }
@@ -724,7 +724,7 @@ country_event = {
 		hidden_effect = {
 			country_event = {
 				id = greatlake.22
-				days = 35
+				days = 30
 			}
 			if = {
 			    limit = { has_country_flag = GLA_mama_jo_side }
@@ -783,8 +783,8 @@ country_event = {
 		}
 		hidden_effect = {
 			country_event = {
-				id = greatlake.23
-				days = 55
+				id = greatlake.101
+				days = 25
 			}
 		}
 	}
@@ -889,6 +889,7 @@ country_event = {
 			    value = 50
 			    compare = greater_than_or_equals
 		    }
+			has_country_flag = GLA_john_mcafee_picked
 	    }
 		GLA_john_mcafee = {
 			promote_character = yes
@@ -918,6 +919,7 @@ country_event = {
 			    value = 50
 			    compare = greater_than_or_equals
 		    }
+			has_country_flag = GLA_gary_johnson_picked
 	    }
 		GLA_gary_johnson = {
 			promote_character = yes
@@ -946,6 +948,7 @@ country_event = {
 			    value = 50
 			    compare = greater_than_or_equals
 		    }
+			has_country_flag = GLA_ron_paul_picked
 	    }
 		GLA_ron_paul = {
 			promote_character = yes
@@ -3530,7 +3533,204 @@ country_event = {
 		ai_chance = {
 			factor = 60
 		}
-		
+	}
+}
+
+#Jo Jorgensen Wins The Libertarian Primaries
+country_event = {
+	id = greatlake.101
+	title = greatlake.101.t
+	desc = greatlake.101.d
+	picture = event_GLA_libertarian_party
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.101.a
+		ai_chance = {
+			factor = 10
+		}
+		add_to_variable = {
+			var = GLA_opps
+			value = -5
+			tooltip = GLA_the_chances_of_no_victory
+		}
+		hidden_effect = {
+		    country_event = {
+			    id = greatlake.102
+			    days = 5
+		    }
+	    }
+	}
+}
+
+#Anti-Jorgensen Libertarians Accuses Jo Jorgensen of Rigging The Primaries
+country_event = {
+	id = greatlake.102
+	title = greatlake.102.t
+	desc = greatlake.102.d
+	picture = event_GLA_libertarian_party
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.102.a
+		ai_chance = {
+			factor = 10
+		}
+		hidden_effect = {
+		    country_event = {
+			    id = greatlake.103
+			    days = 6
+		    }
+	    }
+	}
+}
+
+#Anti-Jorgensen Libertarians Form Their Own Party
+country_event = {
+	id = greatlake.103
+	title = greatlake.103.t
+	desc = greatlake.103.d
+	picture = event_GLA_libertarian_party
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.103.a
+		ai_chance = {
+			factor = 10
+		}
+		add_popularity = {
+			ideology = libertarian_right
+			popularity = -0.03
+		}
+		add_to_variable = {
+			var = GLA_opps
+			value = 5
+			tooltip = GLA_the_chances_of_victory
+		}
+        hidden_effect = {
+		    country_event = {
+			    id = greatlake.104
+			    days = 15
+		    }
+		}
+	}
+}
+
+#The Liberty and Justice For All Party Primaries
+country_event = {
+	id = greatlake.104
+	title = greatlake.104.t
+	desc = greatlake.104.d
+	picture = event_GLA_libertarian_party
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+	
+	}
+	option = {
+		name = greatlake.104.a
+		ai_chance = {
+			factor = 10
+		}
+		trigger = {
+		    has_country_flag = GLA_mama_jo_side
+	    }
+		add_popularity = {
+			ideology = libertarian_right
+			popularity = 0.02
+		}
+		hidden_effect = {
+		    country_event = {
+			    id = greatlake.23
+			    days = 25
+		    }
+			random_list = {
+				34 = {
+					set_country_flag = GLA_gary_johnson_picked
+				}
+				33 = {
+					set_country_flag = GLA_ron_paul_picked
+				}
+				33 = {
+					set_country_flag = GLA_john_mcafee_picked
+				}
+			}
+	    }
+	}
+	option = {
+		name = greatlake.104.b
+		ai_chance = {
+			factor = 10
+		}
+		trigger = {
+			NOT = {
+		        has_country_flag = GLA_mama_jo_side
+			}
+	    }
+		add_popularity = {
+			ideology = libertarian_right
+			popularity = 0.02
+		}
+		hidden_effect = {
+		    country_event = {
+			    id = greatlake.23
+			    days = 25
+		    }
+	    }
+		set_country_flag = GLA_gary_johnson_picked
+	}
+	option = {
+		name = greatlake.104.c
+		ai_chance = {
+			factor = 10
+		}
+		trigger = {
+			NOT = {
+		        has_country_flag = GLA_mama_jo_side
+			}
+	    }
+		add_popularity = {
+			ideology = libertarian_right
+			popularity = 0.02
+		}
+		hidden_effect = {
+		    country_event = {
+			    id = greatlake.23
+			    days = 25
+		    }
+	    }
+		set_country_flag = GLA_ron_paul_picked
+	}
+	option = {
+		name = greatlake.104.e
+		ai_chance = {
+			factor = 10
+		}
+		trigger = {
+			NOT = {
+		        has_country_flag = GLA_mama_jo_side
+			}
+	    }
+		add_popularity = {
+			ideology = libertarian_right
+			popularity = 0.02
+		}
+		hidden_effect = {
+		    country_event = {
+			    id = greatlake.23
+			    days = 25
+		    }
+	    }
+		set_country_flag = GLA_john_mcafee_picked
 	}
 }
 
