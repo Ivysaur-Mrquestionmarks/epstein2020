@@ -1,0 +1,963 @@
+AFS_civil_war_script_effect = {
+	hidden_effect = {
+		load_oob = "AFS_cw_vermin"
+		add_popularity = {
+            ideology = libertarian_left
+            popularity = 0.15
+        }
+		delete_unit_template_and_units = {
+            division_template = "Green Army Infantry"
+            disband = no
+        }
+		delete_unit_template_and_units = {
+            division_template = "Marine Division"
+            disband = no
+        }
+		every_unit_leader = { 
+			if = {
+				limit = { has_trait = mattis_loyalist_trait }
+				remove_unit_leader = yes
+			}
+		}
+		every_unit_leader = { 
+			if = {
+				limit = { has_trait = aoc_loyalist_trait }
+				remove_unit_leader = yes
+			}
+		}
+		remove_ideas = AFS_triumvirate_broken
+		remove_ideas = AFS_triumvirate_broken_vermin
+		if = {
+			limit = { has_completed_focus = AFS_connect_with_our_populous }
+			add_ideas = AFS_peoples_support
+		}
+		if = {
+			limit = { has_completed_focus = AFS_promises_of_a_anarchist_paradise }
+			swap_ideas = {
+				remove_idea = AFS_peoples_support
+				add_idea = AFS_peoples_support_2
+			}
+		}
+		if = {
+			limit = { has_completed_focus = AFS_vermins_black_army }
+			add_ideas = AFS_vermins_black_army_idea
+		}
+	    reserve_dynamic_country = yes
+		create_dynamic_country = {
+            original_tag = AFS
+            copy_tag = AFS
+            transfer_state = 224
+			transfer_state = 237
+			set_politics = {
+	            ruling_party = autocratic
+                elections_allowed = no
+            }
+			declare_war_on = {
+                target = AFS
+                type = annex_everything
+            }
+			add_civil_war_target = AFS
+			create_country_leader = {
+	            name = AFS_james_mattis
+	            desc = ""
+	            picture = mattis.dds
+	            expire = "2060.1.1"
+	            ideology = military_dictatorship
+	            traits = {
+					retired_officer
+	            }
+            }
+			promote_character = {
+                character = AFS_james_mattis
+                ideology = military_dictatorship
+            }
+			load_oob = "AFS_cw_mattis"
+			set_popularities = {
+	            autocratic = 60
+			    republican = 10
+			    democrat = 10
+			    authoritarian_left 10
+			    libertarian_left = 10
+				libertarian_right = 0
+            }
+			set_cosmetic_tag = AFS_mattis_color
+			load_focus_tree = AFS_focus_tree
+			complete_national_focus = AFS_triumvirate_rule
+			complete_national_focus = AFS_againist_lawlessness
+			create_field_marshal = {
+	            name = "James Mattis"
+	            picture = "Mad_Dog_Mattis.png"
+	            traits = { brilliant_strategist politically_connected mattis_loyalist_trait commando }
+	            skill = 5
+			    attack_skill = 4
+			    defense_skill = 2
+			    planning_skill = 3
+			    logistics_skill = 2
+            }
+			create_corps_commander = {
+	            name = "Stanley McChrystal"
+	            picture = "mcchrystal.dds"
+	            traits = { old_guard inflexible_strategist mattis_loyalist_trait organisational_leader }
+	            skill = 4
+                attack_skill = 3
+			    defense_skill = 1
+			    planning_skill = 2
+			    logistics_skill = 3
+            }
+			create_corps_commander = {
+	            name = "Michael Akey"
+	            picture = "Michael_Akey.png"
+	            traits = { old_guard mattis_loyalist_trait }
+	            skill = 3
+			    attack_skill = 2
+			    defense_skill = 1
+			    planning_skill = 2
+			    logistics_skill = 3
+            }
+			create_corps_commander = {
+	            name = "Tommy Franks"
+	            picture = "tommy_franks.png"
+	            traits = { old_guard mattis_loyalist_trait bearer_of_artillery desert_fox }
+	            skill = 3
+			    attack_skill = 1
+			    defense_skill = 1
+			    planning_skill = 4
+			    logistics_skill = 3
+            }
+			create_corps_commander = {
+	            name = "Charles A Flynn"
+	            picture = "charles_a_flynn.tga"
+	            traits = { career_officer mattis_loyalist_trait infantry_leader commando }
+	            skill = 4
+			    attack_skill = 3
+			    defense_skill = 2
+			    planning_skill = 3
+			    logistics_skill = 1
+            }
+			delete_unit_template_and_units = {
+                division_template = "Free Ponies"
+                disband = no
+            }
+		    delete_unit_template_and_units = {
+                division_template = "Leftist Irregular Militias"
+                disband = no
+            }
+			add_ideas = Ruins_of_the_Rust_Belt
+			if = {
+			    limit = { AFS = { has_completed_focus = AFS_make_them_powerless } }
+			    add_ideas = AFS_vermin_sabotage
+		    }
+		    if = {
+			    limit = { AFS = { has_completed_focus = AFS_weaken_their_armies } }
+			    swap_ideas = {
+				    remove_idea = AFS_vermin_sabotage
+				    add_idea = AFS_vermin_sabotage_2
+			    }
+		    }
+			if = {
+			    limit = { AFS = { has_completed_focus = AFS_take_them_down } }
+			    swap_ideas = {
+				    remove_idea = AFS_vermin_sabotage_2
+				    add_idea = AFS_vermin_sabotage_3
+			    }
+		    }
+        }
+		reserve_dynamic_country = yes
+		create_dynamic_country = {
+            original_tag = AFS
+            copy_tag = AFS
+            transfer_state = 226
+			transfer_state = 205
+			transfer_state = 559
+			set_politics = {
+	            ruling_party = authoritarian_left
+                elections_allowed = no
+            }
+			declare_war_on = {
+                target = AFS
+                type = annex_everything
+            }
+			if = {
+				limit = {
+					D01 = {
+                        has_country_leader = {
+                            name = "James Mattis"
+                            ruling_only = yes
+                        }
+					}
+				}
+			    declare_war_on = {
+                    target = D01
+                    type = annex_everything
+                }
+		    }
+			if = {
+				limit = { 
+					D02 = {
+                        has_country_leader = {
+                            name = "James Mattis"
+                            ruling_only = yes
+                        }
+					}
+				}
+			    declare_war_on = {
+                    target = D02
+                    type = annex_everything
+                }
+		    }
+			if = {
+				limit = { 
+					D03 = {
+                        has_country_leader = {
+                            name = "James Mattis"
+                            ruling_only = yes
+                        }
+					}
+				}
+			    declare_war_on = {
+                    target = D03
+                    type = annex_everything
+                }
+		    }
+			if = {
+				limit = { 
+					D04 = {
+                        has_country_leader = {
+                            name = "James Mattis"
+                            ruling_only = yes
+                        }
+					}
+				}
+			    declare_war_on = {
+                    target = D04
+                    type = annex_everything
+                }
+		    }
+			if = {
+				limit = { 
+					D05 = {
+                        has_country_leader = {
+                            name = "James Mattis"
+                            ruling_only = yes
+                        }
+					}
+				}
+			    declare_war_on = {
+                    target = D05
+                    type = annex_everything
+                }
+		    }
+			if = {
+				limit = { 
+					D06 = {
+                        has_country_leader = {
+                            name = "James Mattis"
+                            ruling_only = yes
+                        }
+					}
+				}
+			    declare_war_on = {
+                    target = D06
+                    type = annex_everything
+                }
+		    }
+			if = {
+				limit = {
+					D07 = {
+                        has_country_leader = {
+                            name = "James Mattis"
+                            ruling_only = yes
+                        }
+					}
+				}
+			    declare_war_on = {
+                    target = D07
+                    type = annex_everything
+                }
+		    }
+			add_civil_war_target = AFS
+			create_country_leader = {
+	            name = AFS_howie_hawkins
+	            desc = ""
+	            picture = howie.dds
+	            expire = "2060.1.1"
+	            ideology = eco_fascism
+	            traits = {
+	            }
+            }
+			promote_character = {
+                character = AFS_howie_hawkins
+                ideology = eco_fascism
+            }
+			load_oob = "AFS_cw_hawkins"
+			set_popularities = {
+	            authoritarian_left = 60
+			    republican = 10
+			    democrat = 10
+			    autocratic 10
+			    libertarian_left = 10
+				libertarian_right = 0
+            }
+			set_cosmetic_tag = AFS_howie_color
+			load_focus_tree = AFS_focus_tree
+			complete_national_focus = AFS_triumvirate_rule
+			complete_national_focus = AFS_againist_lawlessness
+			delete_unit_template_and_units = {
+                division_template = "Free Ponies"
+                disband = no
+            }
+		    delete_unit_template_and_units = {
+                division_template = "Leftist Irregular Militias"
+                disband = no
+            }
+			add_ideas = Ruins_of_the_Rust_Belt
+			if = {
+			    limit = { AFS = { has_completed_focus = AFS_make_them_powerless } }
+			    add_ideas = AFS_vermin_sabotage
+		    }
+		    if = {
+			    limit = { AFS = { has_completed_focus = AFS_weaken_their_armies } }
+			    swap_ideas = {
+				    remove_idea = AFS_vermin_sabotage
+				    add_idea = AFS_vermin_sabotage_2
+			    }
+		    }
+			if = {
+			    limit = { AFS = { has_completed_focus = AFS_take_them_down } }
+			    swap_ideas = {
+				    remove_idea = AFS_vermin_sabotage_2
+				    add_idea = AFS_vermin_sabotage_3
+			    }
+		    }
+        }	
+		set_global_flag = ohio_civil_war_global
+	}
+}
+
+AFS_civil_war_script_effect_hawkins = {
+	hidden_effect = {
+		load_oob = "AFS_cw_hawkins_2"
+		add_popularity = {
+            ideology = authoritarian_left
+            popularity = 0.15
+        }
+		set_politics = {
+            ruling_party = authoritarian_left
+            elections_allowed = no
+        }
+		set_cosmetic_tag = AFS_howie_color
+		delete_unit_template_and_units = {
+            division_template = "Free Ponies"
+            disband = no
+        }
+		delete_unit_template_and_units = {
+            division_template = "Leftist Irregular Militias"
+            disband = no
+        }
+		delete_unit_template_and_units = {
+            division_template = "Marine Division"
+            disband = no
+        }
+		every_unit_leader = { 
+			if = {
+				limit = { has_trait = mattis_loyalist_trait }
+				remove_unit_leader = yes
+			}
+		}
+		every_unit_leader = { 
+			if = {
+				limit = { has_trait = supreme_loyalist_trait }
+				remove_unit_leader = yes
+			}
+		}
+		remove_ideas = AFS_triumvirate_broken
+		remove_ideas = AFS_triumvirate_broken_hawkins_and_mattis
+		if = {
+			limit = { has_completed_focus = AFS_plot_againist_vermin }
+			add_ideas = AFS_legitimate_government
+		}
+		if = {
+			limit = { has_completed_focus = AFS_influence_the_government }
+			swap_ideas = {
+				remove_idea = AFS_legitimate_government
+				add_idea = AFS_legitimate_government_2
+			}
+		}
+		if = {
+			limit = { has_completed_focus = AFS_preparations }
+			add_ideas = AFS_the_green_army
+		}
+	    reserve_dynamic_country = yes
+		create_dynamic_country = {
+            original_tag = AFS
+            copy_tag = AFS
+            transfer_state = 224
+			transfer_state = 237
+			set_politics = {
+	            ruling_party = autocratic
+                elections_allowed = no
+            }
+			declare_war_on = {
+                target = AFS
+                type = annex_everything
+            }
+			add_civil_war_target = AFS
+			create_country_leader = {
+	            name = AFS_james_mattis
+	            desc = ""
+	            picture = mattis.dds
+	            expire = "2060.1.1"
+	            ideology = military_dictatorship
+	            traits = {
+					retired_officer
+	            }
+            }
+			promote_character = {
+                character = AFS_james_mattis
+                ideology = military_dictatorship
+            }
+			load_oob = "AFS_cw_mattis"
+			set_popularities = {
+	            autocratic = 60
+			    republican = 10
+			    democrat = 10
+			    authoritarian_left 10
+			    libertarian_left = 10
+				libertarian_right = 0
+            }
+			set_cosmetic_tag = AFS_mattis_color
+			load_focus_tree = AFS_focus_tree
+			complete_national_focus = AFS_triumvirate_rule
+			complete_national_focus = AFS_againist_lawlessness
+			create_field_marshal = {
+	            name = "James Mattis"
+	            picture = "Mad_Dog_Mattis.png"
+	            traits = { brilliant_strategist politically_connected mattis_loyalist_trait commando }
+	            skill = 5
+			    attack_skill = 4
+			    defense_skill = 2
+			    planning_skill = 3
+			    logistics_skill = 2
+            }
+			create_corps_commander = {
+	            name = "Stanley McChrystal"
+	            picture = "mcchrystal.dds"
+	            traits = { old_guard inflexible_strategist mattis_loyalist_trait organisational_leader }
+	            skill = 4
+                attack_skill = 3
+			    defense_skill = 1
+			    planning_skill = 2
+			    logistics_skill = 3
+            }
+			create_corps_commander = {
+	            name = "Michael Akey"
+	            picture = "Michael_Akey.png"
+	            traits = { old_guard mattis_loyalist_trait }
+	            skill = 3
+			    attack_skill = 2
+			    defense_skill = 1
+			    planning_skill = 2
+			    logistics_skill = 3
+            }
+			create_corps_commander = {
+	            name = "Tommy Franks"
+	            picture = "tommy_franks.png"
+	            traits = { old_guard mattis_loyalist_trait bearer_of_artillery desert_fox }
+	            skill = 3
+			    attack_skill = 1
+			    defense_skill = 1
+			    planning_skill = 4
+			    logistics_skill = 3
+            }
+			create_corps_commander = {
+	            name = "Charles A Flynn"
+	            picture = "charles_a_flynn.tga"
+	            traits = { career_officer mattis_loyalist_trait infantry_leader commando }
+	            skill = 4
+			    attack_skill = 3
+			    defense_skill = 2
+			    planning_skill = 3
+			    logistics_skill = 1
+            }
+			delete_unit_template_and_units = {
+                division_template = "Free Ponies"
+                disband = no
+            }
+		    delete_unit_template_and_units = {
+                division_template = "Leftist Irregular Militias"
+                disband = no
+            }
+			add_ideas = Ruins_of_the_Rust_Belt
+        }
+		reserve_dynamic_country = yes
+		create_dynamic_country = {
+            original_tag = AFS
+            copy_tag = AFS
+            transfer_state = 396
+			transfer_state = 399
+			transfer_state = 358
+			set_politics = {
+	            ruling_party = libertarian_left
+                elections_allowed = no
+            }
+			declare_war_on = {
+                target = AFS
+                type = annex_everything
+            }
+			if = {
+				limit = {
+					D01 = {
+                        has_country_leader = {
+                            name = "James Mattis"
+                            ruling_only = yes
+                        }
+					}
+				}
+			    declare_war_on = {
+                    target = D01
+                    type = annex_everything
+                }
+		    }
+			if = {
+				limit = { 
+					D02 = {
+                        has_country_leader = {
+                            name = "James Mattis"
+                            ruling_only = yes
+                        }
+					}
+				}
+			    declare_war_on = {
+                    target = D02
+                    type = annex_everything
+                }
+		    }
+			if = {
+				limit = { 
+					D03 = {
+                        has_country_leader = {
+                            name = "James Mattis"
+                            ruling_only = yes
+                        }
+					}
+				}
+			    declare_war_on = {
+                    target = D03
+                    type = annex_everything
+                }
+		    }
+			if = {
+				limit = { 
+					D04 = {
+                        has_country_leader = {
+                            name = "James Mattis"
+                            ruling_only = yes
+                        }
+					}
+				}
+			    declare_war_on = {
+                    target = D04
+                    type = annex_everything
+                }
+		    }
+			if = {
+				limit = { 
+					D05 = {
+                        has_country_leader = {
+                            name = "James Mattis"
+                            ruling_only = yes
+                        }
+					}
+				}
+			    declare_war_on = {
+                    target = D05
+                    type = annex_everything
+                }
+		    }
+			if = {
+				limit = { 
+					D06 = {
+                        has_country_leader = {
+                            name = "James Mattis"
+                            ruling_only = yes
+                        }
+					}
+				}
+			    declare_war_on = {
+                    target = D06
+                    type = annex_everything
+                }
+		    }
+			if = {
+				limit = {
+					D07 = {
+                        has_country_leader = {
+                            name = "James Mattis"
+                            ruling_only = yes
+                        }
+					}
+				}
+			    declare_war_on = {
+                    target = D07
+                    type = annex_everything
+                }
+		    }
+			add_civil_war_target = AFS
+			create_country_leader = {
+	            name = AFS_vermin_supreme
+	            desc = ""
+	            picture = vermin.dds
+	            expire = "2060.1.1"
+	            ideology = anarchism
+	            traits = {
+	            }
+            }
+			promote_character = {
+                character = AFS_vermin_supreme
+                ideology = anarchism
+            }
+			load_oob = "AFS_cw_vermin_2"
+			set_popularities = {
+	            libertarian_left = 60
+			    republican = 10
+			    democrat = 10
+			    authoritarian_left 10
+			    autocratic = 10
+			    libertarian_right = 0
+            }
+			create_corps_commander = {
+	            name = "Barry Croft"
+	            picture = "croft.dds"
+	            traits = { war_hero supreme_loyalist_trait guerilla_fighter }
+	            skill = 2
+			    attack_skill = 2
+			    defense_skill = 2
+			    planning_skill = 1
+			    logistics_skill = 2
+            }
+			create_corps_commander = {
+	            name = "Deborah Ashenhurst"
+	            picture = "Deborah_Ashenhurst.png"
+	            traits = { war_hero supreme_loyalist_trait }
+	            skill = 2
+			    attack_skill = 1
+			    defense_skill = 2
+			    planning_skill = 1
+			    logistics_skill = 3
+            }
+			set_cosmetic_tag = AFS_vermin_color
+			load_focus_tree = AFS_focus_tree
+			complete_national_focus = AFS_triumvirate_rule
+			complete_national_focus = AFS_againist_tyranny
+			add_ideas = Ruins_of_the_Rust_Belt
+			if = {
+			    limit = { AFS = { has_completed_focus = AFS_turn_the_people_againist_vermin } }
+			    add_ideas = AFS_the_unpopular_vermin
+		    }
+		    if = {
+			    limit = { AFS = { has_completed_focus = AFS_riots_across_ohio } }
+			    swap_ideas = {
+				    remove_idea = AFS_the_unpopular_vermin
+				    add_idea = AFS_the_unpopular_vermin_2
+			    }
+		    }
+			if = {
+			    limit = { AFS = { has_completed_focus = AFS_begin_the_plot } }
+			    swap_ideas = {
+				    remove_idea = AFS_the_unpopular_vermin_2
+				    add_idea = AFS_the_unpopular_vermin_3
+			    }
+		    }
+        }
+		set_global_flag = ohio_civil_war_global	
+	}
+}
+
+AFS_civil_war_script_effect_mattis = {
+	hidden_effect = {
+		load_oob = "AFS_cw_mattis_2"
+		add_popularity = {
+            ideology = autocratic
+            popularity = 0.15
+        }
+		set_politics = {
+            ruling_party = autocratic
+            elections_allowed = no
+        }
+		set_cosmetic_tag = AFS_mattis_color
+		delete_unit_template_and_units = {
+            division_template = "Free Ponies"
+            disband = no
+        }
+		delete_unit_template_and_units = {
+            division_template = "Leftist Irregular Militias"
+            disband = no
+        }
+		delete_unit_template_and_units = {
+            division_template = "Green Army Infantry"
+            disband = no
+        }
+		every_unit_leader = { 
+			if = {
+				limit = { has_trait = howie_loyalist_trait }
+				remove_unit_leader = yes
+			}
+		}
+		every_unit_leader = { 
+			if = {
+				limit = { has_trait = supreme_loyalist_trait }
+				remove_unit_leader = yes
+			}
+		}
+		remove_ideas = AFS_triumvirate_broken
+		remove_ideas = AFS_triumvirate_broken_hawkins_and_mattis
+		if = {
+			limit = { has_completed_focus = AFS_plot_againist_vermin }
+			add_ideas = AFS_legitimate_government
+		}
+		if = {
+			limit = { has_completed_focus = AFS_influence_the_government }
+			swap_ideas = {
+				remove_idea = AFS_legitimate_government
+				add_idea = AFS_legitimate_government_2
+			}
+		}
+		if = {
+			limit = { has_completed_focus = AFS_preparations }
+			add_ideas = AFS_strength_and_might
+		}
+	    reserve_dynamic_country = yes
+		create_dynamic_country = {
+            original_tag = AFS
+            copy_tag = AFS
+            transfer_state = 226
+			transfer_state = 205
+			transfer_state = 559
+			set_politics = {
+	            ruling_party = authoritarian_left
+                elections_allowed = no
+            }
+			declare_war_on = {
+                target = AFS
+                type = annex_everything
+            }
+			add_civil_war_target = AFS
+			create_country_leader = {
+	            name = AFS_howie_hawkins
+	            desc = ""
+	            picture = howie.dds
+	            expire = "2060.1.1"
+	            ideology = eco_fascism
+	            traits = {
+	            }
+            }
+			promote_character = {
+                character = AFS_howie_hawkins
+                ideology = eco_fascism
+            }
+			load_oob = "AFS_cw_hawkins"
+			set_popularities = {
+	            authoritarian_left = 60
+			    republican = 10
+			    democrat = 10
+			    autocratic 10
+			    libertarian_left = 10
+				libertarian_right = 0
+            }
+			set_cosmetic_tag = AFS_howie_color
+			load_focus_tree = AFS_focus_tree
+			complete_national_focus = AFS_triumvirate_rule
+			complete_national_focus = AFS_againist_lawlessness
+			delete_unit_template_and_units = {
+                division_template = "Free Ponies"
+                disband = no
+            }
+		    delete_unit_template_and_units = {
+                division_template = "Leftist Irregular Militias"
+                disband = no
+            }
+			add_ideas = Ruins_of_the_Rust_Belt
+        }
+		reserve_dynamic_country = yes
+		create_dynamic_country = {
+            original_tag = AFS
+            copy_tag = AFS
+            transfer_state = 396
+			transfer_state = 399
+			transfer_state = 358
+			set_politics = {
+	            ruling_party = libertarian_left
+                elections_allowed = no
+            }
+			declare_war_on = {
+                target = AFS
+                type = annex_everything
+            }
+			if = {
+				limit = {
+					D01 = {
+                        has_country_leader = {
+                            name = "Howie Hawkins"
+                            ruling_only = yes
+                        }
+					}
+				}
+			    declare_war_on = {
+                    target = D01
+                    type = annex_everything
+                }
+		    }
+			if = {
+				limit = { 
+					D02 = {
+                        has_country_leader = {
+                            name = "Howie Hawkins"
+                            ruling_only = yes
+                        }
+					}
+				}
+			    declare_war_on = {
+                    target = D02
+                    type = annex_everything
+                }
+		    }
+			if = {
+				limit = { 
+					D03 = {
+                        has_country_leader = {
+                            name = "Howie Hawkins"
+                            ruling_only = yes
+                        }
+					}
+				}
+			    declare_war_on = {
+                    target = D03
+                    type = annex_everything
+                }
+		    }
+			if = {
+				limit = { 
+					D04 = {
+                        has_country_leader = {
+                            name = "Howie Hawkins"
+                            ruling_only = yes
+                        }
+					}
+				}
+			    declare_war_on = {
+                    target = D04
+                    type = annex_everything
+                }
+		    }
+			if = {
+				limit = { 
+					D05 = {
+                        has_country_leader = {
+                            name = "Howie Hawkins"
+                            ruling_only = yes
+                        }
+					}
+				}
+			    declare_war_on = {
+                    target = D05
+                    type = annex_everything
+                }
+		    }
+			if = {
+				limit = { 
+					D06 = {
+                        has_country_leader = {
+                            name = "Howie Hawkins"
+                            ruling_only = yes
+                        }
+					}
+				}
+			    declare_war_on = {
+                    target = D06
+                    type = annex_everything
+                }
+		    }
+			if = {
+				limit = {
+					D07 = {
+                        has_country_leader = {
+                            name = "Howie Hawkins"
+                            ruling_only = yes
+                        }
+					}
+				}
+			    declare_war_on = {
+                    target = D07
+                    type = annex_everything
+                }
+		    }
+			add_civil_war_target = AFS
+			create_country_leader = {
+	            name = AFS_vermin_supreme
+	            desc = ""
+	            picture = vermin.dds
+	            expire = "2060.1.1"
+	            ideology = anarchism
+	            traits = {
+	            }
+            }
+			promote_character = {
+                character = AFS_vermin_supreme
+                ideology = anarchism
+            }
+			load_oob = "AFS_cw_vermin_2"
+			set_popularities = {
+	            libertarian_left = 60
+			    republican = 10
+			    democrat = 10
+			    authoritarian_left 10
+			    autocratic = 10
+			    libertarian_right = 0
+            }
+			create_corps_commander = {
+	            name = "Barry Croft"
+	            picture = "croft.dds"
+	            traits = { war_hero supreme_loyalist_trait guerilla_fighter }
+	            skill = 2
+			    attack_skill = 2
+			    defense_skill = 2
+			    planning_skill = 1
+			    logistics_skill = 2
+            }
+			create_corps_commander = {
+	            name = "Deborah Ashenhurst"
+	            picture = "Deborah_Ashenhurst.png"
+	            traits = { war_hero supreme_loyalist_trait }
+	            skill = 2
+			    attack_skill = 1
+			    defense_skill = 2
+			    planning_skill = 1
+			    logistics_skill = 3
+            }
+			set_cosmetic_tag = AFS_vermin_color
+			load_focus_tree = AFS_focus_tree
+			complete_national_focus = AFS_triumvirate_rule
+			complete_national_focus = AFS_againist_tyranny
+			add_ideas = Ruins_of_the_Rust_Belt
+			if = {
+			    limit = { AFS = { has_completed_focus = AFS_turn_the_people_againist_vermin } }
+			    add_ideas = AFS_the_unpopular_vermin
+		    }
+		    if = {
+			    limit = { AFS = { has_completed_focus = AFS_riots_across_ohio } }
+			    swap_ideas = {
+				    remove_idea = AFS_the_unpopular_vermin
+				    add_idea = AFS_the_unpopular_vermin_2
+			    }
+		    }
+			if = {
+			    limit = { AFS = { has_completed_focus = AFS_begin_the_plot } }
+			    swap_ideas = {
+				    remove_idea = AFS_the_unpopular_vermin_2
+				    add_idea = AFS_the_unpopular_vermin_3
+			    }
+		    }
+        }
+		set_global_flag = ohio_civil_war_global	
+	}
+}
