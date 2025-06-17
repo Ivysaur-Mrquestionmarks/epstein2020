@@ -308,7 +308,7 @@ focus_tree = {
 		id = AFS_vermins_anarchist_dreams
 		icon = GFX_goal_VIR_kill_the_afs
 		cost = 5
-		x = -7
+		x = -8
 		y = 1
 		relative_position_id = AFS_take_them_down
 		prerequisite = {
@@ -318,7 +318,9 @@ focus_tree = {
 		allow_branch = {
 		}
 		available = {
-			has_war = no
+			has_country_flag = {
+                flag = AFS_civil_war_over
+            }
 			if = {
 				limit = {
                     has_power_balance = {
@@ -491,6 +493,52 @@ focus_tree = {
 		prerequisite = {
 			focus = AFS_what_remains_of_the_triumvirate
 		}
+		prerequisite = {
+			focus = AFS_vermins_autonomous_regions
+		}
+		select_effect = {  }
+		allow_branch = {
+		}
+		available = {
+		}
+		completion_reward = {
+		
+		}
+	}
+
+	focus = {
+		id = AFS_vermins_autonomous_regions
+		icon = GFX_goal_VIR_kill_the_afs
+		cost = 5
+		x = 6
+		y = 1
+		relative_position_id = AFS_free_from_tyranny
+		prerequisite = {
+			focus = AFS_free_from_tyranny
+		}
+		select_effect = {  }
+		allow_branch = {
+		}
+		available = {
+		}
+		completion_reward = {
+		
+		}
+	}
+
+	focus = {
+		id = AFS_self_protecting_cities
+		icon = GFX_goal_VIR_kill_the_afs
+		cost = 5
+		x = 0
+		y = 2
+		relative_position_id = AFS_vermins_autonomous_regions
+		prerequisite = {
+			focus = AFS_self_governance
+		}
+		prerequisite = {
+			focus = AFS_vermins_autonomous_regions
+		}
 		select_effect = {  }
 		allow_branch = {
 		}
@@ -590,6 +638,46 @@ focus_tree = {
 		relative_position_id = AFS_fight_the_power
 		prerequisite = {
 			focus = AFS_fight_the_power
+		}
+		select_effect = {  }
+		allow_branch = {
+		}
+		available = {
+		}
+		completion_reward = {
+		
+		}
+	}
+
+	focus = {
+		id = AFS_pony_enhancements
+		icon = GFX_goal_VIR_kill_the_afs
+		cost = 5
+		x = -6
+		y = 1
+		relative_position_id = AFS_right_to_pony
+		prerequisite = {
+			focus = AFS_right_to_pony
+		}
+		select_effect = {  }
+		allow_branch = {
+		}
+		available = {
+		}
+		completion_reward = {
+		
+		}
+	}
+
+	focus = {
+		id = AFS_guerrilla_warfare_tech
+		icon = GFX_goal_VIR_kill_the_afs
+		cost = 5
+		x = 0
+		y = 2
+		relative_position_id = AFS_pony_enhancements
+		prerequisite = {
+			focus = AFS_pony_enhancements
 		}
 		select_effect = {  }
 		allow_branch = {
@@ -775,6 +863,9 @@ focus_tree = {
 		y = 1
 		relative_position_id = AFS_leading_the_anarchist_front
 		prerequisite = {
+			focus = AFS_guerrilla_warfare_tech
+		}
+		prerequisite = {
 			focus = AFS_freedom_and_ponies
 		}
 		prerequisite = {
@@ -794,6 +885,9 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = AFS_no_authority_no_bureaucracy
+		}
+		prerequisite = {
+			focus = AFS_self_protecting_cities
 		}
 		select_effect = {  }
 		allow_branch = {
@@ -829,7 +923,7 @@ focus_tree = {
 		id = AFS_promote_mutual_aid
 		icon = GFX_goal_VIR_kill_the_afs
 		cost = 5
-		x = 7
+		x = 8
 		y = 1
 		relative_position_id = AFS_take_them_down
 		prerequisite = {
@@ -1152,6 +1246,20 @@ focus_tree = {
 				    tooltip_side = mattis_powerful
 			    }
 		    }
+			if = {
+			    limit = { has_country_flag = AFS_hawkins_side }
+			    add_days_mission_timeout = {
+			        mission = AFS_civil_war_soon_hawkins
+			        days = 25
+		        }
+		    }
+		    if = {
+			    limit = { has_country_flag = AFS_mattis_side }
+			    add_days_mission_timeout = {
+			        mission = AFS_civil_war_soon_mattis
+			        days = 25
+		        }
+		    }
 		}
 	}
 
@@ -1347,10 +1455,12 @@ focus_tree = {
 		allow_branch = {
 		}
 		available = {
-			has_war = no
 			has_country_leader = {
                 name = "James Mattis"
                 ruling_only = yes
+            }
+			has_country_flag = {
+                flag = AFS_civil_war_over
             }
 			if = {
 				limit = {
@@ -1388,10 +1498,12 @@ focus_tree = {
 		allow_branch = {
 		}
 		available = {
-			has_war = no
 			has_country_leader = {
                 name = "Howie Hawkins"
                 ruling_only = yes
+            }
+			has_country_flag = {
+                flag = AFS_civil_war_over
             }
 			if = {
 				limit = {
@@ -1431,6 +1543,10 @@ focus_tree = {
 		allow_branch = {
 		}
 		available = {
+			has_country_flag = {
+                flag = AFS_annihilationist_power
+                value > 4
+            }
 		}
 		completion_reward = {
 		
@@ -2221,6 +2337,10 @@ focus_tree = {
 		allow_branch = {
 		}
 		available = {
+			has_country_flag = {
+                flag = AFS_annihilationist_power
+                value < 4
+            }
 		}
 		completion_reward = {
 		
@@ -2351,7 +2471,7 @@ focus_tree = {
 	}
 
 	focus = {
-		id = AFS_an_omnipresence_eye
+		id = AFS_gain_omnipresence
 		icon = GFX_goal_VIR_kill_the_afs
 		cost = 5
 		x = -1
@@ -2404,7 +2524,7 @@ focus_tree = {
 			focus = AFS_tackle_cilimate_disinformation
 		}
 		prerequisite = {
-			focus = AFS_an_omnipresence_eye
+			focus = AFS_gain_omnipresence
 		}
 		select_effect = {  }
 		allow_branch = {
@@ -2422,9 +2542,9 @@ focus_tree = {
 		cost = 5
 		x = 1
 		y = 1
-		relative_position_id = AFS_an_omnipresence_eye
+		relative_position_id = AFS_gain_omnipresence
 		prerequisite = {
-			focus = AFS_an_omnipresence_eye
+			focus = AFS_gain_omnipresence
 		}
 		prerequisite = {
 			focus = AFS_implement_a_social_credit_system
@@ -2589,7 +2709,7 @@ focus_tree = {
 	}
 
 	focus = {
-		id = AFS_economic_justice
+		id = AFS_seizing_the_means
 		icon = GFX_goal_VIR_kill_the_afs
 		cost = 5
 		x = 2
@@ -2609,14 +2729,14 @@ focus_tree = {
 	}
 
 	focus = {
-		id = AFS_the_pigs_will_pay
+		id = AFS_the_energy_of_tomorrow
 		icon = GFX_goal_VIR_kill_the_afs
 		cost = 5
 		x = 1
 		y = 1
-		relative_position_id = AFS_economic_justice
+		relative_position_id = AFS_seizing_the_means
 		prerequisite = {
-			focus = AFS_economic_justice
+			focus = AFS_seizing_the_means
 		}
 		select_effect = {  }
 		allow_branch = {
@@ -2629,7 +2749,7 @@ focus_tree = {
 	}
 
 	focus = {
-		id = AFS_forced_environmentalist_capitalism
+		id = AFS_environmentalist_socialism
 		icon = GFX_goal_VIR_kill_the_afs
 		cost = 5
 		x = 1
@@ -2639,7 +2759,7 @@ focus_tree = {
 			focus = AFS_threats_to_the_planet
 		}
 		prerequisite = {
-			focus = AFS_economic_justice
+			focus = AFS_seizing_the_means
 		}
 		select_effect = {  }
 		allow_branch = {
@@ -2682,7 +2802,7 @@ focus_tree = {
 			focus = AFS_end_the_exploitation
 		}
 		prerequisite = {
-			focus = AFS_forced_environmentalist_capitalism
+			focus = AFS_environmentalist_socialism
 		}
 		select_effect = {  }
 		allow_branch = {
@@ -2715,17 +2835,17 @@ focus_tree = {
 	}
 
 	focus = {
-		id = AFS_enforce_state_capitalism
+		id = AFS_environmentalism_by_force
 		icon = GFX_goal_VIR_kill_the_afs
 		cost = 5
 		x = 1
 		y = 1
-		relative_position_id = AFS_forced_environmentalist_capitalism
+		relative_position_id = AFS_environmentalist_socialism
 		prerequisite = {
-			focus = AFS_forced_environmentalist_capitalism
+			focus = AFS_environmentalist_socialism
 		}
 		prerequisite = {
-			focus = AFS_the_pigs_will_pay
+			focus = AFS_the_energy_of_tomorrow
 		}
 		select_effect = {  }
 		allow_branch = {
