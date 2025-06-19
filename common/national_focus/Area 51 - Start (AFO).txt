@@ -7,7 +7,7 @@ focus_tree = {
 			tag = AFO
 		}
 	}
-	default = no
+	default = no 
 	focus = {
 		id = AFO_deploy_garrison
 		icon = GFX_focus_AFO_deploy_garrison
@@ -70,7 +70,7 @@ focus_tree = {
 			focus = AFO_show_goes_on
 		}
 		relative_position_id = AFO_show_goes_on
-		x = -2
+		x = 0
 		y = 1
 		completion_reward = {
 			491 = {
@@ -85,7 +85,6 @@ focus_tree = {
 				}
 			}
 		}
-
 	}
 	focus = {
 		id = AFO_secure_armaments
@@ -95,7 +94,7 @@ focus_tree = {
 			focus = AFO_show_goes_on
 		}
 		relative_position_id = AFO_show_goes_on
-		x = 0
+		x = -2
 		y = 1
 		completion_reward = {
 			491 = {
@@ -106,6 +105,24 @@ focus_tree = {
 				    instant_build = yes
 				}
 			}
+		}
+
+	}
+	focus = {
+		id = AFO_experimental_weaponry
+		icon = GFX_focus_AFO_experimental_weaponry
+		cost = 8.00
+		prerequisite = {
+			focus = AFO_secure_armaments
+		}
+		prerequisite = {
+			focus = AFO_martial_law
+		}
+		relative_position_id = AFO_secure_armaments
+		x = 0
+		y = 2
+		completion_reward = {
+			add_ideas = AFO_experimental_weaponry
 		}
 
 	}
@@ -131,6 +148,30 @@ focus_tree = {
 
 	}
 	focus = {
+		id = AFO_perimeter_zero
+		icon = GFX_goal_Air_Defense
+		cost = 3.80
+		prerequisite = {
+			focus = AFO_air_defence
+		}
+		prerequisite = {
+			focus = AFO_martial_law
+		}
+		relative_position_id = AFO_air_defence
+		x = 0
+		y = 2
+		completion_reward = {
+			491 = {
+				add_building_construction = {
+				    type = anti_air_building
+				    level = 5
+				    instant_build = yes
+				}
+			}
+		}
+
+	}
+	focus = {
 		id = AFO_martial_law
 		icon = GFX_focus_AFO_martial_law
 		cost = 8.00
@@ -143,7 +184,7 @@ focus_tree = {
 		prerequisite = {
 			focus = AFO_air_defence
 		}
-		relative_position_id = AFO_secure_armaments
+		relative_position_id = AFO_solidify_border
 		x = 0
 		y = 1
 		completion_reward = {
@@ -172,15 +213,9 @@ focus_tree = {
 		icon = GFX_focus_AFO_kidnappings
 		cost = 8.40
 		prerequisite = {
-			focus = AFO_solidify_border
+			focus = AFO_martial_law
 		}
-		prerequisite = {
-			focus = AFO_secure_armaments
-		}
-		prerequisite = {
-			focus = AFO_air_defence
-		}
-		relative_position_id = AFO_solidify_border
+		relative_position_id = AFO_martial_law
 		x = 0
 		y = 1
 		completion_reward = {
@@ -196,15 +231,10 @@ focus_tree = {
 		icon = GFX_focus_AFO_conscript_children
 		cost = 8.00
 		prerequisite = {
-			focus = AFO_air_defence
+			focus = AFO_kidnappings
+			focus = AFO_perimeter_zero
 		}
-		prerequisite = {
-			focus = AFO_secure_armaments
-		}
-		prerequisite = {
-			focus = AFO_solidify_border
-		}
-		relative_position_id = AFO_air_defence
+		relative_position_id = AFO_perimeter_zero
 		x = 0
 		y = 1
 		available = {
@@ -216,40 +246,16 @@ focus_tree = {
 
 	}
 	focus = {
-		id = AFO_experimental_weaponry
-		icon = GFX_focus_AFO_experimental_weaponry
-		cost = 8.00
-		prerequisite = {
-			focus = AFO_kidnappings
-		}
-		prerequisite = {
-			focus = AFO_martial_law
-		}
-		prerequisite = {
-			focus = AFO_conscript_children
-		}
-		relative_position_id = AFO_martial_law
-		x = 0
-		y = 1
-		completion_reward = {
-			add_ideas = AFO_experimental_weaponry
-		}
-
-	}
-	focus = {
 		id = AFO_experimental_production
 		icon = GFX_focus_AFO_experimental_production
 		cost = 8.00
 		prerequisite = {
-			focus = AFO_conscript_children
-		}
-		prerequisite = {
-			focus = AFO_martial_law
+			focus = AFO_experimental_weaponry
 		}
 		prerequisite = {
 			focus = AFO_kidnappings
 		}
-		relative_position_id = AFO_conscript_children
+		relative_position_id = AFO_experimental_weaponry
 		x = 0
 		y = 1
 		completion_reward = {
@@ -263,12 +269,6 @@ focus_tree = {
 		cost = 8.00
 		prerequisite = {
 			focus = AFO_kidnappings
-		}
-		prerequisite = {
-			focus = AFO_martial_law
-		}
-		prerequisite = {
-			focus = AFO_conscript_children
 		}
 		relative_position_id = AFO_kidnappings
 		x = 0
@@ -286,7 +286,7 @@ focus_tree = {
 			focus = AFO_experimental_production
 		}
 		prerequisite = {
-			focus = AFO_experimental_weaponry
+			focus = AFO_conscript_children
 		}
 		prerequisite = {
 			focus = AFO_experimental_cloning
@@ -294,7 +294,7 @@ focus_tree = {
 		mutually_exclusive = {
 			focus = AFO_play_it_safe
 		}
-		relative_position_id = AFO_experimental_weaponry
+		relative_position_id = AFO_experimental_cloning
 		x = 1
 		y = 1
 		ai_will_do = {
@@ -329,7 +329,7 @@ focus_tree = {
 			focus = AFO_experimental_cloning
 		}
 		prerequisite = {
-			focus = AFO_experimental_weaponry
+			focus = AFO_conscript_children
 		}
 		prerequisite = {
 			focus = AFO_experimental_production
@@ -337,7 +337,7 @@ focus_tree = {
 		mutually_exclusive = {
 			focus = AFO_push_to_the_limit
 		}
-		relative_position_id = AFO_experimental_weaponry
+		relative_position_id = AFO_experimental_cloning
 		x = -1
 		y = 1
 		ai_will_do = {
