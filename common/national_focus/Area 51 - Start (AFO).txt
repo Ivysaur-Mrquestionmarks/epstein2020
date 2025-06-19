@@ -12,8 +12,8 @@ focus_tree = {
 		id = AFO_deploy_garrison
 		icon = GFX_focus_AFO_deploy_garrison
 		cost = 1.40
-		x = 4
-		y = 0
+		x = 26
+		y = 1
 		completion_reward = {
 			add_equipment_to_stockpile = {
 			    type = infantry_equipment
@@ -31,7 +31,8 @@ focus_tree = {
 		prerequisite = {
 			focus = AFO_deploy_garrison
 		}
-		x = 4
+		relative_position_id = AFO_deploy_garrison
+		x = 0
 		y = 1
 		available = {
 			is_subject = no
@@ -50,8 +51,9 @@ focus_tree = {
 		prerequisite = {
 			focus = AFO_on_our_own
 		}
-		x = 4
-		y = 2
+		relative_position_id = AFO_on_our_own
+		x = 0
+		y = 1
 		completion_reward = {
 			swap_ideas = {
 			    remove_idea = AFO_blacksite
@@ -67,8 +69,9 @@ focus_tree = {
 		prerequisite = {
 			focus = AFO_show_goes_on
 		}
-		x = 2
-		y = 3
+		relative_position_id = AFO_show_goes_on
+		x = -2
+		y = 1
 		completion_reward = {
 			491 = {
 				set_building_level = {
@@ -91,8 +94,9 @@ focus_tree = {
 		prerequisite = {
 			focus = AFO_show_goes_on
 		}
-		x = 4
-		y = 3
+		relative_position_id = AFO_show_goes_on
+		x = 0
+		y = 1
 		completion_reward = {
 			491 = {
 				add_extra_state_shared_building_slots = 2
@@ -112,8 +116,9 @@ focus_tree = {
 		prerequisite = {
 			focus = AFO_show_goes_on
 		}
-		x = 6
-		y = 3
+		relative_position_id = AFO_show_goes_on
+		x = 2
+		y = 1
 		completion_reward = {
 			491 = {
 				add_building_construction = {
@@ -138,8 +143,9 @@ focus_tree = {
 		prerequisite = {
 			focus = AFO_air_defence
 		}
-		x = 4
-		y = 4
+		relative_position_id = AFO_secure_armaments
+		x = 0
+		y = 1
 		completion_reward = {
 			if = {
 				limit = {
@@ -174,8 +180,9 @@ focus_tree = {
 		prerequisite = {
 			focus = AFO_air_defence
 		}
-		x = 2
-		y = 4
+		relative_position_id = AFO_solidify_border
+		x = 0
+		y = 1
 		completion_reward = {
 			add_ideas = AFO_kidnappings
 			491 = {
@@ -197,8 +204,9 @@ focus_tree = {
 		prerequisite = {
 			focus = AFO_solidify_border
 		}
-		x = 6
-		y = 4
+		relative_position_id = AFO_air_defence
+		x = 0
+		y = 1
 		available = {
 			has_completed_focus = AFO_kidnappings
 		}
@@ -220,8 +228,9 @@ focus_tree = {
 		prerequisite = {
 			focus = AFO_conscript_children
 		}
-		x = 4
-		y = 5
+		relative_position_id = AFO_martial_law
+		x = 0
+		y = 1
 		completion_reward = {
 			add_ideas = AFO_experimental_weaponry
 		}
@@ -240,8 +249,9 @@ focus_tree = {
 		prerequisite = {
 			focus = AFO_kidnappings
 		}
-		x = 6
-		y = 5
+		relative_position_id = AFO_conscript_children
+		x = 0
+		y = 1
 		completion_reward = {
 			add_ideas = AFO_experimental_production
 		}
@@ -260,8 +270,9 @@ focus_tree = {
 		prerequisite = {
 			focus = AFO_conscript_children
 		}
-		x = 2
-		y = 5
+		relative_position_id = AFO_kidnappings
+		x = 0
+		y = 1
 		completion_reward = {
 			add_ideas = AFO_experimental_cloning
 		}
@@ -283,8 +294,9 @@ focus_tree = {
 		mutually_exclusive = {
 			focus = AFO_play_it_safe
 		}
-		x = 5
-		y = 6	
+		relative_position_id = AFO_experimental_weaponry
+		x = 1
+		y = 1
 		ai_will_do = {
 			factor = 1
 			modifier = {
@@ -325,8 +337,9 @@ focus_tree = {
 		mutually_exclusive = {
 			focus = AFO_push_to_the_limit
 		}
-		x = 3
-		y = 6
+		relative_position_id = AFO_experimental_weaponry
+		x = -1
+		y = 1
 		ai_will_do = {
 			factor = 400
 			modifier = {
@@ -345,323 +358,5 @@ focus_tree = {
 		}
 
 	}
-	focus = {
-		id = AFO_political_questions
-		icon = GFX_focus_AFO_political_question
-		cost = 5.00
-		prerequisite = {
-			focus = AFO_play_it_safe
-			focus = AFO_push_to_the_limit
-		}
-		x = 4
-		y = 7
-		completion_reward = {
-			add_political_power = 200
-		}
 
-	}
-	focus = {
-		id = AFO_return_to_the_fold
-		icon = GFX_focus_AFO_return_to_the_fold
-		cost = 8.00
-		prerequisite = {
-			focus = AFO_political_questions
-		}
-		mutually_exclusive = {
-			focus = AFO_to_the_west
-			focus = AFO_isolation
-		}
-		x = 0
-		y = 8
-		available = {
-			country_exists = USA
-			USA = {
-				is_subject = no
-				has_government = republican
-			}
-		}
-		completion_reward = {
-			add_ideas = AFO_trumpism
-			if = {
-				limit = {
-					OR = {
-						has_dlc = "Together for Victory"
-						has_dlc = "Man the Guns"
-					}
-				}
-				USA = {
-					set_autonomy = {
-						target = AFO
-						autonomous_state = autonomy_dominion
-						freedom_level = 0.6
-					}
-				}
-				else = {
-					USA = { puppet = AFO }
-				}
-			}
-		}
-
-	}
-	focus = {
-		id = AFO_doctrine_effort_one
-		icon = GFX_focus_AFO_doctrine_effort
-		cost = 8.00
-		prerequisite = {
-			focus = AFO_push_to_the_limit
-			focus = AFO_play_it_safe
-		}
-		x = 6
-		y = 7
-		completion_reward = {
-			add_tech_bonus = {
-			    bonus = 2.0
-			    uses = 2
-			    category = land_doctrine
-			}
-			add_tech_bonus = {
-			    bonus = 1.5
-			    uses = 3
-			    category = air_doctrine
-			}
-		}
-
-	}
-	focus = {
-		id = AFO_doctrine_effort_2
-		icon = GFX_focus_AFO_doctrine_effort_ii
-		cost = 8.00
-		prerequisite = {
-			focus = AFO_doctrine_effort_one
-		}
-		x = 6
-		y = 8
-		completion_reward = {
-			add_tech_bonus = {
-			    bonus = 2.5
-			    uses = 2
-			    category = land_doctrine
-			}
-			add_tech_bonus = {
-			    bonus = 2.0
-			    uses = 1
-			    category = air_doctrine
-			}
-		}
-
-	}
-	focus = {
-		id = AFO_infra_and_mils_one
-		icon = GFX_focus_AFO_infrastructure
-		cost = 8.00
-		prerequisite = {
-			focus = AFO_push_to_the_limit
-			focus = AFO_play_it_safe
-		}
-		x = 8
-		y = 7
-		completion_reward = {
-			491 = {
-				add_extra_state_shared_building_slots = 2
-				add_building_construction = {
-				    type = arms_factory
-				    level = 2
-				    instant_build = yes
-				}
-				add_building_construction = {
-				    type = infrastructure
-				    level = 3
-				    instant_build = yes
-				}
-			}
-		}
-
-	}
-	focus = {
-		id = AFO_infrastructure_mils_two
-		icon = GFX_focus_AFO_infrastructure_ii
-		cost = 8.00
-		prerequisite = {
-			focus = AFO_infra_and_mils_one
-		}
-		x = 8
-		y = 8
-		completion_reward = {
-			491 = {
-				add_extra_state_shared_building_slots = 2
-				add_building_construction = {
-				    type = arms_factory
-				    level = 2
-				    instant_build = yes
-				}
-				add_building_construction = {
-				    type = infrastructure
-				    level = 2
-				    instant_build = yes
-				}
-			}
-		}
-
-	}
-	focus = {
-		id = AFO_ultimate_effort
-		icon = GFX_focus_AFO_ultimate_effort
-		cost = 14.00
-		prerequisite = {
-			focus = AFO_infrastructure_mils_two
-		}
-		prerequisite = {
-			focus = AFO_doctrine_effort_2
-		}
-		x = 7
-		y = 9
-		completion_reward = {
-			491 = {
-				add_extra_state_shared_building_slots = 1
-				add_building_construction = {
-				    type = arms_factory
-				    level = 1
-				    instant_build = yes
-				}
-				set_building_level = {
-				    type = infrastructure
-				    level = 10
-				    instant_build = yes
-				}
-			}
-			add_tech_bonus = {
-			    bonus = 3.0
-			    uses = 2
-			    category = land_doctrine
-			}
-			add_tech_bonus = {
-			    bonus = 3.0
-			    uses = 2
-			    category = air_doctrine
-			}
-		}
-
-	}
-	focus = {
-		id = AFO_improved_cloning
-		icon = GFX_focus_AFO_improved_cloning
-		cost = 16.80
-		prerequisite = {
-			focus = AFO_play_it_safe
-			focus = AFO_push_to_the_limit
-		}
-		prerequisite = {
-			focus = AFO_experimental_cloning
-		}
-		x = 2
-		y = 7
-		completion_reward = {
-			swap_ideas = {
-			    remove_idea = AFO_experimental_cloning 
-			    add_idea = AFO_improved_cloning
-			}
-		}
-
-	}
-	focus = {
-		id = AFO_to_the_west
-		icon = GFX_focus_AFO_to_the_west
-		cost = 8.00
-		prerequisite = {
-			focus = AFO_political_questions
-		}
-		mutually_exclusive = {
-			focus = AFO_return_to_the_fold
-			focus = AFO_isolation
-		}
-		x = 2
-		y = 8
-		available = {
-			PRA = {
-				has_government = democrat
-				is_faction_leader = yes
-			}
-		}
-		completion_reward = {
-			add_ideas = AFO_legitimism
-			create_country_leader = {
-				name = "Matthew Higer"
-				picture = "gfx/leaders/AFO/higer.dds"
-				expire = "2060.1.1"
-				ideology = establishment
-				traits = {
-
-				}
-			}
-			add_popularity = {
-			    ideology = democrat
-			    popularity = 0.5
-			}
-			set_politics = {
-				ruling_party = democrat
-			        elections_allowed = no
-			}
-			PRA = { country_event = { id = alien.1 } }
-		}
-
-	}
-	focus = {
-		id = AFO_isolation
-		icon = GFX_focus_AFO_isolation
-		cost = 8.00
-		prerequisite = {
-			focus = AFO_political_questions
-		}
-		mutually_exclusive = {
-			focus = AFO_to_the_west
-			focus = AFO_return_to_the_fold
-		}
-		x = 4
-		y = 8
-		ai_will_do = {
-			factor = 500
-		}
-		completion_reward = {
-			add_stability = 0.20
-			add_war_support = -0.10
-		}
-
-	}
-	focus = {
-		id = AFO_eye_of_sauron
-		icon = GFX_goal_eye_of_sauron
-		cost = 8.00
-		prerequisite = {
-			focus = AFO_push_to_the_limit
-			focus = AFO_play_it_safe
-		}
-		x = 10
-		y = 7
-		completion_reward = {
-			add_ideas = AFO_eye_of_sauron
-		}
-
-	}
-	focus = {
-		id = AFO_area_51
-		icon = GFX_goal_ufo
-		cost = 8.00
-		prerequisite = {
-			focus = AFO_isolation
-			focus = AFO_to_the_west
-			focus = AFO_return_to_the_fold
-		}
-		prerequisite = {
-			focus = AFO_ultimate_effort
-		}
-		prerequisite = {
-			focus = AFO_eye_of_sauron
-		}
-		x = 10
-		y = 10
-		completion_reward = {
-			add_country_leader_trait = AFO_keeper_of_knowledge
-		}
-
-	}
 }
