@@ -1,4 +1,4 @@
-add_namespace = alien
+﻿add_namespace = alien
 
 #Area 51 asks Bernie to join faction
 country_event = {
@@ -129,7 +129,7 @@ news_event = {
 		trigger = { tag = AFO }
 	}
 }
-#border conflict win
+#Scientific Hypothesis
 country_event = {
 	id = alien.9
 	title = alien.9.t
@@ -138,11 +138,27 @@ country_event = {
 	is_triggered_only = yes
 	fire_only_once = yes
 	option = {
-		name = alien.9.a
-		add_war_support = 0.10
+		name = alien.9.a #full force, young guy leads
+		hidden_effect = {
+		    country_event = {
+    			id = alien.11
+    			days = 95
+    			random_hours = 1
+			}
+		}
+	}
+	option = {
+		name = alien.9.b safe, senior leads
+		hidden_effect = {
+		    country_event = {
+    			id = alien.10
+    			days = 95
+    			random_hours = 1
+			}
+		}
 	}
 }
-#border conflict lose
+#trial testing safe
 country_event = {
 	id = alien.10
 	title = alien.10.t
@@ -151,7 +167,84 @@ country_event = {
 	is_triggered_only = yes
 	fire_only_once = yes
 	option = {
-		name = alien.10.a
-		add_war_support = -0.10
+		name = alien.10.a #safe
+		add_timed_idea = {
+    		idea = AFO_safeguards
+    		days = 150
+		}
+		hidden_effect = {
+		    country_event = {
+    			id = alien.12
+    			days = 75
+    			random_hours = 1
+			}
+		}
+	}
+	option = {
+		name = alien.10.b #back to full force
+		add_timed_idea = {
+		    idea = AFO_unlimited_science
+			days = 150
+		}
+		hidden_effect = {
+		    country_event = {
+    			id = alien.13
+    			days = 75
+    			random_hours = 1
+			}
+		}
+	}
+}
+#trial testing full force
+country_event = {
+	id = alien.11
+	title = alien.11.t
+	desc = alien.11.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = alien.11.a #Science waits for no one
+		add_timed_idea = {
+    		idea = AFO_unlimited_science
+    		days = 150
+		}
+		hidden_effect = {
+		    country_event = {
+    			id = alien.13
+    			days = 95
+    			random_hours = 1
+			}
+		}
+	}
+}
+#Scientists divide, safe
+country_event = {
+	id = alien.12
+	title = alien.12.t
+	desc = alien.12.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = alien.12.a #safe
+		hidden_effect = {
+		    set_country_flag = Sane
+		}
+	}
+}
+#Scientists divide, Full force
+country_event = {
+	id = alien.13
+	title = alien.13.t
+	desc = alien.13.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = alien.13.a #full force
+        hidden_effect = {
+		    set_country_flag = Insane
+		}
 	}
 }
