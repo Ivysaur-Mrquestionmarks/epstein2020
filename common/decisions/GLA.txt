@@ -2124,11 +2124,60 @@ GLA_libertarian_political_decisions = {
 		}
 		modifier = {
 			libertarian_right_drift = 0.05
-			stability_weekly = 0.010
+			stability_weekly = 0.001
             production_speed_buildings_factor = -0.05
 			production_factory_efficiency_gain_factor = -0.05
 			consumer_goods_factor = -0.10
 			consumer_goods_expected_value = -0.10
+		}
+	}
+
+	GLA_minimalize_government_spending = {
+		icon = GFX_decision_generic_break_treaty
+		allowed = {
+			original_tag = GLA
+		}
+		cost = 65
+		fire_only_once = yes
+		ai_will_do = {
+			base = 50
+		}
+		visible = {
+		    has_completed_focus = GLA_end_the_fed
+			has_country_flag = {
+                flag = GLA_ron_paul_political_decision
+                value < 3
+            }
+		}
+		available = {
+		    NOT = {
+			    has_country_flag = GLA_doing_political_things
+			}
+		    has_completed_focus = GLA_end_the_fed
+		}
+		days_remove = 100
+		complete_effect = {
+			set_country_flag = {
+				flag = GLA_doing_political_things
+				days = 100
+				value = 1
+			}
+		}
+		modifier = {
+			stability_weekly = -0.002
+			consumer_goods_factor = -0.10
+			consumer_goods_expected_value = -0.10
+		}
+		remove_effect = {
+		    add_stability = 0.03
+			add_popularity = {
+				ideology = libertarian_right
+			    popularity = 0.03
+		    }
+			modify_country_flag = {
+                flag = GLA_ron_paul_political_decision
+                value = 1
+            }
 		}
 	}
 
@@ -2143,13 +2192,13 @@ GLA_libertarian_political_decisions = {
 			base = 50
 		}
 		visible = {
-		has_completed_focus = GLA_end_the_fed
+		has_completed_focus = GLA_return_to_the_gold_standard
 		}
 		available = {
 		NOT = {
 			has_country_flag = GLA_doing_political_things
 			}
-		has_completed_focus = GLA_end_the_fed
+		has_completed_focus = GLA_return_to_the_gold_standard
 		}
 		days_remove = 55
 		complete_effect = {
@@ -2160,15 +2209,9 @@ GLA_libertarian_political_decisions = {
 			}
 		}
 		remove_effect = {
-		    if = {
-				limit = { has_idea = GLA_the_gold_standard }
-					swap_ideas = {
-						remove_idea = GLA_the_gold_standard
-						add_idea = GLA_the_gold_standard_2
-					}
-				}
-			else = {
-				add_ideas = GLA_the_gold_standard
+		    swap_ideas = {
+				remove_idea = GLA_the_gold_standard
+				add_idea = GLA_the_gold_standard_2
 			}
 		}
 	}
