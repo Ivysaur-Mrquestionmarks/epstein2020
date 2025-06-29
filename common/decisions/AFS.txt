@@ -28,6 +28,10 @@ AFS_vermin_balance_of_power_category = {
 		}
 
 		timeout_effect = {
+			country_event = {
+				id = vermin.7
+				days = 0
+			}
 			AFS_civil_war_script_effect = yes
 			remove_country_flag = AFS_civil_war_flag
 		}
@@ -41,6 +45,12 @@ AFS_vermin_balance_of_power_category = {
 
 		allowed = { 
 			original_tag = AFS
+		}
+
+		visible = {
+			NOT = {
+			    has_country_flag = AFS_civil_war_over
+			}
 		}
 
 		available = {
@@ -123,6 +133,9 @@ AFS_vermin_balance_of_power_category = {
 
 		visible = {
 			has_completed_focus = AFS_make_them_powerless
+			NOT = {
+			    has_country_flag = AFS_civil_war_over
+			}
 		}
 
 		available = {
@@ -169,6 +182,9 @@ AFS_vermin_balance_of_power_category = {
 
 		visible = {
 			has_completed_focus = AFS_make_them_powerless
+			NOT = {
+			    has_country_flag = AFS_civil_war_over
+			}
 		}
 
 		available = {
@@ -214,7 +230,7 @@ AFS_vermin_balance_of_power_category = {
 		}
 
 		visible = {
-			always = yes
+			has_active_mission = AFS_civil_war_soon
 		}
 
 		available = {
@@ -277,6 +293,10 @@ AFS_hawkins_balance_of_power_category = {
 		}
 
 		timeout_effect = {
+			country_event = {
+				id = hawkins.7
+				days = 0
+			}
 			AFS_civil_war_script_effect_hawkins = yes
 			remove_country_flag = AFS_civil_war_flag_hawkins
 		}
@@ -290,6 +310,12 @@ AFS_hawkins_balance_of_power_category = {
 
 		allowed = { 
 			original_tag = AFS
+		}
+
+		visible = {
+			NOT = {
+			    has_country_flag = AFS_civil_war_over
+			}
 		}
 
 		available = {
@@ -414,6 +440,9 @@ AFS_hawkins_balance_of_power_category = {
 
 		visible = {
 			has_completed_focus = AFS_plot_againist_vermin
+			NOT = {
+			    has_country_flag = AFS_civil_war_over
+			}
 		}
 
 		available = {
@@ -461,7 +490,7 @@ AFS_hawkins_balance_of_power_category = {
 		}
 
 		visible = {
-			always = yes
+			has_active_mission = AFS_civil_war_soon_hawkins
 		}
 
 		available = {
@@ -524,6 +553,10 @@ AFS_mattis_balance_of_power_category = {
 		}
 
 		timeout_effect = {
+			country_event = {
+				id = mattis.6
+				days = 0
+			}
 			AFS_civil_war_script_effect_mattis = yes
 			remove_country_flag = AFS_civil_war_flag_mattis
 		}
@@ -537,6 +570,12 @@ AFS_mattis_balance_of_power_category = {
 
 		allowed = { 
 			original_tag = AFS
+		}
+
+		visible = {
+			NOT = {
+			    has_country_flag = AFS_civil_war_over
+			}
 		}
 
 		available = {
@@ -661,6 +700,9 @@ AFS_mattis_balance_of_power_category = {
 
 		visible = {
 			has_completed_focus = AFS_plot_againist_vermin
+			NOT = {
+			    has_country_flag = AFS_civil_war_over
+			}
 		}
 
 		available = {
@@ -708,7 +750,7 @@ AFS_mattis_balance_of_power_category = {
 		}
 
 		visible = {
-			always = yes
+			has_active_mission = AFS_civil_war_soon_mattis
 		}
 
 		available = {
@@ -737,6 +779,247 @@ AFS_mattis_balance_of_power_category = {
 				mission = AFS_civil_war_soon_mattis
 				days = 15
 			}
+		}
+	}
+}
+
+AFS_individualist_collectivist_balance_of_power_category = {
+	AFS_empower_the_individual = {
+		priority = 25
+		icon = #GFX_decision_hol_attract_foreign_investors
+
+		allowed = {
+			original_tag = AFS
+		}
+
+		visible = {
+			has_completed_focus = AFS_vermins_anarchist_dreams
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = AFS_doing_BOP_action
+			}
+		}
+		
+		fire_only_once = no
+		
+		days_re_enable = 20
+
+		days_remove = 25
+		
+		cost = 30
+
+		complete_effect = {
+			set_country_flag = {
+				flag = AFS_doing_BOP_action
+				days = 25
+				value = 1
+			}
+		}
+		remove_effect = {
+			add_power_balance_value = {
+				id = individualist_collectivist_bop
+				value = -0.1
+				tooltip_side = individualist
+			}
+		}
+	}
+
+	AFS_unite_the_people = {
+		priority = 25
+		icon = #GFX_decision_hol_attract_foreign_investors
+
+		allowed = {
+			original_tag = AFS
+		}
+
+		visible = {
+			has_completed_focus = AFS_vermins_anarchist_dreams
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = AFS_doing_BOP_action
+			}
+		}
+		
+		fire_only_once = no
+		
+		days_re_enable = 20
+
+		days_remove = 25
+		
+		cost = 30
+
+		complete_effect = {
+			set_country_flag = {
+				flag = AFS_doing_BOP_action
+				days = 25
+				value = 1
+			}
+		}
+		remove_effect = {
+		    add_power_balance_value = {
+				id = individualist_collectivist_bop
+				value = 0.1
+				tooltip_side = collectivist
+			}
+		}
+	}
+}
+
+AFS_vermin_political_decisions = {
+	#Autonomous Decisions
+	AFS_set_up_autonomous_zone = {
+		icon = hol_draw_up_staff_plans
+
+		allowed = {
+			original_tag = AFS
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = AFS_doing_political_action
+			}
+			has_completed_focus = AFS_vermins_autonomous_regions
+		}
+		state_target = yes
+		target_root_trigger = {
+			any_owned_state = { NOT = { has_dynamic_modifier = { modifier = AFS_autonomous_zone } } }
+		}
+		target_trigger = {
+			FROM = {
+				is_owned_by = ROOT
+			}
+		}
+
+		on_map_mode = map_and_decisions_view  
+
+
+		fire_only_once = yes
+		days_remove = 45
+
+		visible = {
+			has_completed_focus = AFS_vermins_autonomous_regions
+		}
+
+		complete_effect = {
+			set_country_flag = {
+				flag = AFS_doing_political_action
+				days = 45
+				value = 1
+			}
+		}
+
+		remove_effect = {
+			FROM = {
+			    add_dynamic_modifier = {
+				    modifier = AFS_autonomous_zone
+			    }
+		    }
+		}
+
+	}
+
+	#Military Decisions
+	AFS_spreading_the_anarchist_cause = {
+		priority = 25
+		icon = #GFX_decision_hol_attract_foreign_investors
+
+		allowed = {
+			original_tag = AFS
+		}
+
+		visible = {
+			has_completed_focus = AFS_remember_what_your_fighting_for
+			has_country_flag = {
+                flag = AFS_vermin_military_decision_1
+                value < 3
+            }
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = AFS_doing_political_action
+			}
+		}
+		
+		fire_only_once = no
+		
+		days_re_enable = 25
+
+		days_remove = 30
+		
+		cost = 30
+
+		complete_effect = {
+			set_country_flag = {
+				flag = AFS_doing_political_action
+				days = 30
+				value = 1
+			}
+		}
+		remove_effect = {
+			add_to_variable = {
+				var = AFS.var_war_support_level
+				value = 0.01
+				tooltip = AFS_increase_war_support_var_tt
+			}
+			modify_country_flag = {
+                flag = AFS_vermin_military_decision_1
+                value = 1
+            }
+		}
+	}
+
+	AFS_fight_for_the_anarchist_cause = {
+		priority = 25
+		icon = #GFX_decision_hol_attract_foreign_investors
+
+		allowed = {
+			original_tag = AFS
+		}
+
+		visible = {
+			has_completed_focus = AFS_remember_what_your_fighting_for
+			has_country_flag = {
+                flag = AFS_vermin_military_decision_2
+                value < 3
+            }
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = AFS_doing_political_action
+			}
+		}
+		
+		fire_only_once = no
+		
+		days_re_enable = 25
+
+		days_remove = 30
+		
+		cost = 30
+
+		complete_effect = {
+			set_country_flag = {
+				flag = AFS_doing_political_action
+				days = 30
+				value = 1
+			}
+		}
+		remove_effect = {
+			add_to_variable = {
+				var = AFS.var_defense_level
+				value = 0.01
+				tooltip = AFS_increase_defense_var_tt
+			}
+			modify_country_flag = {
+                flag = AFS_vermin_military_decision_2
+                value = 1
+            }
 		}
 	}
 }
