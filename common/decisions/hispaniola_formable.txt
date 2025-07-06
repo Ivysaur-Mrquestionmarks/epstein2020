@@ -65,4 +65,76 @@ American_reunification = {
 			factor = 200
 		}
 	}
+	unify_antillean_confederation = {
+		icon = generic_form_nation
+
+		allowed = {
+			OR = {
+				original_tag = CUB
+				original_tag = DOM
+				original_tag = CUC
+				original_tag = GTB
+			}
+		}
+
+		available = {
+			is_subject = no
+			every_state = {
+				limit = {
+					OR = {
+						is_core_of = CUB
+						is_core_of = DOM
+						is_core_of = CUC #failsafe
+						is_core_of = GTB #failsafe
+					}
+				}
+				is_controlled_by = ROOT
+			}
+			if = {
+				limit = {
+					original_tag = DOM
+				}
+				has_global_flag = form_hispaniola_flag
+			}
+			if = {
+				limit = {
+					original_tag = CUB
+				}
+				NOT = {
+					has_government = authoritarian_left #Old Order would rather just puppet.
+				}
+			}
+		}
+
+		visible = {
+			OR = {
+				original_tag = CUB
+				original_tag = DOM
+				original_tag = CUC
+				original_tag = GTB
+			}
+			NOT = { has_global_flag = form_antillean_confederation_flag }
+		}
+
+		complete_effect = {
+			set_cosmetic_tag = DOM_antillean_confederation
+			every_state = { 
+				limit = {
+					OR = {
+						is_core_of = CUB
+						is_core_of = DOM
+						is_core_of = CUC #failsafe
+						is_core_of = GTB #failsafe
+						state = 409
+					}
+				}
+				add_core_of = ROOT 
+			}
+			set_global_flag = form_antillean_confederation_flag 
+		}
+
+		ai_will_do = {
+			factor = 200
+		}
+	}
 }
