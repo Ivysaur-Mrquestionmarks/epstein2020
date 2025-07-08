@@ -546,6 +546,9 @@ country_event = {
 			remove_ideas = AFS_the_unpopular_vermin
 			remove_ideas = AFS_the_unpopular_vermin_2
 			remove_ideas = AFS_the_unpopular_vermin_3
+			remove_mission = AFS_enemy_sabatoge_vermin
+			remove_mission = AFS_enemy_sabatoge_hawkins
+			remove_mission = AFS_enemy_sabatoge_mattis
 		    remove_global_flag = ohio_civil_war_global
 		    set_country_flag = AFS_civil_war_over
 		}
@@ -566,6 +569,106 @@ country_event = {
 	}
 	option = {
 		name = AFS.10.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+#Faction Joining Event
+country_event = {
+	id = AFS.11
+	title = AFS.11.t
+	desc = AFS.11.d
+	picture = event_
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 30 }
+	fire_only_once = no
+	immediate = {
+    
+	}
+	option = {
+		name = AFS.11.a
+		ai_chance = {
+			factor = 100
+		}
+		if = {
+		    limit = { NOT = { is_in_faction = no } }
+            AFS = { add_to_faction = FROM }
+		}
+		if = {
+		    limit = { is_in_faction = yes }
+            FROM = { add_to_faction = AFS }
+		}
+		if = {
+		    limit = { is_in_faction = yes }
+			limit = { AFS = { is_in_faction = yes } }
+            AFS = {
+                add_opinion_modifier = {
+                    target = FROM
+                    modifier = AFS_diplomacy
+                }
+			}
+			add_opinion_modifier = {
+                target = AFS
+                modifier = AFS_diplomacy
+            }
+			AFS = { give_guarantee = FROM }
+			AFS = { give_military_access = FROM }
+			give_guarantee = AFS
+			give_military_access = AFS
+		}
+		country_event = {
+			id = AFS.12
+		    days = 0
+		}
+	}
+	option = {
+		name = AFS.11.b
+		ai_chance = {
+			factor = 0
+		}
+		country_event = {
+			id = AFS.13
+		    days = 0
+		}
+	}
+}
+
+#They Accepted Our Faction Joining :D
+country_event = {
+	id = AFS.12
+	title = AFS.12.t
+	desc = AFS.12.d
+	picture = event_
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 30 }
+	fire_only_once = no
+	immediate = {
+    
+	}
+	option = {
+		name = AFS.12.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+#They DIDN'T Accepted Our Faction Joining >:3
+country_event = {
+	id = AFS.13
+	title = AFS.13.t
+	desc = AFS.13.d
+	picture = event_
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 30 }
+	fire_only_once = no
+	immediate = {
+    
+	}
+	option = {
+		name = AFS.13.a
 		ai_chance = {
 			factor = 100
 		}
@@ -778,6 +881,106 @@ country_event = {
             ideology = libertarian_left
             popularity = 0.03
         }
+	}
+}
+
+#Our Fellow Freedom Fighters
+country_event = {
+	id = vermin.9
+	title = vermin.9.t
+	desc = vermin.9.d
+	picture = event_
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 30 }
+	fire_only_once = yes
+	immediate = {
+    
+	}
+	option = {
+		name = vermin.9.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+#Fight For Your Rights, And Your Ponies!
+country_event = {
+	id = vermin.10
+	title = vermin.10.t
+	desc = vermin.10.d
+	picture = event_
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 30 }
+	fire_only_once = yes
+	immediate = {
+    
+	}
+	option = {
+		name = vermin.10.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+#Migrants and Refugees Move in to Our Nation
+country_event = {
+	id = vermin.11
+	title = vermin.11.t
+	desc = vermin.11.d
+	picture = event_
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 30 }
+	fire_only_once = yes
+	immediate = {
+    
+	}
+	option = {
+		name = vermin.11.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+#The Effects of the Triumvirate
+country_event = {
+	id = vermin.12
+	title = vermin.12.t
+	desc = vermin.12.d
+	picture = event_
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 30 }
+	fire_only_once = yes
+	immediate = {
+    
+	}
+	option = {
+		name = vermin.12.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+#It Has Become Reality
+country_event = {
+	id = vermin.13
+	title = vermin.13.t
+	desc = vermin.13.d
+	picture = event_
+	is_triggered_only = yes
+	#mean_time_to_happen = { days = 30 }
+	fire_only_once = yes
+	immediate = {
+    
+	}
+	option = {
+		name = vermin.13.a
+		ai_chance = {
+			factor = 100
+		}
 	}
 }
 
@@ -1075,7 +1278,7 @@ country_event = {
 	}
 }
 
-#Looking To The Past
+#The Traitor, And the Man Who Started it All
 country_event = {
 	id = mattis.3
 	title = mattis.3.t

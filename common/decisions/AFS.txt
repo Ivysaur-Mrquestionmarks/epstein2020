@@ -82,7 +82,7 @@ AFS_vermin_balance_of_power_category = {
 	}
 
 	AFS_gain_support_vermin = {
-		priority = 25
+		priority = 100
 		icon = #GFX_decision_hol_attract_foreign_investors
 
 		allowed = {
@@ -124,7 +124,7 @@ AFS_vermin_balance_of_power_category = {
 	}
 
 	AFS_turn_the_people_againist_hawkins = {
-		priority = 25
+		priority = 100
 		icon = #GFX_decision_hol_attract_foreign_investors
 
 		allowed = {
@@ -173,7 +173,7 @@ AFS_vermin_balance_of_power_category = {
 	}
 
 	AFS_turn_the_people_againist_mattis = {
-		priority = 25
+		priority = 100
 		icon = #GFX_decision_hol_attract_foreign_investors
 
 		allowed = {
@@ -222,7 +222,7 @@ AFS_vermin_balance_of_power_category = {
 	}
 
 	AFS_sabotage_vermin = {
-		priority = 25
+		priority = 100
 		icon = #GFX_decision_hol_attract_foreign_investors
 
 		allowed = {
@@ -347,7 +347,7 @@ AFS_hawkins_balance_of_power_category = {
 	}
 
 	AFS_gain_support_hawkins = {
-		priority = 25
+		priority = 100
 		icon = #GFX_decision_hol_attract_foreign_investors
 
 		allowed = {
@@ -389,7 +389,7 @@ AFS_hawkins_balance_of_power_category = {
 	}
 
 	AFS_gain_more_control_hawkins = {
-		priority = 25
+		priority = 100
 		icon = #GFX_decision_hol_attract_foreign_investors
 
 		allowed = {
@@ -431,7 +431,7 @@ AFS_hawkins_balance_of_power_category = {
 	}
 
 	AFS_gain_intel_on_vermin_hawkins = {
-		priority = 25
+		priority = 100
 		icon = #GFX_decision_hol_attract_foreign_investors
 
 		allowed = {
@@ -482,7 +482,7 @@ AFS_hawkins_balance_of_power_category = {
 	}
 
 	AFS_sabotage_hawkins = {
-		priority = 25
+		priority = 100
 		icon = #GFX_decision_hol_attract_foreign_investors
 
 		allowed = {
@@ -607,7 +607,7 @@ AFS_mattis_balance_of_power_category = {
 	}
 
 	AFS_gain_support_mattis = {
-		priority = 25
+		priority = 100
 		icon = #GFX_decision_hol_attract_foreign_investors
 
 		allowed = {
@@ -649,7 +649,7 @@ AFS_mattis_balance_of_power_category = {
 	}
 
 	AFS_gain_more_control_mattis = {
-		priority = 25
+		priority = 100
 		icon = #GFX_decision_hol_attract_foreign_investors
 
 		allowed = {
@@ -691,7 +691,7 @@ AFS_mattis_balance_of_power_category = {
 	}
 
 	AFS_gain_intel_on_vermin_mattis = {
-		priority = 25
+		priority = 100
 		icon = #GFX_decision_hol_attract_foreign_investors
 
 		allowed = {
@@ -742,7 +742,7 @@ AFS_mattis_balance_of_power_category = {
 	}
 
 	AFS_sabotage_mattis = {
-		priority = 25
+		priority = 100
 		icon = #GFX_decision_hol_attract_foreign_investors
 
 		allowed = {
@@ -898,6 +898,9 @@ AFS_vermin_political_decisions = {
 
 
 		fire_only_once = yes
+
+		cost = 80
+		
 		days_remove = 45
 
 		visible = {
@@ -915,11 +918,234 @@ AFS_vermin_political_decisions = {
 		remove_effect = {
 			FROM = {
 			    add_dynamic_modifier = {
-				    modifier = AFS_autonomous_zone
+				    modifier = AFS_autonomous_zone_state_modifier
 			    }
 		    }
 		}
 
+	}
+
+	#Political Decisions
+	AFS_helping_the_poor = {
+		priority = 25
+		icon = #GFX_decision_hol_attract_foreign_investors
+
+		allowed = {
+			original_tag = AFS
+		}
+
+		visible = {
+			has_completed_focus = AFS_putting_the_people_first
+			has_country_flag = {
+                flag = AFS_vermin_political_decision_1
+                value < 3
+            }
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = AFS_doing_political_action
+			}
+		}
+		
+		fire_only_once = no
+		
+		days_re_enable = 20
+
+		days_remove = 25
+		
+		cost = 30
+
+		complete_effect = {
+			set_country_flag = {
+				flag = AFS_doing_political_action
+				days = 25
+				value = 1
+			}
+		}
+		remove_effect = {
+			add_popularity = {
+                ideology = libertarian_left
+                popularity = 0.02
+            }
+			add_to_variable = {
+				var = AFS.var_monthly_population_level
+				value = 0.01
+				tooltip = AFS_increase_monthly_population_var_tt
+			}
+			modify_country_flag = {
+                flag = AFS_vermin_political_decision_1
+                value = 1
+            }
+		}
+	}
+
+	AFS_meet_with_the_common_people = {
+		priority = 25
+		icon = #GFX_decision_hol_attract_foreign_investors
+
+		allowed = {
+			original_tag = AFS
+		}
+
+		visible = {
+			has_completed_focus = AFS_putting_the_people_first
+			has_country_flag = {
+                flag = AFS_vermin_political_decision_2
+                value < 3
+            }
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = AFS_doing_political_action
+			}
+		}
+		
+		fire_only_once = no
+		
+		days_re_enable = 20
+
+		days_remove = 25
+		
+		cost = 30
+
+		complete_effect = {
+			set_country_flag = {
+				flag = AFS_doing_political_action
+				days = 25
+				value = 1
+			}
+		}
+		remove_effect = {
+			add_to_variable = {
+				var = AFS.var_libertarian_left_level
+				value = 0.01
+				tooltip = AFS_increase_libertarian_left_var_tt
+			}
+			add_to_variable = {
+				var = AFS.var_compliance_level
+				value = 0.01
+				tooltip = AFS_increase_compliance_var_tt
+			}
+			modify_country_flag = {
+                flag = AFS_vermin_political_decision_2
+                value = 1
+            }
+		}
+	}
+
+	AFS_meet_with_the_lgbtq_community = {
+		priority = 25
+		icon = #GFX_decision_hol_attract_foreign_investors
+
+		allowed = {
+			original_tag = AFS
+		}
+
+		visible = {
+			has_completed_focus = AFS_liberty_above_all
+			has_country_flag = {
+                flag = AFS_vermin_political_decision_3
+                value < 3
+            }
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = AFS_doing_political_action
+			}
+		}
+		
+		fire_only_once = no
+		
+		days_re_enable = 20
+
+		days_remove = 25
+		
+		cost = 30
+
+		complete_effect = {
+			set_country_flag = {
+				flag = AFS_doing_political_action
+				days = 25
+				value = 1
+			}
+		}
+		remove_effect = {
+			add_popularity = {
+                ideology = libertarian_left
+                popularity = 0.02
+            }
+			add_to_variable = {
+				var = AFS.var_stability_level
+				value = 0.01
+				tooltip = AFS_increase_stability_var_tt
+			}
+			modify_country_flag = {
+                flag = AFS_vermin_political_decision_3
+                value = 1
+            }
+		}
+	}
+
+	AFS_promote_equality = {
+		priority = 25
+		icon = #GFX_decision_hol_attract_foreign_investors
+
+		allowed = {
+			original_tag = AFS
+		}
+
+		visible = {
+			has_completed_focus = AFS_liberty_above_all
+			has_country_flag = {
+                flag = AFS_vermin_political_decision_4
+                value < 3
+            }
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = AFS_doing_political_action
+			}
+		}
+		
+		fire_only_once = no
+		
+		days_re_enable = 20
+
+		days_remove = 25
+		
+		cost = 30
+
+		complete_effect = {
+			set_country_flag = {
+				flag = AFS_doing_political_action
+				days = 25
+				value = 1
+			}
+		}
+		remove_effect = {
+			add_popularity = {
+                ideology = libertarian_left
+                popularity = 0.02
+            }
+			add_to_variable = {
+				var = AFS.var_stability_level
+				value = 0.01
+				tooltip = AFS_increase_stability_var_tt
+			}
+			add_to_variable = {
+				var = AFS.var_compliance_level
+				value = 0.01
+				tooltip = AFS_increase_compliance_var_tt
+			}
+			modify_country_flag = {
+                flag = AFS_vermin_political_decision_4
+                value = 1
+            }
+		}
 	}
 
 	#Military Decisions
@@ -932,7 +1158,7 @@ AFS_vermin_political_decisions = {
 		}
 
 		visible = {
-			has_completed_focus = AFS_remember_what_your_fighting_for
+			has_completed_focus = AFS_unite_the_people_of_ohio
 			has_country_flag = {
                 flag = AFS_vermin_military_decision_1
                 value < 3
