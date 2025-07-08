@@ -72,15 +72,7 @@ FRA_rural_rebels_cateogry = {
 	highlight_states = {
 		highlight_state_targets = {
 			state_target = yes
-			target_root_trigger = {
-				any_owned_state = { has_dynamic_modifier = { modifier = FRA_rural_rebels } }
-			}
 			target_array = FRA.rebel_states
-			target_trigger = {
-				FROM = {
-					is_owned_by = ROOT
-				}
-			}
 		}
 		highlight_color_while_active = 3
 		highlight_color_before_active = 2
@@ -89,14 +81,58 @@ FRA_rural_rebels_cateogry = {
 		target_array = FRA.rebel_states
 		name = FRA_rebel_states
 		zoom = 150
-		target_trigger = {
-			FROM = {
-				is_owned_by = ROOT
-			}
-		}
 	}
 	visible = {
 		any_owned_state = { has_dynamic_modifier = { modifier = FRA_rural_rebels } }
+	}
+}
+
+FRA_collapse_state_coring_cateogry = {
+	icon = GFX_decision_category_NOR_fascist_deploy_prep
+	allowed = {
+		OR = {
+			original_tag = FRA
+			original_tag = WDC
+			original_tag = MRD
+			original_tag = DMV
+			original_tag = WMS
+			original_tag = PVD
+			original_tag = BRA
+			original_tag = NHC
+			original_tag = DMA
+			original_tag = NHR
+			original_tag = VER
+			original_tag = SYR
+			original_tag = UTC
+			original_tag = TNY
+			original_tag = NYC
+			original_tag = PEN
+			original_tag = PIT
+			original_tag = PHI
+			original_tag = RNJ
+			original_tag = AMS
+		}
+	}
+
+	priority = 10
+	highlight_states = {
+		highlight_state_targets = {
+			state_target = yes
+			target_root_trigger = {
+				NOT = { has_country_flag = FRA_collapse_finished_flag }
+			}
+			target_array = global.FRA_array_collapse_coring_states
+		}
+		highlight_color_while_active = 3
+		highlight_color_before_active = 2
+	}
+	on_map_area = {
+		target_array = global.FRA_array_collapse_coring_states
+		name = FRA_collapse_coring_states
+		zoom = 150
+	}
+	visible = {
+		NOT = { has_country_flag = FRA_collapse_finished_flag }
 	}
 }
 
