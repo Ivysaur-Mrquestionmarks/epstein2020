@@ -517,9 +517,12 @@ focus_tree = {
 			focus = FAL_modern_jose_antonio
 		}
 		completion_reward = {
+			country_event = {
+				id = stonetoss.12
+			}
 			add_ideas = FAL_illegitimate
 			set_cosmetic_tag = FAL_ledesma
-		
+			
 			mark_focus_tree_layout_dirty = yes
 		}
 	}
@@ -2551,6 +2554,116 @@ focus_tree = {
 			}
 		}
 	}
+	#An Unthinkable Deal
+	focus = {
+		id = FAL_an_unthinkable_deal
+		icon = GFX
+		cost = 2.00
+		x = 12
+		y = 1
+		relative_position_id = FAL_tejas_first
+		mutually_exclusive = {
+			focus = FAL_fortify_tejas
+		}
+		prerequisite = {
+			focus = FAL_tejas_first
+		}
+		completion_reward = {
+			
+		}
+	}
+	#Republican-Falangist Synthesis
+	focus = {
+		id = FAL_republican_synthesis
+		icon = GFX
+		cost = 2.00
+		x = 1
+		y = 1
+		relative_position_id = FAL_an_unthinkable_deal
+		prerequisite = {
+			focus = FAL_an_unthinkable_deal
+		}
+		completion_reward = {
+			
+		}
+	}
+	#Stake Our Claims
+	focus = {
+		id = FAL_stake_our_claims
+		icon = GFX
+		cost = 2.00
+		x = -1
+		y = 1
+		relative_position_id = FAL_an_unthinkable_deal
+		prerequisite = {
+			focus = FAL_an_unthinkable_deal
+		}
+		completion_reward = {
+			
+		}
+	}
+	#Trump Is Our Caudillo
+	focus = {
+		id = FAL_trump_caudillo
+		icon = GFX
+		cost = 2.00
+		x = 0
+		y = 1
+		relative_position_id = FAL_stake_our_claims
+		mutually_exclusive = {
+			focus = FAL_unity_without_union
+		}
+		prerequisite = {
+			focus = FAL_stake_our_claims
+		}
+		prerequisite = {
+			focus = FAL_republican_synthesis
+		}
+		completion_reward = {
+			
+		}
+	}
+	#Unity Without Union
+	focus = {
+		id = FAL_unity_without_union
+		icon = GFX
+		cost = 2.00
+		x = 2
+		y = 1
+		relative_position_id = FAL_stake_our_claims
+		mutually_exclusive = {
+			focus = FAL_trump_caudillo
+		}
+		prerequisite = {
+			focus = FAL_stake_our_claims
+		}
+		prerequisite = {
+			focus = FAL_republican_synthesis
+		}
+		completion_reward = {
+			
+		}
+	}
+	#A More Suitable Heir?
+	focus = {
+		id = FAL_a_suitable_heir
+		icon = GFX
+		cost = 2.00
+		x = 0
+		y = 3
+		relative_position_id = FAL_an_unthinkable_deal
+		mutually_exclusive = {
+			focus = FAL_trump_caudillo
+		}
+		prerequisite = {
+			focus = FAL_trump_caudillo
+			focus = FAL_unity_without_union
+		}
+
+		completion_reward = {
+			
+		}
+	}
 	focus = {
 		id = FAL_fortify_tejas
 		icon = GFX
@@ -2559,6 +2672,9 @@ focus_tree = {
 		y = 1
 		relative_position_id = FAL_tejas_first
 
+		mutually_exclusive = {
+			focus = FAL_an_unthinkable_deal
+		}
 		prerequisite = {
 			focus = FAL_tejas_first
 		}
@@ -3428,7 +3544,6 @@ focus_tree = {
 			add_ideas = {
 				FAL_open_borders_hispanic
 			}
-			custom_effect_tooltip = FAL_ECH_buffs_tt
 			every_country = {
 				limit = {
 					has_dynamic_modifier = {
@@ -3443,6 +3558,7 @@ focus_tree = {
 					FAL_open_borders_hispanic
 				}
 			}
+			custom_effect_tooltip = FAL_ECH_buffs_tt
 		}
 	}
 	focus = {
@@ -3458,7 +3574,6 @@ focus_tree = {
 		}
 		completion_reward = {
 			add_ideas = FAL_universal_peso
-			custom_effect_tooltip = FAL_ECH_buffs_tt
 			every_country = {
 				limit = {
 					has_dynamic_modifier = {
@@ -3473,6 +3588,7 @@ focus_tree = {
 					FAL_universal_peso
 				}
 			}
+			custom_effect_tooltip = FAL_ECH_buffs_tt
 		}
 	}
 	focus = {
@@ -3488,7 +3604,6 @@ focus_tree = {
 		}
 		completion_reward = {
 			add_ideas = FAL_integrated_command
-			custom_effect_tooltip = FAL_ECH_buffs_tt
 			every_country = {
 				limit = {
 					has_dynamic_modifier = {
@@ -3503,6 +3618,7 @@ focus_tree = {
 					FAL_integrated_command
 				}
 			}
+			custom_effect_tooltip = FAL_ECH_buffs_tt
 		}
 	}
 	focus = {
@@ -3525,7 +3641,21 @@ focus_tree = {
 			focus = FAL_one_currency
 		}
 		completion_reward = {
-			
+			create_faction = "Pact of Hispanidad"
+			every_country = {
+				limit = {
+					has_dynamic_modifier = {
+					    modifier = FAL_ech
+					}
+					NOT = {
+						has_idea = FAL_open_borders_hispanic
+						tag = FAL
+					}
+				}
+				country_event = {
+					id = hispanic_alliance.1
+				}
+			}
 		}
 	}
 	focus = {
