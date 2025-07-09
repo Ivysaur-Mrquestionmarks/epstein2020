@@ -339,6 +339,13 @@ country_event = {
 			remove_idea = FAL_conservative_uneasiness
 			add_idea = FAL_conservative_coalition
 		}
+		add_country_leader_role = {
+		    character = FAL_jose_angel_gutierrez
+		    promote_leader = yes
+		    country_leader = {
+		        ideology = Authoritative_Democracy
+		    }
+		}
 		ai_chance = {
 			factor = 100
 		}
@@ -469,6 +476,11 @@ country_event = { #Invitation to ECH
 				FAL_integrated_command
 			}
 		}
+		FAL = {
+			country_event = {
+				id = stonetoss_ech.2
+			}
+		}
 		ai_chance = {
 			base = 50
 
@@ -498,8 +510,374 @@ country_event = { #Invitation to ECH
 	option = { #NO
 		name = stonetoss_ech.1.b
 
+		FAL = {
+			country_event = {
+				id = stonetoss_ech.3
+			}
+		}
 		ai_chance = {
 			base = 50
+		}
+	}
+}
+country_event = { #Nation Says Si
+	id = stonetoss_ech.2
+	title = stonetoss_ech.2.t
+	desc = stonetoss_ech.2.d
+	#picture =
+	is_triggered_only = yes
+
+	option = { 
+		name = stonetoss_ech.2.a
+		ai_chance = {
+			base = 100
+		}
+	}
+}
+country_event = { #Nation Says No
+	id = stonetoss_ech.3
+	title = stonetoss_ech.3.t
+	desc = stonetoss_ech.3.d
+	#picture =
+	is_triggered_only = yes
+
+	option = { 
+		name = stonetoss_ech.3.a
+		add_political_power = -10
+		ai_chance = {
+			base = 100
+		}
+	}
+}
+#####################
+add_namespace = stonetoss_trump
+
+country_event = { #Trump Gets Events
+	id = stonetoss_trump.1
+	title = stonetoss_trump.1.t
+	desc = stonetoss_trump.1.d
+	#picture =
+	is_triggered_only = yes
+
+	option = { 
+		name = stonetoss_trump.1.a
+		FAL = {
+			country_event = stonetoss_trump.2
+		}
+		ai_chance = {
+			base = 100
+		}
+	}
+	option = { 
+		name = stonetoss_trump.1.b
+		FAL = {
+			country_event = stonetoss_trump.3
+		}
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+country_event = { #Trump says yes
+	id = stonetoss_trump.2
+	title = stonetoss_trump.2.t
+	desc = stonetoss_trump.2.d
+	#picture =
+	is_triggered_only = yes
+
+	option = { 
+		name = stonetoss_trump.2.a
+		USA = { add_to_faction = FAL }
+		give_resource_rights = { receiver = USA state = 53 }
+		give_resource_rights = { receiver = USA state = 278 }
+		give_resource_rights = { receiver = USA state = 44 }
+		every_state = {
+			limit = {
+				OR = {
+					state = 252
+					state = 257
+					state = 256
+					state = 255
+					state = 254
+					state = 253
+				}
+			}
+			IF = {
+				OKL = {
+					exists = yes
+					is_puppet_of = FAL
+				}
+				transfer_state_to = OKL
+			}
+			ELSE = {
+				transfer_state_to = FAL
+			}
+		}
+
+		ai_chance = {
+			base = 100
+		}
+	}
+}
+country_event = { #Trump says no
+	id = stonetoss_trump.3
+	title = stonetoss_trump.3.t
+	desc = stonetoss_trump.3.d
+	#picture =
+	is_triggered_only = yes
+
+	option = { 
+		name = stonetoss_trump.3.a
+		
+		ai_chance = {
+			base = 100
+		}
+	}
+}
+country_event = { #Synthesizing Republicanism and Falangism doesn't really work well
+	id = stonetoss_trump.4
+	title = stonetoss_trump.4.t
+	desc = stonetoss_trump.4.d
+	#picture =
+	is_triggered_only = yes
+
+	option = { 
+		name = stonetoss_trump.4.a
+
+		add_war_support = 0.1
+		add_political_power = 150
+
+		ai_chance = {
+			base = 100
+		}
+	}
+}
+country_event = { #Make the USA attack the CSA
+	id = stonetoss_trump.5
+	title = stonetoss_trump.5.t
+	desc = stonetoss_trump.5.d
+	#picture =
+	is_triggered_only = yes
+
+	option = { 
+		name = stonetoss_trump.5.a
+		custom_effect_tooltip = FAL_usa_csa_warning_tt
+		FAL = {
+			country_event = {
+				id = stonetoss_trump.6
+				days = 3
+			}
+			set_cosmetic_tag = FAL_attack_greenlit
+		}
+		ai_chance = {
+			base = 90
+		}
+	}
+	option = { 
+		name = stonetoss_trump.5.b
+		FAL = {
+			country_event = {
+				id = stonetoss_trump.7
+				days = 3
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+country_event = { #Trump says yes
+	id = stonetoss_trump.6
+	title = stonetoss_trump.6.t
+	desc = stonetoss_trump.6.d
+	#picture =
+	is_triggered_only = yes
+
+	option = { 
+		name = stonetoss_trump.6.a
+		IF = {
+			limit = {
+				has_global_flag = Dixie_Collapse_Global
+			}
+			declare_war_on = {
+				type = annex_everything
+				target = KKK
+			}
+			declare_war_on = {
+				type = annex_everything
+				target = CSA
+			}
+			declare_war_on = {
+				type = annex_everything
+				target = ZIO
+			}
+			declare_war_on = {
+				type = annex_everything
+				target = AFR
+			}
+			declare_war_on = {
+				type = annex_everything
+				target = CSB
+			}
+			declare_war_on = {
+				type = annex_everything
+				target = LGB
+			}
+			declare_war_on = {
+				type = annex_everything
+				target = APA
+			}
+			USA = {
+				declare_war_on = {
+					type = annex_everything
+					target = KKK
+				}
+				declare_war_on = {
+					type = annex_everything
+					target = CSA
+				}
+				declare_war_on = {
+					type = annex_everything
+					target = ZIO
+				}
+				declare_war_on = {
+					type = annex_everything
+					target = AFR
+				}
+				declare_war_on = {
+					type = annex_everything
+					target = CSB
+				}
+				declare_war_on = {
+					type = annex_everything
+					target = LGB
+				}
+				declare_war_on = {
+					type = annex_everything
+					target = APA
+				}
+			}
+		}
+		ELSE = {
+			declare_war_on = {
+				type = annex_everything
+				target = CSA
+			}
+			USA = {
+				declare_war_on = {
+					type = annex_everything
+					target = CSA
+				}
+			}
+		}
+		ai_chance = {
+			base = 100
+		}
+	}
+}
+country_event = { #Trump says NO
+	id = stonetoss_trump.7
+	title = stonetoss_trump.7.t
+	desc = stonetoss_trump.7.d
+	#picture =
+	is_triggered_only = yes
+
+	option = { 
+		name = stonetoss_trump.7.a
+
+		add_political_power = -100
+		ai_chance = {
+			base = 100
+		}
+	}
+	option = { 
+		name = stonetoss_trump.7.b
+		declare_war_on = {
+			type = annex_everything
+			target = CSA
+		}
+		add_war_support = 0.1
+		ai_chance = {
+			base = 100
+		}
+	}
+}
+country_event = { #To the victor, goes the spoils
+	id = stonetoss_trump.8
+	title = stonetoss_trump.8.t
+	desc = stonetoss_trump.8.d
+	#picture =
+	#is_triggered_only = yes
+    trigger = {
+    	FAL = {
+    		has_cosmetic_tag = FAL_attack_greenlit
+    	}
+    	506 = {
+    		Owner = {
+    			OR = {
+    				tag = FAL
+   					is_in_faction_with = FAL 
+    			}
+    		}
+    	}
+    	CSA = {
+    		Exists = no
+    	}
+    	KKK = {
+    		Exists = no
+    	}
+    	ZIO = {
+    		Exists = no
+    	}
+    	AFR = {
+    		Exists = no
+    	}
+    	CSB = {
+    		Exists = no
+    	}
+    	LGB = {
+    		Exists = no
+    	}
+    	APA = {
+    		Exists = no
+    	}
+    }
+	option = { 
+		name = stonetoss_trump.8.a
+		every_state = {
+			limit = {
+				AND = {
+					is_core_of = CSA
+					owner = {
+		    			OR = {
+		    				tag = FAL
+		   					is_in_faction_with = FAL 
+		    			}
+		    		}
+				}
+			}
+			transfer_state_to = USA
+		}
+		every_state = {
+			limit = {
+				OR = {
+					is_core_of = LOU
+					state = 279
+					state = 269
+					state = 536
+					state = 535
+					state = 267
+				}
+				
+			}
+			add_core_of = FAL
+			transfer_state_to = FAL
+		}
+		USA = {
+
+		}
+		ai_chance = {
+			base = 100
 		}
 	}
 }

@@ -2559,9 +2559,15 @@ focus_tree = {
 		id = FAL_an_unthinkable_deal
 		icon = GFX
 		cost = 2.00
-		x = 12
+		x = 13
 		y = 1
 		relative_position_id = FAL_tejas_first
+		available = {
+			USA = {
+				exists = yes
+			}
+			has_idea = FAL_conservative_coalition
+		}
 		mutually_exclusive = {
 			focus = FAL_fortify_tejas
 		}
@@ -2569,7 +2575,12 @@ focus_tree = {
 			focus = FAL_tejas_first
 		}
 		completion_reward = {
-			
+			USA = {
+				country_event = {
+					id = stonetoss_trump.1
+				}
+			}
+			custom_effect_tooltip = FAL_usa_event_tt
 		}
 	}
 	#Republican-Falangist Synthesis
@@ -2580,11 +2591,14 @@ focus_tree = {
 		x = 1
 		y = 1
 		relative_position_id = FAL_an_unthinkable_deal
+		available = {
+			is_in_faction_with = USA
+		}
 		prerequisite = {
 			focus = FAL_an_unthinkable_deal
 		}
 		completion_reward = {
-			
+			country_event = stonetoss_trump.4
 		}
 	}
 	#Stake Our Claims
@@ -2595,11 +2609,57 @@ focus_tree = {
 		x = -1
 		y = 1
 		relative_position_id = FAL_an_unthinkable_deal
+		available = {
+			is_in_faction_with = USA
+		}
 		prerequisite = {
 			focus = FAL_an_unthinkable_deal
 		}
 		completion_reward = {
-			
+			every_state = {
+				limit = {
+					OR = {
+						state = 352
+						state = 40
+						state = 551
+						state = 661
+						state = 315
+						state = 316
+						state = 612
+						state = 307
+						state = 609
+						state = 279
+						state = 269
+						state = 536
+						state = 535
+						state = 267
+						state = 317
+					}
+				}
+				add_claim_by = FAL
+			}
+			custom_effect_tooltip = FAL_claimed_territory_tt
+		}
+	}
+	#Coax Them to Attack CSA
+	focus = {
+		id = FAL_coax_into_attack
+		icon = GFX
+		cost = 2.00
+		x = -2
+		y = 1
+		relative_position_id = FAL_stake_our_claims
+		available = {
+			is_in_faction_with = USA
+		}
+		prerequisite = {
+			focus = FAL_stake_our_claims
+		}
+		completion_reward = {
+			USA = {
+				country_event = stonetoss_trump.5
+			}
+			custom_effect_tooltip = FAL_csa_attack_tt
 		}
 	}
 	#Trump Is Our Caudillo
@@ -2610,17 +2670,37 @@ focus_tree = {
 		x = 0
 		y = 1
 		relative_position_id = FAL_stake_our_claims
+		available = {
+			is_in_faction_with = USA
+		}
 		mutually_exclusive = {
 			focus = FAL_unity_without_union
 		}
 		prerequisite = {
-			focus = FAL_stake_our_claims
+			#focus = FAL_stake_our_claims
 		}
 		prerequisite = {
-			focus = FAL_republican_synthesis
+			#focus = FAL_republican_synthesis
 		}
 		completion_reward = {
-			
+			USA = {
+				puppet = FAL
+			}
+			set_cosmetic_tag = FAL_trump
+			set_popularities = {
+				autocratic = 50
+				republican = 50
+			}
+			set_party_name = {
+			    ideology = republican
+			    long_name = "Republican-Falange Party"
+			    name = "R.F.P."
+			}
+			set_party_name = {
+			    ideology = autocratic
+			    long_name = "Republican-Falange Party"
+			    name = "R.F.P."
+			}
 		}
 	}
 	#Unity Without Union
@@ -2631,6 +2711,9 @@ focus_tree = {
 		x = 2
 		y = 1
 		relative_position_id = FAL_stake_our_claims
+		available = {
+			is_in_faction_with = USA
+		}
 		mutually_exclusive = {
 			focus = FAL_trump_caudillo
 		}
@@ -2652,6 +2735,9 @@ focus_tree = {
 		x = 0
 		y = 3
 		relative_position_id = FAL_an_unthinkable_deal
+		available = {
+			is_in_faction_with = USA
+		}
 		mutually_exclusive = {
 			focus = FAL_trump_caudillo
 		}
@@ -3327,14 +3413,14 @@ focus_tree = {
 		y = 1
 		relative_position_id = FAL_tejas_first
 		available = {
-		#	OR = {
-		#		has_completed_focus = FAL_join_the_catholic_front
-		#		has_completed_focus = FAL_stay_out_of_it
-		#	}
+			OR = {
+				has_completed_focus = FAL_join_the_catholic_front
+				has_completed_focus = FAL_stay_out_of_it
+			}
 		}
 		prerequisite = {
-		#	focus = FAL_tejas_first
-		#	focus = FAL_continue_reconquista
+			focus = FAL_tejas_first
+			focus = FAL_continue_reconquista
 		}
 		completion_reward = {
 			add_political_power = 150
@@ -3536,7 +3622,14 @@ focus_tree = {
 		x = 0
 		y = 1
 		relative_position_id = FAL_economic_council_of_hispanidad
-
+		available = {
+			custom_trigger_tooltip = {
+            	tooltip = FAL_ech_strength_tt
+            	check_variable = {
+			   		ech_strength > 3
+				}
+        	}
+		}
 		prerequisite = {
 			focus = FAL_economic_council_of_hispanidad
 		}
@@ -3568,10 +3661,18 @@ focus_tree = {
 		x = -2
 		y = 1
 		relative_position_id = FAL_economic_council_of_hispanidad
-
+		available = {
+			custom_trigger_tooltip = {
+            	tooltip = FAL_ech_strength_tt
+            	check_variable = {
+			   		ech_strength > 3
+				}
+        	}
+		}
 		prerequisite = {
 			focus = FAL_economic_council_of_hispanidad
 		}
+
 		completion_reward = {
 			add_ideas = FAL_universal_peso
 			every_country = {
@@ -3598,10 +3699,18 @@ focus_tree = {
 		x = 2
 		y = 1
 		relative_position_id = FAL_economic_council_of_hispanidad
-
+		available = {
+			custom_trigger_tooltip = {
+            	tooltip = FAL_ech_strength_tt
+            	check_variable = {
+			   		ech_strength > 3
+				}
+        	}
+		}
 		prerequisite = {
 			focus = FAL_economic_council_of_hispanidad
 		}
+
 		completion_reward = {
 			add_ideas = FAL_integrated_command
 			every_country = {
