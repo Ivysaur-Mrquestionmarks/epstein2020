@@ -1,0 +1,104 @@
+
+joint_focus = {
+	id = SCA_FRA_southern_reconstruction
+	search_filters = { joint }
+	icon = GFX_goal_FRA_VIR_connect_capitals
+
+	X = 0
+	Y = 0
+
+	offset = {
+		x = -75
+		y = 10
+		trigger = {
+			tag = FRA
+		}
+	}
+	offset = {
+		x = 30
+		y = 11
+		trigger = {
+			tag = SCA
+		}
+	}
+	offset = {
+		x = 25
+		y = 7
+		trigger = {
+			NOT = {	
+				OR = {
+					tag = SCA
+					tag = FRA
+				}
+			}
+		}
+	}
+
+	cost = 3
+	text_icon = NORDIC_focus_style
+	joint_trigger = {
+  		OR = {
+			tag = FRA
+			tag = SCA
+			tag = NCA
+			tag = GEO
+			tag = CSB
+			tag = ZIO
+			tag = LGB
+			tag = APA
+			tag = ABM
+			tag = MIS
+		}
+	}
+	allow_branch = {
+		SCA = {
+			#exists = YES
+		}
+	}
+	available = {
+	}
+
+	completion_reward = {
+		add_stability = 0.05
+	}
+}
+
+joint_focus = {
+	id = SCA_FRA_strengthen_garrisons
+	search_filters = { joint }
+	icon = GFX_goal_FRA_VIR_connect_capitals
+
+	X = 3
+	Y = 1
+	relative_position_id = SCA_FRA_southern_reconstruction
+
+	prerequisite = {
+		focus = SCA_FRA_southern_reconstruction
+	}
+
+	cost = 3
+	text_icon = NORDIC_focus_style
+	joint_trigger = {
+  		OR = {
+			tag = FRA
+			tag = SCA
+			tag = NCA
+			tag = GEO
+			tag = CSB
+			tag = ZIO
+			tag = LGB
+			tag = APA
+			tag = ABM
+			tag = MIS
+		}
+	}
+	available = {
+	}
+
+	completion_reward_joint_originator = {
+	}
+
+	completion_reward = {
+		add_stability = 0.05
+	}
+}
