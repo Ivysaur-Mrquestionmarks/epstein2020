@@ -1621,11 +1621,26 @@ focus_tree = {
 	focus = {
 		id = FLA_ascend
 		icon = GFX_goal_FLA_demonic
-		cost = 10.00
+		cost = 5
+		allow_branch = {
+			NOT = {
+				has_completed_custom_achievement = {
+					mod = maa_achievements
+					achievement = FLA_an_ending 
+				}
+			}
+		}
 		prerequisite = { 
 			focus = FLA_open_hells_gates
 		}
-
+		cancel = {
+			hidden_trigger = {
+				has_completed_custom_achievement = {
+					mod = maa_achievements
+					achievement = FLA_an_ending 
+				}
+			}
+		}
 		ai_will_do = { 
 			factor = 300
 		}
@@ -1635,10 +1650,11 @@ focus_tree = {
 		available = {
 		}	
 		completion_reward = {
-				country_event = {
-    					id = fla.9
-    					days = 3
-				}
+			custom_effect_tooltip = FLA_warning
+			country_event = {
+    				id = fla.9
+    				days = 3
+			}
 		}
 
 	}
