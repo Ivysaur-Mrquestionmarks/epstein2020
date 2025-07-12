@@ -11,9 +11,14 @@ country_event = {
 	fire_only_once = yes
 	option = { # allow them
 		name = lgb_events.1.a
+		set_country_flag = LGB_mikue_possible_flag
+		add_stability = -0.1
+		add_political_power = -50
 	}
 	option = { # could pose trouble
 		name = lgb_events.1.b
+		add_stability = 0.1
+		add_political_power = 50
 	}
 }
 
@@ -30,6 +35,16 @@ country_event = {
 	}
 	option = { # when have they fought for our rights?
 		name = lgb_events.2.b
+		hidden_effect = {
+			country_event = {
+				id = lgb_events.3
+				days = 5
+			}
+		}
+		add_popularity = {
+			ideology = autocratic
+			popularity = 0.05
+		}
 	}
 }
 
@@ -46,6 +61,16 @@ country_event = {
 	}
 	option = { # what happened to a fair trial?
 		name = lgb_events.3.b
+		hidden_effect = {
+			country_event = {
+				id = lgb_events.4
+				days = 5
+			}
+		}
+		add_popularity = {
+			ideology = autocratic
+			popularity = 0.05
+		}
 	}
 }
 
@@ -59,6 +84,16 @@ country_event = {
 	fire_only_once = yes
 	option = { # they are just ants
 		name = lgb_events.4.a
+		hidden_effect = {
+			country_event = {
+				id = lgb_events.5
+				days = 2
+			}
+		}
+		add_popularity = {
+			ideology = autocratic
+			popularity = 0.05
+		}
 	}
 }
 
@@ -70,10 +105,120 @@ country_event = {
 	#picture =
 	is_triggered_only = yes
 	fire_only_once = yes
-	option = { # nothing to worry about
+	option = { # look into the matter
 		name = lgb_events.5.a
 	}
-	option = { # concerning...
+	option = { # nothing to worry about
 		name = lgb_events.5.b
+		hidden_effect = {
+			country_event = {
+				id = lgb_events.6
+				days = 5
+			}
+		}
+		add_popularity = {
+			ideology = autocratic
+			popularity = 0.05
+		}
+	}
+}
+
+#radicals coup rupaul!
+country_event = {
+	id = lgb_events.6
+	title = lgb_events.6.t
+	desc = lgb_events.6.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # a new group in charge
+		name = lgb_events.6.a
+		hidden_effect = {
+			country_event = {
+				id = lgb_events.7
+				days = 10
+			}
+		}
+		set_politics = {
+			ruling_party = autocratic
+			elections_allowed = no
+		}
+		add_popularity = {
+			ideology = autocratic
+			popularity = 0.2
+		}
+	}
+}
+
+#resistance to nazi gays
+country_event = {
+	id = lgb_events.7
+	title = lgb_events.7.t
+	desc = lgb_events.7.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # find who is in charge!
+		name = lgb_events.7.a
+		hidden_effect = {
+			if = { 
+				limit = { has_country_flag = LGB_mikue_possible_flag }
+				country_event = {
+					id = lgb_events.8
+					days = 2
+				}
+			}
+		}
+	}
+}
+
+#securing Crypton Future Media, Inc.'s loyalty
+country_event = {
+	id = lgb_events.8
+	title = lgb_events.8.t
+	desc = lgb_events.8.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # pay for their loyalty
+		name = lgb_events.8.a
+		add_stability = -0.1
+		add_political_power = -150
+		ai_chance = {
+			factor = 99
+		}
+	}
+	option = { # nationalize their property
+		name = lgb_events.8.b
+		hidden_effect = {
+			country_event = {
+				id = lgb_events.9
+				days = 10
+			}
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#hatsune miku coup
+country_event = {
+	id = lgb_events.9
+	title = lgb_events.9.t
+	desc = lgb_events.9.d
+	#picture =
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { # what the fuck
+		name = lgb_events.9.a
+		set_politics = {
+			ruling_party = authoritarian_left
+			elections_allowed = no
+		}
+		add_popularity = {
+			ideology = authoritarian_left
+			popularity = 0.3
+		}
 	}
 }
