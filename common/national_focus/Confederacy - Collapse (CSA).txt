@@ -210,7 +210,6 @@ focus_tree = {
 			}
 		}
 	}
-
 	focus = {
 		id = CSA_APA
 		icon = GFX_goal_CSA_APA
@@ -262,6 +261,294 @@ focus_tree = {
 					load_focus_tree = ARK_pre_collapse_focus
 				}
 			}
+		}
+	}
+	
+	
+	
+	### LGB 
+	
+	focus = {
+		id = LGB_fighting_for_tolerance
+		icon = GFX_focus_secret_rearmament
+		allow_branch = {
+			tag = LGB
+		}
+		prerequisite = { focus = CSA_so_it_begins }
+		x = -2
+		y = 2
+		relative_position_id = CSA_so_it_begins
+		cost = 4
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			hidden_effect = { 
+				country_event = lgb_events.1 
+				country_event = {
+					id = khaled.1
+					days = 10
+				}
+			}
+			
+			division_template = {
+				name = "Gay Militias"
+			#    division_names_group =
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+					infantry = { x = 2 y = 0 }
+					infantry = { x = 2 y = 1 }
+				}
+				support = { 
+					recon = { x = 0 y = 0 }
+				} 
+			}
+			316 = {
+				create_unit = {
+					division = "name = \"Gay Militias\" division_template = \"Gay Militias\" start_experience_factor = 0.25 start_equipment_factor = 0.35" 
+					owner = LGB
+				}
+				create_unit = {
+					division = "name = \"Gay Militias\" division_template = \"Gay Militias\" start_experience_factor = 0.25 start_equipment_factor = 0.35" 
+					owner = LGB
+				}
+				create_unit = {
+					division = "name = \"Gay Militias\" division_template = \"Gay Militias\" start_experience_factor = 0.25 start_equipment_factor = 0.35" 
+					owner = LGB
+				}
+			}
+			add_ideas = LGB_csawar_tolerance
+		}
+	}
+	focus = {
+		id = LGB_seek_support_in_cities
+		icon = GFX_focus_secret_rearmament
+		cost = 4
+		
+		x = 1
+		y = 1
+		relative_position_id = LGB_fighting_for_tolerance
+		prerequisite = { 
+			focus = LGB_fighting_for_tolerance 
+		}
+		completion_reward = {
+			every_state = {
+				limit = {
+					OR = {
+						state = 605
+						state = 320
+						state = 592
+						state = 536
+						state = 551
+						state = 552
+						state = 289
+						state = 509
+						state = 508
+						state = 309
+						state = 506
+						state = 602
+						state = 264
+						state = 534
+						state = 532
+						state = 238
+					}
+				}
+				add_core_of = LGB
+			}
+		}
+	}
+	focus = {
+		id = LGB_secure_louisiana
+		icon = GFX_focus_secret_rearmament
+		cost = 4
+		
+		x = 1
+		y = 1
+		relative_position_id = LGB_seek_support_in_cities
+		prerequisite = { 
+			focus = LGB_seek_support_in_cities 
+		}
+		completion_reward = {
+			every_state = {
+				limit = {
+					is_core_of = LOU
+				}
+				add_core_of = LGB
+			}
+		}
+	}
+	focus = {
+		id = LGB_against_hate
+		icon = GFX_focus_secret_rearmament
+		cost = 4
+		
+		x = -3
+		y = 1
+		relative_position_id = LGB_fighting_for_tolerance
+		prerequisite = { 
+			focus = LGB_fighting_for_tolerance 
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = LGB_csawar_tolerance
+				add_idea = LGB_csawar_tolerance2
+			}
+			hidden_effect = { 
+				country_event = lgb_events.2
+			}
+		}
+	}
+	focus = {
+		id = LGB_some_hate_is_ok
+		icon = GFX_focus_secret_rearmament
+		cost = 4
+		
+		x = -3
+		y = 1
+		available = {
+			has_government = autocratic
+		}
+		relative_position_id = LGB_against_hate
+		prerequisite = { 
+			focus = LGB_against_hate 
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = LGB_csawar_tolerance_hate
+				add_idea = LGB_csawar_tolerance_hate2
+			}
+		}
+	}
+	focus = {
+		id = LGB_rehabilitate_the_klan
+		icon = GFX_focus_secret_rearmament
+		cost = 4
+		
+		x = 0
+		y = 1
+		available = {
+			has_government = autocratic
+		}
+		relative_position_id = LGB_some_hate_is_ok
+		prerequisite = { 
+			focus = LGB_some_hate_is_ok 
+		}
+		completion_reward = {
+			every_state = {
+				limit = { is_core_of = KKK }
+				add_core_of = ROOT
+			}
+		}
+	}
+	focus = {
+		id = LGB_use_overseas_funding
+		icon = GFX_focus_secret_rearmament
+		cost = 4
+		
+		x = -1
+		y = 1
+		available = {
+			has_government = authoritarian_left
+		}
+		relative_position_id = LGB_against_hate
+		prerequisite = { 
+			focus = LGB_against_hate 
+		}
+		completion_reward = {
+			add_offsite_building = { type = arms_factory level = 3 }
+		}
+	}
+	focus = {
+		id = LGB_rally_the_miku_fans
+		icon = GFX_focus_secret_rearmament
+		cost = 4
+		
+		x = 0
+		y = 1
+		available = {
+			has_government = authoritarian_left
+		}
+		relative_position_id = LGB_use_overseas_funding
+		prerequisite = { 
+			focus = LGB_use_overseas_funding 
+		}
+		prerequisite = { 
+			focus = LGB_enlist_the_gays 
+		}
+		completion_reward = {
+			add_offsite_building = { type = arms_factory level = 3 }
+		}
+	}
+	
+	focus = {
+		id = LGB_enlist_the_gays
+		icon = GFX_focus_secret_rearmament
+		cost = 4
+		
+		x = 2
+		y = 1
+		relative_position_id = LGB_against_hate
+		prerequisite = { 
+			focus = LGB_against_hate 
+		}
+		prerequisite = { 
+			focus = LGB_seek_support_in_cities
+		}
+		completion_reward = {
+			add_manpower = 40000
+			316 = {
+				create_unit = {
+					division = "name = \"Gay Militias\" division_template = \"Gay Militias\" start_experience_factor = 0.25 start_equipment_factor = 0.35" 
+					owner = LGB
+				}
+				create_unit = {
+					division = "name = \"Gay Militias\" division_template = \"Gay Militias\" start_experience_factor = 0.25 start_equipment_factor = 0.35" 
+					owner = LGB
+				}
+				create_unit = {
+					division = "name = \"Gay Militias\" division_template = \"Gay Militias\" start_experience_factor = 0.25 start_equipment_factor = 0.35" 
+					owner = LGB
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = LGB_an_open_hand_to_defectors
+		icon = GFX_focus_secret_rearmament
+		cost = 4
+		
+		x = 1
+		y = 1
+		relative_position_id = LGB_enlist_the_gays
+		prerequisite = { 
+			focus = LGB_enlist_the_gays 
+		}
+		completion_reward = {
+			add_ideas = LGB_defectors
+		}
+	}
+	
+	focus = {
+		id = LGB_fight_for_love
+		icon = GFX_focus_secret_rearmament
+		cost = 4
+		
+		x = -1
+		y = 1
+		relative_position_id = LGB_enlist_the_gays
+		prerequisite = { 
+			focus = LGB_enlist_the_gays 
+		}
+		completion_reward = {
+			add_ideas = LGB_csawar_love
 		}
 	}
 	
