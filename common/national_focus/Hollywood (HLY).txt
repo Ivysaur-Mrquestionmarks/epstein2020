@@ -1,7 +1,7 @@
 focus_tree = {
 	id = Hollywood
 	country = {
-		factor = 0
+		factor = 1
 		modifier = {
 			add = 10
 			tag = HLY
@@ -10,2633 +10,355 @@ focus_tree = {
 	continuous_focus_position = { x = 50 y = 50 }
 	default = no
 	focus = {
-		id = A_Rocky_start
-		icon = GFX_goal_WHYLINEGODOWN
-		cost = 5.00
-		x = 15
-		y = 0
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_ideas = LA_Riots
-			hidden_effect = {
-				country_event = { id = California.8 days = 5 }
-			}
-		}
-	}
-	focus = {
-		id = Work_with_the_rioters
-		icon = GFX_goal_MOL_image_stability
-		cost = 3.00
-		x = 15
-		y = 1
-		prerequisite = {
-			focus = A_Rocky_start
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_stability = -0.15
-		}
-	}
-	focus = {
-		id = Everybody_loves_the_Rock
-		icon = GFX_goal_Love_Rock
-		cost = 5.00
-		x = 10
-		y = 2
-		prerequisite = {
-			focus = Work_with_the_rioters
-		}
-		mutually_exclusive = {
-			focus = Deal_with_the_Riots
-			focus = Bloody_Coup
-		}
-		ai_will_do = { 
-			factor = 300
-			modifier = {
-      			factor = 0 
-      			OR = {
-					has_game_rule = {
-              			rule = HLY_path
-             			option = HLY_PATH_KOREA
-          			}
-					has_game_rule = {
-              			rule = HLY_path
-             			option = HLY_PATH_BARRYMORE
-          			}
-					has_game_rule = {
-              			rule = HLY_path
-             			option = HLY_PATH_MILLER
-          			}
-					has_game_rule = {
-              			rule = HLY_path
-             			option = HLY_PATH_WALT
-          			}
-					has_game_rule = {
-              			rule = HLY_path
-             			option = HLY_PATH_BLOOD
-          			}
-					has_game_rule = {
-              			rule = HLY_path
-             			option = HLY_PATH_CRIP
-          			}
-					has_game_rule = {
-              			rule = HLY_path
-             			option = HLY_PATH_MUSIC
-          			}
-      			}
-   			}
-		}
-		completion_reward = {
-			add_stability = 0.05
-		}
-	}
-	focus = {
-		id = Smell_what_the_rock_is_cookin
-		icon = GFX_goal_Rock_Cook
-		cost = 5.00
-		x = 7
-		y = 3
-		prerequisite = {
-			focus = Everybody_loves_the_Rock
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_ideas = Rockism
-		}
-	}
-	focus = {
-		id = Push_out_Propaganda_movies
-		icon = GFX_goal_Propaganda_movies
-		cost = 5.00
-		x = 5
-		y = 4
-		prerequisite = {
-			focus = Smell_what_the_rock_is_cookin
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_war_support = 0.15
-		}
-	}
-	focus = {
-		id = Convert_Movie_Studios
-		icon = GFX_goal_Jet
-		cost = 5.00
-		x = 6
-		y = 5
-		prerequisite = {
-			focus = Push_out_Propaganda_movies
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_timed_idea = {
-				idea = Conversion_of_Studios
-				days = 125
-			}
-		}
-	}
-	focus = {
-		id = Conscript_Celebrities
-		icon = GFX_goal_Generalship_to_Celebs
-		cost = 5.00
-		x = 4
-		y = 5
-		prerequisite = {
-			focus = Push_out_Propaganda_movies
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_ideas = limited_conscription
-		}
-	}
-	focus = {
-		id = A_Propaganda_Masterpiece
-		icon = GFX_goal_Captain_America
-		cost = 3.00
-		x = 5
-		y = 6
-		prerequisite = {
-			focus = Convert_Movie_Studios
-		}
-		prerequisite = {
-			focus = Conscript_Celebrities
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_ideas = StarSpangledMan
-			show_unit_leaders_tooltip = HYL_wyatt_russell
-		}
-	}
-	focus = {
-		id = Work_with_Bernie
-		icon = GFX_goal_Happy_Bernie
-		cost = 10.00
-		x = 5
-		y = 7
-		prerequisite = {
-			focus = A_Propaganda_Masterpiece
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			PRA = {
-				puppet = HLY
-			}
-		}
-	}
-	focus = {
-		id = Concede_power_to_Bernie
-		icon = GFX_goal_Excited_Bernie
-		cost = 10.00
-		x = 5
-		y = 8
-		prerequisite = {
-			focus = Work_with_Bernie
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			PRA = {
-				annex_country = {
-  					target = HLY
-  					transfer_troops = yes
-				}
-			}
-		}
-	}
-	focus = {
-		id = Deal_with_the_Riots
-		icon = GFX_goal_put_down_the_axe
-		cost = 10.00
-		x = 20
-		y = 2
-		prerequisite = {
-			focus = Work_with_the_rioters
-		}
-		mutually_exclusive = {
-			focus = Everybody_loves_the_Rock
-			focus = Bloody_Coup
-		}
-		ai_will_do = { 
-			factor = 300
-			modifier = {
-      			factor = 0 
-      			OR = {
-					has_game_rule = {
-              			rule = HLY_path
-             			option = HLY_PATH_ROCK
-          			}
-					has_game_rule = {
-              			rule = HLY_path
-             			option = HLY_PATH_BLOOD
-          			}
-					has_game_rule = {
-              			rule = HLY_path
-             			option = HLY_PATH_CRIP
-          			}
-					has_game_rule = {
-              			rule = HLY_path
-             			option = HLY_PATH_MUSIC
-          			}
-      			}
-   			}
-		}
-		completion_reward = {
-			add_popularity = {
-				ideology = autocratic
-				popularity = 0.25
-			}
-			add_popularity = {
-				ideology = libertarian_right
-				popularity = 0.25
-			}
-			add_stability = -0.10
-		}
-	}
-	focus = {
-		id = Bloody_Coup
-		icon = GFX_goal_and_may_god_have_mercy
-		cost = 10.00
-		x = 45
-		y = 2
-		prerequisite = {
-			focus = Work_with_the_rioters
-		}
-		mutually_exclusive = {
-			focus = Everybody_loves_the_Rock
-			focus = Deal_with_the_Riots
-		}
-		ai_will_do = { 
-			factor = 300
-			modifier = {
-      			factor = 0 
-      			OR = {
-					has_game_rule = {
-              			rule = HLY_path
-             			option = HLY_PATH_ROCK
-          			}
-					has_game_rule = {
-              			rule = HLY_path
-             			option = HLY_PATH_KOREA
-          			}
-					has_game_rule = {
-              			rule = HLY_path
-             			option = HLY_PATH_BARRYMORE
-          			}
-					has_game_rule = {
-              			rule = HLY_path
-             			option = HLY_PATH_MILLER
-          			}
-					has_game_rule = {
-              			rule = HLY_path
-             			option = HLY_PATH_WALT
-          			}
-      			}
-   			}
-		}
-		completion_reward = {
-			add_stability = -0.75
-			add_popularity = {
-				ideology = authoritarian_left
-				popularity = 0.75
-			}
-			swap_ideas = {
-				remove_idea = LA_Riots
-				add_idea = LA_Riots_Uncontrolled
-			}
-			set_politics = {
-				ruling_party = libertarian_left
-			}
-			HLY_anarchy = {
-				promote_character = yes
-			}
-		}
-	}
-	focus = {
-		id = Blood_Takeover
-		icon = GFX_Focus_Bloody_Purge
-		cost = 3.00
-		x = 41
-		y = 3
-		prerequisite = {
-			focus = Bloody_Coup
-		}
-		ai_will_do = { 
-			factor = 300
-			modifier = {
-      			factor = 0 
-      			OR = {
-					has_game_rule = {
-              			rule = HLY_path
-             			option = HLY_PATH_CRIP
-          			}
-					has_game_rule = {
-              			rule = HLY_path
-             			option = HLY_PATH_MUSIC
-          			}
-      			}
-   			}
-		}
-		mutually_exclusive = {
-			focus = The_Red_and_Blue_Banner
-			focus = Cripocracy
-			focus = LASD_takeover
-		}
-		completion_reward = {
-			add_stability = 0.01
-			swap_ideas = {
-				remove_idea = LA_Riots_Uncontrolled
-				add_idea = Blood_Supremacy
-			}
-			set_cosmetic_tag = Bloods_Coup
-			add_popularity = {
-				ideology = autocratic
-				popularity = 0.25
-			}
-			set_politics = {
-				ruling_party = autocratic
-			}
-			HLY_dwayne_carter_jr = {
-				promote_character = yes
-			}
-		}
-	}
-	focus = {
-		id = HLY_Murder_Crips
-		icon = GFX_goal_mr_peanut
-		cost = 5.00
-		x = 40
-		y = 4
-		prerequisite = {
-			focus = Blood_Takeover
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_manpower = -35000
-			add_war_support = -0.07
-		}
-	}
-	focus = {
-		id = HLY_Purge_Whitey
-		icon = GFX_goal_Generic_Political_Purge
-		cost = 5.00
-		x = 40
-		y = 5
-		prerequisite = {
-			focus = HLY_Murder_Crips
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_ideas = HLY_Purge_whitey
-		}
-	}
-	focus = {
-		id = HLY_Drug_Empire
-		icon = GFX_goal_Generic_Opium_Profits
-		cost = 5.00
-		x = 40
-		y = 6
-		prerequisite = {
-			focus = HLY_Purge_Whitey
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_ideas = HLY_Drug_Empire
-		}
-	}
-	focus = {
-		id = HLY_Blood_California
-		icon = GFX_goal_End_California
-		cost = 5.00
-		x = 40
-		y = 7
-		prerequisite = {
-			focus = HLY_Drug_Empire
-		}
-		prerequisite = {
-			focus = HLY_Clean_Up_the_Streets
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			swap_ideas = {
-				remove_idea = Blood_Supremacy
-				add_idea = Blood_Supremacy_2
-			}
-			add_stability = 0.10
-		}
-	}
-	focus = {
-		id = Cripocracy
-		icon = GFX_goal_Generic_Big_Blue_Blob
-		cost = 3.00
-		x = 45
-		y = 3
-		prerequisite = {
-			focus = Bloody_Coup
-		}
-		ai_will_do = { 
-			factor = 300
-			modifier = {
-      			factor = 0 
-      			OR = {
-					has_game_rule = {
-              			rule = HLY_path
-             			option = HLY_PATH_BLOOD
-          			}
-					has_game_rule = {
-              			rule = HLY_path
-             			option = HLY_PATH_MUSIC
-          			}
-      			}
-   			}
-		}
-		mutually_exclusive = {
-			focus = The_Red_and_Blue_Banner
-			focus = Blood_Takeover
-			focus = LASD_takeover
-		}
-		completion_reward = {
-			add_stability = 0.01
-			set_cosmetic_tag = Crips
-			swap_ideas = {
-				remove_idea = LA_Riots_Uncontrolled
-				add_idea = Crip_Supremacy
-			}
-			add_popularity = {
-				ideology = autocratic
-				popularity = 0.25
-			}
-			set_politics = {
-				ruling_party = autocratic
-			}
-			HLY_calvin_broadus_jr = {
-				promote_character = yes
-			}
-		}
-	}
-	focus = {
-		id = HLY_Rally_the_Allied_Gangs
-		icon = GFX_goal_Generic_Radio_Broadcast
-		cost = 5.00
-		x = 43
-		y = 4
-		prerequisite = {
-			focus = Cripocracy
-			focus = Blood_Takeover
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_manpower = 25000
-		}
-	}
-	focus = {
-		id = HLY_Use_the_Police
-		icon = GFX_goal_Generic_Secret_Police
-		cost = 5.00
-		x = 43
-		y = 5
-		prerequisite = {
-			focus = HLY_Rally_the_Allied_Gangs
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_ideas = HLY_Gang_LAPD
-			add_war_support = 0.15
-		}
-	}
-	focus = {
-		id = HLY_Clean_Up_the_Streets
-		icon = GFX_goal_Try_A_Different_Route
-		cost = 5.00
-		x = 43
-		y = 6
-		prerequisite = {
-			focus = HLY_Use_the_Police
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_ideas = HLY_Infrastructure_Projects
-			add_stability = 0.15
-		}
-	}
-	focus = {
-		id = HLY_Murder_Bloods
-		icon = GFX_goal_Generic_British_Soldiers02
-		cost = 5.00
-		x = 45
-		y = 4
-		prerequisite = {
-			focus = Cripocracy
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			country_event = { id = Hollywood.70 days = 5 }
-		}
-	}
-	focus = {
-		id = HLY_Illegalize_red
-		icon = GFX_goal_SCA_Educative_Communes
-		cost = 5.00
-		x = 45
-		y = 5
-		prerequisite = {
-			focus = HLY_Murder_Bloods
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_stability = -0.05
-			add_manpower = -2567
-			add_war_support = 0.30
-		}
-	}
-	focus = {
-		id = HLY_Enforce_Black_Nationalism
-		icon = GFX_goal_Generic_African_Natives
-		cost = 5.00
-		x = 45
-		y = 6
-		prerequisite = {
-			focus = HLY_Illegalize_red
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_ideas = HLY_Crip_Nationalism
-			add_stability = 0.10
-		}
-	}
-	focus = {
-		id = HLY_Use_the_TRG_to_Control_Koreatown
-		icon = GFX_PB_JAP_Contacts_in_Army
-		cost = 5.00
-		x = 45
-		y = 7
-		prerequisite = {
-			focus = HLY_Enforce_Black_Nationalism
-		}
-		prerequisite = {
-			focus = HLY_Clean_Up_the_Streets
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_manpower = 6000
-			add_stability = 0.07
-		}
-	}
-	focus = {
-		id = The_Red_and_Blue_Banner
-		icon = GFX_focus_ITA_Music
-		cost = 10.00
-		x = 50
-		y = 3
-		prerequisite = {
-			focus = Bloody_Coup
-		}
-		mutually_exclusive = {
-		focus = Blood_Takeover
-		focus = LASD_takeover
-		focus = Cripocracy
-		}
-		ai_will_do = { 
-			factor = 300
-			modifier = {
-      			factor = 0 
-      			OR = {
-					has_game_rule = {
-              			rule = HLY_path
-             			option = HLY_PATH_BLOOD
-          			}
-					has_game_rule = {
-              			rule = HLY_path
-             			option = HLY_PATH_CRIP
-          			}
-      			}
-   			}
-		}
-		completion_reward = {
-			add_stability = 0.05
-			set_cosmetic_tag = United_Gangs
-			swap_ideas = {
-				remove_idea = LA_Riots_Uncontrolled
-				add_idea = Gangs_United
-			}
-			add_popularity = {
-				ideology = autocratic
-				popularity = 0.25
-			}
-			set_politics = {
-				ruling_party = autocratic
-			}
-			HLY_kendrick_duckworth = {
-				promote_character = yes
-			}
-		}
-	}
-	focus = {
-		id = HLY_Put_down_dissenters
-		icon = GFX_goal_Generic_Purge_Social_Democracy
-		cost = 5.00
-		x = 48
-		y = 4
-		prerequisite = {
-			focus = The_Red_and_Blue_Banner
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_manpower = -25000
-			add_war_support = 0.05
-		}
-	}
-	focus = {
-		id = HLY_Stop_other_Gangs
-		icon = GFX_PB_JAP_Purge_Navy
-		cost = 5.00
-		x = 48
-		y = 5
-		prerequisite = {
-			focus = HLY_Put_down_dissenters
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_stability = 0.10
-			add_manpower = -10000
-		}
-	}
-	focus = {
-		id = HLY_Use_our_power_for_good
-		icon = GFX_focus_friends
-		cost = 5.00
-		x = 50
-		y = 4
-		prerequisite = {
-			focus = The_Red_and_Blue_Banner
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_stability = 0.10
-			add_war_support = 0.10
-		}
-	}
-	focus = {
-		id = HLY_Clean_up_LA
-		icon = GFX_focus_shower
-		cost = 5.00
-		x = 50
-		y = 5
-		prerequisite = {
-			focus = HLY_Use_our_power_for_good
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_ideas = Clean_LA
-		}
-	}
-	focus = {
-		id = HLY_Mobilize_the_United_Gang
-		icon = GFX_focus_generic_little_entente
-		cost = 5.00
-		x = 52
-		y = 4
-		prerequisite = {
-			focus = The_Red_and_Blue_Banner
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			division_template = {
-				name = "United Gang Division"
-				is_locked = no
-				priority = 1
-				regiments = {
-					infantry = { x = 0 y = 0 }
-					infantry = { x = 0 y = 1 }
-					infantry = { x = 0 y = 2 }
-					infantry = { x = 1 y = 0 }
-					infantry = { x = 1 y = 1 }
-					infantry = { x = 1 y = 2 }
-				}
-				support = {
-					military_police = { x = 0 y = 0 }
-				}
-			}
-			random_owned_controlled_state = {
-				limit = { ROOT = { has_full_control_of_state = PREV } }
-				create_unit = {
-					division = "name = \"Compton Division\" division_template = \"United Gang Division\" start_experience_factor = 0.6" 
-					owner = HLY
-				}
-				create_unit = {
-					division = "name = \"Los Angeles Division\" division_template = \"United Gang Division\" start_experience_factor = 0.6" 
-					owner = HLY
-				}
-				create_unit = {
-					division = "name = \"New Afrika Division\" division_template = \"United Gang Division\" start_experience_factor = 0.6" 
-					owner = HLY
-				}
-				create_unit = {
-					division = "name = \"Black Guerilla Division\" division_template = \"United Gang Division\" start_experience_factor = 0.6" 
-					owner = HLY
-				}
-				create_unit = {
-					division = "name = \"1st Blood Division\" division_template = \"United Gang Division\" start_experience_factor = 0.6" 
-					owner = HLY
-				}
-				create_unit = {
-					division = "name = \"2nd Blood Division\" division_template = \"United Gang Division\" start_experience_factor = 0.6" 
-					owner = HLY
-				}
-				create_unit = {
-					division = "name = \"1st Crip Division\" division_template = \"United Gang Division\" start_experience_factor = 0.6" 
-					owner = HLY
-				}
-				create_unit = {
-					division = "name = \"2nd Crip Division\" division_template = \"United Gang Division\" start_experience_factor = 0.6" 
-					owner = HLY
-				}
-				create_unit = {
-					division = "name = \"Purple Division\" division_template = \"United Gang Division\" start_experience_factor = 0.6" 
-					owner = HLY
-				}
+		id = HLY_Lives
+		icon = placeholder
 
-			}
-		}
-	}
-	focus = {
-		id = HLY_Distribute_personal_Arms
-		icon = GFX_goal_Generic_Guns
-		cost = 5.00
-		x = 52
-		y = 5
-		prerequisite = {
-			focus = HLY_Mobilize_the_United_Gang
-		}
-		ai_will_do = { 
-			factor = 300
-		}
+		cost = 4
+
+		x = 30
+		y = 0
 		completion_reward = {
-			add_equipment_to_stockpile = {
-			    type = infantry_equipment
-			    amount = 2500
-			    producer = HLY
-			}
+			add_political_power = 50
 		}
 	}
 	focus = {
-		id = HLY_End_the_Other_Californias
-		icon = GFX_goal_Generic_Invasion2
-		cost = 5.00
-		x = 50
-		y = 6
+		id = HLY_Guard_Singers
+		icon = placeholder
+
+		cost = 4
+
+		x = -3
+		y = 1
+		relative_position_id = HLY_Lives
 		prerequisite = {
-			focus = HLY_Distribute_personal_Arms
-		}
-		prerequisite = {
-			focus = HLY_Clean_up_LA
-		}
-		prerequisite = {
-			focus = HLY_Stop_other_Gangs
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_war_support = 0.25
-		}
-	}
-	
-	focus = {
-		id = LASD_takeover
-		icon = GFX_goal_and_may_god_have_mercy
-		cost = 10.00
-		x = 57
-		y = 3
-		prerequisite = {
-			focus = Bloody_Coup
-		}
-		mutually_exclusive = {
-			focus = Cripocracy
-			focus = Blood_Takeover
-			focus = The_Red_and_Blue_Banner
-		}
-		ai_will_do = { 
-			factor = 300
-			modifier = {
-      			factor = 0 
-      			OR = {
-					has_game_rule = {
-              			rule = HLY_path
-             			option = HLY_PATH_ROCK
-          			}
-					has_game_rule = {
-              			rule = HLY_path
-             			option = HLY_PATH_KOREA
-          			}
-					has_game_rule = {
-              			rule = HLY_path
-             			option = HLY_PATH_BARRYMORE
-          			}
-					has_game_rule = {
-              			rule = HLY_path
-             			option = HLY_PATH_MILLER
-          			}
-					has_game_rule = {
-              			rule = HLY_path
-             			option = HLY_PATH_WALT
-          			}
-      			}
-   			}
-		}
-		
-		completion_reward = {
-			add_stability = +.75
-			add_popularity = {
-				ideology = republican
-				popularity = 0.75
-			}
-			swap_ideas = {
-				remove_idea = LA_Riots
-			}
-			set_politics = {
-				ruling_party = republican
-			}
-		}
-	}
-	focus = {
-		id = establish_order
-		icon = GFX_goal_and_may_god_have_mercy
-		cost = 10.00
-		x = 57
-		y = 4
-		prerequisite = {
-			focus = LASD_takeover
-		}
-		completion_reward = {
-			add_stability = +.75
-			add_popularity = {
-				ideology = republican
-				popularity = 0.75
-			}
-		}
-	}
-	focus = {
-		id = end_the_riots
-		icon = GFX_goal_and_may_god_have_mercy
-		cost = 10.00
-		x = 55
-		y = 5
-		prerequisite = {
-			focus = establish_order
-		}
-		completion_reward = {
-			add_stability = +.75
-			add_popularity = {
-				ideology = republican
-				popularity = 0.75
-			}
-		}
-	}
-	focus = {
-		id = dispatch_swat
-		icon = GFX_goal_and_may_god_have_mercy
-		cost = 10.00
-		x = 55
-		y = 6
-		prerequisite = {
-			focus = end_the_riots
-		}
-		completion_reward = {
-			add_stability = +.75
-			add_popularity = {
-				ideology = republican
-				popularity = 0.75
-			}
-		}
-	}
-	focus = {
-		id = back_the_blue
-		icon = GFX_goal_and_may_god_have_mercy
-		cost = 10.00
-		x = 57
-		y = 5
-		prerequisite = {
-			focus = establish_order
-		}
-		completion_reward = {
-			add_stability = +.75
-			add_popularity = {
-				ideology = republican
-				popularity = 0.75
-			}
-		}
-	}
-	focus = {
-		id = merge_the_departments
-		icon = GFX_goal_and_may_god_have_mercy
-		cost = 10.00
-		x = 57
-		y = 6
-		prerequisite = {
-			focus = back_the_blue
-		}
-		completion_reward = {
-			add_stability = +.75
-			add_popularity = {
-				ideology = republican
-				popularity = 0.75
-			}
-		}
-	}
-	focus = {
-		id = put_trust_back_in_the_community
-		icon = GFX_goal_and_may_god_have_mercy
-		cost = 10.00
-		x = 59
-		y = 5
-		prerequisite = {
-			focus = establish_order
-		}
-		completion_reward = {
-			add_stability = +.75
-			add_popularity = {
-				ideology = republican
-				popularity = 0.75
-			}
-		}
-	}
-	focus = {
-		id = outreach_programs
-		icon = GFX_goal_and_may_god_have_mercy
-		cost = 10.00
-		x = 59
-		y = 6
-		prerequisite = {
-			focus = put_trust_back_in_the_community
-		}
-		completion_reward = {
-			add_stability = +.75
-			add_popularity = {
-				ideology = republican
-				popularity = 0.75
-			}
-		}
-	}
-	focus = {
-		id = liberate_cali
-		icon = GFX_goal_and_may_god_have_mercy
-		cost = 10.00
-		x = 57
-		y = 7
-		prerequisite = {
-			focus = dispatch_swat
-		}
-		prerequisite = {
-			focus = merge_the_departments
-		}
-		prerequisite = {
-			focus = outreach_programs
-		}
-		completion_reward = {
-			add_stability = +.75
-			add_popularity = {
-				ideology = republican
-				popularity = 0.75
-			}
-		}
-	}
-	
-	focus = {
-		id = From_the_rooftops
-		icon = GFX_goal_Generic_Sniper_Assassin
-		cost = 5.00
-		x = 15
-		y = 3
-		prerequisite = {
-			focus = Deal_with_the_Riots
-		}
-		mutually_exclusive = {
-			focus = Replace_the_rock
-		}
-		ai_will_do = { 
-			factor = 300
-			modifier = {
-      			factor = 0 
-      			OR = {
-					has_game_rule = {
-              			rule = HLY_path
-             			option = HLY_PATH_BARRYMORE
-          			}
-					has_game_rule = {
-              			rule = HLY_path
-             			option = HLY_PATH_MILLER
-          			}
-					has_game_rule = {
-              			rule = HLY_path
-             			option = HLY_PATH_WALT
-          			}
-      			}
-   			}
-		}
-		completion_reward = {
-			add_popularity = {
-				ideology = libertarian_right
-				popularity = 0.25
-			}
-		}
-	}
-	focus = {
-		id = The_Rooftop_Korean_takeover
-		icon = GFX_goal_Rifle_by_ur_side_no_hand
-		cost = 5.00
-		x = 15
-		y = 4
-		prerequisite = {
-			focus = From_the_rooftops
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			retire_country_leader = yes
-			set_politics = {
-				ruling_party = libertarian_right
-			}
-			HLY_david_joo = {
-				promote_character = yes
-			}
-			set_cosmetic_tag = Korean_Guard
-		}
-	}
-	focus = {
-		id = Korean_War_Tactics
-		icon = GFX_goal_Allagash_or_War
-		cost = 5.00
-		x = 13
-		y = 5
-		prerequisite = {
-			focus = The_Rooftop_Korean_takeover
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_tech_bonus = {
-				bonus = 0.5
-				uses = 2
-				category = land_doctrine
-			}
-		}
-	}
-	focus = {
-		id = HLY_Compulsory_Service
-		icon = GFX_goal_Secure_the_border
-		cost = 5.00
-		x = 13
-		y = 6
-		prerequisite = {
-			focus = Korean_War_Tactics
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_ideas = extensive_conscription
-			add_war_support = 0.1
-		}
-	}
-	focus = {
-		id = Work_With_LA_Police
-		icon = GFX_goal_KFC_secure_police
-		cost = 5.00
-		x = 17
-		y = 5
-		prerequisite = {
-			focus = The_Rooftop_Korean_takeover
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_war_support = 0.05
-		}
-	}
-	focus = {
-		id = Clean_up_LA
-		icon = GFX_goal_Repeal_Gun_Laws
-		cost = 5.00
-		x = 17
-		y = 6
-		prerequisite = {
-			focus = Work_With_LA_Police
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_political_power = 125
-		}
-	}
-	focus = {
-		id = Invest_in_Koreatown
-		icon = GFX_goal_Sell_Pardons
-		cost = 5.00
-		x = 15
-		y = 5
-		prerequisite = {
-			focus = The_Rooftop_Korean_takeover
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_offsite_building = { type = industrial_complex level = 2 }
-		}
-	}
-	focus = {
-		id = Grow_Koreatown
-		icon = GFX_goal_Foundations_of_Economy
-		cost = 5.00
-		x = 15
-		y = 6
-		prerequisite = {
-			focus = Invest_in_Koreatown
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_offsite_building = { type = arms_factory level = 3 }
-		}
-	}
-	focus = {
-		id = Life_Liberty_and_LA
-		icon = GFX_goal_Work_with_Libertarians
-		cost = 5.00
-		x = 15
-		y = 7
-		prerequisite = {
-			focus = Grow_Koreatown
-		}
-		prerequisite = {
-			focus = HLY_Compulsory_Service
-		}
-		prerequisite = {
-			focus = Clean_up_LA
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_ideas = Life_Liberty_Los_Angeles
-		}
-	}
-	focus = {
-		id = Replace_the_rock
-		icon = GFX_goal_Interior
-		cost = 5.00
-		x = 25
-		y = 3
-		prerequisite = {
-			focus = Deal_with_the_Riots
-		}
-		mutually_exclusive = {
-			focus = From_the_rooftops
-		}
-		ai_will_do = { 
-			factor = 300
-			modifier = {
-      			factor = 0 
-      			OR = {
-					has_game_rule = {
-              			rule = HLY_path
-             			option = HLY_PATH_KOREA
-          			}
-      			}
-   			}
-		}
-		completion_reward = {
-			HYL_leonardo_dicaprio = {
-				promote_character = yes
-			}
-		}
-	}
-	focus = {
-		id = Establish_the_heirarchy
-		icon = GFX_focus_generic_monarchy_2
-		cost = 5.00
-		x = 25
-		y = 4
-		prerequisite = {
-			focus = Replace_the_rock
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_stability = 0.05
-		}
-	}
-	focus = {
-		id = Concessions_to_the_North
-		icon = GFX_goal_Reelection_of_Bernie
-		cost = 5.00
-		x = 26
-		y = 5
-		prerequisite = {
-			focus = Establish_the_heirarchy
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			PRA = {
-				country_event = { id = Hollywood.30 days = 5 }
-			}
-		}
-	}
-	focus = {
-		id = Finish_off_the_Cultists
-		icon = GFX_focus_CZE_german_puppet
-		cost = 5.00
-		x = 24
-		y = 5
-		prerequisite = {
-			focus = Establish_the_heirarchy
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_ideas = Kill_Scientologists
-		}
-	}
-	focus = {
-		id = The_Barrymore_Dynasty
-		icon = GFX_goal_POR_monarchist_party
-		cost = 5.00
-		x = 20
-		y = 6
-		prerequisite = {
-			focus = Finish_off_the_Cultists
-		}
-		prerequisite = {
-			focus = Concessions_to_the_North
-		}
-		mutually_exclusive = {
-			focus = King_Disney
-		}
-		ai_will_do = { 
-			factor = 300
-			modifier = {
-      			factor = 0 
-      			OR = {
-					has_game_rule = {
-              			rule = HLY_path
-             			option = HLY_PATH_MILLER
-          			}
-					has_game_rule = {
-              			rule = HLY_path
-             			option = HLY_PATH_WALT
-          			}
-      			}
-   			}
-		}
-		completion_reward = {
-			HYL_drew_barrymore = {
-				promote_character = yes
-			}
-			add_popularity = {
-				ideology = autocratic
-				popularity = 0.05
-			}
-			set_cosmetic_tag = Kingdom_of_Hollywood
-		}
-	}
-	focus = {
-		id = Hollywood_Royalty
-		icon = GFX_focus_generic_monarchy_2
-		cost = 5.00
-		x = 20
-		y = 7
-		prerequisite = {
-			focus = The_Barrymore_Dynasty
-		}
-		ai_will_do = { 
-			factor = 300
+			focus = HLY_Lives
 		}
 		completion_reward = {
 			add_stability = 0.1
 		}
 	}
 	focus = {
-		id = Beacon_of_Stardom
-		icon = GFX_focus_spr_torchbearers_of_tomorrow
-		cost = 5.00
-		x = 18
-		y = 7
-		prerequisite = {
-			focus = The_Barrymore_Dynasty
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_political_power = 25
-		}
-	}
-	#focus = {
-	#	id = Imperialist_coup
-	#	icon = GFX_goal_Imp_Coup_shine
-	#	cost = 5.00
-	#	x = 17
-	#	y = 8
-	#	prerequisite = {
-	#		focus = Hollywood_Royalty
-	#	}
-	#	prerequisite = {
-	#		focus = Beacon_of_Stardom
-	#	}
-	#	mutually_exclusive = {
-	#		focus = Ducal_Status_for_Oscars
-	#	}
-	#	ai_will_do = { 
-	#		factor = 0
-	#	}
-	#	completion_reward = {
-	#		load_focus_tree = Empire_Focus_Tree
-	#		set_cosmetic_tag = HLY_The_Empire
-	#		create_country_leader = {
-	#			name = "Anakin Skywalker"
-	#			picture = "gfx/leaders/HLY/MY_NEW_EMPIRE.tga"
-	#			expire = "2060.1.1"
-	#			ideology = fascism
-	#			traits = {
-	#				Crazy
-	#				Brainwashed
-	#			}
-	#		}
-	#		add_ideas = Brainwashing_the_Masses
-	#		set_politics = {
-	#			ruling_party = autocratic
-    #			elections_allowed = no
-	#		} 
-	#		add_popularity = {
-	#			ideology = autocratic
-	#			popularity = 0.40
-	#		}
-#
-#		}
-#	}
-	focus = {
-		id = Ducal_Status_for_Oscars
-		icon = GFX_focus_eng_imperial_federation
-		cost = 5.00
-		x = 19
-		y = 8
-		prerequisite = {
-			focus = Hollywood_Royalty
-		}
-		prerequisite = {
-			focus = Beacon_of_Stardom
-		}
-		#mutually_exclusive = {
-		#	focus = Imperialist_coup
-		#}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_ideas = Landed_Celebrity_Nobility
-			remove_country_leader_trait = unpopular_monarch
-		}
-	}
-	focus = {
-		id = Action
-		icon = GFX_goal_generic_occupy_states_ongoing_war
-		cost = 5.00
-		x = 22
-		y = 9
-		prerequisite = {
-			focus = Ducal_Status_for_Oscars
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_ideas = HLY_Action_Idea
-			add_war_support = 0.15
-		}
-	}
-	focus = {
-		id = Require_Lower_Class_Conscription
-		icon = GFX_goal_pac_prep_war_free
-		cost = 5.00
-		x = 22
-		y = 10
-		prerequisite = {
-			focus = Action
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_ideas = extensive_conscription
-		}
-	}
-	focus = {
-		id = Camera
-		icon = GFX_goal_generic_movie_camera
-		cost = 5.00
-		x = 20
-		y = 9
-		prerequisite = {
-			focus = Ducal_Status_for_Oscars
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_ideas = HLY_Camera_Idea
-			add_political_power = 125
-		}
-	}
-	focus = {
-		id = Advertise_Big_Tech
-		icon = GFX_goal_Ally_Big_Tech
-		cost = 5.00
-		x = 20
-		y = 10
-		prerequisite = {
-			focus = Camera
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_ideas = HLY_Advertisement_Galore
-		}
-	}
-	focus = {
-		id = Lights
-		icon = GFX_goal_Generalship_to_Celebs
-		cost = 5.00
-		x = 18
-		y = 9
-		prerequisite = {
-			focus = Ducal_Status_for_Oscars
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_ideas = HLY_Lights_Idea
-			add_stability = 0.15
-		}
-	}
-	focus = {
-		id = Command_the_stage
-		icon = GFX_goal_demand_sudetenland
-		cost = 5.00
-		x = 18
-		y = 10
-		prerequisite = {
-			focus = Lights
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			HYL_drew_barrymore = {
-				add_field_marshal_role = {
-					traits = { media_personality politically_connected } 
-					skill = 1
-					attack_skill = 1
-					defense_skill = 1
-					planning_skill = 1
-					logistics_skill = 1
-				}
-			}
-		}
-	}
-	focus = {
-		id = Enforce_Veganism
-		icon = GFX_goal_Generic_Veggies
-		cost = 5.00
-		x = 20
-		y = 11
-		prerequisite = {
-			focus = Require_Lower_Class_Conscription
-		}
-		prerequisite = {
-			focus = Advertise_Big_Tech
-		}
-		prerequisite = {
-			focus = Command_the_stage
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_ideas = Enforced_Veganism
-		}
-	}
-	focus = {
-		id = The_Celebrity_Parliament
-		icon = GFX_goal_support_democracy
-		cost = 5.00
-		x = 20
-		y = 12
-		prerequisite = {
-			focus = Enforce_Veganism
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_ideas = Celebrity_Voting
-		}
-	}
-	focus = {
-		id = King_Disney
-		icon = GFX_goal_Magical_Kingdom
-		cost = 5.00
-		x = 30
-		y = 6
-		prerequisite = {
-			focus = Finish_off_the_Cultists
-		}
-		prerequisite = {
-			focus = Concessions_to_the_North
-		}
-		mutually_exclusive = {
-			focus = The_Barrymore_Dynasty
-		}
-		ai_will_do = { 
-			factor = 300
-			modifier = {
-      			factor = 0 
-      			OR = {
-					has_game_rule = {
-              			rule = HLY_path
-             			option = HLY_PATH_BARRYMORE
-          			}
-      			}
-   			}
-		}
-		completion_reward = {
-			set_politics = {
-				ruling_party = autocratic
-    			elections_allowed = no
-			} 
-			add_popularity = {
-				ideology = autocratic
-				popularity = 0.05
-			}
-			country_event = { id = Hollywood.1 days = 80 }
-			HYL_walter_elias_disney_miller = {
-				promote_character = yes
-			}
-			show_unit_leaders_tooltip = HYL_operator_m
-			show_unit_leaders_tooltip = HYL_operator_d
-			show_unit_leaders_tooltip = HYL_operator_g
-		}
-	}
-	focus = {
-		id = Establish_the_Corperate_Parliament
-		icon = GFX_goal_I_knew_who_is_corrupt
-		cost = 5.00
-		x = 30
-		y = 7
-		prerequisite = {
-			focus = King_Disney
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_popularity = {
-				ideology = autocratic
-				popularity = 0.05
-			}
-			add_ideas = Parliamentary_Monarchism
-		}
-	}
-	focus = {
-		id = Prime_Minister_Iger
-		icon = GFX_goal_Consolidate_the_Establishment
-		cost = 5.00
-		x = 30
-		y = 8
-		prerequisite = {
-			focus = Establish_the_Corperate_Parliament
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_ideas = PM_Iger
-		}
-	}
-	focus = {
-		id = Rename_Los_Angeles
-		icon = GFX_focus_generic_treaty
-		cost = 5.00
-		x = 30
-		y = 9
-		prerequisite = {
-			focus = Prime_Minister_Iger
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			set_province_name = {
-    			id = 3685
-    			name = "Disneyland"
-			}
-			302 = {
-				set_state_name = "Greater Disneyland"
-			}
-		}
-	}
-	focus = {
-		id = Mickey_corps
-		icon = GFX_goal_Mickey_Mouse
-		cost = 5.00
-		x = 27
-		y = 7
-		prerequisite = {
-			focus = King_Disney
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_ideas = Mickey_Corps
-			division_template = {
-				name = "Mickey Corps"
-				is_locked = no
-				priority = 1
-				regiments = {
-					infantry = { x = 0 y = 0 }
-					infantry = { x = 0 y = 1 }
-					infantry = { x = 0 y = 2 }
-					infantry = { x = 1 y = 0 }
-					infantry = { x = 1 y = 1 }
-					infantry = { x = 1 y = 2 }
-				}
-				support = {
-					artillery = { x = 0 y = 0 }
-					engineer = { x = 0 y = 1 }
-					military_police = { x = 0 y = 2 }
-				}
-			}
-			random_owned_controlled_state = {
-				limit = { ROOT = { has_full_control_of_state = PREV } }
-				create_unit = {
-					division = "name = \"1st ''Mickey Mouse'' Division\" division_template = \"Mickey Corps\" start_experience_factor = 0.6" 
-					owner = HLY
-				}
-				create_unit = {
-					division = "name = \"2nd ''Donald Duck'' Division\" division_template = \"Mickey Corps\" start_experience_factor = 0.7" 
-					owner = HLY
-				}
-				create_unit = {
-					division = "name = \"3rd ''Walt's Finest'' Division\" division_template = \"Mickey Corps\" start_experience_factor = 0.4" 
-					owner = HLY
-				}
-				create_unit = {
-					division = "name = \"4th ''Sons of Ub'' Division\" division_template = \"Mickey Corps\" start_experience_factor = 0.6" 
-					owner = HLY
-				}
-				create_unit = {
-					division = "name = \"5th ''Pixar'' Division\" division_template = \"Mickey Corps\" start_experience_factor = 0.9" 
-					owner = HLY
-				}
-				create_unit = {
-					division = "name = \"6th ''King's Guard'' Division\" division_template = \"Mickey Corps\" start_experience_factor = 0.5" 
-					owner = HLY
-				}
-			}
-		}
-	}
-	focus = {
-		id = The_Disney_Pledge
-		icon = GFX_goal_Disney_Pledge
-		cost = 5.00
-		x = 27
-		y = 8
-		prerequisite = {
-			focus = Mickey_corps
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_war_support = 0.1
-		}
-	}
-	focus = {
-		id = Disney_Military_propaganda
-		icon = GFX_goal_Military_Cartoons
-		cost = 5.00
-		x = 28
-		y = 9
-		prerequisite = {
-			focus = The_Disney_Pledge
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_ideas = Mickey_Movies
-		}
-	}
-	focus = {
-		id = Use_Disney_funds
-		icon = GFX_goal_Foundations_of_Economy
-		cost = 5.00
-		x = 33
-		y = 7
-		prerequisite = {
-			focus = King_Disney
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_ideas = Disney_Subsidies
-		}
-	}
-	focus = {
-		id = Funding_for_the_Arts
-		icon = GFX_goal_Sell_Pardons
-		cost = 5.00
-		x = 33
-		y = 8
-		prerequisite = {
-			focus = Use_Disney_funds
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			swap_ideas = {
-			    remove_idea = Disney_Subsidies
-			    add_idea = Subsidies_for_the_Arts
-			}
-		}
-	}
-	focus = {
-		id = Purchase_USC
-		icon = GFX_goal_Pay_Student_Tuitions
-		cost = 5.00
-		x = 32
-		y = 9
-		prerequisite = {
-			focus = Funding_for_the_Arts
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_research_slot = 1
-		}
-	}
-	focus = {
-		id = Am_echo_from_the_past
-		icon = GFX_goal_generic_propaganda
-		cost = 5.00
-		x = 30
-		y = 10
-		prerequisite = {
-			focus = Purchase_USC
-		}
-		prerequisite = {
-			focus = Disney_Military_propaganda
-		}
-		prerequisite = {
-			focus = Rename_Los_Angeles
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_stability = -0.15
-			add_ideas = Disputed_Disney
-		}
-	}
-	focus = {
-		id = Punish_the_Pretenders
-		icon = GFX_goal_Establish_Untermenshen_Laws
-		cost = 5.00
-		x = 27
-		y = 11
-		prerequisite = {
-			focus = Am_echo_from_the_past
-		}
-		mutually_exclusive = {
-			focus = Dream_Believe_Dare
-		}
-		ai_will_do = { 
-			factor = 300
-			modifier = {
-      			factor = 0 
-      			OR = {
-					has_game_rule = {
-              			rule = HLY_path
-             			option = HLY_PATH_WALT
-          			}
-      			}
-   			}
-		}
-		completion_reward = {
-			add_stability = -0.05
-			add_war_support = -0.10
-			custom_effect_tooltip = unfinished_content_warning_tooltip
-		}
-	}
-	focus = {
-		id = Find_the_fake
-		icon = GFX_goal_Generic_Execute_Dissidents02
-		cost = 5.00
-		x = 27
-		y = 12
-		prerequisite = {
-			focus = Punish_the_Pretenders
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = Search_our_realm
-		icon = GFX_goal_Interior
-		cost = 5.00
-		x = 23
-		y = 13
-		prerequisite = {
-			focus = Find_the_fake
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = End_the_Interior_Threat
-		icon = GFX_goal_generic_secret_weapon
-		cost = 5.00
-		x = 23
-		y = 14
-		prerequisite = {
-			focus = Search_our_realm
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = Search_California
-		icon = GFX_goal_End_California
-		cost = 5.00
-		x = 25
-		y = 13
-		prerequisite = {
-			focus = Find_the_fake
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = Search_the_Pacific
-		icon = GFX_goal_generic_navy_cruiser
-		cost = 5.00
-		x = 25
-		y = 14
-		prerequisite = {
-			focus = Search_California
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = Search_Utah
-		icon = GFX_goal_UTA_Mormon_Fire
-		cost = 5.00
-		x = 27
-		y = 13
-		prerequisite = {
-			focus = Find_the_fake
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = Search_the_vast_deserts
-		icon = GFX_goal_MOL_strange_app
-		cost = 5.00
-		x = 27
-		y = 14
-		prerequisite = {
-			focus = Search_Utah
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			
-		}
-	}
+		id = HLY_Save_Actors
+		icon = placeholder
+		
+		cost = 4
 
-	focus = {
-		id = Search_Florida
-		icon = GFX_goal_florida_men
-		cost = 5.00
-		x = 29
-		y = 13
-		prerequisite = {
-			focus = Find_the_fake
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = Search_The_East_Coast
-		icon = GFX_goal_Biden_and_cop_saluting
-		cost = 5.00
-		x = 29
-		y = 14
-		prerequisite = {
-			focus = Search_Florida
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = A_Fate_Worse_Than_Death
-		icon = GFX_goal_Execute_the_Traitor
-		cost = 5.00
-		x = 25
-		y = 15
-		prerequisite = {
-			focus = Search_The_East_Coast
-		}
-		prerequisite = {
-			focus = Search_the_vast_deserts
-		}
-		prerequisite = {
-			focus = Search_the_Pacific
-		}
-		prerequisite = {
-			focus = End_the_Interior_Threat
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = Im_Sorry_Grandfather
-		icon = GFX_goal_inquisitor
-		cost = 5.00
-		x = 24
-		y = 16
-		prerequisite = {
-			focus = A_Fate_Worse_Than_Death
-		}
-		mutually_exclusive = {
-			focus = Work_with_the_Shadow_man
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = Work_with_the_Shadow_man
-		icon = GFX_goal_Disney_Watching
-		cost = 5.00
-		x = 26
-		y = 16
-		prerequisite = {
-			focus = A_Fate_Worse_Than_Death
-		}
-		mutually_exclusive = {
-			focus = Im_Sorry_Grandfather
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = Dream_Believe_Dare
-		icon = GFX_goal_Disney_Watching
-		cost = 5.00
-		x = 35
-		y = 11
-		prerequisite = {
-			focus = Am_echo_from_the_past
-		}
-		mutually_exclusive = {
-			focus = Punish_the_Pretenders
-		}
-		ai_will_do = { 
-			factor = 300
-			modifier = {
-      			factor = 0 
-      			OR = {
-					has_game_rule = {
-              			rule = HLY_path
-             			option = HLY_PATH_MILLER
-          			}
-      			}
-   			}
-		}
-		completion_reward = {
-			remove_ideas = Disputed_Disney
-		}
-	}
-	focus = {
-		id = Erase_the_new
-		icon = GFX_goal_Erase_the_New
-		cost = 5.00
-		x = 37
-		y = 12
-		prerequisite = {
-			focus = Dream_Believe_Dare
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			retire_character = HYL_walter_elias_disney_miller
-			HYL_walt_disney = {
-				promote_character = yes
-			}
-			set_cosmetic_tag = Burgundian_Disneyland
-			remove_ideas = Subsidies_for_the_Arts
-		}
-	}
-	focus = {
-		id = Embrace_the_old
-		icon = GFX_goal_Embrace_the_Old
-		cost = 5.00
-		x = 37
-		y = 13
-		prerequisite = {
-			focus = Erase_the_new
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_ideas = Old_ways
-		}
-	}
-	focus = {
-		id = He_is_always_watching
-		icon = GFX_goal_He_is_Always_Watching
-		cost = 5.00
-		x = 33
-		y = 14
-		prerequisite = {
-			focus = Embrace_the_old
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_ideas = State_Supervisions
-		}
-	}
-	focus = {
-		id = Loyalty_to_Walt
-		icon = GFX_goal_Loyalty_to_Walt
-		cost = 5.00
-		x = 33
-		y = 15
-		prerequisite = {
-			focus = He_is_always_watching
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_stability = 0.15
-			add_manpower = -5482
-		}
-	}
-	focus = {
-		id = Dis_topia
-		icon = GFX_goal_Dis_Topia
-		cost = 5.00
-		x = 33
-		y = 16
-		prerequisite = {
-			focus = Loyalty_to_Walt
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			swap_ideas = {
-			    remove_idea = State_Supervisions
-			    add_idea = DisTopia
-			}
-		}
-	}
-	focus = {
-		id = Imagination_corps
-		icon = GFX_goal_Imagination_Crops
-		cost = 5.00
-		x = 35
-		y = 14
-		prerequisite = {
-			focus = Embrace_the_old
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			division_template = {
-				name = "Imagination Corps"
-				is_locked = yes
-				priority = 1
-				regiments = {
-					marine = { x = 0 y = 0 }
-					marine = { x = 0 y = 1 }
-					marine = { x = 0 y = 2 }
-					marine = { x = 1 y = 0 }
-					marine = { x = 1 y = 1 }
-					marine = { x = 1 y = 2 }
-					marine = { x = 2 y = 0 }
-					marine = { x = 2 y = 1 }
-					marine = { x = 2 y = 2 }
-					marine = { x = 3 y = 0 }
-				}
-				support = {
-					mot_recon = { x = 0 y = 0 }
-					engineer = { x = 0 y = 1 }
-				}
-			}
-			random_owned_controlled_state = {
-				limit = { ROOT = { has_full_control_of_state = PREV } }
-				create_unit = {
-					division = "name = \"Disney Executive Special Forces: ''Iger''\" division_template = \"Imagination Corps\" start_experience_factor = 1.0" 
-					owner = HLY
-				}
-				create_unit = {
-					division = "name = \"Disney Executive Special Forces: ''Walt''\" division_template = \"Imagination Corps\" start_experience_factor = 1.0" 
-					owner = HLY
-				}
-				create_unit = {
-					division = "name = \"Disney Executive Special Forces: ''Roy''\" division_template = \"Imagination Corps\" start_experience_factor = 1.0" 
-					owner = HLY
-				}
-			}
-		}
-	}
-	focus = {
-		id = End_Anti_government_thougt
-		icon = GFX_goal_End_Anti_Disney_Imagination
-		cost = 5.00
-		x = 35
-		y = 16
-		prerequisite = {
-			focus = Imagination_corps
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_popularity = {
-				ideology = autocratic
-				popularity = 0.50
-			}
-			add_manpower = -25000
-			add_stability = 0.5
-		}
-	}
-	focus = {
-		id = Deustche_ties
-		icon = GFX_goal_Deutsche_Bruderschaft
-		cost = 5.00
-		x = 37
-		y = 14
-		prerequisite = {
-			focus = Embrace_the_old
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			diplomatic_relation = {
-				country = HOP
-    			relation = non_aggression_pact
-			    active = yes
-			}
-		}
-	}
-	focus = {
-		id = Reclaim_Disney_Land
-		icon = GFX_goal_Demand_Orlando
-		cost = 5.00
-		x = 37
-		y = 15
-		prerequisite = {
-			focus = Deustche_ties
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			create_wargoal = {
-				target = FLO
-				type = annex_everything
-			}
-		}
-	}
-	focus = {
-		id = Reclaim_His_Birthplace
-		icon = GFX_goal_Reclaim_the_Birthplace
-		cost = 5.00
-		x = 37
-		y = 16
-		prerequisite = {
-			focus = Reclaim_Disney_Land
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			create_wargoal = {
-				target = GLA
-				type = annex_everything
-			}
-		}
-	}
-	focus = {
-		id = I_have_no_strings
-		icon = GFX_goal_Disney_is_Canceled
-		cost = 5.00
-		x = 35
-		y = 17
-		prerequisite = {
-			focus = Reclaim_His_Birthplace
-		}
-		prerequisite = {
-			focus = End_Anti_government_thougt
-		}
-		prerequisite = {
-			focus = Dis_topia
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			add_ideas = One_State_Under_Disney
-		}
-	}
-}
-focus_tree = {
-	id = Empire_Focus_Tree
-	country = {
-		factor = 0
-	}
-	continuous_focus_position = { x = 50 y = 50 }
-	default = no
-	focus = {
-		id = Throw_out_the_Normal_Pills
-		icon = GFX_goal_Reclaim_the_Birthplace
-		cost = 1.00
-		x = 15
-		y = 0
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = Kidnap_Temuera_Morrison
-		icon = GFX_goal_REP_the_clone_citizenship_act
-		cost = 1.00
-		x = 16
+		x = 0
 		y = 1
+		relative_position_id = HLY_Lives
 		prerequisite = {
-			focus = Throw_out_the_Normal_Pills
-		}
-		ai_will_do = { 
-			factor = 300
+			focus = HLY_Lives
 		}
 		completion_reward = {
-			
+			add_manpower = 10000
 		}
 	}
 	focus = {
-		id = Infiltrate_Area_51
-		icon = GFX_goal_eria_51_border_war
-		cost = 1.00
-		x = 14
-		y = 1
-		prerequisite = {
-			focus = Throw_out_the_Normal_Pills
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = START_THE_CLONE_ARMY
-		icon = GFX_goal_REP_presentstrength
-		cost = 1.00
-		x = 15
-		y = 2
-		prerequisite = {
-			focus = Kidnap_Temuera_Morrison
-		}
-		prerequisite = {
-			focus = Infiltrate_Area_51
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = CT_0001
-		icon = GFX_goal_REP_serving_at_the_pleasure
-		cost = 1.00
-		x = 13
-		y = 3
-		prerequisite = {
-			focus = START_THE_CLONE_ARMY
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = Dedicate_Civilian_Economy_to_Clone_Production
-		icon = GFX_goal_REP_weapons_of_the_next_war
-		cost = 1.00
-		x = 15
-		y = 3
-		prerequisite = {
-			focus = START_THE_CLONE_ARMY
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = Liquidate_Faulty_Clones
-		icon = GFX_goal_REP_shot_in_the_back_myth
-		cost = 1.00
-		x = 17
-		y = 3
-		prerequisite = {
-			focus = START_THE_CLONE_ARMY
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = HLY_200000_now_a_Million_more_on_the_way
-		icon = GFX_goal_REP_clone_counter_coup
-		cost = 1.00
-		x = 15
-		y = 4
-		prerequisite = {
-			focus = Liquidate_Faulty_Clones
-		}
-		prerequisite = {
-			focus = Dedicate_Civilian_Economy_to_Clone_Production
-		}
-		prerequisite = {
-			focus = CT_0001
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = Connect_with_the_Force
-		icon = GFX_goal_Reclaim_the_Birthplace
-		cost = 1.00
-		x = 4
-		y = 0
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = EMP_Peace
-		icon = GFX_goal_Reclaim_the_Birthplace
-		cost = 1.00
-		x = 1
-		y = 1
-		prerequisite = {
-			focus = Connect_with_the_Force
-		}
-		ai_will_do = { 
-			factor = 300
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = EMP_Freedom
-		icon = GFX_goal_Reclaim_the_Birthplace
-		cost = 1.00
+		id = HLY_Protect_Writers
+		icon = placeholder
+		
+		cost = 4
+
 		x = 3
 		y = 1
+		relative_position_id = HLY_Lives
 		prerequisite = {
-			focus = Connect_with_the_Force
-		}
-		ai_will_do = { 
-			factor = 300
+			focus = HLY_Lives
 		}
 		completion_reward = {
-			
+			add_command_power = 50
+			army_experience = 15
 		}
 	}
 	focus = {
-		id = EMP_Justice
-		icon = GFX_goal_Reclaim_the_Birthplace
-		cost = 1.00
-		x = 5
+		id = HLY_Repurpose_Equipment
+		icon = placeholder
+
+		cost = 4
+
+		x = 1
 		y = 1
+		relative_position_id = HLY_Guard_Singers
 		prerequisite = {
-			focus = Connect_with_the_Force
+			focus = HLY_Guard_Singers
 		}
-		ai_will_do = { 
-			factor = 300
+		prerequisite = {
+			focus = HLY_Save_Actors
 		}
 		completion_reward = {
-			
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_1
+				amount = 2000
+			}
+			add_equipment_to_stockpile = {
+				type = motorized_equipment_1
+				amount = 500
+			}
 		}
 	}
 	focus = {
-		id = EMP_Security
-		icon = GFX_goal_Reclaim_the_Birthplace
-		cost = 1.00
-		x = 7
+		id = HLY_Security
+		icon = placeholder
+
+		cost = 4
+
+		x = -1
 		y = 1
+		relative_position_id = HLY_Protect_Writers
 		prerequisite = {
-			focus = Connect_with_the_Force
+			focus = HLY_Save_Actors
 		}
-		ai_will_do = { 
-			factor = 300
+		prerequisite = {
+			focus = HLY_Protect_Writers
 		}
 		completion_reward = {
-			
+			random_owned_controlled_state = {
+				create_unit = {
+					division = "name = \"Private Security Detachment\" division_template = \"Civilian Militia\" start_experience_factor = 0.6"
+					owner = HLY
+					count = 3
+				}
+			}
 		}
 	}
 	focus = {
-		id = EMP_MY_NEW_EMPIRE
-		icon = GFX_goal_Reclaim_the_Birthplace
-		cost = 1.00
-		x = 4
+		id = HLY_Dwayne_Love
+		icon = placeholder
+
+		cost = 5
+
+		x = 2
+		y = 1
+		relative_position_id = HLY_Repurpose_Equipment
+		prerequisite = {
+			focus = HLY_Repurpose_Equipment
+		}
+		prerequisite = {
+			focus = HLY_Security
+		}
+		completion_reward = {
+		
+		}
+	}
+	focus = {
+		id = HLY_Empty_Chairs
+		icon = placeholder
+
+		cost = 5
+
+		x = -2
+		y = 1
+		relative_position_id = HLY_Dwayne_Love
+		prerequisite = {
+			focus = HLY_Dwayne_Love
+		}
+		available = {
+			has_country_leader = {
+				character = HLY_dwayne_johnson
+				ruling_only = yes
+			}
+		}
+		completion_reward = {
+			add_ideas = HLY_Empty_Chairs
+		}
+	}
+	focus = {
+		id = HLY_Philanthropy
+		icon = placeholder
+		
+		cost = 5
+
+		x = 0
+		y = 1
+		relative_position_id = HLY_Empty_Chairs
+		prerequisite = {
+			focus = HLY_Empty_Chairs
+		}
+		completion_reward = {
+			add_political_power = 150
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+	focus = {
+		id = HLY_Dwayne_Safehouse
+		icon = placeholder
+
+		cost = 5
+
+		x = 0
+		y = 1
+		relative_position_id = HLY_Philanthropy
+		prerequisite = {
+			focus = HLY_Philanthropy
+		}
+		completion_reward = {
+			add_ideas = HLY_Safehouse
+		}
+	}
+	focus = {
+		id = HLY_Rock_Hard_Place
+		icon = placeholder
+
+		cost = 5
+
+		x = 1
+		y = 1
+		relative_position_id = HLY_Dwayne_Love
+		prerequisite = {
+			focus = HLY_Dwayne_Love
+		}
+		available = {
+			has_country_leader = {
+				character = HLY_dwayne_johnson
+				ruling_only = yes
+			}
+		}
+		completion_reward = {
+			set_truce = {
+				target = PRA
+				days = 365
+			}
+		}
+	}
+	focus = {
+		id = HLY_Sight_Mind
+		icon = placeholder
+
+		cost = 5
+
+		x = 0
+		y = 1
+		relative_position_id = HLY_Rock_Hard_Place
+		prerequisite = {
+			focus = HLY_Rock_Hard_Place
+		}
+		completion_reward = {
+			set_truce = {
+				target = PAC
+				days = 365
+			}
+			add_stability = 0.15
+		}
+	}
+	focus = {
+		id = HLY_Rock_Laws
+		icon = placeholder
+	
+		cost = 5
+
+		x = 3
+		y = 1
+		relative_position_id = HLY_Dwayne_Love
+		prerequisite = {
+			focus = HLY_Dwayne_Love
+		}
+		available = {
+			has_country_leader = {
+				character = HLY_dwayne_johnson
+				ruling_only = yes
+			}
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = HLY_Sheriffs
+		icon = placeholder
+
+		cost = 5
+
+		x = 0
+		y = 1
+		relative_position_id = HLY_Rock_Laws
+		prerequisite = {
+			focus = HLY_Rock_Laws
+		}
+		completion_reward = {
+			add_ideas = HLY_Model_LAPD
+		}
+	}
+	focus = {
+		id = HLY_beverly_hills
+		icon = placeholder
+
+		cost = 5
+
+		x = 1
+		y = 1
+		relative_position_id = HLY_Sight_Mind
+		prerequisite = {
+			focus = HLY_Sight_Mind
+		}
+		prerequisite = {
+			focus = HLY_Sheriffs
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = HLY_Rock_Cooking
+		icon = GFX_goal_Rock_Cook
+
+		cost = 5
+
+		x = 2
+		y = 1
+		relative_position_id = HLY_Dwayne_Safehouse
+		prerequisite = {
+			focus = HLY_Dwayne_Safehouse
+			focus = HLY_beverly_hills
+		}
+		completion_reward = {
+		}
+	}
+	focus = {
+		id = HLY_Prosperity
+		icon = placeholder
+
+		cost = 5
+
+		x = 0
 		y = 2
+		relative_position_id = HLY_Dwayne_Safehouse
 		prerequisite = {
-			focus = EMP_Peace
-		}
-		prerequisite = {
-			focus = EMP_Freedom
-		}
-		prerequisite = {
-			focus = EMP_Justice
-		}
-		prerequisite = {
-			focus = EMP_Security
-		}
-		ai_will_do = { 
-			factor = 300
+			focus = HLY_Dwayne_Safehouse
 		}
 		completion_reward = {
-			
 		}
 	}
 	focus = {
-		id = EMP_Destroy_non_Schizos
-		icon = GFX_goal_Reclaim_the_Birthplace
-		cost = 1.00
-		x = 4
-		y = 3
+		id = HLY_Alltogether
+		icon = placeholder
+
+		cost = 5
+
+		x = 0
+		y = 2
+		relative_position_id = HLY_beverly_hills
 		prerequisite = {
-			focus = EMP_MY_NEW_EMPIRE
-		}
-		ai_will_do = { 
-			factor = 300
+			focus = HLY_beverly_hills
 		}
 		completion_reward = {
-			
+		}
+	}
+	focus = {
+		id = HLY_Calm_Storm
+		icon = placeholder
+
+		cost = 6
+
+		x = 0
+		y = 2
+		relative_position_id = HLY_Rock_Cooking
+		prerequisite = {
+			focus = HLY_Prosperity
+		}
+		prerequisite = {
+			focus = HLY_Alltogether
+		}
+		completion_reward = {
 		}
 	}
 }
-
