@@ -826,6 +826,90 @@ AFS_individualist_collectivist_balance_of_power_category = {
 		}
 	}
 
+	AFS_individual_will = {
+		priority = 25
+		icon = #GFX_decision_hol_attract_foreign_investors
+
+		allowed = {
+			original_tag = AFS
+		}
+
+		visible = {
+			has_completed_focus = AFS_promote_anarchist_ideals
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = AFS_doing_BOP_action
+			}
+		}
+		
+		fire_only_once = no
+		
+		days_re_enable = 20
+
+		days_remove = 25
+		
+		cost = 30
+
+		complete_effect = {
+			set_country_flag = {
+				flag = AFS_doing_BOP_action
+				days = 25
+				value = 1
+			}
+		}
+		remove_effect = {
+			add_power_balance_value = {
+				id = individualist_collectivist_bop
+				value = -0.1
+				tooltip_side = individualist
+			}
+		}
+	}
+
+	AFS_perpetuate_individual_liberty = {
+		priority = 25
+		icon = #GFX_decision_hol_attract_foreign_investors
+
+		allowed = {
+			original_tag = AFS
+		}
+
+		visible = {
+			has_completed_focus = AFS_promote_anarchist_ideals
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = AFS_doing_BOP_action
+			}
+		}
+		
+		fire_only_once = no
+		
+		days_re_enable = 20
+
+		days_remove = 25
+		
+		cost = 30
+
+		complete_effect = {
+			set_country_flag = {
+				flag = AFS_doing_BOP_action
+				days = 25
+				value = 1
+			}
+		}
+		remove_effect = {
+			add_power_balance_value = {
+				id = individualist_collectivist_bop
+				value = -0.1
+				tooltip_side = individualist
+			}
+		}
+	}
+
 	AFS_unite_the_people = {
 		priority = 25
 		icon = #GFX_decision_hol_attract_foreign_investors
@@ -836,6 +920,90 @@ AFS_individualist_collectivist_balance_of_power_category = {
 
 		visible = {
 			has_completed_focus = AFS_vermins_anarchist_dreams
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = AFS_doing_BOP_action
+			}
+		}
+		
+		fire_only_once = no
+		
+		days_re_enable = 20
+
+		days_remove = 25
+		
+		cost = 30
+
+		complete_effect = {
+			set_country_flag = {
+				flag = AFS_doing_BOP_action
+				days = 25
+				value = 1
+			}
+		}
+		remove_effect = {
+		    add_power_balance_value = {
+				id = individualist_collectivist_bop
+				value = 0.1
+				tooltip_side = collectivist
+			}
+		}
+	}
+
+	AFS_bring_unity_in_anarchism = {
+		priority = 25
+		icon = #GFX_decision_hol_attract_foreign_investors
+
+		allowed = {
+			original_tag = AFS
+		}
+
+		visible = {
+			has_completed_focus = AFS_promote_anarchist_ideals
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = AFS_doing_BOP_action
+			}
+		}
+		
+		fire_only_once = no
+		
+		days_re_enable = 20
+
+		days_remove = 25
+		
+		cost = 30
+
+		complete_effect = {
+			set_country_flag = {
+				flag = AFS_doing_BOP_action
+				days = 25
+				value = 1
+			}
+		}
+		remove_effect = {
+		    add_power_balance_value = {
+				id = individualist_collectivist_bop
+				value = 0.1
+				tooltip_side = collectivist
+			}
+		}
+	}
+
+	AFS_anarchism_without_adjectives = {
+		priority = 25
+		icon = #GFX_decision_hol_attract_foreign_investors
+
+		allowed = {
+			original_tag = AFS
+		}
+
+		visible = {
+			has_completed_focus = AFS_promote_anarchist_ideals
 		}
 
 		available = {
@@ -1246,6 +1414,1816 @@ AFS_vermin_political_decisions = {
                 flag = AFS_vermin_military_decision_2
                 value = 1
             }
+		}
+	}
+}
+
+AFS_saving_terra_decisions = {
+	AFS_eliminate_the_oil_barons = {
+		priority = 25
+		icon = #GFX_decision_hol_attract_foreign_investors
+
+		allowed = {
+			original_tag = AFS
+		}
+
+		visible = {
+			has_completed_focus = AFS_upper_class_elimination
+			has_country_flag = {
+                flag = AFS_annihilationist_kill_people_decision_1
+                value < 3
+            }
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = AFS_doing_political_action
+			}
+		}
+		
+		fire_only_once = no
+		
+		days_re_enable = 50
+
+		days_remove = 50
+		
+		cost = 65
+
+		complete_effect = {
+			set_country_flag = {
+				flag = AFS_doing_political_action
+				days = 30
+				value = 1
+			}
+		}
+		remove_effect = {
+			army_experience = 15
+			if = {
+				limit = { country_exists = TEX }
+			    TEX = {
+			        add_political_power = -50
+				    add_stability = -0.02
+			    }
+			}
+			if = {
+				limit = { 
+					NOT = { 
+						has_completed_focus = AFS_natures_strongest_soldiers 
+				    }
+				}
+			    random_list = {
+				    30 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+				    }
+				    70 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			if = {
+				limit = { 
+					has_completed_focus = AFS_natures_strongest_soldiers
+					NOT = { 
+						has_completed_focus = AFS_leave_only_destruction
+				    }
+				}
+			    random_list = {
+				    40 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+				    }
+				    60 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			if = {
+				limit = { 
+					has_completed_focus = AFS_leave_only_destruction
+					NOT = { 
+						has_completed_focus = AFS_destroyer_of_cities
+				    }
+			    }
+			    random_list = {
+				    50 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+				    }
+				    50 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			if = {
+				limit = { 
+					has_completed_focus = AFS_destroyer_of_cities
+					NOT = { 
+						has_completed_focus = AFS_leading_earths_salvation
+				    }
+				}
+			    random_list = {
+				    65 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+				    }
+				    35 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			if = {
+				limit = {
+					has_completed_focus = AFS_leading_earths_salvation 
+				}
+			    random_list = {
+				    85 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+				    }
+				    15 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			modify_country_flag = {
+                flag = AFS_annihilationist_kill_people_decision_1
+                value = 1
+            }
+		}
+	}
+
+	AFS_eliminate_the_wealthly = {
+		priority = 25
+		icon = #GFX_decision_hol_attract_foreign_investors
+
+		allowed = {
+			original_tag = AFS
+		}
+
+		visible = {
+			has_completed_focus = AFS_upper_class_elimination
+			has_country_flag = {
+                flag = AFS_annihilationist_kill_people_decision_2
+                value < 3
+            }
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = AFS_doing_political_action
+			}
+		}
+		
+		fire_only_once = no
+		
+		days_re_enable = 50
+
+		days_remove = 50
+		
+		cost = 65
+
+		complete_effect = {
+			set_country_flag = {
+				flag = AFS_doing_political_action
+				days = 30
+				value = 1
+			}
+		}
+		remove_effect = {
+			army_experience = 15
+			if = {
+				limit = { country_exists = USA }
+			    USA = {
+			        add_political_power = -50
+				    add_stability = -0.02
+			    }
+			}
+			if = {
+				limit = { country_exists = GLA }
+			    GLA = {
+			        add_political_power = -50
+				    add_stability = -0.02
+			    }
+			}
+			if = {
+				limit = { 
+					NOT = { 
+						has_completed_focus = AFS_natures_strongest_soldiers 
+				    }
+				}
+			    random_list = {
+				    30 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+				    }
+				    70 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			if = {
+				limit = { 
+					has_completed_focus = AFS_natures_strongest_soldiers
+					NOT = { 
+						has_completed_focus = AFS_leave_only_destruction
+				    }
+				}
+			    random_list = {
+				    40 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+				    }
+				    60 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			if = {
+				limit = { 
+					has_completed_focus = AFS_leave_only_destruction
+					NOT = { 
+						has_completed_focus = AFS_destroyer_of_cities
+				    }
+			    }
+			    random_list = {
+				    50 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+				    }
+				    50 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			if = {
+				limit = { 
+					has_completed_focus = AFS_destroyer_of_cities
+					NOT = { 
+						has_completed_focus = AFS_leading_earths_salvation
+				    }
+				}
+			    random_list = {
+				    65 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+				    }
+				    35 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			if = {
+				limit = {
+					has_completed_focus = AFS_leading_earths_salvation 
+				}
+			    random_list = {
+				    85 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+				    }
+				    15 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			modify_country_flag = {
+                flag = AFS_annihilationist_kill_people_decision_2
+                value = 1
+            }
+		}
+	}
+
+	AFS_eliminate_larry_fink = {
+		priority = 25
+		icon = #GFX_decision_hol_attract_foreign_investors
+
+		allowed = {
+			original_tag = AFS
+		}
+
+		visible = {
+			has_completed_focus = AFS_upper_class_elimination
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = AFS_doing_political_action
+			}
+		}
+		
+		fire_only_once = yes
+		
+		#days_re_enable = 50
+
+		days_remove = 50
+		
+		cost = 50
+
+		complete_effect = {
+			set_country_flag = {
+				flag = AFS_doing_political_action
+				days = 30
+				value = 1
+			}
+		}
+		remove_effect = {
+			custom_effect_tooltip = AFS_one_chance_tooltip
+			army_experience = 10
+
+			if = {
+				limit = { 
+					NOT = { 
+						has_completed_focus = AFS_natures_strongest_soldiers 
+				    }
+				}
+			    random_list = {
+				    30 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+						news_event = {
+						    id = hawkins.12
+						    days = 0
+					    }
+				    }
+				    70 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			if = {
+				limit = { 
+					has_completed_focus = AFS_natures_strongest_soldiers
+					NOT = { 
+						has_completed_focus = AFS_leave_only_destruction
+				    }
+				}
+			    random_list = {
+				    40 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+						news_event = {
+						    id = hawkins.12
+						    days = 0
+					    }
+				    }
+				    60 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			if = {
+				limit = { 
+					has_completed_focus = AFS_leave_only_destruction
+					NOT = { 
+						has_completed_focus = AFS_destroyer_of_cities
+				    }
+			    }
+			    random_list = {
+				    50 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+						news_event = {
+						    id = hawkins.12
+						    days = 0
+					    }
+				    }
+				    50 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			if = {
+				limit = { 
+					has_completed_focus = AFS_destroyer_of_cities
+					NOT = { 
+						has_completed_focus = AFS_leading_earths_salvation
+				    }
+				}
+			    random_list = {
+				    65 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+						news_event = {
+						    id = hawkins.12
+						    days = 0
+					    }
+				    }
+				    35 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			if = {
+				limit = {
+					has_completed_focus = AFS_leading_earths_salvation 
+				}
+			    random_list = {
+				    85 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+						news_event = {
+						    id = hawkins.12
+						    days = 0
+					    }
+				    }
+				    15 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+		}
+	}
+
+	AFS_begin_a_terror_attack_in_trump = {
+		priority = 25
+		icon = #GFX_decision_hol_attract_foreign_investors
+
+		allowed = {
+			original_tag = AFS
+		}
+
+		visible = {
+			has_completed_focus = AFS_accelerate_the_apocalypse
+			country_exists = USA
+			has_country_flag = {
+                flag = AFS_annihilationist_kill_people_decision_3
+                value < 3
+            }
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = AFS_doing_political_action
+			}
+		}
+		
+		fire_only_once = no
+		
+		days_re_enable = 50
+
+		days_remove = 50
+		
+		cost = 65
+
+		complete_effect = {
+			set_country_flag = {
+				flag = AFS_doing_political_action
+				days = 30
+				value = 1
+			}
+		}
+		remove_effect = {
+			army_experience = 20
+			if = {
+				limit = { country_exists = USA }
+			    USA = {
+			        add_political_power = -50
+				    add_stability = -0.05
+					add_war_support = 0.05
+					random_owned_state = {
+                        add_manpower = -10000
+                    }
+			    }
+			}
+			if = {
+				limit = { 
+					NOT = { 
+						has_completed_focus = AFS_natures_strongest_soldiers 
+				    }
+				}
+			    random_list = {
+				    30 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+				    }
+				    70 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			if = {
+				limit = { 
+					has_completed_focus = AFS_natures_strongest_soldiers
+					NOT = { 
+						has_completed_focus = AFS_leave_only_destruction
+				    }
+				}
+			    random_list = {
+				    40 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+				    }
+				    60 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			if = {
+				limit = { 
+					has_completed_focus = AFS_leave_only_destruction
+					NOT = { 
+						has_completed_focus = AFS_destroyer_of_cities
+				    }
+			    }
+			    random_list = {
+				    50 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+				    }
+				    50 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			if = {
+				limit = { 
+					has_completed_focus = AFS_destroyer_of_cities
+					NOT = { 
+						has_completed_focus = AFS_leading_earths_salvation
+				    }
+				}
+			    random_list = {
+				    65 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+				    }
+				    35 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			if = {
+				limit = {
+					has_completed_focus = AFS_leading_earths_salvation 
+				}
+			    random_list = {
+				    85 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+				    }
+				    15 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			modify_country_flag = {
+                flag = AFS_annihilationist_kill_people_decision_3
+                value = 1
+            }
+		}
+	}
+
+	AFS_begin_a_terror_attack_in_biden = {
+		priority = 25
+		icon = #GFX_decision_hol_attract_foreign_investors
+
+		allowed = {
+			original_tag = AFS
+		}
+
+		visible = {
+			has_completed_focus = AFS_accelerate_the_apocalypse
+			country_exists = FRA
+			has_country_flag = {
+                flag = AFS_annihilationist_kill_people_decision_4
+                value < 3
+            }
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = AFS_doing_political_action
+			}
+		}
+		
+		fire_only_once = no
+		
+		days_re_enable = 50
+
+		days_remove = 50
+		
+		cost = 65
+
+		complete_effect = {
+			set_country_flag = {
+				flag = AFS_doing_political_action
+				days = 30
+				value = 1
+			}
+		}
+		remove_effect = {
+			army_experience = 20
+			if = {
+				limit = { country_exists = FRA }
+			    FRA = {
+			        add_political_power = -50
+				    add_stability = -0.05
+					add_war_support = 0.05
+					random_owned_state = {
+                        add_manpower = -10000
+                    }
+			    }
+			}
+			if = {
+				limit = { 
+					NOT = { 
+						has_completed_focus = AFS_natures_strongest_soldiers 
+				    }
+				}
+			    random_list = {
+				    30 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+				    }
+				    70 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			if = {
+				limit = { 
+					has_completed_focus = AFS_natures_strongest_soldiers
+					NOT = { 
+						has_completed_focus = AFS_leave_only_destruction
+				    }
+				}
+			    random_list = {
+				    40 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+				    }
+				    60 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			if = {
+				limit = { 
+					has_completed_focus = AFS_leave_only_destruction
+					NOT = { 
+						has_completed_focus = AFS_destroyer_of_cities
+				    }
+			    }
+			    random_list = {
+				    50 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+				    }
+				    50 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			if = {
+				limit = { 
+					has_completed_focus = AFS_destroyer_of_cities
+					NOT = { 
+						has_completed_focus = AFS_leading_earths_salvation
+				    }
+				}
+			    random_list = {
+				    65 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+				    }
+				    35 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			if = {
+				limit = {
+					has_completed_focus = AFS_leading_earths_salvation 
+				}
+			    random_list = {
+				    85 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+				    }
+				    15 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			modify_country_flag = {
+                flag = AFS_annihilationist_kill_people_decision_4
+                value = 1
+            }
+		}
+	}
+
+	AFS_begin_a_terror_attack_in_the_great_lakes = {
+		priority = 25
+		icon = #GFX_decision_hol_attract_foreign_investors
+
+		allowed = {
+			original_tag = AFS
+		}
+
+		visible = {
+			has_completed_focus = AFS_accelerate_the_apocalypse
+			country_exists = GLA
+			has_country_flag = {
+                flag = AFS_annihilationist_kill_people_decision_5
+                value < 3
+            }
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = AFS_doing_political_action
+			}
+		}
+		
+		fire_only_once = no
+		
+		days_re_enable = 50
+
+		days_remove = 50
+		
+		cost = 65
+
+		complete_effect = {
+			set_country_flag = {
+				flag = AFS_doing_political_action
+				days = 30
+				value = 1
+			}
+		}
+		remove_effect = {
+			army_experience = 20
+			if = {
+				limit = { country_exists = GLA }
+			    GLA = {
+			        add_political_power = -50
+				    add_stability = -0.05
+					add_war_support = 0.05
+					random_owned_state = {
+                        add_manpower = -10000
+                    }
+			    }
+			}
+			if = {
+				limit = { 
+					NOT = { 
+						has_completed_focus = AFS_natures_strongest_soldiers 
+				    }
+				}
+			    random_list = {
+				    30 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+				    }
+				    70 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			if = {
+				limit = { 
+					has_completed_focus = AFS_natures_strongest_soldiers
+					NOT = { 
+						has_completed_focus = AFS_leave_only_destruction
+				    }
+				}
+			    random_list = {
+				    40 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+				    }
+				    60 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			if = {
+				limit = { 
+					has_completed_focus = AFS_leave_only_destruction
+					NOT = { 
+						has_completed_focus = AFS_destroyer_of_cities
+				    }
+			    }
+			    random_list = {
+				    50 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+				    }
+				    50 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			if = {
+				limit = { 
+					has_completed_focus = AFS_destroyer_of_cities
+					NOT = { 
+						has_completed_focus = AFS_leading_earths_salvation
+				    }
+				}
+			    random_list = {
+				    65 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+				    }
+				    35 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			if = {
+				limit = {
+					has_completed_focus = AFS_leading_earths_salvation 
+				}
+			    random_list = {
+				    85 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+				    }
+				    15 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			modify_country_flag = {
+                flag = AFS_annihilationist_kill_people_decision_5
+                value = 1
+            }
+		}
+	}
+
+	AFS_begin_a_terror_attack_in_paris = {
+		priority = 25
+		icon = #GFX_decision_hol_attract_foreign_investors
+
+		allowed = {
+			original_tag = AFS
+		}
+
+		visible = {
+			has_completed_focus = AFS_spread_our_terror_worldwide
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = AFS_doing_political_action
+			}
+		}
+		
+		fire_only_once = yes
+		
+		#days_re_enable = 50
+
+		days_remove = 50
+		
+		cost = 65
+
+		complete_effect = {
+			set_country_flag = {
+				flag = AFS_doing_political_action
+				days = 30
+				value = 1
+			}
+		}
+		remove_effect = {
+			custom_effect_tooltip = AFS_one_chance_tooltip
+			army_experience = 20
+			if = {
+				limit = { 
+					NOT = { 
+						has_completed_focus = AFS_natures_strongest_soldiers 
+				    }
+				}
+			    random_list = {
+				    30 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+						news_event = {
+						    id = hawkins.13
+						    days = 0
+					    }
+				    }
+				    70 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			if = {
+				limit = { 
+					has_completed_focus = AFS_natures_strongest_soldiers
+					NOT = { 
+						has_completed_focus = AFS_leave_only_destruction
+				    }
+				}
+			    random_list = {
+				    40 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+						news_event = {
+						    id = hawkins.13
+						    days = 0
+					    }
+				    }
+				    60 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			if = {
+				limit = { 
+					has_completed_focus = AFS_leave_only_destruction
+					NOT = { 
+						has_completed_focus = AFS_destroyer_of_cities
+				    }
+			    }
+			    random_list = {
+				    50 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+						news_event = {
+						    id = hawkins.13
+						    days = 0
+					    }
+				    }
+				    50 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			if = {
+				limit = { 
+					has_completed_focus = AFS_destroyer_of_cities
+					NOT = { 
+						has_completed_focus = AFS_leading_earths_salvation
+				    }
+				}
+			    random_list = {
+				    65 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+						news_event = {
+						    id = hawkins.13
+						    days = 0
+					    }
+				    }
+				    35 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			if = {
+				limit = {
+					has_completed_focus = AFS_leading_earths_salvation 
+				}
+			    random_list = {
+				    85 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+						news_event = {
+						    id = hawkins.13
+						    days = 0
+					    }
+				    }
+				    15 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+		}
+	}
+
+	AFS_destory_the_three_gorges_dam = {
+		priority = 25
+		icon = #GFX_decision_hol_attract_foreign_investors
+
+		allowed = {
+			original_tag = AFS
+		}
+
+		visible = {
+			has_completed_focus = AFS_spread_our_terror_worldwide
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = AFS_doing_political_action
+			}
+		}
+		
+		fire_only_once = yes
+		
+		#days_re_enable = 50
+
+		days_remove = 50
+		
+		cost = 65
+
+		complete_effect = {
+			set_country_flag = {
+				flag = AFS_doing_political_action
+				days = 30
+				value = 1
+			}
+		}
+		remove_effect = {
+			custom_effect_tooltip = AFS_one_chance_tooltip
+			army_experience = 25
+			if = {
+				limit = { 
+					NOT = { 
+						has_completed_focus = AFS_natures_strongest_soldiers 
+				    }
+				}
+			    random_list = {
+				    30 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+						news_event = {
+						    id = hawkins.14
+						    days = 0
+					    }
+				    }
+				    70 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			if = {
+				limit = { 
+					has_completed_focus = AFS_natures_strongest_soldiers
+					NOT = { 
+						has_completed_focus = AFS_leave_only_destruction
+				    }
+				}
+			    random_list = {
+				    40 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+						news_event = {
+						    id = hawkins.14
+						    days = 0
+					    }
+				    }
+				    60 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			if = {
+				limit = { 
+					has_completed_focus = AFS_leave_only_destruction
+					NOT = { 
+						has_completed_focus = AFS_destroyer_of_cities
+				    }
+			    }
+			    random_list = {
+				    50 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+						news_event = {
+						    id = hawkins.14
+						    days = 0
+					    }
+				    }
+				    50 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			if = {
+				limit = { 
+					has_completed_focus = AFS_destroyer_of_cities
+					NOT = { 
+						has_completed_focus = AFS_leading_earths_salvation
+				    }
+				}
+			    random_list = {
+				    65 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+						news_event = {
+						    id = hawkins.14
+						    days = 0
+					    }
+				    }
+				    35 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			if = {
+				limit = {
+					has_completed_focus = AFS_leading_earths_salvation 
+				}
+			    random_list = {
+				    85 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+						news_event = {
+						    id = hawkins.14
+						    days = 0
+					    }
+				    }
+				    15 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+		}
+	}
+
+	AFS_take_down_the_big_ben = {
+		priority = 25
+		icon = #GFX_decision_hol_attract_foreign_investors
+
+		allowed = {
+			original_tag = AFS
+		}
+
+		visible = {
+			has_completed_focus = AFS_spread_our_terror_worldwide
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = AFS_doing_political_action
+			}
+		}
+		
+		fire_only_once = yes
+		
+		#days_re_enable = 50
+
+		days_remove = 50
+		
+		cost = 65
+
+		complete_effect = {
+			set_country_flag = {
+				flag = AFS_doing_political_action
+				days = 30
+				value = 1
+			}
+		}
+		remove_effect = {
+			custom_effect_tooltip = AFS_one_chance_tooltip
+			army_experience = 20
+			if = {
+				limit = { 
+					NOT = { 
+						has_completed_focus = AFS_natures_strongest_soldiers 
+				    }
+				}
+			    random_list = {
+				    30 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+						news_event = {
+						    id = hawkins.15
+						    days = 0
+					    }
+				    }
+				    70 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			if = {
+				limit = { 
+					has_completed_focus = AFS_natures_strongest_soldiers
+					NOT = { 
+						has_completed_focus = AFS_leave_only_destruction
+				    }
+				}
+			    random_list = {
+				    40 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+						news_event = {
+						    id = hawkins.15
+						    days = 0
+					    }
+				    }
+				    60 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			if = {
+				limit = { 
+					has_completed_focus = AFS_leave_only_destruction
+					NOT = { 
+						has_completed_focus = AFS_destroyer_of_cities
+				    }
+			    }
+			    random_list = {
+				    50 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+						news_event = {
+						    id = hawkins.15
+						    days = 0
+					    }
+				    }
+				    50 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			if = {
+				limit = { 
+					has_completed_focus = AFS_destroyer_of_cities
+					NOT = { 
+						has_completed_focus = AFS_leading_earths_salvation
+				    }
+				}
+			    random_list = {
+				    65 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+						news_event = {
+						    id = hawkins.15
+						    days = 0
+					    }
+				    }
+				    35 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			if = {
+				limit = {
+					has_completed_focus = AFS_leading_earths_salvation 
+				}
+			    random_list = {
+				    85 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+						news_event = {
+						    id = hawkins.15
+						    days = 0
+					    }
+				    }
+				    15 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+		}
+	}
+
+	AFS_take_down_the_taj_mahal = {
+		priority = 25
+		icon = #GFX_decision_hol_attract_foreign_investors
+
+		allowed = {
+			original_tag = AFS
+		}
+
+		visible = {
+			has_completed_focus = AFS_spread_our_terror_worldwide
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = AFS_doing_political_action
+			}
+		}
+		
+		fire_only_once = yes
+		
+		#days_re_enable = 50
+
+		days_remove = 50
+		
+		cost = 65
+
+		complete_effect = {
+			set_country_flag = {
+				flag = AFS_doing_political_action
+				days = 30
+				value = 1
+			}
+		}
+		remove_effect = {
+			custom_effect_tooltip = AFS_one_chance_tooltip
+			army_experience = 20
+			if = {
+				limit = { 
+					NOT = { 
+						has_completed_focus = AFS_natures_strongest_soldiers 
+				    }
+				}
+			    random_list = {
+				    30 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+						news_event = {
+						    id = hawkins.16
+						    days = 0
+					    }
+				    }
+				    70 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			if = {
+				limit = { 
+					has_completed_focus = AFS_natures_strongest_soldiers
+					NOT = { 
+						has_completed_focus = AFS_leave_only_destruction
+				    }
+				}
+			    random_list = {
+				    40 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+						news_event = {
+						    id = hawkins.16
+						    days = 0
+					    }
+				    }
+				    60 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			if = {
+				limit = { 
+					has_completed_focus = AFS_leave_only_destruction
+					NOT = { 
+						has_completed_focus = AFS_destroyer_of_cities
+				    }
+			    }
+			    random_list = {
+				    50 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+						news_event = {
+						    id = hawkins.16
+						    days = 0
+					    }
+				    }
+				    50 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			if = {
+				limit = { 
+					has_completed_focus = AFS_destroyer_of_cities
+					NOT = { 
+						has_completed_focus = AFS_leading_earths_salvation
+				    }
+				}
+			    random_list = {
+				    65 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+						news_event = {
+						    id = hawkins.16
+						    days = 0
+					    }
+				    }
+				    35 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			if = {
+				limit = {
+					has_completed_focus = AFS_leading_earths_salvation 
+				}
+			    random_list = {
+				    85 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+						news_event = {
+						    id = hawkins.16
+						    days = 0
+					    }
+				    }
+				    15 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+		}
+	}
+
+	AFS_begin_a_terror_attack_in_sydney = {
+		priority = 25
+		icon = #GFX_decision_hol_attract_foreign_investors
+
+		allowed = {
+			original_tag = AFS
+		}
+
+		visible = {
+			has_completed_focus = AFS_spread_our_terror_worldwide
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = AFS_doing_political_action
+			}
+		}
+		
+		fire_only_once = yes
+		
+		#days_re_enable = 50
+
+		days_remove = 50
+		
+		cost = 65
+
+		complete_effect = {
+			set_country_flag = {
+				flag = AFS_doing_political_action
+				days = 30
+				value = 1
+			}
+		}
+		remove_effect = {
+			custom_effect_tooltip = AFS_one_chance_tooltip
+			army_experience = 20
+			if = {
+				limit = { 
+					NOT = { 
+						has_completed_focus = AFS_natures_strongest_soldiers 
+				    }
+				}
+			    random_list = {
+				    30 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+						news_event = {
+						    id = hawkins.17
+						    days = 0
+					    }
+				    }
+				    70 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			if = {
+				limit = { 
+					has_completed_focus = AFS_natures_strongest_soldiers
+					NOT = { 
+						has_completed_focus = AFS_leave_only_destruction
+				    }
+				}
+			    random_list = {
+				    40 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+						news_event = {
+						    id = hawkins.17
+						    days = 0
+					    }
+				    }
+				    60 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			if = {
+				limit = { 
+					has_completed_focus = AFS_leave_only_destruction
+					NOT = { 
+						has_completed_focus = AFS_destroyer_of_cities
+				    }
+			    }
+			    random_list = {
+				    50 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+						news_event = {
+						    id = hawkins.17
+						    days = 0
+					    }
+				    }
+				    50 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			if = {
+				limit = { 
+					has_completed_focus = AFS_destroyer_of_cities
+					NOT = { 
+						has_completed_focus = AFS_leading_earths_salvation
+				    }
+				}
+			    random_list = {
+				    65 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+						news_event = {
+						    id = hawkins.17
+						    days = 0
+					    }
+				    }
+				    35 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
+			if = {
+				limit = {
+					has_completed_focus = AFS_leading_earths_salvation 
+				}
+			    random_list = {
+				    85 = {
+					    country_event = {
+						    id = hawkins.10
+						    days = 0
+					    }
+						news_event = {
+						    id = hawkins.17
+						    days = 0
+					    }
+				    }
+				    15 = {
+					    country_event = {
+						    id = hawkins.11
+						    days = 0
+					    }
+				    }
+			    }
+		    }
 		}
 	}
 }
