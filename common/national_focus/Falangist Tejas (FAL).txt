@@ -1071,7 +1071,7 @@ focus_tree = {
 		}
 		completion_reward = {
 			add_stability = 0.25
-			
+			remove_ideas = FAL_illegitimate
 		}
 	}
 	#JOSE ANTONIO PATH
@@ -2542,6 +2542,7 @@ focus_tree = {
 		}
 		mutually_exclusive = {
 			focus = FAL_continue_reconquista
+			focus = FAL_an_unthinkable_deal
 		}
 		prerequisite = {
 			focus = FAL_the_phalanx_triumphant
@@ -2560,7 +2561,7 @@ focus_tree = {
 		icon = GFX_goal_FAL_an_unthinkable_deal
 		cost = 2.00
 		x = 18
-		y = 1
+		y = 0
 		relative_position_id = FAL_tejas_first
 		available = {
 			USA = {
@@ -2569,15 +2570,17 @@ focus_tree = {
 			has_idea = FAL_conservative_coalition
 		}
 		mutually_exclusive = {
-			focus = FAL_fortify_tejas
+			focus = FAL_tejas_first
+			focus = FAL_continue_reconquista
 		}
 		prerequisite = {
-			focus = FAL_tejas_first
+			focus = FAL_the_phalanx_triumphant
 		}
 		completion_reward = {
 			USA = {
 				country_event = {
 					id = stonetoss_trump.1
+					days = 3
 				}
 			}
 			custom_effect_tooltip = FAL_usa_event_tt
@@ -2586,7 +2589,7 @@ focus_tree = {
 	#Republican-Falangist Synthesis
 	focus = {
 		id = FAL_republican_synthesis
-		icon = GFX
+		icon = GFX_goal_FAL_republican_falange_synthesis
 		cost = 2.00
 		x = 1
 		y = 1
@@ -2604,7 +2607,7 @@ focus_tree = {
 	#Stake Our Claims
 	focus = {
 		id = FAL_stake_our_claims
-		icon = GFX
+		icon = GFX_goal_FAL_stake_our_claims
 		cost = 2.00
 		x = -1
 		y = 1
@@ -2644,7 +2647,7 @@ focus_tree = {
 	#Coax Them to Attack CSA
 	focus = {
 		id = FAL_coax_into_attack
-		icon = GFX
+		icon = GFX_goal_FAL_coax_trump_into_conflict
 		cost = 2.00
 		x = -2
 		y = 1
@@ -2665,7 +2668,7 @@ focus_tree = {
 	#Trump Is Our Caudillo
 	focus = {
 		id = FAL_trump_caudillo
-		icon = GFX
+		icon = GFX_goal_FAL_trump_is_our_caudillo
 		cost = 2.00
 		x = 0
 		y = 1
@@ -2677,10 +2680,10 @@ focus_tree = {
 			focus = FAL_unity_without_union
 		}
 		prerequisite = {
-			#focus = FAL_stake_our_claims
+			focus = FAL_stake_our_claims
 		}
 		prerequisite = {
-			#focus = FAL_republican_synthesis
+			focus = FAL_republican_synthesis
 		}
 		completion_reward = {
 			USA = {
@@ -2706,7 +2709,7 @@ focus_tree = {
 	#Unity Without Union
 	focus = {
 		id = FAL_unity_without_union
-		icon = GFX
+		icon = GFX_goal_FAL_unity_without_union
 		cost = 2.00
 		x = 2
 		y = 1
@@ -2724,13 +2727,13 @@ focus_tree = {
 			focus = FAL_republican_synthesis
 		}
 		completion_reward = {
-			
+			add_stability = 0.1
 		}
 	}
 	#A More Suitable Heir?
 	focus = {
 		id = FAL_a_suitable_heir
-		icon = GFX
+		icon = GFX_goal_FAL_finding_a_suitable_heir
 		cost = 2.00
 		x = 0
 		y = 3
@@ -2738,16 +2741,13 @@ focus_tree = {
 		available = {
 			is_in_faction_with = USA
 		}
-		mutually_exclusive = {
-			focus = FAL_trump_caudillo
-		}
 		prerequisite = {
 			focus = FAL_trump_caudillo
 			focus = FAL_unity_without_union
 		}
 
 		completion_reward = {
-			
+			country_event = stonetoss_trump.9
 		}
 	}
 	focus = {
@@ -2757,10 +2757,6 @@ focus_tree = {
 		x = 3
 		y = 1
 		relative_position_id = FAL_tejas_first
-
-		mutually_exclusive = {
-			focus = FAL_an_unthinkable_deal
-		}
 		prerequisite = {
 			focus = FAL_tejas_first
 		}
@@ -2773,7 +2769,7 @@ focus_tree = {
 	focus = {
 		id = FAL_central_industrial_strategy
 		icon = GFX_goal_FAL_central_industrial_strategy
-		cost = 2.00
+		cost = 5.00
 		x = 8
 		y = 1
 		relative_position_id = FAL_fortify_tejas
@@ -2781,13 +2777,38 @@ focus_tree = {
 			focus = FAL_fortify_tejas
 		}
 		completion_reward = {
+			143 = {
+				add_building_construction = {
+				    type = industrial_complex
+				    level = 2
+				    instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+			34 = {
+				add_building_construction = {
+				    type = industrial_complex
+				    level = 2
+				    instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+			87 = {
+				add_building_construction = {
+				    type = industrial_complex
+				    level = 2
+				    instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
 
+			unlock_decision_category_tooltip = FAL_factory_relocation_cat
 		}
 	}
 	focus = {
 		id = FAL_prepare_for_the_worst
-		icon = GFX
-		cost = 2.00
+		icon = GFX_goal_FAL_prepare_for_the_worst
+		cost = 10.00
 		x = 1
 		y = 1
 		relative_position_id = FAL_central_industrial_strategy
@@ -2795,12 +2816,13 @@ focus_tree = {
 			focus = FAL_central_industrial_strategy
 		}
 		completion_reward = {
-
+			add_political_power = -100
+			unlock_decision_tooltip = FAL_put_preparations_into_effect
 		}
 	}
 	focus = {
 		id = FAL_broach_the_new_powers
-		icon = GFX
+		icon = GFX_goal_FAL_broach_the_new_powers
 		cost = 2.00
 		x = 1
 		y = 1
@@ -2809,12 +2831,12 @@ focus_tree = {
 			focus = FAL_prepare_for_the_worst
 		}
 		completion_reward = {
-
+			add_political_power = 50
 		}
 	}
 	focus = {
 		id = FAL_wagner_contacts
-		icon = GFX
+		icon = GFX_goal_FAL_wagner_contacts
 		cost = 2.00
 		x = 1
 		y = 1
@@ -2823,12 +2845,57 @@ focus_tree = {
 			focus = FAL_broach_the_new_powers
 		}
 		completion_reward = {
-
+			add_war_support = -0.05
+			add_offsite_building = { type = industrial_complex level = -1 }
+			custom_effect_tooltip = FAL_wagner_tt
+			
+			add_equipment_to_stockpile = {
+    			type = motorized_equipment
+    			amount = 1000
+    			producer = FAL
+			}
+			add_equipment_to_stockpile = {
+    			type = infantry_equipment
+    			amount = 2500
+    			producer = FAL
+			}
+			hidden_effect = {
+				division_template = {
+	    			name = "Wagner Group"
+	    			is_locked = no
+	    			#division_names_group = 
+	   				priority = 2
+	    			template_counter = 0
+	    			regiments = {
+	        			motorized = { x = 0 y = 0 }
+				        motorized = { x = 0 y = 1 }
+				        motorized = { x = 0 y = 2 }
+				        motorized = { x = 0 y = 3 }
+				        motorized = { x = 1 y = 0 }
+				        motorized = { x = 1 y = 1 }
+				        motorized = { x = 1 y = 2 }
+				        motorized = { x = 1 y = 3 }
+				    }
+				    support = {
+				        artillery = { x = 0 y = 0 }
+				    }
+				}
+				301 = {
+					create_unit = {
+					    division = "name = \"Wagner Division\" division_template = \"Wagner Group\" start_experience_factor = 0.5"
+					    owner = FAL
+					}
+					create_unit = {
+					    division = "name = \"Wagner Division\" division_template = \"Wagner Group\" start_experience_factor = 0.5"
+					    owner = FAL
+					}
+				}
+			}
 		}
 	}
 	focus = {
 		id = FAL_chinese_contractors
-		icon = GFX
+		icon = GFX_goal_FAL_chinese_contractors
 		cost = 2.00
 		x = -1
 		y = 1
@@ -2837,13 +2904,29 @@ focus_tree = {
 			focus = FAL_broach_the_new_powers
 		}
 		completion_reward = {
-
+			add_ideas = FAL_chinese_connections
+			random_core_state = {
+				add_building_construction = {
+				    type = arms_factory
+				    level = 1
+				    instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			random_core_state = {
+				add_building_construction = {
+				    type = industrial_complex
+				    level = 1
+				    instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
 		}
 	}
 	focus = {
 		id = FAL_political_social_brigade
-		icon = GFX
-		cost = 2.00
+		icon = GFX_goal_FAL_political_social_brigade
+		cost = 5.00
 		x = -1
 		y = 1
 		relative_position_id = FAL_central_industrial_strategy
@@ -2851,12 +2934,12 @@ focus_tree = {
 			focus = FAL_central_industrial_strategy
 		}
 		completion_reward = {
-
+			add_ideas = FAL_social_brigade
 		}
 	}
 	focus = {
 		id = FAL_international_phalanx
-		icon = GFX
+		icon = GFX_goal_FAL_phalanx_international
 		cost = 2.00
 		x = -1
 		y = 1
@@ -2865,12 +2948,12 @@ focus_tree = {
 			focus = FAL_political_social_brigade
 		}
 		completion_reward = {
-
+			add_political_power = 50
 		}
 	}
 	focus = {
 		id = FAL_spanish_contacts
-		icon = GFX
+		icon = GFX_goal_FAL_spanish_contacts
 		cost = 2.00
 		x = -1
 		y = 1
@@ -2879,12 +2962,14 @@ focus_tree = {
 			focus = FAL_international_phalanx
 		}
 		completion_reward = {
-
+			add_manpower = 1000
+			add_stability = 0.05
+			add_war_support = 0.05
 		}
 	}
 	focus = {
 		id = FAL_polish_contacts
-		icon = GFX
+		icon = GFX_goal_FAL_support_the_polish_falange
 		cost = 2.00
 		x = 1
 		y = 1
@@ -2893,16 +2978,20 @@ focus_tree = {
 			focus = FAL_international_phalanx
 		}
 		completion_reward = {
-
+			add_manpower = 1000
+			add_political_power = 75
 		}
 	}
 	focus = {
 		id = FAL_total_war
-		icon = GFX
+		icon = GFX_goal_FAL_total_war
 		cost = 2.00
 		x = 0
 		y = 4
 		relative_position_id = FAL_central_industrial_strategy
+		available = {
+			surrender_progress > 0.3
+		}
 		prerequisite = {
 			focus = FAL_political_social_brigade
 		}
@@ -2913,7 +3002,10 @@ focus_tree = {
 			focus = FAL_viva_tejas
 		}
 		completion_reward = {
-
+			add_manpower = 100000
+			add_war_support = 0.1
+			add_ideas = tot_economic_mobilisation
+			add_ideas = FAL_guerra_total
 		}
 	}
 	focus = {
@@ -2926,6 +3018,9 @@ focus_tree = {
 		available = {
 			CSA = {
 				exists = yes
+				NOT = {
+					has_war_with = FAL
+				}
 			}
 			NOT = {
 				has_global_flag = Dixie_Collapse_Global
@@ -2957,7 +3052,17 @@ focus_tree = {
 		x = 0
 		y = 2
 		relative_position_id = FAL_sell_off_louisiana
-
+		available = {
+			CSA = {
+				exists = yes
+				NOT = {
+					has_war_with = FAL
+				}
+			}
+			NOT = {
+				has_global_flag = Dixie_Collapse_Global
+			}
+		}
 		prerequisite = {
 			focus = FAL_sell_off_louisiana
 		}
@@ -3193,7 +3298,7 @@ focus_tree = {
 	}
 	focus = {
 		id = FAL_never_confederate
-		icon = GFX
+		icon = GFX_goal_FAL_never_confederate
 		cost = 2.00
 		x = 0
 		y = 2
@@ -3228,7 +3333,7 @@ focus_tree = {
 	}
 	focus = {
 		id = FAL_arbuckle_line
-		icon = GFX
+		icon = GFX_goal_FAL_arbuckle_line
 		cost = 2.00
 		x = 0
 		y = 1
@@ -3313,7 +3418,7 @@ focus_tree = {
 	}
 	focus = {
 		id = FAL_against_giants
-		icon = GFX
+		icon = GFX_goal_FAL_against_giants
 		cost = 2.00
 		x = 0
 		y = 1
@@ -3345,7 +3450,7 @@ focus_tree = {
 	}
 	focus = {
 		id = FAL_strengthen_albuquerque
-		icon = GFX
+		icon = GFX_goal_FAL_strengthen_alberqurque
 		cost = 2.00
 		x = 1
 		y = 1
@@ -3424,7 +3529,7 @@ focus_tree = {
 	}
 	focus = {
 		id = FAL_secure_el_paso
-		icon = GFX
+		icon = GFX_goal_FAL_secure_el_paso
 		cost = 2.00
 		x = -1
 		y = 1
@@ -3511,7 +3616,7 @@ focus_tree = {
 	}
 	focus = {
 		id = FAL_stop_the_west
-		icon = GFX
+		icon = GFX_goal_FAL_stop_the_western_hordes
 		cost = 2.00
 		x = 0
 		y = 2
@@ -3531,7 +3636,7 @@ focus_tree = {
 	}
 	focus = {
 		id = FAL_viva_tejas
-		icon = GFX
+		icon = GFX_goal_FAL_viva_tejas
 		cost = 3.00
 		x = 0
 		y = 4
@@ -3559,14 +3664,14 @@ focus_tree = {
 		y = 1
 		relative_position_id = FAL_tejas_first
 		available = {
-			OR = {
-				has_completed_focus = FAL_join_the_catholic_front
-				has_completed_focus = FAL_stay_out_of_it
-			}
+			#OR = {
+			#	has_completed_focus = FAL_join_the_catholic_front
+			#	has_completed_focus = FAL_stay_out_of_it
+			#}
 		}
 		prerequisite = {
-			focus = FAL_tejas_first
-			focus = FAL_continue_reconquista
+			#focus = FAL_tejas_first
+			#focus = FAL_continue_reconquista
 		}
 		completion_reward = {
 			add_political_power = 150
@@ -3770,6 +3875,12 @@ focus_tree = {
 		relative_position_id = FAL_economic_council_of_hispanidad
 		available = {
 			custom_trigger_tooltip = {
+            	tooltip = FAL_ech_50_unity_tt
+				check_variable = {
+			   		ech_integrity > 50
+				}
+        	}
+        	custom_trigger_tooltip = {
             	tooltip = FAL_ech_strength_tt
             	check_variable = {
 			   		ech_strength > 3
@@ -3798,6 +3909,11 @@ focus_tree = {
 				}
 			}
 			custom_effect_tooltip = FAL_ECH_buffs_tt
+			add_to_variable = {
+			    var = ech_integrity
+			    value = -20
+			    tooltip = FAL_ech_reduce_unity_20_tt
+			}
 		}
 	}
 	focus = {
@@ -3809,6 +3925,12 @@ focus_tree = {
 		relative_position_id = FAL_economic_council_of_hispanidad
 		available = {
 			custom_trigger_tooltip = {
+            	tooltip = FAL_ech_80_unity_tt
+				check_variable = {
+			   		ech_integrity > 80
+				}
+        	}
+        	custom_trigger_tooltip = {
             	tooltip = FAL_ech_strength_tt
             	check_variable = {
 			   		ech_strength > 3
@@ -3836,6 +3958,11 @@ focus_tree = {
 				}
 			}
 			custom_effect_tooltip = FAL_ECH_buffs_tt
+			add_to_variable = {
+			    var = ech_integrity
+			    value = -30
+			    tooltip = FAL_ech_reduce_unity_30_tt
+			}
 		}
 	}
 	focus = {
@@ -3847,11 +3974,18 @@ focus_tree = {
 		relative_position_id = FAL_economic_council_of_hispanidad
 		available = {
 			custom_trigger_tooltip = {
+            	tooltip = FAL_ech_30_unity_tt
+				check_variable = {
+			   		ech_integrity > 39
+				}
+        	}
+        	custom_trigger_tooltip = {
             	tooltip = FAL_ech_strength_tt
             	check_variable = {
 			   		ech_strength > 3
 				}
         	}
+        	
 		}
 		prerequisite = {
 			focus = FAL_economic_council_of_hispanidad
@@ -3874,6 +4008,11 @@ focus_tree = {
 				}
 			}
 			custom_effect_tooltip = FAL_ECH_buffs_tt
+			add_to_variable = {
+			    var = ech_integrity
+			    value = -10
+			    tooltip = FAL_ech_reduce_unity_10_tt
+			}
 		}
 	}
 	focus = {
@@ -3915,7 +4054,7 @@ focus_tree = {
 	}
 	focus = {
 		id = FAL_bulwark_against_imperialism
-		icon = GFX
+		icon = GFX_goal_FAL_bulwark_against_imperialism
 		cost = 5.00
 		x = -4
 		y = 2
@@ -3949,6 +4088,7 @@ focus_tree = {
 		}
 		mutually_exclusive = {
 			focus = FAL_tejas_first
+			focus = FAL_an_unthinkable_deal
 		}
 		prerequisite = {
 			focus = FAL_the_phalanx_triumphant
@@ -4842,7 +4982,7 @@ focus_tree = {
 		completion_reward = {
 			IF = {
 				limit = {
-					#has_completed_focus = FAL_bring_into_fold
+					has_completed_focus = FAL_bring_into_fold
 				}
 				every_state = {
 					limit = {
@@ -4861,11 +5001,11 @@ focus_tree = {
 					 	}
 					}
 					add_core_of = FAL
-				}
-				swap_ideas = {
-					remove_idea = FAL_hispanidad_close_1
-					add_idea = FAL_hispanidad_here
-				}
+				}	
+			}
+			swap_ideas = {
+				remove_idea = FAL_hispanidad_close_1
+				add_idea = FAL_hispanidad_here
 			}
 		}
 	}
@@ -4878,1144 +5018,14 @@ focus_tree = {
 		x = 49
 		y = 8
 		#relative_position_id = 
+		allow_branch = {
+			always = no
+		}
 		available = {
 			always = no
 		}
 		prerequisite = {
 
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_mop_up_falangists
-		icon = GFX_
-		cost = 5
-		x = 1
-		y = 1
-		relative_position_id = TEX_brown_berets_in_control
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_brown_berets_in_control
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_integrate_westite_cells
-		icon = GFX_
-		cost = 5
-		x = -1
-		y = 1
-		relative_position_id = TEX_brown_berets_in_control
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_brown_berets_in_control
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_montes_and_marx
-		icon = GFX_
-		cost = 5
-		x = 0
-		y = 2
-		relative_position_id = TEX_brown_berets_in_control
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_mop_up_falangists
-		}
-		prerequisite = {
-			focus = TEX_integrate_westite_cells
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_rebuild_austin
-		icon = GFX_
-		cost = 5
-		x = 0
-		y = 1
-		relative_position_id = TEX_montes_and_marx
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_montes_and_marx
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_secure_the_cities
-		icon = GFX_
-		cost = 5
-		x = -2
-		y = 1
-		relative_position_id = TEX_rebuild_austin
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_rebuild_austin
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_salvage_heavy_machinery
-		icon = GFX_
-		cost = 5
-		x = -1
-		y = 1
-		relative_position_id = TEX_secure_the_cities
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_secure_the_cities
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_secure_the_farms
-		icon = GFX_
-		cost = 5
-		x = 2
-		y = 1
-		relative_position_id = TEX_rebuild_austin
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_rebuild_austin
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_salvage_crop_yields
-		icon = GFX_
-		cost = 5
-		x = 1
-		y = 1
-		relative_position_id = TEX_secure_the_farms
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_secure_the_farms
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_reconciliation
-		icon = GFX_
-		cost = 5
-		x = 1
-		y = 1
-		relative_position_id = TEX_secure_the_cities
-		available = {
-			
-		}
-		mutually_exclusive = {
-			focus = TEX_rebuke_the_gringos
-		}
-		prerequisite = {
-			focus = TEX_secure_the_cities
-			focus = TEX_secure_the_farms
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_rebuke_the_gringos
-		icon = GFX_
-		cost = 5
-		x = 3
-		y = 1
-		relative_position_id = TEX_secure_the_cities
-		available = {
-			
-		}
-		mutually_exclusive = {
-			focus = TEX_reconciliation
-		}
-		prerequisite = {
-			focus = TEX_secure_the_cities
-			focus = TEX_secure_the_farms
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_rebuild_hispanic_communities
-		icon = GFX_
-		cost = 5
-		x = 1
-		y = 1
-		relative_position_id = TEX_rebuke_the_gringos
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_rebuke_the_gringos
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_hispanic_black_solidarity
-		icon = GFX_
-		cost = 5
-		x = 1
-		y = 1
-		relative_position_id = TEX_rebuild_hispanic_communities
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_rebuild_hispanic_communities
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_dual_reparations
-		icon = GFX_
-		cost = 5
-		x = 2
-		y = 1
-		relative_position_id = TEX_hispanic_black_solidarity
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_hispanic_black_solidarity
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_ban_white_religion
-		icon = GFX_
-		cost = 5
-		x = -1
-		y = 1
-		relative_position_id = TEX_dual_reparations
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_dual_reparations
-			focus = TEX_whites_are_racial_bourgeoisie
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_whites_are_racial_bourgeoisie
-		icon = GFX_
-		cost = 5
-		x = 0
-		y = 1
-		relative_position_id = TEX_hispanic_black_solidarity
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_hispanic_black_solidarity
-		}
-		prerequisite = {
-			focus = TEX_government_mandated_collectives
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_redistribute_land
-		icon = GFX_
-		cost = 5
-		x = 1
-		y = 1
-		relative_position_id = TEX_reconciliation
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_reconciliation
-			focus = TEX_rebuke_the_gringos
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_government_mandated_collectives
-		icon = GFX_
-		cost = 5
-		x = 0
-		y = 1
-		relative_position_id = TEX_redistribute_land
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_redistribute_land
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_a_red_constitution
-		icon = GFX_
-		cost = 5
-		x = 0
-		y = 1
-		relative_position_id = TEX_government_mandated_collectives
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_government_mandated_collectives
-		}
-		prerequisite = {
-			focus = TEX_we_are_all_proletariat
-			focus = TEX_hispanic_black_solidarity
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_even_handed_rebuilding
-		icon = GFX_
-		cost = 5
-		x = -1
-		y = 1
-		relative_position_id = TEX_reconciliation
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_reconciliation
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_we_are_all_proletariat
-		icon = GFX_
-		cost = 5
-		x = -1
-		y = 1
-		relative_position_id = TEX_even_handed_rebuilding
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_even_handed_rebuilding
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_race_harmony
-		icon = GFX_
-		cost = 5
-		x = 0
-		y = 1
-		relative_position_id = TEX_we_are_all_proletariat
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_government_mandated_collectives
-		}
-		prerequisite = {
-			focus = TEX_we_are_all_proletariat
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_socialism_with_a_human_face
-		icon = GFX_
-		cost = 5
-		x = -1
-		y = 1
-		relative_position_id = TEX_a_red_constitution
-		available = {
-			
-		}
-		mutually_exclusive = {
-			focus = TEX_dictatorship_of_the_proletariat
-		}
-		prerequisite = {
-			focus = TEX_a_red_constitution
-		}
-		prerequisite = {
-			focus = TEX_race_harmony
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_dictatorship_of_the_proletariat
-		icon = GFX_
-		cost = 5
-		x = 1
-		y = 1
-		relative_position_id = TEX_a_red_constitution
-		available = {
-			
-		}
-		mutually_exclusive = {
-			focus = TEX_socialism_with_a_human_face
-		}
-		prerequisite = {
-			focus = TEX_a_red_constitution
-		}
-		prerequisite = {
-			focus = TEX_whites_are_racial_bourgeoisie
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_reverse_gentrification
-		icon = GFX_
-		cost = 5
-		x = 0
-		y = 2
-		relative_position_id = TEX_a_red_constitution
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_dictatorship_of_the_proletariat
-			focus = TEX_socialism_with_a_human_face
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_nationalize_halliburton
-		icon = GFX_
-		cost = 5
-		x = 0
-		y = 1
-		relative_position_id = TEX_reverse_gentrification
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_reverse_gentrification
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_implement_quotas
-		icon = GFX_
-		cost = 5
-		x = -1
-		y = 1
-		relative_position_id = TEX_nationalize_halliburton
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_nationalize_halliburton
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_texan_industrial_might
-		icon = GFX_
-		cost = 5
-		x = 1
-		y = 1
-		relative_position_id = TEX_nationalize_halliburton
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_nationalize_halliburton
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_rev_the_red_war_machine
-		icon = GFX_
-		cost = 5
-		x = -1
-		y = 1
-		relative_position_id = TEX_texan_industrial_might
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_texan_industrial_might
-		}
-		prerequisite = {
-			focus = TEX_implement_quotas
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_a_texan_reconquista
-		icon = GFX_
-		cost = 5
-		x = 5
-		y = 1
-		relative_position_id = TEX_dictatorship_of_the_proletariat
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_dictatorship_of_the_proletariat
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_red_aztecs
-		icon = GFX_
-		cost = 5
-		x = 11
-		y = 2
-		relative_position_id = TEX_dictatorship_of_the_proletariat
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_a_texan_reconquista
-			focus = TEX_the_ometeotl_plan
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_show_them_barbarianism
-		icon = GFX_
-		cost = 5
-		x = -1
-		y = 1
-		relative_position_id = TEX_red_aztecs
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_red_aztecs
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_new_chimalli
-		icon = GFX_
-		cost = 5
-		x = -1
-		y = 1
-		relative_position_id = TEX_show_them_barbarianism
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_show_them_barbarianism
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_war_rituals
-		icon = GFX_
-		cost = 5
-		x = 1
-		y = 1
-		relative_position_id = TEX_red_aztecs
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_red_aztecs
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_real_eagle_warriors
-		icon = GFX_
-		cost = 5
-		x = 1
-		y = 1
-		relative_position_id = TEX_war_rituals
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_war_rituals
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_fill_the_cuauhxicalli
-		icon = GFX_
-		cost = 5
-		x = 0
-		y = 2
-		relative_position_id = TEX_red_aztecs
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_show_them_barbarianism
-		}
-		prerequisite = {
-			focus = TEX_war_rituals
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_harness_huitzilopochtli_power 
-		icon = GFX_
-		cost = 5
-		x = 0
-		y = 1
-		relative_position_id = TEX_fill_the_cuauhxicalli
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_fill_the_cuauhxicalli
-		}
-		prerequisite = {
-			focus = TEX_real_eagle_warriors
-		}
-		prerequisite = {
-			focus = TEX_new_chimalli
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_seize_their_businesses
-		icon = GFX_
-		cost = 5
-		x = 2
-		y = 1
-		relative_position_id = TEX_a_texan_reconquista
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_a_texan_reconquista
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_take_their_homes
-		icon = GFX_
-		cost = 5
-		x = 1
-		y = 1
-		relative_position_id = TEX_seize_their_businesses
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_seize_their_businesses
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_a_counter_settler_society
-		icon = GFX_
-		cost = 5
-		x = -1
-		y = 1
-		relative_position_id = TEX_take_their_homes
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_take_their_homes
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_brown_beret_secret_police
-		icon = GFX_
-		cost = 5
-		x = -2
-		y = 1
-		relative_position_id = TEX_a_texan_reconquista
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_a_texan_reconquista
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_routine_disappearances
-		icon = GFX_
-		cost = 5
-		x = -1
-		y = 1
-		relative_position_id = TEX_brown_beret_secret_police
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_brown_beret_secret_police
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_eyes_on_all_streets
-		icon = GFX_
-		cost = 5
-		x = 1
-		y = 1
-		relative_position_id = TEX_routine_disappearances
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_routine_disappearances
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_a_final_solution
-		icon = GFX_
-		cost = 5
-		x = 0
-		y = 1
-		relative_position_id = TEX_a_texan_reconquista
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_a_texan_reconquista
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_forced_sterilization
-		icon = GFX_
-		cost = 5
-		x = -1
-		y = 1
-		relative_position_id = TEX_a_final_solution
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_a_final_solution
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_the_killing_fields
-		icon = GFX_
-		cost = 5
-		x = 1
-		y = 1
-		relative_position_id = TEX_a_final_solution
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_a_final_solution
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_the_brown_pol_pot
-		icon = GFX_
-		cost = 5
-		x = 0
-		y = 2
-		relative_position_id = TEX_a_final_solution
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_forced_sterilization
-		}
-		prerequisite = {
-			focus = TEX_the_killing_fields
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_a_true_white_genocide
-		icon = GFX_
-		cost = 5
-		x = -1
-		y = 1
-		relative_position_id = TEX_the_brown_pol_pot
-		available = {
-			
-		}
-		mutually_exclusive = {
-			focus = TEX_we_need_labor
-		}
-		prerequisite = {
-			focus = TEX_the_brown_pol_pot
-		}
-		prerequisite = {
-			focus = TEX_eyes_on_all_streets
-		}
-		prerequisite = {
-			focus = TEX_a_counter_settler_society
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_we_need_labor
-		icon = GFX_
-		cost = 5
-		x = 1
-		y = 1
-		relative_position_id = TEX_the_brown_pol_pot
-		mutually_exclusive = {
-			focus = TEX_a_true_white_genocide
-		}
-		prerequisite = {
-			focus = TEX_the_brown_pol_pot
-		}
-		prerequisite = {
-			focus = TEX_eyes_on_all_streets
-		}
-		prerequisite = {
-			focus = TEX_a_counter_settler_society
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_la_raza_secured
-		icon = GFX_
-		cost = 5
-		x = -1
-		y = 1
-		relative_position_id = TEX_we_need_labor
-		prerequisite = {
-			focus = TEX_we_need_labor
-		}
-		prerequisite = {
-			focus = TEX_a_true_white_genocide
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_the_ometeotl_plan 
-		icon = GFX_
-		cost = 5
-		x = 17
-		y = 1
-		relative_position_id = TEX_dictatorship_of_the_proletariat
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_dictatorship_of_the_proletariat
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_follow_quetzalcoatl
-		icon = GFX_
-		cost = 5
-		x = 2
-		y = 1
-		relative_position_id = TEX_the_ometeotl_plan
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_the_ometeotl_plan
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_wind_and_solar_power
-		icon = GFX_
-		cost = 5
-		x = 1
-		y = 1
-		relative_position_id = TEX_follow_quetzalcoatl
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_follow_quetzalcoatl
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_quetzalcoatls_wisdom
-		icon = GFX_
-		cost = 5
-		x = -1
-		y = 1
-		relative_position_id = TEX_wind_and_solar_power
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_wind_and_solar_power
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_follow_tezcatlipoca
-		icon = GFX_
-		cost = 5
-		x = 0
-		y = 1
-		relative_position_id = TEX_the_ometeotl_plan
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_the_ometeotl_plan
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_guns_over_spears
-		icon = GFX_
-		cost = 5
-		x = -1
-		y = 1
-		relative_position_id = TEX_follow_tezcatlipoca
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_follow_tezcatlipoca
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_modern_obsidian
-		icon = GFX_
-		cost = 5
-		x = 1
-		y = 1
-		relative_position_id = TEX_follow_tezcatlipoca
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_follow_tezcatlipoca
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_like_a_jaguar
-		icon = GFX_
-		cost = 5
-		x = 0
-		y = 2
-		relative_position_id = TEX_follow_tezcatlipoca
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_modern_obsidian
-		}
-		prerequisite = {
-			focus = TEX_guns_over_spears
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_follow_xipe_totec
-		icon = GFX_
-		cost = 5
-		x = -2
-		y = 1
-		relative_position_id = TEX_the_ometeotl_plan
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_the_ometeotl_plan
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_farm_bisons
-		icon = GFX_
-		cost = 5
-		x = -1
-		y = 1
-		relative_position_id = TEX_follow_xipe_totec
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_follow_xipe_totec
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_floating_gardens
-		icon = GFX_
-		cost = 5
-		x = 1
-		y = 1
-		relative_position_id = TEX_farm_bisons
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_farm_bisons
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_prepare_the_sixth_sun
-		icon = GFX_
-		cost = 5
-		x = 0
-		y = 1
-		relative_position_id = TEX_like_a_jaguar
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_floating_gardens
-		}
-		prerequisite = {
-			focus = TEX_like_a_jaguar
-		}
-		prerequisite = {
-			focus = TEX_quetzalcoatls_wisdom
-		}
-		completion_reward = {
-			
-		}
-	}
-	focus = {
-		id = TEX_omeyocan 
-		icon = GFX_
-		cost = 5
-		x = 3
-		y = 1
-		relative_position_id = TEX_harness_huitzilopochtli_power
-		available = {
-			
-		}
-		prerequisite = {
-			focus = TEX_harness_huitzilopochtli_power
-		}
-		prerequisite = {
-			focus = TEX_prepare_the_sixth_sun
 		}
 		completion_reward = {
 			
