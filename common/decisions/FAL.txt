@@ -2,6 +2,9 @@ FAL_ECH_cat = {
 
 	FAL_invite_ech = {
 		
+		allowed = {
+			original_tag = FAL
+		}
 		target_root_trigger = {
 	        has_completed_focus = FAL_economic_council_of_hispanidad
 	    }
@@ -12,6 +15,7 @@ FAL_ECH_cat = {
 	            has_opinion_modifier = fal_diplomacy
 	        }
 	    }
+
 	    available = {
 	    	has_completed_focus = FAL_economic_council_of_hispanidad
 	    	NOT = {
@@ -41,6 +45,696 @@ FAL_ECH_cat = {
 	        	}
 	        }
 	        clr_country_flag = ech_doing_shit
+	   	}
+	}
+	FAL_ech_investment = {
+
+		icon = generic_industry
+
+		priority = 97
+
+		allowed = {
+			original_tag = FAL
+		}
+		available = {
+			num_of_available_civilian_factories > 1
+		}
+ 
+		targets = { WMX GUA HON ELS NIC COS CHI PAN COL VEN DOM CUB }
+	    #targets_dynamic = yes
+	    target_trigger = {
+	        FROM = {
+	           has_dynamic_modifier = {
+				    modifier = FAL_ech
+				}
+	        }
+	    }
+
+		cost = 25
+
+		days_re_enable = 100
+
+		days_remove = 35
+
+		ai_will_do = {
+			base = 200
+		}
+
+		modifier = {
+			civilian_factory_use = 2
+		}
+
+		complete_effect = {
+
+		}
+
+		remove_effect = {
+			FROM = {
+				random_core_state = {
+					add_building_construction = {
+					    type = industrial_complex
+					    level = 1
+					    instant_build = yes
+					}
+					add_extra_state_shared_building_slots = 1
+				}
+			}
+			add_to_variable = {
+			    var = ech_integrity
+			    value = 5
+			    tooltip = FAL_ech_add_unity_5_tt
+			}
+		}
+	}
+
+	FAL_ech_promote_coop = {
+
+		icon = generic_consumer_goods
+
+		priority = 100
+
+		allowed = {
+			original_tag = FAL
+		}
+
+		available = {
+		    custom_trigger_tooltip = {
+            	tooltip = FAL_ech_25_unity_tt
+				check_variable = {
+			   		ech_integrity > 25
+				}
+        	}
+        	NOT = {
+        		has_country_flag = FAL_economic_stuff
+        	}
+	    }
+
+		custom_cost_trigger = { 
+		    check_variable {
+		    	ech_integrity > 9
+		    }
+		} 
+
+		custom_cost_text = FAL_need_10_integrity
+
+		days_re_enable = 70
+
+		days_remove = 100
+
+		ai_will_do = {
+			base = 200
+		}
+
+		complete_effect = {
+			add_to_variable = {
+			    var = ech_integrity
+			    value = -10
+			    tooltip = FAL_ech_reduce_unity_10_tt
+			}
+			set_country_flag = FAL_economic_stuff
+		}
+
+		modifier = {
+	    	political_power_factor = -0.1
+	    }
+
+		remove_effect = {
+			subtract_from_variable = {
+				var = ech_consumer
+				value = 0.05
+				tooltip = FAL_consumer_decrease_5_tt
+			}
+			clr_country_flag = FAL_economic_stuff
+			hidden_effect = {
+				every_country = {
+					limit = {
+						OR = {
+							TAG = XMC
+							TAG = GUA
+							TAG = HON
+							TAG = ELS
+							TAG = NIC
+							TAG = COS
+							TAG = CHI
+							TAG = PAN
+							TAG = COL
+							TAG = VEN
+							TAG = CUB
+							TAG = DOM
+						}	
+					}	
+					subtract_from_variable = {
+						var = ech_consumer
+						value = 0.05
+						tooltip = FAL_consumer_decrease_5_tt
+					}
+				}
+			}	
+		}	
+	}
+	FAL_ech_promote_expertise = {
+
+		icon = generic_merge_plant_materiel
+
+		priority = 99
+
+		allowed = {
+			original_tag = FAL
+		}
+
+		available = {
+		    custom_trigger_tooltip = {
+            	tooltip = FAL_ech_25_unity_tt
+				check_variable = {
+			   		ech_integrity > 25
+				}
+        	}
+        	NOT = {
+        		has_country_flag = FAL_economic_stuff
+        	}
+	    }
+
+		custom_cost_trigger = { 
+		    check_variable {
+		    	ech_integrity > 9
+		    }
+		} 
+
+		custom_cost_text = FAL_need_10_integrity
+
+		days_re_enable = 70
+
+		days_remove = 100
+
+		ai_will_do = {
+			base = 200
+		}
+
+		complete_effect = {
+			add_to_variable = {
+			    var = ech_integrity
+			    value = -10
+			    tooltip = FAL_ech_reduce_unity_10_tt
+			}
+			set_country_flag = FAL_economic_stuff
+		}
+
+		modifier = {
+	    	political_power_factor = -0.1
+	    }
+
+		remove_effect = {
+			add_to_variable = {
+				var = ech_factory
+				value = 0.05
+				tooltip = FAL_factory_increase_5_tt
+			}
+
+			clr_country_flag = FAL_economic_stuff
+			hidden_effect = {
+				every_country = {
+					limit = {
+						OR = {
+							TAG = XMC
+							TAG = GUA
+							TAG = HON
+							TAG = ELS
+							TAG = NIC
+							TAG = COS
+							TAG = CHI
+							TAG = PAN
+							TAG = COL
+							TAG = VEN
+							TAG = CUB
+							TAG = DOM
+						}	
+					}	
+					add_to_variable = {
+						var = ech_factory
+						value = 0.05
+						tooltip = FAL_factory_increase_5_tt
+					}
+				}
+			}	
+		}	
+	}
+	FAL_ech_promote_construction = {
+
+		icon = generic_construction
+
+		priority = 98
+
+		allowed = {
+			original_tag = FAL
+		}
+
+		available = {
+		    custom_trigger_tooltip = {
+            	tooltip = FAL_ech_25_unity_tt
+				check_variable = {
+			   		ech_integrity > 25
+				}
+        	}
+        	NOT = {
+        		has_country_flag = FAL_economic_stuff
+        	}
+	    }
+
+		custom_cost_trigger = { 
+		    check_variable {
+		    	ech_integrity > 9
+		    }
+		} 
+
+		custom_cost_text = FAL_need_10_integrity
+
+		days_re_enable = 70
+
+		days_remove = 100
+
+		ai_will_do = {
+			base = 200
+		}
+
+		complete_effect = {
+			add_to_variable = {
+			    var = ech_integrity
+			    value = -10
+			    tooltip = FAL_ech_reduce_unity_10_tt
+			}
+			set_country_flag = FAL_economic_stuff
+		}
+
+		modifier = {
+	    	political_power_factor = -0.1
+	    }
+
+		remove_effect = {
+			add_to_variable = {
+				var = ech_construction
+				value = 0.05
+				tooltip = FAL_construction_increase_5_tt
+			}
+
+			clr_country_flag = FAL_economic_stuff
+			hidden_effect = {
+				every_country = {
+					limit = {
+						OR = {
+							TAG = XMC
+							TAG = GUA
+							TAG = HON
+							TAG = ELS
+							TAG = NIC
+							TAG = COS
+							TAG = CHI
+							TAG = PAN
+							TAG = COL
+							TAG = VEN
+							TAG = CUB
+							TAG = DOM
+						}	
+					}	
+					add_to_variable = {
+						var = ech_construction
+						value = 0.05
+						tooltip = FAL_construction_increase_5_tt
+					}
+				}
+			}	
+		}	
+	}
+}
+
+FAL_factory_relocation_cat = {
+	FAL_relocate_oklahoma = {
+		
+		state_target = yes
+
+		#targets = { core_states }
+
+		target_trigger = {
+			FROM = {
+				is_owned_by = ROOT
+				#is_core_of = ROOT
+				is_fully_controlled_by = ROOT
+				OR = {
+					state = 272
+					state = 259
+					state = 278
+				}
+				infrastructure > 2
+				OR = {
+	    			arms_factory > 0
+	    			industrial_complex > 0
+	    		}
+			}
+		}
+
+		target_root_trigger = {
+			original_tag = FAL
+			#has_completed_focus = SOV_move_industry_to_the_urals
+			has_civil_war = no
+		}
+
+	    available = {
+	    	has_war_with = USA
+	    	has_equipment = {
+			    train_equipment > 4
+			}
+
+	    }
+	    visible = {
+	    	original_tag = FAL
+		}
+	    icon = generic_factory
+	    cost = 25
+	    days_remove = 35
+	    fire_only_once = yes
+	    modifier = {
+	    	industrial_capacity_factory = -0.01
+	    }
+	    complete_effect = {
+	    	FROM = {
+	       		remove_building = {
+					type = arms_factory
+					level = 1
+				}
+				remove_building = {
+					type = industrial_complex
+					level = 1
+				}
+	       	}
+	       	add_equipment_to_stockpile = {
+			    type = train_equipment
+			    amount = -5
+			}
+	    }
+	    remove_effect = {
+	       IF = {
+	       		limit = {
+	       			FROM = {
+	       				arms_factory > 0
+	       			}
+	       		}
+	       		87 = {
+	       			add_building_construction = {
+				    	type = arms_factory
+				    	level = 1
+				    	instant_build = yes
+					}
+	       		}
+	       }
+	       IF = {
+	       		limit = {
+	       			FROM = {
+	       				industrial_complex > 0
+	       			}
+	       		}
+	       		87 = {
+	       			add_building_construction = {
+				    	type = industrial_complex
+				    	level = 1
+				    	instant_build = yes
+					}
+	       		}
+	       }
+	       add_equipment_to_stockpile = {
+			    type = train_equipment
+			    amount = 5
+			}
+	   	}
+	}
+	FAL_relocate_louisiana = {
+
+		state_target = yes
+
+		#targets = { core_states }
+
+		target_trigger = {
+			FROM = {
+				is_owned_by = ROOT
+				#is_core_of = ROOT
+				is_fully_controlled_by = ROOT
+				OR = {
+					state = 312
+					state = 610
+				}
+				infrastructure > 2
+				OR = {
+	    			arms_factory > 0
+	    			industrial_complex > 0
+	    		}
+			}
+		}
+
+		target_root_trigger = {
+			original_tag = FAL
+			#has_completed_focus = SOV_move_industry_to_the_urals
+			has_civil_war = no
+		}
+
+	    available = {
+	    	has_war_with = CSA
+	    	has_equipment = {
+			    train_equipment > 4
+			}
+
+	    }
+	    visible = {
+	    	original_tag = FAL
+		}
+	    icon = generic_factory
+	    cost = 25
+	    days_remove = 35
+	    fire_only_once = yes
+	    modifier = {
+	    	industrial_capacity_factory = -0.01
+	    }
+	    complete_effect = {
+	    	FROM = {
+	       		remove_building = {
+					type = arms_factory
+					level = 1
+				}
+				remove_building = {
+					type = industrial_complex
+					level = 1
+				}
+	       	}
+	       	add_equipment_to_stockpile = {
+			    type = train_equipment
+			    amount = -5
+			}
+	    }
+	    remove_effect = {
+	       IF = {
+	       		limit = {
+	       			FROM = {
+	       				arms_factory > 0
+	       			}
+	       		}
+	       		34 = {
+	       			add_building_construction = {
+				    	type = arms_factory
+				    	level = 1
+				    	instant_build = yes
+					}
+	       		}
+	       }
+	       IF = {
+	       		limit = {
+	       			FROM = {
+	       				industrial_complex > 0
+	       			}
+	       		}
+	       		34 = {
+	       			add_building_construction = {
+				    	type = industrial_complex
+				    	level = 1
+				    	instant_build = yes
+					}
+	       		}
+	       }
+	       add_equipment_to_stockpile = {
+			    type = train_equipment
+			    amount = 5
+			}
+	   	}
+	}
+	FAL_relocate_new_mexico = {
+
+		state_target = yes
+
+		#targets = { core_states }
+
+		target_trigger = {
+			FROM = {
+				is_owned_by = ROOT
+				#is_core_of = ROOT
+				is_fully_controlled_by = ROOT
+				OR = {
+					state = 310
+					state = 335
+					state = 249
+				}
+				infrastructure > 2
+				OR = {
+	    			arms_factory > 0
+	    			industrial_complex > 0
+	    		}
+			}
+		}
+
+		target_root_trigger = {
+			original_tag = FAL
+			#has_completed_focus = SOV_move_industry_to_the_urals
+			has_civil_war = no
+		}
+
+	    available = {
+	    	has_war_with = CSA
+	    	has_equipment = {
+			    train_equipment > 4
+			}
+
+	    }
+	    visible = {
+	    	original_tag = FAL
+		}
+	    icon = generic_factory
+	    cost = 25
+	    days_remove = 35
+	    fire_only_once = yes
+	    modifier = {
+	    	industrial_capacity_factory = -0.01
+	    }
+	    complete_effect = {
+	    	FROM = {
+	       		remove_building = {
+					type = arms_factory
+					level = 1
+				}
+				remove_building = {
+					type = industrial_complex
+					level = 1
+				}
+	       	}
+	       	add_equipment_to_stockpile = {
+			    type = train_equipment
+			    amount = -5
+			}
+	    }
+	    remove_effect = {
+	       IF = {
+	       		limit = {
+	       			FROM = {
+	       				arms_factory > 0
+	       			}
+	       		}
+	       		143 = {
+	       			add_building_construction = {
+				    	type = arms_factory
+				    	level = 1
+				    	instant_build = yes
+					}
+	       		}
+	       }
+	       IF = {
+	       		limit = {
+	       			FROM = {
+	       				industrial_complex > 0
+	       			}
+	       		}
+	       		143 = {
+	       			add_building_construction = {
+				    	type = industrial_complex
+				    	level = 1
+				    	instant_build = yes
+					}
+	       		}
+	       }
+	       add_equipment_to_stockpile = {
+			    type = train_equipment
+			    amount = 5
+			}
+	   	}
+	}
+	FAL_put_preparations_into_effect = {
+		
+	    available = {
+	    	has_war_with_major = yes
+	    }
+
+	    visible = {
+	    	original_tag = FAL
+	    	#has_completed_focus = FAL_prepare_for_the_worst
+		}
+	    icon = ger_military_buildup
+	    #cost = 0
+	    days_remove = 14
+	    fire_only_once = yes
+	    modifier = {
+	    	industrial_capacity_factory = 0.50
+	    }
+	    complete_effect = {
+	    	add_political_power = 100
+	    }
+	    remove_effect = {
+	       add_manpower = 150000
+	       add_equipment_to_stockpile = {
+			    type = infantry_equipment
+			    amount = 10000
+			    producer = FAL
+			}
+			add_equipment_to_stockpile = {
+			    type = support_equipment
+			    amount = 5000
+			    producer = FAL
+			}
+			add_equipment_to_stockpile = {
+			    type = artillery_equipment
+			    amount = 1000
+			    producer = FAL
+			}
+	   	}
+	}
+	FAL_war_games = {
+		
+	    available = {
+	    	NOT = {
+	    		has_war = yes
+	    	}
+		    command_power > 9
+	    }
+
+		custom_cost_trigger = { #replace cost = 50 by custom cost trigger = {}
+		    command_power > 9 
+		} 
+
+		custom_cost_text = FAL_need_10_cp
+
+	    visible = {
+	    	original_tag = FAL
+	    	#has_completed_focus = FAL_prepare_for_the_worst
+		}
+
+	    icon = generic_operation
+	    days_remove = 30
+	    days_re_enable = 30
+	    modifier = {
+	    	experience_gain_army = 0.05
+	    }
+	    complete_effect = {
+	    	add_command_power = -10
+	    }
+	    remove_effect = {
+	     	army_experience = 25
+	     	add_doctrine_cost_reduction = {
+				cost_reduction = 0.1
+				uses = 1
+				category = land_doctrine
+			}
 	   	}
 	}
 }
