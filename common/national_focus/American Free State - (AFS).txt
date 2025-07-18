@@ -60,7 +60,7 @@ focus_tree = {
 		}
 		offset = {
 			x = 27
-			y = 1
+			y = 0
 			trigger = {
 				has_completed_focus = AFS_againist_tyranny
 			}
@@ -95,7 +95,7 @@ focus_tree = {
 		}
 		offset = {
 			x = -27
-			y = 1
+			y = 0
 			trigger = {
 				has_completed_focus = AFS_againist_lawlessness
 			}
@@ -1751,6 +1751,7 @@ focus_tree = {
                     amount = 5
                 }	
 		    }
+			add_research_slot = 1
 			add_to_variable = {
 				var = AFS.var_research_level
 				value = 0.05
@@ -2203,7 +2204,7 @@ focus_tree = {
 		}
 		offset = {
 			x = -19
-			y = 1
+			y = 0
 			trigger = {
 				has_completed_focus = AFS_againist_lawlessness
 			}
@@ -2256,7 +2257,7 @@ focus_tree = {
 		}
 		offset = {
 			x = 19
-			y = 1
+			y = 0
 			trigger = {
 				has_completed_focus = AFS_againist_lawlessness
 			}
@@ -2321,10 +2322,25 @@ focus_tree = {
 				modifier = AFS_anything_and_everything_dynamic_modifier
 			}
 			add_ideas = AFS_green_terror_state
+			set_rule = { can_join_factions = no }
+            set_rule = { can_create_factions = no }
 			country_event = {
 				id = hawkins.8
 				days = 0
 			}
+			hidden_effect = {
+			    country_event = {
+				    id = hawkins.18
+				    days = 80
+			    }
+				every_possible_country = {
+					limit = { is_ai = yes }
+					add_relation_modifier = {
+                        target = AFS
+                        modifier = AFS_green_terror_state
+                    }
+				}
+		    }
 		}
 	}
 
@@ -2839,6 +2855,10 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
+			swap_ideas = {
+			    remove_idea = Ruins_of_the_Rust_Belt
+			    add_idea = Ruins_of_the_Rust_Belt_2
+		    }
 		    random_controlled_state = {
 				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
 				add_extra_state_shared_building_slots = 2
@@ -2869,7 +2889,7 @@ focus_tree = {
 		completion_reward = {
 		    add_to_variable = {
 				var = AFS.var_equipment_capture_level
-				value = 0.05
+				value = 0.1
 				tooltip = AFS_increase_equipment_capture_var_tt
 			}
 		}
@@ -2891,6 +2911,7 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
+			add_research_slot = 1
 		    add_to_variable = {
 				var = AFS.var_equipment_capture_level
 				value = 0.05
@@ -3117,6 +3138,10 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
+			swap_ideas = {
+			    remove_idea = Ruins_of_the_Rust_Belt_2
+			    add_idea = Ruins_of_the_Rust_Belt_3
+		    }
 			swap_ideas = {
 			    remove_idea = AFS_terra_weapons_3
 			    add_idea = AFS_terra_weapons_4
@@ -3538,7 +3563,10 @@ focus_tree = {
 			has_completed_focus = AFS_for_terra_and_humanity
 		}
 		completion_reward = {
-		
+		    swap_ideas = {
+			    remove_idea = AFS_the_green_army_weakened
+			    add_idea = AFS_the_green_army_1
+		    }
 		}
 	}
 
@@ -3558,7 +3586,19 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    if = {
+			    limit = { has_idea = AFS_the_green_army_2 }
+				swap_ideas = {
+			        remove_idea = AFS_the_green_army_2
+			        add_idea = AFS_the_green_army_3
+		        }
+			}
+		    else = {
+			    swap_ideas = {
+			        remove_idea = AFS_the_green_army_1
+			        add_idea = AFS_the_green_army_2
+		        }
+			}
 		}
 	}
 
@@ -3581,7 +3621,20 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+			if = {
+			    limit = { has_idea = AFS_the_green_army_2 }
+				swap_ideas = {
+			        remove_idea = AFS_the_green_army_2
+			        add_idea = AFS_the_green_army_3
+		        }
+			}
+		    else = {
+			    swap_ideas = {
+			        remove_idea = AFS_the_green_army_1
+			        add_idea = AFS_the_green_army_2
+		        }
+			}
+			add_manpower = 115000
 		}
 	}
 
@@ -3604,7 +3657,10 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    swap_ideas = {
+			    remove_idea = AFS_the_green_army_3
+			    add_idea = AFS_the_green_army_4
+		    }
 		}
 	}
 
@@ -3631,7 +3687,7 @@ focus_tree = {
             }
 		}
 		completion_reward = {
-		
+		    
 		}
 	}
 
@@ -3651,7 +3707,11 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    add_ideas = AFS_ecological_dictatorship
+			country_event = {
+				id = hawkins.22
+				days = 0
+			}
 		}
 	}
 
@@ -3671,7 +3731,14 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    swap_ideas = {
+			    remove_idea = AFS_ecological_dictatorship
+			    add_idea = AFS_ecological_dictatorship_2
+		    }
+			swap_ideas = {
+			    remove_idea = AFS_ruins_of_the_triumvirate
+			    add_idea = AFS_ruins_of_the_triumvirate_2
+		    }
 		}
 	}
 
@@ -3691,7 +3758,11 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+			add_popularity = {
+                ideology = authoritarian_left
+                popularity = 0.1
+            }
+			add_stability = -0.05
 		}
 	}
 
@@ -3711,7 +3782,11 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    add_ideas = AFS_environmentalist_socitey
+			swap_ideas = {
+			    remove_idea = AFS_a_scarred_population
+			    add_idea = AFS_a_scarred_population_2
+		    }
 		}
 	}
 
@@ -3731,7 +3806,14 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    swap_ideas = {
+			    remove_idea = AFS_environmentalist_socitey
+			    add_idea = AFS_environmentalist_socitey_2
+		    }
+			swap_ideas = {
+			    remove_idea = AFS_a_scarred_population_2
+			    add_idea = AFS_a_scarred_population_3
+		    }
 		}
 	}
 
@@ -3754,7 +3836,32 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    if = {
+			    limit = { has_idea = AFS_ecological_dictatorship_3 }
+				swap_ideas = {
+			        remove_idea = AFS_ecological_dictatorship_3
+			        add_idea = AFS_ecological_dictatorship_4
+		        }
+			}
+		    else = {
+			    swap_ideas = {
+			        remove_idea = AFS_ecological_dictatorship_2
+			        add_idea = AFS_ecological_dictatorship_3
+		        }
+			}
+			if = {
+			    limit = { has_idea = AFS_ruins_of_the_triumvirate_3 }
+				swap_ideas = {
+			        remove_idea = AFS_ruins_of_the_triumvirate_3
+			        add_idea = AFS_ruins_of_the_triumvirate_4
+		        }
+			}
+		    else = {
+			    swap_ideas = {
+			        remove_idea = AFS_ruins_of_the_triumvirate_2
+			        add_idea = AFS_ruins_of_the_triumvirate_3
+		        }
+			}
 		}
 	}
 
@@ -3777,7 +3884,32 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    if = {
+			    limit = { has_idea = AFS_ecological_dictatorship_3 }
+				swap_ideas = {
+			        remove_idea = AFS_ecological_dictatorship_3
+			        add_idea = AFS_ecological_dictatorship_4
+		        }
+			}
+		    else = {
+			    swap_ideas = {
+			        remove_idea = AFS_ecological_dictatorship_2
+			        add_idea = AFS_ecological_dictatorship_3
+		        }
+			}
+			if = {
+			    limit = { has_idea = AFS_ruins_of_the_triumvirate_3 }
+				swap_ideas = {
+			        remove_idea = AFS_ruins_of_the_triumvirate_3
+			        add_idea = AFS_ruins_of_the_triumvirate_4
+		        }
+			}
+		    else = {
+			    swap_ideas = {
+			        remove_idea = AFS_ruins_of_the_triumvirate_2
+			        add_idea = AFS_ruins_of_the_triumvirate_3
+		        }
+			}
 		}
 	}
 
@@ -3797,7 +3929,13 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+			unlock_decision_tooltip = AFS_create_our_own_firewall
+		    unlock_decision_tooltip = AFS_shut_down_unloyal_news_stations
+			unlock_decision_tooltip = AFS_ban_anti_green_media
+			hidden_effect = {
+			    set_country_flag = AFS_hawkins_political_decision_1
+			    set_country_flag = AFS_hawkins_political_decision_2
+			}
 		}
 	}
 
@@ -3820,7 +3958,18 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    add_popularity = {
+                ideology = authoritarian_left
+                popularity = 0.1
+            }
+			unlock_decision_tooltip = AFS_expand_the_surveillance_state
+		    unlock_decision_tooltip = AFS_watch_through_their_electronics
+			unlock_decision_tooltip = AFS_crackdown_on_unlawful_activities
+			hidden_effect = {
+			    set_country_flag = AFS_hawkins_political_decision_3
+			    set_country_flag = AFS_hawkins_political_decision_4
+				set_country_flag = AFS_hawkins_political_decision_5
+			}
 		}
 	}
 
@@ -3843,7 +3992,20 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    swap_ideas = {
+			    remove_idea = AFS_ecological_dictatorship_4
+			    add_idea = AFS_ecological_dictatorship_5
+		    }
+			swap_ideas = {
+			    remove_idea = AFS_ruins_of_the_triumvirate_4
+			    add_idea = AFS_ruins_of_the_triumvirate_5
+		    }
+			hidden_effect = {
+			    country_event = {
+				    id = hawkins.23
+				    days = 0
+			    }
+		    }
 		}
 	}
 
@@ -3866,7 +4028,14 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    swap_ideas = {
+			    remove_idea = AFS_environmentalist_socitey_2
+			    add_idea = AFS_environmentalist_socitey_3
+		    }
+			swap_ideas = {
+			    remove_idea = AFS_a_scarred_population_3
+			    add_idea = AFS_a_scarred_population_4
+		    }
 		}
 	}
 
@@ -3889,7 +4058,15 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    swap_ideas = {
+			    remove_idea = AFS_environmentalist_socitey_3
+			    add_idea = AFS_environmentalist_socitey_4
+		    }
+			remove_ideas = AFS_a_scarred_population_4
+			country_event = {
+				id = hawkins.24
+				days = 0
+			}
 		}
 	}
 
@@ -3912,7 +4089,11 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    swap_ideas = {
+			    remove_idea = AFS_ecological_dictatorship_5
+			    add_idea = AFS_ecological_dictatorship_6
+		    }
+			remove_ideas = AFS_ruins_of_the_triumvirate_5
 		}
 	}
 
@@ -3932,7 +4113,11 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    add_ideas = AFS_eco_socialist_economics
+			swap_ideas = {
+			    remove_idea = Ruins_of_the_Rust_Belt
+			    add_idea = Ruins_of_the_Rust_Belt_2
+		    }
 		}
 	}
 
@@ -3952,7 +4137,25 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    add_ideas = AFS_solar_infrastructure
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+    				type = infrastructure
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+    				type = infrastructure
+    				level = 1
+    				instant_build = yes
+				}
+			}
 		}
 	}
 
@@ -3972,7 +4175,37 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    swap_ideas = {
+			    remove_idea = AFS_solar_infrastructure
+			    add_idea = AFS_solar_infrastructure_2
+		    }
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+    				type = infrastructure
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+    				type = infrastructure
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+    				type = infrastructure
+    				level = 1
+    				instant_build = yes
+				}
+			}
 		}
 	}
 
@@ -3992,7 +4225,11 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+			add_ideas = AFS_extreme_environmentalist_regulations
+			unlock_decision_tooltip = AFS_clean_the_waters
+			unlock_decision_tooltip = AFS_levie_high_carbon_taxes
+			unlock_decision_tooltip = AFS_install_more_environmental_protections
+			unlock_decision_tooltip = AFS_protect_wildlife
 		}
 	}
 
@@ -4012,7 +4249,50 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    swap_ideas = {
+			    remove_idea = Ruins_of_the_Rust_Belt_2
+			    add_idea = Ruins_of_the_Rust_Belt_3
+		    }
+			swap_ideas = {
+			    remove_idea = AFS_eco_socialist_economics
+			    add_idea = AFS_eco_socialist_economics_2
+		    }
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = arms_factory
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = arms_factory
+    					level = 1
+    					instant_build = yes
+				}
+			}
 		}
 	}
 
@@ -4032,7 +4312,7 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    add_ideas = AFS_energy_of_the_future
 		}
 	}
 
@@ -4055,7 +4335,14 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    swap_ideas = {
+			    remove_idea = Ruins_of_the_Rust_Belt_3
+			    add_idea = Ruins_of_the_Rust_Belt_4
+		    }
+			swap_ideas = {
+			    remove_idea = AFS_eco_socialist_economics_2
+			    add_idea = AFS_eco_socialist_economics_3
+		    }
 		}
 	}
 
@@ -4075,7 +4362,41 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    swap_ideas = {
+			    remove_idea = AFS_extreme_environmentalist_regulations
+			    add_idea = AFS_extreme_environmentalist_regulations_2
+		    }
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = -1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = -1
+    					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = -1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = -1
+    					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = -1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = -1
+    					instant_build = yes
+				}
+			}
+			country_event = {
+				id = hawkins.25
+				days = 0
+			}
 		}
 	}
 
@@ -4085,12 +4406,12 @@ focus_tree = {
 		cost = 5
 		x = 1
 		y = 1
-		relative_position_id = AFS_end_the_exploitation
-		prerequisite = {
-			focus = AFS_end_the_exploitation
-		}
+		relative_position_id = AFS_environmentalist_socialism
 		prerequisite = {
 			focus = AFS_environmentalist_socialism
+		}
+		prerequisite = {
+			focus = AFS_the_energy_of_tomorrow
 		}
 		select_effect = {  }
 		allow_branch = {
@@ -4098,7 +4419,26 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    remove_ideas = Ruins_of_the_Rust_Belt_4
+			swap_ideas = {
+			    remove_idea = AFS_eco_socialist_economics_3
+			    add_idea = AFS_eco_socialist_economics_4
+		    }
+			swap_ideas = {
+			    remove_idea = AFS_energy_of_the_future
+			    add_idea = AFS_energy_of_the_future_2
+		    }
+			add_research_slot = 1
+			unlock_decision_tooltip = AFS_invest_in_renewable_energy
+			unlock_decision_tooltip = AFS_allow_limited_capitalism
+			unlock_decision_tooltip = AFS_transition_to_electric_cars
+			hidden_effect = {
+			    set_country_flag = AFS_hawkins_economic_decision_1
+			}
+			country_event = {
+				id = hawkins.26
+				days = 0
+			}
 		}
 	}
 
@@ -4118,7 +4458,46 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    swap_ideas = {
+			    remove_idea = AFS_solar_infrastructure_2
+			    add_idea = AFS_solar_infrastructure_3
+		    }
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+    				type = infrastructure
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+    				type = infrastructure
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+    				type = infrastructure
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+    				type = infrastructure
+    				level = 1
+    				instant_build = yes
+				}
+			}
 		}
 	}
 
@@ -4128,12 +4507,12 @@ focus_tree = {
 		cost = 5
 		x = 1
 		y = 1
-		relative_position_id = AFS_environmentalist_socialism
+		relative_position_id = AFS_end_the_exploitation
 		prerequisite = {
-			focus = AFS_environmentalist_socialism
+			focus = AFS_end_the_exploitation
 		}
 		prerequisite = {
-			focus = AFS_the_energy_of_tomorrow
+			focus = AFS_environmentalist_socialism
 		}
 		select_effect = {  }
 		allow_branch = {
@@ -4141,7 +4520,10 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    swap_ideas = {
+			    remove_idea = AFS_extreme_environmentalist_regulations_2
+			    add_idea = AFS_extreme_environmentalist_regulations_3
+		    }
 		}
 	}
 
@@ -6161,6 +6543,14 @@ focus_tree = {
 		}
 		select_effect = {  }
 		allow_branch = {
+			OR = {
+			    NOT = {
+			        has_completed_focus = AFS_againist_lawlessness
+			    }
+				NOT = {
+			        has_country_flag = AFS_hawkins_side
+			    }
+			}
 		}
 		available = {
 			has_completed_focus = AFS_restart_the_american_experiment
@@ -6188,6 +6578,14 @@ focus_tree = {
 		}
 		select_effect = {  }
 		allow_branch = {
+			OR = {
+			    NOT = {
+			        has_completed_focus = AFS_againist_lawlessness
+			    }
+				NOT = {
+			        has_country_flag = AFS_hawkins_side
+			    }
+			}
 		}
 		available = {
 			has_completed_focus = AFS_restart_the_american_experiment
@@ -6597,6 +6995,9 @@ focus_tree = {
 		relative_position_id = AFS_take_them_down
 		select_effect = {  }
 		allow_branch = {
+			NOT = {
+			    has_completed_focus = AFS_againist_lawlessness
+			}
 		}
 		available = {
 			has_completed_focus = AFS_vermins_anarchist_dreams
@@ -6910,31 +7311,31 @@ focus_tree = {
 		    add_war_support = 0.05
 		    every_state = {
 			    limit = { is_core_of = USA }
-			    add_core_of = GLA
+			    add_core_of = AFS
 		    }
 		    every_state = {
 			    limit = { is_core_of = FRA }
-			    add_core_of = GLA
+			    add_core_of = AFS
 		    }
 			every_state = {
 			    limit = { is_core_of = VIR }
-			    add_core_of = GLA
+			    add_core_of = AFS
 		    }
 			every_state = {
 			    limit = { is_core_of = NRA }
-			    add_core_of = GLA
+			    add_core_of = AFS
 		    }
 			every_state = {
 			    limit = { is_core_of = KFC }
-			    add_core_of = GLA
+			    add_core_of = AFS
 		    }
 			every_state = {
 			    limit = { is_core_of = GLA }
-			    add_core_of = GLA
+			    add_core_of = AFS
 		    }
 			every_state = {
 			    limit = { is_core_of = USA }
-			    add_core_of = GLA
+			    add_core_of = AFS
 		    }
 		}
 	}
@@ -7568,6 +7969,14 @@ focus_tree = {
 		relative_position_id = AFS_hawkins_victory
 		select_effect = {  }
 		allow_branch = {
+			OR = {
+			    NOT = {
+			        has_completed_focus = AFS_againist_lawlessness
+			    }
+				NOT = {
+			        has_country_flag = AFS_mattis_side
+			    }
+			}
 		}
 		available = {
 			OR = {
@@ -7885,31 +8294,27 @@ focus_tree = {
 		    add_war_support = 0.05
 		    every_state = {
 			    limit = { is_core_of = USA }
-			    add_core_of = GLA
+			    add_core_of = AFS
 		    }
 		    every_state = {
 			    limit = { is_core_of = FRA }
-			    add_core_of = GLA
-		    }
-			every_state = {
-			    limit = { is_core_of = VIR }
-			    add_core_of = GLA
-		    }
-			every_state = {
-			    limit = { is_core_of = NRA }
-			    add_core_of = GLA
-		    }
-			every_state = {
-			    limit = { is_core_of = KFC }
-			    add_core_of = GLA
+			    add_core_of = AFS
 		    }
 			every_state = {
 			    limit = { is_core_of = GLA }
-			    add_core_of = GLA
+			    add_core_of = AFS
 		    }
 			every_state = {
-			    limit = { is_core_of = USA }
-			    add_core_of = GLA
+			    limit = { is_core_of = VIR }
+			    add_core_of = AFS
+		    }
+			every_state = {
+			    limit = { is_core_of = NRA }
+			    add_core_of = AFS
+		    }
+			every_state = {
+			    limit = { is_core_of = KFC }
+			    add_core_of = AFS
 		    }
 		}
 	}
@@ -8575,26 +8980,6 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = AFS_the_south
-		}
-		select_effect = {  }
-		allow_branch = {
-		}
-		available = {
-		}
-		completion_reward = {
-		
-		}
-	}
-
-	focus = {
-		id = AFS_save_our_mother
-		icon = GFX_goal_VIR_kill_the_afs
-		cost = 2
-		x = 0
-		y = 2
-		relative_position_id = AFS_the_world
-		prerequisite = {
-			focus = AFS_the_world
 		}
 		select_effect = {  }
 		allow_branch = {
