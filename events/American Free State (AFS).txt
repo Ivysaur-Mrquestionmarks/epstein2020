@@ -1027,11 +1027,19 @@ country_event = {
 	immediate = {
         hidden_effect = {
 			GLA = {
-		        remove_advisor_role = {
-                    character = "GLA_spike_cohen"
-                    slot = political_advisor
-                }
-				deactivate_advisor = GLA_spike_cohen
+				GLA_spike_cohen = {
+				    set_nationality = ROOT
+				    add_corps_commander_role = {
+				        skill = 1
+				        attack_skill = 1
+				        defense_skill = 1
+				        planning_skill = 1
+				        logistics_skill = 1
+				        traits = {
+							supreme_loyalist_trait
+				        }
+				    }
+			    }
 			}
 		}
 	}
@@ -1040,18 +1048,21 @@ country_event = {
 		ai_chance = {
 			factor = 100
 		}
-		add_advisor_role = {
-            character = GLA_spike_cohen
-            activate = yes
-            advisor = {
-            slot = political_advisor
-            cost = 150
-            idea_token = AFS_spike_cohen_advisor
-                traits = {
-                    AFS_former_gla_libertarian AFS_anarchist_activist
-                }
-            }
-        }
+		effect_tooltip = {
+			create_corps_commander = { name = "Jeremy "Spike" Cohen" }
+		}
+		GLA_spike_cohen = {
+		    add_advisor_role = {
+		        advisor = {
+		            slot = political_advisor
+		            cost = 150
+		            idea_token = AFS_spike_cohen_adviser
+		            traits = {
+		                AFS_former_gla_libertarian AFS_anarchist_activist
+		            }
+		        }
+		    }
+		}
 	}
 }
 
