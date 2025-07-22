@@ -522,7 +522,7 @@ focus_tree = {
 			}
 			add_ideas = FAL_illegitimate
 			set_cosmetic_tag = FAL_ledesma
-			
+			custom_effect_tooltip = stonetoss_warning_tt
 			mark_focus_tree_layout_dirty = yes
 		}
 	}
@@ -760,6 +760,12 @@ focus_tree = {
 		completion_reward = {
 			add_war_support = 0.05
 			add_political_power = 50
+			hidden_effect = {
+				country_event = {
+					id = stonetoss.5
+					days = 3
+				}
+			}
 		}
 	}
 	focus = {
@@ -818,9 +824,14 @@ focus_tree = {
 			focus = FAL_modern_ramiro_ledesma
 		}
 		completion_reward = {
-			add_political_power = 100
 			add_ideas = {
 				FAL_proletarian_appeal
+			}
+			hidden_effect = {
+				country_event = {
+					id = stonetoss.4
+					days = 1
+				}
 			}
 		}
 	}
@@ -835,10 +846,16 @@ focus_tree = {
 			focus = FAL_proletarianism
 		}
 		completion_reward = {
-			
+			add_stability = 0.03
 			add_popularity = {
 			    ideology = authoritarian_left
-			    popularity = -1
+			    popularity = -0.1
+			}
+			hidden_effect = {
+				country_event = {
+					id = stonetoss.15
+					days = 30
+				}
 			}
 		}
 	}
@@ -856,11 +873,11 @@ focus_tree = {
 			country_event = stonetoss.10
 			add_popularity = {
 			    ideology = republican
-			    popularity = -0.5
+			    popularity = -0.1
 			}
 			add_popularity = {
 			    ideology = libertarian_right
-			    popularity = -0.25
+			    popularity = -0.05
 			}
 			remove_ideas = FAL_conservative_uneasiness		
 		}
@@ -910,6 +927,12 @@ focus_tree = {
 			add_ideas = {
 				FAL_doctrine_of_violence
 			}
+			hidden_effect = {
+				country_event = {
+					id = stonetoss.16
+					days = 30
+				}
+			}
 		}
 	}
 	focus = {
@@ -929,15 +952,9 @@ focus_tree = {
 			focus = FAL_crush_conservative_elites
 		}
 		completion_reward = {
-			add_ideas = {
-				FAL_spanish_primary
-			}
-			hidden_effect = {
-				country_event = {
-					id = stonetoss.7
-					days = 7
-				}
-			}
+			add_stability = 0.05
+			add_war_support = 0.05
+			add_political_power = -50
 		}
 	}
 	focus = {
@@ -2010,7 +2027,7 @@ focus_tree = {
 			remove_ideas = FAL_communist_cells
 			add_popularity = {
 			    ideology = authoritarian_left
-			    popularity = -0.25
+			    popularity = -0.15
 			}
 			43 = {
 				add_manpower = -13930
@@ -2031,11 +2048,11 @@ focus_tree = {
 			remove_ideas = FAL_liberal_resistance
 			add_popularity = {
 			    ideology = democrat
-			    popularity = -0.25
+			    popularity = -0.15
 			}
 			add_popularity = {
 			    ideology = libertarian_left
-			    popularity = -0.25
+			    popularity = -0.05
 			}
 			306 = {
 				add_manpower = -34520
@@ -2129,7 +2146,7 @@ focus_tree = {
 	focus = {
 		id = FAL_take_in_refugees
 		icon = GFX_goal_FAL_take_in_refugees
-		cost = 1.00
+		cost = 3.00
 		x = -1
 		y = 1
 		relative_position_id = FAL_stay_out_of_it
@@ -2151,7 +2168,7 @@ focus_tree = {
 	focus = {
 		id = FAL_condemn_silicon
 		icon = GFX_goal_FAL_infiltrate_the_corporates
-		cost = 1.00
+		cost = 3.00
 		x = 1
 		y = 1
 		relative_position_id = FAL_stay_out_of_it
@@ -2178,7 +2195,7 @@ focus_tree = {
 	focus = {
 		id = FAL_organize_volunteers
 		icon = GFX_goal_FAL_organize_volunteers
-		cost = 2.00
+		cost = 3.00
 		x = 0
 		y = 2
 		relative_position_id = FAL_stay_out_of_it
@@ -2198,7 +2215,7 @@ focus_tree = {
 	focus = {
 		id = FAL_economic_aid_for_catholics
 		icon = GFX_goal_FAL_economic_aid_to_catholics
-		cost = 2.00
+		cost = 3.00
 		x = 0
 		y = 1
 		relative_position_id = FAL_organize_volunteers
@@ -2223,7 +2240,7 @@ focus_tree = {
 	focus = {
 		id = FAL_host_mexican_exiles
 		icon = GFX_goal_FAL_welcome_the_exiles
-		cost = 2.00
+		cost = 5.00
 		x = 0
 		y = 1
 		relative_position_id = FAL_economic_aid_for_catholics
@@ -2649,7 +2666,7 @@ focus_tree = {
 		id = FAL_coax_into_attack
 		icon = GFX_goal_FAL_coax_trump_into_conflict
 		cost = 2.00
-		x = -2
+		x = 2 
 		y = 1
 		relative_position_id = FAL_stake_our_claims
 		available = {
@@ -2675,9 +2692,6 @@ focus_tree = {
 		relative_position_id = FAL_stake_our_claims
 		available = {
 			is_in_faction_with = USA
-		}
-		mutually_exclusive = {
-			focus = FAL_unity_without_union
 		}
 		prerequisite = {
 			focus = FAL_stake_our_claims
@@ -2706,30 +2720,6 @@ focus_tree = {
 			}
 		}
 	}
-	#Unity Without Union
-	focus = {
-		id = FAL_unity_without_union
-		icon = GFX_goal_FAL_unity_without_union
-		cost = 2.00
-		x = 2
-		y = 1
-		relative_position_id = FAL_stake_our_claims
-		available = {
-			is_in_faction_with = USA
-		}
-		mutually_exclusive = {
-			focus = FAL_trump_caudillo
-		}
-		prerequisite = {
-			focus = FAL_stake_our_claims
-		}
-		prerequisite = {
-			focus = FAL_republican_synthesis
-		}
-		completion_reward = {
-			add_stability = 0.1
-		}
-	}
 	#A More Suitable Heir?
 	focus = {
 		id = FAL_a_suitable_heir
@@ -2743,9 +2733,10 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = FAL_trump_caudillo
-			focus = FAL_unity_without_union
 		}
-
+		prerequisite = {
+			focus = FAL_coax_into_attack
+		}
 		completion_reward = {
 			country_event = stonetoss_trump.9
 		}
@@ -2837,7 +2828,7 @@ focus_tree = {
 	focus = {
 		id = FAL_wagner_contacts
 		icon = GFX_goal_FAL_wagner_contacts
-		cost = 2.00
+		cost = 5.00
 		x = 1
 		y = 1
 		relative_position_id = FAL_broach_the_new_powers
@@ -2896,7 +2887,7 @@ focus_tree = {
 	focus = {
 		id = FAL_chinese_contractors
 		icon = GFX_goal_FAL_chinese_contractors
-		cost = 2.00
+		cost = 5.00
 		x = -1
 		y = 1
 		relative_position_id = FAL_broach_the_new_powers
@@ -3093,7 +3084,7 @@ focus_tree = {
 	focus = {
 		id = FAL_lafayette_frontline
 		icon = GFX_goal_FAL_lafayette_line
-		cost = 2.00
+		cost = 5.00
 		x = -1
 		y = 1
 		relative_position_id = FAL_to_the_east
@@ -3184,7 +3175,7 @@ focus_tree = {
 	focus = {
 		id = FAL_beaumont_fallback
 		icon = GFX_goal_FAL_beaumont_fallback
-		cost = 2.00
+		cost = 5.00
 		x = 1
 		y = 1
 		relative_position_id = FAL_to_the_east
@@ -3334,7 +3325,7 @@ focus_tree = {
 	focus = {
 		id = FAL_arbuckle_line
 		icon = GFX_goal_FAL_arbuckle_line
-		cost = 2.00
+		cost = 5.00
 		x = 0
 		y = 1
 		relative_position_id = FAL_to_the_north
@@ -3451,7 +3442,7 @@ focus_tree = {
 	focus = {
 		id = FAL_strengthen_albuquerque
 		icon = GFX_goal_FAL_strengthen_alberqurque
-		cost = 2.00
+		cost = 5.00
 		x = 1
 		y = 1
 		relative_position_id = FAL_to_the_west
@@ -3530,7 +3521,7 @@ focus_tree = {
 	focus = {
 		id = FAL_secure_el_paso
 		icon = GFX_goal_FAL_secure_el_paso
-		cost = 2.00
+		cost = 5.00
 		x = -1
 		y = 1
 		relative_position_id = FAL_to_the_west
@@ -3668,6 +3659,12 @@ focus_tree = {
 			#	has_completed_focus = FAL_join_the_catholic_front
 			#	has_completed_focus = FAL_stay_out_of_it
 			#}
+			NOT = {
+				has_country_leader = {
+			    	name = "Hans Kristian Graebener"
+			    	ruling_only = yes
+				}
+			}
 		}
 		prerequisite = {
 			#focus = FAL_tejas_first
