@@ -348,42 +348,19 @@ country_event = {
 	is_triggered_only = yes
 	option = { # 
 		name = lgb_events.13.a
-		trigger = {
-			NOT = { tag = LGB }
+		if = {
+			limit = {NOT = {is_ai = yes}}
+			set_country_flag = {
+    				flag = super_event
+    				value = 49
+			}
+			if = { 
+				limit = { has_global_flag = SuperEventsWillBePlayed_flag }
+				if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
+					sound_effect = "miku_coup_track"
+					play_song = "one_minute_of_silence"
+				}
+			}
 		}
-		#if = {
-			#limit = {NOT = {is_ai = yes}}
-			#set_country_flag = {
-    			#	flag = super_event
-    			#	value = 49
-			#}
-			#if = { 
-			#	limit = { has_global_flag = SuperEventsWillBePlayed_flag }
-			#	if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
-			#		sound_effect = "miku_coup_track"
-			#		play_song = "one_minute_of_silence"
-			#	}
-			#}
-		#}
-	}
-	option = { # 
-		name = lgb_events.13.b
-		trigger = {
-			tag = LGB
-		}
-		#if = {
-			#limit = {NOT = {is_ai = yes}}
-			#set_country_flag = {
-    			#	flag = super_event
-    			#	value = 49
-			#}
-			#if = { 
-			#	limit = { has_global_flag = SuperEventsWillBePlayed_flag }
-			#	if = { limit = { NOT= { any_other_country = {has_country_flag = super_event}}}
-			#		sound_effect = "miku_coup_track"
-			#		play_song = "one_minute_of_silence"
-			#	}
-			#}
-		#}
 	}
 }
