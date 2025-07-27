@@ -3,10 +3,10 @@ focus_tree = {
 	country = {
 		factor = 0
 		
-		#modifier = {
-		#	add = 10
-		#	tag = SCA
-		#}
+		modifier = {
+			add = 10
+			tag = SCA
+		}
 	}
 	continuous_focus_position = { x = 100 y = 1000 }
 	shared_focus = SCA_FRA_southern_reconstruction
@@ -17,9 +17,10 @@ focus_tree = {
 		x = 25
 		y = 1
 		cost = 5
-		completion_reward = {	
-			add_ideas = SCA_War_Recovery	
-			add_ideas = SCA_Southern_Separatism		
+		bypass = {
+			always = yes
+		}
+		completion_reward = {		
 	    }
 	}
 	focus = {
@@ -1301,6 +1302,46 @@ focus_tree = {
 		relative_position_id = SCA_uniting_the_south
 		cost = 5
 		completion_reward = {
+			create_wargoal = {
+				target = FLO
+				type = annex_everything
+			}
+			if = { 
+				limit = { country_exists = NSA }
+				create_wargoal = {
+					target = NSA
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = GKJ }
+				create_wargoal = {
+					target = GKJ
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = FLD }
+				create_wargoal = {
+					target = FLD
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = FLA }
+				create_wargoal = {
+					target = FLA
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = SEM }
+				create_wargoal = {
+					target = SEM
+					type = annex_everything
+				}
+			}
+
 	    }
 	}
 	focus = {
@@ -1314,6 +1355,19 @@ focus_tree = {
 		relative_position_id = SCA_seize_florida
 		cost = 5
 		completion_reward = {
+			every_state = {
+				limit = {
+					OR = {
+						is_core_of = FLO
+						is_core_of = FLD
+						is_core_of = FLA
+						is_core_of = SEM
+						is_core_of = NSA
+						is_core_of = GKJ
+					}
+				}
+				add_core_of = ROOT
+			}
 	    }
 	}
 	focus = {
@@ -1326,7 +1380,16 @@ focus_tree = {
 		}
 		relative_position_id = SCA_uniting_the_south
 		cost = 5
+		will_lead_to_war_with = TEX
+		will_lead_to_war_with = FAL
+		will_lead_to_war_with = BLA
+		will_lead_to_war_with = CRN
+		will_lead_to_war_with = LOU
+		will_lead_to_war_with = BET
+		will_lead_to_war_with = RED
+		will_lead_to_war_with = FTA
 		completion_reward = {
+			War_on_texas_collapse_tags = yes
 	    }
 	}
 	focus = {
@@ -1340,6 +1403,12 @@ focus_tree = {
 		relative_position_id = SCA_seize_texas
 		cost = 5
 		completion_reward = {
+			every_state = {
+				limit = {
+					is_core_of = TEX
+				}
+				add_core_of = ROOT
+			}
 	    }
 	}
 	focus = {
@@ -1352,7 +1421,37 @@ focus_tree = {
 		}
 		relative_position_id = SCA_uniting_the_south
 		cost = 5
+		will_lead_to_war_with = VIR
+		will_lead_to_war_with = RVR
+		will_lead_to_war_with = OBX
 		completion_reward = {
+			create_wargoal = {
+				target = RVR
+				type = annex_everything
+			}
+			IF = {
+				limit = { VIR = { NOT = { is_in_faction_with = FRA has_government = democrat } } }
+				create_wargoal = {
+					target = VIR
+					type = annex_everything
+				}
+			}
+			IF = {
+				limit = { VIR = { OR = { is_in_faction_with = FRA  has_government = democrat } } }
+				VIR = {
+					country_event = {
+						id = south_carolina.4
+						days = 1
+					}
+				}
+			}
+			IF = {
+				limit = { country_exists = OBX }
+				create_wargoal = {
+					target = OBX
+					type = annex_everything
+				}
+			}
 	    }
 	}
 	focus = {
@@ -1366,6 +1465,16 @@ focus_tree = {
 		relative_position_id = SCA_seize_virginia
 		cost = 5
 		completion_reward = {
+			every_state = {
+				limit = {
+					OR = {
+						is_core_of = VIR
+						is_core_of = RVR
+						is_core_of = OBX
+					}
+				}
+				add_core_of = ROOT
+			}
 	    }
 	}
 	focus = {
@@ -1378,7 +1487,17 @@ focus_tree = {
 		}
 		relative_position_id = SCA_uniting_the_south
 		cost = 5
+		will_lead_to_war_with = KFC
 		completion_reward = {
+			every_country = {
+				limit = { original_tag = KFC }
+				ROOT = {
+					create_wargoal = {
+						target = PREV
+						type = annex_everything
+					}
+				}
+			}
 	    }
 	}
 	focus = {
@@ -1392,6 +1511,12 @@ focus_tree = {
 		relative_position_id = SCA_seize_kentucky
 		cost = 5
 		completion_reward = {
+			every_state = {
+				limit = {
+					is_core_of = KFC
+				}
+				add_core_of = ROOT
+			}
 	    }
 	}
 	
@@ -1432,7 +1557,52 @@ focus_tree = {
 		}
 		relative_position_id = SCA_expanding_reconstruction_districts
 		cost = 5
+		will_lead_to_war_with = FLO
+		will_lead_to_war_with = GKJ
+		will_lead_to_war_with = FLD
+		will_lead_to_war_with = FLA
+		will_lead_to_war_with = SEM
+		will_lead_to_war_with = NSA
 		completion_reward = {
+			create_wargoal = {
+				target = FLO
+				type = annex_everything
+			}
+			if = { 
+				limit = { country_exists = NSA }
+				create_wargoal = {
+					target = NSA
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = GKJ }
+				create_wargoal = {
+					target = GKJ
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = FLD }
+				create_wargoal = {
+					target = FLD
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = FLA }
+				create_wargoal = {
+					target = FLA
+					type = annex_everything
+				}
+			}
+			if = { 
+				limit = { country_exists = SEM }
+				create_wargoal = {
+					target = SEM
+					type = annex_everything
+				}
+			}
 	    }
 	}
 	focus = {
@@ -1458,7 +1628,16 @@ focus_tree = {
 		}
 		relative_position_id = SCA_expanding_reconstruction_districts
 		cost = 5
+		will_lead_to_war_with = TEX
+		will_lead_to_war_with = FAL
+		will_lead_to_war_with = BLA
+		will_lead_to_war_with = CRN
+		will_lead_to_war_with = LOU
+		will_lead_to_war_with = BET
+		will_lead_to_war_with = RED
+		will_lead_to_war_with = FTA
 		completion_reward = {
+			War_on_texas_collapse_tags = yes
 	    }
 	}
 	focus = {
@@ -1484,7 +1663,37 @@ focus_tree = {
 		}
 		relative_position_id = SCA_expanding_reconstruction_districts
 		cost = 5
+		will_lead_to_war_with = VIR
+		will_lead_to_war_with = RVR
+		will_lead_to_war_with = OBX
 		completion_reward = {
+			create_wargoal = {
+				target = RVR
+				type = annex_everything
+			}
+			IF = {
+				limit = { VIR = { NOT = { is_in_faction_with = FRA  has_government = democrat } } }
+				create_wargoal = {
+					target = VIR
+					type = annex_everything
+				}
+			}
+			IF = {
+				limit = { VIR = { OR = { is_in_faction_with = FRA  has_government = democrat } } }
+				VIR = {
+					country_event = {
+						id = south_carolina.4
+						days = 1
+					}
+				}
+			}
+			IF = {
+				limit = { country_exists = OBX }
+				create_wargoal = {
+					target = OBX
+					type = annex_everything
+				}
+			}
 	    }
 	}
 	focus = {
@@ -1497,7 +1706,20 @@ focus_tree = {
 		}
 		relative_position_id = SCA_march_into_virginia
 		cost = 5
+		available = {
+			has_completed_focus = SCA_FRA_carolina_unification
+		}
 		completion_reward = {
+			every_state = {
+				limit = {
+					OR = {
+						is_core_of = VIR
+						is_core_of = RVR
+						is_core_of = OBX
+					}
+				}
+				add_core_of = ROOT
+			}
 	    }
 	}
 	focus = {
@@ -1511,6 +1733,15 @@ focus_tree = {
 		relative_position_id = SCA_expanding_reconstruction_districts
 		cost = 5
 		completion_reward = {
+			every_country = {
+				limit = { original_tag = KFC }
+				ROOT = {
+					create_wargoal = {
+						target = PREV
+						type = annex_everything
+					}
+				}
+			}
 	    }
 	}
 	focus = {
