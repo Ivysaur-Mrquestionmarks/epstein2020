@@ -44,8 +44,71 @@ focus_tree = {
 				}
 			}
 		}
+		ai_will_do = {
+			base = 100
+		}
 		completion_reward = {
 			add_political_power = 100
+		}
+
+	}
+	focus = {
+		id = TEX_expand_anti_terrorism_efforts
+		icon = GFX_goal_GLA_establish_a_patriotic_sercet_police
+		x = 2
+		y = 1
+		relative_position_id = TEX_lone_star
+		cost = 5
+		prerequisite = {
+			focus = TEX_lone_star
+		}
+		bypass = {
+			#OR = {
+				has_country_flag = TEX_failed_terrorism_prevention_measures_flag
+				#has_country_flag = TEX_expand_anti_terrorism_efforts_flag
+			#}
+		}
+		ai_will_do = {
+			base = 100
+			modifier = {
+				factor = 0
+				has_game_rule = {
+		         		rule = TEX_radicalss_political_path
+                			option = TEX_PATH_COLLAPSE
+				}
+			}
+		}
+		completion_reward = {
+			add_stability = 0.05
+			set_country_flag = TEX_expand_anti_terrorism_efforts_flag
+		}
+	}
+	focus = {
+		id = TEX_knock_down_wind_turbines
+		icon = GFX_goal_focuspipelines
+		x = -2
+		y = 1
+		relative_position_id = TEX_lone_star
+		cost = 5
+		prerequisite = {
+			focus = TEX_lone_star
+		}
+		bypass = {
+			has_country_flag = TEX_great_frost_over_flag
+		}
+		ai_will_do = {
+			base = 100
+			modifier = {
+				factor = 0
+				has_game_rule = {
+		         		rule = TEX_radicalss_political_path
+                			option = TEX_PATH_COLLAPSE
+				}
+			}
+		}
+		completion_reward = {
+			TEX_great_frost_level_up = yes
+			set_country_flag = TEX_has_attempted_to_improve_great_frost_flag
 		}
 
 	}
@@ -58,6 +121,12 @@ focus_tree = {
 		cost = 5
 		prerequisite = {
 			focus = TEX_lone_star
+		}
+		available = {
+			OR = {
+				has_country_flag = TEX_great_frost_over_flag
+				has_idea = TEX_great_frost_4
+			}
 		}
 		completion_reward = {
 			country_event = texas.88

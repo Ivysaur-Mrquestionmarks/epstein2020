@@ -407,7 +407,9 @@ TEX_act_quick = {
 			has_completed_focus = TEX_our_rule_secured
 		}
 		timeout_effect  = {
-			country_event = alamo.5
+			add_stability = -0.2
+			add_war_support = -0.3
+			add_political_power = -200
 		}
 	}
 }
@@ -606,6 +608,59 @@ TEX_the_catastrophic_defeat = {
 TEX_path_guides = {
 }
 
+TEX_the_great_frost_cat = {
+	TEX_the_great_frost_effects_improving = {
+		activation = {
+			tag = TEX
+			has_country_flag = TEX_has_great_frost_flag
+		}
+		days_mission_timeout = 40
+		fire_only_once = no
+		available = { 
+			NOT = { has_country_flag = TEX_has_great_frost_flag }
+		}
+		is_good = yes
+		cancel_trigger = {
+			
+		}
+		timeout_effect  = {
+			TEX_great_frost_level_up = yes
+		}
+	}
+}
+TEX_terrorism_stuff_cat = {
+	TEX_terrorism_scared_mission = {
+		activation = {
+			tag = TEX
+			NOT= { 
+				OR = {
+					has_country_flag = TEX_failed_terrorism_prevention_measures_flag 
+					has_country_flag = TEX_expand_anti_terrorism_efforts_flag
+				}
+					
+			}
+		}
+		days_mission_timeout = 125
+		fire_only_once = yes
+		available = { 
+			OR = {
+				has_country_flag = TEX_expand_anti_terrorism_efforts_flag
+				has_completed_focus = TEX_expand_anti_terrorism_efforts
+			}
+		}
+		is_good = yes
+		cancel_trigger = {
+			has_completed_focus = TEX_expand_anti_terrorism_efforts
+		}
+		cancel_effect = {
+			set_country_flag = TEX_expand_anti_terrorism_efforts_flag
+		}
+		timeout_effect  = {
+			add_stability = -0.05
+			set_country_flag = TEX_failed_terrorism_prevention_measures_flag
+		}
+	}
+}
 
 
 
