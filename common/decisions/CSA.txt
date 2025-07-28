@@ -1395,6 +1395,14 @@ CSA_ARK = {
     				flag = ARK_rebelion
     				value = 1
 			}
+			add_to_variable = {
+				var = ARK.influence
+				value = 43
+			}
+			add_to_variable = {
+				var = ARK.influence_expanded
+				value = 1
+			}
 			FROM = {set_state_flag = influence}
 		}
 
@@ -1406,17 +1414,30 @@ CSA_ARK = {
 		available = {
 			has_country_flag = {
     				flag = ARK_rebelion
-    				value > 1
+    				value > 0
 			}
 		}
 	
 		days_remove = 50
 		fire_only_once = yes
 		ai_will_do = {
-			base = 5
+			base = 0
+			modifier = {
+				add = 5
+				check_variable = { ARK.influence_expanded > 0 }
+			}
+			modifier = {
+				factor = 4
+				check_variable = { ARK.influence_expanded > 1 }
+			}
+			modifier = {
+				factor = 4
+				check_variable = { ARK.influence_expanded > 2 }
+			}
 		}
 
 		complete_effect = {
+			custom_effect_tooltip = CSA_ark_sca_warning_tt
 			add_equipment_to_stockpile = {
     				type = infantry_equipment
     				amount = -2000
@@ -1507,6 +1528,14 @@ CSA_SCA = {
     				flag = SCA_rebelion
     				value = 1
 			}
+			add_to_variable = {
+				var = SCA.influence
+				value = 43
+			}
+			add_to_variable = {
+				var = SCA.influence_expanded
+				value = 1
+			}
 			FROM = {set_state_flag = influence}
 		}
 
@@ -1518,16 +1547,29 @@ CSA_SCA = {
 		available = {
 			has_country_flag = {
     				flag = SCA_rebelion
-    				value > 1
+    				value > 0
 			}
 		}
 	
 		days_remove = 50
 		fire_only_once = yes
 		ai_will_do = {
-			base = 5
+			base = 0
+			modifier = {
+				add = 5
+				check_variable = { SCA.influence_expanded > 0 }
+			}
+			modifier = {
+				factor = 4
+				check_variable = { SCA.influence_expanded > 1 }
+			}
+			modifier = {
+				factor = 4
+				check_variable = { SCA.influence_expanded > 2 }
+			}
 		}
 		complete_effect = {
+			custom_effect_tooltip = CSA_ark_sca_warning_tt
 			add_equipment_to_stockpile = {
     				type = infantry_equipment
     				amount = -2000
