@@ -1,12 +1,13 @@
 add_namespace = wisconsin
 
-#Election
+# The State of Wisconsin focus event
 country_event = {
 	id = wisconsin.1
 	title = wisconsin.1.t
 	desc = wisconsin.1.d
 	picture = TBD 
 	is_triggered_only = yes
+
 	option = {
 		name = wisconsin.1.a
 		ai_chance = {
@@ -24,6 +25,237 @@ country_event = {
 		add_stability = -0.05
 		custom_effect_tooltip = KMT_lead_from_the_front_tt
 		set_country_flag = KMT_lead_from_the_front_flag
+	}
+
+}
+
+
+# Meeting with Detroit focus event (DET prespective)
+country_event = {
+	id = wisconsin.2
+	title = wisconsin.2.t
+	desc = wisconsin.2.d
+	picture = TBD 
+	is_triggered_only = yes
+
+	option = {
+		name = wisconsin.2.a
+		ai_chance = {
+			factor = 100
+		}
+		KMT = {
+            country_event = { id = wisconsin.3 }
+        }
+	}
+
+	option = {
+		name = wisconsin.2.b
+		ai_chance = {
+			factor = 0
+		}
+		KMT = {
+            country_event = { id = wisconsin.4 }
+        }
+	}
+
+}
+
+
+# Detroit Accepts Meeting
+country_event = {
+	id = wisconsin.3
+	title = wisconsin.3.t
+	desc = wisconsin.3.d
+	picture = TBD 
+	is_triggered_only = yes
+
+	option = {
+		name = wisconsin.3.a
+		ai_chance = {
+		}
 
 	}
+
+	option = {
+		name = wisconsin.3.b
+		ai_chance = {
+		}
+		
+		if = { limit = { 155 = { is_owned_by = GLA } } 155 = { add_dynamic_modifier = { modifier = kmt_claimed_state } } }
+		if = { limit = { 124 = { is_owned_by = GLA } } 124 = { add_dynamic_modifier = { modifier = kmt_claimed_state } } }
+		if = { limit = { 195 = { is_owned_by = GLA } } 195 = { add_dynamic_modifier = { modifier = kmt_claimed_state } } }
+		if = { limit = { 197 = { is_owned_by = GLA } } 197 = { add_dynamic_modifier = { modifier = kmt_claimed_state } } }
+		if = { limit = { 198 = { is_owned_by = GLA } } 198 = { add_dynamic_modifier = { modifier = kmt_claimed_state } } }
+		if = { limit = { 209 = { is_owned_by = GLA } } 209 = { add_dynamic_modifier = { modifier = kmt_claimed_state } } }
+
+		if = { limit = { 152 = { is_owned_by = GLA } } 152 = { add_dynamic_modifier = { modifier = det_claimed_state } } }
+		if = { limit = { 160 = { is_owned_by = GLA } } 160 = { add_dynamic_modifier = { modifier = det_claimed_state } } }
+		if = { limit = { 161 = { is_owned_by = GLA } } 161 = { add_dynamic_modifier = { modifier = det_claimed_state } } }
+		if = { limit = { 162 = { is_owned_by = GLA } } 162 = { add_dynamic_modifier = { modifier = det_claimed_state } } }
+		if = { limit = { 190 = { is_owned_by = GLA } } 190 = { add_dynamic_modifier = { modifier = det_claimed_state } } }
+		if = { limit = { 157 = { is_owned_by = GLA } } 157 = { add_dynamic_modifier = { modifier = det_claimed_state } } }
+		if = { limit = { 208 = { is_owned_by = GLA } } 208 = { add_dynamic_modifier = { modifier = det_claimed_state } } }
+		if = { limit = { 206 = { is_owned_by = GLA } } 206 = { add_dynamic_modifier = { modifier = det_claimed_state } } }
+		if = { limit = { 204 = { is_owned_by = GLA } } 204 = { add_dynamic_modifier = { modifier = det_claimed_state } } }
+		if = { limit = { 560 = { is_owned_by = GLA } } 560 = { add_dynamic_modifier = { modifier = det_claimed_state } } }
+    }
+
+}
+
+
+# Detroit Rejects Meeting
+country_event = {
+	id = wisconsin.4
+	title = wisconsin.4.t
+	desc = wisconsin.4.d
+	picture = TBD 
+	is_triggered_only = yes
+
+	option = {
+		name = wisconsin.4.a
+		ai_chance = {
+		}
+		add_opinion_modifier = {
+			target = DET
+    		modifier = kmt_rejected_meeting
+		}
+	}
+
+}
+
+
+
+
+country_event = {
+    id = wisconsin.20
+    title = wisconsin.20.t
+    desc = wisconsin.20.d
+    picture = TBD
+    is_triggered_only = yes
+
+    trigger = {
+        gla_defeated_trigger = yes
+        has_country_flag = kmt_gets_wisconsin_and_more
+        DET = { has_country_flag = det_gets_michigan_and_yoop_and_more }
+    }
+
+    immediate = {
+
+    }
+
+    option = {
+        name = "wisconsin.20.a"
+		if = {
+            limit = { DET = { controls_state = 155 } }
+            transfer_state = {
+                state = 155
+                target = KMT
+            }
+        }
+        if = {
+            limit = { DET = { controls_state = 124 } }
+            transfer_state = {
+                state = 124
+                target = KMT
+            }
+        }
+        if = {
+            limit = { DET = { controls_state = 195 } }
+            transfer_state = {
+                state = 195
+                target = KMT
+            }
+        }
+		if = {
+            limit = { DET = { controls_state = 197 } }
+            transfer_state = {
+                state = 197
+                target = KMT
+            }
+        }
+		if = {
+            limit = { DET = { controls_state = 198 } }
+            transfer_state = {
+                state = 198
+                target = KMT
+            }
+        }
+		if = {
+            limit = { DET = { controls_state = 209 } }
+            transfer_state = {
+                state = 209
+                target = KMT
+            }
+        }				
+        if = {
+            limit = { KMT = { controls_state = 152 } }
+            transfer_state = {
+                state = 152
+                target = DET
+            }
+        }
+        if = {
+            limit = { KMT = { controls_state = 160 } }
+            transfer_state = {
+                state = 160
+                target = DET
+            }
+        }
+		if = {
+            limit = { KMT = { controls_state = 161 } }
+            transfer_state = {
+                state = 161
+                target = DET
+            }
+        }
+        if = {
+            limit = { KMT = { controls_state = 162 } }
+            transfer_state = {
+                state = 162
+                target = DET
+            }
+        }
+		if = {
+            limit = { KMT = { controls_state = 190 } }
+            transfer_state = {
+                state = 190
+                target = DET
+            }
+        }
+        if = {
+            limit = { KMT = { controls_state = 157 } }
+            transfer_state = {
+                state = 157
+                target = DET
+            }
+        }
+		if = {
+            limit = { KMT = { controls_state = 208 } }
+            transfer_state = {
+                state = 208
+                target = DET
+            }
+        }
+        if = {
+            limit = { KMT = { controls_state = 206 } }
+            transfer_state = {
+                state = 206
+                target = DET
+            }
+        }
+		if = {
+            limit = { KMT = { controls_state = 560 } }
+            transfer_state = {
+                state = 560
+                target = DET
+            }
+        }
+        if = {
+            limit = { KMT = { controls_state = 204 } }
+            transfer_state = {
+                state = 205
+                target = DET
+            }
+        }
+    }
 }
