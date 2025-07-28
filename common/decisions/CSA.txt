@@ -1412,9 +1412,12 @@ CSA_ARK = {
 		cost = 100
 
 		available = {
-			has_country_flag = {
-    				flag = ARK_rebelion
-    				value > 0
+			custom_trigger_tooltip = {
+				tooltip = ARK_has_increased_trumpist_support_tt
+				has_country_flag = {
+						flag = ARK_rebelion
+						value > 0
+				}
 			}
 		}
 	
@@ -1536,7 +1539,11 @@ CSA_SCA = {
 				var = SCA.influence_expanded
 				value = 1
 			}
-			FROM = {set_state_flag = influence}
+			FROM = {
+				set_state_flag = influence
+				add_dynamic_modifier = { modifier = SCA_southern_bloodshet }
+			}
+			
 		}
 
 	}
@@ -1545,9 +1552,12 @@ CSA_SCA = {
 		cost = 100
 
 		available = {
-			has_country_flag = {
-    				flag = SCA_rebelion
-    				value > 0
+			custom_trigger_tooltip = {
+				tooltip = SCA_has_increased_legitimist_support_tt
+				has_country_flag = {
+						flag = SCA_rebelion
+						value > 0
+				}
 			}
 		}
 	
@@ -1603,10 +1613,11 @@ CSA_SCA = {
     					#	value = SCA.id
 					#}
 				}
+				remove_core_of = CSA
 				
 			}
 			SCA = {
-				transfer_state = PREV
+				#transfer_state = PREV
 				load_oob = "SCA_DCW"
 
 				load_focus_tree = csa_collapse
