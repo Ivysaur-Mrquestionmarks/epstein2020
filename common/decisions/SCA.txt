@@ -277,3 +277,54 @@ SCA_march = {
 		}
 	}
 }
+
+SCA_hurricane_proofing_cat = {
+	SCA_strengthen_infrastructure_decision = {
+		state_target = yes
+		fire_only_once = yes
+		cost = 15
+		ai_will_do = {
+			base = 5
+		}
+		on_map_mode = map_and_decisions_view 
+		days_remove = 30
+		visible = {
+			has_completed_focus = SCA_hurricane_proofing
+		}
+		target_trigger = {
+		 	FROM = {
+				OR = {
+					is_core_of = SCA
+					is_core_of = NCA
+					is_core_of = GEO
+					is_core_of = APA
+					is_core_of = ZIO
+					is_core_of = ARK
+					is_core_of = ABM
+					is_core_of = MIS
+					is_core_of = LGB
+					is_core_of = TEX
+					is_core_of = CSB
+					is_core_of = FLO
+					is_core_of = VIR
+				}
+				OR = {
+					is_owned_by = ROOT
+					owner = { is_subject_of = ROOT }
+				}
+			}
+		}
+		remove_effect = {
+			FROM = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+	}
+}
+
