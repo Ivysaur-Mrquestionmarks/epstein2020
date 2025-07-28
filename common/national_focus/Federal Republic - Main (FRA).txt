@@ -5321,16 +5321,224 @@ focus_tree = {
 		}
 
 	}
+	
+	focus = {
+		id = FRA_open_department_of_intervention
+		icon = GFX
+		cost = 1.00
+		prerequisite = {
+			focus = FRA_the_great_crisis_of_our_time
+		}
+		x = -12
+		y = 1
+		relative_position_id = FRA_the_great_crisis_of_our_time
+		completion_reward = {
+			add_ideas = FRA_dept_intervention
+		}
+	}
+	
+	focus = {
+		id = FRA_quid_pro_quo
+		icon = GFX_goal_FRA_quid_pro_quo
+		cost = 5.00
+		prerequisite = {
+			focus = FRA_open_department_of_intervention
+		}
+		x = -3
+		y = 1
+		relative_position_id = FRA_open_department_of_intervention
+		available = {
+			has_equipment = {
+			    infantry_equipment > 5000
+			}
+			country_exists = CAN
+			has_global_flag = canadian_civil_war
+			NOT = {
+				has_war_with = CAN
+			}
+		}
+		bypass = {
+			NOT = {
+				country_exists = CAN
+			}
+		}
+		completion_reward = {
+			send_equipment = {
+			    equipment = infantry_equipment
+			    amount = 5000
+			    target = CAN
+			}
+		}
+
+	}
+	focus = {
+		id = FRA_expand_northern_support
+		icon = GFX
+		cost = 5.00
+		prerequisite = {
+			focus = FRA_quid_pro_quo
+		}
+		prerequisite = {
+			focus = FRA_federalist_expeditionary_force
+		}
+		x = -1
+		y = 1
+		relative_position_id = FRA_quid_pro_quo
+		available = {
+			country_exists = CAN
+			has_global_flag = canadian_civil_war
+			NOT = {
+				has_war_with = CAN
+			}
+		}
+		bypass = {
+			NOT = {
+				country_exists = CAN
+			}
+		}
+		completion_reward = {
+			add_ideas = FRA_dept_intervention_canada
+			CAN = { give_military_access = FRA }
+			diplomatic_relation = {
+				country = CAN
+				relation = non_aggression_pact
+				active = yes
+			}
+		}
+	}
+	focus = {
+		id = FRA_federalist_expeditionary_force
+		icon = GFX
+		cost = 5.00
+		prerequisite = {
+			focus = FRA_open_department_of_intervention
+		}
+		x = -1
+		y = 1
+		relative_position_id = FRA_open_department_of_intervention
+		available = {
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = FRA_dept_intervention
+				add_idea = FRA_dept_intervention2
+			}
+		}
+	}
+	focus = {
+		id = FRA_caribbean_intervention_forces
+		icon = GFX
+		cost = 5.00
+		prerequisite = {
+			focus = FRA_federalist_expeditionary_force
+		}
+		x = -1
+		y = 1
+		relative_position_id = FRA_federalist_expeditionary_force
+		available = {
+			has_equipment = {
+			    infantry_equipment > 5000
+			}
+			country_exists = CUC
+			NOT = {
+				has_war_with = CUC
+			}
+		}
+		bypass = {
+			NOT = {
+				country_exists = CUC
+			}
+		}
+		completion_reward = {
+			army_experience = 25
+			add_war_support = 0.1
+			add_political_power = 50
+			send_equipment = {
+			    equipment = infantry_equipment
+			    amount = 5000
+			    target = CUC
+			}
+		}
+	}
+	focus = {
+		id = FRA_support_sca
+		icon = GFX
+		cost = 3.00
+		prerequisite = {
+			focus = FRA_federalist_expeditionary_force
+		}
+		x = 1
+		y = 1
+		relative_position_id = FRA_federalist_expeditionary_force
+		available = {
+			has_country_flag = FRA_supported_southcarolina_rebels_flag
+		}
+		bypass = { has_global_flag = Confederate_Collapse_ended }
+		completion_reward = {
+			add_political_power = 100
+		}
+	}
+	focus = {
+		id = FRA_expand_our_support_to_sca
+		icon = GFX
+		cost = 3.00
+		prerequisite = {
+			focus = FRA_support_sca
+		}
+		x = -1
+		y = 1
+		relative_position_id = FRA_support_sca
+		available = {
+			country_exists = SCA
+		}
+		bypass = { has_global_flag = Confederate_Collapse_ended }
+		completion_reward = {
+			add_to_variable = {
+				var = SCA.influence_expanded
+				value = 1
+				tooltip  = SCA_bidenist_influence_increases_tt
+			}
+			SCA = {
+				add_manpower = 50000
+			}
+			add_manpower = -50000
+			send_equipment = {
+			    equipment = infantry_equipment
+			    amount = 5000
+			    target = SCA
+			}
+		}
+	}
+	focus = {
+		id = FRA_lessons_from_sca_intervention
+		icon = GFX
+		cost = 3.00
+		prerequisite = {
+			focus = FRA_support_sca
+		}
+		x = 1
+		y = 1
+		relative_position_id = FRA_support_sca
+		available = {
+			has_global_flag = Confederate_Collapse_ended
+		}
+		completion_reward = {
+			army_experience = 50
+			add_war_support = 0.1
+			add_political_power = 50
+		}
+	}
+	
 	focus = {
 		id = FRA_learn_from_our_intervention_in_kfc
 		icon = GFX_goal_FRA_learn_from_our_intervention_in_kfc
 		cost = 3.00
 		prerequisite = {
-			focus = FRA_the_great_crisis_of_our_time
+			focus = FRA_open_department_of_intervention
 		}
-		x = 2
+		x = 1
 		y = 1
-		relative_position_id = FRA_the_great_crisis_of_our_time
+		relative_position_id = FRA_open_department_of_intervention
 		available = {
 			all_country_with_original_tag  = {
 				original_tag_to_check = KFC
@@ -5354,11 +5562,14 @@ focus_tree = {
 		icon = GFX_goal_FRA_learn_from_our_intervention_in_soda
 		cost = 3.00
 		prerequisite = {
-			focus = FRA_the_great_crisis_of_our_time
+			focus = FRA_open_department_of_intervention
 		}
-		x = -2
+		prerequisite = {
+			focus = FRA_marshal_milleys_war
+		}
+		x = 3
 		y = 1
-		relative_position_id = FRA_the_great_crisis_of_our_time
+		relative_position_id = FRA_open_department_of_intervention
 		available = {
 			all_country_with_original_tag  = {
 				original_tag_to_check = MIL
@@ -5589,42 +5800,6 @@ focus_tree = {
 	
 	
 	####### Foreign Policy #######
-	
-	focus = {
-		id = FRA_quid_pro_quo
-		icon = GFX_goal_FRA_quid_pro_quo
-		cost = 5.00
-		prerequisite = {
-			focus = FRA_the_great_crisis_of_our_time
-		}
-		x = -4
-		y = 1
-		relative_position_id = FRA_the_great_crisis_of_our_time
-		available = {
-			has_equipment = {
-			    infantry_equipment > 10000
-			}
-			country_exists = CAN
-			has_global_flag = canadian_civil_war
-			NOT = {
-				has_war_with = CAN
-			}
-		}
-		bypass = {
-			NOT = {
-				country_exists = CAN
-			}
-		}
-		continue_if_invalid = yes
-		completion_reward = {
-			send_equipment = {
-			    equipment = infantry_equipment
-			    amount = 10000
-			    target = CAN
-			}
-		}
-
-	}
 	focus = {
 		id = FRA_consolidate_realm
 		icon = GFX_goal_icon_Consolidate_our_realm
@@ -5814,6 +5989,9 @@ focus_tree = {
 		relative_position_id = FRA_fortify_the_west
 		mutually_exclusive = { focus = FRA_strike_first }
 		bypass = { has_war_with = USA }
+		available = {
+			any_neighbor_country = { tag = USA }
+		}
 		completion_reward = {
 			add_timed_idea = {
 				idea = FRA_defensive_focus_against_trump
@@ -5833,6 +6011,9 @@ focus_tree = {
 		relative_position_id = FRA_fortify_the_west
 		mutually_exclusive = { focus = FRA_defensive_maneauvers }
 		bypass = { has_war_with = USA }
+		available = {
+			any_neighbor_country = { tag = USA }
+		}
 		will_lead_to_war_with = USA
 		completion_reward = {
 			add_timed_idea = {
