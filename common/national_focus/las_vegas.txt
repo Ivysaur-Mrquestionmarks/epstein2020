@@ -2021,6 +2021,23 @@ focus_tree = {
 		x = -1
 		y = 7
 		relative_position_id = LAS_king_billys_on_the_wall
+		available = {
+			OR = {
+				owns_state = 306
+				owns_state = 416
+				owns_state = 242
+			}
+		}
+		completion_reward = {
+			set_cosmetic_tag = LAS_grand_orange_kingdom_ct
+			#todo- if Johnny Adair is recruited, he has the chance to coup government.
+			add_stability = 0.20
+			add_war_support = 0.20
+			add_political_power = 300
+			add_state_core = 306
+			add_state_core = 416
+			add_state_core = 242
+		}
 
 	}
 	focus = {
@@ -2036,6 +2053,20 @@ focus_tree = {
 		x = 1
 		y = 6
 		relative_position_id = LAS_king_billys_on_the_wall
+		available = {
+			OR = {
+				any_neighbor_country = { owns_state = 310 }
+				any_neighbor_country = { owns_state = 249 }
+			}
+		}
+		will_lead_to_war_with = NMX
+		will_lead_to_war_with = TEX
+		will_lead_to_war_with = BLA
+		will_lead_to_war_with = FAL
+		#will_lead_to_war_with = #i forgor
+		completion_reward = {
+			War_on_texas_collapse_tags = yes 
+		}
 
 	}
 	focus = {
@@ -2048,6 +2079,53 @@ focus_tree = {
 		x = 1
 		y = 7
 		relative_position_id = LAS_king_billys_on_the_wall
+		available = {
+			OR = {
+				any_neighbor_country = {
+					original_tag = CSA
+				}
+				any_neighbor_country = {
+					original_tag = KKK
+				}
+				any_neighbor_country = {
+					original_tag = AFR
+				}
+			}
+		}
+		bypass = {
+			NOT = {
+				AND = {
+					country_exists = CSA
+					country_exists = KKK
+					country_exists = AFR
+				}
+			}
+		}
+		bypass_effect = {
+			every_state = {
+				limit = {
+					is_core_of = CSA
+				}
+				add_claim_by = ROOT
+			}
+		}
+		will_lead_to_war_with = CSA
+		will_lead_to_war_with = KKK
+		will_lead_to_war_with = AFR
+		completion_reward = {
+			create_wargoal = {
+    			type = annex_everything
+    			target = CSA
+			}
+			create_wargoal = {
+    			type = annex_everything
+    			target = KKK
+			}
+			create_wargoal = {
+    			type = annex_everything
+    			target = AFR
+			}
+		}
 
 	}
 	focus = {
@@ -2060,6 +2138,12 @@ focus_tree = {
 		x = 0
 		y = 8
 		relative_position_id = LAS_king_billys_on_the_wall
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = LAS_no_surrender
+				add_idea = LAS_no_surrender_1
+			}
+		}
 
 	}
 	focus = {
@@ -2072,6 +2156,9 @@ focus_tree = {
 		x = -3
 		y = 6
 		relative_position_id = LAS_king_billys_on_the_wall
+		completion_reward = {
+			add_offsite_building = { type = arms_factory level = 3 }
+		}
 
 	}
 	focus = {
@@ -2084,6 +2171,40 @@ focus_tree = {
 		x = 3
 		y = 6
 		relative_position_id = LAS_king_billys_on_the_wall
+		completion_reward = {
+			add_country_leader_trait = LAS_protector_of_the_realm
+			if = {
+				limit = {
+					NOT = {
+						has_completed_focus = LAS_2_loyalty_to_the_king
+					}
+				}
+				add_field_marshal_role = {
+				  character = LAS_allen_ford
+				  skill = 4
+				  attack_skill = 2
+				  defense_skill = 3
+				  planning_skill = 3
+				  logistics_skill = 5
+				  traits = {
+				  	old_guard politically_connected
+				  }
+				}
+				else = {
+					add_field_marshal_role = {
+					  character = LAS_david_armstrong_jones_second_earl_of_snowdon
+					  skill = 4
+					  attack_skill = 2
+					  defense_skill = 3
+					  planning_skill = 3
+					  logistics_skill = 5
+					  traits = {
+					  	old_guard politically_connected
+					  }
+					}
+				}
+			}
+		}
 
 	}
 }
