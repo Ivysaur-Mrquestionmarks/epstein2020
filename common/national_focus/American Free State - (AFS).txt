@@ -30,6 +30,9 @@ focus_tree = {
 		}
 		bypass = { has_war = yes }
 		allow_branch = {
+		    NOT = {
+				has_completed_focus = AFS_againist_the_triumvirate
+			}
 		}
 		available = {
 		}
@@ -55,7 +58,10 @@ focus_tree = {
 		bypass = { has_war = yes }
 		allow_branch = {
 			NOT = {
-			    has_completed_focus = AFS_againist_lawlessness
+				OR = {
+					has_completed_focus = AFS_againist_lawlessness
+					has_completed_focus = AFS_againist_the_triumvirate
+				}
 			}
 		}
 		offset = {
@@ -90,7 +96,10 @@ focus_tree = {
 		bypass = { has_war = yes }
 		allow_branch = {
 			NOT = {
-			    has_completed_focus = AFS_againist_tyranny
+				OR = {
+					has_completed_focus = AFS_againist_tyranny
+					has_completed_focus = AFS_againist_the_triumvirate
+				}
 			}
 		}
 		offset = {
@@ -155,11 +164,6 @@ focus_tree = {
 				mission = AFS_civil_war_soon
 				days = 25
 			}
-			add_power_balance_value = {
-				id = vermin_bop
-				value = 0.15
-				tooltip_side = vermin_powerful
-			}
 			swap_ideas = {
 			    remove_idea = AFS_triumvirate_broken
 			    add_idea = AFS_triumvirate_broken_vermin
@@ -191,12 +195,8 @@ focus_tree = {
 				mission = AFS_civil_war_soon
 				days = 25
 			}
-			add_power_balance_value = {
-				id = vermin_bop
-				value = 0.15
-				tooltip_side = vermin_powerful
-			}
 			custom_effect_tooltip = AFS_this_will_weaken_mattis_and_hawkins
+			set_country_flag = AFS_mike_dewine_coup_available
 		}
 	}
 
@@ -222,6 +222,11 @@ focus_tree = {
                 popularity = 0.05
             }
 			add_war_support = 0.05
+			add_power_balance_value = {
+				id = vermin_bop
+				value = 0.1
+				tooltip_side = vermin_powerful
+			}
 		}
 	}
 
@@ -247,6 +252,11 @@ focus_tree = {
                 popularity = 0.05
             }
 			add_war_support = 0.05
+			add_power_balance_value = {
+				id = vermin_bop
+				value = 0.1
+				tooltip_side = vermin_powerful
+			}
 		    custom_effect_tooltip = AFS_this_will_strengthen_us
 		}
 	}
@@ -273,6 +283,11 @@ focus_tree = {
                 popularity = 0.05
             }
 			add_war_support = 0.05
+			add_power_balance_value = {
+				id = vermin_bop
+				value = 0.1
+				tooltip_side = vermin_powerful
+			}
 		    custom_effect_tooltip = AFS_this_will_strengthen_us
 		}
 	}
@@ -2044,6 +2059,7 @@ focus_tree = {
 		        }
 		    }
 			custom_effect_tooltip = AFS_this_will_weaken_vermin
+			set_country_flag = AFS_mike_dewine_coup_available
 		}
 	}
 
@@ -2199,7 +2215,11 @@ focus_tree = {
 		select_effect = {  }
 		allow_branch = {
 			NOT = {
-			    has_country_flag = AFS_hawkins_side
+			    OR = {
+					has_country_flag = AFS_hawkins_side
+					has_completed_focus = AFS_againist_tyranny
+					has_completed_focus = AFS_againist_the_triumvirate
+				}
 			}
 		}
 		offset = {
@@ -2255,7 +2275,11 @@ focus_tree = {
 		select_effect = {  }
 		allow_branch = {
 			NOT = {
-			    has_country_flag = AFS_mattis_side
+				OR = {
+					has_country_flag = AFS_mattis_side
+					has_completed_focus = AFS_againist_tyranny
+					has_completed_focus = AFS_againist_the_triumvirate
+				}
 			}
 		}
 		offset = {
@@ -5918,18 +5942,25 @@ focus_tree = {
 		select_effect = {  }
 		allow_branch = {
 		}
+		offset = {
+			x = -80
+			y = 0
+			trigger = {
+				has_completed_focus = AFS_againist_the_triumvirate
+			}
+		}
 		available = {
 			always = no
 		}
 		completion_reward = {
-		
+		    mark_focus_tree_layout_dirty = yes
 		}
 	}
 
 	focus = {
 		id = AFS_anti_triumvirate_action
 		icon = GFX_goal_VIR_kill_the_afs
-		cost = 5
+		cost = 3
 		x = 1
 		y = 1
 		relative_position_id = AFS_againist_the_triumvirate
@@ -5942,14 +5973,17 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    country_event = {
+				id = vance.2
+				days = 0
+			}
 		}
 	}
 
 	focus = {
 		id = AFS_establish_our_government
 		icon = GFX_goal_VIR_kill_the_afs
-		cost = 5
+		cost = 3
 		x = -1
 		y = 1
 		relative_position_id = AFS_againist_the_triumvirate
@@ -5962,14 +5996,30 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+			swap_ideas = {
+			    remove_idea = AFS_choas_and_disorder
+			    add_idea = AFS_choas_and_disorder_2
+		    }
+		    add_political_power = 75
+		    add_popularity = {
+                ideology = libertarian_left
+                popularity = -0.1
+            }
+		    add_popularity = {
+                ideology = authoritarian_left
+                popularity = -0.1
+            }
+		    add_popularity = {
+                ideology = autocratic
+                popularity = -0.1
+            }
 		}
 	}
 
 	focus = {
 		id = AFS_the_fate_of_ohio
 		icon = GFX_goal_VIR_kill_the_afs
-		cost = 5
+		cost = 2
 		x = 1
 		y = 1
 		relative_position_id = AFS_establish_our_government
@@ -5985,7 +6035,22 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		    #should get an event about peter thiel convincing vance to embrace the dark enlightenment
+		    hidden_effect = {
+			    if = {
+				    limit = { has_country_flag = AFS_normal_vance }
+			        country_event = {
+				        id = vance.9
+				        days = 0
+			        }
+			    }
+			    if = {
+				    limit = { has_country_flag = AFS_enlight_vance }
+			        country_event = {
+				        id = vance.10
+				        days = 0
+			        }
+			    }
+		    }
 		}
 	}
 
@@ -6006,9 +6071,31 @@ focus_tree = {
 		allow_branch = {
 		}
 		available = {
+			always = no
 		}
 		completion_reward = {
-		
+		    add_popularity = {
+                ideology = autocratic
+                popularity = 0.15
+            }
+		    set_politics = {
+                ruling_party = autocratic
+                elections_allowed = no
+            }
+			add_country_leader_role = {
+                character = AFS_jd_vance
+                promote_leader = yes
+                country_leader = {
+                    ideology = dark_enlightenment
+                    expire = "2080.1.1.1"
+                    traits = {  }
+                }
+            }
+			set_country_leader_portrait = {
+	            ideology = dark_enlightenment
+	            portrait = "GFX_portrait_AFS_evil_jd_vance"
+            }
+			set_cosmetic_tag = AFS_enlightenment_vance_cosmetic
 		}
 	}
 
@@ -6028,7 +6115,10 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    swap_ideas = {
+			    remove_idea = AFS_triumvirate_rebels_3
+			    add_idea = AFS_triumvirate_rebels_4
+		    }
 		}
 	}
 
@@ -6068,7 +6158,10 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    swap_ideas = {
+			    remove_idea = AFS_choas_and_disorder_3
+			    add_idea = AFS_choas_and_disorder_4
+		    }
 		}
 	}
 
@@ -6091,7 +6184,8 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    remove_ideas = AFS_triumvirate_rebels_4
+			remove_ideas = AFS_choas_and_disorder_4
 		}
 	}
 
@@ -6434,6 +6528,132 @@ focus_tree = {
 	}
 
 	focus = {
+		id = AFS_the_dukes_guard
+		icon = GFX_goal_VIR_kill_the_afs
+		cost = 5
+		x = 8
+		y = 1
+		relative_position_id = AFS_enlightenment
+		prerequisite = {
+			focus = AFS_enlightenment
+		}
+		select_effect = {  }
+		allow_branch = {
+		}
+		available = {
+		}
+		completion_reward = {
+		
+		}
+	}
+
+	focus = {
+		id = AFS_the_dukes_generals
+		icon = GFX_goal_VIR_kill_the_afs
+		cost = 5
+		x = 2
+		y = 1
+		relative_position_id = AFS_the_dukes_guard
+		prerequisite = {
+			focus = AFS_the_dukes_guard
+		}
+		select_effect = {  }
+		allow_branch = {
+		}
+		available = {
+		}
+		completion_reward = {
+		
+		}
+	}
+
+	focus = {
+		id = AFS_limitless_tech
+		icon = GFX_goal_VIR_kill_the_afs
+		cost = 5
+		x = -1
+		y = 1
+		relative_position_id = AFS_the_dukes_generals
+		prerequisite = {
+			focus = AFS_the_dukes_generals
+		}
+		prerequisite = {
+			focus = AFS_build_up_the_guard
+		}
+		select_effect = {  }
+		allow_branch = {
+		}
+		available = {
+		}
+		completion_reward = {
+		
+		}
+	}
+
+	focus = {
+		id = AFS_the_dukes_royal_airforce
+		icon = GFX_goal_VIR_kill_the_afs
+		cost = 5
+		x = 1
+		y = 1
+		relative_position_id = AFS_serve_the_duke
+		prerequisite = {
+			focus = AFS_build_up_the_guard
+		}
+		prerequisite = {
+			focus = AFS_serve_the_duke
+		}
+		select_effect = {  }
+		allow_branch = {
+		}
+		available = {
+		}
+		completion_reward = {
+		
+		}
+	}
+
+	focus = {
+		id = AFS_build_up_the_guard
+		icon = GFX_goal_VIR_kill_the_afs
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = AFS_the_dukes_guard
+		prerequisite = {
+			focus = AFS_the_dukes_guard
+		}
+		select_effect = {  }
+		allow_branch = {
+		}
+		available = {
+		}
+		completion_reward = {
+		
+		}
+	}
+
+	focus = {
+		id = AFS_serve_the_duke
+		icon = GFX_goal_VIR_kill_the_afs
+		cost = 5
+		x = -2
+		y = 1
+		relative_position_id = AFS_the_dukes_guard
+		prerequisite = {
+			focus = AFS_the_dukes_guard
+		}
+		select_effect = {  }
+		allow_branch = {
+		}
+		available = {
+		}
+		completion_reward = {
+		
+		}
+	}
+
+	focus = {
 		id = AFS_follow_mike_dewines_path
 		icon = GFX_goal_VIR_kill_the_afs
 		cost = 1
@@ -6450,9 +6670,13 @@ focus_tree = {
 		allow_branch = {
 		}
 		available = {
+			always = no
 		}
 		completion_reward = {
-		
+		    add_popularity = {
+                ideology = republican
+                popularity = 0.05
+            }
 		}
 	}
 
@@ -6472,14 +6696,17 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    swap_ideas = {
+			    remove_idea = AFS_triumvirate_rebels_3
+			    add_idea = AFS_triumvirate_rebels_4
+		    }
 		}
 	}
 
 	focus = {
 		id = AFS_who_to_follow
 		icon = GFX_goal_VIR_kill_the_afs
-		cost = 5
+		cost = 3
 		x = -1
 		y = 1
 		relative_position_id = AFS_reestablish_democracy
@@ -6492,7 +6719,10 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		    #event here where vance desides who to side with
+		    country_event = {
+			    id = vance.11
+		        days = 0
+		    }
 		}
 	}
 
@@ -6512,7 +6742,10 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    swap_ideas = {
+			    remove_idea = AFS_choas_and_disorder_3
+			    add_idea = AFS_choas_and_disorder_4
+		    }
 		}
 	}
 
@@ -6535,7 +6768,8 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    remove_ideas = AFS_triumvirate_rebels_4
+			remove_ideas = AFS_choas_and_disorder_4
 		}
 	}
 
@@ -6595,7 +6829,7 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    #gets event about cooporating with the dems or third parites
 		}
 	}
 
@@ -7149,6 +7383,132 @@ focus_tree = {
 		}
 	}
 
+	focus = {
+		id = AFS_the_military_of_ohio
+		icon = GFX_goal_VIR_kill_the_afs
+		cost = 5
+		x = -8
+		y = 1
+		relative_position_id = AFS_follow_mike_dewines_path
+		prerequisite = {
+			focus = AFS_follow_mike_dewines_path
+		}
+		select_effect = {  }
+		allow_branch = {
+		}
+		available = {
+		}
+		completion_reward = {
+		
+		}
+	}
+
+	focus = {
+		id = AFS_rebuild_the_military_staff
+		icon = GFX_goal_VIR_kill_the_afs
+		cost = 5
+		x = -2
+		y = 1
+		relative_position_id = AFS_the_military_of_ohio
+		prerequisite = {
+			focus = AFS_the_military_of_ohio
+		}
+		select_effect = {  }
+		allow_branch = {
+		}
+		available = {
+		}
+		completion_reward = {
+		
+		}
+	}
+
+	focus = {
+		id = AFS_expand_the_national_guard
+		icon = GFX_goal_VIR_kill_the_afs
+		cost = 5
+		x = 0
+		y = 1
+		relative_position_id = AFS_the_military_of_ohio
+		prerequisite = {
+			focus = AFS_the_military_of_ohio
+		}
+		select_effect = {  }
+		allow_branch = {
+		}
+		available = {
+		}
+		completion_reward = {
+		
+		}
+	}
+
+	focus = {
+		id = AFS_fight_for_ohio
+		icon = GFX_goal_VIR_kill_the_afs
+		cost = 5
+		x = 2
+		y = 1
+		relative_position_id = AFS_the_military_of_ohio
+		prerequisite = {
+			focus = AFS_the_military_of_ohio
+		}
+		select_effect = {  }
+		allow_branch = {
+		}
+		available = {
+		}
+		completion_reward = {
+		
+		}
+	}
+
+	focus = {
+		id = AFS_military_research_department
+		icon = GFX_goal_VIR_kill_the_afs
+		cost = 5
+		x = 1
+		y = 1
+		relative_position_id = AFS_rebuild_the_military_staff
+		prerequisite = {
+			focus = AFS_rebuild_the_military_staff
+		}
+		prerequisite = {
+			focus = AFS_expand_the_national_guard
+		}
+		select_effect = {  }
+		allow_branch = {
+		}
+		available = {
+		}
+		completion_reward = {
+		
+		}
+	}
+
+	focus = {
+		id = AFS_the_ohio_airforce
+		icon = GFX_goal_VIR_kill_the_afs
+		cost = 5
+		x = -1
+		y = 1
+		relative_position_id = AFS_fight_for_ohio
+		prerequisite = {
+			focus = AFS_expand_the_national_guard
+		}
+		prerequisite = {
+			focus = AFS_fight_for_ohio
+		}
+		select_effect = {  }
+		allow_branch = {
+		}
+		available = {
+		}
+		completion_reward = {
+		
+		}
+	}
+
 	###War Focuses (mattis)
 
 	focus = {
@@ -7163,13 +7523,12 @@ focus_tree = {
 		}
 		select_effect = {  }
 		allow_branch = {
-			OR = {
-			    NOT = {
-			        has_completed_focus = AFS_againist_lawlessness
-			    }
-				NOT = {
-			        has_country_flag = AFS_hawkins_side
-			    }
+			NOT = {
+			    OR = {
+					has_country_flag = AFS_hawkins_side
+					has_completed_focus = AFS_againist_tyranny
+					has_completed_focus = AFS_againist_the_triumvirate
+				}
 			}
 		}
 		available = {
@@ -7198,13 +7557,12 @@ focus_tree = {
 		}
 		select_effect = {  }
 		allow_branch = {
-			OR = {
-			    NOT = {
-			        has_completed_focus = AFS_againist_lawlessness
-			    }
-				NOT = {
-			        has_country_flag = AFS_hawkins_side
-			    }
+			NOT = {
+			    OR = {
+					has_country_flag = AFS_hawkins_side
+					has_completed_focus = AFS_againist_tyranny
+					has_completed_focus = AFS_againist_the_triumvirate
+				}
 			}
 		}
 		available = {
@@ -8273,7 +8631,10 @@ focus_tree = {
 		select_effect = {  }
 		allow_branch = {
 			NOT = {
-			    has_completed_focus = AFS_againist_lawlessness
+				OR = {
+					has_completed_focus = AFS_againist_lawlessness
+					has_completed_focus = AFS_againist_the_triumvirate
+				}
 			}
 		}
 		available = {
@@ -9255,13 +9616,12 @@ focus_tree = {
 		relative_position_id = AFS_hawkins_victory
 		select_effect = {  }
 		allow_branch = {
-			OR = {
-			    NOT = {
-			        has_completed_focus = AFS_againist_lawlessness
-			    }
-				NOT = {
-			        has_country_flag = AFS_mattis_side
-			    }
+			NOT = {
+				OR = {
+					has_country_flag = AFS_mattis_side
+					has_completed_focus = AFS_againist_tyranny
+					has_completed_focus = AFS_againist_the_triumvirate
+				}
 			}
 		}
 		available = {
