@@ -88,23 +88,63 @@ country_event = {
 			factor = 40
 		}
 		
-		if = { limit = { 155 = { is_owned_by = GLA } } 155 = { add_dynamic_modifier = { modifier = kmt_claimed_state } } }
-		if = { limit = { 124 = { is_owned_by = GLA } } 124 = { add_dynamic_modifier = { modifier = kmt_claimed_state } } }
-		if = { limit = { 195 = { is_owned_by = GLA } } 195 = { add_dynamic_modifier = { modifier = kmt_claimed_state } } }
-		if = { limit = { 197 = { is_owned_by = GLA } } 197 = { add_dynamic_modifier = { modifier = kmt_claimed_state } } }
-		if = { limit = { 198 = { is_owned_by = GLA } } 198 = { add_dynamic_modifier = { modifier = kmt_claimed_state } } }
-		if = { limit = { 209 = { is_owned_by = GLA } } 209 = { add_dynamic_modifier = { modifier = kmt_claimed_state } } }
+		#if = { limit = { 155 = { is_owned_by = GLA } } 155 = { add_dynamic_modifier = { modifier = kmt_claimed_state } } }
+		#if = { limit = { 124 = { is_owned_by = GLA } } 124 = { add_dynamic_modifier = { modifier = kmt_claimed_state } } }
+		#if = { limit = { 195 = { is_owned_by = GLA } } 195 = { add_dynamic_modifier = { modifier = kmt_claimed_state } } }
+		#if = { limit = { 197 = { is_owned_by = GLA } } 197 = { add_dynamic_modifier = { modifier = kmt_claimed_state } } }
+		#if = { limit = { 198 = { is_owned_by = GLA } } 198 = { add_dynamic_modifier = { modifier = kmt_claimed_state } } }
+		#if = { limit = { 209 = { is_owned_by = GLA } } 209 = { add_dynamic_modifier = { modifier = kmt_claimed_state } } }
+		#I said not to do this. Very messy, spaghetti code! -Merf
 
-		if = { limit = { 152 = { is_owned_by = GLA } } 152 = { add_dynamic_modifier = { modifier = det_claimed_state } } }
-		if = { limit = { 160 = { is_owned_by = GLA } } 160 = { add_dynamic_modifier = { modifier = det_claimed_state } } }
-		if = { limit = { 161 = { is_owned_by = GLA } } 161 = { add_dynamic_modifier = { modifier = det_claimed_state } } }
-		if = { limit = { 162 = { is_owned_by = GLA } } 162 = { add_dynamic_modifier = { modifier = det_claimed_state } } }
-		if = { limit = { 190 = { is_owned_by = GLA } } 190 = { add_dynamic_modifier = { modifier = det_claimed_state } } }
-		if = { limit = { 157 = { is_owned_by = GLA } } 157 = { add_dynamic_modifier = { modifier = det_claimed_state } } }
-		if = { limit = { 208 = { is_owned_by = GLA } } 208 = { add_dynamic_modifier = { modifier = det_claimed_state } } }
-		if = { limit = { 206 = { is_owned_by = GLA } } 206 = { add_dynamic_modifier = { modifier = det_claimed_state } } }
-		if = { limit = { 204 = { is_owned_by = GLA } } 204 = { add_dynamic_modifier = { modifier = det_claimed_state } } }
-		if = { limit = { 560 = { is_owned_by = GLA } } 560 = { add_dynamic_modifier = { modifier = det_claimed_state } } }
+		GLA = {
+			every_owned_state = {
+				limit = {
+					OR = {
+						state = 155
+						state = 124
+						state = 195
+						state = 197
+						state = 198
+						state = 209
+					}
+				}
+				add_dynamic_modifier = { modifier = kmt_claimed_state }
+			}
+		}
+		#do this instead!
+
+		#if = { limit = { 152 = { is_owned_by = GLA } } 152 = { add_dynamic_modifier = { modifier = det_claimed_state } } }
+		#if = { limit = { 160 = { is_owned_by = GLA } } 160 = { add_dynamic_modifier = { modifier = det_claimed_state } } }
+		#if = { limit = { 161 = { is_owned_by = GLA } } 161 = { add_dynamic_modifier = { modifier = det_claimed_state } } }
+		#if = { limit = { 162 = { is_owned_by = GLA } } 162 = { add_dynamic_modifier = { modifier = det_claimed_state } } }
+		#if = { limit = { 190 = { is_owned_by = GLA } } 190 = { add_dynamic_modifier = { modifier = det_claimed_state } } }
+		#if = { limit = { 157 = { is_owned_by = GLA } } 157 = { add_dynamic_modifier = { modifier = det_claimed_state } } }
+		#if = { limit = { 208 = { is_owned_by = GLA } } 208 = { add_dynamic_modifier = { modifier = det_claimed_state } } }
+		#if = { limit = { 206 = { is_owned_by = GLA } } 206 = { add_dynamic_modifier = { modifier = det_claimed_state } } }
+		#if = { limit = { 204 = { is_owned_by = GLA } } 204 = { add_dynamic_modifier = { modifier = det_claimed_state } } }
+		#if = { limit = { 560 = { is_owned_by = GLA } } 560 = { add_dynamic_modifier = { modifier = det_claimed_state } } }
+
+		GLA = {
+			every_owned_state = {
+				limit = {
+					OR = {
+						state = 152
+						state = 160
+						state = 161
+						state = 162
+						state = 190
+						state = 157
+						state = 208
+						state = 206
+						state = 204
+						state = 560
+					}
+				}
+				add_dynamic_modifier = { modifier = det_claimed_state }
+			}
+		}
+
+
     	DET = {
             country_event = { id = wisconsin.7 }
         }
