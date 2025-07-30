@@ -1403,6 +1403,10 @@ CSA_ARK = {
 				var = ARK.influence_expanded
 				value = 1
 			}
+			add_to_variable = {
+				var = ARK.support_level_var
+				value = 1
+			}
 			FROM = {
 				set_state_flag = influence
 				add_to_variable = {
@@ -1544,7 +1548,11 @@ CSA_SCA = {
 			add_to_variable = {
 				var = SCA.influence_expanded
 				value = 1
-				tooltip  = SCA_bidenist_influence_increases_tt
+				tooltip = SCA_bidenist_influence_increases_tt
+			}
+			add_to_variable = {
+				var = SCA.support_level_var
+				value = 1
 			}
 			FROM = {
 				set_state_flag = influence
@@ -1690,6 +1698,14 @@ CSA_supress = {
 							value = -1
 					}
 				}
+				add_to_variable = {
+					var = SCA.influence
+					value = -43
+				}
+				add_to_variable = {
+					var = SCA.support_level_var
+					value = -1
+				}
 			}
 			else_if = {
 				limit = { FROM = { is_core_of = ARK } } 
@@ -1699,6 +1715,73 @@ CSA_supress = {
     					value = -1
 					}
 				}
+				add_to_variable = {
+					var = ARK.influence
+					value = -43
+				}
+				add_to_variable = {
+					var = ARK.influence_expanded
+					value = -1
+				}
+				add_to_variable = {
+					var = ARK.support_level_var
+					value = -1
+				}
+			}
+		}
+		
+	}
+}
+
+CSA_SCA_influence = {
+	FRA_semd_more_help_sca_decision = {
+
+		cost = 50
+
+		visible = {
+			country_exists = SCA
+			tag = FRA
+		}
+		ai_will_do = {
+			base = 100
+		}
+		fire_only_once = yes
+		days_remove = 35
+		complete_effect = {
+			
+		}
+		remove_effect = {
+			SCA = {
+				country_event = south_carolina.6
+			}
+		}
+		
+	}
+	SCA_subvert_influence_decision = {
+
+		cost = 50
+
+		visible = {
+			country_exists = SCA
+			tag = SCA
+		}
+		ai_will_do = {
+			base = 0
+		}
+		fire_only_once = yes
+		days_remove = 35
+		complete_effect = {
+			
+		}
+		remove_effect = {
+			add_to_variable = {
+				var = SCA.influence
+				value = -43
+			}
+			add_to_variable = {
+				var = SCA.influence_expanded
+				value = -1
+				tooltip = SCA_bidenist_influence_decreases_tt
 			}
 		}
 		
