@@ -4054,9 +4054,11 @@ country_event = {
 		}
 		if = {
 			limit = {
-				NOT = {
-					has_country_flag = TEX_has_attempted_to_improve_great_frost_flag
-					has_country_flag = TEX_expand_anti_terrorism_efforts_flag
+				AND = {
+					has_country_flag = TEX_great_frost_recovery_slow_flag
+					NOT = {
+						has_country_flag = TEX_expand_anti_terrorism_efforts_flag
+					}
 				}
 			}
 			hidden_effect = {
@@ -4849,6 +4851,48 @@ country_event = {
 			clr_country_flag = USA_TEX_dislike
 		}
 		custom_effect_tooltip = USA_TEX_ally_tt
+	}
+}
+
+#great frost  recovery slow
+country_event = {
+	id = texas.122
+	title = texas.122.t
+	desc = texas.122.d
+	#picture = .
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #
+		name = texas.122.a
+		set_country_flag = TEX_great_frost_recovery_slow_flag
+		custom_effect_tooltip = TEX_great_frost_recovery_slow_tt
+		add_stability = -0.15
+		add_war_support = -0.1
+	}
+}
+
+#ppl scared terrorism
+country_event = {
+	id = texas.123
+	title = texas.123.t
+	desc = texas.123.d
+	#picture = .
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #
+		name = texas.123.a
+		custom_effect_tooltip = TEX_ppl_scared_of_terrorism_tt
+		every_owned_state = {
+			limit = {
+				OR = {
+					is_core_of = NMX
+					is_core_of = OKL
+				}
+				NOT = { is_core_of = TEX }
+			}
+			add_resistance = 30
+			add_compliance = -50
+		}
 	}
 }
 

@@ -625,6 +625,15 @@ TEX_the_great_frost_cat = {
 		}
 		timeout_effect  = {
 			TEX_great_frost_level_up = yes
+			if = {
+				limit = {
+					AND = {
+						has_country_flag = TEX_great_frost_nearing_recovery_flag 
+						NOT = { has_country_flag = TEX_has_attempted_to_improve_great_frost_flag }
+					}
+				}
+				country_event = texas.122
+			}
 		}
 	}
 }
@@ -656,8 +665,10 @@ TEX_terrorism_stuff_cat = {
 			set_country_flag = TEX_expand_anti_terrorism_efforts_flag
 		}
 		timeout_effect  = {
-			add_stability = -0.05
+			add_stability = -0.15
+			add_war_support = -0.1
 			set_country_flag = TEX_failed_terrorism_prevention_measures_flag
+			country_event = texas.123
 		}
 	}
 }
