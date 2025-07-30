@@ -56,7 +56,44 @@ ideas = {
 				production_speed_buildings_factor = 0.15
 			}
 		}
-	
+
+
+
+		KMT_treaty_with_det = {
+            modifier = {
+            }
+            cancel = { 
+              NOT = { country_exists = GLA }
+            }
+            on_remove = {
+				if = {
+					limit = {
+						AND = {
+							tag = KMT
+							any_owned_state = { has_dynamic_modifier = { modifier = det_claimed_state } }
+						}
+					}					
+                	country_event = {
+                  		id = wisconsin.11
+                  		days = 2
+               		}
+            	}
+
+				else_if = {
+					limit = {
+						AND = {
+							tag = DET
+							any_owned_state = { has_dynamic_modifier = { modifier = kmt_claimed_state } }
+						}
+					}					
+                	country_event = {
+                  		id = wisconsin.12
+                  		days = 2
+               		}
+            	}
+        	}
+		}
+
 
 
 		KMT_agency_expanded = {
