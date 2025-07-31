@@ -443,7 +443,21 @@ country_event = {
 				}
 			}
 		}
+		set_country_flag = uda_controls_vegas
 		country_event = viva_las_vegas.8
+		hidden_effect = {
+			if = {
+				limit = {
+					NOT = {
+						country_exists = HOP
+					}
+				}
+				country_event = {
+					id = viva_las_vegas.9
+					days = 390
+				}
+			}
+		}
 	}
 }
 #style of Mad Dog Land?
@@ -482,5 +496,41 @@ country_event = {
 		    long_name = LAS_mad_dog_party
 		    name = LAS_mad_dog_party
 		}
+	}
+}
+#Johnny Adair embraces his Nazi roots!
+country_event = {
+	id = viva_las_vegas.9
+	title = viva_las_vegas.9.t
+	desc = viva_las_vegas.9.d
+	picture = event_fascists_01
+	is_triggered_only = yes
+	fire_only_once = yes
+	#probably a bad idea
+	option = {
+		name = viva_las_vegas.9.a
+		add_stability = 0.05
+	}
+	#FUCK YEAH! WE HEIL HITLER NIGGA
+	option = {
+		name = viva_las_vegas.9.b
+		add_stability = -0.30
+		set_country_leader_ideology = neonazism
+		HOP = {
+			HOP_brandon_russell = {
+				set_nationality = LAS
+			}
+			if = {
+				limit = {
+					HOP_michail_chkhikvishvili = {
+						is_unit_leader = yes
+					}
+				}
+				HOP_michail_chkhikvishvili = {
+					set_nationality = LAS
+				}
+			}
+		}
+		load_oob = "LAS_skinheads"
 	}
 }
