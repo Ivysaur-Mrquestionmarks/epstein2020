@@ -1517,6 +1517,9 @@ focus_tree = {
 		x = -1
 		y = 1
 		prerequisite = { 
+			focus = SCA_a_solid_blue_south_reforged
+		}
+		prerequisite = { 
 			focus = SCA_purge_the_extremists_and_populists
 		}
 		prerequisite = { 
@@ -1799,6 +1802,55 @@ focus_tree = {
 			}
 	    }
 	}
+	focus = {
+		id = SCA_a_solid_blue_south_reforged
+		icon = GFX
+		x = -1
+		y = 1
+		prerequisite = { 
+			focus = SCA_integrate_kentucky
+		}
+		prerequisite = { 
+			focus = SCA_integrate_virginia
+		}
+		prerequisite = { 
+			focus = SCA_integrate_texas
+		}
+		prerequisite = { 
+			focus = SCA_integrate_florida
+		}
+		available = {
+			NOT = {
+				country_exists = FLO
+				country_exists = FLA
+				country_exists = FLD
+				country_exists = SEM
+				country_exists = NSA
+				hidden_trigger = {
+					country_exists = GKJ
+					country_exists = OBX
+				}
+				country_exists = LOU
+				country_exists = TEX
+				country_exists = OKL
+				country_exists = CRN
+				country_exists = BLA
+				country_exists = FAL
+				country_exists = RED
+				country_exists = FTA
+				country_exists = NMX
+				country_exists = CRU
+				country_exists = BET
+				country_exists = SAN
+				country_exists = VIR
+				country_exists = RVR
+			}
+		}
+		relative_position_id = SCA_integrate_kentucky
+		cost = 5
+		completion_reward = {
+	    }
+	}
 	
 	
 	focus = {
@@ -1999,6 +2051,9 @@ focus_tree = {
 		icon = GFX
 		x = 2
 		y = 1
+		prerequisite = { 
+			focus = SCA_on_the_right_side_of_history
+		}
 		prerequisite = { 
 			focus = SCA_monitoring_elections
 			focus = SCA_rehabilitation
@@ -2289,6 +2344,10 @@ focus_tree = {
 		cost = 5
 		available = {
 			has_completed_focus = SCA_FRA_carolina_unification
+			NOT = {
+				country_exists = VIR
+				country_exists = RVR
+			}
 		}
 		completion_reward = {
 			every_state = {
@@ -2363,6 +2422,392 @@ focus_tree = {
 				add_state_core = 246
 				add_state_core = 237
 			}
+	    }
+	}
+	focus = {
+		id = SCA_on_the_right_side_of_history
+		icon = GFX
+		x = 1
+		y = 1
+		prerequisite = { 
+			focus = SCA_military_district_appalachia
+		}
+		prerequisite = { 
+			focus = SCA_military_district_greater_carolina
+		}
+		prerequisite = { 
+			focus = SCA_military_district_texas_louisiana
+		}
+		prerequisite = { 
+			focus = SCA_military_district_florida
+		}
+		available = {
+			has_completed_focus = SCA_FRA_the_southern_manufacturing_boom
+			has_completed_focus = SCA_FRA_dixie_and_the_yanks_united
+			NOT = {
+				country_exists = FLO
+				country_exists = FLA
+				country_exists = FLD
+				country_exists = SEM
+				country_exists = NSA
+				hidden_trigger = {
+					country_exists = GKJ
+					country_exists = OBX
+				}
+				country_exists = LOU
+				country_exists = TEX
+				country_exists = OKL
+				country_exists = CRN
+				country_exists = BLA
+				country_exists = FAL
+				country_exists = RED
+				country_exists = FTA
+				country_exists = NMX
+				country_exists = CRU
+				country_exists = BET
+				country_exists = SAN
+				country_exists = VIR
+				country_exists = RVR
+				country_exists = KFC
+			}
+		}
+		relative_position_id = SCA_military_district_appalachia
+		cost = 5
+		completion_reward = {
+			ever_country = {
+				limit = {
+					OR = {
+						tag = CSB
+						tag = APA
+						tag = GEO
+						tag = LGB
+						tag = MIS
+						tag = ARK
+						tag = ABM
+					}
+				}
+				every_owned_state = {
+					add_core_of = SCA
+				}
+				if = {
+					limit = { is_subject_of = ROOT }
+					ROOT = {
+						annex_country = {
+							target = PREV
+							transfer_troops = yes
+						}
+					}
+					
+				}
+			}
+	    }
+	}
+	
+	
+	focus = {
+		id = SCA_the_next_step
+		icon = GFX
+		x = 5
+		y = 1
+		prerequisite = { 
+			focus = SCA_on_the_right_side_of_history
+			focus = SCA_a_solid_blue_south_reforged
+		}
+		relative_position_id = SCA_a_solid_blue_south_reforged
+		cost = 5
+		completion_reward = {
+	    }
+	}
+	focus = {
+		id = SCA_await_the_call
+		icon = GFX
+		x = 4
+		y = 1
+		prerequisite = { 
+			focus = SCA_the_next_step
+		}
+		relative_position_id = SCA_the_next_step
+		cost = 5
+		mutually_exclusive = {
+			focus = SCA_a_change_in_course
+			focus = SCA_inherit_the_legitimists
+		}
+		completion_reward = {
+	    }
+	}
+	focus = {
+		id = SCA_inherit_the_legitimists
+		icon = GFX
+		x = 0
+		y = 1
+		prerequisite = { 
+			focus = SCA_the_next_step
+		}
+		relative_position_id = SCA_the_next_step
+		cost = 5
+		mutually_exclusive = {
+			focus = SCA_a_change_in_course
+			focus = SCA_await_the_call
+		}
+		completion_reward = {
+	    }
+	}
+	focus = {
+		id = SCA_a_change_in_course
+		icon = GFX
+		x = -4
+		y = 1
+		prerequisite = { 
+			focus = SCA_the_next_step
+		}
+		relative_position_id = SCA_the_next_step
+		available = {
+			OR = {
+				FRA = {
+					OR = {
+						has_government = autocratic
+						has_government = libertarian_left
+						has_government = authoritarian_left
+					}
+				}
+				has_completed_focus = SCA_permanent_constitutional_suspension
+			}
+		}
+		mutually_exclusive = {
+			focus = SCA_inherit_the_legitimists
+			focus = SCA_await_the_call
+		}
+		cost = 5
+		completion_reward = {
+	    }
+	}
+	focus = {
+		id = SCA_there_can_only_be_one
+		icon = GFX
+		x = 0
+		y = 1
+		prerequisite = { 
+			focus = SCA_a_change_in_course
+		}
+		relative_position_id = SCA_a_change_in_course
+		cost = 5
+		will_lead_to_war_with = FRA
+		completion_reward = {
+			leave_faction = yes
+			declare_war_on = {
+				target = FRA
+				type = annex_everything
+			}
+	    }
+	}
+	focus = {
+		id = SCA_dominate_the_rustbelt
+		icon = GFX
+		x = 3
+		y = 1
+		prerequisite = { 
+			focus = SCA_inherit_the_legitimists
+			focus = SCA_there_can_only_be_one
+		}
+		relative_position_id = SCA_there_can_only_be_one
+		cost = 5
+		will_lead_to_war_with = NRA
+		will_lead_to_war_with = USA
+		will_lead_to_war_with = AFS
+		will_lead_to_war_with = NPA
+		completion_reward = {
+			create_wargoal = {
+				target = AFS
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = NRA
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = USA
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = NPA
+				type = annex_everything
+			}
+	    }
+	}
+	focus = {
+		id = SCA_reach_out_to_milley
+		icon = GFX
+		x = -2
+		y = 1
+		prerequisite = { 
+			focus = SCA_dominate_the_rustbelt
+		}
+		relative_position_id = SCA_dominate_the_rustbelt
+		cost = 5
+		bypass = {
+			NOT = { country_exists = MIL }
+		}
+		completion_reward = {
+	    }
+	}
+	focus = {
+		id = SCA_sweep_the_great_lakes
+		icon = GFX
+		x = 0
+		y = 1
+		prerequisite = { 
+			focus = SCA_reach_out_to_milley
+		}
+		relative_position_id = SCA_reach_out_to_milley
+		cost = 5
+		will_lead_to_war_with = MIN
+		will_lead_to_war_with = MNS
+		will_lead_to_war_with = KMT
+		will_lead_to_war_with = DET
+		will_lead_to_war_with = GLA
+		completion_reward = {
+			create_wargoal = {
+				target = MIN
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = MNS
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = KMT
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = DET
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = GLA
+				type = annex_everything
+			}
+	    }
+	}
+	focus = {
+		id = SCA_pushing_out_west_rockies
+		icon = GFX
+		x = 1
+		y = 1
+		prerequisite = { 
+			focus = SCA_dominate_the_rustbelt
+		}
+		relative_position_id = SCA_dominate_the_rustbelt
+		cost = 5
+		completion_reward = {
+	    }
+	}
+	focus = {
+		id = SCA_rush_the_coast
+		icon = GFX
+		x = 1
+		y = 1
+		prerequisite = { 
+			focus = SCA_pushing_out_west_rockies
+		}
+		relative_position_id = SCA_pushing_out_west_rockies
+		cost = 5
+		completion_reward = {
+	    }
+	}
+	focus = {
+		id = SCA_alaska_and_hawaii_situation
+		icon = GFX
+		x = -1
+		y = 1
+		prerequisite = { 
+			focus = SCA_pushing_out_west_rockies
+		}
+		relative_position_id = SCA_pushing_out_west_rockies
+		cost = 5
+		completion_reward = {
+	    }
+	}
+	focus = {
+		id = SCA_the_reconstruction_zone_of_america
+		icon = GFX
+		x = 1
+		y = 1
+		prerequisite = { 
+			focus = SCA_alaska_and_hawaii_situation
+		}
+		prerequisite = { 
+			focus = SCA_rush_the_coast
+		}
+		prerequisite = { 
+			focus = SCA_sweep_the_great_lakes
+		}
+		relative_position_id = SCA_alaska_and_hawaii_situation
+		cost = 5
+		completion_reward = {
+	    }
+	}
+	
+	
+	focus = {
+		id = SCA_consolidate_the_military_government
+		icon = GFX
+		x = -5
+		y = 1
+		prerequisite = { 
+			focus = SCA_permanent_constitutional_suspension
+		}
+		prerequisite = {
+			focus = SCA_there_can_only_be_one
+		}
+		relative_position_id = SCA_there_can_only_be_one
+		cost = 5
+		completion_reward = {
+			set_politics = {
+				ruling_party = autocratic
+			}
+			add_popularity = {
+				ideology = autocratic
+				popularity = 1
+			}
+	    }
+	}
+	focus = {
+		id = SCA_drop_the_facade
+		icon = GFX
+		x = -2
+		y = 1
+		prerequisite = { 
+			focus = SCA_consolidate_the_military_government
+		}
+		relative_position_id = SCA_consolidate_the_military_government
+		cost = 5
+		completion_reward = {
+	    }
+	}
+	focus = {
+		id = SCA_a_new_military_constitution
+		icon = GFX
+		x = 2
+		y = 1
+		prerequisite = { 
+			focus = SCA_consolidate_the_military_government
+		}
+		relative_position_id = SCA_consolidate_the_military_government
+		cost = 5
+		completion_reward = {
+	    }
+	}
+	focus = {
+		id = SCA_enemy_citizens_are_traitors
+		icon = GFX
+		x = 0
+		y = 1
+		prerequisite = { 
+			focus = SCA_consolidate_the_military_government
+		}
+		relative_position_id = SCA_consolidate_the_military_government
+		cost = 5
+		completion_reward = {
 	    }
 	}
 	
