@@ -3489,6 +3489,14 @@ AFS_hawkins_political_decisions = {
 			resistance_growth = -0.05
 		}
 		remove_effect = {
+			every_owned_state = {
+			    add_state_modifier = {
+                    modifier = {
+                        resistance_growth = -0.01
+						resistance_target = -0.01
+                    }
+                }
+			}
 			modify_country_flag = {
                 flag = AFS_hawkins_political_decision_2
                 value = 1
@@ -3539,6 +3547,14 @@ AFS_hawkins_political_decisions = {
 			drift_defence_factor = 0.1
 		}
 		remove_effect = {
+			every_owned_state = {
+			    add_state_modifier = {
+                    modifier = {
+                        resistance_growth = -0.01
+						resistance_target = -0.01
+                    }
+                }
+			}
 			modify_country_flag = {
                 flag = AFS_hawkins_political_decision_3
                 value = 1
@@ -3589,6 +3605,14 @@ AFS_hawkins_political_decisions = {
 			drift_defence_factor = 0.05
 		}
 		remove_effect = {
+			every_owned_state = {
+			    add_state_modifier = {
+                    modifier = {
+                        resistance_growth = -0.01
+						resistance_target = -0.01
+                    }
+                }
+			}
 			modify_country_flag = {
                 flag = AFS_hawkins_political_decision_4
                 value = 1
@@ -3639,6 +3663,15 @@ AFS_hawkins_political_decisions = {
 			drift_defence_factor = 0.05
 		}
 		remove_effect = {
+			every_owned_state = {
+			    add_state_modifier = {
+                    modifier = {
+                        resistance_growth = -0.01
+						resistance_target = -0.01
+						compliance_growth = -0.01
+                    }
+                }
+			}
 			modify_country_flag = {
                 flag = AFS_hawkins_political_decision_5
                 value = 1
@@ -4384,14 +4417,14 @@ AFS_mattis_economic_decisions = {
 		
 		days_re_enable = 35
 
-		days_remove = 55
+		days_remove = 70
 		
 		cost = 50
 
 		complete_effect = {
 			set_country_flag = {
 				flag = AFS_doing_economic_action
-				days = 55
+				days = 70
 				value = 1
 			}
 		}
@@ -4450,16 +4483,16 @@ AFS_mattis_economic_decisions = {
 		
 		fire_only_once = no
 		
-		days_re_enable = 40
+		days_re_enable = 50
 
-		days_remove = 65
+		days_remove = 100
 		
 		cost = 65
 
 		complete_effect = {
 			set_country_flag = {
 				flag = AFS_doing_economic_action
-				days = 65
+				days = 100
 				value = 1
 			}
 		}
@@ -4527,16 +4560,16 @@ AFS_mattis_economic_decisions = {
 		
 		fire_only_once = no
 		
-		days_re_enable = 40
+		days_re_enable = 50
 
-		days_remove = 75
+		days_remove = 100
 		
 		cost = 65
 
 		complete_effect = {
 			set_country_flag = {
 				flag = AFS_doing_economic_action
-				days = 75
+				days = 100
 				value = 1
 			}
 		}
@@ -4577,6 +4610,323 @@ AFS_mattis_economic_decisions = {
                 flag = AFS_mattis_economic_decision_3
                 value = 1
             }
+		}
+	}
+
+	AFS_get_rid_of_economic_dependencies = {
+		priority = 25
+		icon = #GFX_decision_hol_attract_foreign_investors
+
+		allowed = {
+			original_tag = AFS
+		}
+
+		visible = {
+			has_completed_focus = AFS_rust_belt_rejuvenation
+			has_country_flag = {
+                flag = AFS_mattis_economic_decision_4
+                value < 3
+            }
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = AFS_doing_economic_action
+			}
+		}
+		
+		fire_only_once = no
+		
+		days_re_enable = 50
+
+		days_remove = 100
+		
+		cost = 80
+
+		complete_effect = {
+			set_country_flag = {
+				flag = AFS_doing_economic_action
+				days = 80
+				value = 1
+			}
+		}
+		modifier = {
+			consumer_goods_factor = 0.25
+			production_speed_buildings_factor = -0.1
+			production_factory_efficiency_gain_factor = -0.1
+		}
+		remove_effect = {
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = arms_factory
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1
+			}
+			modify_country_flag = {
+                flag = AFS_mattis_economic_decision_4
+                value = 1
+            }
+		}
+	}
+
+	AFS_expand_energy_production = {
+		priority = 25
+		icon = #GFX_decision_hol_attract_foreign_investors
+
+		allowed = {
+			original_tag = AFS
+		}
+
+		visible = {
+			has_completed_focus = AFS_rust_belt_rejuvenation
+			has_country_flag = {
+                flag = AFS_mattis_economic_decision_5
+                value < 4
+            }
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = AFS_doing_economic_action
+			}
+		}
+		
+		fire_only_once = no
+		
+		days_re_enable = 50
+
+		days_remove = 100
+		
+		cost = 65
+
+		complete_effect = {
+			set_country_flag = {
+				flag = AFS_doing_economic_action
+				days = 100
+				value = 1
+			}
+		}
+		modifier = {
+			consumer_goods_factor = 0.15
+			base_fuel_gain_factor = 0.15
+			production_factory_efficiency_gain_factor = 0.1
+		}
+		remove_effect = {
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = 	synthetic_refinery
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = 	synthetic_refinery
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = 	fuel_silo
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = 	fuel_silo
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			modify_country_flag = {
+                flag = AFS_mattis_economic_decision_5
+                value = 1
+            }
+		}
+	}
+
+	AFS_infrastructure_investments = {
+		priority = 25
+		icon = #GFX_decision_hol_attract_foreign_investors
+
+		allowed = {
+			original_tag = AFS
+		}
+
+		visible = {
+			has_completed_focus = AFS_new_american_architecture
+			has_country_flag = {
+                flag = AFS_mattis_economic_decision_6
+                value < 3
+            }
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = AFS_doing_economic_action
+			}
+		}
+		
+		fire_only_once = no
+		
+		days_re_enable = 50
+
+		days_remove = 100
+		
+		cost = 65
+
+		complete_effect = {
+			set_country_flag = {
+				flag = AFS_doing_economic_action
+				days = 100
+				value = 1
+			}
+		}
+		modifier = {
+			consumer_goods_factor = 0.15
+            production_speed_infrastructure_factor = 0.15
+			production_factory_efficiency_gain_factor = 0.1
+		}
+		remove_effect = {
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+    				type = infrastructure
+    				level = 1
+    				instant_build = yes
+				}
+			}
+		    random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+    				type = infrastructure
+    				level = 1
+    				instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1
+			}
+			modify_country_flag = {
+                flag = AFS_mattis_economic_decision_6
+                value = 1
+            }
+		}
+	}
+
+	AFS_all_roads_lead_to_columbus = {
+		priority = 25
+		icon = #GFX_decision_hol_attract_foreign_investors
+
+		allowed = {
+			original_tag = AFS
+		}
+
+		visible = {
+			has_completed_focus = AFS_new_american_architecture
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = AFS_doing_economic_action
+			}
+		}
+		
+		fire_only_once = yes
+		
+		#days_re_enable = 50
+
+		days_remove = 350
+		
+		cost = 125
+
+		complete_effect = {
+			set_country_flag = {
+				flag = AFS_doing_economic_action
+				days = 350
+				value = 1
+			}
+		}
+		modifier = {
+			consumer_goods_factor = 0.35
+            production_speed_infrastructure_factor = 0.25
+			production_factory_efficiency_gain_factor = -0.15
+		}
+		remove_effect = {
+			add_victory_points = {
+	            province = 9049
+	            value = 15
+            }
+			build_railway = {
+				level = 5
+				start_province = 8774
+				target_province = 9049
+			}
+			build_railway = {
+				level = 5
+				start_province = 8686
+				target_province = 9049
+			}
+			build_railway = {
+				level = 5
+				start_province = 1824
+				target_province = 9049
+			}
+			build_railway = {
+				level = 5
+				start_province = 2092
+				target_province = 9049
+			}
+			build_railway = {
+				level = 5
+				start_province = 3560
+				target_province = 9049
+			}
 		}
 	}
 }
