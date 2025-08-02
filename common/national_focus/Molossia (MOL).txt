@@ -9,7 +9,7 @@ focus_tree = {
 		}
 	}
 
-	#Birth of a Micronation
+	#Blip in the desert
 	focus = {
 		id = MOL_birth_of_a_micronation
 		icon = GFX_goal_MOL_Birth_of_a_Nation
@@ -18,288 +18,181 @@ focus_tree = {
 		cost = 2
 		completion_reward = {
 			country_event = {
-			id = molossia.21
+				id = molossia.1
 			}
 		}
 	}
     
-    #Deciding Our Future
+    #The Mormon Conflict
 	focus = {
-		id = MOL_deciding_our_future
+		id = MOL_the_conflict_in_utah
 		icon = GFX_goal_MOL_waiting_storm
+		available = {
+			UTA = {
+				has_government = autocratic
+			}
+		}
 		x = 0
 		y = 1
         relative_position_id = MOL_birth_of_a_micronation
         prerequisite = { focus = MOL_birth_of_a_micronation  }
 		cost = 2
 		completion_reward = {
-			#country_event = { id = molossia.200 days = 3 random_hours = 12 }
-			MOL_increase_stability_small = yes
+			add_war_support = 0.15
 		}
 	}
 
-    #The Immediate Issues
-    focus = {
-        id = MOL_the_issues_at_hand
-		icon = GFX_goal_MOL_No_time
-		x = 0
-		y = 3
-        relative_position_id = MOL_birth_of_a_micronation
-		cost = 2
-        prerequisite = { 
-            focus = MOL_deciding_our_future
-        }
-		completion_reward = {
-            #Maybe add some event about the issues Molossia faces?
-            add_political_power = 25
-		}
-    }
-
-    focus = {
-        id = MOL_secure_food_supply
-		icon = GFX_goal_MOL_Fried_Chicken
-		x = -2
-		y = 1
-        relative_position_id = MOL_the_issues_at_hand
-		cost = 2
-        prerequisite = { focus = MOL_the_issues_at_hand  }
-		completion_reward = {
-            #Where do we get food lmao
-			MOL_increase_stability_small = yes
-		}
-    }
-
-    focus = {
-        id = MOL_deal_with_crime
-		icon = GFX_goal_Jail_Druggies
-		x = 0
-		y = 1
-        relative_position_id = MOL_the_issues_at_hand
-		cost = 2
-        prerequisite = { focus = MOL_the_issues_at_hand  }
-		completion_reward = {
-            #Create a police force, or just use the army
-			country_event = { id = MOL_internal.30 hours = 72 }
-		}
-    }
-
-    focus = {
-        id = MOL_house_the_refugees
-		icon = GFX_goal_Lincoln_Passive
-		x = 2
-		y = 1
-        relative_position_id = MOL_the_issues_at_hand
-		cost = 2
-        prerequisite = { focus = MOL_the_issues_at_hand  }
-		completion_reward = {
-           custom_effect_tooltip = MOL_refugee_increase_400_tt
-            add_to_variable = {
-                refugee_capacity = 400
-            }
-		}
-    }
-
-    focus = {
-        id = MOL_foundations_of_government
-        icon = GFX_goal_MOL_Lesson_in_History
-		x = 0
-		y = 2
-        relative_position_id = MOL_the_issues_at_hand
-		cost = 2
-        prerequisite = { focus = MOL_secure_food_supply  }
-        prerequisite = { focus = MOL_deal_with_crime  }
-        prerequisite = { focus = MOL_house_the_refugees  }
-		completion_reward = {
-            MOL_decrease_starting_chaos = yes
-		}
-    }
-
-    focus = {
-        id = MOL_molossian_republic
-        icon = GFX_goal_MOL_census
-		x = -5
-		y = 1
-        relative_position_id = MOL_deciding_our_future
-		cost = 2
-        mutually_exclusive = { focus = MOL_imperial_presidency }
-        prerequisite = { focus = MOL_deciding_our_future }
-		bypass = { has_country_flag = choose_republic }
-	ai_will_do = { 
-		factor = 10
-		modifier = {
-      			factor = 0 
-      			OR = {
-				has_game_rule = {
-              				rule = MOL_path
-             				option = MOL_PATH_IMPERIAL
-          			}
-      			}
-   		}
-	}
-		completion_reward = {
-			add_political_power = 50
-            custom_effect_tooltip = MOL_republic_path
-		}
-    }
-
-    focus = {
-        id = MOL_create_assembly
-		icon = GFX_goal_Consolidate_the_Establishment
-		x = -2
-		y = 1
-        relative_position_id = MOL_molossian_republic
-		cost = 2
-        prerequisite = { focus = MOL_molossian_republic  }
-		completion_reward = {
-            add_political_power = 50
-			MOL_increase_stability = yes
-			#Todo: add a flavor event or some shit
-		}
-    }
-
-    focus = {
-        id = MOL_hoist_the_flag
-		icon = GFX_goal_MOL_Hoist_The_Flag
-		x = 0
-		y = 1
-        relative_position_id = MOL_molossian_republic
-		cost = 2
-        prerequisite = { focus = MOL_molossian_republic  }
-		completion_reward = {
-            MOL_decrease_starting_chaos = yes
-		}
-    }
-
-    focus = {
-        id = MOL_molossian_democracy
-		icon = GFX_goal_Generic_Elections
-		x = 2
-		y = 1
-        relative_position_id = MOL_molossian_republic
-		cost = 2
-        prerequisite = { focus = MOL_molossian_republic  }
-		completion_reward = {
-			add_ideas = MOL_accountable_government
-		}
-    }
-
-    focus = {
-        id = MOL_time_for_a_constitution
-		icon = GFX_goal_MOL_On_The_Issue_Of
-		x = 0
-		y = 3
-        relative_position_id = MOL_molossian_republic
-		cost = 2
-        prerequisite = { focus = MOL_create_assembly  }
-        prerequisite = { focus = MOL_hoist_the_flag  }
-        prerequisite = { focus = MOL_molossian_democracy  }
-		completion_reward = {
-			add_political_power = 150
-		}
-    }
-
-    focus = {
-        id = MOL_imperial_presidency
-        icon = GFX_goal_Generic_Caesar
-		x = 5
-		y = 1
-        relative_position_id = MOL_deciding_our_future
-		cost = 2
-		bypass = { has_country_flag = choose_monarchy }
-        mutually_exclusive = { focus = MOL_molossian_republic }
-        prerequisite = { focus = MOL_deciding_our_future }
-	ai_will_do = { 
-		factor = 10
-		modifier = {
-      			factor = 0 
-      			OR = {
-				has_game_rule = {
-              				rule = MOL_path
-             				option = MOL_PATH_REPUBLIC
-          			}
-      			}
-   		}
-	}
-		completion_reward = {
-			add_political_power = -25
-			custom_effect_tooltip = MOL_dictatorship_path
-		}
-    }
-
-    focus = {
-        id = MOL_a_central_position
-		icon = GFX_goal_MOL_Slam_the_door
-		x = -2
-		y = 1
-        relative_position_id = MOL_imperial_presidency
-		cost = 2
-        prerequisite = { focus = MOL_imperial_presidency  }
-		completion_reward = {
-            MOL_decrease_starting_chaos = yes
-			
-		}
-    }
-
-    focus = {
-        id = MOL_listen_to_people
-		icon = GFX_goal_Dominate_the_Radio_Waves
-		x = 0
-		y = 1
-        relative_position_id = MOL_imperial_presidency
-		cost = 2
-        prerequisite = { focus = MOL_imperial_presidency  }
-		completion_reward = {
-            add_ideas = MOL_baugh_doing_more
-		}
-    }
-
-    focus = {
-        id = MOL_lesson_in_history
-		icon = GFX_goal_Interior
-		x = 2
-		y = 1
-        relative_position_id = MOL_imperial_presidency
-		cost = 2
-        prerequisite = { focus = MOL_imperial_presidency  }
-		completion_reward = {
-			MOL_decrease_depot_influence = yes
-		}
-    }
-
-    focus = {
-        id = MOL_final_preparations
-		icon = GFX_goal_Knock_Knock
-		x = 0
-		y = 3
-        relative_position_id = MOL_imperial_presidency
-		cost = 2
-        prerequisite = { focus = MOL_a_central_position  }
-        prerequisite = { focus = MOL_listen_to_people  }
-        prerequisite = { focus = MOL_lesson_in_history  }
-		completion_reward = {
-			add_political_power = 50
-		}
-    }
-
+	#Fence off the border
 	focus = {
-        id = MOL_a_new_day
-		icon = GFX_goal_MOL_a_new_day
+		id = MOL_fortify_the_border
+		icon = GFX_goal_MOL_waiting_storm
+		x = -2
+		y = 1
+        relative_position_id = MOL_the_conflict_in_utah
+        prerequisite = { focus = MOL_the_conflict_in_utah  }
+		cost = 2
+		completion_reward = {
+			487 = { 
+               add_building_construction = { type = bunker province = 440 level = 5 instant_build = yes }
+			}
+		}
+	}
+
+	#Desert Maneuvers
+	focus = {
+		id = MOL_desert_drills
+		icon = GFX_goal_MOL_waiting_storm
 		x = 0
 		y = 1
-        relative_position_id = MOL_foundations_of_government
+        relative_position_id = MOL_fortify_the_border
+        prerequisite = { focus = MOL_fortify_the_border  }
 		cost = 2
-        prerequisite = { focus = MOL_foundations_of_government  }
-        prerequisite = { 
-			focus = MOL_time_for_a_constitution  
-			focus = MOL_final_preparations
-		}
 		completion_reward = {
-			#Rename Dayton to Baughston (TODO: Move this to event with multiple choices)
-			MOL_increase_stability_big = yes
-			set_province_name = { id = 9286 name = "Baughston"}
+			add_ideas = MOL_desert_readiness
 		}
-    }
+	}
 
+	#Back Road Supply Lines
+	focus = {
+		id = MOL_back_road_supply_lines
+		icon = GFX_goal_MOL_waiting_storm
+		x = 2
+		y = 1
+        relative_position_id = MOL_the_conflict_in_utah
+        prerequisite = { focus = MOL_the_conflict_in_utah  }
+		cost = 2
+		completion_reward = {
+			add_ideas = MOL_supply_lines
+		}
+	}
 
+	#weapons from LA
+	focus = {
+		id = MOL_weapons_from_the_strip
+		icon = GFX_goal_MOL_waiting_storm
+		x = 0
+		y = 1
+        relative_position_id = MOL_back_road_supply_lines
+        prerequisite = { focus = MOL_back_road_supply_lines  }
+		cost = 2
+		completion_reward = {
+			add_equipment_to_stockpile = {
+	 	    	type = infantry_equipment
+		    	amount = 5000
+		   		producer = LAS
+		    }
+			add_political_power = -30
+		}
+	}
 
-#####################################################
+	#Freedom Coalition
+	focus = {
+		id = MOL_the_freedom_coalition
+		icon = GFX_goal_MOL_waiting_storm
+		available = {
+			has_war_with = UTA
+		}
+		x = 0
+		y = 1
+        relative_position_id = MOL_the_conflict_in_utah
+        prerequisite = { focus = MOL_the_conflict_in_utah  }
+		cost = 2
+		completion_reward = {
+			SIN = {
+                add_ideas = MOL_freedom_coalition
+			}
+			LAS = {
+				add_ideas = MOL_freedom_coalition
+			}
+			add_ideas = MOL_freedom_coalition
+		}
+	}
+
+	#Allied Collaboration
+	focus = {
+		id = MOL_allied_collaboration
+		icon = GFX_goal_MOL_waiting_storm
+		x = 0
+		y = 1
+        relative_position_id = MOL_the_freedom_coalition
+        prerequisite = { focus = MOL_the_freedom_coalition  }
+		cost = 2
+		completion_reward = {
+			add_ideas = MOL_allied_planning
+		}
+	}
+
+	#Demonize the Mormon Regime
+	focus = {
+		id = MOL_demonize_mormon_regime
+		icon = GFX_goal_MOL_waiting_storm
+		x = 0
+		y = 1
+        relative_position_id = MOL_allied_collaboration
+        prerequisite = { focus = MOL_allied_collaboration  }
+		prerequisite = { focus = MOL_weapons_from_the_strip  }
+		prerequisite = { focus = MOL_desert_drills  }
+		cost = 2
+		completion_reward = {
+			UTA = {
+				add_timed_idea = {
+					idea = MOL_propaganda_uta
+					days = 360
+				}
+			}
+			add_timed_idea = {
+				idea = MOL_propaganda
+				days = 360
+			}
+		}
+	}
+
+	#Allied Collaboration
+	focus = {
+		id = MOL_demormonization
+		icon = GFX_goal_MOL_waiting_storm
+		x = -1
+		y = 2
+        relative_position_id = MOL_demonize_mormon_regime
+        prerequisite = { focus = MOL_demonize_mormon_regime  }
+		cost = 2
+		completion_reward = {
+			remove_state_claim = 488
+			add_state_core = 488
+		}
+	}
+
+	#Allied Collaboration
+	focus = {
+		id = MOL_pillage_of_utah
+		icon = GFX_goal_MOL_waiting_storm
+		x = 1
+		y = 2
+        relative_position_id = MOL_demonize_mormon_regime
+        prerequisite = { focus = MOL_demonize_mormon_regime  }
+		cost = 2
+		completion_reward = {
+			add_ideas = MOL_pillaging
+		}
+	}
+}

@@ -216,7 +216,7 @@ focus_tree = {
 	}
 	focus = {
 		id = FAL_guernica_lessons
-		icon = GFX_goal_FAL_brown_terror
+		icon = GFX_goal_FAL_learn_from_guernica
 		cost = 2.00
 		x = 1
 		y = 1
@@ -230,18 +230,20 @@ focus_tree = {
 			focus = FAL_brown_terror
 		}
 		completion_reward = {
+			country_event = stonetoss.17
+			
 			add_timed_idea = {
 				idea = FAL_terror_bombing
 				days = 365
 			}
 			add_equipment_to_stockpile = {
     			type = fighter_equipment_1
-    			amount = 10
+    			amount = 25
     			producer = FAL
 			}
 			add_equipment_to_stockpile = {
     			type = CAS_equipment_1
-    			amount = 15
+    			amount = 20
     			producer = FAL
 			}
 			314 = {
@@ -251,11 +253,12 @@ focus_tree = {
 				    instant_build = yes
 				}
 			}
+
 		}
 	}
 	focus = {
 		id = FAL_emergency_production
-		icon = GFX_goal_FAL_brown_terror
+		icon = GFX_goal_FAL_emergency_production
 		cost = 4.00
 		x = -1
 		y = 1
@@ -1586,9 +1589,10 @@ focus_tree = {
 			focus = FAL_coalition_with_the_republicans
 		}
 		completion_reward = {
-			add_stability = -0.05
+			add_war_support = -0.05
+			add_stability = 0.05
 			add_political_power = -50
-			add_manpower = 20000
+			add_manpower = -20000
 		}
 	}
 	focus = {
@@ -1705,12 +1709,12 @@ focus_tree = {
 			focus = FAL_shun_mexican_supremacy
 		}
 		completion_reward = {
-			add_war_support = 0.1
+			add_stability = 0.1
 		}
 	}
 	focus = {
 		id = FAL_la_raza
-		icon = GFX_goal_FAL_unity_of_destiny
+		icon = GFX_goal_FAL_viva_la_raza
 		cost = 2.00
 		x = 0
 		y = 1
@@ -1725,7 +1729,7 @@ focus_tree = {
 			focus = FAL_fervent_natalism
 		}
 		completion_reward = {
-			add_stability = 0.1
+			add_war_support = 0.1
 		}
 	}
 	focus = {
@@ -1740,6 +1744,10 @@ focus_tree = {
 		}
 		completion_reward = {
 			add_stability = 0.1
+			add_popularity = {
+			    ideology = autocratic
+			    popularity = 0.05
+			}
 		}
 	}
 	focus = {
@@ -1753,9 +1761,6 @@ focus_tree = {
 			focus = FAL_strengthen_the_falange
 		}
 		completion_reward = {
-			add_ideas = {
-				FAL_regionalism
-			}
 			release_puppet = OKL
 			IF = {
 				limit = {
@@ -1770,7 +1775,7 @@ focus_tree = {
 					set_cosmetic_tag = OKL_tejan_autonomy
 				}
 			}
-			
+			add_stability = 0.07
 			hidden_effect = {
 				251 = {
 					transfer_state_to = FAL
@@ -3774,10 +3779,10 @@ focus_tree = {
 		y = 1
 		relative_position_id = FAL_tejas_first
 		available = {
-			#OR = {
-			#	has_completed_focus = FAL_join_the_catholic_front
-			#	has_completed_focus = FAL_stay_out_of_it
-			#}
+			OR = {
+				has_completed_focus = FAL_join_the_catholic_front
+				has_completed_focus = FAL_stay_out_of_it
+			}
 			NOT = {
 				has_country_leader = {
 			    	name = "Hans Kristian Graebener"
@@ -3993,7 +3998,7 @@ focus_tree = {
 			custom_trigger_tooltip = {
             	tooltip = FAL_ech_50_unity_tt
 				check_variable = {
-			   		ech_integrity > 50
+			   		ech_integrity > 0.5
 				}
         	}
         	custom_trigger_tooltip = {
@@ -4043,7 +4048,7 @@ focus_tree = {
 			custom_trigger_tooltip = {
             	tooltip = FAL_ech_80_unity_tt
 				check_variable = {
-			   		ech_integrity > 80
+			   		ech_integrity > 0.8
 				}
         	}
         	custom_trigger_tooltip = {
@@ -4092,7 +4097,7 @@ focus_tree = {
 			custom_trigger_tooltip = {
             	tooltip = FAL_ech_30_unity_tt
 				check_variable = {
-			   		ech_integrity > 39
+			   		ech_integrity > 0.3
 				}
         	}
         	custom_trigger_tooltip = {
@@ -4126,7 +4131,7 @@ focus_tree = {
 			custom_effect_tooltip = FAL_ECH_buffs_tt
 			add_to_variable = {
 			    var = ech_integrity
-			    value = -10
+			    value = -0.10
 			    tooltip = FAL_ech_reduce_unity_10_tt
 			}
 		}
@@ -4138,6 +4143,14 @@ focus_tree = {
 		x = 0
 		y = 3
 		relative_position_id = FAL_economic_council_of_hispanidad
+		available = {
+			custom_trigger_tooltip = {
+            	tooltip = FAL_ech_80_unity_tt
+				check_variable = {
+			   		ech_integrity > 0.8
+				}
+        	}
+		}
 		mutually_exclusive = {
 			focus = FAL_towards_greater_aztlan
 		}
@@ -4426,6 +4439,10 @@ focus_tree = {
 		prerequisite = {
 			focus = FAL_cross_the_colorado_river
 		}
+		mutually_exclusive = {
+			focus = FAL_rally_mexican_farmers
+			focus = FAL_sabotage_phoenix_supply_lines
+		}
 		completion_reward = {
 			add_political_power = -50
 			PRA = {
@@ -4447,6 +4464,10 @@ focus_tree = {
 		prerequisite = {
 			focus = FAL_cross_the_colorado_river
 		}
+		mutually_exclusive = {
+			focus = FAL_sow_chicano_unrest
+			focus = FAL_sabotage_phoenix_supply_lines
+		}
 		completion_reward = {
 			PRA = {
 				add_timed_idea = {
@@ -4466,6 +4487,10 @@ focus_tree = {
 		relative_position_id = FAL_cross_the_colorado_river
 		prerequisite = {
 			focus = FAL_cross_the_colorado_river
+		}
+		mutually_exclusive = {
+			focus = FAL_sow_chicano_unrest
+			focus = FAL_rally_mexican_farmers
 		}
 		completion_reward = {
 			add_manpower = -500
