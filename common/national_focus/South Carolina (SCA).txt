@@ -8,19 +8,23 @@ focus_tree = {
 			tag = SCA
 		}
 	}
-	continuous_focus_position = { x = 100 y = 1000 }
+	continuous_focus_position = { x = 100 y = 500 }
 	shared_focus = SCA_FRA_southern_reconstruction
 
 	focus = {
 		id = SCA_Recovering_From_The_War
 		icon = GFX_goal_SCA_Recovering_From_The_War
-		x = 25
+		x = 18
 		y = 1
 		cost = 5
 		bypass = {
 			always = yes
 		}
-		completion_reward = {		
+		completion_reward = {
+			set_cosmetic_tag = SCA_csa_tag		
+	    }
+		bypass_effect = {
+			set_cosmetic_tag = SCA_csa_tag		
 	    }
 	}
 	focus = {
@@ -728,12 +732,13 @@ focus_tree = {
 		available = {
 			custom_trigger_tooltip = {
     			tooltip = SCA_biden_influence_strong_tt
-				check_variable = { SCA.influence_expanded = 6 }
+				check_variable = { SCA.influence_expanded > 5 }
 			}
 		}
 		relative_position_id = SCA_Restore_Order_In_Southern_States
 		cost = 5
 		completion_reward = {
+			set_global_flag = SCA_has_decided_its_fate_flag
 			FRA = {		
 				annex_country = {
 					target = SCA
@@ -1033,28 +1038,28 @@ focus_tree = {
 						tag = APA
 					}
 				}
-			every_owned_state = {
-				every_country = {
-					limit = {
-						OR = {
-							tag = LGB
-							tag = CSB
-							#tag = SCA
-							tag = ARK
-							tag = MIS
-							tag = NCA
-							tag = GEO
-							tag = ZIO
-							tag = ABM
-							tag = APA
+				every_owned_state = {
+					every_country = {
+						limit = {
+							OR = {
+								tag = LGB
+								tag = CSB
+								#tag = SCA
+								tag = ARK
+								tag = MIS
+								tag = NCA
+								tag = GEO
+								tag = ZIO
+								tag = ABM
+								tag = APA
+							}
+						}
+						if = {
+							limit = { owns_state = PREV }
+							add_state_core = PREV
 						}
 					}
-					if = {
-						limit = { owns_state = PREV }
-						add_state_core = PREV
-					}
 				}
-			}
 				load_focus_tree = south_generic_focus
 				SCA = {
 					if = {
@@ -1073,10 +1078,12 @@ focus_tree = {
 					else = {
 						puppet = PREV 
 					}
+					drop_cosmetic_tag = yes
 				}
 			}
 			#load_focus_tree = generic
 			FRA = { add_to_faction = SCA }
+			set_global_flag = SCA_has_decided_its_fate_flag
 	    }
 	}
 	focus = {
@@ -1099,6 +1106,7 @@ focus_tree = {
 		cost = 5
 		completion_reward = {
         	FRA = { add_to_faction = SCA }
+			set_global_flag = SCA_has_decided_its_fate_flag
 	    }
 	}
 	
@@ -1443,6 +1451,7 @@ focus_tree = {
 		relative_position_id = SCA_governor_of_the_south
 		cost = 5
 		completion_reward = {
+			add_dynamic_modifier = { modifier = SCA_army_with_a_state_idea }
 	    }
 	}
 	focus = {
@@ -1456,6 +1465,17 @@ focus_tree = {
 		relative_position_id = SCA_an_iron_fist_in_the_south
 		cost = 5
 		completion_reward = {
+			custom_effect_tooltip = SCA_army_with_a_state_idea_modify_tt
+			add_to_variable = {
+				var = var_conscription
+				value = 0.01
+				tooltip = conscription_tt
+			}
+			add_to_variable = {
+				var = var_stability_factor
+				value = -0.05
+				tooltip = stability_factor_tt
+			}
 	    }
 	}
 	focus = {
@@ -1473,6 +1493,22 @@ focus_tree = {
 		relative_position_id = SCA_reintroduce_mandatory_enlistment
 		cost = 5
 		completion_reward = {
+			custom_effect_tooltip = SCA_army_with_a_state_idea_modify_tt
+			add_to_variable = {
+				var = var_cg_factor
+				value = -0.05
+				tooltip = consumer_goods_factor_tt
+			}
+			add_to_variable = {
+				var = var_org_army
+				value = 0.05
+				tooltip = army_org_factor_tt
+			}
+			add_to_variable = {
+				var = var_pp_factor
+				value = 0.05
+				tooltip = political_power_factor_tt
+			}
 	    }
 	}
 	focus = {
@@ -1486,6 +1522,22 @@ focus_tree = {
 		relative_position_id = SCA_reintroduce_mandatory_enlistment
 		cost = 5
 		completion_reward = {
+			custom_effect_tooltip = SCA_army_with_a_state_idea_modify_tt
+			add_to_variable = {
+				var = var_stability_factor
+				value = 0.05
+				tooltip = stability_factor_tt
+			}
+			add_to_variable = {
+				var = var_operative_slot
+				value = 1
+				tooltip = operative_slot_tt
+			}
+			add_to_variable = {
+				var = var_compliance_growth
+				value = 0.02
+				tooltip = compliance_growth_tt
+			}
 	    }
 	}
 	focus = {
@@ -1499,6 +1551,21 @@ focus_tree = {
 		relative_position_id = SCA_expanding_surveillance
 		cost = 5
 		completion_reward = {
+			custom_effect_tooltip = SCA_army_with_a_state_idea_modify_tt
+			add_to_variable = {
+				var = var_pp_factor
+				value = 0.05
+				tooltip = political_power_factor_tt
+			}
+			add_to_variable = {
+				var = var_pp_gain
+				value = 0.05
+				tooltip = political_power_gain_tt
+			}
+			add_popularity = {
+				popularity = -0.1
+				ideology = democrat
+			}
 	    }
 	}
 	focus = {
@@ -1515,6 +1582,17 @@ focus_tree = {
 			focus = SCA_protect_our_citizens_first
 		}
 		completion_reward = {
+			custom_effect_tooltip = SCA_army_with_a_state_idea_modify_tt
+			add_to_variable = {
+				var = var_pp_factor
+				value = 0.1
+				tooltip = political_power_factor_tt
+			}
+			add_to_variable = {
+				var = var_stability_factor
+				value = -0.05
+				tooltip = stability_factor_tt
+			}
 	    }
 	}
 	focus = {
@@ -1531,6 +1609,17 @@ focus_tree = {
 			focus = SCA_suspend_the_bill_of_rights
 		}
 		completion_reward = {
+			custom_effect_tooltip = SCA_army_with_a_state_idea_modify_tt
+			add_to_variable = {
+				var = var_pp_factor
+				value = -0.05
+				tooltip = political_power_factor_tt
+			}
+			add_to_variable = {
+				var = var_stability_factor
+				value = 0.1
+				tooltip = stability_factor_tt
+			}
 	    }
 	}
 	focus = {
@@ -1545,6 +1634,17 @@ focus_tree = {
 		relative_position_id = SCA_suspend_the_bill_of_rights
 		cost = 5
 		completion_reward = {
+			custom_effect_tooltip = SCA_army_with_a_state_idea_modify_tt
+			add_to_variable = {
+				var = var_cg_factor
+				value = -0.05
+				tooltip = consumer_goods_factor_tt
+			}
+			add_to_variable = {
+				var = var_pp_factor
+				value = 0.05
+				tooltip = political_power_factor_tt
+			}
 	    }
 	}
 	focus = {
@@ -1561,6 +1661,22 @@ focus_tree = {
 		relative_position_id = SCA_expedite_judicial_processes
 		cost = 5
 		completion_reward = {
+			custom_effect_tooltip = SCA_army_with_a_state_idea_modify_tt
+			add_to_variable = {
+				var = var_pp_factor
+				value = 0.05
+				tooltip = political_power_factor_tt
+			}
+			add_to_variable = {
+				var = var_stability_factor
+				value = 0.05
+				tooltip = stability_factor_tt
+			}
+			add_to_variable = {
+				var = var_morale_army
+				value = 0.05
+				tooltip = army_morale_factor_tt
+			}
 	    }
 	}
 	focus = {
@@ -1580,6 +1696,22 @@ focus_tree = {
 		relative_position_id = SCA_purge_the_extremists_and_populists
 		cost = 5
 		completion_reward = {
+			custom_effect_tooltip = SCA_army_with_a_state_idea_modify_tt
+			add_to_variable = {
+				var = var_pp_factor
+				value = 0.05
+				tooltip = political_power_factor_tt
+			}
+			add_to_variable = {
+				var = var_stability_factor
+				value = 0.05
+				tooltip = stability_factor_tt
+			}
+			add_to_variable = {
+				var = var_war_support_factor
+				value = 0.05
+				tooltip = war_support_factor_tt
+			}
 	    }
 	}
 	focus = { #Helldivers 2 reference for the icon please (managed democracy) !!!!!!!!!!
@@ -1587,6 +1719,7 @@ focus_tree = {
 		icon = GFX
 		x = -2
 		y = 1
+		cost = 2
 		prerequisite = { 
 			focus = SCA_do_what_the_first_reconstruction_couldnt
 		}
@@ -1595,6 +1728,12 @@ focus_tree = {
 			focus = SCA_permanent_constitutional_suspension
 		}
 		completion_reward = {
+			custom_effect_tooltip = SCA_army_with_a_state_idea_modify_tt
+			add_to_variable = {
+				var = var_pp_factor
+				value = 0.05
+				tooltip = political_power_factor_tt
+			}
 	    }
 	}
 	focus = {
@@ -1602,6 +1741,7 @@ focus_tree = {
 		icon = GFX
 		x = 2
 		y = 1
+		cost = 2
 		prerequisite = { 
 			focus = SCA_do_what_the_first_reconstruction_couldnt
 		}
@@ -1610,6 +1750,13 @@ focus_tree = {
 			focus = SCA_do_what_the_first_reconstruction_couldnt
 		}
 		completion_reward = {
+			add_popularity = {
+				popularity = -0.1
+				ideology = democrat
+			}
+			set_country_flag = SCA_permanent_military_govt_flag
+			add_stability = -0.1
+			add_political_power = -50
 	    }
 	}
 	focus = {
@@ -1871,6 +2018,7 @@ focus_tree = {
 		prerequisite = { 
 			focus = SCA_integrate_florida
 		}
+		cost = 2
 		available = {
 			NOT = {
 				country_exists = FLO
@@ -1901,6 +2049,9 @@ focus_tree = {
 		relative_position_id = SCA_integrate_kentucky
 		cost = 5
 		completion_reward = {
+			army_experience = 50
+			add_manpower = 50000
+			add_political_power = 50
 	    }
 	}
 	
@@ -1971,6 +2122,9 @@ focus_tree = {
 		relative_position_id = SCA_holding_elections
 		cost = 5
 		completion_reward = {
+			set_power_balance = {
+				id = SCA_reconstruction_BOP
+			}
 	    }
 	}
 	focus = {
@@ -1987,6 +2141,12 @@ focus_tree = {
 			focus = SCA_ban_the_gop
 		}
 		completion_reward = {
+			add_power_balance_value = {
+				id = SCA_reconstruction_BOP
+				value = 0.1
+				tooltip_side = conservative_reconstruction_committee
+			}
+			add_stability = 0.1
 	    }
 	}
 	focus = {
@@ -2003,6 +2163,12 @@ focus_tree = {
 			focus = SCA_political_amnesty
 		}
 		completion_reward = {
+			add_power_balance_value = {
+				id = SCA_reconstruction_BOP
+				value = -0.1
+				tooltip_side = radical_reconstruction_committee
+			}
+			add_war_support = 0.1
 	    }
 	}
 	focus = {
@@ -2020,6 +2186,12 @@ focus_tree = {
 			focus = SCA_strip_citizenship_from_traitors
 		}
 		completion_reward = {
+			add_power_balance_value = {
+				id = SCA_reconstruction_BOP
+				value = 0.1
+				tooltip_side = conservative_reconstruction_committee
+			}
+			add_political_power = 50
 	    }
 	}
 	focus = {
@@ -2037,6 +2209,12 @@ focus_tree = {
 			focus = SCA_work_with_southern_leaders
 		}
 		completion_reward = {
+			add_power_balance_value = {
+				id = SCA_reconstruction_BOP
+				value = -0.1
+				tooltip_side = radical_reconstruction_committee
+			}
+			add_political_power = 50
 	    }
 	}
 	focus = {
@@ -2053,6 +2231,16 @@ focus_tree = {
 			focus = SCA_incorporate_militia_in_military
 		}
 		completion_reward = {
+			add_power_balance_value = {
+				id = SCA_reconstruction_BOP
+				value = -0.1
+				tooltip_side = radical_reconstruction_committee
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 10000
+			}
+			add_stability = -0.1
 	    }
 	}
 	focus = {
@@ -2069,6 +2257,13 @@ focus_tree = {
 			focus = SCA_suspend_the_second_amendment
 		}
 		completion_reward = {
+			add_power_balance_value = {
+				id = SCA_reconstruction_BOP
+				value = 0.1
+				tooltip_side = conservative_reconstruction_committee
+			}
+			add_stability = 0.05
+			add_manpower = 50000
 	    }
 	}
 	focus = {
@@ -2086,6 +2281,22 @@ focus_tree = {
 			focus = SCA_ensure_right_to_discourse
 		}
 		completion_reward = {
+			add_power_balance_value = {
+				id = SCA_reconstruction_BOP
+				value = -0.1
+				tooltip_side = radical_reconstruction_committee
+			}
+			if = {
+				limit = { has_dlc = "La Resistance" }
+				if = {
+					limit = { NOT = { has_intelligence_agency = yes } }
+					create_intelligence_agency = yes
+				}
+				add_ideas = SCA_intelligence_idea
+			}
+			else = {
+				add_political_power = 50
+			}
 	    }
 	}
 	focus = {
@@ -2103,6 +2314,13 @@ focus_tree = {
 			focus = SCA_ban_hate_speech
 		}
 		completion_reward = {
+			add_power_balance_value = {
+				id = SCA_reconstruction_BOP
+				value = 0.1
+				tooltip_side = conservative_reconstruction_committee
+			}
+			add_political_power = 50
+			add_stability = 0.1
 	    }
 	}
 	focus = {
@@ -2115,11 +2333,16 @@ focus_tree = {
 			focus = SCA_ensure_right_to_discourse
 		}
 		relative_position_id = SCA_ensure_right_to_discourse
-		cost = 5
+		cost = 3
 		mutually_exclusive = {
 			focus = SCA_monitoring_elections
 		}
 		completion_reward = {
+			add_power_balance_value = {
+				id = SCA_reconstruction_BOP
+				value = 0.1
+				tooltip_side = conservative_reconstruction_committee
+			}
 	    }
 	}
 	focus = {
@@ -2132,11 +2355,16 @@ focus_tree = {
 			focus = SCA_work_with_southern_leaders
 		}
 		relative_position_id = SCA_work_with_southern_leaders
-		cost = 5
+		cost = 3
 		mutually_exclusive = {
 			focus = SCA_rehabilitation
 		}
 		completion_reward = {
+			add_power_balance_value = {
+				id = SCA_reconstruction_BOP
+				value = -0.1
+				tooltip_side = radical_reconstruction_committee
+			}
 	    }
 	}
 	focus = {
@@ -2154,6 +2382,7 @@ focus_tree = {
 		relative_position_id = SCA_monitoring_elections
 		cost = 5
 		completion_reward = {
+			country_event = south_carolina.7
 	    }
 	}
 	focus = {
@@ -2170,7 +2399,17 @@ focus_tree = {
 			focus = SCA_steady_as_she_goes
 			focus = SCA_permanent_reconstruction
 		}
+		available = {
+			is_power_balance_in_range = {
+				id = SCA_reconstruction_BOP
+				range > moderate_reconstruction_comittee
+			}
+		}
 		completion_reward = {
+			remove_power_balance = {
+				id = SCA_reconstruction_BOP
+			}
+			add_ideas = SCA_conservative_reconstructionists_victorious_idea
 	    }
 	}
 	focus = {
@@ -2187,7 +2426,17 @@ focus_tree = {
 			focus = SCA_same_old_south_dot_dot_dot
 			focus = SCA_permanent_reconstruction
 		}
+		available = {
+			is_power_balance_in_range = {
+				id = SCA_reconstruction_BOP
+				range = moderate_reconstruction_comittee
+			}
+		}
 		completion_reward = {
+			remove_power_balance = {
+				id = SCA_reconstruction_BOP
+			}
+			add_ideas = SCA_moderate_reconstructionists_victorious_idea
 	    }
 	}
 	focus = {
@@ -2204,7 +2453,17 @@ focus_tree = {
 			focus = SCA_same_old_south_dot_dot_dot
 			focus = SCA_steady_as_she_goes
 		}
+		available = {
+			is_power_balance_in_range = {
+				id = SCA_reconstruction_BOP
+				range < moderate_reconstruction_comittee
+			}
+		}
 		completion_reward = {
+			remove_power_balance = {
+				id = SCA_reconstruction_BOP
+			}
+			add_ideas = SCA_radical_reconstructionists_victorious_idea
 	    }
 	}
 	focus = {
@@ -2567,6 +2826,7 @@ focus_tree = {
 		relative_position_id = SCA_military_district_appalachia
 		cost = 5
 		completion_reward = {
+			set_cosmetic_tag = SCA_csa_tag
 			ever_country = {
 				limit = {
 					OR = {
@@ -2609,7 +2869,19 @@ focus_tree = {
 		}
 		relative_position_id = SCA_a_solid_blue_south_reforged
 		cost = 5
+		available = {
+			OR = {
+				has_completed_focus = SCA_permanent_constitutional_suspension
+				has_completed_focus = SCA_supervised_democracy
+				has_completed_focus = SCA_same_old_south_dot_dot_dot
+				has_completed_focus = SCA_steady_as_she_goes
+				has_completed_focus = SCA_permanent_reconstruction
+			}
+		}
 		completion_reward = {
+			army_experience = 25
+			navy_experience = 25
+			air_experience = 25
 	    }
 	}
 	focus = {
@@ -2627,6 +2899,7 @@ focus_tree = {
 			focus = SCA_inherit_the_legitimists
 		}
 		completion_reward = {
+			add_stability = 0.1
 	    }
 	}
 	focus = {
@@ -2640,6 +2913,21 @@ focus_tree = {
 		relative_position_id = SCA_await_the_call
 		cost = 5
 		completion_reward = {
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.75
+				uses = 3
+				category = land_doctrine
+			}
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.75
+				uses = 3
+				category = naval_doctrine
+			}
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.75
+				uses = 3
+				category = air_doctrine
+			}
 	    }
 	}
 	focus = {
@@ -2654,6 +2942,7 @@ focus_tree = {
 		relative_position_id = SCA_await_the_call
 		cost = 5
 		completion_reward = {
+			add_ideas = SCA_different_red_scare_idea
 	    }
 	}
 	focus = {
@@ -2675,10 +2964,14 @@ focus_tree = {
 				OR = {
 					exists = no
 					has_capitulated = yes
+					surrender_progress > 0.5
 				}
 			}
 		}
 		completion_reward = {
+			FRA = {
+				country_event = south_carolina.8
+			}
 	    }
 	}
 	focus = {
@@ -2706,8 +2999,10 @@ focus_tree = {
 			focus = SCA_inherit_the_legitimists
 			focus = SCA_await_the_call
 		}
-		cost = 5
+		cost = 1
 		completion_reward = {
+			add_stability = -0.1
+			mark_focus_tree_layout_dirty = yes
 	    }
 	}
 	focus = {
@@ -2777,6 +3072,9 @@ focus_tree = {
 			NOT = { country_exists = MIL }
 		}
 		completion_reward = {
+			MIL = {
+				country_event = south_carolina.11
+			}
 	    }
 	}
 	focus = {
@@ -2827,7 +3125,60 @@ focus_tree = {
 		}
 		relative_position_id = SCA_dominate_the_rustbelt
 		cost = 5
+		will_lead_to_war_with = MON
+		will_lead_to_war_with = IDA
+		will_lead_to_war_with = AFO
+		will_lead_to_war_with = UTA
+		will_lead_to_war_with = SIN 
+		will_lead_to_war_with = HAM 
+		will_lead_to_war_with = LAS 
+		will_lead_to_war_with = HOP 
+		will_lead_to_war_with = MOL 
 		completion_reward = {
+			create_wargoal = {
+				target = MON
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = IDA
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = AFO
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = UTA
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = SIN
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = HAM
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = LAS
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = MOL
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = HOP
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = NAV
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = TOH
+				type = annex_everything
+			}
 	    }
 	}
 	focus = {
@@ -2840,7 +3191,22 @@ focus_tree = {
 		}
 		relative_position_id = SCA_pushing_out_west_rockies
 		cost = 5
+		will_lead_to_war_with = CAS	
+		will_lead_to_war_with = PRA
+		will_lead_to_war_with = LIB
 		completion_reward = {
+			create_wargoal = {
+				target = CAS
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = LIB
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = PRA
+				type = annex_everything
+			}
 	    }
 	}
 	focus = {
@@ -2854,6 +3220,12 @@ focus_tree = {
 		relative_position_id = SCA_pushing_out_west_rockies
 		cost = 5
 		completion_reward = {
+			ALA = {
+				country_event = south_carolina.4
+			}
+			PAC = {
+				country_event = south_carolina.4
+			}
 	    }
 	}
 	focus = {
@@ -2871,8 +3243,13 @@ focus_tree = {
 			focus = SCA_sweep_the_great_lakes
 		}
 		relative_position_id = SCA_alaska_and_hawaii_situation
+		available = {
+			has_country_flag = winner_of_the_2ACW
+		}
 		cost = 5
 		completion_reward = {
+			country_event = south_carolina.10
+			set_cosmetic_tag = SCA_usa_tag
 	    }
 	}
 	
@@ -2890,6 +3267,9 @@ focus_tree = {
 		}
 		relative_position_id = SCA_there_can_only_be_one
 		cost = 5
+		allow_branch = {
+			#has_country_flag = SCA_permanent_military_govt_flag
+		}
 		completion_reward = {
 			set_politics = {
 				ruling_party = autocratic
@@ -2911,6 +3291,17 @@ focus_tree = {
 		relative_position_id = SCA_consolidate_the_military_government
 		cost = 5
 		completion_reward = {
+			custom_effect_tooltip = SCA_army_with_a_state_idea_modify_tt
+			add_to_variable = {
+				var = var_stability_factor
+				value = 0.15
+				tooltip = stability_factor_tt
+			}
+			add_to_variable = {
+				var = var_org_army
+				value = 0.15
+				tooltip = army_org_factor_tt
+			}
 	    }
 	}
 	focus = {
@@ -2924,6 +3315,17 @@ focus_tree = {
 		relative_position_id = SCA_consolidate_the_military_government
 		cost = 5
 		completion_reward = {
+			custom_effect_tooltip = SCA_army_with_a_state_idea_modify_tt
+			add_to_variable = {
+				var = var_pp_factor
+				value = 0.15
+				tooltip = political_power_factor_tt
+			}
+			add_to_variable = {
+				var = var_war_support_factor
+				value = 0.15
+				tooltip = war_support_factor_tt
+			}
 	    }
 	}
 	focus = {
@@ -2937,6 +3339,22 @@ focus_tree = {
 		relative_position_id = SCA_consolidate_the_military_government
 		cost = 5
 		completion_reward = {
+			custom_effect_tooltip = SCA_army_with_a_state_idea_modify_tt
+			add_to_variable = {
+				var = var_breakthrough_army
+				value = 0.1
+				tooltip = breakthrough_factor_tt
+			}
+			add_to_variable = {
+				var = var_attack_army
+				value = 0.1
+				tooltip = army_attack_factor_tt
+			}
+			add_to_variable = {
+				var = var_defence_army
+				value = 0.1
+				tooltip = army_defence_factor_tt
+			}
 	    }
 	}
 	

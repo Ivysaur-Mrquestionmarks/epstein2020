@@ -49,7 +49,7 @@ country_event = {
 		add_country_leader_trait = SCA_legitimate_leader_trait
 	}
 }
-# virginia plz join us owo
+# virginia/alaska/hawaii plz join us owo
 country_event = {
 	id = south_carolina.4
 	title = south_carolina.4.t
@@ -77,7 +77,7 @@ country_event = {
 		}
 	}
 }
-# virginia didnt join us :c
+# virginia/milley/alaska/hawaii didnt join us :c
 country_event = {
 	id = south_carolina.5
 	title = south_carolina.5.t
@@ -113,6 +113,129 @@ country_event = {
 		name = south_carolina.6.b
 		ai_chance = {
 			factor = 0
+		}
+	}
+}
+# reconstruction garrison question
+country_event = {
+	id = south_carolina.7
+	title = south_carolina.7.t
+	desc = south_carolina.7.d
+	#picture = 
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #Keep the Garrisons
+		name = south_carolina.7.a
+	}
+	option = { #They no longer serve a purpose
+		name = south_carolina.7.b
+		add_power_balance_value = {
+			id = SCA_reconstruction_BOP
+			value = 0.1
+			tooltip_side = conservative_reconstruction_committee
+		}
+	}
+	option = { #request further garrisons
+		name = south_carolina.7.c
+		add_power_balance_value = {
+			id = SCA_reconstruction_BOP
+			value = -0.2
+			tooltip_side = radical_reconstruction_committee
+		}
+	}
+}
+# SCA is assuming leadership of legitimists (FRA Pov)?
+country_event = {
+	id = south_carolina.8
+	title = south_carolina.8.t
+	desc = south_carolina.8.d
+	#picture = 
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #fine
+		name = south_carolina.8.a
+		FRA = {
+			every_subject_country = {
+				SCA = {
+					puppet = PREV
+				}
+			}
+			every_owned_state = {
+				add_core_of = SCA
+			}
+		}
+		SCA = {
+			set_faction_leader = yes
+			annex_country = {
+				target = FRA
+				transfer_troops = yes
+			}
+			set_cosmetic_tag = FRA
+		}
+	}
+	option = { #no
+		name = south_carolina.8.b
+		ai_chance = {
+			factor = 0
+		}
+		SCA = {
+			country_event = south_carolina.9
+		}
+	}
+}
+# fra refuses
+country_event = {
+	id = south_carolina.9
+	title = south_carolina.9.t
+	desc = south_carolina.9.d
+	#picture = 
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #fine
+		name = south_carolina.9.a
+	}
+}
+# ending event
+country_event = {
+	id = south_carolina.10
+	title = south_carolina.10.t
+	desc = south_carolina.10.d
+	#picture = 
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #fine
+		name = south_carolina.10.a
+	}
+}
+# reach out to milley
+country_event = {
+	id = south_carolina.11
+	title = south_carolina.11.t
+	desc = south_carolina.11.d
+	#picture = 
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #fine
+		name = south_carolina.11.a
+		MIL = {
+			every_unit_leader = {
+				set_nationality = SCA
+			}
+		}
+		FROM = {
+			annex_country = {
+				target = ROOT
+				transfer_troops = yes
+			}
+		}
+	}
+	option = { #no
+		name = south_carolina.11.b
+		ai_chance = {
+			factor = 0
+		}
+		SCA = {
+			country_event = south_carolina.5
 		}
 	}
 }
