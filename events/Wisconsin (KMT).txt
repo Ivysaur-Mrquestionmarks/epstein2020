@@ -777,6 +777,7 @@ country_event = {
 
 }
 
+# Assessing the future
 country_event = {
 	id = wisconsin.19
 	title = wisconsin.19.t
@@ -797,7 +798,7 @@ country_event = {
 
 }
 
-
+# disband the militia (if you didnt empower earlier)
 country_event = {
 	id = wisconsin.20
 	title = wisconsin.20.t
@@ -812,11 +813,14 @@ country_event = {
 		remove_ideas = {
 			idea = KMT_weather_underground_militia
 		}
-
+		delete_unit_template_and_units = {
+			division_template = "Weathermen Militia"
+			disband = yes
+		}	
 	}
-
 }
 
+# disband the militia (if you empowered them earlier - causes small civil war)
 country_event = {
 	id = wisconsin.21
 	title = wisconsin.21.t
@@ -828,6 +832,93 @@ country_event = {
 		name = wisconsin.21.a
 		ai_chance = {
 		}
+		if = {
+			limit = {
+				owns_state = 195
+			}
+			start_civil_war = {
+	    		ideology = authoritarian_left
+	    		#size = 0.1
+				capital = 195
+				states = all
+				#keep_unit_leaders = TODO
+				army_ratio = 0
+				states_filter = {
+					OR = {
+					   	state = 195
+					   	state = 197
+					   	state = 198
+					   	state = 209
+					}
+					is_controlled_by = ROOT
+				}
+				hidden_effect = { country_event = wisconsin.22 }
+				PREV = {
+					KMT_Bill_Ayers = {
+					    set_nationality = PREV.PREV			# Transfers to breakaway
+					}
+				}
+				PREV = {
+					KMT_Bernardine_Dohrn = {
+					    set_nationality = PREV.PREV			# Transfers to breakaway
+					}
+				}
+				PREV = {
+					KMT_Brandon_Johnson = {
+				    	set_nationality = PREV.PREV			# Transfers to breakaway
+					}
+				}		
+			}
+
+			hidden_effect = {
+				random_other_country = {
+					limit = {
+						original_tag = KMT
+						has_government = authoritarian_left
+					}
+					set_stability = 0.9
+					set_war_support = 0.9
+					load_oob = "KMT_civil_war"
+										
+				}
+				
+
+			}
+
+
+
+			delete_unit_template_and_units = {
+				division_template = "Weathermen Militia"
+				disband = no
+			}	
+		}
+
+		else = {
+			add_stability = -0.15
+			delete_unit_template_and_units = {
+				division_template = "Weathermen Militia"
+				disband = no
+			}
+		}
+		
 	}
 
+}
+
+# random event so the breakaway tag in civil war gets cores on its territory (it was not working in main event, so did it separated)
+country_event = {
+	id = wisconsin.22
+	title = wisconsin.22.t
+	desc = wisconsin.22.d
+	picture = TBD 
+	is_triggered_only = yes	
+
+	option = {
+		name = wisconsin.21.a
+		ai_chance = {
+		}
+		every_owned_state = {
+			add_core_of = ROOT
+		}
+	}
 }
