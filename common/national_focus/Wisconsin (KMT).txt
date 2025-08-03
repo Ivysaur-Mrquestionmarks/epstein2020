@@ -599,14 +599,19 @@ focus_tree = {
 			GLA = {
             	exists = no
 			}
+			owns_state = 155
 		}
 		
 		bypass = {
 		}
 		cancel_if_invalid = no
-		continue_if_invalid = yes
+		continue_if_invalid = no
 		available_if_capitulated = no
 		completion_reward = {
+			set_capital = {
+				state = 155
+  				remember_old_capital = no
+			}
 			add_political_power = 150
 			add_country_leader_trait = KMT_hero_of_wisconsin
 		}
@@ -620,7 +625,7 @@ focus_tree = {
 
 		cost = 2
 		ai_will_do = {
-			factor = 1
+			factor = 200
 		}
 		available = {
 		}
@@ -631,10 +636,7 @@ focus_tree = {
 		continue_if_invalid = no
 		available_if_capitulated = no
 		completion_reward = {
-			swap_ideas = {
-				remove_idea = KMT_coalition_of_the_willing
-				add_idea = KMT_coalition_of_the_willing_1
-			}
+			country_event = wisconsin.19
 		}
 		prerequisite = {
             focus = KMT_victory_over_chaos
@@ -660,7 +662,18 @@ focus_tree = {
 		continue_if_invalid = no
 		available_if_capitulated = no
 		completion_reward = {
-			
+			if = {
+				limit = {
+					has_idea = KMT_weather_underground_militia
+				}
+				country_event = wisconsin.20
+			}
+			else_if = {
+				limit = {
+					has_idea = KMT_weather_underground_militia_1
+				}
+				country_event = wisconsin.21
+			}
 		}
 		prerequisite = {
             focus = KMT_assessing_our_future
@@ -693,6 +706,9 @@ focus_tree = {
 		}
 		prerequisite = {
             focus = KMT_assessing_our_future
+        }
+		prerequisite = {
+            focus = KMT_keep_guerrilla_warfare
         }
 		mutually_exclusive = {
             focus = KMT_disband_the_trouble_makers
@@ -783,9 +799,6 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = KMT_integrate_the_militia
-        }
-		prerequisite = {
-			focus = KMT_keep_guerrilla_warfare
         }
 		mutually_exclusive = {
             focus = KMT_keep_a_tight_grip
