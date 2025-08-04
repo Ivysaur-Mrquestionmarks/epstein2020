@@ -362,6 +362,7 @@ focus_tree = {
                     has_power_balance = {
                         id = vermin_bop
                     }
+					is_ai = no
 				}
 			    power_balance_value = {
                     id = vermin_bop
@@ -2242,6 +2243,7 @@ focus_tree = {
                     has_power_balance = {
                         id = mattis_bop
                     }
+					is_ai = no
 				}
 			    power_balance_value = {
                     id = mattis_bop
@@ -2308,6 +2310,7 @@ focus_tree = {
                     has_power_balance = {
                         id = hawkins_bop
                     }
+					is_ai = no
 				}
 			    power_balance_value = {
                     id = hawkins_bop
@@ -3667,7 +3670,13 @@ focus_tree = {
 			        add_idea = AFS_the_green_army_2
 		        }
 			}
-			add_manpower = 115000
+			every_owned_state = {
+			    add_state_modifier = {
+                    modifier = {
+                        recruitable_population = 0.1
+                    }
+                }
+			}
 		}
 	}
 
@@ -6809,6 +6818,11 @@ focus_tree = {
 		completion_reward = {
 		    remove_ideas = AFS_triumvirate_rebels_4
 			remove_ideas = AFS_choas_and_disorder_4
+			set_power_balance = {
+                id = ohio_republican_government_bop
+                left_side = republican_control
+                right_side = cooperative_democracy
+            }
 		}
 	}
 
@@ -6828,7 +6842,7 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    add_ideas = AFS_government_of_ohio
 		}
 	}
 
@@ -6848,7 +6862,10 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    swap_ideas = {
+			    remove_idea = AFS_government_of_ohio
+			    add_idea = AFS_government_of_ohio_2
+		    }
 		}
 	}
 
@@ -6868,7 +6885,21 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		    #gets event about cooporating with the dems or third parites
+			add_power_balance_value = {
+				id = ohio_republican_government_bop
+				value = 0.1
+				tooltip_side = cooperative_democracy
+			}
+			country_event = {
+				id = vance.13
+				days = 0
+			}
+		    unlock_decision_tooltip = AFS_work_with_democrats
+			unlock_decision_tooltip = AFS_work_with_libertarian_and_centrist_parties
+			hidden_effect = {
+			    set_country_flag = AFS_vance_political_decision_1
+			    set_country_flag = AFS_vance_political_decision_2
+			}
 		}
 	}
 
@@ -6888,7 +6919,10 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    unlock_decision_tooltip = AFS_promote_bipartisanship
+			unlock_decision_tooltip = AFS_political_unity_in_the_government
+			unlock_decision_tooltip = AFS_fire_unloyal_government_employees
+			unlock_decision_tooltip = AFS_enforce_cooporation_and_order
 		}
 	}
 
@@ -6911,7 +6945,19 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    if = {
+			    limit = { has_idea = AFS_government_of_ohio_3 }
+				swap_ideas = {
+			        remove_idea = AFS_government_of_ohio_3
+			        add_idea = AFS_government_of_ohio_4
+		        }
+			}
+		    else = {
+			    swap_ideas = {
+			        remove_idea = AFS_government_of_ohio_2
+			        add_idea = AFS_government_of_ohio_3
+		        }
+			}
 		}
 	}
 
@@ -6931,7 +6977,23 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		    #should get an event about giving more power to the president or the newly formed senate
+			if = {
+			    limit = { has_idea = AFS_government_of_ohio_3 }
+				swap_ideas = {
+			        remove_idea = AFS_government_of_ohio_3
+			        add_idea = AFS_government_of_ohio_4
+		        }
+			}
+		    else = {
+			    swap_ideas = {
+			        remove_idea = AFS_government_of_ohio_2
+			        add_idea = AFS_government_of_ohio_3
+		        }
+			}
+		    country_event = {
+				id = vance.14
+				days = 0
+			}
 		}
 	}
 
@@ -6954,7 +7016,15 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    swap_ideas = {
+			    remove_idea = AFS_government_of_ohio_4
+			    add_idea = AFS_government_of_ohio_5b
+		    }
+			add_power_balance_value = {
+				id = ohio_republican_government_bop
+				value = 0.1
+				tooltip_side = cooperative_democracy
+			}
 		}
 	}
 
@@ -6980,7 +7050,15 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    swap_ideas = {
+			    remove_idea = AFS_government_of_ohio_4
+			    add_idea = AFS_government_of_ohio_5a
+		    }
+			add_power_balance_value = {
+				id = ohio_republican_government_bop
+				value = -0.1
+				tooltip_side = republican_control
+			}
 		}
 	}
 
@@ -7000,7 +7078,7 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    add_ideas = AFS_upholded_traditional_life
 		}
 	}
 
@@ -7020,7 +7098,10 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    swap_ideas = {
+			    remove_idea = AFS_upholded_traditional_life
+			    add_idea = AFS_upholded_traditional_life_2
+		    }
 		}
 	}
 
@@ -7040,7 +7121,16 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+			add_popularity = {
+                ideology = republican
+                popularity = 0.05
+            }
+		    unlock_decision_tooltip = AFS_ban_vaping
+			unlock_decision_tooltip = AFS_social_media_age_verification
+			unlock_decision_tooltip = AFS_anti_obesity_psas
+			hidden_effect = {
+			    set_country_flag = AFS_vance_political_decision_3
+			}
 		}
 	}
 
@@ -7060,7 +7150,21 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    add_popularity = {
+                ideology = republican
+                popularity = 0.05
+            }
+			add_power_balance_value = {
+				id = ohio_republican_government_bop
+				value = -0.1
+				tooltip_side = republican_control
+			}
+			unlock_decision_tooltip = AFS_ban_vaping
+			unlock_decision_tooltip = AFS_social_media_age_verification
+			unlock_decision_tooltip = AFS_anti_obesity_psas
+			hidden_effect = {
+			    set_country_flag = AFS_vance_political_decision_3
+			}
 		}
 	}
 
@@ -7083,7 +7187,19 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+			add_stability = 0.05
+			add_popularity = {
+                ideology = libertarian_left
+                popularity = -0.15
+            }
+			add_popularity = {
+                ideology = authoritarian_left
+                popularity = -0.15
+            }
+			add_popularity = {
+                ideology = autocratic
+                popularity = -0.15
+            }
 		}
 	}
 
@@ -7103,7 +7219,10 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    swap_ideas = {
+			    remove_idea = AFS_upholded_traditional_life_2
+			    add_idea = AFS_upholded_traditional_life_3
+		    }
 		}
 	}
 
@@ -7126,7 +7245,10 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    swap_ideas = {
+			    remove_idea = AFS_upholded_traditional_life_3
+			    add_idea = AFS_upholded_traditional_life_4
+		    }
 		}
 	}
 
@@ -7149,7 +7271,19 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    add_popularity = {
+                ideology = republican
+                popularity = 0.1
+            }
+			add_power_balance_value = {
+				id = ohio_republican_government_bop
+				value = -0.1
+				tooltip_side = republican_control
+			}
+			country_event = {
+				id = vance.15
+				days = 0
+			}
 		}
 	}
 
@@ -7191,7 +7325,7 @@ focus_tree = {
 			has_completed_focus = AFS_follow_mike_dewines_path
 		}
 		completion_reward = {
-		
+		    add_ideas = AFS_the_industrial_heart_once_more
 		}
 	}
 
@@ -7211,7 +7345,37 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    if = {
+			    limit = { has_idea = AFS_the_industrial_heart_once_more_2 }
+				swap_ideas = {
+			        remove_idea = AFS_the_industrial_heart_once_more_2
+			        add_idea = AFS_the_industrial_heart_once_more_3
+		        }
+			}
+		    else = {
+			    swap_ideas = {
+			        remove_idea = AFS_the_industrial_heart_once_more
+			        add_idea = AFS_the_industrial_heart_once_more_2
+		        }
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
 		}
 	}
 
@@ -7231,7 +7395,19 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    if = {
+			    limit = { has_idea = AFS_the_industrial_heart_once_more_2 }
+				swap_ideas = {
+			        remove_idea = AFS_the_industrial_heart_once_more_2
+			        add_idea = AFS_the_industrial_heart_once_more_3
+		        }
+			}
+		    else = {
+			    swap_ideas = {
+			        remove_idea = AFS_the_industrial_heart_once_more
+			        add_idea = AFS_the_industrial_heart_once_more_2
+		        }
+			}
 		}
 	}
 
@@ -7254,7 +7430,28 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    swap_ideas = {
+			    remove_idea = AFS_the_industrial_heart_once_more_3
+			    add_idea = AFS_the_industrial_heart_once_more_4
+		    }
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = arms_factory
+    					level = 1
+    					instant_build = yes
+				}
+			}
 		}
 	}
 
@@ -7358,7 +7555,10 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    swap_ideas = {
+			    remove_idea = Ruins_of_the_Rust_Belt
+			    add_idea = Ruins_of_the_Rust_Belt_2
+		    }
 		}
 	}
 
@@ -7378,7 +7578,40 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    if = {
+			    limit = { has_idea = Ruins_of_the_Rust_Belt_3 }
+				swap_ideas = {
+			        remove_idea = Ruins_of_the_Rust_Belt_3
+			        add_idea = Ruins_of_the_Rust_Belt_4
+		        }
+			}
+		    else = {
+			    swap_ideas = {
+			        remove_idea = Ruins_of_the_Rust_Belt_2
+			        add_idea = Ruins_of_the_Rust_Belt_3
+		        }
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_resource = {
+                    type = steel
+                    amount = 10
+                }	
+		    }
+		    random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_resource = {
+                    type = aluminium
+                    amount = 10
+                }	
+		    }
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_resource = {
+                    type = tungsten
+                    amount = 10
+                }	
+		    }
 		}
 	}
 
@@ -7398,7 +7631,46 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    if = {
+			    limit = { has_idea = Ruins_of_the_Rust_Belt_3 }
+				swap_ideas = {
+			        remove_idea = Ruins_of_the_Rust_Belt_3
+			        add_idea = Ruins_of_the_Rust_Belt_4
+		        }
+			}
+		    else = {
+			    swap_ideas = {
+			        remove_idea = Ruins_of_the_Rust_Belt_2
+			        add_idea = Ruins_of_the_Rust_Belt_3
+		        }
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
 		}
 	}
 
@@ -7418,7 +7690,34 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    remove_idea = Ruins_of_the_Rust_Belt_4
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = arms_factory
+    					level = 1
+    					instant_build = yes
+				}
+			}
 		}
 	}
 
@@ -7438,7 +7737,7 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    add_ideas = AFS_national_army_of_ohio
 		}
 	}
 
@@ -7458,7 +7757,19 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    if = {
+			    limit = { has_idea = AFS_national_army_of_ohio_2 }
+				swap_ideas = {
+			        remove_idea = AFS_national_army_of_ohio_2
+			        add_idea = AFS_national_army_of_ohio_3
+		        }
+			}
+		    else = {
+			    swap_ideas = {
+			        remove_idea = AFS_government_of_ohio
+			        add_idea = AFS_government_of_ohio_2
+		        }
+			}
 		}
 	}
 
@@ -7478,7 +7789,19 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    if = {
+			    limit = { has_idea = AFS_national_army_of_ohio_2 }
+				swap_ideas = {
+			        remove_idea = AFS_national_army_of_ohio_2
+			        add_idea = AFS_national_army_of_ohio_3
+		        }
+			}
+		    else = {
+			    swap_ideas = {
+			        remove_idea = AFS_government_of_ohio
+			        add_idea = AFS_government_of_ohio_2
+		        }
+			}
 		}
 	}
 
@@ -7498,7 +7821,13 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    every_owned_state = {
+			    add_state_modifier = {
+                    modifier = {
+                        recruitable_population = 0.05
+                    }
+                }
+			}
 		}
 	}
 
@@ -7521,7 +7850,22 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+			add_research_slot = 1
+		    add_tech_bonus = {
+                bonus = 0.4
+                uses = 4
+                category = infantry_weapons
+            }
+			add_tech_bonus = {
+                bonus = 0.4
+                uses = 4
+                category = support_tech
+            }
+			add_tech_bonus = {
+                bonus = 0.4
+                uses = 3
+                category = armor
+            }
 		}
 	}
 
@@ -7544,7 +7888,27 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+			air_experience = 35
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.4
+				uses = 3
+				category = air_doctrine
+			}
+			add_tech_bonus = {
+			    bonus = 0.5
+			    uses = 2
+			    category = light_air
+			}
+		    add_tech_bonus = {
+			    bonus = 0.5
+			    uses = 2
+			    category = medium_air
+			}
+			add_tech_bonus = {
+			    bonus = 0.5
+			    uses = 2
+			    category = heavy_air
+			}
 		}
 	}
 
@@ -7746,9 +8110,6 @@ focus_tree = {
 			    }
 		    }
 		}
-		completion_reward = {
-		
-		}
 	}
 
 	focus = {
@@ -7835,7 +8196,12 @@ focus_tree = {
 			    type = annex_everything
 		    }
 		    if = {
-			limit = { country_exists = NPA }
+			    limit = { 
+					country_exists = NPA
+					NOT = {
+						is_ally_with = NPA
+					}
+				}
 				create_wargoal = {
 					target = NPA
 					type = annex_everything
@@ -11263,12 +11629,12 @@ focus_tree = {
 			}
 		}
 		completion_reward = {
-		
+		    add_war_support = 0.01
 		}
 	}
 
 	focus = {
-		id = AFS_bidens_eastern_extension
+		id = AFS_bidens_western_extension
 		icon = GFX_goal_VIR_kill_the_afs
 		cost = 1
 		x = 2
@@ -11287,7 +11653,7 @@ focus_tree = {
 			}
 		}
 		completion_reward = {
-		
+		    add_war_support = 0.01
 		}
 	}
 
@@ -11300,15 +11666,25 @@ focus_tree = {
 		relative_position_id = AFS_trumps_eastern_extension
 		prerequisite = {
 			focus = AFS_trumps_eastern_extension
-			focus = AFS_bidens_eastern_extension
+			focus = AFS_bidens_western_extension
 		}
 		select_effect = {  }
 		allow_branch = {
 		}
 		available = {
+			if = {
+				limit = { is_ai = yes }
+			    has_war = no
+				is_neighbor_of = KFC
+			}
 		}
+		will_lead_to_war_with = KFC
+		bypass = { NOT = { country_exists = KFC } }
 		completion_reward = {
-		
+		    create_wargoal = {
+			    target = KFC
+			    type = annex_everything
+		    }
 		}
 	}
 
@@ -11321,15 +11697,25 @@ focus_tree = {
 		relative_position_id = AFS_trumps_eastern_extension
 		prerequisite = {
 			focus = AFS_trumps_eastern_extension
-			focus = AFS_bidens_eastern_extension
+			focus = AFS_bidens_western_extension
 		}
 		select_effect = {  }
 		allow_branch = {
 		}
 		available = {
+			if = {
+				limit = { is_ai = yes }
+			    has_war = no
+				is_neighbor_of = NRA
+			}
 		}
+		will_lead_to_war_with = NRA
+		bypass = { NOT = { country_exists = NRA } }
 		completion_reward = {
-		
+		    create_wargoal = {
+			    target = NRA
+			    type = annex_everything
+		    }
 		}
 	}
 
@@ -11342,15 +11728,45 @@ focus_tree = {
 		relative_position_id = AFS_trumps_eastern_extension
 		prerequisite = {
 			focus = AFS_trumps_eastern_extension
-			focus = AFS_bidens_eastern_extension
+			focus = AFS_bidens_western_extension
 		}
 		select_effect = {  }
 		allow_branch = {
 		}
 		available = {
+			if = {
+				limit = { is_ai = yes }
+			    has_war = no
+			    OR = {
+		            is_neighbor_of = VIR
+				    is_neighbor_of = RVR
+				    is_neighbor_of = OBX
+			    }
+			}
 		}
+		will_lead_to_war_with = VIR
+		will_lead_to_war_with = RVR
+		will_lead_to_war_with = OBX
+		bypass = { NOT = { country_exists = VIR country_exists = OBX country_exists = RVR } }
 		completion_reward = {
-		
+		    create_wargoal = {
+			    target = VIR
+			    type = annex_everything
+		    }
+			if = {
+			    limit = { country_exists = RVR }
+				create_wargoal = {
+					target = RVR
+					type = annex_everything
+			    }
+		    }
+		    if = {
+			    limit = { country_exists = OBX }
+				create_wargoal = {
+					target = OBX
+					type = annex_everything
+			    }
+		    }
 		}
 	}
 
@@ -11363,20 +11779,46 @@ focus_tree = {
 		relative_position_id = AFS_commies_and_corporate_extremists
 		prerequisite = {
 			focus = AFS_push_east
-		}
-		prerequisite = {
 			focus = AFS_commies_and_corporate_extremists
-		}
-		prerequisite = {
 			focus = AFS_free_the_people_of_kentucky
 		}
 		select_effect = {  }
 		allow_branch = {
 		}
 		available = {
+			if = {
+				limit = { is_ai = yes }
+			    has_war = no
+				OR = {
+				    is_neighbor_of = GLA
+					is_neighbor_of = KMT
+					is_neighbor_of = DET
+				}
+			}
 		}
+		will_lead_to_war_with = GLA
+		will_lead_to_war_with = KMT
+		will_lead_to_war_with = DET
+		bypass = { NOT = { country_exists = GLA country_exists = KMT country_exists = DET } }
 		completion_reward = {
-		
+		    create_wargoal = {
+			    target = GLA
+			    type = annex_everything
+		    }
+			if = {
+			    limit = { country_exists = KMT }
+				create_wargoal = {
+					target = KMT
+					type = annex_everything
+			    }
+		    }
+			if = {
+			    limit = { country_exists = DET }
+				create_wargoal = {
+					target = DET
+					type = annex_everything
+			    }
+		    }
 		}
 	}
 
@@ -11394,9 +11836,33 @@ focus_tree = {
 		allow_branch = {
 		}
 		available = {
+			if = {
+				limit = { is_ai = yes }
+			    has_war = no
+				OR = {
+				    is_neighbor_of = USA
+					is_neighbor_of = FRA
+				}
+			}
 		}
+		will_lead_to_war_with = USA
+		will_lead_to_war_with = FRA
+		bypass = { NOT = { country_exists = USA country_exists = FRA } }
 		completion_reward = {
-		
+		    if = {
+			    limit = { has_completed_focus = AFS_trumps_eastern_extension }
+				create_wargoal = {
+					target = FRA
+					type = annex_everything
+			    }
+		    }
+			if = {
+			    limit = { has_completed_focus = AFS_bidens_western_extension }
+				create_wargoal = {
+					target = USA
+					type = annex_everything
+			    }
+		    }
 		}
 	}
 
@@ -11416,7 +11882,36 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    every_state = {
+			    limit = { is_core_of = GLA }
+			    add_core_of = AFS
+		    }
+			every_state = {
+			    limit = { is_core_of = VIR }
+			    add_core_of = AFS
+		    }
+			every_state = {
+			    limit = { is_core_of = NRA }
+			    add_core_of = AFS
+		    }
+			every_state = {
+			    limit = { is_core_of = KFC }
+			    add_core_of = AFS
+		    }
+			if = {
+			    limit = { has_completed_focus = AFS_trumps_eastern_extension }
+				every_state = {
+			        limit = { is_core_of = FRA }
+			        add_core_of = AFS
+		        }
+		    }
+			if = {
+			    limit = { has_completed_focus = AFS_bidens_western_extension }
+				every_state = {
+			        limit = { is_core_of = USA }
+			        add_core_of = AFS
+		        }
+		    }
 		}
 	}
 
@@ -11445,7 +11940,7 @@ focus_tree = {
 			}
 		}
 		completion_reward = {
-		
+		    add_war_support = 0.01
 		}
 	}
 
@@ -11463,9 +11958,19 @@ focus_tree = {
 		allow_branch = {
 		}
 		available = {
+			if = {
+				limit = { is_ai = yes }
+			    has_war = no
+				is_neighbor_of = NRA
+			}
 		}
+		will_lead_to_war_with = NRA
+		bypass = { NOT = { country_exists = NRA } }
 		completion_reward = {
-		
+		    create_wargoal = {
+			    target = NRA
+			    type = annex_everything
+		    }
 		}
 	}
 
@@ -11483,9 +11988,39 @@ focus_tree = {
 		allow_branch = {
 		}
 		available = {
+			if = {
+				limit = { is_ai = yes }
+			    has_war = no
+			    OR = {
+		            is_neighbor_of = VIR
+				    is_neighbor_of = RVR
+				    is_neighbor_of = OBX
+			    }
+			}
 		}
+		will_lead_to_war_with = VIR
+		will_lead_to_war_with = RVR
+		will_lead_to_war_with = OBX
+		bypass = { NOT = { country_exists = VIR country_exists = OBX country_exists = RVR } }
 		completion_reward = {
-		
+		    create_wargoal = {
+			    target = VIR
+			    type = annex_everything
+		    }
+			if = {
+			    limit = { country_exists = RVR }
+				create_wargoal = {
+					target = RVR
+					type = annex_everything
+			    }
+		    }
+		    if = {
+			    limit = { country_exists = OBX }
+				create_wargoal = {
+					target = OBX
+					type = annex_everything
+			    }
+		    }
 		}
 	}
 
@@ -11503,9 +12038,19 @@ focus_tree = {
 		allow_branch = {
 		}
 		available = {
+			if = {
+				limit = { is_ai = yes }
+			    has_war = no
+				is_neighbor_of = KFC
+			}
 		}
+		will_lead_to_war_with = KFC
+		bypass = { NOT = { country_exists = KFC } }
 		completion_reward = {
-		
+		    create_wargoal = {
+			    target = KFC
+			    type = annex_everything
+		    }
 		}
 	}
 
@@ -11527,7 +12072,8 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-		
+		    add_war_support = 0.05
+			add_ideas = AFS_securing_our_nation
 		}
 	}
 }
