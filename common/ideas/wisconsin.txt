@@ -271,5 +271,58 @@ ideas = {
 		}
 
 
+		KMT_entryism = {
+			allowed = { original_tag = KMT NOT = { has_government = authoritarian_left } }
+			allowed_civil_war = { always = yes }
+			cancel = { has_government = authoritarian_left }
+			on_remove = {
+				if = {
+					limit = { has_government = authoritarian_left }
+					add_political_power = 50
+				}
+				else_if {
+					limit = {
+						has_idea = KMT_weather_underground_militia
+					}
+					swap_ideas = {
+    					remove_idea = KMT_weather_underground_militia
+    					add_idea = KMT_weather_underground_militia_2
+					}
+				}
+				else = {
+					swap_ideas = {
+    					remove_idea = KMT_weather_underground_militia_1
+    					add_idea = KMT_weather_underground_militia_2
+					}
+				}
+			}
+			modifier = {
+				political_power_cost = 0.3
+				stability_factor = -0.05
+				weekly_manpower = -200
+				consumer_goods_factor = 0.1
+				party_popularity_stability_factor = -0.5
+				custom_modifier_tooltip = KMT_entryism_end_tt
+			}
+		}
+
+
+
+		KMT_weather_underground_militia_2 = {
+			allowed = { original_tag = KMT }
+			allowed_civil_war = { always = yes }
+			modifier = {
+				modifier_army_sub_unit_militia_attack_factor = 0.025
+				modifier_army_sub_unit_militia_defence_factor = 0.025
+				modifier_army_sub_unit_militia_speed_factor = 0.025
+			}
+			on_add = {
+				retire_character = KMT_Bill_Ayers
+				retire_character = KMT_Bernardine_Dohrn
+				set_division_force_allow_recruiting = { division_template = "Weathermen Militia" }
+				set_division_template_lock = { division_template = "Weathermen Militia" is_locked = no }
+			}
+		}
+
 	}
 }
