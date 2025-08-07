@@ -970,3 +970,107 @@ LAS_orange_boys_on_patrol_cat = {
 	}
 
 }
+
+
+LAS_orange_young_guard_coup = {
+
+	LAS_kill_tristan_morrow = {
+
+		icon = generic_civil_support
+	
+		allowed = {
+			original_tag = LAS
+		}
+
+		visible = {
+			has_country_flag = uda_controls_vegas
+		}
+
+		available = {
+
+		}
+
+		cost = 115 #note to self- should this also cost command power? ask testers what they think.
+
+		days_remove = 14
+		
+		fire_only_once = yes
+		
+		complete_effect = {
+			set_country_flag = morrows_resistance_quelled
+		}
+		remove_effect = {
+			add_manpower = -750
+		}
+		
+		ai_will_do = {
+			factor = 200
+		}
+	}
+
+	LAS_tristan_morrow_world_conquest = {
+
+		icon = military_operation
+
+		allowed = {
+			always = no
+		}
+		available = {
+			OR = {
+				has_country_flag = morrows_resistance_quelled
+				NOT = {
+					has_government = autocratic
+				}
+			}
+		}
+
+
+		is_good = no
+
+		days_mission_timeout = 120
+
+		timeout_effect = {
+			add_stability = -0.20
+			if = {
+				limit = {
+					has_completed_focus = LAS_2_protector_of_the_realm
+				}
+				add_country_leader_role = {
+				    character = LAS_tristan_morrow
+				    promote_leader = yes
+				    country_leader = {
+				        ideology = Agrarian_Socialism
+				        traits = { LAS_foreign_left_libertarian  LAS_protector_of_the_realm }
+				    }
+				}
+				else = {
+					add_country_leader_role = {
+					    character = LAS_tristan_morrow
+					    promote_leader = yes
+					    country_leader = {
+					        ideology = Agrarian_Socialism
+					        traits = { LAS_foreign_left_libertarian }
+					    }
+					}
+				}
+			}
+			set_party_name = {
+			    ideology = libertarian_left
+			    long_name = LAS_ni_people_long
+			    name = LAS_ni_people
+			}
+			country_event = viva_las_vegas.19
+		}
+
+		complete_effect = {
+			add_stability = 0.10
+			add_popularity = {
+				ideology = autocratic
+				popularity = 0.05
+			}
+		}
+
+
+	}
+
+}
