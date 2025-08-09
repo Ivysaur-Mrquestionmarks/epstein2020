@@ -7324,6 +7324,10 @@ focus_tree = {
 		allow_branch = {
 		}
 		available = {
+			power_balance_value = {
+                id = ohio_republican_government_bop
+                value > 0.9
+            }
 		}
 		completion_reward = {
 		    swap_ideas = {
@@ -7358,6 +7362,10 @@ focus_tree = {
 		allow_branch = {
 		}
 		available = {
+			power_balance_value = {
+                id = ohio_republican_government_bop
+                value < -0.9
+            }
 		}
 		completion_reward = {
 		    swap_ideas = {
@@ -10346,6 +10354,191 @@ focus_tree = {
 			        }
 			        add_core_of = ROOT
 			    }
+			}
+		}
+	}
+
+	focus = {
+		id = AFS_formalize_the_anarchist_internationale
+		icon = GFX_goal_VIR_kill_the_afs
+		cost = 4
+		x = -2
+		y = 1
+		relative_position_id = AFS_unification_under_the_banner_of_anarchism
+		prerequisite = {
+			focus = AFS_unification_under_the_banner_of_anarchism
+		}
+		select_effect = {  }
+		allow_branch = {
+		}
+		available = {
+		}
+		completion_reward = {
+            swap_ideas = {
+			    remove_idea = AFS_an_internationale_of_freedom_fighters_2
+			    add_idea = AFS_anarchist_internationale
+		    } 
+		}
+	}
+
+	focus = {
+		id = AFS_meet_with_anarchists_worldwide
+		icon = GFX_goal_VIR_kill_the_afs
+		cost = 3
+		x = -1
+		y = 1
+		relative_position_id = AFS_formalize_the_anarchist_internationale
+		prerequisite = {
+			focus = AFS_formalize_the_anarchist_internationale
+		}
+		select_effect = {  }
+		allow_branch = {
+		}
+		available = {
+		}
+		completion_reward = {
+            country_event = {
+				id = vermin.17
+				days = 0
+			} 
+		}
+	}
+
+	focus = {
+		id = AFS_arm_the_freedom_fighters
+		icon = GFX_goal_VIR_kill_the_afs
+		cost = 5
+		x = 1
+		y = 1
+		relative_position_id = AFS_formalize_the_anarchist_internationale
+		prerequisite = {
+			focus = AFS_formalize_the_anarchist_internationale
+		}
+		select_effect = {  }
+		allow_branch = {
+		}
+		available = {
+		}
+		completion_reward = {
+            add_equipment_to_stockpile = {
+                type = infantry_equipment
+                amount = -100000
+                producer = AFS
+            }
+			every_country = {
+				limit = { NOT = { has_government = libertarian_left } }
+				add_popularity = {
+                    ideology = libertarian_left
+                    popularity = 0.45
+                }
+				add_stability = -0.35
+			}
+		}
+	}
+
+	focus = {
+		id = AFS_true_liberty_across_america
+		icon = GFX_goal_VIR_kill_the_afs
+		cost = 2
+		x = 2
+		y = 1
+		relative_position_id = AFS_unification_under_the_banner_of_anarchism
+		prerequisite = {
+			focus = AFS_unification_under_the_banner_of_anarchism
+		}
+		select_effect = {  }
+		allow_branch = {
+		}
+		available = {
+		}
+		completion_reward = {
+            add_to_variable = {
+				var = AFS.var_libertarian_left_level
+				value = 0.03
+				tooltip = AFS_increase_libertarian_left_var_tt
+			}
+			add_to_variable = {
+				var = AFS.var_drift_defence_level
+				value = 0.05
+				tooltip = AFS_increase_drift_defence_var_tt
+			}
+		}
+	}
+
+	focus = {
+		id = AFS_putting_the_individual_first
+		icon = GFX_goal_VIR_kill_the_afs
+		cost = 3
+		x = 1
+		y = 1
+		relative_position_id = AFS_true_liberty_across_america
+		mutually_exclusive = { 
+			focus = AFS_unity_within_anarchism
+		}
+		prerequisite = {
+			focus = AFS_true_liberty_across_america
+		}
+		select_effect = {  }
+		allow_branch = {
+		}
+		available = {
+			power_balance_value = {
+                id = individualist_collectivist_bop
+                value < -0.9
+            }
+		}
+		completion_reward = {
+			remove_power_balance = {
+                id = individualist_collectivist_bop
+            }
+            add_to_variable = {
+				var = AFS.var_stability_level
+				value = 0.05
+				tooltip = AFS_increase_stability_var_tt
+			}
+			add_to_variable = {
+				var = AFS.var_compliance_level
+				value = 0.05
+				tooltip = AFS_increase_compliance_var_tt
+			}    
+		}
+	}
+
+	focus = {
+		id = AFS_unity_within_anarchism
+		icon = GFX_goal_VIR_kill_the_afs
+		cost = 3
+		x = -1
+		y = 1
+		relative_position_id = AFS_true_liberty_across_america
+		mutually_exclusive = { 
+			focus = AFS_putting_the_individual_first
+		}
+		prerequisite = {
+			focus = AFS_true_liberty_across_america
+		}
+		select_effect = {  }
+		allow_branch = {
+		}
+		available = {
+			power_balance_value = {
+                id = individualist_collectivist_bop
+                value > 0.9
+            }
+		}
+		completion_reward = {
+			remove_power_balance = {
+                id = individualist_collectivist_bop
+            }
+            add_to_variable = {
+				var = AFS.var_pp_level
+				value = 0.1
+				tooltip = AFS_increase_pp_var_tt
+			}  
+			add_to_variable = {
+				var = AFS.var_war_support_level
+				value = 0.05
+				tooltip = AFS_increase_war_support_var_tt
 			}
 		}
 	}
