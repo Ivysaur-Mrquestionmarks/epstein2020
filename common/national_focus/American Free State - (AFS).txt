@@ -9496,7 +9496,7 @@ focus_tree = {
 		available = {
 		}
 		completion_reward = {
-            add_idea = AFS_the_second_american_century
+            add_ideas = AFS_the_second_american_century
 		}
 	}
 
@@ -12990,7 +12990,7 @@ focus_tree = {
 	focus = {
 		id = AFS_stablity_prosperity_and_enlightenment
 		icon = GFX_goal_VIR_kill_the_afs
-		cost = 2
+		cost = 1
 		x = 0
 		y = 1
 		relative_position_id = AFS_reamericanize_cascadia
@@ -13039,6 +13039,208 @@ focus_tree = {
 			        }
 			        add_core_of = ROOT
 			    }
+			}
+		}
+	}
+
+	focus = {
+		id = AFS_spread_vances_enligthenment
+		icon = GFX_goal_VIR_kill_the_afs
+		cost = 3
+		x = -2
+		y = 1
+		relative_position_id = AFS_stablity_prosperity_and_enlightenment
+		prerequisite = {
+			focus = AFS_stablity_prosperity_and_enlightenment
+		}
+		select_effect = {  }
+		allow_branch = {
+		}
+		available = {
+		}
+		completion_reward = {
+            every_country = { 
+				add_popularity = {
+                    ideology = autocratic
+                    popularity = 0.15
+                }
+		    }
+		}
+	}
+
+	focus = {
+		id = AFS_our_economic_sphere_of_influence
+		icon = GFX_goal_VIR_kill_the_afs
+		cost = 5
+		x = -1
+		y = 1
+		relative_position_id = AFS_spread_vances_enligthenment
+		prerequisite = {
+			focus = AFS_spread_vances_enligthenment
+		}
+		select_effect = {  }
+		allow_branch = {
+		}
+		available = {
+		}
+		completion_reward = {
+			swap_ideas = {
+			    remove_idea = AFS_techno_feudalist_economics_4
+			    add_idea = AFS_techno_feudalist_economics_5
+		    }
+            add_to_variable = {
+				var = AFS.var_pp_level
+				value = 0.05
+				tooltip = AFS_increase_pp_var_tt
+			}
+		}
+	}
+
+	focus = {
+		id = AFS_return_to_imperialism
+		icon = GFX_goal_VIR_kill_the_afs
+		cost = 4
+		x = 1
+		y = 1
+		relative_position_id = AFS_spread_vances_enligthenment
+		prerequisite = {
+			focus = AFS_spread_vances_enligthenment
+		}
+		select_effect = {  }
+		allow_branch = {
+		}
+		available = {
+		}
+		completion_reward = {
+            add_ideas = AFS_neo_american_imperialism
+		}
+	}
+
+	focus = {
+		id = AFS_fromalize_duchies
+		icon = GFX_goal_VIR_kill_the_afs
+		cost = 5
+		x = 2
+		y = 1
+		relative_position_id = AFS_stablity_prosperity_and_enlightenment
+		prerequisite = {
+			focus = AFS_stablity_prosperity_and_enlightenment
+		}
+		select_effect = {  }
+		allow_branch = {
+		}
+		available = {
+		}
+		completion_reward = {
+            add_to_variable = {
+				var = AFS.var_stability_level
+				value = 0.05
+				tooltip = AFS_increase_stability_var_tt
+			}
+			add_to_variable = {
+				var = AFS.var_resistance_growth_level
+				value = -0.05
+				tooltip = AFS_decrease_resistance_growth_var_tt
+			}
+		}
+	}
+
+	focus = {
+		id = AFS_power_to_the_aristocrats
+		icon = GFX_goal_VIR_kill_the_afs
+		cost = 3
+		x = 1
+		y = 1
+		relative_position_id = AFS_fromalize_duchies
+		mutually_exclusive = { 
+			focus = AFS_god_save_the_king
+		}
+		prerequisite = {
+			focus = AFS_fromalize_duchies
+		}
+		select_effect = {  }
+		allow_branch = {
+		}
+		available = {
+		}
+		completion_reward = {
+			add_to_variable = {
+				var = AFS.var_pp_level
+				value = -0.05
+				tooltip = AFS_decrease_pp_var_tt
+			}
+            random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+			random_controlled_state = {
+				limit = {is_core_of = ROOT} #This way we guarantee it is in a core state under your control
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+    					type = industrial_complex
+    					level = 1
+    					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = AFS_god_save_the_king
+		icon = GFX_goal_VIR_kill_the_afs
+		cost = 3
+		x = -1
+		y = 1
+		relative_position_id = AFS_fromalize_duchies
+		mutually_exclusive = { 
+			focus = AFS_power_to_the_aristocrats
+		}
+		prerequisite = {
+			focus = AFS_fromalize_duchies
+		}
+		select_effect = {  }
+		allow_branch = {
+		}
+		available = {
+		}
+		completion_reward = {
+			add_to_variable = {
+				var = AFS.var_pp_level
+				value = 0.05
+				tooltip = AFS_increase_pp_var_tt
+			}
+			add_to_variable = {
+				var = AFS.var_war_support_level
+				value = 0.05
+				tooltip = AFS_increase_war_support_var_tt
+			}
+			add_to_variable = {
+				var = AFS.var_war_stability_level
+				value = 0.05
+				tooltip = AFS_increase_war_stability_var_tt
 			}
 		}
 	}
