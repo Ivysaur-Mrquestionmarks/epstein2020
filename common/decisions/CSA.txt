@@ -1487,10 +1487,10 @@ CSA_ARK = {
 				
 			}
 			ARK = {
-				set_variable = {
-					var = influence
-					value = 0
-				}
+				#set_variable = {
+				#	var = influence
+				#	value = 0
+				#}
 				load_oob = "ARK_DCW"
 				load_focus_tree = csa_collapse
 				for_each_scope_loop = {
@@ -1516,7 +1516,14 @@ CSA_SCA = {
 		cost = 35
 
 		visible = {
-			FROM = {NOT = {has_state_flag = influence}}
+			FROM = {
+				NOT = {
+					OR = {
+						has_state_flag = influence
+						is_owned_by = SCA
+					}
+				}
+			}
 		}
 		ai_will_do = {
 			base = 5
@@ -1554,9 +1561,24 @@ CSA_SCA = {
 				var = SCA.support_level_var
 				value = 1
 			}
+			clamp_variable = {
+				var = SCA.support_level_var
+				min = 0
+				max = 6
+			}
+			clamp_variable = {
+				var = SCA.influence_expanded
+				min = 0
+				max = 6
+			}
+			clamp_variable = {
+				var = SCA.influence
+				min = 60
+				max = 190
+			}
 			FROM = {
 				set_state_flag = influence
-				add_dynamic_modifier = { modifier = SCA_southern_bloodshet }
+				#add_dynamic_modifier = { modifier = SCA_southern_bloodshet }
 				add_to_variable = {
 					var = has_expanded_influence_in_state
 					value = 1
@@ -1715,6 +1737,21 @@ CSA_supress = {
 					var = SCA.support_level_var
 					value = -1
 				}
+				clamp_variable = {
+					var = SCA.support_level_var
+					min = 0
+					max = 6
+				}
+				clamp_variable = {
+					var = SCA.influence_expanded
+					min = 0
+					max = 6
+				}
+				clamp_variable = {
+					var = SCA.influence
+					min = 60
+					max = 190
+				}
 			}
 			else_if = {
 				limit = { FROM = { is_core_of = ARK } } 
@@ -1735,6 +1772,21 @@ CSA_supress = {
 				add_to_variable = {
 					var = ARK.support_level_var
 					value = -1
+				}
+				clamp_variable = {
+					var = ARK.support_level_var
+					min = 0
+					max = 6
+				}
+				clamp_variable = {
+					var = ARK.influence_expanded
+					min = 0
+					max = 6
+				}
+				clamp_variable = {
+					var = ARK.influence
+					min = 60
+					max = 190
 				}
 			}
 		}
