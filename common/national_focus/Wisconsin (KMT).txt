@@ -64,7 +64,7 @@ focus_tree = {
 
 		cost = 5
 		ai_will_do = {
-			factor = 1
+			factor = 0			#prolly change after map update
 		}
         available = {
 			MIL = {
@@ -101,7 +101,7 @@ focus_tree = {
 
 		cost = 5
 		ai_will_do = {
-			factor = 1
+			factor = 5
 		}
 		available = {
 			GLA = {
@@ -153,7 +153,7 @@ focus_tree = {
 
 		cost = 7
 		ai_will_do = {
-			factor = 1
+			factor = 10
 		}
 		available = {
 			GLA = {
@@ -234,7 +234,7 @@ focus_tree = {
 
 		cost = 6
 		ai_will_do = {
-			factor = 1
+			factor = 10
 		}
 		available = {
 			GLA = {
@@ -265,7 +265,7 @@ focus_tree = {
 
 		cost = 6
 		ai_will_do = {
-			factor = 1
+			factor = 10
 		}
 		available = {
 			GLA = {
@@ -299,7 +299,7 @@ focus_tree = {
 
 		cost = 5
 		ai_will_do = {
-			factor = 1
+			factor = 10
 		}
 		available = {
 			OR = {
@@ -342,7 +342,7 @@ focus_tree = {
 
 		cost = 3
 		ai_will_do = {
-			factor = 1
+			factor = 10
 		}
 		available = {
 			GLA = {
@@ -378,7 +378,7 @@ focus_tree = {
 
 		cost = 5
 		ai_will_do = {
-			factor = 1
+			factor = 10
 		}
 		available = {
 			GLA = {
@@ -441,7 +441,7 @@ focus_tree = {
 
 		cost = 5
 		ai_will_do = {
-			factor = 1
+			factor = 10
 		}
 		available = {
 			GLA = {
@@ -484,7 +484,7 @@ focus_tree = {
 
 		cost = 3
 		ai_will_do = {
-			factor = 1
+			factor = 10
 		}
 		available = {
 			GLA = {
@@ -517,7 +517,7 @@ focus_tree = {
 
 		cost = 2
 		ai_will_do = {
-			factor = 1
+			factor = 40
 		}
 		available = {
 			GLA = {
@@ -560,7 +560,7 @@ focus_tree = {
 
 		cost = 2
 		ai_will_do = {
-			factor = 1
+			factor = 50
 		}
 		available = {
 			GLA = {
@@ -671,7 +671,7 @@ focus_tree = {
 
 		cost = 5
 		ai_will_do = {
-			factor = 1
+			factor = 5
 		}
 		available = {
 		}
@@ -714,7 +714,7 @@ focus_tree = {
 
 		cost = 5
 		ai_will_do = {
-			factor = 1
+			factor = 5
 		}
 		available = {
 		}
@@ -793,10 +793,8 @@ focus_tree = {
 			factor = 100
 		}
 		available = {
-			OR = {
-				NOT = { has_idea = KMT_weather_underground_militia }
-				NOT = { has_idea = KMT_weather_underground_militia_1 }
-			}
+			NOT = { has_idea = KMT_weather_underground_militia }
+			NOT = { has_idea = KMT_weather_underground_militia_1 }
 		}
 		
 		bypass = {
@@ -1045,34 +1043,26 @@ focus_tree = {
 				limit = {
 					has_government = republican
 				}
-				create_wargoal = {
-					type = take_state_focus
-					target = MIN
-					generator = { 104 } # add the other one after map update
-					expire = 90
+				declare_war_on = {
+    				target = MIN
+    				type = annex_everything
 				}
-				create_wargoal = {
-					type = take_state_focus
-					target = MIL
-					generator = { 104 } # add the other one after map update
-					expire = 90
+				declare_war_on = {
+    				target = MIL
+    				type = annex_everything
 				}
 			}
 			else_if = {
 				limit = {
 					has_government = democrat
 				}
-				create_wargoal = {
-					type = take_state_focus
-					target = MIN
-					generator = { 104 } # add the other one after map update
-					expire = 90
+				declare_war_on = {
+    				target = MIN
+    				type = annex_everything
 				}
-				create_wargoal = {
-					type = take_state_focus
-					target = MNS
-					generator = { 104 } # add the other one after map update
-					expire = 90
+				declare_war_on = {
+    				target = MNS
+    				type = annex_everything
 				}
 			}
 		}
@@ -1133,8 +1123,22 @@ focus_tree = {
 		}
 		
 		bypass = {
-			controls_state = 104
-			#controls_state = 			# add after map update
+			OR = {
+				AND = {
+					controls_state = 104
+					#controls_state = 			# add after map update
+				}
+				AND = {
+					MIL = { exists = no }
+					MIN = { exists = no }
+					MNS = { exists = no }
+				}
+				OR = {
+					has_war_with = MIL
+					has_war_with = MIN
+					has_war_with = MNS
+				}
+			}
 		}
 		cancel_if_invalid = no
 		continue_if_invalid = no
@@ -4939,7 +4943,7 @@ focus_tree = {
 
 		cost = 7
 		ai_will_do = {
-			factor = 2
+			factor = 20
 		}
 		available = {
 		}
@@ -5593,7 +5597,6 @@ focus_tree = {
 			factor = 1
 		}
 		available = {
-			has_completed_focus = KMT_victory_over_chaos
 		}
 		
 		bypass = {
@@ -5772,6 +5775,7 @@ focus_tree = {
 			factor = 1
 		}
 		available = {
+			has_completed_focus = KMT_victory_over_chaos
 		}
 		
 		bypass = {
@@ -5802,7 +5806,6 @@ focus_tree = {
 			factor = 1
 		}
 		available = {
-			has_completed_focus = KMT_victory_over_chaos
 			any_controlled_state = {
         		is_coastal = yes
     		}
@@ -5841,6 +5844,7 @@ focus_tree = {
 			factor = 1
 		}
 		available = {
+			has_completed_focus = KMT_victory_over_chaos
 		}
 		
 		bypass = {
@@ -6112,7 +6116,7 @@ focus_tree = {
 
 		cost = 5
 		ai_will_do = {
-			factor = 1
+			factor = 10
 		}
 		available = {
 		}
@@ -6197,7 +6201,7 @@ focus_tree = {
 
 		cost = 8
 		ai_will_do = {
-			factor = 1
+			factor = 5
 		}
 		available = {
 		}
@@ -6834,6 +6838,12 @@ focus_tree = {
 			factor = 1
 		}
 		available = {
+			NOT = {
+				has_country_leader = {
+					character = KMT_Ron_Johnson
+					ruling_only = yes
+				}
+			}
 		}
 		
 		bypass = {
@@ -6869,6 +6879,12 @@ focus_tree = {
 			factor = 1
 		}
 		available = {
+			NOT = {
+				has_country_leader = {
+					character = KMT_Tammy_Baldwin
+					ruling_only = yes
+				}
+			}
 		}
 		
 		bypass = {
