@@ -1044,3 +1044,102 @@ unit_leader_event = {
 		}
 	}
 }
+
+#Josh Sutter reveals his FBI connections...
+country_event = {
+	id = tribal.30
+	hidden = yes
+	fire_only_once = yes
+	trigger = {
+		original_tag = HOP
+		OR = {
+			has_war_with = USA
+			NOT = {
+				country_exists = USA
+			}
+		}
+	}
+	immediate = {
+		HOP_joshua_caleb_sutter = {
+			unit_leader_event = {
+				id = tribal.31
+				hours = 4
+			}
+		}
+	}
+}
+unit_leader_event = {
+	id = tribal.31
+	title = tribal.31.t
+	desc = tribal.31.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = tribal.31.a
+		add_manpower = -1
+		add_stability = -0.10
+		if = {
+			limit = {
+				country_exists = USA
+			}
+			HOP_joshua_caleb_sutter = {
+				set_nationality = USA
+			}
+			if = {
+				limit = {
+					USA = {
+						has_completed_focus = USA_PB_path
+					}
+				}
+				USA = {
+					HOP_joshua_caleb_sutter = {
+						unit_leader_event = {
+							id = tribal.32
+						}
+					}
+				}
+			}
+			add_timed_idea = {
+				idea = HOP_fbi_informants
+				days = 50
+			}
+			else_if = {
+				limit = {
+					country_exists = FRA
+				}
+				effect_tooltip = {
+					HOP_joshua_caleb_sutter = {
+						set_nationality = FRA
+					}
+				}
+				hidden_effect = { retire_character = HOP_joshua_caleb_sutter }
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						country_exists = FRA
+					}
+				}
+				retire_character = HOP_joshua_caleb_sutter
+			}
+		}
+	}
+}
+#USA notified
+unit_leader_event = {
+	id = tribal.32
+	title = tribal.32.t
+	desc = tribal.32.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = tribal.32.a
+		add_manpower = 1
+		set_country_flag = USA_atomwaffen_fbi_defectors_
+		effect_tooltip = {
+			create_corps_commander = {
+				name = "Joshua Sutter"
+			}
+		}
+	}
+}
