@@ -1,5 +1,5 @@
 #!localisation:localisation/KMT_focus_l_english.yml
-#!gfx:interface/goals
+#!gfx:interface/epstein_goals.gfx
 
 focus_tree = {
 	id = wisconsin
@@ -595,6 +595,129 @@ focus_tree = {
 
         }        
     }
+
+	focus = {
+		id = KMT_the_war
+		icon = TODO
+		x = 4
+		y = 0
+
+		cost = 8
+		ai_will_do = {
+			factor = 200
+		}
+		available = {
+			has_war_with = GLA
+		}
+		
+		bypass = {
+            GLA = { exists = no }
+		}
+		cancel_if_invalid = no
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			add_political_power = 75
+			add_war_support = 0.05
+		}
+	}
+
+	focus = {
+		id = KMT_morale
+		icon = TODO
+		x = 3
+		y = 1
+
+		cost = 5
+		ai_will_do = {
+			factor = 200
+		}
+        available = {
+			has_war_with = GLA
+		}
+		
+		bypass = {
+            GLA = { exists = no }
+		}
+		cancel_if_invalid = no
+		continue_if_invalid = yes
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_political_power = 75
+			add_war_support = 0.05
+			add_stability = 0.05
+        }
+		prerequisite = {
+            focus = KMT_the_war
+        }
+	}
+
+
+    focus = {
+		id = KMT_raid_libertarian_weapons
+		icon = TODO
+		x = 5
+		y = 1
+
+		cost = 5
+		ai_will_do = {
+			factor = 200
+		}
+		available = {
+			has_war_with = GLA
+			GLA = { surrender_progress > 0.1 }
+		}
+		
+		bypass = {
+            GLA = { exists = no }
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+            add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 2000
+				producer = GLA
+			}
+			add_political_power = 25
+        }
+		prerequisite = {
+            focus = KMT_the_war
+        }
+    }
+
+	focus = {
+		id = KMT_final_push
+		icon = TODO
+		x = 4
+		y = 2
+
+		cost = 8
+		ai_will_do = {
+			factor = 200
+		}
+		available = {
+			has_war_with = GLA
+		}
+		
+		bypass = {
+            GLA = { exists = no }
+		}
+		cancel_if_invalid = no
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			add_timed_idea = { idea = KMT_forward days = 50 }
+        }
+		prerequisite = {
+            focus = KMT_morale
+        }
+		prerequisite = {
+            focus = KMT_raid_libertarian_weapons
+        }
+    }
 	
 
 	########   #######  ##       #### ######## ####  ######   ######  
@@ -840,9 +963,7 @@ focus_tree = {
 		}
 		available = {
 			is_subject = no
-			OR = {
 				has_idea = KMT_weather_underground_militia_1
-			}
 		}
 		
 		bypass = {
@@ -5344,13 +5465,13 @@ focus_tree = {
        				infantry = { x = 0 y = 1 }
         			infantry = { x = 0 y = 2 }
 					infantry = { x = 0 y = 3 }
-        			infantry = { x = 0 y = 5 }
+        			infantry = { x = 0 y = 4 }
         			infantry = { x = 1 y = 0 }
 					infantry = { x = 1 y = 1 }
 					infantry = { x = 1 y = 2 }
 					infantry = { x = 1 y = 3 }
         			infantry = { x = 1 y = 4 }
-					artillery = { x = 2 y = 0 }
+					artillery_brigade = { x = 2 y = 0 }
     			}
     			support = {
 					artillery = { x = 0 y = 0 }
@@ -5593,7 +5714,7 @@ focus_tree = {
 		x = 54
 		y = 1
 
-		cost = 5
+		cost = 6
 		ai_will_do = {
 			factor = 1
 		}
@@ -5620,7 +5741,7 @@ focus_tree = {
 		x = 53
 		y = 2
 
-		cost = 4
+		cost = 5
 		ai_will_do = {
 			factor = 1
 		}
@@ -5664,7 +5785,7 @@ focus_tree = {
 		x = 55
 		y = 2
 
-		cost = 4
+		cost = 5
 		ai_will_do = {
 			factor = 1
 		}
@@ -5802,7 +5923,7 @@ focus_tree = {
 		x = 57
 		y = 1
 
-		cost = 8
+		cost = 6
 		ai_will_do = {
 			factor = 1
 		}
@@ -6823,7 +6944,7 @@ focus_tree = {
 			focus = KMT_restore_focus_on_energy_plan
         }
 		mutually_exclusive = {
-			focus = KMT_nuclear_energy
+			focus = KMT_natural_gas
 			focus = KMT_solar_and_wind
 		}
 	}
