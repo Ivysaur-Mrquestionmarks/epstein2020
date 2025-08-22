@@ -963,7 +963,7 @@ focus_tree = {
 		}
 		available = {
 			is_subject = no
-				has_idea = KMT_weather_underground_militia_1
+			has_idea = KMT_weather_underground_militia_1
 		}
 		
 		bypass = {
@@ -972,7 +972,29 @@ focus_tree = {
 		continue_if_invalid = no
 		available_if_capitulated = no
 		completion_reward = {
+			set_politics = {
+    			ruling_party = authoritarian_left
+				elections_allowed = no
+			}
+			add_popularity = {
+				ideology = authoritarian_left
+				popularity = 0.05
+			}
+			add_stability = -0.1
+			if = {
+				limit = {
+					has_idea = KMT_coalition_of_the_willing
+				}
+				remove_ideas = KMT_coalition_of_the_willing
+			}
+			else_if = {
+				limit = {
+					has_idea = KMT_coalition_of_the_willing_1
+				}
+				remove_ideas = KMT_coalition_of_the_willing_1
+			}
 			
+			activate_mission = KMT_counter_revolution
 		}
 		prerequisite = {
 			focus = KMT_integrate_the_militia
@@ -1029,7 +1051,7 @@ focus_tree = {
 				}
 				leave_faction = yes
 			}
-			remove_ideas = { KMT_poorly_organized_state }
+			remove_ideas = KMT_poorly_organized_state
 		}
 		prerequisite = {
 			focus = KMT_hold_elections
@@ -2306,6 +2328,7 @@ focus_tree = {
 			factor = 1
 		}
 		available = {
+			authoritarian_left > 0.5
 		}
 		
 		bypass = {
@@ -2314,7 +2337,7 @@ focus_tree = {
 		continue_if_invalid = no
 		available_if_capitulated = no
 		completion_reward = {
-			
+			remove_ideas = KMT_poorly_organized_state
 		}
 		prerequisite = {
 			focus = KMT_annex_michigan
