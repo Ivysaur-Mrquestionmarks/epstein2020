@@ -881,7 +881,7 @@ country_event = {
 					set_stability = 0.9
 					set_war_support = 0.9
 					load_oob = "KMT_civil_war"
-										
+					unlock_national_focus = KMT_weathermen_coup					
 				}
 				
 
@@ -1293,22 +1293,27 @@ country_event = {
 		ai_chance = {
 			factor = 1
 		}
-		start_civil_war = {
-			ideology = autocratic
-			#size = 0.1
-			capital = 106
-			states = all
-			#keep_unit_leaders = TODO
-			army_ratio = 0
-			states_filter = {
-				OR = {
-					state = 106
-					# add other after map update
+		custom_effect_tooltip = KMT_play_as_revolution_tt
+		hidden_effect = {
+			start_civil_war = {
+				ideology = autocratic
+				#size = 0.1
+				capital = 106
+				states = all
+				#keep_unit_leaders = TODO
+				army_ratio = 0
+				states_filter = {
+					OR = {
+						state = 106
+						# add other after map update
+					}
+					is_controlled_by = ROOT
 				}
-				is_controlled_by = ROOT
+				
+				load_focus_tree = generic_focus
+
+				#### HAVE TO TRANSFER CHARACTERS ####		
 			}
-			
-			#### HAVE TO TRANSFER CHARACTERS ####		
 		}
 	}
 
@@ -1317,26 +1322,31 @@ country_event = {
 		ai_chance = {
 			factor = 0
 		}
-		set_politics = {
-			ruling_party = autocratic
-			elections_allowed = no
-		}
-		start_civil_war = {
-			ideology = authoritarian_left
-			#size = 0.1
-			capital = 195
-			states = all
-			#keep_unit_leaders = TODO
-			army_ratio = 0
-			states_filter = {
-				NOT = {
-					state = 106
-					# add other after map update
-				}
-				is_controlled_by = ROOT
+		custom_effect_tooltip = KMT_play_as_counter_revolution_tt
+		custom_effect_tooltip = unfinished_content_warning_tooltip
+		hidden_effect = {
+			set_politics = {
+				ruling_party = autocratic
+				elections_allowed = no
 			}
-			
-			#### HAVE TO TRANSFER CHARACTERS ####		
+			load_focus_tree = generic_focus
+			start_civil_war = {
+				ideology = authoritarian_left
+				#size = 0.1
+				capital = 195
+				states = all
+				#keep_unit_leaders = TODO
+				army_ratio = 0
+				states_filter = {
+					NOT = {
+						state = 106
+						# add other after map update
+					}
+					is_controlled_by = ROOT
+				}
+				
+				#### HAVE TO TRANSFER CHARACTERS ####		
+			}
 		}
 	}
 }

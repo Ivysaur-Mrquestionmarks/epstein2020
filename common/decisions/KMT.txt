@@ -80,4 +80,98 @@ KMT_counter_revolution_mission = {
 		}
 	}
 
+	KMT_raid_weapons = {
+		icon = GFX_decision_generic_confiscation
+		allowed = {
+			original_tag = KMT
+		}
+		cost = 50
+		fire_only_once = no
+		days_remove = 75
+		ai_will_do = {
+			base = 50
+		}
+		visible = {
+			has_completed_focus = KMT_raid_weapon_storages
+		}
+		available = {
+			NOT = {
+				has_country_flag = KMT_doing_cr
+			}
+		}
+		modifier = {
+		}
+		complete_effect = {
+			set_country_flag = {
+				flag = KMT_doing_cr
+				days = 75
+				value = 1
+			}
+			add_stability = -0.025
+		}
+		remove_effect = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 2000
+				producer = KMT
+			}
+			add_days_mission_timeout = {
+				mission = KMT_counter_revolution
+				days = 30
+			}
+		}
+	}
+
+	KMT_arm_black_militias = {
+		icon = GFX_decision_generic_reorganize_irregulars
+		allowed = {
+			original_tag = KMT
+		}
+		cost = 50
+		fire_only_once = no
+		days_remove = 50
+		ai_will_do = {
+			base = 50
+		}
+		visible = {
+			has_completed_focus = KMT_black_power
+		}
+		available = {
+			NOT = {
+				has_country_flag = KMT_doing_cr
+			}
+			has_equipment = {
+				infantry_equipment > 500
+			}
+		}
+		modifier = {
+		}
+		complete_effect = {
+			set_country_flag = {
+				flag = KMT_doing_cr
+				days = 50
+				value = 1
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -500
+			}
+		}
+		remove_effect = {
+			add_manpower = 1000
+			add_days_mission_timeout = {
+				mission = KMT_counter_revolution
+				days = 50
+			}
+			add_popularity = {
+				ideology = authoritarian_left
+				popularity = 0.01
+			}
+			add_popularity = {
+				ideology = libertarian_left
+				popularity = 0.01
+			}
+		}
+	}
+
 }
