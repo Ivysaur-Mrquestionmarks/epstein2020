@@ -1310,9 +1310,34 @@ country_event = {
 					is_controlled_by = ROOT
 				}
 				
-				load_focus_tree = generic_focus
+				#load_focus_tree = generic_focus
 
 				#### HAVE TO TRANSFER CHARACTERS ####		
+			}
+
+			hidden_effect = {
+				random_other_country = {
+					limit = {
+						original_tag = KMT
+						has_government = autocratic
+					}
+					set_stability = 0.4
+					set_war_support = 0.6
+					load_oob = "KMT_counter_revolution"
+					delete_unit_template_and_units = {
+						division_template = "Weathermen Militia"
+						disband = no
+					}
+					delete_unit_template_and_units = {
+						division_template = "Brigade of the Willing"
+						disband = no
+					}
+					delete_unit_template_and_units = {
+						division_template = "Interforce Rapid Division"
+						disband = no
+					}
+					complete_national_focus = KMT_counter_revolution_path_TODO			
+				}
 			}
 		}
 	}
@@ -1325,15 +1350,19 @@ country_event = {
 		custom_effect_tooltip = KMT_play_as_counter_revolution_tt
 		custom_effect_tooltip = unfinished_content_warning_tooltip
 		hidden_effect = {
+			set_capital = {
+				state = 106
+				remember_old_capital = yes
+			}
 			set_politics = {
 				ruling_party = autocratic
 				elections_allowed = no
 			}
-			load_focus_tree = generic_focus
+			#load_focus_tree = generic_focus
 			start_civil_war = {
 				ideology = authoritarian_left
 				#size = 0.1
-				capital = 195
+				#capital = 195
 				states = all
 				#keep_unit_leaders = TODO
 				army_ratio = 0
@@ -1347,11 +1376,38 @@ country_event = {
 				
 				#### HAVE TO TRANSFER CHARACTERS ####		
 			}
+
+			complete_national_focus = KMT_counter_revolution_path_TODO
+			set_stability = 0.4
+			set_war_support = 0.6	
+			load_oob = "KMT_counter_revolution"
+			delete_unit_template_and_units = {
+				division_template = "Weathermen Militia"
+				disband = no
+			}
+			delete_unit_template_and_units = {
+				division_template = "Brigade of the Willing"
+				disband = no
+			}
+			delete_unit_template_and_units = {
+				division_template = "Interforce Rapid Division"
+				disband = no
+			}
+
+			random_other_country = {
+				limit = {
+					original_tag = KMT
+					has_government = authoritarian_left
+				}
+				set_stability = 0.4
+				set_war_support = 0.6
+				load_oob = "KMT_revolution"
+			}
 		}
 	}
 }
 
-
+# new capital
 country_event = {
 	id = wisconsin.36
 	title = wisconsin.36.t
@@ -1363,24 +1419,17 @@ country_event = {
 	option = {
 		name = wisconsin.36.a
 		ai_chance = {
-			factor = 20
+			factor = 40
+		}
+		set_capital = {
+			state = 195
+			remember_old_capital = no
 		}
 		add_stability = 0.05
 	}
 
 	option = {
 		name = wisconsin.36.b
-		ai_chance = {
-			factor = 20
-		}
-		set_capital = {
-			state = 195
-			remember_old_capital = no
-		}
-	}
-
-	option = {
-		name = wisconsin.36.c
 		ai_chance = {
 			factor = 60
 		}
@@ -1391,6 +1440,7 @@ country_event = {
 			state = 198
 			remember_old_capital = no
 		}
+		add_stability = 0.05
 	}
 }
 
